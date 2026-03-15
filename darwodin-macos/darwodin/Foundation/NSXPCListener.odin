@@ -26,7 +26,7 @@ foreign lib {
     XPCListener_anonymousListener :: proc() -> ^XPCListener ---
 
     @(objc_type=XPCListener, objc_selector="initWithMachServiceName:", objc_name="initWithMachServiceName")
-    XPCListener_initWithMachServiceName :: proc(self: ^XPCListener, name: ^String) -> ^XPCListener ---
+    XPCListener_initWithMachServiceName :: proc(self: ^XPCListener, name: ^String) -> instancetype ---
 
     @(objc_type=XPCListener, objc_selector="resume", objc_name="resume")
     XPCListener_resume :: proc(self: ^XPCListener) ---

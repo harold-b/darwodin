@@ -27,7 +27,7 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     regularExpressionWithPattern: proc(pattern: ^NS.String, options: NS.RegularExpressionOptions, error: ^^NS.Error) -> ^NS.RegularExpression,
-    initWithPattern: proc(self: ^NS.RegularExpression, pattern: ^NS.String, options: NS.RegularExpressionOptions, error: ^^NS.Error) -> ^NS.RegularExpression,
+    initWithPattern: proc(self: ^NS.RegularExpression, pattern: ^NS.String, options: NS.RegularExpressionOptions, error: ^^NS.Error) -> instancetype,
     escapedPatternForString: proc(string: ^NS.String) -> ^NS.String,
     pattern: proc(self: ^NS.RegularExpression) -> ^NS.String,
     options: proc(self: ^NS.RegularExpression) -> NS.RegularExpressionOptions,
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("regularExpressionWithPattern:options:error:"), auto_cast regularExpressionWithPattern, "@#:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithPattern != nil {
-        initWithPattern :: proc "c" (self: ^NS.RegularExpression, _: SEL, pattern: ^NS.String, options: NS.RegularExpressionOptions, error: ^^NS.Error) -> ^NS.RegularExpression {
+        initWithPattern :: proc "c" (self: ^NS.RegularExpression, _: SEL, pattern: ^NS.String, options: NS.RegularExpressionOptions, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

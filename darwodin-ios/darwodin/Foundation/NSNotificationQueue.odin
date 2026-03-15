@@ -20,7 +20,7 @@ NotificationQueue :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NotificationQueue, objc_selector="initWithNotificationCenter:", objc_name="initWithNotificationCenter")
-    NotificationQueue_initWithNotificationCenter :: proc(self: ^NotificationQueue, notificationCenter: ^NotificationCenter) -> ^NotificationQueue ---
+    NotificationQueue_initWithNotificationCenter :: proc(self: ^NotificationQueue, notificationCenter: ^NotificationCenter) -> instancetype ---
 
     @(objc_type=NotificationQueue, objc_selector="enqueueNotification:postingStyle:", objc_name="enqueueNotification_postingStyle")
     NotificationQueue_enqueueNotification_postingStyle :: proc(self: ^NotificationQueue, notification: ^Notification, postingStyle: PostingStyle) ---

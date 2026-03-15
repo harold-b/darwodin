@@ -23,16 +23,16 @@ CaptionFormatConformer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionFormatConformer, objc_selector="init", objc_name="init")
-    CaptionFormatConformer_init :: proc(self: ^CaptionFormatConformer) -> ^CaptionFormatConformer ---
+    CaptionFormatConformer_init :: proc(self: ^CaptionFormatConformer) -> instancetype ---
 
     @(objc_type=CaptionFormatConformer, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptionFormatConformer_new :: proc() -> ^CaptionFormatConformer ---
 
     @(objc_type=CaptionFormatConformer, objc_selector="captionFormatConformerWithConversionSettings:", objc_name="captionFormatConformerWithConversionSettings", objc_is_class_method=true)
-    CaptionFormatConformer_captionFormatConformerWithConversionSettings :: proc(conversionSettings: ^NS.Dictionary) -> ^CaptionFormatConformer ---
+    CaptionFormatConformer_captionFormatConformerWithConversionSettings :: proc(conversionSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=CaptionFormatConformer, objc_selector="initWithConversionSettings:", objc_name="initWithConversionSettings")
-    CaptionFormatConformer_initWithConversionSettings :: proc(self: ^CaptionFormatConformer, conversionSettings: ^NS.Dictionary) -> ^CaptionFormatConformer ---
+    CaptionFormatConformer_initWithConversionSettings :: proc(self: ^CaptionFormatConformer, conversionSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=CaptionFormatConformer, objc_selector="conformedCaptionForCaption:error:", objc_name="conformedCaptionForCaption")
     CaptionFormatConformer_conformedCaptionForCaption :: proc(self: ^CaptionFormatConformer, caption: ^Caption, outError: ^^NS.Error) -> ^Caption ---

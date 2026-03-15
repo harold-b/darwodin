@@ -24,19 +24,19 @@ ActivityItemsConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ActivityItemsConfiguration, objc_selector="activityItemsConfigurationWithObjects:", objc_name="activityItemsConfigurationWithObjects", objc_is_class_method=true)
-    ActivityItemsConfiguration_activityItemsConfigurationWithObjects :: proc(objects: ^NS.Array) -> ^ActivityItemsConfiguration ---
+    ActivityItemsConfiguration_activityItemsConfigurationWithObjects :: proc(objects: ^NS.Array) -> instancetype ---
 
     @(objc_type=ActivityItemsConfiguration, objc_selector="activityItemsConfigurationWithItemProviders:", objc_name="activityItemsConfigurationWithItemProviders", objc_is_class_method=true)
-    ActivityItemsConfiguration_activityItemsConfigurationWithItemProviders :: proc(itemProviders: ^NS.Array) -> ^ActivityItemsConfiguration ---
+    ActivityItemsConfiguration_activityItemsConfigurationWithItemProviders :: proc(itemProviders: ^NS.Array) -> instancetype ---
 
     @(objc_type=ActivityItemsConfiguration, objc_selector="initWithObjects:", objc_name="initWithObjects")
-    ActivityItemsConfiguration_initWithObjects :: proc(self: ^ActivityItemsConfiguration, objects: ^NS.Array) -> ^ActivityItemsConfiguration ---
+    ActivityItemsConfiguration_initWithObjects :: proc(self: ^ActivityItemsConfiguration, objects: ^NS.Array) -> instancetype ---
 
     @(objc_type=ActivityItemsConfiguration, objc_selector="initWithItemProviders:", objc_name="initWithItemProviders")
-    ActivityItemsConfiguration_initWithItemProviders :: proc(self: ^ActivityItemsConfiguration, itemProviders: ^NS.Array) -> ^ActivityItemsConfiguration ---
+    ActivityItemsConfiguration_initWithItemProviders :: proc(self: ^ActivityItemsConfiguration, itemProviders: ^NS.Array) -> instancetype ---
 
     @(objc_type=ActivityItemsConfiguration, objc_selector="init", objc_name="init")
-    ActivityItemsConfiguration_init :: proc(self: ^ActivityItemsConfiguration) -> ^ActivityItemsConfiguration ---
+    ActivityItemsConfiguration_init :: proc(self: ^ActivityItemsConfiguration) -> instancetype ---
 
     @(objc_type=ActivityItemsConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ActivityItemsConfiguration_new :: proc() -> ^ActivityItemsConfiguration ---

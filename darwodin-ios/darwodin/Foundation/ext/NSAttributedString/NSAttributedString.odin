@@ -33,23 +33,23 @@ VTable :: struct {
     attributesAtIndex_longestEffectiveRange_inRange: proc(self: ^NS.AttributedString, location: NS.UInteger, range: ^NS._NSRange, rangeLimit: NS._NSRange) -> ^NS.Dictionary,
     attribute_atIndex_longestEffectiveRange_inRange: proc(self: ^NS.AttributedString, attrName: ^NS.String, location: NS.UInteger, range: ^NS._NSRange, rangeLimit: NS._NSRange) -> id,
     isEqualToAttributedString: proc(self: ^NS.AttributedString, other: ^NS.AttributedString) -> bool,
-    initWithString_: proc(self: ^NS.AttributedString, str: ^NS.String) -> ^NS.AttributedString,
-    initWithString_attributes: proc(self: ^NS.AttributedString, str: ^NS.String, attrs: ^NS.Dictionary) -> ^NS.AttributedString,
-    initWithAttributedString: proc(self: ^NS.AttributedString, attrStr: ^NS.AttributedString) -> ^NS.AttributedString,
+    initWithString_: proc(self: ^NS.AttributedString, str: ^NS.String) -> instancetype,
+    initWithString_attributes: proc(self: ^NS.AttributedString, str: ^NS.String, attrs: ^NS.Dictionary) -> instancetype,
+    initWithAttributedString: proc(self: ^NS.AttributedString, attrStr: ^NS.AttributedString) -> instancetype,
     enumerateAttributesInRange: proc(self: ^NS.AttributedString, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (attrs: ^NS.Dictionary, range: NS._NSRange, stop: ^bool))),
     enumerateAttribute: proc(self: ^NS.AttributedString, attrName: ^NS.String, enumerationRange: NS._NSRange, opts: NS.AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (value: id, range: NS._NSRange, stop: ^bool))),
     length: proc(self: ^NS.AttributedString) -> NS.UInteger,
-    initWithContentsOfMarkdownFileAtURL: proc(self: ^NS.AttributedString, markdownFile: ^NS.URL, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString,
-    initWithMarkdown: proc(self: ^NS.AttributedString, markdown: ^NS.Data, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString,
-    initWithMarkdownString: proc(self: ^NS.AttributedString, markdownString: ^NS.String, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString,
-    initWithFormat_options_locale: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale) -> ^NS.AttributedString,
-    initWithFormat_options_locale_arguments: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, arguments: ^cffi.va_list) -> ^NS.AttributedString,
-    localizedAttributedStringWithFormat_: proc(format: ^NS.AttributedString) -> ^NS.AttributedString,
-    localizedAttributedStringWithFormat_options: proc(format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions) -> ^NS.AttributedString,
-    initWithFormat_options_locale_context: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary) -> ^NS.AttributedString,
-    initWithFormat_options_locale_context_arguments: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary, arguments: ^cffi.va_list) -> ^NS.AttributedString,
-    localizedAttributedStringWithFormat_context: proc(format: ^NS.AttributedString, _context: ^NS.Dictionary) -> ^NS.AttributedString,
-    localizedAttributedStringWithFormat_options_context: proc(format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, _context: ^NS.Dictionary) -> ^NS.AttributedString,
+    initWithContentsOfMarkdownFileAtURL: proc(self: ^NS.AttributedString, markdownFile: ^NS.URL, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> instancetype,
+    initWithMarkdown: proc(self: ^NS.AttributedString, markdown: ^NS.Data, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> instancetype,
+    initWithMarkdownString: proc(self: ^NS.AttributedString, markdownString: ^NS.String, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> instancetype,
+    initWithFormat_options_locale: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale) -> instancetype,
+    initWithFormat_options_locale_arguments: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, arguments: ^cffi.va_list) -> instancetype,
+    localizedAttributedStringWithFormat_: proc(format: ^NS.AttributedString) -> instancetype,
+    localizedAttributedStringWithFormat_options: proc(format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions) -> instancetype,
+    initWithFormat_options_locale_context: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary) -> instancetype,
+    initWithFormat_options_locale_context_arguments: proc(self: ^NS.AttributedString, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary, arguments: ^cffi.va_list) -> instancetype,
+    localizedAttributedStringWithFormat_context: proc(format: ^NS.AttributedString, _context: ^NS.Dictionary) -> instancetype,
+    localizedAttributedStringWithFormat_options_context: proc(format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, _context: ^NS.Dictionary) -> instancetype,
     attributedStringByInflectingString: proc(self: ^NS.AttributedString) -> ^NS.AttributedString,
 }
 
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEqualToAttributedString:"), auto_cast isEqualToAttributedString, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithString_ != nil {
-        initWithString_ :: proc "c" (self: ^NS.AttributedString, _: SEL, str: ^NS.String) -> ^NS.AttributedString {
+        initWithString_ :: proc "c" (self: ^NS.AttributedString, _: SEL, str: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:"), auto_cast initWithString_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithString_attributes != nil {
-        initWithString_attributes :: proc "c" (self: ^NS.AttributedString, _: SEL, str: ^NS.String, attrs: ^NS.Dictionary) -> ^NS.AttributedString {
+        initWithString_attributes :: proc "c" (self: ^NS.AttributedString, _: SEL, str: ^NS.String, attrs: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:attributes:"), auto_cast initWithString_attributes, "@@:@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedString != nil {
-        initWithAttributedString :: proc "c" (self: ^NS.AttributedString, _: SEL, attrStr: ^NS.AttributedString) -> ^NS.AttributedString {
+        initWithAttributedString :: proc "c" (self: ^NS.AttributedString, _: SEL, attrStr: ^NS.AttributedString) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("length"), auto_cast length, "L@:") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfMarkdownFileAtURL != nil {
-        initWithContentsOfMarkdownFileAtURL :: proc "c" (self: ^NS.AttributedString, _: SEL, markdownFile: ^NS.URL, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString {
+        initWithContentsOfMarkdownFileAtURL :: proc "c" (self: ^NS.AttributedString, _: SEL, markdownFile: ^NS.URL, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -201,7 +201,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfMarkdownFileAtURL:options:baseURL:error:"), auto_cast initWithContentsOfMarkdownFileAtURL, "@@:@@@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithMarkdown != nil {
-        initWithMarkdown :: proc "c" (self: ^NS.AttributedString, _: SEL, markdown: ^NS.Data, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString {
+        initWithMarkdown :: proc "c" (self: ^NS.AttributedString, _: SEL, markdown: ^NS.Data, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -211,7 +211,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMarkdown:options:baseURL:error:"), auto_cast initWithMarkdown, "@@:@@@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithMarkdownString != nil {
-        initWithMarkdownString :: proc "c" (self: ^NS.AttributedString, _: SEL, markdownString: ^NS.String, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> ^NS.AttributedString {
+        initWithMarkdownString :: proc "c" (self: ^NS.AttributedString, _: SEL, markdownString: ^NS.String, options: ^NS.AttributedStringMarkdownParsingOptions, baseURL: ^NS.URL, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -221,7 +221,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMarkdownString:options:baseURL:error:"), auto_cast initWithMarkdownString, "@@:@@@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_options_locale != nil {
-        initWithFormat_options_locale :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale) -> ^NS.AttributedString {
+        initWithFormat_options_locale :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -231,7 +231,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:"), auto_cast initWithFormat_options_locale, "@@:@L@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_options_locale_arguments != nil {
-        initWithFormat_options_locale_arguments :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, arguments: ^cffi.va_list) -> ^NS.AttributedString {
+        initWithFormat_options_locale_arguments :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, arguments: ^cffi.va_list) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -241,7 +241,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:arguments:"), auto_cast initWithFormat_options_locale_arguments, "@@:@L@*") do panic("Failed to register objC method.")
     }
     if vt.localizedAttributedStringWithFormat_ != nil {
-        localizedAttributedStringWithFormat_ :: proc "c" (self: Class, _: SEL, format: ^NS.AttributedString) -> ^NS.AttributedString {
+        localizedAttributedStringWithFormat_ :: proc "c" (self: Class, _: SEL, format: ^NS.AttributedString) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -251,7 +251,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:"), auto_cast localizedAttributedStringWithFormat_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.localizedAttributedStringWithFormat_options != nil {
-        localizedAttributedStringWithFormat_options :: proc "c" (self: Class, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions) -> ^NS.AttributedString {
+        localizedAttributedStringWithFormat_options :: proc "c" (self: Class, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -261,7 +261,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:options:"), auto_cast localizedAttributedStringWithFormat_options, "@#:@L") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_options_locale_context != nil {
-        initWithFormat_options_locale_context :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary) -> ^NS.AttributedString {
+        initWithFormat_options_locale_context :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -271,7 +271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:context:"), auto_cast initWithFormat_options_locale_context, "@@:@L@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_options_locale_context_arguments != nil {
-        initWithFormat_options_locale_context_arguments :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary, arguments: ^cffi.va_list) -> ^NS.AttributedString {
+        initWithFormat_options_locale_context_arguments :: proc "c" (self: ^NS.AttributedString, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, locale: ^NS.Locale, _context: ^NS.Dictionary, arguments: ^cffi.va_list) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -281,7 +281,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:options:locale:context:arguments:"), auto_cast initWithFormat_options_locale_context_arguments, "@@:@L@^void*") do panic("Failed to register objC method.")
     }
     if vt.localizedAttributedStringWithFormat_context != nil {
-        localizedAttributedStringWithFormat_context :: proc "c" (self: Class, _: SEL, format: ^NS.AttributedString, _context: ^NS.Dictionary) -> ^NS.AttributedString {
+        localizedAttributedStringWithFormat_context :: proc "c" (self: Class, _: SEL, format: ^NS.AttributedString, _context: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -291,7 +291,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("localizedAttributedStringWithFormat:context:"), auto_cast localizedAttributedStringWithFormat_context, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.localizedAttributedStringWithFormat_options_context != nil {
-        localizedAttributedStringWithFormat_options_context :: proc "c" (self: Class, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, _context: ^NS.Dictionary) -> ^NS.AttributedString {
+        localizedAttributedStringWithFormat_options_context :: proc "c" (self: Class, _: SEL, format: ^NS.AttributedString, options: NS.AttributedStringFormattingOptions, _context: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

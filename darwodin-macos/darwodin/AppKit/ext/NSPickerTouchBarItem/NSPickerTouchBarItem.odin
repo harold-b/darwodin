@@ -30,8 +30,8 @@ import "../NSTouchBarItem"
 
 VTable :: struct {
     super: NSTouchBarItem.VTable,
-    pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action: proc(identifier: ^NS.String, labels: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> ^AK.PickerTouchBarItem,
-    pickerTouchBarItemWithIdentifier_images_selectionMode_target_action: proc(identifier: ^NS.String, images: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> ^AK.PickerTouchBarItem,
+    pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action: proc(identifier: ^NS.String, labels: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype,
+    pickerTouchBarItemWithIdentifier_images_selectionMode_target_action: proc(identifier: ^NS.String, images: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype,
     setImage: proc(self: ^AK.PickerTouchBarItem, image: ^NS.Image, index: NS.Integer),
     imageAtIndex: proc(self: ^AK.PickerTouchBarItem, index: NS.Integer) -> ^NS.Image,
     setLabel: proc(self: ^AK.PickerTouchBarItem, label: ^NS.String, index: NS.Integer),
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTouchBarItem.extend(cls, &vt.super)
 
     if vt.pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action != nil {
-        pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, labels: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> ^AK.PickerTouchBarItem {
+        pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, labels: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:"), auto_cast pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action, "@#:@^voidl@:") do panic("Failed to register objC method.")
     }
     if vt.pickerTouchBarItemWithIdentifier_images_selectionMode_target_action != nil {
-        pickerTouchBarItemWithIdentifier_images_selectionMode_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, images: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> ^AK.PickerTouchBarItem {
+        pickerTouchBarItemWithIdentifier_images_selectionMode_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, images: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -21,13 +21,13 @@ QuerySubscription :: struct { using _: Subscription,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=QuerySubscription, objc_selector="initWithRecordType:predicate:options:", objc_name="initWithRecordType_predicate_options")
-    QuerySubscription_initWithRecordType_predicate_options :: proc(self: ^QuerySubscription, recordType: ^NS.String, predicate: ^NS.Predicate, querySubscriptionOptions: QuerySubscriptionOptions) -> ^QuerySubscription ---
+    QuerySubscription_initWithRecordType_predicate_options :: proc(self: ^QuerySubscription, recordType: ^NS.String, predicate: ^NS.Predicate, querySubscriptionOptions: QuerySubscriptionOptions) -> instancetype ---
 
     @(objc_type=QuerySubscription, objc_selector="initWithRecordType:predicate:subscriptionID:options:", objc_name="initWithRecordType_predicate_subscriptionID_options")
-    QuerySubscription_initWithRecordType_predicate_subscriptionID_options :: proc(self: ^QuerySubscription, recordType: ^NS.String, predicate: ^NS.Predicate, subscriptionID: ^NS.String, querySubscriptionOptions: QuerySubscriptionOptions) -> ^QuerySubscription ---
+    QuerySubscription_initWithRecordType_predicate_subscriptionID_options :: proc(self: ^QuerySubscription, recordType: ^NS.String, predicate: ^NS.Predicate, subscriptionID: ^NS.String, querySubscriptionOptions: QuerySubscriptionOptions) -> instancetype ---
 
     @(objc_type=QuerySubscription, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    QuerySubscription_initWithCoder :: proc(self: ^QuerySubscription, aDecoder: ^NS.Coder) -> ^QuerySubscription ---
+    QuerySubscription_initWithCoder :: proc(self: ^QuerySubscription, aDecoder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=QuerySubscription, objc_selector="recordType", objc_name="recordType")
     QuerySubscription_recordType :: proc(self: ^QuerySubscription) -> ^NS.String ---

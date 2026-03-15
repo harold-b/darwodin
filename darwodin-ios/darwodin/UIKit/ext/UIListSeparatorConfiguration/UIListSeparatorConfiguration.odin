@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.ListSeparatorConfiguration) -> ^UI.ListSeparatorConfiguration,
+    init: proc(self: ^UI.ListSeparatorConfiguration) -> instancetype,
     new: proc() -> ^UI.ListSeparatorConfiguration,
-    initWithListAppearance: proc(self: ^UI.ListSeparatorConfiguration, listAppearance: UI.CollectionLayoutListAppearance) -> ^UI.ListSeparatorConfiguration,
+    initWithListAppearance: proc(self: ^UI.ListSeparatorConfiguration, listAppearance: UI.CollectionLayoutListAppearance) -> instancetype,
     topSeparatorVisibility: proc(self: ^UI.ListSeparatorConfiguration) -> UI.ListSeparatorVisibility,
     setTopSeparatorVisibility: proc(self: ^UI.ListSeparatorConfiguration, topSeparatorVisibility: UI.ListSeparatorVisibility),
     bottomSeparatorVisibility: proc(self: ^UI.ListSeparatorConfiguration) -> UI.ListSeparatorVisibility,
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ListSeparatorConfiguration, _: SEL) -> ^UI.ListSeparatorConfiguration {
+        init :: proc "c" (self: ^UI.ListSeparatorConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithListAppearance != nil {
-        initWithListAppearance :: proc "c" (self: ^UI.ListSeparatorConfiguration, _: SEL, listAppearance: UI.CollectionLayoutListAppearance) -> ^UI.ListSeparatorConfiguration {
+        initWithListAppearance :: proc "c" (self: ^UI.ListSeparatorConfiguration, _: SEL, listAppearance: UI.CollectionLayoutListAppearance) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

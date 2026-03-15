@@ -32,8 +32,8 @@ VTable :: struct {
     super: NSObject.VTable,
     sharingServicesForItems: proc(items: ^NS.Array) -> ^NS.Array,
     sharingServiceNamed: proc(serviceName: ^NS.String) -> ^AK.SharingService,
-    initWithTitle: proc(self: ^AK.SharingService, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> ^AK.SharingService,
-    init: proc(self: ^AK.SharingService) -> ^AK.SharingService,
+    initWithTitle: proc(self: ^AK.SharingService, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> instancetype,
+    init: proc(self: ^AK.SharingService) -> instancetype,
     canPerformWithItems: proc(self: ^AK.SharingService, items: ^NS.Array) -> bool,
     performWithItems: proc(self: ^AK.SharingService, items: ^NS.Array),
     delegate: proc(self: ^AK.SharingService) -> ^AK.SharingServiceDelegate,
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sharingServiceNamed:"), auto_cast sharingServiceNamed, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^AK.SharingService, _: SEL, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> ^AK.SharingService {
+        initWithTitle :: proc "c" (self: ^AK.SharingService, _: SEL, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:image:alternateImage:handler:"), auto_cast initWithTitle, "@@:@@@?") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.SharingService, _: SEL) -> ^AK.SharingService {
+        init :: proc "c" (self: ^AK.SharingService, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

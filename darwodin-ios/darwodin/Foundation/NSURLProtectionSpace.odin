@@ -23,10 +23,10 @@ URLProtectionSpace :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLProtectionSpace, objc_selector="initWithHost:port:protocol:realm:authenticationMethod:", objc_name="initWithHost")
-    URLProtectionSpace_initWithHost :: proc(self: ^URLProtectionSpace, host: ^String, port: Integer, protocol: ^String, realm: ^String, authenticationMethod: ^String) -> ^URLProtectionSpace ---
+    URLProtectionSpace_initWithHost :: proc(self: ^URLProtectionSpace, host: ^String, port: Integer, protocol: ^String, realm: ^String, authenticationMethod: ^String) -> instancetype ---
 
     @(objc_type=URLProtectionSpace, objc_selector="initWithProxyHost:port:type:realm:authenticationMethod:", objc_name="initWithProxyHost")
-    URLProtectionSpace_initWithProxyHost :: proc(self: ^URLProtectionSpace, host: ^String, port: Integer, type: ^String, realm: ^String, authenticationMethod: ^String) -> ^URLProtectionSpace ---
+    URLProtectionSpace_initWithProxyHost :: proc(self: ^URLProtectionSpace, host: ^String, port: Integer, type: ^String, realm: ^String, authenticationMethod: ^String) -> instancetype ---
 
     @(objc_type=URLProtectionSpace, objc_selector="realm", objc_name="realm")
     URLProtectionSpace_realm :: proc(self: ^URLProtectionSpace) -> ^String ---

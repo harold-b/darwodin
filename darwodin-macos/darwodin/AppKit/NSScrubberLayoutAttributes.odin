@@ -26,7 +26,7 @@ ScrubberLayoutAttributes :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScrubberLayoutAttributes, objc_selector="layoutAttributesForItemAtIndex:", objc_name="layoutAttributesForItemAtIndex", objc_is_class_method=true)
-    ScrubberLayoutAttributes_layoutAttributesForItemAtIndex :: proc(index: NS.Integer) -> ^ScrubberLayoutAttributes ---
+    ScrubberLayoutAttributes_layoutAttributesForItemAtIndex :: proc(index: NS.Integer) -> instancetype ---
 
     @(objc_type=ScrubberLayoutAttributes, objc_selector="itemIndex", objc_name="itemIndex")
     ScrubberLayoutAttributes_itemIndex :: proc(self: ^ScrubberLayoutAttributes) -> NS.Integer ---

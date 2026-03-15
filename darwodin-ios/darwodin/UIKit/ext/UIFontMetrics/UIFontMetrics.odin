@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    metricsForTextStyle: proc(textStyle: ^NS.String) -> ^UI.FontMetrics,
-    init: proc(self: ^UI.FontMetrics) -> ^UI.FontMetrics,
-    initForTextStyle: proc(self: ^UI.FontMetrics, textStyle: ^NS.String) -> ^UI.FontMetrics,
+    metricsForTextStyle: proc(textStyle: ^NS.String) -> instancetype,
+    init: proc(self: ^UI.FontMetrics) -> instancetype,
+    initForTextStyle: proc(self: ^UI.FontMetrics, textStyle: ^NS.String) -> instancetype,
     scaledFontForFont_: proc(self: ^UI.FontMetrics, font: ^UI.Font) -> ^UI.Font,
     scaledFontForFont_maximumPointSize: proc(self: ^UI.FontMetrics, font: ^UI.Font, maximumPointSize: CG.Float) -> ^UI.Font,
     scaledFontForFont_compatibleWithTraitCollection: proc(self: ^UI.FontMetrics, font: ^UI.Font, traitCollection: ^UI.TraitCollection) -> ^UI.Font,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.metricsForTextStyle != nil {
-        metricsForTextStyle :: proc "c" (self: Class, _: SEL, textStyle: ^NS.String) -> ^UI.FontMetrics {
+        metricsForTextStyle :: proc "c" (self: Class, _: SEL, textStyle: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("metricsForTextStyle:"), auto_cast metricsForTextStyle, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.FontMetrics, _: SEL) -> ^UI.FontMetrics {
+        init :: proc "c" (self: ^UI.FontMetrics, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initForTextStyle != nil {
-        initForTextStyle :: proc "c" (self: ^UI.FontMetrics, _: SEL, textStyle: ^NS.String) -> ^UI.FontMetrics {
+        initForTextStyle :: proc "c" (self: ^UI.FontMetrics, _: SEL, textStyle: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.URLSessionTaskMetrics) -> ^NS.URLSessionTaskMetrics,
+    init: proc(self: ^NS.URLSessionTaskMetrics) -> instancetype,
     new: proc() -> ^NS.URLSessionTaskMetrics,
     transactionMetrics: proc(self: ^NS.URLSessionTaskMetrics) -> ^NS.Array,
     taskInterval: proc(self: ^NS.URLSessionTaskMetrics) -> ^NS.DateInterval,
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSessionTaskMetrics, _: SEL) -> ^NS.URLSessionTaskMetrics {
+        init :: proc "c" (self: ^NS.URLSessionTaskMetrics, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

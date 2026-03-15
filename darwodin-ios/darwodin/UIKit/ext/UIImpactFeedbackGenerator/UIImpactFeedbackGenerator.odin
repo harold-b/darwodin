@@ -28,12 +28,12 @@ import "../UIFeedbackGenerator"
 
 VTable :: struct {
     super: UIFeedbackGenerator.VTable,
-    feedbackGeneratorWithStyle: proc(style: UI.ImpactFeedbackStyle, view: ^UI.View) -> ^UI.ImpactFeedbackGenerator,
+    feedbackGeneratorWithStyle: proc(style: UI.ImpactFeedbackStyle, view: ^UI.View) -> instancetype,
     impactOccurred: proc(self: ^UI.ImpactFeedbackGenerator),
     impactOccurredAtLocation: proc(self: ^UI.ImpactFeedbackGenerator, location: CG.Point),
     impactOccurredWithIntensity_: proc(self: ^UI.ImpactFeedbackGenerator, intensity: CG.Float),
     impactOccurredWithIntensity_atLocation: proc(self: ^UI.ImpactFeedbackGenerator, intensity: CG.Float, location: CG.Point),
-    initWithStyle: proc(self: ^UI.ImpactFeedbackGenerator, style: UI.ImpactFeedbackStyle) -> ^UI.ImpactFeedbackGenerator,
+    initWithStyle: proc(self: ^UI.ImpactFeedbackGenerator, style: UI.ImpactFeedbackStyle) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIFeedbackGenerator.extend(cls, &vt.super)
 
     if vt.feedbackGeneratorWithStyle != nil {
-        feedbackGeneratorWithStyle :: proc "c" (self: Class, _: SEL, style: UI.ImpactFeedbackStyle, view: ^UI.View) -> ^UI.ImpactFeedbackGenerator {
+        feedbackGeneratorWithStyle :: proc "c" (self: Class, _: SEL, style: UI.ImpactFeedbackStyle, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("impactOccurredWithIntensity:atLocation:"), auto_cast impactOccurredWithIntensity_atLocation, "v@:d{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithStyle != nil {
-        initWithStyle :: proc "c" (self: ^UI.ImpactFeedbackGenerator, _: SEL, style: UI.ImpactFeedbackStyle) -> ^UI.ImpactFeedbackGenerator {
+        initWithStyle :: proc "c" (self: ^UI.ImpactFeedbackGenerator, _: SEL, style: UI.ImpactFeedbackStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

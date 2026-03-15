@@ -20,13 +20,13 @@ XMLDTDNode :: struct { using _: XMLNode, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=XMLDTDNode, objc_selector="initWithXMLString:", objc_name="initWithXMLString")
-    XMLDTDNode_initWithXMLString :: proc(self: ^XMLDTDNode, string: ^String) -> ^XMLDTDNode ---
+    XMLDTDNode_initWithXMLString :: proc(self: ^XMLDTDNode, string: ^String) -> instancetype ---
 
     @(objc_type=XMLDTDNode, objc_selector="initWithKind:options:", objc_name="initWithKind")
-    XMLDTDNode_initWithKind :: proc(self: ^XMLDTDNode, kind: XMLNodeKind, options: XMLNodeOptions) -> ^XMLDTDNode ---
+    XMLDTDNode_initWithKind :: proc(self: ^XMLDTDNode, kind: XMLNodeKind, options: XMLNodeOptions) -> instancetype ---
 
     @(objc_type=XMLDTDNode, objc_selector="init", objc_name="init")
-    XMLDTDNode_init :: proc(self: ^XMLDTDNode) -> ^XMLDTDNode ---
+    XMLDTDNode_init :: proc(self: ^XMLDTDNode) -> instancetype ---
 
     @(objc_type=XMLDTDNode, objc_selector="DTDKind", objc_name="DTDKind")
     XMLDTDNode_DTDKind :: proc(self: ^XMLDTDNode) -> XMLDTDNodeKind ---

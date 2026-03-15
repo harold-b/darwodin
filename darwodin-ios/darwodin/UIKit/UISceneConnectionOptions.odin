@@ -25,7 +25,7 @@ foreign lib {
     SceneConnectionOptions_new :: proc() -> ^SceneConnectionOptions ---
 
     @(objc_type=SceneConnectionOptions, objc_selector="init", objc_name="init")
-    SceneConnectionOptions_init :: proc(self: ^SceneConnectionOptions) -> ^SceneConnectionOptions ---
+    SceneConnectionOptions_init :: proc(self: ^SceneConnectionOptions) -> instancetype ---
 
     @(objc_type=SceneConnectionOptions, objc_selector="URLContexts", objc_name="URLContexts")
     SceneConnectionOptions_URLContexts :: proc(self: ^SceneConnectionOptions) -> ^NS.Set ---

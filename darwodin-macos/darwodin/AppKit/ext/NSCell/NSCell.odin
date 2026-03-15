@@ -30,10 +30,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.Cell) -> ^AK.Cell,
-    initTextCell: proc(self: ^AK.Cell, string: ^NS.String) -> ^AK.Cell,
-    initImageCell: proc(self: ^AK.Cell, image: ^NS.Image) -> ^AK.Cell,
-    initWithCoder: proc(self: ^AK.Cell, coder: ^NS.Coder) -> ^AK.Cell,
+    init: proc(self: ^AK.Cell) -> instancetype,
+    initTextCell: proc(self: ^AK.Cell, string: ^NS.String) -> instancetype,
+    initImageCell: proc(self: ^AK.Cell, image: ^NS.Image) -> instancetype,
+    initWithCoder: proc(self: ^AK.Cell, coder: ^NS.Coder) -> instancetype,
     sendActionOn: proc(self: ^AK.Cell, mask: AK.EventMask) -> NS.Integer,
     compare: proc(self: ^AK.Cell, otherCell: id) -> NS.ComparisonResult,
     takeIntValueFrom: proc(self: ^AK.Cell, sender: id),
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Cell, _: SEL) -> ^AK.Cell {
+        init :: proc "c" (self: ^AK.Cell, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -203,7 +203,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.Cell, _: SEL, string: ^NS.String) -> ^AK.Cell {
+        initTextCell :: proc "c" (self: ^AK.Cell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.Cell, _: SEL, image: ^NS.Image) -> ^AK.Cell {
+        initImageCell :: proc "c" (self: ^AK.Cell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initImageCell:"), auto_cast initImageCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Cell, _: SEL, coder: ^NS.Coder) -> ^AK.Cell {
+        initWithCoder :: proc "c" (self: ^AK.Cell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

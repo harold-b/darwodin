@@ -27,7 +27,7 @@ TrackingArea :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TrackingArea, objc_selector="initWithRect:options:owner:userInfo:", objc_name="initWithRect")
-    TrackingArea_initWithRect :: proc(self: ^TrackingArea, rect: NS.Rect, options: TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> ^TrackingArea ---
+    TrackingArea_initWithRect :: proc(self: ^TrackingArea, rect: NS.Rect, options: TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=TrackingArea, objc_selector="rect", objc_name="rect")
     TrackingArea_rect :: proc(self: ^TrackingArea) -> NS.Rect ---

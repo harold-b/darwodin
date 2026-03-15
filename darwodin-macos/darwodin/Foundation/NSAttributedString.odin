@@ -45,13 +45,13 @@ foreign lib {
     AttributedString_isEqualToAttributedString :: proc(self: ^AttributedString, other: ^AttributedString) -> bool ---
 
     @(objc_type=AttributedString, objc_selector="initWithString:", objc_name="initWithString_")
-    AttributedString_initWithString_ :: proc(self: ^AttributedString, str: ^String) -> ^AttributedString ---
+    AttributedString_initWithString_ :: proc(self: ^AttributedString, str: ^String) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="initWithString:attributes:", objc_name="initWithString_attributes")
-    AttributedString_initWithString_attributes :: proc(self: ^AttributedString, str: ^String, attrs: ^Dictionary) -> ^AttributedString ---
+    AttributedString_initWithString_attributes :: proc(self: ^AttributedString, str: ^String, attrs: ^Dictionary) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="initWithAttributedString:", objc_name="initWithAttributedString")
-    AttributedString_initWithAttributedString :: proc(self: ^AttributedString, attrStr: ^AttributedString) -> ^AttributedString ---
+    AttributedString_initWithAttributedString :: proc(self: ^AttributedString, attrStr: ^AttributedString) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="enumerateAttributesInRange:options:usingBlock:", objc_name="enumerateAttributesInRange")
     AttributedString_enumerateAttributesInRange :: proc(self: ^AttributedString, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (attrs: ^Dictionary, range: _NSRange, stop: ^bool))) ---
@@ -63,37 +63,37 @@ foreign lib {
     AttributedString_length :: proc(self: ^AttributedString) -> UInteger ---
 
     @(objc_type=AttributedString, objc_selector="initWithContentsOfMarkdownFileAtURL:options:baseURL:error:", objc_name="initWithContentsOfMarkdownFileAtURL")
-    AttributedString_initWithContentsOfMarkdownFileAtURL :: proc(self: ^AttributedString, markdownFile: ^URL, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString ---
+    AttributedString_initWithContentsOfMarkdownFileAtURL :: proc(self: ^AttributedString, markdownFile: ^URL, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="initWithMarkdown:options:baseURL:error:", objc_name="initWithMarkdown")
-    AttributedString_initWithMarkdown :: proc(self: ^AttributedString, markdown: ^Data, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString ---
+    AttributedString_initWithMarkdown :: proc(self: ^AttributedString, markdown: ^Data, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="initWithMarkdownString:options:baseURL:error:", objc_name="initWithMarkdownString")
-    AttributedString_initWithMarkdownString :: proc(self: ^AttributedString, markdownString: ^String, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> ^AttributedString ---
+    AttributedString_initWithMarkdownString :: proc(self: ^AttributedString, markdownString: ^String, options: ^AttributedStringMarkdownParsingOptions, baseURL: ^URL, error: ^^Error) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="initWithFormat:options:locale:", objc_name="initWithFormat_options_locale")
-    AttributedString_initWithFormat_options_locale :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale) -> ^AttributedString ---
+    AttributedString_initWithFormat_options_locale :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="initWithFormat:options:locale:arguments:", objc_name="initWithFormat_options_locale_arguments")
-    AttributedString_initWithFormat_options_locale_arguments :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: ^cffi.va_list) -> ^AttributedString ---
+    AttributedString_initWithFormat_options_locale_arguments :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, arguments: ^cffi.va_list) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="localizedAttributedStringWithFormat:", objc_name="localizedAttributedStringWithFormat_", objc_is_class_method=true)
-    AttributedString_localizedAttributedStringWithFormat_ :: proc(format: ^AttributedString) -> ^AttributedString ---
+    AttributedString_localizedAttributedStringWithFormat_ :: proc(format: ^AttributedString) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="localizedAttributedStringWithFormat:options:", objc_name="localizedAttributedStringWithFormat_options", objc_is_class_method=true)
-    AttributedString_localizedAttributedStringWithFormat_options :: proc(format: ^AttributedString, options: AttributedStringFormattingOptions) -> ^AttributedString ---
+    AttributedString_localizedAttributedStringWithFormat_options :: proc(format: ^AttributedString, options: AttributedStringFormattingOptions) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="initWithFormat:options:locale:context:", objc_name="initWithFormat_options_locale_context")
-    AttributedString_initWithFormat_options_locale_context :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary) -> ^AttributedString ---
+    AttributedString_initWithFormat_options_locale_context :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="initWithFormat:options:locale:context:arguments:", objc_name="initWithFormat_options_locale_context_arguments")
-    AttributedString_initWithFormat_options_locale_context_arguments :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: ^cffi.va_list) -> ^AttributedString ---
+    AttributedString_initWithFormat_options_locale_context_arguments :: proc(self: ^AttributedString, format: ^AttributedString, options: AttributedStringFormattingOptions, locale: ^Locale, _context: ^Dictionary, arguments: ^cffi.va_list) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="localizedAttributedStringWithFormat:context:", objc_name="localizedAttributedStringWithFormat_context", objc_is_class_method=true)
-    AttributedString_localizedAttributedStringWithFormat_context :: proc(format: ^AttributedString, _context: ^Dictionary) -> ^AttributedString ---
+    AttributedString_localizedAttributedStringWithFormat_context :: proc(format: ^AttributedString, _context: ^Dictionary) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="localizedAttributedStringWithFormat:options:context:", objc_name="localizedAttributedStringWithFormat_options_context", objc_is_class_method=true)
-    AttributedString_localizedAttributedStringWithFormat_options_context :: proc(format: ^AttributedString, options: AttributedStringFormattingOptions, _context: ^Dictionary) -> ^AttributedString ---
+    AttributedString_localizedAttributedStringWithFormat_options_context :: proc(format: ^AttributedString, options: AttributedStringFormattingOptions, _context: ^Dictionary) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="attributedStringByInflectingString", objc_name="attributedStringByInflectingString")
     AttributedString_attributedStringByInflectingString :: proc(self: ^AttributedString) -> ^AttributedString ---

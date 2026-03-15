@@ -28,5 +28,5 @@ foreign lib {
     NSSymbolEffect_new :: proc() -> ^NSSymbolEffect ---
 
     @(objc_type=NSSymbolEffect, objc_selector="init", objc_name="init")
-    NSSymbolEffect_init :: proc(self: ^NSSymbolEffect) -> ^NSSymbolEffect ---
+    NSSymbolEffect_init :: proc(self: ^NSSymbolEffect) -> instancetype ---
 }

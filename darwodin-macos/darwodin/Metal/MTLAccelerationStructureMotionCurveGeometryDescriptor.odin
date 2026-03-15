@@ -22,7 +22,7 @@ AccelerationStructureMotionCurveGeometryDescriptor :: struct { using _: Accelera
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccelerationStructureMotionCurveGeometryDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
-    AccelerationStructureMotionCurveGeometryDescriptor_descriptor :: proc() -> ^AccelerationStructureMotionCurveGeometryDescriptor ---
+    AccelerationStructureMotionCurveGeometryDescriptor_descriptor :: proc() -> instancetype ---
 
     @(objc_type=AccelerationStructureMotionCurveGeometryDescriptor, objc_selector="controlPointBuffers", objc_name="controlPointBuffers")
     AccelerationStructureMotionCurveGeometryDescriptor_controlPointBuffers :: proc(self: ^AccelerationStructureMotionCurveGeometryDescriptor) -> ^NS.Array ---

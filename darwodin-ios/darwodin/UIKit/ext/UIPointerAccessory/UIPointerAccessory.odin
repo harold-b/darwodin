@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    accessoryWithShape: proc(shape: ^UI.PointerShape, position: UI.PointerAccessoryPosition) -> ^UI.PointerAccessory,
-    arrowAccessoryWithPosition: proc(position: UI.PointerAccessoryPosition) -> ^UI.PointerAccessory,
-    init: proc(self: ^UI.PointerAccessory) -> ^UI.PointerAccessory,
+    accessoryWithShape: proc(shape: ^UI.PointerShape, position: UI.PointerAccessoryPosition) -> instancetype,
+    arrowAccessoryWithPosition: proc(position: UI.PointerAccessoryPosition) -> instancetype,
+    init: proc(self: ^UI.PointerAccessory) -> instancetype,
     new: proc() -> ^UI.PointerAccessory,
     shape: proc(self: ^UI.PointerAccessory) -> ^UI.PointerShape,
     position: proc(self: ^UI.PointerAccessory) -> UI.PointerAccessoryPosition,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.accessoryWithShape != nil {
-        accessoryWithShape :: proc "c" (self: Class, _: SEL, shape: ^UI.PointerShape, position: UI.PointerAccessoryPosition) -> ^UI.PointerAccessory {
+        accessoryWithShape :: proc "c" (self: Class, _: SEL, shape: ^UI.PointerShape, position: UI.PointerAccessoryPosition) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("accessoryWithShape:position:"), auto_cast accessoryWithShape, "@#:@{UIPointerAccessoryPosition=dd}") do panic("Failed to register objC method.")
     }
     if vt.arrowAccessoryWithPosition != nil {
-        arrowAccessoryWithPosition :: proc "c" (self: Class, _: SEL, position: UI.PointerAccessoryPosition) -> ^UI.PointerAccessory {
+        arrowAccessoryWithPosition :: proc "c" (self: Class, _: SEL, position: UI.PointerAccessoryPosition) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("arrowAccessoryWithPosition:"), auto_cast arrowAccessoryWithPosition, "@#:{UIPointerAccessoryPosition=dd}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PointerAccessory, _: SEL) -> ^UI.PointerAccessory {
+        init :: proc "c" (self: ^UI.PointerAccessory, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

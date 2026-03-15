@@ -18,10 +18,10 @@ DiscoverUserIdentitiesOperation :: struct { using _: Operation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DiscoverUserIdentitiesOperation, objc_selector="init", objc_name="init")
-    DiscoverUserIdentitiesOperation_init :: proc(self: ^DiscoverUserIdentitiesOperation) -> ^DiscoverUserIdentitiesOperation ---
+    DiscoverUserIdentitiesOperation_init :: proc(self: ^DiscoverUserIdentitiesOperation) -> instancetype ---
 
     @(objc_type=DiscoverUserIdentitiesOperation, objc_selector="initWithUserIdentityLookupInfos:", objc_name="initWithUserIdentityLookupInfos")
-    DiscoverUserIdentitiesOperation_initWithUserIdentityLookupInfos :: proc(self: ^DiscoverUserIdentitiesOperation, userIdentityLookupInfos: ^NS.Array) -> ^DiscoverUserIdentitiesOperation ---
+    DiscoverUserIdentitiesOperation_initWithUserIdentityLookupInfos :: proc(self: ^DiscoverUserIdentitiesOperation, userIdentityLookupInfos: ^NS.Array) -> instancetype ---
 
     @(objc_type=DiscoverUserIdentitiesOperation, objc_selector="userIdentityLookupInfos", objc_name="userIdentityLookupInfos")
     DiscoverUserIdentitiesOperation_userIdentityLookupInfos :: proc(self: ^DiscoverUserIdentitiesOperation) -> ^NS.Array ---

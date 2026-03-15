@@ -27,13 +27,13 @@ foreign lib {
     SpringLoadedInteraction_new :: proc() -> ^SpringLoadedInteraction ---
 
     @(objc_type=SpringLoadedInteraction, objc_selector="init", objc_name="init")
-    SpringLoadedInteraction_init :: proc(self: ^SpringLoadedInteraction) -> ^SpringLoadedInteraction ---
+    SpringLoadedInteraction_init :: proc(self: ^SpringLoadedInteraction) -> instancetype ---
 
     @(objc_type=SpringLoadedInteraction, objc_selector="initWithInteractionBehavior:interactionEffect:activationHandler:", objc_name="initWithInteractionBehavior")
-    SpringLoadedInteraction_initWithInteractionBehavior :: proc(self: ^SpringLoadedInteraction, interactionBehavior: ^SpringLoadedInteractionBehavior, interactionEffect: ^SpringLoadedInteractionEffect, handler: ^Objc_Block(proc "c" (interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext))) -> ^SpringLoadedInteraction ---
+    SpringLoadedInteraction_initWithInteractionBehavior :: proc(self: ^SpringLoadedInteraction, interactionBehavior: ^SpringLoadedInteractionBehavior, interactionEffect: ^SpringLoadedInteractionEffect, handler: ^Objc_Block(proc "c" (interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext))) -> instancetype ---
 
     @(objc_type=SpringLoadedInteraction, objc_selector="initWithActivationHandler:", objc_name="initWithActivationHandler")
-    SpringLoadedInteraction_initWithActivationHandler :: proc(self: ^SpringLoadedInteraction, handler: ^Objc_Block(proc "c" (interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext))) -> ^SpringLoadedInteraction ---
+    SpringLoadedInteraction_initWithActivationHandler :: proc(self: ^SpringLoadedInteraction, handler: ^Objc_Block(proc "c" (interaction: ^SpringLoadedInteraction, _context: ^SpringLoadedInteractionContext))) -> instancetype ---
 
     @(objc_type=SpringLoadedInteraction, objc_selector="interactionBehavior", objc_name="interactionBehavior")
     SpringLoadedInteraction_interactionBehavior :: proc(self: ^SpringLoadedInteraction) -> ^SpringLoadedInteractionBehavior ---

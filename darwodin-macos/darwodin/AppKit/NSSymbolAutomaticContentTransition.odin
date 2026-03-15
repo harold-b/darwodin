@@ -24,5 +24,5 @@ SymbolAutomaticContentTransition :: struct { using _: SymbolContentTransition, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SymbolAutomaticContentTransition, objc_selector="transition", objc_name="transition", objc_is_class_method=true)
-    SymbolAutomaticContentTransition_transition :: proc() -> ^SymbolAutomaticContentTransition ---
+    SymbolAutomaticContentTransition_transition :: proc() -> instancetype ---
 }

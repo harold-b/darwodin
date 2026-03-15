@@ -26,13 +26,13 @@ PreviewRepresentingActivityItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PreviewRepresentingActivityItem, objc_selector="initWithItem:title:image:icon:", objc_name="initWithItem_title_image_icon")
-    PreviewRepresentingActivityItem_initWithItem_title_image_icon :: proc(self: ^PreviewRepresentingActivityItem, item: id, title: ^NS.String, image: ^NS.Image, icon: ^NS.Image) -> ^PreviewRepresentingActivityItem ---
+    PreviewRepresentingActivityItem_initWithItem_title_image_icon :: proc(self: ^PreviewRepresentingActivityItem, item: id, title: ^NS.String, image: ^NS.Image, icon: ^NS.Image) -> instancetype ---
 
     @(objc_type=PreviewRepresentingActivityItem, objc_selector="initWithItem:title:imageProvider:iconProvider:", objc_name="initWithItem_title_imageProvider_iconProvider")
-    PreviewRepresentingActivityItem_initWithItem_title_imageProvider_iconProvider :: proc(self: ^PreviewRepresentingActivityItem, item: id, title: ^NS.String, imageProvider: ^NS.ItemProvider, iconProvider: ^NS.ItemProvider) -> ^PreviewRepresentingActivityItem ---
+    PreviewRepresentingActivityItem_initWithItem_title_imageProvider_iconProvider :: proc(self: ^PreviewRepresentingActivityItem, item: id, title: ^NS.String, imageProvider: ^NS.ItemProvider, iconProvider: ^NS.ItemProvider) -> instancetype ---
 
     @(objc_type=PreviewRepresentingActivityItem, objc_selector="init", objc_name="init")
-    PreviewRepresentingActivityItem_init :: proc(self: ^PreviewRepresentingActivityItem) -> ^PreviewRepresentingActivityItem ---
+    PreviewRepresentingActivityItem_init :: proc(self: ^PreviewRepresentingActivityItem) -> instancetype ---
 
     @(objc_type=PreviewRepresentingActivityItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PreviewRepresentingActivityItem_new :: proc() -> ^PreviewRepresentingActivityItem ---

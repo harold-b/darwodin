@@ -22,16 +22,16 @@ NavigationController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NavigationController, objc_selector="initWithNavigationBarClass:toolbarClass:", objc_name="initWithNavigationBarClass")
-    NavigationController_initWithNavigationBarClass :: proc(self: ^NavigationController, navigationBarClass: Class, toolbarClass: Class) -> ^NavigationController ---
+    NavigationController_initWithNavigationBarClass :: proc(self: ^NavigationController, navigationBarClass: Class, toolbarClass: Class) -> instancetype ---
 
     @(objc_type=NavigationController, objc_selector="initWithRootViewController:", objc_name="initWithRootViewController")
-    NavigationController_initWithRootViewController :: proc(self: ^NavigationController, rootViewController: ^ViewController) -> ^NavigationController ---
+    NavigationController_initWithRootViewController :: proc(self: ^NavigationController, rootViewController: ^ViewController) -> instancetype ---
 
     @(objc_type=NavigationController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    NavigationController_initWithNibName :: proc(self: ^NavigationController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^NavigationController ---
+    NavigationController_initWithNibName :: proc(self: ^NavigationController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=NavigationController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    NavigationController_initWithCoder :: proc(self: ^NavigationController, aDecoder: ^NS.Coder) -> ^NavigationController ---
+    NavigationController_initWithCoder :: proc(self: ^NavigationController, aDecoder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=NavigationController, objc_selector="pushViewController:animated:", objc_name="pushViewController")
     NavigationController_pushViewController :: proc(self: ^NavigationController, viewController: ^ViewController, animated: bool) ---

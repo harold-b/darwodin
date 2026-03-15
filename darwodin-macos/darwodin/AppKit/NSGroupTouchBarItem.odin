@@ -24,13 +24,13 @@ GroupTouchBarItem :: struct { using _: TouchBarItem, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GroupTouchBarItem, objc_selector="groupItemWithIdentifier:items:", objc_name="groupItemWithIdentifier_items", objc_is_class_method=true)
-    GroupTouchBarItem_groupItemWithIdentifier_items :: proc(identifier: ^NS.String, items: ^NS.Array) -> ^GroupTouchBarItem ---
+    GroupTouchBarItem_groupItemWithIdentifier_items :: proc(identifier: ^NS.String, items: ^NS.Array) -> instancetype ---
 
     @(objc_type=GroupTouchBarItem, objc_selector="groupItemWithIdentifier:items:allowedCompressionOptions:", objc_name="groupItemWithIdentifier_items_allowedCompressionOptions", objc_is_class_method=true)
-    GroupTouchBarItem_groupItemWithIdentifier_items_allowedCompressionOptions :: proc(identifier: ^NS.String, items: ^NS.Array, allowedCompressionOptions: ^UserInterfaceCompressionOptions) -> ^GroupTouchBarItem ---
+    GroupTouchBarItem_groupItemWithIdentifier_items_allowedCompressionOptions :: proc(identifier: ^NS.String, items: ^NS.Array, allowedCompressionOptions: ^UserInterfaceCompressionOptions) -> instancetype ---
 
     @(objc_type=GroupTouchBarItem, objc_selector="alertStyleGroupItemWithIdentifier:", objc_name="alertStyleGroupItemWithIdentifier", objc_is_class_method=true)
-    GroupTouchBarItem_alertStyleGroupItemWithIdentifier :: proc(identifier: ^NS.String) -> ^GroupTouchBarItem ---
+    GroupTouchBarItem_alertStyleGroupItemWithIdentifier :: proc(identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=GroupTouchBarItem, objc_selector="groupTouchBar", objc_name="groupTouchBar")
     GroupTouchBarItem_groupTouchBar :: proc(self: ^GroupTouchBarItem) -> ^TouchBar ---

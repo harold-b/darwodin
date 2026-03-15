@@ -31,8 +31,8 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^AK.ManagedObjectContext,
-    init: proc(self: ^AK.ManagedObjectContext) -> ^AK.ManagedObjectContext,
-    initWithConcurrencyType: proc(self: ^AK.ManagedObjectContext, ct: AK.ManagedObjectContextConcurrencyType) -> ^AK.ManagedObjectContext,
+    init: proc(self: ^AK.ManagedObjectContext) -> instancetype,
+    initWithConcurrencyType: proc(self: ^AK.ManagedObjectContext, ct: AK.ManagedObjectContextConcurrencyType) -> instancetype,
     performBlock: proc(self: ^AK.ManagedObjectContext, block: ^Objc_Block(proc "c" ())),
     performBlockAndWait: proc(self: ^AK.ManagedObjectContext, block: ^Objc_Block(proc "c" ())),
     objectRegisteredForID: proc(self: ^AK.ManagedObjectContext, objectID: ^AK.ManagedObjectID) -> ^AK.ManagedObject,
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL) -> ^AK.ManagedObjectContext {
+        init :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithConcurrencyType != nil {
-        initWithConcurrencyType :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL, ct: AK.ManagedObjectContextConcurrencyType) -> ^AK.ManagedObjectContext {
+        initWithConcurrencyType :: proc "c" (self: ^AK.ManagedObjectContext, _: SEL, ct: AK.ManagedObjectContextConcurrencyType) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -23,7 +23,7 @@ AssetVariantAudioAttributes :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetVariantAudioAttributes, objc_selector="init", objc_name="init")
-    AssetVariantAudioAttributes_init :: proc(self: ^AssetVariantAudioAttributes) -> ^AssetVariantAudioAttributes ---
+    AssetVariantAudioAttributes_init :: proc(self: ^AssetVariantAudioAttributes) -> instancetype ---
 
     @(objc_type=AssetVariantAudioAttributes, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetVariantAudioAttributes_new :: proc() -> ^AssetVariantAudioAttributes ---

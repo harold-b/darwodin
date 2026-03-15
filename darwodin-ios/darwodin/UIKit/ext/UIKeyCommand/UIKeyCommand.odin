@@ -28,14 +28,14 @@ import "../UICommand"
 
 VTable :: struct {
     super: UICommand.VTable,
-    init: proc(self: ^UI.KeyCommand) -> ^UI.KeyCommand,
-    initWithCoder: proc(self: ^UI.KeyCommand, coder: ^NS.Coder) -> ^UI.KeyCommand,
-    commandWithTitle_image_action_input_modifierFlags_propertyList: proc(title: ^NS.String, image: ^UI.Image, action: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, propertyList: id) -> ^UI.KeyCommand,
-    commandWithTitle_image_action_input_modifierFlags_propertyList_alternates: proc(title: ^NS.String, image: ^UI.Image, action: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, propertyList: id, alternates: ^NS.Array) -> ^UI.KeyCommand,
-    keyCommandWithInput_modifierFlags_action: proc(input: ^NS.String, modifierFlags: UI.KeyModifierFlags, action: SEL) -> ^UI.KeyCommand,
-    keyCommandWithInput_modifierFlags_action_discoverabilityTitle: proc(input: ^NS.String, modifierFlags: UI.KeyModifierFlags, action: SEL, discoverabilityTitle: ^NS.String) -> ^UI.KeyCommand,
-    commandWithTitle_image_action_propertyList: proc(title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id) -> ^UI.KeyCommand,
-    commandWithTitle_image_action_propertyList_alternates: proc(title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> ^UI.KeyCommand,
+    init: proc(self: ^UI.KeyCommand) -> instancetype,
+    initWithCoder: proc(self: ^UI.KeyCommand, coder: ^NS.Coder) -> instancetype,
+    commandWithTitle_image_action_input_modifierFlags_propertyList: proc(title: ^NS.String, image: ^UI.Image, action: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, propertyList: id) -> instancetype,
+    commandWithTitle_image_action_input_modifierFlags_propertyList_alternates: proc(title: ^NS.String, image: ^UI.Image, action: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, propertyList: id, alternates: ^NS.Array) -> instancetype,
+    keyCommandWithInput_modifierFlags_action: proc(input: ^NS.String, modifierFlags: UI.KeyModifierFlags, action: SEL) -> instancetype,
+    keyCommandWithInput_modifierFlags_action_discoverabilityTitle: proc(input: ^NS.String, modifierFlags: UI.KeyModifierFlags, action: SEL, discoverabilityTitle: ^NS.String) -> instancetype,
+    commandWithTitle_image_action_propertyList: proc(title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id) -> instancetype,
+    commandWithTitle_image_action_propertyList_alternates: proc(title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> instancetype,
     title: proc(self: ^UI.KeyCommand) -> ^NS.String,
     setTitle: proc(self: ^UI.KeyCommand, title: ^NS.String),
     image: proc(self: ^UI.KeyCommand) -> ^UI.Image,
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UICommand.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.KeyCommand, _: SEL) -> ^UI.KeyCommand {
+        init :: proc "c" (self: ^UI.KeyCommand, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.KeyCommand, _: SEL, coder: ^NS.Coder) -> ^UI.KeyCommand {
+        initWithCoder :: proc "c" (self: ^UI.KeyCommand, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.commandWithTitle_image_action_input_modifierFlags_propertyList != nil {
-        commandWithTitle_image_action_input_modifierFlags_propertyList :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, propertyList: id) -> ^UI.KeyCommand {
+        commandWithTitle_image_action_input_modifierFlags_propertyList :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, propertyList: id) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("commandWithTitle:image:action:input:modifierFlags:propertyList:"), auto_cast commandWithTitle_image_action_input_modifierFlags_propertyList, "@#:@@:@l@") do panic("Failed to register objC method.")
     }
     if vt.commandWithTitle_image_action_input_modifierFlags_propertyList_alternates != nil {
-        commandWithTitle_image_action_input_modifierFlags_propertyList_alternates :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, propertyList: id, alternates: ^NS.Array) -> ^UI.KeyCommand {
+        commandWithTitle_image_action_input_modifierFlags_propertyList_alternates :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, propertyList: id, alternates: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:"), auto_cast commandWithTitle_image_action_input_modifierFlags_propertyList_alternates, "@#:@@:@l@^void") do panic("Failed to register objC method.")
     }
     if vt.keyCommandWithInput_modifierFlags_action != nil {
-        keyCommandWithInput_modifierFlags_action :: proc "c" (self: Class, _: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, action: SEL) -> ^UI.KeyCommand {
+        keyCommandWithInput_modifierFlags_action :: proc "c" (self: Class, _: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("keyCommandWithInput:modifierFlags:action:"), auto_cast keyCommandWithInput_modifierFlags_action, "@#:@l:") do panic("Failed to register objC method.")
     }
     if vt.keyCommandWithInput_modifierFlags_action_discoverabilityTitle != nil {
-        keyCommandWithInput_modifierFlags_action_discoverabilityTitle :: proc "c" (self: Class, _: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, action: SEL, discoverabilityTitle: ^NS.String) -> ^UI.KeyCommand {
+        keyCommandWithInput_modifierFlags_action_discoverabilityTitle :: proc "c" (self: Class, _: SEL, input: ^NS.String, modifierFlags: UI.KeyModifierFlags, action: SEL, discoverabilityTitle: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("keyCommandWithInput:modifierFlags:action:discoverabilityTitle:"), auto_cast keyCommandWithInput_modifierFlags_action_discoverabilityTitle, "@#:@l:@") do panic("Failed to register objC method.")
     }
     if vt.commandWithTitle_image_action_propertyList != nil {
-        commandWithTitle_image_action_propertyList :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id) -> ^UI.KeyCommand {
+        commandWithTitle_image_action_propertyList :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("commandWithTitle:image:action:propertyList:"), auto_cast commandWithTitle_image_action_propertyList, "@#:@@:@") do panic("Failed to register objC method.")
     }
     if vt.commandWithTitle_image_action_propertyList_alternates != nil {
-        commandWithTitle_image_action_propertyList_alternates :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> ^UI.KeyCommand {
+        commandWithTitle_image_action_propertyList_alternates :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

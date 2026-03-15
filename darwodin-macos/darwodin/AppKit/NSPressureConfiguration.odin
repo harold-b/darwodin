@@ -24,7 +24,7 @@ PressureConfiguration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PressureConfiguration, objc_selector="initWithPressureBehavior:", objc_name="initWithPressureBehavior")
-    PressureConfiguration_initWithPressureBehavior :: proc(self: ^PressureConfiguration, pressureBehavior: PressureBehavior) -> ^PressureConfiguration ---
+    PressureConfiguration_initWithPressureBehavior :: proc(self: ^PressureConfiguration, pressureBehavior: PressureBehavior) -> instancetype ---
 
     @(objc_type=PressureConfiguration, objc_selector="set", objc_name="set")
     PressureConfiguration_set :: proc(self: ^PressureConfiguration) ---

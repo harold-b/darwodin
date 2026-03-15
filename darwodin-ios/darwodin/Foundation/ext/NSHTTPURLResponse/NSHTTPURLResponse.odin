@@ -26,7 +26,7 @@ import "../NSURLResponse"
 
 VTable :: struct {
     super: NSURLResponse.VTable,
-    initWithURL: proc(self: ^NS.HTTPURLResponse, url: ^NS.URL, statusCode: NS.Integer, HTTPVersion: ^NS.String, headerFields: ^NS.Dictionary) -> ^NS.HTTPURLResponse,
+    initWithURL: proc(self: ^NS.HTTPURLResponse, url: ^NS.URL, statusCode: NS.Integer, HTTPVersion: ^NS.String, headerFields: ^NS.Dictionary) -> instancetype,
     valueForHTTPHeaderField: proc(self: ^NS.HTTPURLResponse, field: ^NS.String) -> ^NS.String,
     localizedStringForStatusCode: proc(statusCode: NS.Integer) -> ^NS.String,
     statusCode: proc(self: ^NS.HTTPURLResponse) -> NS.Integer,
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSURLResponse.extend(cls, &vt.super)
 
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^NS.HTTPURLResponse, _: SEL, url: ^NS.URL, statusCode: NS.Integer, HTTPVersion: ^NS.String, headerFields: ^NS.Dictionary) -> ^NS.HTTPURLResponse {
+        initWithURL :: proc "c" (self: ^NS.HTTPURLResponse, _: SEL, url: ^NS.URL, statusCode: NS.Integer, HTTPVersion: ^NS.String, headerFields: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

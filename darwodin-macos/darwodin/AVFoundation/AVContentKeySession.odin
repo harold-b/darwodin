@@ -23,16 +23,16 @@ ContentKeySession :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentKeySession, objc_selector="init", objc_name="init")
-    ContentKeySession_init :: proc(self: ^ContentKeySession) -> ^ContentKeySession ---
+    ContentKeySession_init :: proc(self: ^ContentKeySession) -> instancetype ---
 
     @(objc_type=ContentKeySession, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ContentKeySession_new :: proc() -> ^ContentKeySession ---
 
     @(objc_type=ContentKeySession, objc_selector="contentKeySessionWithKeySystem:", objc_name="contentKeySessionWithKeySystem_", objc_is_class_method=true)
-    ContentKeySession_contentKeySessionWithKeySystem_ :: proc(keySystem: ^NS.String) -> ^ContentKeySession ---
+    ContentKeySession_contentKeySessionWithKeySystem_ :: proc(keySystem: ^NS.String) -> instancetype ---
 
     @(objc_type=ContentKeySession, objc_selector="contentKeySessionWithKeySystem:storageDirectoryAtURL:", objc_name="contentKeySessionWithKeySystem_storageDirectoryAtURL", objc_is_class_method=true)
-    ContentKeySession_contentKeySessionWithKeySystem_storageDirectoryAtURL :: proc(keySystem: ^NS.String, storageURL: ^NS.URL) -> ^ContentKeySession ---
+    ContentKeySession_contentKeySessionWithKeySystem_storageDirectoryAtURL :: proc(keySystem: ^NS.String, storageURL: ^NS.URL) -> instancetype ---
 
     @(objc_type=ContentKeySession, objc_selector="setDelegate:queue:", objc_name="setDelegate")
     ContentKeySession_setDelegate :: proc(self: ^ContentKeySession, delegate: ^ContentKeySessionDelegate, delegateQueue: CF.dispatch_queue_t) ---

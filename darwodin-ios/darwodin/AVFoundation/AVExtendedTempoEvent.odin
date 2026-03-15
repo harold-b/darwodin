@@ -23,7 +23,7 @@ ExtendedTempoEvent :: struct { using _: MusicEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExtendedTempoEvent, objc_selector="initWithTempo:", objc_name="initWithTempo")
-    ExtendedTempoEvent_initWithTempo :: proc(self: ^ExtendedTempoEvent, tempo: cffi.double) -> ^ExtendedTempoEvent ---
+    ExtendedTempoEvent_initWithTempo :: proc(self: ^ExtendedTempoEvent, tempo: cffi.double) -> instancetype ---
 
     @(objc_type=ExtendedTempoEvent, objc_selector="tempo", objc_name="tempo")
     ExtendedTempoEvent_tempo :: proc(self: ^ExtendedTempoEvent) -> cffi.double ---

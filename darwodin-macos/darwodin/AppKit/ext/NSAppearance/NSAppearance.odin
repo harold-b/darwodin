@@ -32,8 +32,8 @@ VTable :: struct {
     super: NSObject.VTable,
     performAsCurrentDrawingAppearance: proc(self: ^AK.Appearance, block: ^Objc_Block(proc "c" ())),
     appearanceNamed: proc(name: ^NS.String) -> ^AK.Appearance,
-    initWithAppearanceNamed: proc(self: ^AK.Appearance, name: ^NS.String, bundle: ^NS.Bundle) -> ^AK.Appearance,
-    initWithCoder: proc(self: ^AK.Appearance, coder: ^NS.Coder) -> ^AK.Appearance,
+    initWithAppearanceNamed: proc(self: ^AK.Appearance, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype,
+    initWithCoder: proc(self: ^AK.Appearance, coder: ^NS.Coder) -> instancetype,
     bestMatchFromAppearancesWithNames: proc(self: ^AK.Appearance, appearances: ^NS.Array) -> ^NS.String,
     name: proc(self: ^AK.Appearance) -> ^NS.String,
     currentAppearance: proc() -> ^AK.Appearance,
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("appearanceNamed:"), auto_cast appearanceNamed, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithAppearanceNamed != nil {
-        initWithAppearanceNamed :: proc "c" (self: ^AK.Appearance, _: SEL, name: ^NS.String, bundle: ^NS.Bundle) -> ^AK.Appearance {
+        initWithAppearanceNamed :: proc "c" (self: ^AK.Appearance, _: SEL, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAppearanceNamed:bundle:"), auto_cast initWithAppearanceNamed, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Appearance, _: SEL, coder: ^NS.Coder) -> ^AK.Appearance {
+        initWithCoder :: proc "c" (self: ^AK.Appearance, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

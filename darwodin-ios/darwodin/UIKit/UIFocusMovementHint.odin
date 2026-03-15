@@ -24,7 +24,7 @@ FocusMovementHint :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FocusMovementHint, objc_selector="init", objc_name="init")
-    FocusMovementHint_init :: proc(self: ^FocusMovementHint) -> ^FocusMovementHint ---
+    FocusMovementHint_init :: proc(self: ^FocusMovementHint) -> instancetype ---
 
     @(objc_type=FocusMovementHint, objc_selector="new", objc_name="new", objc_is_class_method=true)
     FocusMovementHint_new :: proc() -> ^FocusMovementHint ---

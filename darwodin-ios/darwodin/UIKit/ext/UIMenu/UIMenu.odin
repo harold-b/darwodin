@@ -31,8 +31,8 @@ VTable :: struct {
     menuWithChildren: proc(children: ^NS.Array) -> ^UI.Menu,
     menuWithTitle_children: proc(title: ^NS.String, children: ^NS.Array) -> ^UI.Menu,
     menuWithTitle_image_identifier_options_children: proc(title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, options: UI.MenuOptions, children: ^NS.Array) -> ^UI.Menu,
-    initWithCoder: proc(self: ^UI.Menu, coder: ^NS.Coder) -> ^UI.Menu,
-    init: proc(self: ^UI.Menu) -> ^UI.Menu,
+    initWithCoder: proc(self: ^UI.Menu, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.Menu) -> instancetype,
     new: proc() -> ^UI.Menu,
     menuByReplacingChildren: proc(self: ^UI.Menu, newChildren: ^NS.Array) -> ^UI.Menu,
     identifier: proc(self: ^UI.Menu) -> ^NS.String,
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("menuWithTitle:image:identifier:options:children:"), auto_cast menuWithTitle_image_identifier_options_children, "@#:@@@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.Menu, _: SEL, coder: ^NS.Coder) -> ^UI.Menu {
+        initWithCoder :: proc "c" (self: ^UI.Menu, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.Menu, _: SEL) -> ^UI.Menu {
+        init :: proc "c" (self: ^UI.Menu, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

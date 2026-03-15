@@ -23,13 +23,13 @@ SampleBufferRequest :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleBufferRequest, objc_selector="init", objc_name="init")
-    SampleBufferRequest_init :: proc(self: ^SampleBufferRequest) -> ^SampleBufferRequest ---
+    SampleBufferRequest_init :: proc(self: ^SampleBufferRequest) -> instancetype ---
 
     @(objc_type=SampleBufferRequest, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SampleBufferRequest_new :: proc() -> ^SampleBufferRequest ---
 
     @(objc_type=SampleBufferRequest, objc_selector="initWithStartCursor:", objc_name="initWithStartCursor")
-    SampleBufferRequest_initWithStartCursor :: proc(self: ^SampleBufferRequest, startCursor: ^SampleCursor) -> ^SampleBufferRequest ---
+    SampleBufferRequest_initWithStartCursor :: proc(self: ^SampleBufferRequest, startCursor: ^SampleCursor) -> instancetype ---
 
     @(objc_type=SampleBufferRequest, objc_selector="startCursor", objc_name="startCursor")
     SampleBufferRequest_startCursor :: proc(self: ^SampleBufferRequest) -> ^SampleCursor ---

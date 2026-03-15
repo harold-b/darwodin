@@ -25,10 +25,10 @@ FontDescriptor :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FontDescriptor, objc_selector="init", objc_name="init")
-    FontDescriptor_init :: proc(self: ^FontDescriptor) -> ^FontDescriptor ---
+    FontDescriptor_init :: proc(self: ^FontDescriptor) -> instancetype ---
 
     @(objc_type=FontDescriptor, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    FontDescriptor_initWithCoder :: proc(self: ^FontDescriptor, coder: ^NS.Coder) -> ^FontDescriptor ---
+    FontDescriptor_initWithCoder :: proc(self: ^FontDescriptor, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=FontDescriptor, objc_selector="objectForKey:", objc_name="objectForKey")
     FontDescriptor_objectForKey :: proc(self: ^FontDescriptor, anAttribute: ^NS.String) -> id ---
@@ -52,7 +52,7 @@ foreign lib {
     FontDescriptor_preferredFontDescriptorWithTextStyle_compatibleWithTraitCollection :: proc(style: ^NS.String, traitCollection: ^TraitCollection) -> ^FontDescriptor ---
 
     @(objc_type=FontDescriptor, objc_selector="initWithFontAttributes:", objc_name="initWithFontAttributes")
-    FontDescriptor_initWithFontAttributes :: proc(self: ^FontDescriptor, attributes: ^NS.Dictionary) -> ^FontDescriptor ---
+    FontDescriptor_initWithFontAttributes :: proc(self: ^FontDescriptor, attributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=FontDescriptor, objc_selector="fontDescriptorByAddingAttributes:", objc_name="fontDescriptorByAddingAttributes")
     FontDescriptor_fontDescriptorByAddingAttributes :: proc(self: ^FontDescriptor, attributes: ^NS.Dictionary) -> ^FontDescriptor ---

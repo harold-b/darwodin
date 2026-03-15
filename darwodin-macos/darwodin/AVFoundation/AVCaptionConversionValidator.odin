@@ -23,16 +23,16 @@ CaptionConversionValidator :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionConversionValidator, objc_selector="init", objc_name="init")
-    CaptionConversionValidator_init :: proc(self: ^CaptionConversionValidator) -> ^CaptionConversionValidator ---
+    CaptionConversionValidator_init :: proc(self: ^CaptionConversionValidator) -> instancetype ---
 
     @(objc_type=CaptionConversionValidator, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptionConversionValidator_new :: proc() -> ^CaptionConversionValidator ---
 
     @(objc_type=CaptionConversionValidator, objc_selector="captionConversionValidatorWithCaptions:timeRange:conversionSettings:", objc_name="captionConversionValidatorWithCaptions", objc_is_class_method=true)
-    CaptionConversionValidator_captionConversionValidatorWithCaptions :: proc(captions: ^NS.Array, timeRange: CM.TimeRange, conversionSettings: ^NS.Dictionary) -> ^CaptionConversionValidator ---
+    CaptionConversionValidator_captionConversionValidatorWithCaptions :: proc(captions: ^NS.Array, timeRange: CM.TimeRange, conversionSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=CaptionConversionValidator, objc_selector="initWithCaptions:timeRange:conversionSettings:", objc_name="initWithCaptions")
-    CaptionConversionValidator_initWithCaptions :: proc(self: ^CaptionConversionValidator, captions: ^NS.Array, timeRange: CM.TimeRange, conversionSettings: ^NS.Dictionary) -> ^CaptionConversionValidator ---
+    CaptionConversionValidator_initWithCaptions :: proc(self: ^CaptionConversionValidator, captions: ^NS.Array, timeRange: CM.TimeRange, conversionSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=CaptionConversionValidator, objc_selector="validateCaptionConversionWithWarningHandler:", objc_name="validateCaptionConversionWithWarningHandler")
     CaptionConversionValidator_validateCaptionConversionWithWarningHandler :: proc(self: ^CaptionConversionValidator, handler: ^Objc_Block(proc "c" (warning: ^CaptionConversionWarning))) ---

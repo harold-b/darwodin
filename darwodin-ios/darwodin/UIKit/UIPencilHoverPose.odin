@@ -25,7 +25,7 @@ foreign lib {
     PencilHoverPose_new :: proc() -> ^PencilHoverPose ---
 
     @(objc_type=PencilHoverPose, objc_selector="init", objc_name="init")
-    PencilHoverPose_init :: proc(self: ^PencilHoverPose) -> ^PencilHoverPose ---
+    PencilHoverPose_init :: proc(self: ^PencilHoverPose) -> instancetype ---
 
     @(objc_type=PencilHoverPose, objc_selector="location", objc_name="location")
     PencilHoverPose_location :: proc(self: ^PencilHoverPose) -> CG.Point ---

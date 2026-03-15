@@ -35,9 +35,9 @@ VTable :: struct {
     minFrameWidthWithTitle: proc(title: ^NS.String, style: AK.WindowStyleMask) -> CG.Float,
     frameRectForContentRect_: proc(self: ^AK.Window, contentRect: NS.Rect) -> NS.Rect,
     contentRectForFrameRect_: proc(self: ^AK.Window, frameRect: NS.Rect) -> NS.Rect,
-    initWithContentRect_styleMask_backing_defer: proc(self: ^AK.Window, contentRect: NS.Rect, style: AK.WindowStyleMask, backingStoreType: AK.BackingStoreType, flag: bool) -> ^AK.Window,
-    initWithContentRect_styleMask_backing_defer_screen: proc(self: ^AK.Window, contentRect: NS.Rect, style: AK.WindowStyleMask, backingStoreType: AK.BackingStoreType, flag: bool, screen: ^AK.Screen) -> ^AK.Window,
-    initWithCoder: proc(self: ^AK.Window, coder: ^NS.Coder) -> ^AK.Window,
+    initWithContentRect_styleMask_backing_defer: proc(self: ^AK.Window, contentRect: NS.Rect, style: AK.WindowStyleMask, backingStoreType: AK.BackingStoreType, flag: bool) -> instancetype,
+    initWithContentRect_styleMask_backing_defer_screen: proc(self: ^AK.Window, contentRect: NS.Rect, style: AK.WindowStyleMask, backingStoreType: AK.BackingStoreType, flag: bool, screen: ^AK.Screen) -> instancetype,
+    initWithCoder: proc(self: ^AK.Window, coder: ^NS.Coder) -> instancetype,
     addTitlebarAccessoryViewController: proc(self: ^AK.Window, childViewController: ^AK.TitlebarAccessoryViewController),
     insertTitlebarAccessoryViewController: proc(self: ^AK.Window, childViewController: ^AK.TitlebarAccessoryViewController, index: NS.Integer),
     removeTitlebarAccessoryViewControllerAtIndex: proc(self: ^AK.Window, index: NS.Integer),
@@ -114,7 +114,7 @@ VTable :: struct {
     canRepresentDisplayGamut: proc(self: ^AK.Window, displayGamut: AK.DisplayGamut) -> bool,
     windowNumbersWithOptions: proc(options: AK.WindowNumberListOptions) -> ^NS.Array,
     windowNumberAtPoint: proc(point: CG.Point, windowNumber: NS.Integer) -> NS.Integer,
-    windowWithContentViewController: proc(contentViewController: ^AK.ViewController) -> ^AK.Window,
+    windowWithContentViewController: proc(contentViewController: ^AK.ViewController) -> instancetype,
     performWindowDragWithEvent: proc(self: ^AK.Window, event: ^AK.Event),
     selectNextKeyView: proc(self: ^AK.Window, sender: id),
     selectPreviousKeyView: proc(self: ^AK.Window, sender: id),
@@ -434,7 +434,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentRectForFrameRect:"), auto_cast contentRectForFrameRect_, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithContentRect_styleMask_backing_defer != nil {
-        initWithContentRect_styleMask_backing_defer :: proc "c" (self: ^AK.Window, _: SEL, contentRect: NS.Rect, style: AK.WindowStyleMask, backingStoreType: AK.BackingStoreType, flag: bool) -> ^AK.Window {
+        initWithContentRect_styleMask_backing_defer :: proc "c" (self: ^AK.Window, _: SEL, contentRect: NS.Rect, style: AK.WindowStyleMask, backingStoreType: AK.BackingStoreType, flag: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -444,7 +444,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentRect:styleMask:backing:defer:"), auto_cast initWithContentRect_styleMask_backing_defer, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}LLB") do panic("Failed to register objC method.")
     }
     if vt.initWithContentRect_styleMask_backing_defer_screen != nil {
-        initWithContentRect_styleMask_backing_defer_screen :: proc "c" (self: ^AK.Window, _: SEL, contentRect: NS.Rect, style: AK.WindowStyleMask, backingStoreType: AK.BackingStoreType, flag: bool, screen: ^AK.Screen) -> ^AK.Window {
+        initWithContentRect_styleMask_backing_defer_screen :: proc "c" (self: ^AK.Window, _: SEL, contentRect: NS.Rect, style: AK.WindowStyleMask, backingStoreType: AK.BackingStoreType, flag: bool, screen: ^AK.Screen) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -454,7 +454,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentRect:styleMask:backing:defer:screen:"), auto_cast initWithContentRect_styleMask_backing_defer_screen, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}LLB@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Window, _: SEL, coder: ^NS.Coder) -> ^AK.Window {
+        initWithCoder :: proc "c" (self: ^AK.Window, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1224,7 +1224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("windowNumberAtPoint:belowWindowWithWindowNumber:"), auto_cast windowNumberAtPoint, "l#:{CGPoint=dd}l") do panic("Failed to register objC method.")
     }
     if vt.windowWithContentViewController != nil {
-        windowWithContentViewController :: proc "c" (self: Class, _: SEL, contentViewController: ^AK.ViewController) -> ^AK.Window {
+        windowWithContentViewController :: proc "c" (self: Class, _: SEL, contentViewController: ^AK.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

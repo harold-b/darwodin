@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.PreviewParameters) -> ^UI.PreviewParameters,
-    initWithTextLineRects: proc(self: ^UI.PreviewParameters, textLineRects: ^NS.Array) -> ^UI.PreviewParameters,
+    init: proc(self: ^UI.PreviewParameters) -> instancetype,
+    initWithTextLineRects: proc(self: ^UI.PreviewParameters, textLineRects: ^NS.Array) -> instancetype,
     visiblePath: proc(self: ^UI.PreviewParameters) -> ^UI.BezierPath,
     setVisiblePath: proc(self: ^UI.PreviewParameters, visiblePath: ^UI.BezierPath),
     shadowPath: proc(self: ^UI.PreviewParameters) -> ^UI.BezierPath,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PreviewParameters, _: SEL) -> ^UI.PreviewParameters {
+        init :: proc "c" (self: ^UI.PreviewParameters, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTextLineRects != nil {
-        initWithTextLineRects :: proc "c" (self: ^UI.PreviewParameters, _: SEL, textLineRects: ^NS.Array) -> ^UI.PreviewParameters {
+        initWithTextLineRects :: proc "c" (self: ^UI.PreviewParameters, _: SEL, textLineRects: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

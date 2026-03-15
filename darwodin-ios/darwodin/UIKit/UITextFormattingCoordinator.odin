@@ -24,13 +24,13 @@ TextFormattingCoordinator :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextFormattingCoordinator, objc_selector="textFormattingCoordinatorForWindowScene:", objc_name="textFormattingCoordinatorForWindowScene", objc_is_class_method=true)
-    TextFormattingCoordinator_textFormattingCoordinatorForWindowScene :: proc(windowScene: ^WindowScene) -> ^TextFormattingCoordinator ---
+    TextFormattingCoordinator_textFormattingCoordinatorForWindowScene :: proc(windowScene: ^WindowScene) -> instancetype ---
 
     @(objc_type=TextFormattingCoordinator, objc_selector="initWithWindowScene:", objc_name="initWithWindowScene")
-    TextFormattingCoordinator_initWithWindowScene :: proc(self: ^TextFormattingCoordinator, windowScene: ^WindowScene) -> ^TextFormattingCoordinator ---
+    TextFormattingCoordinator_initWithWindowScene :: proc(self: ^TextFormattingCoordinator, windowScene: ^WindowScene) -> instancetype ---
 
     @(objc_type=TextFormattingCoordinator, objc_selector="init", objc_name="init")
-    TextFormattingCoordinator_init :: proc(self: ^TextFormattingCoordinator) -> ^TextFormattingCoordinator ---
+    TextFormattingCoordinator_init :: proc(self: ^TextFormattingCoordinator) -> instancetype ---
 
     @(objc_type=TextFormattingCoordinator, objc_selector="setSelectedAttributes:isMultiple:", objc_name="setSelectedAttributes")
     TextFormattingCoordinator_setSelectedAttributes :: proc(self: ^TextFormattingCoordinator, attributes: ^NS.Dictionary, flag: bool) ---

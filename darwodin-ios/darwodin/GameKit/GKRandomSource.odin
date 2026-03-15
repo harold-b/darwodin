@@ -23,10 +23,10 @@ RandomSource :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RandomSource, objc_selector="init", objc_name="init")
-    RandomSource_init :: proc(self: ^RandomSource) -> ^RandomSource ---
+    RandomSource_init :: proc(self: ^RandomSource) -> instancetype ---
 
     @(objc_type=RandomSource, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    RandomSource_initWithCoder :: proc(self: ^RandomSource, aDecoder: ^NS.Coder) -> ^RandomSource ---
+    RandomSource_initWithCoder :: proc(self: ^RandomSource, aDecoder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=RandomSource, objc_selector="sharedRandom", objc_name="sharedRandom", objc_is_class_method=true)
     RandomSource_sharedRandom :: proc() -> ^RandomSource ---

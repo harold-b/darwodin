@@ -23,13 +23,13 @@ CaptureIndexPicker :: struct { using _: CaptureControl, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureIndexPicker, objc_selector="initWithLocalizedTitle:symbolName:numberOfIndexes:", objc_name="initWithLocalizedTitle_symbolName_numberOfIndexes")
-    CaptureIndexPicker_initWithLocalizedTitle_symbolName_numberOfIndexes :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, numberOfIndexes: NS.Integer) -> ^CaptureIndexPicker ---
+    CaptureIndexPicker_initWithLocalizedTitle_symbolName_numberOfIndexes :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, numberOfIndexes: NS.Integer) -> instancetype ---
 
     @(objc_type=CaptureIndexPicker, objc_selector="initWithLocalizedTitle:symbolName:numberOfIndexes:localizedTitleTransform:", objc_name="initWithLocalizedTitle_symbolName_numberOfIndexes_localizedTitleTransform")
-    CaptureIndexPicker_initWithLocalizedTitle_symbolName_numberOfIndexes_localizedTitleTransform :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, numberOfIndexes: NS.Integer, localizedTitleTransform: ^Objc_Block(proc "c" (index: NS.Integer) -> ^NS.String)) -> ^CaptureIndexPicker ---
+    CaptureIndexPicker_initWithLocalizedTitle_symbolName_numberOfIndexes_localizedTitleTransform :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, numberOfIndexes: NS.Integer, localizedTitleTransform: ^Objc_Block(proc "c" (index: NS.Integer) -> ^NS.String)) -> instancetype ---
 
     @(objc_type=CaptureIndexPicker, objc_selector="initWithLocalizedTitle:symbolName:localizedIndexTitles:", objc_name="initWithLocalizedTitle_symbolName_localizedIndexTitles")
-    CaptureIndexPicker_initWithLocalizedTitle_symbolName_localizedIndexTitles :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, localizedIndexTitles: ^NS.Array) -> ^CaptureIndexPicker ---
+    CaptureIndexPicker_initWithLocalizedTitle_symbolName_localizedIndexTitles :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, localizedIndexTitles: ^NS.Array) -> instancetype ---
 
     @(objc_type=CaptureIndexPicker, objc_selector="setActionQueue:action:", objc_name="setActionQueue")
     CaptureIndexPicker_setActionQueue :: proc(self: ^CaptureIndexPicker, actionQueue: CF.dispatch_queue_t, action: ^Objc_Block(proc "c" (selectedIndex: NS.Integer))) ---

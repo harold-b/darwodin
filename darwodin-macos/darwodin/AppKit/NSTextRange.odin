@@ -24,13 +24,13 @@ TextRange :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextRange, objc_selector="initWithLocation:endLocation:", objc_name="initWithLocation_endLocation")
-    TextRange_initWithLocation_endLocation :: proc(self: ^TextRange, location: ^TextLocation, endLocation: ^TextLocation) -> ^TextRange ---
+    TextRange_initWithLocation_endLocation :: proc(self: ^TextRange, location: ^TextLocation, endLocation: ^TextLocation) -> instancetype ---
 
     @(objc_type=TextRange, objc_selector="initWithLocation:", objc_name="initWithLocation_")
-    TextRange_initWithLocation_ :: proc(self: ^TextRange, location: ^TextLocation) -> ^TextRange ---
+    TextRange_initWithLocation_ :: proc(self: ^TextRange, location: ^TextLocation) -> instancetype ---
 
     @(objc_type=TextRange, objc_selector="init", objc_name="init")
-    TextRange_init :: proc(self: ^TextRange) -> ^TextRange ---
+    TextRange_init :: proc(self: ^TextRange) -> instancetype ---
 
     @(objc_type=TextRange, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextRange_new :: proc() -> ^TextRange ---
@@ -48,10 +48,10 @@ foreign lib {
     TextRange_intersectsWithTextRange :: proc(self: ^TextRange, textRange: ^TextRange) -> bool ---
 
     @(objc_type=TextRange, objc_selector="textRangeByIntersectingWithTextRange:", objc_name="textRangeByIntersectingWithTextRange")
-    TextRange_textRangeByIntersectingWithTextRange :: proc(self: ^TextRange, textRange: ^TextRange) -> ^TextRange ---
+    TextRange_textRangeByIntersectingWithTextRange :: proc(self: ^TextRange, textRange: ^TextRange) -> instancetype ---
 
     @(objc_type=TextRange, objc_selector="textRangeByFormingUnionWithTextRange:", objc_name="textRangeByFormingUnionWithTextRange")
-    TextRange_textRangeByFormingUnionWithTextRange :: proc(self: ^TextRange, textRange: ^TextRange) -> ^TextRange ---
+    TextRange_textRangeByFormingUnionWithTextRange :: proc(self: ^TextRange, textRange: ^TextRange) -> instancetype ---
 
     @(objc_type=TextRange, objc_selector="isEmpty", objc_name="isEmpty")
     TextRange_isEmpty :: proc(self: ^TextRange) -> bool ---

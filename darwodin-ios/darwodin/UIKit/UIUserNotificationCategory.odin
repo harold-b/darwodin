@@ -26,10 +26,10 @@ UserNotificationCategory :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserNotificationCategory, objc_selector="init", objc_name="init")
-    UserNotificationCategory_init :: proc(self: ^UserNotificationCategory) -> ^UserNotificationCategory ---
+    UserNotificationCategory_init :: proc(self: ^UserNotificationCategory) -> instancetype ---
 
     @(objc_type=UserNotificationCategory, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    UserNotificationCategory_initWithCoder :: proc(self: ^UserNotificationCategory, coder: ^NS.Coder) -> ^UserNotificationCategory ---
+    UserNotificationCategory_initWithCoder :: proc(self: ^UserNotificationCategory, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=UserNotificationCategory, objc_selector="actionsForContext:", objc_name="actionsForContext")
     UserNotificationCategory_actionsForContext :: proc(self: ^UserNotificationCategory, _context: UserNotificationActionContext) -> ^NS.Array ---

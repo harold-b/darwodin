@@ -22,16 +22,16 @@ Behavior :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Behavior, objc_selector="behaviorWithGoal:weight:", objc_name="behaviorWithGoal", objc_is_class_method=true)
-    Behavior_behaviorWithGoal :: proc(goal: ^Goal, weight: cffi.float) -> ^Behavior ---
+    Behavior_behaviorWithGoal :: proc(goal: ^Goal, weight: cffi.float) -> instancetype ---
 
     @(objc_type=Behavior, objc_selector="behaviorWithGoals:", objc_name="behaviorWithGoals_", objc_is_class_method=true)
-    Behavior_behaviorWithGoals_ :: proc(goals: ^NS.Array) -> ^Behavior ---
+    Behavior_behaviorWithGoals_ :: proc(goals: ^NS.Array) -> instancetype ---
 
     @(objc_type=Behavior, objc_selector="behaviorWithGoals:andWeights:", objc_name="behaviorWithGoals_andWeights", objc_is_class_method=true)
-    Behavior_behaviorWithGoals_andWeights :: proc(goals: ^NS.Array, weights: ^NS.Array) -> ^Behavior ---
+    Behavior_behaviorWithGoals_andWeights :: proc(goals: ^NS.Array, weights: ^NS.Array) -> instancetype ---
 
     @(objc_type=Behavior, objc_selector="behaviorWithWeightedGoals:", objc_name="behaviorWithWeightedGoals", objc_is_class_method=true)
-    Behavior_behaviorWithWeightedGoals :: proc(weightedGoals: ^NS.Dictionary) -> ^Behavior ---
+    Behavior_behaviorWithWeightedGoals :: proc(weightedGoals: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=Behavior, objc_selector="setWeight:forGoal:", objc_name="setWeight")
     Behavior_setWeight :: proc(self: ^Behavior, weight: cffi.float, goal: ^Goal) ---

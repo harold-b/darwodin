@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithPosition: proc(self: ^NS.PositionalSpecifier, position: NS.InsertionPosition, specifier: ^NS.ScriptObjectSpecifier) -> ^NS.PositionalSpecifier,
+    initWithPosition: proc(self: ^NS.PositionalSpecifier, position: NS.InsertionPosition, specifier: ^NS.ScriptObjectSpecifier) -> instancetype,
     setInsertionClassDescription: proc(self: ^NS.PositionalSpecifier, classDescription: ^NS.ScriptClassDescription),
     evaluate: proc(self: ^NS.PositionalSpecifier),
     position: proc(self: ^NS.PositionalSpecifier) -> NS.InsertionPosition,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithPosition != nil {
-        initWithPosition :: proc "c" (self: ^NS.PositionalSpecifier, _: SEL, position: NS.InsertionPosition, specifier: ^NS.ScriptObjectSpecifier) -> ^NS.PositionalSpecifier {
+        initWithPosition :: proc "c" (self: ^NS.PositionalSpecifier, _: SEL, position: NS.InsertionPosition, specifier: ^NS.ScriptObjectSpecifier) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

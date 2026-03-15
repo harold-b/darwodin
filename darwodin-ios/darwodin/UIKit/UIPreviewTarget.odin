@@ -24,13 +24,13 @@ PreviewTarget :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PreviewTarget, objc_selector="initWithContainer:center:transform:", objc_name="initWithContainer_center_transform")
-    PreviewTarget_initWithContainer_center_transform :: proc(self: ^PreviewTarget, container: ^View, center: CG.Point, transform: CG.AffineTransform) -> ^PreviewTarget ---
+    PreviewTarget_initWithContainer_center_transform :: proc(self: ^PreviewTarget, container: ^View, center: CG.Point, transform: CG.AffineTransform) -> instancetype ---
 
     @(objc_type=PreviewTarget, objc_selector="initWithContainer:center:", objc_name="initWithContainer_center")
-    PreviewTarget_initWithContainer_center :: proc(self: ^PreviewTarget, container: ^View, center: CG.Point) -> ^PreviewTarget ---
+    PreviewTarget_initWithContainer_center :: proc(self: ^PreviewTarget, container: ^View, center: CG.Point) -> instancetype ---
 
     @(objc_type=PreviewTarget, objc_selector="init", objc_name="init")
-    PreviewTarget_init :: proc(self: ^PreviewTarget) -> ^PreviewTarget ---
+    PreviewTarget_init :: proc(self: ^PreviewTarget) -> instancetype ---
 
     @(objc_type=PreviewTarget, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PreviewTarget_new :: proc() -> ^PreviewTarget ---

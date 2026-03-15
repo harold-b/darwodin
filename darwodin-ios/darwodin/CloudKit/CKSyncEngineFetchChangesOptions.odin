@@ -20,7 +20,7 @@ SyncEngineFetchChangesOptions :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineFetchChangesOptions, objc_selector="initWithScope:", objc_name="initWithScope")
-    SyncEngineFetchChangesOptions_initWithScope :: proc(self: ^SyncEngineFetchChangesOptions, scope: ^SyncEngineFetchChangesScope) -> ^SyncEngineFetchChangesOptions ---
+    SyncEngineFetchChangesOptions_initWithScope :: proc(self: ^SyncEngineFetchChangesOptions, scope: ^SyncEngineFetchChangesScope) -> instancetype ---
 
     @(objc_type=SyncEngineFetchChangesOptions, objc_selector="scope", objc_name="scope")
     SyncEngineFetchChangesOptions_scope :: proc(self: ^SyncEngineFetchChangesOptions) -> ^SyncEngineFetchChangesScope ---

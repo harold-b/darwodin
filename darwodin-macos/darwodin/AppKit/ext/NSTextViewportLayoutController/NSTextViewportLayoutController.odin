@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextLayoutManager: proc(self: ^AK.TextViewportLayoutController, textLayoutManager: ^AK.TextLayoutManager) -> ^AK.TextViewportLayoutController,
+    initWithTextLayoutManager: proc(self: ^AK.TextViewportLayoutController, textLayoutManager: ^AK.TextLayoutManager) -> instancetype,
     new: proc() -> ^AK.TextViewportLayoutController,
-    init: proc(self: ^AK.TextViewportLayoutController) -> ^AK.TextViewportLayoutController,
+    init: proc(self: ^AK.TextViewportLayoutController) -> instancetype,
     layoutViewport: proc(self: ^AK.TextViewportLayoutController),
     relocateViewportToTextLocation: proc(self: ^AK.TextViewportLayoutController, textLocation: ^AK.TextLocation) -> CG.Float,
     adjustViewportByVerticalOffset: proc(self: ^AK.TextViewportLayoutController, verticalOffset: CG.Float),
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextLayoutManager != nil {
-        initWithTextLayoutManager :: proc "c" (self: ^AK.TextViewportLayoutController, _: SEL, textLayoutManager: ^AK.TextLayoutManager) -> ^AK.TextViewportLayoutController {
+        initWithTextLayoutManager :: proc "c" (self: ^AK.TextViewportLayoutController, _: SEL, textLayoutManager: ^AK.TextLayoutManager) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextViewportLayoutController, _: SEL) -> ^AK.TextViewportLayoutController {
+        init :: proc "c" (self: ^AK.TextViewportLayoutController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -31,8 +31,8 @@ import "../NSView"
 VTable :: struct {
     super: NSView.VTable,
     registerUnitWithName: proc(unitName: ^NS.String, abbreviation: ^NS.String, conversionFactor: CG.Float, stepUpCycle: ^NS.Array, stepDownCycle: ^NS.Array),
-    initWithCoder: proc(self: ^AK.RulerView, coder: ^NS.Coder) -> ^AK.RulerView,
-    initWithScrollView: proc(self: ^AK.RulerView, scrollView: ^AK.ScrollView, orientation: AK.RulerOrientation) -> ^AK.RulerView,
+    initWithCoder: proc(self: ^AK.RulerView, coder: ^NS.Coder) -> instancetype,
+    initWithScrollView: proc(self: ^AK.RulerView, scrollView: ^AK.ScrollView, orientation: AK.RulerOrientation) -> instancetype,
     addMarker: proc(self: ^AK.RulerView, marker: ^AK.RulerMarker),
     removeMarker: proc(self: ^AK.RulerView, marker: ^AK.RulerMarker),
     trackMarker: proc(self: ^AK.RulerView, marker: ^AK.RulerMarker, event: ^AK.Event) -> bool,
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:"), auto_cast registerUnitWithName, "v#:@@d^void^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.RulerView, _: SEL, coder: ^NS.Coder) -> ^AK.RulerView {
+        initWithCoder :: proc "c" (self: ^AK.RulerView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithScrollView != nil {
-        initWithScrollView :: proc "c" (self: ^AK.RulerView, _: SEL, scrollView: ^AK.ScrollView, orientation: AK.RulerOrientation) -> ^AK.RulerView {
+        initWithScrollView :: proc "c" (self: ^AK.RulerView, _: SEL, scrollView: ^AK.ScrollView, orientation: AK.RulerOrientation) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

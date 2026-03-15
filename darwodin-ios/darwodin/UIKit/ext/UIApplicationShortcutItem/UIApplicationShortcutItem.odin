@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.ApplicationShortcutItem) -> ^UI.ApplicationShortcutItem,
-    initWithType_localizedTitle_localizedSubtitle_icon_userInfo: proc(self: ^UI.ApplicationShortcutItem, type: ^NS.String, localizedTitle: ^NS.String, localizedSubtitle: ^NS.String, icon: ^UI.ApplicationShortcutIcon, userInfo: ^NS.Dictionary) -> ^UI.ApplicationShortcutItem,
-    initWithType_localizedTitle: proc(self: ^UI.ApplicationShortcutItem, type: ^NS.String, localizedTitle: ^NS.String) -> ^UI.ApplicationShortcutItem,
+    init: proc(self: ^UI.ApplicationShortcutItem) -> instancetype,
+    initWithType_localizedTitle_localizedSubtitle_icon_userInfo: proc(self: ^UI.ApplicationShortcutItem, type: ^NS.String, localizedTitle: ^NS.String, localizedSubtitle: ^NS.String, icon: ^UI.ApplicationShortcutIcon, userInfo: ^NS.Dictionary) -> instancetype,
+    initWithType_localizedTitle: proc(self: ^UI.ApplicationShortcutItem, type: ^NS.String, localizedTitle: ^NS.String) -> instancetype,
     type: proc(self: ^UI.ApplicationShortcutItem) -> ^NS.String,
     localizedTitle: proc(self: ^UI.ApplicationShortcutItem) -> ^NS.String,
     localizedSubtitle: proc(self: ^UI.ApplicationShortcutItem) -> ^NS.String,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ApplicationShortcutItem, _: SEL) -> ^UI.ApplicationShortcutItem {
+        init :: proc "c" (self: ^UI.ApplicationShortcutItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithType_localizedTitle_localizedSubtitle_icon_userInfo != nil {
-        initWithType_localizedTitle_localizedSubtitle_icon_userInfo :: proc "c" (self: ^UI.ApplicationShortcutItem, _: SEL, type: ^NS.String, localizedTitle: ^NS.String, localizedSubtitle: ^NS.String, icon: ^UI.ApplicationShortcutIcon, userInfo: ^NS.Dictionary) -> ^UI.ApplicationShortcutItem {
+        initWithType_localizedTitle_localizedSubtitle_icon_userInfo :: proc "c" (self: ^UI.ApplicationShortcutItem, _: SEL, type: ^NS.String, localizedTitle: ^NS.String, localizedSubtitle: ^NS.String, icon: ^UI.ApplicationShortcutIcon, userInfo: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithType:localizedTitle:localizedSubtitle:icon:userInfo:"), auto_cast initWithType_localizedTitle_localizedSubtitle_icon_userInfo, "@@:@@@@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithType_localizedTitle != nil {
-        initWithType_localizedTitle :: proc "c" (self: ^UI.ApplicationShortcutItem, _: SEL, type: ^NS.String, localizedTitle: ^NS.String) -> ^UI.ApplicationShortcutItem {
+        initWithType_localizedTitle :: proc "c" (self: ^UI.ApplicationShortcutItem, _: SEL, type: ^NS.String, localizedTitle: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

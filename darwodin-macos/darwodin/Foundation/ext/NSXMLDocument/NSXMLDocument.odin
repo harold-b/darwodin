@@ -26,11 +26,11 @@ import "../NSXMLNode"
 
 VTable :: struct {
     super: NSXMLNode.VTable,
-    init: proc(self: ^NS.XMLDocument) -> ^NS.XMLDocument,
-    initWithXMLString: proc(self: ^NS.XMLDocument, string: ^NS.String, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDocument,
-    initWithContentsOfURL: proc(self: ^NS.XMLDocument, url: ^NS.URL, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDocument,
-    initWithData: proc(self: ^NS.XMLDocument, data: ^NS.Data, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDocument,
-    initWithRootElement: proc(self: ^NS.XMLDocument, element: ^NS.XMLElement) -> ^NS.XMLDocument,
+    init: proc(self: ^NS.XMLDocument) -> instancetype,
+    initWithXMLString: proc(self: ^NS.XMLDocument, string: ^NS.String, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype,
+    initWithContentsOfURL: proc(self: ^NS.XMLDocument, url: ^NS.URL, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype,
+    initWithData: proc(self: ^NS.XMLDocument, data: ^NS.Data, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype,
+    initWithRootElement: proc(self: ^NS.XMLDocument, element: ^NS.XMLElement) -> instancetype,
     replacementClassForClass: proc(cls: Class) -> Class,
     setRootElement: proc(self: ^NS.XMLDocument, root: ^NS.XMLElement),
     rootElement: proc(self: ^NS.XMLDocument) -> ^NS.XMLElement,
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSXMLNode.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.XMLDocument, _: SEL) -> ^NS.XMLDocument {
+        init :: proc "c" (self: ^NS.XMLDocument, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithXMLString != nil {
-        initWithXMLString :: proc "c" (self: ^NS.XMLDocument, _: SEL, string: ^NS.String, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDocument {
+        initWithXMLString :: proc "c" (self: ^NS.XMLDocument, _: SEL, string: ^NS.String, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithXMLString:options:error:"), auto_cast initWithXMLString, "@@:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL != nil {
-        initWithContentsOfURL :: proc "c" (self: ^NS.XMLDocument, _: SEL, url: ^NS.URL, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDocument {
+        initWithContentsOfURL :: proc "c" (self: ^NS.XMLDocument, _: SEL, url: ^NS.URL, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:options:error:"), auto_cast initWithContentsOfURL, "@@:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^NS.XMLDocument, _: SEL, data: ^NS.Data, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDocument {
+        initWithData :: proc "c" (self: ^NS.XMLDocument, _: SEL, data: ^NS.Data, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:options:error:"), auto_cast initWithData, "@@:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithRootElement != nil {
-        initWithRootElement :: proc "c" (self: ^NS.XMLDocument, _: SEL, element: ^NS.XMLElement) -> ^NS.XMLDocument {
+        initWithRootElement :: proc "c" (self: ^NS.XMLDocument, _: SEL, element: ^NS.XMLElement) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

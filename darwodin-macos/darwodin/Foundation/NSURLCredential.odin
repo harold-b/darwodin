@@ -26,7 +26,7 @@ foreign lib {
     URLCredential_persistence :: proc(self: ^URLCredential) -> URLCredentialPersistence ---
 
     @(objc_type=URLCredential, objc_selector="initWithUser:password:persistence:", objc_name="initWithUser")
-    URLCredential_initWithUser :: proc(self: ^URLCredential, user: ^String, password: ^String, persistence: URLCredentialPersistence) -> ^URLCredential ---
+    URLCredential_initWithUser :: proc(self: ^URLCredential, user: ^String, password: ^String, persistence: URLCredentialPersistence) -> instancetype ---
 
     @(objc_type=URLCredential, objc_selector="credentialWithUser:password:persistence:", objc_name="credentialWithUser", objc_is_class_method=true)
     URLCredential_credentialWithUser :: proc(user: ^String, password: ^String, persistence: URLCredentialPersistence) -> ^URLCredential ---
@@ -41,7 +41,7 @@ foreign lib {
     URLCredential_hasPassword :: proc(self: ^URLCredential) -> bool ---
 
     @(objc_type=URLCredential, objc_selector="initWithIdentity:certificates:persistence:", objc_name="initWithIdentity")
-    URLCredential_initWithIdentity :: proc(self: ^URLCredential, identity: Sec.SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential ---
+    URLCredential_initWithIdentity :: proc(self: ^URLCredential, identity: Sec.SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> instancetype ---
 
     @(objc_type=URLCredential, objc_selector="credentialWithIdentity:certificates:persistence:", objc_name="credentialWithIdentity", objc_is_class_method=true)
     URLCredential_credentialWithIdentity :: proc(identity: Sec.SecIdentityRef, certArray: ^Array, persistence: URLCredentialPersistence) -> ^URLCredential ---
@@ -53,7 +53,7 @@ foreign lib {
     URLCredential_certificates :: proc(self: ^URLCredential) -> ^Array ---
 
     @(objc_type=URLCredential, objc_selector="initWithTrust:", objc_name="initWithTrust")
-    URLCredential_initWithTrust :: proc(self: ^URLCredential, trust: Sec.SecTrustRef) -> ^URLCredential ---
+    URLCredential_initWithTrust :: proc(self: ^URLCredential, trust: Sec.SecTrustRef) -> instancetype ---
 
     @(objc_type=URLCredential, objc_selector="credentialForTrust:", objc_name="credentialForTrust", objc_is_class_method=true)
     URLCredential_credentialForTrust :: proc(trust: Sec.SecTrustRef) -> ^URLCredential ---

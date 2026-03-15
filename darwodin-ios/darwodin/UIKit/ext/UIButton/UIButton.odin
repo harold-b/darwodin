@@ -28,14 +28,14 @@ import "../UIControl"
 
 VTable :: struct {
     super: UIControl.VTable,
-    initWithFrame_: proc(self: ^UI.Button, frame: CG.Rect) -> ^UI.Button,
-    initWithCoder: proc(self: ^UI.Button, coder: ^NS.Coder) -> ^UI.Button,
-    initWithFrame_primaryAction: proc(self: ^UI.Button, frame: CG.Rect, primaryAction: ^UI.Action) -> ^UI.Button,
-    buttonWithType_: proc(buttonType: UI.ButtonType) -> ^UI.Button,
-    systemButtonWithImage: proc(image: ^UI.Image, target: id, action: SEL) -> ^UI.Button,
-    systemButtonWithPrimaryAction: proc(primaryAction: ^UI.Action) -> ^UI.Button,
-    buttonWithType_primaryAction: proc(buttonType: UI.ButtonType, primaryAction: ^UI.Action) -> ^UI.Button,
-    buttonWithConfiguration: proc(configuration: ^UI.ButtonConfiguration, primaryAction: ^UI.Action) -> ^UI.Button,
+    initWithFrame_: proc(self: ^UI.Button, frame: CG.Rect) -> instancetype,
+    initWithCoder: proc(self: ^UI.Button, coder: ^NS.Coder) -> instancetype,
+    initWithFrame_primaryAction: proc(self: ^UI.Button, frame: CG.Rect, primaryAction: ^UI.Action) -> instancetype,
+    buttonWithType_: proc(buttonType: UI.ButtonType) -> instancetype,
+    systemButtonWithImage: proc(image: ^UI.Image, target: id, action: SEL) -> instancetype,
+    systemButtonWithPrimaryAction: proc(primaryAction: ^UI.Action) -> instancetype,
+    buttonWithType_primaryAction: proc(buttonType: UI.ButtonType, primaryAction: ^UI.Action) -> instancetype,
+    buttonWithConfiguration: proc(configuration: ^UI.ButtonConfiguration, primaryAction: ^UI.Action) -> instancetype,
     setNeedsUpdateConfiguration: proc(self: ^UI.Button),
     updateConfiguration: proc(self: ^UI.Button),
     setTitle: proc(self: ^UI.Button, title: ^NS.String, state: UI.ControlState),
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIControl.extend(cls, &vt.super)
 
     if vt.initWithFrame_ != nil {
-        initWithFrame_ :: proc "c" (self: ^UI.Button, _: SEL, frame: CG.Rect) -> ^UI.Button {
+        initWithFrame_ :: proc "c" (self: ^UI.Button, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame_, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.Button, _: SEL, coder: ^NS.Coder) -> ^UI.Button {
+        initWithCoder :: proc "c" (self: ^UI.Button, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame_primaryAction != nil {
-        initWithFrame_primaryAction :: proc "c" (self: ^UI.Button, _: SEL, frame: CG.Rect, primaryAction: ^UI.Action) -> ^UI.Button {
+        initWithFrame_primaryAction :: proc "c" (self: ^UI.Button, _: SEL, frame: CG.Rect, primaryAction: ^UI.Action) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:primaryAction:"), auto_cast initWithFrame_primaryAction, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.buttonWithType_ != nil {
-        buttonWithType_ :: proc "c" (self: Class, _: SEL, buttonType: UI.ButtonType) -> ^UI.Button {
+        buttonWithType_ :: proc "c" (self: Class, _: SEL, buttonType: UI.ButtonType) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonWithType:"), auto_cast buttonWithType_, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.systemButtonWithImage != nil {
-        systemButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^UI.Image, target: id, action: SEL) -> ^UI.Button {
+        systemButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^UI.Image, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemButtonWithImage:target:action:"), auto_cast systemButtonWithImage, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.systemButtonWithPrimaryAction != nil {
-        systemButtonWithPrimaryAction :: proc "c" (self: Class, _: SEL, primaryAction: ^UI.Action) -> ^UI.Button {
+        systemButtonWithPrimaryAction :: proc "c" (self: Class, _: SEL, primaryAction: ^UI.Action) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -182,7 +182,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemButtonWithPrimaryAction:"), auto_cast systemButtonWithPrimaryAction, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.buttonWithType_primaryAction != nil {
-        buttonWithType_primaryAction :: proc "c" (self: Class, _: SEL, buttonType: UI.ButtonType, primaryAction: ^UI.Action) -> ^UI.Button {
+        buttonWithType_primaryAction :: proc "c" (self: Class, _: SEL, buttonType: UI.ButtonType, primaryAction: ^UI.Action) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -192,7 +192,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonWithType:primaryAction:"), auto_cast buttonWithType_primaryAction, "@#:l@") do panic("Failed to register objC method.")
     }
     if vt.buttonWithConfiguration != nil {
-        buttonWithConfiguration :: proc "c" (self: Class, _: SEL, configuration: ^UI.ButtonConfiguration, primaryAction: ^UI.Action) -> ^UI.Button {
+        buttonWithConfiguration :: proc "c" (self: Class, _: SEL, configuration: ^UI.ButtonConfiguration, primaryAction: ^UI.Action) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

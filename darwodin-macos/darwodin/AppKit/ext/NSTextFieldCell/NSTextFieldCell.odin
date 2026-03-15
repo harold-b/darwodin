@@ -30,9 +30,9 @@ import "../NSActionCell"
 
 VTable :: struct {
     super: NSActionCell.VTable,
-    initTextCell: proc(self: ^AK.TextFieldCell, string: ^NS.String) -> ^AK.TextFieldCell,
-    initWithCoder: proc(self: ^AK.TextFieldCell, coder: ^NS.Coder) -> ^AK.TextFieldCell,
-    initImageCell: proc(self: ^AK.TextFieldCell, image: ^NS.Image) -> ^AK.TextFieldCell,
+    initTextCell: proc(self: ^AK.TextFieldCell, string: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^AK.TextFieldCell, coder: ^NS.Coder) -> instancetype,
+    initImageCell: proc(self: ^AK.TextFieldCell, image: ^NS.Image) -> instancetype,
     setUpFieldEditorAttributes: proc(self: ^AK.TextFieldCell, textObj: ^AK.Text) -> ^AK.Text,
     setWantsNotificationForMarkedText: proc(self: ^AK.TextFieldCell, flag: bool),
     backgroundColor: proc(self: ^AK.TextFieldCell) -> ^AK.Color,
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSActionCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.TextFieldCell, _: SEL, string: ^NS.String) -> ^AK.TextFieldCell {
+        initTextCell :: proc "c" (self: ^AK.TextFieldCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextFieldCell, _: SEL, coder: ^NS.Coder) -> ^AK.TextFieldCell {
+        initWithCoder :: proc "c" (self: ^AK.TextFieldCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.TextFieldCell, _: SEL, image: ^NS.Image) -> ^AK.TextFieldCell {
+        initImageCell :: proc "c" (self: ^AK.TextFieldCell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

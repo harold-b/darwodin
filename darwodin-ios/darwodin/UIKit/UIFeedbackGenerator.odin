@@ -22,10 +22,10 @@ FeedbackGenerator :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FeedbackGenerator, objc_selector="feedbackGeneratorForView:", objc_name="feedbackGeneratorForView", objc_is_class_method=true)
-    FeedbackGenerator_feedbackGeneratorForView :: proc(view: ^View) -> ^FeedbackGenerator ---
+    FeedbackGenerator_feedbackGeneratorForView :: proc(view: ^View) -> instancetype ---
 
     @(objc_type=FeedbackGenerator, objc_selector="init", objc_name="init")
-    FeedbackGenerator_init :: proc(self: ^FeedbackGenerator) -> ^FeedbackGenerator ---
+    FeedbackGenerator_init :: proc(self: ^FeedbackGenerator) -> instancetype ---
 
     @(objc_type=FeedbackGenerator, objc_selector="prepare", objc_name="prepare")
     FeedbackGenerator_prepare :: proc(self: ^FeedbackGenerator) ---

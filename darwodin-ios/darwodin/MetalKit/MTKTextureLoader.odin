@@ -23,10 +23,10 @@ TextureLoader :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextureLoader, objc_selector="init", objc_name="init")
-    TextureLoader_init :: proc(self: ^TextureLoader) -> ^TextureLoader ---
+    TextureLoader_init :: proc(self: ^TextureLoader) -> instancetype ---
 
     @(objc_type=TextureLoader, objc_selector="initWithDevice:", objc_name="initWithDevice")
-    TextureLoader_initWithDevice :: proc(self: ^TextureLoader, device: ^MTL.Device) -> ^TextureLoader ---
+    TextureLoader_initWithDevice :: proc(self: ^TextureLoader, device: ^MTL.Device) -> instancetype ---
 
     @(objc_type=TextureLoader, objc_selector="newTextureWithContentsOfURL:options:completionHandler:", objc_name="newTextureWithContentsOfURL_options_completionHandler")
     TextureLoader_newTextureWithContentsOfURL_options_completionHandler :: proc(self: ^TextureLoader, _URL: ^NS.URL, options: ^NS.Dictionary, completionHandler: TextureLoaderCallback) ---

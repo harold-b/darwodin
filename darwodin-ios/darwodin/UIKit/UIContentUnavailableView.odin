@@ -24,16 +24,16 @@ ContentUnavailableView :: struct { using _: View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentUnavailableView, objc_selector="initWithConfiguration:", objc_name="initWithConfiguration")
-    ContentUnavailableView_initWithConfiguration :: proc(self: ^ContentUnavailableView, configuration: ^ContentUnavailableConfiguration) -> ^ContentUnavailableView ---
+    ContentUnavailableView_initWithConfiguration :: proc(self: ^ContentUnavailableView, configuration: ^ContentUnavailableConfiguration) -> instancetype ---
 
     @(objc_type=ContentUnavailableView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ContentUnavailableView_initWithCoder :: proc(self: ^ContentUnavailableView, coder: ^NS.Coder) -> ^ContentUnavailableView ---
+    ContentUnavailableView_initWithCoder :: proc(self: ^ContentUnavailableView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ContentUnavailableView, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    ContentUnavailableView_initWithFrame :: proc(self: ^ContentUnavailableView, frame: CG.Rect) -> ^ContentUnavailableView ---
+    ContentUnavailableView_initWithFrame :: proc(self: ^ContentUnavailableView, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=ContentUnavailableView, objc_selector="init", objc_name="init")
-    ContentUnavailableView_init :: proc(self: ^ContentUnavailableView) -> ^ContentUnavailableView ---
+    ContentUnavailableView_init :: proc(self: ^ContentUnavailableView) -> instancetype ---
 
     @(objc_type=ContentUnavailableView, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ContentUnavailableView_new :: proc() -> ^ContentUnavailableView ---

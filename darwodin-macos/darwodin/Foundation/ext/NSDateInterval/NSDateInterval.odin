@@ -26,10 +26,10 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.DateInterval) -> ^NS.DateInterval,
-    initWithCoder: proc(self: ^NS.DateInterval, coder: ^NS.Coder) -> ^NS.DateInterval,
-    initWithStartDate_duration: proc(self: ^NS.DateInterval, startDate: ^NS.Date, duration: NS.TimeInterval) -> ^NS.DateInterval,
-    initWithStartDate_endDate: proc(self: ^NS.DateInterval, startDate: ^NS.Date, endDate: ^NS.Date) -> ^NS.DateInterval,
+    init: proc(self: ^NS.DateInterval) -> instancetype,
+    initWithCoder: proc(self: ^NS.DateInterval, coder: ^NS.Coder) -> instancetype,
+    initWithStartDate_duration: proc(self: ^NS.DateInterval, startDate: ^NS.Date, duration: NS.TimeInterval) -> instancetype,
+    initWithStartDate_endDate: proc(self: ^NS.DateInterval, startDate: ^NS.Date, endDate: ^NS.Date) -> instancetype,
     compare: proc(self: ^NS.DateInterval, dateInterval: ^NS.DateInterval) -> NS.ComparisonResult,
     isEqualToDateInterval: proc(self: ^NS.DateInterval, dateInterval: ^NS.DateInterval) -> bool,
     intersectsDateInterval: proc(self: ^NS.DateInterval, dateInterval: ^NS.DateInterval) -> bool,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.DateInterval, _: SEL) -> ^NS.DateInterval {
+        init :: proc "c" (self: ^NS.DateInterval, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.DateInterval, _: SEL, coder: ^NS.Coder) -> ^NS.DateInterval {
+        initWithCoder :: proc "c" (self: ^NS.DateInterval, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithStartDate_duration != nil {
-        initWithStartDate_duration :: proc "c" (self: ^NS.DateInterval, _: SEL, startDate: ^NS.Date, duration: NS.TimeInterval) -> ^NS.DateInterval {
+        initWithStartDate_duration :: proc "c" (self: ^NS.DateInterval, _: SEL, startDate: ^NS.Date, duration: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithStartDate:duration:"), auto_cast initWithStartDate_duration, "@@:@d") do panic("Failed to register objC method.")
     }
     if vt.initWithStartDate_endDate != nil {
-        initWithStartDate_endDate :: proc "c" (self: ^NS.DateInterval, _: SEL, startDate: ^NS.Date, endDate: ^NS.Date) -> ^NS.DateInterval {
+        initWithStartDate_endDate :: proc "c" (self: ^NS.DateInterval, _: SEL, startDate: ^NS.Date, endDate: ^NS.Date) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

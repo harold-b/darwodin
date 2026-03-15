@@ -22,7 +22,7 @@ SnapBehavior :: struct { using _: DynamicBehavior, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SnapBehavior, objc_selector="initWithItem:snapToPoint:", objc_name="initWithItem")
-    SnapBehavior_initWithItem :: proc(self: ^SnapBehavior, item: ^DynamicItem, point: CG.Point) -> ^SnapBehavior ---
+    SnapBehavior_initWithItem :: proc(self: ^SnapBehavior, item: ^DynamicItem, point: CG.Point) -> instancetype ---
 
     @(objc_type=SnapBehavior, objc_selector="snapPoint", objc_name="snapPoint")
     SnapBehavior_snapPoint :: proc(self: ^SnapBehavior) -> CG.Point ---

@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^UI.LargeContentViewerInteraction, delegate: ^UI.LargeContentViewerInteractionDelegate) -> ^UI.LargeContentViewerInteraction,
+    initWithDelegate: proc(self: ^UI.LargeContentViewerInteraction, delegate: ^UI.LargeContentViewerInteractionDelegate) -> instancetype,
     delegate: proc(self: ^UI.LargeContentViewerInteraction) -> ^UI.LargeContentViewerInteractionDelegate,
     gestureRecognizerForExclusionRelationship: proc(self: ^UI.LargeContentViewerInteraction) -> ^UI.GestureRecognizer,
     isEnabled: proc() -> bool,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.LargeContentViewerInteraction, _: SEL, delegate: ^UI.LargeContentViewerInteractionDelegate) -> ^UI.LargeContentViewerInteraction {
+        initWithDelegate :: proc "c" (self: ^UI.LargeContentViewerInteraction, _: SEL, delegate: ^UI.LargeContentViewerInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

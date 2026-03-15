@@ -23,7 +23,7 @@ MIDIPolyPressureEvent :: struct { using _: MIDIChannelEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDIPolyPressureEvent, objc_selector="initWithChannel:key:pressure:", objc_name="initWithChannel")
-    MIDIPolyPressureEvent_initWithChannel :: proc(self: ^MIDIPolyPressureEvent, channel: CF.UInt32, key: CF.UInt32, pressure: CF.UInt32) -> ^MIDIPolyPressureEvent ---
+    MIDIPolyPressureEvent_initWithChannel :: proc(self: ^MIDIPolyPressureEvent, channel: CF.UInt32, key: CF.UInt32, pressure: CF.UInt32) -> instancetype ---
 
     @(objc_type=MIDIPolyPressureEvent, objc_selector="key", objc_name="key")
     MIDIPolyPressureEvent_key :: proc(self: ^MIDIPolyPressureEvent) -> CF.UInt32 ---

@@ -30,7 +30,7 @@ VTable :: struct {
     progressWithTotalUnitCount_: proc(unitCount: cffi.int64_t) -> ^NS.Progress,
     discreteProgressWithTotalUnitCount: proc(unitCount: cffi.int64_t) -> ^NS.Progress,
     progressWithTotalUnitCount_parent_pendingUnitCount: proc(unitCount: cffi.int64_t, parent: ^NS.Progress, portionOfParentTotalUnitCount: cffi.int64_t) -> ^NS.Progress,
-    initWithParent: proc(self: ^NS.Progress, parentProgressOrNil: ^NS.Progress, userInfoOrNil: ^NS.Dictionary) -> ^NS.Progress,
+    initWithParent: proc(self: ^NS.Progress, parentProgressOrNil: ^NS.Progress, userInfoOrNil: ^NS.Dictionary) -> instancetype,
     becomeCurrentWithPendingUnitCount: proc(self: ^NS.Progress, unitCount: cffi.int64_t),
     performAsCurrentWithPendingUnitCount: proc(self: ^NS.Progress, unitCount: cffi.int64_t, work: ^Objc_Block(proc "c" ())),
     resignCurrent: proc(self: ^NS.Progress),
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("progressWithTotalUnitCount:parent:pendingUnitCount:"), auto_cast progressWithTotalUnitCount_parent_pendingUnitCount, "@#:q@q") do panic("Failed to register objC method.")
     }
     if vt.initWithParent != nil {
-        initWithParent :: proc "c" (self: ^NS.Progress, _: SEL, parentProgressOrNil: ^NS.Progress, userInfoOrNil: ^NS.Dictionary) -> ^NS.Progress {
+        initWithParent :: proc "c" (self: ^NS.Progress, _: SEL, parentProgressOrNil: ^NS.Progress, userInfoOrNil: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

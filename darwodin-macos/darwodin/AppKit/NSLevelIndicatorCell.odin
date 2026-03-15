@@ -24,7 +24,7 @@ LevelIndicatorCell :: struct { using _: ActionCell, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LevelIndicatorCell, objc_selector="initWithLevelIndicatorStyle:", objc_name="initWithLevelIndicatorStyle")
-    LevelIndicatorCell_initWithLevelIndicatorStyle :: proc(self: ^LevelIndicatorCell, levelIndicatorStyle: LevelIndicatorStyle) -> ^LevelIndicatorCell ---
+    LevelIndicatorCell_initWithLevelIndicatorStyle :: proc(self: ^LevelIndicatorCell, levelIndicatorStyle: LevelIndicatorStyle) -> instancetype ---
 
     @(objc_type=LevelIndicatorCell, objc_selector="rectOfTickMarkAtIndex:", objc_name="rectOfTickMarkAtIndex")
     LevelIndicatorCell_rectOfTickMarkAtIndex :: proc(self: ^LevelIndicatorCell, index: NS.Integer) -> NS.Rect ---

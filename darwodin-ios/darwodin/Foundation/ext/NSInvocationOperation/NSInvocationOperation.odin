@@ -26,8 +26,8 @@ import "../NSOperation"
 
 VTable :: struct {
     super: NSOperation.VTable,
-    initWithTarget: proc(self: ^NS.InvocationOperation, target: id, sel: SEL, arg: id) -> ^NS.InvocationOperation,
-    initWithInvocation: proc(self: ^NS.InvocationOperation, inv: ^NS.Invocation) -> ^NS.InvocationOperation,
+    initWithTarget: proc(self: ^NS.InvocationOperation, target: id, sel: SEL, arg: id) -> instancetype,
+    initWithInvocation: proc(self: ^NS.InvocationOperation, inv: ^NS.Invocation) -> instancetype,
     invocation: proc(self: ^NS.InvocationOperation) -> ^NS.Invocation,
     result: proc(self: ^NS.InvocationOperation) -> id,
 }
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSOperation.extend(cls, &vt.super)
 
     if vt.initWithTarget != nil {
-        initWithTarget :: proc "c" (self: ^NS.InvocationOperation, _: SEL, target: id, sel: SEL, arg: id) -> ^NS.InvocationOperation {
+        initWithTarget :: proc "c" (self: ^NS.InvocationOperation, _: SEL, target: id, sel: SEL, arg: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTarget:selector:object:"), auto_cast initWithTarget, "@@:@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithInvocation != nil {
-        initWithInvocation :: proc "c" (self: ^NS.InvocationOperation, _: SEL, inv: ^NS.Invocation) -> ^NS.InvocationOperation {
+        initWithInvocation :: proc "c" (self: ^NS.InvocationOperation, _: SEL, inv: ^NS.Invocation) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

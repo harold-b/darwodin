@@ -23,7 +23,7 @@ AssetWriterInputPassDescription :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriterInputPassDescription, objc_selector="init", objc_name="init")
-    AssetWriterInputPassDescription_init :: proc(self: ^AssetWriterInputPassDescription) -> ^AssetWriterInputPassDescription ---
+    AssetWriterInputPassDescription_init :: proc(self: ^AssetWriterInputPassDescription) -> instancetype ---
 
     @(objc_type=AssetWriterInputPassDescription, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetWriterInputPassDescription_new :: proc() -> ^AssetWriterInputPassDescription ---

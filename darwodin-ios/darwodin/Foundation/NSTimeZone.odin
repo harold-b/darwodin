@@ -95,22 +95,22 @@ foreign lib {
     TimeZone_description :: proc(self: ^TimeZone) -> ^String ---
 
     @(objc_type=TimeZone, objc_selector="timeZoneWithName:", objc_name="timeZoneWithName_", objc_is_class_method=true)
-    TimeZone_timeZoneWithName_ :: proc(tzName: ^String) -> ^TimeZone ---
+    TimeZone_timeZoneWithName_ :: proc(tzName: ^String) -> instancetype ---
 
     @(objc_type=TimeZone, objc_selector="timeZoneWithName:data:", objc_name="timeZoneWithName_data", objc_is_class_method=true)
-    TimeZone_timeZoneWithName_data :: proc(tzName: ^String, aData: ^Data) -> ^TimeZone ---
+    TimeZone_timeZoneWithName_data :: proc(tzName: ^String, aData: ^Data) -> instancetype ---
 
     @(objc_type=TimeZone, objc_selector="initWithName:", objc_name="initWithName_")
-    TimeZone_initWithName_ :: proc(self: ^TimeZone, tzName: ^String) -> ^TimeZone ---
+    TimeZone_initWithName_ :: proc(self: ^TimeZone, tzName: ^String) -> instancetype ---
 
     @(objc_type=TimeZone, objc_selector="initWithName:data:", objc_name="initWithName_data")
-    TimeZone_initWithName_data :: proc(self: ^TimeZone, tzName: ^String, aData: ^Data) -> ^TimeZone ---
+    TimeZone_initWithName_data :: proc(self: ^TimeZone, tzName: ^String, aData: ^Data) -> instancetype ---
 
     @(objc_type=TimeZone, objc_selector="timeZoneForSecondsFromGMT:", objc_name="timeZoneForSecondsFromGMT", objc_is_class_method=true)
-    TimeZone_timeZoneForSecondsFromGMT :: proc(seconds: Integer) -> ^TimeZone ---
+    TimeZone_timeZoneForSecondsFromGMT :: proc(seconds: Integer) -> instancetype ---
 
     @(objc_type=TimeZone, objc_selector="timeZoneWithAbbreviation:", objc_name="timeZoneWithAbbreviation", objc_is_class_method=true)
-    TimeZone_timeZoneWithAbbreviation :: proc(abbreviation: ^String) -> ^TimeZone ---
+    TimeZone_timeZoneWithAbbreviation :: proc(abbreviation: ^String) -> instancetype ---
 }
 
 @(objc_type=TimeZone, objc_name="timeZoneWithName")

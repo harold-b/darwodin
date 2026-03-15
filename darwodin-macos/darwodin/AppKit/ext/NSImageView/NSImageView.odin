@@ -30,7 +30,7 @@ import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    imageViewWithImage: proc(image: ^NS.Image) -> ^AK.ImageView,
+    imageViewWithImage: proc(image: ^NS.Image) -> instancetype,
     image: proc(self: ^AK.ImageView) -> ^NS.Image,
     setImage: proc(self: ^AK.ImageView, image: ^NS.Image),
     isEditable: proc(self: ^AK.ImageView) -> bool,
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.imageViewWithImage != nil {
-        imageViewWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image) -> ^AK.ImageView {
+        imageViewWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

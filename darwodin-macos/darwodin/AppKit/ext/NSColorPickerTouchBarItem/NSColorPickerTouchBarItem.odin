@@ -30,10 +30,10 @@ import "../NSTouchBarItem"
 
 VTable :: struct {
     super: NSTouchBarItem.VTable,
-    colorPickerWithIdentifier_: proc(identifier: ^NS.String) -> ^AK.ColorPickerTouchBarItem,
-    textColorPickerWithIdentifier: proc(identifier: ^NS.String) -> ^AK.ColorPickerTouchBarItem,
-    strokeColorPickerWithIdentifier: proc(identifier: ^NS.String) -> ^AK.ColorPickerTouchBarItem,
-    colorPickerWithIdentifier_buttonImage: proc(identifier: ^NS.String, image: ^NS.Image) -> ^AK.ColorPickerTouchBarItem,
+    colorPickerWithIdentifier_: proc(identifier: ^NS.String) -> instancetype,
+    textColorPickerWithIdentifier: proc(identifier: ^NS.String) -> instancetype,
+    strokeColorPickerWithIdentifier: proc(identifier: ^NS.String) -> instancetype,
+    colorPickerWithIdentifier_buttonImage: proc(identifier: ^NS.String, image: ^NS.Image) -> instancetype,
     color: proc(self: ^AK.ColorPickerTouchBarItem) -> ^AK.Color,
     setColor: proc(self: ^AK.ColorPickerTouchBarItem, color: ^AK.Color),
     showsAlpha: proc(self: ^AK.ColorPickerTouchBarItem) -> bool,
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTouchBarItem.extend(cls, &vt.super)
 
     if vt.colorPickerWithIdentifier_ != nil {
-        colorPickerWithIdentifier_ :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> ^AK.ColorPickerTouchBarItem {
+        colorPickerWithIdentifier_ :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("colorPickerWithIdentifier:"), auto_cast colorPickerWithIdentifier_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.textColorPickerWithIdentifier != nil {
-        textColorPickerWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> ^AK.ColorPickerTouchBarItem {
+        textColorPickerWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("textColorPickerWithIdentifier:"), auto_cast textColorPickerWithIdentifier, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.strokeColorPickerWithIdentifier != nil {
-        strokeColorPickerWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> ^AK.ColorPickerTouchBarItem {
+        strokeColorPickerWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("strokeColorPickerWithIdentifier:"), auto_cast strokeColorPickerWithIdentifier, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.colorPickerWithIdentifier_buttonImage != nil {
-        colorPickerWithIdentifier_buttonImage :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, image: ^NS.Image) -> ^AK.ColorPickerTouchBarItem {
+        colorPickerWithIdentifier_buttonImage :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

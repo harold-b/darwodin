@@ -26,10 +26,10 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    bundleWithPath: proc(path: ^NS.String) -> ^NS.Bundle,
-    initWithPath: proc(self: ^NS.Bundle, path: ^NS.String) -> ^NS.Bundle,
-    bundleWithURL: proc(url: ^NS.URL) -> ^NS.Bundle,
-    initWithURL: proc(self: ^NS.Bundle, url: ^NS.URL) -> ^NS.Bundle,
+    bundleWithPath: proc(path: ^NS.String) -> instancetype,
+    initWithPath: proc(self: ^NS.Bundle, path: ^NS.String) -> instancetype,
+    bundleWithURL: proc(url: ^NS.URL) -> instancetype,
+    initWithURL: proc(self: ^NS.Bundle, url: ^NS.URL) -> instancetype,
     bundleForClass: proc(aClass: Class) -> ^NS.Bundle,
     bundleWithIdentifier: proc(identifier: ^NS.String) -> ^NS.Bundle,
     load: proc(self: ^NS.Bundle) -> bool,
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.bundleWithPath != nil {
-        bundleWithPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> ^NS.Bundle {
+        bundleWithPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bundleWithPath:"), auto_cast bundleWithPath, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithPath != nil {
-        initWithPath :: proc "c" (self: ^NS.Bundle, _: SEL, path: ^NS.String) -> ^NS.Bundle {
+        initWithPath :: proc "c" (self: ^NS.Bundle, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPath:"), auto_cast initWithPath, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.bundleWithURL != nil {
-        bundleWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> ^NS.Bundle {
+        bundleWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bundleWithURL:"), auto_cast bundleWithURL, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^NS.Bundle, _: SEL, url: ^NS.URL) -> ^NS.Bundle {
+        initWithURL :: proc "c" (self: ^NS.Bundle, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -24,10 +24,10 @@ NSLayoutManager :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSLayoutManager, objc_selector="init", objc_name="init")
-    NSLayoutManager_init :: proc(self: ^NSLayoutManager) -> ^NSLayoutManager ---
+    NSLayoutManager_init :: proc(self: ^NSLayoutManager) -> instancetype ---
 
     @(objc_type=NSLayoutManager, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    NSLayoutManager_initWithCoder :: proc(self: ^NSLayoutManager, coder: ^NS.Coder) -> ^NSLayoutManager ---
+    NSLayoutManager_initWithCoder :: proc(self: ^NSLayoutManager, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=NSLayoutManager, objc_selector="addTextContainer:", objc_name="addTextContainer")
     NSLayoutManager_addTextContainer :: proc(self: ^NSLayoutManager, container: ^NSTextContainer) ---

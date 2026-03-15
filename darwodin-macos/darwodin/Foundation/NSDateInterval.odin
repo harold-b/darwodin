@@ -23,16 +23,16 @@ DateInterval :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DateInterval, objc_selector="init", objc_name="init")
-    DateInterval_init :: proc(self: ^DateInterval) -> ^DateInterval ---
+    DateInterval_init :: proc(self: ^DateInterval) -> instancetype ---
 
     @(objc_type=DateInterval, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    DateInterval_initWithCoder :: proc(self: ^DateInterval, coder: ^Coder) -> ^DateInterval ---
+    DateInterval_initWithCoder :: proc(self: ^DateInterval, coder: ^Coder) -> instancetype ---
 
     @(objc_type=DateInterval, objc_selector="initWithStartDate:duration:", objc_name="initWithStartDate_duration")
-    DateInterval_initWithStartDate_duration :: proc(self: ^DateInterval, startDate: ^Date, duration: TimeInterval) -> ^DateInterval ---
+    DateInterval_initWithStartDate_duration :: proc(self: ^DateInterval, startDate: ^Date, duration: TimeInterval) -> instancetype ---
 
     @(objc_type=DateInterval, objc_selector="initWithStartDate:endDate:", objc_name="initWithStartDate_endDate")
-    DateInterval_initWithStartDate_endDate :: proc(self: ^DateInterval, startDate: ^Date, endDate: ^Date) -> ^DateInterval ---
+    DateInterval_initWithStartDate_endDate :: proc(self: ^DateInterval, startDate: ^Date, endDate: ^Date) -> instancetype ---
 
     @(objc_type=DateInterval, objc_selector="compare:", objc_name="compare")
     DateInterval_compare :: proc(self: ^DateInterval, dateInterval: ^DateInterval) -> ComparisonResult ---

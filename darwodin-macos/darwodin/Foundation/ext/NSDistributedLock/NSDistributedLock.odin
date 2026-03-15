@@ -27,8 +27,8 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     lockWithPath: proc(path: ^NS.String) -> ^NS.DistributedLock,
-    init: proc(self: ^NS.DistributedLock) -> ^NS.DistributedLock,
-    initWithPath: proc(self: ^NS.DistributedLock, path: ^NS.String) -> ^NS.DistributedLock,
+    init: proc(self: ^NS.DistributedLock) -> instancetype,
+    initWithPath: proc(self: ^NS.DistributedLock, path: ^NS.String) -> instancetype,
     tryLock: proc(self: ^NS.DistributedLock) -> bool,
     unlock: proc(self: ^NS.DistributedLock),
     breakLock: proc(self: ^NS.DistributedLock),
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("lockWithPath:"), auto_cast lockWithPath, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.DistributedLock, _: SEL) -> ^NS.DistributedLock {
+        init :: proc "c" (self: ^NS.DistributedLock, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithPath != nil {
-        initWithPath :: proc "c" (self: ^NS.DistributedLock, _: SEL, path: ^NS.String) -> ^NS.DistributedLock {
+        initWithPath :: proc "c" (self: ^NS.DistributedLock, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

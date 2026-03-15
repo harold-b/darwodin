@@ -22,5 +22,5 @@ WindowScenePushPlacement :: struct { using _: WindowScenePlacement, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowScenePushPlacement, objc_selector="placementTargetingSceneSession:", objc_name="placementTargetingSceneSession", objc_is_class_method=true)
-    WindowScenePushPlacement_placementTargetingSceneSession :: proc(targetSceneSession: ^SceneSession) -> ^WindowScenePushPlacement ---
+    WindowScenePushPlacement_placementTargetingSceneSession :: proc(targetSceneSession: ^SceneSession) -> instancetype ---
 }

@@ -20,16 +20,16 @@ DecimalNumber :: struct { using _: Number, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DecimalNumber, objc_selector="initWithMantissa:exponent:isNegative:", objc_name="initWithMantissa")
-    DecimalNumber_initWithMantissa :: proc(self: ^DecimalNumber, mantissa: cffi.ulonglong, exponent: cffi.short, flag: bool) -> ^DecimalNumber ---
+    DecimalNumber_initWithMantissa :: proc(self: ^DecimalNumber, mantissa: cffi.ulonglong, exponent: cffi.short, flag: bool) -> instancetype ---
 
     @(objc_type=DecimalNumber, objc_selector="initWithDecimal:", objc_name="initWithDecimal")
-    DecimalNumber_initWithDecimal :: proc(self: ^DecimalNumber, dcm: Decimal) -> ^DecimalNumber ---
+    DecimalNumber_initWithDecimal :: proc(self: ^DecimalNumber, dcm: Decimal) -> instancetype ---
 
     @(objc_type=DecimalNumber, objc_selector="initWithString:", objc_name="initWithString_")
-    DecimalNumber_initWithString_ :: proc(self: ^DecimalNumber, numberValue: ^String) -> ^DecimalNumber ---
+    DecimalNumber_initWithString_ :: proc(self: ^DecimalNumber, numberValue: ^String) -> instancetype ---
 
     @(objc_type=DecimalNumber, objc_selector="initWithString:locale:", objc_name="initWithString_locale")
-    DecimalNumber_initWithString_locale :: proc(self: ^DecimalNumber, numberValue: ^String, locale: id) -> ^DecimalNumber ---
+    DecimalNumber_initWithString_locale :: proc(self: ^DecimalNumber, numberValue: ^String, locale: id) -> instancetype ---
 
     @(objc_type=DecimalNumber, objc_selector="descriptionWithLocale:", objc_name="descriptionWithLocale")
     DecimalNumber_descriptionWithLocale :: proc(self: ^DecimalNumber, locale: id) -> ^String ---

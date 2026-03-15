@@ -98,10 +98,10 @@ foreign lib {
     Slider_setAllowsTickMarkValuesOnly :: proc(self: ^Slider, allowsTickMarkValuesOnly: bool) ---
 
     @(objc_type=Slider, objc_selector="sliderWithTarget:action:", objc_name="sliderWithTarget", objc_is_class_method=true)
-    Slider_sliderWithTarget :: proc(target: id, action: SEL) -> ^Slider ---
+    Slider_sliderWithTarget :: proc(target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Slider, objc_selector="sliderWithValue:minValue:maxValue:target:action:", objc_name="sliderWithValue", objc_is_class_method=true)
-    Slider_sliderWithValue :: proc(value: cffi.double, minValue: cffi.double, maxValue: cffi.double, target: id, action: SEL) -> ^Slider ---
+    Slider_sliderWithValue :: proc(value: cffi.double, minValue: cffi.double, maxValue: cffi.double, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Slider, objc_selector="setTitleCell:", objc_name="setTitleCell")
     Slider_setTitleCell :: proc(self: ^Slider, cell: ^Cell) ---

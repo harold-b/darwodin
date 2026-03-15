@@ -24,16 +24,16 @@ ColorPickerTouchBarItem :: struct { using _: TouchBarItem, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ColorPickerTouchBarItem, objc_selector="colorPickerWithIdentifier:", objc_name="colorPickerWithIdentifier_", objc_is_class_method=true)
-    ColorPickerTouchBarItem_colorPickerWithIdentifier_ :: proc(identifier: ^NS.String) -> ^ColorPickerTouchBarItem ---
+    ColorPickerTouchBarItem_colorPickerWithIdentifier_ :: proc(identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=ColorPickerTouchBarItem, objc_selector="textColorPickerWithIdentifier:", objc_name="textColorPickerWithIdentifier", objc_is_class_method=true)
-    ColorPickerTouchBarItem_textColorPickerWithIdentifier :: proc(identifier: ^NS.String) -> ^ColorPickerTouchBarItem ---
+    ColorPickerTouchBarItem_textColorPickerWithIdentifier :: proc(identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=ColorPickerTouchBarItem, objc_selector="strokeColorPickerWithIdentifier:", objc_name="strokeColorPickerWithIdentifier", objc_is_class_method=true)
-    ColorPickerTouchBarItem_strokeColorPickerWithIdentifier :: proc(identifier: ^NS.String) -> ^ColorPickerTouchBarItem ---
+    ColorPickerTouchBarItem_strokeColorPickerWithIdentifier :: proc(identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=ColorPickerTouchBarItem, objc_selector="colorPickerWithIdentifier:buttonImage:", objc_name="colorPickerWithIdentifier_buttonImage", objc_is_class_method=true)
-    ColorPickerTouchBarItem_colorPickerWithIdentifier_buttonImage :: proc(identifier: ^NS.String, image: ^NS.Image) -> ^ColorPickerTouchBarItem ---
+    ColorPickerTouchBarItem_colorPickerWithIdentifier_buttonImage :: proc(identifier: ^NS.String, image: ^NS.Image) -> instancetype ---
 
     @(objc_type=ColorPickerTouchBarItem, objc_selector="color", objc_name="color")
     ColorPickerTouchBarItem_color :: proc(self: ^ColorPickerTouchBarItem) -> ^Color ---

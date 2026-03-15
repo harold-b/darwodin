@@ -22,7 +22,7 @@ AlertController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AlertController, objc_selector="alertControllerWithTitle:message:preferredStyle:", objc_name="alertControllerWithTitle", objc_is_class_method=true)
-    AlertController_alertControllerWithTitle :: proc(title: ^NS.String, message: ^NS.String, preferredStyle: AlertControllerStyle) -> ^AlertController ---
+    AlertController_alertControllerWithTitle :: proc(title: ^NS.String, message: ^NS.String, preferredStyle: AlertControllerStyle) -> instancetype ---
 
     @(objc_type=AlertController, objc_selector="addAction:", objc_name="addAction")
     AlertController_addAction :: proc(self: ^AlertController, action: ^AlertAction) ---

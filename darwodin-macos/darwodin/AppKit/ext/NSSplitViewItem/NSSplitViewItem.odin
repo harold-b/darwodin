@@ -30,10 +30,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    splitViewItemWithViewController: proc(viewController: ^AK.ViewController) -> ^AK.SplitViewItem,
-    sidebarWithViewController: proc(viewController: ^AK.ViewController) -> ^AK.SplitViewItem,
-    contentListWithViewController: proc(viewController: ^AK.ViewController) -> ^AK.SplitViewItem,
-    inspectorWithViewController: proc(viewController: ^AK.ViewController) -> ^AK.SplitViewItem,
+    splitViewItemWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
+    sidebarWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
+    contentListWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
+    inspectorWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
     behavior: proc(self: ^AK.SplitViewItem) -> AK.SplitViewItemBehavior,
     viewController: proc(self: ^AK.SplitViewItem) -> ^AK.ViewController,
     setViewController: proc(self: ^AK.SplitViewItem, viewController: ^AK.ViewController),
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.splitViewItemWithViewController != nil {
-        splitViewItemWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> ^AK.SplitViewItem {
+        splitViewItemWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("splitViewItemWithViewController:"), auto_cast splitViewItemWithViewController, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.sidebarWithViewController != nil {
-        sidebarWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> ^AK.SplitViewItem {
+        sidebarWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sidebarWithViewController:"), auto_cast sidebarWithViewController, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.contentListWithViewController != nil {
-        contentListWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> ^AK.SplitViewItem {
+        contentListWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("contentListWithViewController:"), auto_cast contentListWithViewController, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.inspectorWithViewController != nil {
-        inspectorWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> ^AK.SplitViewItem {
+        inspectorWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

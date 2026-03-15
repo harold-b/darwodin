@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithView_parameters_target: proc(self: ^UI.TargetedPreview, view: ^UI.View, parameters: ^UI.PreviewParameters, target: ^UI.PreviewTarget) -> ^UI.TargetedPreview,
-    initWithView_parameters: proc(self: ^UI.TargetedPreview, view: ^UI.View, parameters: ^UI.PreviewParameters) -> ^UI.TargetedPreview,
-    initWithView_: proc(self: ^UI.TargetedPreview, view: ^UI.View) -> ^UI.TargetedPreview,
-    init: proc(self: ^UI.TargetedPreview) -> ^UI.TargetedPreview,
+    initWithView_parameters_target: proc(self: ^UI.TargetedPreview, view: ^UI.View, parameters: ^UI.PreviewParameters, target: ^UI.PreviewTarget) -> instancetype,
+    initWithView_parameters: proc(self: ^UI.TargetedPreview, view: ^UI.View, parameters: ^UI.PreviewParameters) -> instancetype,
+    initWithView_: proc(self: ^UI.TargetedPreview, view: ^UI.View) -> instancetype,
+    init: proc(self: ^UI.TargetedPreview) -> instancetype,
     new: proc() -> ^UI.TargetedPreview,
     retargetedPreviewWithTarget: proc(self: ^UI.TargetedPreview, newTarget: ^UI.PreviewTarget) -> ^UI.TargetedPreview,
     target: proc(self: ^UI.TargetedPreview) -> ^UI.PreviewTarget,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithView_parameters_target != nil {
-        initWithView_parameters_target :: proc "c" (self: ^UI.TargetedPreview, _: SEL, view: ^UI.View, parameters: ^UI.PreviewParameters, target: ^UI.PreviewTarget) -> ^UI.TargetedPreview {
+        initWithView_parameters_target :: proc "c" (self: ^UI.TargetedPreview, _: SEL, view: ^UI.View, parameters: ^UI.PreviewParameters, target: ^UI.PreviewTarget) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithView:parameters:target:"), auto_cast initWithView_parameters_target, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithView_parameters != nil {
-        initWithView_parameters :: proc "c" (self: ^UI.TargetedPreview, _: SEL, view: ^UI.View, parameters: ^UI.PreviewParameters) -> ^UI.TargetedPreview {
+        initWithView_parameters :: proc "c" (self: ^UI.TargetedPreview, _: SEL, view: ^UI.View, parameters: ^UI.PreviewParameters) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithView:parameters:"), auto_cast initWithView_parameters, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithView_ != nil {
-        initWithView_ :: proc "c" (self: ^UI.TargetedPreview, _: SEL, view: ^UI.View) -> ^UI.TargetedPreview {
+        initWithView_ :: proc "c" (self: ^UI.TargetedPreview, _: SEL, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithView:"), auto_cast initWithView_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TargetedPreview, _: SEL) -> ^UI.TargetedPreview {
+        init :: proc "c" (self: ^UI.TargetedPreview, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

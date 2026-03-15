@@ -26,7 +26,7 @@ Asset :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Asset, objc_selector="assetWithURL:", objc_name="assetWithURL", objc_is_class_method=true)
-    Asset_assetWithURL :: proc(_URL: ^NS.URL) -> ^Asset ---
+    Asset_assetWithURL :: proc(_URL: ^NS.URL) -> instancetype ---
 
     @(objc_type=Asset, objc_selector="duration", objc_name="duration")
     Asset_duration :: proc(self: ^Asset) -> CM.Time ---

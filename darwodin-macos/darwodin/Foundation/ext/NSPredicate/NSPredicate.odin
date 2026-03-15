@@ -32,7 +32,7 @@ VTable :: struct {
     predicateFromMetadataQueryString: proc(queryString: ^NS.String) -> ^NS.Predicate,
     predicateWithValue: proc(value: bool) -> ^NS.Predicate,
     predicateWithBlock: proc(block: ^Objc_Block(proc "c" (evaluatedObject: id, bindings: ^NS.Dictionary) -> bool)) -> ^NS.Predicate,
-    predicateWithSubstitutionVariables: proc(self: ^NS.Predicate, variables: ^NS.Dictionary) -> ^NS.Predicate,
+    predicateWithSubstitutionVariables: proc(self: ^NS.Predicate, variables: ^NS.Dictionary) -> instancetype,
     evaluateWithObject_: proc(self: ^NS.Predicate, object: id) -> bool,
     evaluateWithObject_substitutionVariables: proc(self: ^NS.Predicate, object: id, bindings: ^NS.Dictionary) -> bool,
     allowEvaluation: proc(self: ^NS.Predicate),
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("predicateWithBlock:"), auto_cast predicateWithBlock, "@#:?") do panic("Failed to register objC method.")
     }
     if vt.predicateWithSubstitutionVariables != nil {
-        predicateWithSubstitutionVariables :: proc "c" (self: ^NS.Predicate, _: SEL, variables: ^NS.Dictionary) -> ^NS.Predicate {
+        predicateWithSubstitutionVariables :: proc "c" (self: ^NS.Predicate, _: SEL, variables: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

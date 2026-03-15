@@ -28,14 +28,14 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithView_parameters: proc(self: ^UI.DragPreview, view: ^UI.View, parameters: ^UI.DragPreviewParameters) -> ^UI.DragPreview,
-    initWithView_: proc(self: ^UI.DragPreview, view: ^UI.View) -> ^UI.DragPreview,
-    init: proc(self: ^UI.DragPreview) -> ^UI.DragPreview,
+    initWithView_parameters: proc(self: ^UI.DragPreview, view: ^UI.View, parameters: ^UI.DragPreviewParameters) -> instancetype,
+    initWithView_: proc(self: ^UI.DragPreview, view: ^UI.View) -> instancetype,
+    init: proc(self: ^UI.DragPreview) -> instancetype,
     new: proc() -> ^UI.DragPreview,
     view: proc(self: ^UI.DragPreview) -> ^UI.View,
     parameters: proc(self: ^UI.DragPreview) -> ^UI.DragPreviewParameters,
-    previewForURL_: proc(url: ^NS.URL) -> ^UI.DragPreview,
-    previewForURL_title: proc(url: ^NS.URL, title: ^NS.String) -> ^UI.DragPreview,
+    previewForURL_: proc(url: ^NS.URL) -> instancetype,
+    previewForURL_title: proc(url: ^NS.URL, title: ^NS.String) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithView_parameters != nil {
-        initWithView_parameters :: proc "c" (self: ^UI.DragPreview, _: SEL, view: ^UI.View, parameters: ^UI.DragPreviewParameters) -> ^UI.DragPreview {
+        initWithView_parameters :: proc "c" (self: ^UI.DragPreview, _: SEL, view: ^UI.View, parameters: ^UI.DragPreviewParameters) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithView:parameters:"), auto_cast initWithView_parameters, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithView_ != nil {
-        initWithView_ :: proc "c" (self: ^UI.DragPreview, _: SEL, view: ^UI.View) -> ^UI.DragPreview {
+        initWithView_ :: proc "c" (self: ^UI.DragPreview, _: SEL, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithView:"), auto_cast initWithView_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.DragPreview, _: SEL) -> ^UI.DragPreview {
+        init :: proc "c" (self: ^UI.DragPreview, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("parameters"), auto_cast parameters, "@@:") do panic("Failed to register objC method.")
     }
     if vt.previewForURL_ != nil {
-        previewForURL_ :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> ^UI.DragPreview {
+        previewForURL_ :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("previewForURL:"), auto_cast previewForURL_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.previewForURL_title != nil {
-        previewForURL_title :: proc "c" (self: Class, _: SEL, url: ^NS.URL, title: ^NS.String) -> ^UI.DragPreview {
+        previewForURL_title :: proc "c" (self: Class, _: SEL, url: ^NS.URL, title: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

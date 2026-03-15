@@ -30,8 +30,8 @@ import "../NSButtonCell"
 
 VTable :: struct {
     super: NSButtonCell.VTable,
-    initTextCell: proc(self: ^AK.MenuItemCell, string: ^NS.String) -> ^AK.MenuItemCell,
-    initWithCoder: proc(self: ^AK.MenuItemCell, coder: ^NS.Coder) -> ^AK.MenuItemCell,
+    initTextCell: proc(self: ^AK.MenuItemCell, string: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^AK.MenuItemCell, coder: ^NS.Coder) -> instancetype,
     calcSize: proc(self: ^AK.MenuItemCell),
     stateImageRectForBounds: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect) -> NS.Rect,
     titleRectForBounds: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect) -> NS.Rect,
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSButtonCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.MenuItemCell, _: SEL, string: ^NS.String) -> ^AK.MenuItemCell {
+        initTextCell :: proc "c" (self: ^AK.MenuItemCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.MenuItemCell, _: SEL, coder: ^NS.Coder) -> ^AK.MenuItemCell {
+        initWithCoder :: proc "c" (self: ^AK.MenuItemCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

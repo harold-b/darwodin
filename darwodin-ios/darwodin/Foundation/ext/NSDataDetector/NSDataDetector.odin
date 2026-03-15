@@ -27,7 +27,7 @@ import "../NSRegularExpression"
 VTable :: struct {
     super: NSRegularExpression.VTable,
     dataDetectorWithTypes: proc(checkingTypes: NS.TextCheckingTypes, error: ^^NS.Error) -> ^NS.DataDetector,
-    initWithTypes: proc(self: ^NS.DataDetector, checkingTypes: NS.TextCheckingTypes, error: ^^NS.Error) -> ^NS.DataDetector,
+    initWithTypes: proc(self: ^NS.DataDetector, checkingTypes: NS.TextCheckingTypes, error: ^^NS.Error) -> instancetype,
     checkingTypes: proc(self: ^NS.DataDetector) -> NS.TextCheckingTypes,
 }
 
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataDetectorWithTypes:error:"), auto_cast dataDetectorWithTypes, "@#:Q^void") do panic("Failed to register objC method.")
     }
     if vt.initWithTypes != nil {
-        initWithTypes :: proc "c" (self: ^NS.DataDetector, _: SEL, checkingTypes: NS.TextCheckingTypes, error: ^^NS.Error) -> ^NS.DataDetector {
+        initWithTypes :: proc "c" (self: ^NS.DataDetector, _: SEL, checkingTypes: NS.TextCheckingTypes, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

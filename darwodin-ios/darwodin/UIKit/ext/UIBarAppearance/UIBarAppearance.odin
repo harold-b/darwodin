@@ -28,11 +28,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.BarAppearance) -> ^UI.BarAppearance,
-    initWithIdiom: proc(self: ^UI.BarAppearance, idiom: UI.UserInterfaceIdiom) -> ^UI.BarAppearance,
-    initWithBarAppearance: proc(self: ^UI.BarAppearance, barAppearance: ^UI.BarAppearance) -> ^UI.BarAppearance,
-    initWithCoder: proc(self: ^UI.BarAppearance, coder: ^NS.Coder) -> ^UI.BarAppearance,
-    copy: proc(self: ^UI.BarAppearance) -> ^UI.BarAppearance,
+    init: proc(self: ^UI.BarAppearance) -> instancetype,
+    initWithIdiom: proc(self: ^UI.BarAppearance, idiom: UI.UserInterfaceIdiom) -> instancetype,
+    initWithBarAppearance: proc(self: ^UI.BarAppearance, barAppearance: ^UI.BarAppearance) -> instancetype,
+    initWithCoder: proc(self: ^UI.BarAppearance, coder: ^NS.Coder) -> instancetype,
+    copy: proc(self: ^UI.BarAppearance) -> instancetype,
     configureWithDefaultBackground: proc(self: ^UI.BarAppearance),
     configureWithOpaqueBackground: proc(self: ^UI.BarAppearance),
     configureWithTransparentBackground: proc(self: ^UI.BarAppearance),
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.BarAppearance, _: SEL) -> ^UI.BarAppearance {
+        init :: proc "c" (self: ^UI.BarAppearance, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithIdiom != nil {
-        initWithIdiom :: proc "c" (self: ^UI.BarAppearance, _: SEL, idiom: UI.UserInterfaceIdiom) -> ^UI.BarAppearance {
+        initWithIdiom :: proc "c" (self: ^UI.BarAppearance, _: SEL, idiom: UI.UserInterfaceIdiom) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIdiom:"), auto_cast initWithIdiom, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithBarAppearance != nil {
-        initWithBarAppearance :: proc "c" (self: ^UI.BarAppearance, _: SEL, barAppearance: ^UI.BarAppearance) -> ^UI.BarAppearance {
+        initWithBarAppearance :: proc "c" (self: ^UI.BarAppearance, _: SEL, barAppearance: ^UI.BarAppearance) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBarAppearance:"), auto_cast initWithBarAppearance, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.BarAppearance, _: SEL, coder: ^NS.Coder) -> ^UI.BarAppearance {
+        initWithCoder :: proc "c" (self: ^UI.BarAppearance, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.copy != nil {
-        copy :: proc "c" (self: ^UI.BarAppearance, _: SEL) -> ^UI.BarAppearance {
+        copy :: proc "c" (self: ^UI.BarAppearance, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

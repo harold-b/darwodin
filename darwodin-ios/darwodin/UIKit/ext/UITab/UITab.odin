@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTitle: proc(self: ^UI.Tab, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> ^UI.Tab,
-    init: proc(self: ^UI.Tab) -> ^UI.Tab,
+    initWithTitle: proc(self: ^UI.Tab, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> instancetype,
+    init: proc(self: ^UI.Tab) -> instancetype,
     new: proc() -> ^UI.Tab,
     identifier: proc(self: ^UI.Tab) -> ^NS.String,
     isEnabled: proc(self: ^UI.Tab) -> bool,
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^UI.Tab, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> ^UI.Tab {
+        initWithTitle :: proc "c" (self: ^UI.Tab, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:image:identifier:viewControllerProvider:"), auto_cast initWithTitle, "@@:@@@?") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.Tab, _: SEL) -> ^UI.Tab {
+        init :: proc "c" (self: ^UI.Tab, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

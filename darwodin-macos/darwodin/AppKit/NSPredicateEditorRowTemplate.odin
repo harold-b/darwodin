@@ -39,13 +39,13 @@ foreign lib {
     PredicateEditorRowTemplate_displayableSubpredicatesOfPredicate :: proc(self: ^PredicateEditorRowTemplate, predicate: ^NS.Predicate) -> ^NS.Array ---
 
     @(objc_type=PredicateEditorRowTemplate, objc_selector="initWithLeftExpressions:rightExpressions:modifier:operators:options:", objc_name="initWithLeftExpressions_rightExpressions_modifier_operators_options")
-    PredicateEditorRowTemplate_initWithLeftExpressions_rightExpressions_modifier_operators_options :: proc(self: ^PredicateEditorRowTemplate, leftExpressions: ^NS.Array, rightExpressions: ^NS.Array, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> ^PredicateEditorRowTemplate ---
+    PredicateEditorRowTemplate_initWithLeftExpressions_rightExpressions_modifier_operators_options :: proc(self: ^PredicateEditorRowTemplate, leftExpressions: ^NS.Array, rightExpressions: ^NS.Array, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> instancetype ---
 
     @(objc_type=PredicateEditorRowTemplate, objc_selector="initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:", objc_name="initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options")
-    PredicateEditorRowTemplate_initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options :: proc(self: ^PredicateEditorRowTemplate, leftExpressions: ^NS.Array, attributeType: AttributeType, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> ^PredicateEditorRowTemplate ---
+    PredicateEditorRowTemplate_initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options :: proc(self: ^PredicateEditorRowTemplate, leftExpressions: ^NS.Array, attributeType: AttributeType, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> instancetype ---
 
     @(objc_type=PredicateEditorRowTemplate, objc_selector="initWithCompoundTypes:", objc_name="initWithCompoundTypes")
-    PredicateEditorRowTemplate_initWithCompoundTypes :: proc(self: ^PredicateEditorRowTemplate, compoundTypes: ^NS.Array) -> ^PredicateEditorRowTemplate ---
+    PredicateEditorRowTemplate_initWithCompoundTypes :: proc(self: ^PredicateEditorRowTemplate, compoundTypes: ^NS.Array) -> instancetype ---
 
     @(objc_type=PredicateEditorRowTemplate, objc_selector="templatesWithAttributeKeyPaths:inEntityDescription:", objc_name="templatesWithAttributeKeyPaths", objc_is_class_method=true)
     PredicateEditorRowTemplate_templatesWithAttributeKeyPaths :: proc(keyPaths: ^NS.Array, entityDescription: ^EntityDescription) -> ^NS.Array ---

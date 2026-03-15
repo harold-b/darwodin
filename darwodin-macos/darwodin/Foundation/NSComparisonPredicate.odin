@@ -26,13 +26,13 @@ foreign lib {
     ComparisonPredicate_predicateWithLeftExpression_rightExpression_customSelector :: proc(lhs: ^Expression, rhs: ^Expression, selector: SEL) -> ^ComparisonPredicate ---
 
     @(objc_type=ComparisonPredicate, objc_selector="initWithLeftExpression:rightExpression:modifier:type:options:", objc_name="initWithLeftExpression_rightExpression_modifier_type_options")
-    ComparisonPredicate_initWithLeftExpression_rightExpression_modifier_type_options :: proc(self: ^ComparisonPredicate, lhs: ^Expression, rhs: ^Expression, modifier: ComparisonPredicateModifier, type: PredicateOperatorType, options: ComparisonPredicateOptions) -> ^ComparisonPredicate ---
+    ComparisonPredicate_initWithLeftExpression_rightExpression_modifier_type_options :: proc(self: ^ComparisonPredicate, lhs: ^Expression, rhs: ^Expression, modifier: ComparisonPredicateModifier, type: PredicateOperatorType, options: ComparisonPredicateOptions) -> instancetype ---
 
     @(objc_type=ComparisonPredicate, objc_selector="initWithLeftExpression:rightExpression:customSelector:", objc_name="initWithLeftExpression_rightExpression_customSelector")
-    ComparisonPredicate_initWithLeftExpression_rightExpression_customSelector :: proc(self: ^ComparisonPredicate, lhs: ^Expression, rhs: ^Expression, selector: SEL) -> ^ComparisonPredicate ---
+    ComparisonPredicate_initWithLeftExpression_rightExpression_customSelector :: proc(self: ^ComparisonPredicate, lhs: ^Expression, rhs: ^Expression, selector: SEL) -> instancetype ---
 
     @(objc_type=ComparisonPredicate, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ComparisonPredicate_initWithCoder :: proc(self: ^ComparisonPredicate, coder: ^Coder) -> ^ComparisonPredicate ---
+    ComparisonPredicate_initWithCoder :: proc(self: ^ComparisonPredicate, coder: ^Coder) -> instancetype ---
 
     @(objc_type=ComparisonPredicate, objc_selector="predicateOperatorType", objc_name="predicateOperatorType")
     ComparisonPredicate_predicateOperatorType :: proc(self: ^ComparisonPredicate) -> PredicateOperatorType ---

@@ -23,10 +23,10 @@ AudioRecorder :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioRecorder, objc_selector="initWithURL:settings:error:", objc_name="initWithURL_settings_error")
-    AudioRecorder_initWithURL_settings_error :: proc(self: ^AudioRecorder, url: ^NS.URL, settings: ^NS.Dictionary, outError: ^^NS.Error) -> ^AudioRecorder ---
+    AudioRecorder_initWithURL_settings_error :: proc(self: ^AudioRecorder, url: ^NS.URL, settings: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioRecorder, objc_selector="initWithURL:format:error:", objc_name="initWithURL_format_error")
-    AudioRecorder_initWithURL_format_error :: proc(self: ^AudioRecorder, url: ^NS.URL, format: ^AudioFormat, outError: ^^NS.Error) -> ^AudioRecorder ---
+    AudioRecorder_initWithURL_format_error :: proc(self: ^AudioRecorder, url: ^NS.URL, format: ^AudioFormat, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioRecorder, objc_selector="prepareToRecord", objc_name="prepareToRecord")
     AudioRecorder_prepareToRecord :: proc(self: ^AudioRecorder) -> bool ---

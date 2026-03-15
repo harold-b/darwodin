@@ -22,10 +22,10 @@ WindowSceneGeometryPreferencesMac :: struct { using _: WindowSceneGeometryPrefer
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneGeometryPreferencesMac, objc_selector="init", objc_name="init")
-    WindowSceneGeometryPreferencesMac_init :: proc(self: ^WindowSceneGeometryPreferencesMac) -> ^WindowSceneGeometryPreferencesMac ---
+    WindowSceneGeometryPreferencesMac_init :: proc(self: ^WindowSceneGeometryPreferencesMac) -> instancetype ---
 
     @(objc_type=WindowSceneGeometryPreferencesMac, objc_selector="initWithSystemFrame:", objc_name="initWithSystemFrame")
-    WindowSceneGeometryPreferencesMac_initWithSystemFrame :: proc(self: ^WindowSceneGeometryPreferencesMac, systemFrame: CG.Rect) -> ^WindowSceneGeometryPreferencesMac ---
+    WindowSceneGeometryPreferencesMac_initWithSystemFrame :: proc(self: ^WindowSceneGeometryPreferencesMac, systemFrame: CG.Rect) -> instancetype ---
 
     @(objc_type=WindowSceneGeometryPreferencesMac, objc_selector="systemFrame", objc_name="systemFrame")
     WindowSceneGeometryPreferencesMac_systemFrame :: proc(self: ^WindowSceneGeometryPreferencesMac) -> CG.Rect ---

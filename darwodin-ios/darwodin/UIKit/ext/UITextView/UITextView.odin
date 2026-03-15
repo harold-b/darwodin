@@ -29,9 +29,9 @@ import "../UIScrollView"
 VTable :: struct {
     super: UIScrollView.VTable,
     scrollRangeToVisible: proc(self: ^UI.TextView, range: NS._NSRange),
-    initWithFrame: proc(self: ^UI.TextView, frame: CG.Rect, textContainer: ^UI.NSTextContainer) -> ^UI.TextView,
-    textViewUsingTextLayoutManager: proc(usingTextLayoutManager: bool) -> ^UI.TextView,
-    initWithCoder: proc(self: ^UI.TextView, coder: ^NS.Coder) -> ^UI.TextView,
+    initWithFrame: proc(self: ^UI.TextView, frame: CG.Rect, textContainer: ^UI.NSTextContainer) -> instancetype,
+    textViewUsingTextLayoutManager: proc(usingTextLayoutManager: bool) -> instancetype,
+    initWithCoder: proc(self: ^UI.TextView, coder: ^NS.Coder) -> instancetype,
     drawTextHighlightBackgroundForTextRange: proc(self: ^UI.TextView, textRange: ^UI.NSTextRange, origin: CG.Point),
     delegate: proc(self: ^UI.TextView) -> ^UI.TextViewDelegate,
     setDelegate: proc(self: ^UI.TextView, delegate: ^UI.TextViewDelegate),
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollRangeToVisible:"), auto_cast scrollRangeToVisible, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.TextView, _: SEL, frame: CG.Rect, textContainer: ^UI.NSTextContainer) -> ^UI.TextView {
+        initWithFrame :: proc "c" (self: ^UI.TextView, _: SEL, frame: CG.Rect, textContainer: ^UI.NSTextContainer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:textContainer:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.textViewUsingTextLayoutManager != nil {
-        textViewUsingTextLayoutManager :: proc "c" (self: Class, _: SEL, usingTextLayoutManager: bool) -> ^UI.TextView {
+        textViewUsingTextLayoutManager :: proc "c" (self: Class, _: SEL, usingTextLayoutManager: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("textViewUsingTextLayoutManager:"), auto_cast textViewUsingTextLayoutManager, "@#:B") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.TextView, _: SEL, coder: ^NS.Coder) -> ^UI.TextView {
+        initWithCoder :: proc "c" (self: ^UI.TextView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

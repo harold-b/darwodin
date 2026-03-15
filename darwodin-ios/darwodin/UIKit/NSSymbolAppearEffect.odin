@@ -22,17 +22,17 @@ NSSymbolAppearEffect :: struct { using _: NSSymbolEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSSymbolAppearEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    NSSymbolAppearEffect_effect :: proc() -> ^NSSymbolAppearEffect ---
+    NSSymbolAppearEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolAppearEffect, objc_selector="appearUpEffect", objc_name="appearUpEffect", objc_is_class_method=true)
-    NSSymbolAppearEffect_appearUpEffect :: proc() -> ^NSSymbolAppearEffect ---
+    NSSymbolAppearEffect_appearUpEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolAppearEffect, objc_selector="appearDownEffect", objc_name="appearDownEffect", objc_is_class_method=true)
-    NSSymbolAppearEffect_appearDownEffect :: proc() -> ^NSSymbolAppearEffect ---
+    NSSymbolAppearEffect_appearDownEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolAppearEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
-    NSSymbolAppearEffect_effectWithByLayer :: proc(self: ^NSSymbolAppearEffect) -> ^NSSymbolAppearEffect ---
+    NSSymbolAppearEffect_effectWithByLayer :: proc(self: ^NSSymbolAppearEffect) -> instancetype ---
 
     @(objc_type=NSSymbolAppearEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
-    NSSymbolAppearEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolAppearEffect) -> ^NSSymbolAppearEffect ---
+    NSSymbolAppearEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolAppearEffect) -> instancetype ---
 }

@@ -21,13 +21,13 @@ DecisionTree :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DecisionTree, objc_selector="initWithAttribute:", objc_name="initWithAttribute")
-    DecisionTree_initWithAttribute :: proc(self: ^DecisionTree, attribute: ^NS.ObjectProtocol) -> ^DecisionTree ---
+    DecisionTree_initWithAttribute :: proc(self: ^DecisionTree, attribute: ^NS.ObjectProtocol) -> instancetype ---
 
     @(objc_type=DecisionTree, objc_selector="initWithExamples:actions:attributes:", objc_name="initWithExamples")
-    DecisionTree_initWithExamples :: proc(self: ^DecisionTree, examples: ^NS.Array, actions: ^NS.Array, attributes: ^NS.Array) -> ^DecisionTree ---
+    DecisionTree_initWithExamples :: proc(self: ^DecisionTree, examples: ^NS.Array, actions: ^NS.Array, attributes: ^NS.Array) -> instancetype ---
 
     @(objc_type=DecisionTree, objc_selector="initWithURL:error:", objc_name="initWithURL")
-    DecisionTree_initWithURL :: proc(self: ^DecisionTree, url: ^NS.URL, error: ^NS.Error) -> ^DecisionTree ---
+    DecisionTree_initWithURL :: proc(self: ^DecisionTree, url: ^NS.URL, error: ^NS.Error) -> instancetype ---
 
     @(objc_type=DecisionTree, objc_selector="exportToURL:error:", objc_name="exportToURL")
     DecisionTree_exportToURL :: proc(self: ^DecisionTree, url: ^NS.URL, error: ^NS.Error) -> bool ---

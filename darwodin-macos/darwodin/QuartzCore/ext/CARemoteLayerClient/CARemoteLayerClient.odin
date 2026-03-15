@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithServerPort: proc(self: ^CA.RemoteLayerClient, port: mach.port_t) -> ^CA.RemoteLayerClient,
+    initWithServerPort: proc(self: ^CA.RemoteLayerClient, port: mach.port_t) -> instancetype,
     invalidate: proc(self: ^CA.RemoteLayerClient),
     clientId: proc(self: ^CA.RemoteLayerClient) -> cffi.uint32_t,
     layer: proc(self: ^CA.RemoteLayerClient) -> ^CA.Layer,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithServerPort != nil {
-        initWithServerPort :: proc "c" (self: ^CA.RemoteLayerClient, _: SEL, port: mach.port_t) -> ^CA.RemoteLayerClient {
+        initWithServerPort :: proc "c" (self: ^CA.RemoteLayerClient, _: SEL, port: mach.port_t) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

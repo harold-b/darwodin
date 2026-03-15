@@ -26,7 +26,7 @@ ColorPicker :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ColorPicker, objc_selector="initWithPickerMask:colorPanel:", objc_name="initWithPickerMask")
-    ColorPicker_initWithPickerMask :: proc(self: ^ColorPicker, mask: NS.UInteger, owningColorPanel: ^ColorPanel) -> ^ColorPicker ---
+    ColorPicker_initWithPickerMask :: proc(self: ^ColorPicker, mask: NS.UInteger, owningColorPanel: ^ColorPanel) -> instancetype ---
 
     @(objc_type=ColorPicker, objc_selector="insertNewButtonImage:in:", objc_name="insertNewButtonImage")
     ColorPicker_insertNewButtonImage :: proc(self: ^ColorPicker, newButtonImage: ^NS.Image, buttonCell: ^ButtonCell) ---

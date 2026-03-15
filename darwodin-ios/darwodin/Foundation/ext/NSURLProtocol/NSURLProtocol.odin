@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithRequest: proc(self: ^NS.URLProtocol, request: ^NS.URLRequest, cachedResponse: ^NS.CachedURLResponse, client: ^NS.URLProtocolClient) -> ^NS.URLProtocol,
+    initWithRequest: proc(self: ^NS.URLProtocol, request: ^NS.URLRequest, cachedResponse: ^NS.CachedURLResponse, client: ^NS.URLProtocolClient) -> instancetype,
     canInitWithRequest: proc(request: ^NS.URLRequest) -> bool,
     canonicalRequestForRequest: proc(request: ^NS.URLRequest) -> ^NS.URLRequest,
     requestIsCacheEquivalent: proc(a: ^NS.URLRequest, b: ^NS.URLRequest) -> bool,
@@ -41,7 +41,7 @@ VTable :: struct {
     request: proc(self: ^NS.URLProtocol) -> ^NS.URLRequest,
     cachedResponse: proc(self: ^NS.URLProtocol) -> ^NS.CachedURLResponse,
     canInitWithTask: proc(task: ^NS.URLSessionTask) -> bool,
-    initWithTask: proc(self: ^NS.URLProtocol, task: ^NS.URLSessionTask, cachedResponse: ^NS.CachedURLResponse, client: ^NS.URLProtocolClient) -> ^NS.URLProtocol,
+    initWithTask: proc(self: ^NS.URLProtocol, task: ^NS.URLSessionTask, cachedResponse: ^NS.CachedURLResponse, client: ^NS.URLProtocolClient) -> instancetype,
     task: proc(self: ^NS.URLProtocol) -> ^NS.URLSessionTask,
 }
 
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithRequest != nil {
-        initWithRequest :: proc "c" (self: ^NS.URLProtocol, _: SEL, request: ^NS.URLRequest, cachedResponse: ^NS.CachedURLResponse, client: ^NS.URLProtocolClient) -> ^NS.URLProtocol {
+        initWithRequest :: proc "c" (self: ^NS.URLProtocol, _: SEL, request: ^NS.URLRequest, cachedResponse: ^NS.CachedURLResponse, client: ^NS.URLProtocolClient) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -203,7 +203,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("canInitWithTask:"), auto_cast canInitWithTask, "B#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithTask != nil {
-        initWithTask :: proc "c" (self: ^NS.URLProtocol, _: SEL, task: ^NS.URLSessionTask, cachedResponse: ^NS.CachedURLResponse, client: ^NS.URLProtocolClient) -> ^NS.URLProtocol {
+        initWithTask :: proc "c" (self: ^NS.URLProtocol, _: SEL, task: ^NS.URLSessionTask, cachedResponse: ^NS.CachedURLResponse, client: ^NS.URLProtocolClient) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

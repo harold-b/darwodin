@@ -23,7 +23,7 @@ CaptureResolvedPhotoSettings :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureResolvedPhotoSettings, objc_selector="init", objc_name="init")
-    CaptureResolvedPhotoSettings_init :: proc(self: ^CaptureResolvedPhotoSettings) -> ^CaptureResolvedPhotoSettings ---
+    CaptureResolvedPhotoSettings_init :: proc(self: ^CaptureResolvedPhotoSettings) -> instancetype ---
 
     @(objc_type=CaptureResolvedPhotoSettings, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureResolvedPhotoSettings_new :: proc() -> ^CaptureResolvedPhotoSettings ---

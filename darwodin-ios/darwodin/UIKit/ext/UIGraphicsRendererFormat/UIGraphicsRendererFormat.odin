@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    defaultFormat: proc() -> ^UI.GraphicsRendererFormat,
-    preferredFormat: proc() -> ^UI.GraphicsRendererFormat,
+    defaultFormat: proc() -> instancetype,
+    preferredFormat: proc() -> instancetype,
     bounds: proc(self: ^UI.GraphicsRendererFormat) -> CG.Rect,
 }
 
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.defaultFormat != nil {
-        defaultFormat :: proc "c" (self: Class, _: SEL) -> ^UI.GraphicsRendererFormat {
+        defaultFormat :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultFormat"), auto_cast defaultFormat, "@#:") do panic("Failed to register objC method.")
     }
     if vt.preferredFormat != nil {
-        preferredFormat :: proc "c" (self: Class, _: SEL) -> ^UI.GraphicsRendererFormat {
+        preferredFormat :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

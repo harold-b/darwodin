@@ -26,10 +26,10 @@ TimedMetadataGroup :: struct { using _: MetadataGroup,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TimedMetadataGroup, objc_selector="initWithItems:timeRange:", objc_name="initWithItems")
-    TimedMetadataGroup_initWithItems :: proc(self: ^TimedMetadataGroup, items: ^NS.Array, timeRange: CM.TimeRange) -> ^TimedMetadataGroup ---
+    TimedMetadataGroup_initWithItems :: proc(self: ^TimedMetadataGroup, items: ^NS.Array, timeRange: CM.TimeRange) -> instancetype ---
 
     @(objc_type=TimedMetadataGroup, objc_selector="initWithSampleBuffer:", objc_name="initWithSampleBuffer")
-    TimedMetadataGroup_initWithSampleBuffer :: proc(self: ^TimedMetadataGroup, sampleBuffer: CM.SampleBufferRef) -> ^TimedMetadataGroup ---
+    TimedMetadataGroup_initWithSampleBuffer :: proc(self: ^TimedMetadataGroup, sampleBuffer: CM.SampleBufferRef) -> instancetype ---
 
     @(objc_type=TimedMetadataGroup, objc_selector="timeRange", objc_name="timeRange")
     TimedMetadataGroup_timeRange :: proc(self: ^TimedMetadataGroup) -> CM.TimeRange ---

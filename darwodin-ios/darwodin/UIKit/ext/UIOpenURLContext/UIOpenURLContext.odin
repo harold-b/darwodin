@@ -29,7 +29,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.OpenURLContext,
-    init: proc(self: ^UI.OpenURLContext) -> ^UI.OpenURLContext,
+    init: proc(self: ^UI.OpenURLContext) -> instancetype,
     _URL: proc(self: ^UI.OpenURLContext) -> ^NS.URL,
     options: proc(self: ^UI.OpenURLContext) -> ^UI.SceneOpenURLOptions,
 }
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.OpenURLContext, _: SEL) -> ^UI.OpenURLContext {
+        init :: proc "c" (self: ^UI.OpenURLContext, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

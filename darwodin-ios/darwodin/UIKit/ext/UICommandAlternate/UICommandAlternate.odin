@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    alternateWithTitle: proc(title: ^NS.String, action: SEL, modifierFlags: UI.KeyModifierFlags) -> ^UI.CommandAlternate,
+    alternateWithTitle: proc(title: ^NS.String, action: SEL, modifierFlags: UI.KeyModifierFlags) -> instancetype,
     new: proc() -> ^UI.CommandAlternate,
-    init: proc(self: ^UI.CommandAlternate) -> ^UI.CommandAlternate,
-    initWithCoder: proc(self: ^UI.CommandAlternate, coder: ^NS.Coder) -> ^UI.CommandAlternate,
+    init: proc(self: ^UI.CommandAlternate) -> instancetype,
+    initWithCoder: proc(self: ^UI.CommandAlternate, coder: ^NS.Coder) -> instancetype,
     title: proc(self: ^UI.CommandAlternate) -> ^NS.String,
     action: proc(self: ^UI.CommandAlternate) -> SEL,
     modifierFlags: proc(self: ^UI.CommandAlternate) -> UI.KeyModifierFlags,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.alternateWithTitle != nil {
-        alternateWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, action: SEL, modifierFlags: UI.KeyModifierFlags) -> ^UI.CommandAlternate {
+        alternateWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, action: SEL, modifierFlags: UI.KeyModifierFlags) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CommandAlternate, _: SEL) -> ^UI.CommandAlternate {
+        init :: proc "c" (self: ^UI.CommandAlternate, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CommandAlternate, _: SEL, coder: ^NS.Coder) -> ^UI.CommandAlternate {
+        initWithCoder :: proc "c" (self: ^UI.CommandAlternate, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

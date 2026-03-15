@@ -26,22 +26,22 @@ CollectionLayoutGroup :: struct { using _: CollectionLayoutItem,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionLayoutGroup, objc_selector="horizontalGroupWithLayoutSize:subitem:count:", objc_name="horizontalGroupWithLayoutSize_subitem_count", objc_is_class_method=true)
-    CollectionLayoutGroup_horizontalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^CollectionLayoutSize, subitem: ^CollectionLayoutItem, count: NS.Integer) -> ^CollectionLayoutGroup ---
+    CollectionLayoutGroup_horizontalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^CollectionLayoutSize, subitem: ^CollectionLayoutItem, count: NS.Integer) -> instancetype ---
 
     @(objc_type=CollectionLayoutGroup, objc_selector="horizontalGroupWithLayoutSize:subitems:", objc_name="horizontalGroupWithLayoutSize_subitems", objc_is_class_method=true)
-    CollectionLayoutGroup_horizontalGroupWithLayoutSize_subitems :: proc(layoutSize: ^CollectionLayoutSize, subitems: ^NS.Array) -> ^CollectionLayoutGroup ---
+    CollectionLayoutGroup_horizontalGroupWithLayoutSize_subitems :: proc(layoutSize: ^CollectionLayoutSize, subitems: ^NS.Array) -> instancetype ---
 
     @(objc_type=CollectionLayoutGroup, objc_selector="verticalGroupWithLayoutSize:subitem:count:", objc_name="verticalGroupWithLayoutSize_subitem_count", objc_is_class_method=true)
-    CollectionLayoutGroup_verticalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^CollectionLayoutSize, subitem: ^CollectionLayoutItem, count: NS.Integer) -> ^CollectionLayoutGroup ---
+    CollectionLayoutGroup_verticalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^CollectionLayoutSize, subitem: ^CollectionLayoutItem, count: NS.Integer) -> instancetype ---
 
     @(objc_type=CollectionLayoutGroup, objc_selector="verticalGroupWithLayoutSize:subitems:", objc_name="verticalGroupWithLayoutSize_subitems", objc_is_class_method=true)
-    CollectionLayoutGroup_verticalGroupWithLayoutSize_subitems :: proc(layoutSize: ^CollectionLayoutSize, subitems: ^NS.Array) -> ^CollectionLayoutGroup ---
+    CollectionLayoutGroup_verticalGroupWithLayoutSize_subitems :: proc(layoutSize: ^CollectionLayoutSize, subitems: ^NS.Array) -> instancetype ---
 
     @(objc_type=CollectionLayoutGroup, objc_selector="customGroupWithLayoutSize:itemProvider:", objc_name="customGroupWithLayoutSize", objc_is_class_method=true)
-    CollectionLayoutGroup_customGroupWithLayoutSize :: proc(layoutSize: ^CollectionLayoutSize, itemProvider: CollectionLayoutGroupCustomItemProvider) -> ^CollectionLayoutGroup ---
+    CollectionLayoutGroup_customGroupWithLayoutSize :: proc(layoutSize: ^CollectionLayoutSize, itemProvider: CollectionLayoutGroupCustomItemProvider) -> instancetype ---
 
     @(objc_type=CollectionLayoutGroup, objc_selector="init", objc_name="init")
-    CollectionLayoutGroup_init :: proc(self: ^CollectionLayoutGroup) -> ^CollectionLayoutGroup ---
+    CollectionLayoutGroup_init :: proc(self: ^CollectionLayoutGroup) -> instancetype ---
 
     @(objc_type=CollectionLayoutGroup, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionLayoutGroup_new :: proc() -> ^CollectionLayoutGroup ---

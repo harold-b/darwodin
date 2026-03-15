@@ -30,8 +30,8 @@ import "../NSTouchBarItem"
 
 VTable :: struct {
     super: NSTouchBarItem.VTable,
-    stepperTouchBarItemWithIdentifier_formatter: proc(identifier: ^NS.String, formatter: ^NS.Formatter) -> ^AK.StepperTouchBarItem,
-    stepperTouchBarItemWithIdentifier_drawingHandler: proc(identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" (rect: NS.Rect, value: cffi.double))) -> ^AK.StepperTouchBarItem,
+    stepperTouchBarItemWithIdentifier_formatter: proc(identifier: ^NS.String, formatter: ^NS.Formatter) -> instancetype,
+    stepperTouchBarItemWithIdentifier_drawingHandler: proc(identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" (rect: NS.Rect, value: cffi.double))) -> instancetype,
     maxValue: proc(self: ^AK.StepperTouchBarItem) -> cffi.double,
     setMaxValue: proc(self: ^AK.StepperTouchBarItem, maxValue: cffi.double),
     minValue: proc(self: ^AK.StepperTouchBarItem) -> cffi.double,
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTouchBarItem.extend(cls, &vt.super)
 
     if vt.stepperTouchBarItemWithIdentifier_formatter != nil {
-        stepperTouchBarItemWithIdentifier_formatter :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, formatter: ^NS.Formatter) -> ^AK.StepperTouchBarItem {
+        stepperTouchBarItemWithIdentifier_formatter :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, formatter: ^NS.Formatter) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stepperTouchBarItemWithIdentifier:formatter:"), auto_cast stepperTouchBarItemWithIdentifier_formatter, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.stepperTouchBarItemWithIdentifier_drawingHandler != nil {
-        stepperTouchBarItemWithIdentifier_drawingHandler :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" (rect: NS.Rect, value: cffi.double))) -> ^AK.StepperTouchBarItem {
+        stepperTouchBarItemWithIdentifier_drawingHandler :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" (rect: NS.Rect, value: cffi.double))) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

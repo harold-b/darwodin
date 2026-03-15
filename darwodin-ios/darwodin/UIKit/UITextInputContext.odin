@@ -22,7 +22,7 @@ TextInputContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextInputContext, objc_selector="init", objc_name="init")
-    TextInputContext_init :: proc(self: ^TextInputContext) -> ^TextInputContext ---
+    TextInputContext_init :: proc(self: ^TextInputContext) -> instancetype ---
 
     @(objc_type=TextInputContext, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextInputContext_new :: proc() -> ^TextInputContext ---

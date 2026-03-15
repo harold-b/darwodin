@@ -23,7 +23,7 @@ MetricHLSPlaylistRequestEvent :: struct { using _: MetricEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricHLSPlaylistRequestEvent, objc_selector="init", objc_name="init")
-    MetricHLSPlaylistRequestEvent_init :: proc(self: ^MetricHLSPlaylistRequestEvent) -> ^MetricHLSPlaylistRequestEvent ---
+    MetricHLSPlaylistRequestEvent_init :: proc(self: ^MetricHLSPlaylistRequestEvent) -> instancetype ---
 
     @(objc_type=MetricHLSPlaylistRequestEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricHLSPlaylistRequestEvent_new :: proc() -> ^MetricHLSPlaylistRequestEvent ---

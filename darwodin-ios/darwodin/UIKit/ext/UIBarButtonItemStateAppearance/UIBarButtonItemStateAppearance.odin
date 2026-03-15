@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.BarButtonItemStateAppearance) -> ^UI.BarButtonItemStateAppearance,
+    init: proc(self: ^UI.BarButtonItemStateAppearance) -> instancetype,
     new: proc() -> ^UI.BarButtonItemStateAppearance,
     titleTextAttributes: proc(self: ^UI.BarButtonItemStateAppearance) -> ^NS.Dictionary,
     setTitleTextAttributes: proc(self: ^UI.BarButtonItemStateAppearance, titleTextAttributes: ^NS.Dictionary),
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.BarButtonItemStateAppearance, _: SEL) -> ^UI.BarButtonItemStateAppearance {
+        init :: proc "c" (self: ^UI.BarButtonItemStateAppearance, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

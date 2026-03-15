@@ -20,16 +20,16 @@ KeyedArchiver :: struct { using _: Coder, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=KeyedArchiver, objc_selector="initRequiringSecureCoding:", objc_name="initRequiringSecureCoding")
-    KeyedArchiver_initRequiringSecureCoding :: proc(self: ^KeyedArchiver, requiresSecureCoding: bool) -> ^KeyedArchiver ---
+    KeyedArchiver_initRequiringSecureCoding :: proc(self: ^KeyedArchiver, requiresSecureCoding: bool) -> instancetype ---
 
     @(objc_type=KeyedArchiver, objc_selector="archivedDataWithRootObject:requiringSecureCoding:error:", objc_name="archivedDataWithRootObject_requiringSecureCoding_error", objc_is_class_method=true)
     KeyedArchiver_archivedDataWithRootObject_requiringSecureCoding_error :: proc(object: id, requiresSecureCoding: bool, error: ^^Error) -> ^Data ---
 
     @(objc_type=KeyedArchiver, objc_selector="init", objc_name="init")
-    KeyedArchiver_init :: proc(self: ^KeyedArchiver) -> ^KeyedArchiver ---
+    KeyedArchiver_init :: proc(self: ^KeyedArchiver) -> instancetype ---
 
     @(objc_type=KeyedArchiver, objc_selector="initForWritingWithMutableData:", objc_name="initForWritingWithMutableData")
-    KeyedArchiver_initForWritingWithMutableData :: proc(self: ^KeyedArchiver, data: ^MutableData) -> ^KeyedArchiver ---
+    KeyedArchiver_initForWritingWithMutableData :: proc(self: ^KeyedArchiver, data: ^MutableData) -> instancetype ---
 
     @(objc_type=KeyedArchiver, objc_selector="archivedDataWithRootObject:", objc_name="archivedDataWithRootObject_", objc_is_class_method=true)
     KeyedArchiver_archivedDataWithRootObject_ :: proc(rootObject: id) -> ^Data ---

@@ -22,16 +22,16 @@ CloudSharingController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CloudSharingController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    CloudSharingController_initWithNibName :: proc(self: ^CloudSharingController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^CloudSharingController ---
+    CloudSharingController_initWithNibName :: proc(self: ^CloudSharingController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=CloudSharingController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CloudSharingController_initWithCoder :: proc(self: ^CloudSharingController, coder: ^NS.Coder) -> ^CloudSharingController ---
+    CloudSharingController_initWithCoder :: proc(self: ^CloudSharingController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CloudSharingController, objc_selector="initWithPreparationHandler:", objc_name="initWithPreparationHandler")
-    CloudSharingController_initWithPreparationHandler :: proc(self: ^CloudSharingController, preparationHandler: ^Objc_Block(proc "c" (controller: ^CloudSharingController, preparationCompletionHandler: ^Objc_Block(proc "c" (_: ^CKShare, _1: ^CKContainer, _2: ^NS.Error))))) -> ^CloudSharingController ---
+    CloudSharingController_initWithPreparationHandler :: proc(self: ^CloudSharingController, preparationHandler: ^Objc_Block(proc "c" (controller: ^CloudSharingController, preparationCompletionHandler: ^Objc_Block(proc "c" (_: ^CKShare, _1: ^CKContainer, _2: ^NS.Error))))) -> instancetype ---
 
     @(objc_type=CloudSharingController, objc_selector="initWithShare:container:", objc_name="initWithShare")
-    CloudSharingController_initWithShare :: proc(self: ^CloudSharingController, share: ^CKShare, container: ^CKContainer) -> ^CloudSharingController ---
+    CloudSharingController_initWithShare :: proc(self: ^CloudSharingController, share: ^CKShare, container: ^CKContainer) -> instancetype ---
 
     @(objc_type=CloudSharingController, objc_selector="activityItemSource", objc_name="activityItemSource")
     CloudSharingController_activityItemSource :: proc(self: ^CloudSharingController) -> ^ActivityItemSource ---

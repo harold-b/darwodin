@@ -28,9 +28,9 @@ import "../UIControl"
 
 VTable :: struct {
     super: UIControl.VTable,
-    initWithConfiguration: proc(self: ^UI.PasteControl, configuration: ^UI.PasteControlConfiguration) -> ^UI.PasteControl,
-    initWithCoder: proc(self: ^UI.PasteControl, coder: ^NS.Coder) -> ^UI.PasteControl,
-    initWithFrame: proc(self: ^UI.PasteControl, frame: CG.Rect) -> ^UI.PasteControl,
+    initWithConfiguration: proc(self: ^UI.PasteControl, configuration: ^UI.PasteControlConfiguration) -> instancetype,
+    initWithCoder: proc(self: ^UI.PasteControl, coder: ^NS.Coder) -> instancetype,
+    initWithFrame: proc(self: ^UI.PasteControl, frame: CG.Rect) -> instancetype,
     configuration: proc(self: ^UI.PasteControl) -> ^UI.PasteControlConfiguration,
     target: proc(self: ^UI.PasteControl) -> ^UI.PasteConfigurationSupporting,
     setTarget: proc(self: ^UI.PasteControl, target: ^UI.PasteConfigurationSupporting),
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIControl.extend(cls, &vt.super)
 
     if vt.initWithConfiguration != nil {
-        initWithConfiguration :: proc "c" (self: ^UI.PasteControl, _: SEL, configuration: ^UI.PasteControlConfiguration) -> ^UI.PasteControl {
+        initWithConfiguration :: proc "c" (self: ^UI.PasteControl, _: SEL, configuration: ^UI.PasteControlConfiguration) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithConfiguration:"), auto_cast initWithConfiguration, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.PasteControl, _: SEL, coder: ^NS.Coder) -> ^UI.PasteControl {
+        initWithCoder :: proc "c" (self: ^UI.PasteControl, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.PasteControl, _: SEL, frame: CG.Rect) -> ^UI.PasteControl {
+        initWithFrame :: proc "c" (self: ^UI.PasteControl, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

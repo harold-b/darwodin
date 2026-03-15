@@ -25,7 +25,7 @@ foreign lib {
     CalendarSelectionWeekOfYear_setSelectedWeekOfYear_animated :: proc(self: ^CalendarSelectionWeekOfYear, selectedWeekOfYear: ^NS.DateComponents, animated: bool) ---
 
     @(objc_type=CalendarSelectionWeekOfYear, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    CalendarSelectionWeekOfYear_initWithDelegate :: proc(self: ^CalendarSelectionWeekOfYear, delegate: ^CalendarSelectionWeekOfYearDelegate) -> ^CalendarSelectionWeekOfYear ---
+    CalendarSelectionWeekOfYear_initWithDelegate :: proc(self: ^CalendarSelectionWeekOfYear, delegate: ^CalendarSelectionWeekOfYearDelegate) -> instancetype ---
 
     @(objc_type=CalendarSelectionWeekOfYear, objc_selector="selectedWeekOfYear", objc_name="selectedWeekOfYear")
     CalendarSelectionWeekOfYear_selectedWeekOfYear :: proc(self: ^CalendarSelectionWeekOfYear) -> ^NS.DateComponents ---

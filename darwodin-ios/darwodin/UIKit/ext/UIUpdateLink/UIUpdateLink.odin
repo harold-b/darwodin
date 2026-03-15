@@ -29,7 +29,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.UpdateLink,
-    init: proc(self: ^UI.UpdateLink) -> ^UI.UpdateLink,
+    init: proc(self: ^UI.UpdateLink) -> instancetype,
     updateLinkForWindowScene_: proc(windowScene: ^UI.WindowScene) -> ^UI.UpdateLink,
     updateLinkForView_: proc(view: ^UI.View) -> ^UI.UpdateLink,
     addActionToPhase_handler: proc(self: ^UI.UpdateLink, phase: ^UI.UpdateActionPhase, handler: ^Objc_Block(proc "c" (updateLink: ^UI.UpdateLink, updateInfo: ^UI.UpdateInfo))),
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.UpdateLink, _: SEL) -> ^UI.UpdateLink {
+        init :: proc "c" (self: ^UI.UpdateLink, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

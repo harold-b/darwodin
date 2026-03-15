@@ -23,10 +23,10 @@ foreign lib {
     URLDownload_canResumeDownloadDecodedWithEncodingMIMEType :: proc(MIMEType: ^String) -> bool ---
 
     @(objc_type=URLDownload, objc_selector="initWithRequest:delegate:", objc_name="initWithRequest")
-    URLDownload_initWithRequest :: proc(self: ^URLDownload, request: ^URLRequest, delegate: ^URLDownloadDelegate) -> ^URLDownload ---
+    URLDownload_initWithRequest :: proc(self: ^URLDownload, request: ^URLRequest, delegate: ^URLDownloadDelegate) -> instancetype ---
 
     @(objc_type=URLDownload, objc_selector="initWithResumeData:delegate:path:", objc_name="initWithResumeData")
-    URLDownload_initWithResumeData :: proc(self: ^URLDownload, resumeData: ^Data, delegate: ^URLDownloadDelegate, path: ^String) -> ^URLDownload ---
+    URLDownload_initWithResumeData :: proc(self: ^URLDownload, resumeData: ^Data, delegate: ^URLDownloadDelegate, path: ^String) -> instancetype ---
 
     @(objc_type=URLDownload, objc_selector="cancel", objc_name="cancel")
     URLDownload_cancel :: proc(self: ^URLDownload) ---

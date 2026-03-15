@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithClient: proc(self: ^AK.TextInputContext, client: ^AK.TextInputClient) -> ^AK.TextInputContext,
-    init: proc(self: ^AK.TextInputContext) -> ^AK.TextInputContext,
+    initWithClient: proc(self: ^AK.TextInputContext, client: ^AK.TextInputClient) -> instancetype,
+    init: proc(self: ^AK.TextInputContext) -> instancetype,
     activate: proc(self: ^AK.TextInputContext),
     deactivate: proc(self: ^AK.TextInputContext),
     handleEvent: proc(self: ^AK.TextInputContext, event: ^AK.Event) -> bool,
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithClient != nil {
-        initWithClient :: proc "c" (self: ^AK.TextInputContext, _: SEL, client: ^AK.TextInputClient) -> ^AK.TextInputContext {
+        initWithClient :: proc "c" (self: ^AK.TextInputContext, _: SEL, client: ^AK.TextInputClient) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithClient:"), auto_cast initWithClient, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextInputContext, _: SEL) -> ^AK.TextInputContext {
+        init :: proc "c" (self: ^AK.TextInputContext, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

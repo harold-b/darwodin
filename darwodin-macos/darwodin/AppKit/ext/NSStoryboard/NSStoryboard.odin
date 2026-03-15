@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    storyboardWithName: proc(name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> ^AK.Storyboard,
+    storyboardWithName: proc(name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> instancetype,
     instantiateInitialController: proc(self: ^AK.Storyboard) -> id,
     instantiateInitialControllerWithCreator: proc(self: ^AK.Storyboard, block: AK.StoryboardControllerCreator) -> id,
     instantiateControllerWithIdentifier_: proc(self: ^AK.Storyboard, identifier: ^NS.String) -> id,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.storyboardWithName != nil {
-        storyboardWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> ^AK.Storyboard {
+        storyboardWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

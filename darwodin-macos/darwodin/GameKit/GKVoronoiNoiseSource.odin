@@ -19,10 +19,10 @@ VoronoiNoiseSource :: struct { using _: NoiseSource, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=VoronoiNoiseSource, objc_selector="voronoiNoiseWithFrequency:displacement:distanceEnabled:seed:", objc_name="voronoiNoiseWithFrequency", objc_is_class_method=true)
-    VoronoiNoiseSource_voronoiNoiseWithFrequency :: proc(frequency: cffi.double, displacement: cffi.double, distanceEnabled: bool, seed: cffi.int32_t) -> ^VoronoiNoiseSource ---
+    VoronoiNoiseSource_voronoiNoiseWithFrequency :: proc(frequency: cffi.double, displacement: cffi.double, distanceEnabled: bool, seed: cffi.int32_t) -> instancetype ---
 
     @(objc_type=VoronoiNoiseSource, objc_selector="initWithFrequency:displacement:distanceEnabled:seed:", objc_name="initWithFrequency")
-    VoronoiNoiseSource_initWithFrequency :: proc(self: ^VoronoiNoiseSource, frequency: cffi.double, displacement: cffi.double, distanceEnabled: bool, seed: cffi.int32_t) -> ^VoronoiNoiseSource ---
+    VoronoiNoiseSource_initWithFrequency :: proc(self: ^VoronoiNoiseSource, frequency: cffi.double, displacement: cffi.double, distanceEnabled: bool, seed: cffi.int32_t) -> instancetype ---
 
     @(objc_type=VoronoiNoiseSource, objc_selector="frequency", objc_name="frequency")
     VoronoiNoiseSource_frequency :: proc(self: ^VoronoiNoiseSource) -> cffi.double ---

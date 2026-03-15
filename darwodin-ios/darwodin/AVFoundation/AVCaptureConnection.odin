@@ -23,22 +23,22 @@ CaptureConnection :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureConnection, objc_selector="init", objc_name="init")
-    CaptureConnection_init :: proc(self: ^CaptureConnection) -> ^CaptureConnection ---
+    CaptureConnection_init :: proc(self: ^CaptureConnection) -> instancetype ---
 
     @(objc_type=CaptureConnection, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureConnection_new :: proc() -> ^CaptureConnection ---
 
     @(objc_type=CaptureConnection, objc_selector="connectionWithInputPorts:output:", objc_name="connectionWithInputPorts", objc_is_class_method=true)
-    CaptureConnection_connectionWithInputPorts :: proc(ports: ^NS.Array, output: ^CaptureOutput) -> ^CaptureConnection ---
+    CaptureConnection_connectionWithInputPorts :: proc(ports: ^NS.Array, output: ^CaptureOutput) -> instancetype ---
 
     @(objc_type=CaptureConnection, objc_selector="connectionWithInputPort:videoPreviewLayer:", objc_name="connectionWithInputPort", objc_is_class_method=true)
-    CaptureConnection_connectionWithInputPort :: proc(port: ^CaptureInputPort, layer: ^CaptureVideoPreviewLayer) -> ^CaptureConnection ---
+    CaptureConnection_connectionWithInputPort :: proc(port: ^CaptureInputPort, layer: ^CaptureVideoPreviewLayer) -> instancetype ---
 
     @(objc_type=CaptureConnection, objc_selector="initWithInputPorts:output:", objc_name="initWithInputPorts")
-    CaptureConnection_initWithInputPorts :: proc(self: ^CaptureConnection, ports: ^NS.Array, output: ^CaptureOutput) -> ^CaptureConnection ---
+    CaptureConnection_initWithInputPorts :: proc(self: ^CaptureConnection, ports: ^NS.Array, output: ^CaptureOutput) -> instancetype ---
 
     @(objc_type=CaptureConnection, objc_selector="initWithInputPort:videoPreviewLayer:", objc_name="initWithInputPort")
-    CaptureConnection_initWithInputPort :: proc(self: ^CaptureConnection, port: ^CaptureInputPort, layer: ^CaptureVideoPreviewLayer) -> ^CaptureConnection ---
+    CaptureConnection_initWithInputPort :: proc(self: ^CaptureConnection, port: ^CaptureInputPort, layer: ^CaptureVideoPreviewLayer) -> instancetype ---
 
     @(objc_type=CaptureConnection, objc_selector="isVideoRotationAngleSupported:", objc_name="isVideoRotationAngleSupported")
     CaptureConnection_isVideoRotationAngleSupported :: proc(self: ^CaptureConnection, videoRotationAngle: CG.Float) -> bool ---

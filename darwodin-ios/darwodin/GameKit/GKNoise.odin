@@ -19,25 +19,25 @@ Noise :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Noise, objc_selector="init", objc_name="init")
-    Noise_init :: proc(self: ^Noise) -> ^Noise ---
+    Noise_init :: proc(self: ^Noise) -> instancetype ---
 
     @(objc_type=Noise, objc_selector="noiseWithNoiseSource:", objc_name="noiseWithNoiseSource_", objc_is_class_method=true)
-    Noise_noiseWithNoiseSource_ :: proc(noiseSource: ^NoiseSource) -> ^Noise ---
+    Noise_noiseWithNoiseSource_ :: proc(noiseSource: ^NoiseSource) -> instancetype ---
 
     @(objc_type=Noise, objc_selector="noiseWithNoiseSource:gradientColors:", objc_name="noiseWithNoiseSource_gradientColors", objc_is_class_method=true)
-    Noise_noiseWithNoiseSource_gradientColors :: proc(noiseSource: ^NoiseSource, gradientColors: ^NS.Dictionary) -> ^Noise ---
+    Noise_noiseWithNoiseSource_gradientColors :: proc(noiseSource: ^NoiseSource, gradientColors: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=Noise, objc_selector="initWithNoiseSource:", objc_name="initWithNoiseSource_")
-    Noise_initWithNoiseSource_ :: proc(self: ^Noise, noiseSource: ^NoiseSource) -> ^Noise ---
+    Noise_initWithNoiseSource_ :: proc(self: ^Noise, noiseSource: ^NoiseSource) -> instancetype ---
 
     @(objc_type=Noise, objc_selector="initWithNoiseSource:gradientColors:", objc_name="initWithNoiseSource_gradientColors")
-    Noise_initWithNoiseSource_gradientColors :: proc(self: ^Noise, noiseSource: ^NoiseSource, gradientColors: ^NS.Dictionary) -> ^Noise ---
+    Noise_initWithNoiseSource_gradientColors :: proc(self: ^Noise, noiseSource: ^NoiseSource, gradientColors: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=Noise, objc_selector="noiseWithComponentNoises:selectionNoise:", objc_name="noiseWithComponentNoises_selectionNoise", objc_is_class_method=true)
-    Noise_noiseWithComponentNoises_selectionNoise :: proc(noises: ^NS.Array, selectionNoise: ^Noise) -> ^Noise ---
+    Noise_noiseWithComponentNoises_selectionNoise :: proc(noises: ^NS.Array, selectionNoise: ^Noise) -> instancetype ---
 
     @(objc_type=Noise, objc_selector="noiseWithComponentNoises:selectionNoise:componentBoundaries:boundaryBlendDistances:", objc_name="noiseWithComponentNoises_selectionNoise_componentBoundaries_boundaryBlendDistances", objc_is_class_method=true)
-    Noise_noiseWithComponentNoises_selectionNoise_componentBoundaries_boundaryBlendDistances :: proc(noises: ^NS.Array, selectionNoise: ^Noise, componentBoundaries: ^NS.Array, blendDistances: ^NS.Array) -> ^Noise ---
+    Noise_noiseWithComponentNoises_selectionNoise_componentBoundaries_boundaryBlendDistances :: proc(noises: ^NS.Array, selectionNoise: ^Noise, componentBoundaries: ^NS.Array, blendDistances: ^NS.Array) -> instancetype ---
 
     @(objc_type=Noise, objc_selector="valueAtPosition:", objc_name="valueAtPosition")
     Noise_valueAtPosition :: proc(self: ^Noise, position: ^vector_float2) -> cffi.float ---

@@ -26,12 +26,12 @@ import "../NSPort"
 
 VTable :: struct {
     super: NSPort.VTable,
-    init: proc(self: ^NS.SocketPort) -> ^NS.SocketPort,
-    initWithTCPPort: proc(self: ^NS.SocketPort, port: cffi.ushort) -> ^NS.SocketPort,
-    initWithProtocolFamily_socketType_protocol_address: proc(self: ^NS.SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^NS.Data) -> ^NS.SocketPort,
-    initWithProtocolFamily_socketType_protocol_socket: proc(self: ^NS.SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, sock: NS.SocketNativeHandle) -> ^NS.SocketPort,
-    initRemoteWithTCPPort: proc(self: ^NS.SocketPort, port: cffi.ushort, hostName: ^NS.String) -> ^NS.SocketPort,
-    initRemoteWithProtocolFamily: proc(self: ^NS.SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^NS.Data) -> ^NS.SocketPort,
+    init: proc(self: ^NS.SocketPort) -> instancetype,
+    initWithTCPPort: proc(self: ^NS.SocketPort, port: cffi.ushort) -> instancetype,
+    initWithProtocolFamily_socketType_protocol_address: proc(self: ^NS.SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^NS.Data) -> instancetype,
+    initWithProtocolFamily_socketType_protocol_socket: proc(self: ^NS.SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, sock: NS.SocketNativeHandle) -> instancetype,
+    initRemoteWithTCPPort: proc(self: ^NS.SocketPort, port: cffi.ushort, hostName: ^NS.String) -> instancetype,
+    initRemoteWithProtocolFamily: proc(self: ^NS.SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^NS.Data) -> instancetype,
     protocolFamily: proc(self: ^NS.SocketPort) -> cffi.int,
     socketType: proc(self: ^NS.SocketPort) -> cffi.int,
     protocol: proc(self: ^NS.SocketPort) -> cffi.int,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSPort.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.SocketPort, _: SEL) -> ^NS.SocketPort {
+        init :: proc "c" (self: ^NS.SocketPort, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTCPPort != nil {
-        initWithTCPPort :: proc "c" (self: ^NS.SocketPort, _: SEL, port: cffi.ushort) -> ^NS.SocketPort {
+        initWithTCPPort :: proc "c" (self: ^NS.SocketPort, _: SEL, port: cffi.ushort) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTCPPort:"), auto_cast initWithTCPPort, "@@:S") do panic("Failed to register objC method.")
     }
     if vt.initWithProtocolFamily_socketType_protocol_address != nil {
-        initWithProtocolFamily_socketType_protocol_address :: proc "c" (self: ^NS.SocketPort, _: SEL, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^NS.Data) -> ^NS.SocketPort {
+        initWithProtocolFamily_socketType_protocol_address :: proc "c" (self: ^NS.SocketPort, _: SEL, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithProtocolFamily:socketType:protocol:address:"), auto_cast initWithProtocolFamily_socketType_protocol_address, "@@:iii@") do panic("Failed to register objC method.")
     }
     if vt.initWithProtocolFamily_socketType_protocol_socket != nil {
-        initWithProtocolFamily_socketType_protocol_socket :: proc "c" (self: ^NS.SocketPort, _: SEL, family: cffi.int, type: cffi.int, protocol: cffi.int, sock: NS.SocketNativeHandle) -> ^NS.SocketPort {
+        initWithProtocolFamily_socketType_protocol_socket :: proc "c" (self: ^NS.SocketPort, _: SEL, family: cffi.int, type: cffi.int, protocol: cffi.int, sock: NS.SocketNativeHandle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithProtocolFamily:socketType:protocol:socket:"), auto_cast initWithProtocolFamily_socketType_protocol_socket, "@@:iiii") do panic("Failed to register objC method.")
     }
     if vt.initRemoteWithTCPPort != nil {
-        initRemoteWithTCPPort :: proc "c" (self: ^NS.SocketPort, _: SEL, port: cffi.ushort, hostName: ^NS.String) -> ^NS.SocketPort {
+        initRemoteWithTCPPort :: proc "c" (self: ^NS.SocketPort, _: SEL, port: cffi.ushort, hostName: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initRemoteWithTCPPort:host:"), auto_cast initRemoteWithTCPPort, "@@:S@") do panic("Failed to register objC method.")
     }
     if vt.initRemoteWithProtocolFamily != nil {
-        initRemoteWithProtocolFamily :: proc "c" (self: ^NS.SocketPort, _: SEL, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^NS.Data) -> ^NS.SocketPort {
+        initRemoteWithProtocolFamily :: proc "c" (self: ^NS.SocketPort, _: SEL, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

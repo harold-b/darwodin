@@ -23,10 +23,10 @@ AudioConnectionPoint :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioConnectionPoint, objc_selector="initWithNode:bus:", objc_name="initWithNode")
-    AudioConnectionPoint_initWithNode :: proc(self: ^AudioConnectionPoint, node: ^AudioNode, bus: AudioNodeBus) -> ^AudioConnectionPoint ---
+    AudioConnectionPoint_initWithNode :: proc(self: ^AudioConnectionPoint, node: ^AudioNode, bus: AudioNodeBus) -> instancetype ---
 
     @(objc_type=AudioConnectionPoint, objc_selector="init", objc_name="init")
-    AudioConnectionPoint_init :: proc(self: ^AudioConnectionPoint) -> ^AudioConnectionPoint ---
+    AudioConnectionPoint_init :: proc(self: ^AudioConnectionPoint) -> instancetype ---
 
     @(objc_type=AudioConnectionPoint, objc_selector="node", objc_name="node")
     AudioConnectionPoint_node :: proc(self: ^AudioConnectionPoint) -> ^AudioNode ---

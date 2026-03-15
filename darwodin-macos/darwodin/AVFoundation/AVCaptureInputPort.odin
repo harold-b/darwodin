@@ -23,7 +23,7 @@ CaptureInputPort :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureInputPort, objc_selector="init", objc_name="init")
-    CaptureInputPort_init :: proc(self: ^CaptureInputPort) -> ^CaptureInputPort ---
+    CaptureInputPort_init :: proc(self: ^CaptureInputPort) -> instancetype ---
 
     @(objc_type=CaptureInputPort, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureInputPort_new :: proc() -> ^CaptureInputPort ---

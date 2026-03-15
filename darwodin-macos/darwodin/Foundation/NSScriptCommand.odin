@@ -22,10 +22,10 @@ ScriptCommand :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScriptCommand, objc_selector="initWithCommandDescription:", objc_name="initWithCommandDescription")
-    ScriptCommand_initWithCommandDescription :: proc(self: ^ScriptCommand, commandDef: ^ScriptCommandDescription) -> ^ScriptCommand ---
+    ScriptCommand_initWithCommandDescription :: proc(self: ^ScriptCommand, commandDef: ^ScriptCommandDescription) -> instancetype ---
 
     @(objc_type=ScriptCommand, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ScriptCommand_initWithCoder :: proc(self: ^ScriptCommand, inCoder: ^Coder) -> ^ScriptCommand ---
+    ScriptCommand_initWithCoder :: proc(self: ^ScriptCommand, inCoder: ^Coder) -> instancetype ---
 
     @(objc_type=ScriptCommand, objc_selector="performDefaultImplementation", objc_name="performDefaultImplementation")
     ScriptCommand_performDefaultImplementation :: proc(self: ^ScriptCommand) -> id ---

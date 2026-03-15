@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTitle: proc(self: ^UI.MenuItem, title: ^NS.String, action: SEL) -> ^UI.MenuItem,
+    initWithTitle: proc(self: ^UI.MenuItem, title: ^NS.String, action: SEL) -> instancetype,
     title: proc(self: ^UI.MenuItem) -> ^NS.String,
     setTitle: proc(self: ^UI.MenuItem, title: ^NS.String),
     action: proc(self: ^UI.MenuItem) -> SEL,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^UI.MenuItem, _: SEL, title: ^NS.String, action: SEL) -> ^UI.MenuItem {
+        initWithTitle :: proc "c" (self: ^UI.MenuItem, _: SEL, title: ^NS.String, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

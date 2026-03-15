@@ -18,10 +18,10 @@ ModifyRecordsOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ModifyRecordsOperation, objc_selector="init", objc_name="init")
-    ModifyRecordsOperation_init :: proc(self: ^ModifyRecordsOperation) -> ^ModifyRecordsOperation ---
+    ModifyRecordsOperation_init :: proc(self: ^ModifyRecordsOperation) -> instancetype ---
 
     @(objc_type=ModifyRecordsOperation, objc_selector="initWithRecordsToSave:recordIDsToDelete:", objc_name="initWithRecordsToSave")
-    ModifyRecordsOperation_initWithRecordsToSave :: proc(self: ^ModifyRecordsOperation, records: ^NS.Array, recordIDs: ^NS.Array) -> ^ModifyRecordsOperation ---
+    ModifyRecordsOperation_initWithRecordsToSave :: proc(self: ^ModifyRecordsOperation, records: ^NS.Array, recordIDs: ^NS.Array) -> instancetype ---
 
     @(objc_type=ModifyRecordsOperation, objc_selector="recordsToSave", objc_name="recordsToSave")
     ModifyRecordsOperation_recordsToSave :: proc(self: ^ModifyRecordsOperation) -> ^NS.Array ---

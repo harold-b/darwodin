@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithName: proc(self: ^NS.URLQueryItem, name: ^NS.String, value: ^NS.String) -> ^NS.URLQueryItem,
-    queryItemWithName: proc(name: ^NS.String, value: ^NS.String) -> ^NS.URLQueryItem,
+    initWithName: proc(self: ^NS.URLQueryItem, name: ^NS.String, value: ^NS.String) -> instancetype,
+    queryItemWithName: proc(name: ^NS.String, value: ^NS.String) -> instancetype,
     name: proc(self: ^NS.URLQueryItem) -> ^NS.String,
     value: proc(self: ^NS.URLQueryItem) -> ^NS.String,
 }
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithName != nil {
-        initWithName :: proc "c" (self: ^NS.URLQueryItem, _: SEL, name: ^NS.String, value: ^NS.String) -> ^NS.URLQueryItem {
+        initWithName :: proc "c" (self: ^NS.URLQueryItem, _: SEL, name: ^NS.String, value: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:value:"), auto_cast initWithName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.queryItemWithName != nil {
-        queryItemWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String, value: ^NS.String) -> ^NS.URLQueryItem {
+        queryItemWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String, value: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

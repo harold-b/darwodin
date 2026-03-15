@@ -30,10 +30,10 @@ foreign lib {
     TabSidebarItem_defaultBackgroundConfiguration :: proc(self: ^TabSidebarItem) -> ^BackgroundConfiguration ---
 
     @(objc_type=TabSidebarItem, objc_selector="itemFromRequest:", objc_name="itemFromRequest", objc_is_class_method=true)
-    TabSidebarItem_itemFromRequest :: proc(request: ^TabSidebarItemRequest) -> ^TabSidebarItem ---
+    TabSidebarItem_itemFromRequest :: proc(request: ^TabSidebarItemRequest) -> instancetype ---
 
     @(objc_type=TabSidebarItem, objc_selector="init", objc_name="init")
-    TabSidebarItem_init :: proc(self: ^TabSidebarItem) -> ^TabSidebarItem ---
+    TabSidebarItem_init :: proc(self: ^TabSidebarItem) -> instancetype ---
 
     @(objc_type=TabSidebarItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TabSidebarItem_new :: proc() -> ^TabSidebarItem ---

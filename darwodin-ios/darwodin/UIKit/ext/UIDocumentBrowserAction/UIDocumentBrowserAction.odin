@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.DocumentBrowserAction) -> ^UI.DocumentBrowserAction,
-    initWithIdentifier: proc(self: ^UI.DocumentBrowserAction, identifier: ^NS.String, localizedTitle: ^NS.String, availability: UI.DocumentBrowserActionAvailability, handler: ^Objc_Block(proc "c" (_: ^NS.Array))) -> ^UI.DocumentBrowserAction,
+    init: proc(self: ^UI.DocumentBrowserAction) -> instancetype,
+    initWithIdentifier: proc(self: ^UI.DocumentBrowserAction, identifier: ^NS.String, localizedTitle: ^NS.String, availability: UI.DocumentBrowserActionAvailability, handler: ^Objc_Block(proc "c" (_: ^NS.Array))) -> instancetype,
     identifier: proc(self: ^UI.DocumentBrowserAction) -> ^NS.String,
     localizedTitle: proc(self: ^UI.DocumentBrowserAction) -> ^NS.String,
     availability: proc(self: ^UI.DocumentBrowserAction) -> UI.DocumentBrowserActionAvailability,
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.DocumentBrowserAction, _: SEL) -> ^UI.DocumentBrowserAction {
+        init :: proc "c" (self: ^UI.DocumentBrowserAction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithIdentifier != nil {
-        initWithIdentifier :: proc "c" (self: ^UI.DocumentBrowserAction, _: SEL, identifier: ^NS.String, localizedTitle: ^NS.String, availability: UI.DocumentBrowserActionAvailability, handler: ^Objc_Block(proc "c" (_: ^NS.Array))) -> ^UI.DocumentBrowserAction {
+        initWithIdentifier :: proc "c" (self: ^UI.DocumentBrowserAction, _: SEL, identifier: ^NS.String, localizedTitle: ^NS.String, availability: UI.DocumentBrowserActionAvailability, handler: ^Objc_Block(proc "c" (_: ^NS.Array))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

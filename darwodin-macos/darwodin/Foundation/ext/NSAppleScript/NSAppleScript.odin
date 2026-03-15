@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithContentsOfURL: proc(self: ^NS.AppleScript, url: ^NS.URL, errorInfo: ^^NS.Dictionary) -> ^NS.AppleScript,
-    initWithSource: proc(self: ^NS.AppleScript, source: ^NS.String) -> ^NS.AppleScript,
+    initWithContentsOfURL: proc(self: ^NS.AppleScript, url: ^NS.URL, errorInfo: ^^NS.Dictionary) -> instancetype,
+    initWithSource: proc(self: ^NS.AppleScript, source: ^NS.String) -> instancetype,
     compileAndReturnError: proc(self: ^NS.AppleScript, errorInfo: ^^NS.Dictionary) -> bool,
     executeAndReturnError: proc(self: ^NS.AppleScript, errorInfo: ^^NS.Dictionary) -> ^NS.AppleEventDescriptor,
     executeAppleEvent: proc(self: ^NS.AppleScript, event: ^NS.AppleEventDescriptor, errorInfo: ^^NS.Dictionary) -> ^NS.AppleEventDescriptor,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithContentsOfURL != nil {
-        initWithContentsOfURL :: proc "c" (self: ^NS.AppleScript, _: SEL, url: ^NS.URL, errorInfo: ^^NS.Dictionary) -> ^NS.AppleScript {
+        initWithContentsOfURL :: proc "c" (self: ^NS.AppleScript, _: SEL, url: ^NS.URL, errorInfo: ^^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:error:"), auto_cast initWithContentsOfURL, "@@:@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithSource != nil {
-        initWithSource :: proc "c" (self: ^NS.AppleScript, _: SEL, source: ^NS.String) -> ^NS.AppleScript {
+        initWithSource :: proc "c" (self: ^NS.AppleScript, _: SEL, source: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -24,10 +24,10 @@ NSTextContainer :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSTextContainer, objc_selector="initWithSize:", objc_name="initWithSize")
-    NSTextContainer_initWithSize :: proc(self: ^NSTextContainer, size: CG.Size) -> ^NSTextContainer ---
+    NSTextContainer_initWithSize :: proc(self: ^NSTextContainer, size: CG.Size) -> instancetype ---
 
     @(objc_type=NSTextContainer, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    NSTextContainer_initWithCoder :: proc(self: ^NSTextContainer, coder: ^NS.Coder) -> ^NSTextContainer ---
+    NSTextContainer_initWithCoder :: proc(self: ^NSTextContainer, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=NSTextContainer, objc_selector="lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:", objc_name="lineFragmentRectForProposedRect")
     NSTextContainer_lineFragmentRectForProposedRect :: proc(self: ^NSTextContainer, proposedRect: CG.Rect, characterIndex: NS.UInteger, baseWritingDirection: NSWritingDirection, remainingRect: ^CG.Rect) -> CG.Rect ---

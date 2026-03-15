@@ -23,7 +23,7 @@ AssetSegmentTrackReport :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetSegmentTrackReport, objc_selector="init", objc_name="init")
-    AssetSegmentTrackReport_init :: proc(self: ^AssetSegmentTrackReport) -> ^AssetSegmentTrackReport ---
+    AssetSegmentTrackReport_init :: proc(self: ^AssetSegmentTrackReport) -> instancetype ---
 
     @(objc_type=AssetSegmentTrackReport, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetSegmentTrackReport_new :: proc() -> ^AssetSegmentTrackReport ---

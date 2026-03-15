@@ -26,14 +26,14 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithName: proc(self: ^NS.Notification, name: ^NS.String, object: id, userInfo: ^NS.Dictionary) -> ^NS.Notification,
-    initWithCoder: proc(self: ^NS.Notification, coder: ^NS.Coder) -> ^NS.Notification,
+    initWithName: proc(self: ^NS.Notification, name: ^NS.String, object: id, userInfo: ^NS.Dictionary) -> instancetype,
+    initWithCoder: proc(self: ^NS.Notification, coder: ^NS.Coder) -> instancetype,
     name: proc(self: ^NS.Notification) -> ^NS.String,
     object: proc(self: ^NS.Notification) -> id,
     userInfo: proc(self: ^NS.Notification) -> ^NS.Dictionary,
-    notificationWithName_object: proc(aName: ^NS.String, anObject: id) -> ^NS.Notification,
-    notificationWithName_object_userInfo: proc(aName: ^NS.String, anObject: id, aUserInfo: ^NS.Dictionary) -> ^NS.Notification,
-    init: proc(self: ^NS.Notification) -> ^NS.Notification,
+    notificationWithName_object: proc(aName: ^NS.String, anObject: id) -> instancetype,
+    notificationWithName_object_userInfo: proc(aName: ^NS.String, anObject: id, aUserInfo: ^NS.Dictionary) -> instancetype,
+    init: proc(self: ^NS.Notification) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithName != nil {
-        initWithName :: proc "c" (self: ^NS.Notification, _: SEL, name: ^NS.String, object: id, userInfo: ^NS.Dictionary) -> ^NS.Notification {
+        initWithName :: proc "c" (self: ^NS.Notification, _: SEL, name: ^NS.String, object: id, userInfo: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:object:userInfo:"), auto_cast initWithName, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.Notification, _: SEL, coder: ^NS.Coder) -> ^NS.Notification {
+        initWithCoder :: proc "c" (self: ^NS.Notification, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("userInfo"), auto_cast userInfo, "@@:") do panic("Failed to register objC method.")
     }
     if vt.notificationWithName_object != nil {
-        notificationWithName_object :: proc "c" (self: Class, _: SEL, aName: ^NS.String, anObject: id) -> ^NS.Notification {
+        notificationWithName_object :: proc "c" (self: Class, _: SEL, aName: ^NS.String, anObject: id) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("notificationWithName:object:"), auto_cast notificationWithName_object, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.notificationWithName_object_userInfo != nil {
-        notificationWithName_object_userInfo :: proc "c" (self: Class, _: SEL, aName: ^NS.String, anObject: id, aUserInfo: ^NS.Dictionary) -> ^NS.Notification {
+        notificationWithName_object_userInfo :: proc "c" (self: Class, _: SEL, aName: ^NS.String, anObject: id, aUserInfo: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("notificationWithName:object:userInfo:"), auto_cast notificationWithName_object_userInfo, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.Notification, _: SEL) -> ^NS.Notification {
+        init :: proc "c" (self: ^NS.Notification, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

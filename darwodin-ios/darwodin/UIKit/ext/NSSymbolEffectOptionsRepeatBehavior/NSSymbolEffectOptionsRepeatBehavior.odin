@@ -29,12 +29,12 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.NSSymbolEffectOptionsRepeatBehavior,
-    init: proc(self: ^UI.NSSymbolEffectOptionsRepeatBehavior) -> ^UI.NSSymbolEffectOptionsRepeatBehavior,
-    behaviorPeriodic: proc() -> ^UI.NSSymbolEffectOptionsRepeatBehavior,
-    behaviorPeriodicWithCount_: proc(count: NS.Integer) -> ^UI.NSSymbolEffectOptionsRepeatBehavior,
-    behaviorPeriodicWithDelay: proc(delay: cffi.double) -> ^UI.NSSymbolEffectOptionsRepeatBehavior,
-    behaviorPeriodicWithCount_delay: proc(count: NS.Integer, delay: cffi.double) -> ^UI.NSSymbolEffectOptionsRepeatBehavior,
-    behaviorContinuous: proc() -> ^UI.NSSymbolEffectOptionsRepeatBehavior,
+    init: proc(self: ^UI.NSSymbolEffectOptionsRepeatBehavior) -> instancetype,
+    behaviorPeriodic: proc() -> instancetype,
+    behaviorPeriodicWithCount_: proc(count: NS.Integer) -> instancetype,
+    behaviorPeriodicWithDelay: proc(delay: cffi.double) -> instancetype,
+    behaviorPeriodicWithCount_delay: proc(count: NS.Integer, delay: cffi.double) -> instancetype,
+    behaviorContinuous: proc() -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSSymbolEffectOptionsRepeatBehavior, _: SEL) -> ^UI.NSSymbolEffectOptionsRepeatBehavior {
+        init :: proc "c" (self: ^UI.NSSymbolEffectOptionsRepeatBehavior, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.behaviorPeriodic != nil {
-        behaviorPeriodic :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolEffectOptionsRepeatBehavior {
+        behaviorPeriodic :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("behaviorPeriodic"), auto_cast behaviorPeriodic, "@#:") do panic("Failed to register objC method.")
     }
     if vt.behaviorPeriodicWithCount_ != nil {
-        behaviorPeriodicWithCount_ :: proc "c" (self: Class, _: SEL, count: NS.Integer) -> ^UI.NSSymbolEffectOptionsRepeatBehavior {
+        behaviorPeriodicWithCount_ :: proc "c" (self: Class, _: SEL, count: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("behaviorPeriodicWithCount:"), auto_cast behaviorPeriodicWithCount_, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.behaviorPeriodicWithDelay != nil {
-        behaviorPeriodicWithDelay :: proc "c" (self: Class, _: SEL, delay: cffi.double) -> ^UI.NSSymbolEffectOptionsRepeatBehavior {
+        behaviorPeriodicWithDelay :: proc "c" (self: Class, _: SEL, delay: cffi.double) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("behaviorPeriodicWithDelay:"), auto_cast behaviorPeriodicWithDelay, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.behaviorPeriodicWithCount_delay != nil {
-        behaviorPeriodicWithCount_delay :: proc "c" (self: Class, _: SEL, count: NS.Integer, delay: cffi.double) -> ^UI.NSSymbolEffectOptionsRepeatBehavior {
+        behaviorPeriodicWithCount_delay :: proc "c" (self: Class, _: SEL, count: NS.Integer, delay: cffi.double) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("behaviorPeriodicWithCount:delay:"), auto_cast behaviorPeriodicWithCount_delay, "@#:ld") do panic("Failed to register objC method.")
     }
     if vt.behaviorContinuous != nil {
-        behaviorContinuous :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolEffectOptionsRepeatBehavior {
+        behaviorContinuous :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

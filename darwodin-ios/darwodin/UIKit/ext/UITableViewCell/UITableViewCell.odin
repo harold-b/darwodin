@@ -28,8 +28,8 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithStyle: proc(self: ^UI.TableViewCell, style: UI.TableViewCellStyle, reuseIdentifier: ^NS.String) -> ^UI.TableViewCell,
-    initWithCoder: proc(self: ^UI.TableViewCell, coder: ^NS.Coder) -> ^UI.TableViewCell,
+    initWithStyle: proc(self: ^UI.TableViewCell, style: UI.TableViewCellStyle, reuseIdentifier: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^UI.TableViewCell, coder: ^NS.Coder) -> instancetype,
     setNeedsUpdateConfiguration: proc(self: ^UI.TableViewCell),
     updateConfigurationUsingState: proc(self: ^UI.TableViewCell, state: ^UI.CellConfigurationState),
     defaultContentConfiguration: proc(self: ^UI.TableViewCell) -> ^UI.ListContentConfiguration,
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithStyle != nil {
-        initWithStyle :: proc "c" (self: ^UI.TableViewCell, _: SEL, style: UI.TableViewCellStyle, reuseIdentifier: ^NS.String) -> ^UI.TableViewCell {
+        initWithStyle :: proc "c" (self: ^UI.TableViewCell, _: SEL, style: UI.TableViewCellStyle, reuseIdentifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithStyle:reuseIdentifier:"), auto_cast initWithStyle, "@@:l@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.TableViewCell, _: SEL, coder: ^NS.Coder) -> ^UI.TableViewCell {
+        initWithCoder :: proc "c" (self: ^UI.TableViewCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

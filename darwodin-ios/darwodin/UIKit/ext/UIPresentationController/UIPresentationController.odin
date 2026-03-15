@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithPresentedViewController: proc(self: ^UI.PresentationController, presentedViewController: ^UI.ViewController, presentingViewController: ^UI.ViewController) -> ^UI.PresentationController,
-    init: proc(self: ^UI.PresentationController) -> ^UI.PresentationController,
+    initWithPresentedViewController: proc(self: ^UI.PresentationController, presentedViewController: ^UI.ViewController, presentingViewController: ^UI.ViewController) -> instancetype,
+    init: proc(self: ^UI.PresentationController) -> instancetype,
     adaptivePresentationStyleForTraitCollection: proc(self: ^UI.PresentationController, traitCollection: ^UI.TraitCollection) -> UI.ModalPresentationStyle,
     containerViewWillLayoutSubviews: proc(self: ^UI.PresentationController),
     containerViewDidLayoutSubviews: proc(self: ^UI.PresentationController),
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithPresentedViewController != nil {
-        initWithPresentedViewController :: proc "c" (self: ^UI.PresentationController, _: SEL, presentedViewController: ^UI.ViewController, presentingViewController: ^UI.ViewController) -> ^UI.PresentationController {
+        initWithPresentedViewController :: proc "c" (self: ^UI.PresentationController, _: SEL, presentedViewController: ^UI.ViewController, presentingViewController: ^UI.ViewController) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPresentedViewController:presentingViewController:"), auto_cast initWithPresentedViewController, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PresentationController, _: SEL) -> ^UI.PresentationController {
+        init :: proc "c" (self: ^UI.PresentationController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

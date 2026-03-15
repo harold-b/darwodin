@@ -25,10 +25,10 @@ TableViewCell :: struct { using _: View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TableViewCell, objc_selector="initWithStyle:reuseIdentifier:", objc_name="initWithStyle")
-    TableViewCell_initWithStyle :: proc(self: ^TableViewCell, style: TableViewCellStyle, reuseIdentifier: ^NS.String) -> ^TableViewCell ---
+    TableViewCell_initWithStyle :: proc(self: ^TableViewCell, style: TableViewCellStyle, reuseIdentifier: ^NS.String) -> instancetype ---
 
     @(objc_type=TableViewCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TableViewCell_initWithCoder :: proc(self: ^TableViewCell, coder: ^NS.Coder) -> ^TableViewCell ---
+    TableViewCell_initWithCoder :: proc(self: ^TableViewCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TableViewCell, objc_selector="setNeedsUpdateConfiguration", objc_name="setNeedsUpdateConfiguration")
     TableViewCell_setNeedsUpdateConfiguration :: proc(self: ^TableViewCell) ---

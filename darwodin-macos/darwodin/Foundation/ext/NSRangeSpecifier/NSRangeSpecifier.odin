@@ -26,8 +26,8 @@ import "../NSScriptObjectSpecifier"
 
 VTable :: struct {
     super: NSScriptObjectSpecifier.VTable,
-    initWithCoder: proc(self: ^NS.RangeSpecifier, inCoder: ^NS.Coder) -> ^NS.RangeSpecifier,
-    initWithContainerClassDescription: proc(self: ^NS.RangeSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, startSpec: ^NS.ScriptObjectSpecifier, endSpec: ^NS.ScriptObjectSpecifier) -> ^NS.RangeSpecifier,
+    initWithCoder: proc(self: ^NS.RangeSpecifier, inCoder: ^NS.Coder) -> instancetype,
+    initWithContainerClassDescription: proc(self: ^NS.RangeSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, startSpec: ^NS.ScriptObjectSpecifier, endSpec: ^NS.ScriptObjectSpecifier) -> instancetype,
     startSpecifier: proc(self: ^NS.RangeSpecifier) -> ^NS.ScriptObjectSpecifier,
     setStartSpecifier: proc(self: ^NS.RangeSpecifier, startSpecifier: ^NS.ScriptObjectSpecifier),
     endSpecifier: proc(self: ^NS.RangeSpecifier) -> ^NS.ScriptObjectSpecifier,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScriptObjectSpecifier.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.RangeSpecifier, _: SEL, inCoder: ^NS.Coder) -> ^NS.RangeSpecifier {
+        initWithCoder :: proc "c" (self: ^NS.RangeSpecifier, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerClassDescription != nil {
-        initWithContainerClassDescription :: proc "c" (self: ^NS.RangeSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, startSpec: ^NS.ScriptObjectSpecifier, endSpec: ^NS.ScriptObjectSpecifier) -> ^NS.RangeSpecifier {
+        initWithContainerClassDescription :: proc "c" (self: ^NS.RangeSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, startSpec: ^NS.ScriptObjectSpecifier, endSpec: ^NS.ScriptObjectSpecifier) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

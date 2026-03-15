@@ -23,16 +23,16 @@ AssetWriterInputCaptionAdaptor :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriterInputCaptionAdaptor, objc_selector="init", objc_name="init")
-    AssetWriterInputCaptionAdaptor_init :: proc(self: ^AssetWriterInputCaptionAdaptor) -> ^AssetWriterInputCaptionAdaptor ---
+    AssetWriterInputCaptionAdaptor_init :: proc(self: ^AssetWriterInputCaptionAdaptor) -> instancetype ---
 
     @(objc_type=AssetWriterInputCaptionAdaptor, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetWriterInputCaptionAdaptor_new :: proc() -> ^AssetWriterInputCaptionAdaptor ---
 
     @(objc_type=AssetWriterInputCaptionAdaptor, objc_selector="assetWriterInputCaptionAdaptorWithAssetWriterInput:", objc_name="assetWriterInputCaptionAdaptorWithAssetWriterInput", objc_is_class_method=true)
-    AssetWriterInputCaptionAdaptor_assetWriterInputCaptionAdaptorWithAssetWriterInput :: proc(input: ^AssetWriterInput) -> ^AssetWriterInputCaptionAdaptor ---
+    AssetWriterInputCaptionAdaptor_assetWriterInputCaptionAdaptorWithAssetWriterInput :: proc(input: ^AssetWriterInput) -> instancetype ---
 
     @(objc_type=AssetWriterInputCaptionAdaptor, objc_selector="initWithAssetWriterInput:", objc_name="initWithAssetWriterInput")
-    AssetWriterInputCaptionAdaptor_initWithAssetWriterInput :: proc(self: ^AssetWriterInputCaptionAdaptor, input: ^AssetWriterInput) -> ^AssetWriterInputCaptionAdaptor ---
+    AssetWriterInputCaptionAdaptor_initWithAssetWriterInput :: proc(self: ^AssetWriterInputCaptionAdaptor, input: ^AssetWriterInput) -> instancetype ---
 
     @(objc_type=AssetWriterInputCaptionAdaptor, objc_selector="appendCaption:", objc_name="appendCaption")
     AssetWriterInputCaptionAdaptor_appendCaption :: proc(self: ^AssetWriterInputCaptionAdaptor, caption: ^Caption) -> bool ---

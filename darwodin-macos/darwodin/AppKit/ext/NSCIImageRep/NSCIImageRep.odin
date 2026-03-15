@@ -30,8 +30,8 @@ import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
-    imageRepWithCIImage: proc(image: ^AK.CIImage) -> ^AK.CIImageRep,
-    initWithCIImage: proc(self: ^AK.CIImageRep, image: ^AK.CIImage) -> ^AK.CIImageRep,
+    imageRepWithCIImage: proc(image: ^AK.CIImage) -> instancetype,
+    initWithCIImage: proc(self: ^AK.CIImageRep, image: ^AK.CIImage) -> instancetype,
     _CIImage: proc(self: ^AK.CIImageRep) -> ^AK.CIImage,
 }
 
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSImageRep.extend(cls, &vt.super)
 
     if vt.imageRepWithCIImage != nil {
-        imageRepWithCIImage :: proc "c" (self: Class, _: SEL, image: ^AK.CIImage) -> ^AK.CIImageRep {
+        imageRepWithCIImage :: proc "c" (self: Class, _: SEL, image: ^AK.CIImage) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithCIImage:"), auto_cast imageRepWithCIImage, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCIImage != nil {
-        initWithCIImage :: proc "c" (self: ^AK.CIImageRep, _: SEL, image: ^AK.CIImage) -> ^AK.CIImageRep {
+        initWithCIImage :: proc "c" (self: ^AK.CIImageRep, _: SEL, image: ^AK.CIImage) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

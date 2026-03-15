@@ -23,7 +23,7 @@ ZoomRange :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ZoomRange, objc_selector="init", objc_name="init")
-    ZoomRange_init :: proc(self: ^ZoomRange) -> ^ZoomRange ---
+    ZoomRange_init :: proc(self: ^ZoomRange) -> instancetype ---
 
     @(objc_type=ZoomRange, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ZoomRange_new :: proc() -> ^ZoomRange ---

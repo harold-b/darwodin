@@ -26,7 +26,7 @@ MeshBuffer :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeshBuffer, objc_selector="init", objc_name="init")
-    MeshBuffer_init :: proc(self: ^MeshBuffer) -> ^MeshBuffer ---
+    MeshBuffer_init :: proc(self: ^MeshBuffer) -> instancetype ---
 
     @(objc_type=MeshBuffer, objc_selector="length", objc_name="length")
     MeshBuffer_length :: proc(self: ^MeshBuffer) -> NS.UInteger ---

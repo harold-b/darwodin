@@ -26,8 +26,8 @@ import "../NSScriptObjectSpecifier"
 
 VTable :: struct {
     super: NSScriptObjectSpecifier.VTable,
-    initWithCoder: proc(self: ^NS.WhoseSpecifier, inCoder: ^NS.Coder) -> ^NS.WhoseSpecifier,
-    initWithContainerClassDescription: proc(self: ^NS.WhoseSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, test: ^NS.ScriptWhoseTest) -> ^NS.WhoseSpecifier,
+    initWithCoder: proc(self: ^NS.WhoseSpecifier, inCoder: ^NS.Coder) -> instancetype,
+    initWithContainerClassDescription: proc(self: ^NS.WhoseSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, test: ^NS.ScriptWhoseTest) -> instancetype,
     test: proc(self: ^NS.WhoseSpecifier) -> ^NS.ScriptWhoseTest,
     setTest: proc(self: ^NS.WhoseSpecifier, test: ^NS.ScriptWhoseTest),
     startSubelementIdentifier: proc(self: ^NS.WhoseSpecifier) -> NS.WhoseSubelementIdentifier,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScriptObjectSpecifier.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.WhoseSpecifier, _: SEL, inCoder: ^NS.Coder) -> ^NS.WhoseSpecifier {
+        initWithCoder :: proc "c" (self: ^NS.WhoseSpecifier, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerClassDescription != nil {
-        initWithContainerClassDescription :: proc "c" (self: ^NS.WhoseSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, test: ^NS.ScriptWhoseTest) -> ^NS.WhoseSpecifier {
+        initWithContainerClassDescription :: proc "c" (self: ^NS.WhoseSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, test: ^NS.ScriptWhoseTest) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

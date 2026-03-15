@@ -26,7 +26,7 @@ import "../NSValue"
 
 VTable :: struct {
     super: NSValue.VTable,
-    initWithCoder: proc(self: ^NS.Number, coder: ^NS.Coder) -> ^NS.Number,
+    initWithCoder: proc(self: ^NS.Number, coder: ^NS.Coder) -> instancetype,
     initWithChar: proc(self: ^NS.Number, value: cffi.char) -> ^NS.Number,
     initWithUnsignedChar: proc(self: ^NS.Number, value: cffi.uchar) -> ^NS.Number,
     initWithShort: proc(self: ^NS.Number, value: cffi.short) -> ^NS.Number,
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSValue.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.Number, _: SEL, coder: ^NS.Coder) -> ^NS.Number {
+        initWithCoder :: proc "c" (self: ^NS.Number, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

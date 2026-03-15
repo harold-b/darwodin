@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithCoder: proc(self: ^UI.MenuElement, coder: ^NS.Coder) -> ^UI.MenuElement,
-    init: proc(self: ^UI.MenuElement) -> ^UI.MenuElement,
+    initWithCoder: proc(self: ^UI.MenuElement, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.MenuElement) -> instancetype,
     new: proc() -> ^UI.MenuElement,
     title: proc(self: ^UI.MenuElement) -> ^NS.String,
     subtitle: proc(self: ^UI.MenuElement) -> ^NS.String,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.MenuElement, _: SEL, coder: ^NS.Coder) -> ^UI.MenuElement {
+        initWithCoder :: proc "c" (self: ^UI.MenuElement, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.MenuElement, _: SEL) -> ^UI.MenuElement {
+        init :: proc "c" (self: ^UI.MenuElement, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

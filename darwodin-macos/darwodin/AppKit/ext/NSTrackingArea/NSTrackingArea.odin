@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithRect: proc(self: ^AK.TrackingArea, rect: NS.Rect, options: AK.TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> ^AK.TrackingArea,
+    initWithRect: proc(self: ^AK.TrackingArea, rect: NS.Rect, options: AK.TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> instancetype,
     rect: proc(self: ^AK.TrackingArea) -> NS.Rect,
     options: proc(self: ^AK.TrackingArea) -> AK.TrackingAreaOptions,
     owner: proc(self: ^AK.TrackingArea) -> id,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithRect != nil {
-        initWithRect :: proc "c" (self: ^AK.TrackingArea, _: SEL, rect: NS.Rect, options: AK.TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> ^AK.TrackingArea {
+        initWithRect :: proc "c" (self: ^AK.TrackingArea, _: SEL, rect: NS.Rect, options: AK.TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

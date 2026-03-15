@@ -20,7 +20,7 @@ SyncEngineSendChangesOptions :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineSendChangesOptions, objc_selector="initWithScope:", objc_name="initWithScope")
-    SyncEngineSendChangesOptions_initWithScope :: proc(self: ^SyncEngineSendChangesOptions, scope: ^SyncEngineSendChangesScope) -> ^SyncEngineSendChangesOptions ---
+    SyncEngineSendChangesOptions_initWithScope :: proc(self: ^SyncEngineSendChangesOptions, scope: ^SyncEngineSendChangesScope) -> instancetype ---
 
     @(objc_type=SyncEngineSendChangesOptions, objc_selector="scope", objc_name="scope")
     SyncEngineSendChangesOptions_scope :: proc(self: ^SyncEngineSendChangesOptions) -> ^SyncEngineSendChangesScope ---

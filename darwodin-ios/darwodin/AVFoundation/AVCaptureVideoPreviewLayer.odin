@@ -23,16 +23,16 @@ CaptureVideoPreviewLayer :: struct { using _: CA.Layer, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureVideoPreviewLayer, objc_selector="layerWithSession:", objc_name="layerWithSession", objc_is_class_method=true)
-    CaptureVideoPreviewLayer_layerWithSession :: proc(session: ^CaptureSession) -> ^CaptureVideoPreviewLayer ---
+    CaptureVideoPreviewLayer_layerWithSession :: proc(session: ^CaptureSession) -> instancetype ---
 
     @(objc_type=CaptureVideoPreviewLayer, objc_selector="initWithSession:", objc_name="initWithSession")
-    CaptureVideoPreviewLayer_initWithSession :: proc(self: ^CaptureVideoPreviewLayer, session: ^CaptureSession) -> ^CaptureVideoPreviewLayer ---
+    CaptureVideoPreviewLayer_initWithSession :: proc(self: ^CaptureVideoPreviewLayer, session: ^CaptureSession) -> instancetype ---
 
     @(objc_type=CaptureVideoPreviewLayer, objc_selector="layerWithSessionWithNoConnection:", objc_name="layerWithSessionWithNoConnection", objc_is_class_method=true)
-    CaptureVideoPreviewLayer_layerWithSessionWithNoConnection :: proc(session: ^CaptureSession) -> ^CaptureVideoPreviewLayer ---
+    CaptureVideoPreviewLayer_layerWithSessionWithNoConnection :: proc(session: ^CaptureSession) -> instancetype ---
 
     @(objc_type=CaptureVideoPreviewLayer, objc_selector="initWithSessionWithNoConnection:", objc_name="initWithSessionWithNoConnection")
-    CaptureVideoPreviewLayer_initWithSessionWithNoConnection :: proc(self: ^CaptureVideoPreviewLayer, session: ^CaptureSession) -> ^CaptureVideoPreviewLayer ---
+    CaptureVideoPreviewLayer_initWithSessionWithNoConnection :: proc(self: ^CaptureVideoPreviewLayer, session: ^CaptureSession) -> instancetype ---
 
     @(objc_type=CaptureVideoPreviewLayer, objc_selector="setSessionWithNoConnection:", objc_name="setSessionWithNoConnection")
     CaptureVideoPreviewLayer_setSessionWithNoConnection :: proc(self: ^CaptureVideoPreviewLayer, session: ^CaptureSession) ---

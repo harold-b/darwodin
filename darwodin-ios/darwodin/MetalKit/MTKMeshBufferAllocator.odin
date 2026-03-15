@@ -25,10 +25,10 @@ MeshBufferAllocator :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeshBufferAllocator, objc_selector="init", objc_name="init")
-    MeshBufferAllocator_init :: proc(self: ^MeshBufferAllocator) -> ^MeshBufferAllocator ---
+    MeshBufferAllocator_init :: proc(self: ^MeshBufferAllocator) -> instancetype ---
 
     @(objc_type=MeshBufferAllocator, objc_selector="initWithDevice:", objc_name="initWithDevice")
-    MeshBufferAllocator_initWithDevice :: proc(self: ^MeshBufferAllocator, device: ^MTL.Device) -> ^MeshBufferAllocator ---
+    MeshBufferAllocator_initWithDevice :: proc(self: ^MeshBufferAllocator, device: ^MTL.Device) -> instancetype ---
 
     @(objc_type=MeshBufferAllocator, objc_selector="device", objc_name="device")
     MeshBufferAllocator_device :: proc(self: ^MeshBufferAllocator) -> ^MTL.Device ---

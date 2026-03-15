@@ -98,10 +98,10 @@ foreign lib {
     CalendarDate_years :: proc(self: ^CalendarDate, yp: ^Integer, mop: ^Integer, dp: ^Integer, hp: ^Integer, mip: ^Integer, sp: ^Integer, date: ^CalendarDate) ---
 
     @(objc_type=CalendarDate, objc_selector="distantFuture", objc_name="distantFuture", objc_is_class_method=true)
-    CalendarDate_distantFuture :: proc() -> ^CalendarDate ---
+    CalendarDate_distantFuture :: proc() -> instancetype ---
 
     @(objc_type=CalendarDate, objc_selector="distantPast", objc_name="distantPast", objc_is_class_method=true)
-    CalendarDate_distantPast :: proc() -> ^CalendarDate ---
+    CalendarDate_distantPast :: proc() -> instancetype ---
 }
 
 @(objc_type=CalendarDate, objc_name="dateWithString")

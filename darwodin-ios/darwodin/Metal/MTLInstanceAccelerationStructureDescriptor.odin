@@ -22,7 +22,7 @@ InstanceAccelerationStructureDescriptor :: struct { using _: AccelerationStructu
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=InstanceAccelerationStructureDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
-    InstanceAccelerationStructureDescriptor_descriptor :: proc() -> ^InstanceAccelerationStructureDescriptor ---
+    InstanceAccelerationStructureDescriptor_descriptor :: proc() -> instancetype ---
 
     @(objc_type=InstanceAccelerationStructureDescriptor, objc_selector="instanceDescriptorBuffer", objc_name="instanceDescriptorBuffer")
     InstanceAccelerationStructureDescriptor_instanceDescriptorBuffer :: proc(self: ^InstanceAccelerationStructureDescriptor) -> ^Buffer ---

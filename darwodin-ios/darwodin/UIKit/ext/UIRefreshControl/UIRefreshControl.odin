@@ -28,7 +28,7 @@ import "../UIControl"
 
 VTable :: struct {
     super: UIControl.VTable,
-    init: proc(self: ^UI.RefreshControl) -> ^UI.RefreshControl,
+    init: proc(self: ^UI.RefreshControl) -> instancetype,
     beginRefreshing: proc(self: ^UI.RefreshControl),
     endRefreshing: proc(self: ^UI.RefreshControl),
     isRefreshing: proc(self: ^UI.RefreshControl) -> bool,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIControl.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.RefreshControl, _: SEL) -> ^UI.RefreshControl {
+        init :: proc "c" (self: ^UI.RefreshControl, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

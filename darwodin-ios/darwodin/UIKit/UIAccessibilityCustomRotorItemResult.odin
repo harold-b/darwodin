@@ -22,7 +22,7 @@ AccessibilityCustomRotorItemResult :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccessibilityCustomRotorItemResult, objc_selector="initWithTargetElement:targetRange:", objc_name="initWithTargetElement")
-    AccessibilityCustomRotorItemResult_initWithTargetElement :: proc(self: ^AccessibilityCustomRotorItemResult, targetElement: ^NS.ObjectProtocol, targetRange: ^TextRange) -> ^AccessibilityCustomRotorItemResult ---
+    AccessibilityCustomRotorItemResult_initWithTargetElement :: proc(self: ^AccessibilityCustomRotorItemResult, targetElement: ^NS.ObjectProtocol, targetRange: ^TextRange) -> instancetype ---
 
     @(objc_type=AccessibilityCustomRotorItemResult, objc_selector="targetElement", objc_name="targetElement")
     AccessibilityCustomRotorItemResult_targetElement :: proc(self: ^AccessibilityCustomRotorItemResult) -> ^NS.ObjectProtocol ---

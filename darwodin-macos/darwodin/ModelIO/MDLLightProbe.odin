@@ -21,7 +21,7 @@ LightProbe :: struct { using _: Light, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LightProbe, objc_selector="initWithReflectiveTexture:irradianceTexture:", objc_name="initWithReflectiveTexture")
-    LightProbe_initWithReflectiveTexture :: proc(self: ^LightProbe, reflectiveTexture: ^Texture, irradianceTexture: ^Texture) -> ^LightProbe ---
+    LightProbe_initWithReflectiveTexture :: proc(self: ^LightProbe, reflectiveTexture: ^Texture, irradianceTexture: ^Texture) -> instancetype ---
 
     @(objc_type=LightProbe, objc_selector="generateSphericalHarmonicsFromIrradiance:", objc_name="generateSphericalHarmonicsFromIrradiance")
     LightProbe_generateSphericalHarmonicsFromIrradiance :: proc(self: ^LightProbe, sphericalHarmonicsLevel: NS.UInteger) ---

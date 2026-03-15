@@ -24,7 +24,7 @@ FunctionStitchingGraph :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FunctionStitchingGraph, objc_selector="initWithFunctionName:nodes:outputNode:attributes:", objc_name="initWithFunctionName")
-    FunctionStitchingGraph_initWithFunctionName :: proc(self: ^FunctionStitchingGraph, functionName: ^NS.String, nodes: ^NS.Array, outputNode: ^FunctionStitchingFunctionNode, attributes: ^NS.Array) -> ^FunctionStitchingGraph ---
+    FunctionStitchingGraph_initWithFunctionName :: proc(self: ^FunctionStitchingGraph, functionName: ^NS.String, nodes: ^NS.Array, outputNode: ^FunctionStitchingFunctionNode, attributes: ^NS.Array) -> instancetype ---
 
     @(objc_type=FunctionStitchingGraph, objc_selector="functionName", objc_name="functionName")
     FunctionStitchingGraph_functionName :: proc(self: ^FunctionStitchingGraph) -> ^NS.String ---

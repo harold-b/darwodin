@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    registrationWithSupplementaryClass: proc(supplementaryClass: Class, elementKind: ^NS.String, configurationHandler: UI.CollectionViewSupplementaryRegistrationConfigurationHandler) -> ^UI.CollectionViewSupplementaryRegistration,
-    registrationWithSupplementaryNib: proc(supplementaryNib: ^UI.Nib, elementKind: ^NS.String, configurationHandler: UI.CollectionViewSupplementaryRegistrationConfigurationHandler) -> ^UI.CollectionViewSupplementaryRegistration,
+    registrationWithSupplementaryClass: proc(supplementaryClass: Class, elementKind: ^NS.String, configurationHandler: UI.CollectionViewSupplementaryRegistrationConfigurationHandler) -> instancetype,
+    registrationWithSupplementaryNib: proc(supplementaryNib: ^UI.Nib, elementKind: ^NS.String, configurationHandler: UI.CollectionViewSupplementaryRegistrationConfigurationHandler) -> instancetype,
     supplementaryClass: proc(self: ^UI.CollectionViewSupplementaryRegistration) -> Class,
     supplementaryNib: proc(self: ^UI.CollectionViewSupplementaryRegistration) -> ^UI.Nib,
     elementKind: proc(self: ^UI.CollectionViewSupplementaryRegistration) -> ^NS.String,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.registrationWithSupplementaryClass != nil {
-        registrationWithSupplementaryClass :: proc "c" (self: Class, _: SEL, supplementaryClass: Class, elementKind: ^NS.String, configurationHandler: UI.CollectionViewSupplementaryRegistrationConfigurationHandler) -> ^UI.CollectionViewSupplementaryRegistration {
+        registrationWithSupplementaryClass :: proc "c" (self: Class, _: SEL, supplementaryClass: Class, elementKind: ^NS.String, configurationHandler: UI.CollectionViewSupplementaryRegistrationConfigurationHandler) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("registrationWithSupplementaryClass:elementKind:configurationHandler:"), auto_cast registrationWithSupplementaryClass, "@#:#@?") do panic("Failed to register objC method.")
     }
     if vt.registrationWithSupplementaryNib != nil {
-        registrationWithSupplementaryNib :: proc "c" (self: Class, _: SEL, supplementaryNib: ^UI.Nib, elementKind: ^NS.String, configurationHandler: UI.CollectionViewSupplementaryRegistrationConfigurationHandler) -> ^UI.CollectionViewSupplementaryRegistration {
+        registrationWithSupplementaryNib :: proc "c" (self: Class, _: SEL, supplementaryNib: ^UI.Nib, elementKind: ^NS.String, configurationHandler: UI.CollectionViewSupplementaryRegistrationConfigurationHandler) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,7 +28,7 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithDocument: proc(self: ^UI.DocumentViewController, document: ^UI.Document) -> ^UI.DocumentViewController,
+    initWithDocument: proc(self: ^UI.DocumentViewController, document: ^UI.Document) -> instancetype,
     navigationItemDidUpdate: proc(self: ^UI.DocumentViewController),
     openDocumentWithCompletionHandler: proc(self: ^UI.DocumentViewController, completionHandler: ^Objc_Block(proc "c" (success: bool))),
     documentDidOpen: proc(self: ^UI.DocumentViewController),
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithDocument != nil {
-        initWithDocument :: proc "c" (self: ^UI.DocumentViewController, _: SEL, document: ^UI.Document) -> ^UI.DocumentViewController {
+        initWithDocument :: proc "c" (self: ^UI.DocumentViewController, _: SEL, document: ^UI.Document) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

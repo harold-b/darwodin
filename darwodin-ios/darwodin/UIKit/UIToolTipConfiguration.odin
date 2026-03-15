@@ -22,16 +22,16 @@ ToolTipConfiguration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ToolTipConfiguration, objc_selector="configurationWithToolTip:", objc_name="configurationWithToolTip_", objc_is_class_method=true)
-    ToolTipConfiguration_configurationWithToolTip_ :: proc(toolTip: ^NS.String) -> ^ToolTipConfiguration ---
+    ToolTipConfiguration_configurationWithToolTip_ :: proc(toolTip: ^NS.String) -> instancetype ---
 
     @(objc_type=ToolTipConfiguration, objc_selector="configurationWithToolTip:inRect:", objc_name="configurationWithToolTip_inRect", objc_is_class_method=true)
-    ToolTipConfiguration_configurationWithToolTip_inRect :: proc(toolTip: ^NS.String, sourceRect: CG.Rect) -> ^ToolTipConfiguration ---
+    ToolTipConfiguration_configurationWithToolTip_inRect :: proc(toolTip: ^NS.String, sourceRect: CG.Rect) -> instancetype ---
 
     @(objc_type=ToolTipConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ToolTipConfiguration_new :: proc() -> ^ToolTipConfiguration ---
 
     @(objc_type=ToolTipConfiguration, objc_selector="init", objc_name="init")
-    ToolTipConfiguration_init :: proc(self: ^ToolTipConfiguration) -> ^ToolTipConfiguration ---
+    ToolTipConfiguration_init :: proc(self: ^ToolTipConfiguration) -> instancetype ---
 
     @(objc_type=ToolTipConfiguration, objc_selector="toolTip", objc_name="toolTip")
     ToolTipConfiguration_toolTip :: proc(self: ^ToolTipConfiguration) -> ^NS.String ---

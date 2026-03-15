@@ -30,8 +30,8 @@ import "../NSController"
 
 VTable :: struct {
     super: NSController.VTable,
-    initWithDefaults: proc(self: ^AK.UserDefaultsController, defaults: ^NS.UserDefaults, initialValues: ^NS.Dictionary) -> ^AK.UserDefaultsController,
-    initWithCoder: proc(self: ^AK.UserDefaultsController, coder: ^NS.Coder) -> ^AK.UserDefaultsController,
+    initWithDefaults: proc(self: ^AK.UserDefaultsController, defaults: ^NS.UserDefaults, initialValues: ^NS.Dictionary) -> instancetype,
+    initWithCoder: proc(self: ^AK.UserDefaultsController, coder: ^NS.Coder) -> instancetype,
     revert: proc(self: ^AK.UserDefaultsController, sender: id),
     save: proc(self: ^AK.UserDefaultsController, sender: id),
     revertToInitialValues: proc(self: ^AK.UserDefaultsController, sender: id),
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSController.extend(cls, &vt.super)
 
     if vt.initWithDefaults != nil {
-        initWithDefaults :: proc "c" (self: ^AK.UserDefaultsController, _: SEL, defaults: ^NS.UserDefaults, initialValues: ^NS.Dictionary) -> ^AK.UserDefaultsController {
+        initWithDefaults :: proc "c" (self: ^AK.UserDefaultsController, _: SEL, defaults: ^NS.UserDefaults, initialValues: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDefaults:initialValues:"), auto_cast initWithDefaults, "@@:@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.UserDefaultsController, _: SEL, coder: ^NS.Coder) -> ^AK.UserDefaultsController {
+        initWithCoder :: proc "c" (self: ^AK.UserDefaultsController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

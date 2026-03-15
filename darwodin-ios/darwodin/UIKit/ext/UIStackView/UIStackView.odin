@@ -28,9 +28,9 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithFrame: proc(self: ^UI.StackView, frame: CG.Rect) -> ^UI.StackView,
-    initWithCoder: proc(self: ^UI.StackView, coder: ^NS.Coder) -> ^UI.StackView,
-    initWithArrangedSubviews: proc(self: ^UI.StackView, views: ^NS.Array) -> ^UI.StackView,
+    initWithFrame: proc(self: ^UI.StackView, frame: CG.Rect) -> instancetype,
+    initWithCoder: proc(self: ^UI.StackView, coder: ^NS.Coder) -> instancetype,
+    initWithArrangedSubviews: proc(self: ^UI.StackView, views: ^NS.Array) -> instancetype,
     addArrangedSubview: proc(self: ^UI.StackView, view: ^UI.View),
     removeArrangedSubview: proc(self: ^UI.StackView, view: ^UI.View),
     insertArrangedSubview: proc(self: ^UI.StackView, view: ^UI.View, stackIndex: NS.UInteger),
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.StackView, _: SEL, frame: CG.Rect) -> ^UI.StackView {
+        initWithFrame :: proc "c" (self: ^UI.StackView, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.StackView, _: SEL, coder: ^NS.Coder) -> ^UI.StackView {
+        initWithCoder :: proc "c" (self: ^UI.StackView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithArrangedSubviews != nil {
-        initWithArrangedSubviews :: proc "c" (self: ^UI.StackView, _: SEL, views: ^NS.Array) -> ^UI.StackView {
+        initWithArrangedSubviews :: proc "c" (self: ^UI.StackView, _: SEL, views: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

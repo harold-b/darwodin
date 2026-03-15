@@ -28,7 +28,7 @@ import "../UIDynamicBehavior"
 
 VTable :: struct {
     super: UIDynamicBehavior.VTable,
-    initWithItems: proc(self: ^UI.GravityBehavior, items: ^NS.Array) -> ^UI.GravityBehavior,
+    initWithItems: proc(self: ^UI.GravityBehavior, items: ^NS.Array) -> instancetype,
     addItem: proc(self: ^UI.GravityBehavior, item: ^UI.DynamicItem),
     removeItem: proc(self: ^UI.GravityBehavior, item: ^UI.DynamicItem),
     setAngle_magnitude: proc(self: ^UI.GravityBehavior, angle: CG.Float, magnitude: CG.Float),
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIDynamicBehavior.extend(cls, &vt.super)
 
     if vt.initWithItems != nil {
-        initWithItems :: proc "c" (self: ^UI.GravityBehavior, _: SEL, items: ^NS.Array) -> ^UI.GravityBehavior {
+        initWithItems :: proc "c" (self: ^UI.GravityBehavior, _: SEL, items: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

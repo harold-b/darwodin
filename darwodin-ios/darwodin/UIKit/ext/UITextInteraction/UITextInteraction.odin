@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    textInteractionForMode: proc(mode: UI.TextInteractionMode) -> ^UI.TextInteraction,
+    textInteractionForMode: proc(mode: UI.TextInteractionMode) -> instancetype,
     delegate: proc(self: ^UI.TextInteraction) -> ^UI.TextInteractionDelegate,
     setDelegate: proc(self: ^UI.TextInteraction, delegate: ^UI.TextInteractionDelegate),
     textInput: proc(self: ^UI.TextInteraction) -> ^UI.Responder,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.textInteractionForMode != nil {
-        textInteractionForMode :: proc "c" (self: Class, _: SEL, mode: UI.TextInteractionMode) -> ^UI.TextInteraction {
+        textInteractionForMode :: proc "c" (self: Class, _: SEL, mode: UI.TextInteractionMode) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

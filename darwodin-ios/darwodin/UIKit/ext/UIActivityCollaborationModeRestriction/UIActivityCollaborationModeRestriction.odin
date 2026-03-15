@@ -28,11 +28,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDisabledMode_: proc(self: ^UI.ActivityCollaborationModeRestriction, disabledMode: UI.ActivityCollaborationMode) -> ^UI.ActivityCollaborationModeRestriction,
-    initWithDisabledMode_alertTitle_alertMessage: proc(self: ^UI.ActivityCollaborationModeRestriction, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> ^UI.ActivityCollaborationModeRestriction,
-    initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle: proc(self: ^UI.ActivityCollaborationModeRestriction, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> ^UI.ActivityCollaborationModeRestriction,
-    initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL: proc(self: ^UI.ActivityCollaborationModeRestriction, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> ^UI.ActivityCollaborationModeRestriction,
-    init: proc(self: ^UI.ActivityCollaborationModeRestriction) -> ^UI.ActivityCollaborationModeRestriction,
+    initWithDisabledMode_: proc(self: ^UI.ActivityCollaborationModeRestriction, disabledMode: UI.ActivityCollaborationMode) -> instancetype,
+    initWithDisabledMode_alertTitle_alertMessage: proc(self: ^UI.ActivityCollaborationModeRestriction, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> instancetype,
+    initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle: proc(self: ^UI.ActivityCollaborationModeRestriction, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> instancetype,
+    initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL: proc(self: ^UI.ActivityCollaborationModeRestriction, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> instancetype,
+    init: proc(self: ^UI.ActivityCollaborationModeRestriction) -> instancetype,
     new: proc() -> ^UI.ActivityCollaborationModeRestriction,
     description: proc(self: ^UI.ActivityCollaborationModeRestriction) -> ^NS.String,
     disabledMode: proc(self: ^UI.ActivityCollaborationModeRestriction) -> UI.ActivityCollaborationMode,
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDisabledMode_ != nil {
-        initWithDisabledMode_ :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL, disabledMode: UI.ActivityCollaborationMode) -> ^UI.ActivityCollaborationModeRestriction {
+        initWithDisabledMode_ :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL, disabledMode: UI.ActivityCollaborationMode) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDisabledMode:"), auto_cast initWithDisabledMode_, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithDisabledMode_alertTitle_alertMessage != nil {
-        initWithDisabledMode_alertTitle_alertMessage :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> ^UI.ActivityCollaborationModeRestriction {
+        initWithDisabledMode_alertTitle_alertMessage :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDisabledMode:alertTitle:alertMessage:"), auto_cast initWithDisabledMode_alertTitle_alertMessage, "@@:l@@") do panic("Failed to register objC method.")
     }
     if vt.initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle != nil {
-        initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> ^UI.ActivityCollaborationModeRestriction {
+        initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:"), auto_cast initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle, "@@:l@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL != nil {
-        initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> ^UI.ActivityCollaborationModeRestriction {
+        initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL, disabledMode: UI.ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:"), auto_cast initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL, "@@:l@@@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL) -> ^UI.ActivityCollaborationModeRestriction {
+        init :: proc "c" (self: ^UI.ActivityCollaborationModeRestriction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

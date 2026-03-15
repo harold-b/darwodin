@@ -30,14 +30,14 @@ import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
-    initWithFocusedViewRect: proc(self: ^AK.BitmapImageRep, rect: NS.Rect) -> ^AK.BitmapImageRep,
-    initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel: proc(self: ^AK.BitmapImageRep, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, rBytes: NS.Integer, pBits: NS.Integer) -> ^AK.BitmapImageRep,
-    initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel: proc(self: ^AK.BitmapImageRep, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, bitmapFormat: AK.BitmapFormat, rBytes: NS.Integer, pBits: NS.Integer) -> ^AK.BitmapImageRep,
-    initWithCGImage: proc(self: ^AK.BitmapImageRep, cgImage: CG.ImageRef) -> ^AK.BitmapImageRep,
-    initWithCIImage: proc(self: ^AK.BitmapImageRep, ciImage: ^AK.CIImage) -> ^AK.BitmapImageRep,
+    initWithFocusedViewRect: proc(self: ^AK.BitmapImageRep, rect: NS.Rect) -> instancetype,
+    initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel: proc(self: ^AK.BitmapImageRep, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, rBytes: NS.Integer, pBits: NS.Integer) -> instancetype,
+    initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel: proc(self: ^AK.BitmapImageRep, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, bitmapFormat: AK.BitmapFormat, rBytes: NS.Integer, pBits: NS.Integer) -> instancetype,
+    initWithCGImage: proc(self: ^AK.BitmapImageRep, cgImage: CG.ImageRef) -> instancetype,
+    initWithCIImage: proc(self: ^AK.BitmapImageRep, ciImage: ^AK.CIImage) -> instancetype,
     imageRepsWithData: proc(data: ^NS.Data) -> ^NS.Array,
-    imageRepWithData: proc(data: ^NS.Data) -> ^AK.BitmapImageRep,
-    initWithData: proc(self: ^AK.BitmapImageRep, data: ^NS.Data) -> ^AK.BitmapImageRep,
+    imageRepWithData: proc(data: ^NS.Data) -> instancetype,
+    initWithData: proc(self: ^AK.BitmapImageRep, data: ^NS.Data) -> instancetype,
     getBitmapDataPlanes: proc(self: ^AK.BitmapImageRep, data: ^^cffi.uchar),
     getCompression: proc(self: ^AK.BitmapImageRep, compression: ^AK.TIFFCompression, factor: ^cffi.float),
     setCompression: proc(self: ^AK.BitmapImageRep, compression: AK.TIFFCompression, factor: cffi.float),
@@ -48,7 +48,7 @@ VTable :: struct {
     localizedNameForTIFFCompressionType: proc(compression: AK.TIFFCompression) -> ^NS.String,
     canBeCompressedUsing: proc(self: ^AK.BitmapImageRep, compression: AK.TIFFCompression) -> bool,
     colorizeByMappingGray: proc(self: ^AK.BitmapImageRep, midPoint: CG.Float, midPointColor: ^AK.Color, shadowColor: ^AK.Color, lightColor: ^AK.Color),
-    initForIncrementalLoad: proc(self: ^AK.BitmapImageRep) -> ^AK.BitmapImageRep,
+    initForIncrementalLoad: proc(self: ^AK.BitmapImageRep) -> instancetype,
     incrementalLoadFromData: proc(self: ^AK.BitmapImageRep, data: ^NS.Data, complete: bool) -> NS.Integer,
     setColor: proc(self: ^AK.BitmapImageRep, color: ^AK.Color, x: NS.Integer, y: NS.Integer),
     colorAtX: proc(self: ^AK.BitmapImageRep, x: NS.Integer, y: NS.Integer) -> ^AK.Color,
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSImageRep.extend(cls, &vt.super)
 
     if vt.initWithFocusedViewRect != nil {
-        initWithFocusedViewRect :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, rect: NS.Rect) -> ^AK.BitmapImageRep {
+        initWithFocusedViewRect :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, rect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFocusedViewRect:"), auto_cast initWithFocusedViewRect, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel != nil {
-        initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, rBytes: NS.Integer, pBits: NS.Integer) -> ^AK.BitmapImageRep {
+        initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, rBytes: NS.Integer, pBits: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:"), auto_cast initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel, "@@:^voidllllBB@ll") do panic("Failed to register objC method.")
     }
     if vt.initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel != nil {
-        initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, bitmapFormat: AK.BitmapFormat, rBytes: NS.Integer, pBits: NS.Integer) -> ^AK.BitmapImageRep {
+        initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, bitmapFormat: AK.BitmapFormat, rBytes: NS.Integer, pBits: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:"), auto_cast initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel, "@@:^voidllllBB@Lll") do panic("Failed to register objC method.")
     }
     if vt.initWithCGImage != nil {
-        initWithCGImage :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, cgImage: CG.ImageRef) -> ^AK.BitmapImageRep {
+        initWithCGImage :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, cgImage: CG.ImageRef) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCGImage:"), auto_cast initWithCGImage, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCIImage != nil {
-        initWithCIImage :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, ciImage: ^AK.CIImage) -> ^AK.BitmapImageRep {
+        initWithCIImage :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, ciImage: ^AK.CIImage) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithData:"), auto_cast imageRepsWithData, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.imageRepWithData != nil {
-        imageRepWithData :: proc "c" (self: Class, _: SEL, data: ^NS.Data) -> ^AK.BitmapImageRep {
+        imageRepWithData :: proc "c" (self: Class, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithData:"), auto_cast imageRepWithData, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, data: ^NS.Data) -> ^AK.BitmapImageRep {
+        initWithData :: proc "c" (self: ^AK.BitmapImageRep, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -261,7 +261,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("colorizeByMappingGray:toColor:blackMapping:whiteMapping:"), auto_cast colorizeByMappingGray, "v@:d@@@") do panic("Failed to register objC method.")
     }
     if vt.initForIncrementalLoad != nil {
-        initForIncrementalLoad :: proc "c" (self: ^AK.BitmapImageRep, _: SEL) -> ^AK.BitmapImageRep {
+        initForIncrementalLoad :: proc "c" (self: ^AK.BitmapImageRep, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

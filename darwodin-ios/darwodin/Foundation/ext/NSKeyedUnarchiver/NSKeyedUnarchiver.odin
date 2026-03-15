@@ -26,15 +26,15 @@ import "../NSCoder"
 
 VTable :: struct {
     super: NSCoder.VTable,
-    initForReadingFromData: proc(self: ^NS.KeyedUnarchiver, data: ^NS.Data, error: ^^NS.Error) -> ^NS.KeyedUnarchiver,
+    initForReadingFromData: proc(self: ^NS.KeyedUnarchiver, data: ^NS.Data, error: ^^NS.Error) -> instancetype,
     unarchivedObjectOfClass: proc(cls: Class, data: ^NS.Data, error: ^^NS.Error) -> id,
     unarchivedArrayOfObjectsOfClass: proc(cls: Class, data: ^NS.Data, error: ^^NS.Error) -> ^NS.Array,
     unarchivedDictionaryWithKeysOfClass: proc(keyCls: Class, valueCls: Class, data: ^NS.Data, error: ^^NS.Error) -> ^NS.Dictionary,
     unarchivedObjectOfClasses: proc(classes: ^NS.Set, data: ^NS.Data, error: ^^NS.Error) -> id,
     unarchivedArrayOfObjectsOfClasses: proc(classes: ^NS.Set, data: ^NS.Data, error: ^^NS.Error) -> ^NS.Array,
     unarchivedDictionaryWithKeysOfClasses: proc(keyClasses: ^NS.Set, valueClasses: ^NS.Set, data: ^NS.Data, error: ^^NS.Error) -> ^NS.Dictionary,
-    init: proc(self: ^NS.KeyedUnarchiver) -> ^NS.KeyedUnarchiver,
-    initForReadingWithData: proc(self: ^NS.KeyedUnarchiver, data: ^NS.Data) -> ^NS.KeyedUnarchiver,
+    init: proc(self: ^NS.KeyedUnarchiver) -> instancetype,
+    initForReadingWithData: proc(self: ^NS.KeyedUnarchiver, data: ^NS.Data) -> instancetype,
     unarchiveObjectWithData: proc(data: ^NS.Data) -> id,
     unarchiveTopLevelObjectWithData: proc(data: ^NS.Data, error: ^^NS.Error) -> id,
     unarchiveObjectWithFile: proc(path: ^NS.String) -> id,
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCoder.extend(cls, &vt.super)
 
     if vt.initForReadingFromData != nil {
-        initForReadingFromData :: proc "c" (self: ^NS.KeyedUnarchiver, _: SEL, data: ^NS.Data, error: ^^NS.Error) -> ^NS.KeyedUnarchiver {
+        initForReadingFromData :: proc "c" (self: ^NS.KeyedUnarchiver, _: SEL, data: ^NS.Data, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -138,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("unarchivedDictionaryWithKeysOfClasses:objectsOfClasses:fromData:error:"), auto_cast unarchivedDictionaryWithKeysOfClasses, "@#:^void^void@^void") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.KeyedUnarchiver, _: SEL) -> ^NS.KeyedUnarchiver {
+        init :: proc "c" (self: ^NS.KeyedUnarchiver, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initForReadingWithData != nil {
-        initForReadingWithData :: proc "c" (self: ^NS.KeyedUnarchiver, _: SEL, data: ^NS.Data) -> ^NS.KeyedUnarchiver {
+        initForReadingWithData :: proc "c" (self: ^NS.KeyedUnarchiver, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

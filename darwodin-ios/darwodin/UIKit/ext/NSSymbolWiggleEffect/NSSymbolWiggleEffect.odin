@@ -28,18 +28,18 @@ import "../NSSymbolEffect"
 
 VTable :: struct {
     super: NSSymbolEffect.VTable,
-    effect: proc() -> ^UI.NSSymbolWiggleEffect,
-    wiggleClockwiseEffect: proc() -> ^UI.NSSymbolWiggleEffect,
-    wiggleCounterClockwiseEffect: proc() -> ^UI.NSSymbolWiggleEffect,
-    wiggleLeftEffect: proc() -> ^UI.NSSymbolWiggleEffect,
-    wiggleRightEffect: proc() -> ^UI.NSSymbolWiggleEffect,
-    wiggleUpEffect: proc() -> ^UI.NSSymbolWiggleEffect,
-    wiggleDownEffect: proc() -> ^UI.NSSymbolWiggleEffect,
-    wiggleForwardEffect: proc() -> ^UI.NSSymbolWiggleEffect,
-    wiggleBackwardEffect: proc() -> ^UI.NSSymbolWiggleEffect,
-    wiggleCustomAngleEffect: proc(angle: cffi.double) -> ^UI.NSSymbolWiggleEffect,
-    effectWithByLayer: proc(self: ^UI.NSSymbolWiggleEffect) -> ^UI.NSSymbolWiggleEffect,
-    effectWithWholeSymbol: proc(self: ^UI.NSSymbolWiggleEffect) -> ^UI.NSSymbolWiggleEffect,
+    effect: proc() -> instancetype,
+    wiggleClockwiseEffect: proc() -> instancetype,
+    wiggleCounterClockwiseEffect: proc() -> instancetype,
+    wiggleLeftEffect: proc() -> instancetype,
+    wiggleRightEffect: proc() -> instancetype,
+    wiggleUpEffect: proc() -> instancetype,
+    wiggleDownEffect: proc() -> instancetype,
+    wiggleForwardEffect: proc() -> instancetype,
+    wiggleBackwardEffect: proc() -> instancetype,
+    wiggleCustomAngleEffect: proc(angle: cffi.double) -> instancetype,
+    effectWithByLayer: proc(self: ^UI.NSSymbolWiggleEffect) -> instancetype,
+    effectWithWholeSymbol: proc(self: ^UI.NSSymbolWiggleEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSSymbolEffect.extend(cls, &vt.super)
 
     if vt.effect != nil {
-        effect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        effect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.wiggleClockwiseEffect != nil {
-        wiggleClockwiseEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        wiggleClockwiseEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wiggleClockwiseEffect"), auto_cast wiggleClockwiseEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.wiggleCounterClockwiseEffect != nil {
-        wiggleCounterClockwiseEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        wiggleCounterClockwiseEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wiggleCounterClockwiseEffect"), auto_cast wiggleCounterClockwiseEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.wiggleLeftEffect != nil {
-        wiggleLeftEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        wiggleLeftEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wiggleLeftEffect"), auto_cast wiggleLeftEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.wiggleRightEffect != nil {
-        wiggleRightEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        wiggleRightEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wiggleRightEffect"), auto_cast wiggleRightEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.wiggleUpEffect != nil {
-        wiggleUpEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        wiggleUpEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wiggleUpEffect"), auto_cast wiggleUpEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.wiggleDownEffect != nil {
-        wiggleDownEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        wiggleDownEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wiggleDownEffect"), auto_cast wiggleDownEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.wiggleForwardEffect != nil {
-        wiggleForwardEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        wiggleForwardEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wiggleForwardEffect"), auto_cast wiggleForwardEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.wiggleBackwardEffect != nil {
-        wiggleBackwardEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        wiggleBackwardEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wiggleBackwardEffect"), auto_cast wiggleBackwardEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.wiggleCustomAngleEffect != nil {
-        wiggleCustomAngleEffect :: proc "c" (self: Class, _: SEL, angle: cffi.double) -> ^UI.NSSymbolWiggleEffect {
+        wiggleCustomAngleEffect :: proc "c" (self: Class, _: SEL, angle: cffi.double) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wiggleCustomAngleEffect:"), auto_cast wiggleCustomAngleEffect, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.effectWithByLayer != nil {
-        effectWithByLayer :: proc "c" (self: ^UI.NSSymbolWiggleEffect, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        effectWithByLayer :: proc "c" (self: ^UI.NSSymbolWiggleEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithByLayer"), auto_cast effectWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithWholeSymbol != nil {
-        effectWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolWiggleEffect, _: SEL) -> ^UI.NSSymbolWiggleEffect {
+        effectWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolWiggleEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

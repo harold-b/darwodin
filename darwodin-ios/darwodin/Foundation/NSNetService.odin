@@ -20,10 +20,10 @@ NetService :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NetService, objc_selector="initWithDomain:type:name:port:", objc_name="initWithDomain_type_name_port")
-    NetService_initWithDomain_type_name_port :: proc(self: ^NetService, domain: ^String, type: ^String, name: ^String, port: cffi.int) -> ^NetService ---
+    NetService_initWithDomain_type_name_port :: proc(self: ^NetService, domain: ^String, type: ^String, name: ^String, port: cffi.int) -> instancetype ---
 
     @(objc_type=NetService, objc_selector="initWithDomain:type:name:", objc_name="initWithDomain_type_name")
-    NetService_initWithDomain_type_name :: proc(self: ^NetService, domain: ^String, type: ^String, name: ^String) -> ^NetService ---
+    NetService_initWithDomain_type_name :: proc(self: ^NetService, domain: ^String, type: ^String, name: ^String) -> instancetype ---
 
     @(objc_type=NetService, objc_selector="scheduleInRunLoop:forMode:", objc_name="scheduleInRunLoop")
     NetService_scheduleInRunLoop :: proc(self: ^NetService, aRunLoop: ^RunLoop, mode: ^String) ---

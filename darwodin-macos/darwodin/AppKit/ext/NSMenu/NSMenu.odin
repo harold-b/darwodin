@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTitle: proc(self: ^AK.Menu, title: ^NS.String) -> ^AK.Menu,
-    initWithCoder: proc(self: ^AK.Menu, coder: ^NS.Coder) -> ^AK.Menu,
+    initWithTitle: proc(self: ^AK.Menu, title: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^AK.Menu, coder: ^NS.Coder) -> instancetype,
     popUpContextMenu_withEvent_forView: proc(menu: ^AK.Menu, event: ^AK.Event, view: ^AK.View),
     popUpContextMenu_withEvent_forView_withFont: proc(menu: ^AK.Menu, event: ^AK.Event, view: ^AK.View, font: ^AK.Font),
     popUpMenuPositioningItem: proc(self: ^AK.Menu, item: ^AK.MenuItem, location: CG.Point, view: ^AK.View) -> bool,
@@ -86,8 +86,8 @@ VTable :: struct {
     setShowsStateColumn: proc(self: ^AK.Menu, showsStateColumn: bool),
     userInterfaceLayoutDirection: proc(self: ^AK.Menu) -> AK.UserInterfaceLayoutDirection,
     setUserInterfaceLayoutDirection: proc(self: ^AK.Menu, userInterfaceLayoutDirection: AK.UserInterfaceLayoutDirection),
-    paletteMenuWithColors_titles_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> ^AK.Menu,
-    paletteMenuWithColors_titles_templateImage_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> ^AK.Menu,
+    paletteMenuWithColors_titles_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> instancetype,
+    paletteMenuWithColors_titles_templateImage_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> instancetype,
     presentationStyle: proc(self: ^AK.Menu) -> AK.MenuPresentationStyle,
     setPresentationStyle: proc(self: ^AK.Menu, presentationStyle: AK.MenuPresentationStyle),
     selectionMode: proc(self: ^AK.Menu) -> AK.MenuSelectionMode,
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^AK.Menu, _: SEL, title: ^NS.String) -> ^AK.Menu {
+        initWithTitle :: proc "c" (self: ^AK.Menu, _: SEL, title: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:"), auto_cast initWithTitle, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Menu, _: SEL, coder: ^NS.Coder) -> ^AK.Menu {
+        initWithCoder :: proc "c" (self: ^AK.Menu, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -682,7 +682,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUserInterfaceLayoutDirection:"), auto_cast setUserInterfaceLayoutDirection, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.paletteMenuWithColors_titles_selectionHandler != nil {
-        paletteMenuWithColors_titles_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> ^AK.Menu {
+        paletteMenuWithColors_titles_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -692,7 +692,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("paletteMenuWithColors:titles:selectionHandler:"), auto_cast paletteMenuWithColors_titles_selectionHandler, "@#:^void^void?") do panic("Failed to register objC method.")
     }
     if vt.paletteMenuWithColors_titles_templateImage_selectionHandler != nil {
-        paletteMenuWithColors_titles_templateImage_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> ^AK.Menu {
+        paletteMenuWithColors_titles_templateImage_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

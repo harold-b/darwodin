@@ -24,7 +24,7 @@ SpeechRecognizer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechRecognizer, objc_selector="init", objc_name="init")
-    SpeechRecognizer_init :: proc(self: ^SpeechRecognizer) -> ^SpeechRecognizer ---
+    SpeechRecognizer_init :: proc(self: ^SpeechRecognizer) -> instancetype ---
 
     @(objc_type=SpeechRecognizer, objc_selector="startListening", objc_name="startListening")
     SpeechRecognizer_startListening :: proc(self: ^SpeechRecognizer) ---

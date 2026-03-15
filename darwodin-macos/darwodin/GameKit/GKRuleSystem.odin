@@ -19,7 +19,7 @@ RuleSystem :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RuleSystem, objc_selector="init", objc_name="init")
-    RuleSystem_init :: proc(self: ^RuleSystem) -> ^RuleSystem ---
+    RuleSystem_init :: proc(self: ^RuleSystem) -> instancetype ---
 
     @(objc_type=RuleSystem, objc_selector="evaluate", objc_name="evaluate")
     RuleSystem_evaluate :: proc(self: ^RuleSystem) ---

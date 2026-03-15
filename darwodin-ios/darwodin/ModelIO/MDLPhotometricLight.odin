@@ -21,7 +21,7 @@ PhotometricLight :: struct { using _: PhysicallyPlausibleLight, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PhotometricLight, objc_selector="initWithIESProfile:", objc_name="initWithIESProfile")
-    PhotometricLight_initWithIESProfile :: proc(self: ^PhotometricLight, _URL: ^NS.URL) -> ^PhotometricLight ---
+    PhotometricLight_initWithIESProfile :: proc(self: ^PhotometricLight, _URL: ^NS.URL) -> instancetype ---
 
     @(objc_type=PhotometricLight, objc_selector="generateSphericalHarmonicsFromLight:", objc_name="generateSphericalHarmonicsFromLight")
     PhotometricLight_generateSphericalHarmonicsFromLight :: proc(self: ^PhotometricLight, sphericalHarmonicsLevel: NS.UInteger) ---

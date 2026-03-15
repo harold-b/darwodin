@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithFileType: proc(self: ^AK.FilePromiseProvider, fileType: ^NS.String, delegate: ^AK.FilePromiseProviderDelegate) -> ^AK.FilePromiseProvider,
-    init: proc(self: ^AK.FilePromiseProvider) -> ^AK.FilePromiseProvider,
+    initWithFileType: proc(self: ^AK.FilePromiseProvider, fileType: ^NS.String, delegate: ^AK.FilePromiseProviderDelegate) -> instancetype,
+    init: proc(self: ^AK.FilePromiseProvider) -> instancetype,
     fileType: proc(self: ^AK.FilePromiseProvider) -> ^NS.String,
     setFileType: proc(self: ^AK.FilePromiseProvider, fileType: ^NS.String),
     delegate: proc(self: ^AK.FilePromiseProvider) -> ^AK.FilePromiseProviderDelegate,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithFileType != nil {
-        initWithFileType :: proc "c" (self: ^AK.FilePromiseProvider, _: SEL, fileType: ^NS.String, delegate: ^AK.FilePromiseProviderDelegate) -> ^AK.FilePromiseProvider {
+        initWithFileType :: proc "c" (self: ^AK.FilePromiseProvider, _: SEL, fileType: ^NS.String, delegate: ^AK.FilePromiseProviderDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFileType:delegate:"), auto_cast initWithFileType, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.FilePromiseProvider, _: SEL) -> ^AK.FilePromiseProvider {
+        init :: proc "c" (self: ^AK.FilePromiseProvider, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

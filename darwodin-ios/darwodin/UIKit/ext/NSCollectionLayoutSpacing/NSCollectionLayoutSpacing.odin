@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    flexibleSpacing: proc(flexibleSpacing: CG.Float) -> ^UI.NSCollectionLayoutSpacing,
-    fixedSpacing: proc(fixedSpacing: CG.Float) -> ^UI.NSCollectionLayoutSpacing,
-    init: proc(self: ^UI.NSCollectionLayoutSpacing) -> ^UI.NSCollectionLayoutSpacing,
+    flexibleSpacing: proc(flexibleSpacing: CG.Float) -> instancetype,
+    fixedSpacing: proc(fixedSpacing: CG.Float) -> instancetype,
+    init: proc(self: ^UI.NSCollectionLayoutSpacing) -> instancetype,
     new: proc() -> ^UI.NSCollectionLayoutSpacing,
     spacing: proc(self: ^UI.NSCollectionLayoutSpacing) -> CG.Float,
     isFlexibleSpacing: proc(self: ^UI.NSCollectionLayoutSpacing) -> bool,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.flexibleSpacing != nil {
-        flexibleSpacing :: proc "c" (self: Class, _: SEL, flexibleSpacing: CG.Float) -> ^UI.NSCollectionLayoutSpacing {
+        flexibleSpacing :: proc "c" (self: Class, _: SEL, flexibleSpacing: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("flexibleSpacing:"), auto_cast flexibleSpacing, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.fixedSpacing != nil {
-        fixedSpacing :: proc "c" (self: Class, _: SEL, fixedSpacing: CG.Float) -> ^UI.NSCollectionLayoutSpacing {
+        fixedSpacing :: proc "c" (self: Class, _: SEL, fixedSpacing: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fixedSpacing:"), auto_cast fixedSpacing, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSCollectionLayoutSpacing, _: SEL) -> ^UI.NSCollectionLayoutSpacing {
+        init :: proc "c" (self: ^UI.NSCollectionLayoutSpacing, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

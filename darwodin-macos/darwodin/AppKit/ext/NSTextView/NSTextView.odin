@@ -30,11 +30,11 @@ import "../NSText"
 
 VTable :: struct {
     super: NSText.VTable,
-    initWithFrame_textContainer: proc(self: ^AK.TextView, frameRect: NS.Rect, container: ^AK.TextContainer) -> ^AK.TextView,
-    initWithCoder: proc(self: ^AK.TextView, coder: ^NS.Coder) -> ^AK.TextView,
-    initWithFrame_: proc(self: ^AK.TextView, frameRect: NS.Rect) -> ^AK.TextView,
-    initUsingTextLayoutManager: proc(self: ^AK.TextView, usingTextLayoutManager: bool) -> ^AK.TextView,
-    textViewUsingTextLayoutManager: proc(usingTextLayoutManager: bool) -> ^AK.TextView,
+    initWithFrame_textContainer: proc(self: ^AK.TextView, frameRect: NS.Rect, container: ^AK.TextContainer) -> instancetype,
+    initWithCoder: proc(self: ^AK.TextView, coder: ^NS.Coder) -> instancetype,
+    initWithFrame_: proc(self: ^AK.TextView, frameRect: NS.Rect) -> instancetype,
+    initUsingTextLayoutManager: proc(self: ^AK.TextView, usingTextLayoutManager: bool) -> instancetype,
+    textViewUsingTextLayoutManager: proc(usingTextLayoutManager: bool) -> instancetype,
     replaceTextContainer: proc(self: ^AK.TextView, newContainer: ^AK.TextContainer),
     invalidateTextContainerOrigin: proc(self: ^AK.TextView),
     insertText: proc(self: ^AK.TextView, insertString: id),
@@ -257,7 +257,7 @@ VTable :: struct {
     setAllowsCharacterPickerTouchBarItem: proc(self: ^AK.TextView, allowsCharacterPickerTouchBarItem: bool),
     candidateListTouchBarItem: proc(self: ^AK.TextView) -> ^AK.CandidateListTouchBarItem,
     scrollableTextView: proc() -> ^AK.ScrollView,
-    fieldEditor: proc() -> ^AK.TextView,
+    fieldEditor: proc() -> instancetype,
     scrollableDocumentContentTextView: proc() -> ^AK.ScrollView,
     scrollablePlainDocumentContentTextView: proc() -> ^AK.ScrollView,
     drawTextHighlightBackgroundForTextRange: proc(self: ^AK.TextView, textRange: ^AK.TextRange, origin: CG.Point),
@@ -275,7 +275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSText.extend(cls, &vt.super)
 
     if vt.initWithFrame_textContainer != nil {
-        initWithFrame_textContainer :: proc "c" (self: ^AK.TextView, _: SEL, frameRect: NS.Rect, container: ^AK.TextContainer) -> ^AK.TextView {
+        initWithFrame_textContainer :: proc "c" (self: ^AK.TextView, _: SEL, frameRect: NS.Rect, container: ^AK.TextContainer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -285,7 +285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:textContainer:"), auto_cast initWithFrame_textContainer, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextView, _: SEL, coder: ^NS.Coder) -> ^AK.TextView {
+        initWithCoder :: proc "c" (self: ^AK.TextView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -295,7 +295,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame_ != nil {
-        initWithFrame_ :: proc "c" (self: ^AK.TextView, _: SEL, frameRect: NS.Rect) -> ^AK.TextView {
+        initWithFrame_ :: proc "c" (self: ^AK.TextView, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -305,7 +305,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame_, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initUsingTextLayoutManager != nil {
-        initUsingTextLayoutManager :: proc "c" (self: ^AK.TextView, _: SEL, usingTextLayoutManager: bool) -> ^AK.TextView {
+        initUsingTextLayoutManager :: proc "c" (self: ^AK.TextView, _: SEL, usingTextLayoutManager: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -315,7 +315,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initUsingTextLayoutManager:"), auto_cast initUsingTextLayoutManager, "@@:B") do panic("Failed to register objC method.")
     }
     if vt.textViewUsingTextLayoutManager != nil {
-        textViewUsingTextLayoutManager :: proc "c" (self: Class, _: SEL, usingTextLayoutManager: bool) -> ^AK.TextView {
+        textViewUsingTextLayoutManager :: proc "c" (self: Class, _: SEL, usingTextLayoutManager: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -2545,7 +2545,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("scrollableTextView"), auto_cast scrollableTextView, "@#:") do panic("Failed to register objC method.")
     }
     if vt.fieldEditor != nil {
-        fieldEditor :: proc "c" (self: Class, _: SEL) -> ^AK.TextView {
+        fieldEditor :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

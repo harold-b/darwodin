@@ -18,7 +18,7 @@ SyncEngineFailedZoneSave :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineFailedZoneSave, objc_selector="init", objc_name="init")
-    SyncEngineFailedZoneSave_init :: proc(self: ^SyncEngineFailedZoneSave) -> ^SyncEngineFailedZoneSave ---
+    SyncEngineFailedZoneSave_init :: proc(self: ^SyncEngineFailedZoneSave) -> instancetype ---
 
     @(objc_type=SyncEngineFailedZoneSave, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEngineFailedZoneSave_new :: proc() -> ^SyncEngineFailedZoneSave ---

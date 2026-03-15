@@ -24,7 +24,7 @@ AnimatablePropertyContainer :: struct { using _: intrinsics.objc_object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimatablePropertyContainer, objc_selector="animator", objc_name="animator")
-    AnimatablePropertyContainer_animator :: proc(self: ^AnimatablePropertyContainer) -> ^AnimatablePropertyContainer ---
+    AnimatablePropertyContainer_animator :: proc(self: ^AnimatablePropertyContainer) -> instancetype ---
 
     @(objc_type=AnimatablePropertyContainer, objc_selector="animationForKey:", objc_name="animationForKey")
     AnimatablePropertyContainer_animationForKey :: proc(self: ^AnimatablePropertyContainer, key: ^NS.String) -> id ---

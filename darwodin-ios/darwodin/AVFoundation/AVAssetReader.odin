@@ -23,16 +23,16 @@ AssetReader :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReader, objc_selector="init", objc_name="init")
-    AssetReader_init :: proc(self: ^AssetReader) -> ^AssetReader ---
+    AssetReader_init :: proc(self: ^AssetReader) -> instancetype ---
 
     @(objc_type=AssetReader, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetReader_new :: proc() -> ^AssetReader ---
 
     @(objc_type=AssetReader, objc_selector="assetReaderWithAsset:error:", objc_name="assetReaderWithAsset", objc_is_class_method=true)
-    AssetReader_assetReaderWithAsset :: proc(asset: ^Asset, outError: ^^NS.Error) -> ^AssetReader ---
+    AssetReader_assetReaderWithAsset :: proc(asset: ^Asset, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AssetReader, objc_selector="initWithAsset:error:", objc_name="initWithAsset")
-    AssetReader_initWithAsset :: proc(self: ^AssetReader, asset: ^Asset, outError: ^^NS.Error) -> ^AssetReader ---
+    AssetReader_initWithAsset :: proc(self: ^AssetReader, asset: ^Asset, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AssetReader, objc_selector="canAddOutput:", objc_name="canAddOutput")
     AssetReader_canAddOutput :: proc(self: ^AssetReader, output: ^AssetReaderOutput) -> bool ---

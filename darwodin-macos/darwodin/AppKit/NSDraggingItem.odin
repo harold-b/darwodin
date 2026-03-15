@@ -24,10 +24,10 @@ DraggingItem :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DraggingItem, objc_selector="initWithPasteboardWriter:", objc_name="initWithPasteboardWriter")
-    DraggingItem_initWithPasteboardWriter :: proc(self: ^DraggingItem, pasteboardWriter: ^PasteboardWriting) -> ^DraggingItem ---
+    DraggingItem_initWithPasteboardWriter :: proc(self: ^DraggingItem, pasteboardWriter: ^PasteboardWriting) -> instancetype ---
 
     @(objc_type=DraggingItem, objc_selector="init", objc_name="init")
-    DraggingItem_init :: proc(self: ^DraggingItem) -> ^DraggingItem ---
+    DraggingItem_init :: proc(self: ^DraggingItem) -> instancetype ---
 
     @(objc_type=DraggingItem, objc_selector="setDraggingFrame:contents:", objc_name="setDraggingFrame_contents")
     DraggingItem_setDraggingFrame_contents :: proc(self: ^DraggingItem, frame: NS.Rect, contents: id) ---

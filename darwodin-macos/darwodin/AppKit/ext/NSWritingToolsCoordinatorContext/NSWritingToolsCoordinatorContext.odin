@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithAttributedString: proc(self: ^AK.WritingToolsCoordinatorContext, attributedString: ^NS.AttributedString, range: NS._NSRange) -> ^AK.WritingToolsCoordinatorContext,
-    init: proc(self: ^AK.WritingToolsCoordinatorContext) -> ^AK.WritingToolsCoordinatorContext,
+    initWithAttributedString: proc(self: ^AK.WritingToolsCoordinatorContext, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype,
+    init: proc(self: ^AK.WritingToolsCoordinatorContext) -> instancetype,
     attributedString: proc(self: ^AK.WritingToolsCoordinatorContext) -> ^NS.AttributedString,
     range: proc(self: ^AK.WritingToolsCoordinatorContext) -> NS._NSRange,
     identifier: proc(self: ^AK.WritingToolsCoordinatorContext) -> ^NS.UUID,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithAttributedString != nil {
-        initWithAttributedString :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL, attributedString: ^NS.AttributedString, range: NS._NSRange) -> ^AK.WritingToolsCoordinatorContext {
+        initWithAttributedString :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedString:range:"), auto_cast initWithAttributedString, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL) -> ^AK.WritingToolsCoordinatorContext {
+        init :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

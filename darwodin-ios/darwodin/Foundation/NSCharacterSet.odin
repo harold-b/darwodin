@@ -36,7 +36,7 @@ foreign lib {
     CharacterSet_characterSetWithContentsOfFile :: proc(fName: ^String) -> ^CharacterSet ---
 
     @(objc_type=CharacterSet, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CharacterSet_initWithCoder :: proc(self: ^CharacterSet, coder: ^Coder) -> ^CharacterSet ---
+    CharacterSet_initWithCoder :: proc(self: ^CharacterSet, coder: ^Coder) -> instancetype ---
 
     @(objc_type=CharacterSet, objc_selector="characterIsMember:", objc_name="characterIsMember")
     CharacterSet_characterIsMember :: proc(self: ^CharacterSet, aCharacter: unichar) -> bool ---

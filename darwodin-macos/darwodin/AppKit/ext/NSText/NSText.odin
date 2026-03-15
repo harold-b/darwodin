@@ -30,8 +30,8 @@ import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    initWithFrame: proc(self: ^AK.Text, frameRect: NS.Rect) -> ^AK.Text,
-    initWithCoder: proc(self: ^AK.Text, coder: ^NS.Coder) -> ^AK.Text,
+    initWithFrame: proc(self: ^AK.Text, frameRect: NS.Rect) -> instancetype,
+    initWithCoder: proc(self: ^AK.Text, coder: ^NS.Coder) -> instancetype,
     replaceCharactersInRange_withString: proc(self: ^AK.Text, range: NS._NSRange, string: ^NS.String),
     replaceCharactersInRange_withRTF: proc(self: ^AK.Text, range: NS._NSRange, rtfData: ^NS.Data),
     replaceCharactersInRange_withRTFD: proc(self: ^AK.Text, range: NS._NSRange, rtfdData: ^NS.Data),
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.Text, _: SEL, frameRect: NS.Rect) -> ^AK.Text {
+        initWithFrame :: proc "c" (self: ^AK.Text, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Text, _: SEL, coder: ^NS.Coder) -> ^AK.Text {
+        initWithCoder :: proc "c" (self: ^AK.Text, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

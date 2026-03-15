@@ -23,16 +23,16 @@ AssetReaderOutputMetadataAdaptor :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderOutputMetadataAdaptor, objc_selector="init", objc_name="init")
-    AssetReaderOutputMetadataAdaptor_init :: proc(self: ^AssetReaderOutputMetadataAdaptor) -> ^AssetReaderOutputMetadataAdaptor ---
+    AssetReaderOutputMetadataAdaptor_init :: proc(self: ^AssetReaderOutputMetadataAdaptor) -> instancetype ---
 
     @(objc_type=AssetReaderOutputMetadataAdaptor, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetReaderOutputMetadataAdaptor_new :: proc() -> ^AssetReaderOutputMetadataAdaptor ---
 
     @(objc_type=AssetReaderOutputMetadataAdaptor, objc_selector="assetReaderOutputMetadataAdaptorWithAssetReaderTrackOutput:", objc_name="assetReaderOutputMetadataAdaptorWithAssetReaderTrackOutput", objc_is_class_method=true)
-    AssetReaderOutputMetadataAdaptor_assetReaderOutputMetadataAdaptorWithAssetReaderTrackOutput :: proc(trackOutput: ^AssetReaderTrackOutput) -> ^AssetReaderOutputMetadataAdaptor ---
+    AssetReaderOutputMetadataAdaptor_assetReaderOutputMetadataAdaptorWithAssetReaderTrackOutput :: proc(trackOutput: ^AssetReaderTrackOutput) -> instancetype ---
 
     @(objc_type=AssetReaderOutputMetadataAdaptor, objc_selector="initWithAssetReaderTrackOutput:", objc_name="initWithAssetReaderTrackOutput")
-    AssetReaderOutputMetadataAdaptor_initWithAssetReaderTrackOutput :: proc(self: ^AssetReaderOutputMetadataAdaptor, trackOutput: ^AssetReaderTrackOutput) -> ^AssetReaderOutputMetadataAdaptor ---
+    AssetReaderOutputMetadataAdaptor_initWithAssetReaderTrackOutput :: proc(self: ^AssetReaderOutputMetadataAdaptor, trackOutput: ^AssetReaderTrackOutput) -> instancetype ---
 
     @(objc_type=AssetReaderOutputMetadataAdaptor, objc_selector="nextTimedMetadataGroup", objc_name="nextTimedMetadataGroup")
     AssetReaderOutputMetadataAdaptor_nextTimedMetadataGroup :: proc(self: ^AssetReaderOutputMetadataAdaptor) -> ^TimedMetadataGroup ---

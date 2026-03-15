@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.SpeechRecognizer) -> ^AK.SpeechRecognizer,
+    init: proc(self: ^AK.SpeechRecognizer) -> instancetype,
     startListening: proc(self: ^AK.SpeechRecognizer),
     stopListening: proc(self: ^AK.SpeechRecognizer),
     delegate: proc(self: ^AK.SpeechRecognizer) -> ^AK.SpeechRecognizerDelegate,
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.SpeechRecognizer, _: SEL) -> ^AK.SpeechRecognizer {
+        init :: proc "c" (self: ^AK.SpeechRecognizer, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,11 +28,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextCursorView: proc(self: ^UI.TextCursorDropPositionAnimator, cursorView: ^UI.View, textInput: ^UI.View) -> ^UI.TextCursorDropPositionAnimator,
+    initWithTextCursorView: proc(self: ^UI.TextCursorDropPositionAnimator, cursorView: ^UI.View, textInput: ^UI.View) -> instancetype,
     setCursorVisible: proc(self: ^UI.TextCursorDropPositionAnimator, visible: bool, animated: bool),
     placeCursorAtPosition: proc(self: ^UI.TextCursorDropPositionAnimator, position: ^UI.TextPosition, animated: bool),
     animateAlongsideChanges: proc(self: ^UI.TextCursorDropPositionAnimator, animation: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())),
-    init: proc(self: ^UI.TextCursorDropPositionAnimator) -> ^UI.TextCursorDropPositionAnimator,
+    init: proc(self: ^UI.TextCursorDropPositionAnimator) -> instancetype,
     cursorView: proc(self: ^UI.TextCursorDropPositionAnimator) -> ^UI.View,
     textInput: proc(self: ^UI.TextCursorDropPositionAnimator) -> ^UI.View,
 }
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextCursorView != nil {
-        initWithTextCursorView :: proc "c" (self: ^UI.TextCursorDropPositionAnimator, _: SEL, cursorView: ^UI.View, textInput: ^UI.View) -> ^UI.TextCursorDropPositionAnimator {
+        initWithTextCursorView :: proc "c" (self: ^UI.TextCursorDropPositionAnimator, _: SEL, cursorView: ^UI.View, textInput: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animateAlongsideChanges:completion:"), auto_cast animateAlongsideChanges, "v@:??") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextCursorDropPositionAnimator, _: SEL) -> ^UI.TextCursorDropPositionAnimator {
+        init :: proc "c" (self: ^UI.TextCursorDropPositionAnimator, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

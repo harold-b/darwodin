@@ -21,7 +21,7 @@ Subscription :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Subscription, objc_selector="init", objc_name="init")
-    Subscription_init :: proc(self: ^Subscription) -> ^Subscription ---
+    Subscription_init :: proc(self: ^Subscription) -> instancetype ---
 
     @(objc_type=Subscription, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Subscription_new :: proc() -> ^Subscription ---

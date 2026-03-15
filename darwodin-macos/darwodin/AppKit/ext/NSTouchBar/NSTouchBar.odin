@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.TouchBar) -> ^AK.TouchBar,
-    initWithCoder: proc(self: ^AK.TouchBar, coder: ^NS.Coder) -> ^AK.TouchBar,
+    init: proc(self: ^AK.TouchBar) -> instancetype,
+    initWithCoder: proc(self: ^AK.TouchBar, coder: ^NS.Coder) -> instancetype,
     itemForIdentifier: proc(self: ^AK.TouchBar, identifier: ^NS.String) -> ^AK.TouchBarItem,
     customizationIdentifier: proc(self: ^AK.TouchBar) -> ^NS.String,
     setCustomizationIdentifier: proc(self: ^AK.TouchBar, customizationIdentifier: ^NS.String),
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^AK.TouchBar {
+        init :: proc "c" (self: ^AK.TouchBar, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TouchBar, _: SEL, coder: ^NS.Coder) -> ^AK.TouchBar {
+        initWithCoder :: proc "c" (self: ^AK.TouchBar, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

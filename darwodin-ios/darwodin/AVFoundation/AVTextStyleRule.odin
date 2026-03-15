@@ -25,7 +25,7 @@ TextStyleRule :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextStyleRule, objc_selector="init", objc_name="init")
-    TextStyleRule_init :: proc(self: ^TextStyleRule) -> ^TextStyleRule ---
+    TextStyleRule_init :: proc(self: ^TextStyleRule) -> instancetype ---
 
     @(objc_type=TextStyleRule, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextStyleRule_new :: proc() -> ^TextStyleRule ---
@@ -43,10 +43,10 @@ foreign lib {
     TextStyleRule_textStyleRuleWithTextMarkupAttributes_textSelector :: proc(textMarkupAttributes: ^NS.Dictionary, textSelector: ^NS.String) -> ^TextStyleRule ---
 
     @(objc_type=TextStyleRule, objc_selector="initWithTextMarkupAttributes:", objc_name="initWithTextMarkupAttributes_")
-    TextStyleRule_initWithTextMarkupAttributes_ :: proc(self: ^TextStyleRule, textMarkupAttributes: ^NS.Dictionary) -> ^TextStyleRule ---
+    TextStyleRule_initWithTextMarkupAttributes_ :: proc(self: ^TextStyleRule, textMarkupAttributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=TextStyleRule, objc_selector="initWithTextMarkupAttributes:textSelector:", objc_name="initWithTextMarkupAttributes_textSelector")
-    TextStyleRule_initWithTextMarkupAttributes_textSelector :: proc(self: ^TextStyleRule, textMarkupAttributes: ^NS.Dictionary, textSelector: ^NS.String) -> ^TextStyleRule ---
+    TextStyleRule_initWithTextMarkupAttributes_textSelector :: proc(self: ^TextStyleRule, textMarkupAttributes: ^NS.Dictionary, textSelector: ^NS.String) -> instancetype ---
 
     @(objc_type=TextStyleRule, objc_selector="textMarkupAttributes", objc_name="textMarkupAttributes")
     TextStyleRule_textMarkupAttributes :: proc(self: ^TextStyleRule) -> ^NS.Dictionary ---

@@ -24,17 +24,17 @@ SymbolBreatheEffect :: struct { using _: SymbolEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SymbolBreatheEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    SymbolBreatheEffect_effect :: proc() -> ^SymbolBreatheEffect ---
+    SymbolBreatheEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=SymbolBreatheEffect, objc_selector="breathePulseEffect", objc_name="breathePulseEffect", objc_is_class_method=true)
-    SymbolBreatheEffect_breathePulseEffect :: proc() -> ^SymbolBreatheEffect ---
+    SymbolBreatheEffect_breathePulseEffect :: proc() -> instancetype ---
 
     @(objc_type=SymbolBreatheEffect, objc_selector="breathePlainEffect", objc_name="breathePlainEffect", objc_is_class_method=true)
-    SymbolBreatheEffect_breathePlainEffect :: proc() -> ^SymbolBreatheEffect ---
+    SymbolBreatheEffect_breathePlainEffect :: proc() -> instancetype ---
 
     @(objc_type=SymbolBreatheEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
-    SymbolBreatheEffect_effectWithByLayer :: proc(self: ^SymbolBreatheEffect) -> ^SymbolBreatheEffect ---
+    SymbolBreatheEffect_effectWithByLayer :: proc(self: ^SymbolBreatheEffect) -> instancetype ---
 
     @(objc_type=SymbolBreatheEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
-    SymbolBreatheEffect_effectWithWholeSymbol :: proc(self: ^SymbolBreatheEffect) -> ^SymbolBreatheEffect ---
+    SymbolBreatheEffect_effectWithWholeSymbol :: proc(self: ^SymbolBreatheEffect) -> instancetype ---
 }

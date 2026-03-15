@@ -30,8 +30,8 @@ import "../NSToolbarItem"
 
 VTable :: struct {
     super: NSToolbarItem.VTable,
-    groupWithItemIdentifier_titles_selectionMode_labels_target_action: proc(itemIdentifier: ^NS.String, titles: ^NS.Array, selectionMode: AK.ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> ^AK.ToolbarItemGroup,
-    groupWithItemIdentifier_images_selectionMode_labels_target_action: proc(itemIdentifier: ^NS.String, images: ^NS.Array, selectionMode: AK.ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> ^AK.ToolbarItemGroup,
+    groupWithItemIdentifier_titles_selectionMode_labels_target_action: proc(itemIdentifier: ^NS.String, titles: ^NS.Array, selectionMode: AK.ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype,
+    groupWithItemIdentifier_images_selectionMode_labels_target_action: proc(itemIdentifier: ^NS.String, images: ^NS.Array, selectionMode: AK.ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype,
     setSelected: proc(self: ^AK.ToolbarItemGroup, selected: bool, index: NS.Integer),
     isSelectedAtIndex: proc(self: ^AK.ToolbarItemGroup, index: NS.Integer) -> bool,
     subitems: proc(self: ^AK.ToolbarItemGroup) -> ^NS.Array,
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSToolbarItem.extend(cls, &vt.super)
 
     if vt.groupWithItemIdentifier_titles_selectionMode_labels_target_action != nil {
-        groupWithItemIdentifier_titles_selectionMode_labels_target_action :: proc "c" (self: Class, _: SEL, itemIdentifier: ^NS.String, titles: ^NS.Array, selectionMode: AK.ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> ^AK.ToolbarItemGroup {
+        groupWithItemIdentifier_titles_selectionMode_labels_target_action :: proc "c" (self: Class, _: SEL, itemIdentifier: ^NS.String, titles: ^NS.Array, selectionMode: AK.ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("groupWithItemIdentifier:titles:selectionMode:labels:target:action:"), auto_cast groupWithItemIdentifier_titles_selectionMode_labels_target_action, "@#:@^voidl^void@:") do panic("Failed to register objC method.")
     }
     if vt.groupWithItemIdentifier_images_selectionMode_labels_target_action != nil {
-        groupWithItemIdentifier_images_selectionMode_labels_target_action :: proc "c" (self: Class, _: SEL, itemIdentifier: ^NS.String, images: ^NS.Array, selectionMode: AK.ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> ^AK.ToolbarItemGroup {
+        groupWithItemIdentifier_images_selectionMode_labels_target_action :: proc "c" (self: Class, _: SEL, itemIdentifier: ^NS.String, images: ^NS.Array, selectionMode: AK.ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

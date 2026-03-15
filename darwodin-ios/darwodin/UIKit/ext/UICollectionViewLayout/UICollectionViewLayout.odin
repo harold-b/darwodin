@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.CollectionViewLayout) -> ^UI.CollectionViewLayout,
-    initWithCoder: proc(self: ^UI.CollectionViewLayout, coder: ^NS.Coder) -> ^UI.CollectionViewLayout,
+    init: proc(self: ^UI.CollectionViewLayout) -> instancetype,
+    initWithCoder: proc(self: ^UI.CollectionViewLayout, coder: ^NS.Coder) -> instancetype,
     invalidateLayout: proc(self: ^UI.CollectionViewLayout),
     invalidateLayoutWithContext: proc(self: ^UI.CollectionViewLayout, _context: ^UI.CollectionViewLayoutInvalidationContext),
     registerClass: proc(self: ^UI.CollectionViewLayout, viewClass: Class, elementKind: ^NS.String),
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CollectionViewLayout, _: SEL) -> ^UI.CollectionViewLayout {
+        init :: proc "c" (self: ^UI.CollectionViewLayout, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CollectionViewLayout, _: SEL, coder: ^NS.Coder) -> ^UI.CollectionViewLayout {
+        initWithCoder :: proc "c" (self: ^UI.CollectionViewLayout, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

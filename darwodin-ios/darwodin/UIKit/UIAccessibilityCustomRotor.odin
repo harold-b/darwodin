@@ -22,13 +22,13 @@ AccessibilityCustomRotor :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccessibilityCustomRotor, objc_selector="initWithName:itemSearchBlock:", objc_name="initWithName")
-    AccessibilityCustomRotor_initWithName :: proc(self: ^AccessibilityCustomRotor, name: ^NS.String, itemSearchBlock: AccessibilityCustomRotorSearch) -> ^AccessibilityCustomRotor ---
+    AccessibilityCustomRotor_initWithName :: proc(self: ^AccessibilityCustomRotor, name: ^NS.String, itemSearchBlock: AccessibilityCustomRotorSearch) -> instancetype ---
 
     @(objc_type=AccessibilityCustomRotor, objc_selector="initWithAttributedName:itemSearchBlock:", objc_name="initWithAttributedName")
-    AccessibilityCustomRotor_initWithAttributedName :: proc(self: ^AccessibilityCustomRotor, attributedName: ^NS.AttributedString, itemSearchBlock: AccessibilityCustomRotorSearch) -> ^AccessibilityCustomRotor ---
+    AccessibilityCustomRotor_initWithAttributedName :: proc(self: ^AccessibilityCustomRotor, attributedName: ^NS.AttributedString, itemSearchBlock: AccessibilityCustomRotorSearch) -> instancetype ---
 
     @(objc_type=AccessibilityCustomRotor, objc_selector="initWithSystemType:itemSearchBlock:", objc_name="initWithSystemType")
-    AccessibilityCustomRotor_initWithSystemType :: proc(self: ^AccessibilityCustomRotor, type: AccessibilityCustomSystemRotorType, itemSearchBlock: AccessibilityCustomRotorSearch) -> ^AccessibilityCustomRotor ---
+    AccessibilityCustomRotor_initWithSystemType :: proc(self: ^AccessibilityCustomRotor, type: AccessibilityCustomSystemRotorType, itemSearchBlock: AccessibilityCustomRotorSearch) -> instancetype ---
 
     @(objc_type=AccessibilityCustomRotor, objc_selector="name", objc_name="name")
     AccessibilityCustomRotor_name :: proc(self: ^AccessibilityCustomRotor) -> ^NS.String ---

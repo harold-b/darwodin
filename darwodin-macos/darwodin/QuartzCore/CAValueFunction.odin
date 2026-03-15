@@ -23,7 +23,7 @@ ValueFunction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ValueFunction, objc_selector="functionWithName:", objc_name="functionWithName", objc_is_class_method=true)
-    ValueFunction_functionWithName :: proc(name: ^NS.String) -> ^ValueFunction ---
+    ValueFunction_functionWithName :: proc(name: ^NS.String) -> instancetype ---
 
     @(objc_type=ValueFunction, objc_selector="name", objc_name="name")
     ValueFunction_name :: proc(self: ^ValueFunction) -> ^NS.String ---

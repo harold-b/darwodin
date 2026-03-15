@@ -26,10 +26,10 @@ TextContainer :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextContainer, objc_selector="initWithSize:", objc_name="initWithSize")
-    TextContainer_initWithSize :: proc(self: ^TextContainer, size: CG.Size) -> ^TextContainer ---
+    TextContainer_initWithSize :: proc(self: ^TextContainer, size: CG.Size) -> instancetype ---
 
     @(objc_type=TextContainer, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextContainer_initWithCoder :: proc(self: ^TextContainer, coder: ^NS.Coder) -> ^TextContainer ---
+    TextContainer_initWithCoder :: proc(self: ^TextContainer, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextContainer, objc_selector="lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:", objc_name="lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect")
     TextContainer_lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect :: proc(self: ^TextContainer, proposedRect: CG.Rect, characterIndex: NS.UInteger, baseWritingDirection: WritingDirection, remainingRect: ^CG.Rect) -> CG.Rect ---
@@ -98,7 +98,7 @@ foreign lib {
     TextContainer_setTextView :: proc(self: ^TextContainer, textView: ^TextView) ---
 
     @(objc_type=TextContainer, objc_selector="initWithContainerSize:", objc_name="initWithContainerSize")
-    TextContainer_initWithContainerSize :: proc(self: ^TextContainer, aContainerSize: NS.Size) -> ^TextContainer ---
+    TextContainer_initWithContainerSize :: proc(self: ^TextContainer, aContainerSize: NS.Size) -> instancetype ---
 
     @(objc_type=TextContainer, objc_selector="lineFragmentRectForProposedRect:sweepDirection:movementDirection:remainingRect:", objc_name="lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect")
     TextContainer_lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect :: proc(self: ^TextContainer, proposedRect: NS.Rect, sweepDirection: LineSweepDirection, movementDirection: LineMovementDirection, remainingRect: ^NS.Rect) -> NS.Rect ---

@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithName: proc(self: ^UI.AccessibilityCustomRotor, name: ^NS.String, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> ^UI.AccessibilityCustomRotor,
-    initWithAttributedName: proc(self: ^UI.AccessibilityCustomRotor, attributedName: ^NS.AttributedString, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> ^UI.AccessibilityCustomRotor,
-    initWithSystemType: proc(self: ^UI.AccessibilityCustomRotor, type: UI.AccessibilityCustomSystemRotorType, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> ^UI.AccessibilityCustomRotor,
+    initWithName: proc(self: ^UI.AccessibilityCustomRotor, name: ^NS.String, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> instancetype,
+    initWithAttributedName: proc(self: ^UI.AccessibilityCustomRotor, attributedName: ^NS.AttributedString, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> instancetype,
+    initWithSystemType: proc(self: ^UI.AccessibilityCustomRotor, type: UI.AccessibilityCustomSystemRotorType, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> instancetype,
     name: proc(self: ^UI.AccessibilityCustomRotor) -> ^NS.String,
     setName: proc(self: ^UI.AccessibilityCustomRotor, name: ^NS.String),
     attributedName: proc(self: ^UI.AccessibilityCustomRotor) -> ^NS.AttributedString,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithName != nil {
-        initWithName :: proc "c" (self: ^UI.AccessibilityCustomRotor, _: SEL, name: ^NS.String, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> ^UI.AccessibilityCustomRotor {
+        initWithName :: proc "c" (self: ^UI.AccessibilityCustomRotor, _: SEL, name: ^NS.String, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:itemSearchBlock:"), auto_cast initWithName, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedName != nil {
-        initWithAttributedName :: proc "c" (self: ^UI.AccessibilityCustomRotor, _: SEL, attributedName: ^NS.AttributedString, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> ^UI.AccessibilityCustomRotor {
+        initWithAttributedName :: proc "c" (self: ^UI.AccessibilityCustomRotor, _: SEL, attributedName: ^NS.AttributedString, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedName:itemSearchBlock:"), auto_cast initWithAttributedName, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.initWithSystemType != nil {
-        initWithSystemType :: proc "c" (self: ^UI.AccessibilityCustomRotor, _: SEL, type: UI.AccessibilityCustomSystemRotorType, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> ^UI.AccessibilityCustomRotor {
+        initWithSystemType :: proc "c" (self: ^UI.AccessibilityCustomRotor, _: SEL, type: UI.AccessibilityCustomSystemRotorType, itemSearchBlock: UI.AccessibilityCustomRotorSearch) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

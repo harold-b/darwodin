@@ -23,7 +23,7 @@ CaptionConversionTimeRangeAdjustment :: struct { using _: CaptionConversionAdjus
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionConversionTimeRangeAdjustment, objc_selector="init", objc_name="init")
-    CaptionConversionTimeRangeAdjustment_init :: proc(self: ^CaptionConversionTimeRangeAdjustment) -> ^CaptionConversionTimeRangeAdjustment ---
+    CaptionConversionTimeRangeAdjustment_init :: proc(self: ^CaptionConversionTimeRangeAdjustment) -> instancetype ---
 
     @(objc_type=CaptionConversionTimeRangeAdjustment, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptionConversionTimeRangeAdjustment_new :: proc() -> ^CaptionConversionTimeRangeAdjustment ---

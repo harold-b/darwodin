@@ -28,8 +28,8 @@ import "../UIMotionEffect"
 
 VTable :: struct {
     super: UIMotionEffect.VTable,
-    initWithKeyPath: proc(self: ^UI.InterpolatingMotionEffect, keyPath: ^NS.String, type: UI.InterpolatingMotionEffectType) -> ^UI.InterpolatingMotionEffect,
-    initWithCoder: proc(self: ^UI.InterpolatingMotionEffect, coder: ^NS.Coder) -> ^UI.InterpolatingMotionEffect,
+    initWithKeyPath: proc(self: ^UI.InterpolatingMotionEffect, keyPath: ^NS.String, type: UI.InterpolatingMotionEffectType) -> instancetype,
+    initWithCoder: proc(self: ^UI.InterpolatingMotionEffect, coder: ^NS.Coder) -> instancetype,
     keyPath: proc(self: ^UI.InterpolatingMotionEffect) -> ^NS.String,
     type: proc(self: ^UI.InterpolatingMotionEffect) -> UI.InterpolatingMotionEffectType,
     minimumRelativeValue: proc(self: ^UI.InterpolatingMotionEffect) -> id,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIMotionEffect.extend(cls, &vt.super)
 
     if vt.initWithKeyPath != nil {
-        initWithKeyPath :: proc "c" (self: ^UI.InterpolatingMotionEffect, _: SEL, keyPath: ^NS.String, type: UI.InterpolatingMotionEffectType) -> ^UI.InterpolatingMotionEffect {
+        initWithKeyPath :: proc "c" (self: ^UI.InterpolatingMotionEffect, _: SEL, keyPath: ^NS.String, type: UI.InterpolatingMotionEffectType) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKeyPath:type:"), auto_cast initWithKeyPath, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.InterpolatingMotionEffect, _: SEL, coder: ^NS.Coder) -> ^UI.InterpolatingMotionEffect {
+        initWithCoder :: proc "c" (self: ^UI.InterpolatingMotionEffect, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

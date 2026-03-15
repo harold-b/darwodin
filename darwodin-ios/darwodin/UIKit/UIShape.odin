@@ -25,28 +25,28 @@ Shape :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Shape, objc_selector="rectShapeWithCornerRadius:", objc_name="rectShapeWithCornerRadius_", objc_is_class_method=true)
-    Shape_rectShapeWithCornerRadius_ :: proc(cornerRadius: CG.Float) -> ^Shape ---
+    Shape_rectShapeWithCornerRadius_ :: proc(cornerRadius: CG.Float) -> instancetype ---
 
     @(objc_type=Shape, objc_selector="rectShapeWithCornerRadius:cornerCurve:", objc_name="rectShapeWithCornerRadius_cornerCurve", objc_is_class_method=true)
-    Shape_rectShapeWithCornerRadius_cornerCurve :: proc(cornerRadius: CG.Float, cornerCurve: CornerCurve) -> ^Shape ---
+    Shape_rectShapeWithCornerRadius_cornerCurve :: proc(cornerRadius: CG.Float, cornerCurve: CornerCurve) -> instancetype ---
 
     @(objc_type=Shape, objc_selector="rectShapeWithCornerRadius:cornerCurve:maskedCorners:", objc_name="rectShapeWithCornerRadius_cornerCurve_maskedCorners", objc_is_class_method=true)
-    Shape_rectShapeWithCornerRadius_cornerCurve_maskedCorners :: proc(cornerRadius: CG.Float, cornerCurve: CornerCurve, maskedCorners: RectCorner) -> ^Shape ---
+    Shape_rectShapeWithCornerRadius_cornerCurve_maskedCorners :: proc(cornerRadius: CG.Float, cornerCurve: CornerCurve, maskedCorners: RectCorner) -> instancetype ---
 
     @(objc_type=Shape, objc_selector="fixedRectShapeWithRect:", objc_name="fixedRectShapeWithRect_", objc_is_class_method=true)
-    Shape_fixedRectShapeWithRect_ :: proc(rect: CG.Rect) -> ^Shape ---
+    Shape_fixedRectShapeWithRect_ :: proc(rect: CG.Rect) -> instancetype ---
 
     @(objc_type=Shape, objc_selector="fixedRectShapeWithRect:cornerRadius:", objc_name="fixedRectShapeWithRect_cornerRadius", objc_is_class_method=true)
-    Shape_fixedRectShapeWithRect_cornerRadius :: proc(rect: CG.Rect, cornerRadius: CG.Float) -> ^Shape ---
+    Shape_fixedRectShapeWithRect_cornerRadius :: proc(rect: CG.Rect, cornerRadius: CG.Float) -> instancetype ---
 
     @(objc_type=Shape, objc_selector="fixedRectShapeWithRect:cornerRadius:cornerCurve:maskedCorners:", objc_name="fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners", objc_is_class_method=true)
-    Shape_fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners :: proc(rect: CG.Rect, cornerRadius: CG.Float, cornerCurve: CornerCurve, maskedCorners: RectCorner) -> ^Shape ---
+    Shape_fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners :: proc(rect: CG.Rect, cornerRadius: CG.Float, cornerCurve: CornerCurve, maskedCorners: RectCorner) -> instancetype ---
 
     @(objc_type=Shape, objc_selector="shapeWithBezierPath:", objc_name="shapeWithBezierPath", objc_is_class_method=true)
-    Shape_shapeWithBezierPath :: proc(path: ^BezierPath) -> ^Shape ---
+    Shape_shapeWithBezierPath :: proc(path: ^BezierPath) -> instancetype ---
 
     @(objc_type=Shape, objc_selector="shapeWithProvider:", objc_name="shapeWithProvider", objc_is_class_method=true)
-    Shape_shapeWithProvider :: proc(provider: ^ShapeProvider) -> ^Shape ---
+    Shape_shapeWithProvider :: proc(provider: ^ShapeProvider) -> instancetype ---
 
     @(objc_type=Shape, objc_selector="shapeByApplyingInsets:", objc_name="shapeByApplyingInsets")
     Shape_shapeByApplyingInsets :: proc(self: ^Shape, insets: EdgeInsets) -> ^Shape ---
@@ -58,7 +58,7 @@ foreign lib {
     Shape_resolvedShapeInContext :: proc(self: ^Shape, _context: ^ShapeResolutionContext) -> ^ResolvedShape ---
 
     @(objc_type=Shape, objc_selector="init", objc_name="init")
-    Shape_init :: proc(self: ^Shape) -> ^Shape ---
+    Shape_init :: proc(self: ^Shape) -> instancetype ---
 
     @(objc_type=Shape, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Shape_new :: proc() -> ^Shape ---

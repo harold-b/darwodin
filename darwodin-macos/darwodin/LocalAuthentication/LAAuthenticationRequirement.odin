@@ -19,7 +19,7 @@ AuthenticationRequirement :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AuthenticationRequirement, objc_selector="biometryRequirementWithFallback:", objc_name="biometryRequirementWithFallback", objc_is_class_method=true)
-    AuthenticationRequirement_biometryRequirementWithFallback :: proc(fallback: ^BiometryFallbackRequirement) -> ^AuthenticationRequirement ---
+    AuthenticationRequirement_biometryRequirementWithFallback :: proc(fallback: ^BiometryFallbackRequirement) -> instancetype ---
 
     @(objc_type=AuthenticationRequirement, objc_selector="defaultRequirement", objc_name="defaultRequirement", objc_is_class_method=true)
     AuthenticationRequirement_defaultRequirement :: proc() -> ^AuthenticationRequirement ---

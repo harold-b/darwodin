@@ -24,19 +24,19 @@ PopUpButton :: struct { using _: Button, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PopUpButton, objc_selector="popUpButtonWithMenu:target:action:", objc_name="popUpButtonWithMenu", objc_is_class_method=true)
-    PopUpButton_popUpButtonWithMenu :: proc(menu: ^Menu, target: id, action: SEL) -> ^PopUpButton ---
+    PopUpButton_popUpButtonWithMenu :: proc(menu: ^Menu, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=PopUpButton, objc_selector="pullDownButtonWithTitle:menu:", objc_name="pullDownButtonWithTitle_menu", objc_is_class_method=true)
-    PopUpButton_pullDownButtonWithTitle_menu :: proc(title: ^NS.String, menu: ^Menu) -> ^PopUpButton ---
+    PopUpButton_pullDownButtonWithTitle_menu :: proc(title: ^NS.String, menu: ^Menu) -> instancetype ---
 
     @(objc_type=PopUpButton, objc_selector="pullDownButtonWithImage:menu:", objc_name="pullDownButtonWithImage", objc_is_class_method=true)
-    PopUpButton_pullDownButtonWithImage :: proc(image: ^NS.Image, menu: ^Menu) -> ^PopUpButton ---
+    PopUpButton_pullDownButtonWithImage :: proc(image: ^NS.Image, menu: ^Menu) -> instancetype ---
 
     @(objc_type=PopUpButton, objc_selector="pullDownButtonWithTitle:image:menu:", objc_name="pullDownButtonWithTitle_image_menu", objc_is_class_method=true)
-    PopUpButton_pullDownButtonWithTitle_image_menu :: proc(title: ^NS.String, image: ^NS.Image, menu: ^Menu) -> ^PopUpButton ---
+    PopUpButton_pullDownButtonWithTitle_image_menu :: proc(title: ^NS.String, image: ^NS.Image, menu: ^Menu) -> instancetype ---
 
     @(objc_type=PopUpButton, objc_selector="initWithFrame:pullsDown:", objc_name="initWithFrame")
-    PopUpButton_initWithFrame :: proc(self: ^PopUpButton, buttonFrame: NS.Rect, flag: bool) -> ^PopUpButton ---
+    PopUpButton_initWithFrame :: proc(self: ^PopUpButton, buttonFrame: NS.Rect, flag: bool) -> instancetype ---
 
     @(objc_type=PopUpButton, objc_selector="addItemWithTitle:", objc_name="addItemWithTitle")
     PopUpButton_addItemWithTitle :: proc(self: ^PopUpButton, title: ^NS.String) ---

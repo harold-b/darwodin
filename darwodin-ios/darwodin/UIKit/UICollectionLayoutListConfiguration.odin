@@ -27,10 +27,10 @@ foreign lib {
     CollectionLayoutListConfiguration_new :: proc() -> ^CollectionLayoutListConfiguration ---
 
     @(objc_type=CollectionLayoutListConfiguration, objc_selector="init", objc_name="init")
-    CollectionLayoutListConfiguration_init :: proc(self: ^CollectionLayoutListConfiguration) -> ^CollectionLayoutListConfiguration ---
+    CollectionLayoutListConfiguration_init :: proc(self: ^CollectionLayoutListConfiguration) -> instancetype ---
 
     @(objc_type=CollectionLayoutListConfiguration, objc_selector="initWithAppearance:", objc_name="initWithAppearance")
-    CollectionLayoutListConfiguration_initWithAppearance :: proc(self: ^CollectionLayoutListConfiguration, appearance: CollectionLayoutListAppearance) -> ^CollectionLayoutListConfiguration ---
+    CollectionLayoutListConfiguration_initWithAppearance :: proc(self: ^CollectionLayoutListConfiguration, appearance: CollectionLayoutListAppearance) -> instancetype ---
 
     @(objc_type=CollectionLayoutListConfiguration, objc_selector="appearance", objc_name="appearance")
     CollectionLayoutListConfiguration_appearance :: proc(self: ^CollectionLayoutListConfiguration) -> CollectionLayoutListAppearance ---

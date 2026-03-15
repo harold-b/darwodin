@@ -31,9 +31,9 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^AK.AccessibilityCustomRotorItemResult,
-    init: proc(self: ^AK.AccessibilityCustomRotorItemResult) -> ^AK.AccessibilityCustomRotorItemResult,
-    initWithTargetElement: proc(self: ^AK.AccessibilityCustomRotorItemResult, targetElement: ^AK.AccessibilityElementProtocol) -> ^AK.AccessibilityCustomRotorItemResult,
-    initWithItemLoadingToken: proc(self: ^AK.AccessibilityCustomRotorItemResult, itemLoadingToken: ^id, customLabel: ^NS.String) -> ^AK.AccessibilityCustomRotorItemResult,
+    init: proc(self: ^AK.AccessibilityCustomRotorItemResult) -> instancetype,
+    initWithTargetElement: proc(self: ^AK.AccessibilityCustomRotorItemResult, targetElement: ^AK.AccessibilityElementProtocol) -> instancetype,
+    initWithItemLoadingToken: proc(self: ^AK.AccessibilityCustomRotorItemResult, itemLoadingToken: ^id, customLabel: ^NS.String) -> instancetype,
     targetElement: proc(self: ^AK.AccessibilityCustomRotorItemResult) -> ^AK.AccessibilityElementProtocol,
     itemLoadingToken: proc(self: ^AK.AccessibilityCustomRotorItemResult) -> ^id,
     targetRange: proc(self: ^AK.AccessibilityCustomRotorItemResult) -> NS._NSRange,
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.AccessibilityCustomRotorItemResult, _: SEL) -> ^AK.AccessibilityCustomRotorItemResult {
+        init :: proc "c" (self: ^AK.AccessibilityCustomRotorItemResult, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTargetElement != nil {
-        initWithTargetElement :: proc "c" (self: ^AK.AccessibilityCustomRotorItemResult, _: SEL, targetElement: ^AK.AccessibilityElementProtocol) -> ^AK.AccessibilityCustomRotorItemResult {
+        initWithTargetElement :: proc "c" (self: ^AK.AccessibilityCustomRotorItemResult, _: SEL, targetElement: ^AK.AccessibilityElementProtocol) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTargetElement:"), auto_cast initWithTargetElement, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithItemLoadingToken != nil {
-        initWithItemLoadingToken :: proc "c" (self: ^AK.AccessibilityCustomRotorItemResult, _: SEL, itemLoadingToken: ^id, customLabel: ^NS.String) -> ^AK.AccessibilityCustomRotorItemResult {
+        initWithItemLoadingToken :: proc "c" (self: ^AK.AccessibilityCustomRotorItemResult, _: SEL, itemLoadingToken: ^id, customLabel: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

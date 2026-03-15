@@ -22,17 +22,17 @@ NSSymbolBounceEffect :: struct { using _: NSSymbolEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSSymbolBounceEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    NSSymbolBounceEffect_effect :: proc() -> ^NSSymbolBounceEffect ---
+    NSSymbolBounceEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolBounceEffect, objc_selector="bounceUpEffect", objc_name="bounceUpEffect", objc_is_class_method=true)
-    NSSymbolBounceEffect_bounceUpEffect :: proc() -> ^NSSymbolBounceEffect ---
+    NSSymbolBounceEffect_bounceUpEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolBounceEffect, objc_selector="bounceDownEffect", objc_name="bounceDownEffect", objc_is_class_method=true)
-    NSSymbolBounceEffect_bounceDownEffect :: proc() -> ^NSSymbolBounceEffect ---
+    NSSymbolBounceEffect_bounceDownEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolBounceEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
-    NSSymbolBounceEffect_effectWithByLayer :: proc(self: ^NSSymbolBounceEffect) -> ^NSSymbolBounceEffect ---
+    NSSymbolBounceEffect_effectWithByLayer :: proc(self: ^NSSymbolBounceEffect) -> instancetype ---
 
     @(objc_type=NSSymbolBounceEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
-    NSSymbolBounceEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolBounceEffect) -> ^NSSymbolBounceEffect ---
+    NSSymbolBounceEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolBounceEffect) -> instancetype ---
 }

@@ -22,7 +22,7 @@ BarButtonItemStateAppearance :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BarButtonItemStateAppearance, objc_selector="init", objc_name="init")
-    BarButtonItemStateAppearance_init :: proc(self: ^BarButtonItemStateAppearance) -> ^BarButtonItemStateAppearance ---
+    BarButtonItemStateAppearance_init :: proc(self: ^BarButtonItemStateAppearance) -> instancetype ---
 
     @(objc_type=BarButtonItemStateAppearance, objc_selector="new", objc_name="new", objc_is_class_method=true)
     BarButtonItemStateAppearance_new :: proc() -> ^BarButtonItemStateAppearance ---

@@ -22,13 +22,13 @@ StoryboardSegue :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=StoryboardSegue, objc_selector="segueWithIdentifier:source:destination:performHandler:", objc_name="segueWithIdentifier", objc_is_class_method=true)
-    StoryboardSegue_segueWithIdentifier :: proc(identifier: ^NS.String, source: ^ViewController, destination: ^ViewController, performHandler: ^Objc_Block(proc "c" ())) -> ^StoryboardSegue ---
+    StoryboardSegue_segueWithIdentifier :: proc(identifier: ^NS.String, source: ^ViewController, destination: ^ViewController, performHandler: ^Objc_Block(proc "c" ())) -> instancetype ---
 
     @(objc_type=StoryboardSegue, objc_selector="initWithIdentifier:source:destination:", objc_name="initWithIdentifier")
-    StoryboardSegue_initWithIdentifier :: proc(self: ^StoryboardSegue, identifier: ^NS.String, source: ^ViewController, destination: ^ViewController) -> ^StoryboardSegue ---
+    StoryboardSegue_initWithIdentifier :: proc(self: ^StoryboardSegue, identifier: ^NS.String, source: ^ViewController, destination: ^ViewController) -> instancetype ---
 
     @(objc_type=StoryboardSegue, objc_selector="init", objc_name="init")
-    StoryboardSegue_init :: proc(self: ^StoryboardSegue) -> ^StoryboardSegue ---
+    StoryboardSegue_init :: proc(self: ^StoryboardSegue) -> instancetype ---
 
     @(objc_type=StoryboardSegue, objc_selector="perform", objc_name="perform")
     StoryboardSegue_perform :: proc(self: ^StoryboardSegue) ---

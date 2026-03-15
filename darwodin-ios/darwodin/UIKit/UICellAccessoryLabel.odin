@@ -22,13 +22,13 @@ CellAccessoryLabel :: struct { using _: CellAccessory, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CellAccessoryLabel, objc_selector="initWithText:", objc_name="initWithText")
-    CellAccessoryLabel_initWithText :: proc(self: ^CellAccessoryLabel, text: ^NS.String) -> ^CellAccessoryLabel ---
+    CellAccessoryLabel_initWithText :: proc(self: ^CellAccessoryLabel, text: ^NS.String) -> instancetype ---
 
     @(objc_type=CellAccessoryLabel, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CellAccessoryLabel_initWithCoder :: proc(self: ^CellAccessoryLabel, coder: ^NS.Coder) -> ^CellAccessoryLabel ---
+    CellAccessoryLabel_initWithCoder :: proc(self: ^CellAccessoryLabel, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CellAccessoryLabel, objc_selector="init", objc_name="init")
-    CellAccessoryLabel_init :: proc(self: ^CellAccessoryLabel) -> ^CellAccessoryLabel ---
+    CellAccessoryLabel_init :: proc(self: ^CellAccessoryLabel) -> instancetype ---
 
     @(objc_type=CellAccessoryLabel, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CellAccessoryLabel_new :: proc() -> ^CellAccessoryLabel ---

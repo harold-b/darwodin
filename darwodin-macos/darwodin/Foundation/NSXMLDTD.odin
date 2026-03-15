@@ -20,16 +20,16 @@ XMLDTD :: struct { using _: XMLNode, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=XMLDTD, objc_selector="init", objc_name="init")
-    XMLDTD_init :: proc(self: ^XMLDTD) -> ^XMLDTD ---
+    XMLDTD_init :: proc(self: ^XMLDTD) -> instancetype ---
 
     @(objc_type=XMLDTD, objc_selector="initWithKind:options:", objc_name="initWithKind")
-    XMLDTD_initWithKind :: proc(self: ^XMLDTD, kind: XMLNodeKind, options: XMLNodeOptions) -> ^XMLDTD ---
+    XMLDTD_initWithKind :: proc(self: ^XMLDTD, kind: XMLNodeKind, options: XMLNodeOptions) -> instancetype ---
 
     @(objc_type=XMLDTD, objc_selector="initWithContentsOfURL:options:error:", objc_name="initWithContentsOfURL")
-    XMLDTD_initWithContentsOfURL :: proc(self: ^XMLDTD, url: ^URL, mask: XMLNodeOptions, error: ^^Error) -> ^XMLDTD ---
+    XMLDTD_initWithContentsOfURL :: proc(self: ^XMLDTD, url: ^URL, mask: XMLNodeOptions, error: ^^Error) -> instancetype ---
 
     @(objc_type=XMLDTD, objc_selector="initWithData:options:error:", objc_name="initWithData")
-    XMLDTD_initWithData :: proc(self: ^XMLDTD, data: ^Data, mask: XMLNodeOptions, error: ^^Error) -> ^XMLDTD ---
+    XMLDTD_initWithData :: proc(self: ^XMLDTD, data: ^Data, mask: XMLNodeOptions, error: ^^Error) -> instancetype ---
 
     @(objc_type=XMLDTD, objc_selector="insertChild:atIndex:", objc_name="insertChild")
     XMLDTD_insertChild :: proc(self: ^XMLDTD, child: ^XMLNode, index: UInteger) ---

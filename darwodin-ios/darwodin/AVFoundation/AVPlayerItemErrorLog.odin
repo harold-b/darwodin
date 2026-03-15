@@ -25,7 +25,7 @@ PlayerItemErrorLog :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemErrorLog, objc_selector="init", objc_name="init")
-    PlayerItemErrorLog_init :: proc(self: ^PlayerItemErrorLog) -> ^PlayerItemErrorLog ---
+    PlayerItemErrorLog_init :: proc(self: ^PlayerItemErrorLog) -> instancetype ---
 
     @(objc_type=PlayerItemErrorLog, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PlayerItemErrorLog_new :: proc() -> ^PlayerItemErrorLog ---

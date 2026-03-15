@@ -28,11 +28,11 @@ import "../NSSymbolEffect"
 
 VTable :: struct {
     super: NSSymbolEffect.VTable,
-    effect: proc() -> ^UI.NSSymbolScaleEffect,
-    scaleUpEffect: proc() -> ^UI.NSSymbolScaleEffect,
-    scaleDownEffect: proc() -> ^UI.NSSymbolScaleEffect,
-    effectWithByLayer: proc(self: ^UI.NSSymbolScaleEffect) -> ^UI.NSSymbolScaleEffect,
-    effectWithWholeSymbol: proc(self: ^UI.NSSymbolScaleEffect) -> ^UI.NSSymbolScaleEffect,
+    effect: proc() -> instancetype,
+    scaleUpEffect: proc() -> instancetype,
+    scaleDownEffect: proc() -> instancetype,
+    effectWithByLayer: proc(self: ^UI.NSSymbolScaleEffect) -> instancetype,
+    effectWithWholeSymbol: proc(self: ^UI.NSSymbolScaleEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSSymbolEffect.extend(cls, &vt.super)
 
     if vt.effect != nil {
-        effect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolScaleEffect {
+        effect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.scaleUpEffect != nil {
-        scaleUpEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolScaleEffect {
+        scaleUpEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("scaleUpEffect"), auto_cast scaleUpEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.scaleDownEffect != nil {
-        scaleDownEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolScaleEffect {
+        scaleDownEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("scaleDownEffect"), auto_cast scaleDownEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.effectWithByLayer != nil {
-        effectWithByLayer :: proc "c" (self: ^UI.NSSymbolScaleEffect, _: SEL) -> ^UI.NSSymbolScaleEffect {
+        effectWithByLayer :: proc "c" (self: ^UI.NSSymbolScaleEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithByLayer"), auto_cast effectWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithWholeSymbol != nil {
-        effectWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolScaleEffect, _: SEL) -> ^UI.NSSymbolScaleEffect {
+        effectWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolScaleEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

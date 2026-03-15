@@ -23,10 +23,10 @@ CapturePhotoBracketSettings :: struct { using _: CapturePhotoSettings, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhotoBracketSettings, objc_selector="photoBracketSettingsWithRawPixelFormatType:processedFormat:bracketedSettings:", objc_name="photoBracketSettingsWithRawPixelFormatType_processedFormat_bracketedSettings", objc_is_class_method=true)
-    CapturePhotoBracketSettings_photoBracketSettingsWithRawPixelFormatType_processedFormat_bracketedSettings :: proc(rawPixelFormatType: CF.OSType, processedFormat: ^NS.Dictionary, bracketedSettings: ^NS.Array) -> ^CapturePhotoBracketSettings ---
+    CapturePhotoBracketSettings_photoBracketSettingsWithRawPixelFormatType_processedFormat_bracketedSettings :: proc(rawPixelFormatType: CF.OSType, processedFormat: ^NS.Dictionary, bracketedSettings: ^NS.Array) -> instancetype ---
 
     @(objc_type=CapturePhotoBracketSettings, objc_selector="photoBracketSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:bracketedSettings:", objc_name="photoBracketSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType_bracketedSettings", objc_is_class_method=true)
-    CapturePhotoBracketSettings_photoBracketSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType_bracketedSettings :: proc(rawPixelFormatType: CF.OSType, rawFileType: ^NS.String, processedFormat: ^NS.Dictionary, processedFileType: ^NS.String, bracketedSettings: ^NS.Array) -> ^CapturePhotoBracketSettings ---
+    CapturePhotoBracketSettings_photoBracketSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType_bracketedSettings :: proc(rawPixelFormatType: CF.OSType, rawFileType: ^NS.String, processedFormat: ^NS.Dictionary, processedFileType: ^NS.String, bracketedSettings: ^NS.Array) -> instancetype ---
 
     @(objc_type=CapturePhotoBracketSettings, objc_selector="bracketedSettings", objc_name="bracketedSettings")
     CapturePhotoBracketSettings_bracketedSettings :: proc(self: ^CapturePhotoBracketSettings) -> ^NS.Array ---

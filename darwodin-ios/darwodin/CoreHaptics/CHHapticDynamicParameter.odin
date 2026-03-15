@@ -18,10 +18,10 @@ HapticDynamicParameter :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticDynamicParameter, objc_selector="init", objc_name="init")
-    HapticDynamicParameter_init :: proc(self: ^HapticDynamicParameter) -> ^HapticDynamicParameter ---
+    HapticDynamicParameter_init :: proc(self: ^HapticDynamicParameter) -> instancetype ---
 
     @(objc_type=HapticDynamicParameter, objc_selector="initWithParameterID:value:relativeTime:", objc_name="initWithParameterID")
-    HapticDynamicParameter_initWithParameterID :: proc(self: ^HapticDynamicParameter, parameterID: ^NS.String, value: cffi.float, time: NS.TimeInterval) -> ^HapticDynamicParameter ---
+    HapticDynamicParameter_initWithParameterID :: proc(self: ^HapticDynamicParameter, parameterID: ^NS.String, value: cffi.float, time: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=HapticDynamicParameter, objc_selector="parameterID", objc_name="parameterID")
     HapticDynamicParameter_parameterID :: proc(self: ^HapticDynamicParameter) -> ^NS.String ---

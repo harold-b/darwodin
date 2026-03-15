@@ -22,10 +22,10 @@ NSTextAttachmentViewProvider :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSTextAttachmentViewProvider, objc_selector="initWithTextAttachment:parentView:textLayoutManager:location:", objc_name="initWithTextAttachment")
-    NSTextAttachmentViewProvider_initWithTextAttachment :: proc(self: ^NSTextAttachmentViewProvider, textAttachment: ^NSTextAttachment, parentView: ^View, textLayoutManager: ^NSTextLayoutManager, location: ^NSTextLocation) -> ^NSTextAttachmentViewProvider ---
+    NSTextAttachmentViewProvider_initWithTextAttachment :: proc(self: ^NSTextAttachmentViewProvider, textAttachment: ^NSTextAttachment, parentView: ^View, textLayoutManager: ^NSTextLayoutManager, location: ^NSTextLocation) -> instancetype ---
 
     @(objc_type=NSTextAttachmentViewProvider, objc_selector="init", objc_name="init")
-    NSTextAttachmentViewProvider_init :: proc(self: ^NSTextAttachmentViewProvider) -> ^NSTextAttachmentViewProvider ---
+    NSTextAttachmentViewProvider_init :: proc(self: ^NSTextAttachmentViewProvider) -> instancetype ---
 
     @(objc_type=NSTextAttachmentViewProvider, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSTextAttachmentViewProvider_new :: proc() -> ^NSTextAttachmentViewProvider ---

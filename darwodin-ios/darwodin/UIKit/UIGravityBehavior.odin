@@ -22,7 +22,7 @@ GravityBehavior :: struct { using _: DynamicBehavior, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GravityBehavior, objc_selector="initWithItems:", objc_name="initWithItems")
-    GravityBehavior_initWithItems :: proc(self: ^GravityBehavior, items: ^NS.Array) -> ^GravityBehavior ---
+    GravityBehavior_initWithItems :: proc(self: ^GravityBehavior, items: ^NS.Array) -> instancetype ---
 
     @(objc_type=GravityBehavior, objc_selector="addItem:", objc_name="addItem")
     GravityBehavior_addItem :: proc(self: ^GravityBehavior, item: ^DynamicItem) ---

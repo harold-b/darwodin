@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTitle: proc(self: ^UI.NavigationItem, title: ^NS.String) -> ^UI.NavigationItem,
-    initWithCoder: proc(self: ^UI.NavigationItem, coder: ^NS.Coder) -> ^UI.NavigationItem,
+    initWithTitle: proc(self: ^UI.NavigationItem, title: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^UI.NavigationItem, coder: ^NS.Coder) -> instancetype,
     setHidesBackButton_animated: proc(self: ^UI.NavigationItem, hidesBackButton: bool, animated: bool),
     setLeftBarButtonItems_animated: proc(self: ^UI.NavigationItem, items: ^NS.Array, animated: bool),
     setRightBarButtonItems_animated: proc(self: ^UI.NavigationItem, items: ^NS.Array, animated: bool),
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^UI.NavigationItem, _: SEL, title: ^NS.String) -> ^UI.NavigationItem {
+        initWithTitle :: proc "c" (self: ^UI.NavigationItem, _: SEL, title: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:"), auto_cast initWithTitle, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.NavigationItem, _: SEL, coder: ^NS.Coder) -> ^UI.NavigationItem {
+        initWithCoder :: proc "c" (self: ^UI.NavigationItem, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

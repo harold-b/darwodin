@@ -18,10 +18,10 @@ HapticParameterCurve :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticParameterCurve, objc_selector="init", objc_name="init")
-    HapticParameterCurve_init :: proc(self: ^HapticParameterCurve) -> ^HapticParameterCurve ---
+    HapticParameterCurve_init :: proc(self: ^HapticParameterCurve) -> instancetype ---
 
     @(objc_type=HapticParameterCurve, objc_selector="initWithParameterID:controlPoints:relativeTime:", objc_name="initWithParameterID")
-    HapticParameterCurve_initWithParameterID :: proc(self: ^HapticParameterCurve, parameterID: ^NS.String, controlPoints: ^NS.Array, relativeTime: NS.TimeInterval) -> ^HapticParameterCurve ---
+    HapticParameterCurve_initWithParameterID :: proc(self: ^HapticParameterCurve, parameterID: ^NS.String, controlPoints: ^NS.Array, relativeTime: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=HapticParameterCurve, objc_selector="parameterID", objc_name="parameterID")
     HapticParameterCurve_parameterID :: proc(self: ^HapticParameterCurve) -> ^NS.String ---

@@ -22,7 +22,7 @@ ImpactFeedbackGenerator :: struct { using _: FeedbackGenerator, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ImpactFeedbackGenerator, objc_selector="feedbackGeneratorWithStyle:forView:", objc_name="feedbackGeneratorWithStyle", objc_is_class_method=true)
-    ImpactFeedbackGenerator_feedbackGeneratorWithStyle :: proc(style: ImpactFeedbackStyle, view: ^View) -> ^ImpactFeedbackGenerator ---
+    ImpactFeedbackGenerator_feedbackGeneratorWithStyle :: proc(style: ImpactFeedbackStyle, view: ^View) -> instancetype ---
 
     @(objc_type=ImpactFeedbackGenerator, objc_selector="impactOccurred", objc_name="impactOccurred")
     ImpactFeedbackGenerator_impactOccurred :: proc(self: ^ImpactFeedbackGenerator) ---
@@ -37,7 +37,7 @@ foreign lib {
     ImpactFeedbackGenerator_impactOccurredWithIntensity_atLocation :: proc(self: ^ImpactFeedbackGenerator, intensity: CG.Float, location: CG.Point) ---
 
     @(objc_type=ImpactFeedbackGenerator, objc_selector="initWithStyle:", objc_name="initWithStyle")
-    ImpactFeedbackGenerator_initWithStyle :: proc(self: ^ImpactFeedbackGenerator, style: ImpactFeedbackStyle) -> ^ImpactFeedbackGenerator ---
+    ImpactFeedbackGenerator_initWithStyle :: proc(self: ^ImpactFeedbackGenerator, style: ImpactFeedbackStyle) -> instancetype ---
 }
 
 @(objc_type=ImpactFeedbackGenerator, objc_name="impactOccurredWithIntensity")

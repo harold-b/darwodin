@@ -24,7 +24,7 @@ WritingToolsCoordinator :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WritingToolsCoordinator, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    WritingToolsCoordinator_initWithDelegate :: proc(self: ^WritingToolsCoordinator, delegate: ^WritingToolsCoordinatorDelegate) -> ^WritingToolsCoordinator ---
+    WritingToolsCoordinator_initWithDelegate :: proc(self: ^WritingToolsCoordinator, delegate: ^WritingToolsCoordinatorDelegate) -> instancetype ---
 
     @(objc_type=WritingToolsCoordinator, objc_selector="stopWritingTools", objc_name="stopWritingTools")
     WritingToolsCoordinator_stopWritingTools :: proc(self: ^WritingToolsCoordinator) ---

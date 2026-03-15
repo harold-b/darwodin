@@ -28,23 +28,23 @@ import "../UIImageConfiguration"
 
 VTable :: struct {
     super: UIImageConfiguration.VTable,
-    configurationWithScale: proc(scale: UI.ImageSymbolScale) -> ^UI.ImageSymbolConfiguration,
-    configurationWithPointSize_: proc(pointSize: CG.Float) -> ^UI.ImageSymbolConfiguration,
-    configurationWithWeight: proc(weight: UI.ImageSymbolWeight) -> ^UI.ImageSymbolConfiguration,
-    configurationWithPointSize_weight: proc(pointSize: CG.Float, weight: UI.ImageSymbolWeight) -> ^UI.ImageSymbolConfiguration,
-    configurationWithPointSize_weight_scale: proc(pointSize: CG.Float, weight: UI.ImageSymbolWeight, scale: UI.ImageSymbolScale) -> ^UI.ImageSymbolConfiguration,
-    configurationWithTextStyle_: proc(textStyle: ^NS.String) -> ^UI.ImageSymbolConfiguration,
-    configurationWithTextStyle_scale: proc(textStyle: ^NS.String, scale: UI.ImageSymbolScale) -> ^UI.ImageSymbolConfiguration,
-    configurationWithFont_: proc(font: ^UI.Font) -> ^UI.ImageSymbolConfiguration,
-    configurationWithFont_scale: proc(font: ^UI.Font, scale: UI.ImageSymbolScale) -> ^UI.ImageSymbolConfiguration,
-    configurationWithHierarchicalColor: proc(hierarchicalColor: ^UI.Color) -> ^UI.ImageSymbolConfiguration,
-    configurationWithPaletteColors: proc(paletteColors: ^NS.Array) -> ^UI.ImageSymbolConfiguration,
-    configurationPreferringMulticolor: proc() -> ^UI.ImageSymbolConfiguration,
-    configurationPreferringMonochrome: proc() -> ^UI.ImageSymbolConfiguration,
-    configurationWithoutTextStyle: proc(self: ^UI.ImageSymbolConfiguration) -> ^UI.ImageSymbolConfiguration,
-    configurationWithoutScale: proc(self: ^UI.ImageSymbolConfiguration) -> ^UI.ImageSymbolConfiguration,
-    configurationWithoutWeight: proc(self: ^UI.ImageSymbolConfiguration) -> ^UI.ImageSymbolConfiguration,
-    configurationWithoutPointSizeAndWeight: proc(self: ^UI.ImageSymbolConfiguration) -> ^UI.ImageSymbolConfiguration,
+    configurationWithScale: proc(scale: UI.ImageSymbolScale) -> instancetype,
+    configurationWithPointSize_: proc(pointSize: CG.Float) -> instancetype,
+    configurationWithWeight: proc(weight: UI.ImageSymbolWeight) -> instancetype,
+    configurationWithPointSize_weight: proc(pointSize: CG.Float, weight: UI.ImageSymbolWeight) -> instancetype,
+    configurationWithPointSize_weight_scale: proc(pointSize: CG.Float, weight: UI.ImageSymbolWeight, scale: UI.ImageSymbolScale) -> instancetype,
+    configurationWithTextStyle_: proc(textStyle: ^NS.String) -> instancetype,
+    configurationWithTextStyle_scale: proc(textStyle: ^NS.String, scale: UI.ImageSymbolScale) -> instancetype,
+    configurationWithFont_: proc(font: ^UI.Font) -> instancetype,
+    configurationWithFont_scale: proc(font: ^UI.Font, scale: UI.ImageSymbolScale) -> instancetype,
+    configurationWithHierarchicalColor: proc(hierarchicalColor: ^UI.Color) -> instancetype,
+    configurationWithPaletteColors: proc(paletteColors: ^NS.Array) -> instancetype,
+    configurationPreferringMulticolor: proc() -> instancetype,
+    configurationPreferringMonochrome: proc() -> instancetype,
+    configurationWithoutTextStyle: proc(self: ^UI.ImageSymbolConfiguration) -> instancetype,
+    configurationWithoutScale: proc(self: ^UI.ImageSymbolConfiguration) -> instancetype,
+    configurationWithoutWeight: proc(self: ^UI.ImageSymbolConfiguration) -> instancetype,
+    configurationWithoutPointSizeAndWeight: proc(self: ^UI.ImageSymbolConfiguration) -> instancetype,
     isEqualToConfiguration: proc(self: ^UI.ImageSymbolConfiguration, otherConfiguration: ^UI.ImageSymbolConfiguration) -> bool,
     unspecifiedConfiguration: proc() -> ^UI.ImageSymbolConfiguration,
 }
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIImageConfiguration.extend(cls, &vt.super)
 
     if vt.configurationWithScale != nil {
-        configurationWithScale :: proc "c" (self: Class, _: SEL, scale: UI.ImageSymbolScale) -> ^UI.ImageSymbolConfiguration {
+        configurationWithScale :: proc "c" (self: Class, _: SEL, scale: UI.ImageSymbolScale) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithScale:"), auto_cast configurationWithScale, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.configurationWithPointSize_ != nil {
-        configurationWithPointSize_ :: proc "c" (self: Class, _: SEL, pointSize: CG.Float) -> ^UI.ImageSymbolConfiguration {
+        configurationWithPointSize_ :: proc "c" (self: Class, _: SEL, pointSize: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithPointSize:"), auto_cast configurationWithPointSize_, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.configurationWithWeight != nil {
-        configurationWithWeight :: proc "c" (self: Class, _: SEL, weight: UI.ImageSymbolWeight) -> ^UI.ImageSymbolConfiguration {
+        configurationWithWeight :: proc "c" (self: Class, _: SEL, weight: UI.ImageSymbolWeight) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithWeight:"), auto_cast configurationWithWeight, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.configurationWithPointSize_weight != nil {
-        configurationWithPointSize_weight :: proc "c" (self: Class, _: SEL, pointSize: CG.Float, weight: UI.ImageSymbolWeight) -> ^UI.ImageSymbolConfiguration {
+        configurationWithPointSize_weight :: proc "c" (self: Class, _: SEL, pointSize: CG.Float, weight: UI.ImageSymbolWeight) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithPointSize:weight:"), auto_cast configurationWithPointSize_weight, "@#:dl") do panic("Failed to register objC method.")
     }
     if vt.configurationWithPointSize_weight_scale != nil {
-        configurationWithPointSize_weight_scale :: proc "c" (self: Class, _: SEL, pointSize: CG.Float, weight: UI.ImageSymbolWeight, scale: UI.ImageSymbolScale) -> ^UI.ImageSymbolConfiguration {
+        configurationWithPointSize_weight_scale :: proc "c" (self: Class, _: SEL, pointSize: CG.Float, weight: UI.ImageSymbolWeight, scale: UI.ImageSymbolScale) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithPointSize:weight:scale:"), auto_cast configurationWithPointSize_weight_scale, "@#:dll") do panic("Failed to register objC method.")
     }
     if vt.configurationWithTextStyle_ != nil {
-        configurationWithTextStyle_ :: proc "c" (self: Class, _: SEL, textStyle: ^NS.String) -> ^UI.ImageSymbolConfiguration {
+        configurationWithTextStyle_ :: proc "c" (self: Class, _: SEL, textStyle: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithTextStyle:"), auto_cast configurationWithTextStyle_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.configurationWithTextStyle_scale != nil {
-        configurationWithTextStyle_scale :: proc "c" (self: Class, _: SEL, textStyle: ^NS.String, scale: UI.ImageSymbolScale) -> ^UI.ImageSymbolConfiguration {
+        configurationWithTextStyle_scale :: proc "c" (self: Class, _: SEL, textStyle: ^NS.String, scale: UI.ImageSymbolScale) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithTextStyle:scale:"), auto_cast configurationWithTextStyle_scale, "@#:@l") do panic("Failed to register objC method.")
     }
     if vt.configurationWithFont_ != nil {
-        configurationWithFont_ :: proc "c" (self: Class, _: SEL, font: ^UI.Font) -> ^UI.ImageSymbolConfiguration {
+        configurationWithFont_ :: proc "c" (self: Class, _: SEL, font: ^UI.Font) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithFont:"), auto_cast configurationWithFont_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.configurationWithFont_scale != nil {
-        configurationWithFont_scale :: proc "c" (self: Class, _: SEL, font: ^UI.Font, scale: UI.ImageSymbolScale) -> ^UI.ImageSymbolConfiguration {
+        configurationWithFont_scale :: proc "c" (self: Class, _: SEL, font: ^UI.Font, scale: UI.ImageSymbolScale) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithFont:scale:"), auto_cast configurationWithFont_scale, "@#:@l") do panic("Failed to register objC method.")
     }
     if vt.configurationWithHierarchicalColor != nil {
-        configurationWithHierarchicalColor :: proc "c" (self: Class, _: SEL, hierarchicalColor: ^UI.Color) -> ^UI.ImageSymbolConfiguration {
+        configurationWithHierarchicalColor :: proc "c" (self: Class, _: SEL, hierarchicalColor: ^UI.Color) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithHierarchicalColor:"), auto_cast configurationWithHierarchicalColor, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.configurationWithPaletteColors != nil {
-        configurationWithPaletteColors :: proc "c" (self: Class, _: SEL, paletteColors: ^NS.Array) -> ^UI.ImageSymbolConfiguration {
+        configurationWithPaletteColors :: proc "c" (self: Class, _: SEL, paletteColors: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -167,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithPaletteColors:"), auto_cast configurationWithPaletteColors, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.configurationPreferringMulticolor != nil {
-        configurationPreferringMulticolor :: proc "c" (self: Class, _: SEL) -> ^UI.ImageSymbolConfiguration {
+        configurationPreferringMulticolor :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -177,7 +177,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationPreferringMulticolor"), auto_cast configurationPreferringMulticolor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.configurationPreferringMonochrome != nil {
-        configurationPreferringMonochrome :: proc "c" (self: Class, _: SEL) -> ^UI.ImageSymbolConfiguration {
+        configurationPreferringMonochrome :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -187,7 +187,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationPreferringMonochrome"), auto_cast configurationPreferringMonochrome, "@#:") do panic("Failed to register objC method.")
     }
     if vt.configurationWithoutTextStyle != nil {
-        configurationWithoutTextStyle :: proc "c" (self: ^UI.ImageSymbolConfiguration, _: SEL) -> ^UI.ImageSymbolConfiguration {
+        configurationWithoutTextStyle :: proc "c" (self: ^UI.ImageSymbolConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -197,7 +197,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("configurationWithoutTextStyle"), auto_cast configurationWithoutTextStyle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.configurationWithoutScale != nil {
-        configurationWithoutScale :: proc "c" (self: ^UI.ImageSymbolConfiguration, _: SEL) -> ^UI.ImageSymbolConfiguration {
+        configurationWithoutScale :: proc "c" (self: ^UI.ImageSymbolConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -207,7 +207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("configurationWithoutScale"), auto_cast configurationWithoutScale, "@@:") do panic("Failed to register objC method.")
     }
     if vt.configurationWithoutWeight != nil {
-        configurationWithoutWeight :: proc "c" (self: ^UI.ImageSymbolConfiguration, _: SEL) -> ^UI.ImageSymbolConfiguration {
+        configurationWithoutWeight :: proc "c" (self: ^UI.ImageSymbolConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -217,7 +217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("configurationWithoutWeight"), auto_cast configurationWithoutWeight, "@@:") do panic("Failed to register objC method.")
     }
     if vt.configurationWithoutPointSizeAndWeight != nil {
-        configurationWithoutPointSizeAndWeight :: proc "c" (self: ^UI.ImageSymbolConfiguration, _: SEL) -> ^UI.ImageSymbolConfiguration {
+        configurationWithoutPointSizeAndWeight :: proc "c" (self: ^UI.ImageSymbolConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

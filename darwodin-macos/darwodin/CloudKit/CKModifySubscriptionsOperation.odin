@@ -18,10 +18,10 @@ ModifySubscriptionsOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ModifySubscriptionsOperation, objc_selector="init", objc_name="init")
-    ModifySubscriptionsOperation_init :: proc(self: ^ModifySubscriptionsOperation) -> ^ModifySubscriptionsOperation ---
+    ModifySubscriptionsOperation_init :: proc(self: ^ModifySubscriptionsOperation) -> instancetype ---
 
     @(objc_type=ModifySubscriptionsOperation, objc_selector="initWithSubscriptionsToSave:subscriptionIDsToDelete:", objc_name="initWithSubscriptionsToSave")
-    ModifySubscriptionsOperation_initWithSubscriptionsToSave :: proc(self: ^ModifySubscriptionsOperation, subscriptionsToSave: ^NS.Array, subscriptionIDsToDelete: ^NS.Array) -> ^ModifySubscriptionsOperation ---
+    ModifySubscriptionsOperation_initWithSubscriptionsToSave :: proc(self: ^ModifySubscriptionsOperation, subscriptionsToSave: ^NS.Array, subscriptionIDsToDelete: ^NS.Array) -> instancetype ---
 
     @(objc_type=ModifySubscriptionsOperation, objc_selector="subscriptionsToSave", objc_name="subscriptionsToSave")
     ModifySubscriptionsOperation_subscriptionsToSave :: proc(self: ^ModifySubscriptionsOperation) -> ^NS.Array ---

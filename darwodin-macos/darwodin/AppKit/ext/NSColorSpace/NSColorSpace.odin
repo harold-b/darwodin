@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithICCProfileData: proc(self: ^AK.ColorSpace, iccData: ^NS.Data) -> ^AK.ColorSpace,
-    initWithColorSyncProfile: proc(self: ^AK.ColorSpace, prof: rawptr) -> ^AK.ColorSpace,
-    initWithCGColorSpace: proc(self: ^AK.ColorSpace, cgColorSpace: CG.ColorSpaceRef) -> ^AK.ColorSpace,
+    initWithICCProfileData: proc(self: ^AK.ColorSpace, iccData: ^NS.Data) -> instancetype,
+    initWithColorSyncProfile: proc(self: ^AK.ColorSpace, prof: rawptr) -> instancetype,
+    initWithCGColorSpace: proc(self: ^AK.ColorSpace, cgColorSpace: CG.ColorSpaceRef) -> instancetype,
     availableColorSpacesWithModel: proc(model: AK.ColorSpaceModel) -> ^NS.Array,
     _ICCProfileData: proc(self: ^AK.ColorSpace) -> ^NS.Data,
     colorSyncProfile: proc(self: ^AK.ColorSpace) -> rawptr,
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithICCProfileData != nil {
-        initWithICCProfileData :: proc "c" (self: ^AK.ColorSpace, _: SEL, iccData: ^NS.Data) -> ^AK.ColorSpace {
+        initWithICCProfileData :: proc "c" (self: ^AK.ColorSpace, _: SEL, iccData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithICCProfileData:"), auto_cast initWithICCProfileData, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithColorSyncProfile != nil {
-        initWithColorSyncProfile :: proc "c" (self: ^AK.ColorSpace, _: SEL, prof: rawptr) -> ^AK.ColorSpace {
+        initWithColorSyncProfile :: proc "c" (self: ^AK.ColorSpace, _: SEL, prof: rawptr) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithColorSyncProfile:"), auto_cast initWithColorSyncProfile, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCGColorSpace != nil {
-        initWithCGColorSpace :: proc "c" (self: ^AK.ColorSpace, _: SEL, cgColorSpace: CG.ColorSpaceRef) -> ^AK.ColorSpace {
+        initWithCGColorSpace :: proc "c" (self: ^AK.ColorSpace, _: SEL, cgColorSpace: CG.ColorSpaceRef) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -20,7 +20,7 @@ BackgroundActivityScheduler :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BackgroundActivityScheduler, objc_selector="initWithIdentifier:", objc_name="initWithIdentifier")
-    BackgroundActivityScheduler_initWithIdentifier :: proc(self: ^BackgroundActivityScheduler, identifier: ^String) -> ^BackgroundActivityScheduler ---
+    BackgroundActivityScheduler_initWithIdentifier :: proc(self: ^BackgroundActivityScheduler, identifier: ^String) -> instancetype ---
 
     @(objc_type=BackgroundActivityScheduler, objc_selector="scheduleWithBlock:", objc_name="scheduleWithBlock")
     BackgroundActivityScheduler_scheduleWithBlock :: proc(self: ^BackgroundActivityScheduler, block: ^Objc_Block(proc "c" (completionHandler: BackgroundActivityCompletionHandler))) ---

@@ -34,13 +34,13 @@ foreign lib {
     MenuItem_separatorItem :: proc() -> ^MenuItem ---
 
     @(objc_type=MenuItem, objc_selector="sectionHeaderWithTitle:", objc_name="sectionHeaderWithTitle", objc_is_class_method=true)
-    MenuItem_sectionHeaderWithTitle :: proc(title: ^NS.String) -> ^MenuItem ---
+    MenuItem_sectionHeaderWithTitle :: proc(title: ^NS.String) -> instancetype ---
 
     @(objc_type=MenuItem, objc_selector="initWithTitle:action:keyEquivalent:", objc_name="initWithTitle")
-    MenuItem_initWithTitle :: proc(self: ^MenuItem, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> ^MenuItem ---
+    MenuItem_initWithTitle :: proc(self: ^MenuItem, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> instancetype ---
 
     @(objc_type=MenuItem, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    MenuItem_initWithCoder :: proc(self: ^MenuItem, coder: ^NS.Coder) -> ^MenuItem ---
+    MenuItem_initWithCoder :: proc(self: ^MenuItem, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=MenuItem, objc_selector="usesUserKeyEquivalents", objc_name="usesUserKeyEquivalents", objc_is_class_method=true)
     MenuItem_usesUserKeyEquivalents :: proc() -> bool ---

@@ -27,7 +27,7 @@ foreign lib {
     EDRMetadata_new :: proc() -> ^EDRMetadata ---
 
     @(objc_type=EDRMetadata, objc_selector="init", objc_name="init")
-    EDRMetadata_init :: proc(self: ^EDRMetadata) -> ^EDRMetadata ---
+    EDRMetadata_init :: proc(self: ^EDRMetadata) -> instancetype ---
 
     @(objc_type=EDRMetadata, objc_selector="HDR10MetadataWithDisplayInfo:contentInfo:opticalOutputScale:", objc_name="HDR10MetadataWithDisplayInfo", objc_is_class_method=true)
     EDRMetadata_HDR10MetadataWithDisplayInfo :: proc(displayData: ^NS.Data, contentData: ^NS.Data, scale: cffi.float) -> ^EDRMetadata ---

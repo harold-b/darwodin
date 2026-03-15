@@ -28,8 +28,8 @@ import "../UIFindSession"
 
 VTable :: struct {
     super: UIFindSession.VTable,
-    initWithSearchableObject: proc(self: ^UI.TextSearchingFindSession, searchableObject: ^UI.TextSearching) -> ^UI.TextSearchingFindSession,
-    init: proc(self: ^UI.TextSearchingFindSession) -> ^UI.TextSearchingFindSession,
+    initWithSearchableObject: proc(self: ^UI.TextSearchingFindSession, searchableObject: ^UI.TextSearching) -> instancetype,
+    init: proc(self: ^UI.TextSearchingFindSession) -> instancetype,
     new: proc() -> ^UI.TextSearchingFindSession,
     searchableObject: proc(self: ^UI.TextSearchingFindSession) -> ^UI.TextSearching,
 }
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIFindSession.extend(cls, &vt.super)
 
     if vt.initWithSearchableObject != nil {
-        initWithSearchableObject :: proc "c" (self: ^UI.TextSearchingFindSession, _: SEL, searchableObject: ^UI.TextSearching) -> ^UI.TextSearchingFindSession {
+        initWithSearchableObject :: proc "c" (self: ^UI.TextSearchingFindSession, _: SEL, searchableObject: ^UI.TextSearching) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSearchableObject:"), auto_cast initWithSearchableObject, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextSearchingFindSession, _: SEL) -> ^UI.TextSearchingFindSession {
+        init :: proc "c" (self: ^UI.TextSearchingFindSession, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -25,19 +25,19 @@ ViewPropertyAnimator :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ViewPropertyAnimator, objc_selector="initWithDuration:timingParameters:", objc_name="initWithDuration_timingParameters")
-    ViewPropertyAnimator_initWithDuration_timingParameters :: proc(self: ^ViewPropertyAnimator, duration: NS.TimeInterval, parameters: ^TimingCurveProvider) -> ^ViewPropertyAnimator ---
+    ViewPropertyAnimator_initWithDuration_timingParameters :: proc(self: ^ViewPropertyAnimator, duration: NS.TimeInterval, parameters: ^TimingCurveProvider) -> instancetype ---
 
     @(objc_type=ViewPropertyAnimator, objc_selector="initWithDuration:curve:animations:", objc_name="initWithDuration_curve_animations")
-    ViewPropertyAnimator_initWithDuration_curve_animations :: proc(self: ^ViewPropertyAnimator, duration: NS.TimeInterval, curve: ViewAnimationCurve, animations: ^Objc_Block(proc "c" ())) -> ^ViewPropertyAnimator ---
+    ViewPropertyAnimator_initWithDuration_curve_animations :: proc(self: ^ViewPropertyAnimator, duration: NS.TimeInterval, curve: ViewAnimationCurve, animations: ^Objc_Block(proc "c" ())) -> instancetype ---
 
     @(objc_type=ViewPropertyAnimator, objc_selector="initWithDuration:controlPoint1:controlPoint2:animations:", objc_name="initWithDuration_controlPoint1_controlPoint2_animations")
-    ViewPropertyAnimator_initWithDuration_controlPoint1_controlPoint2_animations :: proc(self: ^ViewPropertyAnimator, duration: NS.TimeInterval, point1: CG.Point, point2: CG.Point, animations: ^Objc_Block(proc "c" ())) -> ^ViewPropertyAnimator ---
+    ViewPropertyAnimator_initWithDuration_controlPoint1_controlPoint2_animations :: proc(self: ^ViewPropertyAnimator, duration: NS.TimeInterval, point1: CG.Point, point2: CG.Point, animations: ^Objc_Block(proc "c" ())) -> instancetype ---
 
     @(objc_type=ViewPropertyAnimator, objc_selector="initWithDuration:dampingRatio:animations:", objc_name="initWithDuration_dampingRatio_animations")
-    ViewPropertyAnimator_initWithDuration_dampingRatio_animations :: proc(self: ^ViewPropertyAnimator, duration: NS.TimeInterval, ratio: CG.Float, animations: ^Objc_Block(proc "c" ())) -> ^ViewPropertyAnimator ---
+    ViewPropertyAnimator_initWithDuration_dampingRatio_animations :: proc(self: ^ViewPropertyAnimator, duration: NS.TimeInterval, ratio: CG.Float, animations: ^Objc_Block(proc "c" ())) -> instancetype ---
 
     @(objc_type=ViewPropertyAnimator, objc_selector="runningPropertyAnimatorWithDuration:delay:options:animations:completion:", objc_name="runningPropertyAnimatorWithDuration", objc_is_class_method=true)
-    ViewPropertyAnimator_runningPropertyAnimatorWithDuration :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) -> ^ViewPropertyAnimator ---
+    ViewPropertyAnimator_runningPropertyAnimatorWithDuration :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) -> instancetype ---
 
     @(objc_type=ViewPropertyAnimator, objc_selector="addAnimations:delayFactor:", objc_name="addAnimations_delayFactor")
     ViewPropertyAnimator_addAnimations_delayFactor :: proc(self: ^ViewPropertyAnimator, animation: ^Objc_Block(proc "c" ()), delayFactor: CG.Float) ---

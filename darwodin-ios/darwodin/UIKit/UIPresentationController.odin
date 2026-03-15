@@ -27,10 +27,10 @@ PresentationController :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PresentationController, objc_selector="initWithPresentedViewController:presentingViewController:", objc_name="initWithPresentedViewController")
-    PresentationController_initWithPresentedViewController :: proc(self: ^PresentationController, presentedViewController: ^ViewController, presentingViewController: ^ViewController) -> ^PresentationController ---
+    PresentationController_initWithPresentedViewController :: proc(self: ^PresentationController, presentedViewController: ^ViewController, presentingViewController: ^ViewController) -> instancetype ---
 
     @(objc_type=PresentationController, objc_selector="init", objc_name="init")
-    PresentationController_init :: proc(self: ^PresentationController) -> ^PresentationController ---
+    PresentationController_init :: proc(self: ^PresentationController) -> instancetype ---
 
     @(objc_type=PresentationController, objc_selector="adaptivePresentationStyleForTraitCollection:", objc_name="adaptivePresentationStyleForTraitCollection")
     PresentationController_adaptivePresentationStyleForTraitCollection :: proc(self: ^PresentationController, traitCollection: ^TraitCollection) -> ModalPresentationStyle ---

@@ -29,10 +29,10 @@ import "../UIViewController"
 VTable :: struct {
     super: UIViewController.VTable,
     dictionaryHasDefinitionForTerm: proc(term: ^NS.String) -> bool,
-    initWithTerm: proc(self: ^UI.ReferenceLibraryViewController, term: ^NS.String) -> ^UI.ReferenceLibraryViewController,
-    initWithCoder: proc(self: ^UI.ReferenceLibraryViewController, coder: ^NS.Coder) -> ^UI.ReferenceLibraryViewController,
-    initWithNibName: proc(self: ^UI.ReferenceLibraryViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.ReferenceLibraryViewController,
-    init: proc(self: ^UI.ReferenceLibraryViewController) -> ^UI.ReferenceLibraryViewController,
+    initWithTerm: proc(self: ^UI.ReferenceLibraryViewController, term: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^UI.ReferenceLibraryViewController, coder: ^NS.Coder) -> instancetype,
+    initWithNibName: proc(self: ^UI.ReferenceLibraryViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    init: proc(self: ^UI.ReferenceLibraryViewController) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dictionaryHasDefinitionForTerm:"), auto_cast dictionaryHasDefinitionForTerm, "B#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithTerm != nil {
-        initWithTerm :: proc "c" (self: ^UI.ReferenceLibraryViewController, _: SEL, term: ^NS.String) -> ^UI.ReferenceLibraryViewController {
+        initWithTerm :: proc "c" (self: ^UI.ReferenceLibraryViewController, _: SEL, term: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTerm:"), auto_cast initWithTerm, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.ReferenceLibraryViewController, _: SEL, coder: ^NS.Coder) -> ^UI.ReferenceLibraryViewController {
+        initWithCoder :: proc "c" (self: ^UI.ReferenceLibraryViewController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.ReferenceLibraryViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.ReferenceLibraryViewController {
+        initWithNibName :: proc "c" (self: ^UI.ReferenceLibraryViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ReferenceLibraryViewController, _: SEL) -> ^UI.ReferenceLibraryViewController {
+        init :: proc "c" (self: ^UI.ReferenceLibraryViewController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

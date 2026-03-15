@@ -28,9 +28,9 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithFrame_: proc(self: ^UI.Control, frame: CG.Rect) -> ^UI.Control,
-    initWithCoder: proc(self: ^UI.Control, coder: ^NS.Coder) -> ^UI.Control,
-    initWithFrame_primaryAction: proc(self: ^UI.Control, frame: CG.Rect, primaryAction: ^UI.Action) -> ^UI.Control,
+    initWithFrame_: proc(self: ^UI.Control, frame: CG.Rect) -> instancetype,
+    initWithCoder: proc(self: ^UI.Control, coder: ^NS.Coder) -> instancetype,
+    initWithFrame_primaryAction: proc(self: ^UI.Control, frame: CG.Rect, primaryAction: ^UI.Action) -> instancetype,
     beginTrackingWithTouch: proc(self: ^UI.Control, touch: ^UI.Touch, event: ^UI.Event) -> bool,
     continueTrackingWithTouch: proc(self: ^UI.Control, touch: ^UI.Touch, event: ^UI.Event) -> bool,
     endTrackingWithTouch: proc(self: ^UI.Control, touch: ^UI.Touch, event: ^UI.Event),
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithFrame_ != nil {
-        initWithFrame_ :: proc "c" (self: ^UI.Control, _: SEL, frame: CG.Rect) -> ^UI.Control {
+        initWithFrame_ :: proc "c" (self: ^UI.Control, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame_, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.Control, _: SEL, coder: ^NS.Coder) -> ^UI.Control {
+        initWithCoder :: proc "c" (self: ^UI.Control, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame_primaryAction != nil {
-        initWithFrame_primaryAction :: proc "c" (self: ^UI.Control, _: SEL, frame: CG.Rect, primaryAction: ^UI.Action) -> ^UI.Control {
+        initWithFrame_primaryAction :: proc "c" (self: ^UI.Control, _: SEL, frame: CG.Rect, primaryAction: ^UI.Action) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

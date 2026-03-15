@@ -20,10 +20,10 @@ SyncEngineFetchChangesScope :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineFetchChangesScope, objc_selector="initWithZoneIDs:", objc_name="initWithZoneIDs")
-    SyncEngineFetchChangesScope_initWithZoneIDs :: proc(self: ^SyncEngineFetchChangesScope, zoneIDs: ^NS.Set) -> ^SyncEngineFetchChangesScope ---
+    SyncEngineFetchChangesScope_initWithZoneIDs :: proc(self: ^SyncEngineFetchChangesScope, zoneIDs: ^NS.Set) -> instancetype ---
 
     @(objc_type=SyncEngineFetchChangesScope, objc_selector="initWithExcludedZoneIDs:", objc_name="initWithExcludedZoneIDs")
-    SyncEngineFetchChangesScope_initWithExcludedZoneIDs :: proc(self: ^SyncEngineFetchChangesScope, zoneIDs: ^NS.Set) -> ^SyncEngineFetchChangesScope ---
+    SyncEngineFetchChangesScope_initWithExcludedZoneIDs :: proc(self: ^SyncEngineFetchChangesScope, zoneIDs: ^NS.Set) -> instancetype ---
 
     @(objc_type=SyncEngineFetchChangesScope, objc_selector="containsZoneID:", objc_name="containsZoneID")
     SyncEngineFetchChangesScope_containsZoneID :: proc(self: ^SyncEngineFetchChangesScope, zoneID: ^RecordZoneID) -> bool ---

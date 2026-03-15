@@ -24,19 +24,19 @@ CollectionViewCompositionalLayout :: struct { using _: CollectionViewLayout, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewCompositionalLayout, objc_selector="initWithSection:", objc_name="initWithSection_")
-    CollectionViewCompositionalLayout_initWithSection_ :: proc(self: ^CollectionViewCompositionalLayout, section: ^CollectionLayoutSection) -> ^CollectionViewCompositionalLayout ---
+    CollectionViewCompositionalLayout_initWithSection_ :: proc(self: ^CollectionViewCompositionalLayout, section: ^CollectionLayoutSection) -> instancetype ---
 
     @(objc_type=CollectionViewCompositionalLayout, objc_selector="initWithSection:configuration:", objc_name="initWithSection_configuration")
-    CollectionViewCompositionalLayout_initWithSection_configuration :: proc(self: ^CollectionViewCompositionalLayout, section: ^CollectionLayoutSection, configuration: ^CollectionViewCompositionalLayoutConfiguration) -> ^CollectionViewCompositionalLayout ---
+    CollectionViewCompositionalLayout_initWithSection_configuration :: proc(self: ^CollectionViewCompositionalLayout, section: ^CollectionLayoutSection, configuration: ^CollectionViewCompositionalLayoutConfiguration) -> instancetype ---
 
     @(objc_type=CollectionViewCompositionalLayout, objc_selector="initWithSectionProvider:", objc_name="initWithSectionProvider_")
-    CollectionViewCompositionalLayout_initWithSectionProvider_ :: proc(self: ^CollectionViewCompositionalLayout, sectionProvider: CollectionViewCompositionalLayoutSectionProvider) -> ^CollectionViewCompositionalLayout ---
+    CollectionViewCompositionalLayout_initWithSectionProvider_ :: proc(self: ^CollectionViewCompositionalLayout, sectionProvider: CollectionViewCompositionalLayoutSectionProvider) -> instancetype ---
 
     @(objc_type=CollectionViewCompositionalLayout, objc_selector="initWithSectionProvider:configuration:", objc_name="initWithSectionProvider_configuration")
-    CollectionViewCompositionalLayout_initWithSectionProvider_configuration :: proc(self: ^CollectionViewCompositionalLayout, sectionProvider: CollectionViewCompositionalLayoutSectionProvider, configuration: ^CollectionViewCompositionalLayoutConfiguration) -> ^CollectionViewCompositionalLayout ---
+    CollectionViewCompositionalLayout_initWithSectionProvider_configuration :: proc(self: ^CollectionViewCompositionalLayout, sectionProvider: CollectionViewCompositionalLayoutSectionProvider, configuration: ^CollectionViewCompositionalLayoutConfiguration) -> instancetype ---
 
     @(objc_type=CollectionViewCompositionalLayout, objc_selector="init", objc_name="init")
-    CollectionViewCompositionalLayout_init :: proc(self: ^CollectionViewCompositionalLayout) -> ^CollectionViewCompositionalLayout ---
+    CollectionViewCompositionalLayout_init :: proc(self: ^CollectionViewCompositionalLayout) -> instancetype ---
 
     @(objc_type=CollectionViewCompositionalLayout, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionViewCompositionalLayout_new :: proc() -> ^CollectionViewCompositionalLayout ---

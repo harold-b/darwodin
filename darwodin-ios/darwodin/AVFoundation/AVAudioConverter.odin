@@ -23,7 +23,7 @@ AudioConverter :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioConverter, objc_selector="initFromFormat:toFormat:", objc_name="initFromFormat")
-    AudioConverter_initFromFormat :: proc(self: ^AudioConverter, fromFormat: ^AudioFormat, toFormat: ^AudioFormat) -> ^AudioConverter ---
+    AudioConverter_initFromFormat :: proc(self: ^AudioConverter, fromFormat: ^AudioFormat, toFormat: ^AudioFormat) -> instancetype ---
 
     @(objc_type=AudioConverter, objc_selector="reset", objc_name="reset")
     AudioConverter_reset :: proc(self: ^AudioConverter) ---

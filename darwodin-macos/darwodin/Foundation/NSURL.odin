@@ -23,19 +23,19 @@ URL :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URL, objc_selector="initWithScheme:host:path:", objc_name="initWithScheme")
-    URL_initWithScheme :: proc(self: ^URL, scheme: ^String, host: ^String, path: ^String) -> ^URL ---
+    URL_initWithScheme :: proc(self: ^URL, scheme: ^String, host: ^String, path: ^String) -> instancetype ---
 
     @(objc_type=URL, objc_selector="initFileURLWithPath:isDirectory:relativeToURL:", objc_name="initFileURLWithPath_isDirectory_relativeToURL")
-    URL_initFileURLWithPath_isDirectory_relativeToURL :: proc(self: ^URL, path: ^String, isDir: bool, baseURL: ^URL) -> ^URL ---
+    URL_initFileURLWithPath_isDirectory_relativeToURL :: proc(self: ^URL, path: ^String, isDir: bool, baseURL: ^URL) -> instancetype ---
 
     @(objc_type=URL, objc_selector="initFileURLWithPath:relativeToURL:", objc_name="initFileURLWithPath_relativeToURL")
-    URL_initFileURLWithPath_relativeToURL :: proc(self: ^URL, path: ^String, baseURL: ^URL) -> ^URL ---
+    URL_initFileURLWithPath_relativeToURL :: proc(self: ^URL, path: ^String, baseURL: ^URL) -> instancetype ---
 
     @(objc_type=URL, objc_selector="initFileURLWithPath:isDirectory:", objc_name="initFileURLWithPath_isDirectory")
-    URL_initFileURLWithPath_isDirectory :: proc(self: ^URL, path: ^String, isDir: bool) -> ^URL ---
+    URL_initFileURLWithPath_isDirectory :: proc(self: ^URL, path: ^String, isDir: bool) -> instancetype ---
 
     @(objc_type=URL, objc_selector="initFileURLWithPath:", objc_name="initFileURLWithPath_")
-    URL_initFileURLWithPath_ :: proc(self: ^URL, path: ^String) -> ^URL ---
+    URL_initFileURLWithPath_ :: proc(self: ^URL, path: ^String) -> instancetype ---
 
     @(objc_type=URL, objc_selector="fileURLWithPath:isDirectory:relativeToURL:", objc_name="fileURLWithPath_isDirectory_relativeToURL", objc_is_class_method=true)
     URL_fileURLWithPath_isDirectory_relativeToURL :: proc(path: ^String, isDir: bool, baseURL: ^URL) -> ^URL ---
@@ -50,37 +50,37 @@ foreign lib {
     URL_fileURLWithPath_ :: proc(path: ^String) -> ^URL ---
 
     @(objc_type=URL, objc_selector="initFileURLWithFileSystemRepresentation:isDirectory:relativeToURL:", objc_name="initFileURLWithFileSystemRepresentation")
-    URL_initFileURLWithFileSystemRepresentation :: proc(self: ^URL, path: cstring, isDir: bool, baseURL: ^URL) -> ^URL ---
+    URL_initFileURLWithFileSystemRepresentation :: proc(self: ^URL, path: cstring, isDir: bool, baseURL: ^URL) -> instancetype ---
 
     @(objc_type=URL, objc_selector="fileURLWithFileSystemRepresentation:isDirectory:relativeToURL:", objc_name="fileURLWithFileSystemRepresentation", objc_is_class_method=true)
     URL_fileURLWithFileSystemRepresentation :: proc(path: cstring, isDir: bool, baseURL: ^URL) -> ^URL ---
 
     @(objc_type=URL, objc_selector="initWithString:", objc_name="initWithString_")
-    URL_initWithString_ :: proc(self: ^URL, URLString: ^String) -> ^URL ---
+    URL_initWithString_ :: proc(self: ^URL, URLString: ^String) -> instancetype ---
 
     @(objc_type=URL, objc_selector="initWithString:relativeToURL:", objc_name="initWithString_relativeToURL")
-    URL_initWithString_relativeToURL :: proc(self: ^URL, URLString: ^String, baseURL: ^URL) -> ^URL ---
+    URL_initWithString_relativeToURL :: proc(self: ^URL, URLString: ^String, baseURL: ^URL) -> instancetype ---
 
     @(objc_type=URL, objc_selector="URLWithString:", objc_name="URLWithString_", objc_is_class_method=true)
-    URL_URLWithString_ :: proc(URLString: ^String) -> ^URL ---
+    URL_URLWithString_ :: proc(URLString: ^String) -> instancetype ---
 
     @(objc_type=URL, objc_selector="URLWithString:relativeToURL:", objc_name="URLWithString_relativeToURL", objc_is_class_method=true)
-    URL_URLWithString_relativeToURL :: proc(URLString: ^String, baseURL: ^URL) -> ^URL ---
+    URL_URLWithString_relativeToURL :: proc(URLString: ^String, baseURL: ^URL) -> instancetype ---
 
     @(objc_type=URL, objc_selector="initWithString:encodingInvalidCharacters:", objc_name="initWithString_encodingInvalidCharacters")
-    URL_initWithString_encodingInvalidCharacters :: proc(self: ^URL, URLString: ^String, encodingInvalidCharacters: bool) -> ^URL ---
+    URL_initWithString_encodingInvalidCharacters :: proc(self: ^URL, URLString: ^String, encodingInvalidCharacters: bool) -> instancetype ---
 
     @(objc_type=URL, objc_selector="URLWithString:encodingInvalidCharacters:", objc_name="URLWithString_encodingInvalidCharacters", objc_is_class_method=true)
-    URL_URLWithString_encodingInvalidCharacters :: proc(URLString: ^String, encodingInvalidCharacters: bool) -> ^URL ---
+    URL_URLWithString_encodingInvalidCharacters :: proc(URLString: ^String, encodingInvalidCharacters: bool) -> instancetype ---
 
     @(objc_type=URL, objc_selector="initWithDataRepresentation:relativeToURL:", objc_name="initWithDataRepresentation")
-    URL_initWithDataRepresentation :: proc(self: ^URL, data: ^Data, baseURL: ^URL) -> ^URL ---
+    URL_initWithDataRepresentation :: proc(self: ^URL, data: ^Data, baseURL: ^URL) -> instancetype ---
 
     @(objc_type=URL, objc_selector="URLWithDataRepresentation:relativeToURL:", objc_name="URLWithDataRepresentation", objc_is_class_method=true)
     URL_URLWithDataRepresentation :: proc(data: ^Data, baseURL: ^URL) -> ^URL ---
 
     @(objc_type=URL, objc_selector="initAbsoluteURLWithDataRepresentation:relativeToURL:", objc_name="initAbsoluteURLWithDataRepresentation")
-    URL_initAbsoluteURLWithDataRepresentation :: proc(self: ^URL, data: ^Data, baseURL: ^URL) -> ^URL ---
+    URL_initAbsoluteURLWithDataRepresentation :: proc(self: ^URL, data: ^Data, baseURL: ^URL) -> instancetype ---
 
     @(objc_type=URL, objc_selector="absoluteURLWithDataRepresentation:relativeToURL:", objc_name="absoluteURLWithDataRepresentation", objc_is_class_method=true)
     URL_absoluteURLWithDataRepresentation :: proc(data: ^Data, baseURL: ^URL) -> ^URL ---
@@ -119,10 +119,10 @@ foreign lib {
     URL_bookmarkDataWithOptions :: proc(self: ^URL, options: URLBookmarkCreationOptions, keys: ^Array, relativeURL: ^URL, error: ^^Error) -> ^Data ---
 
     @(objc_type=URL, objc_selector="initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:", objc_name="initByResolvingBookmarkData")
-    URL_initByResolvingBookmarkData :: proc(self: ^URL, bookmarkData: ^Data, options: URLBookmarkResolutionOptions, relativeURL: ^URL, isStale: ^bool, error: ^^Error) -> ^URL ---
+    URL_initByResolvingBookmarkData :: proc(self: ^URL, bookmarkData: ^Data, options: URLBookmarkResolutionOptions, relativeURL: ^URL, isStale: ^bool, error: ^^Error) -> instancetype ---
 
     @(objc_type=URL, objc_selector="URLByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:", objc_name="URLByResolvingBookmarkData", objc_is_class_method=true)
-    URL_URLByResolvingBookmarkData :: proc(bookmarkData: ^Data, options: URLBookmarkResolutionOptions, relativeURL: ^URL, isStale: ^bool, error: ^^Error) -> ^URL ---
+    URL_URLByResolvingBookmarkData :: proc(bookmarkData: ^Data, options: URLBookmarkResolutionOptions, relativeURL: ^URL, isStale: ^bool, error: ^^Error) -> instancetype ---
 
     @(objc_type=URL, objc_selector="resourceValuesForKeys:fromBookmarkData:", objc_name="resourceValuesForKeys_fromBookmarkData", objc_is_class_method=true)
     URL_resourceValuesForKeys_fromBookmarkData :: proc(keys: ^Array, bookmarkData: ^Data) -> ^Dictionary ---
@@ -134,7 +134,7 @@ foreign lib {
     URL_bookmarkDataWithContentsOfURL :: proc(bookmarkFileURL: ^URL, error: ^^Error) -> ^Data ---
 
     @(objc_type=URL, objc_selector="URLByResolvingAliasFileAtURL:options:error:", objc_name="URLByResolvingAliasFileAtURL", objc_is_class_method=true)
-    URL_URLByResolvingAliasFileAtURL :: proc(url: ^URL, options: URLBookmarkResolutionOptions, error: ^^Error) -> ^URL ---
+    URL_URLByResolvingAliasFileAtURL :: proc(url: ^URL, options: URLBookmarkResolutionOptions, error: ^^Error) -> instancetype ---
 
     @(objc_type=URL, objc_selector="startAccessingSecurityScopedResource", objc_name="startAccessingSecurityScopedResource")
     URL_startAccessingSecurityScopedResource :: proc(self: ^URL) -> bool ---

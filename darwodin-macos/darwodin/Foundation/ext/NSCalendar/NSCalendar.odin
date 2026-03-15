@@ -27,7 +27,7 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     calendarWithIdentifier: proc(calendarIdentifierConstant: ^NS.String) -> ^NS.Calendar,
-    init: proc(self: ^NS.Calendar) -> ^NS.Calendar,
+    init: proc(self: ^NS.Calendar) -> instancetype,
     initWithCalendarIdentifier: proc(self: ^NS.Calendar, ident: ^NS.String) -> id,
     minimumRangeOfUnit: proc(self: ^NS.Calendar, unit: NS.CalendarUnit) -> NS._NSRange,
     maximumRangeOfUnit: proc(self: ^NS.Calendar, unit: NS.CalendarUnit) -> NS._NSRange,
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("calendarWithIdentifier:"), auto_cast calendarWithIdentifier, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.Calendar, _: SEL) -> ^NS.Calendar {
+        init :: proc "c" (self: ^NS.Calendar, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

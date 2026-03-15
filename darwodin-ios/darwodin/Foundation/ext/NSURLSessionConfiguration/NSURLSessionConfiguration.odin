@@ -27,7 +27,7 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     backgroundSessionConfigurationWithIdentifier: proc(identifier: ^NS.String) -> ^NS.URLSessionConfiguration,
-    init: proc(self: ^NS.URLSessionConfiguration) -> ^NS.URLSessionConfiguration,
+    init: proc(self: ^NS.URLSessionConfiguration) -> instancetype,
     new: proc() -> ^NS.URLSessionConfiguration,
     defaultSessionConfiguration: proc() -> ^NS.URLSessionConfiguration,
     ephemeralSessionConfiguration: proc() -> ^NS.URLSessionConfiguration,
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("backgroundSessionConfigurationWithIdentifier:"), auto_cast backgroundSessionConfigurationWithIdentifier, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> ^NS.URLSessionConfiguration {
+        init :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

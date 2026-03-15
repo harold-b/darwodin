@@ -26,8 +26,8 @@ foreign lib {
     ProtocolChecker_target :: proc(self: ^ProtocolChecker) -> ^Object ---
 
     @(objc_type=ProtocolChecker, objc_selector="protocolCheckerWithTarget:protocol:", objc_name="protocolCheckerWithTarget", objc_is_class_method=true)
-    ProtocolChecker_protocolCheckerWithTarget :: proc(anObject: ^Object, aProtocol: ^Protocol) -> ^ProtocolChecker ---
+    ProtocolChecker_protocolCheckerWithTarget :: proc(anObject: ^Object, aProtocol: ^Protocol) -> instancetype ---
 
     @(objc_type=ProtocolChecker, objc_selector="initWithTarget:protocol:", objc_name="initWithTarget")
-    ProtocolChecker_initWithTarget :: proc(self: ^ProtocolChecker, anObject: ^Object, aProtocol: ^Protocol) -> ^ProtocolChecker ---
+    ProtocolChecker_initWithTarget :: proc(self: ^ProtocolChecker, anObject: ^Object, aProtocol: ^Protocol) -> instancetype ---
 }

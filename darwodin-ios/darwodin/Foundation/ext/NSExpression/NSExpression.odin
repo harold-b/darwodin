@@ -43,8 +43,8 @@ VTable :: struct {
     expressionForAnyKey: proc() -> ^NS.Expression,
     expressionForBlock: proc(block: ^Objc_Block(proc "c" (evaluatedObject: id, expressions: ^NS.Array, _context: ^NS.MutableDictionary) -> id), arguments: ^NS.Array) -> ^NS.Expression,
     expressionForConditional: proc(predicate: ^NS.Predicate, trueExpression: ^NS.Expression, falseExpression: ^NS.Expression) -> ^NS.Expression,
-    initWithExpressionType: proc(self: ^NS.Expression, type: NS.ExpressionType) -> ^NS.Expression,
-    initWithCoder: proc(self: ^NS.Expression, coder: ^NS.Coder) -> ^NS.Expression,
+    initWithExpressionType: proc(self: ^NS.Expression, type: NS.ExpressionType) -> instancetype,
+    initWithCoder: proc(self: ^NS.Expression, coder: ^NS.Coder) -> instancetype,
     expressionValueWithObject: proc(self: ^NS.Expression, object: id, _context: ^NS.MutableDictionary) -> id,
     allowEvaluation: proc(self: ^NS.Expression),
     expressionType: proc(self: ^NS.Expression) -> NS.ExpressionType,
@@ -241,7 +241,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("expressionForConditional:trueExpression:falseExpression:"), auto_cast expressionForConditional, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithExpressionType != nil {
-        initWithExpressionType :: proc "c" (self: ^NS.Expression, _: SEL, type: NS.ExpressionType) -> ^NS.Expression {
+        initWithExpressionType :: proc "c" (self: ^NS.Expression, _: SEL, type: NS.ExpressionType) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -251,7 +251,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithExpressionType:"), auto_cast initWithExpressionType, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.Expression, _: SEL, coder: ^NS.Coder) -> ^NS.Expression {
+        initWithCoder :: proc "c" (self: ^NS.Expression, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

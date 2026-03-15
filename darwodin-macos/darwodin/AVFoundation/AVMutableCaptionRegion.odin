@@ -23,10 +23,10 @@ MutableCaptionRegion :: struct { using _: CaptionRegion, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableCaptionRegion, objc_selector="init", objc_name="init")
-    MutableCaptionRegion_init :: proc(self: ^MutableCaptionRegion) -> ^MutableCaptionRegion ---
+    MutableCaptionRegion_init :: proc(self: ^MutableCaptionRegion) -> instancetype ---
 
     @(objc_type=MutableCaptionRegion, objc_selector="initWithIdentifier:", objc_name="initWithIdentifier")
-    MutableCaptionRegion_initWithIdentifier :: proc(self: ^MutableCaptionRegion, identifier: ^NS.String) -> ^MutableCaptionRegion ---
+    MutableCaptionRegion_initWithIdentifier :: proc(self: ^MutableCaptionRegion, identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=MutableCaptionRegion, objc_selector="origin", objc_name="origin")
     MutableCaptionRegion_origin :: proc(self: ^MutableCaptionRegion) -> CaptionPoint ---

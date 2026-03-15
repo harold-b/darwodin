@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.TextInputContext) -> ^UI.TextInputContext,
+    init: proc(self: ^UI.TextInputContext) -> instancetype,
     new: proc() -> ^UI.TextInputContext,
     current: proc() -> ^UI.TextInputContext,
     isPencilInputExpected: proc(self: ^UI.TextInputContext) -> bool,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextInputContext, _: SEL) -> ^UI.TextInputContext {
+        init :: proc "c" (self: ^UI.TextInputContext, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

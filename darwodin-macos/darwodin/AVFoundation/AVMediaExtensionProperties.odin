@@ -25,7 +25,7 @@ MediaExtensionProperties :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MediaExtensionProperties, objc_selector="init", objc_name="init")
-    MediaExtensionProperties_init :: proc(self: ^MediaExtensionProperties) -> ^MediaExtensionProperties ---
+    MediaExtensionProperties_init :: proc(self: ^MediaExtensionProperties) -> instancetype ---
 
     @(objc_type=MediaExtensionProperties, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MediaExtensionProperties_new :: proc() -> ^MediaExtensionProperties ---

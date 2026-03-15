@@ -24,13 +24,13 @@ ButtonCell :: struct { using _: ActionCell, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ButtonCell, objc_selector="initTextCell:", objc_name="initTextCell")
-    ButtonCell_initTextCell :: proc(self: ^ButtonCell, string: ^NS.String) -> ^ButtonCell ---
+    ButtonCell_initTextCell :: proc(self: ^ButtonCell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=ButtonCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    ButtonCell_initImageCell :: proc(self: ^ButtonCell, image: ^NS.Image) -> ^ButtonCell ---
+    ButtonCell_initImageCell :: proc(self: ^ButtonCell, image: ^NS.Image) -> instancetype ---
 
     @(objc_type=ButtonCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ButtonCell_initWithCoder :: proc(self: ^ButtonCell, coder: ^NS.Coder) -> ^ButtonCell ---
+    ButtonCell_initWithCoder :: proc(self: ^ButtonCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ButtonCell, objc_selector="setButtonType:", objc_name="setButtonType")
     ButtonCell_setButtonType :: proc(self: ^ButtonCell, type: ButtonType) ---

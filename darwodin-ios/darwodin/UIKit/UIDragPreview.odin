@@ -24,13 +24,13 @@ DragPreview :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DragPreview, objc_selector="initWithView:parameters:", objc_name="initWithView_parameters")
-    DragPreview_initWithView_parameters :: proc(self: ^DragPreview, view: ^View, parameters: ^DragPreviewParameters) -> ^DragPreview ---
+    DragPreview_initWithView_parameters :: proc(self: ^DragPreview, view: ^View, parameters: ^DragPreviewParameters) -> instancetype ---
 
     @(objc_type=DragPreview, objc_selector="initWithView:", objc_name="initWithView_")
-    DragPreview_initWithView_ :: proc(self: ^DragPreview, view: ^View) -> ^DragPreview ---
+    DragPreview_initWithView_ :: proc(self: ^DragPreview, view: ^View) -> instancetype ---
 
     @(objc_type=DragPreview, objc_selector="init", objc_name="init")
-    DragPreview_init :: proc(self: ^DragPreview) -> ^DragPreview ---
+    DragPreview_init :: proc(self: ^DragPreview) -> instancetype ---
 
     @(objc_type=DragPreview, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DragPreview_new :: proc() -> ^DragPreview ---
@@ -42,10 +42,10 @@ foreign lib {
     DragPreview_parameters :: proc(self: ^DragPreview) -> ^DragPreviewParameters ---
 
     @(objc_type=DragPreview, objc_selector="previewForURL:", objc_name="previewForURL_", objc_is_class_method=true)
-    DragPreview_previewForURL_ :: proc(url: ^NS.URL) -> ^DragPreview ---
+    DragPreview_previewForURL_ :: proc(url: ^NS.URL) -> instancetype ---
 
     @(objc_type=DragPreview, objc_selector="previewForURL:title:", objc_name="previewForURL_title", objc_is_class_method=true)
-    DragPreview_previewForURL_title :: proc(url: ^NS.URL, title: ^NS.String) -> ^DragPreview ---
+    DragPreview_previewForURL_title :: proc(url: ^NS.URL, title: ^NS.String) -> instancetype ---
 }
 
 @(objc_type=DragPreview, objc_name="initWithView")

@@ -20,7 +20,7 @@ URLSessionTaskMetrics :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionTaskMetrics, objc_selector="init", objc_name="init")
-    URLSessionTaskMetrics_init :: proc(self: ^URLSessionTaskMetrics) -> ^URLSessionTaskMetrics ---
+    URLSessionTaskMetrics_init :: proc(self: ^URLSessionTaskMetrics) -> instancetype ---
 
     @(objc_type=URLSessionTaskMetrics, objc_selector="new", objc_name="new", objc_is_class_method=true)
     URLSessionTaskMetrics_new :: proc() -> ^URLSessionTaskMetrics ---

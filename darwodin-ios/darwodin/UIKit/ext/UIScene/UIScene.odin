@@ -29,8 +29,8 @@ import "../UIResponder"
 VTable :: struct {
     super: UIResponder.VTable,
     new: proc() -> ^UI.Scene,
-    init: proc(self: ^UI.Scene) -> ^UI.Scene,
-    initWithSession: proc(self: ^UI.Scene, session: ^UI.SceneSession, connectionOptions: ^UI.SceneConnectionOptions) -> ^UI.Scene,
+    init: proc(self: ^UI.Scene) -> instancetype,
+    initWithSession: proc(self: ^UI.Scene, session: ^UI.SceneSession, connectionOptions: ^UI.SceneConnectionOptions) -> instancetype,
     openURL: proc(self: ^UI.Scene, url: ^NS.URL, options: ^UI.SceneOpenExternalURLOptions, completion: ^Objc_Block(proc "c" (success: bool))),
     session: proc(self: ^UI.Scene) -> ^UI.SceneSession,
     delegate: proc(self: ^UI.Scene) -> ^UI.SceneDelegate,
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.Scene, _: SEL) -> ^UI.Scene {
+        init :: proc "c" (self: ^UI.Scene, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithSession != nil {
-        initWithSession :: proc "c" (self: ^UI.Scene, _: SEL, session: ^UI.SceneSession, connectionOptions: ^UI.SceneConnectionOptions) -> ^UI.Scene {
+        initWithSession :: proc "c" (self: ^UI.Scene, _: SEL, session: ^UI.SceneSession, connectionOptions: ^UI.SceneConnectionOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

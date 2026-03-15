@@ -37,7 +37,7 @@ VTable :: struct {
     terminate: proc(self: ^AK.RunningApplication) -> bool,
     forceTerminate: proc(self: ^AK.RunningApplication) -> bool,
     runningApplicationsWithBundleIdentifier: proc(bundleIdentifier: ^NS.String) -> ^NS.Array,
-    runningApplicationWithProcessIdentifier: proc(pid: libc.pid_t) -> ^AK.RunningApplication,
+    runningApplicationWithProcessIdentifier: proc(pid: libc.pid_t) -> instancetype,
     terminateAutomaticallyTerminableApplications: proc(),
     isTerminated: proc(self: ^AK.RunningApplication) -> bool,
     isFinishedLaunching: proc(self: ^AK.RunningApplication) -> bool,
@@ -134,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("runningApplicationsWithBundleIdentifier:"), auto_cast runningApplicationsWithBundleIdentifier, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.runningApplicationWithProcessIdentifier != nil {
-        runningApplicationWithProcessIdentifier :: proc "c" (self: Class, _: SEL, pid: libc.pid_t) -> ^AK.RunningApplication {
+        runningApplicationWithProcessIdentifier :: proc "c" (self: Class, _: SEL, pid: libc.pid_t) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

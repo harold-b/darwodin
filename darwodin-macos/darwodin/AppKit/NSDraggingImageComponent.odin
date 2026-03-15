@@ -27,10 +27,10 @@ foreign lib {
     DraggingImageComponent_draggingImageComponentWithKey :: proc(key: ^NS.String) -> ^DraggingImageComponent ---
 
     @(objc_type=DraggingImageComponent, objc_selector="initWithKey:", objc_name="initWithKey")
-    DraggingImageComponent_initWithKey :: proc(self: ^DraggingImageComponent, key: ^NS.String) -> ^DraggingImageComponent ---
+    DraggingImageComponent_initWithKey :: proc(self: ^DraggingImageComponent, key: ^NS.String) -> instancetype ---
 
     @(objc_type=DraggingImageComponent, objc_selector="init", objc_name="init")
-    DraggingImageComponent_init :: proc(self: ^DraggingImageComponent) -> ^DraggingImageComponent ---
+    DraggingImageComponent_init :: proc(self: ^DraggingImageComponent) -> instancetype ---
 
     @(objc_type=DraggingImageComponent, objc_selector="key", objc_name="key")
     DraggingImageComponent_key :: proc(self: ^DraggingImageComponent) -> ^NS.String ---

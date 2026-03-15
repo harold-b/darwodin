@@ -26,7 +26,7 @@ foreign lib {
     ObjectProtocol_class :: proc(self: ^ObjectProtocol) -> Class ---
 
     @(objc_type=ObjectProtocol, objc_selector="self", objc_name="self")
-    ObjectProtocol_self :: proc(self: ^ObjectProtocol) -> ^ObjectProtocol ---
+    ObjectProtocol_self :: proc(self: ^ObjectProtocol) -> instancetype ---
 
     @(objc_type=ObjectProtocol, objc_selector="performSelector:", objc_name="performSelector_")
     ObjectProtocol_performSelector_ :: proc(self: ^ObjectProtocol, aSelector: SEL) -> id ---

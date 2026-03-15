@@ -30,7 +30,7 @@ import "../NSTextBlock"
 
 VTable :: struct {
     super: NSTextBlock.VTable,
-    initWithTable: proc(self: ^AK.TextTableBlock, table: ^AK.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> ^AK.TextTableBlock,
+    initWithTable: proc(self: ^AK.TextTableBlock, table: ^AK.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype,
     table: proc(self: ^AK.TextTableBlock) -> ^AK.TextTable,
     startingRow: proc(self: ^AK.TextTableBlock) -> NS.Integer,
     rowSpan: proc(self: ^AK.TextTableBlock) -> NS.Integer,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextBlock.extend(cls, &vt.super)
 
     if vt.initWithTable != nil {
-        initWithTable :: proc "c" (self: ^AK.TextTableBlock, _: SEL, table: ^AK.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> ^AK.TextTableBlock {
+        initWithTable :: proc "c" (self: ^AK.TextTableBlock, _: SEL, table: ^AK.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

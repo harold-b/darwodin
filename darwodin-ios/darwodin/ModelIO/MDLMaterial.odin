@@ -24,7 +24,7 @@ Material :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Material, objc_selector="initWithName:scatteringFunction:", objc_name="initWithName")
-    Material_initWithName :: proc(self: ^Material, name: ^NS.String, scatteringFunction: ^ScatteringFunction) -> ^Material ---
+    Material_initWithName :: proc(self: ^Material, name: ^NS.String, scatteringFunction: ^ScatteringFunction) -> instancetype ---
 
     @(objc_type=Material, objc_selector="setProperty:", objc_name="setProperty")
     Material_setProperty :: proc(self: ^Material, property: ^MaterialProperty) ---

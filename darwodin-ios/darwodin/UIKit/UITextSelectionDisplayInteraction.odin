@@ -24,7 +24,7 @@ TextSelectionDisplayInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextSelectionDisplayInteraction, objc_selector="initWithTextInput:delegate:", objc_name="initWithTextInput")
-    TextSelectionDisplayInteraction_initWithTextInput :: proc(self: ^TextSelectionDisplayInteraction, textInput: ^TextInput, delegate: ^TextSelectionDisplayInteractionDelegate) -> ^TextSelectionDisplayInteraction ---
+    TextSelectionDisplayInteraction_initWithTextInput :: proc(self: ^TextSelectionDisplayInteraction, textInput: ^TextInput, delegate: ^TextSelectionDisplayInteractionDelegate) -> instancetype ---
 
     @(objc_type=TextSelectionDisplayInteraction, objc_selector="layoutManagedSubviews", objc_name="layoutManagedSubviews")
     TextSelectionDisplayInteraction_layoutManagedSubviews :: proc(self: ^TextSelectionDisplayInteraction) ---
@@ -33,7 +33,7 @@ foreign lib {
     TextSelectionDisplayInteraction_setNeedsSelectionUpdate :: proc(self: ^TextSelectionDisplayInteraction) ---
 
     @(objc_type=TextSelectionDisplayInteraction, objc_selector="init", objc_name="init")
-    TextSelectionDisplayInteraction_init :: proc(self: ^TextSelectionDisplayInteraction) -> ^TextSelectionDisplayInteraction ---
+    TextSelectionDisplayInteraction_init :: proc(self: ^TextSelectionDisplayInteraction) -> instancetype ---
 
     @(objc_type=TextSelectionDisplayInteraction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextSelectionDisplayInteraction_new :: proc() -> ^TextSelectionDisplayInteraction ---

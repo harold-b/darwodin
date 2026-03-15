@@ -23,10 +23,10 @@ Color :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Color, objc_selector="init", objc_name="init")
-    Color_init :: proc(self: ^Color) -> ^Color ---
+    Color_init :: proc(self: ^Color) -> instancetype ---
 
     @(objc_type=Color, objc_selector="initWithRed:green:blue:", objc_name="initWithRed")
-    Color_initWithRed :: proc(self: ^Color, red: cffi.float, green: cffi.float, blue: cffi.float) -> ^Color ---
+    Color_initWithRed :: proc(self: ^Color, red: cffi.float, green: cffi.float, blue: cffi.float) -> instancetype ---
 
     @(objc_type=Color, objc_selector="red", objc_name="red")
     Color_red :: proc(self: ^Color) -> cffi.float ---

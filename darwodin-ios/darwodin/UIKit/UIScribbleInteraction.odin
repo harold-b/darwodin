@@ -24,13 +24,13 @@ ScribbleInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScribbleInteraction, objc_selector="init", objc_name="init")
-    ScribbleInteraction_init :: proc(self: ^ScribbleInteraction) -> ^ScribbleInteraction ---
+    ScribbleInteraction_init :: proc(self: ^ScribbleInteraction) -> instancetype ---
 
     @(objc_type=ScribbleInteraction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ScribbleInteraction_new :: proc() -> ^ScribbleInteraction ---
 
     @(objc_type=ScribbleInteraction, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    ScribbleInteraction_initWithDelegate :: proc(self: ^ScribbleInteraction, delegate: ^ScribbleInteractionDelegate) -> ^ScribbleInteraction ---
+    ScribbleInteraction_initWithDelegate :: proc(self: ^ScribbleInteraction, delegate: ^ScribbleInteractionDelegate) -> instancetype ---
 
     @(objc_type=ScribbleInteraction, objc_selector="delegate", objc_name="delegate")
     ScribbleInteraction_delegate :: proc(self: ^ScribbleInteraction) -> ^ScribbleInteractionDelegate ---

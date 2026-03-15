@@ -26,7 +26,7 @@ import "../NSFormatter"
 
 VTable :: struct {
     super: NSFormatter.VTable,
-    init: proc(self: ^NS.ISO8601DateFormatter) -> ^NS.ISO8601DateFormatter,
+    init: proc(self: ^NS.ISO8601DateFormatter) -> instancetype,
     stringFromDate_: proc(self: ^NS.ISO8601DateFormatter, date: ^NS.Date) -> ^NS.String,
     dateFromString: proc(self: ^NS.ISO8601DateFormatter, string: ^NS.String) -> ^NS.Date,
     stringFromDate_timeZone_formatOptions: proc(date: ^NS.Date, timeZone: ^NS.TimeZone, formatOptions: NS.ISO8601DateFormatOptions) -> ^NS.String,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSFormatter.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.ISO8601DateFormatter, _: SEL) -> ^NS.ISO8601DateFormatter {
+        init :: proc "c" (self: ^NS.ISO8601DateFormatter, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

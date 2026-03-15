@@ -27,10 +27,10 @@ ImageRep :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ImageRep, objc_selector="init", objc_name="init")
-    ImageRep_init :: proc(self: ^ImageRep) -> ^ImageRep ---
+    ImageRep_init :: proc(self: ^ImageRep) -> instancetype ---
 
     @(objc_type=ImageRep, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ImageRep_initWithCoder :: proc(self: ^ImageRep, coder: ^NS.Coder) -> ^ImageRep ---
+    ImageRep_initWithCoder :: proc(self: ^ImageRep, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ImageRep, objc_selector="draw", objc_name="draw")
     ImageRep_draw :: proc(self: ^ImageRep) -> bool ---

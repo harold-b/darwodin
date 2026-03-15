@@ -20,7 +20,7 @@ Number :: struct { using _: Value, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Number, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Number_initWithCoder :: proc(self: ^Number, coder: ^Coder) -> ^Number ---
+    Number_initWithCoder :: proc(self: ^Number, coder: ^Coder) -> instancetype ---
 
     @(objc_type=Number, objc_selector="initWithChar:", objc_name="initWithChar")
     Number_initWithChar :: proc(self: ^Number, value: cffi.char) -> ^Number ---

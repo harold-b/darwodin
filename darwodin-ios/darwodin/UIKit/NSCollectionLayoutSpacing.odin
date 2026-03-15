@@ -24,13 +24,13 @@ NSCollectionLayoutSpacing :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSCollectionLayoutSpacing, objc_selector="flexibleSpacing:", objc_name="flexibleSpacing", objc_is_class_method=true)
-    NSCollectionLayoutSpacing_flexibleSpacing :: proc(flexibleSpacing: CG.Float) -> ^NSCollectionLayoutSpacing ---
+    NSCollectionLayoutSpacing_flexibleSpacing :: proc(flexibleSpacing: CG.Float) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSpacing, objc_selector="fixedSpacing:", objc_name="fixedSpacing", objc_is_class_method=true)
-    NSCollectionLayoutSpacing_fixedSpacing :: proc(fixedSpacing: CG.Float) -> ^NSCollectionLayoutSpacing ---
+    NSCollectionLayoutSpacing_fixedSpacing :: proc(fixedSpacing: CG.Float) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSpacing, objc_selector="init", objc_name="init")
-    NSCollectionLayoutSpacing_init :: proc(self: ^NSCollectionLayoutSpacing) -> ^NSCollectionLayoutSpacing ---
+    NSCollectionLayoutSpacing_init :: proc(self: ^NSCollectionLayoutSpacing) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSpacing, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSCollectionLayoutSpacing_new :: proc() -> ^NSCollectionLayoutSpacing ---

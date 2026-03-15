@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithHost: proc(self: ^NS.URLProtectionSpace, host: ^NS.String, port: NS.Integer, protocol: ^NS.String, realm: ^NS.String, authenticationMethod: ^NS.String) -> ^NS.URLProtectionSpace,
-    initWithProxyHost: proc(self: ^NS.URLProtectionSpace, host: ^NS.String, port: NS.Integer, type: ^NS.String, realm: ^NS.String, authenticationMethod: ^NS.String) -> ^NS.URLProtectionSpace,
+    initWithHost: proc(self: ^NS.URLProtectionSpace, host: ^NS.String, port: NS.Integer, protocol: ^NS.String, realm: ^NS.String, authenticationMethod: ^NS.String) -> instancetype,
+    initWithProxyHost: proc(self: ^NS.URLProtectionSpace, host: ^NS.String, port: NS.Integer, type: ^NS.String, realm: ^NS.String, authenticationMethod: ^NS.String) -> instancetype,
     realm: proc(self: ^NS.URLProtectionSpace) -> ^NS.String,
     receivesCredentialSecurely: proc(self: ^NS.URLProtectionSpace) -> bool,
     isProxy: proc(self: ^NS.URLProtectionSpace) -> bool,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithHost != nil {
-        initWithHost :: proc "c" (self: ^NS.URLProtectionSpace, _: SEL, host: ^NS.String, port: NS.Integer, protocol: ^NS.String, realm: ^NS.String, authenticationMethod: ^NS.String) -> ^NS.URLProtectionSpace {
+        initWithHost :: proc "c" (self: ^NS.URLProtectionSpace, _: SEL, host: ^NS.String, port: NS.Integer, protocol: ^NS.String, realm: ^NS.String, authenticationMethod: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithHost:port:protocol:realm:authenticationMethod:"), auto_cast initWithHost, "@@:@l@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithProxyHost != nil {
-        initWithProxyHost :: proc "c" (self: ^NS.URLProtectionSpace, _: SEL, host: ^NS.String, port: NS.Integer, type: ^NS.String, realm: ^NS.String, authenticationMethod: ^NS.String) -> ^NS.URLProtectionSpace {
+        initWithProxyHost :: proc "c" (self: ^NS.URLProtectionSpace, _: SEL, host: ^NS.String, port: NS.Integer, type: ^NS.String, realm: ^NS.String, authenticationMethod: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

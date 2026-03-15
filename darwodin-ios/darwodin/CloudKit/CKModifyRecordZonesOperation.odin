@@ -18,10 +18,10 @@ ModifyRecordZonesOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ModifyRecordZonesOperation, objc_selector="init", objc_name="init")
-    ModifyRecordZonesOperation_init :: proc(self: ^ModifyRecordZonesOperation) -> ^ModifyRecordZonesOperation ---
+    ModifyRecordZonesOperation_init :: proc(self: ^ModifyRecordZonesOperation) -> instancetype ---
 
     @(objc_type=ModifyRecordZonesOperation, objc_selector="initWithRecordZonesToSave:recordZoneIDsToDelete:", objc_name="initWithRecordZonesToSave")
-    ModifyRecordZonesOperation_initWithRecordZonesToSave :: proc(self: ^ModifyRecordZonesOperation, recordZonesToSave: ^NS.Array, recordZoneIDsToDelete: ^NS.Array) -> ^ModifyRecordZonesOperation ---
+    ModifyRecordZonesOperation_initWithRecordZonesToSave :: proc(self: ^ModifyRecordZonesOperation, recordZonesToSave: ^NS.Array, recordZoneIDsToDelete: ^NS.Array) -> instancetype ---
 
     @(objc_type=ModifyRecordZonesOperation, objc_selector="recordZonesToSave", objc_name="recordZonesToSave")
     ModifyRecordZonesOperation_recordZonesToSave :: proc(self: ^ModifyRecordZonesOperation) -> ^NS.Array ---

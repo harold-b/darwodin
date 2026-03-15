@@ -29,10 +29,10 @@ foreign lib {
     ColorList_colorListNamed :: proc(name: ^NS.String) -> ^ColorList ---
 
     @(objc_type=ColorList, objc_selector="initWithName:", objc_name="initWithName_")
-    ColorList_initWithName_ :: proc(self: ^ColorList, name: ^NS.String) -> ^ColorList ---
+    ColorList_initWithName_ :: proc(self: ^ColorList, name: ^NS.String) -> instancetype ---
 
     @(objc_type=ColorList, objc_selector="initWithName:fromFile:", objc_name="initWithName_fromFile")
-    ColorList_initWithName_fromFile :: proc(self: ^ColorList, name: ^NS.String, path: ^NS.String) -> ^ColorList ---
+    ColorList_initWithName_fromFile :: proc(self: ^ColorList, name: ^NS.String, path: ^NS.String) -> instancetype ---
 
     @(objc_type=ColorList, objc_selector="setColor:forKey:", objc_name="setColor")
     ColorList_setColor :: proc(self: ^ColorList, color: ^Color, key: ^NS.String) ---

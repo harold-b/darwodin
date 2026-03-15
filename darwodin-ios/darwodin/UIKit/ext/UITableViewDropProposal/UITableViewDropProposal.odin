@@ -28,7 +28,7 @@ import "../UIDropProposal"
 
 VTable :: struct {
     super: UIDropProposal.VTable,
-    initWithDropOperation: proc(self: ^UI.TableViewDropProposal, operation: UI.DropOperation, intent: UI.TableViewDropIntent) -> ^UI.TableViewDropProposal,
+    initWithDropOperation: proc(self: ^UI.TableViewDropProposal, operation: UI.DropOperation, intent: UI.TableViewDropIntent) -> instancetype,
     intent: proc(self: ^UI.TableViewDropProposal) -> UI.TableViewDropIntent,
 }
 
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIDropProposal.extend(cls, &vt.super)
 
     if vt.initWithDropOperation != nil {
-        initWithDropOperation :: proc "c" (self: ^UI.TableViewDropProposal, _: SEL, operation: UI.DropOperation, intent: UI.TableViewDropIntent) -> ^UI.TableViewDropProposal {
+        initWithDropOperation :: proc "c" (self: ^UI.TableViewDropProposal, _: SEL, operation: UI.DropOperation, intent: UI.TableViewDropIntent) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

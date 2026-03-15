@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithFileURL: proc(self: ^UI.Document, url: ^NS.URL) -> ^UI.Document,
+    initWithFileURL: proc(self: ^UI.Document, url: ^NS.URL) -> instancetype,
     openWithCompletionHandler: proc(self: ^UI.Document, completionHandler: ^Objc_Block(proc "c" (success: bool))),
     closeWithCompletionHandler: proc(self: ^UI.Document, completionHandler: ^Objc_Block(proc "c" (success: bool))),
     loadFromContents: proc(self: ^UI.Document, contents: id, typeName: ^NS.String, outError: ^^NS.Error) -> bool,
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithFileURL != nil {
-        initWithFileURL :: proc "c" (self: ^UI.Document, _: SEL, url: ^NS.URL) -> ^UI.Document {
+        initWithFileURL :: proc "c" (self: ^UI.Document, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

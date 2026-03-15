@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextElement: proc(self: ^AK.TextLayoutFragment, textElement: ^AK.TextElement, rangeInElement: ^AK.TextRange) -> ^AK.TextLayoutFragment,
-    initWithCoder: proc(self: ^AK.TextLayoutFragment, coder: ^NS.Coder) -> ^AK.TextLayoutFragment,
-    init: proc(self: ^AK.TextLayoutFragment) -> ^AK.TextLayoutFragment,
+    initWithTextElement: proc(self: ^AK.TextLayoutFragment, textElement: ^AK.TextElement, rangeInElement: ^AK.TextRange) -> instancetype,
+    initWithCoder: proc(self: ^AK.TextLayoutFragment, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^AK.TextLayoutFragment) -> instancetype,
     textLineFragmentForVerticalOffset: proc(self: ^AK.TextLayoutFragment, verticalOffset: CG.Float, requiresExactMatch: bool) -> ^AK.TextLineFragment,
     textLineFragmentForTextLocation: proc(self: ^AK.TextLayoutFragment, textLocation: ^AK.TextLocation, isUpstreamAffinity: bool) -> ^AK.TextLineFragment,
     invalidateLayout: proc(self: ^AK.TextLayoutFragment),
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextElement != nil {
-        initWithTextElement :: proc "c" (self: ^AK.TextLayoutFragment, _: SEL, textElement: ^AK.TextElement, rangeInElement: ^AK.TextRange) -> ^AK.TextLayoutFragment {
+        initWithTextElement :: proc "c" (self: ^AK.TextLayoutFragment, _: SEL, textElement: ^AK.TextElement, rangeInElement: ^AK.TextRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTextElement:range:"), auto_cast initWithTextElement, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextLayoutFragment, _: SEL, coder: ^NS.Coder) -> ^AK.TextLayoutFragment {
+        initWithCoder :: proc "c" (self: ^AK.TextLayoutFragment, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextLayoutFragment, _: SEL) -> ^AK.TextLayoutFragment {
+        init :: proc "c" (self: ^AK.TextLayoutFragment, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

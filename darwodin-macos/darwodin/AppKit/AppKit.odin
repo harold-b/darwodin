@@ -44,11 +44,61 @@ CKShareMetadata :: NS.Object
 QTMovie :: NS.Object
 UTType :: NS.Object
 
-GCGamepadSnapShotDataV100 :: struct {}
-GCExtendedGamepadSnapshotData :: struct {}
+GCGamepadSnapShotDataV100         :: struct {}
+GCExtendedGamepadSnapshotData     :: struct {}
 GCExtendedGamepadSnapShotDataV100 :: struct {}
-GCMicroGamepadSnapshotData :: struct {}
-GCMicroGamepadSnapShotDataV100 :: struct {}
+GCMicroGamepadSnapshotData        :: struct {}
+GCMicroGamepadSnapShotDataV100    :: struct {}
+
+// Helper array iterator
+Array_Iterator :: struct($T: typeid) {
+    array: ^NS.Array,
+    length: int,
+    index:  int,
+}
+
+array_iter :: proc( $T: typeid, array: ^NS.Array ) -> Array_Iterator(T) {
+    return Array_Iterator(T) {
+        array  = array,
+        length = int(array->count()),
+        index  = 0,
+    }
+}
+
+array_next :: proc( it: ^Array_Iterator($T) ) -> (val: ^T, idx: int, cond: bool) {
+    if it.index >= it.length {
+        return
+    }
+
+    val      = auto_cast it.array->objectAtIndex(auto_cast it.index)
+    it.index += 1
+    cond     = true
+    return
+}
+
+to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^String {
+    return String.alloc()->initWithBytes(raw_data(str), UInteger(len(str)), UTF8StringEncoding)
+}
+
+to_ns_string_no_copy :: #force_inline proc "contextless" ( str: string ) -> ^String {
+    return String.alloc()->initWithBytesNoCopy(raw_data(str), UInteger(len(str)), UTF8StringEncoding, false)
+}
+
+to_odin_string :: proc( ns_str: ^String, allocator := context.allocator ) -> string {
+    length := ns_str->lengthOfBytesUsingEncoding(UTF8StringEncoding)
+    dest := make([]u8, int(length)+1, allocator)
+
+    runtime.mem_copy_non_overlapping(raw_data(dest), rawptr(ns_str->UTF8String()), int(length))
+    return string(dest[:length])
+}
+
+tmp_to_odin_string :: #force_inline proc ( ns_str: ^String ) -> string {
+    return to_odin_string(ns_str, context.temp_allocator)
+}
+
+STR :: #force_inline proc "contextless" ( #const s: cstring ) -> ^String {
+    return auto_cast CF.STR(s)
+}
 
 
 

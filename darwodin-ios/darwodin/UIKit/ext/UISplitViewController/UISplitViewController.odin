@@ -28,9 +28,9 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithCoder: proc(self: ^UI.SplitViewController, coder: ^NS.Coder) -> ^UI.SplitViewController,
-    initWithNibName: proc(self: ^UI.SplitViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.SplitViewController,
-    initWithStyle: proc(self: ^UI.SplitViewController, style: UI.SplitViewControllerStyle) -> ^UI.SplitViewController,
+    initWithCoder: proc(self: ^UI.SplitViewController, coder: ^NS.Coder) -> instancetype,
+    initWithNibName: proc(self: ^UI.SplitViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    initWithStyle: proc(self: ^UI.SplitViewController, style: UI.SplitViewControllerStyle) -> instancetype,
     setViewController: proc(self: ^UI.SplitViewController, vc: ^UI.ViewController, column: UI.SplitViewControllerColumn),
     viewControllerForColumn: proc(self: ^UI.SplitViewController, column: UI.SplitViewControllerColumn) -> ^UI.ViewController,
     hideColumn: proc(self: ^UI.SplitViewController, column: UI.SplitViewControllerColumn),
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.SplitViewController, _: SEL, coder: ^NS.Coder) -> ^UI.SplitViewController {
+        initWithCoder :: proc "c" (self: ^UI.SplitViewController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.SplitViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.SplitViewController {
+        initWithNibName :: proc "c" (self: ^UI.SplitViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithStyle != nil {
-        initWithStyle :: proc "c" (self: ^UI.SplitViewController, _: SEL, style: UI.SplitViewControllerStyle) -> ^UI.SplitViewController {
+        initWithStyle :: proc "c" (self: ^UI.SplitViewController, _: SEL, style: UI.SplitViewControllerStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

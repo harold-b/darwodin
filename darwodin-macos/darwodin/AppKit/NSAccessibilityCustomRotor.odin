@@ -24,10 +24,10 @@ AccessibilityCustomRotor :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccessibilityCustomRotor, objc_selector="initWithLabel:itemSearchDelegate:", objc_name="initWithLabel")
-    AccessibilityCustomRotor_initWithLabel :: proc(self: ^AccessibilityCustomRotor, label: ^NS.String, itemSearchDelegate: ^AccessibilityCustomRotorItemSearchDelegate) -> ^AccessibilityCustomRotor ---
+    AccessibilityCustomRotor_initWithLabel :: proc(self: ^AccessibilityCustomRotor, label: ^NS.String, itemSearchDelegate: ^AccessibilityCustomRotorItemSearchDelegate) -> instancetype ---
 
     @(objc_type=AccessibilityCustomRotor, objc_selector="initWithRotorType:itemSearchDelegate:", objc_name="initWithRotorType")
-    AccessibilityCustomRotor_initWithRotorType :: proc(self: ^AccessibilityCustomRotor, rotorType: AccessibilityCustomRotorType, itemSearchDelegate: ^AccessibilityCustomRotorItemSearchDelegate) -> ^AccessibilityCustomRotor ---
+    AccessibilityCustomRotor_initWithRotorType :: proc(self: ^AccessibilityCustomRotor, rotorType: AccessibilityCustomRotorType, itemSearchDelegate: ^AccessibilityCustomRotorItemSearchDelegate) -> instancetype ---
 
     @(objc_type=AccessibilityCustomRotor, objc_selector="type", objc_name="type")
     AccessibilityCustomRotor_type :: proc(self: ^AccessibilityCustomRotor) -> AccessibilityCustomRotorType ---

@@ -26,9 +26,9 @@ import "../NSXMLNode"
 
 VTable :: struct {
     super: NSXMLNode.VTable,
-    initWithXMLString: proc(self: ^NS.XMLDTDNode, string: ^NS.String) -> ^NS.XMLDTDNode,
-    initWithKind: proc(self: ^NS.XMLDTDNode, kind: NS.XMLNodeKind, options: NS.XMLNodeOptions) -> ^NS.XMLDTDNode,
-    init: proc(self: ^NS.XMLDTDNode) -> ^NS.XMLDTDNode,
+    initWithXMLString: proc(self: ^NS.XMLDTDNode, string: ^NS.String) -> instancetype,
+    initWithKind: proc(self: ^NS.XMLDTDNode, kind: NS.XMLNodeKind, options: NS.XMLNodeOptions) -> instancetype,
+    init: proc(self: ^NS.XMLDTDNode) -> instancetype,
     _DTDKind: proc(self: ^NS.XMLDTDNode) -> NS.XMLDTDNodeKind,
     setDTDKind: proc(self: ^NS.XMLDTDNode, DTDKind: NS.XMLDTDNodeKind),
     isExternal: proc(self: ^NS.XMLDTDNode) -> bool,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSXMLNode.extend(cls, &vt.super)
 
     if vt.initWithXMLString != nil {
-        initWithXMLString :: proc "c" (self: ^NS.XMLDTDNode, _: SEL, string: ^NS.String) -> ^NS.XMLDTDNode {
+        initWithXMLString :: proc "c" (self: ^NS.XMLDTDNode, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithXMLString:"), auto_cast initWithXMLString, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithKind != nil {
-        initWithKind :: proc "c" (self: ^NS.XMLDTDNode, _: SEL, kind: NS.XMLNodeKind, options: NS.XMLNodeOptions) -> ^NS.XMLDTDNode {
+        initWithKind :: proc "c" (self: ^NS.XMLDTDNode, _: SEL, kind: NS.XMLNodeKind, options: NS.XMLNodeOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKind:options:"), auto_cast initWithKind, "@@:LL") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.XMLDTDNode, _: SEL) -> ^NS.XMLDTDNode {
+        init :: proc "c" (self: ^NS.XMLDTDNode, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

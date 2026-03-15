@@ -152,8 +152,8 @@ foreign lib {
     SegmentedControl_activeCompressionOptions :: proc(self: ^SegmentedControl) -> ^UserInterfaceCompressionOptions ---
 
     @(objc_type=SegmentedControl, objc_selector="segmentedControlWithLabels:trackingMode:target:action:", objc_name="segmentedControlWithLabels", objc_is_class_method=true)
-    SegmentedControl_segmentedControlWithLabels :: proc(labels: ^NS.Array, trackingMode: SegmentSwitchTracking, target: id, action: SEL) -> ^SegmentedControl ---
+    SegmentedControl_segmentedControlWithLabels :: proc(labels: ^NS.Array, trackingMode: SegmentSwitchTracking, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=SegmentedControl, objc_selector="segmentedControlWithImages:trackingMode:target:action:", objc_name="segmentedControlWithImages", objc_is_class_method=true)
-    SegmentedControl_segmentedControlWithImages :: proc(images: ^NS.Array, trackingMode: SegmentSwitchTracking, target: id, action: SEL) -> ^SegmentedControl ---
+    SegmentedControl_segmentedControlWithImages :: proc(images: ^NS.Array, trackingMode: SegmentSwitchTracking, target: id, action: SEL) -> instancetype ---
 }

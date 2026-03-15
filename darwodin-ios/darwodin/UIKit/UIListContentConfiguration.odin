@@ -25,58 +25,58 @@ ListContentConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ListContentConfiguration, objc_selector="cellConfiguration", objc_name="cellConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_cellConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_cellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="subtitleCellConfiguration", objc_name="subtitleCellConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_subtitleCellConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_subtitleCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="valueCellConfiguration", objc_name="valueCellConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_valueCellConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_valueCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="headerConfiguration", objc_name="headerConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_headerConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_headerConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="footerConfiguration", objc_name="footerConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_footerConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_footerConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="prominentInsetGroupedHeaderConfiguration", objc_name="prominentInsetGroupedHeaderConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_prominentInsetGroupedHeaderConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_prominentInsetGroupedHeaderConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="extraProminentInsetGroupedHeaderConfiguration", objc_name="extraProminentInsetGroupedHeaderConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_extraProminentInsetGroupedHeaderConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_extraProminentInsetGroupedHeaderConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="accompaniedSidebarCellConfiguration", objc_name="accompaniedSidebarCellConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_accompaniedSidebarCellConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_accompaniedSidebarCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="accompaniedSidebarSubtitleCellConfiguration", objc_name="accompaniedSidebarSubtitleCellConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_accompaniedSidebarSubtitleCellConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_accompaniedSidebarSubtitleCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ListContentConfiguration_new :: proc() -> ^ListContentConfiguration ---
 
     @(objc_type=ListContentConfiguration, objc_selector="init", objc_name="init")
-    ListContentConfiguration_init :: proc(self: ^ListContentConfiguration) -> ^ListContentConfiguration ---
+    ListContentConfiguration_init :: proc(self: ^ListContentConfiguration) -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="sidebarCellConfiguration", objc_name="sidebarCellConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_sidebarCellConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_sidebarCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="sidebarSubtitleCellConfiguration", objc_name="sidebarSubtitleCellConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_sidebarSubtitleCellConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_sidebarSubtitleCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="plainHeaderConfiguration", objc_name="plainHeaderConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_plainHeaderConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_plainHeaderConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="plainFooterConfiguration", objc_name="plainFooterConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_plainFooterConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_plainFooterConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="groupedHeaderConfiguration", objc_name="groupedHeaderConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_groupedHeaderConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_groupedHeaderConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="groupedFooterConfiguration", objc_name="groupedFooterConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_groupedFooterConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_groupedFooterConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="sidebarHeaderConfiguration", objc_name="sidebarHeaderConfiguration", objc_is_class_method=true)
-    ListContentConfiguration_sidebarHeaderConfiguration :: proc() -> ^ListContentConfiguration ---
+    ListContentConfiguration_sidebarHeaderConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ListContentConfiguration, objc_selector="image", objc_name="image")
     ListContentConfiguration_image :: proc(self: ^ListContentConfiguration) -> ^Image ---

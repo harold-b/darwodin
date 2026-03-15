@@ -24,7 +24,7 @@ PrinterDestination :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PrinterDestination, objc_selector="initWithURL:", objc_name="initWithURL")
-    PrinterDestination_initWithURL :: proc(self: ^PrinterDestination, url: ^NS.URL) -> ^PrinterDestination ---
+    PrinterDestination_initWithURL :: proc(self: ^PrinterDestination, url: ^NS.URL) -> instancetype ---
 
     @(objc_type=PrinterDestination, objc_selector="URL", objc_name="URL")
     PrinterDestination_URL :: proc(self: ^PrinterDestination) -> ^NS.URL ---

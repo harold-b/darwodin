@@ -24,7 +24,7 @@ FindInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FindInteraction, objc_selector="initWithSessionDelegate:", objc_name="initWithSessionDelegate")
-    FindInteraction_initWithSessionDelegate :: proc(self: ^FindInteraction, sessionDelegate: ^FindInteractionDelegate) -> ^FindInteraction ---
+    FindInteraction_initWithSessionDelegate :: proc(self: ^FindInteraction, sessionDelegate: ^FindInteractionDelegate) -> instancetype ---
 
     @(objc_type=FindInteraction, objc_selector="presentFindNavigatorShowingReplace:", objc_name="presentFindNavigatorShowingReplace")
     FindInteraction_presentFindNavigatorShowingReplace :: proc(self: ^FindInteraction, showingReplace: bool) ---
@@ -45,7 +45,7 @@ foreign lib {
     FindInteraction_new :: proc() -> ^FindInteraction ---
 
     @(objc_type=FindInteraction, objc_selector="init", objc_name="init")
-    FindInteraction_init :: proc(self: ^FindInteraction) -> ^FindInteraction ---
+    FindInteraction_init :: proc(self: ^FindInteraction) -> instancetype ---
 
     @(objc_type=FindInteraction, objc_selector="isFindNavigatorVisible", objc_name="isFindNavigatorVisible")
     FindInteraction_isFindNavigatorVisible :: proc(self: ^FindInteraction) -> bool ---

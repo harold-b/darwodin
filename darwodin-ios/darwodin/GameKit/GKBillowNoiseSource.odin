@@ -19,10 +19,10 @@ BillowNoiseSource :: struct { using _: CoherentNoiseSource, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BillowNoiseSource, objc_selector="billowNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:", objc_name="billowNoiseSourceWithFrequency", objc_is_class_method=true)
-    BillowNoiseSource_billowNoiseSourceWithFrequency :: proc(frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> ^BillowNoiseSource ---
+    BillowNoiseSource_billowNoiseSourceWithFrequency :: proc(frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
 
     @(objc_type=BillowNoiseSource, objc_selector="initWithFrequency:octaveCount:persistence:lacunarity:seed:", objc_name="initWithFrequency")
-    BillowNoiseSource_initWithFrequency :: proc(self: ^BillowNoiseSource, frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> ^BillowNoiseSource ---
+    BillowNoiseSource_initWithFrequency :: proc(self: ^BillowNoiseSource, frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
 
     @(objc_type=BillowNoiseSource, objc_selector="persistence", objc_name="persistence")
     BillowNoiseSource_persistence :: proc(self: ^BillowNoiseSource) -> cffi.double ---

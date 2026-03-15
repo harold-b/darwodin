@@ -27,7 +27,7 @@ instancetype  :: intrinsics.objc_instancetype
 import AK "../../"
 
 VTable :: struct {
-    initWithPickerMask: proc(self: ^AK.ColorPickingDefault, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> ^AK.ColorPickingDefault,
+    initWithPickerMask: proc(self: ^AK.ColorPickingDefault, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> instancetype,
     provideNewButtonImage: proc(self: ^AK.ColorPickingDefault) -> ^NS.Image,
     insertNewButtonImage: proc(self: ^AK.ColorPickingDefault, newButtonImage: ^NS.Image, buttonCell: ^AK.ButtonCell),
     viewSizeChanged: proc(self: ^AK.ColorPickingDefault, sender: id),
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.initWithPickerMask != nil {
-        initWithPickerMask :: proc "c" (self: ^AK.ColorPickingDefault, _: SEL, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> ^AK.ColorPickingDefault {
+        initWithPickerMask :: proc "c" (self: ^AK.ColorPickingDefault, _: SEL, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

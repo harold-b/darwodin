@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    textFormattingCoordinatorForWindowScene: proc(windowScene: ^UI.WindowScene) -> ^UI.TextFormattingCoordinator,
-    initWithWindowScene: proc(self: ^UI.TextFormattingCoordinator, windowScene: ^UI.WindowScene) -> ^UI.TextFormattingCoordinator,
-    init: proc(self: ^UI.TextFormattingCoordinator) -> ^UI.TextFormattingCoordinator,
+    textFormattingCoordinatorForWindowScene: proc(windowScene: ^UI.WindowScene) -> instancetype,
+    initWithWindowScene: proc(self: ^UI.TextFormattingCoordinator, windowScene: ^UI.WindowScene) -> instancetype,
+    init: proc(self: ^UI.TextFormattingCoordinator) -> instancetype,
     setSelectedAttributes: proc(self: ^UI.TextFormattingCoordinator, attributes: ^NS.Dictionary, flag: bool),
     toggleFontPanel: proc(sender: id),
     delegate: proc(self: ^UI.TextFormattingCoordinator) -> ^UI.TextFormattingCoordinatorDelegate,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.textFormattingCoordinatorForWindowScene != nil {
-        textFormattingCoordinatorForWindowScene :: proc "c" (self: Class, _: SEL, windowScene: ^UI.WindowScene) -> ^UI.TextFormattingCoordinator {
+        textFormattingCoordinatorForWindowScene :: proc "c" (self: Class, _: SEL, windowScene: ^UI.WindowScene) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("textFormattingCoordinatorForWindowScene:"), auto_cast textFormattingCoordinatorForWindowScene, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithWindowScene != nil {
-        initWithWindowScene :: proc "c" (self: ^UI.TextFormattingCoordinator, _: SEL, windowScene: ^UI.WindowScene) -> ^UI.TextFormattingCoordinator {
+        initWithWindowScene :: proc "c" (self: ^UI.TextFormattingCoordinator, _: SEL, windowScene: ^UI.WindowScene) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithWindowScene:"), auto_cast initWithWindowScene, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextFormattingCoordinator, _: SEL) -> ^UI.TextFormattingCoordinator {
+        init :: proc "c" (self: ^UI.TextFormattingCoordinator, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

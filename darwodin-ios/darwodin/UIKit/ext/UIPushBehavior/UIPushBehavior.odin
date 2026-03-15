@@ -28,7 +28,7 @@ import "../UIDynamicBehavior"
 
 VTable :: struct {
     super: UIDynamicBehavior.VTable,
-    initWithItems: proc(self: ^UI.PushBehavior, items: ^NS.Array, mode: UI.PushBehaviorMode) -> ^UI.PushBehavior,
+    initWithItems: proc(self: ^UI.PushBehavior, items: ^NS.Array, mode: UI.PushBehaviorMode) -> instancetype,
     addItem: proc(self: ^UI.PushBehavior, item: ^UI.DynamicItem),
     removeItem: proc(self: ^UI.PushBehavior, item: ^UI.DynamicItem),
     targetOffsetFromCenterForItem: proc(self: ^UI.PushBehavior, item: ^UI.DynamicItem) -> UI.Offset,
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIDynamicBehavior.extend(cls, &vt.super)
 
     if vt.initWithItems != nil {
-        initWithItems :: proc "c" (self: ^UI.PushBehavior, _: SEL, items: ^NS.Array, mode: UI.PushBehaviorMode) -> ^UI.PushBehavior {
+        initWithItems :: proc "c" (self: ^UI.PushBehavior, _: SEL, items: ^NS.Array, mode: UI.PushBehaviorMode) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

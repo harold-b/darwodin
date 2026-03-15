@@ -25,7 +25,7 @@ AudioUnitMIDIInstrument :: struct { using _: AudioUnit,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitMIDIInstrument, objc_selector="initWithAudioComponentDescription:", objc_name="initWithAudioComponentDescription")
-    AudioUnitMIDIInstrument_initWithAudioComponentDescription :: proc(self: ^AudioUnitMIDIInstrument, description: Audio.ComponentDescription) -> ^AudioUnitMIDIInstrument ---
+    AudioUnitMIDIInstrument_initWithAudioComponentDescription :: proc(self: ^AudioUnitMIDIInstrument, description: Audio.ComponentDescription) -> instancetype ---
 
     @(objc_type=AudioUnitMIDIInstrument, objc_selector="startNote:withVelocity:onChannel:", objc_name="startNote")
     AudioUnitMIDIInstrument_startNote :: proc(self: ^AudioUnitMIDIInstrument, note: cffi.uint8_t, velocity: cffi.uint8_t, channel: cffi.uint8_t) ---

@@ -25,13 +25,13 @@ SearchController :: struct { using _: ViewController,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SearchController, objc_selector="initWithSearchResultsController:", objc_name="initWithSearchResultsController")
-    SearchController_initWithSearchResultsController :: proc(self: ^SearchController, searchResultsController: ^ViewController) -> ^SearchController ---
+    SearchController_initWithSearchResultsController :: proc(self: ^SearchController, searchResultsController: ^ViewController) -> instancetype ---
 
     @(objc_type=SearchController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    SearchController_initWithNibName :: proc(self: ^SearchController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^SearchController ---
+    SearchController_initWithNibName :: proc(self: ^SearchController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=SearchController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    SearchController_initWithCoder :: proc(self: ^SearchController, coder: ^NS.Coder) -> ^SearchController ---
+    SearchController_initWithCoder :: proc(self: ^SearchController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=SearchController, objc_selector="searchResultsUpdater", objc_name="searchResultsUpdater")
     SearchController_searchResultsUpdater :: proc(self: ^SearchController) -> ^SearchResultsUpdating ---

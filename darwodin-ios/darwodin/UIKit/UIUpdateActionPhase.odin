@@ -25,7 +25,7 @@ foreign lib {
     UpdateActionPhase_new :: proc() -> ^UpdateActionPhase ---
 
     @(objc_type=UpdateActionPhase, objc_selector="init", objc_name="init")
-    UpdateActionPhase_init :: proc(self: ^UpdateActionPhase) -> ^UpdateActionPhase ---
+    UpdateActionPhase_init :: proc(self: ^UpdateActionPhase) -> instancetype ---
 
     @(objc_type=UpdateActionPhase, objc_selector="afterUpdateScheduled", objc_name="afterUpdateScheduled", objc_is_class_method=true)
     UpdateActionPhase_afterUpdateScheduled :: proc() -> ^UpdateActionPhase ---

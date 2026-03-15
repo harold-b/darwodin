@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.DocumentController) -> ^AK.DocumentController,
-    initWithCoder: proc(self: ^AK.DocumentController, coder: ^NS.Coder) -> ^AK.DocumentController,
+    init: proc(self: ^AK.DocumentController) -> instancetype,
+    initWithCoder: proc(self: ^AK.DocumentController, coder: ^NS.Coder) -> instancetype,
     documentForURL: proc(self: ^AK.DocumentController, url: ^NS.URL) -> ^AK.Document,
     documentForWindow: proc(self: ^AK.DocumentController, window: ^AK.Window) -> ^AK.Document,
     addDocument: proc(self: ^AK.DocumentController, document: ^AK.Document),
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^AK.DocumentController {
+        init :: proc "c" (self: ^AK.DocumentController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.DocumentController, _: SEL, coder: ^NS.Coder) -> ^AK.DocumentController {
+        initWithCoder :: proc "c" (self: ^AK.DocumentController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

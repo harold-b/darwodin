@@ -24,13 +24,13 @@ NSDataAsset :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSDataAsset, objc_selector="init", objc_name="init")
-    NSDataAsset_init :: proc(self: ^NSDataAsset) -> ^NSDataAsset ---
+    NSDataAsset_init :: proc(self: ^NSDataAsset) -> instancetype ---
 
     @(objc_type=NSDataAsset, objc_selector="initWithName:", objc_name="initWithName_")
-    NSDataAsset_initWithName_ :: proc(self: ^NSDataAsset, name: ^NS.String) -> ^NSDataAsset ---
+    NSDataAsset_initWithName_ :: proc(self: ^NSDataAsset, name: ^NS.String) -> instancetype ---
 
     @(objc_type=NSDataAsset, objc_selector="initWithName:bundle:", objc_name="initWithName_bundle")
-    NSDataAsset_initWithName_bundle :: proc(self: ^NSDataAsset, name: ^NS.String, bundle: ^NS.Bundle) -> ^NSDataAsset ---
+    NSDataAsset_initWithName_bundle :: proc(self: ^NSDataAsset, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=NSDataAsset, objc_selector="name", objc_name="name")
     NSDataAsset_name :: proc(self: ^NSDataAsset) -> ^NS.String ---

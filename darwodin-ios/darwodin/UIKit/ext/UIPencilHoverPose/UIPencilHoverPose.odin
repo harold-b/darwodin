@@ -29,7 +29,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.PencilHoverPose,
-    init: proc(self: ^UI.PencilHoverPose) -> ^UI.PencilHoverPose,
+    init: proc(self: ^UI.PencilHoverPose) -> instancetype,
     location: proc(self: ^UI.PencilHoverPose) -> CG.Point,
     zOffset: proc(self: ^UI.PencilHoverPose) -> CG.Float,
     azimuthAngle: proc(self: ^UI.PencilHoverPose) -> CG.Float,
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PencilHoverPose, _: SEL) -> ^UI.PencilHoverPose {
+        init :: proc "c" (self: ^UI.PencilHoverPose, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

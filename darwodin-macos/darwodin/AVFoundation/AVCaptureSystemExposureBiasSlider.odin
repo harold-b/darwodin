@@ -23,10 +23,10 @@ CaptureSystemExposureBiasSlider :: struct { using _: CaptureControl, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSystemExposureBiasSlider, objc_selector="initWithDevice:", objc_name="initWithDevice_")
-    CaptureSystemExposureBiasSlider_initWithDevice_ :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice) -> ^CaptureSystemExposureBiasSlider ---
+    CaptureSystemExposureBiasSlider_initWithDevice_ :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice) -> instancetype ---
 
     @(objc_type=CaptureSystemExposureBiasSlider, objc_selector="initWithDevice:action:", objc_name="initWithDevice_action")
-    CaptureSystemExposureBiasSlider_initWithDevice_action :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice, action: ^Objc_Block(proc "c" (exposureTargetBias: cffi.float))) -> ^CaptureSystemExposureBiasSlider ---
+    CaptureSystemExposureBiasSlider_initWithDevice_action :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice, action: ^Objc_Block(proc "c" (exposureTargetBias: cffi.float))) -> instancetype ---
 }
 
 @(objc_type=CaptureSystemExposureBiasSlider, objc_name="initWithDevice")

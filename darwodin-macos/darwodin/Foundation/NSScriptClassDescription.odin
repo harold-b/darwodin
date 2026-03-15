@@ -23,7 +23,7 @@ foreign lib {
     ScriptClassDescription_classDescriptionForClass :: proc(aClass: Class) -> ^ScriptClassDescription ---
 
     @(objc_type=ScriptClassDescription, objc_selector="initWithSuiteName:className:dictionary:", objc_name="initWithSuiteName")
-    ScriptClassDescription_initWithSuiteName :: proc(self: ^ScriptClassDescription, suiteName: ^String, className: ^String, classDeclaration: ^Dictionary) -> ^ScriptClassDescription ---
+    ScriptClassDescription_initWithSuiteName :: proc(self: ^ScriptClassDescription, suiteName: ^String, className: ^String, classDeclaration: ^Dictionary) -> instancetype ---
 
     @(objc_type=ScriptClassDescription, objc_selector="matchesAppleEventCode:", objc_name="matchesAppleEventCode")
     ScriptClassDescription_matchesAppleEventCode :: proc(self: ^ScriptClassDescription, appleEventCode: CF.FourCharCode) -> bool ---

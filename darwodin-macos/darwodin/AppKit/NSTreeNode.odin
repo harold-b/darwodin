@@ -24,10 +24,10 @@ TreeNode :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TreeNode, objc_selector="treeNodeWithRepresentedObject:", objc_name="treeNodeWithRepresentedObject", objc_is_class_method=true)
-    TreeNode_treeNodeWithRepresentedObject :: proc(modelObject: id) -> ^TreeNode ---
+    TreeNode_treeNodeWithRepresentedObject :: proc(modelObject: id) -> instancetype ---
 
     @(objc_type=TreeNode, objc_selector="initWithRepresentedObject:", objc_name="initWithRepresentedObject")
-    TreeNode_initWithRepresentedObject :: proc(self: ^TreeNode, modelObject: id) -> ^TreeNode ---
+    TreeNode_initWithRepresentedObject :: proc(self: ^TreeNode, modelObject: id) -> instancetype ---
 
     @(objc_type=TreeNode, objc_selector="descendantNodeAtIndexPath:", objc_name="descendantNodeAtIndexPath")
     TreeNode_descendantNodeAtIndexPath :: proc(self: ^TreeNode, indexPath: ^NS.IndexPath) -> ^TreeNode ---

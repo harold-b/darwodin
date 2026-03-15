@@ -26,9 +26,9 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithServiceName: proc(self: ^NS.XPCConnection, serviceName: ^NS.String) -> ^NS.XPCConnection,
-    initWithMachServiceName: proc(self: ^NS.XPCConnection, name: ^NS.String, options: NS.XPCConnectionOptions) -> ^NS.XPCConnection,
-    initWithListenerEndpoint: proc(self: ^NS.XPCConnection, endpoint: ^NS.XPCListenerEndpoint) -> ^NS.XPCConnection,
+    initWithServiceName: proc(self: ^NS.XPCConnection, serviceName: ^NS.String) -> instancetype,
+    initWithMachServiceName: proc(self: ^NS.XPCConnection, name: ^NS.String, options: NS.XPCConnectionOptions) -> instancetype,
+    initWithListenerEndpoint: proc(self: ^NS.XPCConnection, endpoint: ^NS.XPCListenerEndpoint) -> instancetype,
     remoteObjectProxyWithErrorHandler: proc(self: ^NS.XPCConnection, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) -> id,
     synchronousRemoteObjectProxyWithErrorHandler: proc(self: ^NS.XPCConnection, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) -> id,
     resume: proc(self: ^NS.XPCConnection),
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithServiceName != nil {
-        initWithServiceName :: proc "c" (self: ^NS.XPCConnection, _: SEL, serviceName: ^NS.String) -> ^NS.XPCConnection {
+        initWithServiceName :: proc "c" (self: ^NS.XPCConnection, _: SEL, serviceName: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithServiceName:"), auto_cast initWithServiceName, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithMachServiceName != nil {
-        initWithMachServiceName :: proc "c" (self: ^NS.XPCConnection, _: SEL, name: ^NS.String, options: NS.XPCConnectionOptions) -> ^NS.XPCConnection {
+        initWithMachServiceName :: proc "c" (self: ^NS.XPCConnection, _: SEL, name: ^NS.String, options: NS.XPCConnectionOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMachServiceName:options:"), auto_cast initWithMachServiceName, "@@:@L") do panic("Failed to register objC method.")
     }
     if vt.initWithListenerEndpoint != nil {
-        initWithListenerEndpoint :: proc "c" (self: ^NS.XPCConnection, _: SEL, endpoint: ^NS.XPCListenerEndpoint) -> ^NS.XPCConnection {
+        initWithListenerEndpoint :: proc "c" (self: ^NS.XPCConnection, _: SEL, endpoint: ^NS.XPCListenerEndpoint) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

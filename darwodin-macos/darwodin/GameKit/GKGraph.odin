@@ -22,10 +22,10 @@ Graph :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Graph, objc_selector="graphWithNodes:", objc_name="graphWithNodes", objc_is_class_method=true)
-    Graph_graphWithNodes :: proc(nodes: ^NS.Array) -> ^Graph ---
+    Graph_graphWithNodes :: proc(nodes: ^NS.Array) -> instancetype ---
 
     @(objc_type=Graph, objc_selector="initWithNodes:", objc_name="initWithNodes")
-    Graph_initWithNodes :: proc(self: ^Graph, nodes: ^NS.Array) -> ^Graph ---
+    Graph_initWithNodes :: proc(self: ^Graph, nodes: ^NS.Array) -> instancetype ---
 
     @(objc_type=Graph, objc_selector="connectNodeToLowestCostNode:bidirectional:", objc_name="connectNodeToLowestCostNode")
     Graph_connectNodeToLowestCostNode :: proc(self: ^Graph, node: ^GraphNode, bidirectional: bool) ---

@@ -25,10 +25,10 @@ TextFormattingViewControllerComponentGroup :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextFormattingViewControllerComponentGroup, objc_selector="initWithComponents:", objc_name="initWithComponents")
-    TextFormattingViewControllerComponentGroup_initWithComponents :: proc(self: ^TextFormattingViewControllerComponentGroup, components: ^NS.Array) -> ^TextFormattingViewControllerComponentGroup ---
+    TextFormattingViewControllerComponentGroup_initWithComponents :: proc(self: ^TextFormattingViewControllerComponentGroup, components: ^NS.Array) -> instancetype ---
 
     @(objc_type=TextFormattingViewControllerComponentGroup, objc_selector="init", objc_name="init")
-    TextFormattingViewControllerComponentGroup_init :: proc(self: ^TextFormattingViewControllerComponentGroup) -> ^TextFormattingViewControllerComponentGroup ---
+    TextFormattingViewControllerComponentGroup_init :: proc(self: ^TextFormattingViewControllerComponentGroup) -> instancetype ---
 
     @(objc_type=TextFormattingViewControllerComponentGroup, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextFormattingViewControllerComponentGroup_new :: proc() -> ^TextFormattingViewControllerComponentGroup ---

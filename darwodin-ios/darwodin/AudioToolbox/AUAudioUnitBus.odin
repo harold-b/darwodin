@@ -63,7 +63,7 @@ foreign lib {
     AUAudioUnitBus_setContextPresentationLatency :: proc(self: ^AUAudioUnitBus, contextPresentationLatency: NS.TimeInterval) ---
 
     @(objc_type=AUAudioUnitBus, objc_selector="initWithFormat:error:", objc_name="initWithFormat")
-    AUAudioUnitBus_initWithFormat :: proc(self: ^AUAudioUnitBus, format: ^AVAudioFormat, outError: ^^NS.Error) -> ^AUAudioUnitBus ---
+    AUAudioUnitBus_initWithFormat :: proc(self: ^AUAudioUnitBus, format: ^AVAudioFormat, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AUAudioUnitBus, objc_selector="supportedChannelCounts", objc_name="supportedChannelCounts")
     AUAudioUnitBus_supportedChannelCounts :: proc(self: ^AUAudioUnitBus) -> ^NS.Array ---

@@ -72,8 +72,8 @@ VTable :: struct {
     segmentDistribution: proc(self: ^AK.SegmentedControl) -> AK.SegmentDistribution,
     setSegmentDistribution: proc(self: ^AK.SegmentedControl, segmentDistribution: AK.SegmentDistribution),
     activeCompressionOptions: proc(self: ^AK.SegmentedControl) -> ^AK.UserInterfaceCompressionOptions,
-    segmentedControlWithLabels: proc(labels: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> ^AK.SegmentedControl,
-    segmentedControlWithImages: proc(images: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> ^AK.SegmentedControl,
+    segmentedControlWithLabels: proc(labels: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype,
+    segmentedControlWithImages: proc(images: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -504,7 +504,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activeCompressionOptions"), auto_cast activeCompressionOptions, "@@:") do panic("Failed to register objC method.")
     }
     if vt.segmentedControlWithLabels != nil {
-        segmentedControlWithLabels :: proc "c" (self: Class, _: SEL, labels: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> ^AK.SegmentedControl {
+        segmentedControlWithLabels :: proc "c" (self: Class, _: SEL, labels: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -514,7 +514,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("segmentedControlWithLabels:trackingMode:target:action:"), auto_cast segmentedControlWithLabels, "@#:^voidL@:") do panic("Failed to register objC method.")
     }
     if vt.segmentedControlWithImages != nil {
-        segmentedControlWithImages :: proc "c" (self: Class, _: SEL, images: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> ^AK.SegmentedControl {
+        segmentedControlWithImages :: proc "c" (self: Class, _: SEL, images: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

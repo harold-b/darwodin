@@ -28,13 +28,13 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^UI.EditMenuInteraction, delegate: ^UI.EditMenuInteractionDelegate) -> ^UI.EditMenuInteraction,
+    initWithDelegate: proc(self: ^UI.EditMenuInteraction, delegate: ^UI.EditMenuInteractionDelegate) -> instancetype,
     presentEditMenuWithConfiguration: proc(self: ^UI.EditMenuInteraction, configuration: ^UI.EditMenuConfiguration),
     dismissMenu: proc(self: ^UI.EditMenuInteraction),
     reloadVisibleMenu: proc(self: ^UI.EditMenuInteraction),
     updateVisibleMenuPositionAnimated: proc(self: ^UI.EditMenuInteraction, animated: bool),
     locationInView: proc(self: ^UI.EditMenuInteraction, view: ^UI.View) -> CG.Point,
-    init: proc(self: ^UI.EditMenuInteraction) -> ^UI.EditMenuInteraction,
+    init: proc(self: ^UI.EditMenuInteraction) -> instancetype,
     new: proc() -> ^UI.EditMenuInteraction,
     delegate: proc(self: ^UI.EditMenuInteraction) -> ^UI.EditMenuInteractionDelegate,
 }
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.EditMenuInteraction, _: SEL, delegate: ^UI.EditMenuInteractionDelegate) -> ^UI.EditMenuInteraction {
+        initWithDelegate :: proc "c" (self: ^UI.EditMenuInteraction, _: SEL, delegate: ^UI.EditMenuInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("locationInView:"), auto_cast locationInView, "{CGPoint=dd}@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.EditMenuInteraction, _: SEL) -> ^UI.EditMenuInteraction {
+        init :: proc "c" (self: ^UI.EditMenuInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

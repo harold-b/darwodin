@@ -22,7 +22,7 @@ SceneSizeRestrictions :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SceneSizeRestrictions, objc_selector="init", objc_name="init")
-    SceneSizeRestrictions_init :: proc(self: ^SceneSizeRestrictions) -> ^SceneSizeRestrictions ---
+    SceneSizeRestrictions_init :: proc(self: ^SceneSizeRestrictions) -> instancetype ---
 
     @(objc_type=SceneSizeRestrictions, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SceneSizeRestrictions_new :: proc() -> ^SceneSizeRestrictions ---

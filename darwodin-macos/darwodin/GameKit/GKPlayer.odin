@@ -22,7 +22,7 @@ foreign lib {
     Player_scopedIDsArePersistent :: proc(self: ^Player) -> bool ---
 
     @(objc_type=Player, objc_selector="anonymousGuestPlayerWithIdentifier:", objc_name="anonymousGuestPlayerWithIdentifier", objc_is_class_method=true)
-    Player_anonymousGuestPlayerWithIdentifier :: proc(guestIdentifier: ^NS.String) -> ^Player ---
+    Player_anonymousGuestPlayerWithIdentifier :: proc(guestIdentifier: ^NS.String) -> instancetype ---
 
     @(objc_type=Player, objc_selector="gamePlayerID", objc_name="gamePlayerID")
     Player_gamePlayerID :: proc(self: ^Player) -> ^NS.String ---

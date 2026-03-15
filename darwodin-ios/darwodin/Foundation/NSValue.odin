@@ -26,10 +26,10 @@ foreign lib {
     Value_getValue_size :: proc(self: ^Value, value: rawptr, size: UInteger) ---
 
     @(objc_type=Value, objc_selector="initWithBytes:objCType:", objc_name="initWithBytes")
-    Value_initWithBytes :: proc(self: ^Value, value: rawptr, type: cstring) -> ^Value ---
+    Value_initWithBytes :: proc(self: ^Value, value: rawptr, type: cstring) -> instancetype ---
 
     @(objc_type=Value, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Value_initWithCoder :: proc(self: ^Value, coder: ^Coder) -> ^Value ---
+    Value_initWithCoder :: proc(self: ^Value, coder: ^Coder) -> instancetype ---
 
     @(objc_type=Value, objc_selector="objCType", objc_name="objCType")
     Value_objCType :: proc(self: ^Value) -> cstring ---

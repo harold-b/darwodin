@@ -26,7 +26,7 @@ import "../NSInflectionRule"
 
 VTable :: struct {
     super: NSInflectionRule.VTable,
-    initWithMorphology: proc(self: ^NS.InflectionRuleExplicit, morphology: ^NS.Morphology) -> ^NS.InflectionRuleExplicit,
+    initWithMorphology: proc(self: ^NS.InflectionRuleExplicit, morphology: ^NS.Morphology) -> instancetype,
     morphology: proc(self: ^NS.InflectionRuleExplicit) -> ^NS.Morphology,
 }
 
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSInflectionRule.extend(cls, &vt.super)
 
     if vt.initWithMorphology != nil {
-        initWithMorphology :: proc "c" (self: ^NS.InflectionRuleExplicit, _: SEL, morphology: ^NS.Morphology) -> ^NS.InflectionRuleExplicit {
+        initWithMorphology :: proc "c" (self: ^NS.InflectionRuleExplicit, _: SEL, morphology: ^NS.Morphology) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -22,7 +22,7 @@ foreign lib {
     DomainStateBiometry_new :: proc() -> ^DomainStateBiometry ---
 
     @(objc_type=DomainStateBiometry, objc_selector="init", objc_name="init")
-    DomainStateBiometry_init :: proc(self: ^DomainStateBiometry) -> ^DomainStateBiometry ---
+    DomainStateBiometry_init :: proc(self: ^DomainStateBiometry) -> instancetype ---
 
     @(objc_type=DomainStateBiometry, objc_selector="biometryType", objc_name="biometryType")
     DomainStateBiometry_biometryType :: proc(self: ^DomainStateBiometry) -> BiometryType ---

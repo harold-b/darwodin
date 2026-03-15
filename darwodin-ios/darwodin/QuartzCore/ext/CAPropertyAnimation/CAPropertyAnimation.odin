@@ -27,7 +27,7 @@ import "../CAAnimation"
 
 VTable :: struct {
     super: CAAnimation.VTable,
-    animationWithKeyPath: proc(path: ^NS.String) -> ^CA.PropertyAnimation,
+    animationWithKeyPath: proc(path: ^NS.String) -> instancetype,
     keyPath: proc(self: ^CA.PropertyAnimation) -> ^NS.String,
     setKeyPath: proc(self: ^CA.PropertyAnimation, keyPath: ^NS.String),
     isAdditive: proc(self: ^CA.PropertyAnimation) -> bool,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     CAAnimation.extend(cls, &vt.super)
 
     if vt.animationWithKeyPath != nil {
-        animationWithKeyPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> ^CA.PropertyAnimation {
+        animationWithKeyPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

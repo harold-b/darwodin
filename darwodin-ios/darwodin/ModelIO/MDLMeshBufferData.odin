@@ -23,10 +23,10 @@ MeshBufferData :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeshBufferData, objc_selector="initWithType:length:", objc_name="initWithType_length")
-    MeshBufferData_initWithType_length :: proc(self: ^MeshBufferData, type: MeshBufferType, length: NS.UInteger) -> ^MeshBufferData ---
+    MeshBufferData_initWithType_length :: proc(self: ^MeshBufferData, type: MeshBufferType, length: NS.UInteger) -> instancetype ---
 
     @(objc_type=MeshBufferData, objc_selector="initWithType:data:", objc_name="initWithType_data")
-    MeshBufferData_initWithType_data :: proc(self: ^MeshBufferData, type: MeshBufferType, data: ^NS.Data) -> ^MeshBufferData ---
+    MeshBufferData_initWithType_data :: proc(self: ^MeshBufferData, type: MeshBufferType, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=MeshBufferData, objc_selector="data", objc_name="data")
     MeshBufferData_data :: proc(self: ^MeshBufferData) -> ^NS.Data ---

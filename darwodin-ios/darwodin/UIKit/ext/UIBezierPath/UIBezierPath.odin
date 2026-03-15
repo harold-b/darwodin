@@ -28,15 +28,15 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    bezierPath: proc() -> ^UI.BezierPath,
-    bezierPathWithRect: proc(rect: CG.Rect) -> ^UI.BezierPath,
-    bezierPathWithOvalInRect: proc(rect: CG.Rect) -> ^UI.BezierPath,
-    bezierPathWithRoundedRect_cornerRadius: proc(rect: CG.Rect, cornerRadius: CG.Float) -> ^UI.BezierPath,
-    bezierPathWithRoundedRect_byRoundingCorners_cornerRadii: proc(rect: CG.Rect, corners: UI.RectCorner, cornerRadii: CG.Size) -> ^UI.BezierPath,
-    bezierPathWithArcCenter: proc(center: CG.Point, radius: CG.Float, startAngle: CG.Float, endAngle: CG.Float, clockwise: bool) -> ^UI.BezierPath,
-    bezierPathWithCGPath: proc(CGPath: CG.PathRef) -> ^UI.BezierPath,
-    init: proc(self: ^UI.BezierPath) -> ^UI.BezierPath,
-    initWithCoder: proc(self: ^UI.BezierPath, coder: ^NS.Coder) -> ^UI.BezierPath,
+    bezierPath: proc() -> instancetype,
+    bezierPathWithRect: proc(rect: CG.Rect) -> instancetype,
+    bezierPathWithOvalInRect: proc(rect: CG.Rect) -> instancetype,
+    bezierPathWithRoundedRect_cornerRadius: proc(rect: CG.Rect, cornerRadius: CG.Float) -> instancetype,
+    bezierPathWithRoundedRect_byRoundingCorners_cornerRadii: proc(rect: CG.Rect, corners: UI.RectCorner, cornerRadii: CG.Size) -> instancetype,
+    bezierPathWithArcCenter: proc(center: CG.Point, radius: CG.Float, startAngle: CG.Float, endAngle: CG.Float, clockwise: bool) -> instancetype,
+    bezierPathWithCGPath: proc(CGPath: CG.PathRef) -> instancetype,
+    init: proc(self: ^UI.BezierPath) -> instancetype,
+    initWithCoder: proc(self: ^UI.BezierPath, coder: ^NS.Coder) -> instancetype,
     _CGPath: proc(self: ^UI.BezierPath) -> CG.PathRef,
     moveToPoint: proc(self: ^UI.BezierPath, point: CG.Point),
     addLineToPoint: proc(self: ^UI.BezierPath, point: CG.Point),
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.bezierPath != nil {
-        bezierPath :: proc "c" (self: Class, _: SEL) -> ^UI.BezierPath {
+        bezierPath :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bezierPath"), auto_cast bezierPath, "@#:") do panic("Failed to register objC method.")
     }
     if vt.bezierPathWithRect != nil {
-        bezierPathWithRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> ^UI.BezierPath {
+        bezierPathWithRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bezierPathWithRect:"), auto_cast bezierPathWithRect, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.bezierPathWithOvalInRect != nil {
-        bezierPathWithOvalInRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> ^UI.BezierPath {
+        bezierPathWithOvalInRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bezierPathWithOvalInRect:"), auto_cast bezierPathWithOvalInRect, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.bezierPathWithRoundedRect_cornerRadius != nil {
-        bezierPathWithRoundedRect_cornerRadius :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float) -> ^UI.BezierPath {
+        bezierPathWithRoundedRect_cornerRadius :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bezierPathWithRoundedRect:cornerRadius:"), auto_cast bezierPathWithRoundedRect_cornerRadius, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}d") do panic("Failed to register objC method.")
     }
     if vt.bezierPathWithRoundedRect_byRoundingCorners_cornerRadii != nil {
-        bezierPathWithRoundedRect_byRoundingCorners_cornerRadii :: proc "c" (self: Class, _: SEL, rect: CG.Rect, corners: UI.RectCorner, cornerRadii: CG.Size) -> ^UI.BezierPath {
+        bezierPathWithRoundedRect_byRoundingCorners_cornerRadii :: proc "c" (self: Class, _: SEL, rect: CG.Rect, corners: UI.RectCorner, cornerRadii: CG.Size) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bezierPathWithRoundedRect:byRoundingCorners:cornerRadii:"), auto_cast bezierPathWithRoundedRect_byRoundingCorners_cornerRadii, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}L{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.bezierPathWithArcCenter != nil {
-        bezierPathWithArcCenter :: proc "c" (self: Class, _: SEL, center: CG.Point, radius: CG.Float, startAngle: CG.Float, endAngle: CG.Float, clockwise: bool) -> ^UI.BezierPath {
+        bezierPathWithArcCenter :: proc "c" (self: Class, _: SEL, center: CG.Point, radius: CG.Float, startAngle: CG.Float, endAngle: CG.Float, clockwise: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:"), auto_cast bezierPathWithArcCenter, "@#:{CGPoint=dd}dddB") do panic("Failed to register objC method.")
     }
     if vt.bezierPathWithCGPath != nil {
-        bezierPathWithCGPath :: proc "c" (self: Class, _: SEL, CGPath: CG.PathRef) -> ^UI.BezierPath {
+        bezierPathWithCGPath :: proc "c" (self: Class, _: SEL, CGPath: CG.PathRef) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bezierPathWithCGPath:"), auto_cast bezierPathWithCGPath, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.BezierPath, _: SEL) -> ^UI.BezierPath {
+        init :: proc "c" (self: ^UI.BezierPath, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.BezierPath, _: SEL, coder: ^NS.Coder) -> ^UI.BezierPath {
+        initWithCoder :: proc "c" (self: ^UI.BezierPath, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -27,7 +27,7 @@ import "../CABasicAnimation"
 
 VTable :: struct {
     super: CABasicAnimation.VTable,
-    initWithPerceptualDuration: proc(self: ^CA.SpringAnimation, perceptualDuration: CF.TimeInterval, bounce: CG.Float) -> ^CA.SpringAnimation,
+    initWithPerceptualDuration: proc(self: ^CA.SpringAnimation, perceptualDuration: CF.TimeInterval, bounce: CG.Float) -> instancetype,
     mass: proc(self: ^CA.SpringAnimation) -> CG.Float,
     setMass: proc(self: ^CA.SpringAnimation, mass: CG.Float),
     stiffness: proc(self: ^CA.SpringAnimation) -> CG.Float,
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     CABasicAnimation.extend(cls, &vt.super)
 
     if vt.initWithPerceptualDuration != nil {
-        initWithPerceptualDuration :: proc "c" (self: ^CA.SpringAnimation, _: SEL, perceptualDuration: CF.TimeInterval, bounce: CG.Float) -> ^CA.SpringAnimation {
+        initWithPerceptualDuration :: proc "c" (self: ^CA.SpringAnimation, _: SEL, perceptualDuration: CF.TimeInterval, bounce: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

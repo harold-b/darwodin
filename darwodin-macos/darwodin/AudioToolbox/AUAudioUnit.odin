@@ -21,13 +21,13 @@ AUAudioUnit :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUAudioUnit, objc_selector="init", objc_name="init")
-    AUAudioUnit_init :: proc(self: ^AUAudioUnit) -> ^AUAudioUnit ---
+    AUAudioUnit_init :: proc(self: ^AUAudioUnit) -> instancetype ---
 
     @(objc_type=AUAudioUnit, objc_selector="initWithComponentDescription:options:error:", objc_name="initWithComponentDescription_options_error")
-    AUAudioUnit_initWithComponentDescription_options_error :: proc(self: ^AUAudioUnit, componentDescription: ComponentDescription, options: ComponentInstantiationOptions, outError: ^^NS.Error) -> ^AUAudioUnit ---
+    AUAudioUnit_initWithComponentDescription_options_error :: proc(self: ^AUAudioUnit, componentDescription: ComponentDescription, options: ComponentInstantiationOptions, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AUAudioUnit, objc_selector="initWithComponentDescription:error:", objc_name="initWithComponentDescription_error")
-    AUAudioUnit_initWithComponentDescription_error :: proc(self: ^AUAudioUnit, componentDescription: ComponentDescription, outError: ^^NS.Error) -> ^AUAudioUnit ---
+    AUAudioUnit_initWithComponentDescription_error :: proc(self: ^AUAudioUnit, componentDescription: ComponentDescription, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AUAudioUnit, objc_selector="instantiateWithComponentDescription:options:completionHandler:", objc_name="instantiateWithComponentDescription", objc_is_class_method=true)
     AUAudioUnit_instantiateWithComponentDescription :: proc(componentDescription: ComponentDescription, options: ComponentInstantiationOptions, completionHandler: ^Objc_Block(proc "c" (audioUnit: ^AUAudioUnit, error: ^NS.Error))) ---

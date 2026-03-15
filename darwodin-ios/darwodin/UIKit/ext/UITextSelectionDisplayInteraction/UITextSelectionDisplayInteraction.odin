@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextInput: proc(self: ^UI.TextSelectionDisplayInteraction, textInput: ^UI.TextInput, delegate: ^UI.TextSelectionDisplayInteractionDelegate) -> ^UI.TextSelectionDisplayInteraction,
+    initWithTextInput: proc(self: ^UI.TextSelectionDisplayInteraction, textInput: ^UI.TextInput, delegate: ^UI.TextSelectionDisplayInteractionDelegate) -> instancetype,
     layoutManagedSubviews: proc(self: ^UI.TextSelectionDisplayInteraction),
     setNeedsSelectionUpdate: proc(self: ^UI.TextSelectionDisplayInteraction),
-    init: proc(self: ^UI.TextSelectionDisplayInteraction) -> ^UI.TextSelectionDisplayInteraction,
+    init: proc(self: ^UI.TextSelectionDisplayInteraction) -> instancetype,
     new: proc() -> ^UI.TextSelectionDisplayInteraction,
     isActivated: proc(self: ^UI.TextSelectionDisplayInteraction) -> bool,
     setActivated: proc(self: ^UI.TextSelectionDisplayInteraction, activated: bool),
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextInput != nil {
-        initWithTextInput :: proc "c" (self: ^UI.TextSelectionDisplayInteraction, _: SEL, textInput: ^UI.TextInput, delegate: ^UI.TextSelectionDisplayInteractionDelegate) -> ^UI.TextSelectionDisplayInteraction {
+        initWithTextInput :: proc "c" (self: ^UI.TextSelectionDisplayInteraction, _: SEL, textInput: ^UI.TextInput, delegate: ^UI.TextSelectionDisplayInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNeedsSelectionUpdate"), auto_cast setNeedsSelectionUpdate, "v@:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextSelectionDisplayInteraction, _: SEL) -> ^UI.TextSelectionDisplayInteraction {
+        init :: proc "c" (self: ^UI.TextSelectionDisplayInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

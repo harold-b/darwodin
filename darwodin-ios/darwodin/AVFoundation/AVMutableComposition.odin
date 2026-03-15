@@ -23,10 +23,10 @@ MutableComposition :: struct { using _: Composition, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableComposition, objc_selector="composition", objc_name="composition", objc_is_class_method=true)
-    MutableComposition_composition :: proc() -> ^MutableComposition ---
+    MutableComposition_composition :: proc() -> instancetype ---
 
     @(objc_type=MutableComposition, objc_selector="compositionWithURLAssetInitializationOptions:", objc_name="compositionWithURLAssetInitializationOptions", objc_is_class_method=true)
-    MutableComposition_compositionWithURLAssetInitializationOptions :: proc(URLAssetInitializationOptions: ^NS.Dictionary) -> ^MutableComposition ---
+    MutableComposition_compositionWithURLAssetInitializationOptions :: proc(URLAssetInitializationOptions: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=MutableComposition, objc_selector="tracks", objc_name="tracks")
     MutableComposition_tracks :: proc(self: ^MutableComposition) -> ^NS.Array ---

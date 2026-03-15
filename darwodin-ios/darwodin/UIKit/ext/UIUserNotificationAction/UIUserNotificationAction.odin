@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.UserNotificationAction) -> ^UI.UserNotificationAction,
-    initWithCoder: proc(self: ^UI.UserNotificationAction, coder: ^NS.Coder) -> ^UI.UserNotificationAction,
+    init: proc(self: ^UI.UserNotificationAction) -> instancetype,
+    initWithCoder: proc(self: ^UI.UserNotificationAction, coder: ^NS.Coder) -> instancetype,
     identifier: proc(self: ^UI.UserNotificationAction) -> ^NS.String,
     title: proc(self: ^UI.UserNotificationAction) -> ^NS.String,
     behavior: proc(self: ^UI.UserNotificationAction) -> UI.UserNotificationActionBehavior,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.UserNotificationAction, _: SEL) -> ^UI.UserNotificationAction {
+        init :: proc "c" (self: ^UI.UserNotificationAction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.UserNotificationAction, _: SEL, coder: ^NS.Coder) -> ^UI.UserNotificationAction {
+        initWithCoder :: proc "c" (self: ^UI.UserNotificationAction, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

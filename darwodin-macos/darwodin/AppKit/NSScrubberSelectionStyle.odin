@@ -26,10 +26,10 @@ ScrubberSelectionStyle :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScrubberSelectionStyle, objc_selector="init", objc_name="init")
-    ScrubberSelectionStyle_init :: proc(self: ^ScrubberSelectionStyle) -> ^ScrubberSelectionStyle ---
+    ScrubberSelectionStyle_init :: proc(self: ^ScrubberSelectionStyle) -> instancetype ---
 
     @(objc_type=ScrubberSelectionStyle, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ScrubberSelectionStyle_initWithCoder :: proc(self: ^ScrubberSelectionStyle, coder: ^NS.Coder) -> ^ScrubberSelectionStyle ---
+    ScrubberSelectionStyle_initWithCoder :: proc(self: ^ScrubberSelectionStyle, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ScrubberSelectionStyle, objc_selector="makeSelectionView", objc_name="makeSelectionView")
     ScrubberSelectionStyle_makeSelectionView :: proc(self: ^ScrubberSelectionStyle) -> ^ScrubberSelectionView ---

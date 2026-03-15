@@ -24,10 +24,10 @@ ScrubberProportionalLayout :: struct { using _: ScrubberLayout, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScrubberProportionalLayout, objc_selector="initWithNumberOfVisibleItems:", objc_name="initWithNumberOfVisibleItems")
-    ScrubberProportionalLayout_initWithNumberOfVisibleItems :: proc(self: ^ScrubberProportionalLayout, numberOfVisibleItems: NS.Integer) -> ^ScrubberProportionalLayout ---
+    ScrubberProportionalLayout_initWithNumberOfVisibleItems :: proc(self: ^ScrubberProportionalLayout, numberOfVisibleItems: NS.Integer) -> instancetype ---
 
     @(objc_type=ScrubberProportionalLayout, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ScrubberProportionalLayout_initWithCoder :: proc(self: ^ScrubberProportionalLayout, coder: ^NS.Coder) -> ^ScrubberProportionalLayout ---
+    ScrubberProportionalLayout_initWithCoder :: proc(self: ^ScrubberProportionalLayout, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ScrubberProportionalLayout, objc_selector="numberOfVisibleItems", objc_name="numberOfVisibleItems")
     ScrubberProportionalLayout_numberOfVisibleItems :: proc(self: ^ScrubberProportionalLayout) -> NS.Integer ---

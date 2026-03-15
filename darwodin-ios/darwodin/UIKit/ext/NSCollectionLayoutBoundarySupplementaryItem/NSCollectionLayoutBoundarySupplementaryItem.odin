@@ -28,9 +28,9 @@ import "../NSCollectionLayoutSupplementaryItem"
 
 VTable :: struct {
     super: NSCollectionLayoutSupplementaryItem.VTable,
-    boundarySupplementaryItemWithLayoutSize_elementKind_alignment: proc(layoutSize: ^UI.NSCollectionLayoutSize, elementKind: ^NS.String, alignment: UI.NSRectAlignment) -> ^UI.NSCollectionLayoutBoundarySupplementaryItem,
-    boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset: proc(layoutSize: ^UI.NSCollectionLayoutSize, elementKind: ^NS.String, alignment: UI.NSRectAlignment, absoluteOffset: CG.Point) -> ^UI.NSCollectionLayoutBoundarySupplementaryItem,
-    init: proc(self: ^UI.NSCollectionLayoutBoundarySupplementaryItem) -> ^UI.NSCollectionLayoutBoundarySupplementaryItem,
+    boundarySupplementaryItemWithLayoutSize_elementKind_alignment: proc(layoutSize: ^UI.NSCollectionLayoutSize, elementKind: ^NS.String, alignment: UI.NSRectAlignment) -> instancetype,
+    boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset: proc(layoutSize: ^UI.NSCollectionLayoutSize, elementKind: ^NS.String, alignment: UI.NSRectAlignment, absoluteOffset: CG.Point) -> instancetype,
+    init: proc(self: ^UI.NSCollectionLayoutBoundarySupplementaryItem) -> instancetype,
     new: proc() -> ^UI.NSCollectionLayoutBoundarySupplementaryItem,
     extendsBoundary: proc(self: ^UI.NSCollectionLayoutBoundarySupplementaryItem) -> bool,
     setExtendsBoundary: proc(self: ^UI.NSCollectionLayoutBoundarySupplementaryItem, extendsBoundary: bool),
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionLayoutSupplementaryItem.extend(cls, &vt.super)
 
     if vt.boundarySupplementaryItemWithLayoutSize_elementKind_alignment != nil {
-        boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, elementKind: ^NS.String, alignment: UI.NSRectAlignment) -> ^UI.NSCollectionLayoutBoundarySupplementaryItem {
+        boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, elementKind: ^NS.String, alignment: UI.NSRectAlignment) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:"), auto_cast boundarySupplementaryItemWithLayoutSize_elementKind_alignment, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset != nil {
-        boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, elementKind: ^NS.String, alignment: UI.NSRectAlignment, absoluteOffset: CG.Point) -> ^UI.NSCollectionLayoutBoundarySupplementaryItem {
+        boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, elementKind: ^NS.String, alignment: UI.NSRectAlignment, absoluteOffset: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:"), auto_cast boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset, "@#:@@l{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSCollectionLayoutBoundarySupplementaryItem, _: SEL) -> ^UI.NSCollectionLayoutBoundarySupplementaryItem {
+        init :: proc "c" (self: ^UI.NSCollectionLayoutBoundarySupplementaryItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

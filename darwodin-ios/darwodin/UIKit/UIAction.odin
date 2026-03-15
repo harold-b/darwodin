@@ -24,13 +24,13 @@ Action :: struct { using _: MenuElement,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Action, objc_selector="actionWithHandler:", objc_name="actionWithHandler", objc_is_class_method=true)
-    Action_actionWithHandler :: proc(handler: ActionHandler) -> ^Action ---
+    Action_actionWithHandler :: proc(handler: ActionHandler) -> instancetype ---
 
     @(objc_type=Action, objc_selector="actionWithTitle:image:identifier:handler:", objc_name="actionWithTitle", objc_is_class_method=true)
-    Action_actionWithTitle :: proc(title: ^NS.String, image: ^Image, identifier: ^NS.String, handler: ActionHandler) -> ^Action ---
+    Action_actionWithTitle :: proc(title: ^NS.String, image: ^Image, identifier: ^NS.String, handler: ActionHandler) -> instancetype ---
 
     @(objc_type=Action, objc_selector="init", objc_name="init")
-    Action_init :: proc(self: ^Action) -> ^Action ---
+    Action_init :: proc(self: ^Action) -> instancetype ---
 
     @(objc_type=Action, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Action_new :: proc() -> ^Action ---
@@ -72,5 +72,5 @@ foreign lib {
     Action_sender :: proc(self: ^Action) -> id ---
 
     @(objc_type=Action, objc_selector="captureTextFromCameraActionForResponder:identifier:", objc_name="captureTextFromCameraActionForResponder", objc_is_class_method=true)
-    Action_captureTextFromCameraActionForResponder :: proc(responder: ^Responder, identifier: ^NS.String) -> ^Action ---
+    Action_captureTextFromCameraActionForResponder :: proc(responder: ^Responder, identifier: ^NS.String) -> instancetype ---
 }

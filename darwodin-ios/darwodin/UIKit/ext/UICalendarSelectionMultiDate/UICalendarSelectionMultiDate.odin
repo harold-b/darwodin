@@ -29,7 +29,7 @@ import "../UICalendarSelection"
 VTable :: struct {
     super: UICalendarSelection.VTable,
     setSelectedDates_animated: proc(self: ^UI.CalendarSelectionMultiDate, selectedDates: ^NS.Array, animated: bool),
-    initWithDelegate: proc(self: ^UI.CalendarSelectionMultiDate, delegate: ^UI.CalendarSelectionMultiDateDelegate) -> ^UI.CalendarSelectionMultiDate,
+    initWithDelegate: proc(self: ^UI.CalendarSelectionMultiDate, delegate: ^UI.CalendarSelectionMultiDateDelegate) -> instancetype,
     selectedDates: proc(self: ^UI.CalendarSelectionMultiDate) -> ^NS.Array,
     setSelectedDates_: proc(self: ^UI.CalendarSelectionMultiDate, selectedDates: ^NS.Array),
     delegate: proc(self: ^UI.CalendarSelectionMultiDate) -> ^UI.CalendarSelectionMultiDateDelegate,
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedDates:animated:"), auto_cast setSelectedDates_animated, "v@:^voidB") do panic("Failed to register objC method.")
     }
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.CalendarSelectionMultiDate, _: SEL, delegate: ^UI.CalendarSelectionMultiDateDelegate) -> ^UI.CalendarSelectionMultiDate {
+        initWithDelegate :: proc "c" (self: ^UI.CalendarSelectionMultiDate, _: SEL, delegate: ^UI.CalendarSelectionMultiDateDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

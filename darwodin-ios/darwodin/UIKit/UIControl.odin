@@ -22,13 +22,13 @@ Control :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Control, objc_selector="initWithFrame:", objc_name="initWithFrame_")
-    Control_initWithFrame_ :: proc(self: ^Control, frame: CG.Rect) -> ^Control ---
+    Control_initWithFrame_ :: proc(self: ^Control, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=Control, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Control_initWithCoder :: proc(self: ^Control, coder: ^NS.Coder) -> ^Control ---
+    Control_initWithCoder :: proc(self: ^Control, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Control, objc_selector="initWithFrame:primaryAction:", objc_name="initWithFrame_primaryAction")
-    Control_initWithFrame_primaryAction :: proc(self: ^Control, frame: CG.Rect, primaryAction: ^Action) -> ^Control ---
+    Control_initWithFrame_primaryAction :: proc(self: ^Control, frame: CG.Rect, primaryAction: ^Action) -> instancetype ---
 
     @(objc_type=Control, objc_selector="beginTrackingWithTouch:withEvent:", objc_name="beginTrackingWithTouch")
     Control_beginTrackingWithTouch :: proc(self: ^Control, touch: ^Touch, event: ^Event) -> bool ---

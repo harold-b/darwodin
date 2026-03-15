@@ -22,10 +22,10 @@ PageViewController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PageViewController, objc_selector="initWithTransitionStyle:navigationOrientation:options:", objc_name="initWithTransitionStyle")
-    PageViewController_initWithTransitionStyle :: proc(self: ^PageViewController, style: PageViewControllerTransitionStyle, navigationOrientation: PageViewControllerNavigationOrientation, options: ^NS.Dictionary) -> ^PageViewController ---
+    PageViewController_initWithTransitionStyle :: proc(self: ^PageViewController, style: PageViewControllerTransitionStyle, navigationOrientation: PageViewControllerNavigationOrientation, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=PageViewController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    PageViewController_initWithCoder :: proc(self: ^PageViewController, coder: ^NS.Coder) -> ^PageViewController ---
+    PageViewController_initWithCoder :: proc(self: ^PageViewController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=PageViewController, objc_selector="setViewControllers:direction:animated:completion:", objc_name="setViewControllers")
     PageViewController_setViewControllers :: proc(self: ^PageViewController, viewControllers: ^NS.Array, direction: PageViewControllerNavigationDirection, animated: bool, completion: ^Objc_Block(proc "c" (finished: bool))) ---

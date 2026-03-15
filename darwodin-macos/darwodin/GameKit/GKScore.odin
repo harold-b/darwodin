@@ -22,10 +22,10 @@ Score :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Score, objc_selector="initWithLeaderboardIdentifier:", objc_name="initWithLeaderboardIdentifier_")
-    Score_initWithLeaderboardIdentifier_ :: proc(self: ^Score, identifier: ^NS.String) -> ^Score ---
+    Score_initWithLeaderboardIdentifier_ :: proc(self: ^Score, identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=Score, objc_selector="initWithLeaderboardIdentifier:player:", objc_name="initWithLeaderboardIdentifier_player")
-    Score_initWithLeaderboardIdentifier_player :: proc(self: ^Score, identifier: ^NS.String, player: ^Player) -> ^Score ---
+    Score_initWithLeaderboardIdentifier_player :: proc(self: ^Score, identifier: ^NS.String, player: ^Player) -> instancetype ---
 
     @(objc_type=Score, objc_selector="reportScores:withCompletionHandler:", objc_name="reportScores_withCompletionHandler", objc_is_class_method=true)
     Score_reportScores_withCompletionHandler :: proc(scores: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
@@ -70,7 +70,7 @@ foreign lib {
     Score_reportScoreWithCompletionHandler :: proc(self: ^Score, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
 
     @(objc_type=Score, objc_selector="initWithCategory:", objc_name="initWithCategory")
-    Score_initWithCategory :: proc(self: ^Score, category: ^NS.String) -> ^Score ---
+    Score_initWithCategory :: proc(self: ^Score, category: ^NS.String) -> instancetype ---
 
     @(objc_type=Score, objc_selector="category", objc_name="category")
     Score_category :: proc(self: ^Score) -> ^NS.String ---
@@ -79,7 +79,7 @@ foreign lib {
     Score_setCategory :: proc(self: ^Score, category: ^NS.String) ---
 
     @(objc_type=Score, objc_selector="initWithLeaderboardIdentifier:forPlayer:", objc_name="initWithLeaderboardIdentifier_forPlayer")
-    Score_initWithLeaderboardIdentifier_forPlayer :: proc(self: ^Score, identifier: ^NS.String, playerID: ^NS.String) -> ^Score ---
+    Score_initWithLeaderboardIdentifier_forPlayer :: proc(self: ^Score, identifier: ^NS.String, playerID: ^NS.String) -> instancetype ---
 
     @(objc_type=Score, objc_selector="playerID", objc_name="playerID")
     Score_playerID :: proc(self: ^Score) -> ^NS.String ---

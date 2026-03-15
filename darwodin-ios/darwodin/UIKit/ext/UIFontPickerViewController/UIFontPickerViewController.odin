@@ -28,8 +28,8 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithConfiguration: proc(self: ^UI.FontPickerViewController, configuration: ^UI.FontPickerViewControllerConfiguration) -> ^UI.FontPickerViewController,
-    initWithNibName: proc(self: ^UI.FontPickerViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.FontPickerViewController,
+    initWithConfiguration: proc(self: ^UI.FontPickerViewController, configuration: ^UI.FontPickerViewControllerConfiguration) -> instancetype,
+    initWithNibName: proc(self: ^UI.FontPickerViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
     configuration: proc(self: ^UI.FontPickerViewController) -> ^UI.FontPickerViewControllerConfiguration,
     delegate: proc(self: ^UI.FontPickerViewController) -> ^UI.FontPickerViewControllerDelegate,
     setDelegate: proc(self: ^UI.FontPickerViewController, delegate: ^UI.FontPickerViewControllerDelegate),
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithConfiguration != nil {
-        initWithConfiguration :: proc "c" (self: ^UI.FontPickerViewController, _: SEL, configuration: ^UI.FontPickerViewControllerConfiguration) -> ^UI.FontPickerViewController {
+        initWithConfiguration :: proc "c" (self: ^UI.FontPickerViewController, _: SEL, configuration: ^UI.FontPickerViewControllerConfiguration) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithConfiguration:"), auto_cast initWithConfiguration, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.FontPickerViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.FontPickerViewController {
+        initWithNibName :: proc "c" (self: ^UI.FontPickerViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

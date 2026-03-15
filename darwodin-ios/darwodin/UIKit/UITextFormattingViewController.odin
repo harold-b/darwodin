@@ -22,13 +22,13 @@ TextFormattingViewController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextFormattingViewController, objc_selector="init", objc_name="init")
-    TextFormattingViewController_init :: proc(self: ^TextFormattingViewController) -> ^TextFormattingViewController ---
+    TextFormattingViewController_init :: proc(self: ^TextFormattingViewController) -> instancetype ---
 
     @(objc_type=TextFormattingViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    TextFormattingViewController_initWithNibName :: proc(self: ^TextFormattingViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^TextFormattingViewController ---
+    TextFormattingViewController_initWithNibName :: proc(self: ^TextFormattingViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=TextFormattingViewController, objc_selector="initWithConfiguration:", objc_name="initWithConfiguration")
-    TextFormattingViewController_initWithConfiguration :: proc(self: ^TextFormattingViewController, configuration: ^TextFormattingViewControllerConfiguration) -> ^TextFormattingViewController ---
+    TextFormattingViewController_initWithConfiguration :: proc(self: ^TextFormattingViewController, configuration: ^TextFormattingViewControllerConfiguration) -> instancetype ---
 
     @(objc_type=TextFormattingViewController, objc_selector="configuration", objc_name="configuration")
     TextFormattingViewController_configuration :: proc(self: ^TextFormattingViewController) -> ^TextFormattingViewControllerConfiguration ---

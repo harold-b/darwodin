@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextContentManager: proc(self: ^UI.NSTextElement, textContentManager: ^UI.NSTextContentManager) -> ^UI.NSTextElement,
+    initWithTextContentManager: proc(self: ^UI.NSTextElement, textContentManager: ^UI.NSTextContentManager) -> instancetype,
     textContentManager: proc(self: ^UI.NSTextElement) -> ^UI.NSTextContentManager,
     setTextContentManager: proc(self: ^UI.NSTextElement, textContentManager: ^UI.NSTextContentManager),
     elementRange: proc(self: ^UI.NSTextElement) -> ^UI.NSTextRange,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextContentManager != nil {
-        initWithTextContentManager :: proc "c" (self: ^UI.NSTextElement, _: SEL, textContentManager: ^UI.NSTextContentManager) -> ^UI.NSTextElement {
+        initWithTextContentManager :: proc "c" (self: ^UI.NSTextElement, _: SEL, textContentManager: ^UI.NSTextContentManager) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

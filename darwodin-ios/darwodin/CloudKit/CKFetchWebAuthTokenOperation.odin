@@ -18,10 +18,10 @@ FetchWebAuthTokenOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchWebAuthTokenOperation, objc_selector="init", objc_name="init")
-    FetchWebAuthTokenOperation_init :: proc(self: ^FetchWebAuthTokenOperation) -> ^FetchWebAuthTokenOperation ---
+    FetchWebAuthTokenOperation_init :: proc(self: ^FetchWebAuthTokenOperation) -> instancetype ---
 
     @(objc_type=FetchWebAuthTokenOperation, objc_selector="initWithAPIToken:", objc_name="initWithAPIToken")
-    FetchWebAuthTokenOperation_initWithAPIToken :: proc(self: ^FetchWebAuthTokenOperation, APIToken: ^NS.String) -> ^FetchWebAuthTokenOperation ---
+    FetchWebAuthTokenOperation_initWithAPIToken :: proc(self: ^FetchWebAuthTokenOperation, APIToken: ^NS.String) -> instancetype ---
 
     @(objc_type=FetchWebAuthTokenOperation, objc_selector="APIToken", objc_name="APIToken")
     FetchWebAuthTokenOperation_APIToken :: proc(self: ^FetchWebAuthTokenOperation) -> ^NS.String ---

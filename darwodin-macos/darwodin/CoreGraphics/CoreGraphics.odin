@@ -25,6 +25,12 @@ NSObject  :: intrinsics.objc_object
 MTLDevice :: intrinsics.objc_object
 cl_device_id :: struct {}
 
+@(link_prefix="CG", default_calling_convention="c")
+foreign lib {
+    DisplayCreateUUIDFromDisplayID :: proc( displayID: DirectDisplayID ) -> CF.UUIDRef ---
+    DisplayGetDisplayIDFromUUID :: proc( uuid: CF.UUIDRef ) -> DirectDisplayID ---
+}
+
 
 
 FontIndexMax          :: 65534

@@ -20,10 +20,10 @@ MicroGamepadSnapshot :: struct { using _: MicroGamepad, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MicroGamepadSnapshot, objc_selector="initWithSnapshotData:", objc_name="initWithSnapshotData")
-    MicroGamepadSnapshot_initWithSnapshotData :: proc(self: ^MicroGamepadSnapshot, data: ^NS.Data) -> ^MicroGamepadSnapshot ---
+    MicroGamepadSnapshot_initWithSnapshotData :: proc(self: ^MicroGamepadSnapshot, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=MicroGamepadSnapshot, objc_selector="initWithController:snapshotData:", objc_name="initWithController")
-    MicroGamepadSnapshot_initWithController :: proc(self: ^MicroGamepadSnapshot, controller: ^Controller, data: ^NS.Data) -> ^MicroGamepadSnapshot ---
+    MicroGamepadSnapshot_initWithController :: proc(self: ^MicroGamepadSnapshot, controller: ^Controller, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=MicroGamepadSnapshot, objc_selector="snapshotData", objc_name="snapshotData")
     MicroGamepadSnapshot_snapshotData :: proc(self: ^MicroGamepadSnapshot) -> ^NS.Data ---

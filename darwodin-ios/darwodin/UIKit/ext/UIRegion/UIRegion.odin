@@ -28,12 +28,12 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithRadius: proc(self: ^UI.Region, radius: CG.Float) -> ^UI.Region,
-    initWithSize: proc(self: ^UI.Region, size: CG.Size) -> ^UI.Region,
-    inverseRegion: proc(self: ^UI.Region) -> ^UI.Region,
-    regionByUnionWithRegion: proc(self: ^UI.Region, region: ^UI.Region) -> ^UI.Region,
-    regionByDifferenceFromRegion: proc(self: ^UI.Region, region: ^UI.Region) -> ^UI.Region,
-    regionByIntersectionWithRegion: proc(self: ^UI.Region, region: ^UI.Region) -> ^UI.Region,
+    initWithRadius: proc(self: ^UI.Region, radius: CG.Float) -> instancetype,
+    initWithSize: proc(self: ^UI.Region, size: CG.Size) -> instancetype,
+    inverseRegion: proc(self: ^UI.Region) -> instancetype,
+    regionByUnionWithRegion: proc(self: ^UI.Region, region: ^UI.Region) -> instancetype,
+    regionByDifferenceFromRegion: proc(self: ^UI.Region, region: ^UI.Region) -> instancetype,
+    regionByIntersectionWithRegion: proc(self: ^UI.Region, region: ^UI.Region) -> instancetype,
     containsPoint: proc(self: ^UI.Region, point: CG.Point) -> bool,
     infiniteRegion: proc() -> ^UI.Region,
 }
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithRadius != nil {
-        initWithRadius :: proc "c" (self: ^UI.Region, _: SEL, radius: CG.Float) -> ^UI.Region {
+        initWithRadius :: proc "c" (self: ^UI.Region, _: SEL, radius: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRadius:"), auto_cast initWithRadius, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.initWithSize != nil {
-        initWithSize :: proc "c" (self: ^UI.Region, _: SEL, size: CG.Size) -> ^UI.Region {
+        initWithSize :: proc "c" (self: ^UI.Region, _: SEL, size: CG.Size) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSize:"), auto_cast initWithSize, "@@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.inverseRegion != nil {
-        inverseRegion :: proc "c" (self: ^UI.Region, _: SEL) -> ^UI.Region {
+        inverseRegion :: proc "c" (self: ^UI.Region, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("inverseRegion"), auto_cast inverseRegion, "@@:") do panic("Failed to register objC method.")
     }
     if vt.regionByUnionWithRegion != nil {
-        regionByUnionWithRegion :: proc "c" (self: ^UI.Region, _: SEL, region: ^UI.Region) -> ^UI.Region {
+        regionByUnionWithRegion :: proc "c" (self: ^UI.Region, _: SEL, region: ^UI.Region) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("regionByUnionWithRegion:"), auto_cast regionByUnionWithRegion, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.regionByDifferenceFromRegion != nil {
-        regionByDifferenceFromRegion :: proc "c" (self: ^UI.Region, _: SEL, region: ^UI.Region) -> ^UI.Region {
+        regionByDifferenceFromRegion :: proc "c" (self: ^UI.Region, _: SEL, region: ^UI.Region) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("regionByDifferenceFromRegion:"), auto_cast regionByDifferenceFromRegion, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.regionByIntersectionWithRegion != nil {
-        regionByIntersectionWithRegion :: proc "c" (self: ^UI.Region, _: SEL, region: ^UI.Region) -> ^UI.Region {
+        regionByIntersectionWithRegion :: proc "c" (self: ^UI.Region, _: SEL, region: ^UI.Region) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

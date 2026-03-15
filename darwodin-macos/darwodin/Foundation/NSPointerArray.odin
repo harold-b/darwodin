@@ -24,10 +24,10 @@ PointerArray :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerArray, objc_selector="initWithOptions:", objc_name="initWithOptions")
-    PointerArray_initWithOptions :: proc(self: ^PointerArray, options: PointerFunctionsOptions) -> ^PointerArray ---
+    PointerArray_initWithOptions :: proc(self: ^PointerArray, options: PointerFunctionsOptions) -> instancetype ---
 
     @(objc_type=PointerArray, objc_selector="initWithPointerFunctions:", objc_name="initWithPointerFunctions")
-    PointerArray_initWithPointerFunctions :: proc(self: ^PointerArray, functions: ^PointerFunctions) -> ^PointerArray ---
+    PointerArray_initWithPointerFunctions :: proc(self: ^PointerArray, functions: ^PointerFunctions) -> instancetype ---
 
     @(objc_type=PointerArray, objc_selector="pointerArrayWithOptions:", objc_name="pointerArrayWithOptions", objc_is_class_method=true)
     PointerArray_pointerArrayWithOptions :: proc(options: PointerFunctionsOptions) -> ^PointerArray ---

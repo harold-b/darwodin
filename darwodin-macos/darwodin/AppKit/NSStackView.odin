@@ -24,7 +24,7 @@ StackView :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=StackView, objc_selector="stackViewWithViews:", objc_name="stackViewWithViews", objc_is_class_method=true)
-    StackView_stackViewWithViews :: proc(views: ^NS.Array) -> ^StackView ---
+    StackView_stackViewWithViews :: proc(views: ^NS.Array) -> instancetype ---
 
     @(objc_type=StackView, objc_selector="setCustomSpacing:afterView:", objc_name="setCustomSpacing")
     StackView_setCustomSpacing :: proc(self: ^StackView, spacing: CG.Float, view: ^View) ---

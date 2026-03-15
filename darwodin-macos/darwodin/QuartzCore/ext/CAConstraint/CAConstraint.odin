@@ -27,10 +27,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    constraintWithAttribute_relativeTo_attribute_scale_offset: proc(attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, m: CG.Float, c: CG.Float) -> ^CA.Constraint,
-    constraintWithAttribute_relativeTo_attribute_offset: proc(attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, c: CG.Float) -> ^CA.Constraint,
-    constraintWithAttribute_relativeTo_attribute: proc(attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute) -> ^CA.Constraint,
-    initWithAttribute: proc(self: ^CA.Constraint, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, m: CG.Float, c: CG.Float) -> ^CA.Constraint,
+    constraintWithAttribute_relativeTo_attribute_scale_offset: proc(attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, m: CG.Float, c: CG.Float) -> instancetype,
+    constraintWithAttribute_relativeTo_attribute_offset: proc(attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, c: CG.Float) -> instancetype,
+    constraintWithAttribute_relativeTo_attribute: proc(attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute) -> instancetype,
+    initWithAttribute: proc(self: ^CA.Constraint, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, m: CG.Float, c: CG.Float) -> instancetype,
     attribute: proc(self: ^CA.Constraint) -> CA.ConstraintAttribute,
     sourceName: proc(self: ^CA.Constraint) -> ^NS.String,
     sourceAttribute: proc(self: ^CA.Constraint) -> CA.ConstraintAttribute,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.constraintWithAttribute_relativeTo_attribute_scale_offset != nil {
-        constraintWithAttribute_relativeTo_attribute_scale_offset :: proc "c" (self: Class, _: SEL, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, m: CG.Float, c: CG.Float) -> ^CA.Constraint {
+        constraintWithAttribute_relativeTo_attribute_scale_offset :: proc "c" (self: Class, _: SEL, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, m: CG.Float, c: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("constraintWithAttribute:relativeTo:attribute:scale:offset:"), auto_cast constraintWithAttribute_relativeTo_attribute_scale_offset, "@#:i@idd") do panic("Failed to register objC method.")
     }
     if vt.constraintWithAttribute_relativeTo_attribute_offset != nil {
-        constraintWithAttribute_relativeTo_attribute_offset :: proc "c" (self: Class, _: SEL, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, c: CG.Float) -> ^CA.Constraint {
+        constraintWithAttribute_relativeTo_attribute_offset :: proc "c" (self: Class, _: SEL, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, c: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("constraintWithAttribute:relativeTo:attribute:offset:"), auto_cast constraintWithAttribute_relativeTo_attribute_offset, "@#:i@id") do panic("Failed to register objC method.")
     }
     if vt.constraintWithAttribute_relativeTo_attribute != nil {
-        constraintWithAttribute_relativeTo_attribute :: proc "c" (self: Class, _: SEL, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute) -> ^CA.Constraint {
+        constraintWithAttribute_relativeTo_attribute :: proc "c" (self: Class, _: SEL, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("constraintWithAttribute:relativeTo:attribute:"), auto_cast constraintWithAttribute_relativeTo_attribute, "@#:i@i") do panic("Failed to register objC method.")
     }
     if vt.initWithAttribute != nil {
-        initWithAttribute :: proc "c" (self: ^CA.Constraint, _: SEL, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, m: CG.Float, c: CG.Float) -> ^CA.Constraint {
+        initWithAttribute :: proc "c" (self: ^CA.Constraint, _: SEL, attr: CA.ConstraintAttribute, srcId: ^NS.String, srcAttr: CA.ConstraintAttribute, m: CG.Float, c: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

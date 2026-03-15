@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.NSDataAsset) -> ^UI.NSDataAsset,
-    initWithName_: proc(self: ^UI.NSDataAsset, name: ^NS.String) -> ^UI.NSDataAsset,
-    initWithName_bundle: proc(self: ^UI.NSDataAsset, name: ^NS.String, bundle: ^NS.Bundle) -> ^UI.NSDataAsset,
+    init: proc(self: ^UI.NSDataAsset) -> instancetype,
+    initWithName_: proc(self: ^UI.NSDataAsset, name: ^NS.String) -> instancetype,
+    initWithName_bundle: proc(self: ^UI.NSDataAsset, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype,
     name: proc(self: ^UI.NSDataAsset) -> ^NS.String,
     data: proc(self: ^UI.NSDataAsset) -> ^NS.Data,
     typeIdentifier: proc(self: ^UI.NSDataAsset) -> ^NS.String,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSDataAsset, _: SEL) -> ^UI.NSDataAsset {
+        init :: proc "c" (self: ^UI.NSDataAsset, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithName_ != nil {
-        initWithName_ :: proc "c" (self: ^UI.NSDataAsset, _: SEL, name: ^NS.String) -> ^UI.NSDataAsset {
+        initWithName_ :: proc "c" (self: ^UI.NSDataAsset, _: SEL, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:"), auto_cast initWithName_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithName_bundle != nil {
-        initWithName_bundle :: proc "c" (self: ^UI.NSDataAsset, _: SEL, name: ^NS.String, bundle: ^NS.Bundle) -> ^UI.NSDataAsset {
+        initWithName_bundle :: proc "c" (self: ^UI.NSDataAsset, _: SEL, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

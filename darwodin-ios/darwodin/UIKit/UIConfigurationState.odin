@@ -26,7 +26,7 @@ ConfigurationState :: struct { using _: intrinsics.objc_object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ConfigurationState, objc_selector="initWithTraitCollection:", objc_name="initWithTraitCollection")
-    ConfigurationState_initWithTraitCollection :: proc(self: ^ConfigurationState, traitCollection: ^TraitCollection) -> ^ConfigurationState ---
+    ConfigurationState_initWithTraitCollection :: proc(self: ^ConfigurationState, traitCollection: ^TraitCollection) -> instancetype ---
 
     @(objc_type=ConfigurationState, objc_selector="customStateForKey:", objc_name="customStateForKey")
     ConfigurationState_customStateForKey :: proc(self: ^ConfigurationState, key: ^NS.String) -> id ---

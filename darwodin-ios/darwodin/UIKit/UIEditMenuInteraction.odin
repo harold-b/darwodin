@@ -24,7 +24,7 @@ EditMenuInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=EditMenuInteraction, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    EditMenuInteraction_initWithDelegate :: proc(self: ^EditMenuInteraction, delegate: ^EditMenuInteractionDelegate) -> ^EditMenuInteraction ---
+    EditMenuInteraction_initWithDelegate :: proc(self: ^EditMenuInteraction, delegate: ^EditMenuInteractionDelegate) -> instancetype ---
 
     @(objc_type=EditMenuInteraction, objc_selector="presentEditMenuWithConfiguration:", objc_name="presentEditMenuWithConfiguration")
     EditMenuInteraction_presentEditMenuWithConfiguration :: proc(self: ^EditMenuInteraction, configuration: ^EditMenuConfiguration) ---
@@ -42,7 +42,7 @@ foreign lib {
     EditMenuInteraction_locationInView :: proc(self: ^EditMenuInteraction, view: ^View) -> CG.Point ---
 
     @(objc_type=EditMenuInteraction, objc_selector="init", objc_name="init")
-    EditMenuInteraction_init :: proc(self: ^EditMenuInteraction) -> ^EditMenuInteraction ---
+    EditMenuInteraction_init :: proc(self: ^EditMenuInteraction) -> instancetype ---
 
     @(objc_type=EditMenuInteraction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     EditMenuInteraction_new :: proc() -> ^EditMenuInteraction ---

@@ -37,13 +37,13 @@ foreign lib {
     TextTab_options :: proc(self: ^TextTab) -> ^NS.Dictionary ---
 
     @(objc_type=TextTab, objc_selector="initWithTextAlignment:location:options:", objc_name="initWithTextAlignment")
-    TextTab_initWithTextAlignment :: proc(self: ^TextTab, alignment: TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^TextTab ---
+    TextTab_initWithTextAlignment :: proc(self: ^TextTab, alignment: TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=TextTab, objc_selector="alignment", objc_name="alignment")
     TextTab_alignment :: proc(self: ^TextTab) -> TextAlignment ---
 
     @(objc_type=TextTab, objc_selector="initWithType:location:", objc_name="initWithType")
-    TextTab_initWithType :: proc(self: ^TextTab, type: TextTabType, loc: CG.Float) -> ^TextTab ---
+    TextTab_initWithType :: proc(self: ^TextTab, type: TextTabType, loc: CG.Float) -> instancetype ---
 
     @(objc_type=TextTab, objc_selector="tabStopType", objc_name="tabStopType")
     TextTab_tabStopType :: proc(self: ^TextTab) -> TextTabType ---

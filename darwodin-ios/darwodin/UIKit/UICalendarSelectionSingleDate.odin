@@ -25,7 +25,7 @@ foreign lib {
     CalendarSelectionSingleDate_setSelectedDate_animated :: proc(self: ^CalendarSelectionSingleDate, selectedDate: ^NS.DateComponents, animated: bool) ---
 
     @(objc_type=CalendarSelectionSingleDate, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    CalendarSelectionSingleDate_initWithDelegate :: proc(self: ^CalendarSelectionSingleDate, delegate: ^CalendarSelectionSingleDateDelegate) -> ^CalendarSelectionSingleDate ---
+    CalendarSelectionSingleDate_initWithDelegate :: proc(self: ^CalendarSelectionSingleDate, delegate: ^CalendarSelectionSingleDateDelegate) -> instancetype ---
 
     @(objc_type=CalendarSelectionSingleDate, objc_selector="delegate", objc_name="delegate")
     CalendarSelectionSingleDate_delegate :: proc(self: ^CalendarSelectionSingleDate) -> ^CalendarSelectionSingleDateDelegate ---

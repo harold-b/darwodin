@@ -20,10 +20,10 @@ WhoseSpecifier :: struct { using _: ScriptObjectSpecifier, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WhoseSpecifier, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    WhoseSpecifier_initWithCoder :: proc(self: ^WhoseSpecifier, inCoder: ^Coder) -> ^WhoseSpecifier ---
+    WhoseSpecifier_initWithCoder :: proc(self: ^WhoseSpecifier, inCoder: ^Coder) -> instancetype ---
 
     @(objc_type=WhoseSpecifier, objc_selector="initWithContainerClassDescription:containerSpecifier:key:test:", objc_name="initWithContainerClassDescription")
-    WhoseSpecifier_initWithContainerClassDescription :: proc(self: ^WhoseSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, test: ^ScriptWhoseTest) -> ^WhoseSpecifier ---
+    WhoseSpecifier_initWithContainerClassDescription :: proc(self: ^WhoseSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, test: ^ScriptWhoseTest) -> instancetype ---
 
     @(objc_type=WhoseSpecifier, objc_selector="test", objc_name="test")
     WhoseSpecifier_test :: proc(self: ^WhoseSpecifier) -> ^ScriptWhoseTest ---

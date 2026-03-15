@@ -23,10 +23,10 @@ PlayerMediaSelectionCriteria :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerMediaSelectionCriteria, objc_selector="initWithPreferredLanguages:preferredMediaCharacteristics:", objc_name="initWithPreferredLanguages")
-    PlayerMediaSelectionCriteria_initWithPreferredLanguages :: proc(self: ^PlayerMediaSelectionCriteria, preferredLanguages: ^NS.Array, preferredMediaCharacteristics: ^NS.Array) -> ^PlayerMediaSelectionCriteria ---
+    PlayerMediaSelectionCriteria_initWithPreferredLanguages :: proc(self: ^PlayerMediaSelectionCriteria, preferredLanguages: ^NS.Array, preferredMediaCharacteristics: ^NS.Array) -> instancetype ---
 
     @(objc_type=PlayerMediaSelectionCriteria, objc_selector="initWithPrincipalMediaCharacteristics:preferredLanguages:preferredMediaCharacteristics:", objc_name="initWithPrincipalMediaCharacteristics")
-    PlayerMediaSelectionCriteria_initWithPrincipalMediaCharacteristics :: proc(self: ^PlayerMediaSelectionCriteria, principalMediaCharacteristics: ^NS.Array, preferredLanguages: ^NS.Array, preferredMediaCharacteristics: ^NS.Array) -> ^PlayerMediaSelectionCriteria ---
+    PlayerMediaSelectionCriteria_initWithPrincipalMediaCharacteristics :: proc(self: ^PlayerMediaSelectionCriteria, principalMediaCharacteristics: ^NS.Array, preferredLanguages: ^NS.Array, preferredMediaCharacteristics: ^NS.Array) -> instancetype ---
 
     @(objc_type=PlayerMediaSelectionCriteria, objc_selector="preferredLanguages", objc_name="preferredLanguages")
     PlayerMediaSelectionCriteria_preferredLanguages :: proc(self: ^PlayerMediaSelectionCriteria) -> ^NS.Array ---

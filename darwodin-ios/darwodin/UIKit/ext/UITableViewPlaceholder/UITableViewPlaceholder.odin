@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithInsertionIndexPath: proc(self: ^UI.TableViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String, rowHeight: CG.Float) -> ^UI.TableViewPlaceholder,
-    init: proc(self: ^UI.TableViewPlaceholder) -> ^UI.TableViewPlaceholder,
+    initWithInsertionIndexPath: proc(self: ^UI.TableViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String, rowHeight: CG.Float) -> instancetype,
+    init: proc(self: ^UI.TableViewPlaceholder) -> instancetype,
     new: proc() -> ^UI.TableViewPlaceholder,
     cellUpdateHandler: proc(self: ^UI.TableViewPlaceholder) -> ^Objc_Block(proc "c" ()),
     setCellUpdateHandler: proc(self: ^UI.TableViewPlaceholder, cellUpdateHandler: ^Objc_Block(proc "c" ())),
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithInsertionIndexPath != nil {
-        initWithInsertionIndexPath :: proc "c" (self: ^UI.TableViewPlaceholder, _: SEL, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String, rowHeight: CG.Float) -> ^UI.TableViewPlaceholder {
+        initWithInsertionIndexPath :: proc "c" (self: ^UI.TableViewPlaceholder, _: SEL, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String, rowHeight: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithInsertionIndexPath:reuseIdentifier:rowHeight:"), auto_cast initWithInsertionIndexPath, "@@:@@d") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TableViewPlaceholder, _: SEL) -> ^UI.TableViewPlaceholder {
+        init :: proc "c" (self: ^UI.TableViewPlaceholder, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

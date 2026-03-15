@@ -23,7 +23,7 @@ URLResponse :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLResponse, objc_selector="initWithURL:MIMEType:expectedContentLength:textEncodingName:", objc_name="initWithURL")
-    URLResponse_initWithURL :: proc(self: ^URLResponse, _URL: ^URL, MIMEType: ^String, length: Integer, name: ^String) -> ^URLResponse ---
+    URLResponse_initWithURL :: proc(self: ^URLResponse, _URL: ^URL, MIMEType: ^String, length: Integer, name: ^String) -> instancetype ---
 
     @(objc_type=URLResponse, objc_selector="URL", objc_name="URL")
     URLResponse_URL :: proc(self: ^URLResponse) -> ^URL ---

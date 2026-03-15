@@ -22,7 +22,7 @@ NSFileProviderItemVersion :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSFileProviderItemVersion, objc_selector="initWithContentVersion:metadataVersion:", objc_name="initWithContentVersion")
-    NSFileProviderItemVersion_initWithContentVersion :: proc(self: ^NSFileProviderItemVersion, contentVersion: ^NS.Data, metadataVersion: ^NS.Data) -> ^NSFileProviderItemVersion ---
+    NSFileProviderItemVersion_initWithContentVersion :: proc(self: ^NSFileProviderItemVersion, contentVersion: ^NS.Data, metadataVersion: ^NS.Data) -> instancetype ---
 
     @(objc_type=NSFileProviderItemVersion, objc_selector="beforeFirstSyncComponent", objc_name="beforeFirstSyncComponent", objc_is_class_method=true)
     NSFileProviderItemVersion_beforeFirstSyncComponent :: proc() -> ^NS.Data ---

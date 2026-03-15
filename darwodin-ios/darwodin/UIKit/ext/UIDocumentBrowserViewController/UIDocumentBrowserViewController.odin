@@ -28,9 +28,9 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initForOpeningFilesWithContentTypes: proc(self: ^UI.DocumentBrowserViewController, allowedContentTypes: ^NS.Array) -> ^UI.DocumentBrowserViewController,
-    initForOpeningContentTypes: proc(self: ^UI.DocumentBrowserViewController, contentTypes: ^NS.Array) -> ^UI.DocumentBrowserViewController,
-    initWithNibName: proc(self: ^UI.DocumentBrowserViewController, nibName: ^NS.String, bundle: ^NS.Bundle) -> ^UI.DocumentBrowserViewController,
+    initForOpeningFilesWithContentTypes: proc(self: ^UI.DocumentBrowserViewController, allowedContentTypes: ^NS.Array) -> instancetype,
+    initForOpeningContentTypes: proc(self: ^UI.DocumentBrowserViewController, contentTypes: ^NS.Array) -> instancetype,
+    initWithNibName: proc(self: ^UI.DocumentBrowserViewController, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype,
     revealDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, url: ^NS.URL, importIfNeeded: bool, completion: ^Objc_Block(proc "c" (revealedDocumentURL: ^NS.URL, error: ^NS.Error))),
     importDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, documentURL: ^NS.URL, neighbourURL: ^NS.URL, importMode: UI.DocumentBrowserImportMode, completion: ^Objc_Block(proc "c" (_: ^NS.URL, _1: ^NS.Error))),
     renameDocumentAtURL: proc(self: ^UI.DocumentBrowserViewController, documentURL: ^NS.URL, proposedName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (finalURL: ^NS.URL, error: ^NS.Error))),
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initForOpeningFilesWithContentTypes != nil {
-        initForOpeningFilesWithContentTypes :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, allowedContentTypes: ^NS.Array) -> ^UI.DocumentBrowserViewController {
+        initForOpeningFilesWithContentTypes :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, allowedContentTypes: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initForOpeningFilesWithContentTypes:"), auto_cast initForOpeningFilesWithContentTypes, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initForOpeningContentTypes != nil {
-        initForOpeningContentTypes :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, contentTypes: ^NS.Array) -> ^UI.DocumentBrowserViewController {
+        initForOpeningContentTypes :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, contentTypes: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initForOpeningContentTypes:"), auto_cast initForOpeningContentTypes, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, nibName: ^NS.String, bundle: ^NS.Bundle) -> ^UI.DocumentBrowserViewController {
+        initWithNibName :: proc "c" (self: ^UI.DocumentBrowserViewController, _: SEL, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -44,12 +44,12 @@ VTable :: struct {
     descriptorWithProcessIdentifier: proc(processIdentifier: libc.pid_t) -> ^NS.AppleEventDescriptor,
     descriptorWithBundleIdentifier: proc(bundleIdentifier: ^NS.String) -> ^NS.AppleEventDescriptor,
     descriptorWithApplicationURL: proc(applicationURL: ^NS.URL) -> ^NS.AppleEventDescriptor,
-    initWithAEDescNoCopy: proc(self: ^NS.AppleEventDescriptor, aeDesc: ^NS.AEDesc) -> ^NS.AppleEventDescriptor,
-    initWithDescriptorType_bytes_length: proc(self: ^NS.AppleEventDescriptor, descriptorType: NS.DescType, bytes: rawptr, byteCount: NS.UInteger) -> ^NS.AppleEventDescriptor,
-    initWithDescriptorType_data: proc(self: ^NS.AppleEventDescriptor, descriptorType: NS.DescType, data: ^NS.Data) -> ^NS.AppleEventDescriptor,
-    initWithEventClass: proc(self: ^NS.AppleEventDescriptor, eventClass: NS.AEEventClass, eventID: NS.AEEventID, targetDescriptor: ^NS.AppleEventDescriptor, returnID: NS.AEReturnID, transactionID: NS.AETransactionID) -> ^NS.AppleEventDescriptor,
-    initListDescriptor: proc(self: ^NS.AppleEventDescriptor) -> ^NS.AppleEventDescriptor,
-    initRecordDescriptor: proc(self: ^NS.AppleEventDescriptor) -> ^NS.AppleEventDescriptor,
+    initWithAEDescNoCopy: proc(self: ^NS.AppleEventDescriptor, aeDesc: ^NS.AEDesc) -> instancetype,
+    initWithDescriptorType_bytes_length: proc(self: ^NS.AppleEventDescriptor, descriptorType: NS.DescType, bytes: rawptr, byteCount: NS.UInteger) -> instancetype,
+    initWithDescriptorType_data: proc(self: ^NS.AppleEventDescriptor, descriptorType: NS.DescType, data: ^NS.Data) -> instancetype,
+    initWithEventClass: proc(self: ^NS.AppleEventDescriptor, eventClass: NS.AEEventClass, eventID: NS.AEEventID, targetDescriptor: ^NS.AppleEventDescriptor, returnID: NS.AEReturnID, transactionID: NS.AETransactionID) -> instancetype,
+    initListDescriptor: proc(self: ^NS.AppleEventDescriptor) -> instancetype,
+    initRecordDescriptor: proc(self: ^NS.AppleEventDescriptor) -> instancetype,
     setParamDescriptor: proc(self: ^NS.AppleEventDescriptor, descriptor: ^NS.AppleEventDescriptor, keyword: NS.AEKeyword),
     paramDescriptorForKeyword: proc(self: ^NS.AppleEventDescriptor, keyword: NS.AEKeyword) -> ^NS.AppleEventDescriptor,
     removeParamDescriptorWithKeyword: proc(self: ^NS.AppleEventDescriptor, keyword: NS.AEKeyword),
@@ -271,7 +271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("descriptorWithApplicationURL:"), auto_cast descriptorWithApplicationURL, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithAEDescNoCopy != nil {
-        initWithAEDescNoCopy :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL, aeDesc: ^NS.AEDesc) -> ^NS.AppleEventDescriptor {
+        initWithAEDescNoCopy :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL, aeDesc: ^NS.AEDesc) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -281,7 +281,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAEDescNoCopy:"), auto_cast initWithAEDescNoCopy, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithDescriptorType_bytes_length != nil {
-        initWithDescriptorType_bytes_length :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL, descriptorType: NS.DescType, bytes: rawptr, byteCount: NS.UInteger) -> ^NS.AppleEventDescriptor {
+        initWithDescriptorType_bytes_length :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL, descriptorType: NS.DescType, bytes: rawptr, byteCount: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -291,7 +291,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDescriptorType:bytes:length:"), auto_cast initWithDescriptorType_bytes_length, "@@:I^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithDescriptorType_data != nil {
-        initWithDescriptorType_data :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL, descriptorType: NS.DescType, data: ^NS.Data) -> ^NS.AppleEventDescriptor {
+        initWithDescriptorType_data :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL, descriptorType: NS.DescType, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -301,7 +301,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDescriptorType:data:"), auto_cast initWithDescriptorType_data, "@@:I@") do panic("Failed to register objC method.")
     }
     if vt.initWithEventClass != nil {
-        initWithEventClass :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL, eventClass: NS.AEEventClass, eventID: NS.AEEventID, targetDescriptor: ^NS.AppleEventDescriptor, returnID: NS.AEReturnID, transactionID: NS.AETransactionID) -> ^NS.AppleEventDescriptor {
+        initWithEventClass :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL, eventClass: NS.AEEventClass, eventID: NS.AEEventID, targetDescriptor: ^NS.AppleEventDescriptor, returnID: NS.AEReturnID, transactionID: NS.AETransactionID) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -311,7 +311,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithEventClass:eventID:targetDescriptor:returnID:transactionID:"), auto_cast initWithEventClass, "@@:II@si") do panic("Failed to register objC method.")
     }
     if vt.initListDescriptor != nil {
-        initListDescriptor :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL) -> ^NS.AppleEventDescriptor {
+        initListDescriptor :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -321,7 +321,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initListDescriptor"), auto_cast initListDescriptor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initRecordDescriptor != nil {
-        initRecordDescriptor :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL) -> ^NS.AppleEventDescriptor {
+        initRecordDescriptor :: proc "c" (self: ^NS.AppleEventDescriptor, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

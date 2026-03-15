@@ -26,13 +26,13 @@ ColorSpace :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ColorSpace, objc_selector="initWithICCProfileData:", objc_name="initWithICCProfileData")
-    ColorSpace_initWithICCProfileData :: proc(self: ^ColorSpace, iccData: ^NS.Data) -> ^ColorSpace ---
+    ColorSpace_initWithICCProfileData :: proc(self: ^ColorSpace, iccData: ^NS.Data) -> instancetype ---
 
     @(objc_type=ColorSpace, objc_selector="initWithColorSyncProfile:", objc_name="initWithColorSyncProfile")
-    ColorSpace_initWithColorSyncProfile :: proc(self: ^ColorSpace, prof: rawptr) -> ^ColorSpace ---
+    ColorSpace_initWithColorSyncProfile :: proc(self: ^ColorSpace, prof: rawptr) -> instancetype ---
 
     @(objc_type=ColorSpace, objc_selector="initWithCGColorSpace:", objc_name="initWithCGColorSpace")
-    ColorSpace_initWithCGColorSpace :: proc(self: ^ColorSpace, cgColorSpace: CG.ColorSpaceRef) -> ^ColorSpace ---
+    ColorSpace_initWithCGColorSpace :: proc(self: ^ColorSpace, cgColorSpace: CG.ColorSpaceRef) -> instancetype ---
 
     @(objc_type=ColorSpace, objc_selector="availableColorSpacesWithModel:", objc_name="availableColorSpacesWithModel", objc_is_class_method=true)
     ColorSpace_availableColorSpacesWithModel :: proc(model: ColorSpaceModel) -> ^NS.Array ---

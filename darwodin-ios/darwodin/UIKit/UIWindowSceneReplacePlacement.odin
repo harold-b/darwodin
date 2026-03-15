@@ -22,5 +22,5 @@ WindowSceneReplacePlacement :: struct { using _: WindowScenePlacement, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneReplacePlacement, objc_selector="placementToReplaceSceneSession:", objc_name="placementToReplaceSceneSession", objc_is_class_method=true)
-    WindowSceneReplacePlacement_placementToReplaceSceneSession :: proc(sceneSession: ^SceneSession) -> ^WindowSceneReplacePlacement ---
+    WindowSceneReplacePlacement_placementToReplaceSceneSession :: proc(sceneSession: ^SceneSession) -> instancetype ---
 }

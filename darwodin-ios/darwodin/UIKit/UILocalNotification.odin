@@ -25,10 +25,10 @@ LocalNotification :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LocalNotification, objc_selector="init", objc_name="init")
-    LocalNotification_init :: proc(self: ^LocalNotification) -> ^LocalNotification ---
+    LocalNotification_init :: proc(self: ^LocalNotification) -> instancetype ---
 
     @(objc_type=LocalNotification, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    LocalNotification_initWithCoder :: proc(self: ^LocalNotification, coder: ^NS.Coder) -> ^LocalNotification ---
+    LocalNotification_initWithCoder :: proc(self: ^LocalNotification, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=LocalNotification, objc_selector="fireDate", objc_name="fireDate")
     LocalNotification_fireDate :: proc(self: ^LocalNotification) -> ^NS.Date ---

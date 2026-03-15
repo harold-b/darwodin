@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    feedbackGeneratorForView: proc(view: ^UI.View) -> ^UI.FeedbackGenerator,
-    init: proc(self: ^UI.FeedbackGenerator) -> ^UI.FeedbackGenerator,
+    feedbackGeneratorForView: proc(view: ^UI.View) -> instancetype,
+    init: proc(self: ^UI.FeedbackGenerator) -> instancetype,
     prepare: proc(self: ^UI.FeedbackGenerator),
 }
 
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.feedbackGeneratorForView != nil {
-        feedbackGeneratorForView :: proc "c" (self: Class, _: SEL, view: ^UI.View) -> ^UI.FeedbackGenerator {
+        feedbackGeneratorForView :: proc "c" (self: Class, _: SEL, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("feedbackGeneratorForView:"), auto_cast feedbackGeneratorForView, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.FeedbackGenerator, _: SEL) -> ^UI.FeedbackGenerator {
+        init :: proc "c" (self: ^UI.FeedbackGenerator, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

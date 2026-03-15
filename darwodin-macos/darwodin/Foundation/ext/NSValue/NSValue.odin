@@ -27,8 +27,8 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     getValue_size: proc(self: ^NS.Value, value: rawptr, size: NS.UInteger),
-    initWithBytes: proc(self: ^NS.Value, value: rawptr, type: cstring) -> ^NS.Value,
-    initWithCoder: proc(self: ^NS.Value, coder: ^NS.Coder) -> ^NS.Value,
+    initWithBytes: proc(self: ^NS.Value, value: rawptr, type: cstring) -> instancetype,
+    initWithCoder: proc(self: ^NS.Value, coder: ^NS.Coder) -> instancetype,
     objCType: proc(self: ^NS.Value) -> cstring,
     valueWithBytes: proc(value: rawptr, type: cstring) -> ^NS.Value,
     value: proc(value: rawptr, type: cstring) -> ^NS.Value,
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getValue:size:"), auto_cast getValue_size, "v@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithBytes != nil {
-        initWithBytes :: proc "c" (self: ^NS.Value, _: SEL, value: rawptr, type: cstring) -> ^NS.Value {
+        initWithBytes :: proc "c" (self: ^NS.Value, _: SEL, value: rawptr, type: cstring) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytes:objCType:"), auto_cast initWithBytes, "@@:^void*") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.Value, _: SEL, coder: ^NS.Coder) -> ^NS.Value {
+        initWithCoder :: proc "c" (self: ^NS.Value, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

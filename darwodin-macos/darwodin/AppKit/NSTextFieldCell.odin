@@ -24,13 +24,13 @@ TextFieldCell :: struct { using _: ActionCell, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextFieldCell, objc_selector="initTextCell:", objc_name="initTextCell")
-    TextFieldCell_initTextCell :: proc(self: ^TextFieldCell, string: ^NS.String) -> ^TextFieldCell ---
+    TextFieldCell_initTextCell :: proc(self: ^TextFieldCell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=TextFieldCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextFieldCell_initWithCoder :: proc(self: ^TextFieldCell, coder: ^NS.Coder) -> ^TextFieldCell ---
+    TextFieldCell_initWithCoder :: proc(self: ^TextFieldCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextFieldCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    TextFieldCell_initImageCell :: proc(self: ^TextFieldCell, image: ^NS.Image) -> ^TextFieldCell ---
+    TextFieldCell_initImageCell :: proc(self: ^TextFieldCell, image: ^NS.Image) -> instancetype ---
 
     @(objc_type=TextFieldCell, objc_selector="setUpFieldEditorAttributes:", objc_name="setUpFieldEditorAttributes")
     TextFieldCell_setUpFieldEditorAttributes :: proc(self: ^TextFieldCell, textObj: ^Text) -> ^Text ---

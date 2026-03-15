@@ -26,7 +26,7 @@ import "../NSCoder"
 
 VTable :: struct {
     super: NSCoder.VTable,
-    initForReadingWithData: proc(self: ^NS.Unarchiver, data: ^NS.Data) -> ^NS.Unarchiver,
+    initForReadingWithData: proc(self: ^NS.Unarchiver, data: ^NS.Data) -> instancetype,
     setObjectZone: proc(self: ^NS.Unarchiver, zone: ^NS.Zone),
     objectZone: proc(self: ^NS.Unarchiver) -> ^NS.Zone,
     unarchiveObjectWithData: proc(data: ^NS.Data) -> id,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCoder.extend(cls, &vt.super)
 
     if vt.initForReadingWithData != nil {
-        initForReadingWithData :: proc "c" (self: ^NS.Unarchiver, _: SEL, data: ^NS.Data) -> ^NS.Unarchiver {
+        initForReadingWithData :: proc "c" (self: ^NS.Unarchiver, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -26,7 +26,7 @@ TableViewRowAction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TableViewRowAction, objc_selector="rowActionWithStyle:title:handler:", objc_name="rowActionWithStyle", objc_is_class_method=true)
-    TableViewRowAction_rowActionWithStyle :: proc(style: TableViewRowActionStyle, title: ^NS.String, handler: ^Objc_Block(proc "c" (action: ^TableViewRowAction, row: NS.Integer))) -> ^TableViewRowAction ---
+    TableViewRowAction_rowActionWithStyle :: proc(style: TableViewRowActionStyle, title: ^NS.String, handler: ^Objc_Block(proc "c" (action: ^TableViewRowAction, row: NS.Integer))) -> instancetype ---
 
     @(objc_type=TableViewRowAction, objc_selector="style", objc_name="style")
     TableViewRowAction_style :: proc(self: ^TableViewRowAction) -> TableViewRowActionStyle ---

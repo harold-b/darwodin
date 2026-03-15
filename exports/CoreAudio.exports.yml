@@ -43,9 +43,6 @@ Typedefs:
     AudioStreamPropertyListenerProc: CA.StreamPropertyListenerProc
 
 Enums:
-    AudioFormatID: CA.FormatID
-    AudioFormatFlag: CA.FormatFlag
-    AudioFormatFlags: CA.FormatFlags
     SMPTETimeType: CA.SMPTETimeType
     SMPTETimeFlags: CA.SMPTETimeFlags
     AudioTimeStampFlags: CA.TimeStampFlags
@@ -54,6 +51,9 @@ Enums:
     AudioChannelCoordinateIndex: CA.ChannelCoordinateIndex
     AudioHardwarePowerHint: CA.HardwarePowerHint
     AudioLevelControlTransferFunction: CA.LevelControlTransferFunction
+    AudioFormatID: CA.FormatID
+    AudioFormatFlag: CA.FormatFlags
+    AudioFormatFlags: CA.FormatFlagsPreset
 
 ObjCClasses:
 

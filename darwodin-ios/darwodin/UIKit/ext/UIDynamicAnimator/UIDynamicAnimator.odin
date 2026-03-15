@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithReferenceView: proc(self: ^UI.DynamicAnimator, view: ^UI.View) -> ^UI.DynamicAnimator,
+    initWithReferenceView: proc(self: ^UI.DynamicAnimator, view: ^UI.View) -> instancetype,
     addBehavior: proc(self: ^UI.DynamicAnimator, behavior: ^UI.DynamicBehavior),
     removeBehavior: proc(self: ^UI.DynamicAnimator, behavior: ^UI.DynamicBehavior),
     removeAllBehaviors: proc(self: ^UI.DynamicAnimator),
@@ -40,7 +40,7 @@ VTable :: struct {
     elapsedTime: proc(self: ^UI.DynamicAnimator) -> NS.TimeInterval,
     delegate: proc(self: ^UI.DynamicAnimator) -> ^UI.DynamicAnimatorDelegate,
     setDelegate: proc(self: ^UI.DynamicAnimator, delegate: ^UI.DynamicAnimatorDelegate),
-    initWithCollectionViewLayout: proc(self: ^UI.DynamicAnimator, layout: ^UI.CollectionViewLayout) -> ^UI.DynamicAnimator,
+    initWithCollectionViewLayout: proc(self: ^UI.DynamicAnimator, layout: ^UI.CollectionViewLayout) -> instancetype,
     layoutAttributesForCellAtIndexPath: proc(self: ^UI.DynamicAnimator, indexPath: ^NS.IndexPath) -> ^UI.CollectionViewLayoutAttributes,
     layoutAttributesForSupplementaryViewOfKind: proc(self: ^UI.DynamicAnimator, kind: ^NS.String, indexPath: ^NS.IndexPath) -> ^UI.CollectionViewLayoutAttributes,
     layoutAttributesForDecorationViewOfKind: proc(self: ^UI.DynamicAnimator, decorationViewKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^UI.CollectionViewLayoutAttributes,
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithReferenceView != nil {
-        initWithReferenceView :: proc "c" (self: ^UI.DynamicAnimator, _: SEL, view: ^UI.View) -> ^UI.DynamicAnimator {
+        initWithReferenceView :: proc "c" (self: ^UI.DynamicAnimator, _: SEL, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCollectionViewLayout != nil {
-        initWithCollectionViewLayout :: proc "c" (self: ^UI.DynamicAnimator, _: SEL, layout: ^UI.CollectionViewLayout) -> ^UI.DynamicAnimator {
+        initWithCollectionViewLayout :: proc "c" (self: ^UI.DynamicAnimator, _: SEL, layout: ^UI.CollectionViewLayout) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

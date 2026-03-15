@@ -26,7 +26,7 @@ foreign lib {
     RegularExpression_regularExpressionWithPattern :: proc(pattern: ^String, options: RegularExpressionOptions, error: ^^Error) -> ^RegularExpression ---
 
     @(objc_type=RegularExpression, objc_selector="initWithPattern:options:error:", objc_name="initWithPattern")
-    RegularExpression_initWithPattern :: proc(self: ^RegularExpression, pattern: ^String, options: RegularExpressionOptions, error: ^^Error) -> ^RegularExpression ---
+    RegularExpression_initWithPattern :: proc(self: ^RegularExpression, pattern: ^String, options: RegularExpressionOptions, error: ^^Error) -> instancetype ---
 
     @(objc_type=RegularExpression, objc_selector="escapedPatternForString:", objc_name="escapedPatternForString", objc_is_class_method=true)
     RegularExpression_escapedPatternForString :: proc(string: ^String) -> ^String ---

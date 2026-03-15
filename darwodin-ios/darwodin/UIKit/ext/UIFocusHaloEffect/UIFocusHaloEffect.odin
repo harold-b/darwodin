@@ -28,9 +28,9 @@ import "../UIFocusEffect"
 
 VTable :: struct {
     super: UIFocusEffect.VTable,
-    effectWithRect: proc(rect: CG.Rect) -> ^UI.FocusHaloEffect,
-    effectWithRoundedRect: proc(rect: CG.Rect, cornerRadius: CG.Float, curve: ^NS.String) -> ^UI.FocusHaloEffect,
-    effectWithPath: proc(bezierPath: ^UI.BezierPath) -> ^UI.FocusHaloEffect,
+    effectWithRect: proc(rect: CG.Rect) -> instancetype,
+    effectWithRoundedRect: proc(rect: CG.Rect, cornerRadius: CG.Float, curve: ^NS.String) -> instancetype,
+    effectWithPath: proc(bezierPath: ^UI.BezierPath) -> instancetype,
     containerView: proc(self: ^UI.FocusHaloEffect) -> ^UI.View,
     setContainerView: proc(self: ^UI.FocusHaloEffect, containerView: ^UI.View),
     referenceView: proc(self: ^UI.FocusHaloEffect) -> ^UI.View,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIFocusEffect.extend(cls, &vt.super)
 
     if vt.effectWithRect != nil {
-        effectWithRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> ^UI.FocusHaloEffect {
+        effectWithRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effectWithRect:"), auto_cast effectWithRect, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.effectWithRoundedRect != nil {
-        effectWithRoundedRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float, curve: ^NS.String) -> ^UI.FocusHaloEffect {
+        effectWithRoundedRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float, curve: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effectWithRoundedRect:cornerRadius:curve:"), auto_cast effectWithRoundedRect, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}d@") do panic("Failed to register objC method.")
     }
     if vt.effectWithPath != nil {
-        effectWithPath :: proc "c" (self: Class, _: SEL, bezierPath: ^UI.BezierPath) -> ^UI.FocusHaloEffect {
+        effectWithPath :: proc "c" (self: Class, _: SEL, bezierPath: ^UI.BezierPath) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -25,13 +25,13 @@ foreign lib {
     ScriptObjectSpecifier_objectSpecifierWithDescriptor :: proc(descriptor: ^AppleEventDescriptor) -> ^ScriptObjectSpecifier ---
 
     @(objc_type=ScriptObjectSpecifier, objc_selector="initWithContainerSpecifier:key:", objc_name="initWithContainerSpecifier")
-    ScriptObjectSpecifier_initWithContainerSpecifier :: proc(self: ^ScriptObjectSpecifier, container: ^ScriptObjectSpecifier, property: ^String) -> ^ScriptObjectSpecifier ---
+    ScriptObjectSpecifier_initWithContainerSpecifier :: proc(self: ^ScriptObjectSpecifier, container: ^ScriptObjectSpecifier, property: ^String) -> instancetype ---
 
     @(objc_type=ScriptObjectSpecifier, objc_selector="initWithContainerClassDescription:containerSpecifier:key:", objc_name="initWithContainerClassDescription")
-    ScriptObjectSpecifier_initWithContainerClassDescription :: proc(self: ^ScriptObjectSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String) -> ^ScriptObjectSpecifier ---
+    ScriptObjectSpecifier_initWithContainerClassDescription :: proc(self: ^ScriptObjectSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String) -> instancetype ---
 
     @(objc_type=ScriptObjectSpecifier, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ScriptObjectSpecifier_initWithCoder :: proc(self: ^ScriptObjectSpecifier, inCoder: ^Coder) -> ^ScriptObjectSpecifier ---
+    ScriptObjectSpecifier_initWithCoder :: proc(self: ^ScriptObjectSpecifier, inCoder: ^Coder) -> instancetype ---
 
     @(objc_type=ScriptObjectSpecifier, objc_selector="indicesOfObjectsByEvaluatingWithContainer:count:", objc_name="indicesOfObjectsByEvaluatingWithContainer")
     ScriptObjectSpecifier_indicesOfObjectsByEvaluatingWithContainer :: proc(self: ^ScriptObjectSpecifier, container: id, count: ^Integer) -> ^Integer ---

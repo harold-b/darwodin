@@ -22,25 +22,25 @@ URLComponents :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLComponents, objc_selector="init", objc_name="init")
-    URLComponents_init :: proc(self: ^URLComponents) -> ^URLComponents ---
+    URLComponents_init :: proc(self: ^URLComponents) -> instancetype ---
 
     @(objc_type=URLComponents, objc_selector="initWithURL:resolvingAgainstBaseURL:", objc_name="initWithURL")
-    URLComponents_initWithURL :: proc(self: ^URLComponents, url: ^URL, resolve: bool) -> ^URLComponents ---
+    URLComponents_initWithURL :: proc(self: ^URLComponents, url: ^URL, resolve: bool) -> instancetype ---
 
     @(objc_type=URLComponents, objc_selector="componentsWithURL:resolvingAgainstBaseURL:", objc_name="componentsWithURL", objc_is_class_method=true)
-    URLComponents_componentsWithURL :: proc(url: ^URL, resolve: bool) -> ^URLComponents ---
+    URLComponents_componentsWithURL :: proc(url: ^URL, resolve: bool) -> instancetype ---
 
     @(objc_type=URLComponents, objc_selector="initWithString:", objc_name="initWithString_")
-    URLComponents_initWithString_ :: proc(self: ^URLComponents, URLString: ^String) -> ^URLComponents ---
+    URLComponents_initWithString_ :: proc(self: ^URLComponents, URLString: ^String) -> instancetype ---
 
     @(objc_type=URLComponents, objc_selector="componentsWithString:", objc_name="componentsWithString_", objc_is_class_method=true)
-    URLComponents_componentsWithString_ :: proc(URLString: ^String) -> ^URLComponents ---
+    URLComponents_componentsWithString_ :: proc(URLString: ^String) -> instancetype ---
 
     @(objc_type=URLComponents, objc_selector="initWithString:encodingInvalidCharacters:", objc_name="initWithString_encodingInvalidCharacters")
-    URLComponents_initWithString_encodingInvalidCharacters :: proc(self: ^URLComponents, URLString: ^String, encodingInvalidCharacters: bool) -> ^URLComponents ---
+    URLComponents_initWithString_encodingInvalidCharacters :: proc(self: ^URLComponents, URLString: ^String, encodingInvalidCharacters: bool) -> instancetype ---
 
     @(objc_type=URLComponents, objc_selector="componentsWithString:encodingInvalidCharacters:", objc_name="componentsWithString_encodingInvalidCharacters", objc_is_class_method=true)
-    URLComponents_componentsWithString_encodingInvalidCharacters :: proc(URLString: ^String, encodingInvalidCharacters: bool) -> ^URLComponents ---
+    URLComponents_componentsWithString_encodingInvalidCharacters :: proc(URLString: ^String, encodingInvalidCharacters: bool) -> instancetype ---
 
     @(objc_type=URLComponents, objc_selector="URLRelativeToURL:", objc_name="URLRelativeToURL")
     URLComponents_URLRelativeToURL :: proc(self: ^URLComponents, baseURL: ^URL) -> ^URL ---

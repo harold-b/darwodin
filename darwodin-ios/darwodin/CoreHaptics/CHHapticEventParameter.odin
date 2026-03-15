@@ -18,10 +18,10 @@ HapticEventParameter :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticEventParameter, objc_selector="init", objc_name="init")
-    HapticEventParameter_init :: proc(self: ^HapticEventParameter) -> ^HapticEventParameter ---
+    HapticEventParameter_init :: proc(self: ^HapticEventParameter) -> instancetype ---
 
     @(objc_type=HapticEventParameter, objc_selector="initWithParameterID:value:", objc_name="initWithParameterID")
-    HapticEventParameter_initWithParameterID :: proc(self: ^HapticEventParameter, parameterID: ^NS.String, value: cffi.float) -> ^HapticEventParameter ---
+    HapticEventParameter_initWithParameterID :: proc(self: ^HapticEventParameter, parameterID: ^NS.String, value: cffi.float) -> instancetype ---
 
     @(objc_type=HapticEventParameter, objc_selector="parameterID", objc_name="parameterID")
     HapticEventParameter_parameterID :: proc(self: ^HapticEventParameter) -> ^NS.String ---

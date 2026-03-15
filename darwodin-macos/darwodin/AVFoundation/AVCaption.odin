@@ -27,13 +27,13 @@ Caption :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Caption, objc_selector="init", objc_name="init")
-    Caption_init :: proc(self: ^Caption) -> ^Caption ---
+    Caption_init :: proc(self: ^Caption) -> instancetype ---
 
     @(objc_type=Caption, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Caption_new :: proc() -> ^Caption ---
 
     @(objc_type=Caption, objc_selector="initWithText:timeRange:", objc_name="initWithText")
-    Caption_initWithText :: proc(self: ^Caption, text: ^NS.String, timeRange: CM.TimeRange) -> ^Caption ---
+    Caption_initWithText :: proc(self: ^Caption, text: ^NS.String, timeRange: CM.TimeRange) -> instancetype ---
 
     @(objc_type=Caption, objc_selector="text", objc_name="text")
     Caption_text :: proc(self: ^Caption) -> ^NS.String ---

@@ -21,7 +21,7 @@ URLTexture :: struct { using _: Texture, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLTexture, objc_selector="initWithURL:name:", objc_name="initWithURL")
-    URLTexture_initWithURL :: proc(self: ^URLTexture, _URL: ^NS.URL, name: ^NS.String) -> ^URLTexture ---
+    URLTexture_initWithURL :: proc(self: ^URLTexture, _URL: ^NS.URL, name: ^NS.String) -> instancetype ---
 
     @(objc_type=URLTexture, objc_selector="URL", objc_name="URL")
     URLTexture_URL :: proc(self: ^URLTexture) -> ^NS.URL ---

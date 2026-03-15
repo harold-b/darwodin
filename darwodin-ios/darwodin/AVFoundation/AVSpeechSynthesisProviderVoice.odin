@@ -26,10 +26,10 @@ SpeechSynthesisProviderVoice :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesisProviderVoice, objc_selector="initWithName:identifier:primaryLanguages:supportedLanguages:", objc_name="initWithName")
-    SpeechSynthesisProviderVoice_initWithName :: proc(self: ^SpeechSynthesisProviderVoice, name: ^NS.String, identifier: ^NS.String, primaryLanguages: ^NS.Array, supportedLanguages: ^NS.Array) -> ^SpeechSynthesisProviderVoice ---
+    SpeechSynthesisProviderVoice_initWithName :: proc(self: ^SpeechSynthesisProviderVoice, name: ^NS.String, identifier: ^NS.String, primaryLanguages: ^NS.Array, supportedLanguages: ^NS.Array) -> instancetype ---
 
     @(objc_type=SpeechSynthesisProviderVoice, objc_selector="init", objc_name="init")
-    SpeechSynthesisProviderVoice_init :: proc(self: ^SpeechSynthesisProviderVoice) -> ^SpeechSynthesisProviderVoice ---
+    SpeechSynthesisProviderVoice_init :: proc(self: ^SpeechSynthesisProviderVoice) -> instancetype ---
 
     @(objc_type=SpeechSynthesisProviderVoice, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SpeechSynthesisProviderVoice_new :: proc() -> ^SpeechSynthesisProviderVoice ---

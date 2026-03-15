@@ -22,7 +22,7 @@ SteeringWheelElement :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SteeringWheelElement, objc_selector="init", objc_name="init")
-    SteeringWheelElement_init :: proc(self: ^SteeringWheelElement) -> ^SteeringWheelElement ---
+    SteeringWheelElement_init :: proc(self: ^SteeringWheelElement) -> instancetype ---
 
     @(objc_type=SteeringWheelElement, objc_selector="maximumDegreesOfRotation", objc_name="maximumDegreesOfRotation")
     SteeringWheelElement_maximumDegreesOfRotation :: proc(self: ^SteeringWheelElement) -> cffi.float ---

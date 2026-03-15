@@ -36,10 +36,10 @@ VTable :: struct {
     resetBytesInRange: proc(self: ^NS.MutableData, range: NS._NSRange),
     setData: proc(self: ^NS.MutableData, data: ^NS.Data),
     replaceBytesInRange_withBytes_length: proc(self: ^NS.MutableData, range: NS._NSRange, replacementBytes: rawptr, replacementLength: NS.UInteger),
-    dataWithCapacity: proc(aNumItems: NS.UInteger) -> ^NS.MutableData,
-    dataWithLength: proc(length: NS.UInteger) -> ^NS.MutableData,
-    initWithCapacity: proc(self: ^NS.MutableData, capacity: NS.UInteger) -> ^NS.MutableData,
-    initWithLength: proc(self: ^NS.MutableData, length: NS.UInteger) -> ^NS.MutableData,
+    dataWithCapacity: proc(aNumItems: NS.UInteger) -> instancetype,
+    dataWithLength: proc(length: NS.UInteger) -> instancetype,
+    initWithCapacity: proc(self: ^NS.MutableData, capacity: NS.UInteger) -> instancetype,
+    initWithLength: proc(self: ^NS.MutableData, length: NS.UInteger) -> instancetype,
     decompressUsingAlgorithm: proc(self: ^NS.MutableData, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> bool,
     compressUsingAlgorithm: proc(self: ^NS.MutableData, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> bool,
 }
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("replaceBytesInRange:withBytes:length:"), auto_cast replaceBytesInRange_withBytes_length, "v@:{_NSRange=LL}^voidL") do panic("Failed to register objC method.")
     }
     if vt.dataWithCapacity != nil {
-        dataWithCapacity :: proc "c" (self: Class, _: SEL, aNumItems: NS.UInteger) -> ^NS.MutableData {
+        dataWithCapacity :: proc "c" (self: Class, _: SEL, aNumItems: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithCapacity:"), auto_cast dataWithCapacity, "@#:L") do panic("Failed to register objC method.")
     }
     if vt.dataWithLength != nil {
-        dataWithLength :: proc "c" (self: Class, _: SEL, length: NS.UInteger) -> ^NS.MutableData {
+        dataWithLength :: proc "c" (self: Class, _: SEL, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithLength:"), auto_cast dataWithLength, "@#:L") do panic("Failed to register objC method.")
     }
     if vt.initWithCapacity != nil {
-        initWithCapacity :: proc "c" (self: ^NS.MutableData, _: SEL, capacity: NS.UInteger) -> ^NS.MutableData {
+        initWithCapacity :: proc "c" (self: ^NS.MutableData, _: SEL, capacity: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -182,7 +182,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCapacity:"), auto_cast initWithCapacity, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.initWithLength != nil {
-        initWithLength :: proc "c" (self: ^NS.MutableData, _: SEL, length: NS.UInteger) -> ^NS.MutableData {
+        initWithLength :: proc "c" (self: ^NS.MutableData, _: SEL, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

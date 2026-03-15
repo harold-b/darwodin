@@ -26,9 +26,9 @@ import "../NSScriptWhoseTest"
 
 VTable :: struct {
     super: NSScriptWhoseTest.VTable,
-    initAndTestWithTests: proc(self: ^NS.LogicalTest, subTests: ^NS.Array) -> ^NS.LogicalTest,
-    initOrTestWithTests: proc(self: ^NS.LogicalTest, subTests: ^NS.Array) -> ^NS.LogicalTest,
-    initNotTestWithTest: proc(self: ^NS.LogicalTest, subTest: ^NS.ScriptWhoseTest) -> ^NS.LogicalTest,
+    initAndTestWithTests: proc(self: ^NS.LogicalTest, subTests: ^NS.Array) -> instancetype,
+    initOrTestWithTests: proc(self: ^NS.LogicalTest, subTests: ^NS.Array) -> instancetype,
+    initNotTestWithTest: proc(self: ^NS.LogicalTest, subTest: ^NS.ScriptWhoseTest) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScriptWhoseTest.extend(cls, &vt.super)
 
     if vt.initAndTestWithTests != nil {
-        initAndTestWithTests :: proc "c" (self: ^NS.LogicalTest, _: SEL, subTests: ^NS.Array) -> ^NS.LogicalTest {
+        initAndTestWithTests :: proc "c" (self: ^NS.LogicalTest, _: SEL, subTests: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initAndTestWithTests:"), auto_cast initAndTestWithTests, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initOrTestWithTests != nil {
-        initOrTestWithTests :: proc "c" (self: ^NS.LogicalTest, _: SEL, subTests: ^NS.Array) -> ^NS.LogicalTest {
+        initOrTestWithTests :: proc "c" (self: ^NS.LogicalTest, _: SEL, subTests: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initOrTestWithTests:"), auto_cast initOrTestWithTests, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initNotTestWithTest != nil {
-        initNotTestWithTest :: proc "c" (self: ^NS.LogicalTest, _: SEL, subTest: ^NS.ScriptWhoseTest) -> ^NS.LogicalTest {
+        initNotTestWithTest :: proc "c" (self: ^NS.LogicalTest, _: SEL, subTest: ^NS.ScriptWhoseTest) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -18,7 +18,7 @@ SyncEngineSendChangesContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineSendChangesContext, objc_selector="init", objc_name="init")
-    SyncEngineSendChangesContext_init :: proc(self: ^SyncEngineSendChangesContext) -> ^SyncEngineSendChangesContext ---
+    SyncEngineSendChangesContext_init :: proc(self: ^SyncEngineSendChangesContext) -> instancetype ---
 
     @(objc_type=SyncEngineSendChangesContext, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEngineSendChangesContext_new :: proc() -> ^SyncEngineSendChangesContext ---

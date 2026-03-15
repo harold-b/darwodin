@@ -26,7 +26,7 @@ DateRangeMetadataGroup :: struct { using _: MetadataGroup,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DateRangeMetadataGroup, objc_selector="initWithItems:startDate:endDate:", objc_name="initWithItems")
-    DateRangeMetadataGroup_initWithItems :: proc(self: ^DateRangeMetadataGroup, items: ^NS.Array, startDate: ^NS.Date, endDate: ^NS.Date) -> ^DateRangeMetadataGroup ---
+    DateRangeMetadataGroup_initWithItems :: proc(self: ^DateRangeMetadataGroup, items: ^NS.Array, startDate: ^NS.Date, endDate: ^NS.Date) -> instancetype ---
 
     @(objc_type=DateRangeMetadataGroup, objc_selector="startDate", objc_name="startDate")
     DateRangeMetadataGroup_startDate :: proc(self: ^DateRangeMetadataGroup) -> ^NS.Date ---

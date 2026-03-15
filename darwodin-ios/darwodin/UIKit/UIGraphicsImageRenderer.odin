@@ -22,13 +22,13 @@ GraphicsImageRenderer :: struct { using _: GraphicsRenderer, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GraphicsImageRenderer, objc_selector="initWithSize:", objc_name="initWithSize_")
-    GraphicsImageRenderer_initWithSize_ :: proc(self: ^GraphicsImageRenderer, size: CG.Size) -> ^GraphicsImageRenderer ---
+    GraphicsImageRenderer_initWithSize_ :: proc(self: ^GraphicsImageRenderer, size: CG.Size) -> instancetype ---
 
     @(objc_type=GraphicsImageRenderer, objc_selector="initWithSize:format:", objc_name="initWithSize_format")
-    GraphicsImageRenderer_initWithSize_format :: proc(self: ^GraphicsImageRenderer, size: CG.Size, format: ^GraphicsImageRendererFormat) -> ^GraphicsImageRenderer ---
+    GraphicsImageRenderer_initWithSize_format :: proc(self: ^GraphicsImageRenderer, size: CG.Size, format: ^GraphicsImageRendererFormat) -> instancetype ---
 
     @(objc_type=GraphicsImageRenderer, objc_selector="initWithBounds:format:", objc_name="initWithBounds")
-    GraphicsImageRenderer_initWithBounds :: proc(self: ^GraphicsImageRenderer, bounds: CG.Rect, format: ^GraphicsImageRendererFormat) -> ^GraphicsImageRenderer ---
+    GraphicsImageRenderer_initWithBounds :: proc(self: ^GraphicsImageRenderer, bounds: CG.Rect, format: ^GraphicsImageRendererFormat) -> instancetype ---
 
     @(objc_type=GraphicsImageRenderer, objc_selector="imageWithActions:", objc_name="imageWithActions")
     GraphicsImageRenderer_imageWithActions :: proc(self: ^GraphicsImageRenderer, actions: GraphicsImageDrawingActions) -> ^Image ---

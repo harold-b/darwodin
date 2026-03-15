@@ -21,7 +21,7 @@ QueryCursor :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=QueryCursor, objc_selector="init", objc_name="init")
-    QueryCursor_init :: proc(self: ^QueryCursor) -> ^QueryCursor ---
+    QueryCursor_init :: proc(self: ^QueryCursor) -> instancetype ---
 
     @(objc_type=QueryCursor, objc_selector="new", objc_name="new", objc_is_class_method=true)
     QueryCursor_new :: proc() -> ^QueryCursor ---

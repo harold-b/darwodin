@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.ScrubberSelectionStyle) -> ^AK.ScrubberSelectionStyle,
-    initWithCoder: proc(self: ^AK.ScrubberSelectionStyle, coder: ^NS.Coder) -> ^AK.ScrubberSelectionStyle,
+    init: proc(self: ^AK.ScrubberSelectionStyle) -> instancetype,
+    initWithCoder: proc(self: ^AK.ScrubberSelectionStyle, coder: ^NS.Coder) -> instancetype,
     makeSelectionView: proc(self: ^AK.ScrubberSelectionStyle) -> ^AK.ScrubberSelectionView,
     outlineOverlayStyle: proc() -> ^AK.ScrubberSelectionStyle,
     roundedBackgroundStyle: proc() -> ^AK.ScrubberSelectionStyle,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.ScrubberSelectionStyle, _: SEL) -> ^AK.ScrubberSelectionStyle {
+        init :: proc "c" (self: ^AK.ScrubberSelectionStyle, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ScrubberSelectionStyle, _: SEL, coder: ^NS.Coder) -> ^AK.ScrubberSelectionStyle {
+        initWithCoder :: proc "c" (self: ^AK.ScrubberSelectionStyle, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

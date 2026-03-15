@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.TextBlock) -> ^AK.TextBlock,
+    init: proc(self: ^AK.TextBlock) -> instancetype,
     setValue: proc(self: ^AK.TextBlock, val: CG.Float, type: AK.TextBlockValueType, dimension: AK.TextBlockDimension),
     valueForDimension: proc(self: ^AK.TextBlock, dimension: AK.TextBlockDimension) -> CG.Float,
     valueTypeForDimension: proc(self: ^AK.TextBlock, dimension: AK.TextBlockDimension) -> AK.TextBlockValueType,
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextBlock, _: SEL) -> ^AK.TextBlock {
+        init :: proc "c" (self: ^AK.TextBlock, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -26,10 +26,10 @@ PopUpButtonCell :: struct { using _: MenuItemCell,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PopUpButtonCell, objc_selector="initTextCell:pullsDown:", objc_name="initTextCell")
-    PopUpButtonCell_initTextCell :: proc(self: ^PopUpButtonCell, stringValue: ^NS.String, pullDown: bool) -> ^PopUpButtonCell ---
+    PopUpButtonCell_initTextCell :: proc(self: ^PopUpButtonCell, stringValue: ^NS.String, pullDown: bool) -> instancetype ---
 
     @(objc_type=PopUpButtonCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    PopUpButtonCell_initWithCoder :: proc(self: ^PopUpButtonCell, coder: ^NS.Coder) -> ^PopUpButtonCell ---
+    PopUpButtonCell_initWithCoder :: proc(self: ^PopUpButtonCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=PopUpButtonCell, objc_selector="addItemWithTitle:", objc_name="addItemWithTitle")
     PopUpButtonCell_addItemWithTitle :: proc(self: ^PopUpButtonCell, title: ^NS.String) ---

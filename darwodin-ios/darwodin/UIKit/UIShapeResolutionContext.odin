@@ -22,7 +22,7 @@ ShapeResolutionContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ShapeResolutionContext, objc_selector="init", objc_name="init")
-    ShapeResolutionContext_init :: proc(self: ^ShapeResolutionContext) -> ^ShapeResolutionContext ---
+    ShapeResolutionContext_init :: proc(self: ^ShapeResolutionContext) -> instancetype ---
 
     @(objc_type=ShapeResolutionContext, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ShapeResolutionContext_new :: proc() -> ^ShapeResolutionContext ---

@@ -26,10 +26,10 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    indexPathWithIndex: proc(index: NS.UInteger) -> ^NS.IndexPath,
-    indexPathWithIndexes: proc(indexes: ^NS.UInteger, length: NS.UInteger) -> ^NS.IndexPath,
-    initWithIndexes: proc(self: ^NS.IndexPath, indexes: ^NS.UInteger, length: NS.UInteger) -> ^NS.IndexPath,
-    initWithIndex: proc(self: ^NS.IndexPath, index: NS.UInteger) -> ^NS.IndexPath,
+    indexPathWithIndex: proc(index: NS.UInteger) -> instancetype,
+    indexPathWithIndexes: proc(indexes: ^NS.UInteger, length: NS.UInteger) -> instancetype,
+    initWithIndexes: proc(self: ^NS.IndexPath, indexes: ^NS.UInteger, length: NS.UInteger) -> instancetype,
+    initWithIndex: proc(self: ^NS.IndexPath, index: NS.UInteger) -> instancetype,
     indexPathByAddingIndex: proc(self: ^NS.IndexPath, index: NS.UInteger) -> ^NS.IndexPath,
     indexPathByRemovingLastIndex: proc(self: ^NS.IndexPath) -> ^NS.IndexPath,
     indexAtPosition: proc(self: ^NS.IndexPath, position: NS.UInteger) -> NS.UInteger,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.indexPathWithIndex != nil {
-        indexPathWithIndex :: proc "c" (self: Class, _: SEL, index: NS.UInteger) -> ^NS.IndexPath {
+        indexPathWithIndex :: proc "c" (self: Class, _: SEL, index: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("indexPathWithIndex:"), auto_cast indexPathWithIndex, "@#:L") do panic("Failed to register objC method.")
     }
     if vt.indexPathWithIndexes != nil {
-        indexPathWithIndexes :: proc "c" (self: Class, _: SEL, indexes: ^NS.UInteger, length: NS.UInteger) -> ^NS.IndexPath {
+        indexPathWithIndexes :: proc "c" (self: Class, _: SEL, indexes: ^NS.UInteger, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("indexPathWithIndexes:length:"), auto_cast indexPathWithIndexes, "@#:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithIndexes != nil {
-        initWithIndexes :: proc "c" (self: ^NS.IndexPath, _: SEL, indexes: ^NS.UInteger, length: NS.UInteger) -> ^NS.IndexPath {
+        initWithIndexes :: proc "c" (self: ^NS.IndexPath, _: SEL, indexes: ^NS.UInteger, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIndexes:length:"), auto_cast initWithIndexes, "@@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithIndex != nil {
-        initWithIndex :: proc "c" (self: ^NS.IndexPath, _: SEL, index: NS.UInteger) -> ^NS.IndexPath {
+        initWithIndex :: proc "c" (self: ^NS.IndexPath, _: SEL, index: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

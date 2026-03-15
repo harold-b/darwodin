@@ -20,7 +20,7 @@ LinguisticTagger :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LinguisticTagger, objc_selector="initWithTagSchemes:options:", objc_name="initWithTagSchemes")
-    LinguisticTagger_initWithTagSchemes :: proc(self: ^LinguisticTagger, tagSchemes: ^Array, opts: UInteger) -> ^LinguisticTagger ---
+    LinguisticTagger_initWithTagSchemes :: proc(self: ^LinguisticTagger, tagSchemes: ^Array, opts: UInteger) -> instancetype ---
 
     @(objc_type=LinguisticTagger, objc_selector="availableTagSchemesForUnit:language:", objc_name="availableTagSchemesForUnit", objc_is_class_method=true)
     LinguisticTagger_availableTagSchemesForUnit :: proc(unit: LinguisticTaggerUnit, language: ^String) -> ^Array ---

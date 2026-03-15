@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithMemoryCapacity_diskCapacity_diskPath: proc(self: ^NS.URLCache, memoryCapacity: NS.UInteger, diskCapacity: NS.UInteger, path: ^NS.String) -> ^NS.URLCache,
-    initWithMemoryCapacity_diskCapacity_directoryURL: proc(self: ^NS.URLCache, memoryCapacity: NS.UInteger, diskCapacity: NS.UInteger, directoryURL: ^NS.URL) -> ^NS.URLCache,
+    initWithMemoryCapacity_diskCapacity_diskPath: proc(self: ^NS.URLCache, memoryCapacity: NS.UInteger, diskCapacity: NS.UInteger, path: ^NS.String) -> instancetype,
+    initWithMemoryCapacity_diskCapacity_directoryURL: proc(self: ^NS.URLCache, memoryCapacity: NS.UInteger, diskCapacity: NS.UInteger, directoryURL: ^NS.URL) -> instancetype,
     cachedResponseForRequest: proc(self: ^NS.URLCache, request: ^NS.URLRequest) -> ^NS.CachedURLResponse,
     storeCachedResponse_forRequest: proc(self: ^NS.URLCache, cachedResponse: ^NS.CachedURLResponse, request: ^NS.URLRequest),
     removeCachedResponseForRequest: proc(self: ^NS.URLCache, request: ^NS.URLRequest),
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithMemoryCapacity_diskCapacity_diskPath != nil {
-        initWithMemoryCapacity_diskCapacity_diskPath :: proc "c" (self: ^NS.URLCache, _: SEL, memoryCapacity: NS.UInteger, diskCapacity: NS.UInteger, path: ^NS.String) -> ^NS.URLCache {
+        initWithMemoryCapacity_diskCapacity_diskPath :: proc "c" (self: ^NS.URLCache, _: SEL, memoryCapacity: NS.UInteger, diskCapacity: NS.UInteger, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMemoryCapacity:diskCapacity:diskPath:"), auto_cast initWithMemoryCapacity_diskCapacity_diskPath, "@@:LL@") do panic("Failed to register objC method.")
     }
     if vt.initWithMemoryCapacity_diskCapacity_directoryURL != nil {
-        initWithMemoryCapacity_diskCapacity_directoryURL :: proc "c" (self: ^NS.URLCache, _: SEL, memoryCapacity: NS.UInteger, diskCapacity: NS.UInteger, directoryURL: ^NS.URL) -> ^NS.URLCache {
+        initWithMemoryCapacity_diskCapacity_directoryURL :: proc "c" (self: ^NS.URLCache, _: SEL, memoryCapacity: NS.UInteger, diskCapacity: NS.UInteger, directoryURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -30,7 +30,7 @@ import "../NSResponder"
 
 VTable :: struct {
     super: NSResponder.VTable,
-    initWithContentSize: proc(self: ^AK.Drawer, contentSize: NS.Size, edge: NS.RectEdge) -> ^AK.Drawer,
+    initWithContentSize: proc(self: ^AK.Drawer, contentSize: NS.Size, edge: NS.RectEdge) -> instancetype,
     open_: proc(self: ^AK.Drawer),
     openOnEdge: proc(self: ^AK.Drawer, edge: NS.RectEdge),
     close_: proc(self: ^AK.Drawer),
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSResponder.extend(cls, &vt.super)
 
     if vt.initWithContentSize != nil {
-        initWithContentSize :: proc "c" (self: ^AK.Drawer, _: SEL, contentSize: NS.Size, edge: NS.RectEdge) -> ^AK.Drawer {
+        initWithContentSize :: proc "c" (self: ^AK.Drawer, _: SEL, contentSize: NS.Size, edge: NS.RectEdge) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

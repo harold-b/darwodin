@@ -24,13 +24,13 @@ ContentUnavailableConfigurationState :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentUnavailableConfigurationState, objc_selector="initWithTraitCollection:", objc_name="initWithTraitCollection")
-    ContentUnavailableConfigurationState_initWithTraitCollection :: proc(self: ^ContentUnavailableConfigurationState, traitCollection: ^TraitCollection) -> ^ContentUnavailableConfigurationState ---
+    ContentUnavailableConfigurationState_initWithTraitCollection :: proc(self: ^ContentUnavailableConfigurationState, traitCollection: ^TraitCollection) -> instancetype ---
 
     @(objc_type=ContentUnavailableConfigurationState, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ContentUnavailableConfigurationState_initWithCoder :: proc(self: ^ContentUnavailableConfigurationState, coder: ^NS.Coder) -> ^ContentUnavailableConfigurationState ---
+    ContentUnavailableConfigurationState_initWithCoder :: proc(self: ^ContentUnavailableConfigurationState, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ContentUnavailableConfigurationState, objc_selector="init", objc_name="init")
-    ContentUnavailableConfigurationState_init :: proc(self: ^ContentUnavailableConfigurationState) -> ^ContentUnavailableConfigurationState ---
+    ContentUnavailableConfigurationState_init :: proc(self: ^ContentUnavailableConfigurationState) -> instancetype ---
 
     @(objc_type=ContentUnavailableConfigurationState, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ContentUnavailableConfigurationState_new :: proc() -> ^ContentUnavailableConfigurationState ---

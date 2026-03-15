@@ -31,10 +31,10 @@ Menu :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Menu, objc_selector="initWithTitle:", objc_name="initWithTitle")
-    Menu_initWithTitle :: proc(self: ^Menu, title: ^NS.String) -> ^Menu ---
+    Menu_initWithTitle :: proc(self: ^Menu, title: ^NS.String) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Menu_initWithCoder :: proc(self: ^Menu, coder: ^NS.Coder) -> ^Menu ---
+    Menu_initWithCoder :: proc(self: ^Menu, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="popUpContextMenu:withEvent:forView:", objc_name="popUpContextMenu_withEvent_forView", objc_is_class_method=true)
     Menu_popUpContextMenu_withEvent_forView :: proc(menu: ^Menu, event: ^Event, view: ^View) ---
@@ -199,10 +199,10 @@ foreign lib {
     Menu_setUserInterfaceLayoutDirection :: proc(self: ^Menu, userInterfaceLayoutDirection: UserInterfaceLayoutDirection) ---
 
     @(objc_type=Menu, objc_selector="paletteMenuWithColors:titles:selectionHandler:", objc_name="paletteMenuWithColors_titles_selectionHandler", objc_is_class_method=true)
-    Menu_paletteMenuWithColors_titles_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> ^Menu ---
+    Menu_paletteMenuWithColors_titles_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="paletteMenuWithColors:titles:templateImage:selectionHandler:", objc_name="paletteMenuWithColors_titles_templateImage_selectionHandler", objc_is_class_method=true)
-    Menu_paletteMenuWithColors_titles_templateImage_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> ^Menu ---
+    Menu_paletteMenuWithColors_titles_templateImage_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="presentationStyle", objc_name="presentationStyle")
     Menu_presentationStyle :: proc(self: ^Menu) -> MenuPresentationStyle ---

@@ -25,7 +25,7 @@ AudioMixerNode :: struct { using _: AudioNode,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioMixerNode, objc_selector="init", objc_name="init")
-    AudioMixerNode_init :: proc(self: ^AudioMixerNode) -> ^AudioMixerNode ---
+    AudioMixerNode_init :: proc(self: ^AudioMixerNode) -> instancetype ---
 
     @(objc_type=AudioMixerNode, objc_selector="outputVolume", objc_name="outputVolume")
     AudioMixerNode_outputVolume :: proc(self: ^AudioMixerNode) -> cffi.float ---

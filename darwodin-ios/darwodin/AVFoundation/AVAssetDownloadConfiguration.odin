@@ -23,13 +23,13 @@ AssetDownloadConfiguration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetDownloadConfiguration, objc_selector="init", objc_name="init")
-    AssetDownloadConfiguration_init :: proc(self: ^AssetDownloadConfiguration) -> ^AssetDownloadConfiguration ---
+    AssetDownloadConfiguration_init :: proc(self: ^AssetDownloadConfiguration) -> instancetype ---
 
     @(objc_type=AssetDownloadConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetDownloadConfiguration_new :: proc() -> ^AssetDownloadConfiguration ---
 
     @(objc_type=AssetDownloadConfiguration, objc_selector="downloadConfigurationWithAsset:title:", objc_name="downloadConfigurationWithAsset", objc_is_class_method=true)
-    AssetDownloadConfiguration_downloadConfigurationWithAsset :: proc(asset: ^URLAsset, title: ^NS.String) -> ^AssetDownloadConfiguration ---
+    AssetDownloadConfiguration_downloadConfigurationWithAsset :: proc(asset: ^URLAsset, title: ^NS.String) -> instancetype ---
 
     @(objc_type=AssetDownloadConfiguration, objc_selector="setInterstitialMediaSelectionCriteria:forMediaCharacteristic:", objc_name="setInterstitialMediaSelectionCriteria")
     AssetDownloadConfiguration_setInterstitialMediaSelectionCriteria :: proc(self: ^AssetDownloadConfiguration, criteria: ^NS.Array, mediaCharacteristic: ^NS.String) ---

@@ -24,7 +24,7 @@ import NS "../../"
 
 VTable :: struct {
     encodeWithCoder: proc(self: ^NS.Coding, coder: ^NS.Coder),
-    initWithCoder: proc(self: ^NS.Coding, coder: ^NS.Coder) -> ^NS.Coding,
+    initWithCoder: proc(self: ^NS.Coding, coder: ^NS.Coder) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("encodeWithCoder:"), auto_cast encodeWithCoder, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.Coding, _: SEL, coder: ^NS.Coder) -> ^NS.Coding {
+        initWithCoder :: proc "c" (self: ^NS.Coding, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

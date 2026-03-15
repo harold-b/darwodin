@@ -40,7 +40,7 @@ foreign lib {
     PrivateKey_new :: proc() -> ^PrivateKey ---
 
     @(objc_type=PrivateKey, objc_selector="init", objc_name="init")
-    PrivateKey_init :: proc(self: ^PrivateKey) -> ^PrivateKey ---
+    PrivateKey_init :: proc(self: ^PrivateKey) -> instancetype ---
 
     @(objc_type=PrivateKey, objc_selector="publicKey", objc_name="publicKey")
     PrivateKey_publicKey :: proc(self: ^PrivateKey) -> ^PublicKey ---

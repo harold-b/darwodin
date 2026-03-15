@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.ShapeResolutionContext) -> ^UI.ShapeResolutionContext,
+    init: proc(self: ^UI.ShapeResolutionContext) -> instancetype,
     new: proc() -> ^UI.ShapeResolutionContext,
     contentShape: proc(self: ^UI.ShapeResolutionContext) -> ^UI.ResolvedShape,
 }
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ShapeResolutionContext, _: SEL) -> ^UI.ShapeResolutionContext {
+        init :: proc "c" (self: ^UI.ShapeResolutionContext, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

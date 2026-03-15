@@ -23,10 +23,10 @@ PlayerItemVideoOutput :: struct { using _: PlayerItemOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemVideoOutput, objc_selector="initWithPixelBufferAttributes:", objc_name="initWithPixelBufferAttributes")
-    PlayerItemVideoOutput_initWithPixelBufferAttributes :: proc(self: ^PlayerItemVideoOutput, pixelBufferAttributes: ^NS.Dictionary) -> ^PlayerItemVideoOutput ---
+    PlayerItemVideoOutput_initWithPixelBufferAttributes :: proc(self: ^PlayerItemVideoOutput, pixelBufferAttributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=PlayerItemVideoOutput, objc_selector="initWithOutputSettings:", objc_name="initWithOutputSettings")
-    PlayerItemVideoOutput_initWithOutputSettings :: proc(self: ^PlayerItemVideoOutput, outputSettings: ^NS.Dictionary) -> ^PlayerItemVideoOutput ---
+    PlayerItemVideoOutput_initWithOutputSettings :: proc(self: ^PlayerItemVideoOutput, outputSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=PlayerItemVideoOutput, objc_selector="hasNewPixelBufferForItemTime:", objc_name="hasNewPixelBufferForItemTime")
     PlayerItemVideoOutput_hasNewPixelBufferForItemTime :: proc(self: ^PlayerItemVideoOutput, itemTime: CM.Time) -> bool ---

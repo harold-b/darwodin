@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    spacingForLeading: proc(leading: ^AK.CollectionLayoutSpacing, top: ^AK.CollectionLayoutSpacing, trailing: ^AK.CollectionLayoutSpacing, bottom: ^AK.CollectionLayoutSpacing) -> ^AK.CollectionLayoutEdgeSpacing,
-    init: proc(self: ^AK.CollectionLayoutEdgeSpacing) -> ^AK.CollectionLayoutEdgeSpacing,
+    spacingForLeading: proc(leading: ^AK.CollectionLayoutSpacing, top: ^AK.CollectionLayoutSpacing, trailing: ^AK.CollectionLayoutSpacing, bottom: ^AK.CollectionLayoutSpacing) -> instancetype,
+    init: proc(self: ^AK.CollectionLayoutEdgeSpacing) -> instancetype,
     new: proc() -> ^AK.CollectionLayoutEdgeSpacing,
     leading: proc(self: ^AK.CollectionLayoutEdgeSpacing) -> ^AK.CollectionLayoutSpacing,
     top: proc(self: ^AK.CollectionLayoutEdgeSpacing) -> ^AK.CollectionLayoutSpacing,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.spacingForLeading != nil {
-        spacingForLeading :: proc "c" (self: Class, _: SEL, leading: ^AK.CollectionLayoutSpacing, top: ^AK.CollectionLayoutSpacing, trailing: ^AK.CollectionLayoutSpacing, bottom: ^AK.CollectionLayoutSpacing) -> ^AK.CollectionLayoutEdgeSpacing {
+        spacingForLeading :: proc "c" (self: Class, _: SEL, leading: ^AK.CollectionLayoutSpacing, top: ^AK.CollectionLayoutSpacing, trailing: ^AK.CollectionLayoutSpacing, bottom: ^AK.CollectionLayoutSpacing) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("spacingForLeading:top:trailing:bottom:"), auto_cast spacingForLeading, "@#:@@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutEdgeSpacing, _: SEL) -> ^AK.CollectionLayoutEdgeSpacing {
+        init :: proc "c" (self: ^AK.CollectionLayoutEdgeSpacing, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

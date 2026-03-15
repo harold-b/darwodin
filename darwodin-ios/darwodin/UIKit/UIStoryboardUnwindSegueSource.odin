@@ -22,7 +22,7 @@ StoryboardUnwindSegueSource :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=StoryboardUnwindSegueSource, objc_selector="init", objc_name="init")
-    StoryboardUnwindSegueSource_init :: proc(self: ^StoryboardUnwindSegueSource) -> ^StoryboardUnwindSegueSource ---
+    StoryboardUnwindSegueSource_init :: proc(self: ^StoryboardUnwindSegueSource) -> instancetype ---
 
     @(objc_type=StoryboardUnwindSegueSource, objc_selector="sourceViewController", objc_name="sourceViewController")
     StoryboardUnwindSegueSource_sourceViewController :: proc(self: ^StoryboardUnwindSegueSource) -> ^ViewController ---

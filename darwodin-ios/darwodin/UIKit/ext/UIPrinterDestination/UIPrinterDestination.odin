@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithURL: proc(self: ^UI.PrinterDestination, url: ^NS.URL) -> ^UI.PrinterDestination,
+    initWithURL: proc(self: ^UI.PrinterDestination, url: ^NS.URL) -> instancetype,
     _URL: proc(self: ^UI.PrinterDestination) -> ^NS.URL,
     setURL: proc(self: ^UI.PrinterDestination, _URL: ^NS.URL),
     displayName: proc(self: ^UI.PrinterDestination) -> ^NS.String,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^UI.PrinterDestination, _: SEL, url: ^NS.URL) -> ^UI.PrinterDestination {
+        initWithURL :: proc "c" (self: ^UI.PrinterDestination, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

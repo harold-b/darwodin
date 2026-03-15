@@ -22,7 +22,7 @@ ContextualAction :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContextualAction, objc_selector="contextualActionWithStyle:title:handler:", objc_name="contextualActionWithStyle", objc_is_class_method=true)
-    ContextualAction_contextualActionWithStyle :: proc(style: ContextualActionStyle, title: ^NS.String, handler: ContextualActionHandler) -> ^ContextualAction ---
+    ContextualAction_contextualActionWithStyle :: proc(style: ContextualActionStyle, title: ^NS.String, handler: ContextualActionHandler) -> instancetype ---
 
     @(objc_type=ContextualAction, objc_selector="style", objc_name="style")
     ContextualAction_style :: proc(self: ^ContextualAction) -> ContextualActionStyle ---

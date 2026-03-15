@@ -22,10 +22,10 @@ DragItem :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DragItem, objc_selector="initWithItemProvider:", objc_name="initWithItemProvider")
-    DragItem_initWithItemProvider :: proc(self: ^DragItem, itemProvider: ^NS.ItemProvider) -> ^DragItem ---
+    DragItem_initWithItemProvider :: proc(self: ^DragItem, itemProvider: ^NS.ItemProvider) -> instancetype ---
 
     @(objc_type=DragItem, objc_selector="init", objc_name="init")
-    DragItem_init :: proc(self: ^DragItem) -> ^DragItem ---
+    DragItem_init :: proc(self: ^DragItem) -> instancetype ---
 
     @(objc_type=DragItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DragItem_new :: proc() -> ^DragItem ---

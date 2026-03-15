@@ -27,7 +27,7 @@ foreign lib {
     OpenGLView_defaultPixelFormat :: proc() -> ^OpenGLPixelFormat ---
 
     @(objc_type=OpenGLView, objc_selector="initWithFrame:pixelFormat:", objc_name="initWithFrame")
-    OpenGLView_initWithFrame :: proc(self: ^OpenGLView, frameRect: NS.Rect, format: ^OpenGLPixelFormat) -> ^OpenGLView ---
+    OpenGLView_initWithFrame :: proc(self: ^OpenGLView, frameRect: NS.Rect, format: ^OpenGLPixelFormat) -> instancetype ---
 
     @(objc_type=OpenGLView, objc_selector="clearGLContext", objc_name="clearGLContext")
     OpenGLView_clearGLContext :: proc(self: ^OpenGLView) ---

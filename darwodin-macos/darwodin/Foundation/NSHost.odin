@@ -20,13 +20,13 @@ Host :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Host, objc_selector="currentHost", objc_name="currentHost", objc_is_class_method=true)
-    Host_currentHost :: proc() -> ^Host ---
+    Host_currentHost :: proc() -> instancetype ---
 
     @(objc_type=Host, objc_selector="hostWithName:", objc_name="hostWithName", objc_is_class_method=true)
-    Host_hostWithName :: proc(name: ^String) -> ^Host ---
+    Host_hostWithName :: proc(name: ^String) -> instancetype ---
 
     @(objc_type=Host, objc_selector="hostWithAddress:", objc_name="hostWithAddress", objc_is_class_method=true)
-    Host_hostWithAddress :: proc(address: ^String) -> ^Host ---
+    Host_hostWithAddress :: proc(address: ^String) -> instancetype ---
 
     @(objc_type=Host, objc_selector="isEqualToHost:", objc_name="isEqualToHost")
     Host_isEqualToHost :: proc(self: ^Host, aHost: ^Host) -> bool ---

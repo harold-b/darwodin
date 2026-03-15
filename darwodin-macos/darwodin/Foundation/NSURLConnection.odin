@@ -20,10 +20,10 @@ URLConnection :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLConnection, objc_selector="initWithRequest:delegate:startImmediately:", objc_name="initWithRequest_delegate_startImmediately")
-    URLConnection_initWithRequest_delegate_startImmediately :: proc(self: ^URLConnection, request: ^URLRequest, delegate: id, startImmediately: bool) -> ^URLConnection ---
+    URLConnection_initWithRequest_delegate_startImmediately :: proc(self: ^URLConnection, request: ^URLRequest, delegate: id, startImmediately: bool) -> instancetype ---
 
     @(objc_type=URLConnection, objc_selector="initWithRequest:delegate:", objc_name="initWithRequest_delegate")
-    URLConnection_initWithRequest_delegate :: proc(self: ^URLConnection, request: ^URLRequest, delegate: id) -> ^URLConnection ---
+    URLConnection_initWithRequest_delegate :: proc(self: ^URLConnection, request: ^URLRequest, delegate: id) -> instancetype ---
 
     @(objc_type=URLConnection, objc_selector="connectionWithRequest:delegate:", objc_name="connectionWithRequest", objc_is_class_method=true)
     URLConnection_connectionWithRequest :: proc(request: ^URLRequest, delegate: id) -> ^URLConnection ---

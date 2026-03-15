@@ -22,7 +22,7 @@ NSTextParagraph :: struct { using _: NSTextElement, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSTextParagraph, objc_selector="initWithAttributedString:", objc_name="initWithAttributedString")
-    NSTextParagraph_initWithAttributedString :: proc(self: ^NSTextParagraph, attributedString: ^NS.AttributedString) -> ^NSTextParagraph ---
+    NSTextParagraph_initWithAttributedString :: proc(self: ^NSTextParagraph, attributedString: ^NS.AttributedString) -> instancetype ---
 
     @(objc_type=NSTextParagraph, objc_selector="attributedString", objc_name="attributedString")
     NSTextParagraph_attributedString :: proc(self: ^NSTextParagraph) -> ^NS.AttributedString ---

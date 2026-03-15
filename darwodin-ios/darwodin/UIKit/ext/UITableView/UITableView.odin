@@ -28,8 +28,8 @@ import "../UIScrollView"
 
 VTable :: struct {
     super: UIScrollView.VTable,
-    initWithFrame: proc(self: ^UI.TableView, frame: CG.Rect, style: UI.TableViewStyle) -> ^UI.TableView,
-    initWithCoder: proc(self: ^UI.TableView, coder: ^NS.Coder) -> ^UI.TableView,
+    initWithFrame: proc(self: ^UI.TableView, frame: CG.Rect, style: UI.TableViewStyle) -> instancetype,
+    initWithCoder: proc(self: ^UI.TableView, coder: ^NS.Coder) -> instancetype,
     numberOfRowsInSection: proc(self: ^UI.TableView, section: NS.Integer) -> NS.Integer,
     rectForSection: proc(self: ^UI.TableView, section: NS.Integer) -> CG.Rect,
     rectForHeaderInSection: proc(self: ^UI.TableView, section: NS.Integer) -> CG.Rect,
@@ -167,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIScrollView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.TableView, _: SEL, frame: CG.Rect, style: UI.TableViewStyle) -> ^UI.TableView {
+        initWithFrame :: proc "c" (self: ^UI.TableView, _: SEL, frame: CG.Rect, style: UI.TableViewStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -177,7 +177,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:style:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}l") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.TableView, _: SEL, coder: ^NS.Coder) -> ^UI.TableView {
+        initWithCoder :: proc "c" (self: ^UI.TableView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

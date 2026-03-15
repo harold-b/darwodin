@@ -22,10 +22,10 @@ Entity :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Entity, objc_selector="entity", objc_name="entity", objc_is_class_method=true)
-    Entity_entity :: proc() -> ^Entity ---
+    Entity_entity :: proc() -> instancetype ---
 
     @(objc_type=Entity, objc_selector="init", objc_name="init")
-    Entity_init :: proc(self: ^Entity) -> ^Entity ---
+    Entity_init :: proc(self: ^Entity) -> instancetype ---
 
     @(objc_type=Entity, objc_selector="updateWithDeltaTime:", objc_name="updateWithDeltaTime")
     Entity_updateWithDeltaTime :: proc(self: ^Entity, seconds: NS.TimeInterval) ---

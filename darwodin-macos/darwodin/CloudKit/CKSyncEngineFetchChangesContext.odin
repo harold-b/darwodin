@@ -18,7 +18,7 @@ SyncEngineFetchChangesContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineFetchChangesContext, objc_selector="init", objc_name="init")
-    SyncEngineFetchChangesContext_init :: proc(self: ^SyncEngineFetchChangesContext) -> ^SyncEngineFetchChangesContext ---
+    SyncEngineFetchChangesContext_init :: proc(self: ^SyncEngineFetchChangesContext) -> instancetype ---
 
     @(objc_type=SyncEngineFetchChangesContext, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEngineFetchChangesContext_new :: proc() -> ^SyncEngineFetchChangesContext ---

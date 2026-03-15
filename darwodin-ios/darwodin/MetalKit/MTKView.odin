@@ -26,10 +26,10 @@ View :: struct { using _: UI.View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=View, objc_selector="initWithFrame:device:", objc_name="initWithFrame")
-    View_initWithFrame :: proc(self: ^View, frameRect: CG.Rect, device: ^MTL.Device) -> ^View ---
+    View_initWithFrame :: proc(self: ^View, frameRect: CG.Rect, device: ^MTL.Device) -> instancetype ---
 
     @(objc_type=View, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    View_initWithCoder :: proc(self: ^View, coder: ^NS.Coder) -> ^View ---
+    View_initWithCoder :: proc(self: ^View, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=View, objc_selector="releaseDrawables", objc_name="releaseDrawables")
     View_releaseDrawables :: proc(self: ^View) ---

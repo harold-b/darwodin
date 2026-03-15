@@ -23,10 +23,10 @@ URLQueryItem :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLQueryItem, objc_selector="initWithName:value:", objc_name="initWithName")
-    URLQueryItem_initWithName :: proc(self: ^URLQueryItem, name: ^String, value: ^String) -> ^URLQueryItem ---
+    URLQueryItem_initWithName :: proc(self: ^URLQueryItem, name: ^String, value: ^String) -> instancetype ---
 
     @(objc_type=URLQueryItem, objc_selector="queryItemWithName:value:", objc_name="queryItemWithName", objc_is_class_method=true)
-    URLQueryItem_queryItemWithName :: proc(name: ^String, value: ^String) -> ^URLQueryItem ---
+    URLQueryItem_queryItemWithName :: proc(name: ^String, value: ^String) -> instancetype ---
 
     @(objc_type=URLQueryItem, objc_selector="name", objc_name="name")
     URLQueryItem_name :: proc(self: ^URLQueryItem) -> ^String ---

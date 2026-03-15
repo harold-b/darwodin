@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    configurationWithToolTip_: proc(toolTip: ^NS.String) -> ^UI.ToolTipConfiguration,
-    configurationWithToolTip_inRect: proc(toolTip: ^NS.String, sourceRect: CG.Rect) -> ^UI.ToolTipConfiguration,
+    configurationWithToolTip_: proc(toolTip: ^NS.String) -> instancetype,
+    configurationWithToolTip_inRect: proc(toolTip: ^NS.String, sourceRect: CG.Rect) -> instancetype,
     new: proc() -> ^UI.ToolTipConfiguration,
-    init: proc(self: ^UI.ToolTipConfiguration) -> ^UI.ToolTipConfiguration,
+    init: proc(self: ^UI.ToolTipConfiguration) -> instancetype,
     toolTip: proc(self: ^UI.ToolTipConfiguration) -> ^NS.String,
     sourceRect: proc(self: ^UI.ToolTipConfiguration) -> CG.Rect,
 }
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.configurationWithToolTip_ != nil {
-        configurationWithToolTip_ :: proc "c" (self: Class, _: SEL, toolTip: ^NS.String) -> ^UI.ToolTipConfiguration {
+        configurationWithToolTip_ :: proc "c" (self: Class, _: SEL, toolTip: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithToolTip:"), auto_cast configurationWithToolTip_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.configurationWithToolTip_inRect != nil {
-        configurationWithToolTip_inRect :: proc "c" (self: Class, _: SEL, toolTip: ^NS.String, sourceRect: CG.Rect) -> ^UI.ToolTipConfiguration {
+        configurationWithToolTip_inRect :: proc "c" (self: Class, _: SEL, toolTip: ^NS.String, sourceRect: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ToolTipConfiguration, _: SEL) -> ^UI.ToolTipConfiguration {
+        init :: proc "c" (self: ^UI.ToolTipConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

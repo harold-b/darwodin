@@ -30,8 +30,8 @@ import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
-    imageRepWithData: proc(epsData: ^NS.Data) -> ^AK.EPSImageRep,
-    initWithData: proc(self: ^AK.EPSImageRep, epsData: ^NS.Data) -> ^AK.EPSImageRep,
+    imageRepWithData: proc(epsData: ^NS.Data) -> instancetype,
+    initWithData: proc(self: ^AK.EPSImageRep, epsData: ^NS.Data) -> instancetype,
     prepareGState: proc(self: ^AK.EPSImageRep),
     boundingBox: proc(self: ^AK.EPSImageRep) -> NS.Rect,
     _EPSRepresentation: proc(self: ^AK.EPSImageRep) -> ^NS.Data,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSImageRep.extend(cls, &vt.super)
 
     if vt.imageRepWithData != nil {
-        imageRepWithData :: proc "c" (self: Class, _: SEL, epsData: ^NS.Data) -> ^AK.EPSImageRep {
+        imageRepWithData :: proc "c" (self: Class, _: SEL, epsData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithData:"), auto_cast imageRepWithData, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.EPSImageRep, _: SEL, epsData: ^NS.Data) -> ^AK.EPSImageRep {
+        initWithData :: proc "c" (self: ^AK.EPSImageRep, _: SEL, epsData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -22,13 +22,13 @@ XMLNode :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=XMLNode, objc_selector="init", objc_name="init")
-    XMLNode_init :: proc(self: ^XMLNode) -> ^XMLNode ---
+    XMLNode_init :: proc(self: ^XMLNode) -> instancetype ---
 
     @(objc_type=XMLNode, objc_selector="initWithKind:", objc_name="initWithKind_")
-    XMLNode_initWithKind_ :: proc(self: ^XMLNode, kind: XMLNodeKind) -> ^XMLNode ---
+    XMLNode_initWithKind_ :: proc(self: ^XMLNode, kind: XMLNodeKind) -> instancetype ---
 
     @(objc_type=XMLNode, objc_selector="initWithKind:options:", objc_name="initWithKind_options")
-    XMLNode_initWithKind_options :: proc(self: ^XMLNode, kind: XMLNodeKind, options: XMLNodeOptions) -> ^XMLNode ---
+    XMLNode_initWithKind_options :: proc(self: ^XMLNode, kind: XMLNodeKind, options: XMLNodeOptions) -> instancetype ---
 
     @(objc_type=XMLNode, objc_selector="document", objc_name="document", objc_is_class_method=true)
     XMLNode_document :: proc() -> id ---

@@ -21,19 +21,19 @@ UserIdentityLookupInfo :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserIdentityLookupInfo, objc_selector="init", objc_name="init")
-    UserIdentityLookupInfo_init :: proc(self: ^UserIdentityLookupInfo) -> ^UserIdentityLookupInfo ---
+    UserIdentityLookupInfo_init :: proc(self: ^UserIdentityLookupInfo) -> instancetype ---
 
     @(objc_type=UserIdentityLookupInfo, objc_selector="new", objc_name="new", objc_is_class_method=true)
     UserIdentityLookupInfo_new :: proc() -> ^UserIdentityLookupInfo ---
 
     @(objc_type=UserIdentityLookupInfo, objc_selector="initWithEmailAddress:", objc_name="initWithEmailAddress")
-    UserIdentityLookupInfo_initWithEmailAddress :: proc(self: ^UserIdentityLookupInfo, emailAddress: ^NS.String) -> ^UserIdentityLookupInfo ---
+    UserIdentityLookupInfo_initWithEmailAddress :: proc(self: ^UserIdentityLookupInfo, emailAddress: ^NS.String) -> instancetype ---
 
     @(objc_type=UserIdentityLookupInfo, objc_selector="initWithPhoneNumber:", objc_name="initWithPhoneNumber")
-    UserIdentityLookupInfo_initWithPhoneNumber :: proc(self: ^UserIdentityLookupInfo, phoneNumber: ^NS.String) -> ^UserIdentityLookupInfo ---
+    UserIdentityLookupInfo_initWithPhoneNumber :: proc(self: ^UserIdentityLookupInfo, phoneNumber: ^NS.String) -> instancetype ---
 
     @(objc_type=UserIdentityLookupInfo, objc_selector="initWithUserRecordID:", objc_name="initWithUserRecordID")
-    UserIdentityLookupInfo_initWithUserRecordID :: proc(self: ^UserIdentityLookupInfo, userRecordID: ^RecordID) -> ^UserIdentityLookupInfo ---
+    UserIdentityLookupInfo_initWithUserRecordID :: proc(self: ^UserIdentityLookupInfo, userRecordID: ^RecordID) -> instancetype ---
 
     @(objc_type=UserIdentityLookupInfo, objc_selector="lookupInfosWithEmails:", objc_name="lookupInfosWithEmails", objc_is_class_method=true)
     UserIdentityLookupInfo_lookupInfosWithEmails :: proc(emails: ^NS.Array) -> ^NS.Array ---

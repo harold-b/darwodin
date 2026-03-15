@@ -25,10 +25,10 @@ SceneConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SceneConfiguration, objc_selector="configurationWithName:sessionRole:", objc_name="configurationWithName", objc_is_class_method=true)
-    SceneConfiguration_configurationWithName :: proc(name: ^NS.String, sessionRole: ^NS.String) -> ^SceneConfiguration ---
+    SceneConfiguration_configurationWithName :: proc(name: ^NS.String, sessionRole: ^NS.String) -> instancetype ---
 
     @(objc_type=SceneConfiguration, objc_selector="initWithName:sessionRole:", objc_name="initWithName")
-    SceneConfiguration_initWithName :: proc(self: ^SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> ^SceneConfiguration ---
+    SceneConfiguration_initWithName :: proc(self: ^SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> instancetype ---
 
     @(objc_type=SceneConfiguration, objc_selector="name", objc_name="name")
     SceneConfiguration_name :: proc(self: ^SceneConfiguration) -> ^NS.String ---

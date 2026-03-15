@@ -24,13 +24,13 @@ SearchFieldCell :: struct { using _: TextFieldCell, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SearchFieldCell, objc_selector="initTextCell:", objc_name="initTextCell")
-    SearchFieldCell_initTextCell :: proc(self: ^SearchFieldCell, string: ^NS.String) -> ^SearchFieldCell ---
+    SearchFieldCell_initTextCell :: proc(self: ^SearchFieldCell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=SearchFieldCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    SearchFieldCell_initWithCoder :: proc(self: ^SearchFieldCell, coder: ^NS.Coder) -> ^SearchFieldCell ---
+    SearchFieldCell_initWithCoder :: proc(self: ^SearchFieldCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=SearchFieldCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    SearchFieldCell_initImageCell :: proc(self: ^SearchFieldCell, image: ^NS.Image) -> ^SearchFieldCell ---
+    SearchFieldCell_initImageCell :: proc(self: ^SearchFieldCell, image: ^NS.Image) -> instancetype ---
 
     @(objc_type=SearchFieldCell, objc_selector="resetSearchButtonCell", objc_name="resetSearchButtonCell")
     SearchFieldCell_resetSearchButtonCell :: proc(self: ^SearchFieldCell) ---

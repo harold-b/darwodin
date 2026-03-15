@@ -23,16 +23,16 @@ AssetImageGenerator :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetImageGenerator, objc_selector="init", objc_name="init")
-    AssetImageGenerator_init :: proc(self: ^AssetImageGenerator) -> ^AssetImageGenerator ---
+    AssetImageGenerator_init :: proc(self: ^AssetImageGenerator) -> instancetype ---
 
     @(objc_type=AssetImageGenerator, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetImageGenerator_new :: proc() -> ^AssetImageGenerator ---
 
     @(objc_type=AssetImageGenerator, objc_selector="assetImageGeneratorWithAsset:", objc_name="assetImageGeneratorWithAsset", objc_is_class_method=true)
-    AssetImageGenerator_assetImageGeneratorWithAsset :: proc(asset: ^Asset) -> ^AssetImageGenerator ---
+    AssetImageGenerator_assetImageGeneratorWithAsset :: proc(asset: ^Asset) -> instancetype ---
 
     @(objc_type=AssetImageGenerator, objc_selector="initWithAsset:", objc_name="initWithAsset")
-    AssetImageGenerator_initWithAsset :: proc(self: ^AssetImageGenerator, asset: ^Asset) -> ^AssetImageGenerator ---
+    AssetImageGenerator_initWithAsset :: proc(self: ^AssetImageGenerator, asset: ^Asset) -> instancetype ---
 
     @(objc_type=AssetImageGenerator, objc_selector="copyCGImageAtTime:actualTime:error:", objc_name="copyCGImageAtTime")
     AssetImageGenerator_copyCGImageAtTime :: proc(self: ^AssetImageGenerator, requestedTime: CM.Time, actualTime: ^CM.Time, outError: ^^NS.Error) -> CG.ImageRef ---

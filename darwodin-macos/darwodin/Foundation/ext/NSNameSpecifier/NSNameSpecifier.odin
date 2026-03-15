@@ -26,8 +26,8 @@ import "../NSScriptObjectSpecifier"
 
 VTable :: struct {
     super: NSScriptObjectSpecifier.VTable,
-    initWithCoder: proc(self: ^NS.NameSpecifier, inCoder: ^NS.Coder) -> ^NS.NameSpecifier,
-    initWithContainerClassDescription: proc(self: ^NS.NameSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, name: ^NS.String) -> ^NS.NameSpecifier,
+    initWithCoder: proc(self: ^NS.NameSpecifier, inCoder: ^NS.Coder) -> instancetype,
+    initWithContainerClassDescription: proc(self: ^NS.NameSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, name: ^NS.String) -> instancetype,
     name: proc(self: ^NS.NameSpecifier) -> ^NS.String,
     setName: proc(self: ^NS.NameSpecifier, name: ^NS.String),
 }
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScriptObjectSpecifier.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.NameSpecifier, _: SEL, inCoder: ^NS.Coder) -> ^NS.NameSpecifier {
+        initWithCoder :: proc "c" (self: ^NS.NameSpecifier, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerClassDescription != nil {
-        initWithContainerClassDescription :: proc "c" (self: ^NS.NameSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, name: ^NS.String) -> ^NS.NameSpecifier {
+        initWithContainerClassDescription :: proc "c" (self: ^NS.NameSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

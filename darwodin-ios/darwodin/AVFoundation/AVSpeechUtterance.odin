@@ -26,22 +26,22 @@ SpeechUtterance :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechUtterance, objc_selector="speechUtteranceWithString:", objc_name="speechUtteranceWithString", objc_is_class_method=true)
-    SpeechUtterance_speechUtteranceWithString :: proc(string: ^NS.String) -> ^SpeechUtterance ---
+    SpeechUtterance_speechUtteranceWithString :: proc(string: ^NS.String) -> instancetype ---
 
     @(objc_type=SpeechUtterance, objc_selector="speechUtteranceWithAttributedString:", objc_name="speechUtteranceWithAttributedString", objc_is_class_method=true)
-    SpeechUtterance_speechUtteranceWithAttributedString :: proc(string: ^NS.AttributedString) -> ^SpeechUtterance ---
+    SpeechUtterance_speechUtteranceWithAttributedString :: proc(string: ^NS.AttributedString) -> instancetype ---
 
     @(objc_type=SpeechUtterance, objc_selector="speechUtteranceWithSSMLRepresentation:", objc_name="speechUtteranceWithSSMLRepresentation", objc_is_class_method=true)
-    SpeechUtterance_speechUtteranceWithSSMLRepresentation :: proc(string: ^NS.String) -> ^SpeechUtterance ---
+    SpeechUtterance_speechUtteranceWithSSMLRepresentation :: proc(string: ^NS.String) -> instancetype ---
 
     @(objc_type=SpeechUtterance, objc_selector="initWithString:", objc_name="initWithString")
-    SpeechUtterance_initWithString :: proc(self: ^SpeechUtterance, string: ^NS.String) -> ^SpeechUtterance ---
+    SpeechUtterance_initWithString :: proc(self: ^SpeechUtterance, string: ^NS.String) -> instancetype ---
 
     @(objc_type=SpeechUtterance, objc_selector="initWithAttributedString:", objc_name="initWithAttributedString")
-    SpeechUtterance_initWithAttributedString :: proc(self: ^SpeechUtterance, string: ^NS.AttributedString) -> ^SpeechUtterance ---
+    SpeechUtterance_initWithAttributedString :: proc(self: ^SpeechUtterance, string: ^NS.AttributedString) -> instancetype ---
 
     @(objc_type=SpeechUtterance, objc_selector="initWithSSMLRepresentation:", objc_name="initWithSSMLRepresentation")
-    SpeechUtterance_initWithSSMLRepresentation :: proc(self: ^SpeechUtterance, string: ^NS.String) -> ^SpeechUtterance ---
+    SpeechUtterance_initWithSSMLRepresentation :: proc(self: ^SpeechUtterance, string: ^NS.String) -> instancetype ---
 
     @(objc_type=SpeechUtterance, objc_selector="voice", objc_name="voice")
     SpeechUtterance_voice :: proc(self: ^SpeechUtterance) -> ^SpeechSynthesisVoice ---

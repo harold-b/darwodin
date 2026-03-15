@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    defaultPreview: proc() -> ^UI.TextItemMenuPreview,
-    initWithView: proc(self: ^UI.TextItemMenuPreview, view: ^UI.View) -> ^UI.TextItemMenuPreview,
-    init: proc(self: ^UI.TextItemMenuPreview) -> ^UI.TextItemMenuPreview,
+    defaultPreview: proc() -> instancetype,
+    initWithView: proc(self: ^UI.TextItemMenuPreview, view: ^UI.View) -> instancetype,
+    init: proc(self: ^UI.TextItemMenuPreview) -> instancetype,
     new: proc() -> ^UI.TextItemMenuPreview,
 }
 
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.defaultPreview != nil {
-        defaultPreview :: proc "c" (self: Class, _: SEL) -> ^UI.TextItemMenuPreview {
+        defaultPreview :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPreview"), auto_cast defaultPreview, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithView != nil {
-        initWithView :: proc "c" (self: ^UI.TextItemMenuPreview, _: SEL, view: ^UI.View) -> ^UI.TextItemMenuPreview {
+        initWithView :: proc "c" (self: ^UI.TextItemMenuPreview, _: SEL, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithView:"), auto_cast initWithView, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextItemMenuPreview, _: SEL) -> ^UI.TextItemMenuPreview {
+        init :: proc "c" (self: ^UI.TextItemMenuPreview, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -20,7 +20,7 @@ Unarchiver :: struct { using _: Coder, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Unarchiver, objc_selector="initForReadingWithData:", objc_name="initForReadingWithData")
-    Unarchiver_initForReadingWithData :: proc(self: ^Unarchiver, data: ^Data) -> ^Unarchiver ---
+    Unarchiver_initForReadingWithData :: proc(self: ^Unarchiver, data: ^Data) -> instancetype ---
 
     @(objc_type=Unarchiver, objc_selector="setObjectZone:", objc_name="setObjectZone")
     Unarchiver_setObjectZone :: proc(self: ^Unarchiver, zone: ^Zone) ---

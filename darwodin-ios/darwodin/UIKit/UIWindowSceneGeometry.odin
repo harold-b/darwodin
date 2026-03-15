@@ -24,7 +24,7 @@ WindowSceneGeometry :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneGeometry, objc_selector="init", objc_name="init")
-    WindowSceneGeometry_init :: proc(self: ^WindowSceneGeometry) -> ^WindowSceneGeometry ---
+    WindowSceneGeometry_init :: proc(self: ^WindowSceneGeometry) -> instancetype ---
 
     @(objc_type=WindowSceneGeometry, objc_selector="new", objc_name="new", objc_is_class_method=true)
     WindowSceneGeometry_new :: proc() -> ^WindowSceneGeometry ---

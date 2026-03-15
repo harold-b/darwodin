@@ -25,8 +25,8 @@ foreign lib {
     ScriptWhoseTest_isTrue :: proc(self: ^ScriptWhoseTest) -> bool ---
 
     @(objc_type=ScriptWhoseTest, objc_selector="init", objc_name="init")
-    ScriptWhoseTest_init :: proc(self: ^ScriptWhoseTest) -> ^ScriptWhoseTest ---
+    ScriptWhoseTest_init :: proc(self: ^ScriptWhoseTest) -> instancetype ---
 
     @(objc_type=ScriptWhoseTest, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ScriptWhoseTest_initWithCoder :: proc(self: ^ScriptWhoseTest, inCoder: ^Coder) -> ^ScriptWhoseTest ---
+    ScriptWhoseTest_initWithCoder :: proc(self: ^ScriptWhoseTest, inCoder: ^Coder) -> instancetype ---
 }

@@ -26,7 +26,7 @@ ToolbarItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ToolbarItem, objc_selector="initWithItemIdentifier:", objc_name="initWithItemIdentifier")
-    ToolbarItem_initWithItemIdentifier :: proc(self: ^ToolbarItem, itemIdentifier: ^NS.String) -> ^ToolbarItem ---
+    ToolbarItem_initWithItemIdentifier :: proc(self: ^ToolbarItem, itemIdentifier: ^NS.String) -> instancetype ---
 
     @(objc_type=ToolbarItem, objc_selector="validate", objc_name="validate")
     ToolbarItem_validate :: proc(self: ^ToolbarItem) ---

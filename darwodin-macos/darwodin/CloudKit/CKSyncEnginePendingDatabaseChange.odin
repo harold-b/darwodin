@@ -18,7 +18,7 @@ SyncEnginePendingDatabaseChange :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEnginePendingDatabaseChange, objc_selector="init", objc_name="init")
-    SyncEnginePendingDatabaseChange_init :: proc(self: ^SyncEnginePendingDatabaseChange) -> ^SyncEnginePendingDatabaseChange ---
+    SyncEnginePendingDatabaseChange_init :: proc(self: ^SyncEnginePendingDatabaseChange) -> instancetype ---
 
     @(objc_type=SyncEnginePendingDatabaseChange, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEnginePendingDatabaseChange_new :: proc() -> ^SyncEnginePendingDatabaseChange ---

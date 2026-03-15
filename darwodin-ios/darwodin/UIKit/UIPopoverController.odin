@@ -24,7 +24,7 @@ PopoverController :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PopoverController, objc_selector="initWithContentViewController:", objc_name="initWithContentViewController")
-    PopoverController_initWithContentViewController :: proc(self: ^PopoverController, viewController: ^ViewController) -> ^PopoverController ---
+    PopoverController_initWithContentViewController :: proc(self: ^PopoverController, viewController: ^ViewController) -> instancetype ---
 
     @(objc_type=PopoverController, objc_selector="setContentViewController:animated:", objc_name="setContentViewController_animated")
     PopoverController_setContentViewController_animated :: proc(self: ^PopoverController, viewController: ^ViewController, animated: bool) ---

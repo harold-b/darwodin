@@ -24,11 +24,11 @@ SymbolPulseEffect :: struct { using _: SymbolEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SymbolPulseEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    SymbolPulseEffect_effect :: proc() -> ^SymbolPulseEffect ---
+    SymbolPulseEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=SymbolPulseEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
-    SymbolPulseEffect_effectWithByLayer :: proc(self: ^SymbolPulseEffect) -> ^SymbolPulseEffect ---
+    SymbolPulseEffect_effectWithByLayer :: proc(self: ^SymbolPulseEffect) -> instancetype ---
 
     @(objc_type=SymbolPulseEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
-    SymbolPulseEffect_effectWithWholeSymbol :: proc(self: ^SymbolPulseEffect) -> ^SymbolPulseEffect ---
+    SymbolPulseEffect_effectWithWholeSymbol :: proc(self: ^SymbolPulseEffect) -> instancetype ---
 }

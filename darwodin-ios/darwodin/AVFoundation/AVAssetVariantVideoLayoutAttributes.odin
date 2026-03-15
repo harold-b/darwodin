@@ -23,7 +23,7 @@ AssetVariantVideoLayoutAttributes :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetVariantVideoLayoutAttributes, objc_selector="init", objc_name="init")
-    AssetVariantVideoLayoutAttributes_init :: proc(self: ^AssetVariantVideoLayoutAttributes) -> ^AssetVariantVideoLayoutAttributes ---
+    AssetVariantVideoLayoutAttributes_init :: proc(self: ^AssetVariantVideoLayoutAttributes) -> instancetype ---
 
     @(objc_type=AssetVariantVideoLayoutAttributes, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetVariantVideoLayoutAttributes_new :: proc() -> ^AssetVariantVideoLayoutAttributes ---

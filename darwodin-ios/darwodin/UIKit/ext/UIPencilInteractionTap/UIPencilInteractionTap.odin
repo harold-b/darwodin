@@ -29,7 +29,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.PencilInteractionTap,
-    init: proc(self: ^UI.PencilInteractionTap) -> ^UI.PencilInteractionTap,
+    init: proc(self: ^UI.PencilInteractionTap) -> instancetype,
     timestamp: proc(self: ^UI.PencilInteractionTap) -> NS.TimeInterval,
     hoverPose: proc(self: ^UI.PencilInteractionTap) -> ^UI.PencilHoverPose,
 }
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PencilInteractionTap, _: SEL) -> ^UI.PencilInteractionTap {
+        init :: proc "c" (self: ^UI.PencilInteractionTap, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

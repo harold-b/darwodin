@@ -25,16 +25,16 @@ BarButtonItemAppearance :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BarButtonItemAppearance, objc_selector="init", objc_name="init")
-    BarButtonItemAppearance_init :: proc(self: ^BarButtonItemAppearance) -> ^BarButtonItemAppearance ---
+    BarButtonItemAppearance_init :: proc(self: ^BarButtonItemAppearance) -> instancetype ---
 
     @(objc_type=BarButtonItemAppearance, objc_selector="initWithStyle:", objc_name="initWithStyle")
-    BarButtonItemAppearance_initWithStyle :: proc(self: ^BarButtonItemAppearance, style: BarButtonItemStyle) -> ^BarButtonItemAppearance ---
+    BarButtonItemAppearance_initWithStyle :: proc(self: ^BarButtonItemAppearance, style: BarButtonItemStyle) -> instancetype ---
 
     @(objc_type=BarButtonItemAppearance, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    BarButtonItemAppearance_initWithCoder :: proc(self: ^BarButtonItemAppearance, coder: ^NS.Coder) -> ^BarButtonItemAppearance ---
+    BarButtonItemAppearance_initWithCoder :: proc(self: ^BarButtonItemAppearance, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=BarButtonItemAppearance, objc_selector="copy", objc_name="copy")
-    BarButtonItemAppearance_copy :: proc(self: ^BarButtonItemAppearance) -> ^BarButtonItemAppearance ---
+    BarButtonItemAppearance_copy :: proc(self: ^BarButtonItemAppearance) -> instancetype ---
 
     @(objc_type=BarButtonItemAppearance, objc_selector="configureWithDefaultForStyle:", objc_name="configureWithDefaultForStyle")
     BarButtonItemAppearance_configureWithDefaultForStyle :: proc(self: ^BarButtonItemAppearance, style: BarButtonItemStyle) ---

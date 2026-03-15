@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    settingsForTypes: proc(types: UI.UserNotificationType, categories: ^NS.Set) -> ^UI.UserNotificationSettings,
+    settingsForTypes: proc(types: UI.UserNotificationType, categories: ^NS.Set) -> instancetype,
     types: proc(self: ^UI.UserNotificationSettings) -> UI.UserNotificationType,
     categories: proc(self: ^UI.UserNotificationSettings) -> ^NS.Set,
 }
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.settingsForTypes != nil {
-        settingsForTypes :: proc "c" (self: Class, _: SEL, types: UI.UserNotificationType, categories: ^NS.Set) -> ^UI.UserNotificationSettings {
+        settingsForTypes :: proc "c" (self: Class, _: SEL, types: UI.UserNotificationType, categories: ^NS.Set) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

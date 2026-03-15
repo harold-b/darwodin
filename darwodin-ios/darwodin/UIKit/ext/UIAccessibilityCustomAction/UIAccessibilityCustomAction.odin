@@ -28,14 +28,14 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithName_target_selector: proc(self: ^UI.AccessibilityCustomAction, name: ^NS.String, target: id, selector: SEL) -> ^UI.AccessibilityCustomAction,
-    initWithAttributedName_target_selector: proc(self: ^UI.AccessibilityCustomAction, attributedName: ^NS.AttributedString, target: id, selector: SEL) -> ^UI.AccessibilityCustomAction,
-    initWithName_image_target_selector: proc(self: ^UI.AccessibilityCustomAction, name: ^NS.String, image: ^UI.Image, target: id, selector: SEL) -> ^UI.AccessibilityCustomAction,
-    initWithAttributedName_image_target_selector: proc(self: ^UI.AccessibilityCustomAction, attributedName: ^NS.AttributedString, image: ^UI.Image, target: id, selector: SEL) -> ^UI.AccessibilityCustomAction,
-    initWithName_actionHandler: proc(self: ^UI.AccessibilityCustomAction, name: ^NS.String, actionHandler: UI.AccessibilityCustomActionHandler) -> ^UI.AccessibilityCustomAction,
-    initWithAttributedName_actionHandler: proc(self: ^UI.AccessibilityCustomAction, attributedName: ^NS.AttributedString, actionHandler: UI.AccessibilityCustomActionHandler) -> ^UI.AccessibilityCustomAction,
-    initWithName_image_actionHandler: proc(self: ^UI.AccessibilityCustomAction, name: ^NS.String, image: ^UI.Image, actionHandler: UI.AccessibilityCustomActionHandler) -> ^UI.AccessibilityCustomAction,
-    initWithAttributedName_image_actionHandler: proc(self: ^UI.AccessibilityCustomAction, attributedName: ^NS.AttributedString, image: ^UI.Image, actionHandler: UI.AccessibilityCustomActionHandler) -> ^UI.AccessibilityCustomAction,
+    initWithName_target_selector: proc(self: ^UI.AccessibilityCustomAction, name: ^NS.String, target: id, selector: SEL) -> instancetype,
+    initWithAttributedName_target_selector: proc(self: ^UI.AccessibilityCustomAction, attributedName: ^NS.AttributedString, target: id, selector: SEL) -> instancetype,
+    initWithName_image_target_selector: proc(self: ^UI.AccessibilityCustomAction, name: ^NS.String, image: ^UI.Image, target: id, selector: SEL) -> instancetype,
+    initWithAttributedName_image_target_selector: proc(self: ^UI.AccessibilityCustomAction, attributedName: ^NS.AttributedString, image: ^UI.Image, target: id, selector: SEL) -> instancetype,
+    initWithName_actionHandler: proc(self: ^UI.AccessibilityCustomAction, name: ^NS.String, actionHandler: UI.AccessibilityCustomActionHandler) -> instancetype,
+    initWithAttributedName_actionHandler: proc(self: ^UI.AccessibilityCustomAction, attributedName: ^NS.AttributedString, actionHandler: UI.AccessibilityCustomActionHandler) -> instancetype,
+    initWithName_image_actionHandler: proc(self: ^UI.AccessibilityCustomAction, name: ^NS.String, image: ^UI.Image, actionHandler: UI.AccessibilityCustomActionHandler) -> instancetype,
+    initWithAttributedName_image_actionHandler: proc(self: ^UI.AccessibilityCustomAction, attributedName: ^NS.AttributedString, image: ^UI.Image, actionHandler: UI.AccessibilityCustomActionHandler) -> instancetype,
     name: proc(self: ^UI.AccessibilityCustomAction) -> ^NS.String,
     setName: proc(self: ^UI.AccessibilityCustomAction, name: ^NS.String),
     image: proc(self: ^UI.AccessibilityCustomAction) -> ^UI.Image,
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithName_target_selector != nil {
-        initWithName_target_selector :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, name: ^NS.String, target: id, selector: SEL) -> ^UI.AccessibilityCustomAction {
+        initWithName_target_selector :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, name: ^NS.String, target: id, selector: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:target:selector:"), auto_cast initWithName_target_selector, "@@:@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedName_target_selector != nil {
-        initWithAttributedName_target_selector :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, attributedName: ^NS.AttributedString, target: id, selector: SEL) -> ^UI.AccessibilityCustomAction {
+        initWithAttributedName_target_selector :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, attributedName: ^NS.AttributedString, target: id, selector: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedName:target:selector:"), auto_cast initWithAttributedName_target_selector, "@@:@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithName_image_target_selector != nil {
-        initWithName_image_target_selector :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, name: ^NS.String, image: ^UI.Image, target: id, selector: SEL) -> ^UI.AccessibilityCustomAction {
+        initWithName_image_target_selector :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, name: ^NS.String, image: ^UI.Image, target: id, selector: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:image:target:selector:"), auto_cast initWithName_image_target_selector, "@@:@@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedName_image_target_selector != nil {
-        initWithAttributedName_image_target_selector :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, attributedName: ^NS.AttributedString, image: ^UI.Image, target: id, selector: SEL) -> ^UI.AccessibilityCustomAction {
+        initWithAttributedName_image_target_selector :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, attributedName: ^NS.AttributedString, image: ^UI.Image, target: id, selector: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedName:image:target:selector:"), auto_cast initWithAttributedName_image_target_selector, "@@:@@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithName_actionHandler != nil {
-        initWithName_actionHandler :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, name: ^NS.String, actionHandler: UI.AccessibilityCustomActionHandler) -> ^UI.AccessibilityCustomAction {
+        initWithName_actionHandler :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, name: ^NS.String, actionHandler: UI.AccessibilityCustomActionHandler) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:actionHandler:"), auto_cast initWithName_actionHandler, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedName_actionHandler != nil {
-        initWithAttributedName_actionHandler :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, attributedName: ^NS.AttributedString, actionHandler: UI.AccessibilityCustomActionHandler) -> ^UI.AccessibilityCustomAction {
+        initWithAttributedName_actionHandler :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, attributedName: ^NS.AttributedString, actionHandler: UI.AccessibilityCustomActionHandler) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedName:actionHandler:"), auto_cast initWithAttributedName_actionHandler, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.initWithName_image_actionHandler != nil {
-        initWithName_image_actionHandler :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, name: ^NS.String, image: ^UI.Image, actionHandler: UI.AccessibilityCustomActionHandler) -> ^UI.AccessibilityCustomAction {
+        initWithName_image_actionHandler :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, name: ^NS.String, image: ^UI.Image, actionHandler: UI.AccessibilityCustomActionHandler) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:image:actionHandler:"), auto_cast initWithName_image_actionHandler, "@@:@@?") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedName_image_actionHandler != nil {
-        initWithAttributedName_image_actionHandler :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, attributedName: ^NS.AttributedString, image: ^UI.Image, actionHandler: UI.AccessibilityCustomActionHandler) -> ^UI.AccessibilityCustomAction {
+        initWithAttributedName_image_actionHandler :: proc "c" (self: ^UI.AccessibilityCustomAction, _: SEL, attributedName: ^NS.AttributedString, image: ^UI.Image, actionHandler: UI.AccessibilityCustomActionHandler) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

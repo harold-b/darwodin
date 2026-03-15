@@ -30,16 +30,16 @@ Cell :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Cell, objc_selector="init", objc_name="init")
-    Cell_init :: proc(self: ^Cell) -> ^Cell ---
+    Cell_init :: proc(self: ^Cell) -> instancetype ---
 
     @(objc_type=Cell, objc_selector="initTextCell:", objc_name="initTextCell")
-    Cell_initTextCell :: proc(self: ^Cell, string: ^NS.String) -> ^Cell ---
+    Cell_initTextCell :: proc(self: ^Cell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=Cell, objc_selector="initImageCell:", objc_name="initImageCell")
-    Cell_initImageCell :: proc(self: ^Cell, image: ^NS.Image) -> ^Cell ---
+    Cell_initImageCell :: proc(self: ^Cell, image: ^NS.Image) -> instancetype ---
 
     @(objc_type=Cell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Cell_initWithCoder :: proc(self: ^Cell, coder: ^NS.Coder) -> ^Cell ---
+    Cell_initWithCoder :: proc(self: ^Cell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Cell, objc_selector="sendActionOn:", objc_name="sendActionOn")
     Cell_sendActionOn :: proc(self: ^Cell, mask: EventMask) -> NS.Integer ---

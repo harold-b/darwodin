@@ -24,22 +24,22 @@ NSCollectionLayoutDimension :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSCollectionLayoutDimension, objc_selector="fractionalWidthDimension:", objc_name="fractionalWidthDimension", objc_is_class_method=true)
-    NSCollectionLayoutDimension_fractionalWidthDimension :: proc(fractionalWidth: CG.Float) -> ^NSCollectionLayoutDimension ---
+    NSCollectionLayoutDimension_fractionalWidthDimension :: proc(fractionalWidth: CG.Float) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutDimension, objc_selector="fractionalHeightDimension:", objc_name="fractionalHeightDimension", objc_is_class_method=true)
-    NSCollectionLayoutDimension_fractionalHeightDimension :: proc(fractionalHeight: CG.Float) -> ^NSCollectionLayoutDimension ---
+    NSCollectionLayoutDimension_fractionalHeightDimension :: proc(fractionalHeight: CG.Float) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutDimension, objc_selector="absoluteDimension:", objc_name="absoluteDimension", objc_is_class_method=true)
-    NSCollectionLayoutDimension_absoluteDimension :: proc(absoluteDimension: CG.Float) -> ^NSCollectionLayoutDimension ---
+    NSCollectionLayoutDimension_absoluteDimension :: proc(absoluteDimension: CG.Float) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutDimension, objc_selector="estimatedDimension:", objc_name="estimatedDimension", objc_is_class_method=true)
-    NSCollectionLayoutDimension_estimatedDimension :: proc(estimatedDimension: CG.Float) -> ^NSCollectionLayoutDimension ---
+    NSCollectionLayoutDimension_estimatedDimension :: proc(estimatedDimension: CG.Float) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutDimension, objc_selector="uniformAcrossSiblingsWithEstimate:", objc_name="uniformAcrossSiblingsWithEstimate", objc_is_class_method=true)
-    NSCollectionLayoutDimension_uniformAcrossSiblingsWithEstimate :: proc(estimatedDimension: CG.Float) -> ^NSCollectionLayoutDimension ---
+    NSCollectionLayoutDimension_uniformAcrossSiblingsWithEstimate :: proc(estimatedDimension: CG.Float) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutDimension, objc_selector="init", objc_name="init")
-    NSCollectionLayoutDimension_init :: proc(self: ^NSCollectionLayoutDimension) -> ^NSCollectionLayoutDimension ---
+    NSCollectionLayoutDimension_init :: proc(self: ^NSCollectionLayoutDimension) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutDimension, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSCollectionLayoutDimension_new :: proc() -> ^NSCollectionLayoutDimension ---

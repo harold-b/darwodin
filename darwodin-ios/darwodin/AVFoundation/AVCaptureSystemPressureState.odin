@@ -23,7 +23,7 @@ CaptureSystemPressureState :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSystemPressureState, objc_selector="init", objc_name="init")
-    CaptureSystemPressureState_init :: proc(self: ^CaptureSystemPressureState) -> ^CaptureSystemPressureState ---
+    CaptureSystemPressureState_init :: proc(self: ^CaptureSystemPressureState) -> instancetype ---
 
     @(objc_type=CaptureSystemPressureState, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureSystemPressureState_new :: proc() -> ^CaptureSystemPressureState ---

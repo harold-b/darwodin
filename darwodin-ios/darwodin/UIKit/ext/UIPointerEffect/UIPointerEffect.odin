@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    effectWithPreview: proc(preview: ^UI.TargetedPreview) -> ^UI.PointerEffect,
-    init: proc(self: ^UI.PointerEffect) -> ^UI.PointerEffect,
+    effectWithPreview: proc(preview: ^UI.TargetedPreview) -> instancetype,
+    init: proc(self: ^UI.PointerEffect) -> instancetype,
     new: proc() -> ^UI.PointerEffect,
     preview: proc(self: ^UI.PointerEffect) -> ^UI.TargetedPreview,
 }
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.effectWithPreview != nil {
-        effectWithPreview :: proc "c" (self: Class, _: SEL, preview: ^UI.TargetedPreview) -> ^UI.PointerEffect {
+        effectWithPreview :: proc "c" (self: Class, _: SEL, preview: ^UI.TargetedPreview) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effectWithPreview:"), auto_cast effectWithPreview, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PointerEffect, _: SEL) -> ^UI.PointerEffect {
+        init :: proc "c" (self: ^UI.PointerEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -23,7 +23,7 @@ MIDIMetaEvent :: struct { using _: MusicEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDIMetaEvent, objc_selector="initWithType:data:", objc_name="initWithType")
-    MIDIMetaEvent_initWithType :: proc(self: ^MIDIMetaEvent, type: MIDIMetaEventType, data: ^NS.Data) -> ^MIDIMetaEvent ---
+    MIDIMetaEvent_initWithType :: proc(self: ^MIDIMetaEvent, type: MIDIMetaEventType, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=MIDIMetaEvent, objc_selector="type", objc_name="type")
     MIDIMetaEvent_type :: proc(self: ^MIDIMetaEvent) -> MIDIMetaEventType ---

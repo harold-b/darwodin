@@ -26,10 +26,10 @@ FilePromiseProvider :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FilePromiseProvider, objc_selector="initWithFileType:delegate:", objc_name="initWithFileType")
-    FilePromiseProvider_initWithFileType :: proc(self: ^FilePromiseProvider, fileType: ^NS.String, delegate: ^FilePromiseProviderDelegate) -> ^FilePromiseProvider ---
+    FilePromiseProvider_initWithFileType :: proc(self: ^FilePromiseProvider, fileType: ^NS.String, delegate: ^FilePromiseProviderDelegate) -> instancetype ---
 
     @(objc_type=FilePromiseProvider, objc_selector="init", objc_name="init")
-    FilePromiseProvider_init :: proc(self: ^FilePromiseProvider) -> ^FilePromiseProvider ---
+    FilePromiseProvider_init :: proc(self: ^FilePromiseProvider) -> instancetype ---
 
     @(objc_type=FilePromiseProvider, objc_selector="fileType", objc_name="fileType")
     FilePromiseProvider_fileType :: proc(self: ^FilePromiseProvider) -> ^NS.String ---

@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithLayoutManager_range: proc(self: ^UI.TextDragPreviewRenderer, layoutManager: ^UI.NSLayoutManager, range: NS._NSRange) -> ^UI.TextDragPreviewRenderer,
-    initWithLayoutManager_range_unifyRects: proc(self: ^UI.TextDragPreviewRenderer, layoutManager: ^UI.NSLayoutManager, range: NS._NSRange, unifyRects: bool) -> ^UI.TextDragPreviewRenderer,
+    initWithLayoutManager_range: proc(self: ^UI.TextDragPreviewRenderer, layoutManager: ^UI.NSLayoutManager, range: NS._NSRange) -> instancetype,
+    initWithLayoutManager_range_unifyRects: proc(self: ^UI.TextDragPreviewRenderer, layoutManager: ^UI.NSLayoutManager, range: NS._NSRange, unifyRects: bool) -> instancetype,
     new: proc() -> ^UI.TextDragPreviewRenderer,
-    init: proc(self: ^UI.TextDragPreviewRenderer) -> ^UI.TextDragPreviewRenderer,
+    init: proc(self: ^UI.TextDragPreviewRenderer) -> instancetype,
     adjustFirstLineRect: proc(self: ^UI.TextDragPreviewRenderer, firstLineRect: ^CG.Rect, bodyRect: ^CG.Rect, lastLineRect: ^CG.Rect, origin: CG.Point),
     layoutManager: proc(self: ^UI.TextDragPreviewRenderer) -> ^UI.NSLayoutManager,
     image: proc(self: ^UI.TextDragPreviewRenderer) -> ^UI.Image,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithLayoutManager_range != nil {
-        initWithLayoutManager_range :: proc "c" (self: ^UI.TextDragPreviewRenderer, _: SEL, layoutManager: ^UI.NSLayoutManager, range: NS._NSRange) -> ^UI.TextDragPreviewRenderer {
+        initWithLayoutManager_range :: proc "c" (self: ^UI.TextDragPreviewRenderer, _: SEL, layoutManager: ^UI.NSLayoutManager, range: NS._NSRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLayoutManager:range:"), auto_cast initWithLayoutManager_range, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.initWithLayoutManager_range_unifyRects != nil {
-        initWithLayoutManager_range_unifyRects :: proc "c" (self: ^UI.TextDragPreviewRenderer, _: SEL, layoutManager: ^UI.NSLayoutManager, range: NS._NSRange, unifyRects: bool) -> ^UI.TextDragPreviewRenderer {
+        initWithLayoutManager_range_unifyRects :: proc "c" (self: ^UI.TextDragPreviewRenderer, _: SEL, layoutManager: ^UI.NSLayoutManager, range: NS._NSRange, unifyRects: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextDragPreviewRenderer, _: SEL) -> ^UI.TextDragPreviewRenderer {
+        init :: proc "c" (self: ^UI.TextDragPreviewRenderer, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

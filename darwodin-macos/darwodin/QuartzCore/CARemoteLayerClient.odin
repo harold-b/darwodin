@@ -21,7 +21,7 @@ RemoteLayerClient :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RemoteLayerClient, objc_selector="initWithServerPort:", objc_name="initWithServerPort")
-    RemoteLayerClient_initWithServerPort :: proc(self: ^RemoteLayerClient, port: mach.port_t) -> ^RemoteLayerClient ---
+    RemoteLayerClient_initWithServerPort :: proc(self: ^RemoteLayerClient, port: mach.port_t) -> instancetype ---
 
     @(objc_type=RemoteLayerClient, objc_selector="invalidate", objc_name="invalidate")
     RemoteLayerClient_invalidate :: proc(self: ^RemoteLayerClient) ---

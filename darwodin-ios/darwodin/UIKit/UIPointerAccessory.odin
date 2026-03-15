@@ -24,13 +24,13 @@ PointerAccessory :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerAccessory, objc_selector="accessoryWithShape:position:", objc_name="accessoryWithShape", objc_is_class_method=true)
-    PointerAccessory_accessoryWithShape :: proc(shape: ^PointerShape, position: PointerAccessoryPosition) -> ^PointerAccessory ---
+    PointerAccessory_accessoryWithShape :: proc(shape: ^PointerShape, position: PointerAccessoryPosition) -> instancetype ---
 
     @(objc_type=PointerAccessory, objc_selector="arrowAccessoryWithPosition:", objc_name="arrowAccessoryWithPosition", objc_is_class_method=true)
-    PointerAccessory_arrowAccessoryWithPosition :: proc(position: PointerAccessoryPosition) -> ^PointerAccessory ---
+    PointerAccessory_arrowAccessoryWithPosition :: proc(position: PointerAccessoryPosition) -> instancetype ---
 
     @(objc_type=PointerAccessory, objc_selector="init", objc_name="init")
-    PointerAccessory_init :: proc(self: ^PointerAccessory) -> ^PointerAccessory ---
+    PointerAccessory_init :: proc(self: ^PointerAccessory) -> instancetype ---
 
     @(objc_type=PointerAccessory, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PointerAccessory_new :: proc() -> ^PointerAccessory ---

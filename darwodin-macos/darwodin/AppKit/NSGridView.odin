@@ -24,16 +24,16 @@ GridView :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GridView, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    GridView_initWithFrame :: proc(self: ^GridView, frameRect: NS.Rect) -> ^GridView ---
+    GridView_initWithFrame :: proc(self: ^GridView, frameRect: NS.Rect) -> instancetype ---
 
     @(objc_type=GridView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    GridView_initWithCoder :: proc(self: ^GridView, coder: ^NS.Coder) -> ^GridView ---
+    GridView_initWithCoder :: proc(self: ^GridView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=GridView, objc_selector="gridViewWithNumberOfColumns:rows:", objc_name="gridViewWithNumberOfColumns", objc_is_class_method=true)
-    GridView_gridViewWithNumberOfColumns :: proc(columnCount: NS.Integer, rowCount: NS.Integer) -> ^GridView ---
+    GridView_gridViewWithNumberOfColumns :: proc(columnCount: NS.Integer, rowCount: NS.Integer) -> instancetype ---
 
     @(objc_type=GridView, objc_selector="gridViewWithViews:", objc_name="gridViewWithViews", objc_is_class_method=true)
-    GridView_gridViewWithViews :: proc(rows: ^NS.Array) -> ^GridView ---
+    GridView_gridViewWithViews :: proc(rows: ^NS.Array) -> instancetype ---
 
     @(objc_type=GridView, objc_selector="rowAtIndex:", objc_name="rowAtIndex")
     GridView_rowAtIndex :: proc(self: ^GridView, index: NS.Integer) -> ^GridRow ---

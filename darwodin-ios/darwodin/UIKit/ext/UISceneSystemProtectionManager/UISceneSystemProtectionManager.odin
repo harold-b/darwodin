@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.SceneSystemProtectionManager) -> ^UI.SceneSystemProtectionManager,
+    init: proc(self: ^UI.SceneSystemProtectionManager) -> instancetype,
     new: proc() -> ^UI.SceneSystemProtectionManager,
     isUserAuthenticationEnabled: proc(self: ^UI.SceneSystemProtectionManager) -> bool,
 }
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SceneSystemProtectionManager, _: SEL) -> ^UI.SceneSystemProtectionManager {
+        init :: proc "c" (self: ^UI.SceneSystemProtectionManager, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

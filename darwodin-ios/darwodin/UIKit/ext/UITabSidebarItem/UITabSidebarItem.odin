@@ -30,8 +30,8 @@ VTable :: struct {
     super: NSObject.VTable,
     defaultContentConfiguration: proc(self: ^UI.TabSidebarItem) -> ^UI.ListContentConfiguration,
     defaultBackgroundConfiguration: proc(self: ^UI.TabSidebarItem) -> ^UI.BackgroundConfiguration,
-    itemFromRequest: proc(request: ^UI.TabSidebarItemRequest) -> ^UI.TabSidebarItem,
-    init: proc(self: ^UI.TabSidebarItem) -> ^UI.TabSidebarItem,
+    itemFromRequest: proc(request: ^UI.TabSidebarItemRequest) -> instancetype,
+    init: proc(self: ^UI.TabSidebarItem) -> instancetype,
     new: proc() -> ^UI.TabSidebarItem,
     tab: proc(self: ^UI.TabSidebarItem) -> ^UI.Tab,
     action: proc(self: ^UI.TabSidebarItem) -> ^UI.Action,
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultBackgroundConfiguration"), auto_cast defaultBackgroundConfiguration, "@@:") do panic("Failed to register objC method.")
     }
     if vt.itemFromRequest != nil {
-        itemFromRequest :: proc "c" (self: Class, _: SEL, request: ^UI.TabSidebarItemRequest) -> ^UI.TabSidebarItem {
+        itemFromRequest :: proc "c" (self: Class, _: SEL, request: ^UI.TabSidebarItemRequest) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("itemFromRequest:"), auto_cast itemFromRequest, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TabSidebarItem, _: SEL) -> ^UI.TabSidebarItem {
+        init :: proc "c" (self: ^UI.TabSidebarItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

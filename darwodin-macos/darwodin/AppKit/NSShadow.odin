@@ -27,7 +27,7 @@ Shadow :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Shadow, objc_selector="init", objc_name="init")
-    Shadow_init :: proc(self: ^Shadow) -> ^Shadow ---
+    Shadow_init :: proc(self: ^Shadow) -> instancetype ---
 
     @(objc_type=Shadow, objc_selector="set", objc_name="set")
     Shadow_set :: proc(self: ^Shadow) ---

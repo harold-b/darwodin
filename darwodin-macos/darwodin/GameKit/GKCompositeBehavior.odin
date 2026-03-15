@@ -19,10 +19,10 @@ CompositeBehavior :: struct { using _: Behavior, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CompositeBehavior, objc_selector="behaviorWithBehaviors:", objc_name="behaviorWithBehaviors_", objc_is_class_method=true)
-    CompositeBehavior_behaviorWithBehaviors_ :: proc(behaviors: ^NS.Array) -> ^CompositeBehavior ---
+    CompositeBehavior_behaviorWithBehaviors_ :: proc(behaviors: ^NS.Array) -> instancetype ---
 
     @(objc_type=CompositeBehavior, objc_selector="behaviorWithBehaviors:andWeights:", objc_name="behaviorWithBehaviors_andWeights", objc_is_class_method=true)
-    CompositeBehavior_behaviorWithBehaviors_andWeights :: proc(behaviors: ^NS.Array, weights: ^NS.Array) -> ^CompositeBehavior ---
+    CompositeBehavior_behaviorWithBehaviors_andWeights :: proc(behaviors: ^NS.Array, weights: ^NS.Array) -> instancetype ---
 
     @(objc_type=CompositeBehavior, objc_selector="setWeight:forBehavior:", objc_name="setWeight")
     CompositeBehavior_setWeight :: proc(self: ^CompositeBehavior, weight: cffi.float, behavior: ^Behavior) ---

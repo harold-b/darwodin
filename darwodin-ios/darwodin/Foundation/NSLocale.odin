@@ -29,10 +29,10 @@ foreign lib {
     Locale_displayNameForKey :: proc(self: ^Locale, key: ^String, value: id) -> ^String ---
 
     @(objc_type=Locale, objc_selector="initWithLocaleIdentifier:", objc_name="initWithLocaleIdentifier")
-    Locale_initWithLocaleIdentifier :: proc(self: ^Locale, string: ^String) -> ^Locale ---
+    Locale_initWithLocaleIdentifier :: proc(self: ^Locale, string: ^String) -> instancetype ---
 
     @(objc_type=Locale, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Locale_initWithCoder :: proc(self: ^Locale, coder: ^Coder) -> ^Locale ---
+    Locale_initWithCoder :: proc(self: ^Locale, coder: ^Coder) -> instancetype ---
 
     @(objc_type=Locale, objc_selector="localizedStringForLocaleIdentifier:", objc_name="localizedStringForLocaleIdentifier")
     Locale_localizedStringForLocaleIdentifier :: proc(self: ^Locale, localeIdentifier: ^String) -> ^String ---
@@ -122,10 +122,10 @@ foreign lib {
     Locale_alternateQuotationEndDelimiter :: proc(self: ^Locale) -> ^String ---
 
     @(objc_type=Locale, objc_selector="localeWithLocaleIdentifier:", objc_name="localeWithLocaleIdentifier", objc_is_class_method=true)
-    Locale_localeWithLocaleIdentifier :: proc(ident: ^String) -> ^Locale ---
+    Locale_localeWithLocaleIdentifier :: proc(ident: ^String) -> instancetype ---
 
     @(objc_type=Locale, objc_selector="init", objc_name="init")
-    Locale_init :: proc(self: ^Locale) -> ^Locale ---
+    Locale_init :: proc(self: ^Locale) -> instancetype ---
 
     @(objc_type=Locale, objc_selector="autoupdatingCurrentLocale", objc_name="autoupdatingCurrentLocale", objc_is_class_method=true)
     Locale_autoupdatingCurrentLocale :: proc() -> ^Locale ---

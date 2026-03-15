@@ -30,7 +30,7 @@ foreign lib {
     ResolvedShape_shapeByApplyingInset :: proc(self: ^ResolvedShape, inset: CG.Float) -> ^ResolvedShape ---
 
     @(objc_type=ResolvedShape, objc_selector="init", objc_name="init")
-    ResolvedShape_init :: proc(self: ^ResolvedShape) -> ^ResolvedShape ---
+    ResolvedShape_init :: proc(self: ^ResolvedShape) -> instancetype ---
 
     @(objc_type=ResolvedShape, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ResolvedShape_new :: proc() -> ^ResolvedShape ---

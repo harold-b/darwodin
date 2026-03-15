@@ -19,10 +19,10 @@ State :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=State, objc_selector="state", objc_name="state", objc_is_class_method=true)
-    State_state :: proc() -> ^State ---
+    State_state :: proc() -> instancetype ---
 
     @(objc_type=State, objc_selector="init", objc_name="init")
-    State_init :: proc(self: ^State) -> ^State ---
+    State_init :: proc(self: ^State) -> instancetype ---
 
     @(objc_type=State, objc_selector="isValidNextState:", objc_name="isValidNextState")
     State_isValidNextState :: proc(self: ^State, stateClass: Class) -> bool ---

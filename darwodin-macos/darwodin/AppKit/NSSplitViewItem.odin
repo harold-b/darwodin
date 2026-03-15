@@ -27,16 +27,16 @@ SplitViewItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SplitViewItem, objc_selector="splitViewItemWithViewController:", objc_name="splitViewItemWithViewController", objc_is_class_method=true)
-    SplitViewItem_splitViewItemWithViewController :: proc(viewController: ^ViewController) -> ^SplitViewItem ---
+    SplitViewItem_splitViewItemWithViewController :: proc(viewController: ^ViewController) -> instancetype ---
 
     @(objc_type=SplitViewItem, objc_selector="sidebarWithViewController:", objc_name="sidebarWithViewController", objc_is_class_method=true)
-    SplitViewItem_sidebarWithViewController :: proc(viewController: ^ViewController) -> ^SplitViewItem ---
+    SplitViewItem_sidebarWithViewController :: proc(viewController: ^ViewController) -> instancetype ---
 
     @(objc_type=SplitViewItem, objc_selector="contentListWithViewController:", objc_name="contentListWithViewController", objc_is_class_method=true)
-    SplitViewItem_contentListWithViewController :: proc(viewController: ^ViewController) -> ^SplitViewItem ---
+    SplitViewItem_contentListWithViewController :: proc(viewController: ^ViewController) -> instancetype ---
 
     @(objc_type=SplitViewItem, objc_selector="inspectorWithViewController:", objc_name="inspectorWithViewController", objc_is_class_method=true)
-    SplitViewItem_inspectorWithViewController :: proc(viewController: ^ViewController) -> ^SplitViewItem ---
+    SplitViewItem_inspectorWithViewController :: proc(viewController: ^ViewController) -> instancetype ---
 
     @(objc_type=SplitViewItem, objc_selector="behavior", objc_name="behavior")
     SplitViewItem_behavior :: proc(self: ^SplitViewItem) -> SplitViewItemBehavior ---

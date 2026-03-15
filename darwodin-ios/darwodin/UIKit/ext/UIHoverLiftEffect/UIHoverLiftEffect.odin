@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    effect: proc() -> ^UI.HoverLiftEffect,
-    init: proc(self: ^UI.HoverLiftEffect) -> ^UI.HoverLiftEffect,
+    effect: proc() -> instancetype,
+    init: proc(self: ^UI.HoverLiftEffect) -> instancetype,
     new: proc() -> ^UI.HoverLiftEffect,
 }
 
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.effect != nil {
-        effect :: proc "c" (self: Class, _: SEL) -> ^UI.HoverLiftEffect {
+        effect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.HoverLiftEffect, _: SEL) -> ^UI.HoverLiftEffect {
+        init :: proc "c" (self: ^UI.HoverLiftEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

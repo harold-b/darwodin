@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithRoundingMode: proc(self: ^NS.DecimalNumberHandler, roundingMode: NS.RoundingMode, scale: cffi.short, exact: bool, overflow: bool, underflow: bool, divideByZero: bool) -> ^NS.DecimalNumberHandler,
-    decimalNumberHandlerWithRoundingMode: proc(roundingMode: NS.RoundingMode, scale: cffi.short, exact: bool, overflow: bool, underflow: bool, divideByZero: bool) -> ^NS.DecimalNumberHandler,
+    initWithRoundingMode: proc(self: ^NS.DecimalNumberHandler, roundingMode: NS.RoundingMode, scale: cffi.short, exact: bool, overflow: bool, underflow: bool, divideByZero: bool) -> instancetype,
+    decimalNumberHandlerWithRoundingMode: proc(roundingMode: NS.RoundingMode, scale: cffi.short, exact: bool, overflow: bool, underflow: bool, divideByZero: bool) -> instancetype,
     defaultDecimalNumberHandler: proc() -> ^NS.DecimalNumberHandler,
 }
 
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithRoundingMode != nil {
-        initWithRoundingMode :: proc "c" (self: ^NS.DecimalNumberHandler, _: SEL, roundingMode: NS.RoundingMode, scale: cffi.short, exact: bool, overflow: bool, underflow: bool, divideByZero: bool) -> ^NS.DecimalNumberHandler {
+        initWithRoundingMode :: proc "c" (self: ^NS.DecimalNumberHandler, _: SEL, roundingMode: NS.RoundingMode, scale: cffi.short, exact: bool, overflow: bool, underflow: bool, divideByZero: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRoundingMode:scale:raiseOnExactness:raiseOnOverflow:raiseOnUnderflow:raiseOnDivideByZero:"), auto_cast initWithRoundingMode, "@@:LsBBBB") do panic("Failed to register objC method.")
     }
     if vt.decimalNumberHandlerWithRoundingMode != nil {
-        decimalNumberHandlerWithRoundingMode :: proc "c" (self: Class, _: SEL, roundingMode: NS.RoundingMode, scale: cffi.short, exact: bool, overflow: bool, underflow: bool, divideByZero: bool) -> ^NS.DecimalNumberHandler {
+        decimalNumberHandlerWithRoundingMode :: proc "c" (self: Class, _: SEL, roundingMode: NS.RoundingMode, scale: cffi.short, exact: bool, overflow: bool, underflow: bool, divideByZero: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

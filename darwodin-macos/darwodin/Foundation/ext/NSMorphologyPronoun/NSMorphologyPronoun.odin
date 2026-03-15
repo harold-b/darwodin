@@ -27,8 +27,8 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^NS.MorphologyPronoun,
-    init: proc(self: ^NS.MorphologyPronoun) -> ^NS.MorphologyPronoun,
-    initWithPronoun: proc(self: ^NS.MorphologyPronoun, pronoun: ^NS.String, morphology: ^NS.Morphology, dependentMorphology: ^NS.Morphology) -> ^NS.MorphologyPronoun,
+    init: proc(self: ^NS.MorphologyPronoun) -> instancetype,
+    initWithPronoun: proc(self: ^NS.MorphologyPronoun, pronoun: ^NS.String, morphology: ^NS.Morphology, dependentMorphology: ^NS.Morphology) -> instancetype,
     pronoun: proc(self: ^NS.MorphologyPronoun) -> ^NS.String,
     morphology: proc(self: ^NS.MorphologyPronoun) -> ^NS.Morphology,
     dependentMorphology: proc(self: ^NS.MorphologyPronoun) -> ^NS.Morphology,
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.MorphologyPronoun, _: SEL) -> ^NS.MorphologyPronoun {
+        init :: proc "c" (self: ^NS.MorphologyPronoun, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithPronoun != nil {
-        initWithPronoun :: proc "c" (self: ^NS.MorphologyPronoun, _: SEL, pronoun: ^NS.String, morphology: ^NS.Morphology, dependentMorphology: ^NS.Morphology) -> ^NS.MorphologyPronoun {
+        initWithPronoun :: proc "c" (self: ^NS.MorphologyPronoun, _: SEL, pronoun: ^NS.String, morphology: ^NS.Morphology, dependentMorphology: ^NS.Morphology) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

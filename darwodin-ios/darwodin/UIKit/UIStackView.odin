@@ -22,13 +22,13 @@ StackView :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=StackView, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    StackView_initWithFrame :: proc(self: ^StackView, frame: CG.Rect) -> ^StackView ---
+    StackView_initWithFrame :: proc(self: ^StackView, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=StackView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    StackView_initWithCoder :: proc(self: ^StackView, coder: ^NS.Coder) -> ^StackView ---
+    StackView_initWithCoder :: proc(self: ^StackView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=StackView, objc_selector="initWithArrangedSubviews:", objc_name="initWithArrangedSubviews")
-    StackView_initWithArrangedSubviews :: proc(self: ^StackView, views: ^NS.Array) -> ^StackView ---
+    StackView_initWithArrangedSubviews :: proc(self: ^StackView, views: ^NS.Array) -> instancetype ---
 
     @(objc_type=StackView, objc_selector="addArrangedSubview:", objc_name="addArrangedSubview")
     StackView_addArrangedSubview :: proc(self: ^StackView, view: ^View) ---

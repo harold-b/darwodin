@@ -30,11 +30,11 @@ import "../NSButton"
 
 VTable :: struct {
     super: NSButton.VTable,
-    popUpButtonWithMenu: proc(menu: ^AK.Menu, target: id, action: SEL) -> ^AK.PopUpButton,
-    pullDownButtonWithTitle_menu: proc(title: ^NS.String, menu: ^AK.Menu) -> ^AK.PopUpButton,
-    pullDownButtonWithImage: proc(image: ^NS.Image, menu: ^AK.Menu) -> ^AK.PopUpButton,
-    pullDownButtonWithTitle_image_menu: proc(title: ^NS.String, image: ^NS.Image, menu: ^AK.Menu) -> ^AK.PopUpButton,
-    initWithFrame: proc(self: ^AK.PopUpButton, buttonFrame: NS.Rect, flag: bool) -> ^AK.PopUpButton,
+    popUpButtonWithMenu: proc(menu: ^AK.Menu, target: id, action: SEL) -> instancetype,
+    pullDownButtonWithTitle_menu: proc(title: ^NS.String, menu: ^AK.Menu) -> instancetype,
+    pullDownButtonWithImage: proc(image: ^NS.Image, menu: ^AK.Menu) -> instancetype,
+    pullDownButtonWithTitle_image_menu: proc(title: ^NS.String, image: ^NS.Image, menu: ^AK.Menu) -> instancetype,
+    initWithFrame: proc(self: ^AK.PopUpButton, buttonFrame: NS.Rect, flag: bool) -> instancetype,
     addItemWithTitle: proc(self: ^AK.PopUpButton, title: ^NS.String),
     addItemsWithTitles: proc(self: ^AK.PopUpButton, itemTitles: ^NS.Array),
     insertItemWithTitle: proc(self: ^AK.PopUpButton, title: ^NS.String, index: NS.Integer),
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSButton.extend(cls, &vt.super)
 
     if vt.popUpButtonWithMenu != nil {
-        popUpButtonWithMenu :: proc "c" (self: Class, _: SEL, menu: ^AK.Menu, target: id, action: SEL) -> ^AK.PopUpButton {
+        popUpButtonWithMenu :: proc "c" (self: Class, _: SEL, menu: ^AK.Menu, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("popUpButtonWithMenu:target:action:"), auto_cast popUpButtonWithMenu, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.pullDownButtonWithTitle_menu != nil {
-        pullDownButtonWithTitle_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, menu: ^AK.Menu) -> ^AK.PopUpButton {
+        pullDownButtonWithTitle_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, menu: ^AK.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithTitle:menu:"), auto_cast pullDownButtonWithTitle_menu, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.pullDownButtonWithImage != nil {
-        pullDownButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image, menu: ^AK.Menu) -> ^AK.PopUpButton {
+        pullDownButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image, menu: ^AK.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithImage:menu:"), auto_cast pullDownButtonWithImage, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.pullDownButtonWithTitle_image_menu != nil {
-        pullDownButtonWithTitle_image_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^NS.Image, menu: ^AK.Menu) -> ^AK.PopUpButton {
+        pullDownButtonWithTitle_image_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^NS.Image, menu: ^AK.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithTitle:image:menu:"), auto_cast pullDownButtonWithTitle_image_menu, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.PopUpButton, _: SEL, buttonFrame: NS.Rect, flag: bool) -> ^AK.PopUpButton {
+        initWithFrame :: proc "c" (self: ^AK.PopUpButton, _: SEL, buttonFrame: NS.Rect, flag: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

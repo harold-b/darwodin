@@ -30,38 +30,38 @@ foreign lib {
     SymbolEffectOptions_new :: proc() -> ^SymbolEffectOptions ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="init", objc_name="init")
-    SymbolEffectOptions_init :: proc(self: ^SymbolEffectOptions) -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_init :: proc(self: ^SymbolEffectOptions) -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="options", objc_name="options", objc_is_class_method=true)
-    SymbolEffectOptions_options :: proc() -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_options :: proc() -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithRepeating", objc_name="optionsWithRepeatingStatic", objc_is_class_method=true)
-    SymbolEffectOptions_optionsWithRepeatingStatic :: proc() -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithRepeatingStatic :: proc() -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithRepeating", objc_name="optionsWithRepeating")
-    SymbolEffectOptions_optionsWithRepeating :: proc(self: ^SymbolEffectOptions) -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithRepeating :: proc(self: ^SymbolEffectOptions) -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithNonRepeating", objc_name="optionsWithNonRepeatingStatic", objc_is_class_method=true)
-    SymbolEffectOptions_optionsWithNonRepeatingStatic :: proc() -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithNonRepeatingStatic :: proc() -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithNonRepeating", objc_name="optionsWithNonRepeating")
-    SymbolEffectOptions_optionsWithNonRepeating :: proc(self: ^SymbolEffectOptions) -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithNonRepeating :: proc(self: ^SymbolEffectOptions) -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithRepeatCount:", objc_name="optionsWithRepeatCountStatic", objc_is_class_method=true)
-    SymbolEffectOptions_optionsWithRepeatCountStatic :: proc(count: NS.Integer) -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithRepeatCountStatic :: proc(count: NS.Integer) -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithRepeatCount:", objc_name="optionsWithRepeatCount")
-    SymbolEffectOptions_optionsWithRepeatCount :: proc(self: ^SymbolEffectOptions, count: NS.Integer) -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithRepeatCount :: proc(self: ^SymbolEffectOptions, count: NS.Integer) -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithSpeed:", objc_name="optionsWithSpeedStatic", objc_is_class_method=true)
-    SymbolEffectOptions_optionsWithSpeedStatic :: proc(speed: cffi.double) -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithSpeedStatic :: proc(speed: cffi.double) -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithSpeed:", objc_name="optionsWithSpeed")
-    SymbolEffectOptions_optionsWithSpeed :: proc(self: ^SymbolEffectOptions, speed: cffi.double) -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithSpeed :: proc(self: ^SymbolEffectOptions, speed: cffi.double) -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithRepeatBehavior:", objc_name="optionsWithRepeatBehaviorStatic", objc_is_class_method=true)
-    SymbolEffectOptions_optionsWithRepeatBehaviorStatic :: proc(behavior: ^SymbolEffectOptionsRepeatBehavior) -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithRepeatBehaviorStatic :: proc(behavior: ^SymbolEffectOptionsRepeatBehavior) -> instancetype ---
 
     @(objc_type=SymbolEffectOptions, objc_selector="optionsWithRepeatBehavior:", objc_name="optionsWithRepeatBehavior")
-    SymbolEffectOptions_optionsWithRepeatBehavior :: proc(self: ^SymbolEffectOptions, behavior: ^SymbolEffectOptionsRepeatBehavior) -> ^SymbolEffectOptions ---
+    SymbolEffectOptions_optionsWithRepeatBehavior :: proc(self: ^SymbolEffectOptions, behavior: ^SymbolEffectOptionsRepeatBehavior) -> instancetype ---
 }

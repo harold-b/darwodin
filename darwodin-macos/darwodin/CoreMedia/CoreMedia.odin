@@ -844,7 +844,7 @@ foreign lib {
     SEncoderGetHasDetachedContent :: proc(cmsEncoder: SEncoderRef, detachedContentOut: ^CF.Boolean) -> CF.OSStatus ---
 
     @(link_name="CMSEncoderSetEncapsulatedContentType")
-    SEncoderSetEncapsulatedContentType :: proc(cmsEncoder: SEncoderRef, eContentType: ^Sec.cssm_data) -> CF.OSStatus ---
+    SEncoderSetEncapsulatedContentType :: proc(cmsEncoder: SEncoderRef, eContentType: ^cssm_data) -> CF.OSStatus ---
 
     @(link_name="CMSEncoderSetEncapsulatedContentTypeOID")
     SEncoderSetEncapsulatedContentTypeOID :: proc(cmsEncoder: SEncoderRef, eContentTypeOID: CF.TypeRef) -> CF.OSStatus ---
@@ -874,7 +874,7 @@ foreign lib {
     SEncoderCopyEncodedContent :: proc(cmsEncoder: SEncoderRef, encodedContentOut: ^CF.DataRef) -> CF.OSStatus ---
 
     @(link_name="CMSEncode")
-    SEncode :: proc(signers: CF.TypeRef, recipients: CF.TypeRef, eContentType: ^Sec.cssm_data, detachedContent: CF.Boolean, signedAttributes: SSignedAttributes, content: rawptr, contentLen: cffi.size_t, encodedContentOut: ^CF.DataRef) -> CF.OSStatus ---
+    SEncode :: proc(signers: CF.TypeRef, recipients: CF.TypeRef, eContentType: ^cssm_data, detachedContent: CF.Boolean, signedAttributes: SSignedAttributes, content: rawptr, contentLen: cffi.size_t, encodedContentOut: ^CF.DataRef) -> CF.OSStatus ---
 
     @(link_name="CMSEncodeContent")
     SEncodeContent :: proc(signers: CF.TypeRef, recipients: CF.TypeRef, eContentTypeOID: CF.TypeRef, detachedContent: CF.Boolean, signedAttributes: SSignedAttributes, content: rawptr, contentLen: cffi.size_t, encodedContentOut: ^CF.DataRef) -> CF.OSStatus ---

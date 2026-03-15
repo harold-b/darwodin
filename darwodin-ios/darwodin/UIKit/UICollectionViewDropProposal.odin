@@ -22,7 +22,7 @@ CollectionViewDropProposal :: struct { using _: DropProposal, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewDropProposal, objc_selector="initWithDropOperation:intent:", objc_name="initWithDropOperation")
-    CollectionViewDropProposal_initWithDropOperation :: proc(self: ^CollectionViewDropProposal, operation: DropOperation, intent: CollectionViewDropIntent) -> ^CollectionViewDropProposal ---
+    CollectionViewDropProposal_initWithDropOperation :: proc(self: ^CollectionViewDropProposal, operation: DropOperation, intent: CollectionViewDropIntent) -> instancetype ---
 
     @(objc_type=CollectionViewDropProposal, objc_selector="intent", objc_name="intent")
     CollectionViewDropProposal_intent :: proc(self: ^CollectionViewDropProposal) -> CollectionViewDropIntent ---

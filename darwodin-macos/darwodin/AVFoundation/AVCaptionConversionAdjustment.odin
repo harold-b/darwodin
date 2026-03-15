@@ -23,7 +23,7 @@ CaptionConversionAdjustment :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionConversionAdjustment, objc_selector="init", objc_name="init")
-    CaptionConversionAdjustment_init :: proc(self: ^CaptionConversionAdjustment) -> ^CaptionConversionAdjustment ---
+    CaptionConversionAdjustment_init :: proc(self: ^CaptionConversionAdjustment) -> instancetype ---
 
     @(objc_type=CaptionConversionAdjustment, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptionConversionAdjustment_new :: proc() -> ^CaptionConversionAdjustment ---

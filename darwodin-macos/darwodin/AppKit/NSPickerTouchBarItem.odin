@@ -24,10 +24,10 @@ PickerTouchBarItem :: struct { using _: TouchBarItem, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PickerTouchBarItem, objc_selector="pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:", objc_name="pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action", objc_is_class_method=true)
-    PickerTouchBarItem_pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action :: proc(identifier: ^NS.String, labels: ^NS.Array, selectionMode: PickerTouchBarItemSelectionMode, target: id, action: SEL) -> ^PickerTouchBarItem ---
+    PickerTouchBarItem_pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action :: proc(identifier: ^NS.String, labels: ^NS.Array, selectionMode: PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=PickerTouchBarItem, objc_selector="pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:", objc_name="pickerTouchBarItemWithIdentifier_images_selectionMode_target_action", objc_is_class_method=true)
-    PickerTouchBarItem_pickerTouchBarItemWithIdentifier_images_selectionMode_target_action :: proc(identifier: ^NS.String, images: ^NS.Array, selectionMode: PickerTouchBarItemSelectionMode, target: id, action: SEL) -> ^PickerTouchBarItem ---
+    PickerTouchBarItem_pickerTouchBarItemWithIdentifier_images_selectionMode_target_action :: proc(identifier: ^NS.String, images: ^NS.Array, selectionMode: PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=PickerTouchBarItem, objc_selector="setImage:atIndex:", objc_name="setImage")
     PickerTouchBarItem_setImage :: proc(self: ^PickerTouchBarItem, image: ^NS.Image, index: NS.Integer) ---

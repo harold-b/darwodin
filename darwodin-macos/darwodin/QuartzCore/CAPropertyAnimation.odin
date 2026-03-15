@@ -21,7 +21,7 @@ PropertyAnimation :: struct { using _: Animation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PropertyAnimation, objc_selector="animationWithKeyPath:", objc_name="animationWithKeyPath", objc_is_class_method=true)
-    PropertyAnimation_animationWithKeyPath :: proc(path: ^NS.String) -> ^PropertyAnimation ---
+    PropertyAnimation_animationWithKeyPath :: proc(path: ^NS.String) -> instancetype ---
 
     @(objc_type=PropertyAnimation, objc_selector="keyPath", objc_name="keyPath")
     PropertyAnimation_keyPath :: proc(self: ^PropertyAnimation) -> ^NS.String ---

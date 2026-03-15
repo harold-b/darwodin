@@ -22,7 +22,7 @@ RefreshControl :: struct { using _: Control, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RefreshControl, objc_selector="init", objc_name="init")
-    RefreshControl_init :: proc(self: ^RefreshControl) -> ^RefreshControl ---
+    RefreshControl_init :: proc(self: ^RefreshControl) -> instancetype ---
 
     @(objc_type=RefreshControl, objc_selector="beginRefreshing", objc_name="beginRefreshing")
     RefreshControl_beginRefreshing :: proc(self: ^RefreshControl) ---

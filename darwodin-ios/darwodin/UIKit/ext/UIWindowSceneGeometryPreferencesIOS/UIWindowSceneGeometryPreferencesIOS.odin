@@ -28,8 +28,8 @@ import "../UIWindowSceneGeometryPreferences"
 
 VTable :: struct {
     super: UIWindowSceneGeometryPreferences.VTable,
-    init: proc(self: ^UI.WindowSceneGeometryPreferencesIOS) -> ^UI.WindowSceneGeometryPreferencesIOS,
-    initWithInterfaceOrientations: proc(self: ^UI.WindowSceneGeometryPreferencesIOS, interfaceOrientations: UI.InterfaceOrientationMask) -> ^UI.WindowSceneGeometryPreferencesIOS,
+    init: proc(self: ^UI.WindowSceneGeometryPreferencesIOS) -> instancetype,
+    initWithInterfaceOrientations: proc(self: ^UI.WindowSceneGeometryPreferencesIOS, interfaceOrientations: UI.InterfaceOrientationMask) -> instancetype,
     interfaceOrientations: proc(self: ^UI.WindowSceneGeometryPreferencesIOS) -> UI.InterfaceOrientationMask,
     setInterfaceOrientations: proc(self: ^UI.WindowSceneGeometryPreferencesIOS, interfaceOrientations: UI.InterfaceOrientationMask),
 }
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIWindowSceneGeometryPreferences.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesIOS, _: SEL) -> ^UI.WindowSceneGeometryPreferencesIOS {
+        init :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesIOS, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithInterfaceOrientations != nil {
-        initWithInterfaceOrientations :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesIOS, _: SEL, interfaceOrientations: UI.InterfaceOrientationMask) -> ^UI.WindowSceneGeometryPreferencesIOS {
+        initWithInterfaceOrientations :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesIOS, _: SEL, interfaceOrientations: UI.InterfaceOrientationMask) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

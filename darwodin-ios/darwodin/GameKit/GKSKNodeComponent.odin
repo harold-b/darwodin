@@ -21,10 +21,10 @@ SKNodeComponent :: struct { using _: Component,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SKNodeComponent, objc_selector="componentWithNode:", objc_name="componentWithNode", objc_is_class_method=true)
-    SKNodeComponent_componentWithNode :: proc(node: ^SKNode) -> ^SKNodeComponent ---
+    SKNodeComponent_componentWithNode :: proc(node: ^SKNode) -> instancetype ---
 
     @(objc_type=SKNodeComponent, objc_selector="initWithNode:", objc_name="initWithNode")
-    SKNodeComponent_initWithNode :: proc(self: ^SKNodeComponent, node: ^SKNode) -> ^SKNodeComponent ---
+    SKNodeComponent_initWithNode :: proc(self: ^SKNodeComponent, node: ^SKNode) -> instancetype ---
 
     @(objc_type=SKNodeComponent, objc_selector="node", objc_name="node")
     SKNodeComponent_node :: proc(self: ^SKNodeComponent) -> ^SKNode ---

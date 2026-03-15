@@ -23,7 +23,7 @@ MetricPlayerItemSeekDidCompleteEvent :: struct { using _: MetricPlayerItemRateCh
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="init", objc_name="init")
-    MetricPlayerItemSeekDidCompleteEvent_init :: proc(self: ^MetricPlayerItemSeekDidCompleteEvent) -> ^MetricPlayerItemSeekDidCompleteEvent ---
+    MetricPlayerItemSeekDidCompleteEvent_init :: proc(self: ^MetricPlayerItemSeekDidCompleteEvent) -> instancetype ---
 
     @(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricPlayerItemSeekDidCompleteEvent_new :: proc() -> ^MetricPlayerItemSeekDidCompleteEvent ---

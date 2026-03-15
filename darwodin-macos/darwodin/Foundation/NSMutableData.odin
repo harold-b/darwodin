@@ -50,16 +50,16 @@ foreign lib {
     MutableData_replaceBytesInRange_withBytes_length :: proc(self: ^MutableData, range: _NSRange, replacementBytes: rawptr, replacementLength: UInteger) ---
 
     @(objc_type=MutableData, objc_selector="dataWithCapacity:", objc_name="dataWithCapacity", objc_is_class_method=true)
-    MutableData_dataWithCapacity :: proc(aNumItems: UInteger) -> ^MutableData ---
+    MutableData_dataWithCapacity :: proc(aNumItems: UInteger) -> instancetype ---
 
     @(objc_type=MutableData, objc_selector="dataWithLength:", objc_name="dataWithLength", objc_is_class_method=true)
-    MutableData_dataWithLength :: proc(length: UInteger) -> ^MutableData ---
+    MutableData_dataWithLength :: proc(length: UInteger) -> instancetype ---
 
     @(objc_type=MutableData, objc_selector="initWithCapacity:", objc_name="initWithCapacity")
-    MutableData_initWithCapacity :: proc(self: ^MutableData, capacity: UInteger) -> ^MutableData ---
+    MutableData_initWithCapacity :: proc(self: ^MutableData, capacity: UInteger) -> instancetype ---
 
     @(objc_type=MutableData, objc_selector="initWithLength:", objc_name="initWithLength")
-    MutableData_initWithLength :: proc(self: ^MutableData, length: UInteger) -> ^MutableData ---
+    MutableData_initWithLength :: proc(self: ^MutableData, length: UInteger) -> instancetype ---
 
     @(objc_type=MutableData, objc_selector="decompressUsingAlgorithm:error:", objc_name="decompressUsingAlgorithm")
     MutableData_decompressUsingAlgorithm :: proc(self: ^MutableData, algorithm: DataCompressionAlgorithm, error: ^^Error) -> bool ---

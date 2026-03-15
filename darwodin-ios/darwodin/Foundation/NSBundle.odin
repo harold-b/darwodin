@@ -20,16 +20,16 @@ Bundle :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Bundle, objc_selector="bundleWithPath:", objc_name="bundleWithPath", objc_is_class_method=true)
-    Bundle_bundleWithPath :: proc(path: ^String) -> ^Bundle ---
+    Bundle_bundleWithPath :: proc(path: ^String) -> instancetype ---
 
     @(objc_type=Bundle, objc_selector="initWithPath:", objc_name="initWithPath")
-    Bundle_initWithPath :: proc(self: ^Bundle, path: ^String) -> ^Bundle ---
+    Bundle_initWithPath :: proc(self: ^Bundle, path: ^String) -> instancetype ---
 
     @(objc_type=Bundle, objc_selector="bundleWithURL:", objc_name="bundleWithURL", objc_is_class_method=true)
-    Bundle_bundleWithURL :: proc(url: ^URL) -> ^Bundle ---
+    Bundle_bundleWithURL :: proc(url: ^URL) -> instancetype ---
 
     @(objc_type=Bundle, objc_selector="initWithURL:", objc_name="initWithURL")
-    Bundle_initWithURL :: proc(self: ^Bundle, url: ^URL) -> ^Bundle ---
+    Bundle_initWithURL :: proc(self: ^Bundle, url: ^URL) -> instancetype ---
 
     @(objc_type=Bundle, objc_selector="bundleForClass:", objc_name="bundleForClass", objc_is_class_method=true)
     Bundle_bundleForClass :: proc(aClass: Class) -> ^Bundle ---

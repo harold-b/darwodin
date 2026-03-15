@@ -24,16 +24,16 @@ CubicTimingParameters :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CubicTimingParameters, objc_selector="init", objc_name="init")
-    CubicTimingParameters_init :: proc(self: ^CubicTimingParameters) -> ^CubicTimingParameters ---
+    CubicTimingParameters_init :: proc(self: ^CubicTimingParameters) -> instancetype ---
 
     @(objc_type=CubicTimingParameters, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CubicTimingParameters_initWithCoder :: proc(self: ^CubicTimingParameters, coder: ^NS.Coder) -> ^CubicTimingParameters ---
+    CubicTimingParameters_initWithCoder :: proc(self: ^CubicTimingParameters, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CubicTimingParameters, objc_selector="initWithAnimationCurve:", objc_name="initWithAnimationCurve")
-    CubicTimingParameters_initWithAnimationCurve :: proc(self: ^CubicTimingParameters, curve: ViewAnimationCurve) -> ^CubicTimingParameters ---
+    CubicTimingParameters_initWithAnimationCurve :: proc(self: ^CubicTimingParameters, curve: ViewAnimationCurve) -> instancetype ---
 
     @(objc_type=CubicTimingParameters, objc_selector="initWithControlPoint1:controlPoint2:", objc_name="initWithControlPoint1")
-    CubicTimingParameters_initWithControlPoint1 :: proc(self: ^CubicTimingParameters, point1: CG.Point, point2: CG.Point) -> ^CubicTimingParameters ---
+    CubicTimingParameters_initWithControlPoint1 :: proc(self: ^CubicTimingParameters, point1: CG.Point, point2: CG.Point) -> instancetype ---
 
     @(objc_type=CubicTimingParameters, objc_selector="animationCurve", objc_name="animationCurve")
     CubicTimingParameters_animationCurve :: proc(self: ^CubicTimingParameters) -> ViewAnimationCurve ---

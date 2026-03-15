@@ -25,22 +25,22 @@ Region :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Region, objc_selector="initWithRadius:", objc_name="initWithRadius")
-    Region_initWithRadius :: proc(self: ^Region, radius: CG.Float) -> ^Region ---
+    Region_initWithRadius :: proc(self: ^Region, radius: CG.Float) -> instancetype ---
 
     @(objc_type=Region, objc_selector="initWithSize:", objc_name="initWithSize")
-    Region_initWithSize :: proc(self: ^Region, size: CG.Size) -> ^Region ---
+    Region_initWithSize :: proc(self: ^Region, size: CG.Size) -> instancetype ---
 
     @(objc_type=Region, objc_selector="inverseRegion", objc_name="inverseRegion")
-    Region_inverseRegion :: proc(self: ^Region) -> ^Region ---
+    Region_inverseRegion :: proc(self: ^Region) -> instancetype ---
 
     @(objc_type=Region, objc_selector="regionByUnionWithRegion:", objc_name="regionByUnionWithRegion")
-    Region_regionByUnionWithRegion :: proc(self: ^Region, region: ^Region) -> ^Region ---
+    Region_regionByUnionWithRegion :: proc(self: ^Region, region: ^Region) -> instancetype ---
 
     @(objc_type=Region, objc_selector="regionByDifferenceFromRegion:", objc_name="regionByDifferenceFromRegion")
-    Region_regionByDifferenceFromRegion :: proc(self: ^Region, region: ^Region) -> ^Region ---
+    Region_regionByDifferenceFromRegion :: proc(self: ^Region, region: ^Region) -> instancetype ---
 
     @(objc_type=Region, objc_selector="regionByIntersectionWithRegion:", objc_name="regionByIntersectionWithRegion")
-    Region_regionByIntersectionWithRegion :: proc(self: ^Region, region: ^Region) -> ^Region ---
+    Region_regionByIntersectionWithRegion :: proc(self: ^Region, region: ^Region) -> instancetype ---
 
     @(objc_type=Region, objc_selector="containsPoint:", objc_name="containsPoint")
     Region_containsPoint :: proc(self: ^Region, point: CG.Point) -> bool ---

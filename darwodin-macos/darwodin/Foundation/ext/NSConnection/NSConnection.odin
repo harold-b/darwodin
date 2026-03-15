@@ -28,20 +28,20 @@ VTable :: struct {
     super: NSObject.VTable,
     allConnections: proc() -> ^NS.Array,
     defaultConnection: proc() -> ^NS.Connection,
-    connectionWithRegisteredName_host: proc(name: ^NS.String, hostName: ^NS.String) -> ^NS.Connection,
-    connectionWithRegisteredName_host_usingNameServer: proc(name: ^NS.String, hostName: ^NS.String, server: ^NS.PortNameServer) -> ^NS.Connection,
+    connectionWithRegisteredName_host: proc(name: ^NS.String, hostName: ^NS.String) -> instancetype,
+    connectionWithRegisteredName_host_usingNameServer: proc(name: ^NS.String, hostName: ^NS.String, server: ^NS.PortNameServer) -> instancetype,
     rootProxyForConnectionWithRegisteredName_host: proc(name: ^NS.String, hostName: ^NS.String) -> ^NS.DistantObject,
     rootProxyForConnectionWithRegisteredName_host_usingNameServer: proc(name: ^NS.String, hostName: ^NS.String, server: ^NS.PortNameServer) -> ^NS.DistantObject,
-    serviceConnectionWithName_rootObject_usingNameServer: proc(name: ^NS.String, root: id, server: ^NS.PortNameServer) -> ^NS.Connection,
-    serviceConnectionWithName_rootObject: proc(name: ^NS.String, root: id) -> ^NS.Connection,
+    serviceConnectionWithName_rootObject_usingNameServer: proc(name: ^NS.String, root: id, server: ^NS.PortNameServer) -> instancetype,
+    serviceConnectionWithName_rootObject: proc(name: ^NS.String, root: id) -> instancetype,
     invalidate: proc(self: ^NS.Connection),
     addRequestMode: proc(self: ^NS.Connection, rmode: ^NS.String),
     removeRequestMode: proc(self: ^NS.Connection, rmode: ^NS.String),
     registerName_: proc(self: ^NS.Connection, name: ^NS.String) -> bool,
     registerName_withNameServer: proc(self: ^NS.Connection, name: ^NS.String, server: ^NS.PortNameServer) -> bool,
-    connectionWithReceivePort: proc(receivePort: ^NS.Port, sendPort: ^NS.Port) -> ^NS.Connection,
+    connectionWithReceivePort: proc(receivePort: ^NS.Port, sendPort: ^NS.Port) -> instancetype,
     currentConversation: proc() -> id,
-    initWithReceivePort: proc(self: ^NS.Connection, receivePort: ^NS.Port, sendPort: ^NS.Port) -> ^NS.Connection,
+    initWithReceivePort: proc(self: ^NS.Connection, receivePort: ^NS.Port, sendPort: ^NS.Port) -> instancetype,
     enableMultipleThreads: proc(self: ^NS.Connection),
     addRunLoop: proc(self: ^NS.Connection, runloop: ^NS.RunLoop),
     removeRunLoop: proc(self: ^NS.Connection, runloop: ^NS.RunLoop),
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultConnection"), auto_cast defaultConnection, "@#:") do panic("Failed to register objC method.")
     }
     if vt.connectionWithRegisteredName_host != nil {
-        connectionWithRegisteredName_host :: proc "c" (self: Class, _: SEL, name: ^NS.String, hostName: ^NS.String) -> ^NS.Connection {
+        connectionWithRegisteredName_host :: proc "c" (self: Class, _: SEL, name: ^NS.String, hostName: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("connectionWithRegisteredName:host:"), auto_cast connectionWithRegisteredName_host, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.connectionWithRegisteredName_host_usingNameServer != nil {
-        connectionWithRegisteredName_host_usingNameServer :: proc "c" (self: Class, _: SEL, name: ^NS.String, hostName: ^NS.String, server: ^NS.PortNameServer) -> ^NS.Connection {
+        connectionWithRegisteredName_host_usingNameServer :: proc "c" (self: Class, _: SEL, name: ^NS.String, hostName: ^NS.String, server: ^NS.PortNameServer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("rootProxyForConnectionWithRegisteredName:host:usingNameServer:"), auto_cast rootProxyForConnectionWithRegisteredName_host_usingNameServer, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.serviceConnectionWithName_rootObject_usingNameServer != nil {
-        serviceConnectionWithName_rootObject_usingNameServer :: proc "c" (self: Class, _: SEL, name: ^NS.String, root: id, server: ^NS.PortNameServer) -> ^NS.Connection {
+        serviceConnectionWithName_rootObject_usingNameServer :: proc "c" (self: Class, _: SEL, name: ^NS.String, root: id, server: ^NS.PortNameServer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("serviceConnectionWithName:rootObject:usingNameServer:"), auto_cast serviceConnectionWithName_rootObject_usingNameServer, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.serviceConnectionWithName_rootObject != nil {
-        serviceConnectionWithName_rootObject :: proc "c" (self: Class, _: SEL, name: ^NS.String, root: id) -> ^NS.Connection {
+        serviceConnectionWithName_rootObject :: proc "c" (self: Class, _: SEL, name: ^NS.String, root: id) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -206,7 +206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("registerName:withNameServer:"), auto_cast registerName_withNameServer, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.connectionWithReceivePort != nil {
-        connectionWithReceivePort :: proc "c" (self: Class, _: SEL, receivePort: ^NS.Port, sendPort: ^NS.Port) -> ^NS.Connection {
+        connectionWithReceivePort :: proc "c" (self: Class, _: SEL, receivePort: ^NS.Port, sendPort: ^NS.Port) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -226,7 +226,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("currentConversation"), auto_cast currentConversation, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithReceivePort != nil {
-        initWithReceivePort :: proc "c" (self: ^NS.Connection, _: SEL, receivePort: ^NS.Port, sendPort: ^NS.Port) -> ^NS.Connection {
+        initWithReceivePort :: proc "c" (self: ^NS.Connection, _: SEL, receivePort: ^NS.Port, sendPort: ^NS.Port) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

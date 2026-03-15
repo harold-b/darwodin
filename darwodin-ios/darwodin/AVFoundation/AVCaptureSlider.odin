@@ -23,13 +23,13 @@ CaptureSlider :: struct { using _: CaptureControl, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSlider, objc_selector="initWithLocalizedTitle:symbolName:minValue:maxValue:", objc_name="initWithLocalizedTitle_symbolName_minValue_maxValue")
-    CaptureSlider_initWithLocalizedTitle_symbolName_minValue_maxValue :: proc(self: ^CaptureSlider, localizedTitle: ^NS.String, symbolName: ^NS.String, minValue: cffi.float, maxValue: cffi.float) -> ^CaptureSlider ---
+    CaptureSlider_initWithLocalizedTitle_symbolName_minValue_maxValue :: proc(self: ^CaptureSlider, localizedTitle: ^NS.String, symbolName: ^NS.String, minValue: cffi.float, maxValue: cffi.float) -> instancetype ---
 
     @(objc_type=CaptureSlider, objc_selector="initWithLocalizedTitle:symbolName:minValue:maxValue:step:", objc_name="initWithLocalizedTitle_symbolName_minValue_maxValue_step")
-    CaptureSlider_initWithLocalizedTitle_symbolName_minValue_maxValue_step :: proc(self: ^CaptureSlider, localizedTitle: ^NS.String, symbolName: ^NS.String, minValue: cffi.float, maxValue: cffi.float, step: cffi.float) -> ^CaptureSlider ---
+    CaptureSlider_initWithLocalizedTitle_symbolName_minValue_maxValue_step :: proc(self: ^CaptureSlider, localizedTitle: ^NS.String, symbolName: ^NS.String, minValue: cffi.float, maxValue: cffi.float, step: cffi.float) -> instancetype ---
 
     @(objc_type=CaptureSlider, objc_selector="initWithLocalizedTitle:symbolName:values:", objc_name="initWithLocalizedTitle_symbolName_values")
-    CaptureSlider_initWithLocalizedTitle_symbolName_values :: proc(self: ^CaptureSlider, localizedTitle: ^NS.String, symbolName: ^NS.String, values: ^NS.Array) -> ^CaptureSlider ---
+    CaptureSlider_initWithLocalizedTitle_symbolName_values :: proc(self: ^CaptureSlider, localizedTitle: ^NS.String, symbolName: ^NS.String, values: ^NS.Array) -> instancetype ---
 
     @(objc_type=CaptureSlider, objc_selector="setActionQueue:action:", objc_name="setActionQueue")
     CaptureSlider_setActionQueue :: proc(self: ^CaptureSlider, actionQueue: CF.dispatch_queue_t, action: ^Objc_Block(proc "c" (newValue: cffi.float))) ---

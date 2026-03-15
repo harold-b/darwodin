@@ -22,11 +22,11 @@ TabSidebarScrollTarget :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TabSidebarScrollTarget, objc_selector="targetForHeader", objc_name="targetForHeader", objc_is_class_method=true)
-    TabSidebarScrollTarget_targetForHeader :: proc() -> ^TabSidebarScrollTarget ---
+    TabSidebarScrollTarget_targetForHeader :: proc() -> instancetype ---
 
     @(objc_type=TabSidebarScrollTarget, objc_selector="targetForFooter", objc_name="targetForFooter", objc_is_class_method=true)
-    TabSidebarScrollTarget_targetForFooter :: proc() -> ^TabSidebarScrollTarget ---
+    TabSidebarScrollTarget_targetForFooter :: proc() -> instancetype ---
 
     @(objc_type=TabSidebarScrollTarget, objc_selector="targetForTab:", objc_name="targetForTab", objc_is_class_method=true)
-    TabSidebarScrollTarget_targetForTab :: proc(tab: ^Tab) -> ^TabSidebarScrollTarget ---
+    TabSidebarScrollTarget_targetForTab :: proc(tab: ^Tab) -> instancetype ---
 }

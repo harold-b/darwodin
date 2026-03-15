@@ -24,10 +24,10 @@ ContextMenuInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContextMenuInteraction, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    ContextMenuInteraction_initWithDelegate :: proc(self: ^ContextMenuInteraction, delegate: ^ContextMenuInteractionDelegate) -> ^ContextMenuInteraction ---
+    ContextMenuInteraction_initWithDelegate :: proc(self: ^ContextMenuInteraction, delegate: ^ContextMenuInteractionDelegate) -> instancetype ---
 
     @(objc_type=ContextMenuInteraction, objc_selector="init", objc_name="init")
-    ContextMenuInteraction_init :: proc(self: ^ContextMenuInteraction) -> ^ContextMenuInteraction ---
+    ContextMenuInteraction_init :: proc(self: ^ContextMenuInteraction) -> instancetype ---
 
     @(objc_type=ContextMenuInteraction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ContextMenuInteraction_new :: proc() -> ^ContextMenuInteraction ---

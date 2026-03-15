@@ -31,7 +31,7 @@ foreign lib {
     TabBarController_tabForIdentifier :: proc(self: ^TabBarController, identifier: ^NS.String) -> ^Tab ---
 
     @(objc_type=TabBarController, objc_selector="initWithTabs:", objc_name="initWithTabs")
-    TabBarController_initWithTabs :: proc(self: ^TabBarController, tabs: ^NS.Array) -> ^TabBarController ---
+    TabBarController_initWithTabs :: proc(self: ^TabBarController, tabs: ^NS.Array) -> instancetype ---
 
     @(objc_type=TabBarController, objc_selector="setTabBarHidden:animated:", objc_name="setTabBarHidden_animated")
     TabBarController_setTabBarHidden_animated :: proc(self: ^TabBarController, hidden: bool, animated: bool) ---

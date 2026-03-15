@@ -22,7 +22,7 @@ DynamicAnimator :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DynamicAnimator, objc_selector="initWithReferenceView:", objc_name="initWithReferenceView")
-    DynamicAnimator_initWithReferenceView :: proc(self: ^DynamicAnimator, view: ^View) -> ^DynamicAnimator ---
+    DynamicAnimator_initWithReferenceView :: proc(self: ^DynamicAnimator, view: ^View) -> instancetype ---
 
     @(objc_type=DynamicAnimator, objc_selector="addBehavior:", objc_name="addBehavior")
     DynamicAnimator_addBehavior :: proc(self: ^DynamicAnimator, behavior: ^DynamicBehavior) ---
@@ -58,7 +58,7 @@ foreign lib {
     DynamicAnimator_setDelegate :: proc(self: ^DynamicAnimator, delegate: ^DynamicAnimatorDelegate) ---
 
     @(objc_type=DynamicAnimator, objc_selector="initWithCollectionViewLayout:", objc_name="initWithCollectionViewLayout")
-    DynamicAnimator_initWithCollectionViewLayout :: proc(self: ^DynamicAnimator, layout: ^CollectionViewLayout) -> ^DynamicAnimator ---
+    DynamicAnimator_initWithCollectionViewLayout :: proc(self: ^DynamicAnimator, layout: ^CollectionViewLayout) -> instancetype ---
 
     @(objc_type=DynamicAnimator, objc_selector="layoutAttributesForCellAtIndexPath:", objc_name="layoutAttributesForCellAtIndexPath")
     DynamicAnimator_layoutAttributesForCellAtIndexPath :: proc(self: ^DynamicAnimator, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes ---

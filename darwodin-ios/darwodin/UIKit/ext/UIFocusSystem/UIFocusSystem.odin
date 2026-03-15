@@ -29,7 +29,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.FocusSystem,
-    init: proc(self: ^UI.FocusSystem) -> ^UI.FocusSystem,
+    init: proc(self: ^UI.FocusSystem) -> instancetype,
     focusSystemForEnvironment: proc(environment: ^UI.FocusEnvironment) -> ^UI.FocusSystem,
     requestFocusUpdateToEnvironment: proc(self: ^UI.FocusSystem, environment: ^UI.FocusEnvironment),
     updateFocusIfNeeded: proc(self: ^UI.FocusSystem),
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.FocusSystem, _: SEL) -> ^UI.FocusSystem {
+        init :: proc "c" (self: ^UI.FocusSystem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -27,7 +27,7 @@ TextBlock :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextBlock, objc_selector="init", objc_name="init")
-    TextBlock_init :: proc(self: ^TextBlock) -> ^TextBlock ---
+    TextBlock_init :: proc(self: ^TextBlock) -> instancetype ---
 
     @(objc_type=TextBlock, objc_selector="setValue:type:forDimension:", objc_name="setValue")
     TextBlock_setValue :: proc(self: ^TextBlock, val: CG.Float, type: TextBlockValueType, dimension: TextBlockDimension) ---

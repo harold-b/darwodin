@@ -28,22 +28,22 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    clearConfiguration: proc() -> ^UI.BackgroundConfiguration,
-    listCellConfiguration: proc() -> ^UI.BackgroundConfiguration,
-    listHeaderConfiguration: proc() -> ^UI.BackgroundConfiguration,
-    listFooterConfiguration: proc() -> ^UI.BackgroundConfiguration,
-    listAccompaniedSidebarCellConfiguration: proc() -> ^UI.BackgroundConfiguration,
+    clearConfiguration: proc() -> instancetype,
+    listCellConfiguration: proc() -> instancetype,
+    listHeaderConfiguration: proc() -> instancetype,
+    listFooterConfiguration: proc() -> instancetype,
+    listAccompaniedSidebarCellConfiguration: proc() -> instancetype,
     new: proc() -> ^UI.BackgroundConfiguration,
-    init: proc(self: ^UI.BackgroundConfiguration) -> ^UI.BackgroundConfiguration,
-    updatedConfigurationForState: proc(self: ^UI.BackgroundConfiguration, state: ^UI.ConfigurationState) -> ^UI.BackgroundConfiguration,
+    init: proc(self: ^UI.BackgroundConfiguration) -> instancetype,
+    updatedConfigurationForState: proc(self: ^UI.BackgroundConfiguration, state: ^UI.ConfigurationState) -> instancetype,
     resolvedBackgroundColorForTintColor: proc(self: ^UI.BackgroundConfiguration, tintColor: ^UI.Color) -> ^UI.Color,
     resolvedStrokeColorForTintColor: proc(self: ^UI.BackgroundConfiguration, tintColor: ^UI.Color) -> ^UI.Color,
-    listPlainCellConfiguration: proc() -> ^UI.BackgroundConfiguration,
-    listGroupedCellConfiguration: proc() -> ^UI.BackgroundConfiguration,
-    listSidebarCellConfiguration: proc() -> ^UI.BackgroundConfiguration,
-    listPlainHeaderFooterConfiguration: proc() -> ^UI.BackgroundConfiguration,
-    listGroupedHeaderFooterConfiguration: proc() -> ^UI.BackgroundConfiguration,
-    listSidebarHeaderConfiguration: proc() -> ^UI.BackgroundConfiguration,
+    listPlainCellConfiguration: proc() -> instancetype,
+    listGroupedCellConfiguration: proc() -> instancetype,
+    listSidebarCellConfiguration: proc() -> instancetype,
+    listPlainHeaderFooterConfiguration: proc() -> instancetype,
+    listGroupedHeaderFooterConfiguration: proc() -> instancetype,
+    listSidebarHeaderConfiguration: proc() -> instancetype,
     customView: proc(self: ^UI.BackgroundConfiguration) -> ^UI.View,
     setCustomView: proc(self: ^UI.BackgroundConfiguration, customView: ^UI.View),
     cornerRadius: proc(self: ^UI.BackgroundConfiguration) -> CG.Float,
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.clearConfiguration != nil {
-        clearConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        clearConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("clearConfiguration"), auto_cast clearConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listCellConfiguration != nil {
-        listCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listCellConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("listCellConfiguration"), auto_cast listCellConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listHeaderConfiguration != nil {
-        listHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("listHeaderConfiguration"), auto_cast listHeaderConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listFooterConfiguration != nil {
-        listFooterConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listFooterConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("listFooterConfiguration"), auto_cast listFooterConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listAccompaniedSidebarCellConfiguration != nil {
-        listAccompaniedSidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listAccompaniedSidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.BackgroundConfiguration, _: SEL) -> ^UI.BackgroundConfiguration {
+        init :: proc "c" (self: ^UI.BackgroundConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.updatedConfigurationForState != nil {
-        updatedConfigurationForState :: proc "c" (self: ^UI.BackgroundConfiguration, _: SEL, state: ^UI.ConfigurationState) -> ^UI.BackgroundConfiguration {
+        updatedConfigurationForState :: proc "c" (self: ^UI.BackgroundConfiguration, _: SEL, state: ^UI.ConfigurationState) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -181,7 +181,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resolvedStrokeColorForTintColor:"), auto_cast resolvedStrokeColorForTintColor, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.listPlainCellConfiguration != nil {
-        listPlainCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listPlainCellConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("listPlainCellConfiguration"), auto_cast listPlainCellConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listGroupedCellConfiguration != nil {
-        listGroupedCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listGroupedCellConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -201,7 +201,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("listGroupedCellConfiguration"), auto_cast listGroupedCellConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listSidebarCellConfiguration != nil {
-        listSidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listSidebarCellConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -211,7 +211,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("listSidebarCellConfiguration"), auto_cast listSidebarCellConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listPlainHeaderFooterConfiguration != nil {
-        listPlainHeaderFooterConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listPlainHeaderFooterConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -221,7 +221,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("listPlainHeaderFooterConfiguration"), auto_cast listPlainHeaderFooterConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listGroupedHeaderFooterConfiguration != nil {
-        listGroupedHeaderFooterConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listGroupedHeaderFooterConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -231,7 +231,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("listGroupedHeaderFooterConfiguration"), auto_cast listGroupedHeaderFooterConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.listSidebarHeaderConfiguration != nil {
-        listSidebarHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.BackgroundConfiguration {
+        listSidebarHeaderConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

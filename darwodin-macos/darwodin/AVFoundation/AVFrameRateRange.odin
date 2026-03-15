@@ -23,7 +23,7 @@ FrameRateRange :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FrameRateRange, objc_selector="init", objc_name="init")
-    FrameRateRange_init :: proc(self: ^FrameRateRange) -> ^FrameRateRange ---
+    FrameRateRange_init :: proc(self: ^FrameRateRange) -> instancetype ---
 
     @(objc_type=FrameRateRange, objc_selector="new", objc_name="new", objc_is_class_method=true)
     FrameRateRange_new :: proc() -> ^FrameRateRange ---

@@ -25,10 +25,10 @@ foreign lib {
     ScriptCommandDescription_init :: proc(self: ^ScriptCommandDescription) -> id ---
 
     @(objc_type=ScriptCommandDescription, objc_selector="initWithSuiteName:commandName:dictionary:", objc_name="initWithSuiteName")
-    ScriptCommandDescription_initWithSuiteName :: proc(self: ^ScriptCommandDescription, suiteName: ^String, commandName: ^String, commandDeclaration: ^Dictionary) -> ^ScriptCommandDescription ---
+    ScriptCommandDescription_initWithSuiteName :: proc(self: ^ScriptCommandDescription, suiteName: ^String, commandName: ^String, commandDeclaration: ^Dictionary) -> instancetype ---
 
     @(objc_type=ScriptCommandDescription, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ScriptCommandDescription_initWithCoder :: proc(self: ^ScriptCommandDescription, inCoder: ^Coder) -> ^ScriptCommandDescription ---
+    ScriptCommandDescription_initWithCoder :: proc(self: ^ScriptCommandDescription, inCoder: ^Coder) -> instancetype ---
 
     @(objc_type=ScriptCommandDescription, objc_selector="typeForArgumentWithName:", objc_name="typeForArgumentWithName")
     ScriptCommandDescription_typeForArgumentWithName :: proc(self: ^ScriptCommandDescription, argumentName: ^String) -> ^String ---

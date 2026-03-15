@@ -28,12 +28,12 @@ import "../NSCollectionLayoutItem"
 
 VTable :: struct {
     super: NSCollectionLayoutItem.VTable,
-    horizontalGroupWithLayoutSize_repeatingSubitem_count: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> ^UI.NSCollectionLayoutGroup,
-    horizontalGroupWithLayoutSize_subitems: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitems: ^NS.Array) -> ^UI.NSCollectionLayoutGroup,
-    verticalGroupWithLayoutSize_repeatingSubitem_count: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> ^UI.NSCollectionLayoutGroup,
-    verticalGroupWithLayoutSize_subitems: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitems: ^NS.Array) -> ^UI.NSCollectionLayoutGroup,
-    customGroupWithLayoutSize: proc(layoutSize: ^UI.NSCollectionLayoutSize, itemProvider: UI.NSCollectionLayoutGroupCustomItemProvider) -> ^UI.NSCollectionLayoutGroup,
-    init: proc(self: ^UI.NSCollectionLayoutGroup) -> ^UI.NSCollectionLayoutGroup,
+    horizontalGroupWithLayoutSize_repeatingSubitem_count: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> instancetype,
+    horizontalGroupWithLayoutSize_subitems: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitems: ^NS.Array) -> instancetype,
+    verticalGroupWithLayoutSize_repeatingSubitem_count: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> instancetype,
+    verticalGroupWithLayoutSize_subitems: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitems: ^NS.Array) -> instancetype,
+    customGroupWithLayoutSize: proc(layoutSize: ^UI.NSCollectionLayoutSize, itemProvider: UI.NSCollectionLayoutGroupCustomItemProvider) -> instancetype,
+    init: proc(self: ^UI.NSCollectionLayoutGroup) -> instancetype,
     new: proc() -> ^UI.NSCollectionLayoutGroup,
     visualDescription: proc(self: ^UI.NSCollectionLayoutGroup) -> ^NS.String,
     supplementaryItems: proc(self: ^UI.NSCollectionLayoutGroup) -> ^NS.Array,
@@ -41,8 +41,8 @@ VTable :: struct {
     interItemSpacing: proc(self: ^UI.NSCollectionLayoutGroup) -> ^UI.NSCollectionLayoutSpacing,
     setInterItemSpacing: proc(self: ^UI.NSCollectionLayoutGroup, interItemSpacing: ^UI.NSCollectionLayoutSpacing),
     subitems: proc(self: ^UI.NSCollectionLayoutGroup) -> ^NS.Array,
-    horizontalGroupWithLayoutSize_subitem_count: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> ^UI.NSCollectionLayoutGroup,
-    verticalGroupWithLayoutSize_subitem_count: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> ^UI.NSCollectionLayoutGroup,
+    horizontalGroupWithLayoutSize_subitem_count: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> instancetype,
+    verticalGroupWithLayoutSize_subitem_count: proc(layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionLayoutItem.extend(cls, &vt.super)
 
     if vt.horizontalGroupWithLayoutSize_repeatingSubitem_count != nil {
-        horizontalGroupWithLayoutSize_repeatingSubitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> ^UI.NSCollectionLayoutGroup {
+        horizontalGroupWithLayoutSize_repeatingSubitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("horizontalGroupWithLayoutSize:repeatingSubitem:count:"), auto_cast horizontalGroupWithLayoutSize_repeatingSubitem_count, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.horizontalGroupWithLayoutSize_subitems != nil {
-        horizontalGroupWithLayoutSize_subitems :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitems: ^NS.Array) -> ^UI.NSCollectionLayoutGroup {
+        horizontalGroupWithLayoutSize_subitems :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitems: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("horizontalGroupWithLayoutSize:subitems:"), auto_cast horizontalGroupWithLayoutSize_subitems, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.verticalGroupWithLayoutSize_repeatingSubitem_count != nil {
-        verticalGroupWithLayoutSize_repeatingSubitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> ^UI.NSCollectionLayoutGroup {
+        verticalGroupWithLayoutSize_repeatingSubitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("verticalGroupWithLayoutSize:repeatingSubitem:count:"), auto_cast verticalGroupWithLayoutSize_repeatingSubitem_count, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.verticalGroupWithLayoutSize_subitems != nil {
-        verticalGroupWithLayoutSize_subitems :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitems: ^NS.Array) -> ^UI.NSCollectionLayoutGroup {
+        verticalGroupWithLayoutSize_subitems :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitems: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("verticalGroupWithLayoutSize:subitems:"), auto_cast verticalGroupWithLayoutSize_subitems, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.customGroupWithLayoutSize != nil {
-        customGroupWithLayoutSize :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, itemProvider: UI.NSCollectionLayoutGroupCustomItemProvider) -> ^UI.NSCollectionLayoutGroup {
+        customGroupWithLayoutSize :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, itemProvider: UI.NSCollectionLayoutGroupCustomItemProvider) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("customGroupWithLayoutSize:itemProvider:"), auto_cast customGroupWithLayoutSize, "@#:@?") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSCollectionLayoutGroup, _: SEL) -> ^UI.NSCollectionLayoutGroup {
+        init :: proc "c" (self: ^UI.NSCollectionLayoutGroup, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("subitems"), auto_cast subitems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.horizontalGroupWithLayoutSize_subitem_count != nil {
-        horizontalGroupWithLayoutSize_subitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> ^UI.NSCollectionLayoutGroup {
+        horizontalGroupWithLayoutSize_subitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("horizontalGroupWithLayoutSize:subitem:count:"), auto_cast horizontalGroupWithLayoutSize_subitem_count, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.verticalGroupWithLayoutSize_subitem_count != nil {
-        verticalGroupWithLayoutSize_subitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> ^UI.NSCollectionLayoutGroup {
+        verticalGroupWithLayoutSize_subitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, subitem: ^UI.NSCollectionLayoutItem, count: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

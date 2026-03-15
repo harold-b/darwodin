@@ -23,10 +23,10 @@ MaterialPropertyConnection :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MaterialPropertyConnection, objc_selector="init", objc_name="init")
-    MaterialPropertyConnection_init :: proc(self: ^MaterialPropertyConnection) -> ^MaterialPropertyConnection ---
+    MaterialPropertyConnection_init :: proc(self: ^MaterialPropertyConnection) -> instancetype ---
 
     @(objc_type=MaterialPropertyConnection, objc_selector="initWithOutput:input:", objc_name="initWithOutput")
-    MaterialPropertyConnection_initWithOutput :: proc(self: ^MaterialPropertyConnection, output: ^MaterialProperty, input: ^MaterialProperty) -> ^MaterialPropertyConnection ---
+    MaterialPropertyConnection_initWithOutput :: proc(self: ^MaterialPropertyConnection, output: ^MaterialProperty, input: ^MaterialProperty) -> instancetype ---
 
     @(objc_type=MaterialPropertyConnection, objc_selector="output", objc_name="output")
     MaterialPropertyConnection_output :: proc(self: ^MaterialPropertyConnection) -> ^MaterialProperty ---

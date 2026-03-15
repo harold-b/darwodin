@@ -22,7 +22,7 @@ SceneWindowingBehaviors :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SceneWindowingBehaviors, objc_selector="init", objc_name="init")
-    SceneWindowingBehaviors_init :: proc(self: ^SceneWindowingBehaviors) -> ^SceneWindowingBehaviors ---
+    SceneWindowingBehaviors_init :: proc(self: ^SceneWindowingBehaviors) -> instancetype ---
 
     @(objc_type=SceneWindowingBehaviors, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SceneWindowingBehaviors_new :: proc() -> ^SceneWindowingBehaviors ---

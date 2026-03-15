@@ -29,12 +29,12 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.ImageConfiguration,
-    init: proc(self: ^UI.ImageConfiguration) -> ^UI.ImageConfiguration,
-    configurationWithTraitCollection: proc(self: ^UI.ImageConfiguration, traitCollection: ^UI.TraitCollection) -> ^UI.ImageConfiguration,
-    configurationWithTraitCollectionStatic: proc(traitCollection: ^UI.TraitCollection) -> ^UI.ImageConfiguration,
-    configurationWithLocale: proc(self: ^UI.ImageConfiguration, locale: ^NS.Locale) -> ^UI.ImageConfiguration,
-    configurationWithLocaleStatic: proc(locale: ^NS.Locale) -> ^UI.ImageConfiguration,
-    configurationByApplyingConfiguration: proc(self: ^UI.ImageConfiguration, otherConfiguration: ^UI.ImageConfiguration) -> ^UI.ImageConfiguration,
+    init: proc(self: ^UI.ImageConfiguration) -> instancetype,
+    configurationWithTraitCollection: proc(self: ^UI.ImageConfiguration, traitCollection: ^UI.TraitCollection) -> instancetype,
+    configurationWithTraitCollectionStatic: proc(traitCollection: ^UI.TraitCollection) -> instancetype,
+    configurationWithLocale: proc(self: ^UI.ImageConfiguration, locale: ^NS.Locale) -> instancetype,
+    configurationWithLocaleStatic: proc(locale: ^NS.Locale) -> instancetype,
+    configurationByApplyingConfiguration: proc(self: ^UI.ImageConfiguration, otherConfiguration: ^UI.ImageConfiguration) -> instancetype,
     traitCollection: proc(self: ^UI.ImageConfiguration) -> ^UI.TraitCollection,
     locale: proc(self: ^UI.ImageConfiguration) -> ^NS.Locale,
 }
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ImageConfiguration, _: SEL) -> ^UI.ImageConfiguration {
+        init :: proc "c" (self: ^UI.ImageConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.configurationWithTraitCollection != nil {
-        configurationWithTraitCollection :: proc "c" (self: ^UI.ImageConfiguration, _: SEL, traitCollection: ^UI.TraitCollection) -> ^UI.ImageConfiguration {
+        configurationWithTraitCollection :: proc "c" (self: ^UI.ImageConfiguration, _: SEL, traitCollection: ^UI.TraitCollection) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("configurationWithTraitCollection:"), auto_cast configurationWithTraitCollection, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.configurationWithTraitCollectionStatic != nil {
-        configurationWithTraitCollectionStatic :: proc "c" (self: Class, _: SEL, traitCollection: ^UI.TraitCollection) -> ^UI.ImageConfiguration {
+        configurationWithTraitCollectionStatic :: proc "c" (self: Class, _: SEL, traitCollection: ^UI.TraitCollection) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithTraitCollection:"), auto_cast configurationWithTraitCollectionStatic, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.configurationWithLocale != nil {
-        configurationWithLocale :: proc "c" (self: ^UI.ImageConfiguration, _: SEL, locale: ^NS.Locale) -> ^UI.ImageConfiguration {
+        configurationWithLocale :: proc "c" (self: ^UI.ImageConfiguration, _: SEL, locale: ^NS.Locale) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("configurationWithLocale:"), auto_cast configurationWithLocale, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.configurationWithLocaleStatic != nil {
-        configurationWithLocaleStatic :: proc "c" (self: Class, _: SEL, locale: ^NS.Locale) -> ^UI.ImageConfiguration {
+        configurationWithLocaleStatic :: proc "c" (self: Class, _: SEL, locale: ^NS.Locale) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithLocale:"), auto_cast configurationWithLocaleStatic, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.configurationByApplyingConfiguration != nil {
-        configurationByApplyingConfiguration :: proc "c" (self: ^UI.ImageConfiguration, _: SEL, otherConfiguration: ^UI.ImageConfiguration) -> ^UI.ImageConfiguration {
+        configurationByApplyingConfiguration :: proc "c" (self: ^UI.ImageConfiguration, _: SEL, otherConfiguration: ^UI.ImageConfiguration) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

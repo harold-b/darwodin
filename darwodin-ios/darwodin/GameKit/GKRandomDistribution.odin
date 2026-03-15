@@ -21,7 +21,7 @@ RandomDistribution :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RandomDistribution, objc_selector="initWithRandomSource:lowestValue:highestValue:", objc_name="initWithRandomSource")
-    RandomDistribution_initWithRandomSource :: proc(self: ^RandomDistribution, source: ^Random, lowestInclusive: NS.Integer, highestInclusive: NS.Integer) -> ^RandomDistribution ---
+    RandomDistribution_initWithRandomSource :: proc(self: ^RandomDistribution, source: ^Random, lowestInclusive: NS.Integer, highestInclusive: NS.Integer) -> instancetype ---
 
     @(objc_type=RandomDistribution, objc_selector="nextInt", objc_name="nextInt")
     RandomDistribution_nextInt :: proc(self: ^RandomDistribution) -> NS.Integer ---
@@ -36,16 +36,16 @@ foreign lib {
     RandomDistribution_nextBool :: proc(self: ^RandomDistribution) -> bool ---
 
     @(objc_type=RandomDistribution, objc_selector="distributionWithLowestValue:highestValue:", objc_name="distributionWithLowestValue", objc_is_class_method=true)
-    RandomDistribution_distributionWithLowestValue :: proc(lowestInclusive: NS.Integer, highestInclusive: NS.Integer) -> ^RandomDistribution ---
+    RandomDistribution_distributionWithLowestValue :: proc(lowestInclusive: NS.Integer, highestInclusive: NS.Integer) -> instancetype ---
 
     @(objc_type=RandomDistribution, objc_selector="distributionForDieWithSideCount:", objc_name="distributionForDieWithSideCount", objc_is_class_method=true)
-    RandomDistribution_distributionForDieWithSideCount :: proc(sideCount: NS.Integer) -> ^RandomDistribution ---
+    RandomDistribution_distributionForDieWithSideCount :: proc(sideCount: NS.Integer) -> instancetype ---
 
     @(objc_type=RandomDistribution, objc_selector="d6", objc_name="d6", objc_is_class_method=true)
-    RandomDistribution_d6 :: proc() -> ^RandomDistribution ---
+    RandomDistribution_d6 :: proc() -> instancetype ---
 
     @(objc_type=RandomDistribution, objc_selector="d20", objc_name="d20", objc_is_class_method=true)
-    RandomDistribution_d20 :: proc() -> ^RandomDistribution ---
+    RandomDistribution_d20 :: proc() -> instancetype ---
 
     @(objc_type=RandomDistribution, objc_selector="lowestValue", objc_name="lowestValue")
     RandomDistribution_lowestValue :: proc(self: ^RandomDistribution) -> NS.Integer ---

@@ -28,22 +28,22 @@ foreign lib {
     ImageConfiguration_new :: proc() -> ^ImageConfiguration ---
 
     @(objc_type=ImageConfiguration, objc_selector="init", objc_name="init")
-    ImageConfiguration_init :: proc(self: ^ImageConfiguration) -> ^ImageConfiguration ---
+    ImageConfiguration_init :: proc(self: ^ImageConfiguration) -> instancetype ---
 
     @(objc_type=ImageConfiguration, objc_selector="configurationWithTraitCollection:", objc_name="configurationWithTraitCollection")
-    ImageConfiguration_configurationWithTraitCollection :: proc(self: ^ImageConfiguration, traitCollection: ^TraitCollection) -> ^ImageConfiguration ---
+    ImageConfiguration_configurationWithTraitCollection :: proc(self: ^ImageConfiguration, traitCollection: ^TraitCollection) -> instancetype ---
 
     @(objc_type=ImageConfiguration, objc_selector="configurationWithTraitCollection:", objc_name="configurationWithTraitCollectionStatic", objc_is_class_method=true)
-    ImageConfiguration_configurationWithTraitCollectionStatic :: proc(traitCollection: ^TraitCollection) -> ^ImageConfiguration ---
+    ImageConfiguration_configurationWithTraitCollectionStatic :: proc(traitCollection: ^TraitCollection) -> instancetype ---
 
     @(objc_type=ImageConfiguration, objc_selector="configurationWithLocale:", objc_name="configurationWithLocale")
-    ImageConfiguration_configurationWithLocale :: proc(self: ^ImageConfiguration, locale: ^NS.Locale) -> ^ImageConfiguration ---
+    ImageConfiguration_configurationWithLocale :: proc(self: ^ImageConfiguration, locale: ^NS.Locale) -> instancetype ---
 
     @(objc_type=ImageConfiguration, objc_selector="configurationWithLocale:", objc_name="configurationWithLocaleStatic", objc_is_class_method=true)
-    ImageConfiguration_configurationWithLocaleStatic :: proc(locale: ^NS.Locale) -> ^ImageConfiguration ---
+    ImageConfiguration_configurationWithLocaleStatic :: proc(locale: ^NS.Locale) -> instancetype ---
 
     @(objc_type=ImageConfiguration, objc_selector="configurationByApplyingConfiguration:", objc_name="configurationByApplyingConfiguration")
-    ImageConfiguration_configurationByApplyingConfiguration :: proc(self: ^ImageConfiguration, otherConfiguration: ^ImageConfiguration) -> ^ImageConfiguration ---
+    ImageConfiguration_configurationByApplyingConfiguration :: proc(self: ^ImageConfiguration, otherConfiguration: ^ImageConfiguration) -> instancetype ---
 
     @(objc_type=ImageConfiguration, objc_selector="traitCollection", objc_name="traitCollection")
     ImageConfiguration_traitCollection :: proc(self: ^ImageConfiguration) -> ^TraitCollection ---

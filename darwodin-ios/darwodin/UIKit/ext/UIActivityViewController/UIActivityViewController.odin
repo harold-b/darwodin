@@ -28,10 +28,10 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    init: proc(self: ^UI.ActivityViewController) -> ^UI.ActivityViewController,
-    initWithNibName: proc(self: ^UI.ActivityViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.ActivityViewController,
-    initWithCoder: proc(self: ^UI.ActivityViewController, coder: ^NS.Coder) -> ^UI.ActivityViewController,
-    initWithActivityItems: proc(self: ^UI.ActivityViewController, activityItems: ^NS.Array, applicationActivities: ^NS.Array) -> ^UI.ActivityViewController,
+    init: proc(self: ^UI.ActivityViewController) -> instancetype,
+    initWithNibName: proc(self: ^UI.ActivityViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    initWithCoder: proc(self: ^UI.ActivityViewController, coder: ^NS.Coder) -> instancetype,
+    initWithActivityItems: proc(self: ^UI.ActivityViewController, activityItems: ^NS.Array, applicationActivities: ^NS.Array) -> instancetype,
     completionHandler: proc(self: ^UI.ActivityViewController) -> UI.ActivityViewControllerCompletionHandler,
     setCompletionHandler: proc(self: ^UI.ActivityViewController, completionHandler: UI.ActivityViewControllerCompletionHandler),
     completionWithItemsHandler: proc(self: ^UI.ActivityViewController) -> UI.ActivityViewControllerCompletionWithItemsHandler,
@@ -42,7 +42,7 @@ VTable :: struct {
     setExcludedActivitySectionTypes: proc(self: ^UI.ActivityViewController, excludedActivitySectionTypes: UI.ActivitySectionTypes),
     allowsProminentActivity: proc(self: ^UI.ActivityViewController) -> bool,
     setAllowsProminentActivity: proc(self: ^UI.ActivityViewController, allowsProminentActivity: bool),
-    initWithActivityItemsConfiguration: proc(self: ^UI.ActivityViewController, activityItemsConfiguration: ^UI.ActivityItemsConfigurationReading) -> ^UI.ActivityViewController,
+    initWithActivityItemsConfiguration: proc(self: ^UI.ActivityViewController, activityItemsConfiguration: ^UI.ActivityItemsConfigurationReading) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ActivityViewController, _: SEL) -> ^UI.ActivityViewController {
+        init :: proc "c" (self: ^UI.ActivityViewController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.ActivityViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.ActivityViewController {
+        initWithNibName :: proc "c" (self: ^UI.ActivityViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.ActivityViewController, _: SEL, coder: ^NS.Coder) -> ^UI.ActivityViewController {
+        initWithCoder :: proc "c" (self: ^UI.ActivityViewController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithActivityItems != nil {
-        initWithActivityItems :: proc "c" (self: ^UI.ActivityViewController, _: SEL, activityItems: ^NS.Array, applicationActivities: ^NS.Array) -> ^UI.ActivityViewController {
+        initWithActivityItems :: proc "c" (self: ^UI.ActivityViewController, _: SEL, activityItems: ^NS.Array, applicationActivities: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsProminentActivity:"), auto_cast setAllowsProminentActivity, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.initWithActivityItemsConfiguration != nil {
-        initWithActivityItemsConfiguration :: proc "c" (self: ^UI.ActivityViewController, _: SEL, activityItemsConfiguration: ^UI.ActivityItemsConfigurationReading) -> ^UI.ActivityViewController {
+        initWithActivityItemsConfiguration :: proc "c" (self: ^UI.ActivityViewController, _: SEL, activityItemsConfiguration: ^UI.ActivityItemsConfigurationReading) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

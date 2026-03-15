@@ -19,10 +19,10 @@ Right :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Right, objc_selector="init", objc_name="init")
-    Right_init :: proc(self: ^Right) -> ^Right ---
+    Right_init :: proc(self: ^Right) -> instancetype ---
 
     @(objc_type=Right, objc_selector="initWithRequirement:", objc_name="initWithRequirement")
-    Right_initWithRequirement :: proc(self: ^Right, requirement: ^AuthenticationRequirement) -> ^Right ---
+    Right_initWithRequirement :: proc(self: ^Right, requirement: ^AuthenticationRequirement) -> instancetype ---
 
     @(objc_type=Right, objc_selector="authorizeWithLocalizedReason:completion:", objc_name="authorizeWithLocalizedReason")
     Right_authorizeWithLocalizedReason :: proc(self: ^Right, localizedReason: ^NS.String, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---

@@ -18,10 +18,10 @@ SyncEngine :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngine, objc_selector="initWithConfiguration:", objc_name="initWithConfiguration")
-    SyncEngine_initWithConfiguration :: proc(self: ^SyncEngine, configuration: ^SyncEngineConfiguration) -> ^SyncEngine ---
+    SyncEngine_initWithConfiguration :: proc(self: ^SyncEngine, configuration: ^SyncEngineConfiguration) -> instancetype ---
 
     @(objc_type=SyncEngine, objc_selector="init", objc_name="init")
-    SyncEngine_init :: proc(self: ^SyncEngine) -> ^SyncEngine ---
+    SyncEngine_init :: proc(self: ^SyncEngine) -> instancetype ---
 
     @(objc_type=SyncEngine, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEngine_new :: proc() -> ^SyncEngine ---

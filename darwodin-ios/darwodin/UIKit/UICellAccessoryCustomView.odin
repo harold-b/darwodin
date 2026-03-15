@@ -22,13 +22,13 @@ CellAccessoryCustomView :: struct { using _: CellAccessory, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CellAccessoryCustomView, objc_selector="initWithCustomView:placement:", objc_name="initWithCustomView")
-    CellAccessoryCustomView_initWithCustomView :: proc(self: ^CellAccessoryCustomView, customView: ^View, placement: CellAccessoryPlacement) -> ^CellAccessoryCustomView ---
+    CellAccessoryCustomView_initWithCustomView :: proc(self: ^CellAccessoryCustomView, customView: ^View, placement: CellAccessoryPlacement) -> instancetype ---
 
     @(objc_type=CellAccessoryCustomView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CellAccessoryCustomView_initWithCoder :: proc(self: ^CellAccessoryCustomView, coder: ^NS.Coder) -> ^CellAccessoryCustomView ---
+    CellAccessoryCustomView_initWithCoder :: proc(self: ^CellAccessoryCustomView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CellAccessoryCustomView, objc_selector="init", objc_name="init")
-    CellAccessoryCustomView_init :: proc(self: ^CellAccessoryCustomView) -> ^CellAccessoryCustomView ---
+    CellAccessoryCustomView_init :: proc(self: ^CellAccessoryCustomView) -> instancetype ---
 
     @(objc_type=CellAccessoryCustomView, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CellAccessoryCustomView_new :: proc() -> ^CellAccessoryCustomView ---

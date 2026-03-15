@@ -22,7 +22,7 @@ WritingToolsCoordinatorAnimationParameters :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WritingToolsCoordinatorAnimationParameters, objc_selector="init", objc_name="init")
-    WritingToolsCoordinatorAnimationParameters_init :: proc(self: ^WritingToolsCoordinatorAnimationParameters) -> ^WritingToolsCoordinatorAnimationParameters ---
+    WritingToolsCoordinatorAnimationParameters_init :: proc(self: ^WritingToolsCoordinatorAnimationParameters) -> instancetype ---
 
     @(objc_type=WritingToolsCoordinatorAnimationParameters, objc_selector="duration", objc_name="duration")
     WritingToolsCoordinatorAnimationParameters_duration :: proc(self: ^WritingToolsCoordinatorAnimationParameters) -> CG.Float ---

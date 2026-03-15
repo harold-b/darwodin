@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithCoder: proc(self: ^UI.CellAccessory, coder: ^NS.Coder) -> ^UI.CellAccessory,
-    init: proc(self: ^UI.CellAccessory) -> ^UI.CellAccessory,
+    initWithCoder: proc(self: ^UI.CellAccessory, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.CellAccessory) -> instancetype,
     displayedState: proc(self: ^UI.CellAccessory) -> UI.CellAccessoryDisplayedState,
     setDisplayedState: proc(self: ^UI.CellAccessory, displayedState: UI.CellAccessoryDisplayedState),
     isHidden: proc(self: ^UI.CellAccessory) -> bool,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CellAccessory, _: SEL, coder: ^NS.Coder) -> ^UI.CellAccessory {
+        initWithCoder :: proc "c" (self: ^UI.CellAccessory, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CellAccessory, _: SEL) -> ^UI.CellAccessory {
+        init :: proc "c" (self: ^UI.CellAccessory, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDropOperation: proc(self: ^UI.DropProposal, operation: UI.DropOperation) -> ^UI.DropProposal,
-    init: proc(self: ^UI.DropProposal) -> ^UI.DropProposal,
+    initWithDropOperation: proc(self: ^UI.DropProposal, operation: UI.DropOperation) -> instancetype,
+    init: proc(self: ^UI.DropProposal) -> instancetype,
     new: proc() -> ^UI.DropProposal,
     operation: proc(self: ^UI.DropProposal) -> UI.DropOperation,
     isPrecise: proc(self: ^UI.DropProposal) -> bool,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDropOperation != nil {
-        initWithDropOperation :: proc "c" (self: ^UI.DropProposal, _: SEL, operation: UI.DropOperation) -> ^UI.DropProposal {
+        initWithDropOperation :: proc "c" (self: ^UI.DropProposal, _: SEL, operation: UI.DropOperation) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDropOperation:"), auto_cast initWithDropOperation, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.DropProposal, _: SEL) -> ^UI.DropProposal {
+        init :: proc "c" (self: ^UI.DropProposal, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

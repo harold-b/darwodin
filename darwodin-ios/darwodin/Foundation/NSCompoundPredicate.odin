@@ -20,10 +20,10 @@ CompoundPredicate :: struct { using _: Predicate, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CompoundPredicate, objc_selector="initWithType:subpredicates:", objc_name="initWithType")
-    CompoundPredicate_initWithType :: proc(self: ^CompoundPredicate, type: CompoundPredicateType, subpredicates: ^Array) -> ^CompoundPredicate ---
+    CompoundPredicate_initWithType :: proc(self: ^CompoundPredicate, type: CompoundPredicateType, subpredicates: ^Array) -> instancetype ---
 
     @(objc_type=CompoundPredicate, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CompoundPredicate_initWithCoder :: proc(self: ^CompoundPredicate, coder: ^Coder) -> ^CompoundPredicate ---
+    CompoundPredicate_initWithCoder :: proc(self: ^CompoundPredicate, coder: ^Coder) -> instancetype ---
 
     @(objc_type=CompoundPredicate, objc_selector="andPredicateWithSubpredicates:", objc_name="andPredicateWithSubpredicates", objc_is_class_method=true)
     CompoundPredicate_andPredicateWithSubpredicates :: proc(subpredicates: ^Array) -> ^CompoundPredicate ---

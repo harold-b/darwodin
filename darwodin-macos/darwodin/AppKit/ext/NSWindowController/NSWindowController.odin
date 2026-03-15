@@ -30,11 +30,11 @@ import "../NSResponder"
 
 VTable :: struct {
     super: NSResponder.VTable,
-    initWithWindow: proc(self: ^AK.WindowController, window: ^AK.Window) -> ^AK.WindowController,
-    initWithCoder: proc(self: ^AK.WindowController, coder: ^NS.Coder) -> ^AK.WindowController,
-    initWithWindowNibName_: proc(self: ^AK.WindowController, windowNibName: ^NS.String) -> ^AK.WindowController,
-    initWithWindowNibName_owner: proc(self: ^AK.WindowController, windowNibName: ^NS.String, owner: id) -> ^AK.WindowController,
-    initWithWindowNibPath: proc(self: ^AK.WindowController, windowNibPath: ^NS.String, owner: id) -> ^AK.WindowController,
+    initWithWindow: proc(self: ^AK.WindowController, window: ^AK.Window) -> instancetype,
+    initWithCoder: proc(self: ^AK.WindowController, coder: ^NS.Coder) -> instancetype,
+    initWithWindowNibName_: proc(self: ^AK.WindowController, windowNibName: ^NS.String) -> instancetype,
+    initWithWindowNibName_owner: proc(self: ^AK.WindowController, windowNibName: ^NS.String, owner: id) -> instancetype,
+    initWithWindowNibPath: proc(self: ^AK.WindowController, windowNibPath: ^NS.String, owner: id) -> instancetype,
     setDocumentEdited: proc(self: ^AK.WindowController, dirtyFlag: bool),
     synchronizeWindowTitleWithDocumentName: proc(self: ^AK.WindowController),
     windowTitleForDocumentDisplayName: proc(self: ^AK.WindowController, displayName: ^NS.String) -> ^NS.String,
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSResponder.extend(cls, &vt.super)
 
     if vt.initWithWindow != nil {
-        initWithWindow :: proc "c" (self: ^AK.WindowController, _: SEL, window: ^AK.Window) -> ^AK.WindowController {
+        initWithWindow :: proc "c" (self: ^AK.WindowController, _: SEL, window: ^AK.Window) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithWindow:"), auto_cast initWithWindow, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.WindowController, _: SEL, coder: ^NS.Coder) -> ^AK.WindowController {
+        initWithCoder :: proc "c" (self: ^AK.WindowController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithWindowNibName_ != nil {
-        initWithWindowNibName_ :: proc "c" (self: ^AK.WindowController, _: SEL, windowNibName: ^NS.String) -> ^AK.WindowController {
+        initWithWindowNibName_ :: proc "c" (self: ^AK.WindowController, _: SEL, windowNibName: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithWindowNibName:"), auto_cast initWithWindowNibName_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithWindowNibName_owner != nil {
-        initWithWindowNibName_owner :: proc "c" (self: ^AK.WindowController, _: SEL, windowNibName: ^NS.String, owner: id) -> ^AK.WindowController {
+        initWithWindowNibName_owner :: proc "c" (self: ^AK.WindowController, _: SEL, windowNibName: ^NS.String, owner: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithWindowNibName:owner:"), auto_cast initWithWindowNibName_owner, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithWindowNibPath != nil {
-        initWithWindowNibPath :: proc "c" (self: ^AK.WindowController, _: SEL, windowNibPath: ^NS.String, owner: id) -> ^AK.WindowController {
+        initWithWindowNibPath :: proc "c" (self: ^AK.WindowController, _: SEL, windowNibPath: ^NS.String, owner: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

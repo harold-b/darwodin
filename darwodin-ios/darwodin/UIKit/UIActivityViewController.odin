@@ -22,16 +22,16 @@ ActivityViewController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ActivityViewController, objc_selector="init", objc_name="init")
-    ActivityViewController_init :: proc(self: ^ActivityViewController) -> ^ActivityViewController ---
+    ActivityViewController_init :: proc(self: ^ActivityViewController) -> instancetype ---
 
     @(objc_type=ActivityViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    ActivityViewController_initWithNibName :: proc(self: ^ActivityViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^ActivityViewController ---
+    ActivityViewController_initWithNibName :: proc(self: ^ActivityViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=ActivityViewController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ActivityViewController_initWithCoder :: proc(self: ^ActivityViewController, coder: ^NS.Coder) -> ^ActivityViewController ---
+    ActivityViewController_initWithCoder :: proc(self: ^ActivityViewController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ActivityViewController, objc_selector="initWithActivityItems:applicationActivities:", objc_name="initWithActivityItems")
-    ActivityViewController_initWithActivityItems :: proc(self: ^ActivityViewController, activityItems: ^NS.Array, applicationActivities: ^NS.Array) -> ^ActivityViewController ---
+    ActivityViewController_initWithActivityItems :: proc(self: ^ActivityViewController, activityItems: ^NS.Array, applicationActivities: ^NS.Array) -> instancetype ---
 
     @(objc_type=ActivityViewController, objc_selector="completionHandler", objc_name="completionHandler")
     ActivityViewController_completionHandler :: proc(self: ^ActivityViewController) -> ActivityViewControllerCompletionHandler ---
@@ -64,5 +64,5 @@ foreign lib {
     ActivityViewController_setAllowsProminentActivity :: proc(self: ^ActivityViewController, allowsProminentActivity: bool) ---
 
     @(objc_type=ActivityViewController, objc_selector="initWithActivityItemsConfiguration:", objc_name="initWithActivityItemsConfiguration")
-    ActivityViewController_initWithActivityItemsConfiguration :: proc(self: ^ActivityViewController, activityItemsConfiguration: ^ActivityItemsConfigurationReading) -> ^ActivityViewController ---
+    ActivityViewController_initWithActivityItemsConfiguration :: proc(self: ^ActivityViewController, activityItemsConfiguration: ^ActivityItemsConfigurationReading) -> instancetype ---
 }

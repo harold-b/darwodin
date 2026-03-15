@@ -27,8 +27,8 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     characterAtIndex: proc(self: ^NS.String, index: NS.UInteger) -> NS.unichar,
-    init: proc(self: ^NS.String) -> ^NS.String,
-    initWithCoder: proc(self: ^NS.String, coder: ^NS.Coder) -> ^NS.String,
+    init: proc(self: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^NS.String, coder: ^NS.Coder) -> instancetype,
     length: proc(self: ^NS.String) -> NS.UInteger,
     substringFromIndex: proc(self: ^NS.String, from: NS.UInteger) -> ^NS.String,
     substringToIndex: proc(self: ^NS.String, to: NS.UInteger) -> ^NS.String,
@@ -90,41 +90,41 @@ VTable :: struct {
     stringByApplyingTransform: proc(self: ^NS.String, transform: ^NS.String, reverse: bool) -> ^NS.String,
     writeToURL_atomically_encoding_error: proc(self: ^NS.String, url: ^NS.URL, useAuxiliaryFile: bool, enc: NS.StringEncoding, error: ^^NS.Error) -> bool,
     writeToFile_atomically_encoding_error: proc(self: ^NS.String, path: ^NS.String, useAuxiliaryFile: bool, enc: NS.StringEncoding, error: ^^NS.Error) -> bool,
-    initWithCharactersNoCopy_length_freeWhenDone: proc(self: ^NS.String, characters: ^NS.unichar, length: NS.UInteger, freeBuffer: bool) -> ^NS.String,
-    initWithCharactersNoCopy_length_deallocator: proc(self: ^NS.String, chars: ^NS.unichar, len: NS.UInteger, deallocator: ^Objc_Block(proc "c" (_: ^NS.unichar, _1: NS.UInteger))) -> ^NS.String,
-    initWithCharacters: proc(self: ^NS.String, characters: ^NS.unichar, length: NS.UInteger) -> ^NS.String,
-    initWithUTF8String: proc(self: ^NS.String, nullTerminatedCString: cstring) -> ^NS.String,
-    initWithString: proc(self: ^NS.String, aString: ^NS.String) -> ^NS.String,
-    initWithFormat_: proc(self: ^NS.String, format: ^NS.String) -> ^NS.String,
-    initWithFormat_arguments: proc(self: ^NS.String, format: ^NS.String, argList: ^cffi.va_list) -> ^NS.String,
-    initWithFormat_locale: proc(self: ^NS.String, format: ^NS.String, locale: id) -> ^NS.String,
-    initWithFormat_locale_arguments: proc(self: ^NS.String, format: ^NS.String, locale: id, argList: ^cffi.va_list) -> ^NS.String,
-    initWithValidatedFormat_validFormatSpecifiers_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> ^NS.String,
-    initWithValidatedFormat_validFormatSpecifiers_locale_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, error: ^^NS.Error) -> ^NS.String,
-    initWithValidatedFormat_validFormatSpecifiers_arguments_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, argList: ^cffi.va_list, error: ^^NS.Error) -> ^NS.String,
-    initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, argList: ^cffi.va_list, error: ^^NS.Error) -> ^NS.String,
-    initWithData: proc(self: ^NS.String, data: ^NS.Data, encoding: NS.StringEncoding) -> ^NS.String,
-    initWithBytes: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding) -> ^NS.String,
-    initWithBytesNoCopy_length_encoding_freeWhenDone: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, freeBuffer: bool) -> ^NS.String,
-    initWithBytesNoCopy_length_encoding_deallocator: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: NS.UInteger))) -> ^NS.String,
-    string: proc() -> ^NS.String,
-    stringWithString: proc(string: ^NS.String) -> ^NS.String,
-    stringWithCharacters: proc(characters: ^NS.unichar, length: NS.UInteger) -> ^NS.String,
-    stringWithUTF8String: proc(nullTerminatedCString: cstring) -> ^NS.String,
-    stringWithFormat: proc(format: ^NS.String) -> ^NS.String,
-    localizedStringWithFormat: proc(format: ^NS.String) -> ^NS.String,
-    stringWithValidatedFormat: proc(format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> ^NS.String,
-    localizedStringWithValidatedFormat: proc(format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> ^NS.String,
-    initWithCString_encoding: proc(self: ^NS.String, nullTerminatedCString: cstring, encoding: NS.StringEncoding) -> ^NS.String,
-    stringWithCString_encoding: proc(cString: cstring, enc: NS.StringEncoding) -> ^NS.String,
-    initWithContentsOfURL_encoding_error: proc(self: ^NS.String, url: ^NS.URL, enc: NS.StringEncoding, error: ^^NS.Error) -> ^NS.String,
-    initWithContentsOfFile_encoding_error: proc(self: ^NS.String, path: ^NS.String, enc: NS.StringEncoding, error: ^^NS.Error) -> ^NS.String,
-    stringWithContentsOfURL_encoding_error: proc(url: ^NS.URL, enc: NS.StringEncoding, error: ^^NS.Error) -> ^NS.String,
-    stringWithContentsOfFile_encoding_error: proc(path: ^NS.String, enc: NS.StringEncoding, error: ^^NS.Error) -> ^NS.String,
-    initWithContentsOfURL_usedEncoding_error: proc(self: ^NS.String, url: ^NS.URL, enc: ^NS.StringEncoding, error: ^^NS.Error) -> ^NS.String,
-    initWithContentsOfFile_usedEncoding_error: proc(self: ^NS.String, path: ^NS.String, enc: ^NS.StringEncoding, error: ^^NS.Error) -> ^NS.String,
-    stringWithContentsOfURL_usedEncoding_error: proc(url: ^NS.URL, enc: ^NS.StringEncoding, error: ^^NS.Error) -> ^NS.String,
-    stringWithContentsOfFile_usedEncoding_error: proc(path: ^NS.String, enc: ^NS.StringEncoding, error: ^^NS.Error) -> ^NS.String,
+    initWithCharactersNoCopy_length_freeWhenDone: proc(self: ^NS.String, characters: ^NS.unichar, length: NS.UInteger, freeBuffer: bool) -> instancetype,
+    initWithCharactersNoCopy_length_deallocator: proc(self: ^NS.String, chars: ^NS.unichar, len: NS.UInteger, deallocator: ^Objc_Block(proc "c" (_: ^NS.unichar, _1: NS.UInteger))) -> instancetype,
+    initWithCharacters: proc(self: ^NS.String, characters: ^NS.unichar, length: NS.UInteger) -> instancetype,
+    initWithUTF8String: proc(self: ^NS.String, nullTerminatedCString: cstring) -> instancetype,
+    initWithString: proc(self: ^NS.String, aString: ^NS.String) -> instancetype,
+    initWithFormat_: proc(self: ^NS.String, format: ^NS.String) -> instancetype,
+    initWithFormat_arguments: proc(self: ^NS.String, format: ^NS.String, argList: ^cffi.va_list) -> instancetype,
+    initWithFormat_locale: proc(self: ^NS.String, format: ^NS.String, locale: id) -> instancetype,
+    initWithFormat_locale_arguments: proc(self: ^NS.String, format: ^NS.String, locale: id, argList: ^cffi.va_list) -> instancetype,
+    initWithValidatedFormat_validFormatSpecifiers_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> instancetype,
+    initWithValidatedFormat_validFormatSpecifiers_locale_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, error: ^^NS.Error) -> instancetype,
+    initWithValidatedFormat_validFormatSpecifiers_arguments_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, argList: ^cffi.va_list, error: ^^NS.Error) -> instancetype,
+    initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error: proc(self: ^NS.String, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, argList: ^cffi.va_list, error: ^^NS.Error) -> instancetype,
+    initWithData: proc(self: ^NS.String, data: ^NS.Data, encoding: NS.StringEncoding) -> instancetype,
+    initWithBytes: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding) -> instancetype,
+    initWithBytesNoCopy_length_encoding_freeWhenDone: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, freeBuffer: bool) -> instancetype,
+    initWithBytesNoCopy_length_encoding_deallocator: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: NS.UInteger))) -> instancetype,
+    string: proc() -> instancetype,
+    stringWithString: proc(string: ^NS.String) -> instancetype,
+    stringWithCharacters: proc(characters: ^NS.unichar, length: NS.UInteger) -> instancetype,
+    stringWithUTF8String: proc(nullTerminatedCString: cstring) -> instancetype,
+    stringWithFormat: proc(format: ^NS.String) -> instancetype,
+    localizedStringWithFormat: proc(format: ^NS.String) -> instancetype,
+    stringWithValidatedFormat: proc(format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> instancetype,
+    localizedStringWithValidatedFormat: proc(format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> instancetype,
+    initWithCString_encoding: proc(self: ^NS.String, nullTerminatedCString: cstring, encoding: NS.StringEncoding) -> instancetype,
+    stringWithCString_encoding: proc(cString: cstring, enc: NS.StringEncoding) -> instancetype,
+    initWithContentsOfURL_encoding_error: proc(self: ^NS.String, url: ^NS.URL, enc: NS.StringEncoding, error: ^^NS.Error) -> instancetype,
+    initWithContentsOfFile_encoding_error: proc(self: ^NS.String, path: ^NS.String, enc: NS.StringEncoding, error: ^^NS.Error) -> instancetype,
+    stringWithContentsOfURL_encoding_error: proc(url: ^NS.URL, enc: NS.StringEncoding, error: ^^NS.Error) -> instancetype,
+    stringWithContentsOfFile_encoding_error: proc(path: ^NS.String, enc: NS.StringEncoding, error: ^^NS.Error) -> instancetype,
+    initWithContentsOfURL_usedEncoding_error: proc(self: ^NS.String, url: ^NS.URL, enc: ^NS.StringEncoding, error: ^^NS.Error) -> instancetype,
+    initWithContentsOfFile_usedEncoding_error: proc(self: ^NS.String, path: ^NS.String, enc: ^NS.StringEncoding, error: ^^NS.Error) -> instancetype,
+    stringWithContentsOfURL_usedEncoding_error: proc(url: ^NS.URL, enc: ^NS.StringEncoding, error: ^^NS.Error) -> instancetype,
+    stringWithContentsOfFile_usedEncoding_error: proc(path: ^NS.String, enc: ^NS.StringEncoding, error: ^^NS.Error) -> instancetype,
     doubleValue: proc(self: ^NS.String) -> cffi.double,
     floatValue: proc(self: ^NS.String) -> cffi.float,
     intValue: proc(self: ^NS.String) -> cffi.int,
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("characterAtIndex:"), auto_cast characterAtIndex, "S@:L") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.String, _: SEL) -> ^NS.String {
+        init :: proc "c" (self: ^NS.String, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.String, _: SEL, coder: ^NS.Coder) -> ^NS.String {
+        initWithCoder :: proc "c" (self: ^NS.String, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -843,7 +843,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writeToFile:atomically:encoding:error:"), auto_cast writeToFile_atomically_encoding_error, "B@:@BL^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCharactersNoCopy_length_freeWhenDone != nil {
-        initWithCharactersNoCopy_length_freeWhenDone :: proc "c" (self: ^NS.String, _: SEL, characters: ^NS.unichar, length: NS.UInteger, freeBuffer: bool) -> ^NS.String {
+        initWithCharactersNoCopy_length_freeWhenDone :: proc "c" (self: ^NS.String, _: SEL, characters: ^NS.unichar, length: NS.UInteger, freeBuffer: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -853,7 +853,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCharactersNoCopy:length:freeWhenDone:"), auto_cast initWithCharactersNoCopy_length_freeWhenDone, "@@:^voidLB") do panic("Failed to register objC method.")
     }
     if vt.initWithCharactersNoCopy_length_deallocator != nil {
-        initWithCharactersNoCopy_length_deallocator :: proc "c" (self: ^NS.String, _: SEL, chars: ^NS.unichar, len: NS.UInteger, deallocator: ^Objc_Block(proc "c" (_: ^NS.unichar, _1: NS.UInteger))) -> ^NS.String {
+        initWithCharactersNoCopy_length_deallocator :: proc "c" (self: ^NS.String, _: SEL, chars: ^NS.unichar, len: NS.UInteger, deallocator: ^Objc_Block(proc "c" (_: ^NS.unichar, _1: NS.UInteger))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -863,7 +863,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCharactersNoCopy:length:deallocator:"), auto_cast initWithCharactersNoCopy_length_deallocator, "@@:^voidL?") do panic("Failed to register objC method.")
     }
     if vt.initWithCharacters != nil {
-        initWithCharacters :: proc "c" (self: ^NS.String, _: SEL, characters: ^NS.unichar, length: NS.UInteger) -> ^NS.String {
+        initWithCharacters :: proc "c" (self: ^NS.String, _: SEL, characters: ^NS.unichar, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -873,7 +873,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCharacters:length:"), auto_cast initWithCharacters, "@@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithUTF8String != nil {
-        initWithUTF8String :: proc "c" (self: ^NS.String, _: SEL, nullTerminatedCString: cstring) -> ^NS.String {
+        initWithUTF8String :: proc "c" (self: ^NS.String, _: SEL, nullTerminatedCString: cstring) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -883,7 +883,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithUTF8String:"), auto_cast initWithUTF8String, "@@:*") do panic("Failed to register objC method.")
     }
     if vt.initWithString != nil {
-        initWithString :: proc "c" (self: ^NS.String, _: SEL, aString: ^NS.String) -> ^NS.String {
+        initWithString :: proc "c" (self: ^NS.String, _: SEL, aString: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -893,7 +893,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:"), auto_cast initWithString, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_ != nil {
-        initWithFormat_ :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String) -> ^NS.String {
+        initWithFormat_ :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -903,7 +903,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:"), auto_cast initWithFormat_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_arguments != nil {
-        initWithFormat_arguments :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, argList: ^cffi.va_list) -> ^NS.String {
+        initWithFormat_arguments :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, argList: ^cffi.va_list) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -913,7 +913,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:arguments:"), auto_cast initWithFormat_arguments, "@@:@*") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_locale != nil {
-        initWithFormat_locale :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, locale: id) -> ^NS.String {
+        initWithFormat_locale :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, locale: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -923,7 +923,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:locale:"), auto_cast initWithFormat_locale, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFormat_locale_arguments != nil {
-        initWithFormat_locale_arguments :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, locale: id, argList: ^cffi.va_list) -> ^NS.String {
+        initWithFormat_locale_arguments :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, locale: id, argList: ^cffi.va_list) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -933,7 +933,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFormat:locale:arguments:"), auto_cast initWithFormat_locale_arguments, "@@:@@*") do panic("Failed to register objC method.")
     }
     if vt.initWithValidatedFormat_validFormatSpecifiers_error != nil {
-        initWithValidatedFormat_validFormatSpecifiers_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> ^NS.String {
+        initWithValidatedFormat_validFormatSpecifiers_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -943,7 +943,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithValidatedFormat:validFormatSpecifiers:error:"), auto_cast initWithValidatedFormat_validFormatSpecifiers_error, "@@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithValidatedFormat_validFormatSpecifiers_locale_error != nil {
-        initWithValidatedFormat_validFormatSpecifiers_locale_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, error: ^^NS.Error) -> ^NS.String {
+        initWithValidatedFormat_validFormatSpecifiers_locale_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -953,7 +953,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), auto_cast initWithValidatedFormat_validFormatSpecifiers_locale_error, "@@:@@@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithValidatedFormat_validFormatSpecifiers_arguments_error != nil {
-        initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, argList: ^cffi.va_list, error: ^^NS.Error) -> ^NS.String {
+        initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, argList: ^cffi.va_list, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -963,7 +963,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), auto_cast initWithValidatedFormat_validFormatSpecifiers_arguments_error, "@@:@@*^void") do panic("Failed to register objC method.")
     }
     if vt.initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error != nil {
-        initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, argList: ^cffi.va_list, error: ^^NS.Error) -> ^NS.String {
+        initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc "c" (self: ^NS.String, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, locale: id, argList: ^cffi.va_list, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -973,7 +973,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:"), auto_cast initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error, "@@:@@@*^void") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^NS.String, _: SEL, data: ^NS.Data, encoding: NS.StringEncoding) -> ^NS.String {
+        initWithData :: proc "c" (self: ^NS.String, _: SEL, data: ^NS.Data, encoding: NS.StringEncoding) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -983,7 +983,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:encoding:"), auto_cast initWithData, "@@:@L") do panic("Failed to register objC method.")
     }
     if vt.initWithBytes != nil {
-        initWithBytes :: proc "c" (self: ^NS.String, _: SEL, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding) -> ^NS.String {
+        initWithBytes :: proc "c" (self: ^NS.String, _: SEL, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -993,7 +993,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytes:length:encoding:"), auto_cast initWithBytes, "@@:^voidLL") do panic("Failed to register objC method.")
     }
     if vt.initWithBytesNoCopy_length_encoding_freeWhenDone != nil {
-        initWithBytesNoCopy_length_encoding_freeWhenDone :: proc "c" (self: ^NS.String, _: SEL, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, freeBuffer: bool) -> ^NS.String {
+        initWithBytesNoCopy_length_encoding_freeWhenDone :: proc "c" (self: ^NS.String, _: SEL, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, freeBuffer: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1003,7 +1003,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytesNoCopy:length:encoding:freeWhenDone:"), auto_cast initWithBytesNoCopy_length_encoding_freeWhenDone, "@@:^voidLLB") do panic("Failed to register objC method.")
     }
     if vt.initWithBytesNoCopy_length_encoding_deallocator != nil {
-        initWithBytesNoCopy_length_encoding_deallocator :: proc "c" (self: ^NS.String, _: SEL, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: NS.UInteger))) -> ^NS.String {
+        initWithBytesNoCopy_length_encoding_deallocator :: proc "c" (self: ^NS.String, _: SEL, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: NS.UInteger))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1013,7 +1013,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytesNoCopy:length:encoding:deallocator:"), auto_cast initWithBytesNoCopy_length_encoding_deallocator, "@@:^voidLL?") do panic("Failed to register objC method.")
     }
     if vt.string != nil {
-        string :: proc "c" (self: Class, _: SEL) -> ^NS.String {
+        string :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1023,7 +1023,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("string"), auto_cast string, "@#:") do panic("Failed to register objC method.")
     }
     if vt.stringWithString != nil {
-        stringWithString :: proc "c" (self: Class, _: SEL, string: ^NS.String) -> ^NS.String {
+        stringWithString :: proc "c" (self: Class, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1033,7 +1033,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stringWithString:"), auto_cast stringWithString, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.stringWithCharacters != nil {
-        stringWithCharacters :: proc "c" (self: Class, _: SEL, characters: ^NS.unichar, length: NS.UInteger) -> ^NS.String {
+        stringWithCharacters :: proc "c" (self: Class, _: SEL, characters: ^NS.unichar, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1043,7 +1043,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stringWithCharacters:length:"), auto_cast stringWithCharacters, "@#:^voidL") do panic("Failed to register objC method.")
     }
     if vt.stringWithUTF8String != nil {
-        stringWithUTF8String :: proc "c" (self: Class, _: SEL, nullTerminatedCString: cstring) -> ^NS.String {
+        stringWithUTF8String :: proc "c" (self: Class, _: SEL, nullTerminatedCString: cstring) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1053,7 +1053,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stringWithUTF8String:"), auto_cast stringWithUTF8String, "@#:*") do panic("Failed to register objC method.")
     }
     if vt.stringWithFormat != nil {
-        stringWithFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String) -> ^NS.String {
+        stringWithFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1063,7 +1063,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stringWithFormat:"), auto_cast stringWithFormat, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.localizedStringWithFormat != nil {
-        localizedStringWithFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String) -> ^NS.String {
+        localizedStringWithFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1073,7 +1073,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("localizedStringWithFormat:"), auto_cast localizedStringWithFormat, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.stringWithValidatedFormat != nil {
-        stringWithValidatedFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> ^NS.String {
+        stringWithValidatedFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1083,7 +1083,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stringWithValidatedFormat:validFormatSpecifiers:error:"), auto_cast stringWithValidatedFormat, "@#:@@^void") do panic("Failed to register objC method.")
     }
     if vt.localizedStringWithValidatedFormat != nil {
-        localizedStringWithValidatedFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> ^NS.String {
+        localizedStringWithValidatedFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String, validFormatSpecifiers: ^NS.String, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1093,7 +1093,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("localizedStringWithValidatedFormat:validFormatSpecifiers:error:"), auto_cast localizedStringWithValidatedFormat, "@#:@@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCString_encoding != nil {
-        initWithCString_encoding :: proc "c" (self: ^NS.String, _: SEL, nullTerminatedCString: cstring, encoding: NS.StringEncoding) -> ^NS.String {
+        initWithCString_encoding :: proc "c" (self: ^NS.String, _: SEL, nullTerminatedCString: cstring, encoding: NS.StringEncoding) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1103,7 +1103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCString:encoding:"), auto_cast initWithCString_encoding, "@@:*L") do panic("Failed to register objC method.")
     }
     if vt.stringWithCString_encoding != nil {
-        stringWithCString_encoding :: proc "c" (self: Class, _: SEL, cString: cstring, enc: NS.StringEncoding) -> ^NS.String {
+        stringWithCString_encoding :: proc "c" (self: Class, _: SEL, cString: cstring, enc: NS.StringEncoding) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1113,7 +1113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stringWithCString:encoding:"), auto_cast stringWithCString_encoding, "@#:*L") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL_encoding_error != nil {
-        initWithContentsOfURL_encoding_error :: proc "c" (self: ^NS.String, _: SEL, url: ^NS.URL, enc: NS.StringEncoding, error: ^^NS.Error) -> ^NS.String {
+        initWithContentsOfURL_encoding_error :: proc "c" (self: ^NS.String, _: SEL, url: ^NS.URL, enc: NS.StringEncoding, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1123,7 +1123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:encoding:error:"), auto_cast initWithContentsOfURL_encoding_error, "@@:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfFile_encoding_error != nil {
-        initWithContentsOfFile_encoding_error :: proc "c" (self: ^NS.String, _: SEL, path: ^NS.String, enc: NS.StringEncoding, error: ^^NS.Error) -> ^NS.String {
+        initWithContentsOfFile_encoding_error :: proc "c" (self: ^NS.String, _: SEL, path: ^NS.String, enc: NS.StringEncoding, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1133,7 +1133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfFile:encoding:error:"), auto_cast initWithContentsOfFile_encoding_error, "@@:@L^void") do panic("Failed to register objC method.")
     }
     if vt.stringWithContentsOfURL_encoding_error != nil {
-        stringWithContentsOfURL_encoding_error :: proc "c" (self: Class, _: SEL, url: ^NS.URL, enc: NS.StringEncoding, error: ^^NS.Error) -> ^NS.String {
+        stringWithContentsOfURL_encoding_error :: proc "c" (self: Class, _: SEL, url: ^NS.URL, enc: NS.StringEncoding, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1143,7 +1143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stringWithContentsOfURL:encoding:error:"), auto_cast stringWithContentsOfURL_encoding_error, "@#:@L^void") do panic("Failed to register objC method.")
     }
     if vt.stringWithContentsOfFile_encoding_error != nil {
-        stringWithContentsOfFile_encoding_error :: proc "c" (self: Class, _: SEL, path: ^NS.String, enc: NS.StringEncoding, error: ^^NS.Error) -> ^NS.String {
+        stringWithContentsOfFile_encoding_error :: proc "c" (self: Class, _: SEL, path: ^NS.String, enc: NS.StringEncoding, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1153,7 +1153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stringWithContentsOfFile:encoding:error:"), auto_cast stringWithContentsOfFile_encoding_error, "@#:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL_usedEncoding_error != nil {
-        initWithContentsOfURL_usedEncoding_error :: proc "c" (self: ^NS.String, _: SEL, url: ^NS.URL, enc: ^NS.StringEncoding, error: ^^NS.Error) -> ^NS.String {
+        initWithContentsOfURL_usedEncoding_error :: proc "c" (self: ^NS.String, _: SEL, url: ^NS.URL, enc: ^NS.StringEncoding, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1163,7 +1163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:usedEncoding:error:"), auto_cast initWithContentsOfURL_usedEncoding_error, "@@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfFile_usedEncoding_error != nil {
-        initWithContentsOfFile_usedEncoding_error :: proc "c" (self: ^NS.String, _: SEL, path: ^NS.String, enc: ^NS.StringEncoding, error: ^^NS.Error) -> ^NS.String {
+        initWithContentsOfFile_usedEncoding_error :: proc "c" (self: ^NS.String, _: SEL, path: ^NS.String, enc: ^NS.StringEncoding, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1173,7 +1173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfFile:usedEncoding:error:"), auto_cast initWithContentsOfFile_usedEncoding_error, "@@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.stringWithContentsOfURL_usedEncoding_error != nil {
-        stringWithContentsOfURL_usedEncoding_error :: proc "c" (self: Class, _: SEL, url: ^NS.URL, enc: ^NS.StringEncoding, error: ^^NS.Error) -> ^NS.String {
+        stringWithContentsOfURL_usedEncoding_error :: proc "c" (self: Class, _: SEL, url: ^NS.URL, enc: ^NS.StringEncoding, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1183,7 +1183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stringWithContentsOfURL:usedEncoding:error:"), auto_cast stringWithContentsOfURL_usedEncoding_error, "@#:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.stringWithContentsOfFile_usedEncoding_error != nil {
-        stringWithContentsOfFile_usedEncoding_error :: proc "c" (self: Class, _: SEL, path: ^NS.String, enc: ^NS.StringEncoding, error: ^^NS.Error) -> ^NS.String {
+        stringWithContentsOfFile_usedEncoding_error :: proc "c" (self: Class, _: SEL, path: ^NS.String, enc: ^NS.StringEncoding, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

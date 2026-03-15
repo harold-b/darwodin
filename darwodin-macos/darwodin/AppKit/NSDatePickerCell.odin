@@ -24,13 +24,13 @@ DatePickerCell :: struct { using _: ActionCell, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DatePickerCell, objc_selector="initTextCell:", objc_name="initTextCell")
-    DatePickerCell_initTextCell :: proc(self: ^DatePickerCell, string: ^NS.String) -> ^DatePickerCell ---
+    DatePickerCell_initTextCell :: proc(self: ^DatePickerCell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=DatePickerCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    DatePickerCell_initWithCoder :: proc(self: ^DatePickerCell, coder: ^NS.Coder) -> ^DatePickerCell ---
+    DatePickerCell_initWithCoder :: proc(self: ^DatePickerCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=DatePickerCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    DatePickerCell_initImageCell :: proc(self: ^DatePickerCell, image: ^NS.Image) -> ^DatePickerCell ---
+    DatePickerCell_initImageCell :: proc(self: ^DatePickerCell, image: ^NS.Image) -> instancetype ---
 
     @(objc_type=DatePickerCell, objc_selector="datePickerStyle", objc_name="datePickerStyle")
     DatePickerCell_datePickerStyle :: proc(self: ^DatePickerCell) -> DatePickerStyle ---

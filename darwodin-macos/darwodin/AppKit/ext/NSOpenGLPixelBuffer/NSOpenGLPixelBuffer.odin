@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextureTarget: proc(self: ^AK.OpenGLPixelBuffer, target: CA.GLenum, format: CA.GLenum, maxLevel: CA.GLint, pixelsWide: CA.GLsizei, pixelsHigh: CA.GLsizei) -> ^AK.OpenGLPixelBuffer,
+    initWithTextureTarget: proc(self: ^AK.OpenGLPixelBuffer, target: CA.GLenum, format: CA.GLenum, maxLevel: CA.GLint, pixelsWide: CA.GLsizei, pixelsHigh: CA.GLsizei) -> instancetype,
     initWithCGLPBufferObj: proc(self: ^AK.OpenGLPixelBuffer, pbuffer: CA.CGLPBufferObj) -> ^AK.OpenGLPixelBuffer,
     _CGLPBufferObj: proc(self: ^AK.OpenGLPixelBuffer) -> CA.CGLPBufferObj,
     pixelsWide: proc(self: ^AK.OpenGLPixelBuffer) -> CA.GLsizei,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextureTarget != nil {
-        initWithTextureTarget :: proc "c" (self: ^AK.OpenGLPixelBuffer, _: SEL, target: CA.GLenum, format: CA.GLenum, maxLevel: CA.GLint, pixelsWide: CA.GLsizei, pixelsHigh: CA.GLsizei) -> ^AK.OpenGLPixelBuffer {
+        initWithTextureTarget :: proc "c" (self: ^AK.OpenGLPixelBuffer, _: SEL, target: CA.GLenum, format: CA.GLenum, maxLevel: CA.GLint, pixelsWide: CA.GLsizei, pixelsHigh: CA.GLsizei) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

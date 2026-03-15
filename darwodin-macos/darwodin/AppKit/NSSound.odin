@@ -32,13 +32,13 @@ foreign lib {
     Sound_soundNamed :: proc(name: ^NS.String) -> ^Sound ---
 
     @(objc_type=Sound, objc_selector="initWithContentsOfURL:byReference:", objc_name="initWithContentsOfURL")
-    Sound_initWithContentsOfURL :: proc(self: ^Sound, url: ^NS.URL, byRef: bool) -> ^Sound ---
+    Sound_initWithContentsOfURL :: proc(self: ^Sound, url: ^NS.URL, byRef: bool) -> instancetype ---
 
     @(objc_type=Sound, objc_selector="initWithContentsOfFile:byReference:", objc_name="initWithContentsOfFile")
-    Sound_initWithContentsOfFile :: proc(self: ^Sound, path: ^NS.String, byRef: bool) -> ^Sound ---
+    Sound_initWithContentsOfFile :: proc(self: ^Sound, path: ^NS.String, byRef: bool) -> instancetype ---
 
     @(objc_type=Sound, objc_selector="initWithData:", objc_name="initWithData")
-    Sound_initWithData :: proc(self: ^Sound, data: ^NS.Data) -> ^Sound ---
+    Sound_initWithData :: proc(self: ^Sound, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=Sound, objc_selector="setName:", objc_name="setName")
     Sound_setName :: proc(self: ^Sound, string: ^NS.String) -> bool ---
@@ -47,7 +47,7 @@ foreign lib {
     Sound_canInitWithPasteboard :: proc(pasteboard: ^Pasteboard) -> bool ---
 
     @(objc_type=Sound, objc_selector="initWithPasteboard:", objc_name="initWithPasteboard")
-    Sound_initWithPasteboard :: proc(self: ^Sound, pasteboard: ^Pasteboard) -> ^Sound ---
+    Sound_initWithPasteboard :: proc(self: ^Sound, pasteboard: ^Pasteboard) -> instancetype ---
 
     @(objc_type=Sound, objc_selector="writeToPasteboard:", objc_name="writeToPasteboard")
     Sound_writeToPasteboard :: proc(self: ^Sound, pasteboard: ^Pasteboard) ---

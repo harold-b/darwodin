@@ -28,8 +28,8 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithFrame: proc(self: ^UI.InputView, frame: CG.Rect, inputViewStyle: UI.InputViewStyle) -> ^UI.InputView,
-    initWithCoder: proc(self: ^UI.InputView, coder: ^NS.Coder) -> ^UI.InputView,
+    initWithFrame: proc(self: ^UI.InputView, frame: CG.Rect, inputViewStyle: UI.InputViewStyle) -> instancetype,
+    initWithCoder: proc(self: ^UI.InputView, coder: ^NS.Coder) -> instancetype,
     inputViewStyle: proc(self: ^UI.InputView) -> UI.InputViewStyle,
     allowsSelfSizing: proc(self: ^UI.InputView) -> bool,
     setAllowsSelfSizing: proc(self: ^UI.InputView, allowsSelfSizing: bool),
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.InputView, _: SEL, frame: CG.Rect, inputViewStyle: UI.InputViewStyle) -> ^UI.InputView {
+        initWithFrame :: proc "c" (self: ^UI.InputView, _: SEL, frame: CG.Rect, inputViewStyle: UI.InputViewStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:inputViewStyle:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}l") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.InputView, _: SEL, coder: ^NS.Coder) -> ^UI.InputView {
+        initWithCoder :: proc "c" (self: ^UI.InputView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

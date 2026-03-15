@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> ^AK.WritingToolsCoordinatorAnimationParameters,
+    init: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> instancetype,
     duration: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> CG.Float,
     delay: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> CG.Float,
     progressHandler: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> ^Objc_Block(proc "c" ()),
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.WritingToolsCoordinatorAnimationParameters, _: SEL) -> ^AK.WritingToolsCoordinatorAnimationParameters {
+        init :: proc "c" (self: ^AK.WritingToolsCoordinatorAnimationParameters, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

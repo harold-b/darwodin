@@ -26,13 +26,13 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.URLComponents) -> ^NS.URLComponents,
-    initWithURL: proc(self: ^NS.URLComponents, url: ^NS.URL, resolve: bool) -> ^NS.URLComponents,
-    componentsWithURL: proc(url: ^NS.URL, resolve: bool) -> ^NS.URLComponents,
-    initWithString_: proc(self: ^NS.URLComponents, URLString: ^NS.String) -> ^NS.URLComponents,
-    componentsWithString_: proc(URLString: ^NS.String) -> ^NS.URLComponents,
-    initWithString_encodingInvalidCharacters: proc(self: ^NS.URLComponents, URLString: ^NS.String, encodingInvalidCharacters: bool) -> ^NS.URLComponents,
-    componentsWithString_encodingInvalidCharacters: proc(URLString: ^NS.String, encodingInvalidCharacters: bool) -> ^NS.URLComponents,
+    init: proc(self: ^NS.URLComponents) -> instancetype,
+    initWithURL: proc(self: ^NS.URLComponents, url: ^NS.URL, resolve: bool) -> instancetype,
+    componentsWithURL: proc(url: ^NS.URL, resolve: bool) -> instancetype,
+    initWithString_: proc(self: ^NS.URLComponents, URLString: ^NS.String) -> instancetype,
+    componentsWithString_: proc(URLString: ^NS.String) -> instancetype,
+    initWithString_encodingInvalidCharacters: proc(self: ^NS.URLComponents, URLString: ^NS.String, encodingInvalidCharacters: bool) -> instancetype,
+    componentsWithString_encodingInvalidCharacters: proc(URLString: ^NS.String, encodingInvalidCharacters: bool) -> instancetype,
     _URLRelativeToURL: proc(self: ^NS.URLComponents, baseURL: ^NS.URL) -> ^NS.URL,
     _URL: proc(self: ^NS.URLComponents) -> ^NS.URL,
     string: proc(self: ^NS.URLComponents) -> ^NS.String,
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLComponents, _: SEL) -> ^NS.URLComponents {
+        init :: proc "c" (self: ^NS.URLComponents, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^NS.URLComponents, _: SEL, url: ^NS.URL, resolve: bool) -> ^NS.URLComponents {
+        initWithURL :: proc "c" (self: ^NS.URLComponents, _: SEL, url: ^NS.URL, resolve: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithURL:resolvingAgainstBaseURL:"), auto_cast initWithURL, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.componentsWithURL != nil {
-        componentsWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, resolve: bool) -> ^NS.URLComponents {
+        componentsWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, resolve: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("componentsWithURL:resolvingAgainstBaseURL:"), auto_cast componentsWithURL, "@#:@B") do panic("Failed to register objC method.")
     }
     if vt.initWithString_ != nil {
-        initWithString_ :: proc "c" (self: ^NS.URLComponents, _: SEL, URLString: ^NS.String) -> ^NS.URLComponents {
+        initWithString_ :: proc "c" (self: ^NS.URLComponents, _: SEL, URLString: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:"), auto_cast initWithString_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.componentsWithString_ != nil {
-        componentsWithString_ :: proc "c" (self: Class, _: SEL, URLString: ^NS.String) -> ^NS.URLComponents {
+        componentsWithString_ :: proc "c" (self: Class, _: SEL, URLString: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -138,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("componentsWithString:"), auto_cast componentsWithString_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithString_encodingInvalidCharacters != nil {
-        initWithString_encodingInvalidCharacters :: proc "c" (self: ^NS.URLComponents, _: SEL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> ^NS.URLComponents {
+        initWithString_encodingInvalidCharacters :: proc "c" (self: ^NS.URLComponents, _: SEL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:encodingInvalidCharacters:"), auto_cast initWithString_encodingInvalidCharacters, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.componentsWithString_encodingInvalidCharacters != nil {
-        componentsWithString_encodingInvalidCharacters :: proc "c" (self: Class, _: SEL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> ^NS.URLComponents {
+        componentsWithString_encodingInvalidCharacters :: proc "c" (self: Class, _: SEL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

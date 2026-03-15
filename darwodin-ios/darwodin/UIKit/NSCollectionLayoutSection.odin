@@ -24,10 +24,10 @@ NSCollectionLayoutSection :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSCollectionLayoutSection, objc_selector="sectionWithGroup:", objc_name="sectionWithGroup", objc_is_class_method=true)
-    NSCollectionLayoutSection_sectionWithGroup :: proc(group: ^NSCollectionLayoutGroup) -> ^NSCollectionLayoutSection ---
+    NSCollectionLayoutSection_sectionWithGroup :: proc(group: ^NSCollectionLayoutGroup) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSection, objc_selector="init", objc_name="init")
-    NSCollectionLayoutSection_init :: proc(self: ^NSCollectionLayoutSection) -> ^NSCollectionLayoutSection ---
+    NSCollectionLayoutSection_init :: proc(self: ^NSCollectionLayoutSection) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSection, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSCollectionLayoutSection_new :: proc() -> ^NSCollectionLayoutSection ---
@@ -90,5 +90,5 @@ foreign lib {
     NSCollectionLayoutSection_setSupplementariesFollowContentInsets :: proc(self: ^NSCollectionLayoutSection, supplementariesFollowContentInsets: bool) ---
 
     @(objc_type=NSCollectionLayoutSection, objc_selector="sectionWithListConfiguration:layoutEnvironment:", objc_name="sectionWithListConfiguration", objc_is_class_method=true)
-    NSCollectionLayoutSection_sectionWithListConfiguration :: proc(configuration: ^CollectionLayoutListConfiguration, layoutEnvironment: ^NSCollectionLayoutEnvironment) -> ^NSCollectionLayoutSection ---
+    NSCollectionLayoutSection_sectionWithListConfiguration :: proc(configuration: ^CollectionLayoutListConfiguration, layoutEnvironment: ^NSCollectionLayoutEnvironment) -> instancetype ---
 }

@@ -18,13 +18,13 @@ SystemSharingUIObserver :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SystemSharingUIObserver, objc_selector="init", objc_name="init")
-    SystemSharingUIObserver_init :: proc(self: ^SystemSharingUIObserver) -> ^SystemSharingUIObserver ---
+    SystemSharingUIObserver_init :: proc(self: ^SystemSharingUIObserver) -> instancetype ---
 
     @(objc_type=SystemSharingUIObserver, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SystemSharingUIObserver_new :: proc() -> ^SystemSharingUIObserver ---
 
     @(objc_type=SystemSharingUIObserver, objc_selector="initWithContainer:", objc_name="initWithContainer")
-    SystemSharingUIObserver_initWithContainer :: proc(self: ^SystemSharingUIObserver, container: ^Container) -> ^SystemSharingUIObserver ---
+    SystemSharingUIObserver_initWithContainer :: proc(self: ^SystemSharingUIObserver, container: ^Container) -> instancetype ---
 
     @(objc_type=SystemSharingUIObserver, objc_selector="systemSharingUIDidSaveShareBlock", objc_name="systemSharingUIDidSaveShareBlock")
     SystemSharingUIObserver_systemSharingUIDidSaveShareBlock :: proc(self: ^SystemSharingUIObserver) -> ^Objc_Block(proc "c" ()) ---

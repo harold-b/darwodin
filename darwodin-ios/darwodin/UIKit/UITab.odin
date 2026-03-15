@@ -22,10 +22,10 @@ Tab :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Tab, objc_selector="initWithTitle:image:identifier:viewControllerProvider:", objc_name="initWithTitle")
-    Tab_initWithTitle :: proc(self: ^Tab, title: ^NS.String, image: ^Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^Tab) -> ^ViewController)) -> ^Tab ---
+    Tab_initWithTitle :: proc(self: ^Tab, title: ^NS.String, image: ^Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^Tab) -> ^ViewController)) -> instancetype ---
 
     @(objc_type=Tab, objc_selector="init", objc_name="init")
-    Tab_init :: proc(self: ^Tab) -> ^Tab ---
+    Tab_init :: proc(self: ^Tab) -> instancetype ---
 
     @(objc_type=Tab, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Tab_new :: proc() -> ^Tab ---

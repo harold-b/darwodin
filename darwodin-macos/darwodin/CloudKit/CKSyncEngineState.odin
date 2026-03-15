@@ -18,7 +18,7 @@ SyncEngineState :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineState, objc_selector="init", objc_name="init")
-    SyncEngineState_init :: proc(self: ^SyncEngineState) -> ^SyncEngineState ---
+    SyncEngineState_init :: proc(self: ^SyncEngineState) -> instancetype ---
 
     @(objc_type=SyncEngineState, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEngineState_new :: proc() -> ^SyncEngineState ---

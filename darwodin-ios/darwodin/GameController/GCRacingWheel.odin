@@ -22,7 +22,7 @@ RacingWheel :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RacingWheel, objc_selector="init", objc_name="init")
-    RacingWheel_init :: proc(self: ^RacingWheel) -> ^RacingWheel ---
+    RacingWheel_init :: proc(self: ^RacingWheel) -> instancetype ---
 
     @(objc_type=RacingWheel, objc_selector="acquireDeviceWithError:", objc_name="acquireDeviceWithError")
     RacingWheel_acquireDeviceWithError :: proc(self: ^RacingWheel, error: ^^NS.Error) -> bool ---

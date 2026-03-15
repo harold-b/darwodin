@@ -22,17 +22,17 @@ NSSymbolBreatheEffect :: struct { using _: NSSymbolEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSSymbolBreatheEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    NSSymbolBreatheEffect_effect :: proc() -> ^NSSymbolBreatheEffect ---
+    NSSymbolBreatheEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolBreatheEffect, objc_selector="breathePulseEffect", objc_name="breathePulseEffect", objc_is_class_method=true)
-    NSSymbolBreatheEffect_breathePulseEffect :: proc() -> ^NSSymbolBreatheEffect ---
+    NSSymbolBreatheEffect_breathePulseEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolBreatheEffect, objc_selector="breathePlainEffect", objc_name="breathePlainEffect", objc_is_class_method=true)
-    NSSymbolBreatheEffect_breathePlainEffect :: proc() -> ^NSSymbolBreatheEffect ---
+    NSSymbolBreatheEffect_breathePlainEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolBreatheEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
-    NSSymbolBreatheEffect_effectWithByLayer :: proc(self: ^NSSymbolBreatheEffect) -> ^NSSymbolBreatheEffect ---
+    NSSymbolBreatheEffect_effectWithByLayer :: proc(self: ^NSSymbolBreatheEffect) -> instancetype ---
 
     @(objc_type=NSSymbolBreatheEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
-    NSSymbolBreatheEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolBreatheEffect) -> ^NSSymbolBreatheEffect ---
+    NSSymbolBreatheEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolBreatheEffect) -> instancetype ---
 }

@@ -24,10 +24,10 @@ PreviewParameters :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PreviewParameters, objc_selector="init", objc_name="init")
-    PreviewParameters_init :: proc(self: ^PreviewParameters) -> ^PreviewParameters ---
+    PreviewParameters_init :: proc(self: ^PreviewParameters) -> instancetype ---
 
     @(objc_type=PreviewParameters, objc_selector="initWithTextLineRects:", objc_name="initWithTextLineRects")
-    PreviewParameters_initWithTextLineRects :: proc(self: ^PreviewParameters, textLineRects: ^NS.Array) -> ^PreviewParameters ---
+    PreviewParameters_initWithTextLineRects :: proc(self: ^PreviewParameters, textLineRects: ^NS.Array) -> instancetype ---
 
     @(objc_type=PreviewParameters, objc_selector="visiblePath", objc_name="visiblePath")
     PreviewParameters_visiblePath :: proc(self: ^PreviewParameters) -> ^BezierPath ---

@@ -25,7 +25,7 @@ FragmentedAsset :: struct { using _: URLAsset,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FragmentedAsset, objc_selector="fragmentedAssetWithURL:options:", objc_name="fragmentedAssetWithURL", objc_is_class_method=true)
-    FragmentedAsset_fragmentedAssetWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary) -> ^FragmentedAsset ---
+    FragmentedAsset_fragmentedAssetWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=FragmentedAsset, objc_selector="tracks", objc_name="tracks")
     FragmentedAsset_tracks :: proc(self: ^FragmentedAsset) -> ^NS.Array ---

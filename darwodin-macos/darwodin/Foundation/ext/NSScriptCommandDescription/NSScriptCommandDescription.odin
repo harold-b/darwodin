@@ -27,8 +27,8 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     init: proc(self: ^NS.ScriptCommandDescription) -> id,
-    initWithSuiteName: proc(self: ^NS.ScriptCommandDescription, suiteName: ^NS.String, commandName: ^NS.String, commandDeclaration: ^NS.Dictionary) -> ^NS.ScriptCommandDescription,
-    initWithCoder: proc(self: ^NS.ScriptCommandDescription, inCoder: ^NS.Coder) -> ^NS.ScriptCommandDescription,
+    initWithSuiteName: proc(self: ^NS.ScriptCommandDescription, suiteName: ^NS.String, commandName: ^NS.String, commandDeclaration: ^NS.Dictionary) -> instancetype,
+    initWithCoder: proc(self: ^NS.ScriptCommandDescription, inCoder: ^NS.Coder) -> instancetype,
     typeForArgumentWithName: proc(self: ^NS.ScriptCommandDescription, argumentName: ^NS.String) -> ^NS.String,
     appleEventCodeForArgumentWithName: proc(self: ^NS.ScriptCommandDescription, argumentName: ^NS.String) -> CF.FourCharCode,
     isOptionalArgumentWithName: proc(self: ^NS.ScriptCommandDescription, argumentName: ^NS.String) -> bool,
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithSuiteName != nil {
-        initWithSuiteName :: proc "c" (self: ^NS.ScriptCommandDescription, _: SEL, suiteName: ^NS.String, commandName: ^NS.String, commandDeclaration: ^NS.Dictionary) -> ^NS.ScriptCommandDescription {
+        initWithSuiteName :: proc "c" (self: ^NS.ScriptCommandDescription, _: SEL, suiteName: ^NS.String, commandName: ^NS.String, commandDeclaration: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSuiteName:commandName:dictionary:"), auto_cast initWithSuiteName, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.ScriptCommandDescription, _: SEL, inCoder: ^NS.Coder) -> ^NS.ScriptCommandDescription {
+        initWithCoder :: proc "c" (self: ^NS.ScriptCommandDescription, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

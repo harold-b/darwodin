@@ -28,9 +28,9 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithActivityIndicatorStyle: proc(self: ^UI.ActivityIndicatorView, style: UI.ActivityIndicatorViewStyle) -> ^UI.ActivityIndicatorView,
-    initWithFrame: proc(self: ^UI.ActivityIndicatorView, frame: CG.Rect) -> ^UI.ActivityIndicatorView,
-    initWithCoder: proc(self: ^UI.ActivityIndicatorView, coder: ^NS.Coder) -> ^UI.ActivityIndicatorView,
+    initWithActivityIndicatorStyle: proc(self: ^UI.ActivityIndicatorView, style: UI.ActivityIndicatorViewStyle) -> instancetype,
+    initWithFrame: proc(self: ^UI.ActivityIndicatorView, frame: CG.Rect) -> instancetype,
+    initWithCoder: proc(self: ^UI.ActivityIndicatorView, coder: ^NS.Coder) -> instancetype,
     startAnimating: proc(self: ^UI.ActivityIndicatorView),
     stopAnimating: proc(self: ^UI.ActivityIndicatorView),
     activityIndicatorViewStyle: proc(self: ^UI.ActivityIndicatorView) -> UI.ActivityIndicatorViewStyle,
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithActivityIndicatorStyle != nil {
-        initWithActivityIndicatorStyle :: proc "c" (self: ^UI.ActivityIndicatorView, _: SEL, style: UI.ActivityIndicatorViewStyle) -> ^UI.ActivityIndicatorView {
+        initWithActivityIndicatorStyle :: proc "c" (self: ^UI.ActivityIndicatorView, _: SEL, style: UI.ActivityIndicatorViewStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithActivityIndicatorStyle:"), auto_cast initWithActivityIndicatorStyle, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.ActivityIndicatorView, _: SEL, frame: CG.Rect) -> ^UI.ActivityIndicatorView {
+        initWithFrame :: proc "c" (self: ^UI.ActivityIndicatorView, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.ActivityIndicatorView, _: SEL, coder: ^NS.Coder) -> ^UI.ActivityIndicatorView {
+        initWithCoder :: proc "c" (self: ^UI.ActivityIndicatorView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

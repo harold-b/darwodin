@@ -24,7 +24,7 @@ DictionaryControllerKeyValuePair :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DictionaryControllerKeyValuePair, objc_selector="init", objc_name="init")
-    DictionaryControllerKeyValuePair_init :: proc(self: ^DictionaryControllerKeyValuePair) -> ^DictionaryControllerKeyValuePair ---
+    DictionaryControllerKeyValuePair_init :: proc(self: ^DictionaryControllerKeyValuePair) -> instancetype ---
 
     @(objc_type=DictionaryControllerKeyValuePair, objc_selector="key", objc_name="key")
     DictionaryControllerKeyValuePair_key :: proc(self: ^DictionaryControllerKeyValuePair) -> ^NS.String ---

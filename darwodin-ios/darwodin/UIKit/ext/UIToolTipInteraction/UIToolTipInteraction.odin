@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.ToolTipInteraction) -> ^UI.ToolTipInteraction,
-    initWithDefaultToolTip: proc(self: ^UI.ToolTipInteraction, defaultToolTip: ^NS.String) -> ^UI.ToolTipInteraction,
+    init: proc(self: ^UI.ToolTipInteraction) -> instancetype,
+    initWithDefaultToolTip: proc(self: ^UI.ToolTipInteraction, defaultToolTip: ^NS.String) -> instancetype,
     delegate: proc(self: ^UI.ToolTipInteraction) -> ^UI.ToolTipInteractionDelegate,
     setDelegate: proc(self: ^UI.ToolTipInteraction, delegate: ^UI.ToolTipInteractionDelegate),
     isEnabled: proc(self: ^UI.ToolTipInteraction) -> bool,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ToolTipInteraction, _: SEL) -> ^UI.ToolTipInteraction {
+        init :: proc "c" (self: ^UI.ToolTipInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithDefaultToolTip != nil {
-        initWithDefaultToolTip :: proc "c" (self: ^UI.ToolTipInteraction, _: SEL, defaultToolTip: ^NS.String) -> ^UI.ToolTipInteraction {
+        initWithDefaultToolTip :: proc "c" (self: ^UI.ToolTipInteraction, _: SEL, defaultToolTip: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -45,7 +45,7 @@ foreign lib {
     RunningApplication_runningApplicationsWithBundleIdentifier :: proc(bundleIdentifier: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=RunningApplication, objc_selector="runningApplicationWithProcessIdentifier:", objc_name="runningApplicationWithProcessIdentifier", objc_is_class_method=true)
-    RunningApplication_runningApplicationWithProcessIdentifier :: proc(pid: libc.pid_t) -> ^RunningApplication ---
+    RunningApplication_runningApplicationWithProcessIdentifier :: proc(pid: libc.pid_t) -> instancetype ---
 
     @(objc_type=RunningApplication, objc_selector="terminateAutomaticallyTerminableApplications", objc_name="terminateAutomaticallyTerminableApplications", objc_is_class_method=true)
     RunningApplication_terminateAutomaticallyTerminableApplications :: proc() ---

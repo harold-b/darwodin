@@ -20,11 +20,11 @@ LogicalTest :: struct { using _: ScriptWhoseTest, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LogicalTest, objc_selector="initAndTestWithTests:", objc_name="initAndTestWithTests")
-    LogicalTest_initAndTestWithTests :: proc(self: ^LogicalTest, subTests: ^Array) -> ^LogicalTest ---
+    LogicalTest_initAndTestWithTests :: proc(self: ^LogicalTest, subTests: ^Array) -> instancetype ---
 
     @(objc_type=LogicalTest, objc_selector="initOrTestWithTests:", objc_name="initOrTestWithTests")
-    LogicalTest_initOrTestWithTests :: proc(self: ^LogicalTest, subTests: ^Array) -> ^LogicalTest ---
+    LogicalTest_initOrTestWithTests :: proc(self: ^LogicalTest, subTests: ^Array) -> instancetype ---
 
     @(objc_type=LogicalTest, objc_selector="initNotTestWithTest:", objc_name="initNotTestWithTest")
-    LogicalTest_initNotTestWithTest :: proc(self: ^LogicalTest, subTest: ^ScriptWhoseTest) -> ^LogicalTest ---
+    LogicalTest_initNotTestWithTest :: proc(self: ^LogicalTest, subTest: ^ScriptWhoseTest) -> instancetype ---
 }

@@ -26,13 +26,13 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    neutral: proc() -> ^NS.TermOfAddress,
-    feminine: proc() -> ^NS.TermOfAddress,
-    masculine: proc() -> ^NS.TermOfAddress,
-    currentUser: proc() -> ^NS.TermOfAddress,
-    localizedForLanguageIdentifier: proc(language: ^NS.String, pronouns: ^NS.Array) -> ^NS.TermOfAddress,
+    neutral: proc() -> instancetype,
+    feminine: proc() -> instancetype,
+    masculine: proc() -> instancetype,
+    currentUser: proc() -> instancetype,
+    localizedForLanguageIdentifier: proc(language: ^NS.String, pronouns: ^NS.Array) -> instancetype,
     new: proc() -> ^NS.TermOfAddress,
-    init: proc(self: ^NS.TermOfAddress) -> ^NS.TermOfAddress,
+    init: proc(self: ^NS.TermOfAddress) -> instancetype,
     languageIdentifier: proc(self: ^NS.TermOfAddress) -> ^NS.String,
     pronouns: proc(self: ^NS.TermOfAddress) -> ^NS.Array,
 }
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.neutral != nil {
-        neutral :: proc "c" (self: Class, _: SEL) -> ^NS.TermOfAddress {
+        neutral :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("neutral"), auto_cast neutral, "@#:") do panic("Failed to register objC method.")
     }
     if vt.feminine != nil {
-        feminine :: proc "c" (self: Class, _: SEL) -> ^NS.TermOfAddress {
+        feminine :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("feminine"), auto_cast feminine, "@#:") do panic("Failed to register objC method.")
     }
     if vt.masculine != nil {
-        masculine :: proc "c" (self: Class, _: SEL) -> ^NS.TermOfAddress {
+        masculine :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("masculine"), auto_cast masculine, "@#:") do panic("Failed to register objC method.")
     }
     if vt.currentUser != nil {
-        currentUser :: proc "c" (self: Class, _: SEL) -> ^NS.TermOfAddress {
+        currentUser :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("currentUser"), auto_cast currentUser, "@#:") do panic("Failed to register objC method.")
     }
     if vt.localizedForLanguageIdentifier != nil {
-        localizedForLanguageIdentifier :: proc "c" (self: Class, _: SEL, language: ^NS.String, pronouns: ^NS.Array) -> ^NS.TermOfAddress {
+        localizedForLanguageIdentifier :: proc "c" (self: Class, _: SEL, language: ^NS.String, pronouns: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.TermOfAddress, _: SEL) -> ^NS.TermOfAddress {
+        init :: proc "c" (self: ^NS.TermOfAddress, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

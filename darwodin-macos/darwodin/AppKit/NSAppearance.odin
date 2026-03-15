@@ -32,10 +32,10 @@ foreign lib {
     Appearance_appearanceNamed :: proc(name: ^NS.String) -> ^Appearance ---
 
     @(objc_type=Appearance, objc_selector="initWithAppearanceNamed:bundle:", objc_name="initWithAppearanceNamed")
-    Appearance_initWithAppearanceNamed :: proc(self: ^Appearance, name: ^NS.String, bundle: ^NS.Bundle) -> ^Appearance ---
+    Appearance_initWithAppearanceNamed :: proc(self: ^Appearance, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=Appearance, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Appearance_initWithCoder :: proc(self: ^Appearance, coder: ^NS.Coder) -> ^Appearance ---
+    Appearance_initWithCoder :: proc(self: ^Appearance, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Appearance, objc_selector="bestMatchFromAppearancesWithNames:", objc_name="bestMatchFromAppearancesWithNames")
     Appearance_bestMatchFromAppearancesWithNames :: proc(self: ^Appearance, appearances: ^NS.Array) -> ^NS.String ---

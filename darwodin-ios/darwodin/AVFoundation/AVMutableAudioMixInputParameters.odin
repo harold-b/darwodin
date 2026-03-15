@@ -23,10 +23,10 @@ MutableAudioMixInputParameters :: struct { using _: AudioMixInputParameters, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableAudioMixInputParameters, objc_selector="audioMixInputParametersWithTrack:", objc_name="audioMixInputParametersWithTrack", objc_is_class_method=true)
-    MutableAudioMixInputParameters_audioMixInputParametersWithTrack :: proc(track: ^AssetTrack) -> ^MutableAudioMixInputParameters ---
+    MutableAudioMixInputParameters_audioMixInputParametersWithTrack :: proc(track: ^AssetTrack) -> instancetype ---
 
     @(objc_type=MutableAudioMixInputParameters, objc_selector="audioMixInputParameters", objc_name="audioMixInputParameters", objc_is_class_method=true)
-    MutableAudioMixInputParameters_audioMixInputParameters :: proc() -> ^MutableAudioMixInputParameters ---
+    MutableAudioMixInputParameters_audioMixInputParameters :: proc() -> instancetype ---
 
     @(objc_type=MutableAudioMixInputParameters, objc_selector="setVolumeRampFromStartVolume:toEndVolume:timeRange:", objc_name="setVolumeRampFromStartVolume")
     MutableAudioMixInputParameters_setVolumeRampFromStartVolume :: proc(self: ^MutableAudioMixInputParameters, startVolume: cffi.float, endVolume: cffi.float, timeRange: CM.TimeRange) ---

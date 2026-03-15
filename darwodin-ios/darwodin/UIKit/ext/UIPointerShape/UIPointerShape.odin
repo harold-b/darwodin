@@ -28,11 +28,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    shapeWithPath: proc(path: ^UI.BezierPath) -> ^UI.PointerShape,
-    shapeWithRoundedRect_: proc(rect: CG.Rect) -> ^UI.PointerShape,
-    shapeWithRoundedRect_cornerRadius: proc(rect: CG.Rect, cornerRadius: CG.Float) -> ^UI.PointerShape,
-    beamWithPreferredLength: proc(length: CG.Float, axis: UI.Axis) -> ^UI.PointerShape,
-    init: proc(self: ^UI.PointerShape) -> ^UI.PointerShape,
+    shapeWithPath: proc(path: ^UI.BezierPath) -> instancetype,
+    shapeWithRoundedRect_: proc(rect: CG.Rect) -> instancetype,
+    shapeWithRoundedRect_cornerRadius: proc(rect: CG.Rect, cornerRadius: CG.Float) -> instancetype,
+    beamWithPreferredLength: proc(length: CG.Float, axis: UI.Axis) -> instancetype,
+    init: proc(self: ^UI.PointerShape) -> instancetype,
     new: proc() -> ^UI.PointerShape,
 }
 
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.shapeWithPath != nil {
-        shapeWithPath :: proc "c" (self: Class, _: SEL, path: ^UI.BezierPath) -> ^UI.PointerShape {
+        shapeWithPath :: proc "c" (self: Class, _: SEL, path: ^UI.BezierPath) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("shapeWithPath:"), auto_cast shapeWithPath, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.shapeWithRoundedRect_ != nil {
-        shapeWithRoundedRect_ :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> ^UI.PointerShape {
+        shapeWithRoundedRect_ :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("shapeWithRoundedRect:"), auto_cast shapeWithRoundedRect_, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.shapeWithRoundedRect_cornerRadius != nil {
-        shapeWithRoundedRect_cornerRadius :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float) -> ^UI.PointerShape {
+        shapeWithRoundedRect_cornerRadius :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("shapeWithRoundedRect:cornerRadius:"), auto_cast shapeWithRoundedRect_cornerRadius, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}d") do panic("Failed to register objC method.")
     }
     if vt.beamWithPreferredLength != nil {
-        beamWithPreferredLength :: proc "c" (self: Class, _: SEL, length: CG.Float, axis: UI.Axis) -> ^UI.PointerShape {
+        beamWithPreferredLength :: proc "c" (self: Class, _: SEL, length: CG.Float, axis: UI.Axis) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("beamWithPreferredLength:axis:"), auto_cast beamWithPreferredLength, "@#:dL") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PointerShape, _: SEL) -> ^UI.PointerShape {
+        init :: proc "c" (self: ^UI.PointerShape, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

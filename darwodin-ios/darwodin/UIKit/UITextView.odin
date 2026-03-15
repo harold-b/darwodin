@@ -29,13 +29,13 @@ foreign lib {
     TextView_scrollRangeToVisible :: proc(self: ^TextView, range: NS._NSRange) ---
 
     @(objc_type=TextView, objc_selector="initWithFrame:textContainer:", objc_name="initWithFrame")
-    TextView_initWithFrame :: proc(self: ^TextView, frame: CG.Rect, textContainer: ^NSTextContainer) -> ^TextView ---
+    TextView_initWithFrame :: proc(self: ^TextView, frame: CG.Rect, textContainer: ^NSTextContainer) -> instancetype ---
 
     @(objc_type=TextView, objc_selector="textViewUsingTextLayoutManager:", objc_name="textViewUsingTextLayoutManager", objc_is_class_method=true)
-    TextView_textViewUsingTextLayoutManager :: proc(usingTextLayoutManager: bool) -> ^TextView ---
+    TextView_textViewUsingTextLayoutManager :: proc(usingTextLayoutManager: bool) -> instancetype ---
 
     @(objc_type=TextView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextView_initWithCoder :: proc(self: ^TextView, coder: ^NS.Coder) -> ^TextView ---
+    TextView_initWithCoder :: proc(self: ^TextView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextView, objc_selector="drawTextHighlightBackgroundForTextRange:origin:", objc_name="drawTextHighlightBackgroundForTextRange")
     TextView_drawTextHighlightBackgroundForTextRange :: proc(self: ^TextView, textRange: ^NSTextRange, origin: CG.Point) ---

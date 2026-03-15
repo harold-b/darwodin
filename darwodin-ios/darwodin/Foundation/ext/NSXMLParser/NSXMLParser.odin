@@ -26,9 +26,9 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithContentsOfURL: proc(self: ^NS.XMLParser, url: ^NS.URL) -> ^NS.XMLParser,
-    initWithData: proc(self: ^NS.XMLParser, data: ^NS.Data) -> ^NS.XMLParser,
-    initWithStream: proc(self: ^NS.XMLParser, stream: ^NS.InputStream) -> ^NS.XMLParser,
+    initWithContentsOfURL: proc(self: ^NS.XMLParser, url: ^NS.URL) -> instancetype,
+    initWithData: proc(self: ^NS.XMLParser, data: ^NS.Data) -> instancetype,
+    initWithStream: proc(self: ^NS.XMLParser, stream: ^NS.InputStream) -> instancetype,
     parse: proc(self: ^NS.XMLParser) -> bool,
     abortParsing: proc(self: ^NS.XMLParser),
     delegate: proc(self: ^NS.XMLParser) -> ^NS.XMLParserDelegate,
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithContentsOfURL != nil {
-        initWithContentsOfURL :: proc "c" (self: ^NS.XMLParser, _: SEL, url: ^NS.URL) -> ^NS.XMLParser {
+        initWithContentsOfURL :: proc "c" (self: ^NS.XMLParser, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:"), auto_cast initWithContentsOfURL, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^NS.XMLParser, _: SEL, data: ^NS.Data) -> ^NS.XMLParser {
+        initWithData :: proc "c" (self: ^NS.XMLParser, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:"), auto_cast initWithData, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithStream != nil {
-        initWithStream :: proc "c" (self: ^NS.XMLParser, _: SEL, stream: ^NS.InputStream) -> ^NS.XMLParser {
+        initWithStream :: proc "c" (self: ^NS.XMLParser, _: SEL, stream: ^NS.InputStream) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

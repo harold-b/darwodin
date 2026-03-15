@@ -23,16 +23,16 @@ AudioFile :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioFile, objc_selector="initForReading:error:", objc_name="initForReading_error")
-    AudioFile_initForReading_error :: proc(self: ^AudioFile, fileURL: ^NS.URL, outError: ^^NS.Error) -> ^AudioFile ---
+    AudioFile_initForReading_error :: proc(self: ^AudioFile, fileURL: ^NS.URL, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioFile, objc_selector="initForReading:commonFormat:interleaved:error:", objc_name="initForReading_commonFormat_interleaved_error")
-    AudioFile_initForReading_commonFormat_interleaved_error :: proc(self: ^AudioFile, fileURL: ^NS.URL, format: AudioCommonFormat, interleaved: bool, outError: ^^NS.Error) -> ^AudioFile ---
+    AudioFile_initForReading_commonFormat_interleaved_error :: proc(self: ^AudioFile, fileURL: ^NS.URL, format: AudioCommonFormat, interleaved: bool, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioFile, objc_selector="initForWriting:settings:error:", objc_name="initForWriting_settings_error")
-    AudioFile_initForWriting_settings_error :: proc(self: ^AudioFile, fileURL: ^NS.URL, settings: ^NS.Dictionary, outError: ^^NS.Error) -> ^AudioFile ---
+    AudioFile_initForWriting_settings_error :: proc(self: ^AudioFile, fileURL: ^NS.URL, settings: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioFile, objc_selector="initForWriting:settings:commonFormat:interleaved:error:", objc_name="initForWriting_settings_commonFormat_interleaved_error")
-    AudioFile_initForWriting_settings_commonFormat_interleaved_error :: proc(self: ^AudioFile, fileURL: ^NS.URL, settings: ^NS.Dictionary, format: AudioCommonFormat, interleaved: bool, outError: ^^NS.Error) -> ^AudioFile ---
+    AudioFile_initForWriting_settings_commonFormat_interleaved_error :: proc(self: ^AudioFile, fileURL: ^NS.URL, settings: ^NS.Dictionary, format: AudioCommonFormat, interleaved: bool, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioFile, objc_selector="close", objc_name="close")
     AudioFile_close :: proc(self: ^AudioFile) ---

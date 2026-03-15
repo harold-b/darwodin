@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^CA.EDRMetadata,
-    init: proc(self: ^CA.EDRMetadata) -> ^CA.EDRMetadata,
+    init: proc(self: ^CA.EDRMetadata) -> instancetype,
     _HDR10MetadataWithDisplayInfo: proc(displayData: ^NS.Data, contentData: ^NS.Data, scale: cffi.float) -> ^CA.EDRMetadata,
     _HDR10MetadataWithMinLuminance: proc(minNits: cffi.float, maxNits: cffi.float, scale: cffi.float) -> ^CA.EDRMetadata,
     _HLGMetadataWithAmbientViewingEnvironment: proc(data: ^NS.Data) -> ^CA.EDRMetadata,
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^CA.EDRMetadata, _: SEL) -> ^CA.EDRMetadata {
+        init :: proc "c" (self: ^CA.EDRMetadata, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

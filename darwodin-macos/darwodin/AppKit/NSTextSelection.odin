@@ -26,19 +26,19 @@ TextSelection :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextSelection, objc_selector="initWithRanges:affinity:granularity:", objc_name="initWithRanges")
-    TextSelection_initWithRanges :: proc(self: ^TextSelection, textRanges: ^NS.Array, affinity: TextSelectionAffinity, granularity: TextSelectionGranularity) -> ^TextSelection ---
+    TextSelection_initWithRanges :: proc(self: ^TextSelection, textRanges: ^NS.Array, affinity: TextSelectionAffinity, granularity: TextSelectionGranularity) -> instancetype ---
 
     @(objc_type=TextSelection, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextSelection_initWithCoder :: proc(self: ^TextSelection, coder: ^NS.Coder) -> ^TextSelection ---
+    TextSelection_initWithCoder :: proc(self: ^TextSelection, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextSelection, objc_selector="initWithRange:affinity:granularity:", objc_name="initWithRange")
-    TextSelection_initWithRange :: proc(self: ^TextSelection, range: ^TextRange, affinity: TextSelectionAffinity, granularity: TextSelectionGranularity) -> ^TextSelection ---
+    TextSelection_initWithRange :: proc(self: ^TextSelection, range: ^TextRange, affinity: TextSelectionAffinity, granularity: TextSelectionGranularity) -> instancetype ---
 
     @(objc_type=TextSelection, objc_selector="initWithLocation:affinity:", objc_name="initWithLocation")
-    TextSelection_initWithLocation :: proc(self: ^TextSelection, location: ^TextLocation, affinity: TextSelectionAffinity) -> ^TextSelection ---
+    TextSelection_initWithLocation :: proc(self: ^TextSelection, location: ^TextLocation, affinity: TextSelectionAffinity) -> instancetype ---
 
     @(objc_type=TextSelection, objc_selector="init", objc_name="init")
-    TextSelection_init :: proc(self: ^TextSelection) -> ^TextSelection ---
+    TextSelection_init :: proc(self: ^TextSelection) -> instancetype ---
 
     @(objc_type=TextSelection, objc_selector="textSelectionWithTextRanges:", objc_name="textSelectionWithTextRanges")
     TextSelection_textSelectionWithTextRanges :: proc(self: ^TextSelection, textRanges: ^NS.Array) -> ^TextSelection ---

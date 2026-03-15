@@ -24,17 +24,17 @@ SymbolScaleEffect :: struct { using _: SymbolEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SymbolScaleEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    SymbolScaleEffect_effect :: proc() -> ^SymbolScaleEffect ---
+    SymbolScaleEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=SymbolScaleEffect, objc_selector="scaleUpEffect", objc_name="scaleUpEffect", objc_is_class_method=true)
-    SymbolScaleEffect_scaleUpEffect :: proc() -> ^SymbolScaleEffect ---
+    SymbolScaleEffect_scaleUpEffect :: proc() -> instancetype ---
 
     @(objc_type=SymbolScaleEffect, objc_selector="scaleDownEffect", objc_name="scaleDownEffect", objc_is_class_method=true)
-    SymbolScaleEffect_scaleDownEffect :: proc() -> ^SymbolScaleEffect ---
+    SymbolScaleEffect_scaleDownEffect :: proc() -> instancetype ---
 
     @(objc_type=SymbolScaleEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
-    SymbolScaleEffect_effectWithByLayer :: proc(self: ^SymbolScaleEffect) -> ^SymbolScaleEffect ---
+    SymbolScaleEffect_effectWithByLayer :: proc(self: ^SymbolScaleEffect) -> instancetype ---
 
     @(objc_type=SymbolScaleEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
-    SymbolScaleEffect_effectWithWholeSymbol :: proc(self: ^SymbolScaleEffect) -> ^SymbolScaleEffect ---
+    SymbolScaleEffect_effectWithWholeSymbol :: proc(self: ^SymbolScaleEffect) -> instancetype ---
 }

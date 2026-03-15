@@ -41,7 +41,7 @@ foreign lib {
     Predicate_predicateWithBlock :: proc(block: ^Objc_Block(proc "c" (evaluatedObject: id, bindings: ^Dictionary) -> bool)) -> ^Predicate ---
 
     @(objc_type=Predicate, objc_selector="predicateWithSubstitutionVariables:", objc_name="predicateWithSubstitutionVariables")
-    Predicate_predicateWithSubstitutionVariables :: proc(self: ^Predicate, variables: ^Dictionary) -> ^Predicate ---
+    Predicate_predicateWithSubstitutionVariables :: proc(self: ^Predicate, variables: ^Dictionary) -> instancetype ---
 
     @(objc_type=Predicate, objc_selector="evaluateWithObject:", objc_name="evaluateWithObject_")
     Predicate_evaluateWithObject_ :: proc(self: ^Predicate, object: id) -> bool ---

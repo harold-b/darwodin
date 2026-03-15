@@ -22,7 +22,7 @@ PointerLockState :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerLockState, objc_selector="init", objc_name="init")
-    PointerLockState_init :: proc(self: ^PointerLockState) -> ^PointerLockState ---
+    PointerLockState_init :: proc(self: ^PointerLockState) -> instancetype ---
 
     @(objc_type=PointerLockState, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PointerLockState_new :: proc() -> ^PointerLockState ---

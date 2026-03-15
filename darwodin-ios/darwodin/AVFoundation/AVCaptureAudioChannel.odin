@@ -23,7 +23,7 @@ CaptureAudioChannel :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureAudioChannel, objc_selector="init", objc_name="init")
-    CaptureAudioChannel_init :: proc(self: ^CaptureAudioChannel) -> ^CaptureAudioChannel ---
+    CaptureAudioChannel_init :: proc(self: ^CaptureAudioChannel) -> instancetype ---
 
     @(objc_type=CaptureAudioChannel, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureAudioChannel_new :: proc() -> ^CaptureAudioChannel ---

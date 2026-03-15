@@ -23,16 +23,16 @@ AssetWriterInputTaggedPixelBufferGroupAdaptor :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="init", objc_name="init")
-    AssetWriterInputTaggedPixelBufferGroupAdaptor_init :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> ^AssetWriterInputTaggedPixelBufferGroupAdaptor ---
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_init :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> instancetype ---
 
     @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetWriterInputTaggedPixelBufferGroupAdaptor_new :: proc() -> ^AssetWriterInputTaggedPixelBufferGroupAdaptor ---
 
     @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput:sourcePixelBufferAttributes:", objc_name="assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput", objc_is_class_method=true)
-    AssetWriterInputTaggedPixelBufferGroupAdaptor_assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput :: proc(input: ^AssetWriterInput, sourcePixelBufferAttributes: ^NS.Dictionary) -> ^AssetWriterInputTaggedPixelBufferGroupAdaptor ---
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_assetWriterInputTaggedPixelBufferGroupAdaptorWithAssetWriterInput :: proc(input: ^AssetWriterInput, sourcePixelBufferAttributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="initWithAssetWriterInput:sourcePixelBufferAttributes:", objc_name="initWithAssetWriterInput")
-    AssetWriterInputTaggedPixelBufferGroupAdaptor_initWithAssetWriterInput :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor, input: ^AssetWriterInput, sourcePixelBufferAttributes: ^NS.Dictionary) -> ^AssetWriterInputTaggedPixelBufferGroupAdaptor ---
+    AssetWriterInputTaggedPixelBufferGroupAdaptor_initWithAssetWriterInput :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor, input: ^AssetWriterInput, sourcePixelBufferAttributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="appendTaggedPixelBufferGroup:withPresentationTime:", objc_name="appendTaggedPixelBufferGroup")
     AssetWriterInputTaggedPixelBufferGroupAdaptor_appendTaggedPixelBufferGroup :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor, taggedPixelBufferGroup: CM.TaggedBufferGroupRef, presentationTime: CM.Time) -> bool ---

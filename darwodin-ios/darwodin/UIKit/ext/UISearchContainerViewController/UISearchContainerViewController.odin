@@ -28,7 +28,7 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithSearchController: proc(self: ^UI.SearchContainerViewController, searchController: ^UI.SearchController) -> ^UI.SearchContainerViewController,
+    initWithSearchController: proc(self: ^UI.SearchContainerViewController, searchController: ^UI.SearchController) -> instancetype,
     searchController: proc(self: ^UI.SearchContainerViewController) -> ^UI.SearchController,
 }
 
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithSearchController != nil {
-        initWithSearchController :: proc "c" (self: ^UI.SearchContainerViewController, _: SEL, searchController: ^UI.SearchController) -> ^UI.SearchContainerViewController {
+        initWithSearchController :: proc "c" (self: ^UI.SearchContainerViewController, _: SEL, searchController: ^UI.SearchController) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

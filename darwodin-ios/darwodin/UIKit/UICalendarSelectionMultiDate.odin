@@ -25,7 +25,7 @@ foreign lib {
     CalendarSelectionMultiDate_setSelectedDates_animated :: proc(self: ^CalendarSelectionMultiDate, selectedDates: ^NS.Array, animated: bool) ---
 
     @(objc_type=CalendarSelectionMultiDate, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    CalendarSelectionMultiDate_initWithDelegate :: proc(self: ^CalendarSelectionMultiDate, delegate: ^CalendarSelectionMultiDateDelegate) -> ^CalendarSelectionMultiDate ---
+    CalendarSelectionMultiDate_initWithDelegate :: proc(self: ^CalendarSelectionMultiDate, delegate: ^CalendarSelectionMultiDateDelegate) -> instancetype ---
 
     @(objc_type=CalendarSelectionMultiDate, objc_selector="selectedDates", objc_name="selectedDates")
     CalendarSelectionMultiDate_selectedDates :: proc(self: ^CalendarSelectionMultiDate) -> ^NS.Array ---

@@ -28,7 +28,7 @@ foreign lib {
     TabBarControllerSidebar_reconfigureItemForTab :: proc(self: ^TabBarControllerSidebar, tab: ^Tab) ---
 
     @(objc_type=TabBarControllerSidebar, objc_selector="init", objc_name="init")
-    TabBarControllerSidebar_init :: proc(self: ^TabBarControllerSidebar) -> ^TabBarControllerSidebar ---
+    TabBarControllerSidebar_init :: proc(self: ^TabBarControllerSidebar) -> instancetype ---
 
     @(objc_type=TabBarControllerSidebar, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TabBarControllerSidebar_new :: proc() -> ^TabBarControllerSidebar ---

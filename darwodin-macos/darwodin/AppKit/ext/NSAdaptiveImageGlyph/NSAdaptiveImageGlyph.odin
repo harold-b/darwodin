@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithImageContent: proc(self: ^AK.AdaptiveImageGlyph, imageContent: ^NS.Data) -> ^AK.AdaptiveImageGlyph,
-    initWithCoder: proc(self: ^AK.AdaptiveImageGlyph, coder: ^NS.Coder) -> ^AK.AdaptiveImageGlyph,
-    init: proc(self: ^AK.AdaptiveImageGlyph) -> ^AK.AdaptiveImageGlyph,
+    initWithImageContent: proc(self: ^AK.AdaptiveImageGlyph, imageContent: ^NS.Data) -> instancetype,
+    initWithCoder: proc(self: ^AK.AdaptiveImageGlyph, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^AK.AdaptiveImageGlyph) -> instancetype,
     imageContent: proc(self: ^AK.AdaptiveImageGlyph) -> ^NS.Data,
     contentIdentifier: proc(self: ^AK.AdaptiveImageGlyph) -> ^NS.String,
     contentDescription: proc(self: ^AK.AdaptiveImageGlyph) -> ^NS.String,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithImageContent != nil {
-        initWithImageContent :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL, imageContent: ^NS.Data) -> ^AK.AdaptiveImageGlyph {
+        initWithImageContent :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL, imageContent: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImageContent:"), auto_cast initWithImageContent, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL, coder: ^NS.Coder) -> ^AK.AdaptiveImageGlyph {
+        initWithCoder :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL) -> ^AK.AdaptiveImageGlyph {
+        init :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

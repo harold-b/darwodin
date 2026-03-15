@@ -24,10 +24,10 @@ PDFImageRep :: struct { using _: ImageRep, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PDFImageRep, objc_selector="imageRepWithData:", objc_name="imageRepWithData", objc_is_class_method=true)
-    PDFImageRep_imageRepWithData :: proc(pdfData: ^NS.Data) -> ^PDFImageRep ---
+    PDFImageRep_imageRepWithData :: proc(pdfData: ^NS.Data) -> instancetype ---
 
     @(objc_type=PDFImageRep, objc_selector="initWithData:", objc_name="initWithData")
-    PDFImageRep_initWithData :: proc(self: ^PDFImageRep, pdfData: ^NS.Data) -> ^PDFImageRep ---
+    PDFImageRep_initWithData :: proc(self: ^PDFImageRep, pdfData: ^NS.Data) -> instancetype ---
 
     @(objc_type=PDFImageRep, objc_selector="PDFRepresentation", objc_name="PDFRepresentation")
     PDFImageRep_PDFRepresentation :: proc(self: ^PDFImageRep) -> ^NS.Data ---

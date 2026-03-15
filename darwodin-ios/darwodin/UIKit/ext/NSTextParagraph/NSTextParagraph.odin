@@ -28,7 +28,7 @@ import "../NSTextElement"
 
 VTable :: struct {
     super: NSTextElement.VTable,
-    initWithAttributedString: proc(self: ^UI.NSTextParagraph, attributedString: ^NS.AttributedString) -> ^UI.NSTextParagraph,
+    initWithAttributedString: proc(self: ^UI.NSTextParagraph, attributedString: ^NS.AttributedString) -> instancetype,
     attributedString: proc(self: ^UI.NSTextParagraph) -> ^NS.AttributedString,
     paragraphContentRange: proc(self: ^UI.NSTextParagraph) -> ^UI.NSTextRange,
     paragraphSeparatorRange: proc(self: ^UI.NSTextParagraph) -> ^UI.NSTextRange,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextElement.extend(cls, &vt.super)
 
     if vt.initWithAttributedString != nil {
-        initWithAttributedString :: proc "c" (self: ^UI.NSTextParagraph, _: SEL, attributedString: ^NS.AttributedString) -> ^UI.NSTextParagraph {
+        initWithAttributedString :: proc "c" (self: ^UI.NSTextParagraph, _: SEL, attributedString: ^NS.AttributedString) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

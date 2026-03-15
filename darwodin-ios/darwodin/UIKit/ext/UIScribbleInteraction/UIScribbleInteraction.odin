@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.ScribbleInteraction) -> ^UI.ScribbleInteraction,
+    init: proc(self: ^UI.ScribbleInteraction) -> instancetype,
     new: proc() -> ^UI.ScribbleInteraction,
-    initWithDelegate: proc(self: ^UI.ScribbleInteraction, delegate: ^UI.ScribbleInteractionDelegate) -> ^UI.ScribbleInteraction,
+    initWithDelegate: proc(self: ^UI.ScribbleInteraction, delegate: ^UI.ScribbleInteractionDelegate) -> instancetype,
     delegate: proc(self: ^UI.ScribbleInteraction) -> ^UI.ScribbleInteractionDelegate,
     isHandlingWriting: proc(self: ^UI.ScribbleInteraction) -> bool,
     isPencilInputExpected: proc() -> bool,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ScribbleInteraction, _: SEL) -> ^UI.ScribbleInteraction {
+        init :: proc "c" (self: ^UI.ScribbleInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.ScribbleInteraction, _: SEL, delegate: ^UI.ScribbleInteractionDelegate) -> ^UI.ScribbleInteraction {
+        initWithDelegate :: proc "c" (self: ^UI.ScribbleInteraction, _: SEL, delegate: ^UI.ScribbleInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

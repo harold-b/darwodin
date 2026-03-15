@@ -23,19 +23,19 @@ Player :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Player, objc_selector="init", objc_name="init")
-    Player_init :: proc(self: ^Player) -> ^Player ---
+    Player_init :: proc(self: ^Player) -> instancetype ---
 
     @(objc_type=Player, objc_selector="playerWithURL:", objc_name="playerWithURL", objc_is_class_method=true)
-    Player_playerWithURL :: proc(_URL: ^NS.URL) -> ^Player ---
+    Player_playerWithURL :: proc(_URL: ^NS.URL) -> instancetype ---
 
     @(objc_type=Player, objc_selector="playerWithPlayerItem:", objc_name="playerWithPlayerItem", objc_is_class_method=true)
-    Player_playerWithPlayerItem :: proc(item: ^PlayerItem) -> ^Player ---
+    Player_playerWithPlayerItem :: proc(item: ^PlayerItem) -> instancetype ---
 
     @(objc_type=Player, objc_selector="initWithURL:", objc_name="initWithURL")
-    Player_initWithURL :: proc(self: ^Player, _URL: ^NS.URL) -> ^Player ---
+    Player_initWithURL :: proc(self: ^Player, _URL: ^NS.URL) -> instancetype ---
 
     @(objc_type=Player, objc_selector="initWithPlayerItem:", objc_name="initWithPlayerItem")
-    Player_initWithPlayerItem :: proc(self: ^Player, item: ^PlayerItem) -> ^Player ---
+    Player_initWithPlayerItem :: proc(self: ^Player, item: ^PlayerItem) -> instancetype ---
 
     @(objc_type=Player, objc_selector="status", objc_name="status")
     Player_status :: proc(self: ^Player) -> PlayerStatus ---

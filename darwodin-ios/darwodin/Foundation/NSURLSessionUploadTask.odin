@@ -20,7 +20,7 @@ URLSessionUploadTask :: struct { using _: URLSessionDataTask, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionUploadTask, objc_selector="init", objc_name="init")
-    URLSessionUploadTask_init :: proc(self: ^URLSessionUploadTask) -> ^URLSessionUploadTask ---
+    URLSessionUploadTask_init :: proc(self: ^URLSessionUploadTask) -> instancetype ---
 
     @(objc_type=URLSessionUploadTask, objc_selector="new", objc_name="new", objc_is_class_method=true)
     URLSessionUploadTask_new :: proc() -> ^URLSessionUploadTask ---

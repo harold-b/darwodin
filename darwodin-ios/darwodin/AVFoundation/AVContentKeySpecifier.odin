@@ -23,10 +23,10 @@ ContentKeySpecifier :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentKeySpecifier, objc_selector="contentKeySpecifierForKeySystem:identifier:options:", objc_name="contentKeySpecifierForKeySystem", objc_is_class_method=true)
-    ContentKeySpecifier_contentKeySpecifierForKeySystem :: proc(keySystem: ^NS.String, contentKeyIdentifier: id, options: ^NS.Dictionary) -> ^ContentKeySpecifier ---
+    ContentKeySpecifier_contentKeySpecifierForKeySystem :: proc(keySystem: ^NS.String, contentKeyIdentifier: id, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=ContentKeySpecifier, objc_selector="initForKeySystem:identifier:options:", objc_name="initForKeySystem")
-    ContentKeySpecifier_initForKeySystem :: proc(self: ^ContentKeySpecifier, keySystem: ^NS.String, contentKeyIdentifier: id, options: ^NS.Dictionary) -> ^ContentKeySpecifier ---
+    ContentKeySpecifier_initForKeySystem :: proc(self: ^ContentKeySpecifier, keySystem: ^NS.String, contentKeyIdentifier: id, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=ContentKeySpecifier, objc_selector="keySystem", objc_name="keySystem")
     ContentKeySpecifier_keySystem :: proc(self: ^ContentKeySpecifier) -> ^NS.String ---

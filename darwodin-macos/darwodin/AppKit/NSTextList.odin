@@ -27,13 +27,13 @@ TextList :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextList, objc_selector="initWithMarkerFormat:options:startingItemNumber:", objc_name="initWithMarkerFormat_options_startingItemNumber")
-    TextList_initWithMarkerFormat_options_startingItemNumber :: proc(self: ^TextList, markerFormat: ^NS.String, options: TextListOptions, startingItemNumber: NS.Integer) -> ^TextList ---
+    TextList_initWithMarkerFormat_options_startingItemNumber :: proc(self: ^TextList, markerFormat: ^NS.String, options: TextListOptions, startingItemNumber: NS.Integer) -> instancetype ---
 
     @(objc_type=TextList, objc_selector="initWithMarkerFormat:options:", objc_name="initWithMarkerFormat_options")
-    TextList_initWithMarkerFormat_options :: proc(self: ^TextList, markerFormat: ^NS.String, options: NS.UInteger) -> ^TextList ---
+    TextList_initWithMarkerFormat_options :: proc(self: ^TextList, markerFormat: ^NS.String, options: NS.UInteger) -> instancetype ---
 
     @(objc_type=TextList, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextList_initWithCoder :: proc(self: ^TextList, coder: ^NS.Coder) -> ^TextList ---
+    TextList_initWithCoder :: proc(self: ^TextList, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextList, objc_selector="markerForItemNumber:", objc_name="markerForItemNumber")
     TextList_markerForItemNumber :: proc(self: ^TextList, itemNumber: NS.Integer) -> ^NS.String ---

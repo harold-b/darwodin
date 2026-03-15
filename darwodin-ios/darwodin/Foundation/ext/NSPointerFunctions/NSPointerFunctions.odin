@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithOptions: proc(self: ^NS.PointerFunctions, options: NS.PointerFunctionsOptions) -> ^NS.PointerFunctions,
+    initWithOptions: proc(self: ^NS.PointerFunctions, options: NS.PointerFunctionsOptions) -> instancetype,
     pointerFunctionsWithOptions: proc(options: NS.PointerFunctionsOptions) -> ^NS.PointerFunctions,
     hashFunction: proc(self: ^NS.PointerFunctions) -> proc "c" () -> NS.UInteger,
     setHashFunction: proc(self: ^NS.PointerFunctions, hashFunction: proc "c" () -> NS.UInteger),
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithOptions != nil {
-        initWithOptions :: proc "c" (self: ^NS.PointerFunctions, _: SEL, options: NS.PointerFunctionsOptions) -> ^NS.PointerFunctions {
+        initWithOptions :: proc "c" (self: ^NS.PointerFunctions, _: SEL, options: NS.PointerFunctionsOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

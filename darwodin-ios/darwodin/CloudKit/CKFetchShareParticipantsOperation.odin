@@ -18,10 +18,10 @@ FetchShareParticipantsOperation :: struct { using _: Operation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchShareParticipantsOperation, objc_selector="init", objc_name="init")
-    FetchShareParticipantsOperation_init :: proc(self: ^FetchShareParticipantsOperation) -> ^FetchShareParticipantsOperation ---
+    FetchShareParticipantsOperation_init :: proc(self: ^FetchShareParticipantsOperation) -> instancetype ---
 
     @(objc_type=FetchShareParticipantsOperation, objc_selector="initWithUserIdentityLookupInfos:", objc_name="initWithUserIdentityLookupInfos")
-    FetchShareParticipantsOperation_initWithUserIdentityLookupInfos :: proc(self: ^FetchShareParticipantsOperation, userIdentityLookupInfos: ^NS.Array) -> ^FetchShareParticipantsOperation ---
+    FetchShareParticipantsOperation_initWithUserIdentityLookupInfos :: proc(self: ^FetchShareParticipantsOperation, userIdentityLookupInfos: ^NS.Array) -> instancetype ---
 
     @(objc_type=FetchShareParticipantsOperation, objc_selector="userIdentityLookupInfos", objc_name="userIdentityLookupInfos")
     FetchShareParticipantsOperation_userIdentityLookupInfos :: proc(self: ^FetchShareParticipantsOperation) -> ^NS.Array ---

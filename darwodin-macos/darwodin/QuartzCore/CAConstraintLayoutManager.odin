@@ -23,5 +23,5 @@ ConstraintLayoutManager :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ConstraintLayoutManager, objc_selector="layoutManager", objc_name="layoutManager", objc_is_class_method=true)
-    ConstraintLayoutManager_layoutManager :: proc() -> ^ConstraintLayoutManager ---
+    ConstraintLayoutManager_layoutManager :: proc() -> instancetype ---
 }

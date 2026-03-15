@@ -25,7 +25,7 @@ foreign lib {
     SceneOpenURLOptions_new :: proc() -> ^SceneOpenURLOptions ---
 
     @(objc_type=SceneOpenURLOptions, objc_selector="init", objc_name="init")
-    SceneOpenURLOptions_init :: proc(self: ^SceneOpenURLOptions) -> ^SceneOpenURLOptions ---
+    SceneOpenURLOptions_init :: proc(self: ^SceneOpenURLOptions) -> instancetype ---
 
     @(objc_type=SceneOpenURLOptions, objc_selector="sourceApplication", objc_name="sourceApplication")
     SceneOpenURLOptions_sourceApplication :: proc(self: ^SceneOpenURLOptions) -> ^NS.String ---

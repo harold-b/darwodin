@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTagSchemes: proc(self: ^NS.LinguisticTagger, tagSchemes: ^NS.Array, opts: NS.UInteger) -> ^NS.LinguisticTagger,
+    initWithTagSchemes: proc(self: ^NS.LinguisticTagger, tagSchemes: ^NS.Array, opts: NS.UInteger) -> instancetype,
     availableTagSchemesForUnit: proc(unit: NS.LinguisticTaggerUnit, language: ^NS.String) -> ^NS.Array,
     availableTagSchemesForLanguage: proc(language: ^NS.String) -> ^NS.Array,
     setOrthography: proc(self: ^NS.LinguisticTagger, orthography: ^NS.Orthography, range: NS._NSRange),
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTagSchemes != nil {
-        initWithTagSchemes :: proc "c" (self: ^NS.LinguisticTagger, _: SEL, tagSchemes: ^NS.Array, opts: NS.UInteger) -> ^NS.LinguisticTagger {
+        initWithTagSchemes :: proc "c" (self: ^NS.LinguisticTagger, _: SEL, tagSchemes: ^NS.Array, opts: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

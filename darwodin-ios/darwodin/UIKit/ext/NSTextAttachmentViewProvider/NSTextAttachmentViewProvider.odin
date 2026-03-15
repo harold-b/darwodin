@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextAttachment: proc(self: ^UI.NSTextAttachmentViewProvider, textAttachment: ^UI.NSTextAttachment, parentView: ^UI.View, textLayoutManager: ^UI.NSTextLayoutManager, location: ^UI.NSTextLocation) -> ^UI.NSTextAttachmentViewProvider,
-    init: proc(self: ^UI.NSTextAttachmentViewProvider) -> ^UI.NSTextAttachmentViewProvider,
+    initWithTextAttachment: proc(self: ^UI.NSTextAttachmentViewProvider, textAttachment: ^UI.NSTextAttachment, parentView: ^UI.View, textLayoutManager: ^UI.NSTextLayoutManager, location: ^UI.NSTextLocation) -> instancetype,
+    init: proc(self: ^UI.NSTextAttachmentViewProvider) -> instancetype,
     new: proc() -> ^UI.NSTextAttachmentViewProvider,
     loadView: proc(self: ^UI.NSTextAttachmentViewProvider),
     attachmentBoundsForAttributes: proc(self: ^UI.NSTextAttachmentViewProvider, attributes: ^NS.Dictionary, location: ^UI.NSTextLocation, textContainer: ^UI.NSTextContainer, proposedLineFragment: CG.Rect, position: CG.Point) -> CG.Rect,
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextAttachment != nil {
-        initWithTextAttachment :: proc "c" (self: ^UI.NSTextAttachmentViewProvider, _: SEL, textAttachment: ^UI.NSTextAttachment, parentView: ^UI.View, textLayoutManager: ^UI.NSTextLayoutManager, location: ^UI.NSTextLocation) -> ^UI.NSTextAttachmentViewProvider {
+        initWithTextAttachment :: proc "c" (self: ^UI.NSTextAttachmentViewProvider, _: SEL, textAttachment: ^UI.NSTextAttachment, parentView: ^UI.View, textLayoutManager: ^UI.NSTextLayoutManager, location: ^UI.NSTextLocation) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTextAttachment:parentView:textLayoutManager:location:"), auto_cast initWithTextAttachment, "@@:@@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSTextAttachmentViewProvider, _: SEL) -> ^UI.NSTextAttachmentViewProvider {
+        init :: proc "c" (self: ^UI.NSTextAttachmentViewProvider, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

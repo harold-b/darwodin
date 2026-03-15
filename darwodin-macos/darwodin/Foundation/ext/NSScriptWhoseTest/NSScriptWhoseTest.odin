@@ -27,8 +27,8 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     isTrue: proc(self: ^NS.ScriptWhoseTest) -> bool,
-    init: proc(self: ^NS.ScriptWhoseTest) -> ^NS.ScriptWhoseTest,
-    initWithCoder: proc(self: ^NS.ScriptWhoseTest, inCoder: ^NS.Coder) -> ^NS.ScriptWhoseTest,
+    init: proc(self: ^NS.ScriptWhoseTest) -> instancetype,
+    initWithCoder: proc(self: ^NS.ScriptWhoseTest, inCoder: ^NS.Coder) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isTrue"), auto_cast isTrue, "B@:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.ScriptWhoseTest, _: SEL) -> ^NS.ScriptWhoseTest {
+        init :: proc "c" (self: ^NS.ScriptWhoseTest, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.ScriptWhoseTest, _: SEL, inCoder: ^NS.Coder) -> ^NS.ScriptWhoseTest {
+        initWithCoder :: proc "c" (self: ^NS.ScriptWhoseTest, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

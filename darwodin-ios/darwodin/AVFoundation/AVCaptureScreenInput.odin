@@ -23,7 +23,7 @@ CaptureScreenInput :: struct { using _: CaptureInput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureScreenInput, objc_selector="init", objc_name="init")
-    CaptureScreenInput_init :: proc(self: ^CaptureScreenInput) -> ^CaptureScreenInput ---
+    CaptureScreenInput_init :: proc(self: ^CaptureScreenInput) -> instancetype ---
 
     @(objc_type=CaptureScreenInput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureScreenInput_new :: proc() -> ^CaptureScreenInput ---

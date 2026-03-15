@@ -50,12 +50,12 @@ VTable :: struct {
     daylightSavingTimeOffset: proc(self: ^NS.TimeZone) -> NS.TimeInterval,
     nextDaylightSavingTimeTransition: proc(self: ^NS.TimeZone) -> ^NS.Date,
     description: proc(self: ^NS.TimeZone) -> ^NS.String,
-    timeZoneWithName_: proc(tzName: ^NS.String) -> ^NS.TimeZone,
-    timeZoneWithName_data: proc(tzName: ^NS.String, aData: ^NS.Data) -> ^NS.TimeZone,
-    initWithName_: proc(self: ^NS.TimeZone, tzName: ^NS.String) -> ^NS.TimeZone,
-    initWithName_data: proc(self: ^NS.TimeZone, tzName: ^NS.String, aData: ^NS.Data) -> ^NS.TimeZone,
-    timeZoneForSecondsFromGMT: proc(seconds: NS.Integer) -> ^NS.TimeZone,
-    timeZoneWithAbbreviation: proc(abbreviation: ^NS.String) -> ^NS.TimeZone,
+    timeZoneWithName_: proc(tzName: ^NS.String) -> instancetype,
+    timeZoneWithName_data: proc(tzName: ^NS.String, aData: ^NS.Data) -> instancetype,
+    initWithName_: proc(self: ^NS.TimeZone, tzName: ^NS.String) -> instancetype,
+    initWithName_data: proc(self: ^NS.TimeZone, tzName: ^NS.String, aData: ^NS.Data) -> instancetype,
+    timeZoneForSecondsFromGMT: proc(seconds: NS.Integer) -> instancetype,
+    timeZoneWithAbbreviation: proc(abbreviation: ^NS.String) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -306,7 +306,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("description"), auto_cast description, "@@:") do panic("Failed to register objC method.")
     }
     if vt.timeZoneWithName_ != nil {
-        timeZoneWithName_ :: proc "c" (self: Class, _: SEL, tzName: ^NS.String) -> ^NS.TimeZone {
+        timeZoneWithName_ :: proc "c" (self: Class, _: SEL, tzName: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -316,7 +316,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("timeZoneWithName:"), auto_cast timeZoneWithName_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.timeZoneWithName_data != nil {
-        timeZoneWithName_data :: proc "c" (self: Class, _: SEL, tzName: ^NS.String, aData: ^NS.Data) -> ^NS.TimeZone {
+        timeZoneWithName_data :: proc "c" (self: Class, _: SEL, tzName: ^NS.String, aData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -326,7 +326,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("timeZoneWithName:data:"), auto_cast timeZoneWithName_data, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithName_ != nil {
-        initWithName_ :: proc "c" (self: ^NS.TimeZone, _: SEL, tzName: ^NS.String) -> ^NS.TimeZone {
+        initWithName_ :: proc "c" (self: ^NS.TimeZone, _: SEL, tzName: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -336,7 +336,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:"), auto_cast initWithName_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithName_data != nil {
-        initWithName_data :: proc "c" (self: ^NS.TimeZone, _: SEL, tzName: ^NS.String, aData: ^NS.Data) -> ^NS.TimeZone {
+        initWithName_data :: proc "c" (self: ^NS.TimeZone, _: SEL, tzName: ^NS.String, aData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -346,7 +346,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:data:"), auto_cast initWithName_data, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.timeZoneForSecondsFromGMT != nil {
-        timeZoneForSecondsFromGMT :: proc "c" (self: Class, _: SEL, seconds: NS.Integer) -> ^NS.TimeZone {
+        timeZoneForSecondsFromGMT :: proc "c" (self: Class, _: SEL, seconds: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -356,7 +356,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("timeZoneForSecondsFromGMT:"), auto_cast timeZoneForSecondsFromGMT, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.timeZoneWithAbbreviation != nil {
-        timeZoneWithAbbreviation :: proc "c" (self: Class, _: SEL, abbreviation: ^NS.String) -> ^NS.TimeZone {
+        timeZoneWithAbbreviation :: proc "c" (self: Class, _: SEL, abbreviation: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

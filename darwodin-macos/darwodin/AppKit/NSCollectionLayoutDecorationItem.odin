@@ -26,10 +26,10 @@ CollectionLayoutDecorationItem :: struct { using _: CollectionLayoutItem,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionLayoutDecorationItem, objc_selector="backgroundDecorationItemWithElementKind:", objc_name="backgroundDecorationItemWithElementKind", objc_is_class_method=true)
-    CollectionLayoutDecorationItem_backgroundDecorationItemWithElementKind :: proc(elementKind: ^NS.String) -> ^CollectionLayoutDecorationItem ---
+    CollectionLayoutDecorationItem_backgroundDecorationItemWithElementKind :: proc(elementKind: ^NS.String) -> instancetype ---
 
     @(objc_type=CollectionLayoutDecorationItem, objc_selector="init", objc_name="init")
-    CollectionLayoutDecorationItem_init :: proc(self: ^CollectionLayoutDecorationItem) -> ^CollectionLayoutDecorationItem ---
+    CollectionLayoutDecorationItem_init :: proc(self: ^CollectionLayoutDecorationItem) -> instancetype ---
 
     @(objc_type=CollectionLayoutDecorationItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionLayoutDecorationItem_new :: proc() -> ^CollectionLayoutDecorationItem ---

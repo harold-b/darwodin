@@ -27,13 +27,13 @@ foreign lib {
     AccessibilityCustomRotorItemResult_new :: proc() -> ^AccessibilityCustomRotorItemResult ---
 
     @(objc_type=AccessibilityCustomRotorItemResult, objc_selector="init", objc_name="init")
-    AccessibilityCustomRotorItemResult_init :: proc(self: ^AccessibilityCustomRotorItemResult) -> ^AccessibilityCustomRotorItemResult ---
+    AccessibilityCustomRotorItemResult_init :: proc(self: ^AccessibilityCustomRotorItemResult) -> instancetype ---
 
     @(objc_type=AccessibilityCustomRotorItemResult, objc_selector="initWithTargetElement:", objc_name="initWithTargetElement")
-    AccessibilityCustomRotorItemResult_initWithTargetElement :: proc(self: ^AccessibilityCustomRotorItemResult, targetElement: ^AccessibilityElementProtocol) -> ^AccessibilityCustomRotorItemResult ---
+    AccessibilityCustomRotorItemResult_initWithTargetElement :: proc(self: ^AccessibilityCustomRotorItemResult, targetElement: ^AccessibilityElementProtocol) -> instancetype ---
 
     @(objc_type=AccessibilityCustomRotorItemResult, objc_selector="initWithItemLoadingToken:customLabel:", objc_name="initWithItemLoadingToken")
-    AccessibilityCustomRotorItemResult_initWithItemLoadingToken :: proc(self: ^AccessibilityCustomRotorItemResult, itemLoadingToken: ^id, customLabel: ^NS.String) -> ^AccessibilityCustomRotorItemResult ---
+    AccessibilityCustomRotorItemResult_initWithItemLoadingToken :: proc(self: ^AccessibilityCustomRotorItemResult, itemLoadingToken: ^id, customLabel: ^NS.String) -> instancetype ---
 
     @(objc_type=AccessibilityCustomRotorItemResult, objc_selector="targetElement", objc_name="targetElement")
     AccessibilityCustomRotorItemResult_targetElement :: proc(self: ^AccessibilityCustomRotorItemResult) -> ^AccessibilityElementProtocol ---

@@ -23,7 +23,7 @@ AudioEnvironmentDistanceAttenuationParameters :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioEnvironmentDistanceAttenuationParameters, objc_selector="init", objc_name="init")
-    AudioEnvironmentDistanceAttenuationParameters_init :: proc(self: ^AudioEnvironmentDistanceAttenuationParameters) -> ^AudioEnvironmentDistanceAttenuationParameters ---
+    AudioEnvironmentDistanceAttenuationParameters_init :: proc(self: ^AudioEnvironmentDistanceAttenuationParameters) -> instancetype ---
 
     @(objc_type=AudioEnvironmentDistanceAttenuationParameters, objc_selector="distanceAttenuationModel", objc_name="distanceAttenuationModel")
     AudioEnvironmentDistanceAttenuationParameters_distanceAttenuationModel :: proc(self: ^AudioEnvironmentDistanceAttenuationParameters) -> AudioEnvironmentDistanceAttenuationModel ---

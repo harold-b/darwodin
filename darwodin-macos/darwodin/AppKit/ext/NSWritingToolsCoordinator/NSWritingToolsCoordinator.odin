@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^AK.WritingToolsCoordinator, delegate: ^AK.WritingToolsCoordinatorDelegate) -> ^AK.WritingToolsCoordinator,
+    initWithDelegate: proc(self: ^AK.WritingToolsCoordinator, delegate: ^AK.WritingToolsCoordinatorDelegate) -> instancetype,
     stopWritingTools: proc(self: ^AK.WritingToolsCoordinator),
     updateRange: proc(self: ^AK.WritingToolsCoordinator, range: NS._NSRange, replacementText: ^NS.AttributedString, reason: AK.WritingToolsCoordinatorTextUpdateReason, contextID: ^NS.UUID),
     updateForReflowedTextInContextWithIdentifier: proc(self: ^AK.WritingToolsCoordinator, contextID: ^NS.UUID),
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, delegate: ^AK.WritingToolsCoordinatorDelegate) -> ^AK.WritingToolsCoordinator {
+        initWithDelegate :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, delegate: ^AK.WritingToolsCoordinatorDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

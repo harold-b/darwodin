@@ -18,10 +18,10 @@ FetchRecordChangesOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchRecordChangesOperation, objc_selector="init", objc_name="init")
-    FetchRecordChangesOperation_init :: proc(self: ^FetchRecordChangesOperation) -> ^FetchRecordChangesOperation ---
+    FetchRecordChangesOperation_init :: proc(self: ^FetchRecordChangesOperation) -> instancetype ---
 
     @(objc_type=FetchRecordChangesOperation, objc_selector="initWithRecordZoneID:previousServerChangeToken:", objc_name="initWithRecordZoneID")
-    FetchRecordChangesOperation_initWithRecordZoneID :: proc(self: ^FetchRecordChangesOperation, recordZoneID: ^RecordZoneID, previousServerChangeToken: ^ServerChangeToken) -> ^FetchRecordChangesOperation ---
+    FetchRecordChangesOperation_initWithRecordZoneID :: proc(self: ^FetchRecordChangesOperation, recordZoneID: ^RecordZoneID, previousServerChangeToken: ^ServerChangeToken) -> instancetype ---
 
     @(objc_type=FetchRecordChangesOperation, objc_selector="recordZoneID", objc_name="recordZoneID")
     FetchRecordChangesOperation_recordZoneID :: proc(self: ^FetchRecordChangesOperation) -> ^RecordZoneID ---

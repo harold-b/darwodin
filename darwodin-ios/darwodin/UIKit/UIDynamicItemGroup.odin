@@ -24,7 +24,7 @@ DynamicItemGroup :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DynamicItemGroup, objc_selector="initWithItems:", objc_name="initWithItems")
-    DynamicItemGroup_initWithItems :: proc(self: ^DynamicItemGroup, items: ^NS.Array) -> ^DynamicItemGroup ---
+    DynamicItemGroup_initWithItems :: proc(self: ^DynamicItemGroup, items: ^NS.Array) -> instancetype ---
 
     @(objc_type=DynamicItemGroup, objc_selector="items", objc_name="items")
     DynamicItemGroup_items :: proc(self: ^DynamicItemGroup) -> ^NS.Array ---

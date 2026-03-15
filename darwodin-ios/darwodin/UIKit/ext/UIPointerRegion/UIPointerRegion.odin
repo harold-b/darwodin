@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    regionWithRect: proc(rect: CG.Rect, identifier: ^NS.ObjectProtocol) -> ^UI.PointerRegion,
-    init: proc(self: ^UI.PointerRegion) -> ^UI.PointerRegion,
+    regionWithRect: proc(rect: CG.Rect, identifier: ^NS.ObjectProtocol) -> instancetype,
+    init: proc(self: ^UI.PointerRegion) -> instancetype,
     new: proc() -> ^UI.PointerRegion,
     rect: proc(self: ^UI.PointerRegion) -> CG.Rect,
     identifier: proc(self: ^UI.PointerRegion) -> ^NS.ObjectProtocol,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.regionWithRect != nil {
-        regionWithRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect, identifier: ^NS.ObjectProtocol) -> ^UI.PointerRegion {
+        regionWithRect :: proc "c" (self: Class, _: SEL, rect: CG.Rect, identifier: ^NS.ObjectProtocol) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("regionWithRect:identifier:"), auto_cast regionWithRect, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PointerRegion, _: SEL) -> ^UI.PointerRegion {
+        init :: proc "c" (self: ^UI.PointerRegion, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

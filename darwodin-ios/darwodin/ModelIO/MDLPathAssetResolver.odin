@@ -23,7 +23,7 @@ PathAssetResolver :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PathAssetResolver, objc_selector="initWithPath:", objc_name="initWithPath")
-    PathAssetResolver_initWithPath :: proc(self: ^PathAssetResolver, path: ^NS.String) -> ^PathAssetResolver ---
+    PathAssetResolver_initWithPath :: proc(self: ^PathAssetResolver, path: ^NS.String) -> instancetype ---
 
     @(objc_type=PathAssetResolver, objc_selector="path", objc_name="path")
     PathAssetResolver_path :: proc(self: ^PathAssetResolver) -> ^NS.String ---

@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithFormat: proc(self: ^AK.OpenGLContext, format: ^AK.OpenGLPixelFormat, share: ^AK.OpenGLContext) -> ^AK.OpenGLContext,
+    initWithFormat: proc(self: ^AK.OpenGLContext, format: ^AK.OpenGLPixelFormat, share: ^AK.OpenGLContext) -> instancetype,
     initWithCGLContextObj: proc(self: ^AK.OpenGLContext, _context: CA.CGLContextObj) -> ^AK.OpenGLContext,
     setView: proc(self: ^AK.OpenGLContext, view: ^AK.View),
     setFullScreen: proc(self: ^AK.OpenGLContext),
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithFormat != nil {
-        initWithFormat :: proc "c" (self: ^AK.OpenGLContext, _: SEL, format: ^AK.OpenGLPixelFormat, share: ^AK.OpenGLContext) -> ^AK.OpenGLContext {
+        initWithFormat :: proc "c" (self: ^AK.OpenGLContext, _: SEL, format: ^AK.OpenGLPixelFormat, share: ^AK.OpenGLContext) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

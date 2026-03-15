@@ -27,8 +27,8 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     canResumeDownloadDecodedWithEncodingMIMEType: proc(MIMEType: ^NS.String) -> bool,
-    initWithRequest: proc(self: ^NS.URLDownload, request: ^NS.URLRequest, delegate: ^NS.URLDownloadDelegate) -> ^NS.URLDownload,
-    initWithResumeData: proc(self: ^NS.URLDownload, resumeData: ^NS.Data, delegate: ^NS.URLDownloadDelegate, path: ^NS.String) -> ^NS.URLDownload,
+    initWithRequest: proc(self: ^NS.URLDownload, request: ^NS.URLRequest, delegate: ^NS.URLDownloadDelegate) -> instancetype,
+    initWithResumeData: proc(self: ^NS.URLDownload, resumeData: ^NS.Data, delegate: ^NS.URLDownloadDelegate, path: ^NS.String) -> instancetype,
     cancel: proc(self: ^NS.URLDownload),
     setDestination: proc(self: ^NS.URLDownload, path: ^NS.String, allowOverwrite: bool),
     request: proc(self: ^NS.URLDownload) -> ^NS.URLRequest,
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("canResumeDownloadDecodedWithEncodingMIMEType:"), auto_cast canResumeDownloadDecodedWithEncodingMIMEType, "B#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithRequest != nil {
-        initWithRequest :: proc "c" (self: ^NS.URLDownload, _: SEL, request: ^NS.URLRequest, delegate: ^NS.URLDownloadDelegate) -> ^NS.URLDownload {
+        initWithRequest :: proc "c" (self: ^NS.URLDownload, _: SEL, request: ^NS.URLRequest, delegate: ^NS.URLDownloadDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRequest:delegate:"), auto_cast initWithRequest, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithResumeData != nil {
-        initWithResumeData :: proc "c" (self: ^NS.URLDownload, _: SEL, resumeData: ^NS.Data, delegate: ^NS.URLDownloadDelegate, path: ^NS.String) -> ^NS.URLDownload {
+        initWithResumeData :: proc "c" (self: ^NS.URLDownload, _: SEL, resumeData: ^NS.Data, delegate: ^NS.URLDownloadDelegate, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

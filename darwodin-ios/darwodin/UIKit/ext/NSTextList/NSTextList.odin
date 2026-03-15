@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithMarkerFormat_options_startingItemNumber: proc(self: ^UI.NSTextList, markerFormat: ^NS.String, options: UI.NSTextListOptions, startingItemNumber: NS.Integer) -> ^UI.NSTextList,
-    initWithMarkerFormat_options: proc(self: ^UI.NSTextList, markerFormat: ^NS.String, options: NS.UInteger) -> ^UI.NSTextList,
-    initWithCoder: proc(self: ^UI.NSTextList, coder: ^NS.Coder) -> ^UI.NSTextList,
+    initWithMarkerFormat_options_startingItemNumber: proc(self: ^UI.NSTextList, markerFormat: ^NS.String, options: UI.NSTextListOptions, startingItemNumber: NS.Integer) -> instancetype,
+    initWithMarkerFormat_options: proc(self: ^UI.NSTextList, markerFormat: ^NS.String, options: NS.UInteger) -> instancetype,
+    initWithCoder: proc(self: ^UI.NSTextList, coder: ^NS.Coder) -> instancetype,
     markerForItemNumber: proc(self: ^UI.NSTextList, itemNumber: NS.Integer) -> ^NS.String,
     markerFormat: proc(self: ^UI.NSTextList) -> ^NS.String,
     listOptions: proc(self: ^UI.NSTextList) -> UI.NSTextListOptions,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithMarkerFormat_options_startingItemNumber != nil {
-        initWithMarkerFormat_options_startingItemNumber :: proc "c" (self: ^UI.NSTextList, _: SEL, markerFormat: ^NS.String, options: UI.NSTextListOptions, startingItemNumber: NS.Integer) -> ^UI.NSTextList {
+        initWithMarkerFormat_options_startingItemNumber :: proc "c" (self: ^UI.NSTextList, _: SEL, markerFormat: ^NS.String, options: UI.NSTextListOptions, startingItemNumber: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMarkerFormat:options:startingItemNumber:"), auto_cast initWithMarkerFormat_options_startingItemNumber, "@@:@Ll") do panic("Failed to register objC method.")
     }
     if vt.initWithMarkerFormat_options != nil {
-        initWithMarkerFormat_options :: proc "c" (self: ^UI.NSTextList, _: SEL, markerFormat: ^NS.String, options: NS.UInteger) -> ^UI.NSTextList {
+        initWithMarkerFormat_options :: proc "c" (self: ^UI.NSTextList, _: SEL, markerFormat: ^NS.String, options: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMarkerFormat:options:"), auto_cast initWithMarkerFormat_options, "@@:@L") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.NSTextList, _: SEL, coder: ^NS.Coder) -> ^UI.NSTextList {
+        initWithCoder :: proc "c" (self: ^UI.NSTextList, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

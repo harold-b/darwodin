@@ -23,13 +23,13 @@ SampleBufferGenerator :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleBufferGenerator, objc_selector="init", objc_name="init")
-    SampleBufferGenerator_init :: proc(self: ^SampleBufferGenerator) -> ^SampleBufferGenerator ---
+    SampleBufferGenerator_init :: proc(self: ^SampleBufferGenerator) -> instancetype ---
 
     @(objc_type=SampleBufferGenerator, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SampleBufferGenerator_new :: proc() -> ^SampleBufferGenerator ---
 
     @(objc_type=SampleBufferGenerator, objc_selector="initWithAsset:timebase:", objc_name="initWithAsset")
-    SampleBufferGenerator_initWithAsset :: proc(self: ^SampleBufferGenerator, asset: ^Asset, timebase: CM.TimebaseRef) -> ^SampleBufferGenerator ---
+    SampleBufferGenerator_initWithAsset :: proc(self: ^SampleBufferGenerator, asset: ^Asset, timebase: CM.TimebaseRef) -> instancetype ---
 
     @(objc_type=SampleBufferGenerator, objc_selector="createSampleBufferForRequest:error:", objc_name="createSampleBufferForRequest_error")
     SampleBufferGenerator_createSampleBufferForRequest_error :: proc(self: ^SampleBufferGenerator, request: ^SampleBufferRequest, outError: ^^NS.Error) -> CM.SampleBufferRef ---

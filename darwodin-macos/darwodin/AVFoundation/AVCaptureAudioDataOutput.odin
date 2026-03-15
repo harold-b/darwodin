@@ -23,7 +23,7 @@ CaptureAudioDataOutput :: struct { using _: CaptureOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureAudioDataOutput, objc_selector="init", objc_name="init")
-    CaptureAudioDataOutput_init :: proc(self: ^CaptureAudioDataOutput) -> ^CaptureAudioDataOutput ---
+    CaptureAudioDataOutput_init :: proc(self: ^CaptureAudioDataOutput) -> instancetype ---
 
     @(objc_type=CaptureAudioDataOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureAudioDataOutput_new :: proc() -> ^CaptureAudioDataOutput ---

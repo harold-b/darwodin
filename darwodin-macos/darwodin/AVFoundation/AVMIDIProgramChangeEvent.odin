@@ -23,7 +23,7 @@ MIDIProgramChangeEvent :: struct { using _: MIDIChannelEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDIProgramChangeEvent, objc_selector="initWithChannel:programNumber:", objc_name="initWithChannel")
-    MIDIProgramChangeEvent_initWithChannel :: proc(self: ^MIDIProgramChangeEvent, channel: CF.UInt32, programNumber: CF.UInt32) -> ^MIDIProgramChangeEvent ---
+    MIDIProgramChangeEvent_initWithChannel :: proc(self: ^MIDIProgramChangeEvent, channel: CF.UInt32, programNumber: CF.UInt32) -> instancetype ---
 
     @(objc_type=MIDIProgramChangeEvent, objc_selector="programNumber", objc_name="programNumber")
     MIDIProgramChangeEvent_programNumber :: proc(self: ^MIDIProgramChangeEvent) -> CF.UInt32 ---

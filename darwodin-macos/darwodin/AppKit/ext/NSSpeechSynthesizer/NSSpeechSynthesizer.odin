@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithVoice: proc(self: ^AK.SpeechSynthesizer, voice: ^NS.String) -> ^AK.SpeechSynthesizer,
+    initWithVoice: proc(self: ^AK.SpeechSynthesizer, voice: ^NS.String) -> instancetype,
     startSpeakingString_: proc(self: ^AK.SpeechSynthesizer, string: ^NS.String) -> bool,
     startSpeakingString_toURL: proc(self: ^AK.SpeechSynthesizer, string: ^NS.String, url: ^NS.URL) -> bool,
     stopSpeaking: proc(self: ^AK.SpeechSynthesizer),
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithVoice != nil {
-        initWithVoice :: proc "c" (self: ^AK.SpeechSynthesizer, _: SEL, voice: ^NS.String) -> ^AK.SpeechSynthesizer {
+        initWithVoice :: proc "c" (self: ^AK.SpeechSynthesizer, _: SEL, voice: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

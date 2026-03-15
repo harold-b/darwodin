@@ -24,7 +24,7 @@ FunctionStitchingFunctionNode :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FunctionStitchingFunctionNode, objc_selector="initWithName:arguments:controlDependencies:", objc_name="initWithName")
-    FunctionStitchingFunctionNode_initWithName :: proc(self: ^FunctionStitchingFunctionNode, name: ^NS.String, arguments: ^NS.Array, controlDependencies: ^NS.Array) -> ^FunctionStitchingFunctionNode ---
+    FunctionStitchingFunctionNode_initWithName :: proc(self: ^FunctionStitchingFunctionNode, name: ^NS.String, arguments: ^NS.Array, controlDependencies: ^NS.Array) -> instancetype ---
 
     @(objc_type=FunctionStitchingFunctionNode, objc_selector="name", objc_name="name")
     FunctionStitchingFunctionNode_name :: proc(self: ^FunctionStitchingFunctionNode) -> ^NS.String ---

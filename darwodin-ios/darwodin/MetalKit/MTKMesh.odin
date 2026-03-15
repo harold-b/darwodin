@@ -23,10 +23,10 @@ Mesh :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Mesh, objc_selector="init", objc_name="init")
-    Mesh_init :: proc(self: ^Mesh) -> ^Mesh ---
+    Mesh_init :: proc(self: ^Mesh) -> instancetype ---
 
     @(objc_type=Mesh, objc_selector="initWithMesh:device:error:", objc_name="initWithMesh")
-    Mesh_initWithMesh :: proc(self: ^Mesh, mesh: ^MDL.Mesh, device: ^MTL.Device, error: ^^NS.Error) -> ^Mesh ---
+    Mesh_initWithMesh :: proc(self: ^Mesh, mesh: ^MDL.Mesh, device: ^MTL.Device, error: ^^NS.Error) -> instancetype ---
 
     @(objc_type=Mesh, objc_selector="newMeshesFromAsset:device:sourceMeshes:error:", objc_name="newMeshesFromAsset", objc_is_class_method=true)
     Mesh_newMeshesFromAsset :: proc(asset: ^MDL.Asset, device: ^MTL.Device, sourceMeshes: ^^NS.Array, error: ^^NS.Error) -> ^NS.Array ---

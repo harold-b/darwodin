@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithIdentifier: proc(self: ^AK.TouchBarItem, identifier: ^NS.String) -> ^AK.TouchBarItem,
-    initWithCoder: proc(self: ^AK.TouchBarItem, coder: ^NS.Coder) -> ^AK.TouchBarItem,
-    init: proc(self: ^AK.TouchBarItem) -> ^AK.TouchBarItem,
+    initWithIdentifier: proc(self: ^AK.TouchBarItem, identifier: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^AK.TouchBarItem, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^AK.TouchBarItem) -> instancetype,
     identifier: proc(self: ^AK.TouchBarItem) -> ^NS.String,
     visibilityPriority: proc(self: ^AK.TouchBarItem) -> AK.TouchBarItemPriority,
     setVisibilityPriority: proc(self: ^AK.TouchBarItem, visibilityPriority: AK.TouchBarItemPriority),
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithIdentifier != nil {
-        initWithIdentifier :: proc "c" (self: ^AK.TouchBarItem, _: SEL, identifier: ^NS.String) -> ^AK.TouchBarItem {
+        initWithIdentifier :: proc "c" (self: ^AK.TouchBarItem, _: SEL, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIdentifier:"), auto_cast initWithIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TouchBarItem, _: SEL, coder: ^NS.Coder) -> ^AK.TouchBarItem {
+        initWithCoder :: proc "c" (self: ^AK.TouchBarItem, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TouchBarItem, _: SEL) -> ^AK.TouchBarItem {
+        init :: proc "c" (self: ^AK.TouchBarItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -26,13 +26,13 @@ SearchBar :: struct { using _: View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SearchBar, objc_selector="init", objc_name="init")
-    SearchBar_init :: proc(self: ^SearchBar) -> ^SearchBar ---
+    SearchBar_init :: proc(self: ^SearchBar) -> instancetype ---
 
     @(objc_type=SearchBar, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    SearchBar_initWithFrame :: proc(self: ^SearchBar, frame: CG.Rect) -> ^SearchBar ---
+    SearchBar_initWithFrame :: proc(self: ^SearchBar, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=SearchBar, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    SearchBar_initWithCoder :: proc(self: ^SearchBar, coder: ^NS.Coder) -> ^SearchBar ---
+    SearchBar_initWithCoder :: proc(self: ^SearchBar, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=SearchBar, objc_selector="setShowsCancelButton:animated:", objc_name="setShowsCancelButton_animated")
     SearchBar_setShowsCancelButton_animated :: proc(self: ^SearchBar, showsCancelButton: bool, animated: bool) ---

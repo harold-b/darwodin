@@ -23,7 +23,7 @@ CaptionConversionWarning :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionConversionWarning, objc_selector="init", objc_name="init")
-    CaptionConversionWarning_init :: proc(self: ^CaptionConversionWarning) -> ^CaptionConversionWarning ---
+    CaptionConversionWarning_init :: proc(self: ^CaptionConversionWarning) -> instancetype ---
 
     @(objc_type=CaptionConversionWarning, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptionConversionWarning_new :: proc() -> ^CaptionConversionWarning ---

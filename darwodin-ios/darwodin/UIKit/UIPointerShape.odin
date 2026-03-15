@@ -24,19 +24,19 @@ PointerShape :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerShape, objc_selector="shapeWithPath:", objc_name="shapeWithPath", objc_is_class_method=true)
-    PointerShape_shapeWithPath :: proc(path: ^BezierPath) -> ^PointerShape ---
+    PointerShape_shapeWithPath :: proc(path: ^BezierPath) -> instancetype ---
 
     @(objc_type=PointerShape, objc_selector="shapeWithRoundedRect:", objc_name="shapeWithRoundedRect_", objc_is_class_method=true)
-    PointerShape_shapeWithRoundedRect_ :: proc(rect: CG.Rect) -> ^PointerShape ---
+    PointerShape_shapeWithRoundedRect_ :: proc(rect: CG.Rect) -> instancetype ---
 
     @(objc_type=PointerShape, objc_selector="shapeWithRoundedRect:cornerRadius:", objc_name="shapeWithRoundedRect_cornerRadius", objc_is_class_method=true)
-    PointerShape_shapeWithRoundedRect_cornerRadius :: proc(rect: CG.Rect, cornerRadius: CG.Float) -> ^PointerShape ---
+    PointerShape_shapeWithRoundedRect_cornerRadius :: proc(rect: CG.Rect, cornerRadius: CG.Float) -> instancetype ---
 
     @(objc_type=PointerShape, objc_selector="beamWithPreferredLength:axis:", objc_name="beamWithPreferredLength", objc_is_class_method=true)
-    PointerShape_beamWithPreferredLength :: proc(length: CG.Float, axis: Axis) -> ^PointerShape ---
+    PointerShape_beamWithPreferredLength :: proc(length: CG.Float, axis: Axis) -> instancetype ---
 
     @(objc_type=PointerShape, objc_selector="init", objc_name="init")
-    PointerShape_init :: proc(self: ^PointerShape) -> ^PointerShape ---
+    PointerShape_init :: proc(self: ^PointerShape) -> instancetype ---
 
     @(objc_type=PointerShape, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PointerShape_new :: proc() -> ^PointerShape ---

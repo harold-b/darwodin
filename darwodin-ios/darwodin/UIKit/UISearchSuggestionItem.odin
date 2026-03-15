@@ -24,40 +24,40 @@ SearchSuggestionItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SearchSuggestionItem, objc_selector="suggestionWithLocalizedSuggestion:", objc_name="suggestionWithLocalizedSuggestion_", objc_is_class_method=true)
-    SearchSuggestionItem_suggestionWithLocalizedSuggestion_ :: proc(suggestion: ^NS.String) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_suggestionWithLocalizedSuggestion_ :: proc(suggestion: ^NS.String) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="suggestionWithLocalizedSuggestion:descriptionString:", objc_name="suggestionWithLocalizedSuggestion_descriptionString", objc_is_class_method=true)
-    SearchSuggestionItem_suggestionWithLocalizedSuggestion_descriptionString :: proc(suggestion: ^NS.String, description: ^NS.String) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_suggestionWithLocalizedSuggestion_descriptionString :: proc(suggestion: ^NS.String, description: ^NS.String) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="suggestionWithLocalizedSuggestion:descriptionString:iconImage:", objc_name="suggestionWithLocalizedSuggestion_descriptionString_iconImage", objc_is_class_method=true)
-    SearchSuggestionItem_suggestionWithLocalizedSuggestion_descriptionString_iconImage :: proc(suggestion: ^NS.String, description: ^NS.String, iconImage: ^Image) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_suggestionWithLocalizedSuggestion_descriptionString_iconImage :: proc(suggestion: ^NS.String, description: ^NS.String, iconImage: ^Image) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="suggestionWithLocalizedAttributedSuggestion:", objc_name="suggestionWithLocalizedAttributedSuggestion_", objc_is_class_method=true)
-    SearchSuggestionItem_suggestionWithLocalizedAttributedSuggestion_ :: proc(suggestion: ^NS.AttributedString) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_suggestionWithLocalizedAttributedSuggestion_ :: proc(suggestion: ^NS.AttributedString) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="suggestionWithLocalizedAttributedSuggestion:descriptionString:", objc_name="suggestionWithLocalizedAttributedSuggestion_descriptionString", objc_is_class_method=true)
-    SearchSuggestionItem_suggestionWithLocalizedAttributedSuggestion_descriptionString :: proc(suggestion: ^NS.AttributedString, description: ^NS.String) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_suggestionWithLocalizedAttributedSuggestion_descriptionString :: proc(suggestion: ^NS.AttributedString, description: ^NS.String) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="suggestionWithLocalizedAttributedSuggestion:descriptionString:iconImage:", objc_name="suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage", objc_is_class_method=true)
-    SearchSuggestionItem_suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage :: proc(suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^Image) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage :: proc(suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^Image) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="initWithLocalizedSuggestion:", objc_name="initWithLocalizedSuggestion_")
-    SearchSuggestionItem_initWithLocalizedSuggestion_ :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.String) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_initWithLocalizedSuggestion_ :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.String) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="initWithLocalizedSuggestion:localizedDescription:", objc_name="initWithLocalizedSuggestion_localizedDescription")
-    SearchSuggestionItem_initWithLocalizedSuggestion_localizedDescription :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.String, description: ^NS.String) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_initWithLocalizedSuggestion_localizedDescription :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.String, description: ^NS.String) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="initWithLocalizedSuggestion:localizedDescription:iconImage:", objc_name="initWithLocalizedSuggestion_localizedDescription_iconImage")
-    SearchSuggestionItem_initWithLocalizedSuggestion_localizedDescription_iconImage :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.String, description: ^NS.String, iconImage: ^Image) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_initWithLocalizedSuggestion_localizedDescription_iconImage :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.String, description: ^NS.String, iconImage: ^Image) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="initWithLocalizedAttributedSuggestion:", objc_name="initWithLocalizedAttributedSuggestion_")
-    SearchSuggestionItem_initWithLocalizedAttributedSuggestion_ :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.AttributedString) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_initWithLocalizedAttributedSuggestion_ :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.AttributedString) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="initWithLocalizedAttributedSuggestion:localizedDescription:", objc_name="initWithLocalizedAttributedSuggestion_localizedDescription")
-    SearchSuggestionItem_initWithLocalizedAttributedSuggestion_localizedDescription :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.AttributedString, description: ^NS.String) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_initWithLocalizedAttributedSuggestion_localizedDescription :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.AttributedString, description: ^NS.String) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="initWithLocalizedAttributedSuggestion:localizedDescription:iconImage:", objc_name="initWithLocalizedAttributedSuggestion_localizedDescription_iconImage")
-    SearchSuggestionItem_initWithLocalizedAttributedSuggestion_localizedDescription_iconImage :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^Image) -> ^SearchSuggestionItem ---
+    SearchSuggestionItem_initWithLocalizedAttributedSuggestion_localizedDescription_iconImage :: proc(self: ^SearchSuggestionItem, suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^Image) -> instancetype ---
 
     @(objc_type=SearchSuggestionItem, objc_selector="localizedAttributedSuggestion", objc_name="localizedAttributedSuggestion")
     SearchSuggestionItem_localizedAttributedSuggestion :: proc(self: ^SearchSuggestionItem) -> ^NS.AttributedString ---

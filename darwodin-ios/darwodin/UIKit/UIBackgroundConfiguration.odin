@@ -25,28 +25,28 @@ BackgroundConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BackgroundConfiguration, objc_selector="clearConfiguration", objc_name="clearConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_clearConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_clearConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listCellConfiguration", objc_name="listCellConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listCellConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listHeaderConfiguration", objc_name="listHeaderConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listHeaderConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listHeaderConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listFooterConfiguration", objc_name="listFooterConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listFooterConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listFooterConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listAccompaniedSidebarCellConfiguration", objc_name="listAccompaniedSidebarCellConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listAccompaniedSidebarCellConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listAccompaniedSidebarCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     BackgroundConfiguration_new :: proc() -> ^BackgroundConfiguration ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="init", objc_name="init")
-    BackgroundConfiguration_init :: proc(self: ^BackgroundConfiguration) -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_init :: proc(self: ^BackgroundConfiguration) -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="updatedConfigurationForState:", objc_name="updatedConfigurationForState")
-    BackgroundConfiguration_updatedConfigurationForState :: proc(self: ^BackgroundConfiguration, state: ^ConfigurationState) -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_updatedConfigurationForState :: proc(self: ^BackgroundConfiguration, state: ^ConfigurationState) -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="resolvedBackgroundColorForTintColor:", objc_name="resolvedBackgroundColorForTintColor")
     BackgroundConfiguration_resolvedBackgroundColorForTintColor :: proc(self: ^BackgroundConfiguration, tintColor: ^Color) -> ^Color ---
@@ -55,22 +55,22 @@ foreign lib {
     BackgroundConfiguration_resolvedStrokeColorForTintColor :: proc(self: ^BackgroundConfiguration, tintColor: ^Color) -> ^Color ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listPlainCellConfiguration", objc_name="listPlainCellConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listPlainCellConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listPlainCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listGroupedCellConfiguration", objc_name="listGroupedCellConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listGroupedCellConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listGroupedCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listSidebarCellConfiguration", objc_name="listSidebarCellConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listSidebarCellConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listSidebarCellConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listPlainHeaderFooterConfiguration", objc_name="listPlainHeaderFooterConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listPlainHeaderFooterConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listPlainHeaderFooterConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listGroupedHeaderFooterConfiguration", objc_name="listGroupedHeaderFooterConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listGroupedHeaderFooterConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listGroupedHeaderFooterConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="listSidebarHeaderConfiguration", objc_name="listSidebarHeaderConfiguration", objc_is_class_method=true)
-    BackgroundConfiguration_listSidebarHeaderConfiguration :: proc() -> ^BackgroundConfiguration ---
+    BackgroundConfiguration_listSidebarHeaderConfiguration :: proc() -> instancetype ---
 
     @(objc_type=BackgroundConfiguration, objc_selector="customView", objc_name="customView")
     BackgroundConfiguration_customView :: proc(self: ^BackgroundConfiguration) -> ^View ---

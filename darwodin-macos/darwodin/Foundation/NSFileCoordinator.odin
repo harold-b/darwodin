@@ -26,7 +26,7 @@ foreign lib {
     FileCoordinator_removeFilePresenter :: proc(filePresenter: ^FilePresenter) ---
 
     @(objc_type=FileCoordinator, objc_selector="initWithFilePresenter:", objc_name="initWithFilePresenter")
-    FileCoordinator_initWithFilePresenter :: proc(self: ^FileCoordinator, filePresenterOrNil: ^FilePresenter) -> ^FileCoordinator ---
+    FileCoordinator_initWithFilePresenter :: proc(self: ^FileCoordinator, filePresenterOrNil: ^FilePresenter) -> instancetype ---
 
     @(objc_type=FileCoordinator, objc_selector="coordinateAccessWithIntents:queue:byAccessor:", objc_name="coordinateAccessWithIntents")
     FileCoordinator_coordinateAccessWithIntents :: proc(self: ^FileCoordinator, intents: ^Array, queue: ^OperationQueue, accessor: ^Objc_Block(proc "c" (error: ^Error))) ---

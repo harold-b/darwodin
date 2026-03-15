@@ -22,7 +22,7 @@ HoverEffectLayer :: struct { using _: CA.Layer, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HoverEffectLayer, objc_selector="initWithContainerView:style:", objc_name="initWithContainerView")
-    HoverEffectLayer_initWithContainerView :: proc(self: ^HoverEffectLayer, containerView: ^View, style: ^HoverStyle) -> ^HoverEffectLayer ---
+    HoverEffectLayer_initWithContainerView :: proc(self: ^HoverEffectLayer, containerView: ^View, style: ^HoverStyle) -> instancetype ---
 
     @(objc_type=HoverEffectLayer, objc_selector="hoverStyle", objc_name="hoverStyle")
     HoverEffectLayer_hoverStyle :: proc(self: ^HoverEffectLayer) -> ^HoverStyle ---

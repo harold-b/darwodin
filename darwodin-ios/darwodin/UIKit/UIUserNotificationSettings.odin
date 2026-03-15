@@ -22,7 +22,7 @@ UserNotificationSettings :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserNotificationSettings, objc_selector="settingsForTypes:categories:", objc_name="settingsForTypes", objc_is_class_method=true)
-    UserNotificationSettings_settingsForTypes :: proc(types: UserNotificationType, categories: ^NS.Set) -> ^UserNotificationSettings ---
+    UserNotificationSettings_settingsForTypes :: proc(types: UserNotificationType, categories: ^NS.Set) -> instancetype ---
 
     @(objc_type=UserNotificationSettings, objc_selector="types", objc_name="types")
     UserNotificationSettings_types :: proc(self: ^UserNotificationSettings) -> UserNotificationType ---

@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSendPort: proc(self: ^NS.PortMessage, sendPort: ^NS.Port, replyPort: ^NS.Port, components: ^NS.Array) -> ^NS.PortMessage,
+    initWithSendPort: proc(self: ^NS.PortMessage, sendPort: ^NS.Port, replyPort: ^NS.Port, components: ^NS.Array) -> instancetype,
     sendBeforeDate: proc(self: ^NS.PortMessage, date: ^NS.Date) -> bool,
     components: proc(self: ^NS.PortMessage) -> ^NS.Array,
     receivePort: proc(self: ^NS.PortMessage) -> ^NS.Port,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSendPort != nil {
-        initWithSendPort :: proc "c" (self: ^NS.PortMessage, _: SEL, sendPort: ^NS.Port, replyPort: ^NS.Port, components: ^NS.Array) -> ^NS.PortMessage {
+        initWithSendPort :: proc "c" (self: ^NS.PortMessage, _: SEL, sendPort: ^NS.Port, replyPort: ^NS.Port, components: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

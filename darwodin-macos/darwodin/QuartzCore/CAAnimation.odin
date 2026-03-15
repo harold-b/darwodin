@@ -26,7 +26,7 @@ Animation :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Animation, objc_selector="animation", objc_name="animation", objc_is_class_method=true)
-    Animation_animation :: proc() -> ^Animation ---
+    Animation_animation :: proc() -> instancetype ---
 
     @(objc_type=Animation, objc_selector="defaultValueForKey:", objc_name="defaultValueForKey", objc_is_class_method=true)
     Animation_defaultValueForKey :: proc(key: ^NS.String) -> id ---

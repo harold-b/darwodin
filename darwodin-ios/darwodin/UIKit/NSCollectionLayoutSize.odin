@@ -24,10 +24,10 @@ NSCollectionLayoutSize :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSCollectionLayoutSize, objc_selector="sizeWithWidthDimension:heightDimension:", objc_name="sizeWithWidthDimension", objc_is_class_method=true)
-    NSCollectionLayoutSize_sizeWithWidthDimension :: proc(width: ^NSCollectionLayoutDimension, height: ^NSCollectionLayoutDimension) -> ^NSCollectionLayoutSize ---
+    NSCollectionLayoutSize_sizeWithWidthDimension :: proc(width: ^NSCollectionLayoutDimension, height: ^NSCollectionLayoutDimension) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSize, objc_selector="init", objc_name="init")
-    NSCollectionLayoutSize_init :: proc(self: ^NSCollectionLayoutSize) -> ^NSCollectionLayoutSize ---
+    NSCollectionLayoutSize_init :: proc(self: ^NSCollectionLayoutSize) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSize, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSCollectionLayoutSize_new :: proc() -> ^NSCollectionLayoutSize ---

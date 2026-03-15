@@ -27,11 +27,11 @@ import "../NSPort"
 VTable :: struct {
     super: NSPort.VTable,
     portWithMachPort_: proc(machPort: cffi.uint32_t) -> ^NS.Port,
-    initWithMachPort_: proc(self: ^NS.MachPort, machPort: cffi.uint32_t) -> ^NS.MachPort,
+    initWithMachPort_: proc(self: ^NS.MachPort, machPort: cffi.uint32_t) -> instancetype,
     setDelegate: proc(self: ^NS.MachPort, anObject: ^NS.MachPortDelegate),
     delegate: proc(self: ^NS.MachPort) -> ^NS.MachPortDelegate,
     portWithMachPort_options: proc(machPort: cffi.uint32_t, f: NS.MachPortOptions) -> ^NS.Port,
-    initWithMachPort_options: proc(self: ^NS.MachPort, machPort: cffi.uint32_t, f: NS.MachPortOptions) -> ^NS.MachPort,
+    initWithMachPort_options: proc(self: ^NS.MachPort, machPort: cffi.uint32_t, f: NS.MachPortOptions) -> instancetype,
     scheduleInRunLoop: proc(self: ^NS.MachPort, runLoop: ^NS.RunLoop, mode: ^NS.String),
     removeFromRunLoop: proc(self: ^NS.MachPort, runLoop: ^NS.RunLoop, mode: ^NS.String),
     machPort: proc(self: ^NS.MachPort) -> cffi.uint32_t,
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("portWithMachPort:"), auto_cast portWithMachPort_, "@#:I") do panic("Failed to register objC method.")
     }
     if vt.initWithMachPort_ != nil {
-        initWithMachPort_ :: proc "c" (self: ^NS.MachPort, _: SEL, machPort: cffi.uint32_t) -> ^NS.MachPort {
+        initWithMachPort_ :: proc "c" (self: ^NS.MachPort, _: SEL, machPort: cffi.uint32_t) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("portWithMachPort:options:"), auto_cast portWithMachPort_options, "@#:IL") do panic("Failed to register objC method.")
     }
     if vt.initWithMachPort_options != nil {
-        initWithMachPort_options :: proc "c" (self: ^NS.MachPort, _: SEL, machPort: cffi.uint32_t, f: NS.MachPortOptions) -> ^NS.MachPort {
+        initWithMachPort_options :: proc "c" (self: ^NS.MachPort, _: SEL, machPort: cffi.uint32_t, f: NS.MachPortOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

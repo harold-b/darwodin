@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.TextFormattingViewControllerChangeValue) -> ^UI.TextFormattingViewControllerChangeValue,
+    init: proc(self: ^UI.TextFormattingViewControllerChangeValue) -> instancetype,
     new: proc() -> ^UI.TextFormattingViewControllerChangeValue,
     changeType: proc(self: ^UI.TextFormattingViewControllerChangeValue) -> ^NS.String,
     formattingStyleKey: proc(self: ^UI.TextFormattingViewControllerChangeValue) -> ^NS.String,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextFormattingViewControllerChangeValue, _: SEL) -> ^UI.TextFormattingViewControllerChangeValue {
+        init :: proc "c" (self: ^UI.TextFormattingViewControllerChangeValue, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

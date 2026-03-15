@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    configurationWithActions: proc(actions: ^NS.Array) -> ^UI.SwipeActionsConfiguration,
+    configurationWithActions: proc(actions: ^NS.Array) -> instancetype,
     actions: proc(self: ^UI.SwipeActionsConfiguration) -> ^NS.Array,
     performsFirstActionWithFullSwipe: proc(self: ^UI.SwipeActionsConfiguration) -> bool,
     setPerformsFirstActionWithFullSwipe: proc(self: ^UI.SwipeActionsConfiguration, performsFirstActionWithFullSwipe: bool),
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.configurationWithActions != nil {
-        configurationWithActions :: proc "c" (self: Class, _: SEL, actions: ^NS.Array) -> ^UI.SwipeActionsConfiguration {
+        configurationWithActions :: proc "c" (self: Class, _: SEL, actions: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

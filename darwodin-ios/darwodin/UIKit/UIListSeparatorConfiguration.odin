@@ -25,13 +25,13 @@ ListSeparatorConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ListSeparatorConfiguration, objc_selector="init", objc_name="init")
-    ListSeparatorConfiguration_init :: proc(self: ^ListSeparatorConfiguration) -> ^ListSeparatorConfiguration ---
+    ListSeparatorConfiguration_init :: proc(self: ^ListSeparatorConfiguration) -> instancetype ---
 
     @(objc_type=ListSeparatorConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ListSeparatorConfiguration_new :: proc() -> ^ListSeparatorConfiguration ---
 
     @(objc_type=ListSeparatorConfiguration, objc_selector="initWithListAppearance:", objc_name="initWithListAppearance")
-    ListSeparatorConfiguration_initWithListAppearance :: proc(self: ^ListSeparatorConfiguration, listAppearance: CollectionLayoutListAppearance) -> ^ListSeparatorConfiguration ---
+    ListSeparatorConfiguration_initWithListAppearance :: proc(self: ^ListSeparatorConfiguration, listAppearance: CollectionLayoutListAppearance) -> instancetype ---
 
     @(objc_type=ListSeparatorConfiguration, objc_selector="topSeparatorVisibility", objc_name="topSeparatorVisibility")
     ListSeparatorConfiguration_topSeparatorVisibility :: proc(self: ^ListSeparatorConfiguration) -> ListSeparatorVisibility ---

@@ -23,7 +23,7 @@ SampleBufferGeneratorBatch :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleBufferGeneratorBatch, objc_selector="init", objc_name="init")
-    SampleBufferGeneratorBatch_init :: proc(self: ^SampleBufferGeneratorBatch) -> ^SampleBufferGeneratorBatch ---
+    SampleBufferGeneratorBatch_init :: proc(self: ^SampleBufferGeneratorBatch) -> instancetype ---
 
     @(objc_type=SampleBufferGeneratorBatch, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SampleBufferGeneratorBatch_new :: proc() -> ^SampleBufferGeneratorBatch ---

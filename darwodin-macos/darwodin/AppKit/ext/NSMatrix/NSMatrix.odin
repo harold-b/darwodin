@@ -30,9 +30,9 @@ import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    initWithFrame_: proc(self: ^AK.Matrix, frameRect: NS.Rect) -> ^AK.Matrix,
-    initWithFrame_mode_prototype_numberOfRows_numberOfColumns: proc(self: ^AK.Matrix, frameRect: NS.Rect, mode: AK.MatrixMode, cell: ^AK.Cell, rowsHigh: NS.Integer, colsWide: NS.Integer) -> ^AK.Matrix,
-    initWithFrame_mode_cellClass_numberOfRows_numberOfColumns: proc(self: ^AK.Matrix, frameRect: NS.Rect, mode: AK.MatrixMode, factoryId: Class, rowsHigh: NS.Integer, colsWide: NS.Integer) -> ^AK.Matrix,
+    initWithFrame_: proc(self: ^AK.Matrix, frameRect: NS.Rect) -> instancetype,
+    initWithFrame_mode_prototype_numberOfRows_numberOfColumns: proc(self: ^AK.Matrix, frameRect: NS.Rect, mode: AK.MatrixMode, cell: ^AK.Cell, rowsHigh: NS.Integer, colsWide: NS.Integer) -> instancetype,
+    initWithFrame_mode_cellClass_numberOfRows_numberOfColumns: proc(self: ^AK.Matrix, frameRect: NS.Rect, mode: AK.MatrixMode, factoryId: Class, rowsHigh: NS.Integer, colsWide: NS.Integer) -> instancetype,
     makeCellAtRow: proc(self: ^AK.Matrix, row: NS.Integer, col: NS.Integer) -> ^AK.Cell,
     sendAction_to_forAllCells: proc(self: ^AK.Matrix, selector: SEL, object: id, flag: bool),
     sortUsingSelector: proc(self: ^AK.Matrix, comparator: SEL),
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.initWithFrame_ != nil {
-        initWithFrame_ :: proc "c" (self: ^AK.Matrix, _: SEL, frameRect: NS.Rect) -> ^AK.Matrix {
+        initWithFrame_ :: proc "c" (self: ^AK.Matrix, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame_, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame_mode_prototype_numberOfRows_numberOfColumns != nil {
-        initWithFrame_mode_prototype_numberOfRows_numberOfColumns :: proc "c" (self: ^AK.Matrix, _: SEL, frameRect: NS.Rect, mode: AK.MatrixMode, cell: ^AK.Cell, rowsHigh: NS.Integer, colsWide: NS.Integer) -> ^AK.Matrix {
+        initWithFrame_mode_prototype_numberOfRows_numberOfColumns :: proc "c" (self: ^AK.Matrix, _: SEL, frameRect: NS.Rect, mode: AK.MatrixMode, cell: ^AK.Cell, rowsHigh: NS.Integer, colsWide: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:mode:prototype:numberOfRows:numberOfColumns:"), auto_cast initWithFrame_mode_prototype_numberOfRows_numberOfColumns, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}L@ll") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame_mode_cellClass_numberOfRows_numberOfColumns != nil {
-        initWithFrame_mode_cellClass_numberOfRows_numberOfColumns :: proc "c" (self: ^AK.Matrix, _: SEL, frameRect: NS.Rect, mode: AK.MatrixMode, factoryId: Class, rowsHigh: NS.Integer, colsWide: NS.Integer) -> ^AK.Matrix {
+        initWithFrame_mode_cellClass_numberOfRows_numberOfColumns :: proc "c" (self: ^AK.Matrix, _: SEL, frameRect: NS.Rect, mode: AK.MatrixMode, factoryId: Class, rowsHigh: NS.Integer, colsWide: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -23,13 +23,13 @@ CaptureDataOutputSynchronizer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDataOutputSynchronizer, objc_selector="init", objc_name="init")
-    CaptureDataOutputSynchronizer_init :: proc(self: ^CaptureDataOutputSynchronizer) -> ^CaptureDataOutputSynchronizer ---
+    CaptureDataOutputSynchronizer_init :: proc(self: ^CaptureDataOutputSynchronizer) -> instancetype ---
 
     @(objc_type=CaptureDataOutputSynchronizer, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureDataOutputSynchronizer_new :: proc() -> ^CaptureDataOutputSynchronizer ---
 
     @(objc_type=CaptureDataOutputSynchronizer, objc_selector="initWithDataOutputs:", objc_name="initWithDataOutputs")
-    CaptureDataOutputSynchronizer_initWithDataOutputs :: proc(self: ^CaptureDataOutputSynchronizer, dataOutputs: ^NS.Array) -> ^CaptureDataOutputSynchronizer ---
+    CaptureDataOutputSynchronizer_initWithDataOutputs :: proc(self: ^CaptureDataOutputSynchronizer, dataOutputs: ^NS.Array) -> instancetype ---
 
     @(objc_type=CaptureDataOutputSynchronizer, objc_selector="setDelegate:queue:", objc_name="setDelegate")
     CaptureDataOutputSynchronizer_setDelegate :: proc(self: ^CaptureDataOutputSynchronizer, delegate: ^CaptureDataOutputSynchronizerDelegate, delegateCallbackQueue: CF.dispatch_queue_t) ---

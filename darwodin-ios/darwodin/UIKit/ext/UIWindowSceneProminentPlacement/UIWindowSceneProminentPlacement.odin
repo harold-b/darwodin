@@ -28,7 +28,7 @@ import "../UIWindowScenePlacement"
 
 VTable :: struct {
     super: UIWindowScenePlacement.VTable,
-    prominentPlacement: proc() -> ^UI.WindowSceneProminentPlacement,
+    prominentPlacement: proc() -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIWindowScenePlacement.extend(cls, &vt.super)
 
     if vt.prominentPlacement != nil {
-        prominentPlacement :: proc "c" (self: Class, _: SEL) -> ^UI.WindowSceneProminentPlacement {
+        prominentPlacement :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

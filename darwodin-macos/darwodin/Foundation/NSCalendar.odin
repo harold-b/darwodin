@@ -26,7 +26,7 @@ foreign lib {
     Calendar_calendarWithIdentifier :: proc(calendarIdentifierConstant: ^String) -> ^Calendar ---
 
     @(objc_type=Calendar, objc_selector="init", objc_name="init")
-    Calendar_init :: proc(self: ^Calendar) -> ^Calendar ---
+    Calendar_init :: proc(self: ^Calendar) -> instancetype ---
 
     @(objc_type=Calendar, objc_selector="initWithCalendarIdentifier:", objc_name="initWithCalendarIdentifier")
     Calendar_initWithCalendarIdentifier :: proc(self: ^Calendar, ident: ^String) -> id ---

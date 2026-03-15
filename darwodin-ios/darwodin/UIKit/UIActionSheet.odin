@@ -22,7 +22,7 @@ ActionSheet :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ActionSheet, objc_selector="initWithTitle:delegate:cancelButtonTitle:destructiveButtonTitle:otherButtonTitles:", objc_name="initWithTitle")
-    ActionSheet_initWithTitle :: proc(self: ^ActionSheet, title: ^NS.String, delegate: ^ActionSheetDelegate, cancelButtonTitle: ^NS.String, destructiveButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> ^ActionSheet ---
+    ActionSheet_initWithTitle :: proc(self: ^ActionSheet, title: ^NS.String, delegate: ^ActionSheetDelegate, cancelButtonTitle: ^NS.String, destructiveButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> instancetype ---
 
     @(objc_type=ActionSheet, objc_selector="addButtonWithTitle:", objc_name="addButtonWithTitle")
     ActionSheet_addButtonWithTitle :: proc(self: ^ActionSheet, title: ^NS.String) -> NS.Integer ---

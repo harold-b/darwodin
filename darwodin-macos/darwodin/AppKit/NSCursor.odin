@@ -26,10 +26,10 @@ Cursor :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Cursor, objc_selector="initWithImage:hotSpot:", objc_name="initWithImage_hotSpot")
-    Cursor_initWithImage_hotSpot :: proc(self: ^Cursor, newImage: ^NS.Image, point: CG.Point) -> ^Cursor ---
+    Cursor_initWithImage_hotSpot :: proc(self: ^Cursor, newImage: ^NS.Image, point: CG.Point) -> instancetype ---
 
     @(objc_type=Cursor, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Cursor_initWithCoder :: proc(self: ^Cursor, coder: ^NS.Coder) -> ^Cursor ---
+    Cursor_initWithCoder :: proc(self: ^Cursor, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Cursor, objc_selector="hide", objc_name="hide", objc_is_class_method=true)
     Cursor_hide :: proc() ---
@@ -140,7 +140,7 @@ foreign lib {
     Cursor_resizeUpDownCursor :: proc() -> ^Cursor ---
 
     @(objc_type=Cursor, objc_selector="initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:", objc_name="initWithImage_foregroundColorHint_backgroundColorHint_hotSpot")
-    Cursor_initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc(self: ^Cursor, newImage: ^NS.Image, fg: ^Color, bg: ^Color, hotSpot: CG.Point) -> ^Cursor ---
+    Cursor_initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc(self: ^Cursor, newImage: ^NS.Image, fg: ^Color, bg: ^Color, hotSpot: CG.Point) -> instancetype ---
 
     @(objc_type=Cursor, objc_selector="setOnMouseExited:", objc_name="setOnMouseExited")
     Cursor_setOnMouseExited :: proc(self: ^Cursor, flag: bool) ---

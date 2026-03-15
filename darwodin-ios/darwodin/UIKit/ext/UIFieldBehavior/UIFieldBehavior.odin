@@ -28,20 +28,20 @@ import "../UIDynamicBehavior"
 
 VTable :: struct {
     super: UIDynamicBehavior.VTable,
-    init: proc(self: ^UI.FieldBehavior) -> ^UI.FieldBehavior,
+    init: proc(self: ^UI.FieldBehavior) -> instancetype,
     addItem: proc(self: ^UI.FieldBehavior, item: ^UI.DynamicItem),
     removeItem: proc(self: ^UI.FieldBehavior, item: ^UI.DynamicItem),
-    dragField: proc() -> ^UI.FieldBehavior,
-    vortexField: proc() -> ^UI.FieldBehavior,
-    radialGravityFieldWithPosition: proc(position: CG.Point) -> ^UI.FieldBehavior,
-    linearGravityFieldWithVector: proc(direction: CG.Vector) -> ^UI.FieldBehavior,
-    velocityFieldWithVector: proc(direction: CG.Vector) -> ^UI.FieldBehavior,
-    noiseFieldWithSmoothness: proc(smoothness: CG.Float, speed: CG.Float) -> ^UI.FieldBehavior,
-    turbulenceFieldWithSmoothness: proc(smoothness: CG.Float, speed: CG.Float) -> ^UI.FieldBehavior,
-    springField: proc() -> ^UI.FieldBehavior,
-    electricField: proc() -> ^UI.FieldBehavior,
-    magneticField: proc() -> ^UI.FieldBehavior,
-    fieldWithEvaluationBlock: proc(block: ^Objc_Block(proc "c" (field: ^UI.FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> ^UI.FieldBehavior,
+    dragField: proc() -> instancetype,
+    vortexField: proc() -> instancetype,
+    radialGravityFieldWithPosition: proc(position: CG.Point) -> instancetype,
+    linearGravityFieldWithVector: proc(direction: CG.Vector) -> instancetype,
+    velocityFieldWithVector: proc(direction: CG.Vector) -> instancetype,
+    noiseFieldWithSmoothness: proc(smoothness: CG.Float, speed: CG.Float) -> instancetype,
+    turbulenceFieldWithSmoothness: proc(smoothness: CG.Float, speed: CG.Float) -> instancetype,
+    springField: proc() -> instancetype,
+    electricField: proc() -> instancetype,
+    magneticField: proc() -> instancetype,
+    fieldWithEvaluationBlock: proc(block: ^Objc_Block(proc "c" (field: ^UI.FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> instancetype,
     items: proc(self: ^UI.FieldBehavior) -> ^NS.Array,
     position: proc(self: ^UI.FieldBehavior) -> CG.Point,
     setPosition: proc(self: ^UI.FieldBehavior, position: CG.Point),
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIDynamicBehavior.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.FieldBehavior, _: SEL) -> ^UI.FieldBehavior {
+        init :: proc "c" (self: ^UI.FieldBehavior, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeItem:"), auto_cast removeItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.dragField != nil {
-        dragField :: proc "c" (self: Class, _: SEL) -> ^UI.FieldBehavior {
+        dragField :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dragField"), auto_cast dragField, "@#:") do panic("Failed to register objC method.")
     }
     if vt.vortexField != nil {
-        vortexField :: proc "c" (self: Class, _: SEL) -> ^UI.FieldBehavior {
+        vortexField :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("vortexField"), auto_cast vortexField, "@#:") do panic("Failed to register objC method.")
     }
     if vt.radialGravityFieldWithPosition != nil {
-        radialGravityFieldWithPosition :: proc "c" (self: Class, _: SEL, position: CG.Point) -> ^UI.FieldBehavior {
+        radialGravityFieldWithPosition :: proc "c" (self: Class, _: SEL, position: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("radialGravityFieldWithPosition:"), auto_cast radialGravityFieldWithPosition, "@#:{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.linearGravityFieldWithVector != nil {
-        linearGravityFieldWithVector :: proc "c" (self: Class, _: SEL, direction: CG.Vector) -> ^UI.FieldBehavior {
+        linearGravityFieldWithVector :: proc "c" (self: Class, _: SEL, direction: CG.Vector) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("linearGravityFieldWithVector:"), auto_cast linearGravityFieldWithVector, "@#:{CGVector=dd}") do panic("Failed to register objC method.")
     }
     if vt.velocityFieldWithVector != nil {
-        velocityFieldWithVector :: proc "c" (self: Class, _: SEL, direction: CG.Vector) -> ^UI.FieldBehavior {
+        velocityFieldWithVector :: proc "c" (self: Class, _: SEL, direction: CG.Vector) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("velocityFieldWithVector:"), auto_cast velocityFieldWithVector, "@#:{CGVector=dd}") do panic("Failed to register objC method.")
     }
     if vt.noiseFieldWithSmoothness != nil {
-        noiseFieldWithSmoothness :: proc "c" (self: Class, _: SEL, smoothness: CG.Float, speed: CG.Float) -> ^UI.FieldBehavior {
+        noiseFieldWithSmoothness :: proc "c" (self: Class, _: SEL, smoothness: CG.Float, speed: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("noiseFieldWithSmoothness:animationSpeed:"), auto_cast noiseFieldWithSmoothness, "@#:dd") do panic("Failed to register objC method.")
     }
     if vt.turbulenceFieldWithSmoothness != nil {
-        turbulenceFieldWithSmoothness :: proc "c" (self: Class, _: SEL, smoothness: CG.Float, speed: CG.Float) -> ^UI.FieldBehavior {
+        turbulenceFieldWithSmoothness :: proc "c" (self: Class, _: SEL, smoothness: CG.Float, speed: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("turbulenceFieldWithSmoothness:animationSpeed:"), auto_cast turbulenceFieldWithSmoothness, "@#:dd") do panic("Failed to register objC method.")
     }
     if vt.springField != nil {
-        springField :: proc "c" (self: Class, _: SEL) -> ^UI.FieldBehavior {
+        springField :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -179,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("springField"), auto_cast springField, "@#:") do panic("Failed to register objC method.")
     }
     if vt.electricField != nil {
-        electricField :: proc "c" (self: Class, _: SEL) -> ^UI.FieldBehavior {
+        electricField :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -189,7 +189,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("electricField"), auto_cast electricField, "@#:") do panic("Failed to register objC method.")
     }
     if vt.magneticField != nil {
-        magneticField :: proc "c" (self: Class, _: SEL) -> ^UI.FieldBehavior {
+        magneticField :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -199,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("magneticField"), auto_cast magneticField, "@#:") do panic("Failed to register objC method.")
     }
     if vt.fieldWithEvaluationBlock != nil {
-        fieldWithEvaluationBlock :: proc "c" (self: Class, _: SEL, block: ^Objc_Block(proc "c" (field: ^UI.FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> ^UI.FieldBehavior {
+        fieldWithEvaluationBlock :: proc "c" (self: Class, _: SEL, block: ^Objc_Block(proc "c" (field: ^UI.FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

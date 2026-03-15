@@ -28,7 +28,7 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    alertControllerWithTitle: proc(title: ^NS.String, message: ^NS.String, preferredStyle: UI.AlertControllerStyle) -> ^UI.AlertController,
+    alertControllerWithTitle: proc(title: ^NS.String, message: ^NS.String, preferredStyle: UI.AlertControllerStyle) -> instancetype,
     addAction: proc(self: ^UI.AlertController, action: ^UI.AlertAction),
     addTextFieldWithConfigurationHandler: proc(self: ^UI.AlertController, configurationHandler: ^Objc_Block(proc "c" (textField: ^UI.TextField))),
     actions: proc(self: ^UI.AlertController) -> ^NS.Array,
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.alertControllerWithTitle != nil {
-        alertControllerWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, message: ^NS.String, preferredStyle: UI.AlertControllerStyle) -> ^UI.AlertController {
+        alertControllerWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, message: ^NS.String, preferredStyle: UI.AlertControllerStyle) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

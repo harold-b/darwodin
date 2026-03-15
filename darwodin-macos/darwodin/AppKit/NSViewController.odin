@@ -28,10 +28,10 @@ ViewController :: struct { using _: Responder,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    ViewController_initWithNibName :: proc(self: ^ViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^ViewController ---
+    ViewController_initWithNibName :: proc(self: ^ViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=ViewController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ViewController_initWithCoder :: proc(self: ^ViewController, coder: ^NS.Coder) -> ^ViewController ---
+    ViewController_initWithCoder :: proc(self: ^ViewController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ViewController, objc_selector="loadView", objc_name="loadView")
     ViewController_loadView :: proc(self: ^ViewController) ---

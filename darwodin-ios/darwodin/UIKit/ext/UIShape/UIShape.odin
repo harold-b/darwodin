@@ -28,18 +28,18 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    rectShapeWithCornerRadius_: proc(cornerRadius: CG.Float) -> ^UI.Shape,
-    rectShapeWithCornerRadius_cornerCurve: proc(cornerRadius: CG.Float, cornerCurve: UI.CornerCurve) -> ^UI.Shape,
-    rectShapeWithCornerRadius_cornerCurve_maskedCorners: proc(cornerRadius: CG.Float, cornerCurve: UI.CornerCurve, maskedCorners: UI.RectCorner) -> ^UI.Shape,
-    fixedRectShapeWithRect_: proc(rect: CG.Rect) -> ^UI.Shape,
-    fixedRectShapeWithRect_cornerRadius: proc(rect: CG.Rect, cornerRadius: CG.Float) -> ^UI.Shape,
-    fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners: proc(rect: CG.Rect, cornerRadius: CG.Float, cornerCurve: UI.CornerCurve, maskedCorners: UI.RectCorner) -> ^UI.Shape,
-    shapeWithBezierPath: proc(path: ^UI.BezierPath) -> ^UI.Shape,
-    shapeWithProvider: proc(provider: ^UI.ShapeProvider) -> ^UI.Shape,
+    rectShapeWithCornerRadius_: proc(cornerRadius: CG.Float) -> instancetype,
+    rectShapeWithCornerRadius_cornerCurve: proc(cornerRadius: CG.Float, cornerCurve: UI.CornerCurve) -> instancetype,
+    rectShapeWithCornerRadius_cornerCurve_maskedCorners: proc(cornerRadius: CG.Float, cornerCurve: UI.CornerCurve, maskedCorners: UI.RectCorner) -> instancetype,
+    fixedRectShapeWithRect_: proc(rect: CG.Rect) -> instancetype,
+    fixedRectShapeWithRect_cornerRadius: proc(rect: CG.Rect, cornerRadius: CG.Float) -> instancetype,
+    fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners: proc(rect: CG.Rect, cornerRadius: CG.Float, cornerCurve: UI.CornerCurve, maskedCorners: UI.RectCorner) -> instancetype,
+    shapeWithBezierPath: proc(path: ^UI.BezierPath) -> instancetype,
+    shapeWithProvider: proc(provider: ^UI.ShapeProvider) -> instancetype,
     shapeByApplyingInsets: proc(self: ^UI.Shape, insets: UI.EdgeInsets) -> ^UI.Shape,
     shapeByApplyingInset: proc(self: ^UI.Shape, inset: CG.Float) -> ^UI.Shape,
     resolvedShapeInContext: proc(self: ^UI.Shape, _context: ^UI.ShapeResolutionContext) -> ^UI.ResolvedShape,
-    init: proc(self: ^UI.Shape) -> ^UI.Shape,
+    init: proc(self: ^UI.Shape) -> instancetype,
     new: proc() -> ^UI.Shape,
     rectShape: proc() -> ^UI.Shape,
     capsuleShape: proc() -> ^UI.Shape,
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.rectShapeWithCornerRadius_ != nil {
-        rectShapeWithCornerRadius_ :: proc "c" (self: Class, _: SEL, cornerRadius: CG.Float) -> ^UI.Shape {
+        rectShapeWithCornerRadius_ :: proc "c" (self: Class, _: SEL, cornerRadius: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("rectShapeWithCornerRadius:"), auto_cast rectShapeWithCornerRadius_, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.rectShapeWithCornerRadius_cornerCurve != nil {
-        rectShapeWithCornerRadius_cornerCurve :: proc "c" (self: Class, _: SEL, cornerRadius: CG.Float, cornerCurve: UI.CornerCurve) -> ^UI.Shape {
+        rectShapeWithCornerRadius_cornerCurve :: proc "c" (self: Class, _: SEL, cornerRadius: CG.Float, cornerCurve: UI.CornerCurve) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("rectShapeWithCornerRadius:cornerCurve:"), auto_cast rectShapeWithCornerRadius_cornerCurve, "@#:dl") do panic("Failed to register objC method.")
     }
     if vt.rectShapeWithCornerRadius_cornerCurve_maskedCorners != nil {
-        rectShapeWithCornerRadius_cornerCurve_maskedCorners :: proc "c" (self: Class, _: SEL, cornerRadius: CG.Float, cornerCurve: UI.CornerCurve, maskedCorners: UI.RectCorner) -> ^UI.Shape {
+        rectShapeWithCornerRadius_cornerCurve_maskedCorners :: proc "c" (self: Class, _: SEL, cornerRadius: CG.Float, cornerCurve: UI.CornerCurve, maskedCorners: UI.RectCorner) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("rectShapeWithCornerRadius:cornerCurve:maskedCorners:"), auto_cast rectShapeWithCornerRadius_cornerCurve_maskedCorners, "@#:dlL") do panic("Failed to register objC method.")
     }
     if vt.fixedRectShapeWithRect_ != nil {
-        fixedRectShapeWithRect_ :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> ^UI.Shape {
+        fixedRectShapeWithRect_ :: proc "c" (self: Class, _: SEL, rect: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fixedRectShapeWithRect:"), auto_cast fixedRectShapeWithRect_, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.fixedRectShapeWithRect_cornerRadius != nil {
-        fixedRectShapeWithRect_cornerRadius :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float) -> ^UI.Shape {
+        fixedRectShapeWithRect_cornerRadius :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fixedRectShapeWithRect:cornerRadius:"), auto_cast fixedRectShapeWithRect_cornerRadius, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}d") do panic("Failed to register objC method.")
     }
     if vt.fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners != nil {
-        fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float, cornerCurve: UI.CornerCurve, maskedCorners: UI.RectCorner) -> ^UI.Shape {
+        fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners :: proc "c" (self: Class, _: SEL, rect: CG.Rect, cornerRadius: CG.Float, cornerCurve: UI.CornerCurve, maskedCorners: UI.RectCorner) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fixedRectShapeWithRect:cornerRadius:cornerCurve:maskedCorners:"), auto_cast fixedRectShapeWithRect_cornerRadius_cornerCurve_maskedCorners, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}dlL") do panic("Failed to register objC method.")
     }
     if vt.shapeWithBezierPath != nil {
-        shapeWithBezierPath :: proc "c" (self: Class, _: SEL, path: ^UI.BezierPath) -> ^UI.Shape {
+        shapeWithBezierPath :: proc "c" (self: Class, _: SEL, path: ^UI.BezierPath) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("shapeWithBezierPath:"), auto_cast shapeWithBezierPath, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.shapeWithProvider != nil {
-        shapeWithProvider :: proc "c" (self: Class, _: SEL, provider: ^UI.ShapeProvider) -> ^UI.Shape {
+        shapeWithProvider :: proc "c" (self: Class, _: SEL, provider: ^UI.ShapeProvider) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resolvedShapeInContext:"), auto_cast resolvedShapeInContext, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.Shape, _: SEL) -> ^UI.Shape {
+        init :: proc "c" (self: ^UI.Shape, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -25,7 +25,7 @@ CaptureSynchronizedDataCollection :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSynchronizedDataCollection, objc_selector="init", objc_name="init")
-    CaptureSynchronizedDataCollection_init :: proc(self: ^CaptureSynchronizedDataCollection) -> ^CaptureSynchronizedDataCollection ---
+    CaptureSynchronizedDataCollection_init :: proc(self: ^CaptureSynchronizedDataCollection) -> instancetype ---
 
     @(objc_type=CaptureSynchronizedDataCollection, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureSynchronizedDataCollection_new :: proc() -> ^CaptureSynchronizedDataCollection ---

@@ -18,7 +18,7 @@ SyncEngineFetchedZoneDeletion :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="init", objc_name="init")
-    SyncEngineFetchedZoneDeletion_init :: proc(self: ^SyncEngineFetchedZoneDeletion) -> ^SyncEngineFetchedZoneDeletion ---
+    SyncEngineFetchedZoneDeletion_init :: proc(self: ^SyncEngineFetchedZoneDeletion) -> instancetype ---
 
     @(objc_type=SyncEngineFetchedZoneDeletion, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEngineFetchedZoneDeletion_new :: proc() -> ^SyncEngineFetchedZoneDeletion ---

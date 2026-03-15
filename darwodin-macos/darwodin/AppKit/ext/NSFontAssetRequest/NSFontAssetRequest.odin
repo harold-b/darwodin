@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.FontAssetRequest) -> ^AK.FontAssetRequest,
-    initWithFontDescriptors: proc(self: ^AK.FontAssetRequest, fontDescriptors: ^NS.Array, options: AK.FontAssetRequestOptions) -> ^AK.FontAssetRequest,
+    init: proc(self: ^AK.FontAssetRequest) -> instancetype,
+    initWithFontDescriptors: proc(self: ^AK.FontAssetRequest, fontDescriptors: ^NS.Array, options: AK.FontAssetRequestOptions) -> instancetype,
     downloadFontAssetsWithCompletionHandler: proc(self: ^AK.FontAssetRequest, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error) -> bool)),
     downloadedFontDescriptors: proc(self: ^AK.FontAssetRequest) -> ^NS.Array,
     progress: proc(self: ^AK.FontAssetRequest) -> ^NS.Progress,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.FontAssetRequest, _: SEL) -> ^AK.FontAssetRequest {
+        init :: proc "c" (self: ^AK.FontAssetRequest, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithFontDescriptors != nil {
-        initWithFontDescriptors :: proc "c" (self: ^AK.FontAssetRequest, _: SEL, fontDescriptors: ^NS.Array, options: AK.FontAssetRequestOptions) -> ^AK.FontAssetRequest {
+        initWithFontDescriptors :: proc "c" (self: ^AK.FontAssetRequest, _: SEL, fontDescriptors: ^NS.Array, options: AK.FontAssetRequestOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

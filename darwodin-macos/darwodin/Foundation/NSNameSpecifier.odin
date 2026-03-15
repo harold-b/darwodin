@@ -20,10 +20,10 @@ NameSpecifier :: struct { using _: ScriptObjectSpecifier, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NameSpecifier, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    NameSpecifier_initWithCoder :: proc(self: ^NameSpecifier, inCoder: ^Coder) -> ^NameSpecifier ---
+    NameSpecifier_initWithCoder :: proc(self: ^NameSpecifier, inCoder: ^Coder) -> instancetype ---
 
     @(objc_type=NameSpecifier, objc_selector="initWithContainerClassDescription:containerSpecifier:key:name:", objc_name="initWithContainerClassDescription")
-    NameSpecifier_initWithContainerClassDescription :: proc(self: ^NameSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, name: ^String) -> ^NameSpecifier ---
+    NameSpecifier_initWithContainerClassDescription :: proc(self: ^NameSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, name: ^String) -> instancetype ---
 
     @(objc_type=NameSpecifier, objc_selector="name", objc_name="name")
     NameSpecifier_name :: proc(self: ^NameSpecifier) -> ^String ---

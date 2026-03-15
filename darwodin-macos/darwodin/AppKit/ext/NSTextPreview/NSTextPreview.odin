@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSnapshotImage_presentationFrame_candidateRects: proc(self: ^AK.TextPreview, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect, candidateRects: ^NS.Array) -> ^AK.TextPreview,
-    initWithSnapshotImage_presentationFrame: proc(self: ^AK.TextPreview, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect) -> ^AK.TextPreview,
-    init: proc(self: ^AK.TextPreview) -> ^AK.TextPreview,
+    initWithSnapshotImage_presentationFrame_candidateRects: proc(self: ^AK.TextPreview, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect, candidateRects: ^NS.Array) -> instancetype,
+    initWithSnapshotImage_presentationFrame: proc(self: ^AK.TextPreview, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect) -> instancetype,
+    init: proc(self: ^AK.TextPreview) -> instancetype,
     previewImage: proc(self: ^AK.TextPreview) -> CG.ImageRef,
     presentationFrame: proc(self: ^AK.TextPreview) -> NS.Rect,
     candidateRects: proc(self: ^AK.TextPreview) -> ^NS.Array,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSnapshotImage_presentationFrame_candidateRects != nil {
-        initWithSnapshotImage_presentationFrame_candidateRects :: proc "c" (self: ^AK.TextPreview, _: SEL, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect, candidateRects: ^NS.Array) -> ^AK.TextPreview {
+        initWithSnapshotImage_presentationFrame_candidateRects :: proc "c" (self: ^AK.TextPreview, _: SEL, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect, candidateRects: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSnapshotImage:presentationFrame:candidateRects:"), auto_cast initWithSnapshotImage_presentationFrame_candidateRects, "@@:^void{CGRect={CGPoint=dd}{CGSize=dd}}^void") do panic("Failed to register objC method.")
     }
     if vt.initWithSnapshotImage_presentationFrame != nil {
-        initWithSnapshotImage_presentationFrame :: proc "c" (self: ^AK.TextPreview, _: SEL, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect) -> ^AK.TextPreview {
+        initWithSnapshotImage_presentationFrame :: proc "c" (self: ^AK.TextPreview, _: SEL, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSnapshotImage:presentationFrame:"), auto_cast initWithSnapshotImage_presentationFrame, "@@:^void{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextPreview, _: SEL) -> ^AK.TextPreview {
+        init :: proc "c" (self: ^AK.TextPreview, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

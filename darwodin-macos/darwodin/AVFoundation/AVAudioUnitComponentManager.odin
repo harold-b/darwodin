@@ -23,7 +23,7 @@ AudioUnitComponentManager :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitComponentManager, objc_selector="sharedAudioUnitComponentManager", objc_name="sharedAudioUnitComponentManager", objc_is_class_method=true)
-    AudioUnitComponentManager_sharedAudioUnitComponentManager :: proc() -> ^AudioUnitComponentManager ---
+    AudioUnitComponentManager_sharedAudioUnitComponentManager :: proc() -> instancetype ---
 
     @(objc_type=AudioUnitComponentManager, objc_selector="componentsMatchingPredicate:", objc_name="componentsMatchingPredicate")
     AudioUnitComponentManager_componentsMatchingPredicate :: proc(self: ^AudioUnitComponentManager, predicate: ^NS.Predicate) -> ^NS.Array ---

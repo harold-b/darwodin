@@ -24,10 +24,10 @@ Scrubber :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Scrubber, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    Scrubber_initWithFrame :: proc(self: ^Scrubber, frameRect: NS.Rect) -> ^Scrubber ---
+    Scrubber_initWithFrame :: proc(self: ^Scrubber, frameRect: NS.Rect) -> instancetype ---
 
     @(objc_type=Scrubber, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Scrubber_initWithCoder :: proc(self: ^Scrubber, coder: ^NS.Coder) -> ^Scrubber ---
+    Scrubber_initWithCoder :: proc(self: ^Scrubber, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Scrubber, objc_selector="reloadData", objc_name="reloadData")
     Scrubber_reloadData :: proc(self: ^Scrubber) ---

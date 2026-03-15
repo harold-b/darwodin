@@ -30,9 +30,9 @@ import "../NSCollectionLayoutItem"
 
 VTable :: struct {
     super: NSCollectionLayoutItem.VTable,
-    supplementaryItemWithLayoutSize_elementKind_containerAnchor: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor) -> ^AK.CollectionLayoutSupplementaryItem,
-    supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor, itemAnchor: ^AK.CollectionLayoutAnchor) -> ^AK.CollectionLayoutSupplementaryItem,
-    init: proc(self: ^AK.CollectionLayoutSupplementaryItem) -> ^AK.CollectionLayoutSupplementaryItem,
+    supplementaryItemWithLayoutSize_elementKind_containerAnchor: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor) -> instancetype,
+    supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor, itemAnchor: ^AK.CollectionLayoutAnchor) -> instancetype,
+    init: proc(self: ^AK.CollectionLayoutSupplementaryItem) -> instancetype,
     new: proc() -> ^AK.CollectionLayoutSupplementaryItem,
     zIndex: proc(self: ^AK.CollectionLayoutSupplementaryItem) -> NS.Integer,
     setZIndex: proc(self: ^AK.CollectionLayoutSupplementaryItem, zIndex: NS.Integer),
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionLayoutItem.extend(cls, &vt.super)
 
     if vt.supplementaryItemWithLayoutSize_elementKind_containerAnchor != nil {
-        supplementaryItemWithLayoutSize_elementKind_containerAnchor :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor) -> ^AK.CollectionLayoutSupplementaryItem {
+        supplementaryItemWithLayoutSize_elementKind_containerAnchor :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("supplementaryItemWithLayoutSize:elementKind:containerAnchor:"), auto_cast supplementaryItemWithLayoutSize_elementKind_containerAnchor, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor != nil {
-        supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor, itemAnchor: ^AK.CollectionLayoutAnchor) -> ^AK.CollectionLayoutSupplementaryItem {
+        supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor, itemAnchor: ^AK.CollectionLayoutAnchor) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:"), auto_cast supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor, "@#:@@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutSupplementaryItem, _: SEL) -> ^AK.CollectionLayoutSupplementaryItem {
+        init :: proc "c" (self: ^AK.CollectionLayoutSupplementaryItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

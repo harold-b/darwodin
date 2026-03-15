@@ -28,10 +28,10 @@ DocumentController :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DocumentController, objc_selector="init", objc_name="init")
-    DocumentController_init :: proc(self: ^DocumentController) -> ^DocumentController ---
+    DocumentController_init :: proc(self: ^DocumentController) -> instancetype ---
 
     @(objc_type=DocumentController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    DocumentController_initWithCoder :: proc(self: ^DocumentController, coder: ^NS.Coder) -> ^DocumentController ---
+    DocumentController_initWithCoder :: proc(self: ^DocumentController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=DocumentController, objc_selector="documentForURL:", objc_name="documentForURL")
     DocumentController_documentForURL :: proc(self: ^DocumentController, url: ^NS.URL) -> ^Document ---

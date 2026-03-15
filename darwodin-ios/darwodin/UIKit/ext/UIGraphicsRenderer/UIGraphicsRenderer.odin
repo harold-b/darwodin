@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithBounds_: proc(self: ^UI.GraphicsRenderer, bounds: CG.Rect) -> ^UI.GraphicsRenderer,
-    initWithBounds_format: proc(self: ^UI.GraphicsRenderer, bounds: CG.Rect, format: ^UI.GraphicsRendererFormat) -> ^UI.GraphicsRenderer,
+    initWithBounds_: proc(self: ^UI.GraphicsRenderer, bounds: CG.Rect) -> instancetype,
+    initWithBounds_format: proc(self: ^UI.GraphicsRenderer, bounds: CG.Rect, format: ^UI.GraphicsRendererFormat) -> instancetype,
     format: proc(self: ^UI.GraphicsRenderer) -> ^UI.GraphicsRendererFormat,
     allowsImageOutput: proc(self: ^UI.GraphicsRenderer) -> bool,
     rendererContextClass: proc() -> Class,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithBounds_ != nil {
-        initWithBounds_ :: proc "c" (self: ^UI.GraphicsRenderer, _: SEL, bounds: CG.Rect) -> ^UI.GraphicsRenderer {
+        initWithBounds_ :: proc "c" (self: ^UI.GraphicsRenderer, _: SEL, bounds: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBounds:"), auto_cast initWithBounds_, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithBounds_format != nil {
-        initWithBounds_format :: proc "c" (self: ^UI.GraphicsRenderer, _: SEL, bounds: CG.Rect, format: ^UI.GraphicsRendererFormat) -> ^UI.GraphicsRenderer {
+        initWithBounds_format :: proc "c" (self: ^UI.GraphicsRenderer, _: SEL, bounds: CG.Rect, format: ^UI.GraphicsRendererFormat) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -25,13 +25,13 @@ NSTextList :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSTextList, objc_selector="initWithMarkerFormat:options:startingItemNumber:", objc_name="initWithMarkerFormat_options_startingItemNumber")
-    NSTextList_initWithMarkerFormat_options_startingItemNumber :: proc(self: ^NSTextList, markerFormat: ^NS.String, options: NSTextListOptions, startingItemNumber: NS.Integer) -> ^NSTextList ---
+    NSTextList_initWithMarkerFormat_options_startingItemNumber :: proc(self: ^NSTextList, markerFormat: ^NS.String, options: NSTextListOptions, startingItemNumber: NS.Integer) -> instancetype ---
 
     @(objc_type=NSTextList, objc_selector="initWithMarkerFormat:options:", objc_name="initWithMarkerFormat_options")
-    NSTextList_initWithMarkerFormat_options :: proc(self: ^NSTextList, markerFormat: ^NS.String, options: NS.UInteger) -> ^NSTextList ---
+    NSTextList_initWithMarkerFormat_options :: proc(self: ^NSTextList, markerFormat: ^NS.String, options: NS.UInteger) -> instancetype ---
 
     @(objc_type=NSTextList, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    NSTextList_initWithCoder :: proc(self: ^NSTextList, coder: ^NS.Coder) -> ^NSTextList ---
+    NSTextList_initWithCoder :: proc(self: ^NSTextList, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=NSTextList, objc_selector="markerForItemNumber:", objc_name="markerForItemNumber")
     NSTextList_markerForItemNumber :: proc(self: ^NSTextList, itemNumber: NS.Integer) -> ^NS.String ---

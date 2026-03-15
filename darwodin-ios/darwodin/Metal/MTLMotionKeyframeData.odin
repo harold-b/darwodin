@@ -22,7 +22,7 @@ MotionKeyframeData :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MotionKeyframeData, objc_selector="data", objc_name="data", objc_is_class_method=true)
-    MotionKeyframeData_data :: proc() -> ^MotionKeyframeData ---
+    MotionKeyframeData_data :: proc() -> instancetype ---
 
     @(objc_type=MotionKeyframeData, objc_selector="buffer", objc_name="buffer")
     MotionKeyframeData_buffer :: proc(self: ^MotionKeyframeData) -> ^Buffer ---

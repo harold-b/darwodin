@@ -39,7 +39,7 @@ foreign lib {
     FontDescriptor_fontDescriptorWithName_matrix :: proc(fontName: ^NS.String, _matrix: ^NS.AffineTransform) -> ^FontDescriptor ---
 
     @(objc_type=FontDescriptor, objc_selector="initWithFontAttributes:", objc_name="initWithFontAttributes")
-    FontDescriptor_initWithFontAttributes :: proc(self: ^FontDescriptor, attributes: ^NS.Dictionary) -> ^FontDescriptor ---
+    FontDescriptor_initWithFontAttributes :: proc(self: ^FontDescriptor, attributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=FontDescriptor, objc_selector="matchingFontDescriptorsWithMandatoryKeys:", objc_name="matchingFontDescriptorsWithMandatoryKeys")
     FontDescriptor_matchingFontDescriptorsWithMandatoryKeys :: proc(self: ^FontDescriptor, mandatoryKeys: ^NS.Set) -> ^NS.Array ---
@@ -66,7 +66,7 @@ foreign lib {
     FontDescriptor_fontDescriptorWithFamily :: proc(self: ^FontDescriptor, newFamily: ^NS.String) -> ^FontDescriptor ---
 
     @(objc_type=FontDescriptor, objc_selector="fontDescriptorWithDesign:", objc_name="fontDescriptorWithDesign")
-    FontDescriptor_fontDescriptorWithDesign :: proc(self: ^FontDescriptor, design: ^NS.String) -> ^FontDescriptor ---
+    FontDescriptor_fontDescriptorWithDesign :: proc(self: ^FontDescriptor, design: ^NS.String) -> instancetype ---
 
     @(objc_type=FontDescriptor, objc_selector="postscriptName", objc_name="postscriptName")
     FontDescriptor_postscriptName :: proc(self: ^FontDescriptor) -> ^NS.String ---

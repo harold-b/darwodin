@@ -28,8 +28,8 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithReuseIdentifier: proc(self: ^UI.TableViewHeaderFooterView, reuseIdentifier: ^NS.String) -> ^UI.TableViewHeaderFooterView,
-    initWithCoder: proc(self: ^UI.TableViewHeaderFooterView, coder: ^NS.Coder) -> ^UI.TableViewHeaderFooterView,
+    initWithReuseIdentifier: proc(self: ^UI.TableViewHeaderFooterView, reuseIdentifier: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^UI.TableViewHeaderFooterView, coder: ^NS.Coder) -> instancetype,
     setNeedsUpdateConfiguration: proc(self: ^UI.TableViewHeaderFooterView),
     updateConfigurationUsingState: proc(self: ^UI.TableViewHeaderFooterView, state: ^UI.ViewConfigurationState),
     defaultContentConfiguration: proc(self: ^UI.TableViewHeaderFooterView) -> ^UI.ListContentConfiguration,
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithReuseIdentifier != nil {
-        initWithReuseIdentifier :: proc "c" (self: ^UI.TableViewHeaderFooterView, _: SEL, reuseIdentifier: ^NS.String) -> ^UI.TableViewHeaderFooterView {
+        initWithReuseIdentifier :: proc "c" (self: ^UI.TableViewHeaderFooterView, _: SEL, reuseIdentifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithReuseIdentifier:"), auto_cast initWithReuseIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.TableViewHeaderFooterView, _: SEL, coder: ^NS.Coder) -> ^UI.TableViewHeaderFooterView {
+        initWithCoder :: proc "c" (self: ^UI.TableViewHeaderFooterView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

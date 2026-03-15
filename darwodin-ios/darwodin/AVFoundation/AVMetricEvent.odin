@@ -25,7 +25,7 @@ MetricEvent :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricEvent, objc_selector="init", objc_name="init")
-    MetricEvent_init :: proc(self: ^MetricEvent) -> ^MetricEvent ---
+    MetricEvent_init :: proc(self: ^MetricEvent) -> instancetype ---
 
     @(objc_type=MetricEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricEvent_new :: proc() -> ^MetricEvent ---

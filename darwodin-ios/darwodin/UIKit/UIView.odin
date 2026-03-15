@@ -32,10 +32,10 @@ View :: struct { using _: Responder,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=View, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    View_initWithFrame :: proc(self: ^View, frame: CG.Rect) -> ^View ---
+    View_initWithFrame :: proc(self: ^View, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=View, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    View_initWithCoder :: proc(self: ^View, coder: ^NS.Coder) -> ^View ---
+    View_initWithCoder :: proc(self: ^View, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=View, objc_selector="userInterfaceLayoutDirectionForSemanticContentAttribute:", objc_name="userInterfaceLayoutDirectionForSemanticContentAttribute_", objc_is_class_method=true)
     View_userInterfaceLayoutDirectionForSemanticContentAttribute_ :: proc(attribute: SemanticContentAttribute) -> UserInterfaceLayoutDirection ---

@@ -24,10 +24,10 @@ DropInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DropInteraction, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    DropInteraction_initWithDelegate :: proc(self: ^DropInteraction, delegate: ^DropInteractionDelegate) -> ^DropInteraction ---
+    DropInteraction_initWithDelegate :: proc(self: ^DropInteraction, delegate: ^DropInteractionDelegate) -> instancetype ---
 
     @(objc_type=DropInteraction, objc_selector="init", objc_name="init")
-    DropInteraction_init :: proc(self: ^DropInteraction) -> ^DropInteraction ---
+    DropInteraction_init :: proc(self: ^DropInteraction) -> instancetype ---
 
     @(objc_type=DropInteraction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DropInteraction_new :: proc() -> ^DropInteraction ---

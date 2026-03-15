@@ -24,22 +24,22 @@ IndexSet :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndexSet, objc_selector="indexSet", objc_name="indexSet", objc_is_class_method=true)
-    IndexSet_indexSet :: proc() -> ^IndexSet ---
+    IndexSet_indexSet :: proc() -> instancetype ---
 
     @(objc_type=IndexSet, objc_selector="indexSetWithIndex:", objc_name="indexSetWithIndex", objc_is_class_method=true)
-    IndexSet_indexSetWithIndex :: proc(value: UInteger) -> ^IndexSet ---
+    IndexSet_indexSetWithIndex :: proc(value: UInteger) -> instancetype ---
 
     @(objc_type=IndexSet, objc_selector="indexSetWithIndexesInRange:", objc_name="indexSetWithIndexesInRange", objc_is_class_method=true)
-    IndexSet_indexSetWithIndexesInRange :: proc(range: _NSRange) -> ^IndexSet ---
+    IndexSet_indexSetWithIndexesInRange :: proc(range: _NSRange) -> instancetype ---
 
     @(objc_type=IndexSet, objc_selector="initWithIndexesInRange:", objc_name="initWithIndexesInRange")
-    IndexSet_initWithIndexesInRange :: proc(self: ^IndexSet, range: _NSRange) -> ^IndexSet ---
+    IndexSet_initWithIndexesInRange :: proc(self: ^IndexSet, range: _NSRange) -> instancetype ---
 
     @(objc_type=IndexSet, objc_selector="initWithIndexSet:", objc_name="initWithIndexSet")
-    IndexSet_initWithIndexSet :: proc(self: ^IndexSet, indexSet: ^IndexSet) -> ^IndexSet ---
+    IndexSet_initWithIndexSet :: proc(self: ^IndexSet, indexSet: ^IndexSet) -> instancetype ---
 
     @(objc_type=IndexSet, objc_selector="initWithIndex:", objc_name="initWithIndex")
-    IndexSet_initWithIndex :: proc(self: ^IndexSet, value: UInteger) -> ^IndexSet ---
+    IndexSet_initWithIndex :: proc(self: ^IndexSet, value: UInteger) -> instancetype ---
 
     @(objc_type=IndexSet, objc_selector="isEqualToIndexSet:", objc_name="isEqualToIndexSet")
     IndexSet_isEqualToIndexSet :: proc(self: ^IndexSet, indexSet: ^IndexSet) -> bool ---

@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    beginLoupeSessionAtPoint: proc(point: CG.Point, selectionWidget: ^UI.View, interactionView: ^UI.View) -> ^UI.TextLoupeSession,
+    beginLoupeSessionAtPoint: proc(point: CG.Point, selectionWidget: ^UI.View, interactionView: ^UI.View) -> instancetype,
     moveToPoint: proc(self: ^UI.TextLoupeSession, point: CG.Point, caretRect: CG.Rect, tracksCaret: bool),
     invalidate: proc(self: ^UI.TextLoupeSession),
 }
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.beginLoupeSessionAtPoint != nil {
-        beginLoupeSessionAtPoint :: proc "c" (self: Class, _: SEL, point: CG.Point, selectionWidget: ^UI.View, interactionView: ^UI.View) -> ^UI.TextLoupeSession {
+        beginLoupeSessionAtPoint :: proc "c" (self: Class, _: SEL, point: CG.Point, selectionWidget: ^UI.View, interactionView: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

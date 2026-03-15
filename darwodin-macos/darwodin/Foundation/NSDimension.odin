@@ -22,10 +22,10 @@ Dimension :: struct { using _: Unit,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Dimension, objc_selector="initWithSymbol:converter:", objc_name="initWithSymbol")
-    Dimension_initWithSymbol :: proc(self: ^Dimension, symbol: ^String, converter: ^UnitConverter) -> ^Dimension ---
+    Dimension_initWithSymbol :: proc(self: ^Dimension, symbol: ^String, converter: ^UnitConverter) -> instancetype ---
 
     @(objc_type=Dimension, objc_selector="baseUnit", objc_name="baseUnit", objc_is_class_method=true)
-    Dimension_baseUnit :: proc() -> ^Dimension ---
+    Dimension_baseUnit :: proc() -> instancetype ---
 
     @(objc_type=Dimension, objc_selector="converter", objc_name="converter")
     Dimension_converter :: proc(self: ^Dimension) -> ^UnitConverter ---

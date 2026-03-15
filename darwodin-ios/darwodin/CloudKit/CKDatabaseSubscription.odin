@@ -21,16 +21,16 @@ DatabaseSubscription :: struct { using _: Subscription,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DatabaseSubscription, objc_selector="init", objc_name="init")
-    DatabaseSubscription_init :: proc(self: ^DatabaseSubscription) -> ^DatabaseSubscription ---
+    DatabaseSubscription_init :: proc(self: ^DatabaseSubscription) -> instancetype ---
 
     @(objc_type=DatabaseSubscription, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DatabaseSubscription_new :: proc() -> ^DatabaseSubscription ---
 
     @(objc_type=DatabaseSubscription, objc_selector="initWithSubscriptionID:", objc_name="initWithSubscriptionID")
-    DatabaseSubscription_initWithSubscriptionID :: proc(self: ^DatabaseSubscription, subscriptionID: ^NS.String) -> ^DatabaseSubscription ---
+    DatabaseSubscription_initWithSubscriptionID :: proc(self: ^DatabaseSubscription, subscriptionID: ^NS.String) -> instancetype ---
 
     @(objc_type=DatabaseSubscription, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    DatabaseSubscription_initWithCoder :: proc(self: ^DatabaseSubscription, aDecoder: ^NS.Coder) -> ^DatabaseSubscription ---
+    DatabaseSubscription_initWithCoder :: proc(self: ^DatabaseSubscription, aDecoder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=DatabaseSubscription, objc_selector="recordType", objc_name="recordType")
     DatabaseSubscription_recordType :: proc(self: ^DatabaseSubscription) -> ^NS.String ---

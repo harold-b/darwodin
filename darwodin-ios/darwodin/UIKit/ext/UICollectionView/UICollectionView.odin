@@ -28,8 +28,8 @@ import "../UIScrollView"
 
 VTable :: struct {
     super: UIScrollView.VTable,
-    initWithFrame: proc(self: ^UI.CollectionView, frame: CG.Rect, layout: ^UI.CollectionViewLayout) -> ^UI.CollectionView,
-    initWithCoder: proc(self: ^UI.CollectionView, coder: ^NS.Coder) -> ^UI.CollectionView,
+    initWithFrame: proc(self: ^UI.CollectionView, frame: CG.Rect, layout: ^UI.CollectionViewLayout) -> instancetype,
+    initWithCoder: proc(self: ^UI.CollectionView, coder: ^NS.Coder) -> instancetype,
     registerClass_forCellWithReuseIdentifier: proc(self: ^UI.CollectionView, cellClass: Class, identifier: ^NS.String),
     registerNib_forCellWithReuseIdentifier: proc(self: ^UI.CollectionView, nib: ^UI.Nib, identifier: ^NS.String),
     registerClass_forSupplementaryViewOfKind_withReuseIdentifier: proc(self: ^UI.CollectionView, viewClass: Class, elementKind: ^NS.String, identifier: ^NS.String),
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIScrollView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.CollectionView, _: SEL, frame: CG.Rect, layout: ^UI.CollectionViewLayout) -> ^UI.CollectionView {
+        initWithFrame :: proc "c" (self: ^UI.CollectionView, _: SEL, frame: CG.Rect, layout: ^UI.CollectionViewLayout) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:collectionViewLayout:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CollectionView, _: SEL, coder: ^NS.Coder) -> ^UI.CollectionView {
+        initWithCoder :: proc "c" (self: ^UI.CollectionView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

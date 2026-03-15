@@ -28,9 +28,9 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    init: proc(self: ^UI.SearchBar) -> ^UI.SearchBar,
-    initWithFrame: proc(self: ^UI.SearchBar, frame: CG.Rect) -> ^UI.SearchBar,
-    initWithCoder: proc(self: ^UI.SearchBar, coder: ^NS.Coder) -> ^UI.SearchBar,
+    init: proc(self: ^UI.SearchBar) -> instancetype,
+    initWithFrame: proc(self: ^UI.SearchBar, frame: CG.Rect) -> instancetype,
+    initWithCoder: proc(self: ^UI.SearchBar, coder: ^NS.Coder) -> instancetype,
     setShowsCancelButton_animated: proc(self: ^UI.SearchBar, showsCancelButton: bool, animated: bool),
     setShowsScopeBar_animated: proc(self: ^UI.SearchBar, show: bool, animate: bool),
     setBackgroundImage_forBarPosition_barMetrics: proc(self: ^UI.SearchBar, backgroundImage: ^UI.Image, barPosition: UI.BarPosition, barMetrics: UI.BarMetrics),
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SearchBar, _: SEL) -> ^UI.SearchBar {
+        init :: proc "c" (self: ^UI.SearchBar, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.SearchBar, _: SEL, frame: CG.Rect) -> ^UI.SearchBar {
+        initWithFrame :: proc "c" (self: ^UI.SearchBar, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.SearchBar, _: SEL, coder: ^NS.Coder) -> ^UI.SearchBar {
+        initWithCoder :: proc "c" (self: ^UI.SearchBar, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

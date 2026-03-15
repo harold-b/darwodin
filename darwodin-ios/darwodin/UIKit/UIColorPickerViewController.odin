@@ -22,10 +22,10 @@ ColorPickerViewController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ColorPickerViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    ColorPickerViewController_initWithNibName :: proc(self: ^ColorPickerViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^ColorPickerViewController ---
+    ColorPickerViewController_initWithNibName :: proc(self: ^ColorPickerViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=ColorPickerViewController, objc_selector="init", objc_name="init")
-    ColorPickerViewController_init :: proc(self: ^ColorPickerViewController) -> ^ColorPickerViewController ---
+    ColorPickerViewController_init :: proc(self: ^ColorPickerViewController) -> instancetype ---
 
     @(objc_type=ColorPickerViewController, objc_selector="delegate", objc_name="delegate")
     ColorPickerViewController_delegate :: proc(self: ^ColorPickerViewController) -> ^ColorPickerViewControllerDelegate ---

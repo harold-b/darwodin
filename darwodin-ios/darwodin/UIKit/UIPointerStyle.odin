@@ -24,19 +24,19 @@ PointerStyle :: struct { using _: HoverStyle,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerStyle, objc_selector="styleWithEffect:shape:", objc_name="styleWithEffect", objc_is_class_method=true)
-    PointerStyle_styleWithEffect :: proc(effect: ^PointerEffect, shape: ^PointerShape) -> ^PointerStyle ---
+    PointerStyle_styleWithEffect :: proc(effect: ^PointerEffect, shape: ^PointerShape) -> instancetype ---
 
     @(objc_type=PointerStyle, objc_selector="styleWithShape:constrainedAxes:", objc_name="styleWithShape", objc_is_class_method=true)
-    PointerStyle_styleWithShape :: proc(shape: ^PointerShape, axes: Axis) -> ^PointerStyle ---
+    PointerStyle_styleWithShape :: proc(shape: ^PointerShape, axes: Axis) -> instancetype ---
 
     @(objc_type=PointerStyle, objc_selector="hiddenPointerStyle", objc_name="hiddenPointerStyle", objc_is_class_method=true)
-    PointerStyle_hiddenPointerStyle :: proc() -> ^PointerStyle ---
+    PointerStyle_hiddenPointerStyle :: proc() -> instancetype ---
 
     @(objc_type=PointerStyle, objc_selector="systemPointerStyle", objc_name="systemPointerStyle", objc_is_class_method=true)
-    PointerStyle_systemPointerStyle :: proc() -> ^PointerStyle ---
+    PointerStyle_systemPointerStyle :: proc() -> instancetype ---
 
     @(objc_type=PointerStyle, objc_selector="init", objc_name="init")
-    PointerStyle_init :: proc(self: ^PointerStyle) -> ^PointerStyle ---
+    PointerStyle_init :: proc(self: ^PointerStyle) -> instancetype ---
 
     @(objc_type=PointerStyle, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PointerStyle_new :: proc() -> ^PointerStyle ---

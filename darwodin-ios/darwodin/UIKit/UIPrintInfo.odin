@@ -25,7 +25,7 @@ PrintInfo :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PrintInfo, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    PrintInfo_initWithCoder :: proc(self: ^PrintInfo, coder: ^NS.Coder) -> ^PrintInfo ---
+    PrintInfo_initWithCoder :: proc(self: ^PrintInfo, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=PrintInfo, objc_selector="printInfo", objc_name="printInfo", objc_is_class_method=true)
     PrintInfo_printInfo :: proc() -> ^PrintInfo ---

@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithPickerMask: proc(self: ^AK.ColorPicker, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> ^AK.ColorPicker,
+    initWithPickerMask: proc(self: ^AK.ColorPicker, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> instancetype,
     insertNewButtonImage: proc(self: ^AK.ColorPicker, newButtonImage: ^NS.Image, buttonCell: ^AK.ButtonCell),
     viewSizeChanged: proc(self: ^AK.ColorPicker, sender: id),
     attachColorList: proc(self: ^AK.ColorPicker, colorList: ^AK.ColorList),
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithPickerMask != nil {
-        initWithPickerMask :: proc "c" (self: ^AK.ColorPicker, _: SEL, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> ^AK.ColorPicker {
+        initWithPickerMask :: proc "c" (self: ^AK.ColorPicker, _: SEL, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -26,7 +26,7 @@ TextAlternatives :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextAlternatives, objc_selector="initWithPrimaryString:alternativeStrings:", objc_name="initWithPrimaryString")
-    TextAlternatives_initWithPrimaryString :: proc(self: ^TextAlternatives, primaryString: ^NS.String, alternativeStrings: ^NS.Array) -> ^TextAlternatives ---
+    TextAlternatives_initWithPrimaryString :: proc(self: ^TextAlternatives, primaryString: ^NS.String, alternativeStrings: ^NS.Array) -> instancetype ---
 
     @(objc_type=TextAlternatives, objc_selector="noteSelectedAlternativeString:", objc_name="noteSelectedAlternativeString")
     TextAlternatives_noteSelectedAlternativeString :: proc(self: ^TextAlternatives, alternativeString: ^NS.String) ---

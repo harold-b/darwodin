@@ -23,7 +23,7 @@ CaptureDepthDataOutput :: struct { using _: CaptureOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDepthDataOutput, objc_selector="init", objc_name="init")
-    CaptureDepthDataOutput_init :: proc(self: ^CaptureDepthDataOutput) -> ^CaptureDepthDataOutput ---
+    CaptureDepthDataOutput_init :: proc(self: ^CaptureDepthDataOutput) -> instancetype ---
 
     @(objc_type=CaptureDepthDataOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureDepthDataOutput_new :: proc() -> ^CaptureDepthDataOutput ---

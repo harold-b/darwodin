@@ -23,10 +23,10 @@ CachedURLResponse :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CachedURLResponse, objc_selector="initWithResponse:data:", objc_name="initWithResponse_data")
-    CachedURLResponse_initWithResponse_data :: proc(self: ^CachedURLResponse, response: ^URLResponse, data: ^Data) -> ^CachedURLResponse ---
+    CachedURLResponse_initWithResponse_data :: proc(self: ^CachedURLResponse, response: ^URLResponse, data: ^Data) -> instancetype ---
 
     @(objc_type=CachedURLResponse, objc_selector="initWithResponse:data:userInfo:storagePolicy:", objc_name="initWithResponse_data_userInfo_storagePolicy")
-    CachedURLResponse_initWithResponse_data_userInfo_storagePolicy :: proc(self: ^CachedURLResponse, response: ^URLResponse, data: ^Data, userInfo: ^Dictionary, storagePolicy: URLCacheStoragePolicy) -> ^CachedURLResponse ---
+    CachedURLResponse_initWithResponse_data_userInfo_storagePolicy :: proc(self: ^CachedURLResponse, response: ^URLResponse, data: ^Data, userInfo: ^Dictionary, storagePolicy: URLCacheStoragePolicy) -> instancetype ---
 
     @(objc_type=CachedURLResponse, objc_selector="response", objc_name="response")
     CachedURLResponse_response :: proc(self: ^CachedURLResponse) -> ^URLResponse ---

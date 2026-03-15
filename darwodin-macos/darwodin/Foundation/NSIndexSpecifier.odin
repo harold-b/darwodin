@@ -20,7 +20,7 @@ IndexSpecifier :: struct { using _: ScriptObjectSpecifier, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndexSpecifier, objc_selector="initWithContainerClassDescription:containerSpecifier:key:index:", objc_name="initWithContainerClassDescription")
-    IndexSpecifier_initWithContainerClassDescription :: proc(self: ^IndexSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, index: Integer) -> ^IndexSpecifier ---
+    IndexSpecifier_initWithContainerClassDescription :: proc(self: ^IndexSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, index: Integer) -> instancetype ---
 
     @(objc_type=IndexSpecifier, objc_selector="index", objc_name="index")
     IndexSpecifier_index :: proc(self: ^IndexSpecifier) -> Integer ---

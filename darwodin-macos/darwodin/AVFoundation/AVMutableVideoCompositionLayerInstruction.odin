@@ -23,10 +23,10 @@ MutableVideoCompositionLayerInstruction :: struct { using _: VideoCompositionLay
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableVideoCompositionLayerInstruction, objc_selector="videoCompositionLayerInstructionWithAssetTrack:", objc_name="videoCompositionLayerInstructionWithAssetTrack", objc_is_class_method=true)
-    MutableVideoCompositionLayerInstruction_videoCompositionLayerInstructionWithAssetTrack :: proc(track: ^AssetTrack) -> ^MutableVideoCompositionLayerInstruction ---
+    MutableVideoCompositionLayerInstruction_videoCompositionLayerInstructionWithAssetTrack :: proc(track: ^AssetTrack) -> instancetype ---
 
     @(objc_type=MutableVideoCompositionLayerInstruction, objc_selector="videoCompositionLayerInstruction", objc_name="videoCompositionLayerInstruction", objc_is_class_method=true)
-    MutableVideoCompositionLayerInstruction_videoCompositionLayerInstruction :: proc() -> ^MutableVideoCompositionLayerInstruction ---
+    MutableVideoCompositionLayerInstruction_videoCompositionLayerInstruction :: proc() -> instancetype ---
 
     @(objc_type=MutableVideoCompositionLayerInstruction, objc_selector="setTransformRampFromStartTransform:toEndTransform:timeRange:", objc_name="setTransformRampFromStartTransform")
     MutableVideoCompositionLayerInstruction_setTransformRampFromStartTransform :: proc(self: ^MutableVideoCompositionLayerInstruction, startTransform: CG.AffineTransform, endTransform: CG.AffineTransform, timeRange: CM.TimeRange) ---

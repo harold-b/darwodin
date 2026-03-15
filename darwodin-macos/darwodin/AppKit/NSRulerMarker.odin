@@ -27,13 +27,13 @@ RulerMarker :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RulerMarker, objc_selector="initWithRulerView:markerLocation:image:imageOrigin:", objc_name="initWithRulerView")
-    RulerMarker_initWithRulerView :: proc(self: ^RulerMarker, ruler: ^RulerView, location: CG.Float, image: ^NS.Image, imageOrigin: CG.Point) -> ^RulerMarker ---
+    RulerMarker_initWithRulerView :: proc(self: ^RulerMarker, ruler: ^RulerView, location: CG.Float, image: ^NS.Image, imageOrigin: CG.Point) -> instancetype ---
 
     @(objc_type=RulerMarker, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    RulerMarker_initWithCoder :: proc(self: ^RulerMarker, coder: ^NS.Coder) -> ^RulerMarker ---
+    RulerMarker_initWithCoder :: proc(self: ^RulerMarker, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=RulerMarker, objc_selector="init", objc_name="init")
-    RulerMarker_init :: proc(self: ^RulerMarker) -> ^RulerMarker ---
+    RulerMarker_init :: proc(self: ^RulerMarker) -> instancetype ---
 
     @(objc_type=RulerMarker, objc_selector="drawRect:", objc_name="drawRect")
     RulerMarker_drawRect :: proc(self: ^RulerMarker, rect: NS.Rect) ---

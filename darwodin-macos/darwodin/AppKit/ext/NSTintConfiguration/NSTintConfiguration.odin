@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    tintConfigurationWithPreferredColor: proc(color: ^AK.Color) -> ^AK.TintConfiguration,
-    tintConfigurationWithFixedColor: proc(color: ^AK.Color) -> ^AK.TintConfiguration,
+    tintConfigurationWithPreferredColor: proc(color: ^AK.Color) -> instancetype,
+    tintConfigurationWithFixedColor: proc(color: ^AK.Color) -> instancetype,
     defaultTintConfiguration: proc() -> ^AK.TintConfiguration,
     monochromeTintConfiguration: proc() -> ^AK.TintConfiguration,
     baseTintColor: proc(self: ^AK.TintConfiguration) -> ^AK.Color,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.tintConfigurationWithPreferredColor != nil {
-        tintConfigurationWithPreferredColor :: proc "c" (self: Class, _: SEL, color: ^AK.Color) -> ^AK.TintConfiguration {
+        tintConfigurationWithPreferredColor :: proc "c" (self: Class, _: SEL, color: ^AK.Color) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("tintConfigurationWithPreferredColor:"), auto_cast tintConfigurationWithPreferredColor, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.tintConfigurationWithFixedColor != nil {
-        tintConfigurationWithFixedColor :: proc "c" (self: Class, _: SEL, color: ^AK.Color) -> ^AK.TintConfiguration {
+        tintConfigurationWithFixedColor :: proc "c" (self: Class, _: SEL, color: ^AK.Color) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -24,16 +24,16 @@ TargetedPreview :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TargetedPreview, objc_selector="initWithView:parameters:target:", objc_name="initWithView_parameters_target")
-    TargetedPreview_initWithView_parameters_target :: proc(self: ^TargetedPreview, view: ^View, parameters: ^PreviewParameters, target: ^PreviewTarget) -> ^TargetedPreview ---
+    TargetedPreview_initWithView_parameters_target :: proc(self: ^TargetedPreview, view: ^View, parameters: ^PreviewParameters, target: ^PreviewTarget) -> instancetype ---
 
     @(objc_type=TargetedPreview, objc_selector="initWithView:parameters:", objc_name="initWithView_parameters")
-    TargetedPreview_initWithView_parameters :: proc(self: ^TargetedPreview, view: ^View, parameters: ^PreviewParameters) -> ^TargetedPreview ---
+    TargetedPreview_initWithView_parameters :: proc(self: ^TargetedPreview, view: ^View, parameters: ^PreviewParameters) -> instancetype ---
 
     @(objc_type=TargetedPreview, objc_selector="initWithView:", objc_name="initWithView_")
-    TargetedPreview_initWithView_ :: proc(self: ^TargetedPreview, view: ^View) -> ^TargetedPreview ---
+    TargetedPreview_initWithView_ :: proc(self: ^TargetedPreview, view: ^View) -> instancetype ---
 
     @(objc_type=TargetedPreview, objc_selector="init", objc_name="init")
-    TargetedPreview_init :: proc(self: ^TargetedPreview) -> ^TargetedPreview ---
+    TargetedPreview_init :: proc(self: ^TargetedPreview) -> instancetype ---
 
     @(objc_type=TargetedPreview, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TargetedPreview_new :: proc() -> ^TargetedPreview ---

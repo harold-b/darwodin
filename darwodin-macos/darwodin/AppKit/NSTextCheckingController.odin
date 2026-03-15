@@ -24,10 +24,10 @@ TextCheckingController :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextCheckingController, objc_selector="initWithClient:", objc_name="initWithClient")
-    TextCheckingController_initWithClient :: proc(self: ^TextCheckingController, client: ^TextCheckingClient) -> ^TextCheckingController ---
+    TextCheckingController_initWithClient :: proc(self: ^TextCheckingController, client: ^TextCheckingClient) -> instancetype ---
 
     @(objc_type=TextCheckingController, objc_selector="init", objc_name="init")
-    TextCheckingController_init :: proc(self: ^TextCheckingController) -> ^TextCheckingController ---
+    TextCheckingController_init :: proc(self: ^TextCheckingController) -> instancetype ---
 
     @(objc_type=TextCheckingController, objc_selector="invalidate", objc_name="invalidate")
     TextCheckingController_invalidate :: proc(self: ^TextCheckingController) ---

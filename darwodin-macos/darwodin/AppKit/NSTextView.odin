@@ -35,19 +35,19 @@ TextView :: struct { using _: Text,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextView, objc_selector="initWithFrame:textContainer:", objc_name="initWithFrame_textContainer")
-    TextView_initWithFrame_textContainer :: proc(self: ^TextView, frameRect: NS.Rect, container: ^TextContainer) -> ^TextView ---
+    TextView_initWithFrame_textContainer :: proc(self: ^TextView, frameRect: NS.Rect, container: ^TextContainer) -> instancetype ---
 
     @(objc_type=TextView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextView_initWithCoder :: proc(self: ^TextView, coder: ^NS.Coder) -> ^TextView ---
+    TextView_initWithCoder :: proc(self: ^TextView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextView, objc_selector="initWithFrame:", objc_name="initWithFrame_")
-    TextView_initWithFrame_ :: proc(self: ^TextView, frameRect: NS.Rect) -> ^TextView ---
+    TextView_initWithFrame_ :: proc(self: ^TextView, frameRect: NS.Rect) -> instancetype ---
 
     @(objc_type=TextView, objc_selector="initUsingTextLayoutManager:", objc_name="initUsingTextLayoutManager")
-    TextView_initUsingTextLayoutManager :: proc(self: ^TextView, usingTextLayoutManager: bool) -> ^TextView ---
+    TextView_initUsingTextLayoutManager :: proc(self: ^TextView, usingTextLayoutManager: bool) -> instancetype ---
 
     @(objc_type=TextView, objc_selector="textViewUsingTextLayoutManager:", objc_name="textViewUsingTextLayoutManager", objc_is_class_method=true)
-    TextView_textViewUsingTextLayoutManager :: proc(usingTextLayoutManager: bool) -> ^TextView ---
+    TextView_textViewUsingTextLayoutManager :: proc(usingTextLayoutManager: bool) -> instancetype ---
 
     @(objc_type=TextView, objc_selector="replaceTextContainer:", objc_name="replaceTextContainer")
     TextView_replaceTextContainer :: proc(self: ^TextView, newContainer: ^TextContainer) ---
@@ -716,7 +716,7 @@ foreign lib {
     TextView_scrollableTextView :: proc() -> ^ScrollView ---
 
     @(objc_type=TextView, objc_selector="fieldEditor", objc_name="fieldEditor", objc_is_class_method=true)
-    TextView_fieldEditor :: proc() -> ^TextView ---
+    TextView_fieldEditor :: proc() -> instancetype ---
 
     @(objc_type=TextView, objc_selector="scrollableDocumentContentTextView", objc_name="scrollableDocumentContentTextView", objc_is_class_method=true)
     TextView_scrollableDocumentContentTextView :: proc() -> ^ScrollView ---

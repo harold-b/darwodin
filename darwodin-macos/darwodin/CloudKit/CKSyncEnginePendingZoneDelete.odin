@@ -18,5 +18,5 @@ SyncEnginePendingZoneDelete :: struct { using _: SyncEnginePendingDatabaseChange
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEnginePendingZoneDelete, objc_selector="initWithZoneID:", objc_name="initWithZoneID")
-    SyncEnginePendingZoneDelete_initWithZoneID :: proc(self: ^SyncEnginePendingZoneDelete, zoneID: ^RecordZoneID) -> ^SyncEnginePendingZoneDelete ---
+    SyncEnginePendingZoneDelete_initWithZoneID :: proc(self: ^SyncEnginePendingZoneDelete, zoneID: ^RecordZoneID) -> instancetype ---
 }

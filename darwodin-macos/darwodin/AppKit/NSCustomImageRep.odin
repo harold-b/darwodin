@@ -24,10 +24,10 @@ CustomImageRep :: struct { using _: ImageRep, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CustomImageRep, objc_selector="initWithSize:flipped:drawingHandler:", objc_name="initWithSize")
-    CustomImageRep_initWithSize :: proc(self: ^CustomImageRep, size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: ^Objc_Block(proc "c" (dstRect: NS.Rect) -> bool)) -> ^CustomImageRep ---
+    CustomImageRep_initWithSize :: proc(self: ^CustomImageRep, size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: ^Objc_Block(proc "c" (dstRect: NS.Rect) -> bool)) -> instancetype ---
 
     @(objc_type=CustomImageRep, objc_selector="initWithDrawSelector:delegate:", objc_name="initWithDrawSelector")
-    CustomImageRep_initWithDrawSelector :: proc(self: ^CustomImageRep, selector: SEL, delegate: id) -> ^CustomImageRep ---
+    CustomImageRep_initWithDrawSelector :: proc(self: ^CustomImageRep, selector: SEL, delegate: id) -> instancetype ---
 
     @(objc_type=CustomImageRep, objc_selector="drawingHandler", objc_name="drawingHandler")
     CustomImageRep_drawingHandler :: proc(self: ^CustomImageRep) -> ^Objc_Block(proc "c" () -> bool) ---

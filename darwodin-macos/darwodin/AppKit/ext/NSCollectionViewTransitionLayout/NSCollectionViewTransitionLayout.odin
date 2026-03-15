@@ -30,7 +30,7 @@ import "../NSCollectionViewLayout"
 
 VTable :: struct {
     super: NSCollectionViewLayout.VTable,
-    initWithCurrentLayout: proc(self: ^AK.CollectionViewTransitionLayout, currentLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout) -> ^AK.CollectionViewTransitionLayout,
+    initWithCurrentLayout: proc(self: ^AK.CollectionViewTransitionLayout, currentLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout) -> instancetype,
     updateValue: proc(self: ^AK.CollectionViewTransitionLayout, value: CG.Float, key: ^NS.String),
     valueForAnimatedKey: proc(self: ^AK.CollectionViewTransitionLayout, key: ^NS.String) -> CG.Float,
     transitionProgress: proc(self: ^AK.CollectionViewTransitionLayout) -> CG.Float,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionViewLayout.extend(cls, &vt.super)
 
     if vt.initWithCurrentLayout != nil {
-        initWithCurrentLayout :: proc "c" (self: ^AK.CollectionViewTransitionLayout, _: SEL, currentLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout) -> ^AK.CollectionViewTransitionLayout {
+        initWithCurrentLayout :: proc "c" (self: ^AK.CollectionViewTransitionLayout, _: SEL, currentLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.TabBarItemAppearance) -> ^UI.TabBarItemAppearance,
-    initWithStyle: proc(self: ^UI.TabBarItemAppearance, style: UI.TabBarItemAppearanceStyle) -> ^UI.TabBarItemAppearance,
-    initWithCoder: proc(self: ^UI.TabBarItemAppearance, coder: ^NS.Coder) -> ^UI.TabBarItemAppearance,
-    copy: proc(self: ^UI.TabBarItemAppearance) -> ^UI.TabBarItemAppearance,
+    init: proc(self: ^UI.TabBarItemAppearance) -> instancetype,
+    initWithStyle: proc(self: ^UI.TabBarItemAppearance, style: UI.TabBarItemAppearanceStyle) -> instancetype,
+    initWithCoder: proc(self: ^UI.TabBarItemAppearance, coder: ^NS.Coder) -> instancetype,
+    copy: proc(self: ^UI.TabBarItemAppearance) -> instancetype,
     configureWithDefaultForStyle: proc(self: ^UI.TabBarItemAppearance, style: UI.TabBarItemAppearanceStyle),
     normal: proc(self: ^UI.TabBarItemAppearance) -> ^UI.TabBarItemStateAppearance,
     selected: proc(self: ^UI.TabBarItemAppearance) -> ^UI.TabBarItemStateAppearance,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TabBarItemAppearance, _: SEL) -> ^UI.TabBarItemAppearance {
+        init :: proc "c" (self: ^UI.TabBarItemAppearance, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithStyle != nil {
-        initWithStyle :: proc "c" (self: ^UI.TabBarItemAppearance, _: SEL, style: UI.TabBarItemAppearanceStyle) -> ^UI.TabBarItemAppearance {
+        initWithStyle :: proc "c" (self: ^UI.TabBarItemAppearance, _: SEL, style: UI.TabBarItemAppearanceStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithStyle:"), auto_cast initWithStyle, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.TabBarItemAppearance, _: SEL, coder: ^NS.Coder) -> ^UI.TabBarItemAppearance {
+        initWithCoder :: proc "c" (self: ^UI.TabBarItemAppearance, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.copy != nil {
-        copy :: proc "c" (self: ^UI.TabBarItemAppearance, _: SEL) -> ^UI.TabBarItemAppearance {
+        copy :: proc "c" (self: ^UI.TabBarItemAppearance, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

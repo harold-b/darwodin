@@ -18,7 +18,7 @@ SyncEngineEvent :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineEvent, objc_selector="init", objc_name="init")
-    SyncEngineEvent_init :: proc(self: ^SyncEngineEvent) -> ^SyncEngineEvent ---
+    SyncEngineEvent_init :: proc(self: ^SyncEngineEvent) -> instancetype ---
 
     @(objc_type=SyncEngineEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEngineEvent_new :: proc() -> ^SyncEngineEvent ---

@@ -18,7 +18,7 @@ Operation :: struct { using _: NS.Operation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Operation, objc_selector="init", objc_name="init")
-    Operation_init :: proc(self: ^Operation) -> ^Operation ---
+    Operation_init :: proc(self: ^Operation) -> instancetype ---
 
     @(objc_type=Operation, objc_selector="configuration", objc_name="configuration")
     Operation_configuration :: proc(self: ^Operation) -> ^OperationConfiguration ---

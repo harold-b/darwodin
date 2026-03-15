@@ -26,7 +26,7 @@ import "../NSOperation"
 
 VTable :: struct {
     super: NSOperation.VTable,
-    blockOperationWithBlock: proc(block: ^Objc_Block(proc "c" ())) -> ^NS.BlockOperation,
+    blockOperationWithBlock: proc(block: ^Objc_Block(proc "c" ())) -> instancetype,
     addExecutionBlock: proc(self: ^NS.BlockOperation, block: ^Objc_Block(proc "c" ())),
     executionBlocks: proc(self: ^NS.BlockOperation) -> ^NS.Array,
 }
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSOperation.extend(cls, &vt.super)
 
     if vt.blockOperationWithBlock != nil {
-        blockOperationWithBlock :: proc "c" (self: Class, _: SEL, block: ^Objc_Block(proc "c" ())) -> ^NS.BlockOperation {
+        blockOperationWithBlock :: proc "c" (self: Class, _: SEL, block: ^Objc_Block(proc "c" ())) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

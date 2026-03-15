@@ -30,8 +30,8 @@ import "../NSMenuItemCell"
 
 VTable :: struct {
     super: NSMenuItemCell.VTable,
-    initTextCell: proc(self: ^AK.PopUpButtonCell, stringValue: ^NS.String, pullDown: bool) -> ^AK.PopUpButtonCell,
-    initWithCoder: proc(self: ^AK.PopUpButtonCell, coder: ^NS.Coder) -> ^AK.PopUpButtonCell,
+    initTextCell: proc(self: ^AK.PopUpButtonCell, stringValue: ^NS.String, pullDown: bool) -> instancetype,
+    initWithCoder: proc(self: ^AK.PopUpButtonCell, coder: ^NS.Coder) -> instancetype,
     addItemWithTitle: proc(self: ^AK.PopUpButtonCell, title: ^NS.String),
     addItemsWithTitles: proc(self: ^AK.PopUpButtonCell, itemTitles: ^NS.Array),
     insertItemWithTitle: proc(self: ^AK.PopUpButtonCell, title: ^NS.String, index: NS.Integer),
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSMenuItemCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.PopUpButtonCell, _: SEL, stringValue: ^NS.String, pullDown: bool) -> ^AK.PopUpButtonCell {
+        initTextCell :: proc "c" (self: ^AK.PopUpButtonCell, _: SEL, stringValue: ^NS.String, pullDown: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:pullsDown:"), auto_cast initTextCell, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.PopUpButtonCell, _: SEL, coder: ^NS.Coder) -> ^AK.PopUpButtonCell {
+        initWithCoder :: proc "c" (self: ^AK.PopUpButtonCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

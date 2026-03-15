@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithURL: proc(self: ^NS.UserScriptTask, url: ^NS.URL, error: ^^NS.Error) -> ^NS.UserScriptTask,
+    initWithURL: proc(self: ^NS.UserScriptTask, url: ^NS.URL, error: ^^NS.Error) -> instancetype,
     executeWithCompletionHandler: proc(self: ^NS.UserScriptTask, handler: NS.UserScriptTaskCompletionHandler),
     scriptURL: proc(self: ^NS.UserScriptTask) -> ^NS.URL,
 }
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^NS.UserScriptTask, _: SEL, url: ^NS.URL, error: ^^NS.Error) -> ^NS.UserScriptTask {
+        initWithURL :: proc "c" (self: ^NS.UserScriptTask, _: SEL, url: ^NS.URL, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

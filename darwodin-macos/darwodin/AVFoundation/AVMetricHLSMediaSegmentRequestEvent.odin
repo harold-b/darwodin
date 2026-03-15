@@ -23,7 +23,7 @@ MetricHLSMediaSegmentRequestEvent :: struct { using _: MetricEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricHLSMediaSegmentRequestEvent, objc_selector="init", objc_name="init")
-    MetricHLSMediaSegmentRequestEvent_init :: proc(self: ^MetricHLSMediaSegmentRequestEvent) -> ^MetricHLSMediaSegmentRequestEvent ---
+    MetricHLSMediaSegmentRequestEvent_init :: proc(self: ^MetricHLSMediaSegmentRequestEvent) -> instancetype ---
 
     @(objc_type=MetricHLSMediaSegmentRequestEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricHLSMediaSegmentRequestEvent_new :: proc() -> ^MetricHLSMediaSegmentRequestEvent ---

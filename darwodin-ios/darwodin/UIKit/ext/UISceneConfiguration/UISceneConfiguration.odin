@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    configurationWithName: proc(name: ^NS.String, sessionRole: ^NS.String) -> ^UI.SceneConfiguration,
-    initWithName: proc(self: ^UI.SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> ^UI.SceneConfiguration,
+    configurationWithName: proc(name: ^NS.String, sessionRole: ^NS.String) -> instancetype,
+    initWithName: proc(self: ^UI.SceneConfiguration, name: ^NS.String, sessionRole: ^NS.String) -> instancetype,
     name: proc(self: ^UI.SceneConfiguration) -> ^NS.String,
     role: proc(self: ^UI.SceneConfiguration) -> ^NS.String,
     sceneClass: proc(self: ^UI.SceneConfiguration) -> Class,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.configurationWithName != nil {
-        configurationWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String, sessionRole: ^NS.String) -> ^UI.SceneConfiguration {
+        configurationWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String, sessionRole: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithName:sessionRole:"), auto_cast configurationWithName, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithName != nil {
-        initWithName :: proc "c" (self: ^UI.SceneConfiguration, _: SEL, name: ^NS.String, sessionRole: ^NS.String) -> ^UI.SceneConfiguration {
+        initWithName :: proc "c" (self: ^UI.SceneConfiguration, _: SEL, name: ^NS.String, sessionRole: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

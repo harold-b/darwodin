@@ -23,7 +23,7 @@ PlayerItemMetadataOutput :: struct { using _: PlayerItemOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemMetadataOutput, objc_selector="initWithIdentifiers:", objc_name="initWithIdentifiers")
-    PlayerItemMetadataOutput_initWithIdentifiers :: proc(self: ^PlayerItemMetadataOutput, identifiers: ^NS.Array) -> ^PlayerItemMetadataOutput ---
+    PlayerItemMetadataOutput_initWithIdentifiers :: proc(self: ^PlayerItemMetadataOutput, identifiers: ^NS.Array) -> instancetype ---
 
     @(objc_type=PlayerItemMetadataOutput, objc_selector="setDelegate:queue:", objc_name="setDelegate")
     PlayerItemMetadataOutput_setDelegate :: proc(self: ^PlayerItemMetadataOutput, delegate: ^PlayerItemMetadataOutputPushDelegate, delegateQueue: CF.dispatch_queue_t) ---

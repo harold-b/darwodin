@@ -23,7 +23,7 @@ CaptureStillImageOutput :: struct { using _: CaptureOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureStillImageOutput, objc_selector="init", objc_name="init")
-    CaptureStillImageOutput_init :: proc(self: ^CaptureStillImageOutput) -> ^CaptureStillImageOutput ---
+    CaptureStillImageOutput_init :: proc(self: ^CaptureStillImageOutput) -> instancetype ---
 
     @(objc_type=CaptureStillImageOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureStillImageOutput_new :: proc() -> ^CaptureStillImageOutput ---

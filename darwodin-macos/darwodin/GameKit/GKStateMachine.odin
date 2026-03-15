@@ -19,10 +19,10 @@ StateMachine :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=StateMachine, objc_selector="stateMachineWithStates:", objc_name="stateMachineWithStates", objc_is_class_method=true)
-    StateMachine_stateMachineWithStates :: proc(states: ^NS.Array) -> ^StateMachine ---
+    StateMachine_stateMachineWithStates :: proc(states: ^NS.Array) -> instancetype ---
 
     @(objc_type=StateMachine, objc_selector="initWithStates:", objc_name="initWithStates")
-    StateMachine_initWithStates :: proc(self: ^StateMachine, states: ^NS.Array) -> ^StateMachine ---
+    StateMachine_initWithStates :: proc(self: ^StateMachine, states: ^NS.Array) -> instancetype ---
 
     @(objc_type=StateMachine, objc_selector="updateWithDeltaTime:", objc_name="updateWithDeltaTime")
     StateMachine_updateWithDeltaTime :: proc(self: ^StateMachine, sec: NS.TimeInterval) ---

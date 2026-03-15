@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    sectionWithGroup: proc(group: ^AK.CollectionLayoutGroup) -> ^AK.CollectionLayoutSection,
-    init: proc(self: ^AK.CollectionLayoutSection) -> ^AK.CollectionLayoutSection,
+    sectionWithGroup: proc(group: ^AK.CollectionLayoutGroup) -> instancetype,
+    init: proc(self: ^AK.CollectionLayoutSection) -> instancetype,
     new: proc() -> ^AK.CollectionLayoutSection,
     contentInsets: proc(self: ^AK.CollectionLayoutSection) -> AK.DirectionalEdgeInsets,
     setContentInsets: proc(self: ^AK.CollectionLayoutSection, contentInsets: AK.DirectionalEdgeInsets),
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.sectionWithGroup != nil {
-        sectionWithGroup :: proc "c" (self: Class, _: SEL, group: ^AK.CollectionLayoutGroup) -> ^AK.CollectionLayoutSection {
+        sectionWithGroup :: proc "c" (self: Class, _: SEL, group: ^AK.CollectionLayoutGroup) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sectionWithGroup:"), auto_cast sectionWithGroup, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutSection, _: SEL) -> ^AK.CollectionLayoutSection {
+        init :: proc "c" (self: ^AK.CollectionLayoutSection, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

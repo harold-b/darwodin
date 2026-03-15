@@ -22,10 +22,10 @@ GraphicsRenderer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GraphicsRenderer, objc_selector="initWithBounds:", objc_name="initWithBounds_")
-    GraphicsRenderer_initWithBounds_ :: proc(self: ^GraphicsRenderer, bounds: CG.Rect) -> ^GraphicsRenderer ---
+    GraphicsRenderer_initWithBounds_ :: proc(self: ^GraphicsRenderer, bounds: CG.Rect) -> instancetype ---
 
     @(objc_type=GraphicsRenderer, objc_selector="initWithBounds:format:", objc_name="initWithBounds_format")
-    GraphicsRenderer_initWithBounds_format :: proc(self: ^GraphicsRenderer, bounds: CG.Rect, format: ^GraphicsRendererFormat) -> ^GraphicsRenderer ---
+    GraphicsRenderer_initWithBounds_format :: proc(self: ^GraphicsRenderer, bounds: CG.Rect, format: ^GraphicsRendererFormat) -> instancetype ---
 
     @(objc_type=GraphicsRenderer, objc_selector="format", objc_name="format")
     GraphicsRenderer_format :: proc(self: ^GraphicsRenderer) -> ^GraphicsRendererFormat ---

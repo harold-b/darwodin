@@ -24,10 +24,10 @@ HoverLiftEffect :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HoverLiftEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    HoverLiftEffect_effect :: proc() -> ^HoverLiftEffect ---
+    HoverLiftEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=HoverLiftEffect, objc_selector="init", objc_name="init")
-    HoverLiftEffect_init :: proc(self: ^HoverLiftEffect) -> ^HoverLiftEffect ---
+    HoverLiftEffect_init :: proc(self: ^HoverLiftEffect) -> instancetype ---
 
     @(objc_type=HoverLiftEffect, objc_selector="new", objc_name="new", objc_is_class_method=true)
     HoverLiftEffect_new :: proc() -> ^HoverLiftEffect ---

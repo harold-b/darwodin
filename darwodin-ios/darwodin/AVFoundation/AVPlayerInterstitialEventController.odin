@@ -23,10 +23,10 @@ PlayerInterstitialEventController :: struct { using _: PlayerInterstitialEventMo
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerInterstitialEventController, objc_selector="interstitialEventControllerWithPrimaryPlayer:", objc_name="interstitialEventControllerWithPrimaryPlayer", objc_is_class_method=true)
-    PlayerInterstitialEventController_interstitialEventControllerWithPrimaryPlayer :: proc(primaryPlayer: ^Player) -> ^PlayerInterstitialEventController ---
+    PlayerInterstitialEventController_interstitialEventControllerWithPrimaryPlayer :: proc(primaryPlayer: ^Player) -> instancetype ---
 
     @(objc_type=PlayerInterstitialEventController, objc_selector="initWithPrimaryPlayer:", objc_name="initWithPrimaryPlayer")
-    PlayerInterstitialEventController_initWithPrimaryPlayer :: proc(self: ^PlayerInterstitialEventController, primaryPlayer: ^Player) -> ^PlayerInterstitialEventController ---
+    PlayerInterstitialEventController_initWithPrimaryPlayer :: proc(self: ^PlayerInterstitialEventController, primaryPlayer: ^Player) -> instancetype ---
 
     @(objc_type=PlayerInterstitialEventController, objc_selector="cancelCurrentEventWithResumptionOffset:", objc_name="cancelCurrentEventWithResumptionOffset")
     PlayerInterstitialEventController_cancelCurrentEventWithResumptionOffset :: proc(self: ^PlayerInterstitialEventController, resumptionOffset: CM.Time) ---

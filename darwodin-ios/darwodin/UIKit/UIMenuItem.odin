@@ -22,7 +22,7 @@ MenuItem :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MenuItem, objc_selector="initWithTitle:action:", objc_name="initWithTitle")
-    MenuItem_initWithTitle :: proc(self: ^MenuItem, title: ^NS.String, action: SEL) -> ^MenuItem ---
+    MenuItem_initWithTitle :: proc(self: ^MenuItem, title: ^NS.String, action: SEL) -> instancetype ---
 
     @(objc_type=MenuItem, objc_selector="title", objc_name="title")
     MenuItem_title :: proc(self: ^MenuItem) -> ^NS.String ---

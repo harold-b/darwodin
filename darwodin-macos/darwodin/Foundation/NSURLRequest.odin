@@ -24,16 +24,16 @@ URLRequest :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLRequest, objc_selector="requestWithURL:", objc_name="requestWithURL_", objc_is_class_method=true)
-    URLRequest_requestWithURL_ :: proc(_URL: ^URL) -> ^URLRequest ---
+    URLRequest_requestWithURL_ :: proc(_URL: ^URL) -> instancetype ---
 
     @(objc_type=URLRequest, objc_selector="requestWithURL:cachePolicy:timeoutInterval:", objc_name="requestWithURL_cachePolicy_timeoutInterval", objc_is_class_method=true)
-    URLRequest_requestWithURL_cachePolicy_timeoutInterval :: proc(_URL: ^URL, cachePolicy: URLRequestCachePolicy, timeoutInterval: TimeInterval) -> ^URLRequest ---
+    URLRequest_requestWithURL_cachePolicy_timeoutInterval :: proc(_URL: ^URL, cachePolicy: URLRequestCachePolicy, timeoutInterval: TimeInterval) -> instancetype ---
 
     @(objc_type=URLRequest, objc_selector="initWithURL:", objc_name="initWithURL_")
-    URLRequest_initWithURL_ :: proc(self: ^URLRequest, _URL: ^URL) -> ^URLRequest ---
+    URLRequest_initWithURL_ :: proc(self: ^URLRequest, _URL: ^URL) -> instancetype ---
 
     @(objc_type=URLRequest, objc_selector="initWithURL:cachePolicy:timeoutInterval:", objc_name="initWithURL_cachePolicy_timeoutInterval")
-    URLRequest_initWithURL_cachePolicy_timeoutInterval :: proc(self: ^URLRequest, _URL: ^URL, cachePolicy: URLRequestCachePolicy, timeoutInterval: TimeInterval) -> ^URLRequest ---
+    URLRequest_initWithURL_cachePolicy_timeoutInterval :: proc(self: ^URLRequest, _URL: ^URL, cachePolicy: URLRequestCachePolicy, timeoutInterval: TimeInterval) -> instancetype ---
 
     @(objc_type=URLRequest, objc_selector="supportsSecureCoding", objc_name="supportsSecureCoding", objc_is_class_method=true)
     URLRequest_supportsSecureCoding :: proc() -> bool ---

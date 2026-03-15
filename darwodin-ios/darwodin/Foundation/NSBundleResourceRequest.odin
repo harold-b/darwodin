@@ -22,13 +22,13 @@ BundleResourceRequest :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BundleResourceRequest, objc_selector="init", objc_name="init")
-    BundleResourceRequest_init :: proc(self: ^BundleResourceRequest) -> ^BundleResourceRequest ---
+    BundleResourceRequest_init :: proc(self: ^BundleResourceRequest) -> instancetype ---
 
     @(objc_type=BundleResourceRequest, objc_selector="initWithTags:", objc_name="initWithTags_")
-    BundleResourceRequest_initWithTags_ :: proc(self: ^BundleResourceRequest, tags: ^Set) -> ^BundleResourceRequest ---
+    BundleResourceRequest_initWithTags_ :: proc(self: ^BundleResourceRequest, tags: ^Set) -> instancetype ---
 
     @(objc_type=BundleResourceRequest, objc_selector="initWithTags:bundle:", objc_name="initWithTags_bundle")
-    BundleResourceRequest_initWithTags_bundle :: proc(self: ^BundleResourceRequest, tags: ^Set, bundle: ^Bundle) -> ^BundleResourceRequest ---
+    BundleResourceRequest_initWithTags_bundle :: proc(self: ^BundleResourceRequest, tags: ^Set, bundle: ^Bundle) -> instancetype ---
 
     @(objc_type=BundleResourceRequest, objc_selector="beginAccessingResourcesWithCompletionHandler:", objc_name="beginAccessingResourcesWithCompletionHandler")
     BundleResourceRequest_beginAccessingResourcesWithCompletionHandler :: proc(self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) ---

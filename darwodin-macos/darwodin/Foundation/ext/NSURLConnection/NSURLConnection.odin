@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithRequest_delegate_startImmediately: proc(self: ^NS.URLConnection, request: ^NS.URLRequest, delegate: id, startImmediately: bool) -> ^NS.URLConnection,
-    initWithRequest_delegate: proc(self: ^NS.URLConnection, request: ^NS.URLRequest, delegate: id) -> ^NS.URLConnection,
+    initWithRequest_delegate_startImmediately: proc(self: ^NS.URLConnection, request: ^NS.URLRequest, delegate: id, startImmediately: bool) -> instancetype,
+    initWithRequest_delegate: proc(self: ^NS.URLConnection, request: ^NS.URLRequest, delegate: id) -> instancetype,
     connectionWithRequest: proc(request: ^NS.URLRequest, delegate: id) -> ^NS.URLConnection,
     start: proc(self: ^NS.URLConnection),
     cancel: proc(self: ^NS.URLConnection),
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithRequest_delegate_startImmediately != nil {
-        initWithRequest_delegate_startImmediately :: proc "c" (self: ^NS.URLConnection, _: SEL, request: ^NS.URLRequest, delegate: id, startImmediately: bool) -> ^NS.URLConnection {
+        initWithRequest_delegate_startImmediately :: proc "c" (self: ^NS.URLConnection, _: SEL, request: ^NS.URLRequest, delegate: id, startImmediately: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRequest:delegate:startImmediately:"), auto_cast initWithRequest_delegate_startImmediately, "@@:@@B") do panic("Failed to register objC method.")
     }
     if vt.initWithRequest_delegate != nil {
-        initWithRequest_delegate :: proc "c" (self: ^NS.URLConnection, _: SEL, request: ^NS.URLRequest, delegate: id) -> ^NS.URLConnection {
+        initWithRequest_delegate :: proc "c" (self: ^NS.URLConnection, _: SEL, request: ^NS.URLRequest, delegate: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

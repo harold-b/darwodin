@@ -22,28 +22,28 @@ KeyCommand :: struct { using _: Command, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=KeyCommand, objc_selector="init", objc_name="init")
-    KeyCommand_init :: proc(self: ^KeyCommand) -> ^KeyCommand ---
+    KeyCommand_init :: proc(self: ^KeyCommand) -> instancetype ---
 
     @(objc_type=KeyCommand, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    KeyCommand_initWithCoder :: proc(self: ^KeyCommand, coder: ^NS.Coder) -> ^KeyCommand ---
+    KeyCommand_initWithCoder :: proc(self: ^KeyCommand, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=KeyCommand, objc_selector="commandWithTitle:image:action:input:modifierFlags:propertyList:", objc_name="commandWithTitle_image_action_input_modifierFlags_propertyList", objc_is_class_method=true)
-    KeyCommand_commandWithTitle_image_action_input_modifierFlags_propertyList :: proc(title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id) -> ^KeyCommand ---
+    KeyCommand_commandWithTitle_image_action_input_modifierFlags_propertyList :: proc(title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id) -> instancetype ---
 
     @(objc_type=KeyCommand, objc_selector="commandWithTitle:image:action:input:modifierFlags:propertyList:alternates:", objc_name="commandWithTitle_image_action_input_modifierFlags_propertyList_alternates", objc_is_class_method=true)
-    KeyCommand_commandWithTitle_image_action_input_modifierFlags_propertyList_alternates :: proc(title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id, alternates: ^NS.Array) -> ^KeyCommand ---
+    KeyCommand_commandWithTitle_image_action_input_modifierFlags_propertyList_alternates :: proc(title: ^NS.String, image: ^Image, action: SEL, input: ^NS.String, modifierFlags: KeyModifierFlags, propertyList: id, alternates: ^NS.Array) -> instancetype ---
 
     @(objc_type=KeyCommand, objc_selector="keyCommandWithInput:modifierFlags:action:", objc_name="keyCommandWithInput_modifierFlags_action", objc_is_class_method=true)
-    KeyCommand_keyCommandWithInput_modifierFlags_action :: proc(input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL) -> ^KeyCommand ---
+    KeyCommand_keyCommandWithInput_modifierFlags_action :: proc(input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL) -> instancetype ---
 
     @(objc_type=KeyCommand, objc_selector="keyCommandWithInput:modifierFlags:action:discoverabilityTitle:", objc_name="keyCommandWithInput_modifierFlags_action_discoverabilityTitle", objc_is_class_method=true)
-    KeyCommand_keyCommandWithInput_modifierFlags_action_discoverabilityTitle :: proc(input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL, discoverabilityTitle: ^NS.String) -> ^KeyCommand ---
+    KeyCommand_keyCommandWithInput_modifierFlags_action_discoverabilityTitle :: proc(input: ^NS.String, modifierFlags: KeyModifierFlags, action: SEL, discoverabilityTitle: ^NS.String) -> instancetype ---
 
     @(objc_type=KeyCommand, objc_selector="commandWithTitle:image:action:propertyList:", objc_name="commandWithTitle_image_action_propertyList", objc_is_class_method=true)
-    KeyCommand_commandWithTitle_image_action_propertyList :: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id) -> ^KeyCommand ---
+    KeyCommand_commandWithTitle_image_action_propertyList :: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id) -> instancetype ---
 
     @(objc_type=KeyCommand, objc_selector="commandWithTitle:image:action:propertyList:alternates:", objc_name="commandWithTitle_image_action_propertyList_alternates", objc_is_class_method=true)
-    KeyCommand_commandWithTitle_image_action_propertyList_alternates :: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> ^KeyCommand ---
+    KeyCommand_commandWithTitle_image_action_propertyList_alternates :: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> instancetype ---
 
     @(objc_type=KeyCommand, objc_selector="title", objc_name="title")
     KeyCommand_title :: proc(self: ^KeyCommand) -> ^NS.String ---

@@ -37,5 +37,5 @@ foreign lib {
     PublicKey_new :: proc() -> ^PublicKey ---
 
     @(objc_type=PublicKey, objc_selector="init", objc_name="init")
-    PublicKey_init :: proc(self: ^PublicKey) -> ^PublicKey ---
+    PublicKey_init :: proc(self: ^PublicKey) -> instancetype ---
 }

@@ -28,17 +28,17 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    plainButtonConfiguration: proc() -> ^UI.ButtonConfiguration,
-    tintedButtonConfiguration: proc() -> ^UI.ButtonConfiguration,
-    grayButtonConfiguration: proc() -> ^UI.ButtonConfiguration,
-    filledButtonConfiguration: proc() -> ^UI.ButtonConfiguration,
-    borderlessButtonConfiguration: proc() -> ^UI.ButtonConfiguration,
-    borderedButtonConfiguration: proc() -> ^UI.ButtonConfiguration,
-    borderedTintedButtonConfiguration: proc() -> ^UI.ButtonConfiguration,
-    borderedProminentButtonConfiguration: proc() -> ^UI.ButtonConfiguration,
+    plainButtonConfiguration: proc() -> instancetype,
+    tintedButtonConfiguration: proc() -> instancetype,
+    grayButtonConfiguration: proc() -> instancetype,
+    filledButtonConfiguration: proc() -> instancetype,
+    borderlessButtonConfiguration: proc() -> instancetype,
+    borderedButtonConfiguration: proc() -> instancetype,
+    borderedTintedButtonConfiguration: proc() -> instancetype,
+    borderedProminentButtonConfiguration: proc() -> instancetype,
     new: proc() -> ^UI.ButtonConfiguration,
-    init: proc(self: ^UI.ButtonConfiguration) -> ^UI.ButtonConfiguration,
-    updatedConfigurationForButton: proc(self: ^UI.ButtonConfiguration, button: ^UI.Button) -> ^UI.ButtonConfiguration,
+    init: proc(self: ^UI.ButtonConfiguration) -> instancetype,
+    updatedConfigurationForButton: proc(self: ^UI.ButtonConfiguration, button: ^UI.Button) -> instancetype,
     setDefaultContentInsets: proc(self: ^UI.ButtonConfiguration),
     background: proc(self: ^UI.ButtonConfiguration) -> ^UI.BackgroundConfiguration,
     setBackground: proc(self: ^UI.ButtonConfiguration, background: ^UI.BackgroundConfiguration),
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.plainButtonConfiguration != nil {
-        plainButtonConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ButtonConfiguration {
+        plainButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("plainButtonConfiguration"), auto_cast plainButtonConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.tintedButtonConfiguration != nil {
-        tintedButtonConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ButtonConfiguration {
+        tintedButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("tintedButtonConfiguration"), auto_cast tintedButtonConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.grayButtonConfiguration != nil {
-        grayButtonConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ButtonConfiguration {
+        grayButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -134,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("grayButtonConfiguration"), auto_cast grayButtonConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.filledButtonConfiguration != nil {
-        filledButtonConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ButtonConfiguration {
+        filledButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -144,7 +144,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("filledButtonConfiguration"), auto_cast filledButtonConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.borderlessButtonConfiguration != nil {
-        borderlessButtonConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ButtonConfiguration {
+        borderlessButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -154,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("borderlessButtonConfiguration"), auto_cast borderlessButtonConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.borderedButtonConfiguration != nil {
-        borderedButtonConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ButtonConfiguration {
+        borderedButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("borderedButtonConfiguration"), auto_cast borderedButtonConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.borderedTintedButtonConfiguration != nil {
-        borderedTintedButtonConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ButtonConfiguration {
+        borderedTintedButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("borderedTintedButtonConfiguration"), auto_cast borderedTintedButtonConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.borderedProminentButtonConfiguration != nil {
-        borderedProminentButtonConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ButtonConfiguration {
+        borderedProminentButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -194,7 +194,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ButtonConfiguration, _: SEL) -> ^UI.ButtonConfiguration {
+        init :: proc "c" (self: ^UI.ButtonConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -204,7 +204,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.updatedConfigurationForButton != nil {
-        updatedConfigurationForButton :: proc "c" (self: ^UI.ButtonConfiguration, _: SEL, button: ^UI.Button) -> ^UI.ButtonConfiguration {
+        updatedConfigurationForButton :: proc "c" (self: ^UI.ButtonConfiguration, _: SEL, button: ^UI.Button) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

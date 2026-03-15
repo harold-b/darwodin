@@ -22,13 +22,13 @@ FocusHaloEffect :: struct { using _: FocusEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FocusHaloEffect, objc_selector="effectWithRect:", objc_name="effectWithRect", objc_is_class_method=true)
-    FocusHaloEffect_effectWithRect :: proc(rect: CG.Rect) -> ^FocusHaloEffect ---
+    FocusHaloEffect_effectWithRect :: proc(rect: CG.Rect) -> instancetype ---
 
     @(objc_type=FocusHaloEffect, objc_selector="effectWithRoundedRect:cornerRadius:curve:", objc_name="effectWithRoundedRect", objc_is_class_method=true)
-    FocusHaloEffect_effectWithRoundedRect :: proc(rect: CG.Rect, cornerRadius: CG.Float, curve: ^NS.String) -> ^FocusHaloEffect ---
+    FocusHaloEffect_effectWithRoundedRect :: proc(rect: CG.Rect, cornerRadius: CG.Float, curve: ^NS.String) -> instancetype ---
 
     @(objc_type=FocusHaloEffect, objc_selector="effectWithPath:", objc_name="effectWithPath", objc_is_class_method=true)
-    FocusHaloEffect_effectWithPath :: proc(bezierPath: ^BezierPath) -> ^FocusHaloEffect ---
+    FocusHaloEffect_effectWithPath :: proc(bezierPath: ^BezierPath) -> instancetype ---
 
     @(objc_type=FocusHaloEffect, objc_selector="containerView", objc_name="containerView")
     FocusHaloEffect_containerView :: proc(self: ^FocusHaloEffect) -> ^View ---

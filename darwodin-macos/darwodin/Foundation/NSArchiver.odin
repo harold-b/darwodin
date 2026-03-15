@@ -20,7 +20,7 @@ Archiver :: struct { using _: Coder, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Archiver, objc_selector="initForWritingWithMutableData:", objc_name="initForWritingWithMutableData")
-    Archiver_initForWritingWithMutableData :: proc(self: ^Archiver, mdata: ^MutableData) -> ^Archiver ---
+    Archiver_initForWritingWithMutableData :: proc(self: ^Archiver, mdata: ^MutableData) -> instancetype ---
 
     @(objc_type=Archiver, objc_selector="encodeRootObject:", objc_name="encodeRootObject")
     Archiver_encodeRootObject :: proc(self: ^Archiver, rootObject: id) ---

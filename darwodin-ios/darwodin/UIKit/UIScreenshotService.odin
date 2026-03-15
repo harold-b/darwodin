@@ -22,7 +22,7 @@ ScreenshotService :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScreenshotService, objc_selector="init", objc_name="init")
-    ScreenshotService_init :: proc(self: ^ScreenshotService) -> ^ScreenshotService ---
+    ScreenshotService_init :: proc(self: ^ScreenshotService) -> instancetype ---
 
     @(objc_type=ScreenshotService, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ScreenshotService_new :: proc() -> ^ScreenshotService ---

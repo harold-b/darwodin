@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithProtectionSpace: proc(self: ^NS.URLAuthenticationChallenge, space: ^NS.URLProtectionSpace, credential: ^NS.URLCredential, previousFailureCount: NS.Integer, response: ^NS.URLResponse, error: ^NS.Error, sender: ^NS.URLAuthenticationChallengeSender) -> ^NS.URLAuthenticationChallenge,
-    initWithAuthenticationChallenge: proc(self: ^NS.URLAuthenticationChallenge, challenge: ^NS.URLAuthenticationChallenge, sender: ^NS.URLAuthenticationChallengeSender) -> ^NS.URLAuthenticationChallenge,
+    initWithProtectionSpace: proc(self: ^NS.URLAuthenticationChallenge, space: ^NS.URLProtectionSpace, credential: ^NS.URLCredential, previousFailureCount: NS.Integer, response: ^NS.URLResponse, error: ^NS.Error, sender: ^NS.URLAuthenticationChallengeSender) -> instancetype,
+    initWithAuthenticationChallenge: proc(self: ^NS.URLAuthenticationChallenge, challenge: ^NS.URLAuthenticationChallenge, sender: ^NS.URLAuthenticationChallengeSender) -> instancetype,
     protectionSpace: proc(self: ^NS.URLAuthenticationChallenge) -> ^NS.URLProtectionSpace,
     proposedCredential: proc(self: ^NS.URLAuthenticationChallenge) -> ^NS.URLCredential,
     previousFailureCount: proc(self: ^NS.URLAuthenticationChallenge) -> NS.Integer,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithProtectionSpace != nil {
-        initWithProtectionSpace :: proc "c" (self: ^NS.URLAuthenticationChallenge, _: SEL, space: ^NS.URLProtectionSpace, credential: ^NS.URLCredential, previousFailureCount: NS.Integer, response: ^NS.URLResponse, error: ^NS.Error, sender: ^NS.URLAuthenticationChallengeSender) -> ^NS.URLAuthenticationChallenge {
+        initWithProtectionSpace :: proc "c" (self: ^NS.URLAuthenticationChallenge, _: SEL, space: ^NS.URLProtectionSpace, credential: ^NS.URLCredential, previousFailureCount: NS.Integer, response: ^NS.URLResponse, error: ^NS.Error, sender: ^NS.URLAuthenticationChallengeSender) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:"), auto_cast initWithProtectionSpace, "@@:@@l@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithAuthenticationChallenge != nil {
-        initWithAuthenticationChallenge :: proc "c" (self: ^NS.URLAuthenticationChallenge, _: SEL, challenge: ^NS.URLAuthenticationChallenge, sender: ^NS.URLAuthenticationChallengeSender) -> ^NS.URLAuthenticationChallenge {
+        initWithAuthenticationChallenge :: proc "c" (self: ^NS.URLAuthenticationChallenge, _: SEL, challenge: ^NS.URLAuthenticationChallenge, sender: ^NS.URLAuthenticationChallengeSender) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

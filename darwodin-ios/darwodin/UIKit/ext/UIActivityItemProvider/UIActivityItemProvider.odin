@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSOperation"
 
 VTable :: struct {
     super: NSOperation.VTable,
-    init: proc(self: ^UI.ActivityItemProvider) -> ^UI.ActivityItemProvider,
-    initWithPlaceholderItem: proc(self: ^UI.ActivityItemProvider, placeholderItem: id) -> ^UI.ActivityItemProvider,
+    init: proc(self: ^UI.ActivityItemProvider) -> instancetype,
+    initWithPlaceholderItem: proc(self: ^UI.ActivityItemProvider, placeholderItem: id) -> instancetype,
     placeholderItem: proc(self: ^UI.ActivityItemProvider) -> id,
     activityType: proc(self: ^UI.ActivityItemProvider) -> ^NS.String,
     item: proc(self: ^UI.ActivityItemProvider) -> id,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSOperation.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ActivityItemProvider, _: SEL) -> ^UI.ActivityItemProvider {
+        init :: proc "c" (self: ^UI.ActivityItemProvider, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithPlaceholderItem != nil {
-        initWithPlaceholderItem :: proc "c" (self: ^UI.ActivityItemProvider, _: SEL, placeholderItem: id) -> ^UI.ActivityItemProvider {
+        initWithPlaceholderItem :: proc "c" (self: ^UI.ActivityItemProvider, _: SEL, placeholderItem: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

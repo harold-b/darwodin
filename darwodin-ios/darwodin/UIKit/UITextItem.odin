@@ -22,7 +22,7 @@ TextItem :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextItem, objc_selector="init", objc_name="init")
-    TextItem_init :: proc(self: ^TextItem) -> ^TextItem ---
+    TextItem_init :: proc(self: ^TextItem) -> instancetype ---
 
     @(objc_type=TextItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextItem_new :: proc() -> ^TextItem ---

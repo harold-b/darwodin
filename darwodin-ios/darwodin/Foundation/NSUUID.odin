@@ -23,16 +23,16 @@ UUID :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UUID, objc_selector="UUID", objc_name="UUID", objc_is_class_method=true)
-    UUID_UUID :: proc() -> ^UUID ---
+    UUID_UUID :: proc() -> instancetype ---
 
     @(objc_type=UUID, objc_selector="init", objc_name="init")
-    UUID_init :: proc(self: ^UUID) -> ^UUID ---
+    UUID_init :: proc(self: ^UUID) -> instancetype ---
 
     @(objc_type=UUID, objc_selector="initWithUUIDString:", objc_name="initWithUUIDString")
-    UUID_initWithUUIDString :: proc(self: ^UUID, string: ^String) -> ^UUID ---
+    UUID_initWithUUIDString :: proc(self: ^UUID, string: ^String) -> instancetype ---
 
     @(objc_type=UUID, objc_selector="initWithUUIDBytes:", objc_name="initWithUUIDBytes")
-    UUID_initWithUUIDBytes :: proc(self: ^UUID, bytes: ^cffi.uchar) -> ^UUID ---
+    UUID_initWithUUIDBytes :: proc(self: ^UUID, bytes: ^cffi.uchar) -> instancetype ---
 
     @(objc_type=UUID, objc_selector="getUUIDBytes:", objc_name="getUUIDBytes")
     UUID_getUUIDBytes :: proc(self: ^UUID, uuid: ^cffi.uchar) ---

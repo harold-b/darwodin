@@ -22,7 +22,7 @@ ImageReader :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ImageReader, objc_selector="readerWithConfiguration:", objc_name="readerWithConfiguration", objc_is_class_method=true)
-    ImageReader_readerWithConfiguration :: proc(configuration: ^ImageReaderConfiguration) -> ^ImageReader ---
+    ImageReader_readerWithConfiguration :: proc(configuration: ^ImageReaderConfiguration) -> instancetype ---
 
     @(objc_type=ImageReader, objc_selector="imageWithContentsOfFileURL:", objc_name="imageWithContentsOfFileURL_")
     ImageReader_imageWithContentsOfFileURL_ :: proc(self: ^ImageReader, url: ^NS.URL) -> ^Image ---

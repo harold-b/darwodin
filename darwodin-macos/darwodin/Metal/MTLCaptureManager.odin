@@ -25,7 +25,7 @@ foreign lib {
     CaptureManager_sharedCaptureManager :: proc() -> ^CaptureManager ---
 
     @(objc_type=CaptureManager, objc_selector="init", objc_name="init")
-    CaptureManager_init :: proc(self: ^CaptureManager) -> ^CaptureManager ---
+    CaptureManager_init :: proc(self: ^CaptureManager) -> instancetype ---
 
     @(objc_type=CaptureManager, objc_selector="newCaptureScopeWithDevice:", objc_name="newCaptureScopeWithDevice")
     CaptureManager_newCaptureScopeWithDevice :: proc(self: ^CaptureManager, device: ^Device) -> ^CaptureScope ---

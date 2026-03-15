@@ -24,16 +24,16 @@ TextListElement :: struct { using _: TextParagraph, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextListElement, objc_selector="initWithParentElement:textList:contents:markerAttributes:childElements:", objc_name="initWithParentElement")
-    TextListElement_initWithParentElement :: proc(self: ^TextListElement, parent: ^TextListElement, textList: ^TextList, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, children: ^NS.Array) -> ^TextListElement ---
+    TextListElement_initWithParentElement :: proc(self: ^TextListElement, parent: ^TextListElement, textList: ^TextList, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, children: ^NS.Array) -> instancetype ---
 
     @(objc_type=TextListElement, objc_selector="initWithAttributedString:", objc_name="initWithAttributedString")
-    TextListElement_initWithAttributedString :: proc(self: ^TextListElement, attributedString: ^NS.AttributedString) -> ^TextListElement ---
+    TextListElement_initWithAttributedString :: proc(self: ^TextListElement, attributedString: ^NS.AttributedString) -> instancetype ---
 
     @(objc_type=TextListElement, objc_selector="textListElementWithContents:markerAttributes:textList:childElements:", objc_name="textListElementWithContents", objc_is_class_method=true)
-    TextListElement_textListElementWithContents :: proc(contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, textList: ^TextList, children: ^NS.Array) -> ^TextListElement ---
+    TextListElement_textListElementWithContents :: proc(contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, textList: ^TextList, children: ^NS.Array) -> instancetype ---
 
     @(objc_type=TextListElement, objc_selector="textListElementWithChildElements:textList:nestingLevel:", objc_name="textListElementWithChildElements", objc_is_class_method=true)
-    TextListElement_textListElementWithChildElements :: proc(children: ^NS.Array, textList: ^TextList, nestingLevel: NS.Integer) -> ^TextListElement ---
+    TextListElement_textListElementWithChildElements :: proc(children: ^NS.Array, textList: ^TextList, nestingLevel: NS.Integer) -> instancetype ---
 
     @(objc_type=TextListElement, objc_selector="textList", objc_name="textList")
     TextListElement_textList :: proc(self: ^TextListElement) -> ^TextList ---

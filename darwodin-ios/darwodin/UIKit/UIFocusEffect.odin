@@ -24,10 +24,10 @@ FocusEffect :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FocusEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    FocusEffect_effect :: proc() -> ^FocusEffect ---
+    FocusEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=FocusEffect, objc_selector="init", objc_name="init")
-    FocusEffect_init :: proc(self: ^FocusEffect) -> ^FocusEffect ---
+    FocusEffect_init :: proc(self: ^FocusEffect) -> instancetype ---
 
     @(objc_type=FocusEffect, objc_selector="new", objc_name="new", objc_is_class_method=true)
     FocusEffect_new :: proc() -> ^FocusEffect ---

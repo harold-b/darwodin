@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.SceneSizeRestrictions) -> ^UI.SceneSizeRestrictions,
+    init: proc(self: ^UI.SceneSizeRestrictions) -> instancetype,
     new: proc() -> ^UI.SceneSizeRestrictions,
     minimumSize: proc(self: ^UI.SceneSizeRestrictions) -> CG.Size,
     setMinimumSize: proc(self: ^UI.SceneSizeRestrictions, minimumSize: CG.Size),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SceneSizeRestrictions, _: SEL) -> ^UI.SceneSizeRestrictions {
+        init :: proc "c" (self: ^UI.SceneSizeRestrictions, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

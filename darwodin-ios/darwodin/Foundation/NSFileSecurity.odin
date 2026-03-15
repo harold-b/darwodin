@@ -23,5 +23,5 @@ FileSecurity :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FileSecurity, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    FileSecurity_initWithCoder :: proc(self: ^FileSecurity, coder: ^Coder) -> ^FileSecurity ---
+    FileSecurity_initWithCoder :: proc(self: ^FileSecurity, coder: ^Coder) -> instancetype ---
 }

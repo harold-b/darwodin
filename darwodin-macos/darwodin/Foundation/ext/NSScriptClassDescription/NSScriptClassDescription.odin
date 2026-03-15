@@ -27,7 +27,7 @@ import "../NSClassDescription"
 VTable :: struct {
     super: NSClassDescription.VTable,
     classDescriptionForClass: proc(aClass: Class) -> ^NS.ScriptClassDescription,
-    initWithSuiteName: proc(self: ^NS.ScriptClassDescription, suiteName: ^NS.String, className: ^NS.String, classDeclaration: ^NS.Dictionary) -> ^NS.ScriptClassDescription,
+    initWithSuiteName: proc(self: ^NS.ScriptClassDescription, suiteName: ^NS.String, className: ^NS.String, classDeclaration: ^NS.Dictionary) -> instancetype,
     matchesAppleEventCode: proc(self: ^NS.ScriptClassDescription, appleEventCode: CF.FourCharCode) -> bool,
     supportsCommand: proc(self: ^NS.ScriptClassDescription, commandDescription: ^NS.ScriptCommandDescription) -> bool,
     selectorForCommand: proc(self: ^NS.ScriptClassDescription, commandDescription: ^NS.ScriptCommandDescription) -> SEL,
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("classDescriptionForClass:"), auto_cast classDescriptionForClass, "@#:#") do panic("Failed to register objC method.")
     }
     if vt.initWithSuiteName != nil {
-        initWithSuiteName :: proc "c" (self: ^NS.ScriptClassDescription, _: SEL, suiteName: ^NS.String, className: ^NS.String, classDeclaration: ^NS.Dictionary) -> ^NS.ScriptClassDescription {
+        initWithSuiteName :: proc "c" (self: ^NS.ScriptClassDescription, _: SEL, suiteName: ^NS.String, className: ^NS.String, classDeclaration: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

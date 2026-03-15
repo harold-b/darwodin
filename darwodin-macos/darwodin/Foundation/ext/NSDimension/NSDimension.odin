@@ -26,8 +26,8 @@ import "../NSUnit"
 
 VTable :: struct {
     super: NSUnit.VTable,
-    initWithSymbol: proc(self: ^NS.Dimension, symbol: ^NS.String, converter: ^NS.UnitConverter) -> ^NS.Dimension,
-    baseUnit: proc() -> ^NS.Dimension,
+    initWithSymbol: proc(self: ^NS.Dimension, symbol: ^NS.String, converter: ^NS.UnitConverter) -> instancetype,
+    baseUnit: proc() -> instancetype,
     converter: proc(self: ^NS.Dimension) -> ^NS.UnitConverter,
 }
 
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSUnit.extend(cls, &vt.super)
 
     if vt.initWithSymbol != nil {
-        initWithSymbol :: proc "c" (self: ^NS.Dimension, _: SEL, symbol: ^NS.String, converter: ^NS.UnitConverter) -> ^NS.Dimension {
+        initWithSymbol :: proc "c" (self: ^NS.Dimension, _: SEL, symbol: ^NS.String, converter: ^NS.UnitConverter) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSymbol:converter:"), auto_cast initWithSymbol, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.baseUnit != nil {
-        baseUnit :: proc "c" (self: Class, _: SEL) -> ^NS.Dimension {
+        baseUnit :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

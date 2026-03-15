@@ -26,23 +26,23 @@ foreign lib {
     InputStream_getBuffer :: proc(self: ^InputStream, buffer: ^^cffi.uint8_t, len: ^UInteger) -> bool ---
 
     @(objc_type=InputStream, objc_selector="initWithData:", objc_name="initWithData")
-    InputStream_initWithData :: proc(self: ^InputStream, data: ^Data) -> ^InputStream ---
+    InputStream_initWithData :: proc(self: ^InputStream, data: ^Data) -> instancetype ---
 
     @(objc_type=InputStream, objc_selector="initWithURL:", objc_name="initWithURL")
-    InputStream_initWithURL :: proc(self: ^InputStream, url: ^URL) -> ^InputStream ---
+    InputStream_initWithURL :: proc(self: ^InputStream, url: ^URL) -> instancetype ---
 
     @(objc_type=InputStream, objc_selector="hasBytesAvailable", objc_name="hasBytesAvailable")
     InputStream_hasBytesAvailable :: proc(self: ^InputStream) -> bool ---
 
     @(objc_type=InputStream, objc_selector="initWithFileAtPath:", objc_name="initWithFileAtPath")
-    InputStream_initWithFileAtPath :: proc(self: ^InputStream, path: ^String) -> ^InputStream ---
+    InputStream_initWithFileAtPath :: proc(self: ^InputStream, path: ^String) -> instancetype ---
 
     @(objc_type=InputStream, objc_selector="inputStreamWithData:", objc_name="inputStreamWithData", objc_is_class_method=true)
-    InputStream_inputStreamWithData :: proc(data: ^Data) -> ^InputStream ---
+    InputStream_inputStreamWithData :: proc(data: ^Data) -> instancetype ---
 
     @(objc_type=InputStream, objc_selector="inputStreamWithFileAtPath:", objc_name="inputStreamWithFileAtPath", objc_is_class_method=true)
-    InputStream_inputStreamWithFileAtPath :: proc(path: ^String) -> ^InputStream ---
+    InputStream_inputStreamWithFileAtPath :: proc(path: ^String) -> instancetype ---
 
     @(objc_type=InputStream, objc_selector="inputStreamWithURL:", objc_name="inputStreamWithURL", objc_is_class_method=true)
-    InputStream_inputStreamWithURL :: proc(url: ^URL) -> ^InputStream ---
+    InputStream_inputStreamWithURL :: proc(url: ^URL) -> instancetype ---
 }

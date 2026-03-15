@@ -19,7 +19,7 @@ LeaderboardEntry :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LeaderboardEntry, objc_selector="init", objc_name="init")
-    LeaderboardEntry_init :: proc(self: ^LeaderboardEntry) -> ^LeaderboardEntry ---
+    LeaderboardEntry_init :: proc(self: ^LeaderboardEntry) -> instancetype ---
 
     @(objc_type=LeaderboardEntry, objc_selector="player", objc_name="player")
     LeaderboardEntry_player :: proc(self: ^LeaderboardEntry) -> ^Player ---

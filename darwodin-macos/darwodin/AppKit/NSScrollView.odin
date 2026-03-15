@@ -26,10 +26,10 @@ ScrollView :: struct { using _: View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScrollView, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    ScrollView_initWithFrame :: proc(self: ^ScrollView, frameRect: NS.Rect) -> ^ScrollView ---
+    ScrollView_initWithFrame :: proc(self: ^ScrollView, frameRect: NS.Rect) -> instancetype ---
 
     @(objc_type=ScrollView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ScrollView_initWithCoder :: proc(self: ^ScrollView, coder: ^NS.Coder) -> ^ScrollView ---
+    ScrollView_initWithCoder :: proc(self: ^ScrollView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ScrollView, objc_selector="frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:", objc_name="frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle", objc_is_class_method=true)
     ScrollView_frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle :: proc(cSize: NS.Size, horizontalScrollerClass: Class, verticalScrollerClass: Class, type: BorderType, controlSize: ControlSize, scrollerStyle: ScrollerStyle) -> NS.Size ---

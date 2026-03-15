@@ -24,10 +24,10 @@ UserDefaultsController :: struct { using _: Controller, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserDefaultsController, objc_selector="initWithDefaults:initialValues:", objc_name="initWithDefaults")
-    UserDefaultsController_initWithDefaults :: proc(self: ^UserDefaultsController, defaults: ^NS.UserDefaults, initialValues: ^NS.Dictionary) -> ^UserDefaultsController ---
+    UserDefaultsController_initWithDefaults :: proc(self: ^UserDefaultsController, defaults: ^NS.UserDefaults, initialValues: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=UserDefaultsController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    UserDefaultsController_initWithCoder :: proc(self: ^UserDefaultsController, coder: ^NS.Coder) -> ^UserDefaultsController ---
+    UserDefaultsController_initWithCoder :: proc(self: ^UserDefaultsController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=UserDefaultsController, objc_selector="revert:", objc_name="revert")
     UserDefaultsController_revert :: proc(self: ^UserDefaultsController, sender: id) ---

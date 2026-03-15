@@ -26,9 +26,9 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    currentHost: proc() -> ^NS.Host,
-    hostWithName: proc(name: ^NS.String) -> ^NS.Host,
-    hostWithAddress: proc(address: ^NS.String) -> ^NS.Host,
+    currentHost: proc() -> instancetype,
+    hostWithName: proc(name: ^NS.String) -> instancetype,
+    hostWithAddress: proc(address: ^NS.String) -> instancetype,
     isEqualToHost: proc(self: ^NS.Host, aHost: ^NS.Host) -> bool,
     setHostCacheEnabled: proc(flag: bool),
     isHostCacheEnabled: proc() -> bool,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.currentHost != nil {
-        currentHost :: proc "c" (self: Class, _: SEL) -> ^NS.Host {
+        currentHost :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("currentHost"), auto_cast currentHost, "@#:") do panic("Failed to register objC method.")
     }
     if vt.hostWithName != nil {
-        hostWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^NS.Host {
+        hostWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("hostWithName:"), auto_cast hostWithName, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.hostWithAddress != nil {
-        hostWithAddress :: proc "c" (self: Class, _: SEL, address: ^NS.String) -> ^NS.Host {
+        hostWithAddress :: proc "c" (self: Class, _: SEL, address: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

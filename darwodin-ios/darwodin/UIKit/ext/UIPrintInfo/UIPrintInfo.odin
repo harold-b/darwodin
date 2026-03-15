@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithCoder: proc(self: ^UI.PrintInfo, coder: ^NS.Coder) -> ^UI.PrintInfo,
+    initWithCoder: proc(self: ^UI.PrintInfo, coder: ^NS.Coder) -> instancetype,
     printInfo: proc() -> ^UI.PrintInfo,
     printInfoWithDictionary: proc(dictionary: ^NS.Dictionary) -> ^UI.PrintInfo,
     printerID: proc(self: ^UI.PrintInfo) -> ^NS.String,
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.PrintInfo, _: SEL, coder: ^NS.Coder) -> ^UI.PrintInfo {
+        initWithCoder :: proc "c" (self: ^UI.PrintInfo, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

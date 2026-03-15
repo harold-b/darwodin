@@ -27,7 +27,7 @@ instancetype  :: intrinsics.objc_instancetype
 import AK "../../"
 
 VTable :: struct {
-    animator: proc(self: ^AK.AnimatablePropertyContainer) -> ^AK.AnimatablePropertyContainer,
+    animator: proc(self: ^AK.AnimatablePropertyContainer) -> instancetype,
     animationForKey: proc(self: ^AK.AnimatablePropertyContainer, key: ^NS.String) -> id,
     defaultAnimationForKey: proc(key: ^NS.String) -> id,
     animations: proc(self: ^AK.AnimatablePropertyContainer) -> ^NS.Dictionary,
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.animator != nil {
-        animator :: proc "c" (self: ^AK.AnimatablePropertyContainer, _: SEL) -> ^AK.AnimatablePropertyContainer {
+        animator :: proc "c" (self: ^AK.AnimatablePropertyContainer, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

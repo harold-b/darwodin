@@ -22,13 +22,13 @@ FontMetrics :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FontMetrics, objc_selector="metricsForTextStyle:", objc_name="metricsForTextStyle", objc_is_class_method=true)
-    FontMetrics_metricsForTextStyle :: proc(textStyle: ^NS.String) -> ^FontMetrics ---
+    FontMetrics_metricsForTextStyle :: proc(textStyle: ^NS.String) -> instancetype ---
 
     @(objc_type=FontMetrics, objc_selector="init", objc_name="init")
-    FontMetrics_init :: proc(self: ^FontMetrics) -> ^FontMetrics ---
+    FontMetrics_init :: proc(self: ^FontMetrics) -> instancetype ---
 
     @(objc_type=FontMetrics, objc_selector="initForTextStyle:", objc_name="initForTextStyle")
-    FontMetrics_initForTextStyle :: proc(self: ^FontMetrics, textStyle: ^NS.String) -> ^FontMetrics ---
+    FontMetrics_initForTextStyle :: proc(self: ^FontMetrics, textStyle: ^NS.String) -> instancetype ---
 
     @(objc_type=FontMetrics, objc_selector="scaledFontForFont:", objc_name="scaledFontForFont_")
     FontMetrics_scaledFontForFont_ :: proc(self: ^FontMetrics, font: ^Font) -> ^Font ---

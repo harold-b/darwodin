@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.BarItem) -> ^UI.BarItem,
-    initWithCoder: proc(self: ^UI.BarItem, coder: ^NS.Coder) -> ^UI.BarItem,
+    init: proc(self: ^UI.BarItem) -> instancetype,
+    initWithCoder: proc(self: ^UI.BarItem, coder: ^NS.Coder) -> instancetype,
     setTitleTextAttributes: proc(self: ^UI.BarItem, attributes: ^NS.Dictionary, state: UI.ControlState),
     titleTextAttributesForState: proc(self: ^UI.BarItem, state: UI.ControlState) -> ^NS.Dictionary,
     isEnabled: proc(self: ^UI.BarItem) -> bool,
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.BarItem, _: SEL) -> ^UI.BarItem {
+        init :: proc "c" (self: ^UI.BarItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.BarItem, _: SEL, coder: ^NS.Coder) -> ^UI.BarItem {
+        initWithCoder :: proc "c" (self: ^UI.BarItem, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -19,10 +19,10 @@ CheckerboardNoiseSource :: struct { using _: NoiseSource, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CheckerboardNoiseSource, objc_selector="checkerboardNoiseWithSquareSize:", objc_name="checkerboardNoiseWithSquareSize", objc_is_class_method=true)
-    CheckerboardNoiseSource_checkerboardNoiseWithSquareSize :: proc(squareSize: cffi.double) -> ^CheckerboardNoiseSource ---
+    CheckerboardNoiseSource_checkerboardNoiseWithSquareSize :: proc(squareSize: cffi.double) -> instancetype ---
 
     @(objc_type=CheckerboardNoiseSource, objc_selector="initWithSquareSize:", objc_name="initWithSquareSize")
-    CheckerboardNoiseSource_initWithSquareSize :: proc(self: ^CheckerboardNoiseSource, squareSize: cffi.double) -> ^CheckerboardNoiseSource ---
+    CheckerboardNoiseSource_initWithSquareSize :: proc(self: ^CheckerboardNoiseSource, squareSize: cffi.double) -> instancetype ---
 
     @(objc_type=CheckerboardNoiseSource, objc_selector="squareSize", objc_name="squareSize")
     CheckerboardNoiseSource_squareSize :: proc(self: ^CheckerboardNoiseSource) -> cffi.double ---

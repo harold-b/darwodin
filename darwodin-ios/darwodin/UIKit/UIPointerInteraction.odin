@@ -24,7 +24,7 @@ PointerInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerInteraction, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    PointerInteraction_initWithDelegate :: proc(self: ^PointerInteraction, delegate: ^PointerInteractionDelegate) -> ^PointerInteraction ---
+    PointerInteraction_initWithDelegate :: proc(self: ^PointerInteraction, delegate: ^PointerInteractionDelegate) -> instancetype ---
 
     @(objc_type=PointerInteraction, objc_selector="invalidate", objc_name="invalidate")
     PointerInteraction_invalidate :: proc(self: ^PointerInteraction) ---

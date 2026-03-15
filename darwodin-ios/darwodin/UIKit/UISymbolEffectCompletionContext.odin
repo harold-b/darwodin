@@ -22,7 +22,7 @@ SymbolEffectCompletionContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SymbolEffectCompletionContext, objc_selector="init", objc_name="init")
-    SymbolEffectCompletionContext_init :: proc(self: ^SymbolEffectCompletionContext) -> ^SymbolEffectCompletionContext ---
+    SymbolEffectCompletionContext_init :: proc(self: ^SymbolEffectCompletionContext) -> instancetype ---
 
     @(objc_type=SymbolEffectCompletionContext, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SymbolEffectCompletionContext_new :: proc() -> ^SymbolEffectCompletionContext ---

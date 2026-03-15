@@ -28,9 +28,9 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithFrame: proc(self: ^UI.ProgressView, frame: CG.Rect) -> ^UI.ProgressView,
-    initWithCoder: proc(self: ^UI.ProgressView, coder: ^NS.Coder) -> ^UI.ProgressView,
-    initWithProgressViewStyle: proc(self: ^UI.ProgressView, style: UI.ProgressViewStyle) -> ^UI.ProgressView,
+    initWithFrame: proc(self: ^UI.ProgressView, frame: CG.Rect) -> instancetype,
+    initWithCoder: proc(self: ^UI.ProgressView, coder: ^NS.Coder) -> instancetype,
+    initWithProgressViewStyle: proc(self: ^UI.ProgressView, style: UI.ProgressViewStyle) -> instancetype,
     setProgress_animated: proc(self: ^UI.ProgressView, progress: cffi.float, animated: bool),
     progressViewStyle: proc(self: ^UI.ProgressView) -> UI.ProgressViewStyle,
     setProgressViewStyle: proc(self: ^UI.ProgressView, progressViewStyle: UI.ProgressViewStyle),
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.ProgressView, _: SEL, frame: CG.Rect) -> ^UI.ProgressView {
+        initWithFrame :: proc "c" (self: ^UI.ProgressView, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.ProgressView, _: SEL, coder: ^NS.Coder) -> ^UI.ProgressView {
+        initWithCoder :: proc "c" (self: ^UI.ProgressView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithProgressViewStyle != nil {
-        initWithProgressViewStyle :: proc "c" (self: ^UI.ProgressView, _: SEL, style: UI.ProgressViewStyle) -> ^UI.ProgressView {
+        initWithProgressViewStyle :: proc "c" (self: ^UI.ProgressView, _: SEL, style: UI.ProgressViewStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

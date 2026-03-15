@@ -24,10 +24,10 @@ VisualEffectView :: struct { using _: View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=VisualEffectView, objc_selector="initWithEffect:", objc_name="initWithEffect")
-    VisualEffectView_initWithEffect :: proc(self: ^VisualEffectView, effect: ^VisualEffect) -> ^VisualEffectView ---
+    VisualEffectView_initWithEffect :: proc(self: ^VisualEffectView, effect: ^VisualEffect) -> instancetype ---
 
     @(objc_type=VisualEffectView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    VisualEffectView_initWithCoder :: proc(self: ^VisualEffectView, coder: ^NS.Coder) -> ^VisualEffectView ---
+    VisualEffectView_initWithCoder :: proc(self: ^VisualEffectView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=VisualEffectView, objc_selector="contentView", objc_name="contentView")
     VisualEffectView_contentView :: proc(self: ^VisualEffectView) -> ^View ---

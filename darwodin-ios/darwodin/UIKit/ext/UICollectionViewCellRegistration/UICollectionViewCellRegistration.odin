@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    registrationWithCellClass: proc(cellClass: Class, configurationHandler: UI.CollectionViewCellRegistrationConfigurationHandler) -> ^UI.CollectionViewCellRegistration,
-    registrationWithCellNib: proc(cellNib: ^UI.Nib, configurationHandler: UI.CollectionViewCellRegistrationConfigurationHandler) -> ^UI.CollectionViewCellRegistration,
+    registrationWithCellClass: proc(cellClass: Class, configurationHandler: UI.CollectionViewCellRegistrationConfigurationHandler) -> instancetype,
+    registrationWithCellNib: proc(cellNib: ^UI.Nib, configurationHandler: UI.CollectionViewCellRegistrationConfigurationHandler) -> instancetype,
     cellClass: proc(self: ^UI.CollectionViewCellRegistration) -> Class,
     cellNib: proc(self: ^UI.CollectionViewCellRegistration) -> ^UI.Nib,
     configurationHandler: proc(self: ^UI.CollectionViewCellRegistration) -> UI.CollectionViewCellRegistrationConfigurationHandler,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.registrationWithCellClass != nil {
-        registrationWithCellClass :: proc "c" (self: Class, _: SEL, cellClass: Class, configurationHandler: UI.CollectionViewCellRegistrationConfigurationHandler) -> ^UI.CollectionViewCellRegistration {
+        registrationWithCellClass :: proc "c" (self: Class, _: SEL, cellClass: Class, configurationHandler: UI.CollectionViewCellRegistrationConfigurationHandler) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("registrationWithCellClass:configurationHandler:"), auto_cast registrationWithCellClass, "@#:#?") do panic("Failed to register objC method.")
     }
     if vt.registrationWithCellNib != nil {
-        registrationWithCellNib :: proc "c" (self: Class, _: SEL, cellNib: ^UI.Nib, configurationHandler: UI.CollectionViewCellRegistrationConfigurationHandler) -> ^UI.CollectionViewCellRegistration {
+        registrationWithCellNib :: proc "c" (self: Class, _: SEL, cellNib: ^UI.Nib, configurationHandler: UI.CollectionViewCellRegistrationConfigurationHandler) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

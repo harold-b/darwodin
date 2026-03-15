@@ -23,16 +23,16 @@ AssetExportSession :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetExportSession, objc_selector="init", objc_name="init")
-    AssetExportSession_init :: proc(self: ^AssetExportSession) -> ^AssetExportSession ---
+    AssetExportSession_init :: proc(self: ^AssetExportSession) -> instancetype ---
 
     @(objc_type=AssetExportSession, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetExportSession_new :: proc() -> ^AssetExportSession ---
 
     @(objc_type=AssetExportSession, objc_selector="exportSessionWithAsset:presetName:", objc_name="exportSessionWithAsset", objc_is_class_method=true)
-    AssetExportSession_exportSessionWithAsset :: proc(asset: ^Asset, presetName: ^NS.String) -> ^AssetExportSession ---
+    AssetExportSession_exportSessionWithAsset :: proc(asset: ^Asset, presetName: ^NS.String) -> instancetype ---
 
     @(objc_type=AssetExportSession, objc_selector="initWithAsset:presetName:", objc_name="initWithAsset")
-    AssetExportSession_initWithAsset :: proc(self: ^AssetExportSession, asset: ^Asset, presetName: ^NS.String) -> ^AssetExportSession ---
+    AssetExportSession_initWithAsset :: proc(self: ^AssetExportSession, asset: ^Asset, presetName: ^NS.String) -> instancetype ---
 
     @(objc_type=AssetExportSession, objc_selector="exportAsynchronouslyWithCompletionHandler:", objc_name="exportAsynchronouslyWithCompletionHandler")
     AssetExportSession_exportAsynchronouslyWithCompletionHandler :: proc(self: ^AssetExportSession, handler: ^Objc_Block(proc "c" ())) ---

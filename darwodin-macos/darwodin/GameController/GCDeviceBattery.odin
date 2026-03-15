@@ -20,7 +20,7 @@ DeviceBattery :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DeviceBattery, objc_selector="init", objc_name="init")
-    DeviceBattery_init :: proc(self: ^DeviceBattery) -> ^DeviceBattery ---
+    DeviceBattery_init :: proc(self: ^DeviceBattery) -> instancetype ---
 
     @(objc_type=DeviceBattery, objc_selector="batteryLevel", objc_name="batteryLevel")
     DeviceBattery_batteryLevel :: proc(self: ^DeviceBattery) -> cffi.float ---

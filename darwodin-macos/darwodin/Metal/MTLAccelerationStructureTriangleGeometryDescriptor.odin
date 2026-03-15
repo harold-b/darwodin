@@ -22,7 +22,7 @@ AccelerationStructureTriangleGeometryDescriptor :: struct { using _: Acceleratio
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccelerationStructureTriangleGeometryDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
-    AccelerationStructureTriangleGeometryDescriptor_descriptor :: proc() -> ^AccelerationStructureTriangleGeometryDescriptor ---
+    AccelerationStructureTriangleGeometryDescriptor_descriptor :: proc() -> instancetype ---
 
     @(objc_type=AccelerationStructureTriangleGeometryDescriptor, objc_selector="vertexBuffer", objc_name="vertexBuffer")
     AccelerationStructureTriangleGeometryDescriptor_vertexBuffer :: proc(self: ^AccelerationStructureTriangleGeometryDescriptor) -> ^Buffer ---

@@ -28,7 +28,7 @@ import "../UIDynamicBehavior"
 
 VTable :: struct {
     super: UIDynamicBehavior.VTable,
-    initWithItems: proc(self: ^UI.CollisionBehavior, items: ^NS.Array) -> ^UI.CollisionBehavior,
+    initWithItems: proc(self: ^UI.CollisionBehavior, items: ^NS.Array) -> instancetype,
     addItem: proc(self: ^UI.CollisionBehavior, item: ^UI.DynamicItem),
     removeItem: proc(self: ^UI.CollisionBehavior, item: ^UI.DynamicItem),
     setTranslatesReferenceBoundsIntoBoundaryWithInsets: proc(self: ^UI.CollisionBehavior, insets: UI.EdgeInsets),
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIDynamicBehavior.extend(cls, &vt.super)
 
     if vt.initWithItems != nil {
-        initWithItems :: proc "c" (self: ^UI.CollisionBehavior, _: SEL, items: ^NS.Array) -> ^UI.CollisionBehavior {
+        initWithItems :: proc "c" (self: ^UI.CollisionBehavior, _: SEL, items: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

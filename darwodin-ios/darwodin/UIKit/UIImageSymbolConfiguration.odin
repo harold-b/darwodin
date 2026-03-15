@@ -22,55 +22,55 @@ ImageSymbolConfiguration :: struct { using _: ImageConfiguration, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithScale:", objc_name="configurationWithScale", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithScale :: proc(scale: ImageSymbolScale) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithScale :: proc(scale: ImageSymbolScale) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithPointSize:", objc_name="configurationWithPointSize_", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithPointSize_ :: proc(pointSize: CG.Float) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithPointSize_ :: proc(pointSize: CG.Float) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithWeight:", objc_name="configurationWithWeight", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithWeight :: proc(weight: ImageSymbolWeight) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithWeight :: proc(weight: ImageSymbolWeight) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithPointSize:weight:", objc_name="configurationWithPointSize_weight", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithPointSize_weight :: proc(pointSize: CG.Float, weight: ImageSymbolWeight) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithPointSize_weight :: proc(pointSize: CG.Float, weight: ImageSymbolWeight) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithPointSize:weight:scale:", objc_name="configurationWithPointSize_weight_scale", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithPointSize_weight_scale :: proc(pointSize: CG.Float, weight: ImageSymbolWeight, scale: ImageSymbolScale) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithPointSize_weight_scale :: proc(pointSize: CG.Float, weight: ImageSymbolWeight, scale: ImageSymbolScale) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithTextStyle:", objc_name="configurationWithTextStyle_", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithTextStyle_ :: proc(textStyle: ^NS.String) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithTextStyle_ :: proc(textStyle: ^NS.String) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithTextStyle:scale:", objc_name="configurationWithTextStyle_scale", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithTextStyle_scale :: proc(textStyle: ^NS.String, scale: ImageSymbolScale) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithTextStyle_scale :: proc(textStyle: ^NS.String, scale: ImageSymbolScale) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithFont:", objc_name="configurationWithFont_", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithFont_ :: proc(font: ^Font) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithFont_ :: proc(font: ^Font) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithFont:scale:", objc_name="configurationWithFont_scale", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithFont_scale :: proc(font: ^Font, scale: ImageSymbolScale) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithFont_scale :: proc(font: ^Font, scale: ImageSymbolScale) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithHierarchicalColor:", objc_name="configurationWithHierarchicalColor", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithHierarchicalColor :: proc(hierarchicalColor: ^Color) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithHierarchicalColor :: proc(hierarchicalColor: ^Color) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithPaletteColors:", objc_name="configurationWithPaletteColors", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationWithPaletteColors :: proc(paletteColors: ^NS.Array) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithPaletteColors :: proc(paletteColors: ^NS.Array) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationPreferringMulticolor", objc_name="configurationPreferringMulticolor", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationPreferringMulticolor :: proc() -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationPreferringMulticolor :: proc() -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationPreferringMonochrome", objc_name="configurationPreferringMonochrome", objc_is_class_method=true)
-    ImageSymbolConfiguration_configurationPreferringMonochrome :: proc() -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationPreferringMonochrome :: proc() -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithoutTextStyle", objc_name="configurationWithoutTextStyle")
-    ImageSymbolConfiguration_configurationWithoutTextStyle :: proc(self: ^ImageSymbolConfiguration) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithoutTextStyle :: proc(self: ^ImageSymbolConfiguration) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithoutScale", objc_name="configurationWithoutScale")
-    ImageSymbolConfiguration_configurationWithoutScale :: proc(self: ^ImageSymbolConfiguration) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithoutScale :: proc(self: ^ImageSymbolConfiguration) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithoutWeight", objc_name="configurationWithoutWeight")
-    ImageSymbolConfiguration_configurationWithoutWeight :: proc(self: ^ImageSymbolConfiguration) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithoutWeight :: proc(self: ^ImageSymbolConfiguration) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithoutPointSizeAndWeight", objc_name="configurationWithoutPointSizeAndWeight")
-    ImageSymbolConfiguration_configurationWithoutPointSizeAndWeight :: proc(self: ^ImageSymbolConfiguration) -> ^ImageSymbolConfiguration ---
+    ImageSymbolConfiguration_configurationWithoutPointSizeAndWeight :: proc(self: ^ImageSymbolConfiguration) -> instancetype ---
 
     @(objc_type=ImageSymbolConfiguration, objc_selector="isEqualToConfiguration:", objc_name="isEqualToConfiguration")
     ImageSymbolConfiguration_isEqualToConfiguration :: proc(self: ^ImageSymbolConfiguration, otherConfiguration: ^ImageSymbolConfiguration) -> bool ---

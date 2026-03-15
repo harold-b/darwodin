@@ -30,11 +30,11 @@ import "../NSCollectionViewLayout"
 
 VTable :: struct {
     super: NSCollectionViewLayout.VTable,
-    initWithSection_: proc(self: ^AK.CollectionViewCompositionalLayout, section: ^AK.CollectionLayoutSection) -> ^AK.CollectionViewCompositionalLayout,
-    initWithSection_configuration: proc(self: ^AK.CollectionViewCompositionalLayout, section: ^AK.CollectionLayoutSection, configuration: ^AK.CollectionViewCompositionalLayoutConfiguration) -> ^AK.CollectionViewCompositionalLayout,
-    initWithSectionProvider_: proc(self: ^AK.CollectionViewCompositionalLayout, sectionProvider: AK.CollectionViewCompositionalLayoutSectionProvider) -> ^AK.CollectionViewCompositionalLayout,
-    initWithSectionProvider_configuration: proc(self: ^AK.CollectionViewCompositionalLayout, sectionProvider: AK.CollectionViewCompositionalLayoutSectionProvider, configuration: ^AK.CollectionViewCompositionalLayoutConfiguration) -> ^AK.CollectionViewCompositionalLayout,
-    init: proc(self: ^AK.CollectionViewCompositionalLayout) -> ^AK.CollectionViewCompositionalLayout,
+    initWithSection_: proc(self: ^AK.CollectionViewCompositionalLayout, section: ^AK.CollectionLayoutSection) -> instancetype,
+    initWithSection_configuration: proc(self: ^AK.CollectionViewCompositionalLayout, section: ^AK.CollectionLayoutSection, configuration: ^AK.CollectionViewCompositionalLayoutConfiguration) -> instancetype,
+    initWithSectionProvider_: proc(self: ^AK.CollectionViewCompositionalLayout, sectionProvider: AK.CollectionViewCompositionalLayoutSectionProvider) -> instancetype,
+    initWithSectionProvider_configuration: proc(self: ^AK.CollectionViewCompositionalLayout, sectionProvider: AK.CollectionViewCompositionalLayoutSectionProvider, configuration: ^AK.CollectionViewCompositionalLayoutConfiguration) -> instancetype,
+    init: proc(self: ^AK.CollectionViewCompositionalLayout) -> instancetype,
     new: proc() -> ^AK.CollectionViewCompositionalLayout,
     configuration: proc(self: ^AK.CollectionViewCompositionalLayout) -> ^AK.CollectionViewCompositionalLayoutConfiguration,
     setConfiguration: proc(self: ^AK.CollectionViewCompositionalLayout, configuration: ^AK.CollectionViewCompositionalLayoutConfiguration),
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionViewLayout.extend(cls, &vt.super)
 
     if vt.initWithSection_ != nil {
-        initWithSection_ :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL, section: ^AK.CollectionLayoutSection) -> ^AK.CollectionViewCompositionalLayout {
+        initWithSection_ :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL, section: ^AK.CollectionLayoutSection) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSection:"), auto_cast initWithSection_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithSection_configuration != nil {
-        initWithSection_configuration :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL, section: ^AK.CollectionLayoutSection, configuration: ^AK.CollectionViewCompositionalLayoutConfiguration) -> ^AK.CollectionViewCompositionalLayout {
+        initWithSection_configuration :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL, section: ^AK.CollectionLayoutSection, configuration: ^AK.CollectionViewCompositionalLayoutConfiguration) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSection:configuration:"), auto_cast initWithSection_configuration, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithSectionProvider_ != nil {
-        initWithSectionProvider_ :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL, sectionProvider: AK.CollectionViewCompositionalLayoutSectionProvider) -> ^AK.CollectionViewCompositionalLayout {
+        initWithSectionProvider_ :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL, sectionProvider: AK.CollectionViewCompositionalLayoutSectionProvider) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSectionProvider:"), auto_cast initWithSectionProvider_, "@@:?") do panic("Failed to register objC method.")
     }
     if vt.initWithSectionProvider_configuration != nil {
-        initWithSectionProvider_configuration :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL, sectionProvider: AK.CollectionViewCompositionalLayoutSectionProvider, configuration: ^AK.CollectionViewCompositionalLayoutConfiguration) -> ^AK.CollectionViewCompositionalLayout {
+        initWithSectionProvider_configuration :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL, sectionProvider: AK.CollectionViewCompositionalLayoutSectionProvider, configuration: ^AK.CollectionViewCompositionalLayoutConfiguration) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSectionProvider:configuration:"), auto_cast initWithSectionProvider_configuration, "@@:?@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL) -> ^AK.CollectionViewCompositionalLayout {
+        init :: proc "c" (self: ^AK.CollectionViewCompositionalLayout, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

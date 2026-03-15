@@ -20,7 +20,7 @@ BlockOperation :: struct { using _: Operation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BlockOperation, objc_selector="blockOperationWithBlock:", objc_name="blockOperationWithBlock", objc_is_class_method=true)
-    BlockOperation_blockOperationWithBlock :: proc(block: ^Objc_Block(proc "c" ())) -> ^BlockOperation ---
+    BlockOperation_blockOperationWithBlock :: proc(block: ^Objc_Block(proc "c" ())) -> instancetype ---
 
     @(objc_type=BlockOperation, objc_selector="addExecutionBlock:", objc_name="addExecutionBlock")
     BlockOperation_addExecutionBlock :: proc(self: ^BlockOperation, block: ^Objc_Block(proc "c" ())) ---

@@ -25,13 +25,13 @@ CollectionViewController :: struct { using _: ViewController,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewController, objc_selector="initWithCollectionViewLayout:", objc_name="initWithCollectionViewLayout")
-    CollectionViewController_initWithCollectionViewLayout :: proc(self: ^CollectionViewController, layout: ^CollectionViewLayout) -> ^CollectionViewController ---
+    CollectionViewController_initWithCollectionViewLayout :: proc(self: ^CollectionViewController, layout: ^CollectionViewLayout) -> instancetype ---
 
     @(objc_type=CollectionViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    CollectionViewController_initWithNibName :: proc(self: ^CollectionViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^CollectionViewController ---
+    CollectionViewController_initWithNibName :: proc(self: ^CollectionViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=CollectionViewController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CollectionViewController_initWithCoder :: proc(self: ^CollectionViewController, coder: ^NS.Coder) -> ^CollectionViewController ---
+    CollectionViewController_initWithCoder :: proc(self: ^CollectionViewController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CollectionViewController, objc_selector="collectionView", objc_name="collectionView")
     CollectionViewController_collectionView :: proc(self: ^CollectionViewController) -> ^CollectionView ---

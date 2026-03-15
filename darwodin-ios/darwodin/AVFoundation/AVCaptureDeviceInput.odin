@@ -23,10 +23,10 @@ CaptureDeviceInput :: struct { using _: CaptureInput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeviceInput, objc_selector="deviceInputWithDevice:error:", objc_name="deviceInputWithDevice", objc_is_class_method=true)
-    CaptureDeviceInput_deviceInputWithDevice :: proc(device: ^CaptureDevice, outError: ^^NS.Error) -> ^CaptureDeviceInput ---
+    CaptureDeviceInput_deviceInputWithDevice :: proc(device: ^CaptureDevice, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=CaptureDeviceInput, objc_selector="initWithDevice:error:", objc_name="initWithDevice")
-    CaptureDeviceInput_initWithDevice :: proc(self: ^CaptureDeviceInput, device: ^CaptureDevice, outError: ^^NS.Error) -> ^CaptureDeviceInput ---
+    CaptureDeviceInput_initWithDevice :: proc(self: ^CaptureDeviceInput, device: ^CaptureDevice, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=CaptureDeviceInput, objc_selector="portsWithMediaType:sourceDeviceType:sourceDevicePosition:", objc_name="portsWithMediaType")
     CaptureDeviceInput_portsWithMediaType :: proc(self: ^CaptureDeviceInput, mediaType: ^NS.String, sourceDeviceType: ^NS.String, sourceDevicePosition: CaptureDevicePosition) -> ^NS.Array ---

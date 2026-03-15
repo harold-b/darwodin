@@ -22,28 +22,28 @@ DocumentPickerViewController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DocumentPickerViewController, objc_selector="initWithDocumentTypes:inMode:", objc_name="initWithDocumentTypes")
-    DocumentPickerViewController_initWithDocumentTypes :: proc(self: ^DocumentPickerViewController, allowedUTIs: ^NS.Array, mode: DocumentPickerMode) -> ^DocumentPickerViewController ---
+    DocumentPickerViewController_initWithDocumentTypes :: proc(self: ^DocumentPickerViewController, allowedUTIs: ^NS.Array, mode: DocumentPickerMode) -> instancetype ---
 
     @(objc_type=DocumentPickerViewController, objc_selector="initForOpeningContentTypes:asCopy:", objc_name="initForOpeningContentTypes_asCopy")
-    DocumentPickerViewController_initForOpeningContentTypes_asCopy :: proc(self: ^DocumentPickerViewController, contentTypes: ^NS.Array, asCopy: bool) -> ^DocumentPickerViewController ---
+    DocumentPickerViewController_initForOpeningContentTypes_asCopy :: proc(self: ^DocumentPickerViewController, contentTypes: ^NS.Array, asCopy: bool) -> instancetype ---
 
     @(objc_type=DocumentPickerViewController, objc_selector="initForOpeningContentTypes:", objc_name="initForOpeningContentTypes_")
-    DocumentPickerViewController_initForOpeningContentTypes_ :: proc(self: ^DocumentPickerViewController, contentTypes: ^NS.Array) -> ^DocumentPickerViewController ---
+    DocumentPickerViewController_initForOpeningContentTypes_ :: proc(self: ^DocumentPickerViewController, contentTypes: ^NS.Array) -> instancetype ---
 
     @(objc_type=DocumentPickerViewController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    DocumentPickerViewController_initWithCoder :: proc(self: ^DocumentPickerViewController, coder: ^NS.Coder) -> ^DocumentPickerViewController ---
+    DocumentPickerViewController_initWithCoder :: proc(self: ^DocumentPickerViewController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=DocumentPickerViewController, objc_selector="initWithURL:inMode:", objc_name="initWithURL")
-    DocumentPickerViewController_initWithURL :: proc(self: ^DocumentPickerViewController, url: ^NS.URL, mode: DocumentPickerMode) -> ^DocumentPickerViewController ---
+    DocumentPickerViewController_initWithURL :: proc(self: ^DocumentPickerViewController, url: ^NS.URL, mode: DocumentPickerMode) -> instancetype ---
 
     @(objc_type=DocumentPickerViewController, objc_selector="initWithURLs:inMode:", objc_name="initWithURLs")
-    DocumentPickerViewController_initWithURLs :: proc(self: ^DocumentPickerViewController, urls: ^NS.Array, mode: DocumentPickerMode) -> ^DocumentPickerViewController ---
+    DocumentPickerViewController_initWithURLs :: proc(self: ^DocumentPickerViewController, urls: ^NS.Array, mode: DocumentPickerMode) -> instancetype ---
 
     @(objc_type=DocumentPickerViewController, objc_selector="initForExportingURLs:asCopy:", objc_name="initForExportingURLs_asCopy")
-    DocumentPickerViewController_initForExportingURLs_asCopy :: proc(self: ^DocumentPickerViewController, urls: ^NS.Array, asCopy: bool) -> ^DocumentPickerViewController ---
+    DocumentPickerViewController_initForExportingURLs_asCopy :: proc(self: ^DocumentPickerViewController, urls: ^NS.Array, asCopy: bool) -> instancetype ---
 
     @(objc_type=DocumentPickerViewController, objc_selector="initForExportingURLs:", objc_name="initForExportingURLs_")
-    DocumentPickerViewController_initForExportingURLs_ :: proc(self: ^DocumentPickerViewController, urls: ^NS.Array) -> ^DocumentPickerViewController ---
+    DocumentPickerViewController_initForExportingURLs_ :: proc(self: ^DocumentPickerViewController, urls: ^NS.Array) -> instancetype ---
 
     @(objc_type=DocumentPickerViewController, objc_selector="delegate", objc_name="delegate")
     DocumentPickerViewController_delegate :: proc(self: ^DocumentPickerViewController) -> ^DocumentPickerDelegate ---

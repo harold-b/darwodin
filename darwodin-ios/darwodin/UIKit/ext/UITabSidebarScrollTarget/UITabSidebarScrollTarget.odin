@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    targetForHeader: proc() -> ^UI.TabSidebarScrollTarget,
-    targetForFooter: proc() -> ^UI.TabSidebarScrollTarget,
-    targetForTab: proc(tab: ^UI.Tab) -> ^UI.TabSidebarScrollTarget,
+    targetForHeader: proc() -> instancetype,
+    targetForFooter: proc() -> instancetype,
+    targetForTab: proc(tab: ^UI.Tab) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.targetForHeader != nil {
-        targetForHeader :: proc "c" (self: Class, _: SEL) -> ^UI.TabSidebarScrollTarget {
+        targetForHeader :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("targetForHeader"), auto_cast targetForHeader, "@#:") do panic("Failed to register objC method.")
     }
     if vt.targetForFooter != nil {
-        targetForFooter :: proc "c" (self: Class, _: SEL) -> ^UI.TabSidebarScrollTarget {
+        targetForFooter :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("targetForFooter"), auto_cast targetForFooter, "@#:") do panic("Failed to register objC method.")
     }
     if vt.targetForTab != nil {
-        targetForTab :: proc "c" (self: Class, _: SEL, tab: ^UI.Tab) -> ^UI.TabSidebarScrollTarget {
+        targetForTab :: proc "c" (self: Class, _: SEL, tab: ^UI.Tab) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

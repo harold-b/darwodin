@@ -22,5 +22,5 @@ WindowSceneStandardPlacement :: struct { using _: WindowScenePlacement, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneStandardPlacement, objc_selector="standardPlacement", objc_name="standardPlacement", objc_is_class_method=true)
-    WindowSceneStandardPlacement_standardPlacement :: proc() -> ^WindowSceneStandardPlacement ---
+    WindowSceneStandardPlacement_standardPlacement :: proc() -> instancetype ---
 }

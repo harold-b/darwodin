@@ -23,7 +23,7 @@ MetricPlayerItemVariantSwitchEvent :: struct { using _: MetricEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemVariantSwitchEvent, objc_selector="init", objc_name="init")
-    MetricPlayerItemVariantSwitchEvent_init :: proc(self: ^MetricPlayerItemVariantSwitchEvent) -> ^MetricPlayerItemVariantSwitchEvent ---
+    MetricPlayerItemVariantSwitchEvent_init :: proc(self: ^MetricPlayerItemVariantSwitchEvent) -> instancetype ---
 
     @(objc_type=MetricPlayerItemVariantSwitchEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricPlayerItemVariantSwitchEvent_new :: proc() -> ^MetricPlayerItemVariantSwitchEvent ---

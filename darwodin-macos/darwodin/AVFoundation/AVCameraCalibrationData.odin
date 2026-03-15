@@ -23,7 +23,7 @@ CameraCalibrationData :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CameraCalibrationData, objc_selector="init", objc_name="init")
-    CameraCalibrationData_init :: proc(self: ^CameraCalibrationData) -> ^CameraCalibrationData ---
+    CameraCalibrationData_init :: proc(self: ^CameraCalibrationData) -> instancetype ---
 
     @(objc_type=CameraCalibrationData, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CameraCalibrationData_new :: proc() -> ^CameraCalibrationData ---

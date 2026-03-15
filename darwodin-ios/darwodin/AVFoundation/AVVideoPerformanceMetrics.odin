@@ -23,7 +23,7 @@ VideoPerformanceMetrics :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoPerformanceMetrics, objc_selector="init", objc_name="init")
-    VideoPerformanceMetrics_init :: proc(self: ^VideoPerformanceMetrics) -> ^VideoPerformanceMetrics ---
+    VideoPerformanceMetrics_init :: proc(self: ^VideoPerformanceMetrics) -> instancetype ---
 
     @(objc_type=VideoPerformanceMetrics, objc_selector="new", objc_name="new", objc_is_class_method=true)
     VideoPerformanceMetrics_new :: proc() -> ^VideoPerformanceMetrics ---

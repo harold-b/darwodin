@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.SceneWindowingBehaviors) -> ^UI.SceneWindowingBehaviors,
+    init: proc(self: ^UI.SceneWindowingBehaviors) -> instancetype,
     new: proc() -> ^UI.SceneWindowingBehaviors,
     isClosable: proc(self: ^UI.SceneWindowingBehaviors) -> bool,
     setClosable: proc(self: ^UI.SceneWindowingBehaviors, closable: bool),
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SceneWindowingBehaviors, _: SEL) -> ^UI.SceneWindowingBehaviors {
+        init :: proc "c" (self: ^UI.SceneWindowingBehaviors, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -25,7 +25,7 @@ foreign lib {
     FocusSystem_new :: proc() -> ^FocusSystem ---
 
     @(objc_type=FocusSystem, objc_selector="init", objc_name="init")
-    FocusSystem_init :: proc(self: ^FocusSystem) -> ^FocusSystem ---
+    FocusSystem_init :: proc(self: ^FocusSystem) -> instancetype ---
 
     @(objc_type=FocusSystem, objc_selector="focusSystemForEnvironment:", objc_name="focusSystemForEnvironment", objc_is_class_method=true)
     FocusSystem_focusSystemForEnvironment :: proc(environment: ^FocusEnvironment) -> ^FocusSystem ---

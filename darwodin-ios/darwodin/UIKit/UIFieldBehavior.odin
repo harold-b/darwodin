@@ -22,7 +22,7 @@ FieldBehavior :: struct { using _: DynamicBehavior, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FieldBehavior, objc_selector="init", objc_name="init")
-    FieldBehavior_init :: proc(self: ^FieldBehavior) -> ^FieldBehavior ---
+    FieldBehavior_init :: proc(self: ^FieldBehavior) -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="addItem:", objc_name="addItem")
     FieldBehavior_addItem :: proc(self: ^FieldBehavior, item: ^DynamicItem) ---
@@ -31,37 +31,37 @@ foreign lib {
     FieldBehavior_removeItem :: proc(self: ^FieldBehavior, item: ^DynamicItem) ---
 
     @(objc_type=FieldBehavior, objc_selector="dragField", objc_name="dragField", objc_is_class_method=true)
-    FieldBehavior_dragField :: proc() -> ^FieldBehavior ---
+    FieldBehavior_dragField :: proc() -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="vortexField", objc_name="vortexField", objc_is_class_method=true)
-    FieldBehavior_vortexField :: proc() -> ^FieldBehavior ---
+    FieldBehavior_vortexField :: proc() -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="radialGravityFieldWithPosition:", objc_name="radialGravityFieldWithPosition", objc_is_class_method=true)
-    FieldBehavior_radialGravityFieldWithPosition :: proc(position: CG.Point) -> ^FieldBehavior ---
+    FieldBehavior_radialGravityFieldWithPosition :: proc(position: CG.Point) -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="linearGravityFieldWithVector:", objc_name="linearGravityFieldWithVector", objc_is_class_method=true)
-    FieldBehavior_linearGravityFieldWithVector :: proc(direction: CG.Vector) -> ^FieldBehavior ---
+    FieldBehavior_linearGravityFieldWithVector :: proc(direction: CG.Vector) -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="velocityFieldWithVector:", objc_name="velocityFieldWithVector", objc_is_class_method=true)
-    FieldBehavior_velocityFieldWithVector :: proc(direction: CG.Vector) -> ^FieldBehavior ---
+    FieldBehavior_velocityFieldWithVector :: proc(direction: CG.Vector) -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="noiseFieldWithSmoothness:animationSpeed:", objc_name="noiseFieldWithSmoothness", objc_is_class_method=true)
-    FieldBehavior_noiseFieldWithSmoothness :: proc(smoothness: CG.Float, speed: CG.Float) -> ^FieldBehavior ---
+    FieldBehavior_noiseFieldWithSmoothness :: proc(smoothness: CG.Float, speed: CG.Float) -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="turbulenceFieldWithSmoothness:animationSpeed:", objc_name="turbulenceFieldWithSmoothness", objc_is_class_method=true)
-    FieldBehavior_turbulenceFieldWithSmoothness :: proc(smoothness: CG.Float, speed: CG.Float) -> ^FieldBehavior ---
+    FieldBehavior_turbulenceFieldWithSmoothness :: proc(smoothness: CG.Float, speed: CG.Float) -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="springField", objc_name="springField", objc_is_class_method=true)
-    FieldBehavior_springField :: proc() -> ^FieldBehavior ---
+    FieldBehavior_springField :: proc() -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="electricField", objc_name="electricField", objc_is_class_method=true)
-    FieldBehavior_electricField :: proc() -> ^FieldBehavior ---
+    FieldBehavior_electricField :: proc() -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="magneticField", objc_name="magneticField", objc_is_class_method=true)
-    FieldBehavior_magneticField :: proc() -> ^FieldBehavior ---
+    FieldBehavior_magneticField :: proc() -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="fieldWithEvaluationBlock:", objc_name="fieldWithEvaluationBlock", objc_is_class_method=true)
-    FieldBehavior_fieldWithEvaluationBlock :: proc(block: ^Objc_Block(proc "c" (field: ^FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> ^FieldBehavior ---
+    FieldBehavior_fieldWithEvaluationBlock :: proc(block: ^Objc_Block(proc "c" (field: ^FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="items", objc_name="items")
     FieldBehavior_items :: proc(self: ^FieldBehavior) -> ^NS.Array ---

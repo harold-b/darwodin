@@ -28,10 +28,10 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithNavigationBarClass: proc(self: ^UI.NavigationController, navigationBarClass: Class, toolbarClass: Class) -> ^UI.NavigationController,
-    initWithRootViewController: proc(self: ^UI.NavigationController, rootViewController: ^UI.ViewController) -> ^UI.NavigationController,
-    initWithNibName: proc(self: ^UI.NavigationController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.NavigationController,
-    initWithCoder: proc(self: ^UI.NavigationController, aDecoder: ^NS.Coder) -> ^UI.NavigationController,
+    initWithNavigationBarClass: proc(self: ^UI.NavigationController, navigationBarClass: Class, toolbarClass: Class) -> instancetype,
+    initWithRootViewController: proc(self: ^UI.NavigationController, rootViewController: ^UI.ViewController) -> instancetype,
+    initWithNibName: proc(self: ^UI.NavigationController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    initWithCoder: proc(self: ^UI.NavigationController, aDecoder: ^NS.Coder) -> instancetype,
     pushViewController: proc(self: ^UI.NavigationController, viewController: ^UI.ViewController, animated: bool),
     popViewControllerAnimated: proc(self: ^UI.NavigationController, animated: bool) -> ^UI.ViewController,
     popToViewController: proc(self: ^UI.NavigationController, viewController: ^UI.ViewController, animated: bool) -> ^NS.Array,
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithNavigationBarClass != nil {
-        initWithNavigationBarClass :: proc "c" (self: ^UI.NavigationController, _: SEL, navigationBarClass: Class, toolbarClass: Class) -> ^UI.NavigationController {
+        initWithNavigationBarClass :: proc "c" (self: ^UI.NavigationController, _: SEL, navigationBarClass: Class, toolbarClass: Class) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNavigationBarClass:toolbarClass:"), auto_cast initWithNavigationBarClass, "@@:##") do panic("Failed to register objC method.")
     }
     if vt.initWithRootViewController != nil {
-        initWithRootViewController :: proc "c" (self: ^UI.NavigationController, _: SEL, rootViewController: ^UI.ViewController) -> ^UI.NavigationController {
+        initWithRootViewController :: proc "c" (self: ^UI.NavigationController, _: SEL, rootViewController: ^UI.ViewController) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRootViewController:"), auto_cast initWithRootViewController, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.NavigationController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.NavigationController {
+        initWithNibName :: proc "c" (self: ^UI.NavigationController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.NavigationController, _: SEL, aDecoder: ^NS.Coder) -> ^UI.NavigationController {
+        initWithCoder :: proc "c" (self: ^UI.NavigationController, _: SEL, aDecoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

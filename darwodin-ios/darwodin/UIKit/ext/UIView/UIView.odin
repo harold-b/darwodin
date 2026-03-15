@@ -28,8 +28,8 @@ import "../UIResponder"
 
 VTable :: struct {
     super: UIResponder.VTable,
-    initWithFrame: proc(self: ^UI.View, frame: CG.Rect) -> ^UI.View,
-    initWithCoder: proc(self: ^UI.View, coder: ^NS.Coder) -> ^UI.View,
+    initWithFrame: proc(self: ^UI.View, frame: CG.Rect) -> instancetype,
+    initWithCoder: proc(self: ^UI.View, coder: ^NS.Coder) -> instancetype,
     userInterfaceLayoutDirectionForSemanticContentAttribute_: proc(attribute: UI.SemanticContentAttribute) -> UI.UserInterfaceLayoutDirection,
     userInterfaceLayoutDirectionForSemanticContentAttribute_relativeToLayoutDirection: proc(semanticContentAttribute: UI.SemanticContentAttribute, layoutDirection: UI.UserInterfaceLayoutDirection) -> UI.UserInterfaceLayoutDirection,
     layerClass: proc() -> Class,
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIResponder.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.View, _: SEL, frame: CG.Rect) -> ^UI.View {
+        initWithFrame :: proc "c" (self: ^UI.View, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -280,7 +280,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.View, _: SEL, coder: ^NS.Coder) -> ^UI.View {
+        initWithCoder :: proc "c" (self: ^UI.View, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

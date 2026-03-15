@@ -25,22 +25,22 @@ AssetVariantQualifier :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetVariantQualifier, objc_selector="init", objc_name="init")
-    AssetVariantQualifier_init :: proc(self: ^AssetVariantQualifier) -> ^AssetVariantQualifier ---
+    AssetVariantQualifier_init :: proc(self: ^AssetVariantQualifier) -> instancetype ---
 
     @(objc_type=AssetVariantQualifier, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetVariantQualifier_new :: proc() -> ^AssetVariantQualifier ---
 
     @(objc_type=AssetVariantQualifier, objc_selector="assetVariantQualifierWithPredicate:", objc_name="assetVariantQualifierWithPredicate", objc_is_class_method=true)
-    AssetVariantQualifier_assetVariantQualifierWithPredicate :: proc(predicate: ^NS.Predicate) -> ^AssetVariantQualifier ---
+    AssetVariantQualifier_assetVariantQualifierWithPredicate :: proc(predicate: ^NS.Predicate) -> instancetype ---
 
     @(objc_type=AssetVariantQualifier, objc_selector="assetVariantQualifierWithVariant:", objc_name="assetVariantQualifierWithVariant", objc_is_class_method=true)
-    AssetVariantQualifier_assetVariantQualifierWithVariant :: proc(variant: ^AssetVariant) -> ^AssetVariantQualifier ---
+    AssetVariantQualifier_assetVariantQualifierWithVariant :: proc(variant: ^AssetVariant) -> instancetype ---
 
     @(objc_type=AssetVariantQualifier, objc_selector="assetVariantQualifierForMinimumValueInKeyPath:", objc_name="assetVariantQualifierForMinimumValueInKeyPath", objc_is_class_method=true)
-    AssetVariantQualifier_assetVariantQualifierForMinimumValueInKeyPath :: proc(keyPath: ^NS.String) -> ^AssetVariantQualifier ---
+    AssetVariantQualifier_assetVariantQualifierForMinimumValueInKeyPath :: proc(keyPath: ^NS.String) -> instancetype ---
 
     @(objc_type=AssetVariantQualifier, objc_selector="assetVariantQualifierForMaximumValueInKeyPath:", objc_name="assetVariantQualifierForMaximumValueInKeyPath", objc_is_class_method=true)
-    AssetVariantQualifier_assetVariantQualifierForMaximumValueInKeyPath :: proc(keyPath: ^NS.String) -> ^AssetVariantQualifier ---
+    AssetVariantQualifier_assetVariantQualifierForMaximumValueInKeyPath :: proc(keyPath: ^NS.String) -> instancetype ---
 
     @(objc_type=AssetVariantQualifier, objc_selector="predicateForChannelCount:mediaSelectionOption:operatorType:", objc_name="predicateForChannelCount_mediaSelectionOption_operatorType", objc_is_class_method=true)
     AssetVariantQualifier_predicateForChannelCount_mediaSelectionOption_operatorType :: proc(channelCount: NS.Integer, mediaSelectionOption: ^MediaSelectionOptions, operatorType: NS.PredicateOperatorType) -> ^NS.Predicate ---

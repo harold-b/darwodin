@@ -28,9 +28,9 @@ import "../UIMenuElement"
 
 VTable :: struct {
     super: UIMenuElement.VTable,
-    actionWithHandler: proc(handler: UI.ActionHandler) -> ^UI.Action,
-    actionWithTitle: proc(title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, handler: UI.ActionHandler) -> ^UI.Action,
-    init: proc(self: ^UI.Action) -> ^UI.Action,
+    actionWithHandler: proc(handler: UI.ActionHandler) -> instancetype,
+    actionWithTitle: proc(title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, handler: UI.ActionHandler) -> instancetype,
+    init: proc(self: ^UI.Action) -> instancetype,
     new: proc() -> ^UI.Action,
     title: proc(self: ^UI.Action) -> ^NS.String,
     setTitle: proc(self: ^UI.Action, title: ^NS.String),
@@ -44,7 +44,7 @@ VTable :: struct {
     state: proc(self: ^UI.Action) -> UI.MenuElementState,
     setState: proc(self: ^UI.Action, state: UI.MenuElementState),
     sender: proc(self: ^UI.Action) -> id,
-    captureTextFromCameraActionForResponder: proc(responder: ^UI.Responder, identifier: ^NS.String) -> ^UI.Action,
+    captureTextFromCameraActionForResponder: proc(responder: ^UI.Responder, identifier: ^NS.String) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIMenuElement.extend(cls, &vt.super)
 
     if vt.actionWithHandler != nil {
-        actionWithHandler :: proc "c" (self: Class, _: SEL, handler: UI.ActionHandler) -> ^UI.Action {
+        actionWithHandler :: proc "c" (self: Class, _: SEL, handler: UI.ActionHandler) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("actionWithHandler:"), auto_cast actionWithHandler, "@#:?") do panic("Failed to register objC method.")
     }
     if vt.actionWithTitle != nil {
-        actionWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, handler: UI.ActionHandler) -> ^UI.Action {
+        actionWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, handler: UI.ActionHandler) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("actionWithTitle:image:identifier:handler:"), auto_cast actionWithTitle, "@#:@@@?") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.Action, _: SEL) -> ^UI.Action {
+        init :: proc "c" (self: ^UI.Action, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -215,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sender"), auto_cast sender, "@@:") do panic("Failed to register objC method.")
     }
     if vt.captureTextFromCameraActionForResponder != nil {
-        captureTextFromCameraActionForResponder :: proc "c" (self: Class, _: SEL, responder: ^UI.Responder, identifier: ^NS.String) -> ^UI.Action {
+        captureTextFromCameraActionForResponder :: proc "c" (self: Class, _: SEL, responder: ^UI.Responder, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

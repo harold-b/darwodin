@@ -30,8 +30,8 @@ import "../NSResponder"
 
 VTable :: struct {
     super: NSResponder.VTable,
-    initWithFrame: proc(self: ^AK.View, frameRect: NS.Rect) -> ^AK.View,
-    initWithCoder: proc(self: ^AK.View, coder: ^NS.Coder) -> ^AK.View,
+    initWithFrame: proc(self: ^AK.View, frameRect: NS.Rect) -> instancetype,
+    initWithCoder: proc(self: ^AK.View, coder: ^NS.Coder) -> instancetype,
     isDescendantOf: proc(self: ^AK.View, view: ^AK.View) -> bool,
     ancestorSharedWithView: proc(self: ^AK.View, view: ^AK.View) -> ^AK.View,
     getRectsBeingDrawn: proc(self: ^AK.View, rects: ^^NS.Rect, count: ^NS.Integer),
@@ -376,7 +376,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSResponder.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.View, _: SEL, frameRect: NS.Rect) -> ^AK.View {
+        initWithFrame :: proc "c" (self: ^AK.View, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -386,7 +386,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.View, _: SEL, coder: ^NS.Coder) -> ^AK.View {
+        initWithCoder :: proc "c" (self: ^AK.View, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

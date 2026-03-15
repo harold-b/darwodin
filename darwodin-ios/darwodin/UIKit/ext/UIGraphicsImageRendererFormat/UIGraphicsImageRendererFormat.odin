@@ -28,7 +28,7 @@ import "../UIGraphicsRendererFormat"
 
 VTable :: struct {
     super: UIGraphicsRendererFormat.VTable,
-    formatForTraitCollection: proc(traitCollection: ^UI.TraitCollection) -> ^UI.GraphicsImageRendererFormat,
+    formatForTraitCollection: proc(traitCollection: ^UI.TraitCollection) -> instancetype,
     scale: proc(self: ^UI.GraphicsImageRendererFormat) -> CG.Float,
     setScale: proc(self: ^UI.GraphicsImageRendererFormat, scale: CG.Float),
     opaque: proc(self: ^UI.GraphicsImageRendererFormat) -> bool,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIGraphicsRendererFormat.extend(cls, &vt.super)
 
     if vt.formatForTraitCollection != nil {
-        formatForTraitCollection :: proc "c" (self: Class, _: SEL, traitCollection: ^UI.TraitCollection) -> ^UI.GraphicsImageRendererFormat {
+        formatForTraitCollection :: proc "c" (self: Class, _: SEL, traitCollection: ^UI.TraitCollection) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

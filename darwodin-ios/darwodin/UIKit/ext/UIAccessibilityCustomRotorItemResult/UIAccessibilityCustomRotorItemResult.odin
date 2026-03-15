@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTargetElement: proc(self: ^UI.AccessibilityCustomRotorItemResult, targetElement: ^NS.ObjectProtocol, targetRange: ^UI.TextRange) -> ^UI.AccessibilityCustomRotorItemResult,
+    initWithTargetElement: proc(self: ^UI.AccessibilityCustomRotorItemResult, targetElement: ^NS.ObjectProtocol, targetRange: ^UI.TextRange) -> instancetype,
     targetElement: proc(self: ^UI.AccessibilityCustomRotorItemResult) -> ^NS.ObjectProtocol,
     setTargetElement: proc(self: ^UI.AccessibilityCustomRotorItemResult, targetElement: ^NS.ObjectProtocol),
     targetRange: proc(self: ^UI.AccessibilityCustomRotorItemResult) -> ^UI.TextRange,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTargetElement != nil {
-        initWithTargetElement :: proc "c" (self: ^UI.AccessibilityCustomRotorItemResult, _: SEL, targetElement: ^NS.ObjectProtocol, targetRange: ^UI.TextRange) -> ^UI.AccessibilityCustomRotorItemResult {
+        initWithTargetElement :: proc "c" (self: ^UI.AccessibilityCustomRotorItemResult, _: SEL, targetElement: ^NS.ObjectProtocol, targetRange: ^UI.TextRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

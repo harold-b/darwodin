@@ -23,7 +23,7 @@ PlayerItemIntegratedTimelineSnapshot :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemIntegratedTimelineSnapshot, objc_selector="init", objc_name="init")
-    PlayerItemIntegratedTimelineSnapshot_init :: proc(self: ^PlayerItemIntegratedTimelineSnapshot) -> ^PlayerItemIntegratedTimelineSnapshot ---
+    PlayerItemIntegratedTimelineSnapshot_init :: proc(self: ^PlayerItemIntegratedTimelineSnapshot) -> instancetype ---
 
     @(objc_type=PlayerItemIntegratedTimelineSnapshot, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PlayerItemIntegratedTimelineSnapshot_new :: proc() -> ^PlayerItemIntegratedTimelineSnapshot ---

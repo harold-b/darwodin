@@ -23,10 +23,10 @@ PlayerInterstitialEventMonitor :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerInterstitialEventMonitor, objc_selector="interstitialEventMonitorWithPrimaryPlayer:", objc_name="interstitialEventMonitorWithPrimaryPlayer", objc_is_class_method=true)
-    PlayerInterstitialEventMonitor_interstitialEventMonitorWithPrimaryPlayer :: proc(primaryPlayer: ^Player) -> ^PlayerInterstitialEventMonitor ---
+    PlayerInterstitialEventMonitor_interstitialEventMonitorWithPrimaryPlayer :: proc(primaryPlayer: ^Player) -> instancetype ---
 
     @(objc_type=PlayerInterstitialEventMonitor, objc_selector="initWithPrimaryPlayer:", objc_name="initWithPrimaryPlayer")
-    PlayerInterstitialEventMonitor_initWithPrimaryPlayer :: proc(self: ^PlayerInterstitialEventMonitor, primaryPlayer: ^Player) -> ^PlayerInterstitialEventMonitor ---
+    PlayerInterstitialEventMonitor_initWithPrimaryPlayer :: proc(self: ^PlayerInterstitialEventMonitor, primaryPlayer: ^Player) -> instancetype ---
 
     @(objc_type=PlayerInterstitialEventMonitor, objc_selector="primaryPlayer", objc_name="primaryPlayer")
     PlayerInterstitialEventMonitor_primaryPlayer :: proc(self: ^PlayerInterstitialEventMonitor) -> ^Player ---

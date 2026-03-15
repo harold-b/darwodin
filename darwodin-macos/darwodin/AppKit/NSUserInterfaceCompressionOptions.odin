@@ -27,16 +27,16 @@ UserInterfaceCompressionOptions :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserInterfaceCompressionOptions, objc_selector="init", objc_name="init")
-    UserInterfaceCompressionOptions_init :: proc(self: ^UserInterfaceCompressionOptions) -> ^UserInterfaceCompressionOptions ---
+    UserInterfaceCompressionOptions_init :: proc(self: ^UserInterfaceCompressionOptions) -> instancetype ---
 
     @(objc_type=UserInterfaceCompressionOptions, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    UserInterfaceCompressionOptions_initWithCoder :: proc(self: ^UserInterfaceCompressionOptions, coder: ^NS.Coder) -> ^UserInterfaceCompressionOptions ---
+    UserInterfaceCompressionOptions_initWithCoder :: proc(self: ^UserInterfaceCompressionOptions, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=UserInterfaceCompressionOptions, objc_selector="initWithIdentifier:", objc_name="initWithIdentifier")
-    UserInterfaceCompressionOptions_initWithIdentifier :: proc(self: ^UserInterfaceCompressionOptions, identifier: ^NS.String) -> ^UserInterfaceCompressionOptions ---
+    UserInterfaceCompressionOptions_initWithIdentifier :: proc(self: ^UserInterfaceCompressionOptions, identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=UserInterfaceCompressionOptions, objc_selector="initWithCompressionOptions:", objc_name="initWithCompressionOptions")
-    UserInterfaceCompressionOptions_initWithCompressionOptions :: proc(self: ^UserInterfaceCompressionOptions, options: ^NS.Set) -> ^UserInterfaceCompressionOptions ---
+    UserInterfaceCompressionOptions_initWithCompressionOptions :: proc(self: ^UserInterfaceCompressionOptions, options: ^NS.Set) -> instancetype ---
 
     @(objc_type=UserInterfaceCompressionOptions, objc_selector="containsOptions:", objc_name="containsOptions")
     UserInterfaceCompressionOptions_containsOptions :: proc(self: ^UserInterfaceCompressionOptions, options: ^UserInterfaceCompressionOptions) -> bool ---

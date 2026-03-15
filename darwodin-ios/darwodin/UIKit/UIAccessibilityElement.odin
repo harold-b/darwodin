@@ -24,7 +24,7 @@ AccessibilityElement :: struct { using _: Responder,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccessibilityElement, objc_selector="initWithAccessibilityContainer:", objc_name="initWithAccessibilityContainer")
-    AccessibilityElement_initWithAccessibilityContainer :: proc(self: ^AccessibilityElement, container: id) -> ^AccessibilityElement ---
+    AccessibilityElement_initWithAccessibilityContainer :: proc(self: ^AccessibilityElement, container: id) -> instancetype ---
 
     @(objc_type=AccessibilityElement, objc_selector="accessibilityContainer", objc_name="accessibilityContainer")
     AccessibilityElement_accessibilityContainer :: proc(self: ^AccessibilityElement) -> id ---

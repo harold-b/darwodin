@@ -77,22 +77,22 @@ foreign lib {
     AppleEventDescriptor_descriptorWithApplicationURL :: proc(applicationURL: ^URL) -> ^AppleEventDescriptor ---
 
     @(objc_type=AppleEventDescriptor, objc_selector="initWithAEDescNoCopy:", objc_name="initWithAEDescNoCopy")
-    AppleEventDescriptor_initWithAEDescNoCopy :: proc(self: ^AppleEventDescriptor, aeDesc: ^AEDesc) -> ^AppleEventDescriptor ---
+    AppleEventDescriptor_initWithAEDescNoCopy :: proc(self: ^AppleEventDescriptor, aeDesc: ^AEDesc) -> instancetype ---
 
     @(objc_type=AppleEventDescriptor, objc_selector="initWithDescriptorType:bytes:length:", objc_name="initWithDescriptorType_bytes_length")
-    AppleEventDescriptor_initWithDescriptorType_bytes_length :: proc(self: ^AppleEventDescriptor, descriptorType: DescType, bytes: rawptr, byteCount: UInteger) -> ^AppleEventDescriptor ---
+    AppleEventDescriptor_initWithDescriptorType_bytes_length :: proc(self: ^AppleEventDescriptor, descriptorType: DescType, bytes: rawptr, byteCount: UInteger) -> instancetype ---
 
     @(objc_type=AppleEventDescriptor, objc_selector="initWithDescriptorType:data:", objc_name="initWithDescriptorType_data")
-    AppleEventDescriptor_initWithDescriptorType_data :: proc(self: ^AppleEventDescriptor, descriptorType: DescType, data: ^Data) -> ^AppleEventDescriptor ---
+    AppleEventDescriptor_initWithDescriptorType_data :: proc(self: ^AppleEventDescriptor, descriptorType: DescType, data: ^Data) -> instancetype ---
 
     @(objc_type=AppleEventDescriptor, objc_selector="initWithEventClass:eventID:targetDescriptor:returnID:transactionID:", objc_name="initWithEventClass")
-    AppleEventDescriptor_initWithEventClass :: proc(self: ^AppleEventDescriptor, eventClass: AEEventClass, eventID: AEEventID, targetDescriptor: ^AppleEventDescriptor, returnID: AEReturnID, transactionID: AETransactionID) -> ^AppleEventDescriptor ---
+    AppleEventDescriptor_initWithEventClass :: proc(self: ^AppleEventDescriptor, eventClass: AEEventClass, eventID: AEEventID, targetDescriptor: ^AppleEventDescriptor, returnID: AEReturnID, transactionID: AETransactionID) -> instancetype ---
 
     @(objc_type=AppleEventDescriptor, objc_selector="initListDescriptor", objc_name="initListDescriptor")
-    AppleEventDescriptor_initListDescriptor :: proc(self: ^AppleEventDescriptor) -> ^AppleEventDescriptor ---
+    AppleEventDescriptor_initListDescriptor :: proc(self: ^AppleEventDescriptor) -> instancetype ---
 
     @(objc_type=AppleEventDescriptor, objc_selector="initRecordDescriptor", objc_name="initRecordDescriptor")
-    AppleEventDescriptor_initRecordDescriptor :: proc(self: ^AppleEventDescriptor) -> ^AppleEventDescriptor ---
+    AppleEventDescriptor_initRecordDescriptor :: proc(self: ^AppleEventDescriptor) -> instancetype ---
 
     @(objc_type=AppleEventDescriptor, objc_selector="setParamDescriptor:forKeyword:", objc_name="setParamDescriptor")
     AppleEventDescriptor_setParamDescriptor :: proc(self: ^AppleEventDescriptor, descriptor: ^AppleEventDescriptor, keyword: AEKeyword) ---

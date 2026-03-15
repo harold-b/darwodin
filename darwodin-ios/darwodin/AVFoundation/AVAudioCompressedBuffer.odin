@@ -23,10 +23,10 @@ AudioCompressedBuffer :: struct { using _: AudioBuffer, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioCompressedBuffer, objc_selector="initWithFormat:packetCapacity:maximumPacketSize:", objc_name="initWithFormat_packetCapacity_maximumPacketSize")
-    AudioCompressedBuffer_initWithFormat_packetCapacity_maximumPacketSize :: proc(self: ^AudioCompressedBuffer, format: ^AudioFormat, packetCapacity: AudioPacketCount, maximumPacketSize: NS.Integer) -> ^AudioCompressedBuffer ---
+    AudioCompressedBuffer_initWithFormat_packetCapacity_maximumPacketSize :: proc(self: ^AudioCompressedBuffer, format: ^AudioFormat, packetCapacity: AudioPacketCount, maximumPacketSize: NS.Integer) -> instancetype ---
 
     @(objc_type=AudioCompressedBuffer, objc_selector="initWithFormat:packetCapacity:", objc_name="initWithFormat_packetCapacity")
-    AudioCompressedBuffer_initWithFormat_packetCapacity :: proc(self: ^AudioCompressedBuffer, format: ^AudioFormat, packetCapacity: AudioPacketCount) -> ^AudioCompressedBuffer ---
+    AudioCompressedBuffer_initWithFormat_packetCapacity :: proc(self: ^AudioCompressedBuffer, format: ^AudioFormat, packetCapacity: AudioPacketCount) -> instancetype ---
 
     @(objc_type=AudioCompressedBuffer, objc_selector="packetCapacity", objc_name="packetCapacity")
     AudioCompressedBuffer_packetCapacity :: proc(self: ^AudioCompressedBuffer) -> AudioPacketCount ---

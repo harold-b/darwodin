@@ -25,19 +25,19 @@ BarAppearance :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BarAppearance, objc_selector="init", objc_name="init")
-    BarAppearance_init :: proc(self: ^BarAppearance) -> ^BarAppearance ---
+    BarAppearance_init :: proc(self: ^BarAppearance) -> instancetype ---
 
     @(objc_type=BarAppearance, objc_selector="initWithIdiom:", objc_name="initWithIdiom")
-    BarAppearance_initWithIdiom :: proc(self: ^BarAppearance, idiom: UserInterfaceIdiom) -> ^BarAppearance ---
+    BarAppearance_initWithIdiom :: proc(self: ^BarAppearance, idiom: UserInterfaceIdiom) -> instancetype ---
 
     @(objc_type=BarAppearance, objc_selector="initWithBarAppearance:", objc_name="initWithBarAppearance")
-    BarAppearance_initWithBarAppearance :: proc(self: ^BarAppearance, barAppearance: ^BarAppearance) -> ^BarAppearance ---
+    BarAppearance_initWithBarAppearance :: proc(self: ^BarAppearance, barAppearance: ^BarAppearance) -> instancetype ---
 
     @(objc_type=BarAppearance, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    BarAppearance_initWithCoder :: proc(self: ^BarAppearance, coder: ^NS.Coder) -> ^BarAppearance ---
+    BarAppearance_initWithCoder :: proc(self: ^BarAppearance, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=BarAppearance, objc_selector="copy", objc_name="copy")
-    BarAppearance_copy :: proc(self: ^BarAppearance) -> ^BarAppearance ---
+    BarAppearance_copy :: proc(self: ^BarAppearance) -> instancetype ---
 
     @(objc_type=BarAppearance, objc_selector="configureWithDefaultBackground", objc_name="configureWithDefaultBackground")
     BarAppearance_configureWithDefaultBackground :: proc(self: ^BarAppearance) ---

@@ -20,13 +20,13 @@ SyncEngineSendChangesScope :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineSendChangesScope, objc_selector="initWithZoneIDs:", objc_name="initWithZoneIDs")
-    SyncEngineSendChangesScope_initWithZoneIDs :: proc(self: ^SyncEngineSendChangesScope, zoneIDs: ^NS.Set) -> ^SyncEngineSendChangesScope ---
+    SyncEngineSendChangesScope_initWithZoneIDs :: proc(self: ^SyncEngineSendChangesScope, zoneIDs: ^NS.Set) -> instancetype ---
 
     @(objc_type=SyncEngineSendChangesScope, objc_selector="initWithExcludedZoneIDs:", objc_name="initWithExcludedZoneIDs")
-    SyncEngineSendChangesScope_initWithExcludedZoneIDs :: proc(self: ^SyncEngineSendChangesScope, excludedZoneIDs: ^NS.Set) -> ^SyncEngineSendChangesScope ---
+    SyncEngineSendChangesScope_initWithExcludedZoneIDs :: proc(self: ^SyncEngineSendChangesScope, excludedZoneIDs: ^NS.Set) -> instancetype ---
 
     @(objc_type=SyncEngineSendChangesScope, objc_selector="initWithRecordIDs:", objc_name="initWithRecordIDs")
-    SyncEngineSendChangesScope_initWithRecordIDs :: proc(self: ^SyncEngineSendChangesScope, recordIDs: ^NS.Set) -> ^SyncEngineSendChangesScope ---
+    SyncEngineSendChangesScope_initWithRecordIDs :: proc(self: ^SyncEngineSendChangesScope, recordIDs: ^NS.Set) -> instancetype ---
 
     @(objc_type=SyncEngineSendChangesScope, objc_selector="containsRecordID:", objc_name="containsRecordID")
     SyncEngineSendChangesScope_containsRecordID :: proc(self: ^SyncEngineSendChangesScope, recordID: ^RecordID) -> bool ---

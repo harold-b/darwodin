@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.WindowSceneGeometry) -> ^UI.WindowSceneGeometry,
+    init: proc(self: ^UI.WindowSceneGeometry) -> instancetype,
     new: proc() -> ^UI.WindowSceneGeometry,
     systemFrame: proc(self: ^UI.WindowSceneGeometry) -> CG.Rect,
     interfaceOrientation: proc(self: ^UI.WindowSceneGeometry) -> UI.InterfaceOrientation,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.WindowSceneGeometry, _: SEL) -> ^UI.WindowSceneGeometry {
+        init :: proc "c" (self: ^UI.WindowSceneGeometry, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,18 +28,18 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    suggestionWithLocalizedSuggestion_: proc(suggestion: ^NS.String) -> ^UI.SearchSuggestionItem,
-    suggestionWithLocalizedSuggestion_descriptionString: proc(suggestion: ^NS.String, description: ^NS.String) -> ^UI.SearchSuggestionItem,
-    suggestionWithLocalizedSuggestion_descriptionString_iconImage: proc(suggestion: ^NS.String, description: ^NS.String, iconImage: ^UI.Image) -> ^UI.SearchSuggestionItem,
-    suggestionWithLocalizedAttributedSuggestion_: proc(suggestion: ^NS.AttributedString) -> ^UI.SearchSuggestionItem,
-    suggestionWithLocalizedAttributedSuggestion_descriptionString: proc(suggestion: ^NS.AttributedString, description: ^NS.String) -> ^UI.SearchSuggestionItem,
-    suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage: proc(suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^UI.Image) -> ^UI.SearchSuggestionItem,
-    initWithLocalizedSuggestion_: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.String) -> ^UI.SearchSuggestionItem,
-    initWithLocalizedSuggestion_localizedDescription: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.String, description: ^NS.String) -> ^UI.SearchSuggestionItem,
-    initWithLocalizedSuggestion_localizedDescription_iconImage: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.String, description: ^NS.String, iconImage: ^UI.Image) -> ^UI.SearchSuggestionItem,
-    initWithLocalizedAttributedSuggestion_: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.AttributedString) -> ^UI.SearchSuggestionItem,
-    initWithLocalizedAttributedSuggestion_localizedDescription: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.AttributedString, description: ^NS.String) -> ^UI.SearchSuggestionItem,
-    initWithLocalizedAttributedSuggestion_localizedDescription_iconImage: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^UI.Image) -> ^UI.SearchSuggestionItem,
+    suggestionWithLocalizedSuggestion_: proc(suggestion: ^NS.String) -> instancetype,
+    suggestionWithLocalizedSuggestion_descriptionString: proc(suggestion: ^NS.String, description: ^NS.String) -> instancetype,
+    suggestionWithLocalizedSuggestion_descriptionString_iconImage: proc(suggestion: ^NS.String, description: ^NS.String, iconImage: ^UI.Image) -> instancetype,
+    suggestionWithLocalizedAttributedSuggestion_: proc(suggestion: ^NS.AttributedString) -> instancetype,
+    suggestionWithLocalizedAttributedSuggestion_descriptionString: proc(suggestion: ^NS.AttributedString, description: ^NS.String) -> instancetype,
+    suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage: proc(suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^UI.Image) -> instancetype,
+    initWithLocalizedSuggestion_: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.String) -> instancetype,
+    initWithLocalizedSuggestion_localizedDescription: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.String, description: ^NS.String) -> instancetype,
+    initWithLocalizedSuggestion_localizedDescription_iconImage: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.String, description: ^NS.String, iconImage: ^UI.Image) -> instancetype,
+    initWithLocalizedAttributedSuggestion_: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.AttributedString) -> instancetype,
+    initWithLocalizedAttributedSuggestion_localizedDescription: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.AttributedString, description: ^NS.String) -> instancetype,
+    initWithLocalizedAttributedSuggestion_localizedDescription_iconImage: proc(self: ^UI.SearchSuggestionItem, suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^UI.Image) -> instancetype,
     localizedAttributedSuggestion: proc(self: ^UI.SearchSuggestionItem) -> ^NS.AttributedString,
     localizedSuggestion: proc(self: ^UI.SearchSuggestionItem) -> ^NS.String,
     localizedDescription: proc(self: ^UI.SearchSuggestionItem) -> ^NS.String,
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.suggestionWithLocalizedSuggestion_ != nil {
-        suggestionWithLocalizedSuggestion_ :: proc "c" (self: Class, _: SEL, suggestion: ^NS.String) -> ^UI.SearchSuggestionItem {
+        suggestionWithLocalizedSuggestion_ :: proc "c" (self: Class, _: SEL, suggestion: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("suggestionWithLocalizedSuggestion:"), auto_cast suggestionWithLocalizedSuggestion_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.suggestionWithLocalizedSuggestion_descriptionString != nil {
-        suggestionWithLocalizedSuggestion_descriptionString :: proc "c" (self: Class, _: SEL, suggestion: ^NS.String, description: ^NS.String) -> ^UI.SearchSuggestionItem {
+        suggestionWithLocalizedSuggestion_descriptionString :: proc "c" (self: Class, _: SEL, suggestion: ^NS.String, description: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("suggestionWithLocalizedSuggestion:descriptionString:"), auto_cast suggestionWithLocalizedSuggestion_descriptionString, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.suggestionWithLocalizedSuggestion_descriptionString_iconImage != nil {
-        suggestionWithLocalizedSuggestion_descriptionString_iconImage :: proc "c" (self: Class, _: SEL, suggestion: ^NS.String, description: ^NS.String, iconImage: ^UI.Image) -> ^UI.SearchSuggestionItem {
+        suggestionWithLocalizedSuggestion_descriptionString_iconImage :: proc "c" (self: Class, _: SEL, suggestion: ^NS.String, description: ^NS.String, iconImage: ^UI.Image) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("suggestionWithLocalizedSuggestion:descriptionString:iconImage:"), auto_cast suggestionWithLocalizedSuggestion_descriptionString_iconImage, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.suggestionWithLocalizedAttributedSuggestion_ != nil {
-        suggestionWithLocalizedAttributedSuggestion_ :: proc "c" (self: Class, _: SEL, suggestion: ^NS.AttributedString) -> ^UI.SearchSuggestionItem {
+        suggestionWithLocalizedAttributedSuggestion_ :: proc "c" (self: Class, _: SEL, suggestion: ^NS.AttributedString) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("suggestionWithLocalizedAttributedSuggestion:"), auto_cast suggestionWithLocalizedAttributedSuggestion_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.suggestionWithLocalizedAttributedSuggestion_descriptionString != nil {
-        suggestionWithLocalizedAttributedSuggestion_descriptionString :: proc "c" (self: Class, _: SEL, suggestion: ^NS.AttributedString, description: ^NS.String) -> ^UI.SearchSuggestionItem {
+        suggestionWithLocalizedAttributedSuggestion_descriptionString :: proc "c" (self: Class, _: SEL, suggestion: ^NS.AttributedString, description: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("suggestionWithLocalizedAttributedSuggestion:descriptionString:"), auto_cast suggestionWithLocalizedAttributedSuggestion_descriptionString, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage != nil {
-        suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage :: proc "c" (self: Class, _: SEL, suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^UI.Image) -> ^UI.SearchSuggestionItem {
+        suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage :: proc "c" (self: Class, _: SEL, suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^UI.Image) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("suggestionWithLocalizedAttributedSuggestion:descriptionString:iconImage:"), auto_cast suggestionWithLocalizedAttributedSuggestion_descriptionString_iconImage, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithLocalizedSuggestion_ != nil {
-        initWithLocalizedSuggestion_ :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.String) -> ^UI.SearchSuggestionItem {
+        initWithLocalizedSuggestion_ :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocalizedSuggestion:"), auto_cast initWithLocalizedSuggestion_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithLocalizedSuggestion_localizedDescription != nil {
-        initWithLocalizedSuggestion_localizedDescription :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.String, description: ^NS.String) -> ^UI.SearchSuggestionItem {
+        initWithLocalizedSuggestion_localizedDescription :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.String, description: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocalizedSuggestion:localizedDescription:"), auto_cast initWithLocalizedSuggestion_localizedDescription, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithLocalizedSuggestion_localizedDescription_iconImage != nil {
-        initWithLocalizedSuggestion_localizedDescription_iconImage :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.String, description: ^NS.String, iconImage: ^UI.Image) -> ^UI.SearchSuggestionItem {
+        initWithLocalizedSuggestion_localizedDescription_iconImage :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.String, description: ^NS.String, iconImage: ^UI.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocalizedSuggestion:localizedDescription:iconImage:"), auto_cast initWithLocalizedSuggestion_localizedDescription_iconImage, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithLocalizedAttributedSuggestion_ != nil {
-        initWithLocalizedAttributedSuggestion_ :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.AttributedString) -> ^UI.SearchSuggestionItem {
+        initWithLocalizedAttributedSuggestion_ :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.AttributedString) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocalizedAttributedSuggestion:"), auto_cast initWithLocalizedAttributedSuggestion_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithLocalizedAttributedSuggestion_localizedDescription != nil {
-        initWithLocalizedAttributedSuggestion_localizedDescription :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.AttributedString, description: ^NS.String) -> ^UI.SearchSuggestionItem {
+        initWithLocalizedAttributedSuggestion_localizedDescription :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.AttributedString, description: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocalizedAttributedSuggestion:localizedDescription:"), auto_cast initWithLocalizedAttributedSuggestion_localizedDescription, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithLocalizedAttributedSuggestion_localizedDescription_iconImage != nil {
-        initWithLocalizedAttributedSuggestion_localizedDescription_iconImage :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^UI.Image) -> ^UI.SearchSuggestionItem {
+        initWithLocalizedAttributedSuggestion_localizedDescription_iconImage :: proc "c" (self: ^UI.SearchSuggestionItem, _: SEL, suggestion: ^NS.AttributedString, description: ^NS.String, iconImage: ^UI.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

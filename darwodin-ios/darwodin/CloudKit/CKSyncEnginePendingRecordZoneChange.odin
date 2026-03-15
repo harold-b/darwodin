@@ -18,10 +18,10 @@ SyncEnginePendingRecordZoneChange :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEnginePendingRecordZoneChange, objc_selector="initWithRecordID:type:", objc_name="initWithRecordID")
-    SyncEnginePendingRecordZoneChange_initWithRecordID :: proc(self: ^SyncEnginePendingRecordZoneChange, recordID: ^RecordID, type: SyncEnginePendingRecordZoneChangeType) -> ^SyncEnginePendingRecordZoneChange ---
+    SyncEnginePendingRecordZoneChange_initWithRecordID :: proc(self: ^SyncEnginePendingRecordZoneChange, recordID: ^RecordID, type: SyncEnginePendingRecordZoneChangeType) -> instancetype ---
 
     @(objc_type=SyncEnginePendingRecordZoneChange, objc_selector="init", objc_name="init")
-    SyncEnginePendingRecordZoneChange_init :: proc(self: ^SyncEnginePendingRecordZoneChange) -> ^SyncEnginePendingRecordZoneChange ---
+    SyncEnginePendingRecordZoneChange_init :: proc(self: ^SyncEnginePendingRecordZoneChange) -> instancetype ---
 
     @(objc_type=SyncEnginePendingRecordZoneChange, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEnginePendingRecordZoneChange_new :: proc() -> ^SyncEnginePendingRecordZoneChange ---

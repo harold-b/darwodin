@@ -26,26 +26,26 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithScheme: proc(self: ^NS.URL, scheme: ^NS.String, host: ^NS.String, path: ^NS.String) -> ^NS.URL,
-    initFileURLWithPath_isDirectory_relativeToURL: proc(self: ^NS.URL, path: ^NS.String, isDir: bool, baseURL: ^NS.URL) -> ^NS.URL,
-    initFileURLWithPath_relativeToURL: proc(self: ^NS.URL, path: ^NS.String, baseURL: ^NS.URL) -> ^NS.URL,
-    initFileURLWithPath_isDirectory: proc(self: ^NS.URL, path: ^NS.String, isDir: bool) -> ^NS.URL,
-    initFileURLWithPath_: proc(self: ^NS.URL, path: ^NS.String) -> ^NS.URL,
+    initWithScheme: proc(self: ^NS.URL, scheme: ^NS.String, host: ^NS.String, path: ^NS.String) -> instancetype,
+    initFileURLWithPath_isDirectory_relativeToURL: proc(self: ^NS.URL, path: ^NS.String, isDir: bool, baseURL: ^NS.URL) -> instancetype,
+    initFileURLWithPath_relativeToURL: proc(self: ^NS.URL, path: ^NS.String, baseURL: ^NS.URL) -> instancetype,
+    initFileURLWithPath_isDirectory: proc(self: ^NS.URL, path: ^NS.String, isDir: bool) -> instancetype,
+    initFileURLWithPath_: proc(self: ^NS.URL, path: ^NS.String) -> instancetype,
     fileURLWithPath_isDirectory_relativeToURL: proc(path: ^NS.String, isDir: bool, baseURL: ^NS.URL) -> ^NS.URL,
     fileURLWithPath_relativeToURL: proc(path: ^NS.String, baseURL: ^NS.URL) -> ^NS.URL,
     fileURLWithPath_isDirectory: proc(path: ^NS.String, isDir: bool) -> ^NS.URL,
     fileURLWithPath_: proc(path: ^NS.String) -> ^NS.URL,
-    initFileURLWithFileSystemRepresentation: proc(self: ^NS.URL, path: cstring, isDir: bool, baseURL: ^NS.URL) -> ^NS.URL,
+    initFileURLWithFileSystemRepresentation: proc(self: ^NS.URL, path: cstring, isDir: bool, baseURL: ^NS.URL) -> instancetype,
     fileURLWithFileSystemRepresentation: proc(path: cstring, isDir: bool, baseURL: ^NS.URL) -> ^NS.URL,
-    initWithString_: proc(self: ^NS.URL, URLString: ^NS.String) -> ^NS.URL,
-    initWithString_relativeToURL: proc(self: ^NS.URL, URLString: ^NS.String, baseURL: ^NS.URL) -> ^NS.URL,
-    _URLWithString_: proc(URLString: ^NS.String) -> ^NS.URL,
-    _URLWithString_relativeToURL: proc(URLString: ^NS.String, baseURL: ^NS.URL) -> ^NS.URL,
-    initWithString_encodingInvalidCharacters: proc(self: ^NS.URL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> ^NS.URL,
-    _URLWithString_encodingInvalidCharacters: proc(URLString: ^NS.String, encodingInvalidCharacters: bool) -> ^NS.URL,
-    initWithDataRepresentation: proc(self: ^NS.URL, data: ^NS.Data, baseURL: ^NS.URL) -> ^NS.URL,
+    initWithString_: proc(self: ^NS.URL, URLString: ^NS.String) -> instancetype,
+    initWithString_relativeToURL: proc(self: ^NS.URL, URLString: ^NS.String, baseURL: ^NS.URL) -> instancetype,
+    _URLWithString_: proc(URLString: ^NS.String) -> instancetype,
+    _URLWithString_relativeToURL: proc(URLString: ^NS.String, baseURL: ^NS.URL) -> instancetype,
+    initWithString_encodingInvalidCharacters: proc(self: ^NS.URL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> instancetype,
+    _URLWithString_encodingInvalidCharacters: proc(URLString: ^NS.String, encodingInvalidCharacters: bool) -> instancetype,
+    initWithDataRepresentation: proc(self: ^NS.URL, data: ^NS.Data, baseURL: ^NS.URL) -> instancetype,
     _URLWithDataRepresentation: proc(data: ^NS.Data, baseURL: ^NS.URL) -> ^NS.URL,
-    initAbsoluteURLWithDataRepresentation: proc(self: ^NS.URL, data: ^NS.Data, baseURL: ^NS.URL) -> ^NS.URL,
+    initAbsoluteURLWithDataRepresentation: proc(self: ^NS.URL, data: ^NS.Data, baseURL: ^NS.URL) -> instancetype,
     absoluteURLWithDataRepresentation: proc(data: ^NS.Data, baseURL: ^NS.URL) -> ^NS.URL,
     getFileSystemRepresentation: proc(self: ^NS.URL, buffer: cstring, maxBufferLength: NS.UInteger) -> bool,
     isFileReferenceURL: proc(self: ^NS.URL) -> bool,
@@ -58,12 +58,12 @@ VTable :: struct {
     removeAllCachedResourceValues: proc(self: ^NS.URL),
     setTemporaryResourceValue: proc(self: ^NS.URL, value: id, key: ^NS.String),
     bookmarkDataWithOptions: proc(self: ^NS.URL, options: NS.URLBookmarkCreationOptions, keys: ^NS.Array, relativeURL: ^NS.URL, error: ^^NS.Error) -> ^NS.Data,
-    initByResolvingBookmarkData: proc(self: ^NS.URL, bookmarkData: ^NS.Data, options: NS.URLBookmarkResolutionOptions, relativeURL: ^NS.URL, isStale: ^bool, error: ^^NS.Error) -> ^NS.URL,
-    _URLByResolvingBookmarkData: proc(bookmarkData: ^NS.Data, options: NS.URLBookmarkResolutionOptions, relativeURL: ^NS.URL, isStale: ^bool, error: ^^NS.Error) -> ^NS.URL,
+    initByResolvingBookmarkData: proc(self: ^NS.URL, bookmarkData: ^NS.Data, options: NS.URLBookmarkResolutionOptions, relativeURL: ^NS.URL, isStale: ^bool, error: ^^NS.Error) -> instancetype,
+    _URLByResolvingBookmarkData: proc(bookmarkData: ^NS.Data, options: NS.URLBookmarkResolutionOptions, relativeURL: ^NS.URL, isStale: ^bool, error: ^^NS.Error) -> instancetype,
     resourceValuesForKeys_fromBookmarkData: proc(keys: ^NS.Array, bookmarkData: ^NS.Data) -> ^NS.Dictionary,
     writeBookmarkData: proc(bookmarkData: ^NS.Data, bookmarkFileURL: ^NS.URL, options: NS.URLBookmarkFileCreationOptions, error: ^^NS.Error) -> bool,
     bookmarkDataWithContentsOfURL: proc(bookmarkFileURL: ^NS.URL, error: ^^NS.Error) -> ^NS.Data,
-    _URLByResolvingAliasFileAtURL: proc(url: ^NS.URL, options: NS.URLBookmarkResolutionOptions, error: ^^NS.Error) -> ^NS.URL,
+    _URLByResolvingAliasFileAtURL: proc(url: ^NS.URL, options: NS.URLBookmarkResolutionOptions, error: ^^NS.Error) -> instancetype,
     startAccessingSecurityScopedResource: proc(self: ^NS.URL) -> bool,
     stopAccessingSecurityScopedResource: proc(self: ^NS.URL),
     dataRepresentation: proc(self: ^NS.URL) -> ^NS.Data,
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithScheme != nil {
-        initWithScheme :: proc "c" (self: ^NS.URL, _: SEL, scheme: ^NS.String, host: ^NS.String, path: ^NS.String) -> ^NS.URL {
+        initWithScheme :: proc "c" (self: ^NS.URL, _: SEL, scheme: ^NS.String, host: ^NS.String, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithScheme:host:path:"), auto_cast initWithScheme, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.initFileURLWithPath_isDirectory_relativeToURL != nil {
-        initFileURLWithPath_isDirectory_relativeToURL :: proc "c" (self: ^NS.URL, _: SEL, path: ^NS.String, isDir: bool, baseURL: ^NS.URL) -> ^NS.URL {
+        initFileURLWithPath_isDirectory_relativeToURL :: proc "c" (self: ^NS.URL, _: SEL, path: ^NS.String, isDir: bool, baseURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initFileURLWithPath:isDirectory:relativeToURL:"), auto_cast initFileURLWithPath_isDirectory_relativeToURL, "@@:@B@") do panic("Failed to register objC method.")
     }
     if vt.initFileURLWithPath_relativeToURL != nil {
-        initFileURLWithPath_relativeToURL :: proc "c" (self: ^NS.URL, _: SEL, path: ^NS.String, baseURL: ^NS.URL) -> ^NS.URL {
+        initFileURLWithPath_relativeToURL :: proc "c" (self: ^NS.URL, _: SEL, path: ^NS.String, baseURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initFileURLWithPath:relativeToURL:"), auto_cast initFileURLWithPath_relativeToURL, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initFileURLWithPath_isDirectory != nil {
-        initFileURLWithPath_isDirectory :: proc "c" (self: ^NS.URL, _: SEL, path: ^NS.String, isDir: bool) -> ^NS.URL {
+        initFileURLWithPath_isDirectory :: proc "c" (self: ^NS.URL, _: SEL, path: ^NS.String, isDir: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initFileURLWithPath:isDirectory:"), auto_cast initFileURLWithPath_isDirectory, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.initFileURLWithPath_ != nil {
-        initFileURLWithPath_ :: proc "c" (self: ^NS.URL, _: SEL, path: ^NS.String) -> ^NS.URL {
+        initFileURLWithPath_ :: proc "c" (self: ^NS.URL, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fileURLWithPath:"), auto_cast fileURLWithPath_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initFileURLWithFileSystemRepresentation != nil {
-        initFileURLWithFileSystemRepresentation :: proc "c" (self: ^NS.URL, _: SEL, path: cstring, isDir: bool, baseURL: ^NS.URL) -> ^NS.URL {
+        initFileURLWithFileSystemRepresentation :: proc "c" (self: ^NS.URL, _: SEL, path: cstring, isDir: bool, baseURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -222,7 +222,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fileURLWithFileSystemRepresentation:isDirectory:relativeToURL:"), auto_cast fileURLWithFileSystemRepresentation, "@#:*B@") do panic("Failed to register objC method.")
     }
     if vt.initWithString_ != nil {
-        initWithString_ :: proc "c" (self: ^NS.URL, _: SEL, URLString: ^NS.String) -> ^NS.URL {
+        initWithString_ :: proc "c" (self: ^NS.URL, _: SEL, URLString: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -232,7 +232,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:"), auto_cast initWithString_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithString_relativeToURL != nil {
-        initWithString_relativeToURL :: proc "c" (self: ^NS.URL, _: SEL, URLString: ^NS.String, baseURL: ^NS.URL) -> ^NS.URL {
+        initWithString_relativeToURL :: proc "c" (self: ^NS.URL, _: SEL, URLString: ^NS.String, baseURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -242,7 +242,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:relativeToURL:"), auto_cast initWithString_relativeToURL, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt._URLWithString_ != nil {
-        _URLWithString_ :: proc "c" (self: Class, _: SEL, URLString: ^NS.String) -> ^NS.URL {
+        _URLWithString_ :: proc "c" (self: Class, _: SEL, URLString: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -252,7 +252,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("URLWithString:"), auto_cast _URLWithString_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt._URLWithString_relativeToURL != nil {
-        _URLWithString_relativeToURL :: proc "c" (self: Class, _: SEL, URLString: ^NS.String, baseURL: ^NS.URL) -> ^NS.URL {
+        _URLWithString_relativeToURL :: proc "c" (self: Class, _: SEL, URLString: ^NS.String, baseURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -262,7 +262,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("URLWithString:relativeToURL:"), auto_cast _URLWithString_relativeToURL, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithString_encodingInvalidCharacters != nil {
-        initWithString_encodingInvalidCharacters :: proc "c" (self: ^NS.URL, _: SEL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> ^NS.URL {
+        initWithString_encodingInvalidCharacters :: proc "c" (self: ^NS.URL, _: SEL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -272,7 +272,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:encodingInvalidCharacters:"), auto_cast initWithString_encodingInvalidCharacters, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt._URLWithString_encodingInvalidCharacters != nil {
-        _URLWithString_encodingInvalidCharacters :: proc "c" (self: Class, _: SEL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> ^NS.URL {
+        _URLWithString_encodingInvalidCharacters :: proc "c" (self: Class, _: SEL, URLString: ^NS.String, encodingInvalidCharacters: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -282,7 +282,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("URLWithString:encodingInvalidCharacters:"), auto_cast _URLWithString_encodingInvalidCharacters, "@#:@B") do panic("Failed to register objC method.")
     }
     if vt.initWithDataRepresentation != nil {
-        initWithDataRepresentation :: proc "c" (self: ^NS.URL, _: SEL, data: ^NS.Data, baseURL: ^NS.URL) -> ^NS.URL {
+        initWithDataRepresentation :: proc "c" (self: ^NS.URL, _: SEL, data: ^NS.Data, baseURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -302,7 +302,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("URLWithDataRepresentation:relativeToURL:"), auto_cast _URLWithDataRepresentation, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.initAbsoluteURLWithDataRepresentation != nil {
-        initAbsoluteURLWithDataRepresentation :: proc "c" (self: ^NS.URL, _: SEL, data: ^NS.Data, baseURL: ^NS.URL) -> ^NS.URL {
+        initAbsoluteURLWithDataRepresentation :: proc "c" (self: ^NS.URL, _: SEL, data: ^NS.Data, baseURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -432,7 +432,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bookmarkDataWithOptions:includingResourceValuesForKeys:relativeToURL:error:"), auto_cast bookmarkDataWithOptions, "@@:L^void@^void") do panic("Failed to register objC method.")
     }
     if vt.initByResolvingBookmarkData != nil {
-        initByResolvingBookmarkData :: proc "c" (self: ^NS.URL, _: SEL, bookmarkData: ^NS.Data, options: NS.URLBookmarkResolutionOptions, relativeURL: ^NS.URL, isStale: ^bool, error: ^^NS.Error) -> ^NS.URL {
+        initByResolvingBookmarkData :: proc "c" (self: ^NS.URL, _: SEL, bookmarkData: ^NS.Data, options: NS.URLBookmarkResolutionOptions, relativeURL: ^NS.URL, isStale: ^bool, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -442,7 +442,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initByResolvingBookmarkData:options:relativeToURL:bookmarkDataIsStale:error:"), auto_cast initByResolvingBookmarkData, "@@:@L@^void^void") do panic("Failed to register objC method.")
     }
     if vt._URLByResolvingBookmarkData != nil {
-        _URLByResolvingBookmarkData :: proc "c" (self: Class, _: SEL, bookmarkData: ^NS.Data, options: NS.URLBookmarkResolutionOptions, relativeURL: ^NS.URL, isStale: ^bool, error: ^^NS.Error) -> ^NS.URL {
+        _URLByResolvingBookmarkData :: proc "c" (self: Class, _: SEL, bookmarkData: ^NS.Data, options: NS.URLBookmarkResolutionOptions, relativeURL: ^NS.URL, isStale: ^bool, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -482,7 +482,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bookmarkDataWithContentsOfURL:error:"), auto_cast bookmarkDataWithContentsOfURL, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt._URLByResolvingAliasFileAtURL != nil {
-        _URLByResolvingAliasFileAtURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, options: NS.URLBookmarkResolutionOptions, error: ^^NS.Error) -> ^NS.URL {
+        _URLByResolvingAliasFileAtURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, options: NS.URLBookmarkResolutionOptions, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

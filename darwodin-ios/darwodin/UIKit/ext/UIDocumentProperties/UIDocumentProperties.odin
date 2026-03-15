@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.DocumentProperties) -> ^UI.DocumentProperties,
+    init: proc(self: ^UI.DocumentProperties) -> instancetype,
     new: proc() -> ^UI.DocumentProperties,
-    initWithURL: proc(self: ^UI.DocumentProperties, url: ^NS.URL) -> ^UI.DocumentProperties,
-    initWithMetadata: proc(self: ^UI.DocumentProperties, metadata: ^UI.LPLinkMetadata) -> ^UI.DocumentProperties,
+    initWithURL: proc(self: ^UI.DocumentProperties, url: ^NS.URL) -> instancetype,
+    initWithMetadata: proc(self: ^UI.DocumentProperties, metadata: ^UI.LPLinkMetadata) -> instancetype,
     metadata: proc(self: ^UI.DocumentProperties) -> ^UI.LPLinkMetadata,
     setMetadata: proc(self: ^UI.DocumentProperties, metadata: ^UI.LPLinkMetadata),
     dragItemsProvider: proc(self: ^UI.DocumentProperties) -> ^Objc_Block(proc "c" () -> ^NS.Array),
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.DocumentProperties, _: SEL) -> ^UI.DocumentProperties {
+        init :: proc "c" (self: ^UI.DocumentProperties, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^UI.DocumentProperties, _: SEL, url: ^NS.URL) -> ^UI.DocumentProperties {
+        initWithURL :: proc "c" (self: ^UI.DocumentProperties, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithURL:"), auto_cast initWithURL, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithMetadata != nil {
-        initWithMetadata :: proc "c" (self: ^UI.DocumentProperties, _: SEL, metadata: ^UI.LPLinkMetadata) -> ^UI.DocumentProperties {
+        initWithMetadata :: proc "c" (self: ^UI.DocumentProperties, _: SEL, metadata: ^UI.LPLinkMetadata) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

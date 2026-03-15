@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDataSource: proc(self: ^AK.TextSelectionNavigation, dataSource: ^AK.TextSelectionDataSource) -> ^AK.TextSelectionNavigation,
+    initWithDataSource: proc(self: ^AK.TextSelectionNavigation, dataSource: ^AK.TextSelectionDataSource) -> instancetype,
     new: proc() -> ^AK.TextSelectionNavigation,
-    init: proc(self: ^AK.TextSelectionNavigation) -> ^AK.TextSelectionNavigation,
+    init: proc(self: ^AK.TextSelectionNavigation) -> instancetype,
     flushLayoutCache: proc(self: ^AK.TextSelectionNavigation),
     destinationSelectionForTextSelection: proc(self: ^AK.TextSelectionNavigation, textSelection: ^AK.TextSelection, direction: AK.TextSelectionNavigationDirection, destination: AK.TextSelectionNavigationDestination, extending: bool, confined: bool) -> ^AK.TextSelection,
     textSelectionsInteractingAtPoint: proc(self: ^AK.TextSelectionNavigation, point: CG.Point, containerLocation: ^AK.TextLocation, anchors: ^NS.Array, modifiers: AK.TextSelectionNavigationModifier, selecting: bool, bounds: CG.Rect) -> ^NS.Array,
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDataSource != nil {
-        initWithDataSource :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, dataSource: ^AK.TextSelectionDataSource) -> ^AK.TextSelectionNavigation {
+        initWithDataSource :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, dataSource: ^AK.TextSelectionDataSource) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL) -> ^AK.TextSelectionNavigation {
+        init :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

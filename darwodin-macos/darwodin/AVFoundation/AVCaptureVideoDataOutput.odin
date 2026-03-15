@@ -23,7 +23,7 @@ CaptureVideoDataOutput :: struct { using _: CaptureOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureVideoDataOutput, objc_selector="init", objc_name="init")
-    CaptureVideoDataOutput_init :: proc(self: ^CaptureVideoDataOutput) -> ^CaptureVideoDataOutput ---
+    CaptureVideoDataOutput_init :: proc(self: ^CaptureVideoDataOutput) -> instancetype ---
 
     @(objc_type=CaptureVideoDataOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureVideoDataOutput_new :: proc() -> ^CaptureVideoDataOutput ---

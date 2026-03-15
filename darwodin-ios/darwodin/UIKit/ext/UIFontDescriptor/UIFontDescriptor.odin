@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.FontDescriptor) -> ^UI.FontDescriptor,
-    initWithCoder: proc(self: ^UI.FontDescriptor, coder: ^NS.Coder) -> ^UI.FontDescriptor,
+    init: proc(self: ^UI.FontDescriptor) -> instancetype,
+    initWithCoder: proc(self: ^UI.FontDescriptor, coder: ^NS.Coder) -> instancetype,
     objectForKey: proc(self: ^UI.FontDescriptor, anAttribute: ^NS.String) -> id,
     matchingFontDescriptorsWithMandatoryKeys: proc(self: ^UI.FontDescriptor, mandatoryKeys: ^NS.Set) -> ^NS.Array,
     fontDescriptorWithFontAttributes: proc(attributes: ^NS.Dictionary) -> ^UI.FontDescriptor,
@@ -37,7 +37,7 @@ VTable :: struct {
     fontDescriptorWithName_matrix: proc(fontName: ^NS.String, _matrix: CG.AffineTransform) -> ^UI.FontDescriptor,
     preferredFontDescriptorWithTextStyle_: proc(style: ^NS.String) -> ^UI.FontDescriptor,
     preferredFontDescriptorWithTextStyle_compatibleWithTraitCollection: proc(style: ^NS.String, traitCollection: ^UI.TraitCollection) -> ^UI.FontDescriptor,
-    initWithFontAttributes: proc(self: ^UI.FontDescriptor, attributes: ^NS.Dictionary) -> ^UI.FontDescriptor,
+    initWithFontAttributes: proc(self: ^UI.FontDescriptor, attributes: ^NS.Dictionary) -> instancetype,
     fontDescriptorByAddingAttributes: proc(self: ^UI.FontDescriptor, attributes: ^NS.Dictionary) -> ^UI.FontDescriptor,
     fontDescriptorWithSize: proc(self: ^UI.FontDescriptor, newPointSize: CG.Float) -> ^UI.FontDescriptor,
     fontDescriptorWithMatrix: proc(self: ^UI.FontDescriptor, _matrix: CG.AffineTransform) -> ^UI.FontDescriptor,
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.FontDescriptor, _: SEL) -> ^UI.FontDescriptor {
+        init :: proc "c" (self: ^UI.FontDescriptor, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.FontDescriptor, _: SEL, coder: ^NS.Coder) -> ^UI.FontDescriptor {
+        initWithCoder :: proc "c" (self: ^UI.FontDescriptor, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("preferredFontDescriptorWithTextStyle:compatibleWithTraitCollection:"), auto_cast preferredFontDescriptorWithTextStyle_compatibleWithTraitCollection, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFontAttributes != nil {
-        initWithFontAttributes :: proc "c" (self: ^UI.FontDescriptor, _: SEL, attributes: ^NS.Dictionary) -> ^UI.FontDescriptor {
+        initWithFontAttributes :: proc "c" (self: ^UI.FontDescriptor, _: SEL, attributes: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

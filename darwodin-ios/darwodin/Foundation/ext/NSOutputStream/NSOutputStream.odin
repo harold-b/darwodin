@@ -27,15 +27,15 @@ import "../NSStream"
 VTable :: struct {
     super: NSStream.VTable,
     write: proc(self: ^NS.OutputStream, buffer: ^cffi.uint8_t, len: NS.UInteger) -> NS.Integer,
-    initToMemory: proc(self: ^NS.OutputStream) -> ^NS.OutputStream,
-    initToBuffer: proc(self: ^NS.OutputStream, buffer: ^cffi.uint8_t, capacity: NS.UInteger) -> ^NS.OutputStream,
-    initWithURL: proc(self: ^NS.OutputStream, url: ^NS.URL, shouldAppend: bool) -> ^NS.OutputStream,
+    initToMemory: proc(self: ^NS.OutputStream) -> instancetype,
+    initToBuffer: proc(self: ^NS.OutputStream, buffer: ^cffi.uint8_t, capacity: NS.UInteger) -> instancetype,
+    initWithURL: proc(self: ^NS.OutputStream, url: ^NS.URL, shouldAppend: bool) -> instancetype,
     hasSpaceAvailable: proc(self: ^NS.OutputStream) -> bool,
-    initToFileAtPath: proc(self: ^NS.OutputStream, path: ^NS.String, shouldAppend: bool) -> ^NS.OutputStream,
-    outputStreamToMemory: proc() -> ^NS.OutputStream,
-    outputStreamToBuffer: proc(buffer: ^cffi.uint8_t, capacity: NS.UInteger) -> ^NS.OutputStream,
-    outputStreamToFileAtPath: proc(path: ^NS.String, shouldAppend: bool) -> ^NS.OutputStream,
-    outputStreamWithURL: proc(url: ^NS.URL, shouldAppend: bool) -> ^NS.OutputStream,
+    initToFileAtPath: proc(self: ^NS.OutputStream, path: ^NS.String, shouldAppend: bool) -> instancetype,
+    outputStreamToMemory: proc() -> instancetype,
+    outputStreamToBuffer: proc(buffer: ^cffi.uint8_t, capacity: NS.UInteger) -> instancetype,
+    outputStreamToFileAtPath: proc(path: ^NS.String, shouldAppend: bool) -> instancetype,
+    outputStreamWithURL: proc(url: ^NS.URL, shouldAppend: bool) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("write:maxLength:"), auto_cast write, "l@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initToMemory != nil {
-        initToMemory :: proc "c" (self: ^NS.OutputStream, _: SEL) -> ^NS.OutputStream {
+        initToMemory :: proc "c" (self: ^NS.OutputStream, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initToMemory"), auto_cast initToMemory, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initToBuffer != nil {
-        initToBuffer :: proc "c" (self: ^NS.OutputStream, _: SEL, buffer: ^cffi.uint8_t, capacity: NS.UInteger) -> ^NS.OutputStream {
+        initToBuffer :: proc "c" (self: ^NS.OutputStream, _: SEL, buffer: ^cffi.uint8_t, capacity: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initToBuffer:capacity:"), auto_cast initToBuffer, "@@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^NS.OutputStream, _: SEL, url: ^NS.URL, shouldAppend: bool) -> ^NS.OutputStream {
+        initWithURL :: proc "c" (self: ^NS.OutputStream, _: SEL, url: ^NS.URL, shouldAppend: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasSpaceAvailable"), auto_cast hasSpaceAvailable, "B@:") do panic("Failed to register objC method.")
     }
     if vt.initToFileAtPath != nil {
-        initToFileAtPath :: proc "c" (self: ^NS.OutputStream, _: SEL, path: ^NS.String, shouldAppend: bool) -> ^NS.OutputStream {
+        initToFileAtPath :: proc "c" (self: ^NS.OutputStream, _: SEL, path: ^NS.String, shouldAppend: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initToFileAtPath:append:"), auto_cast initToFileAtPath, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.outputStreamToMemory != nil {
-        outputStreamToMemory :: proc "c" (self: Class, _: SEL) -> ^NS.OutputStream {
+        outputStreamToMemory :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("outputStreamToMemory"), auto_cast outputStreamToMemory, "@#:") do panic("Failed to register objC method.")
     }
     if vt.outputStreamToBuffer != nil {
-        outputStreamToBuffer :: proc "c" (self: Class, _: SEL, buffer: ^cffi.uint8_t, capacity: NS.UInteger) -> ^NS.OutputStream {
+        outputStreamToBuffer :: proc "c" (self: Class, _: SEL, buffer: ^cffi.uint8_t, capacity: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("outputStreamToBuffer:capacity:"), auto_cast outputStreamToBuffer, "@#:^voidL") do panic("Failed to register objC method.")
     }
     if vt.outputStreamToFileAtPath != nil {
-        outputStreamToFileAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String, shouldAppend: bool) -> ^NS.OutputStream {
+        outputStreamToFileAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String, shouldAppend: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("outputStreamToFileAtPath:append:"), auto_cast outputStreamToFileAtPath, "@#:@B") do panic("Failed to register objC method.")
     }
     if vt.outputStreamWithURL != nil {
-        outputStreamWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, shouldAppend: bool) -> ^NS.OutputStream {
+        outputStreamWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, shouldAppend: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

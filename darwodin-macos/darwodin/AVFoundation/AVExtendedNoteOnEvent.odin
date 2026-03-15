@@ -23,10 +23,10 @@ ExtendedNoteOnEvent :: struct { using _: MusicEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExtendedNoteOnEvent, objc_selector="initWithMIDINote:velocity:groupID:duration:", objc_name="initWithMIDINote_velocity_groupID_duration")
-    ExtendedNoteOnEvent_initWithMIDINote_velocity_groupID_duration :: proc(self: ^ExtendedNoteOnEvent, midiNote: cffi.float, velocity: cffi.float, groupID: CF.UInt32, duration: MusicTimeStamp) -> ^ExtendedNoteOnEvent ---
+    ExtendedNoteOnEvent_initWithMIDINote_velocity_groupID_duration :: proc(self: ^ExtendedNoteOnEvent, midiNote: cffi.float, velocity: cffi.float, groupID: CF.UInt32, duration: MusicTimeStamp) -> instancetype ---
 
     @(objc_type=ExtendedNoteOnEvent, objc_selector="initWithMIDINote:velocity:instrumentID:groupID:duration:", objc_name="initWithMIDINote_velocity_instrumentID_groupID_duration")
-    ExtendedNoteOnEvent_initWithMIDINote_velocity_instrumentID_groupID_duration :: proc(self: ^ExtendedNoteOnEvent, midiNote: cffi.float, velocity: cffi.float, instrumentID: CF.UInt32, groupID: CF.UInt32, duration: MusicTimeStamp) -> ^ExtendedNoteOnEvent ---
+    ExtendedNoteOnEvent_initWithMIDINote_velocity_instrumentID_groupID_duration :: proc(self: ^ExtendedNoteOnEvent, midiNote: cffi.float, velocity: cffi.float, instrumentID: CF.UInt32, groupID: CF.UInt32, duration: MusicTimeStamp) -> instancetype ---
 
     @(objc_type=ExtendedNoteOnEvent, objc_selector="midiNote", objc_name="midiNote")
     ExtendedNoteOnEvent_midiNote :: proc(self: ^ExtendedNoteOnEvent) -> cffi.float ---

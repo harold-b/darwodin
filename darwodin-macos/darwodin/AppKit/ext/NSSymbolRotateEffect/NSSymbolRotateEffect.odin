@@ -30,11 +30,11 @@ import "../NSSymbolEffect"
 
 VTable :: struct {
     super: NSSymbolEffect.VTable,
-    effect: proc() -> ^AK.SymbolRotateEffect,
-    rotateClockwiseEffect: proc() -> ^AK.SymbolRotateEffect,
-    rotateCounterClockwiseEffect: proc() -> ^AK.SymbolRotateEffect,
-    effectWithByLayer: proc(self: ^AK.SymbolRotateEffect) -> ^AK.SymbolRotateEffect,
-    effectWithWholeSymbol: proc(self: ^AK.SymbolRotateEffect) -> ^AK.SymbolRotateEffect,
+    effect: proc() -> instancetype,
+    rotateClockwiseEffect: proc() -> instancetype,
+    rotateCounterClockwiseEffect: proc() -> instancetype,
+    effectWithByLayer: proc(self: ^AK.SymbolRotateEffect) -> instancetype,
+    effectWithWholeSymbol: proc(self: ^AK.SymbolRotateEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSSymbolEffect.extend(cls, &vt.super)
 
     if vt.effect != nil {
-        effect :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolRotateEffect {
+        effect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.rotateClockwiseEffect != nil {
-        rotateClockwiseEffect :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolRotateEffect {
+        rotateClockwiseEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("rotateClockwiseEffect"), auto_cast rotateClockwiseEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.rotateCounterClockwiseEffect != nil {
-        rotateCounterClockwiseEffect :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolRotateEffect {
+        rotateCounterClockwiseEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("rotateCounterClockwiseEffect"), auto_cast rotateCounterClockwiseEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.effectWithByLayer != nil {
-        effectWithByLayer :: proc "c" (self: ^AK.SymbolRotateEffect, _: SEL) -> ^AK.SymbolRotateEffect {
+        effectWithByLayer :: proc "c" (self: ^AK.SymbolRotateEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithByLayer"), auto_cast effectWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithWholeSymbol != nil {
-        effectWithWholeSymbol :: proc "c" (self: ^AK.SymbolRotateEffect, _: SEL) -> ^AK.SymbolRotateEffect {
+        effectWithWholeSymbol :: proc "c" (self: ^AK.SymbolRotateEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

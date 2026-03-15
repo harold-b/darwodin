@@ -28,23 +28,23 @@ import "../UIBarItem"
 
 VTable :: struct {
     super: UIBarItem.VTable,
-    init: proc(self: ^UI.BarButtonItem) -> ^UI.BarButtonItem,
-    initWithCoder: proc(self: ^UI.BarButtonItem, coder: ^NS.Coder) -> ^UI.BarButtonItem,
-    initWithImage_style_target_action: proc(self: ^UI.BarButtonItem, image: ^UI.Image, style: UI.BarButtonItemStyle, target: id, action: SEL) -> ^UI.BarButtonItem,
-    initWithImage_landscapeImagePhone_style_target_action: proc(self: ^UI.BarButtonItem, image: ^UI.Image, landscapeImagePhone: ^UI.Image, style: UI.BarButtonItemStyle, target: id, action: SEL) -> ^UI.BarButtonItem,
-    initWithTitle_style_target_action: proc(self: ^UI.BarButtonItem, title: ^NS.String, style: UI.BarButtonItemStyle, target: id, action: SEL) -> ^UI.BarButtonItem,
-    initWithBarButtonSystemItem_target_action: proc(self: ^UI.BarButtonItem, systemItem: UI.BarButtonSystemItem, target: id, action: SEL) -> ^UI.BarButtonItem,
-    initWithCustomView: proc(self: ^UI.BarButtonItem, customView: ^UI.View) -> ^UI.BarButtonItem,
-    initWithBarButtonSystemItem_primaryAction: proc(self: ^UI.BarButtonItem, systemItem: UI.BarButtonSystemItem, primaryAction: ^UI.Action) -> ^UI.BarButtonItem,
-    initWithPrimaryAction_: proc(self: ^UI.BarButtonItem, primaryAction: ^UI.Action) -> ^UI.BarButtonItem,
-    initWithBarButtonSystemItem_menu: proc(self: ^UI.BarButtonItem, systemItem: UI.BarButtonSystemItem, menu: ^UI.Menu) -> ^UI.BarButtonItem,
-    initWithTitle_menu: proc(self: ^UI.BarButtonItem, title: ^NS.String, menu: ^UI.Menu) -> ^UI.BarButtonItem,
-    initWithImage_menu: proc(self: ^UI.BarButtonItem, image: ^UI.Image, menu: ^UI.Menu) -> ^UI.BarButtonItem,
-    initWithPrimaryAction_menu: proc(self: ^UI.BarButtonItem, primaryAction: ^UI.Action, menu: ^UI.Menu) -> ^UI.BarButtonItem,
-    initWithBarButtonSystemItem_primaryAction_menu: proc(self: ^UI.BarButtonItem, systemItem: UI.BarButtonSystemItem, primaryAction: ^UI.Action, menu: ^UI.Menu) -> ^UI.BarButtonItem,
-    initWithTitle_image_target_action_menu: proc(self: ^UI.BarButtonItem, title: ^NS.String, image: ^UI.Image, target: id, action: SEL, menu: ^UI.Menu) -> ^UI.BarButtonItem,
-    fixedSpaceItemOfWidth: proc(width: CG.Float) -> ^UI.BarButtonItem,
-    flexibleSpaceItem: proc() -> ^UI.BarButtonItem,
+    init: proc(self: ^UI.BarButtonItem) -> instancetype,
+    initWithCoder: proc(self: ^UI.BarButtonItem, coder: ^NS.Coder) -> instancetype,
+    initWithImage_style_target_action: proc(self: ^UI.BarButtonItem, image: ^UI.Image, style: UI.BarButtonItemStyle, target: id, action: SEL) -> instancetype,
+    initWithImage_landscapeImagePhone_style_target_action: proc(self: ^UI.BarButtonItem, image: ^UI.Image, landscapeImagePhone: ^UI.Image, style: UI.BarButtonItemStyle, target: id, action: SEL) -> instancetype,
+    initWithTitle_style_target_action: proc(self: ^UI.BarButtonItem, title: ^NS.String, style: UI.BarButtonItemStyle, target: id, action: SEL) -> instancetype,
+    initWithBarButtonSystemItem_target_action: proc(self: ^UI.BarButtonItem, systemItem: UI.BarButtonSystemItem, target: id, action: SEL) -> instancetype,
+    initWithCustomView: proc(self: ^UI.BarButtonItem, customView: ^UI.View) -> instancetype,
+    initWithBarButtonSystemItem_primaryAction: proc(self: ^UI.BarButtonItem, systemItem: UI.BarButtonSystemItem, primaryAction: ^UI.Action) -> instancetype,
+    initWithPrimaryAction_: proc(self: ^UI.BarButtonItem, primaryAction: ^UI.Action) -> instancetype,
+    initWithBarButtonSystemItem_menu: proc(self: ^UI.BarButtonItem, systemItem: UI.BarButtonSystemItem, menu: ^UI.Menu) -> instancetype,
+    initWithTitle_menu: proc(self: ^UI.BarButtonItem, title: ^NS.String, menu: ^UI.Menu) -> instancetype,
+    initWithImage_menu: proc(self: ^UI.BarButtonItem, image: ^UI.Image, menu: ^UI.Menu) -> instancetype,
+    initWithPrimaryAction_menu: proc(self: ^UI.BarButtonItem, primaryAction: ^UI.Action, menu: ^UI.Menu) -> instancetype,
+    initWithBarButtonSystemItem_primaryAction_menu: proc(self: ^UI.BarButtonItem, systemItem: UI.BarButtonSystemItem, primaryAction: ^UI.Action, menu: ^UI.Menu) -> instancetype,
+    initWithTitle_image_target_action_menu: proc(self: ^UI.BarButtonItem, title: ^NS.String, image: ^UI.Image, target: id, action: SEL, menu: ^UI.Menu) -> instancetype,
+    fixedSpaceItemOfWidth: proc(width: CG.Float) -> instancetype,
+    flexibleSpaceItem: proc() -> instancetype,
     creatingFixedGroup: proc(self: ^UI.BarButtonItem) -> ^UI.BarButtonItemGroup,
     creatingMovableGroupWithCustomizationIdentifier: proc(self: ^UI.BarButtonItem, customizationIdentifier: ^NS.String) -> ^UI.BarButtonItemGroup,
     creatingOptionalGroupWithCustomizationIdentifier: proc(self: ^UI.BarButtonItem, customizationIdentifier: ^NS.String, inDefaultCustomization: bool) -> ^UI.BarButtonItemGroup,
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIBarItem.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> ^UI.BarButtonItem {
+        init :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.BarButtonItem, _: SEL, coder: ^NS.Coder) -> ^UI.BarButtonItem {
+        initWithCoder :: proc "c" (self: ^UI.BarButtonItem, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -134,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithImage_style_target_action != nil {
-        initWithImage_style_target_action :: proc "c" (self: ^UI.BarButtonItem, _: SEL, image: ^UI.Image, style: UI.BarButtonItemStyle, target: id, action: SEL) -> ^UI.BarButtonItem {
+        initWithImage_style_target_action :: proc "c" (self: ^UI.BarButtonItem, _: SEL, image: ^UI.Image, style: UI.BarButtonItemStyle, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -144,7 +144,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImage:style:target:action:"), auto_cast initWithImage_style_target_action, "@@:@l@:") do panic("Failed to register objC method.")
     }
     if vt.initWithImage_landscapeImagePhone_style_target_action != nil {
-        initWithImage_landscapeImagePhone_style_target_action :: proc "c" (self: ^UI.BarButtonItem, _: SEL, image: ^UI.Image, landscapeImagePhone: ^UI.Image, style: UI.BarButtonItemStyle, target: id, action: SEL) -> ^UI.BarButtonItem {
+        initWithImage_landscapeImagePhone_style_target_action :: proc "c" (self: ^UI.BarButtonItem, _: SEL, image: ^UI.Image, landscapeImagePhone: ^UI.Image, style: UI.BarButtonItemStyle, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -154,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImage:landscapeImagePhone:style:target:action:"), auto_cast initWithImage_landscapeImagePhone_style_target_action, "@@:@@l@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTitle_style_target_action != nil {
-        initWithTitle_style_target_action :: proc "c" (self: ^UI.BarButtonItem, _: SEL, title: ^NS.String, style: UI.BarButtonItemStyle, target: id, action: SEL) -> ^UI.BarButtonItem {
+        initWithTitle_style_target_action :: proc "c" (self: ^UI.BarButtonItem, _: SEL, title: ^NS.String, style: UI.BarButtonItemStyle, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:style:target:action:"), auto_cast initWithTitle_style_target_action, "@@:@l@:") do panic("Failed to register objC method.")
     }
     if vt.initWithBarButtonSystemItem_target_action != nil {
-        initWithBarButtonSystemItem_target_action :: proc "c" (self: ^UI.BarButtonItem, _: SEL, systemItem: UI.BarButtonSystemItem, target: id, action: SEL) -> ^UI.BarButtonItem {
+        initWithBarButtonSystemItem_target_action :: proc "c" (self: ^UI.BarButtonItem, _: SEL, systemItem: UI.BarButtonSystemItem, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBarButtonSystemItem:target:action:"), auto_cast initWithBarButtonSystemItem_target_action, "@@:l@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCustomView != nil {
-        initWithCustomView :: proc "c" (self: ^UI.BarButtonItem, _: SEL, customView: ^UI.View) -> ^UI.BarButtonItem {
+        initWithCustomView :: proc "c" (self: ^UI.BarButtonItem, _: SEL, customView: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -184,7 +184,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCustomView:"), auto_cast initWithCustomView, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithBarButtonSystemItem_primaryAction != nil {
-        initWithBarButtonSystemItem_primaryAction :: proc "c" (self: ^UI.BarButtonItem, _: SEL, systemItem: UI.BarButtonSystemItem, primaryAction: ^UI.Action) -> ^UI.BarButtonItem {
+        initWithBarButtonSystemItem_primaryAction :: proc "c" (self: ^UI.BarButtonItem, _: SEL, systemItem: UI.BarButtonSystemItem, primaryAction: ^UI.Action) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -194,7 +194,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBarButtonSystemItem:primaryAction:"), auto_cast initWithBarButtonSystemItem_primaryAction, "@@:l@") do panic("Failed to register objC method.")
     }
     if vt.initWithPrimaryAction_ != nil {
-        initWithPrimaryAction_ :: proc "c" (self: ^UI.BarButtonItem, _: SEL, primaryAction: ^UI.Action) -> ^UI.BarButtonItem {
+        initWithPrimaryAction_ :: proc "c" (self: ^UI.BarButtonItem, _: SEL, primaryAction: ^UI.Action) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -204,7 +204,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPrimaryAction:"), auto_cast initWithPrimaryAction_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithBarButtonSystemItem_menu != nil {
-        initWithBarButtonSystemItem_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, systemItem: UI.BarButtonSystemItem, menu: ^UI.Menu) -> ^UI.BarButtonItem {
+        initWithBarButtonSystemItem_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, systemItem: UI.BarButtonSystemItem, menu: ^UI.Menu) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -214,7 +214,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBarButtonSystemItem:menu:"), auto_cast initWithBarButtonSystemItem_menu, "@@:l@") do panic("Failed to register objC method.")
     }
     if vt.initWithTitle_menu != nil {
-        initWithTitle_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, title: ^NS.String, menu: ^UI.Menu) -> ^UI.BarButtonItem {
+        initWithTitle_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, title: ^NS.String, menu: ^UI.Menu) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -224,7 +224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:menu:"), auto_cast initWithTitle_menu, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithImage_menu != nil {
-        initWithImage_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, image: ^UI.Image, menu: ^UI.Menu) -> ^UI.BarButtonItem {
+        initWithImage_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, image: ^UI.Image, menu: ^UI.Menu) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -234,7 +234,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImage:menu:"), auto_cast initWithImage_menu, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithPrimaryAction_menu != nil {
-        initWithPrimaryAction_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, primaryAction: ^UI.Action, menu: ^UI.Menu) -> ^UI.BarButtonItem {
+        initWithPrimaryAction_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, primaryAction: ^UI.Action, menu: ^UI.Menu) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -244,7 +244,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPrimaryAction:menu:"), auto_cast initWithPrimaryAction_menu, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithBarButtonSystemItem_primaryAction_menu != nil {
-        initWithBarButtonSystemItem_primaryAction_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, systemItem: UI.BarButtonSystemItem, primaryAction: ^UI.Action, menu: ^UI.Menu) -> ^UI.BarButtonItem {
+        initWithBarButtonSystemItem_primaryAction_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, systemItem: UI.BarButtonSystemItem, primaryAction: ^UI.Action, menu: ^UI.Menu) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -254,7 +254,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBarButtonSystemItem:primaryAction:menu:"), auto_cast initWithBarButtonSystemItem_primaryAction_menu, "@@:l@@") do panic("Failed to register objC method.")
     }
     if vt.initWithTitle_image_target_action_menu != nil {
-        initWithTitle_image_target_action_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, title: ^NS.String, image: ^UI.Image, target: id, action: SEL, menu: ^UI.Menu) -> ^UI.BarButtonItem {
+        initWithTitle_image_target_action_menu :: proc "c" (self: ^UI.BarButtonItem, _: SEL, title: ^NS.String, image: ^UI.Image, target: id, action: SEL, menu: ^UI.Menu) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -264,7 +264,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:image:target:action:menu:"), auto_cast initWithTitle_image_target_action_menu, "@@:@@@:@") do panic("Failed to register objC method.")
     }
     if vt.fixedSpaceItemOfWidth != nil {
-        fixedSpaceItemOfWidth :: proc "c" (self: Class, _: SEL, width: CG.Float) -> ^UI.BarButtonItem {
+        fixedSpaceItemOfWidth :: proc "c" (self: Class, _: SEL, width: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -274,7 +274,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fixedSpaceItemOfWidth:"), auto_cast fixedSpaceItemOfWidth, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.flexibleSpaceItem != nil {
-        flexibleSpaceItem :: proc "c" (self: Class, _: SEL) -> ^UI.BarButtonItem {
+        flexibleSpaceItem :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

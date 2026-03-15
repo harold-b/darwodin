@@ -24,7 +24,7 @@ ViewAnimation :: struct { using _: Animation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ViewAnimation, objc_selector="initWithViewAnimations:", objc_name="initWithViewAnimations")
-    ViewAnimation_initWithViewAnimations :: proc(self: ^ViewAnimation, viewAnimations: ^NS.Array) -> ^ViewAnimation ---
+    ViewAnimation_initWithViewAnimations :: proc(self: ^ViewAnimation, viewAnimations: ^NS.Array) -> instancetype ---
 
     @(objc_type=ViewAnimation, objc_selector="viewAnimations", objc_name="viewAnimations")
     ViewAnimation_viewAnimations :: proc(self: ^ViewAnimation) -> ^NS.Array ---

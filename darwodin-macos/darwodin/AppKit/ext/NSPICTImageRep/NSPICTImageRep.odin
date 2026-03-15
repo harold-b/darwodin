@@ -30,8 +30,8 @@ import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
-    imageRepWithData: proc(pictData: ^NS.Data) -> ^AK.PICTImageRep,
-    initWithData: proc(self: ^AK.PICTImageRep, pictData: ^NS.Data) -> ^AK.PICTImageRep,
+    imageRepWithData: proc(pictData: ^NS.Data) -> instancetype,
+    initWithData: proc(self: ^AK.PICTImageRep, pictData: ^NS.Data) -> instancetype,
     _PICTRepresentation: proc(self: ^AK.PICTImageRep) -> ^NS.Data,
     boundingBox: proc(self: ^AK.PICTImageRep) -> NS.Rect,
 }
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSImageRep.extend(cls, &vt.super)
 
     if vt.imageRepWithData != nil {
-        imageRepWithData :: proc "c" (self: Class, _: SEL, pictData: ^NS.Data) -> ^AK.PICTImageRep {
+        imageRepWithData :: proc "c" (self: Class, _: SEL, pictData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithData:"), auto_cast imageRepWithData, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.PICTImageRep, _: SEL, pictData: ^NS.Data) -> ^AK.PICTImageRep {
+        initWithData :: proc "c" (self: ^AK.PICTImageRep, _: SEL, pictData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

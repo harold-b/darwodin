@@ -21,7 +21,7 @@ ShareParticipant :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ShareParticipant, objc_selector="init", objc_name="init")
-    ShareParticipant_init :: proc(self: ^ShareParticipant) -> ^ShareParticipant ---
+    ShareParticipant_init :: proc(self: ^ShareParticipant) -> instancetype ---
 
     @(objc_type=ShareParticipant, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ShareParticipant_new :: proc() -> ^ShareParticipant ---

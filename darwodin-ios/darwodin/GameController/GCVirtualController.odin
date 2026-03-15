@@ -26,10 +26,10 @@ foreign lib {
     VirtualController_new :: proc() -> ^VirtualController ---
 
     @(objc_type=VirtualController, objc_selector="init", objc_name="init")
-    VirtualController_init :: proc(self: ^VirtualController) -> ^VirtualController ---
+    VirtualController_init :: proc(self: ^VirtualController) -> instancetype ---
 
     @(objc_type=VirtualController, objc_selector="initWithConfiguration:", objc_name="initWithConfiguration")
-    VirtualController_initWithConfiguration :: proc(self: ^VirtualController, configuration: ^VirtualControllerConfiguration) -> ^VirtualController ---
+    VirtualController_initWithConfiguration :: proc(self: ^VirtualController, configuration: ^VirtualControllerConfiguration) -> instancetype ---
 
     @(objc_type=VirtualController, objc_selector="connectWithReplyHandler:", objc_name="connectWithReplyHandler")
     VirtualController_connectWithReplyHandler :: proc(self: ^VirtualController, reply: ^Objc_Block(proc "c" (error: ^NS.Error))) ---

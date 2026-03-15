@@ -25,10 +25,10 @@ foreign lib {
     Scene_new :: proc() -> ^Scene ---
 
     @(objc_type=Scene, objc_selector="init", objc_name="init")
-    Scene_init :: proc(self: ^Scene) -> ^Scene ---
+    Scene_init :: proc(self: ^Scene) -> instancetype ---
 
     @(objc_type=Scene, objc_selector="initWithSession:connectionOptions:", objc_name="initWithSession")
-    Scene_initWithSession :: proc(self: ^Scene, session: ^SceneSession, connectionOptions: ^SceneConnectionOptions) -> ^Scene ---
+    Scene_initWithSession :: proc(self: ^Scene, session: ^SceneSession, connectionOptions: ^SceneConnectionOptions) -> instancetype ---
 
     @(objc_type=Scene, objc_selector="openURL:options:completionHandler:", objc_name="openURL")
     Scene_openURL :: proc(self: ^Scene, url: ^NS.URL, options: ^SceneOpenExternalURLOptions, completion: ^Objc_Block(proc "c" (success: bool))) ---

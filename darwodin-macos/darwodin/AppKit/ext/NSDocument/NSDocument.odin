@@ -30,11 +30,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.Document) -> ^AK.Document,
-    initWithType: proc(self: ^AK.Document, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
+    init: proc(self: ^AK.Document) -> instancetype,
+    initWithType: proc(self: ^AK.Document, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype,
     canConcurrentlyReadDocumentsOfType: proc(typeName: ^NS.String) -> bool,
-    initWithContentsOfURL_ofType_error: proc(self: ^AK.Document, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
-    initForURL: proc(self: ^AK.Document, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
+    initWithContentsOfURL_ofType_error: proc(self: ^AK.Document, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype,
+    initForURL: proc(self: ^AK.Document, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype,
     performActivityWithSynchronousWaiting: proc(self: ^AK.Document, waitSynchronously: bool, block: ^Objc_Block(proc "c" (activityCompletionHandler: ^Objc_Block(proc "c" ())))),
     continueActivityUsingBlock: proc(self: ^AK.Document, block: ^Objc_Block(proc "c" ())),
     continueAsynchronousWorkOnMainThreadUsingBlock: proc(self: ^AK.Document, block: ^Objc_Block(proc "c" ())),
@@ -218,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Document, _: SEL) -> ^AK.Document {
+        init :: proc "c" (self: ^AK.Document, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -228,7 +228,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithType != nil {
-        initWithType :: proc "c" (self: ^AK.Document, _: SEL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document {
+        initWithType :: proc "c" (self: ^AK.Document, _: SEL, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -248,7 +248,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("canConcurrentlyReadDocumentsOfType:"), auto_cast canConcurrentlyReadDocumentsOfType, "B#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL_ofType_error != nil {
-        initWithContentsOfURL_ofType_error :: proc "c" (self: ^AK.Document, _: SEL, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document {
+        initWithContentsOfURL_ofType_error :: proc "c" (self: ^AK.Document, _: SEL, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -258,7 +258,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:ofType:error:"), auto_cast initWithContentsOfURL_ofType_error, "@@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.initForURL != nil {
-        initForURL :: proc "c" (self: ^AK.Document, _: SEL, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document {
+        initForURL :: proc "c" (self: ^AK.Document, _: SEL, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

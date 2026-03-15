@@ -18,13 +18,13 @@ QueryOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=QueryOperation, objc_selector="init", objc_name="init")
-    QueryOperation_init :: proc(self: ^QueryOperation) -> ^QueryOperation ---
+    QueryOperation_init :: proc(self: ^QueryOperation) -> instancetype ---
 
     @(objc_type=QueryOperation, objc_selector="initWithQuery:", objc_name="initWithQuery")
-    QueryOperation_initWithQuery :: proc(self: ^QueryOperation, query: ^Query) -> ^QueryOperation ---
+    QueryOperation_initWithQuery :: proc(self: ^QueryOperation, query: ^Query) -> instancetype ---
 
     @(objc_type=QueryOperation, objc_selector="initWithCursor:", objc_name="initWithCursor")
-    QueryOperation_initWithCursor :: proc(self: ^QueryOperation, cursor: ^QueryCursor) -> ^QueryOperation ---
+    QueryOperation_initWithCursor :: proc(self: ^QueryOperation, cursor: ^QueryCursor) -> instancetype ---
 
     @(objc_type=QueryOperation, objc_selector="query", objc_name="query")
     QueryOperation_query :: proc(self: ^QueryOperation) -> ^Query ---

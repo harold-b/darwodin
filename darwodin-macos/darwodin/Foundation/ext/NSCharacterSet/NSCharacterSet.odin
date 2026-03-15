@@ -30,7 +30,7 @@ VTable :: struct {
     characterSetWithCharactersInString: proc(aString: ^NS.String) -> ^NS.CharacterSet,
     characterSetWithBitmapRepresentation: proc(data: ^NS.Data) -> ^NS.CharacterSet,
     characterSetWithContentsOfFile: proc(fName: ^NS.String) -> ^NS.CharacterSet,
-    initWithCoder: proc(self: ^NS.CharacterSet, coder: ^NS.Coder) -> ^NS.CharacterSet,
+    initWithCoder: proc(self: ^NS.CharacterSet, coder: ^NS.Coder) -> instancetype,
     characterIsMember: proc(self: ^NS.CharacterSet, aCharacter: NS.unichar) -> bool,
     longCharacterIsMember: proc(self: ^NS.CharacterSet, theLongChar: CF.UTF32Char) -> bool,
     isSupersetOfSet: proc(self: ^NS.CharacterSet, theOtherSet: ^NS.CharacterSet) -> bool,
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("characterSetWithContentsOfFile:"), auto_cast characterSetWithContentsOfFile, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.CharacterSet, _: SEL, coder: ^NS.Coder) -> ^NS.CharacterSet {
+        initWithCoder :: proc "c" (self: ^NS.CharacterSet, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.PointerLockState) -> ^UI.PointerLockState,
+    init: proc(self: ^UI.PointerLockState) -> instancetype,
     new: proc() -> ^UI.PointerLockState,
     isLocked: proc(self: ^UI.PointerLockState) -> bool,
 }
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PointerLockState, _: SEL) -> ^UI.PointerLockState {
+        init :: proc "c" (self: ^UI.PointerLockState, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

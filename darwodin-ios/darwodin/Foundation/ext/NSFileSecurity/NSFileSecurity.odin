@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithCoder: proc(self: ^NS.FileSecurity, coder: ^NS.Coder) -> ^NS.FileSecurity,
+    initWithCoder: proc(self: ^NS.FileSecurity, coder: ^NS.Coder) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.FileSecurity, _: SEL, coder: ^NS.Coder) -> ^NS.FileSecurity {
+        initWithCoder :: proc "c" (self: ^NS.FileSecurity, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

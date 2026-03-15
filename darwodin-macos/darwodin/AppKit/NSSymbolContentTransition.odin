@@ -30,5 +30,5 @@ foreign lib {
     SymbolContentTransition_new :: proc() -> ^SymbolContentTransition ---
 
     @(objc_type=SymbolContentTransition, objc_selector="init", objc_name="init")
-    SymbolContentTransition_init :: proc(self: ^SymbolContentTransition) -> ^SymbolContentTransition ---
+    SymbolContentTransition_init :: proc(self: ^SymbolContentTransition) -> instancetype ---
 }

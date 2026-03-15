@@ -23,16 +23,16 @@ Constraint :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Constraint, objc_selector="constraintWithAttribute:relativeTo:attribute:scale:offset:", objc_name="constraintWithAttribute_relativeTo_attribute_scale_offset", objc_is_class_method=true)
-    Constraint_constraintWithAttribute_relativeTo_attribute_scale_offset :: proc(attr: ConstraintAttribute, srcId: ^NS.String, srcAttr: ConstraintAttribute, m: CG.Float, c: CG.Float) -> ^Constraint ---
+    Constraint_constraintWithAttribute_relativeTo_attribute_scale_offset :: proc(attr: ConstraintAttribute, srcId: ^NS.String, srcAttr: ConstraintAttribute, m: CG.Float, c: CG.Float) -> instancetype ---
 
     @(objc_type=Constraint, objc_selector="constraintWithAttribute:relativeTo:attribute:offset:", objc_name="constraintWithAttribute_relativeTo_attribute_offset", objc_is_class_method=true)
-    Constraint_constraintWithAttribute_relativeTo_attribute_offset :: proc(attr: ConstraintAttribute, srcId: ^NS.String, srcAttr: ConstraintAttribute, c: CG.Float) -> ^Constraint ---
+    Constraint_constraintWithAttribute_relativeTo_attribute_offset :: proc(attr: ConstraintAttribute, srcId: ^NS.String, srcAttr: ConstraintAttribute, c: CG.Float) -> instancetype ---
 
     @(objc_type=Constraint, objc_selector="constraintWithAttribute:relativeTo:attribute:", objc_name="constraintWithAttribute_relativeTo_attribute", objc_is_class_method=true)
-    Constraint_constraintWithAttribute_relativeTo_attribute :: proc(attr: ConstraintAttribute, srcId: ^NS.String, srcAttr: ConstraintAttribute) -> ^Constraint ---
+    Constraint_constraintWithAttribute_relativeTo_attribute :: proc(attr: ConstraintAttribute, srcId: ^NS.String, srcAttr: ConstraintAttribute) -> instancetype ---
 
     @(objc_type=Constraint, objc_selector="initWithAttribute:relativeTo:attribute:scale:offset:", objc_name="initWithAttribute")
-    Constraint_initWithAttribute :: proc(self: ^Constraint, attr: ConstraintAttribute, srcId: ^NS.String, srcAttr: ConstraintAttribute, m: CG.Float, c: CG.Float) -> ^Constraint ---
+    Constraint_initWithAttribute :: proc(self: ^Constraint, attr: ConstraintAttribute, srcId: ^NS.String, srcAttr: ConstraintAttribute, m: CG.Float, c: CG.Float) -> instancetype ---
 
     @(objc_type=Constraint, objc_selector="attribute", objc_name="attribute")
     Constraint_attribute :: proc(self: ^Constraint) -> ConstraintAttribute ---

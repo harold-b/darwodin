@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    configurationWithIdentifier: proc(identifier: ^NS.Copying, previewProvider: UI.ContextMenuContentPreviewProvider, actionProvider: UI.ContextMenuActionProvider) -> ^UI.ContextMenuConfiguration,
+    configurationWithIdentifier: proc(identifier: ^NS.Copying, previewProvider: UI.ContextMenuContentPreviewProvider, actionProvider: UI.ContextMenuActionProvider) -> instancetype,
     identifier: proc(self: ^UI.ContextMenuConfiguration) -> ^NS.Copying,
     secondaryItemIdentifiers: proc(self: ^UI.ContextMenuConfiguration) -> ^NS.Set,
     setSecondaryItemIdentifiers: proc(self: ^UI.ContextMenuConfiguration, secondaryItemIdentifiers: ^NS.Set),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.configurationWithIdentifier != nil {
-        configurationWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.Copying, previewProvider: UI.ContextMenuContentPreviewProvider, actionProvider: UI.ContextMenuActionProvider) -> ^UI.ContextMenuConfiguration {
+        configurationWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.Copying, previewProvider: UI.ContextMenuContentPreviewProvider, actionProvider: UI.ContextMenuActionProvider) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

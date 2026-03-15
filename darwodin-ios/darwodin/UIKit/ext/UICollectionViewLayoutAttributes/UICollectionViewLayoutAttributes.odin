@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    layoutAttributesForCellWithIndexPath: proc(indexPath: ^NS.IndexPath) -> ^UI.CollectionViewLayoutAttributes,
-    layoutAttributesForSupplementaryViewOfKind: proc(elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^UI.CollectionViewLayoutAttributes,
-    layoutAttributesForDecorationViewOfKind: proc(decorationViewKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^UI.CollectionViewLayoutAttributes,
+    layoutAttributesForCellWithIndexPath: proc(indexPath: ^NS.IndexPath) -> instancetype,
+    layoutAttributesForSupplementaryViewOfKind: proc(elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> instancetype,
+    layoutAttributesForDecorationViewOfKind: proc(decorationViewKind: ^NS.String, indexPath: ^NS.IndexPath) -> instancetype,
     frame: proc(self: ^UI.CollectionViewLayoutAttributes) -> CG.Rect,
     setFrame: proc(self: ^UI.CollectionViewLayoutAttributes, frame: CG.Rect),
     center: proc(self: ^UI.CollectionViewLayoutAttributes) -> CG.Point,
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.layoutAttributesForCellWithIndexPath != nil {
-        layoutAttributesForCellWithIndexPath :: proc "c" (self: Class, _: SEL, indexPath: ^NS.IndexPath) -> ^UI.CollectionViewLayoutAttributes {
+        layoutAttributesForCellWithIndexPath :: proc "c" (self: Class, _: SEL, indexPath: ^NS.IndexPath) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("layoutAttributesForCellWithIndexPath:"), auto_cast layoutAttributesForCellWithIndexPath, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.layoutAttributesForSupplementaryViewOfKind != nil {
-        layoutAttributesForSupplementaryViewOfKind :: proc "c" (self: Class, _: SEL, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^UI.CollectionViewLayoutAttributes {
+        layoutAttributesForSupplementaryViewOfKind :: proc "c" (self: Class, _: SEL, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("layoutAttributesForSupplementaryViewOfKind:withIndexPath:"), auto_cast layoutAttributesForSupplementaryViewOfKind, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.layoutAttributesForDecorationViewOfKind != nil {
-        layoutAttributesForDecorationViewOfKind :: proc "c" (self: Class, _: SEL, decorationViewKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^UI.CollectionViewLayoutAttributes {
+        layoutAttributesForDecorationViewOfKind :: proc "c" (self: Class, _: SEL, decorationViewKind: ^NS.String, indexPath: ^NS.IndexPath) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

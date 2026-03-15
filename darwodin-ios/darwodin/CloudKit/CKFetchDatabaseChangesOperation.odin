@@ -18,10 +18,10 @@ FetchDatabaseChangesOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchDatabaseChangesOperation, objc_selector="init", objc_name="init")
-    FetchDatabaseChangesOperation_init :: proc(self: ^FetchDatabaseChangesOperation) -> ^FetchDatabaseChangesOperation ---
+    FetchDatabaseChangesOperation_init :: proc(self: ^FetchDatabaseChangesOperation) -> instancetype ---
 
     @(objc_type=FetchDatabaseChangesOperation, objc_selector="initWithPreviousServerChangeToken:", objc_name="initWithPreviousServerChangeToken")
-    FetchDatabaseChangesOperation_initWithPreviousServerChangeToken :: proc(self: ^FetchDatabaseChangesOperation, previousServerChangeToken: ^ServerChangeToken) -> ^FetchDatabaseChangesOperation ---
+    FetchDatabaseChangesOperation_initWithPreviousServerChangeToken :: proc(self: ^FetchDatabaseChangesOperation, previousServerChangeToken: ^ServerChangeToken) -> instancetype ---
 
     @(objc_type=FetchDatabaseChangesOperation, objc_selector="previousServerChangeToken", objc_name="previousServerChangeToken")
     FetchDatabaseChangesOperation_previousServerChangeToken :: proc(self: ^FetchDatabaseChangesOperation) -> ^ServerChangeToken ---

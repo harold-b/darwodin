@@ -33,9 +33,9 @@ VTable :: struct {
     columnTerminatorsForLocale: proc(aLocale: ^NS.Locale) -> ^NS.CharacterSet,
     location: proc(self: ^AK.TextTab) -> CG.Float,
     options: proc(self: ^AK.TextTab) -> ^NS.Dictionary,
-    initWithTextAlignment: proc(self: ^AK.TextTab, alignment: AK.TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^AK.TextTab,
+    initWithTextAlignment: proc(self: ^AK.TextTab, alignment: AK.TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype,
     alignment: proc(self: ^AK.TextTab) -> AK.TextAlignment,
-    initWithType: proc(self: ^AK.TextTab, type: AK.TextTabType, loc: CG.Float) -> ^AK.TextTab,
+    initWithType: proc(self: ^AK.TextTab, type: AK.TextTabType, loc: CG.Float) -> instancetype,
     tabStopType: proc(self: ^AK.TextTab) -> AK.TextTabType,
 }
 
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("options"), auto_cast options, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTextAlignment != nil {
-        initWithTextAlignment :: proc "c" (self: ^AK.TextTab, _: SEL, alignment: AK.TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^AK.TextTab {
+        initWithTextAlignment :: proc "c" (self: ^AK.TextTab, _: SEL, alignment: AK.TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.initWithType != nil {
-        initWithType :: proc "c" (self: ^AK.TextTab, _: SEL, type: AK.TextTabType, loc: CG.Float) -> ^AK.TextTab {
+        initWithType :: proc "c" (self: ^AK.TextTab, _: SEL, type: AK.TextTabType, loc: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

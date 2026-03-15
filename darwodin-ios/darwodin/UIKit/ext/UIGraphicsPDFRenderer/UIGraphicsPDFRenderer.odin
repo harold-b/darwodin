@@ -28,7 +28,7 @@ import "../UIGraphicsRenderer"
 
 VTable :: struct {
     super: UIGraphicsRenderer.VTable,
-    initWithBounds: proc(self: ^UI.GraphicsPDFRenderer, bounds: CG.Rect, format: ^UI.GraphicsPDFRendererFormat) -> ^UI.GraphicsPDFRenderer,
+    initWithBounds: proc(self: ^UI.GraphicsPDFRenderer, bounds: CG.Rect, format: ^UI.GraphicsPDFRendererFormat) -> instancetype,
     writePDFToURL: proc(self: ^UI.GraphicsPDFRenderer, url: ^NS.URL, actions: UI.GraphicsPDFDrawingActions, error: ^^NS.Error) -> bool,
     _PDFDataWithActions: proc(self: ^UI.GraphicsPDFRenderer, actions: UI.GraphicsPDFDrawingActions) -> ^NS.Data,
 }
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIGraphicsRenderer.extend(cls, &vt.super)
 
     if vt.initWithBounds != nil {
-        initWithBounds :: proc "c" (self: ^UI.GraphicsPDFRenderer, _: SEL, bounds: CG.Rect, format: ^UI.GraphicsPDFRendererFormat) -> ^UI.GraphicsPDFRenderer {
+        initWithBounds :: proc "c" (self: ^UI.GraphicsPDFRenderer, _: SEL, bounds: CG.Rect, format: ^UI.GraphicsPDFRendererFormat) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -21,19 +21,19 @@ Record :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Record, objc_selector="init", objc_name="init")
-    Record_init :: proc(self: ^Record) -> ^Record ---
+    Record_init :: proc(self: ^Record) -> instancetype ---
 
     @(objc_type=Record, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Record_new :: proc() -> ^Record ---
 
     @(objc_type=Record, objc_selector="initWithRecordType:", objc_name="initWithRecordType_")
-    Record_initWithRecordType_ :: proc(self: ^Record, recordType: ^NS.String) -> ^Record ---
+    Record_initWithRecordType_ :: proc(self: ^Record, recordType: ^NS.String) -> instancetype ---
 
     @(objc_type=Record, objc_selector="initWithRecordType:recordID:", objc_name="initWithRecordType_recordID")
-    Record_initWithRecordType_recordID :: proc(self: ^Record, recordType: ^NS.String, recordID: ^RecordID) -> ^Record ---
+    Record_initWithRecordType_recordID :: proc(self: ^Record, recordType: ^NS.String, recordID: ^RecordID) -> instancetype ---
 
     @(objc_type=Record, objc_selector="initWithRecordType:zoneID:", objc_name="initWithRecordType_zoneID")
-    Record_initWithRecordType_zoneID :: proc(self: ^Record, recordType: ^NS.String, zoneID: ^RecordZoneID) -> ^Record ---
+    Record_initWithRecordType_zoneID :: proc(self: ^Record, recordType: ^NS.String, zoneID: ^RecordZoneID) -> instancetype ---
 
     @(objc_type=Record, objc_selector="objectForKey:", objc_name="objectForKey")
     Record_objectForKey :: proc(self: ^Record, key: ^NS.String) -> ^RecordValue ---

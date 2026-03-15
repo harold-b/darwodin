@@ -18,10 +18,10 @@ FetchShareMetadataOperation :: struct { using _: Operation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchShareMetadataOperation, objc_selector="init", objc_name="init")
-    FetchShareMetadataOperation_init :: proc(self: ^FetchShareMetadataOperation) -> ^FetchShareMetadataOperation ---
+    FetchShareMetadataOperation_init :: proc(self: ^FetchShareMetadataOperation) -> instancetype ---
 
     @(objc_type=FetchShareMetadataOperation, objc_selector="initWithShareURLs:", objc_name="initWithShareURLs")
-    FetchShareMetadataOperation_initWithShareURLs :: proc(self: ^FetchShareMetadataOperation, shareURLs: ^NS.Array) -> ^FetchShareMetadataOperation ---
+    FetchShareMetadataOperation_initWithShareURLs :: proc(self: ^FetchShareMetadataOperation, shareURLs: ^NS.Array) -> instancetype ---
 
     @(objc_type=FetchShareMetadataOperation, objc_selector="shareURLs", objc_name="shareURLs")
     FetchShareMetadataOperation_shareURLs :: proc(self: ^FetchShareMetadataOperation) -> ^NS.Array ---

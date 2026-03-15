@@ -30,10 +30,10 @@ foreign lib {
     ManagedObjectContext_new :: proc() -> ^ManagedObjectContext ---
 
     @(objc_type=ManagedObjectContext, objc_selector="init", objc_name="init")
-    ManagedObjectContext_init :: proc(self: ^ManagedObjectContext) -> ^ManagedObjectContext ---
+    ManagedObjectContext_init :: proc(self: ^ManagedObjectContext) -> instancetype ---
 
     @(objc_type=ManagedObjectContext, objc_selector="initWithConcurrencyType:", objc_name="initWithConcurrencyType")
-    ManagedObjectContext_initWithConcurrencyType :: proc(self: ^ManagedObjectContext, ct: ManagedObjectContextConcurrencyType) -> ^ManagedObjectContext ---
+    ManagedObjectContext_initWithConcurrencyType :: proc(self: ^ManagedObjectContext, ct: ManagedObjectContextConcurrencyType) -> instancetype ---
 
     @(objc_type=ManagedObjectContext, objc_selector="performBlock:", objc_name="performBlock")
     ManagedObjectContext_performBlock :: proc(self: ^ManagedObjectContext, block: ^Objc_Block(proc "c" ())) ---

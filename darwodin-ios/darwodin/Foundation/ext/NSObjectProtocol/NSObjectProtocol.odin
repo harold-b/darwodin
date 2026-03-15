@@ -25,7 +25,7 @@ import NS "../../"
 VTable :: struct {
     isEqual: proc(self: ^NS.ObjectProtocol, object: id) -> bool,
     class: proc(self: ^NS.ObjectProtocol) -> Class,
-    self: proc(self: ^NS.ObjectProtocol) -> ^NS.ObjectProtocol,
+    self: proc(self: ^NS.ObjectProtocol) -> instancetype,
     performSelector_: proc(self: ^NS.ObjectProtocol, aSelector: SEL) -> id,
     performSelector_withObject: proc(self: ^NS.ObjectProtocol, aSelector: SEL, object: id) -> id,
     performSelector_withObject_withObject: proc(self: ^NS.ObjectProtocol, aSelector: SEL, object1: id, object2: id) -> id,
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("class"), auto_cast class, "#@:") do panic("Failed to register objC method.")
     }
     if vt.self != nil {
-        self :: proc "c" (self: ^NS.ObjectProtocol, _: SEL) -> ^NS.ObjectProtocol {
+        self :: proc "c" (self: ^NS.ObjectProtocol, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

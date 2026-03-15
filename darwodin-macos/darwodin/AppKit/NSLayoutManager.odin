@@ -26,10 +26,10 @@ LayoutManager :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LayoutManager, objc_selector="init", objc_name="init")
-    LayoutManager_init :: proc(self: ^LayoutManager) -> ^LayoutManager ---
+    LayoutManager_init :: proc(self: ^LayoutManager) -> instancetype ---
 
     @(objc_type=LayoutManager, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    LayoutManager_initWithCoder :: proc(self: ^LayoutManager, coder: ^NS.Coder) -> ^LayoutManager ---
+    LayoutManager_initWithCoder :: proc(self: ^LayoutManager, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=LayoutManager, objc_selector="replaceTextStorage:", objc_name="replaceTextStorage")
     LayoutManager_replaceTextStorage :: proc(self: ^LayoutManager, newTextStorage: ^TextStorage) ---

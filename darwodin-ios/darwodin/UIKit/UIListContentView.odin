@@ -24,16 +24,16 @@ ListContentView :: struct { using _: View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ListContentView, objc_selector="initWithConfiguration:", objc_name="initWithConfiguration")
-    ListContentView_initWithConfiguration :: proc(self: ^ListContentView, configuration: ^ListContentConfiguration) -> ^ListContentView ---
+    ListContentView_initWithConfiguration :: proc(self: ^ListContentView, configuration: ^ListContentConfiguration) -> instancetype ---
 
     @(objc_type=ListContentView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ListContentView_initWithCoder :: proc(self: ^ListContentView, coder: ^NS.Coder) -> ^ListContentView ---
+    ListContentView_initWithCoder :: proc(self: ^ListContentView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ListContentView, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    ListContentView_initWithFrame :: proc(self: ^ListContentView, frame: CG.Rect) -> ^ListContentView ---
+    ListContentView_initWithFrame :: proc(self: ^ListContentView, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=ListContentView, objc_selector="init", objc_name="init")
-    ListContentView_init :: proc(self: ^ListContentView) -> ^ListContentView ---
+    ListContentView_init :: proc(self: ^ListContentView) -> instancetype ---
 
     @(objc_type=ListContentView, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ListContentView_new :: proc() -> ^ListContentView ---

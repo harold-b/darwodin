@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithCondition: proc(self: ^NS.ConditionLock, condition: NS.Integer) -> ^NS.ConditionLock,
+    initWithCondition: proc(self: ^NS.ConditionLock, condition: NS.Integer) -> instancetype,
     lockWhenCondition_: proc(self: ^NS.ConditionLock, condition: NS.Integer),
     tryLock: proc(self: ^NS.ConditionLock) -> bool,
     tryLockWhenCondition: proc(self: ^NS.ConditionLock, condition: NS.Integer) -> bool,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithCondition != nil {
-        initWithCondition :: proc "c" (self: ^NS.ConditionLock, _: SEL, condition: NS.Integer) -> ^NS.ConditionLock {
+        initWithCondition :: proc "c" (self: ^NS.ConditionLock, _: SEL, condition: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

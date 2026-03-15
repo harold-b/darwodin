@@ -28,9 +28,9 @@ import "../UIAction"
 
 VTable :: struct {
     super: UIAction.VTable,
-    actionWithIdentifier: proc(identifier: ^NS.String, alternateAction: ^UI.Action, configurationProvider: UI.WindowSceneActivationActionConfigurationProvider) -> ^UI.WindowSceneActivationAction,
-    actionWithHandler: proc(handler: UI.ActionHandler) -> ^UI.WindowSceneActivationAction,
-    actionWithTitle: proc(title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, handler: UI.ActionHandler) -> ^UI.WindowSceneActivationAction,
+    actionWithIdentifier: proc(identifier: ^NS.String, alternateAction: ^UI.Action, configurationProvider: UI.WindowSceneActivationActionConfigurationProvider) -> instancetype,
+    actionWithHandler: proc(handler: UI.ActionHandler) -> instancetype,
+    actionWithTitle: proc(title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, handler: UI.ActionHandler) -> instancetype,
     title: proc(self: ^UI.WindowSceneActivationAction) -> ^NS.String,
     setTitle: proc(self: ^UI.WindowSceneActivationAction, title: ^NS.String),
 }
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIAction.extend(cls, &vt.super)
 
     if vt.actionWithIdentifier != nil {
-        actionWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, alternateAction: ^UI.Action, configurationProvider: UI.WindowSceneActivationActionConfigurationProvider) -> ^UI.WindowSceneActivationAction {
+        actionWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, alternateAction: ^UI.Action, configurationProvider: UI.WindowSceneActivationActionConfigurationProvider) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("actionWithIdentifier:alternateAction:configurationProvider:"), auto_cast actionWithIdentifier, "@#:@@?") do panic("Failed to register objC method.")
     }
     if vt.actionWithHandler != nil {
-        actionWithHandler :: proc "c" (self: Class, _: SEL, handler: UI.ActionHandler) -> ^UI.WindowSceneActivationAction {
+        actionWithHandler :: proc "c" (self: Class, _: SEL, handler: UI.ActionHandler) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("actionWithHandler:"), auto_cast actionWithHandler, "@#:?") do panic("Failed to register objC method.")
     }
     if vt.actionWithTitle != nil {
-        actionWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, handler: UI.ActionHandler) -> ^UI.WindowSceneActivationAction {
+        actionWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, handler: UI.ActionHandler) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

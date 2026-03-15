@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithIdentifier: proc(self: ^NS.BackgroundActivityScheduler, identifier: ^NS.String) -> ^NS.BackgroundActivityScheduler,
+    initWithIdentifier: proc(self: ^NS.BackgroundActivityScheduler, identifier: ^NS.String) -> instancetype,
     scheduleWithBlock: proc(self: ^NS.BackgroundActivityScheduler, block: ^Objc_Block(proc "c" (completionHandler: NS.BackgroundActivityCompletionHandler))),
     invalidate: proc(self: ^NS.BackgroundActivityScheduler),
     identifier: proc(self: ^NS.BackgroundActivityScheduler) -> ^NS.String,
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithIdentifier != nil {
-        initWithIdentifier :: proc "c" (self: ^NS.BackgroundActivityScheduler, _: SEL, identifier: ^NS.String) -> ^NS.BackgroundActivityScheduler {
+        initWithIdentifier :: proc "c" (self: ^NS.BackgroundActivityScheduler, _: SEL, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

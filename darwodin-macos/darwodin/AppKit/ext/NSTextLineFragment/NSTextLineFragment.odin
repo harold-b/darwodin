@@ -30,10 +30,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithAttributedString: proc(self: ^AK.TextLineFragment, attributedString: ^NS.AttributedString, range: NS._NSRange) -> ^AK.TextLineFragment,
-    initWithCoder: proc(self: ^AK.TextLineFragment, aDecoder: ^NS.Coder) -> ^AK.TextLineFragment,
-    initWithString: proc(self: ^AK.TextLineFragment, string: ^NS.String, attributes: ^NS.Dictionary, range: NS._NSRange) -> ^AK.TextLineFragment,
-    init: proc(self: ^AK.TextLineFragment) -> ^AK.TextLineFragment,
+    initWithAttributedString: proc(self: ^AK.TextLineFragment, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype,
+    initWithCoder: proc(self: ^AK.TextLineFragment, aDecoder: ^NS.Coder) -> instancetype,
+    initWithString: proc(self: ^AK.TextLineFragment, string: ^NS.String, attributes: ^NS.Dictionary, range: NS._NSRange) -> instancetype,
+    init: proc(self: ^AK.TextLineFragment) -> instancetype,
     drawAtPoint: proc(self: ^AK.TextLineFragment, point: CG.Point, _context: CG.ContextRef),
     locationForCharacterAtIndex: proc(self: ^AK.TextLineFragment, index: NS.Integer) -> CG.Point,
     characterIndexForPoint: proc(self: ^AK.TextLineFragment, point: CG.Point) -> NS.Integer,
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithAttributedString != nil {
-        initWithAttributedString :: proc "c" (self: ^AK.TextLineFragment, _: SEL, attributedString: ^NS.AttributedString, range: NS._NSRange) -> ^AK.TextLineFragment {
+        initWithAttributedString :: proc "c" (self: ^AK.TextLineFragment, _: SEL, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedString:range:"), auto_cast initWithAttributedString, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextLineFragment, _: SEL, aDecoder: ^NS.Coder) -> ^AK.TextLineFragment {
+        initWithCoder :: proc "c" (self: ^AK.TextLineFragment, _: SEL, aDecoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithString != nil {
-        initWithString :: proc "c" (self: ^AK.TextLineFragment, _: SEL, string: ^NS.String, attributes: ^NS.Dictionary, range: NS._NSRange) -> ^AK.TextLineFragment {
+        initWithString :: proc "c" (self: ^AK.TextLineFragment, _: SEL, string: ^NS.String, attributes: ^NS.Dictionary, range: NS._NSRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:attributes:range:"), auto_cast initWithString, "@@:@^void{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextLineFragment, _: SEL) -> ^AK.TextLineFragment {
+        init :: proc "c" (self: ^AK.TextLineFragment, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

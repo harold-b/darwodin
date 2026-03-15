@@ -22,10 +22,10 @@ ImageView :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ImageView, objc_selector="initWithImage:", objc_name="initWithImage_")
-    ImageView_initWithImage_ :: proc(self: ^ImageView, image: ^Image) -> ^ImageView ---
+    ImageView_initWithImage_ :: proc(self: ^ImageView, image: ^Image) -> instancetype ---
 
     @(objc_type=ImageView, objc_selector="initWithImage:highlightedImage:", objc_name="initWithImage_highlightedImage")
-    ImageView_initWithImage_highlightedImage :: proc(self: ^ImageView, image: ^Image, highlightedImage: ^Image) -> ^ImageView ---
+    ImageView_initWithImage_highlightedImage :: proc(self: ^ImageView, image: ^Image, highlightedImage: ^Image) -> instancetype ---
 
     @(objc_type=ImageView, objc_selector="startAnimating", objc_name="startAnimating")
     ImageView_startAnimating :: proc(self: ^ImageView) ---

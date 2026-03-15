@@ -22,7 +22,7 @@ Scanner :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Scanner, objc_selector="initWithString:", objc_name="initWithString")
-    Scanner_initWithString :: proc(self: ^Scanner, string: ^String) -> ^Scanner ---
+    Scanner_initWithString :: proc(self: ^Scanner, string: ^String) -> instancetype ---
 
     @(objc_type=Scanner, objc_selector="string", objc_name="string")
     Scanner_string :: proc(self: ^Scanner) -> ^String ---
@@ -94,7 +94,7 @@ foreign lib {
     Scanner_scanUpToCharactersFromSet :: proc(self: ^Scanner, set: ^CharacterSet, result: ^^String) -> bool ---
 
     @(objc_type=Scanner, objc_selector="scannerWithString:", objc_name="scannerWithString", objc_is_class_method=true)
-    Scanner_scannerWithString :: proc(string: ^String) -> ^Scanner ---
+    Scanner_scannerWithString :: proc(string: ^String) -> instancetype ---
 
     @(objc_type=Scanner, objc_selector="localizedScannerWithString:", objc_name="localizedScannerWithString", objc_is_class_method=true)
     Scanner_localizedScannerWithString :: proc(string: ^String) -> id ---

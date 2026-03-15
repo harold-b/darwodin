@@ -24,10 +24,10 @@ DropProposal :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DropProposal, objc_selector="initWithDropOperation:", objc_name="initWithDropOperation")
-    DropProposal_initWithDropOperation :: proc(self: ^DropProposal, operation: DropOperation) -> ^DropProposal ---
+    DropProposal_initWithDropOperation :: proc(self: ^DropProposal, operation: DropOperation) -> instancetype ---
 
     @(objc_type=DropProposal, objc_selector="init", objc_name="init")
-    DropProposal_init :: proc(self: ^DropProposal) -> ^DropProposal ---
+    DropProposal_init :: proc(self: ^DropProposal) -> instancetype ---
 
     @(objc_type=DropProposal, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DropProposal_new :: proc() -> ^DropProposal ---

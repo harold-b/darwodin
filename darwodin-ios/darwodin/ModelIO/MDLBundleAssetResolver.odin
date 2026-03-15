@@ -23,7 +23,7 @@ BundleAssetResolver :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BundleAssetResolver, objc_selector="initWithBundle:", objc_name="initWithBundle")
-    BundleAssetResolver_initWithBundle :: proc(self: ^BundleAssetResolver, path: ^NS.String) -> ^BundleAssetResolver ---
+    BundleAssetResolver_initWithBundle :: proc(self: ^BundleAssetResolver, path: ^NS.String) -> instancetype ---
 
     @(objc_type=BundleAssetResolver, objc_selector="path", objc_name="path")
     BundleAssetResolver_path :: proc(self: ^BundleAssetResolver) -> ^NS.String ---

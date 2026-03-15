@@ -24,10 +24,10 @@ DragInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DragInteraction, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    DragInteraction_initWithDelegate :: proc(self: ^DragInteraction, delegate: ^DragInteractionDelegate) -> ^DragInteraction ---
+    DragInteraction_initWithDelegate :: proc(self: ^DragInteraction, delegate: ^DragInteractionDelegate) -> instancetype ---
 
     @(objc_type=DragInteraction, objc_selector="init", objc_name="init")
-    DragInteraction_init :: proc(self: ^DragInteraction) -> ^DragInteraction ---
+    DragInteraction_init :: proc(self: ^DragInteraction) -> instancetype ---
 
     @(objc_type=DragInteraction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DragInteraction_new :: proc() -> ^DragInteraction ---

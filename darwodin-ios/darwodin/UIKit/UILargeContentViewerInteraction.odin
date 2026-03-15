@@ -24,7 +24,7 @@ LargeContentViewerInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LargeContentViewerInteraction, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    LargeContentViewerInteraction_initWithDelegate :: proc(self: ^LargeContentViewerInteraction, delegate: ^LargeContentViewerInteractionDelegate) -> ^LargeContentViewerInteraction ---
+    LargeContentViewerInteraction_initWithDelegate :: proc(self: ^LargeContentViewerInteraction, delegate: ^LargeContentViewerInteractionDelegate) -> instancetype ---
 
     @(objc_type=LargeContentViewerInteraction, objc_selector="delegate", objc_name="delegate")
     LargeContentViewerInteraction_delegate :: proc(self: ^LargeContentViewerInteraction) -> ^LargeContentViewerInteractionDelegate ---

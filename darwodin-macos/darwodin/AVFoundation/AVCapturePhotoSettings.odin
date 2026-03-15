@@ -25,22 +25,22 @@ CapturePhotoSettings :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhotoSettings, objc_selector="photoSettings", objc_name="photoSettings", objc_is_class_method=true)
-    CapturePhotoSettings_photoSettings :: proc() -> ^CapturePhotoSettings ---
+    CapturePhotoSettings_photoSettings :: proc() -> instancetype ---
 
     @(objc_type=CapturePhotoSettings, objc_selector="photoSettingsWithFormat:", objc_name="photoSettingsWithFormat", objc_is_class_method=true)
-    CapturePhotoSettings_photoSettingsWithFormat :: proc(format: ^NS.Dictionary) -> ^CapturePhotoSettings ---
+    CapturePhotoSettings_photoSettingsWithFormat :: proc(format: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=CapturePhotoSettings, objc_selector="photoSettingsWithRawPixelFormatType:", objc_name="photoSettingsWithRawPixelFormatType_", objc_is_class_method=true)
-    CapturePhotoSettings_photoSettingsWithRawPixelFormatType_ :: proc(rawPixelFormatType: CF.OSType) -> ^CapturePhotoSettings ---
+    CapturePhotoSettings_photoSettingsWithRawPixelFormatType_ :: proc(rawPixelFormatType: CF.OSType) -> instancetype ---
 
     @(objc_type=CapturePhotoSettings, objc_selector="photoSettingsWithRawPixelFormatType:processedFormat:", objc_name="photoSettingsWithRawPixelFormatType_processedFormat", objc_is_class_method=true)
-    CapturePhotoSettings_photoSettingsWithRawPixelFormatType_processedFormat :: proc(rawPixelFormatType: CF.OSType, processedFormat: ^NS.Dictionary) -> ^CapturePhotoSettings ---
+    CapturePhotoSettings_photoSettingsWithRawPixelFormatType_processedFormat :: proc(rawPixelFormatType: CF.OSType, processedFormat: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=CapturePhotoSettings, objc_selector="photoSettingsWithRawPixelFormatType:rawFileType:processedFormat:processedFileType:", objc_name="photoSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType", objc_is_class_method=true)
-    CapturePhotoSettings_photoSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType :: proc(rawPixelFormatType: CF.OSType, rawFileType: ^NS.String, processedFormat: ^NS.Dictionary, processedFileType: ^NS.String) -> ^CapturePhotoSettings ---
+    CapturePhotoSettings_photoSettingsWithRawPixelFormatType_rawFileType_processedFormat_processedFileType :: proc(rawPixelFormatType: CF.OSType, rawFileType: ^NS.String, processedFormat: ^NS.Dictionary, processedFileType: ^NS.String) -> instancetype ---
 
     @(objc_type=CapturePhotoSettings, objc_selector="photoSettingsFromPhotoSettings:", objc_name="photoSettingsFromPhotoSettings", objc_is_class_method=true)
-    CapturePhotoSettings_photoSettingsFromPhotoSettings :: proc(photoSettings: ^CapturePhotoSettings) -> ^CapturePhotoSettings ---
+    CapturePhotoSettings_photoSettingsFromPhotoSettings :: proc(photoSettings: ^CapturePhotoSettings) -> instancetype ---
 
     @(objc_type=CapturePhotoSettings, objc_selector="uniqueID", objc_name="uniqueID")
     CapturePhotoSettings_uniqueID :: proc(self: ^CapturePhotoSettings) -> cffi.int64_t ---

@@ -20,10 +20,10 @@ GamepadSnapshot :: struct { using _: Gamepad, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GamepadSnapshot, objc_selector="initWithSnapshotData:", objc_name="initWithSnapshotData")
-    GamepadSnapshot_initWithSnapshotData :: proc(self: ^GamepadSnapshot, data: ^NS.Data) -> ^GamepadSnapshot ---
+    GamepadSnapshot_initWithSnapshotData :: proc(self: ^GamepadSnapshot, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=GamepadSnapshot, objc_selector="initWithController:snapshotData:", objc_name="initWithController")
-    GamepadSnapshot_initWithController :: proc(self: ^GamepadSnapshot, controller: ^Controller, data: ^NS.Data) -> ^GamepadSnapshot ---
+    GamepadSnapshot_initWithController :: proc(self: ^GamepadSnapshot, controller: ^Controller, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=GamepadSnapshot, objc_selector="snapshotData", objc_name="snapshotData")
     GamepadSnapshot_snapshotData :: proc(self: ^GamepadSnapshot) -> ^NS.Data ---

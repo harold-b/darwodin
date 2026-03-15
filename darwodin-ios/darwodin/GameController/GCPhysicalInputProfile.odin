@@ -23,7 +23,7 @@ foreign lib {
     PhysicalInputProfile_objectForKeyedSubscript :: proc(self: ^PhysicalInputProfile, key: ^NS.String) -> ^ControllerElement ---
 
     @(objc_type=PhysicalInputProfile, objc_selector="capture", objc_name="capture")
-    PhysicalInputProfile_capture :: proc(self: ^PhysicalInputProfile) -> ^PhysicalInputProfile ---
+    PhysicalInputProfile_capture :: proc(self: ^PhysicalInputProfile) -> instancetype ---
 
     @(objc_type=PhysicalInputProfile, objc_selector="setStateFromPhysicalInput:", objc_name="setStateFromPhysicalInput")
     PhysicalInputProfile_setStateFromPhysicalInput :: proc(self: ^PhysicalInputProfile, physicalInput: ^PhysicalInputProfile) ---

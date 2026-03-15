@@ -27,9 +27,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    functionWithName: proc(name: ^NS.String) -> ^CA.MediaTimingFunction,
-    functionWithControlPoints: proc(c1x: cffi.float, c1y: cffi.float, c2x: cffi.float, c2y: cffi.float) -> ^CA.MediaTimingFunction,
-    initWithControlPoints: proc(self: ^CA.MediaTimingFunction, c1x: cffi.float, c1y: cffi.float, c2x: cffi.float, c2y: cffi.float) -> ^CA.MediaTimingFunction,
+    functionWithName: proc(name: ^NS.String) -> instancetype,
+    functionWithControlPoints: proc(c1x: cffi.float, c1y: cffi.float, c2x: cffi.float, c2y: cffi.float) -> instancetype,
+    initWithControlPoints: proc(self: ^CA.MediaTimingFunction, c1x: cffi.float, c1y: cffi.float, c2x: cffi.float, c2y: cffi.float) -> instancetype,
     getControlPointAtIndex: proc(self: ^CA.MediaTimingFunction, idx: cffi.size_t, ptr: ^cffi.float),
 }
 
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.functionWithName != nil {
-        functionWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^CA.MediaTimingFunction {
+        functionWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("functionWithName:"), auto_cast functionWithName, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.functionWithControlPoints != nil {
-        functionWithControlPoints :: proc "c" (self: Class, _: SEL, c1x: cffi.float, c1y: cffi.float, c2x: cffi.float, c2y: cffi.float) -> ^CA.MediaTimingFunction {
+        functionWithControlPoints :: proc "c" (self: Class, _: SEL, c1x: cffi.float, c1y: cffi.float, c2x: cffi.float, c2y: cffi.float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("functionWithControlPoints::::"), auto_cast functionWithControlPoints, "@#:ffff") do panic("Failed to register objC method.")
     }
     if vt.initWithControlPoints != nil {
-        initWithControlPoints :: proc "c" (self: ^CA.MediaTimingFunction, _: SEL, c1x: cffi.float, c1y: cffi.float, c2x: cffi.float, c2y: cffi.float) -> ^CA.MediaTimingFunction {
+        initWithControlPoints :: proc "c" (self: ^CA.MediaTimingFunction, _: SEL, c1x: cffi.float, c1y: cffi.float, c2x: cffi.float, c2y: cffi.float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

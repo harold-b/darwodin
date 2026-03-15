@@ -25,16 +25,16 @@ TabBarItemAppearance :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TabBarItemAppearance, objc_selector="init", objc_name="init")
-    TabBarItemAppearance_init :: proc(self: ^TabBarItemAppearance) -> ^TabBarItemAppearance ---
+    TabBarItemAppearance_init :: proc(self: ^TabBarItemAppearance) -> instancetype ---
 
     @(objc_type=TabBarItemAppearance, objc_selector="initWithStyle:", objc_name="initWithStyle")
-    TabBarItemAppearance_initWithStyle :: proc(self: ^TabBarItemAppearance, style: TabBarItemAppearanceStyle) -> ^TabBarItemAppearance ---
+    TabBarItemAppearance_initWithStyle :: proc(self: ^TabBarItemAppearance, style: TabBarItemAppearanceStyle) -> instancetype ---
 
     @(objc_type=TabBarItemAppearance, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TabBarItemAppearance_initWithCoder :: proc(self: ^TabBarItemAppearance, coder: ^NS.Coder) -> ^TabBarItemAppearance ---
+    TabBarItemAppearance_initWithCoder :: proc(self: ^TabBarItemAppearance, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TabBarItemAppearance, objc_selector="copy", objc_name="copy")
-    TabBarItemAppearance_copy :: proc(self: ^TabBarItemAppearance) -> ^TabBarItemAppearance ---
+    TabBarItemAppearance_copy :: proc(self: ^TabBarItemAppearance) -> instancetype ---
 
     @(objc_type=TabBarItemAppearance, objc_selector="configureWithDefaultForStyle:", objc_name="configureWithDefaultForStyle")
     TabBarItemAppearance_configureWithDefaultForStyle :: proc(self: ^TabBarItemAppearance, style: TabBarItemAppearanceStyle) ---

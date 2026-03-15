@@ -25,14 +25,14 @@ foreign lib {
     ReferenceLibraryViewController_dictionaryHasDefinitionForTerm :: proc(term: ^NS.String) -> bool ---
 
     @(objc_type=ReferenceLibraryViewController, objc_selector="initWithTerm:", objc_name="initWithTerm")
-    ReferenceLibraryViewController_initWithTerm :: proc(self: ^ReferenceLibraryViewController, term: ^NS.String) -> ^ReferenceLibraryViewController ---
+    ReferenceLibraryViewController_initWithTerm :: proc(self: ^ReferenceLibraryViewController, term: ^NS.String) -> instancetype ---
 
     @(objc_type=ReferenceLibraryViewController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ReferenceLibraryViewController_initWithCoder :: proc(self: ^ReferenceLibraryViewController, coder: ^NS.Coder) -> ^ReferenceLibraryViewController ---
+    ReferenceLibraryViewController_initWithCoder :: proc(self: ^ReferenceLibraryViewController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ReferenceLibraryViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    ReferenceLibraryViewController_initWithNibName :: proc(self: ^ReferenceLibraryViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^ReferenceLibraryViewController ---
+    ReferenceLibraryViewController_initWithNibName :: proc(self: ^ReferenceLibraryViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=ReferenceLibraryViewController, objc_selector="init", objc_name="init")
-    ReferenceLibraryViewController_init :: proc(self: ^ReferenceLibraryViewController) -> ^ReferenceLibraryViewController ---
+    ReferenceLibraryViewController_init :: proc(self: ^ReferenceLibraryViewController) -> instancetype ---
 }

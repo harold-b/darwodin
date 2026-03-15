@@ -18,7 +18,7 @@ Container :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Container, objc_selector="init", objc_name="init")
-    Container_init :: proc(self: ^Container) -> ^Container ---
+    Container_init :: proc(self: ^Container) -> instancetype ---
 
     @(objc_type=Container, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Container_new :: proc() -> ^Container ---

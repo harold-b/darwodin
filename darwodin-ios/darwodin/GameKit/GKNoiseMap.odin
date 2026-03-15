@@ -19,19 +19,19 @@ NoiseMap :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NoiseMap, objc_selector="init", objc_name="init")
-    NoiseMap_init :: proc(self: ^NoiseMap) -> ^NoiseMap ---
+    NoiseMap_init :: proc(self: ^NoiseMap) -> instancetype ---
 
     @(objc_type=NoiseMap, objc_selector="noiseMapWithNoise:", objc_name="noiseMapWithNoise_", objc_is_class_method=true)
-    NoiseMap_noiseMapWithNoise_ :: proc(noise: ^Noise) -> ^NoiseMap ---
+    NoiseMap_noiseMapWithNoise_ :: proc(noise: ^Noise) -> instancetype ---
 
     @(objc_type=NoiseMap, objc_selector="noiseMapWithNoise:size:origin:sampleCount:seamless:", objc_name="noiseMapWithNoise_size_origin_sampleCount_seamless", objc_is_class_method=true)
-    NoiseMap_noiseMapWithNoise_size_origin_sampleCount_seamless :: proc(noise: ^Noise, size: ^vector_double2, origin: ^vector_double2, sampleCount: ^[2]cffi.int, seamless: bool) -> ^NoiseMap ---
+    NoiseMap_noiseMapWithNoise_size_origin_sampleCount_seamless :: proc(noise: ^Noise, size: ^vector_double2, origin: ^vector_double2, sampleCount: ^[2]cffi.int, seamless: bool) -> instancetype ---
 
     @(objc_type=NoiseMap, objc_selector="initWithNoise:", objc_name="initWithNoise_")
-    NoiseMap_initWithNoise_ :: proc(self: ^NoiseMap, noise: ^Noise) -> ^NoiseMap ---
+    NoiseMap_initWithNoise_ :: proc(self: ^NoiseMap, noise: ^Noise) -> instancetype ---
 
     @(objc_type=NoiseMap, objc_selector="initWithNoise:size:origin:sampleCount:seamless:", objc_name="initWithNoise_size_origin_sampleCount_seamless")
-    NoiseMap_initWithNoise_size_origin_sampleCount_seamless :: proc(self: ^NoiseMap, noise: ^Noise, size: ^vector_double2, origin: ^vector_double2, sampleCount: ^[2]cffi.int, seamless: bool) -> ^NoiseMap ---
+    NoiseMap_initWithNoise_size_origin_sampleCount_seamless :: proc(self: ^NoiseMap, noise: ^Noise, size: ^vector_double2, origin: ^vector_double2, sampleCount: ^[2]cffi.int, seamless: bool) -> instancetype ---
 
     @(objc_type=NoiseMap, objc_selector="valueAtPosition:", objc_name="valueAtPosition")
     NoiseMap_valueAtPosition :: proc(self: ^NoiseMap, position: ^[2]cffi.int) -> cffi.float ---

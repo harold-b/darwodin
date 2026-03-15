@@ -23,7 +23,7 @@ MetricErrorEvent :: struct { using _: MetricEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricErrorEvent, objc_selector="init", objc_name="init")
-    MetricErrorEvent_init :: proc(self: ^MetricErrorEvent) -> ^MetricErrorEvent ---
+    MetricErrorEvent_init :: proc(self: ^MetricErrorEvent) -> instancetype ---
 
     @(objc_type=MetricErrorEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricErrorEvent_new :: proc() -> ^MetricErrorEvent ---

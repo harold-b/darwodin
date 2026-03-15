@@ -23,7 +23,7 @@ AudioUnitEQ :: struct { using _: AudioUnitEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitEQ, objc_selector="initWithNumberOfBands:", objc_name="initWithNumberOfBands")
-    AudioUnitEQ_initWithNumberOfBands :: proc(self: ^AudioUnitEQ, numberOfBands: NS.UInteger) -> ^AudioUnitEQ ---
+    AudioUnitEQ_initWithNumberOfBands :: proc(self: ^AudioUnitEQ, numberOfBands: NS.UInteger) -> instancetype ---
 
     @(objc_type=AudioUnitEQ, objc_selector="bands", objc_name="bands")
     AudioUnitEQ_bands :: proc(self: ^AudioUnitEQ) -> ^NS.Array ---

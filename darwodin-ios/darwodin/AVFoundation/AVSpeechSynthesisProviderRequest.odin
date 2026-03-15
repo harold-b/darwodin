@@ -26,10 +26,10 @@ SpeechSynthesisProviderRequest :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesisProviderRequest, objc_selector="initWithSSMLRepresentation:voice:", objc_name="initWithSSMLRepresentation")
-    SpeechSynthesisProviderRequest_initWithSSMLRepresentation :: proc(self: ^SpeechSynthesisProviderRequest, text: ^NS.String, voice: ^SpeechSynthesisProviderVoice) -> ^SpeechSynthesisProviderRequest ---
+    SpeechSynthesisProviderRequest_initWithSSMLRepresentation :: proc(self: ^SpeechSynthesisProviderRequest, text: ^NS.String, voice: ^SpeechSynthesisProviderVoice) -> instancetype ---
 
     @(objc_type=SpeechSynthesisProviderRequest, objc_selector="init", objc_name="init")
-    SpeechSynthesisProviderRequest_init :: proc(self: ^SpeechSynthesisProviderRequest) -> ^SpeechSynthesisProviderRequest ---
+    SpeechSynthesisProviderRequest_init :: proc(self: ^SpeechSynthesisProviderRequest) -> instancetype ---
 
     @(objc_type=SpeechSynthesisProviderRequest, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SpeechSynthesisProviderRequest_new :: proc() -> ^SpeechSynthesisProviderRequest ---

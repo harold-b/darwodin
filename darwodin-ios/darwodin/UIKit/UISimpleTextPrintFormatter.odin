@@ -22,10 +22,10 @@ SimpleTextPrintFormatter :: struct { using _: PrintFormatter, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SimpleTextPrintFormatter, objc_selector="initWithText:", objc_name="initWithText")
-    SimpleTextPrintFormatter_initWithText :: proc(self: ^SimpleTextPrintFormatter, text: ^NS.String) -> ^SimpleTextPrintFormatter ---
+    SimpleTextPrintFormatter_initWithText :: proc(self: ^SimpleTextPrintFormatter, text: ^NS.String) -> instancetype ---
 
     @(objc_type=SimpleTextPrintFormatter, objc_selector="initWithAttributedText:", objc_name="initWithAttributedText")
-    SimpleTextPrintFormatter_initWithAttributedText :: proc(self: ^SimpleTextPrintFormatter, attributedText: ^NS.AttributedString) -> ^SimpleTextPrintFormatter ---
+    SimpleTextPrintFormatter_initWithAttributedText :: proc(self: ^SimpleTextPrintFormatter, attributedText: ^NS.AttributedString) -> instancetype ---
 
     @(objc_type=SimpleTextPrintFormatter, objc_selector="text", objc_name="text")
     SimpleTextPrintFormatter_text :: proc(self: ^SimpleTextPrintFormatter) -> ^NS.String ---

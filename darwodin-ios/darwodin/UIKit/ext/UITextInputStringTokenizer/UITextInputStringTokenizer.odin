@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextInput: proc(self: ^UI.TextInputStringTokenizer, textInput: ^UI.Responder) -> ^UI.TextInputStringTokenizer,
+    initWithTextInput: proc(self: ^UI.TextInputStringTokenizer, textInput: ^UI.Responder) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextInput != nil {
-        initWithTextInput :: proc "c" (self: ^UI.TextInputStringTokenizer, _: SEL, textInput: ^UI.Responder) -> ^UI.TextInputStringTokenizer {
+        initWithTextInput :: proc "c" (self: ^UI.TextInputStringTokenizer, _: SEL, textInput: ^UI.Responder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

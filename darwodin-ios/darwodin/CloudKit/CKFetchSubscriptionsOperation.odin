@@ -18,13 +18,13 @@ FetchSubscriptionsOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchSubscriptionsOperation, objc_selector="fetchAllSubscriptionsOperation", objc_name="fetchAllSubscriptionsOperation", objc_is_class_method=true)
-    FetchSubscriptionsOperation_fetchAllSubscriptionsOperation :: proc() -> ^FetchSubscriptionsOperation ---
+    FetchSubscriptionsOperation_fetchAllSubscriptionsOperation :: proc() -> instancetype ---
 
     @(objc_type=FetchSubscriptionsOperation, objc_selector="init", objc_name="init")
-    FetchSubscriptionsOperation_init :: proc(self: ^FetchSubscriptionsOperation) -> ^FetchSubscriptionsOperation ---
+    FetchSubscriptionsOperation_init :: proc(self: ^FetchSubscriptionsOperation) -> instancetype ---
 
     @(objc_type=FetchSubscriptionsOperation, objc_selector="initWithSubscriptionIDs:", objc_name="initWithSubscriptionIDs")
-    FetchSubscriptionsOperation_initWithSubscriptionIDs :: proc(self: ^FetchSubscriptionsOperation, subscriptionIDs: ^NS.Array) -> ^FetchSubscriptionsOperation ---
+    FetchSubscriptionsOperation_initWithSubscriptionIDs :: proc(self: ^FetchSubscriptionsOperation, subscriptionIDs: ^NS.Array) -> instancetype ---
 
     @(objc_type=FetchSubscriptionsOperation, objc_selector="subscriptionIDs", objc_name="subscriptionIDs")
     FetchSubscriptionsOperation_subscriptionIDs :: proc(self: ^FetchSubscriptionsOperation) -> ^NS.Array ---

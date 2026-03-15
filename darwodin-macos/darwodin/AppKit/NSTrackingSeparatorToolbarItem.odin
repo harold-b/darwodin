@@ -24,7 +24,7 @@ TrackingSeparatorToolbarItem :: struct { using _: ToolbarItem, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TrackingSeparatorToolbarItem, objc_selector="trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:", objc_name="trackingSeparatorToolbarItemWithIdentifier", objc_is_class_method=true)
-    TrackingSeparatorToolbarItem_trackingSeparatorToolbarItemWithIdentifier :: proc(identifier: ^NS.String, splitView: ^SplitView, dividerIndex: NS.Integer) -> ^TrackingSeparatorToolbarItem ---
+    TrackingSeparatorToolbarItem_trackingSeparatorToolbarItemWithIdentifier :: proc(identifier: ^NS.String, splitView: ^SplitView, dividerIndex: NS.Integer) -> instancetype ---
 
     @(objc_type=TrackingSeparatorToolbarItem, objc_selector="splitView", objc_name="splitView")
     TrackingSeparatorToolbarItem_splitView :: proc(self: ^TrackingSeparatorToolbarItem) -> ^SplitView ---

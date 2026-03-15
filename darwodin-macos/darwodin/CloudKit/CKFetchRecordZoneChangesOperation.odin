@@ -18,10 +18,10 @@ FetchRecordZoneChangesOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchRecordZoneChangesOperation, objc_selector="init", objc_name="init")
-    FetchRecordZoneChangesOperation_init :: proc(self: ^FetchRecordZoneChangesOperation) -> ^FetchRecordZoneChangesOperation ---
+    FetchRecordZoneChangesOperation_init :: proc(self: ^FetchRecordZoneChangesOperation) -> instancetype ---
 
     @(objc_type=FetchRecordZoneChangesOperation, objc_selector="initWithRecordZoneIDs:configurationsByRecordZoneID:", objc_name="initWithRecordZoneIDs_configurationsByRecordZoneID")
-    FetchRecordZoneChangesOperation_initWithRecordZoneIDs_configurationsByRecordZoneID :: proc(self: ^FetchRecordZoneChangesOperation, recordZoneIDs: ^NS.Array, configurationsByRecordZoneID: ^NS.Dictionary) -> ^FetchRecordZoneChangesOperation ---
+    FetchRecordZoneChangesOperation_initWithRecordZoneIDs_configurationsByRecordZoneID :: proc(self: ^FetchRecordZoneChangesOperation, recordZoneIDs: ^NS.Array, configurationsByRecordZoneID: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=FetchRecordZoneChangesOperation, objc_selector="recordZoneIDs", objc_name="recordZoneIDs")
     FetchRecordZoneChangesOperation_recordZoneIDs :: proc(self: ^FetchRecordZoneChangesOperation) -> ^NS.Array ---
@@ -78,7 +78,7 @@ foreign lib {
     FetchRecordZoneChangesOperation_setFetchRecordZoneChangesCompletionBlock :: proc(self: ^FetchRecordZoneChangesOperation, fetchRecordZoneChangesCompletionBlock: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=FetchRecordZoneChangesOperation, objc_selector="initWithRecordZoneIDs:optionsByRecordZoneID:", objc_name="initWithRecordZoneIDs_optionsByRecordZoneID")
-    FetchRecordZoneChangesOperation_initWithRecordZoneIDs_optionsByRecordZoneID :: proc(self: ^FetchRecordZoneChangesOperation, recordZoneIDs: ^NS.Array, optionsByRecordZoneID: ^NS.Dictionary) -> ^FetchRecordZoneChangesOperation ---
+    FetchRecordZoneChangesOperation_initWithRecordZoneIDs_optionsByRecordZoneID :: proc(self: ^FetchRecordZoneChangesOperation, recordZoneIDs: ^NS.Array, optionsByRecordZoneID: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=FetchRecordZoneChangesOperation, objc_selector="optionsByRecordZoneID", objc_name="optionsByRecordZoneID")
     FetchRecordZoneChangesOperation_optionsByRecordZoneID :: proc(self: ^FetchRecordZoneChangesOperation) -> ^NS.Dictionary ---

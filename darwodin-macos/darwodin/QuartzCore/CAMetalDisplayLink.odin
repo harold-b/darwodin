@@ -21,7 +21,7 @@ MetalDisplayLink :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetalDisplayLink, objc_selector="initWithMetalLayer:", objc_name="initWithMetalLayer")
-    MetalDisplayLink_initWithMetalLayer :: proc(self: ^MetalDisplayLink, layer: ^MetalLayer) -> ^MetalDisplayLink ---
+    MetalDisplayLink_initWithMetalLayer :: proc(self: ^MetalDisplayLink, layer: ^MetalLayer) -> instancetype ---
 
     @(objc_type=MetalDisplayLink, objc_selector="addToRunLoop:forMode:", objc_name="addToRunLoop")
     MetalDisplayLink_addToRunLoop :: proc(self: ^MetalDisplayLink, runloop: ^NS.RunLoop, mode: ^NS.String) ---

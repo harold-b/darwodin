@@ -26,10 +26,10 @@ TouchBar :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TouchBar, objc_selector="init", objc_name="init")
-    TouchBar_init :: proc(self: ^TouchBar) -> ^TouchBar ---
+    TouchBar_init :: proc(self: ^TouchBar) -> instancetype ---
 
     @(objc_type=TouchBar, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TouchBar_initWithCoder :: proc(self: ^TouchBar, coder: ^NS.Coder) -> ^TouchBar ---
+    TouchBar_initWithCoder :: proc(self: ^TouchBar, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TouchBar, objc_selector="itemForIdentifier:", objc_name="itemForIdentifier")
     TouchBar_itemForIdentifier :: proc(self: ^TouchBar, identifier: ^NS.String) -> ^TouchBarItem ---

@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.LayoutManager) -> ^AK.LayoutManager,
-    initWithCoder: proc(self: ^AK.LayoutManager, coder: ^NS.Coder) -> ^AK.LayoutManager,
+    init: proc(self: ^AK.LayoutManager) -> instancetype,
+    initWithCoder: proc(self: ^AK.LayoutManager, coder: ^NS.Coder) -> instancetype,
     replaceTextStorage: proc(self: ^AK.LayoutManager, newTextStorage: ^AK.TextStorage),
     addTextContainer: proc(self: ^AK.LayoutManager, container: ^AK.TextContainer),
     insertTextContainer: proc(self: ^AK.LayoutManager, container: ^AK.TextContainer, index: NS.UInteger),
@@ -190,7 +190,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.LayoutManager, _: SEL) -> ^AK.LayoutManager {
+        init :: proc "c" (self: ^AK.LayoutManager, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.LayoutManager, _: SEL, coder: ^NS.Coder) -> ^AK.LayoutManager {
+        initWithCoder :: proc "c" (self: ^AK.LayoutManager, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

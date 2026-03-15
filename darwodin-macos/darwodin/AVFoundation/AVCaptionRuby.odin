@@ -26,16 +26,16 @@ CaptionRuby :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionRuby, objc_selector="init", objc_name="init")
-    CaptionRuby_init :: proc(self: ^CaptionRuby) -> ^CaptionRuby ---
+    CaptionRuby_init :: proc(self: ^CaptionRuby) -> instancetype ---
 
     @(objc_type=CaptionRuby, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptionRuby_new :: proc() -> ^CaptionRuby ---
 
     @(objc_type=CaptionRuby, objc_selector="initWithText:", objc_name="initWithText_")
-    CaptionRuby_initWithText_ :: proc(self: ^CaptionRuby, text: ^NS.String) -> ^CaptionRuby ---
+    CaptionRuby_initWithText_ :: proc(self: ^CaptionRuby, text: ^NS.String) -> instancetype ---
 
     @(objc_type=CaptionRuby, objc_selector="initWithText:position:alignment:", objc_name="initWithText_position_alignment")
-    CaptionRuby_initWithText_position_alignment :: proc(self: ^CaptionRuby, text: ^NS.String, position: CaptionRubyPosition, alignment: CaptionRubyAlignment) -> ^CaptionRuby ---
+    CaptionRuby_initWithText_position_alignment :: proc(self: ^CaptionRuby, text: ^NS.String, position: CaptionRubyPosition, alignment: CaptionRubyAlignment) -> instancetype ---
 
     @(objc_type=CaptionRuby, objc_selector="text", objc_name="text")
     CaptionRuby_text :: proc(self: ^CaptionRuby) -> ^NS.String ---

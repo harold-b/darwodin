@@ -26,10 +26,10 @@ TabViewItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TabViewItem, objc_selector="tabViewItemWithViewController:", objc_name="tabViewItemWithViewController", objc_is_class_method=true)
-    TabViewItem_tabViewItemWithViewController :: proc(viewController: ^ViewController) -> ^TabViewItem ---
+    TabViewItem_tabViewItemWithViewController :: proc(viewController: ^ViewController) -> instancetype ---
 
     @(objc_type=TabViewItem, objc_selector="initWithIdentifier:", objc_name="initWithIdentifier")
-    TabViewItem_initWithIdentifier :: proc(self: ^TabViewItem, identifier: id) -> ^TabViewItem ---
+    TabViewItem_initWithIdentifier :: proc(self: ^TabViewItem, identifier: id) -> instancetype ---
 
     @(objc_type=TabViewItem, objc_selector="drawLabel:inRect:", objc_name="drawLabel")
     TabViewItem_drawLabel :: proc(self: ^TabViewItem, shouldTruncateLabel: bool, labelRect: NS.Rect) ---

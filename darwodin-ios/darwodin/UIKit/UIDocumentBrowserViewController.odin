@@ -24,13 +24,13 @@ DocumentBrowserViewController :: struct { using _: ViewController,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DocumentBrowserViewController, objc_selector="initForOpeningFilesWithContentTypes:", objc_name="initForOpeningFilesWithContentTypes")
-    DocumentBrowserViewController_initForOpeningFilesWithContentTypes :: proc(self: ^DocumentBrowserViewController, allowedContentTypes: ^NS.Array) -> ^DocumentBrowserViewController ---
+    DocumentBrowserViewController_initForOpeningFilesWithContentTypes :: proc(self: ^DocumentBrowserViewController, allowedContentTypes: ^NS.Array) -> instancetype ---
 
     @(objc_type=DocumentBrowserViewController, objc_selector="initForOpeningContentTypes:", objc_name="initForOpeningContentTypes")
-    DocumentBrowserViewController_initForOpeningContentTypes :: proc(self: ^DocumentBrowserViewController, contentTypes: ^NS.Array) -> ^DocumentBrowserViewController ---
+    DocumentBrowserViewController_initForOpeningContentTypes :: proc(self: ^DocumentBrowserViewController, contentTypes: ^NS.Array) -> instancetype ---
 
     @(objc_type=DocumentBrowserViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    DocumentBrowserViewController_initWithNibName :: proc(self: ^DocumentBrowserViewController, nibName: ^NS.String, bundle: ^NS.Bundle) -> ^DocumentBrowserViewController ---
+    DocumentBrowserViewController_initWithNibName :: proc(self: ^DocumentBrowserViewController, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=DocumentBrowserViewController, objc_selector="revealDocumentAtURL:importIfNeeded:completion:", objc_name="revealDocumentAtURL")
     DocumentBrowserViewController_revealDocumentAtURL :: proc(self: ^DocumentBrowserViewController, url: ^NS.URL, importIfNeeded: bool, completion: ^Objc_Block(proc "c" (revealedDocumentURL: ^NS.URL, error: ^NS.Error))) ---

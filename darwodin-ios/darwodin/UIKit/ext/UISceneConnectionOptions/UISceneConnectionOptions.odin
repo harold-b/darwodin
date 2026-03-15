@@ -29,7 +29,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.SceneConnectionOptions,
-    init: proc(self: ^UI.SceneConnectionOptions) -> ^UI.SceneConnectionOptions,
+    init: proc(self: ^UI.SceneConnectionOptions) -> instancetype,
     _URLContexts: proc(self: ^UI.SceneConnectionOptions) -> ^NS.Set,
     sourceApplication: proc(self: ^UI.SceneConnectionOptions) -> ^NS.String,
     handoffUserActivityType: proc(self: ^UI.SceneConnectionOptions) -> ^NS.String,
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SceneConnectionOptions, _: SEL) -> ^UI.SceneConnectionOptions {
+        init :: proc "c" (self: ^UI.SceneConnectionOptions, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

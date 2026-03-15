@@ -31,8 +31,8 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     colorListNamed: proc(name: ^NS.String) -> ^AK.ColorList,
-    initWithName_: proc(self: ^AK.ColorList, name: ^NS.String) -> ^AK.ColorList,
-    initWithName_fromFile: proc(self: ^AK.ColorList, name: ^NS.String, path: ^NS.String) -> ^AK.ColorList,
+    initWithName_: proc(self: ^AK.ColorList, name: ^NS.String) -> instancetype,
+    initWithName_fromFile: proc(self: ^AK.ColorList, name: ^NS.String, path: ^NS.String) -> instancetype,
     setColor: proc(self: ^AK.ColorList, color: ^AK.Color, key: ^NS.String),
     insertColor: proc(self: ^AK.ColorList, color: ^AK.Color, key: ^NS.String, loc: NS.UInteger),
     removeColorWithKey: proc(self: ^AK.ColorList, key: ^NS.String),
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("colorListNamed:"), auto_cast colorListNamed, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithName_ != nil {
-        initWithName_ :: proc "c" (self: ^AK.ColorList, _: SEL, name: ^NS.String) -> ^AK.ColorList {
+        initWithName_ :: proc "c" (self: ^AK.ColorList, _: SEL, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:"), auto_cast initWithName_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithName_fromFile != nil {
-        initWithName_fromFile :: proc "c" (self: ^AK.ColorList, _: SEL, name: ^NS.String, path: ^NS.String) -> ^AK.ColorList {
+        initWithName_fromFile :: proc "c" (self: ^AK.ColorList, _: SEL, name: ^NS.String, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

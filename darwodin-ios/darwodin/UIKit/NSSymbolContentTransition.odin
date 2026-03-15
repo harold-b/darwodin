@@ -28,5 +28,5 @@ foreign lib {
     NSSymbolContentTransition_new :: proc() -> ^NSSymbolContentTransition ---
 
     @(objc_type=NSSymbolContentTransition, objc_selector="init", objc_name="init")
-    NSSymbolContentTransition_init :: proc(self: ^NSSymbolContentTransition) -> ^NSSymbolContentTransition ---
+    NSSymbolContentTransition_init :: proc(self: ^NSSymbolContentTransition) -> instancetype ---
 }

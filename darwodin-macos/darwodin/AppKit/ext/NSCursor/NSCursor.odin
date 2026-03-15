@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithImage_hotSpot: proc(self: ^AK.Cursor, newImage: ^NS.Image, point: CG.Point) -> ^AK.Cursor,
-    initWithCoder: proc(self: ^AK.Cursor, coder: ^NS.Coder) -> ^AK.Cursor,
+    initWithImage_hotSpot: proc(self: ^AK.Cursor, newImage: ^NS.Image, point: CG.Point) -> instancetype,
+    initWithCoder: proc(self: ^AK.Cursor, coder: ^NS.Coder) -> instancetype,
     hide: proc(),
     unhide: proc(),
     setHiddenUntilMouseMoves: proc(flag: bool),
@@ -68,7 +68,7 @@ VTable :: struct {
     resizeUpCursor: proc() -> ^AK.Cursor,
     resizeDownCursor: proc() -> ^AK.Cursor,
     resizeUpDownCursor: proc() -> ^AK.Cursor,
-    initWithImage_foregroundColorHint_backgroundColorHint_hotSpot: proc(self: ^AK.Cursor, newImage: ^NS.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> ^AK.Cursor,
+    initWithImage_foregroundColorHint_backgroundColorHint_hotSpot: proc(self: ^AK.Cursor, newImage: ^NS.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> instancetype,
     setOnMouseExited: proc(self: ^AK.Cursor, flag: bool),
     setOnMouseEntered: proc(self: ^AK.Cursor, flag: bool),
     mouseEntered: proc(self: ^AK.Cursor, event: ^AK.Event),
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithImage_hotSpot != nil {
-        initWithImage_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^NS.Image, point: CG.Point) -> ^AK.Cursor {
+        initWithImage_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^NS.Image, point: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImage:hotSpot:"), auto_cast initWithImage_hotSpot, "@@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Cursor, _: SEL, coder: ^NS.Coder) -> ^AK.Cursor {
+        initWithCoder :: proc "c" (self: ^AK.Cursor, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -465,7 +465,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("resizeUpDownCursor"), auto_cast resizeUpDownCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithImage_foregroundColorHint_backgroundColorHint_hotSpot != nil {
-        initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^NS.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> ^AK.Cursor {
+        initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^NS.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

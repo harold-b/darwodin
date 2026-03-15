@@ -24,13 +24,13 @@ ActivityIndicatorView :: struct { using _: View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ActivityIndicatorView, objc_selector="initWithActivityIndicatorStyle:", objc_name="initWithActivityIndicatorStyle")
-    ActivityIndicatorView_initWithActivityIndicatorStyle :: proc(self: ^ActivityIndicatorView, style: ActivityIndicatorViewStyle) -> ^ActivityIndicatorView ---
+    ActivityIndicatorView_initWithActivityIndicatorStyle :: proc(self: ^ActivityIndicatorView, style: ActivityIndicatorViewStyle) -> instancetype ---
 
     @(objc_type=ActivityIndicatorView, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    ActivityIndicatorView_initWithFrame :: proc(self: ^ActivityIndicatorView, frame: CG.Rect) -> ^ActivityIndicatorView ---
+    ActivityIndicatorView_initWithFrame :: proc(self: ^ActivityIndicatorView, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=ActivityIndicatorView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ActivityIndicatorView_initWithCoder :: proc(self: ^ActivityIndicatorView, coder: ^NS.Coder) -> ^ActivityIndicatorView ---
+    ActivityIndicatorView_initWithCoder :: proc(self: ^ActivityIndicatorView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ActivityIndicatorView, objc_selector="startAnimating", objc_name="startAnimating")
     ActivityIndicatorView_startAnimating :: proc(self: ^ActivityIndicatorView) ---

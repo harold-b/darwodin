@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    animation: proc() -> ^CA.Animation,
+    animation: proc() -> instancetype,
     defaultValueForKey: proc(key: ^NS.String) -> id,
     shouldArchiveValueForKey: proc(self: ^CA.Animation, key: ^NS.String) -> bool,
     timingFunction: proc(self: ^CA.Animation) -> ^CA.MediaTimingFunction,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.animation != nil {
-        animation :: proc "c" (self: Class, _: SEL) -> ^CA.Animation {
+        animation :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

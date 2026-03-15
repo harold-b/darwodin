@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTarget: proc(self: ^UI.GestureRecognizer, target: id, action: SEL) -> ^UI.GestureRecognizer,
-    init: proc(self: ^UI.GestureRecognizer) -> ^UI.GestureRecognizer,
-    initWithCoder: proc(self: ^UI.GestureRecognizer, coder: ^NS.Coder) -> ^UI.GestureRecognizer,
+    initWithTarget: proc(self: ^UI.GestureRecognizer, target: id, action: SEL) -> instancetype,
+    init: proc(self: ^UI.GestureRecognizer) -> instancetype,
+    initWithCoder: proc(self: ^UI.GestureRecognizer, coder: ^NS.Coder) -> instancetype,
     addTarget: proc(self: ^UI.GestureRecognizer, target: id, action: SEL),
     removeTarget: proc(self: ^UI.GestureRecognizer, target: id, action: SEL),
     requireGestureRecognizerToFail: proc(self: ^UI.GestureRecognizer, otherGestureRecognizer: ^UI.GestureRecognizer),
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTarget != nil {
-        initWithTarget :: proc "c" (self: ^UI.GestureRecognizer, _: SEL, target: id, action: SEL) -> ^UI.GestureRecognizer {
+        initWithTarget :: proc "c" (self: ^UI.GestureRecognizer, _: SEL, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTarget:action:"), auto_cast initWithTarget, "@@:@:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.GestureRecognizer, _: SEL) -> ^UI.GestureRecognizer {
+        init :: proc "c" (self: ^UI.GestureRecognizer, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.GestureRecognizer, _: SEL, coder: ^NS.Coder) -> ^UI.GestureRecognizer {
+        initWithCoder :: proc "c" (self: ^UI.GestureRecognizer, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -22,7 +22,7 @@ DocumentViewController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DocumentViewController, objc_selector="initWithDocument:", objc_name="initWithDocument")
-    DocumentViewController_initWithDocument :: proc(self: ^DocumentViewController, document: ^Document) -> ^DocumentViewController ---
+    DocumentViewController_initWithDocument :: proc(self: ^DocumentViewController, document: ^Document) -> instancetype ---
 
     @(objc_type=DocumentViewController, objc_selector="navigationItemDidUpdate", objc_name="navigationItemDidUpdate")
     DocumentViewController_navigationItemDidUpdate :: proc(self: ^DocumentViewController) ---

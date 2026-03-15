@@ -72,6 +72,10 @@ array_next :: proc( it: ^Array_Iterator($T) ) -> (val: ^T, idx: int, cond: bool)
     return
 }
 
+STR :: #force_inline proc "contextless" ( #const s: cstring ) -> ^String {
+    return auto_cast CF.STR(s)
+}
+
 
 
 ASCIIStringEncoding                                  :: 1

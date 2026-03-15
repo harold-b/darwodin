@@ -25,7 +25,7 @@ Document :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Document, objc_selector="initWithFileURL:", objc_name="initWithFileURL")
-    Document_initWithFileURL :: proc(self: ^Document, url: ^NS.URL) -> ^Document ---
+    Document_initWithFileURL :: proc(self: ^Document, url: ^NS.URL) -> instancetype ---
 
     @(objc_type=Document, objc_selector="openWithCompletionHandler:", objc_name="openWithCompletionHandler")
     Document_openWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (success: bool))) ---

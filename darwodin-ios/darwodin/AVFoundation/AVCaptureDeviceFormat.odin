@@ -23,7 +23,7 @@ CaptureDeviceFormat :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeviceFormat, objc_selector="init", objc_name="init")
-    CaptureDeviceFormat_init :: proc(self: ^CaptureDeviceFormat) -> ^CaptureDeviceFormat ---
+    CaptureDeviceFormat_init :: proc(self: ^CaptureDeviceFormat) -> instancetype ---
 
     @(objc_type=CaptureDeviceFormat, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureDeviceFormat_new :: proc() -> ^CaptureDeviceFormat ---

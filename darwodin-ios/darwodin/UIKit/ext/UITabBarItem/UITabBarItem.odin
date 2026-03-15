@@ -28,11 +28,11 @@ import "../UIBarItem"
 
 VTable :: struct {
     super: UIBarItem.VTable,
-    init: proc(self: ^UI.TabBarItem) -> ^UI.TabBarItem,
-    initWithCoder: proc(self: ^UI.TabBarItem, coder: ^NS.Coder) -> ^UI.TabBarItem,
-    initWithTitle_image_tag: proc(self: ^UI.TabBarItem, title: ^NS.String, image: ^UI.Image, tag: NS.Integer) -> ^UI.TabBarItem,
-    initWithTitle_image_selectedImage: proc(self: ^UI.TabBarItem, title: ^NS.String, image: ^UI.Image, selectedImage: ^UI.Image) -> ^UI.TabBarItem,
-    initWithTabBarSystemItem: proc(self: ^UI.TabBarItem, systemItem: UI.TabBarSystemItem, tag: NS.Integer) -> ^UI.TabBarItem,
+    init: proc(self: ^UI.TabBarItem) -> instancetype,
+    initWithCoder: proc(self: ^UI.TabBarItem, coder: ^NS.Coder) -> instancetype,
+    initWithTitle_image_tag: proc(self: ^UI.TabBarItem, title: ^NS.String, image: ^UI.Image, tag: NS.Integer) -> instancetype,
+    initWithTitle_image_selectedImage: proc(self: ^UI.TabBarItem, title: ^NS.String, image: ^UI.Image, selectedImage: ^UI.Image) -> instancetype,
+    initWithTabBarSystemItem: proc(self: ^UI.TabBarItem, systemItem: UI.TabBarSystemItem, tag: NS.Integer) -> instancetype,
     setFinishedSelectedImage: proc(self: ^UI.TabBarItem, selectedImage: ^UI.Image, unselectedImage: ^UI.Image),
     finishedSelectedImage: proc(self: ^UI.TabBarItem) -> ^UI.Image,
     finishedUnselectedImage: proc(self: ^UI.TabBarItem) -> ^UI.Image,
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIBarItem.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TabBarItem, _: SEL) -> ^UI.TabBarItem {
+        init :: proc "c" (self: ^UI.TabBarItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.TabBarItem, _: SEL, coder: ^NS.Coder) -> ^UI.TabBarItem {
+        initWithCoder :: proc "c" (self: ^UI.TabBarItem, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithTitle_image_tag != nil {
-        initWithTitle_image_tag :: proc "c" (self: ^UI.TabBarItem, _: SEL, title: ^NS.String, image: ^UI.Image, tag: NS.Integer) -> ^UI.TabBarItem {
+        initWithTitle_image_tag :: proc "c" (self: ^UI.TabBarItem, _: SEL, title: ^NS.String, image: ^UI.Image, tag: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:image:tag:"), auto_cast initWithTitle_image_tag, "@@:@@l") do panic("Failed to register objC method.")
     }
     if vt.initWithTitle_image_selectedImage != nil {
-        initWithTitle_image_selectedImage :: proc "c" (self: ^UI.TabBarItem, _: SEL, title: ^NS.String, image: ^UI.Image, selectedImage: ^UI.Image) -> ^UI.TabBarItem {
+        initWithTitle_image_selectedImage :: proc "c" (self: ^UI.TabBarItem, _: SEL, title: ^NS.String, image: ^UI.Image, selectedImage: ^UI.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:image:selectedImage:"), auto_cast initWithTitle_image_selectedImage, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithTabBarSystemItem != nil {
-        initWithTabBarSystemItem :: proc "c" (self: ^UI.TabBarItem, _: SEL, systemItem: UI.TabBarSystemItem, tag: NS.Integer) -> ^UI.TabBarItem {
+        initWithTabBarSystemItem :: proc "c" (self: ^UI.TabBarItem, _: SEL, systemItem: UI.TabBarSystemItem, tag: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

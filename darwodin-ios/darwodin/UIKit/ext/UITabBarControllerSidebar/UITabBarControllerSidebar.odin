@@ -30,7 +30,7 @@ VTable :: struct {
     super: NSObject.VTable,
     scrollToTarget: proc(self: ^UI.TabBarControllerSidebar, target: ^UI.TabSidebarScrollTarget, animated: bool),
     reconfigureItemForTab: proc(self: ^UI.TabBarControllerSidebar, tab: ^UI.Tab),
-    init: proc(self: ^UI.TabBarControllerSidebar) -> ^UI.TabBarControllerSidebar,
+    init: proc(self: ^UI.TabBarControllerSidebar) -> instancetype,
     new: proc() -> ^UI.TabBarControllerSidebar,
     delegate: proc(self: ^UI.TabBarControllerSidebar) -> ^UI.TabBarControllerSidebarDelegate,
     setDelegate: proc(self: ^UI.TabBarControllerSidebar, delegate: ^UI.TabBarControllerSidebarDelegate),
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reconfigureItemForTab:"), auto_cast reconfigureItemForTab, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TabBarControllerSidebar, _: SEL) -> ^UI.TabBarControllerSidebar {
+        init :: proc "c" (self: ^UI.TabBarControllerSidebar, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

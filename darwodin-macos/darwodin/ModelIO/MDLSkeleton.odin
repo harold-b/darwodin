@@ -23,7 +23,7 @@ Skeleton :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Skeleton, objc_selector="initWithName:jointPaths:", objc_name="initWithName")
-    Skeleton_initWithName :: proc(self: ^Skeleton, name: ^NS.String, jointPaths: ^NS.Array) -> ^Skeleton ---
+    Skeleton_initWithName :: proc(self: ^Skeleton, name: ^NS.String, jointPaths: ^NS.Array) -> instancetype ---
 
     @(objc_type=Skeleton, objc_selector="jointPaths", objc_name="jointPaths")
     Skeleton_jointPaths :: proc(self: ^Skeleton) -> ^NS.Array ---

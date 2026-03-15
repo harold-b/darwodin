@@ -27,10 +27,10 @@ Animation :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Animation, objc_selector="initWithDuration:animationCurve:", objc_name="initWithDuration")
-    Animation_initWithDuration :: proc(self: ^Animation, duration: NS.TimeInterval, animationCurve: AnimationCurve) -> ^Animation ---
+    Animation_initWithDuration :: proc(self: ^Animation, duration: NS.TimeInterval, animationCurve: AnimationCurve) -> instancetype ---
 
     @(objc_type=Animation, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Animation_initWithCoder :: proc(self: ^Animation, coder: ^NS.Coder) -> ^Animation ---
+    Animation_initWithCoder :: proc(self: ^Animation, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Animation, objc_selector="startAnimation", objc_name="startAnimation")
     Animation_startAnimation :: proc(self: ^Animation) ---

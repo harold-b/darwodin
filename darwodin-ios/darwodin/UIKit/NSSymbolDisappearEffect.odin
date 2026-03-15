@@ -22,17 +22,17 @@ NSSymbolDisappearEffect :: struct { using _: NSSymbolEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSSymbolDisappearEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    NSSymbolDisappearEffect_effect :: proc() -> ^NSSymbolDisappearEffect ---
+    NSSymbolDisappearEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolDisappearEffect, objc_selector="disappearUpEffect", objc_name="disappearUpEffect", objc_is_class_method=true)
-    NSSymbolDisappearEffect_disappearUpEffect :: proc() -> ^NSSymbolDisappearEffect ---
+    NSSymbolDisappearEffect_disappearUpEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolDisappearEffect, objc_selector="disappearDownEffect", objc_name="disappearDownEffect", objc_is_class_method=true)
-    NSSymbolDisappearEffect_disappearDownEffect :: proc() -> ^NSSymbolDisappearEffect ---
+    NSSymbolDisappearEffect_disappearDownEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolDisappearEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
-    NSSymbolDisappearEffect_effectWithByLayer :: proc(self: ^NSSymbolDisappearEffect) -> ^NSSymbolDisappearEffect ---
+    NSSymbolDisappearEffect_effectWithByLayer :: proc(self: ^NSSymbolDisappearEffect) -> instancetype ---
 
     @(objc_type=NSSymbolDisappearEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
-    NSSymbolDisappearEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolDisappearEffect) -> ^NSSymbolDisappearEffect ---
+    NSSymbolDisappearEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolDisappearEffect) -> instancetype ---
 }

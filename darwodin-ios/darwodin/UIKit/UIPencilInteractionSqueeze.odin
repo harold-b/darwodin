@@ -25,7 +25,7 @@ foreign lib {
     PencilInteractionSqueeze_new :: proc() -> ^PencilInteractionSqueeze ---
 
     @(objc_type=PencilInteractionSqueeze, objc_selector="init", objc_name="init")
-    PencilInteractionSqueeze_init :: proc(self: ^PencilInteractionSqueeze) -> ^PencilInteractionSqueeze ---
+    PencilInteractionSqueeze_init :: proc(self: ^PencilInteractionSqueeze) -> instancetype ---
 
     @(objc_type=PencilInteractionSqueeze, objc_selector="timestamp", objc_name="timestamp")
     PencilInteractionSqueeze_timestamp :: proc(self: ^PencilInteractionSqueeze) -> NS.TimeInterval ---

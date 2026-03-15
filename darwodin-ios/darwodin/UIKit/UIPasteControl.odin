@@ -22,13 +22,13 @@ PasteControl :: struct { using _: Control, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PasteControl, objc_selector="initWithConfiguration:", objc_name="initWithConfiguration")
-    PasteControl_initWithConfiguration :: proc(self: ^PasteControl, configuration: ^PasteControlConfiguration) -> ^PasteControl ---
+    PasteControl_initWithConfiguration :: proc(self: ^PasteControl, configuration: ^PasteControlConfiguration) -> instancetype ---
 
     @(objc_type=PasteControl, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    PasteControl_initWithCoder :: proc(self: ^PasteControl, coder: ^NS.Coder) -> ^PasteControl ---
+    PasteControl_initWithCoder :: proc(self: ^PasteControl, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=PasteControl, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    PasteControl_initWithFrame :: proc(self: ^PasteControl, frame: CG.Rect) -> ^PasteControl ---
+    PasteControl_initWithFrame :: proc(self: ^PasteControl, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=PasteControl, objc_selector="configuration", objc_name="configuration")
     PasteControl_configuration :: proc(self: ^PasteControl) -> ^PasteControlConfiguration ---

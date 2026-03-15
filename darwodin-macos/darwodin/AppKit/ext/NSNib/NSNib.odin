@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithNibNamed: proc(self: ^AK.Nib, nibName: ^NS.String, bundle: ^NS.Bundle) -> ^AK.Nib,
-    initWithNibData: proc(self: ^AK.Nib, nibData: ^NS.Data, bundle: ^NS.Bundle) -> ^AK.Nib,
+    initWithNibNamed: proc(self: ^AK.Nib, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype,
+    initWithNibData: proc(self: ^AK.Nib, nibData: ^NS.Data, bundle: ^NS.Bundle) -> instancetype,
     instantiateWithOwner: proc(self: ^AK.Nib, owner: id, topLevelObjects: ^^NS.Array) -> bool,
     initWithContentsOfURL: proc(self: ^AK.Nib, nibFileURL: ^NS.URL) -> id,
     instantiateNibWithExternalNameTable: proc(self: ^AK.Nib, externalNameTable: ^NS.Dictionary) -> bool,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithNibNamed != nil {
-        initWithNibNamed :: proc "c" (self: ^AK.Nib, _: SEL, nibName: ^NS.String, bundle: ^NS.Bundle) -> ^AK.Nib {
+        initWithNibNamed :: proc "c" (self: ^AK.Nib, _: SEL, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibNamed:bundle:"), auto_cast initWithNibNamed, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithNibData != nil {
-        initWithNibData :: proc "c" (self: ^AK.Nib, _: SEL, nibData: ^NS.Data, bundle: ^NS.Bundle) -> ^AK.Nib {
+        initWithNibData :: proc "c" (self: ^AK.Nib, _: SEL, nibData: ^NS.Data, bundle: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

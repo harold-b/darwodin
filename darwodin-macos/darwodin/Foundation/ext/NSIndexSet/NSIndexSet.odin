@@ -26,12 +26,12 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    indexSet: proc() -> ^NS.IndexSet,
-    indexSetWithIndex: proc(value: NS.UInteger) -> ^NS.IndexSet,
-    indexSetWithIndexesInRange: proc(range: NS._NSRange) -> ^NS.IndexSet,
-    initWithIndexesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange) -> ^NS.IndexSet,
-    initWithIndexSet: proc(self: ^NS.IndexSet, indexSet: ^NS.IndexSet) -> ^NS.IndexSet,
-    initWithIndex: proc(self: ^NS.IndexSet, value: NS.UInteger) -> ^NS.IndexSet,
+    indexSet: proc() -> instancetype,
+    indexSetWithIndex: proc(value: NS.UInteger) -> instancetype,
+    indexSetWithIndexesInRange: proc(range: NS._NSRange) -> instancetype,
+    initWithIndexesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange) -> instancetype,
+    initWithIndexSet: proc(self: ^NS.IndexSet, indexSet: ^NS.IndexSet) -> instancetype,
+    initWithIndex: proc(self: ^NS.IndexSet, value: NS.UInteger) -> instancetype,
     isEqualToIndexSet: proc(self: ^NS.IndexSet, indexSet: ^NS.IndexSet) -> bool,
     indexGreaterThanIndex: proc(self: ^NS.IndexSet, value: NS.UInteger) -> NS.UInteger,
     indexLessThanIndex: proc(self: ^NS.IndexSet, value: NS.UInteger) -> NS.UInteger,
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.indexSet != nil {
-        indexSet :: proc "c" (self: Class, _: SEL) -> ^NS.IndexSet {
+        indexSet :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("indexSet"), auto_cast indexSet, "@#:") do panic("Failed to register objC method.")
     }
     if vt.indexSetWithIndex != nil {
-        indexSetWithIndex :: proc "c" (self: Class, _: SEL, value: NS.UInteger) -> ^NS.IndexSet {
+        indexSetWithIndex :: proc "c" (self: Class, _: SEL, value: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("indexSetWithIndex:"), auto_cast indexSetWithIndex, "@#:L") do panic("Failed to register objC method.")
     }
     if vt.indexSetWithIndexesInRange != nil {
-        indexSetWithIndexesInRange :: proc "c" (self: Class, _: SEL, range: NS._NSRange) -> ^NS.IndexSet {
+        indexSetWithIndexesInRange :: proc "c" (self: Class, _: SEL, range: NS._NSRange) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("indexSetWithIndexesInRange:"), auto_cast indexSetWithIndexesInRange, "@#:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.initWithIndexesInRange != nil {
-        initWithIndexesInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange) -> ^NS.IndexSet {
+        initWithIndexesInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIndexesInRange:"), auto_cast initWithIndexesInRange, "@@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.initWithIndexSet != nil {
-        initWithIndexSet :: proc "c" (self: ^NS.IndexSet, _: SEL, indexSet: ^NS.IndexSet) -> ^NS.IndexSet {
+        initWithIndexSet :: proc "c" (self: ^NS.IndexSet, _: SEL, indexSet: ^NS.IndexSet) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIndexSet:"), auto_cast initWithIndexSet, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithIndex != nil {
-        initWithIndex :: proc "c" (self: ^NS.IndexSet, _: SEL, value: NS.UInteger) -> ^NS.IndexSet {
+        initWithIndex :: proc "c" (self: ^NS.IndexSet, _: SEL, value: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

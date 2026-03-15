@@ -27,8 +27,8 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     transform: proc() -> ^NS.AffineTransform,
-    initWithTransform: proc(self: ^NS.AffineTransform, transform: ^NS.AffineTransform) -> ^NS.AffineTransform,
-    init: proc(self: ^NS.AffineTransform) -> ^NS.AffineTransform,
+    initWithTransform: proc(self: ^NS.AffineTransform, transform: ^NS.AffineTransform) -> instancetype,
+    init: proc(self: ^NS.AffineTransform) -> instancetype,
     translateXBy: proc(self: ^NS.AffineTransform, deltaX: CG.Float, deltaY: CG.Float),
     rotateByDegrees: proc(self: ^NS.AffineTransform, angle: CG.Float),
     rotateByRadians: proc(self: ^NS.AffineTransform, angle: CG.Float),
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("transform"), auto_cast transform, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithTransform != nil {
-        initWithTransform :: proc "c" (self: ^NS.AffineTransform, _: SEL, transform: ^NS.AffineTransform) -> ^NS.AffineTransform {
+        initWithTransform :: proc "c" (self: ^NS.AffineTransform, _: SEL, transform: ^NS.AffineTransform) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTransform:"), auto_cast initWithTransform, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.AffineTransform, _: SEL) -> ^NS.AffineTransform {
+        init :: proc "c" (self: ^NS.AffineTransform, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -30,12 +30,12 @@ import "../NSCollectionLayoutItem"
 
 VTable :: struct {
     super: NSCollectionLayoutItem.VTable,
-    horizontalGroupWithLayoutSize_subitem_count: proc(layoutSize: ^AK.CollectionLayoutSize, subitem: ^AK.CollectionLayoutItem, count: NS.Integer) -> ^AK.CollectionLayoutGroup,
-    horizontalGroupWithLayoutSize_subitems: proc(layoutSize: ^AK.CollectionLayoutSize, subitems: ^NS.Array) -> ^AK.CollectionLayoutGroup,
-    verticalGroupWithLayoutSize_subitem_count: proc(layoutSize: ^AK.CollectionLayoutSize, subitem: ^AK.CollectionLayoutItem, count: NS.Integer) -> ^AK.CollectionLayoutGroup,
-    verticalGroupWithLayoutSize_subitems: proc(layoutSize: ^AK.CollectionLayoutSize, subitems: ^NS.Array) -> ^AK.CollectionLayoutGroup,
-    customGroupWithLayoutSize: proc(layoutSize: ^AK.CollectionLayoutSize, itemProvider: AK.CollectionLayoutGroupCustomItemProvider) -> ^AK.CollectionLayoutGroup,
-    init: proc(self: ^AK.CollectionLayoutGroup) -> ^AK.CollectionLayoutGroup,
+    horizontalGroupWithLayoutSize_subitem_count: proc(layoutSize: ^AK.CollectionLayoutSize, subitem: ^AK.CollectionLayoutItem, count: NS.Integer) -> instancetype,
+    horizontalGroupWithLayoutSize_subitems: proc(layoutSize: ^AK.CollectionLayoutSize, subitems: ^NS.Array) -> instancetype,
+    verticalGroupWithLayoutSize_subitem_count: proc(layoutSize: ^AK.CollectionLayoutSize, subitem: ^AK.CollectionLayoutItem, count: NS.Integer) -> instancetype,
+    verticalGroupWithLayoutSize_subitems: proc(layoutSize: ^AK.CollectionLayoutSize, subitems: ^NS.Array) -> instancetype,
+    customGroupWithLayoutSize: proc(layoutSize: ^AK.CollectionLayoutSize, itemProvider: AK.CollectionLayoutGroupCustomItemProvider) -> instancetype,
+    init: proc(self: ^AK.CollectionLayoutGroup) -> instancetype,
     new: proc() -> ^AK.CollectionLayoutGroup,
     visualDescription: proc(self: ^AK.CollectionLayoutGroup) -> ^NS.String,
     supplementaryItems: proc(self: ^AK.CollectionLayoutGroup) -> ^NS.Array,
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionLayoutItem.extend(cls, &vt.super)
 
     if vt.horizontalGroupWithLayoutSize_subitem_count != nil {
-        horizontalGroupWithLayoutSize_subitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, subitem: ^AK.CollectionLayoutItem, count: NS.Integer) -> ^AK.CollectionLayoutGroup {
+        horizontalGroupWithLayoutSize_subitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, subitem: ^AK.CollectionLayoutItem, count: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("horizontalGroupWithLayoutSize:subitem:count:"), auto_cast horizontalGroupWithLayoutSize_subitem_count, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.horizontalGroupWithLayoutSize_subitems != nil {
-        horizontalGroupWithLayoutSize_subitems :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, subitems: ^NS.Array) -> ^AK.CollectionLayoutGroup {
+        horizontalGroupWithLayoutSize_subitems :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, subitems: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("horizontalGroupWithLayoutSize:subitems:"), auto_cast horizontalGroupWithLayoutSize_subitems, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.verticalGroupWithLayoutSize_subitem_count != nil {
-        verticalGroupWithLayoutSize_subitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, subitem: ^AK.CollectionLayoutItem, count: NS.Integer) -> ^AK.CollectionLayoutGroup {
+        verticalGroupWithLayoutSize_subitem_count :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, subitem: ^AK.CollectionLayoutItem, count: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("verticalGroupWithLayoutSize:subitem:count:"), auto_cast verticalGroupWithLayoutSize_subitem_count, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.verticalGroupWithLayoutSize_subitems != nil {
-        verticalGroupWithLayoutSize_subitems :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, subitems: ^NS.Array) -> ^AK.CollectionLayoutGroup {
+        verticalGroupWithLayoutSize_subitems :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, subitems: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("verticalGroupWithLayoutSize:subitems:"), auto_cast verticalGroupWithLayoutSize_subitems, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.customGroupWithLayoutSize != nil {
-        customGroupWithLayoutSize :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, itemProvider: AK.CollectionLayoutGroupCustomItemProvider) -> ^AK.CollectionLayoutGroup {
+        customGroupWithLayoutSize :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, itemProvider: AK.CollectionLayoutGroupCustomItemProvider) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("customGroupWithLayoutSize:itemProvider:"), auto_cast customGroupWithLayoutSize, "@#:@?") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutGroup, _: SEL) -> ^AK.CollectionLayoutGroup {
+        init :: proc "c" (self: ^AK.CollectionLayoutGroup, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

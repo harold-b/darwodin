@@ -52,8 +52,8 @@ VTable :: struct {
     setCalendarFormat: proc(self: ^NS.CalendarDate, format: ^NS.String),
     setTimeZone: proc(self: ^NS.CalendarDate, aTimeZone: ^NS.TimeZone),
     years: proc(self: ^NS.CalendarDate, yp: ^NS.Integer, mop: ^NS.Integer, dp: ^NS.Integer, hp: ^NS.Integer, mip: ^NS.Integer, sp: ^NS.Integer, date: ^NS.CalendarDate),
-    distantFuture: proc() -> ^NS.CalendarDate,
-    distantPast: proc() -> ^NS.CalendarDate,
+    distantFuture: proc() -> instancetype,
+    distantPast: proc() -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -324,7 +324,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("years:months:days:hours:minutes:seconds:sinceDate:"), auto_cast years, "v@:^void^void^void^void^void^void@") do panic("Failed to register objC method.")
     }
     if vt.distantFuture != nil {
-        distantFuture :: proc "c" (self: Class, _: SEL) -> ^NS.CalendarDate {
+        distantFuture :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -334,7 +334,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("distantFuture"), auto_cast distantFuture, "@#:") do panic("Failed to register objC method.")
     }
     if vt.distantPast != nil {
-        distantPast :: proc "c" (self: Class, _: SEL) -> ^NS.CalendarDate {
+        distantPast :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

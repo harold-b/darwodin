@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithURL: proc(self: ^NS.MetadataItem, url: ^NS.URL) -> ^NS.MetadataItem,
+    initWithURL: proc(self: ^NS.MetadataItem, url: ^NS.URL) -> instancetype,
     valueForAttribute: proc(self: ^NS.MetadataItem, key: ^NS.String) -> id,
     valuesForAttributes: proc(self: ^NS.MetadataItem, keys: ^NS.Array) -> ^NS.Dictionary,
     attributes: proc(self: ^NS.MetadataItem) -> ^NS.Array,
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^NS.MetadataItem, _: SEL, url: ^NS.URL) -> ^NS.MetadataItem {
+        initWithURL :: proc "c" (self: ^NS.MetadataItem, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

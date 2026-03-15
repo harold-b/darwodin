@@ -26,10 +26,10 @@ foreign lib {
     AffineTransform_transform :: proc() -> ^AffineTransform ---
 
     @(objc_type=AffineTransform, objc_selector="initWithTransform:", objc_name="initWithTransform")
-    AffineTransform_initWithTransform :: proc(self: ^AffineTransform, transform: ^AffineTransform) -> ^AffineTransform ---
+    AffineTransform_initWithTransform :: proc(self: ^AffineTransform, transform: ^AffineTransform) -> instancetype ---
 
     @(objc_type=AffineTransform, objc_selector="init", objc_name="init")
-    AffineTransform_init :: proc(self: ^AffineTransform) -> ^AffineTransform ---
+    AffineTransform_init :: proc(self: ^AffineTransform) -> instancetype ---
 
     @(objc_type=AffineTransform, objc_selector="translateXBy:yBy:", objc_name="translateXBy")
     AffineTransform_translateXBy :: proc(self: ^AffineTransform, deltaX: CG.Float, deltaY: CG.Float) ---

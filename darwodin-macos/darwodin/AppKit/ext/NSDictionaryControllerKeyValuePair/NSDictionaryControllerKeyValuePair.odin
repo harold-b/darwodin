@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.DictionaryControllerKeyValuePair) -> ^AK.DictionaryControllerKeyValuePair,
+    init: proc(self: ^AK.DictionaryControllerKeyValuePair) -> instancetype,
     key: proc(self: ^AK.DictionaryControllerKeyValuePair) -> ^NS.String,
     setKey: proc(self: ^AK.DictionaryControllerKeyValuePair, key: ^NS.String),
     value: proc(self: ^AK.DictionaryControllerKeyValuePair) -> id,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.DictionaryControllerKeyValuePair, _: SEL) -> ^AK.DictionaryControllerKeyValuePair {
+        init :: proc "c" (self: ^AK.DictionaryControllerKeyValuePair, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

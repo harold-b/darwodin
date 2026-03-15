@@ -29,10 +29,10 @@ TableView :: struct { using _: Control,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TableView, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    TableView_initWithFrame :: proc(self: ^TableView, frameRect: NS.Rect) -> ^TableView ---
+    TableView_initWithFrame :: proc(self: ^TableView, frameRect: NS.Rect) -> instancetype ---
 
     @(objc_type=TableView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TableView_initWithCoder :: proc(self: ^TableView, coder: ^NS.Coder) -> ^TableView ---
+    TableView_initWithCoder :: proc(self: ^TableView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TableView, objc_selector="noteHeightOfRowsWithIndexesChanged:", objc_name="noteHeightOfRowsWithIndexesChanged")
     TableView_noteHeightOfRowsWithIndexesChanged :: proc(self: ^TableView, indexSet: ^NS.IndexSet) ---

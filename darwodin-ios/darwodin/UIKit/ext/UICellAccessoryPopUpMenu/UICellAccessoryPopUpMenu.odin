@@ -28,9 +28,9 @@ import "../UICellAccessory"
 
 VTable :: struct {
     super: UICellAccessory.VTable,
-    initWithMenu: proc(self: ^UI.CellAccessoryPopUpMenu, menu: ^UI.Menu) -> ^UI.CellAccessoryPopUpMenu,
-    initWithCoder: proc(self: ^UI.CellAccessoryPopUpMenu, coder: ^NS.Coder) -> ^UI.CellAccessoryPopUpMenu,
-    init: proc(self: ^UI.CellAccessoryPopUpMenu) -> ^UI.CellAccessoryPopUpMenu,
+    initWithMenu: proc(self: ^UI.CellAccessoryPopUpMenu, menu: ^UI.Menu) -> instancetype,
+    initWithCoder: proc(self: ^UI.CellAccessoryPopUpMenu, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.CellAccessoryPopUpMenu) -> instancetype,
     new: proc() -> ^UI.CellAccessoryPopUpMenu,
     menu: proc(self: ^UI.CellAccessoryPopUpMenu) -> ^UI.Menu,
     selectedElementDidChangeHandler: proc(self: ^UI.CellAccessoryPopUpMenu) -> ^Objc_Block(proc "c" ()),
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UICellAccessory.extend(cls, &vt.super)
 
     if vt.initWithMenu != nil {
-        initWithMenu :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL, menu: ^UI.Menu) -> ^UI.CellAccessoryPopUpMenu {
+        initWithMenu :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL, menu: ^UI.Menu) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMenu:"), auto_cast initWithMenu, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL, coder: ^NS.Coder) -> ^UI.CellAccessoryPopUpMenu {
+        initWithCoder :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL) -> ^UI.CellAccessoryPopUpMenu {
+        init :: proc "c" (self: ^UI.CellAccessoryPopUpMenu, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

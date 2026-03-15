@@ -25,10 +25,10 @@ BarItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BarItem, objc_selector="init", objc_name="init")
-    BarItem_init :: proc(self: ^BarItem) -> ^BarItem ---
+    BarItem_init :: proc(self: ^BarItem) -> instancetype ---
 
     @(objc_type=BarItem, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    BarItem_initWithCoder :: proc(self: ^BarItem, coder: ^NS.Coder) -> ^BarItem ---
+    BarItem_initWithCoder :: proc(self: ^BarItem, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=BarItem, objc_selector="setTitleTextAttributes:forState:", objc_name="setTitleTextAttributes")
     BarItem_setTitleTextAttributes :: proc(self: ^BarItem, attributes: ^NS.Dictionary, state: ControlState) ---

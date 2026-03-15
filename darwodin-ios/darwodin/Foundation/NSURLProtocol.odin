@@ -20,7 +20,7 @@ URLProtocol :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLProtocol, objc_selector="initWithRequest:cachedResponse:client:", objc_name="initWithRequest")
-    URLProtocol_initWithRequest :: proc(self: ^URLProtocol, request: ^URLRequest, cachedResponse: ^CachedURLResponse, client: ^URLProtocolClient) -> ^URLProtocol ---
+    URLProtocol_initWithRequest :: proc(self: ^URLProtocol, request: ^URLRequest, cachedResponse: ^CachedURLResponse, client: ^URLProtocolClient) -> instancetype ---
 
     @(objc_type=URLProtocol, objc_selector="canInitWithRequest:", objc_name="canInitWithRequest", objc_is_class_method=true)
     URLProtocol_canInitWithRequest :: proc(request: ^URLRequest) -> bool ---
@@ -65,7 +65,7 @@ foreign lib {
     URLProtocol_canInitWithTask :: proc(task: ^URLSessionTask) -> bool ---
 
     @(objc_type=URLProtocol, objc_selector="initWithTask:cachedResponse:client:", objc_name="initWithTask")
-    URLProtocol_initWithTask :: proc(self: ^URLProtocol, task: ^URLSessionTask, cachedResponse: ^CachedURLResponse, client: ^URLProtocolClient) -> ^URLProtocol ---
+    URLProtocol_initWithTask :: proc(self: ^URLProtocol, task: ^URLSessionTask, cachedResponse: ^CachedURLResponse, client: ^URLProtocolClient) -> instancetype ---
 
     @(objc_type=URLProtocol, objc_selector="task", objc_name="task")
     URLProtocol_task :: proc(self: ^URLProtocol) -> ^URLSessionTask ---

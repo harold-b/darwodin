@@ -24,13 +24,13 @@ ProgressView :: struct { using _: View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ProgressView, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    ProgressView_initWithFrame :: proc(self: ^ProgressView, frame: CG.Rect) -> ^ProgressView ---
+    ProgressView_initWithFrame :: proc(self: ^ProgressView, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=ProgressView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ProgressView_initWithCoder :: proc(self: ^ProgressView, coder: ^NS.Coder) -> ^ProgressView ---
+    ProgressView_initWithCoder :: proc(self: ^ProgressView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ProgressView, objc_selector="initWithProgressViewStyle:", objc_name="initWithProgressViewStyle")
-    ProgressView_initWithProgressViewStyle :: proc(self: ^ProgressView, style: ProgressViewStyle) -> ^ProgressView ---
+    ProgressView_initWithProgressViewStyle :: proc(self: ^ProgressView, style: ProgressViewStyle) -> instancetype ---
 
     @(objc_type=ProgressView, objc_selector="setProgress:animated:", objc_name="setProgress_animated")
     ProgressView_setProgress_animated :: proc(self: ^ProgressView, progress: cffi.float, animated: bool) ---

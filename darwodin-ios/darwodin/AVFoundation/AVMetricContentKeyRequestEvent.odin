@@ -23,7 +23,7 @@ MetricContentKeyRequestEvent :: struct { using _: MetricEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricContentKeyRequestEvent, objc_selector="init", objc_name="init")
-    MetricContentKeyRequestEvent_init :: proc(self: ^MetricContentKeyRequestEvent) -> ^MetricContentKeyRequestEvent ---
+    MetricContentKeyRequestEvent_init :: proc(self: ^MetricContentKeyRequestEvent) -> instancetype ---
 
     @(objc_type=MetricContentKeyRequestEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricContentKeyRequestEvent_new :: proc() -> ^MetricContentKeyRequestEvent ---

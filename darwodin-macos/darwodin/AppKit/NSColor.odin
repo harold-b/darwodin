@@ -29,10 +29,10 @@ Color :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Color, objc_selector="init", objc_name="init")
-    Color_init :: proc(self: ^Color) -> ^Color ---
+    Color_init :: proc(self: ^Color) -> instancetype ---
 
     @(objc_type=Color, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Color_initWithCoder :: proc(self: ^Color, coder: ^NS.Coder) -> ^Color ---
+    Color_initWithCoder :: proc(self: ^Color, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Color, objc_selector="colorWithColorSpace:components:count:", objc_name="colorWithColorSpace_components_count", objc_is_class_method=true)
     Color_colorWithColorSpace_components_count :: proc(space: ^ColorSpace, components: ^CG.Float, numberOfComponents: NS.Integer) -> ^Color ---

@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithContainer_center_transform: proc(self: ^UI.PreviewTarget, container: ^UI.View, center: CG.Point, transform: CG.AffineTransform) -> ^UI.PreviewTarget,
-    initWithContainer_center: proc(self: ^UI.PreviewTarget, container: ^UI.View, center: CG.Point) -> ^UI.PreviewTarget,
-    init: proc(self: ^UI.PreviewTarget) -> ^UI.PreviewTarget,
+    initWithContainer_center_transform: proc(self: ^UI.PreviewTarget, container: ^UI.View, center: CG.Point, transform: CG.AffineTransform) -> instancetype,
+    initWithContainer_center: proc(self: ^UI.PreviewTarget, container: ^UI.View, center: CG.Point) -> instancetype,
+    init: proc(self: ^UI.PreviewTarget) -> instancetype,
     new: proc() -> ^UI.PreviewTarget,
     container: proc(self: ^UI.PreviewTarget) -> ^UI.View,
     center: proc(self: ^UI.PreviewTarget) -> CG.Point,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithContainer_center_transform != nil {
-        initWithContainer_center_transform :: proc "c" (self: ^UI.PreviewTarget, _: SEL, container: ^UI.View, center: CG.Point, transform: CG.AffineTransform) -> ^UI.PreviewTarget {
+        initWithContainer_center_transform :: proc "c" (self: ^UI.PreviewTarget, _: SEL, container: ^UI.View, center: CG.Point, transform: CG.AffineTransform) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContainer:center:transform:"), auto_cast initWithContainer_center_transform, "@@:@{CGPoint=dd}{CGAffineTransform=dddddd}") do panic("Failed to register objC method.")
     }
     if vt.initWithContainer_center != nil {
-        initWithContainer_center :: proc "c" (self: ^UI.PreviewTarget, _: SEL, container: ^UI.View, center: CG.Point) -> ^UI.PreviewTarget {
+        initWithContainer_center :: proc "c" (self: ^UI.PreviewTarget, _: SEL, container: ^UI.View, center: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContainer:center:"), auto_cast initWithContainer_center, "@@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PreviewTarget, _: SEL) -> ^UI.PreviewTarget {
+        init :: proc "c" (self: ^UI.PreviewTarget, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

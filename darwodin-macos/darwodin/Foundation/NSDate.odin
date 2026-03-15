@@ -23,13 +23,13 @@ Date :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Date, objc_selector="init", objc_name="init")
-    Date_init :: proc(self: ^Date) -> ^Date ---
+    Date_init :: proc(self: ^Date) -> instancetype ---
 
     @(objc_type=Date, objc_selector="initWithTimeIntervalSinceReferenceDate:", objc_name="initWithTimeIntervalSinceReferenceDate")
-    Date_initWithTimeIntervalSinceReferenceDate :: proc(self: ^Date, ti: TimeInterval) -> ^Date ---
+    Date_initWithTimeIntervalSinceReferenceDate :: proc(self: ^Date, ti: TimeInterval) -> instancetype ---
 
     @(objc_type=Date, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Date_initWithCoder :: proc(self: ^Date, coder: ^Coder) -> ^Date ---
+    Date_initWithCoder :: proc(self: ^Date, coder: ^Coder) -> instancetype ---
 
     @(objc_type=Date, objc_selector="timeIntervalSinceReferenceDate", objc_name="timeIntervalSinceReferenceDate")
     Date_timeIntervalSinceReferenceDate :: proc(self: ^Date) -> TimeInterval ---
@@ -41,7 +41,7 @@ foreign lib {
     Date_addTimeInterval :: proc(self: ^Date, seconds: TimeInterval) -> id ---
 
     @(objc_type=Date, objc_selector="dateByAddingTimeInterval:", objc_name="dateByAddingTimeInterval")
-    Date_dateByAddingTimeInterval :: proc(self: ^Date, ti: TimeInterval) -> ^Date ---
+    Date_dateByAddingTimeInterval :: proc(self: ^Date, ti: TimeInterval) -> instancetype ---
 
     @(objc_type=Date, objc_selector="earlierDate:", objc_name="earlierDate")
     Date_earlierDate :: proc(self: ^Date, anotherDate: ^Date) -> ^Date ---
@@ -71,28 +71,28 @@ foreign lib {
     Date_timeIntervalSinceReferenceDateStatic :: proc() -> TimeInterval ---
 
     @(objc_type=Date, objc_selector="date", objc_name="date", objc_is_class_method=true)
-    Date_date :: proc() -> ^Date ---
+    Date_date :: proc() -> instancetype ---
 
     @(objc_type=Date, objc_selector="dateWithTimeIntervalSinceNow:", objc_name="dateWithTimeIntervalSinceNow", objc_is_class_method=true)
-    Date_dateWithTimeIntervalSinceNow :: proc(secs: TimeInterval) -> ^Date ---
+    Date_dateWithTimeIntervalSinceNow :: proc(secs: TimeInterval) -> instancetype ---
 
     @(objc_type=Date, objc_selector="dateWithTimeIntervalSinceReferenceDate:", objc_name="dateWithTimeIntervalSinceReferenceDate", objc_is_class_method=true)
-    Date_dateWithTimeIntervalSinceReferenceDate :: proc(ti: TimeInterval) -> ^Date ---
+    Date_dateWithTimeIntervalSinceReferenceDate :: proc(ti: TimeInterval) -> instancetype ---
 
     @(objc_type=Date, objc_selector="dateWithTimeIntervalSince1970:", objc_name="dateWithTimeIntervalSince1970", objc_is_class_method=true)
-    Date_dateWithTimeIntervalSince1970 :: proc(secs: TimeInterval) -> ^Date ---
+    Date_dateWithTimeIntervalSince1970 :: proc(secs: TimeInterval) -> instancetype ---
 
     @(objc_type=Date, objc_selector="dateWithTimeInterval:sinceDate:", objc_name="dateWithTimeInterval", objc_is_class_method=true)
-    Date_dateWithTimeInterval :: proc(secsToBeAdded: TimeInterval, date: ^Date) -> ^Date ---
+    Date_dateWithTimeInterval :: proc(secsToBeAdded: TimeInterval, date: ^Date) -> instancetype ---
 
     @(objc_type=Date, objc_selector="initWithTimeIntervalSinceNow:", objc_name="initWithTimeIntervalSinceNow")
-    Date_initWithTimeIntervalSinceNow :: proc(self: ^Date, secs: TimeInterval) -> ^Date ---
+    Date_initWithTimeIntervalSinceNow :: proc(self: ^Date, secs: TimeInterval) -> instancetype ---
 
     @(objc_type=Date, objc_selector="initWithTimeIntervalSince1970:", objc_name="initWithTimeIntervalSince1970")
-    Date_initWithTimeIntervalSince1970 :: proc(self: ^Date, secs: TimeInterval) -> ^Date ---
+    Date_initWithTimeIntervalSince1970 :: proc(self: ^Date, secs: TimeInterval) -> instancetype ---
 
     @(objc_type=Date, objc_selector="initWithTimeInterval:sinceDate:", objc_name="initWithTimeInterval")
-    Date_initWithTimeInterval :: proc(self: ^Date, secsToBeAdded: TimeInterval, date: ^Date) -> ^Date ---
+    Date_initWithTimeInterval :: proc(self: ^Date, secsToBeAdded: TimeInterval, date: ^Date) -> instancetype ---
 
     @(objc_type=Date, objc_selector="distantFuture", objc_name="distantFuture", objc_is_class_method=true)
     Date_distantFuture :: proc() -> ^Date ---

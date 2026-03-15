@@ -26,7 +26,7 @@ foreign lib {
     Matrix4x4Array_clear :: proc(self: ^Matrix4x4Array) ---
 
     @(objc_type=Matrix4x4Array, objc_selector="initWithElementCount:", objc_name="initWithElementCount")
-    Matrix4x4Array_initWithElementCount :: proc(self: ^Matrix4x4Array, arrayElementCount: NS.UInteger) -> ^Matrix4x4Array ---
+    Matrix4x4Array_initWithElementCount :: proc(self: ^Matrix4x4Array, arrayElementCount: NS.UInteger) -> instancetype ---
 
     @(objc_type=Matrix4x4Array, objc_selector="setFloat4x4Array:count:", objc_name="setFloat4x4Array")
     Matrix4x4Array_setFloat4x4Array :: proc(self: ^Matrix4x4Array, valuesArray: ^matrix[4,4]f32, count: NS.UInteger) ---

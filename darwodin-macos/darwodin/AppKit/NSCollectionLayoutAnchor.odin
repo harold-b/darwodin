@@ -26,16 +26,16 @@ CollectionLayoutAnchor :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionLayoutAnchor, objc_selector="layoutAnchorWithEdges:", objc_name="layoutAnchorWithEdges_", objc_is_class_method=true)
-    CollectionLayoutAnchor_layoutAnchorWithEdges_ :: proc(edges: DirectionalRectEdge) -> ^CollectionLayoutAnchor ---
+    CollectionLayoutAnchor_layoutAnchorWithEdges_ :: proc(edges: DirectionalRectEdge) -> instancetype ---
 
     @(objc_type=CollectionLayoutAnchor, objc_selector="layoutAnchorWithEdges:absoluteOffset:", objc_name="layoutAnchorWithEdges_absoluteOffset", objc_is_class_method=true)
-    CollectionLayoutAnchor_layoutAnchorWithEdges_absoluteOffset :: proc(edges: DirectionalRectEdge, absoluteOffset: CG.Point) -> ^CollectionLayoutAnchor ---
+    CollectionLayoutAnchor_layoutAnchorWithEdges_absoluteOffset :: proc(edges: DirectionalRectEdge, absoluteOffset: CG.Point) -> instancetype ---
 
     @(objc_type=CollectionLayoutAnchor, objc_selector="layoutAnchorWithEdges:fractionalOffset:", objc_name="layoutAnchorWithEdges_fractionalOffset", objc_is_class_method=true)
-    CollectionLayoutAnchor_layoutAnchorWithEdges_fractionalOffset :: proc(edges: DirectionalRectEdge, fractionalOffset: CG.Point) -> ^CollectionLayoutAnchor ---
+    CollectionLayoutAnchor_layoutAnchorWithEdges_fractionalOffset :: proc(edges: DirectionalRectEdge, fractionalOffset: CG.Point) -> instancetype ---
 
     @(objc_type=CollectionLayoutAnchor, objc_selector="init", objc_name="init")
-    CollectionLayoutAnchor_init :: proc(self: ^CollectionLayoutAnchor) -> ^CollectionLayoutAnchor ---
+    CollectionLayoutAnchor_init :: proc(self: ^CollectionLayoutAnchor) -> instancetype ---
 
     @(objc_type=CollectionLayoutAnchor, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionLayoutAnchor_new :: proc() -> ^CollectionLayoutAnchor ---

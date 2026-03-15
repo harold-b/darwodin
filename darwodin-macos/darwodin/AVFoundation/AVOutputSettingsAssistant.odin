@@ -23,7 +23,7 @@ OutputSettingsAssistant :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=OutputSettingsAssistant, objc_selector="init", objc_name="init")
-    OutputSettingsAssistant_init :: proc(self: ^OutputSettingsAssistant) -> ^OutputSettingsAssistant ---
+    OutputSettingsAssistant_init :: proc(self: ^OutputSettingsAssistant) -> instancetype ---
 
     @(objc_type=OutputSettingsAssistant, objc_selector="new", objc_name="new", objc_is_class_method=true)
     OutputSettingsAssistant_new :: proc() -> ^OutputSettingsAssistant ---
@@ -32,7 +32,7 @@ foreign lib {
     OutputSettingsAssistant_availableOutputSettingsPresets :: proc() -> ^NS.Array ---
 
     @(objc_type=OutputSettingsAssistant, objc_selector="outputSettingsAssistantWithPreset:", objc_name="outputSettingsAssistantWithPreset", objc_is_class_method=true)
-    OutputSettingsAssistant_outputSettingsAssistantWithPreset :: proc(presetIdentifier: ^NS.String) -> ^OutputSettingsAssistant ---
+    OutputSettingsAssistant_outputSettingsAssistantWithPreset :: proc(presetIdentifier: ^NS.String) -> instancetype ---
 
     @(objc_type=OutputSettingsAssistant, objc_selector="audioSettings", objc_name="audioSettings")
     OutputSettingsAssistant_audioSettings :: proc(self: ^OutputSettingsAssistant) -> ^NS.Dictionary ---

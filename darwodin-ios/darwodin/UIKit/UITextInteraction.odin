@@ -24,7 +24,7 @@ TextInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextInteraction, objc_selector="textInteractionForMode:", objc_name="textInteractionForMode", objc_is_class_method=true)
-    TextInteraction_textInteractionForMode :: proc(mode: TextInteractionMode) -> ^TextInteraction ---
+    TextInteraction_textInteractionForMode :: proc(mode: TextInteractionMode) -> instancetype ---
 
     @(objc_type=TextInteraction, objc_selector="delegate", objc_name="delegate")
     TextInteraction_delegate :: proc(self: ^TextInteraction) -> ^TextInteractionDelegate ---

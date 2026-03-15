@@ -23,7 +23,7 @@ URLAsset :: struct { using _: Asset, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLAsset, objc_selector="init", objc_name="init")
-    URLAsset_init :: proc(self: ^URLAsset) -> ^URLAsset ---
+    URLAsset_init :: proc(self: ^URLAsset) -> instancetype ---
 
     @(objc_type=URLAsset, objc_selector="new", objc_name="new", objc_is_class_method=true)
     URLAsset_new :: proc() -> ^URLAsset ---
@@ -38,10 +38,10 @@ foreign lib {
     URLAsset_isPlayableExtendedMIMEType :: proc(extendedMIMEType: ^NS.String) -> bool ---
 
     @(objc_type=URLAsset, objc_selector="URLAssetWithURL:options:", objc_name="URLAssetWithURL", objc_is_class_method=true)
-    URLAsset_URLAssetWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary) -> ^URLAsset ---
+    URLAsset_URLAssetWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=URLAsset, objc_selector="initWithURL:options:", objc_name="initWithURL")
-    URLAsset_initWithURL :: proc(self: ^URLAsset, _URL: ^NS.URL, options: ^NS.Dictionary) -> ^URLAsset ---
+    URLAsset_initWithURL :: proc(self: ^URLAsset, _URL: ^NS.URL, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=URLAsset, objc_selector="URL", objc_name="URL")
     URLAsset_URL :: proc(self: ^URLAsset) -> ^NS.URL ---

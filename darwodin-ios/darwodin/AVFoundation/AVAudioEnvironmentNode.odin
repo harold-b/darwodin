@@ -25,7 +25,7 @@ AudioEnvironmentNode :: struct { using _: AudioNode,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioEnvironmentNode, objc_selector="init", objc_name="init")
-    AudioEnvironmentNode_init :: proc(self: ^AudioEnvironmentNode) -> ^AudioEnvironmentNode ---
+    AudioEnvironmentNode_init :: proc(self: ^AudioEnvironmentNode) -> instancetype ---
 
     @(objc_type=AudioEnvironmentNode, objc_selector="outputType", objc_name="outputType")
     AudioEnvironmentNode_outputType :: proc(self: ^AudioEnvironmentNode) -> AudioEnvironmentOutputType ---

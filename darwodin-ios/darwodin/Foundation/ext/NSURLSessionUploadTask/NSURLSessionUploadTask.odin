@@ -26,7 +26,7 @@ import "../NSURLSessionDataTask"
 
 VTable :: struct {
     super: NSURLSessionDataTask.VTable,
-    init: proc(self: ^NS.URLSessionUploadTask) -> ^NS.URLSessionUploadTask,
+    init: proc(self: ^NS.URLSessionUploadTask) -> instancetype,
     new: proc() -> ^NS.URLSessionUploadTask,
     cancelByProducingResumeData: proc(self: ^NS.URLSessionUploadTask, completionHandler: ^Objc_Block(proc "c" (resumeData: ^NS.Data))),
 }
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSURLSessionDataTask.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSessionUploadTask, _: SEL) -> ^NS.URLSessionUploadTask {
+        init :: proc "c" (self: ^NS.URLSessionUploadTask, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

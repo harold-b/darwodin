@@ -23,7 +23,7 @@ AttributedStringMarkdownSourcePosition :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AttributedStringMarkdownSourcePosition, objc_selector="initWithStartLine:startColumn:endLine:endColumn:", objc_name="initWithStartLine")
-    AttributedStringMarkdownSourcePosition_initWithStartLine :: proc(self: ^AttributedStringMarkdownSourcePosition, startLine: Integer, startColumn: Integer, endLine: Integer, endColumn: Integer) -> ^AttributedStringMarkdownSourcePosition ---
+    AttributedStringMarkdownSourcePosition_initWithStartLine :: proc(self: ^AttributedStringMarkdownSourcePosition, startLine: Integer, startColumn: Integer, endLine: Integer, endColumn: Integer) -> instancetype ---
 
     @(objc_type=AttributedStringMarkdownSourcePosition, objc_selector="rangeInString:", objc_name="rangeInString")
     AttributedStringMarkdownSourcePosition_rangeInString :: proc(self: ^AttributedStringMarkdownSourcePosition, string: ^String) -> _NSRange ---

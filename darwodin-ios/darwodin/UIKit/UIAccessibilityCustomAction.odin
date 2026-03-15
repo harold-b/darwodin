@@ -22,28 +22,28 @@ AccessibilityCustomAction :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithName:target:selector:", objc_name="initWithName_target_selector")
-    AccessibilityCustomAction_initWithName_target_selector :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, target: id, selector: SEL) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithName_target_selector :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, target: id, selector: SEL) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithAttributedName:target:selector:", objc_name="initWithAttributedName_target_selector")
-    AccessibilityCustomAction_initWithAttributedName_target_selector :: proc(self: ^AccessibilityCustomAction, attributedName: ^NS.AttributedString, target: id, selector: SEL) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithAttributedName_target_selector :: proc(self: ^AccessibilityCustomAction, attributedName: ^NS.AttributedString, target: id, selector: SEL) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithName:image:target:selector:", objc_name="initWithName_image_target_selector")
-    AccessibilityCustomAction_initWithName_image_target_selector :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, image: ^Image, target: id, selector: SEL) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithName_image_target_selector :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, image: ^Image, target: id, selector: SEL) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithAttributedName:image:target:selector:", objc_name="initWithAttributedName_image_target_selector")
-    AccessibilityCustomAction_initWithAttributedName_image_target_selector :: proc(self: ^AccessibilityCustomAction, attributedName: ^NS.AttributedString, image: ^Image, target: id, selector: SEL) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithAttributedName_image_target_selector :: proc(self: ^AccessibilityCustomAction, attributedName: ^NS.AttributedString, image: ^Image, target: id, selector: SEL) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithName:actionHandler:", objc_name="initWithName_actionHandler")
-    AccessibilityCustomAction_initWithName_actionHandler :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, actionHandler: AccessibilityCustomActionHandler) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithName_actionHandler :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, actionHandler: AccessibilityCustomActionHandler) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithAttributedName:actionHandler:", objc_name="initWithAttributedName_actionHandler")
-    AccessibilityCustomAction_initWithAttributedName_actionHandler :: proc(self: ^AccessibilityCustomAction, attributedName: ^NS.AttributedString, actionHandler: AccessibilityCustomActionHandler) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithAttributedName_actionHandler :: proc(self: ^AccessibilityCustomAction, attributedName: ^NS.AttributedString, actionHandler: AccessibilityCustomActionHandler) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithName:image:actionHandler:", objc_name="initWithName_image_actionHandler")
-    AccessibilityCustomAction_initWithName_image_actionHandler :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, image: ^Image, actionHandler: AccessibilityCustomActionHandler) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithName_image_actionHandler :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, image: ^Image, actionHandler: AccessibilityCustomActionHandler) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithAttributedName:image:actionHandler:", objc_name="initWithAttributedName_image_actionHandler")
-    AccessibilityCustomAction_initWithAttributedName_image_actionHandler :: proc(self: ^AccessibilityCustomAction, attributedName: ^NS.AttributedString, image: ^Image, actionHandler: AccessibilityCustomActionHandler) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithAttributedName_image_actionHandler :: proc(self: ^AccessibilityCustomAction, attributedName: ^NS.AttributedString, image: ^Image, actionHandler: AccessibilityCustomActionHandler) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="name", objc_name="name")
     AccessibilityCustomAction_name :: proc(self: ^AccessibilityCustomAction) -> ^NS.String ---

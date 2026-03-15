@@ -30,8 +30,8 @@ import "../NSScrubberLayout"
 
 VTable :: struct {
     super: NSScrubberLayout.VTable,
-    initWithNumberOfVisibleItems: proc(self: ^AK.ScrubberProportionalLayout, numberOfVisibleItems: NS.Integer) -> ^AK.ScrubberProportionalLayout,
-    initWithCoder: proc(self: ^AK.ScrubberProportionalLayout, coder: ^NS.Coder) -> ^AK.ScrubberProportionalLayout,
+    initWithNumberOfVisibleItems: proc(self: ^AK.ScrubberProportionalLayout, numberOfVisibleItems: NS.Integer) -> instancetype,
+    initWithCoder: proc(self: ^AK.ScrubberProportionalLayout, coder: ^NS.Coder) -> instancetype,
     numberOfVisibleItems: proc(self: ^AK.ScrubberProportionalLayout) -> NS.Integer,
     setNumberOfVisibleItems: proc(self: ^AK.ScrubberProportionalLayout, numberOfVisibleItems: NS.Integer),
 }
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScrubberLayout.extend(cls, &vt.super)
 
     if vt.initWithNumberOfVisibleItems != nil {
-        initWithNumberOfVisibleItems :: proc "c" (self: ^AK.ScrubberProportionalLayout, _: SEL, numberOfVisibleItems: NS.Integer) -> ^AK.ScrubberProportionalLayout {
+        initWithNumberOfVisibleItems :: proc "c" (self: ^AK.ScrubberProportionalLayout, _: SEL, numberOfVisibleItems: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNumberOfVisibleItems:"), auto_cast initWithNumberOfVisibleItems, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ScrubberProportionalLayout, _: SEL, coder: ^NS.Coder) -> ^AK.ScrubberProportionalLayout {
+        initWithCoder :: proc "c" (self: ^AK.ScrubberProportionalLayout, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

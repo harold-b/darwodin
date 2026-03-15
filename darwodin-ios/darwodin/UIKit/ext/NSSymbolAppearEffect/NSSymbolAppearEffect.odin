@@ -28,11 +28,11 @@ import "../NSSymbolEffect"
 
 VTable :: struct {
     super: NSSymbolEffect.VTable,
-    effect: proc() -> ^UI.NSSymbolAppearEffect,
-    appearUpEffect: proc() -> ^UI.NSSymbolAppearEffect,
-    appearDownEffect: proc() -> ^UI.NSSymbolAppearEffect,
-    effectWithByLayer: proc(self: ^UI.NSSymbolAppearEffect) -> ^UI.NSSymbolAppearEffect,
-    effectWithWholeSymbol: proc(self: ^UI.NSSymbolAppearEffect) -> ^UI.NSSymbolAppearEffect,
+    effect: proc() -> instancetype,
+    appearUpEffect: proc() -> instancetype,
+    appearDownEffect: proc() -> instancetype,
+    effectWithByLayer: proc(self: ^UI.NSSymbolAppearEffect) -> instancetype,
+    effectWithWholeSymbol: proc(self: ^UI.NSSymbolAppearEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSSymbolEffect.extend(cls, &vt.super)
 
     if vt.effect != nil {
-        effect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolAppearEffect {
+        effect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.appearUpEffect != nil {
-        appearUpEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolAppearEffect {
+        appearUpEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("appearUpEffect"), auto_cast appearUpEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.appearDownEffect != nil {
-        appearDownEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolAppearEffect {
+        appearDownEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("appearDownEffect"), auto_cast appearDownEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.effectWithByLayer != nil {
-        effectWithByLayer :: proc "c" (self: ^UI.NSSymbolAppearEffect, _: SEL) -> ^UI.NSSymbolAppearEffect {
+        effectWithByLayer :: proc "c" (self: ^UI.NSSymbolAppearEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithByLayer"), auto_cast effectWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithWholeSymbol != nil {
-        effectWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolAppearEffect, _: SEL) -> ^UI.NSSymbolAppearEffect {
+        effectWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolAppearEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

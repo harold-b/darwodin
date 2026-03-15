@@ -30,16 +30,16 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithLocation_endLocation: proc(self: ^AK.TextRange, location: ^AK.TextLocation, endLocation: ^AK.TextLocation) -> ^AK.TextRange,
-    initWithLocation_: proc(self: ^AK.TextRange, location: ^AK.TextLocation) -> ^AK.TextRange,
-    init: proc(self: ^AK.TextRange) -> ^AK.TextRange,
+    initWithLocation_endLocation: proc(self: ^AK.TextRange, location: ^AK.TextLocation, endLocation: ^AK.TextLocation) -> instancetype,
+    initWithLocation_: proc(self: ^AK.TextRange, location: ^AK.TextLocation) -> instancetype,
+    init: proc(self: ^AK.TextRange) -> instancetype,
     new: proc() -> ^AK.TextRange,
     isEqualToTextRange: proc(self: ^AK.TextRange, textRange: ^AK.TextRange) -> bool,
     containsLocation: proc(self: ^AK.TextRange, location: ^AK.TextLocation) -> bool,
     containsRange: proc(self: ^AK.TextRange, textRange: ^AK.TextRange) -> bool,
     intersectsWithTextRange: proc(self: ^AK.TextRange, textRange: ^AK.TextRange) -> bool,
-    textRangeByIntersectingWithTextRange: proc(self: ^AK.TextRange, textRange: ^AK.TextRange) -> ^AK.TextRange,
-    textRangeByFormingUnionWithTextRange: proc(self: ^AK.TextRange, textRange: ^AK.TextRange) -> ^AK.TextRange,
+    textRangeByIntersectingWithTextRange: proc(self: ^AK.TextRange, textRange: ^AK.TextRange) -> instancetype,
+    textRangeByFormingUnionWithTextRange: proc(self: ^AK.TextRange, textRange: ^AK.TextRange) -> instancetype,
     isEmpty: proc(self: ^AK.TextRange) -> bool,
     location: proc(self: ^AK.TextRange) -> ^AK.TextLocation,
     endLocation: proc(self: ^AK.TextRange) -> ^AK.TextLocation,
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithLocation_endLocation != nil {
-        initWithLocation_endLocation :: proc "c" (self: ^AK.TextRange, _: SEL, location: ^AK.TextLocation, endLocation: ^AK.TextLocation) -> ^AK.TextRange {
+        initWithLocation_endLocation :: proc "c" (self: ^AK.TextRange, _: SEL, location: ^AK.TextLocation, endLocation: ^AK.TextLocation) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocation:endLocation:"), auto_cast initWithLocation_endLocation, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithLocation_ != nil {
-        initWithLocation_ :: proc "c" (self: ^AK.TextRange, _: SEL, location: ^AK.TextLocation) -> ^AK.TextRange {
+        initWithLocation_ :: proc "c" (self: ^AK.TextRange, _: SEL, location: ^AK.TextLocation) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocation:"), auto_cast initWithLocation_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextRange, _: SEL) -> ^AK.TextRange {
+        init :: proc "c" (self: ^AK.TextRange, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("intersectsWithTextRange:"), auto_cast intersectsWithTextRange, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.textRangeByIntersectingWithTextRange != nil {
-        textRangeByIntersectingWithTextRange :: proc "c" (self: ^AK.TextRange, _: SEL, textRange: ^AK.TextRange) -> ^AK.TextRange {
+        textRangeByIntersectingWithTextRange :: proc "c" (self: ^AK.TextRange, _: SEL, textRange: ^AK.TextRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textRangeByIntersectingWithTextRange:"), auto_cast textRangeByIntersectingWithTextRange, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.textRangeByFormingUnionWithTextRange != nil {
-        textRangeByFormingUnionWithTextRange :: proc "c" (self: ^AK.TextRange, _: SEL, textRange: ^AK.TextRange) -> ^AK.TextRange {
+        textRangeByFormingUnionWithTextRange :: proc "c" (self: ^AK.TextRange, _: SEL, textRange: ^AK.TextRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

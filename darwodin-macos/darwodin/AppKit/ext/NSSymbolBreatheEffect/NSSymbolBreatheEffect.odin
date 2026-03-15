@@ -30,11 +30,11 @@ import "../NSSymbolEffect"
 
 VTable :: struct {
     super: NSSymbolEffect.VTable,
-    effect: proc() -> ^AK.SymbolBreatheEffect,
-    breathePulseEffect: proc() -> ^AK.SymbolBreatheEffect,
-    breathePlainEffect: proc() -> ^AK.SymbolBreatheEffect,
-    effectWithByLayer: proc(self: ^AK.SymbolBreatheEffect) -> ^AK.SymbolBreatheEffect,
-    effectWithWholeSymbol: proc(self: ^AK.SymbolBreatheEffect) -> ^AK.SymbolBreatheEffect,
+    effect: proc() -> instancetype,
+    breathePulseEffect: proc() -> instancetype,
+    breathePlainEffect: proc() -> instancetype,
+    effectWithByLayer: proc(self: ^AK.SymbolBreatheEffect) -> instancetype,
+    effectWithWholeSymbol: proc(self: ^AK.SymbolBreatheEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSSymbolEffect.extend(cls, &vt.super)
 
     if vt.effect != nil {
-        effect :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolBreatheEffect {
+        effect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.breathePulseEffect != nil {
-        breathePulseEffect :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolBreatheEffect {
+        breathePulseEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("breathePulseEffect"), auto_cast breathePulseEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.breathePlainEffect != nil {
-        breathePlainEffect :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolBreatheEffect {
+        breathePlainEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("breathePlainEffect"), auto_cast breathePlainEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.effectWithByLayer != nil {
-        effectWithByLayer :: proc "c" (self: ^AK.SymbolBreatheEffect, _: SEL) -> ^AK.SymbolBreatheEffect {
+        effectWithByLayer :: proc "c" (self: ^AK.SymbolBreatheEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithByLayer"), auto_cast effectWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithWholeSymbol != nil {
-        effectWithWholeSymbol :: proc "c" (self: ^AK.SymbolBreatheEffect, _: SEL) -> ^AK.SymbolBreatheEffect {
+        effectWithWholeSymbol :: proc "c" (self: ^AK.SymbolBreatheEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

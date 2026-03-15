@@ -23,16 +23,16 @@ AssetReaderSampleReferenceOutput :: struct { using _: AssetReaderOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderSampleReferenceOutput, objc_selector="init", objc_name="init")
-    AssetReaderSampleReferenceOutput_init :: proc(self: ^AssetReaderSampleReferenceOutput) -> ^AssetReaderSampleReferenceOutput ---
+    AssetReaderSampleReferenceOutput_init :: proc(self: ^AssetReaderSampleReferenceOutput) -> instancetype ---
 
     @(objc_type=AssetReaderSampleReferenceOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetReaderSampleReferenceOutput_new :: proc() -> ^AssetReaderSampleReferenceOutput ---
 
     @(objc_type=AssetReaderSampleReferenceOutput, objc_selector="assetReaderSampleReferenceOutputWithTrack:", objc_name="assetReaderSampleReferenceOutputWithTrack", objc_is_class_method=true)
-    AssetReaderSampleReferenceOutput_assetReaderSampleReferenceOutputWithTrack :: proc(track: ^AssetTrack) -> ^AssetReaderSampleReferenceOutput ---
+    AssetReaderSampleReferenceOutput_assetReaderSampleReferenceOutputWithTrack :: proc(track: ^AssetTrack) -> instancetype ---
 
     @(objc_type=AssetReaderSampleReferenceOutput, objc_selector="initWithTrack:", objc_name="initWithTrack")
-    AssetReaderSampleReferenceOutput_initWithTrack :: proc(self: ^AssetReaderSampleReferenceOutput, track: ^AssetTrack) -> ^AssetReaderSampleReferenceOutput ---
+    AssetReaderSampleReferenceOutput_initWithTrack :: proc(self: ^AssetReaderSampleReferenceOutput, track: ^AssetTrack) -> instancetype ---
 
     @(objc_type=AssetReaderSampleReferenceOutput, objc_selector="track", objc_name="track")
     AssetReaderSampleReferenceOutput_track :: proc(self: ^AssetReaderSampleReferenceOutput) -> ^AssetTrack ---

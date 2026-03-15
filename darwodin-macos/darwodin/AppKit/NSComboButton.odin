@@ -24,13 +24,13 @@ ComboButton :: struct { using _: Control, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ComboButton, objc_selector="comboButtonWithTitle:menu:target:action:", objc_name="comboButtonWithTitle_menu_target_action", objc_is_class_method=true)
-    ComboButton_comboButtonWithTitle_menu_target_action :: proc(title: ^NS.String, menu: ^Menu, target: id, action: SEL) -> ^ComboButton ---
+    ComboButton_comboButtonWithTitle_menu_target_action :: proc(title: ^NS.String, menu: ^Menu, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ComboButton, objc_selector="comboButtonWithImage:menu:target:action:", objc_name="comboButtonWithImage", objc_is_class_method=true)
-    ComboButton_comboButtonWithImage :: proc(image: ^NS.Image, menu: ^Menu, target: id, action: SEL) -> ^ComboButton ---
+    ComboButton_comboButtonWithImage :: proc(image: ^NS.Image, menu: ^Menu, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ComboButton, objc_selector="comboButtonWithTitle:image:menu:target:action:", objc_name="comboButtonWithTitle_image_menu_target_action", objc_is_class_method=true)
-    ComboButton_comboButtonWithTitle_image_menu_target_action :: proc(title: ^NS.String, image: ^NS.Image, menu: ^Menu, target: id, action: SEL) -> ^ComboButton ---
+    ComboButton_comboButtonWithTitle_image_menu_target_action :: proc(title: ^NS.String, image: ^NS.Image, menu: ^Menu, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ComboButton, objc_selector="title", objc_name="title")
     ComboButton_title :: proc(self: ^ComboButton) -> ^NS.String ---

@@ -23,16 +23,16 @@ AssetReaderAudioMixOutput :: struct { using _: AssetReaderOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderAudioMixOutput, objc_selector="init", objc_name="init")
-    AssetReaderAudioMixOutput_init :: proc(self: ^AssetReaderAudioMixOutput) -> ^AssetReaderAudioMixOutput ---
+    AssetReaderAudioMixOutput_init :: proc(self: ^AssetReaderAudioMixOutput) -> instancetype ---
 
     @(objc_type=AssetReaderAudioMixOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetReaderAudioMixOutput_new :: proc() -> ^AssetReaderAudioMixOutput ---
 
     @(objc_type=AssetReaderAudioMixOutput, objc_selector="assetReaderAudioMixOutputWithAudioTracks:audioSettings:", objc_name="assetReaderAudioMixOutputWithAudioTracks", objc_is_class_method=true)
-    AssetReaderAudioMixOutput_assetReaderAudioMixOutputWithAudioTracks :: proc(audioTracks: ^NS.Array, audioSettings: ^NS.Dictionary) -> ^AssetReaderAudioMixOutput ---
+    AssetReaderAudioMixOutput_assetReaderAudioMixOutputWithAudioTracks :: proc(audioTracks: ^NS.Array, audioSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AssetReaderAudioMixOutput, objc_selector="initWithAudioTracks:audioSettings:", objc_name="initWithAudioTracks")
-    AssetReaderAudioMixOutput_initWithAudioTracks :: proc(self: ^AssetReaderAudioMixOutput, audioTracks: ^NS.Array, audioSettings: ^NS.Dictionary) -> ^AssetReaderAudioMixOutput ---
+    AssetReaderAudioMixOutput_initWithAudioTracks :: proc(self: ^AssetReaderAudioMixOutput, audioTracks: ^NS.Array, audioSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AssetReaderAudioMixOutput, objc_selector="audioTracks", objc_name="audioTracks")
     AssetReaderAudioMixOutput_audioTracks :: proc(self: ^AssetReaderAudioMixOutput) -> ^NS.Array ---

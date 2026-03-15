@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.Shadow) -> ^AK.Shadow,
+    init: proc(self: ^AK.Shadow) -> instancetype,
     set: proc(self: ^AK.Shadow),
     shadowOffset: proc(self: ^AK.Shadow) -> NS.Size,
     setShadowOffset: proc(self: ^AK.Shadow, shadowOffset: NS.Size),
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Shadow, _: SEL) -> ^AK.Shadow {
+        init :: proc "c" (self: ^AK.Shadow, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

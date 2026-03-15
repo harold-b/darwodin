@@ -29,16 +29,16 @@ foreign lib {
     Movie_movieTypes :: proc() -> ^NS.Array ---
 
     @(objc_type=Movie, objc_selector="movieWithURL:options:", objc_name="movieWithURL", objc_is_class_method=true)
-    Movie_movieWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary) -> ^Movie ---
+    Movie_movieWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=Movie, objc_selector="initWithURL:options:", objc_name="initWithURL")
-    Movie_initWithURL :: proc(self: ^Movie, _URL: ^NS.URL, options: ^NS.Dictionary) -> ^Movie ---
+    Movie_initWithURL :: proc(self: ^Movie, _URL: ^NS.URL, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=Movie, objc_selector="movieWithData:options:", objc_name="movieWithData", objc_is_class_method=true)
-    Movie_movieWithData :: proc(data: ^NS.Data, options: ^NS.Dictionary) -> ^Movie ---
+    Movie_movieWithData :: proc(data: ^NS.Data, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=Movie, objc_selector="initWithData:options:", objc_name="initWithData")
-    Movie_initWithData :: proc(self: ^Movie, data: ^NS.Data, options: ^NS.Dictionary) -> ^Movie ---
+    Movie_initWithData :: proc(self: ^Movie, data: ^NS.Data, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=Movie, objc_selector="URL", objc_name="URL")
     Movie_URL :: proc(self: ^Movie) -> ^NS.URL ---

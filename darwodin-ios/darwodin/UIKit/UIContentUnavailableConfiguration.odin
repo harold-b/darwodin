@@ -25,19 +25,19 @@ ContentUnavailableConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentUnavailableConfiguration, objc_selector="emptyConfiguration", objc_name="emptyConfiguration", objc_is_class_method=true)
-    ContentUnavailableConfiguration_emptyConfiguration :: proc() -> ^ContentUnavailableConfiguration ---
+    ContentUnavailableConfiguration_emptyConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ContentUnavailableConfiguration, objc_selector="loadingConfiguration", objc_name="loadingConfiguration", objc_is_class_method=true)
-    ContentUnavailableConfiguration_loadingConfiguration :: proc() -> ^ContentUnavailableConfiguration ---
+    ContentUnavailableConfiguration_loadingConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ContentUnavailableConfiguration, objc_selector="searchConfiguration", objc_name="searchConfiguration", objc_is_class_method=true)
-    ContentUnavailableConfiguration_searchConfiguration :: proc() -> ^ContentUnavailableConfiguration ---
+    ContentUnavailableConfiguration_searchConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ContentUnavailableConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ContentUnavailableConfiguration_new :: proc() -> ^ContentUnavailableConfiguration ---
 
     @(objc_type=ContentUnavailableConfiguration, objc_selector="init", objc_name="init")
-    ContentUnavailableConfiguration_init :: proc(self: ^ContentUnavailableConfiguration) -> ^ContentUnavailableConfiguration ---
+    ContentUnavailableConfiguration_init :: proc(self: ^ContentUnavailableConfiguration) -> instancetype ---
 
     @(objc_type=ContentUnavailableConfiguration, objc_selector="image", objc_name="image")
     ContentUnavailableConfiguration_image :: proc(self: ^ContentUnavailableConfiguration) -> ^Image ---

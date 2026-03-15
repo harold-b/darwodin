@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithFileDescriptor_closeOnDealloc: proc(self: ^NS.FileHandle, fd: cffi.int, closeopt: bool) -> ^NS.FileHandle,
-    initWithCoder: proc(self: ^NS.FileHandle, coder: ^NS.Coder) -> ^NS.FileHandle,
+    initWithFileDescriptor_closeOnDealloc: proc(self: ^NS.FileHandle, fd: cffi.int, closeopt: bool) -> instancetype,
+    initWithCoder: proc(self: ^NS.FileHandle, coder: ^NS.Coder) -> instancetype,
     readDataToEndOfFileAndReturnError: proc(self: ^NS.FileHandle, error: ^^NS.Error) -> ^NS.Data,
     readDataUpToLength: proc(self: ^NS.FileHandle, length: NS.UInteger, error: ^^NS.Error) -> ^NS.Data,
     writeData_error: proc(self: ^NS.FileHandle, data: ^NS.Data, error: ^^NS.Error) -> bool,
@@ -38,12 +38,12 @@ VTable :: struct {
     synchronizeAndReturnError: proc(self: ^NS.FileHandle, error: ^^NS.Error) -> bool,
     closeAndReturnError: proc(self: ^NS.FileHandle, error: ^^NS.Error) -> bool,
     availableData: proc(self: ^NS.FileHandle) -> ^NS.Data,
-    fileHandleForReadingAtPath: proc(path: ^NS.String) -> ^NS.FileHandle,
-    fileHandleForWritingAtPath: proc(path: ^NS.String) -> ^NS.FileHandle,
-    fileHandleForUpdatingAtPath: proc(path: ^NS.String) -> ^NS.FileHandle,
-    fileHandleForReadingFromURL: proc(url: ^NS.URL, error: ^^NS.Error) -> ^NS.FileHandle,
-    fileHandleForWritingToURL: proc(url: ^NS.URL, error: ^^NS.Error) -> ^NS.FileHandle,
-    fileHandleForUpdatingURL: proc(url: ^NS.URL, error: ^^NS.Error) -> ^NS.FileHandle,
+    fileHandleForReadingAtPath: proc(path: ^NS.String) -> instancetype,
+    fileHandleForWritingAtPath: proc(path: ^NS.String) -> instancetype,
+    fileHandleForUpdatingAtPath: proc(path: ^NS.String) -> instancetype,
+    fileHandleForReadingFromURL: proc(url: ^NS.URL, error: ^^NS.Error) -> instancetype,
+    fileHandleForWritingToURL: proc(url: ^NS.URL, error: ^^NS.Error) -> instancetype,
+    fileHandleForUpdatingURL: proc(url: ^NS.URL, error: ^^NS.Error) -> instancetype,
     fileHandleWithStandardInput: proc() -> ^NS.FileHandle,
     fileHandleWithStandardOutput: proc() -> ^NS.FileHandle,
     fileHandleWithStandardError: proc() -> ^NS.FileHandle,
@@ -60,7 +60,7 @@ VTable :: struct {
     setReadabilityHandler: proc(self: ^NS.FileHandle, readabilityHandler: ^Objc_Block(proc "c" ())),
     writeabilityHandler: proc(self: ^NS.FileHandle) -> ^Objc_Block(proc "c" ()),
     setWriteabilityHandler: proc(self: ^NS.FileHandle, writeabilityHandler: ^Objc_Block(proc "c" ())),
-    initWithFileDescriptor_: proc(self: ^NS.FileHandle, fd: cffi.int) -> ^NS.FileHandle,
+    initWithFileDescriptor_: proc(self: ^NS.FileHandle, fd: cffi.int) -> instancetype,
     fileDescriptor: proc(self: ^NS.FileHandle) -> cffi.int,
     readDataToEndOfFile: proc(self: ^NS.FileHandle) -> ^NS.Data,
     readDataOfLength: proc(self: ^NS.FileHandle, length: NS.UInteger) -> ^NS.Data,
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithFileDescriptor_closeOnDealloc != nil {
-        initWithFileDescriptor_closeOnDealloc :: proc "c" (self: ^NS.FileHandle, _: SEL, fd: cffi.int, closeopt: bool) -> ^NS.FileHandle {
+        initWithFileDescriptor_closeOnDealloc :: proc "c" (self: ^NS.FileHandle, _: SEL, fd: cffi.int, closeopt: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFileDescriptor:closeOnDealloc:"), auto_cast initWithFileDescriptor_closeOnDealloc, "@@:iB") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.FileHandle, _: SEL, coder: ^NS.Coder) -> ^NS.FileHandle {
+        initWithCoder :: proc "c" (self: ^NS.FileHandle, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -201,7 +201,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("availableData"), auto_cast availableData, "@@:") do panic("Failed to register objC method.")
     }
     if vt.fileHandleForReadingAtPath != nil {
-        fileHandleForReadingAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> ^NS.FileHandle {
+        fileHandleForReadingAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -211,7 +211,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForReadingAtPath:"), auto_cast fileHandleForReadingAtPath, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.fileHandleForWritingAtPath != nil {
-        fileHandleForWritingAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> ^NS.FileHandle {
+        fileHandleForWritingAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -221,7 +221,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForWritingAtPath:"), auto_cast fileHandleForWritingAtPath, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.fileHandleForUpdatingAtPath != nil {
-        fileHandleForUpdatingAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> ^NS.FileHandle {
+        fileHandleForUpdatingAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -231,7 +231,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForUpdatingAtPath:"), auto_cast fileHandleForUpdatingAtPath, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.fileHandleForReadingFromURL != nil {
-        fileHandleForReadingFromURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, error: ^^NS.Error) -> ^NS.FileHandle {
+        fileHandleForReadingFromURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -241,7 +241,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForReadingFromURL:error:"), auto_cast fileHandleForReadingFromURL, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.fileHandleForWritingToURL != nil {
-        fileHandleForWritingToURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, error: ^^NS.Error) -> ^NS.FileHandle {
+        fileHandleForWritingToURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -251,7 +251,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fileHandleForWritingToURL:error:"), auto_cast fileHandleForWritingToURL, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.fileHandleForUpdatingURL != nil {
-        fileHandleForUpdatingURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, error: ^^NS.Error) -> ^NS.FileHandle {
+        fileHandleForUpdatingURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -421,7 +421,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWriteabilityHandler:"), auto_cast setWriteabilityHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.initWithFileDescriptor_ != nil {
-        initWithFileDescriptor_ :: proc "c" (self: ^NS.FileHandle, _: SEL, fd: cffi.int) -> ^NS.FileHandle {
+        initWithFileDescriptor_ :: proc "c" (self: ^NS.FileHandle, _: SEL, fd: cffi.int) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

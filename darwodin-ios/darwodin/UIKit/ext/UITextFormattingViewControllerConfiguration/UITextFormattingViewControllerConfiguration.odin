@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.TextFormattingViewControllerConfiguration) -> ^UI.TextFormattingViewControllerConfiguration,
-    initWithGroups: proc(self: ^UI.TextFormattingViewControllerConfiguration, groups: ^NS.Array) -> ^UI.TextFormattingViewControllerConfiguration,
+    init: proc(self: ^UI.TextFormattingViewControllerConfiguration) -> instancetype,
+    initWithGroups: proc(self: ^UI.TextFormattingViewControllerConfiguration, groups: ^NS.Array) -> instancetype,
     groups: proc(self: ^UI.TextFormattingViewControllerConfiguration) -> ^NS.Array,
     formattingStyles: proc(self: ^UI.TextFormattingViewControllerConfiguration) -> ^NS.Array,
     setFormattingStyles: proc(self: ^UI.TextFormattingViewControllerConfiguration, formattingStyles: ^NS.Array),
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextFormattingViewControllerConfiguration, _: SEL) -> ^UI.TextFormattingViewControllerConfiguration {
+        init :: proc "c" (self: ^UI.TextFormattingViewControllerConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithGroups != nil {
-        initWithGroups :: proc "c" (self: ^UI.TextFormattingViewControllerConfiguration, _: SEL, groups: ^NS.Array) -> ^UI.TextFormattingViewControllerConfiguration {
+        initWithGroups :: proc "c" (self: ^UI.TextFormattingViewControllerConfiguration, _: SEL, groups: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

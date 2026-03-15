@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.ImageRep) -> ^AK.ImageRep,
-    initWithCoder: proc(self: ^AK.ImageRep, coder: ^NS.Coder) -> ^AK.ImageRep,
+    init: proc(self: ^AK.ImageRep) -> instancetype,
+    initWithCoder: proc(self: ^AK.ImageRep, coder: ^NS.Coder) -> instancetype,
     draw: proc(self: ^AK.ImageRep) -> bool,
     drawAtPoint: proc(self: ^AK.ImageRep, point: CG.Point) -> bool,
     drawInRect_: proc(self: ^AK.ImageRep, rect: NS.Rect) -> bool,
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.ImageRep, _: SEL) -> ^AK.ImageRep {
+        init :: proc "c" (self: ^AK.ImageRep, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ImageRep, _: SEL, coder: ^NS.Coder) -> ^AK.ImageRep {
+        initWithCoder :: proc "c" (self: ^AK.ImageRep, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

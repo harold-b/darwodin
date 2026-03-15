@@ -242,7 +242,7 @@ foreign lib {
     AudioSession_isMicrophoneInjectionAvailable :: proc(self: ^AudioSession) -> bool ---
 
     @(objc_type=AudioSession, objc_selector="init", objc_name="init")
-    AudioSession_init :: proc(self: ^AudioSession) -> ^AudioSession ---
+    AudioSession_init :: proc(self: ^AudioSession) -> instancetype ---
 
     @(objc_type=AudioSession, objc_selector="setActive:withFlags:error:", objc_name="setActive_withFlags_error")
     AudioSession_setActive_withFlags_error :: proc(self: ^AudioSession, active: bool, flags: NS.Integer, outError: ^^NS.Error) -> bool ---

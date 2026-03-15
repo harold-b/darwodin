@@ -18,10 +18,10 @@ SyncEngineConfiguration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineConfiguration, objc_selector="initWithDatabase:stateSerialization:delegate:", objc_name="initWithDatabase")
-    SyncEngineConfiguration_initWithDatabase :: proc(self: ^SyncEngineConfiguration, database: ^Database, stateSerialization: ^SyncEngineStateSerialization, delegate: ^SyncEngineDelegate) -> ^SyncEngineConfiguration ---
+    SyncEngineConfiguration_initWithDatabase :: proc(self: ^SyncEngineConfiguration, database: ^Database, stateSerialization: ^SyncEngineStateSerialization, delegate: ^SyncEngineDelegate) -> instancetype ---
 
     @(objc_type=SyncEngineConfiguration, objc_selector="init", objc_name="init")
-    SyncEngineConfiguration_init :: proc(self: ^SyncEngineConfiguration) -> ^SyncEngineConfiguration ---
+    SyncEngineConfiguration_init :: proc(self: ^SyncEngineConfiguration) -> instancetype ---
 
     @(objc_type=SyncEngineConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEngineConfiguration_new :: proc() -> ^SyncEngineConfiguration ---

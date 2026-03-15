@@ -86,7 +86,7 @@ foreign lib {
     URLSession_webSocketTaskWithRequest :: proc(self: ^URLSession, request: ^URLRequest) -> ^URLSessionWebSocketTask ---
 
     @(objc_type=URLSession, objc_selector="init", objc_name="init")
-    URLSession_init :: proc(self: ^URLSession) -> ^URLSession ---
+    URLSession_init :: proc(self: ^URLSession) -> instancetype ---
 
     @(objc_type=URLSession, objc_selector="new", objc_name="new", objc_is_class_method=true)
     URLSession_new :: proc() -> ^URLSession ---

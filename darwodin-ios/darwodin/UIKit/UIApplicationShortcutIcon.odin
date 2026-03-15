@@ -24,11 +24,11 @@ ApplicationShortcutIcon :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ApplicationShortcutIcon, objc_selector="iconWithType:", objc_name="iconWithType", objc_is_class_method=true)
-    ApplicationShortcutIcon_iconWithType :: proc(type: ApplicationShortcutIconType) -> ^ApplicationShortcutIcon ---
+    ApplicationShortcutIcon_iconWithType :: proc(type: ApplicationShortcutIconType) -> instancetype ---
 
     @(objc_type=ApplicationShortcutIcon, objc_selector="iconWithTemplateImageName:", objc_name="iconWithTemplateImageName", objc_is_class_method=true)
-    ApplicationShortcutIcon_iconWithTemplateImageName :: proc(templateImageName: ^NS.String) -> ^ApplicationShortcutIcon ---
+    ApplicationShortcutIcon_iconWithTemplateImageName :: proc(templateImageName: ^NS.String) -> instancetype ---
 
     @(objc_type=ApplicationShortcutIcon, objc_selector="iconWithSystemImageName:", objc_name="iconWithSystemImageName", objc_is_class_method=true)
-    ApplicationShortcutIcon_iconWithSystemImageName :: proc(systemImageName: ^NS.String) -> ^ApplicationShortcutIcon ---
+    ApplicationShortcutIcon_iconWithSystemImageName :: proc(systemImageName: ^NS.String) -> instancetype ---
 }

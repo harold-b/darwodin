@@ -22,38 +22,38 @@ NSSymbolWiggleEffect :: struct { using _: NSSymbolEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSSymbolWiggleEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_effect :: proc() -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="wiggleClockwiseEffect", objc_name="wiggleClockwiseEffect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_wiggleClockwiseEffect :: proc() -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_wiggleClockwiseEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="wiggleCounterClockwiseEffect", objc_name="wiggleCounterClockwiseEffect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_wiggleCounterClockwiseEffect :: proc() -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_wiggleCounterClockwiseEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="wiggleLeftEffect", objc_name="wiggleLeftEffect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_wiggleLeftEffect :: proc() -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_wiggleLeftEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="wiggleRightEffect", objc_name="wiggleRightEffect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_wiggleRightEffect :: proc() -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_wiggleRightEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="wiggleUpEffect", objc_name="wiggleUpEffect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_wiggleUpEffect :: proc() -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_wiggleUpEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="wiggleDownEffect", objc_name="wiggleDownEffect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_wiggleDownEffect :: proc() -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_wiggleDownEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="wiggleForwardEffect", objc_name="wiggleForwardEffect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_wiggleForwardEffect :: proc() -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_wiggleForwardEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="wiggleBackwardEffect", objc_name="wiggleBackwardEffect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_wiggleBackwardEffect :: proc() -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_wiggleBackwardEffect :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="wiggleCustomAngleEffect:", objc_name="wiggleCustomAngleEffect", objc_is_class_method=true)
-    NSSymbolWiggleEffect_wiggleCustomAngleEffect :: proc(angle: cffi.double) -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_wiggleCustomAngleEffect :: proc(angle: cffi.double) -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
-    NSSymbolWiggleEffect_effectWithByLayer :: proc(self: ^NSSymbolWiggleEffect) -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_effectWithByLayer :: proc(self: ^NSSymbolWiggleEffect) -> instancetype ---
 
     @(objc_type=NSSymbolWiggleEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
-    NSSymbolWiggleEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolWiggleEffect) -> ^NSSymbolWiggleEffect ---
+    NSSymbolWiggleEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolWiggleEffect) -> instancetype ---
 }

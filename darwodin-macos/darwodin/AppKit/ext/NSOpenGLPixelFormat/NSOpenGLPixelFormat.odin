@@ -31,7 +31,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     initWithCGLPixelFormatObj: proc(self: ^AK.OpenGLPixelFormat, format: CA.CGLPixelFormatObj) -> ^AK.OpenGLPixelFormat,
-    initWithAttributes: proc(self: ^AK.OpenGLPixelFormat, attribs: ^AK.OpenGLPixelFormatAttribute) -> ^AK.OpenGLPixelFormat,
+    initWithAttributes: proc(self: ^AK.OpenGLPixelFormat, attribs: ^AK.OpenGLPixelFormatAttribute) -> instancetype,
     initWithData: proc(self: ^AK.OpenGLPixelFormat, attribs: ^NS.Data) -> id,
     attributes: proc(self: ^AK.OpenGLPixelFormat) -> ^NS.Data,
     setAttributes: proc(self: ^AK.OpenGLPixelFormat, attribs: ^NS.Data),
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCGLPixelFormatObj:"), auto_cast initWithCGLPixelFormatObj, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributes != nil {
-        initWithAttributes :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL, attribs: ^AK.OpenGLPixelFormatAttribute) -> ^AK.OpenGLPixelFormat {
+        initWithAttributes :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL, attribs: ^AK.OpenGLPixelFormatAttribute) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

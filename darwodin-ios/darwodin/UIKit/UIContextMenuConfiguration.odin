@@ -22,7 +22,7 @@ ContextMenuConfiguration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContextMenuConfiguration, objc_selector="configurationWithIdentifier:previewProvider:actionProvider:", objc_name="configurationWithIdentifier", objc_is_class_method=true)
-    ContextMenuConfiguration_configurationWithIdentifier :: proc(identifier: ^NS.Copying, previewProvider: ContextMenuContentPreviewProvider, actionProvider: ContextMenuActionProvider) -> ^ContextMenuConfiguration ---
+    ContextMenuConfiguration_configurationWithIdentifier :: proc(identifier: ^NS.Copying, previewProvider: ContextMenuContentPreviewProvider, actionProvider: ContextMenuActionProvider) -> instancetype ---
 
     @(objc_type=ContextMenuConfiguration, objc_selector="identifier", objc_name="identifier")
     ContextMenuConfiguration_identifier :: proc(self: ^ContextMenuConfiguration) -> ^NS.Copying ---

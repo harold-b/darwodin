@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    itemWithLayoutSize_: proc(layoutSize: ^UI.NSCollectionLayoutSize) -> ^UI.NSCollectionLayoutItem,
-    itemWithLayoutSize_supplementaryItems: proc(layoutSize: ^UI.NSCollectionLayoutSize, supplementaryItems: ^NS.Array) -> ^UI.NSCollectionLayoutItem,
-    init: proc(self: ^UI.NSCollectionLayoutItem) -> ^UI.NSCollectionLayoutItem,
+    itemWithLayoutSize_: proc(layoutSize: ^UI.NSCollectionLayoutSize) -> instancetype,
+    itemWithLayoutSize_supplementaryItems: proc(layoutSize: ^UI.NSCollectionLayoutSize, supplementaryItems: ^NS.Array) -> instancetype,
+    init: proc(self: ^UI.NSCollectionLayoutItem) -> instancetype,
     new: proc() -> ^UI.NSCollectionLayoutItem,
     contentInsets: proc(self: ^UI.NSCollectionLayoutItem) -> UI.NSDirectionalEdgeInsets,
     setContentInsets: proc(self: ^UI.NSCollectionLayoutItem, contentInsets: UI.NSDirectionalEdgeInsets),
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.itemWithLayoutSize_ != nil {
-        itemWithLayoutSize_ :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize) -> ^UI.NSCollectionLayoutItem {
+        itemWithLayoutSize_ :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("itemWithLayoutSize:"), auto_cast itemWithLayoutSize_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.itemWithLayoutSize_supplementaryItems != nil {
-        itemWithLayoutSize_supplementaryItems :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, supplementaryItems: ^NS.Array) -> ^UI.NSCollectionLayoutItem {
+        itemWithLayoutSize_supplementaryItems :: proc "c" (self: Class, _: SEL, layoutSize: ^UI.NSCollectionLayoutSize, supplementaryItems: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("itemWithLayoutSize:supplementaryItems:"), auto_cast itemWithLayoutSize_supplementaryItems, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSCollectionLayoutItem, _: SEL) -> ^UI.NSCollectionLayoutItem {
+        init :: proc "c" (self: ^UI.NSCollectionLayoutItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

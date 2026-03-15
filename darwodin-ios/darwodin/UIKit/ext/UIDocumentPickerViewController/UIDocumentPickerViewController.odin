@@ -28,14 +28,14 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithDocumentTypes: proc(self: ^UI.DocumentPickerViewController, allowedUTIs: ^NS.Array, mode: UI.DocumentPickerMode) -> ^UI.DocumentPickerViewController,
-    initForOpeningContentTypes_asCopy: proc(self: ^UI.DocumentPickerViewController, contentTypes: ^NS.Array, asCopy: bool) -> ^UI.DocumentPickerViewController,
-    initForOpeningContentTypes_: proc(self: ^UI.DocumentPickerViewController, contentTypes: ^NS.Array) -> ^UI.DocumentPickerViewController,
-    initWithCoder: proc(self: ^UI.DocumentPickerViewController, coder: ^NS.Coder) -> ^UI.DocumentPickerViewController,
-    initWithURL: proc(self: ^UI.DocumentPickerViewController, url: ^NS.URL, mode: UI.DocumentPickerMode) -> ^UI.DocumentPickerViewController,
-    initWithURLs: proc(self: ^UI.DocumentPickerViewController, urls: ^NS.Array, mode: UI.DocumentPickerMode) -> ^UI.DocumentPickerViewController,
-    initForExportingURLs_asCopy: proc(self: ^UI.DocumentPickerViewController, urls: ^NS.Array, asCopy: bool) -> ^UI.DocumentPickerViewController,
-    initForExportingURLs_: proc(self: ^UI.DocumentPickerViewController, urls: ^NS.Array) -> ^UI.DocumentPickerViewController,
+    initWithDocumentTypes: proc(self: ^UI.DocumentPickerViewController, allowedUTIs: ^NS.Array, mode: UI.DocumentPickerMode) -> instancetype,
+    initForOpeningContentTypes_asCopy: proc(self: ^UI.DocumentPickerViewController, contentTypes: ^NS.Array, asCopy: bool) -> instancetype,
+    initForOpeningContentTypes_: proc(self: ^UI.DocumentPickerViewController, contentTypes: ^NS.Array) -> instancetype,
+    initWithCoder: proc(self: ^UI.DocumentPickerViewController, coder: ^NS.Coder) -> instancetype,
+    initWithURL: proc(self: ^UI.DocumentPickerViewController, url: ^NS.URL, mode: UI.DocumentPickerMode) -> instancetype,
+    initWithURLs: proc(self: ^UI.DocumentPickerViewController, urls: ^NS.Array, mode: UI.DocumentPickerMode) -> instancetype,
+    initForExportingURLs_asCopy: proc(self: ^UI.DocumentPickerViewController, urls: ^NS.Array, asCopy: bool) -> instancetype,
+    initForExportingURLs_: proc(self: ^UI.DocumentPickerViewController, urls: ^NS.Array) -> instancetype,
     delegate: proc(self: ^UI.DocumentPickerViewController) -> ^UI.DocumentPickerDelegate,
     setDelegate: proc(self: ^UI.DocumentPickerViewController, delegate: ^UI.DocumentPickerDelegate),
     documentPickerMode: proc(self: ^UI.DocumentPickerViewController) -> UI.DocumentPickerMode,
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithDocumentTypes != nil {
-        initWithDocumentTypes :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, allowedUTIs: ^NS.Array, mode: UI.DocumentPickerMode) -> ^UI.DocumentPickerViewController {
+        initWithDocumentTypes :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, allowedUTIs: ^NS.Array, mode: UI.DocumentPickerMode) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDocumentTypes:inMode:"), auto_cast initWithDocumentTypes, "@@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initForOpeningContentTypes_asCopy != nil {
-        initForOpeningContentTypes_asCopy :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, contentTypes: ^NS.Array, asCopy: bool) -> ^UI.DocumentPickerViewController {
+        initForOpeningContentTypes_asCopy :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, contentTypes: ^NS.Array, asCopy: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initForOpeningContentTypes:asCopy:"), auto_cast initForOpeningContentTypes_asCopy, "@@:^voidB") do panic("Failed to register objC method.")
     }
     if vt.initForOpeningContentTypes_ != nil {
-        initForOpeningContentTypes_ :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, contentTypes: ^NS.Array) -> ^UI.DocumentPickerViewController {
+        initForOpeningContentTypes_ :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, contentTypes: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initForOpeningContentTypes:"), auto_cast initForOpeningContentTypes_, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, coder: ^NS.Coder) -> ^UI.DocumentPickerViewController {
+        initWithCoder :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, url: ^NS.URL, mode: UI.DocumentPickerMode) -> ^UI.DocumentPickerViewController {
+        initWithURL :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, url: ^NS.URL, mode: UI.DocumentPickerMode) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithURL:inMode:"), auto_cast initWithURL, "@@:@L") do panic("Failed to register objC method.")
     }
     if vt.initWithURLs != nil {
-        initWithURLs :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, urls: ^NS.Array, mode: UI.DocumentPickerMode) -> ^UI.DocumentPickerViewController {
+        initWithURLs :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, urls: ^NS.Array, mode: UI.DocumentPickerMode) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithURLs:inMode:"), auto_cast initWithURLs, "@@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initForExportingURLs_asCopy != nil {
-        initForExportingURLs_asCopy :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, urls: ^NS.Array, asCopy: bool) -> ^UI.DocumentPickerViewController {
+        initForExportingURLs_asCopy :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, urls: ^NS.Array, asCopy: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initForExportingURLs:asCopy:"), auto_cast initForExportingURLs_asCopy, "@@:^voidB") do panic("Failed to register objC method.")
     }
     if vt.initForExportingURLs_ != nil {
-        initForExportingURLs_ :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, urls: ^NS.Array) -> ^UI.DocumentPickerViewController {
+        initForExportingURLs_ :: proc "c" (self: ^UI.DocumentPickerViewController, _: SEL, urls: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

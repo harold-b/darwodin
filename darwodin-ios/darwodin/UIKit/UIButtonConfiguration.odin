@@ -25,37 +25,37 @@ ButtonConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ButtonConfiguration, objc_selector="plainButtonConfiguration", objc_name="plainButtonConfiguration", objc_is_class_method=true)
-    ButtonConfiguration_plainButtonConfiguration :: proc() -> ^ButtonConfiguration ---
+    ButtonConfiguration_plainButtonConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="tintedButtonConfiguration", objc_name="tintedButtonConfiguration", objc_is_class_method=true)
-    ButtonConfiguration_tintedButtonConfiguration :: proc() -> ^ButtonConfiguration ---
+    ButtonConfiguration_tintedButtonConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="grayButtonConfiguration", objc_name="grayButtonConfiguration", objc_is_class_method=true)
-    ButtonConfiguration_grayButtonConfiguration :: proc() -> ^ButtonConfiguration ---
+    ButtonConfiguration_grayButtonConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="filledButtonConfiguration", objc_name="filledButtonConfiguration", objc_is_class_method=true)
-    ButtonConfiguration_filledButtonConfiguration :: proc() -> ^ButtonConfiguration ---
+    ButtonConfiguration_filledButtonConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="borderlessButtonConfiguration", objc_name="borderlessButtonConfiguration", objc_is_class_method=true)
-    ButtonConfiguration_borderlessButtonConfiguration :: proc() -> ^ButtonConfiguration ---
+    ButtonConfiguration_borderlessButtonConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="borderedButtonConfiguration", objc_name="borderedButtonConfiguration", objc_is_class_method=true)
-    ButtonConfiguration_borderedButtonConfiguration :: proc() -> ^ButtonConfiguration ---
+    ButtonConfiguration_borderedButtonConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="borderedTintedButtonConfiguration", objc_name="borderedTintedButtonConfiguration", objc_is_class_method=true)
-    ButtonConfiguration_borderedTintedButtonConfiguration :: proc() -> ^ButtonConfiguration ---
+    ButtonConfiguration_borderedTintedButtonConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="borderedProminentButtonConfiguration", objc_name="borderedProminentButtonConfiguration", objc_is_class_method=true)
-    ButtonConfiguration_borderedProminentButtonConfiguration :: proc() -> ^ButtonConfiguration ---
+    ButtonConfiguration_borderedProminentButtonConfiguration :: proc() -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ButtonConfiguration_new :: proc() -> ^ButtonConfiguration ---
 
     @(objc_type=ButtonConfiguration, objc_selector="init", objc_name="init")
-    ButtonConfiguration_init :: proc(self: ^ButtonConfiguration) -> ^ButtonConfiguration ---
+    ButtonConfiguration_init :: proc(self: ^ButtonConfiguration) -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="updatedConfigurationForButton:", objc_name="updatedConfigurationForButton")
-    ButtonConfiguration_updatedConfigurationForButton :: proc(self: ^ButtonConfiguration, button: ^Button) -> ^ButtonConfiguration ---
+    ButtonConfiguration_updatedConfigurationForButton :: proc(self: ^ButtonConfiguration, button: ^Button) -> instancetype ---
 
     @(objc_type=ButtonConfiguration, objc_selector="setDefaultContentInsets", objc_name="setDefaultContentInsets")
     ButtonConfiguration_setDefaultContentInsets :: proc(self: ^ButtonConfiguration) ---

@@ -25,16 +25,16 @@ PasteConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PasteConfiguration, objc_selector="init", objc_name="init")
-    PasteConfiguration_init :: proc(self: ^PasteConfiguration) -> ^PasteConfiguration ---
+    PasteConfiguration_init :: proc(self: ^PasteConfiguration) -> instancetype ---
 
     @(objc_type=PasteConfiguration, objc_selector="initWithAcceptableTypeIdentifiers:", objc_name="initWithAcceptableTypeIdentifiers")
-    PasteConfiguration_initWithAcceptableTypeIdentifiers :: proc(self: ^PasteConfiguration, acceptableTypeIdentifiers: ^NS.Array) -> ^PasteConfiguration ---
+    PasteConfiguration_initWithAcceptableTypeIdentifiers :: proc(self: ^PasteConfiguration, acceptableTypeIdentifiers: ^NS.Array) -> instancetype ---
 
     @(objc_type=PasteConfiguration, objc_selector="addAcceptableTypeIdentifiers:", objc_name="addAcceptableTypeIdentifiers")
     PasteConfiguration_addAcceptableTypeIdentifiers :: proc(self: ^PasteConfiguration, acceptableTypeIdentifiers: ^NS.Array) ---
 
     @(objc_type=PasteConfiguration, objc_selector="initWithTypeIdentifiersForAcceptingClass:", objc_name="initWithTypeIdentifiersForAcceptingClass")
-    PasteConfiguration_initWithTypeIdentifiersForAcceptingClass :: proc(self: ^PasteConfiguration, aClass: ^Class) -> ^PasteConfiguration ---
+    PasteConfiguration_initWithTypeIdentifiersForAcceptingClass :: proc(self: ^PasteConfiguration, aClass: ^Class) -> instancetype ---
 
     @(objc_type=PasteConfiguration, objc_selector="addTypeIdentifiersForAcceptingClass:", objc_name="addTypeIdentifiersForAcceptingClass")
     PasteConfiguration_addTypeIdentifiersForAcceptingClass :: proc(self: ^PasteConfiguration, aClass: ^Class) ---

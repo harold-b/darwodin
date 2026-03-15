@@ -28,8 +28,8 @@ import "../UIPrintFormatter"
 
 VTable :: struct {
     super: UIPrintFormatter.VTable,
-    initWithText: proc(self: ^UI.SimpleTextPrintFormatter, text: ^NS.String) -> ^UI.SimpleTextPrintFormatter,
-    initWithAttributedText: proc(self: ^UI.SimpleTextPrintFormatter, attributedText: ^NS.AttributedString) -> ^UI.SimpleTextPrintFormatter,
+    initWithText: proc(self: ^UI.SimpleTextPrintFormatter, text: ^NS.String) -> instancetype,
+    initWithAttributedText: proc(self: ^UI.SimpleTextPrintFormatter, attributedText: ^NS.AttributedString) -> instancetype,
     text: proc(self: ^UI.SimpleTextPrintFormatter) -> ^NS.String,
     setText: proc(self: ^UI.SimpleTextPrintFormatter, text: ^NS.String),
     attributedText: proc(self: ^UI.SimpleTextPrintFormatter) -> ^NS.AttributedString,
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIPrintFormatter.extend(cls, &vt.super)
 
     if vt.initWithText != nil {
-        initWithText :: proc "c" (self: ^UI.SimpleTextPrintFormatter, _: SEL, text: ^NS.String) -> ^UI.SimpleTextPrintFormatter {
+        initWithText :: proc "c" (self: ^UI.SimpleTextPrintFormatter, _: SEL, text: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithText:"), auto_cast initWithText, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedText != nil {
-        initWithAttributedText :: proc "c" (self: ^UI.SimpleTextPrintFormatter, _: SEL, attributedText: ^NS.AttributedString) -> ^UI.SimpleTextPrintFormatter {
+        initWithAttributedText :: proc "c" (self: ^UI.SimpleTextPrintFormatter, _: SEL, attributedText: ^NS.AttributedString) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -22,10 +22,10 @@ CollectionViewSupplementaryRegistration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewSupplementaryRegistration, objc_selector="registrationWithSupplementaryClass:elementKind:configurationHandler:", objc_name="registrationWithSupplementaryClass", objc_is_class_method=true)
-    CollectionViewSupplementaryRegistration_registrationWithSupplementaryClass :: proc(supplementaryClass: Class, elementKind: ^NS.String, configurationHandler: CollectionViewSupplementaryRegistrationConfigurationHandler) -> ^CollectionViewSupplementaryRegistration ---
+    CollectionViewSupplementaryRegistration_registrationWithSupplementaryClass :: proc(supplementaryClass: Class, elementKind: ^NS.String, configurationHandler: CollectionViewSupplementaryRegistrationConfigurationHandler) -> instancetype ---
 
     @(objc_type=CollectionViewSupplementaryRegistration, objc_selector="registrationWithSupplementaryNib:elementKind:configurationHandler:", objc_name="registrationWithSupplementaryNib", objc_is_class_method=true)
-    CollectionViewSupplementaryRegistration_registrationWithSupplementaryNib :: proc(supplementaryNib: ^Nib, elementKind: ^NS.String, configurationHandler: CollectionViewSupplementaryRegistrationConfigurationHandler) -> ^CollectionViewSupplementaryRegistration ---
+    CollectionViewSupplementaryRegistration_registrationWithSupplementaryNib :: proc(supplementaryNib: ^Nib, elementKind: ^NS.String, configurationHandler: CollectionViewSupplementaryRegistrationConfigurationHandler) -> instancetype ---
 
     @(objc_type=CollectionViewSupplementaryRegistration, objc_selector="supplementaryClass", objc_name="supplementaryClass")
     CollectionViewSupplementaryRegistration_supplementaryClass :: proc(self: ^CollectionViewSupplementaryRegistration) -> Class ---

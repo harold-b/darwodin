@@ -22,10 +22,10 @@ InterpolatingMotionEffect :: struct { using _: MotionEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=InterpolatingMotionEffect, objc_selector="initWithKeyPath:type:", objc_name="initWithKeyPath")
-    InterpolatingMotionEffect_initWithKeyPath :: proc(self: ^InterpolatingMotionEffect, keyPath: ^NS.String, type: InterpolatingMotionEffectType) -> ^InterpolatingMotionEffect ---
+    InterpolatingMotionEffect_initWithKeyPath :: proc(self: ^InterpolatingMotionEffect, keyPath: ^NS.String, type: InterpolatingMotionEffectType) -> instancetype ---
 
     @(objc_type=InterpolatingMotionEffect, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    InterpolatingMotionEffect_initWithCoder :: proc(self: ^InterpolatingMotionEffect, coder: ^NS.Coder) -> ^InterpolatingMotionEffect ---
+    InterpolatingMotionEffect_initWithCoder :: proc(self: ^InterpolatingMotionEffect, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=InterpolatingMotionEffect, objc_selector="keyPath", objc_name="keyPath")
     InterpolatingMotionEffect_keyPath :: proc(self: ^InterpolatingMotionEffect) -> ^NS.String ---

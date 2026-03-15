@@ -24,7 +24,7 @@ TextElement :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextElement, objc_selector="initWithTextContentManager:", objc_name="initWithTextContentManager")
-    TextElement_initWithTextContentManager :: proc(self: ^TextElement, textContentManager: ^TextContentManager) -> ^TextElement ---
+    TextElement_initWithTextContentManager :: proc(self: ^TextElement, textContentManager: ^TextContentManager) -> instancetype ---
 
     @(objc_type=TextElement, objc_selector="textContentManager", objc_name="textContentManager")
     TextElement_textContentManager :: proc(self: ^TextElement) -> ^TextContentManager ---

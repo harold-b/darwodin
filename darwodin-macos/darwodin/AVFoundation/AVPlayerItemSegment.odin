@@ -23,7 +23,7 @@ PlayerItemSegment :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemSegment, objc_selector="init", objc_name="init")
-    PlayerItemSegment_init :: proc(self: ^PlayerItemSegment) -> ^PlayerItemSegment ---
+    PlayerItemSegment_init :: proc(self: ^PlayerItemSegment) -> instancetype ---
 
     @(objc_type=PlayerItemSegment, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PlayerItemSegment_new :: proc() -> ^PlayerItemSegment ---

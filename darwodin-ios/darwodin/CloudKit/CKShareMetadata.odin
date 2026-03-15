@@ -21,7 +21,7 @@ ShareMetadata :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ShareMetadata, objc_selector="init", objc_name="init")
-    ShareMetadata_init :: proc(self: ^ShareMetadata) -> ^ShareMetadata ---
+    ShareMetadata_init :: proc(self: ^ShareMetadata) -> instancetype ---
 
     @(objc_type=ShareMetadata, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ShareMetadata_new :: proc() -> ^ShareMetadata ---

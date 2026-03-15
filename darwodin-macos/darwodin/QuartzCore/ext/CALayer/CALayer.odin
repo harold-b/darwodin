@@ -27,11 +27,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    layer: proc() -> ^CA.Layer,
-    init: proc(self: ^CA.Layer) -> ^CA.Layer,
-    initWithLayer: proc(self: ^CA.Layer, layer: id) -> ^CA.Layer,
-    presentationLayer: proc(self: ^CA.Layer) -> ^CA.Layer,
-    modelLayer: proc(self: ^CA.Layer) -> ^CA.Layer,
+    layer: proc() -> instancetype,
+    init: proc(self: ^CA.Layer) -> instancetype,
+    initWithLayer: proc(self: ^CA.Layer, layer: id) -> instancetype,
+    presentationLayer: proc(self: ^CA.Layer) -> instancetype,
+    modelLayer: proc(self: ^CA.Layer) -> instancetype,
     defaultValueForKey: proc(key: ^NS.String) -> id,
     needsDisplayForKey: proc(key: ^NS.String) -> bool,
     shouldArchiveValueForKey: proc(self: ^CA.Layer, key: ^NS.String) -> bool,
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.layer != nil {
-        layer :: proc "c" (self: Class, _: SEL) -> ^CA.Layer {
+        layer :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -212,7 +212,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("layer"), auto_cast layer, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^CA.Layer, _: SEL) -> ^CA.Layer {
+        init :: proc "c" (self: ^CA.Layer, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -222,7 +222,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithLayer != nil {
-        initWithLayer :: proc "c" (self: ^CA.Layer, _: SEL, layer: id) -> ^CA.Layer {
+        initWithLayer :: proc "c" (self: ^CA.Layer, _: SEL, layer: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -232,7 +232,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLayer:"), auto_cast initWithLayer, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.presentationLayer != nil {
-        presentationLayer :: proc "c" (self: ^CA.Layer, _: SEL) -> ^CA.Layer {
+        presentationLayer :: proc "c" (self: ^CA.Layer, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -242,7 +242,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentationLayer"), auto_cast presentationLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.modelLayer != nil {
-        modelLayer :: proc "c" (self: ^CA.Layer, _: SEL) -> ^CA.Layer {
+        modelLayer :: proc "c" (self: ^CA.Layer, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

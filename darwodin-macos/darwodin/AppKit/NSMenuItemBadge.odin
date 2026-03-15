@@ -26,25 +26,25 @@ MenuItemBadge :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MenuItemBadge, objc_selector="updatesWithCount:", objc_name="updatesWithCount", objc_is_class_method=true)
-    MenuItemBadge_updatesWithCount :: proc(itemCount: NS.Integer) -> ^MenuItemBadge ---
+    MenuItemBadge_updatesWithCount :: proc(itemCount: NS.Integer) -> instancetype ---
 
     @(objc_type=MenuItemBadge, objc_selector="newItemsWithCount:", objc_name="newItemsWithCount", objc_is_class_method=true)
-    MenuItemBadge_newItemsWithCount :: proc(itemCount: NS.Integer) -> ^MenuItemBadge ---
+    MenuItemBadge_newItemsWithCount :: proc(itemCount: NS.Integer) -> instancetype ---
 
     @(objc_type=MenuItemBadge, objc_selector="alertsWithCount:", objc_name="alertsWithCount", objc_is_class_method=true)
-    MenuItemBadge_alertsWithCount :: proc(itemCount: NS.Integer) -> ^MenuItemBadge ---
+    MenuItemBadge_alertsWithCount :: proc(itemCount: NS.Integer) -> instancetype ---
 
     @(objc_type=MenuItemBadge, objc_selector="initWithCount:type:", objc_name="initWithCount_type")
-    MenuItemBadge_initWithCount_type :: proc(self: ^MenuItemBadge, itemCount: NS.Integer, type: MenuItemBadgeType) -> ^MenuItemBadge ---
+    MenuItemBadge_initWithCount_type :: proc(self: ^MenuItemBadge, itemCount: NS.Integer, type: MenuItemBadgeType) -> instancetype ---
 
     @(objc_type=MenuItemBadge, objc_selector="initWithCount:", objc_name="initWithCount_")
-    MenuItemBadge_initWithCount_ :: proc(self: ^MenuItemBadge, itemCount: NS.Integer) -> ^MenuItemBadge ---
+    MenuItemBadge_initWithCount_ :: proc(self: ^MenuItemBadge, itemCount: NS.Integer) -> instancetype ---
 
     @(objc_type=MenuItemBadge, objc_selector="initWithString:", objc_name="initWithString")
-    MenuItemBadge_initWithString :: proc(self: ^MenuItemBadge, string: ^NS.String) -> ^MenuItemBadge ---
+    MenuItemBadge_initWithString :: proc(self: ^MenuItemBadge, string: ^NS.String) -> instancetype ---
 
     @(objc_type=MenuItemBadge, objc_selector="init", objc_name="init")
-    MenuItemBadge_init :: proc(self: ^MenuItemBadge) -> ^MenuItemBadge ---
+    MenuItemBadge_init :: proc(self: ^MenuItemBadge) -> instancetype ---
 
     @(objc_type=MenuItemBadge, objc_selector="itemCount", objc_name="itemCount")
     MenuItemBadge_itemCount :: proc(self: ^MenuItemBadge) -> NS.Integer ---

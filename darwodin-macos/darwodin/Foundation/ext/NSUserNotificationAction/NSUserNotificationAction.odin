@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    actionWithIdentifier: proc(identifier: ^NS.String, title: ^NS.String) -> ^NS.UserNotificationAction,
+    actionWithIdentifier: proc(identifier: ^NS.String, title: ^NS.String) -> instancetype,
     identifier: proc(self: ^NS.UserNotificationAction) -> ^NS.String,
     title: proc(self: ^NS.UserNotificationAction) -> ^NS.String,
 }
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.actionWithIdentifier != nil {
-        actionWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, title: ^NS.String) -> ^NS.UserNotificationAction {
+        actionWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, title: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

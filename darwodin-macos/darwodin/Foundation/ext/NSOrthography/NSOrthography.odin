@@ -26,17 +26,17 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDominantScript: proc(self: ^NS.Orthography, script: ^NS.String, _map: ^NS.Dictionary) -> ^NS.Orthography,
-    initWithCoder: proc(self: ^NS.Orthography, coder: ^NS.Coder) -> ^NS.Orthography,
+    initWithDominantScript: proc(self: ^NS.Orthography, script: ^NS.String, _map: ^NS.Dictionary) -> instancetype,
+    initWithCoder: proc(self: ^NS.Orthography, coder: ^NS.Coder) -> instancetype,
     dominantScript: proc(self: ^NS.Orthography) -> ^NS.String,
     languageMap: proc(self: ^NS.Orthography) -> ^NS.Dictionary,
     languagesForScript: proc(self: ^NS.Orthography, script: ^NS.String) -> ^NS.Array,
     dominantLanguageForScript: proc(self: ^NS.Orthography, script: ^NS.String) -> ^NS.String,
-    defaultOrthographyForLanguage: proc(language: ^NS.String) -> ^NS.Orthography,
+    defaultOrthographyForLanguage: proc(language: ^NS.String) -> instancetype,
     dominantLanguage: proc(self: ^NS.Orthography) -> ^NS.String,
     allScripts: proc(self: ^NS.Orthography) -> ^NS.Array,
     allLanguages: proc(self: ^NS.Orthography) -> ^NS.Array,
-    orthographyWithDominantScript: proc(script: ^NS.String, _map: ^NS.Dictionary) -> ^NS.Orthography,
+    orthographyWithDominantScript: proc(script: ^NS.String, _map: ^NS.Dictionary) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDominantScript != nil {
-        initWithDominantScript :: proc "c" (self: ^NS.Orthography, _: SEL, script: ^NS.String, _map: ^NS.Dictionary) -> ^NS.Orthography {
+        initWithDominantScript :: proc "c" (self: ^NS.Orthography, _: SEL, script: ^NS.String, _map: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDominantScript:languageMap:"), auto_cast initWithDominantScript, "@@:@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.Orthography, _: SEL, coder: ^NS.Coder) -> ^NS.Orthography {
+        initWithCoder :: proc "c" (self: ^NS.Orthography, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dominantLanguageForScript:"), auto_cast dominantLanguageForScript, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.defaultOrthographyForLanguage != nil {
-        defaultOrthographyForLanguage :: proc "c" (self: Class, _: SEL, language: ^NS.String) -> ^NS.Orthography {
+        defaultOrthographyForLanguage :: proc "c" (self: Class, _: SEL, language: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allLanguages"), auto_cast allLanguages, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.orthographyWithDominantScript != nil {
-        orthographyWithDominantScript :: proc "c" (self: Class, _: SEL, script: ^NS.String, _map: ^NS.Dictionary) -> ^NS.Orthography {
+        orthographyWithDominantScript :: proc "c" (self: Class, _: SEL, script: ^NS.String, _map: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -25,13 +25,13 @@ foreign lib {
     UpdateInfo_new :: proc() -> ^UpdateInfo ---
 
     @(objc_type=UpdateInfo, objc_selector="init", objc_name="init")
-    UpdateInfo_init :: proc(self: ^UpdateInfo) -> ^UpdateInfo ---
+    UpdateInfo_init :: proc(self: ^UpdateInfo) -> instancetype ---
 
     @(objc_type=UpdateInfo, objc_selector="currentUpdateInfoForWindowScene:", objc_name="currentUpdateInfoForWindowScene", objc_is_class_method=true)
-    UpdateInfo_currentUpdateInfoForWindowScene :: proc(windowScene: ^WindowScene) -> ^UpdateInfo ---
+    UpdateInfo_currentUpdateInfoForWindowScene :: proc(windowScene: ^WindowScene) -> instancetype ---
 
     @(objc_type=UpdateInfo, objc_selector="currentUpdateInfoForView:", objc_name="currentUpdateInfoForView", objc_is_class_method=true)
-    UpdateInfo_currentUpdateInfoForView :: proc(view: ^View) -> ^UpdateInfo ---
+    UpdateInfo_currentUpdateInfoForView :: proc(view: ^View) -> instancetype ---
 
     @(objc_type=UpdateInfo, objc_selector="modelTime", objc_name="modelTime")
     UpdateInfo_modelTime :: proc(self: ^UpdateInfo) -> NS.TimeInterval ---

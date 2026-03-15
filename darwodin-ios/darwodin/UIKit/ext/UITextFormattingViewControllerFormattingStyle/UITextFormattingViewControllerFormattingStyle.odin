@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithStyleKey: proc(self: ^UI.TextFormattingViewControllerFormattingStyle, styleKey: ^NS.String, string: ^NS.String, attributes: ^NS.Dictionary) -> ^UI.TextFormattingViewControllerFormattingStyle,
+    initWithStyleKey: proc(self: ^UI.TextFormattingViewControllerFormattingStyle, styleKey: ^NS.String, string: ^NS.String, attributes: ^NS.Dictionary) -> instancetype,
     styleKey: proc(self: ^UI.TextFormattingViewControllerFormattingStyle) -> ^NS.String,
     title: proc(self: ^UI.TextFormattingViewControllerFormattingStyle) -> ^NS.String,
     attributes: proc(self: ^UI.TextFormattingViewControllerFormattingStyle) -> ^NS.Dictionary,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithStyleKey != nil {
-        initWithStyleKey :: proc "c" (self: ^UI.TextFormattingViewControllerFormattingStyle, _: SEL, styleKey: ^NS.String, string: ^NS.String, attributes: ^NS.Dictionary) -> ^UI.TextFormattingViewControllerFormattingStyle {
+        initWithStyleKey :: proc "c" (self: ^UI.TextFormattingViewControllerFormattingStyle, _: SEL, styleKey: ^NS.String, string: ^NS.String, attributes: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

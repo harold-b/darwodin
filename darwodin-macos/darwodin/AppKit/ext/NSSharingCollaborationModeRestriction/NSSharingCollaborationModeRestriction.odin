@@ -30,11 +30,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDisabledMode_: proc(self: ^AK.SharingCollaborationModeRestriction, disabledMode: AK.SharingCollaborationMode) -> ^AK.SharingCollaborationModeRestriction,
-    initWithDisabledMode_alertTitle_alertMessage: proc(self: ^AK.SharingCollaborationModeRestriction, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> ^AK.SharingCollaborationModeRestriction,
-    initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle: proc(self: ^AK.SharingCollaborationModeRestriction, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> ^AK.SharingCollaborationModeRestriction,
-    initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL: proc(self: ^AK.SharingCollaborationModeRestriction, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> ^AK.SharingCollaborationModeRestriction,
-    init: proc(self: ^AK.SharingCollaborationModeRestriction) -> ^AK.SharingCollaborationModeRestriction,
+    initWithDisabledMode_: proc(self: ^AK.SharingCollaborationModeRestriction, disabledMode: AK.SharingCollaborationMode) -> instancetype,
+    initWithDisabledMode_alertTitle_alertMessage: proc(self: ^AK.SharingCollaborationModeRestriction, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> instancetype,
+    initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle: proc(self: ^AK.SharingCollaborationModeRestriction, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> instancetype,
+    initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL: proc(self: ^AK.SharingCollaborationModeRestriction, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> instancetype,
+    init: proc(self: ^AK.SharingCollaborationModeRestriction) -> instancetype,
     new: proc() -> ^AK.SharingCollaborationModeRestriction,
     disabledMode: proc(self: ^AK.SharingCollaborationModeRestriction) -> AK.SharingCollaborationMode,
     alertTitle: proc(self: ^AK.SharingCollaborationModeRestriction) -> ^NS.String,
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDisabledMode_ != nil {
-        initWithDisabledMode_ :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL, disabledMode: AK.SharingCollaborationMode) -> ^AK.SharingCollaborationModeRestriction {
+        initWithDisabledMode_ :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL, disabledMode: AK.SharingCollaborationMode) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDisabledMode:"), auto_cast initWithDisabledMode_, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithDisabledMode_alertTitle_alertMessage != nil {
-        initWithDisabledMode_alertTitle_alertMessage :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> ^AK.SharingCollaborationModeRestriction {
+        initWithDisabledMode_alertTitle_alertMessage :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDisabledMode:alertTitle:alertMessage:"), auto_cast initWithDisabledMode_alertTitle_alertMessage, "@@:l@@") do panic("Failed to register objC method.")
     }
     if vt.initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle != nil {
-        initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> ^AK.SharingCollaborationModeRestriction {
+        initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:"), auto_cast initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle, "@@:l@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL != nil {
-        initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> ^AK.SharingCollaborationModeRestriction {
+        initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL, disabledMode: AK.SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:"), auto_cast initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL, "@@:l@@@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL) -> ^AK.SharingCollaborationModeRestriction {
+        init :: proc "c" (self: ^AK.SharingCollaborationModeRestriction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

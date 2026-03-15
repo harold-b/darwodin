@@ -23,7 +23,7 @@ VertexBufferLayout :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexBufferLayout, objc_selector="initWithStride:", objc_name="initWithStride")
-    VertexBufferLayout_initWithStride :: proc(self: ^VertexBufferLayout, stride: NS.UInteger) -> ^VertexBufferLayout ---
+    VertexBufferLayout_initWithStride :: proc(self: ^VertexBufferLayout, stride: NS.UInteger) -> instancetype ---
 
     @(objc_type=VertexBufferLayout, objc_selector="stride", objc_name="stride")
     VertexBufferLayout_stride :: proc(self: ^VertexBufferLayout) -> NS.UInteger ---

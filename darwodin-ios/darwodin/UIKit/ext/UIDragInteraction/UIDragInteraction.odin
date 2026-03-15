@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^UI.DragInteraction, delegate: ^UI.DragInteractionDelegate) -> ^UI.DragInteraction,
-    init: proc(self: ^UI.DragInteraction) -> ^UI.DragInteraction,
+    initWithDelegate: proc(self: ^UI.DragInteraction, delegate: ^UI.DragInteractionDelegate) -> instancetype,
+    init: proc(self: ^UI.DragInteraction) -> instancetype,
     new: proc() -> ^UI.DragInteraction,
     delegate: proc(self: ^UI.DragInteraction) -> ^UI.DragInteractionDelegate,
     allowsSimultaneousRecognitionDuringLift: proc(self: ^UI.DragInteraction) -> bool,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.DragInteraction, _: SEL, delegate: ^UI.DragInteractionDelegate) -> ^UI.DragInteraction {
+        initWithDelegate :: proc "c" (self: ^UI.DragInteraction, _: SEL, delegate: ^UI.DragInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDelegate:"), auto_cast initWithDelegate, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.DragInteraction, _: SEL) -> ^UI.DragInteraction {
+        init :: proc "c" (self: ^UI.DragInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

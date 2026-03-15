@@ -26,13 +26,13 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.Date) -> ^NS.Date,
-    initWithTimeIntervalSinceReferenceDate: proc(self: ^NS.Date, ti: NS.TimeInterval) -> ^NS.Date,
-    initWithCoder: proc(self: ^NS.Date, coder: ^NS.Coder) -> ^NS.Date,
+    init: proc(self: ^NS.Date) -> instancetype,
+    initWithTimeIntervalSinceReferenceDate: proc(self: ^NS.Date, ti: NS.TimeInterval) -> instancetype,
+    initWithCoder: proc(self: ^NS.Date, coder: ^NS.Coder) -> instancetype,
     timeIntervalSinceReferenceDate: proc(self: ^NS.Date) -> NS.TimeInterval,
     timeIntervalSinceDate: proc(self: ^NS.Date, anotherDate: ^NS.Date) -> NS.TimeInterval,
     addTimeInterval: proc(self: ^NS.Date, seconds: NS.TimeInterval) -> id,
-    dateByAddingTimeInterval: proc(self: ^NS.Date, ti: NS.TimeInterval) -> ^NS.Date,
+    dateByAddingTimeInterval: proc(self: ^NS.Date, ti: NS.TimeInterval) -> instancetype,
     earlierDate: proc(self: ^NS.Date, anotherDate: ^NS.Date) -> ^NS.Date,
     laterDate: proc(self: ^NS.Date, anotherDate: ^NS.Date) -> ^NS.Date,
     compare: proc(self: ^NS.Date, other: ^NS.Date) -> NS.ComparisonResult,
@@ -42,14 +42,14 @@ VTable :: struct {
     timeIntervalSince1970: proc(self: ^NS.Date) -> NS.TimeInterval,
     description: proc(self: ^NS.Date) -> ^NS.String,
     timeIntervalSinceReferenceDateStatic: proc() -> NS.TimeInterval,
-    date: proc() -> ^NS.Date,
-    dateWithTimeIntervalSinceNow: proc(secs: NS.TimeInterval) -> ^NS.Date,
-    dateWithTimeIntervalSinceReferenceDate: proc(ti: NS.TimeInterval) -> ^NS.Date,
-    dateWithTimeIntervalSince1970: proc(secs: NS.TimeInterval) -> ^NS.Date,
-    dateWithTimeInterval: proc(secsToBeAdded: NS.TimeInterval, date: ^NS.Date) -> ^NS.Date,
-    initWithTimeIntervalSinceNow: proc(self: ^NS.Date, secs: NS.TimeInterval) -> ^NS.Date,
-    initWithTimeIntervalSince1970: proc(self: ^NS.Date, secs: NS.TimeInterval) -> ^NS.Date,
-    initWithTimeInterval: proc(self: ^NS.Date, secsToBeAdded: NS.TimeInterval, date: ^NS.Date) -> ^NS.Date,
+    date: proc() -> instancetype,
+    dateWithTimeIntervalSinceNow: proc(secs: NS.TimeInterval) -> instancetype,
+    dateWithTimeIntervalSinceReferenceDate: proc(ti: NS.TimeInterval) -> instancetype,
+    dateWithTimeIntervalSince1970: proc(secs: NS.TimeInterval) -> instancetype,
+    dateWithTimeInterval: proc(secsToBeAdded: NS.TimeInterval, date: ^NS.Date) -> instancetype,
+    initWithTimeIntervalSinceNow: proc(self: ^NS.Date, secs: NS.TimeInterval) -> instancetype,
+    initWithTimeIntervalSince1970: proc(self: ^NS.Date, secs: NS.TimeInterval) -> instancetype,
+    initWithTimeInterval: proc(self: ^NS.Date, secsToBeAdded: NS.TimeInterval, date: ^NS.Date) -> instancetype,
     distantFuture: proc() -> ^NS.Date,
     distantPast: proc() -> ^NS.Date,
     now: proc() -> ^NS.Date,
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.Date, _: SEL) -> ^NS.Date {
+        init :: proc "c" (self: ^NS.Date, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTimeIntervalSinceReferenceDate != nil {
-        initWithTimeIntervalSinceReferenceDate :: proc "c" (self: ^NS.Date, _: SEL, ti: NS.TimeInterval) -> ^NS.Date {
+        initWithTimeIntervalSinceReferenceDate :: proc "c" (self: ^NS.Date, _: SEL, ti: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTimeIntervalSinceReferenceDate:"), auto_cast initWithTimeIntervalSinceReferenceDate, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.Date, _: SEL, coder: ^NS.Coder) -> ^NS.Date {
+        initWithCoder :: proc "c" (self: ^NS.Date, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addTimeInterval:"), auto_cast addTimeInterval, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.dateByAddingTimeInterval != nil {
-        dateByAddingTimeInterval :: proc "c" (self: ^NS.Date, _: SEL, ti: NS.TimeInterval) -> ^NS.Date {
+        dateByAddingTimeInterval :: proc "c" (self: ^NS.Date, _: SEL, ti: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -229,7 +229,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("timeIntervalSinceReferenceDate"), auto_cast timeIntervalSinceReferenceDateStatic, "d#:") do panic("Failed to register objC method.")
     }
     if vt.date != nil {
-        date :: proc "c" (self: Class, _: SEL) -> ^NS.Date {
+        date :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -239,7 +239,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("date"), auto_cast date, "@#:") do panic("Failed to register objC method.")
     }
     if vt.dateWithTimeIntervalSinceNow != nil {
-        dateWithTimeIntervalSinceNow :: proc "c" (self: Class, _: SEL, secs: NS.TimeInterval) -> ^NS.Date {
+        dateWithTimeIntervalSinceNow :: proc "c" (self: Class, _: SEL, secs: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -249,7 +249,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithTimeIntervalSinceNow:"), auto_cast dateWithTimeIntervalSinceNow, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.dateWithTimeIntervalSinceReferenceDate != nil {
-        dateWithTimeIntervalSinceReferenceDate :: proc "c" (self: Class, _: SEL, ti: NS.TimeInterval) -> ^NS.Date {
+        dateWithTimeIntervalSinceReferenceDate :: proc "c" (self: Class, _: SEL, ti: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -259,7 +259,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithTimeIntervalSinceReferenceDate:"), auto_cast dateWithTimeIntervalSinceReferenceDate, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.dateWithTimeIntervalSince1970 != nil {
-        dateWithTimeIntervalSince1970 :: proc "c" (self: Class, _: SEL, secs: NS.TimeInterval) -> ^NS.Date {
+        dateWithTimeIntervalSince1970 :: proc "c" (self: Class, _: SEL, secs: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -269,7 +269,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithTimeIntervalSince1970:"), auto_cast dateWithTimeIntervalSince1970, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.dateWithTimeInterval != nil {
-        dateWithTimeInterval :: proc "c" (self: Class, _: SEL, secsToBeAdded: NS.TimeInterval, date: ^NS.Date) -> ^NS.Date {
+        dateWithTimeInterval :: proc "c" (self: Class, _: SEL, secsToBeAdded: NS.TimeInterval, date: ^NS.Date) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -279,7 +279,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dateWithTimeInterval:sinceDate:"), auto_cast dateWithTimeInterval, "@#:d@") do panic("Failed to register objC method.")
     }
     if vt.initWithTimeIntervalSinceNow != nil {
-        initWithTimeIntervalSinceNow :: proc "c" (self: ^NS.Date, _: SEL, secs: NS.TimeInterval) -> ^NS.Date {
+        initWithTimeIntervalSinceNow :: proc "c" (self: ^NS.Date, _: SEL, secs: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -289,7 +289,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTimeIntervalSinceNow:"), auto_cast initWithTimeIntervalSinceNow, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.initWithTimeIntervalSince1970 != nil {
-        initWithTimeIntervalSince1970 :: proc "c" (self: ^NS.Date, _: SEL, secs: NS.TimeInterval) -> ^NS.Date {
+        initWithTimeIntervalSince1970 :: proc "c" (self: ^NS.Date, _: SEL, secs: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -299,7 +299,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTimeIntervalSince1970:"), auto_cast initWithTimeIntervalSince1970, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.initWithTimeInterval != nil {
-        initWithTimeInterval :: proc "c" (self: ^NS.Date, _: SEL, secsToBeAdded: NS.TimeInterval, date: ^NS.Date) -> ^NS.Date {
+        initWithTimeInterval :: proc "c" (self: ^NS.Date, _: SEL, secsToBeAdded: NS.TimeInterval, date: ^NS.Date) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

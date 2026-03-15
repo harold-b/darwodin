@@ -25,10 +25,10 @@ MotionEffect :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MotionEffect, objc_selector="init", objc_name="init")
-    MotionEffect_init :: proc(self: ^MotionEffect) -> ^MotionEffect ---
+    MotionEffect_init :: proc(self: ^MotionEffect) -> instancetype ---
 
     @(objc_type=MotionEffect, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    MotionEffect_initWithCoder :: proc(self: ^MotionEffect, coder: ^NS.Coder) -> ^MotionEffect ---
+    MotionEffect_initWithCoder :: proc(self: ^MotionEffect, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=MotionEffect, objc_selector="keyPathsAndRelativeValuesForViewerOffset:", objc_name="keyPathsAndRelativeValuesForViewerOffset")
     MotionEffect_keyPathsAndRelativeValuesForViewerOffset :: proc(self: ^MotionEffect, viewerOffset: Offset) -> ^NS.Dictionary ---

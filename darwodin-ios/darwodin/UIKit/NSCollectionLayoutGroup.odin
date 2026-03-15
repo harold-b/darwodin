@@ -24,22 +24,22 @@ NSCollectionLayoutGroup :: struct { using _: NSCollectionLayoutItem,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSCollectionLayoutGroup, objc_selector="horizontalGroupWithLayoutSize:repeatingSubitem:count:", objc_name="horizontalGroupWithLayoutSize_repeatingSubitem_count", objc_is_class_method=true)
-    NSCollectionLayoutGroup_horizontalGroupWithLayoutSize_repeatingSubitem_count :: proc(layoutSize: ^NSCollectionLayoutSize, subitem: ^NSCollectionLayoutItem, count: NS.Integer) -> ^NSCollectionLayoutGroup ---
+    NSCollectionLayoutGroup_horizontalGroupWithLayoutSize_repeatingSubitem_count :: proc(layoutSize: ^NSCollectionLayoutSize, subitem: ^NSCollectionLayoutItem, count: NS.Integer) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutGroup, objc_selector="horizontalGroupWithLayoutSize:subitems:", objc_name="horizontalGroupWithLayoutSize_subitems", objc_is_class_method=true)
-    NSCollectionLayoutGroup_horizontalGroupWithLayoutSize_subitems :: proc(layoutSize: ^NSCollectionLayoutSize, subitems: ^NS.Array) -> ^NSCollectionLayoutGroup ---
+    NSCollectionLayoutGroup_horizontalGroupWithLayoutSize_subitems :: proc(layoutSize: ^NSCollectionLayoutSize, subitems: ^NS.Array) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutGroup, objc_selector="verticalGroupWithLayoutSize:repeatingSubitem:count:", objc_name="verticalGroupWithLayoutSize_repeatingSubitem_count", objc_is_class_method=true)
-    NSCollectionLayoutGroup_verticalGroupWithLayoutSize_repeatingSubitem_count :: proc(layoutSize: ^NSCollectionLayoutSize, subitem: ^NSCollectionLayoutItem, count: NS.Integer) -> ^NSCollectionLayoutGroup ---
+    NSCollectionLayoutGroup_verticalGroupWithLayoutSize_repeatingSubitem_count :: proc(layoutSize: ^NSCollectionLayoutSize, subitem: ^NSCollectionLayoutItem, count: NS.Integer) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutGroup, objc_selector="verticalGroupWithLayoutSize:subitems:", objc_name="verticalGroupWithLayoutSize_subitems", objc_is_class_method=true)
-    NSCollectionLayoutGroup_verticalGroupWithLayoutSize_subitems :: proc(layoutSize: ^NSCollectionLayoutSize, subitems: ^NS.Array) -> ^NSCollectionLayoutGroup ---
+    NSCollectionLayoutGroup_verticalGroupWithLayoutSize_subitems :: proc(layoutSize: ^NSCollectionLayoutSize, subitems: ^NS.Array) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutGroup, objc_selector="customGroupWithLayoutSize:itemProvider:", objc_name="customGroupWithLayoutSize", objc_is_class_method=true)
-    NSCollectionLayoutGroup_customGroupWithLayoutSize :: proc(layoutSize: ^NSCollectionLayoutSize, itemProvider: NSCollectionLayoutGroupCustomItemProvider) -> ^NSCollectionLayoutGroup ---
+    NSCollectionLayoutGroup_customGroupWithLayoutSize :: proc(layoutSize: ^NSCollectionLayoutSize, itemProvider: NSCollectionLayoutGroupCustomItemProvider) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutGroup, objc_selector="init", objc_name="init")
-    NSCollectionLayoutGroup_init :: proc(self: ^NSCollectionLayoutGroup) -> ^NSCollectionLayoutGroup ---
+    NSCollectionLayoutGroup_init :: proc(self: ^NSCollectionLayoutGroup) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutGroup, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSCollectionLayoutGroup_new :: proc() -> ^NSCollectionLayoutGroup ---
@@ -63,9 +63,9 @@ foreign lib {
     NSCollectionLayoutGroup_subitems :: proc(self: ^NSCollectionLayoutGroup) -> ^NS.Array ---
 
     @(objc_type=NSCollectionLayoutGroup, objc_selector="horizontalGroupWithLayoutSize:subitem:count:", objc_name="horizontalGroupWithLayoutSize_subitem_count", objc_is_class_method=true)
-    NSCollectionLayoutGroup_horizontalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^NSCollectionLayoutSize, subitem: ^NSCollectionLayoutItem, count: NS.Integer) -> ^NSCollectionLayoutGroup ---
+    NSCollectionLayoutGroup_horizontalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^NSCollectionLayoutSize, subitem: ^NSCollectionLayoutItem, count: NS.Integer) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutGroup, objc_selector="verticalGroupWithLayoutSize:subitem:count:", objc_name="verticalGroupWithLayoutSize_subitem_count", objc_is_class_method=true)
-    NSCollectionLayoutGroup_verticalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^NSCollectionLayoutSize, subitem: ^NSCollectionLayoutItem, count: NS.Integer) -> ^NSCollectionLayoutGroup ---
+    NSCollectionLayoutGroup_verticalGroupWithLayoutSize_subitem_count :: proc(layoutSize: ^NSCollectionLayoutSize, subitem: ^NSCollectionLayoutItem, count: NS.Integer) -> instancetype ---
 }
 

@@ -20,7 +20,7 @@ PositionalSpecifier :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PositionalSpecifier, objc_selector="initWithPosition:objectSpecifier:", objc_name="initWithPosition")
-    PositionalSpecifier_initWithPosition :: proc(self: ^PositionalSpecifier, position: InsertionPosition, specifier: ^ScriptObjectSpecifier) -> ^PositionalSpecifier ---
+    PositionalSpecifier_initWithPosition :: proc(self: ^PositionalSpecifier, position: InsertionPosition, specifier: ^ScriptObjectSpecifier) -> instancetype ---
 
     @(objc_type=PositionalSpecifier, objc_selector="setInsertionClassDescription:", objc_name="setInsertionClassDescription")
     PositionalSpecifier_setInsertionClassDescription :: proc(self: ^PositionalSpecifier, classDescription: ^ScriptClassDescription) ---

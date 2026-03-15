@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    actionGroupWithTitle: proc(title: ^NS.String, style: UI.PreviewActionStyle, actions: ^NS.Array) -> ^UI.PreviewActionGroup,
+    actionGroupWithTitle: proc(title: ^NS.String, style: UI.PreviewActionStyle, actions: ^NS.Array) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.actionGroupWithTitle != nil {
-        actionGroupWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, style: UI.PreviewActionStyle, actions: ^NS.Array) -> ^UI.PreviewActionGroup {
+        actionGroupWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, style: UI.PreviewActionStyle, actions: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

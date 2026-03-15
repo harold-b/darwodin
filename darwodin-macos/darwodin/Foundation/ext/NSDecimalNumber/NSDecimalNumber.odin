@@ -26,10 +26,10 @@ import "../NSNumber"
 
 VTable :: struct {
     super: NSNumber.VTable,
-    initWithMantissa: proc(self: ^NS.DecimalNumber, mantissa: cffi.ulonglong, exponent: cffi.short, flag: bool) -> ^NS.DecimalNumber,
-    initWithDecimal: proc(self: ^NS.DecimalNumber, dcm: NS.Decimal) -> ^NS.DecimalNumber,
-    initWithString_: proc(self: ^NS.DecimalNumber, numberValue: ^NS.String) -> ^NS.DecimalNumber,
-    initWithString_locale: proc(self: ^NS.DecimalNumber, numberValue: ^NS.String, locale: id) -> ^NS.DecimalNumber,
+    initWithMantissa: proc(self: ^NS.DecimalNumber, mantissa: cffi.ulonglong, exponent: cffi.short, flag: bool) -> instancetype,
+    initWithDecimal: proc(self: ^NS.DecimalNumber, dcm: NS.Decimal) -> instancetype,
+    initWithString_: proc(self: ^NS.DecimalNumber, numberValue: ^NS.String) -> instancetype,
+    initWithString_locale: proc(self: ^NS.DecimalNumber, numberValue: ^NS.String, locale: id) -> instancetype,
     descriptionWithLocale: proc(self: ^NS.DecimalNumber, locale: id) -> ^NS.String,
     decimalNumberWithMantissa: proc(mantissa: cffi.ulonglong, exponent: cffi.short, flag: bool) -> ^NS.DecimalNumber,
     decimalNumberWithDecimal: proc(dcm: NS.Decimal) -> ^NS.DecimalNumber,
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSNumber.extend(cls, &vt.super)
 
     if vt.initWithMantissa != nil {
-        initWithMantissa :: proc "c" (self: ^NS.DecimalNumber, _: SEL, mantissa: cffi.ulonglong, exponent: cffi.short, flag: bool) -> ^NS.DecimalNumber {
+        initWithMantissa :: proc "c" (self: ^NS.DecimalNumber, _: SEL, mantissa: cffi.ulonglong, exponent: cffi.short, flag: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMantissa:exponent:isNegative:"), auto_cast initWithMantissa, "@@:QsB") do panic("Failed to register objC method.")
     }
     if vt.initWithDecimal != nil {
-        initWithDecimal :: proc "c" (self: ^NS.DecimalNumber, _: SEL, dcm: NS.Decimal) -> ^NS.DecimalNumber {
+        initWithDecimal :: proc "c" (self: ^NS.DecimalNumber, _: SEL, dcm: NS.Decimal) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDecimal:"), auto_cast initWithDecimal, "@@:{NSDecimal=iIIII[8S]}") do panic("Failed to register objC method.")
     }
     if vt.initWithString_ != nil {
-        initWithString_ :: proc "c" (self: ^NS.DecimalNumber, _: SEL, numberValue: ^NS.String) -> ^NS.DecimalNumber {
+        initWithString_ :: proc "c" (self: ^NS.DecimalNumber, _: SEL, numberValue: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:"), auto_cast initWithString_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithString_locale != nil {
-        initWithString_locale :: proc "c" (self: ^NS.DecimalNumber, _: SEL, numberValue: ^NS.String, locale: id) -> ^NS.DecimalNumber {
+        initWithString_locale :: proc "c" (self: ^NS.DecimalNumber, _: SEL, numberValue: ^NS.String, locale: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

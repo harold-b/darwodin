@@ -28,9 +28,9 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithDocumentTypes: proc(self: ^UI.DocumentMenuViewController, allowedUTIs: ^NS.Array, mode: UI.DocumentPickerMode) -> ^UI.DocumentMenuViewController,
-    initWithURL: proc(self: ^UI.DocumentMenuViewController, url: ^NS.URL, mode: UI.DocumentPickerMode) -> ^UI.DocumentMenuViewController,
-    initWithCoder: proc(self: ^UI.DocumentMenuViewController, coder: ^NS.Coder) -> ^UI.DocumentMenuViewController,
+    initWithDocumentTypes: proc(self: ^UI.DocumentMenuViewController, allowedUTIs: ^NS.Array, mode: UI.DocumentPickerMode) -> instancetype,
+    initWithURL: proc(self: ^UI.DocumentMenuViewController, url: ^NS.URL, mode: UI.DocumentPickerMode) -> instancetype,
+    initWithCoder: proc(self: ^UI.DocumentMenuViewController, coder: ^NS.Coder) -> instancetype,
     addOptionWithTitle: proc(self: ^UI.DocumentMenuViewController, title: ^NS.String, image: ^UI.Image, order: UI.DocumentMenuOrder, handler: ^Objc_Block(proc "c" ())),
     delegate: proc(self: ^UI.DocumentMenuViewController) -> ^UI.DocumentMenuDelegate,
     setDelegate: proc(self: ^UI.DocumentMenuViewController, delegate: ^UI.DocumentMenuDelegate),
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithDocumentTypes != nil {
-        initWithDocumentTypes :: proc "c" (self: ^UI.DocumentMenuViewController, _: SEL, allowedUTIs: ^NS.Array, mode: UI.DocumentPickerMode) -> ^UI.DocumentMenuViewController {
+        initWithDocumentTypes :: proc "c" (self: ^UI.DocumentMenuViewController, _: SEL, allowedUTIs: ^NS.Array, mode: UI.DocumentPickerMode) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDocumentTypes:inMode:"), auto_cast initWithDocumentTypes, "@@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^UI.DocumentMenuViewController, _: SEL, url: ^NS.URL, mode: UI.DocumentPickerMode) -> ^UI.DocumentMenuViewController {
+        initWithURL :: proc "c" (self: ^UI.DocumentMenuViewController, _: SEL, url: ^NS.URL, mode: UI.DocumentPickerMode) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithURL:inMode:"), auto_cast initWithURL, "@@:@L") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.DocumentMenuViewController, _: SEL, coder: ^NS.Coder) -> ^UI.DocumentMenuViewController {
+        initWithCoder :: proc "c" (self: ^UI.DocumentMenuViewController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

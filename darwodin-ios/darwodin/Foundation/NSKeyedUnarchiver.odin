@@ -20,7 +20,7 @@ KeyedUnarchiver :: struct { using _: Coder, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=KeyedUnarchiver, objc_selector="initForReadingFromData:error:", objc_name="initForReadingFromData")
-    KeyedUnarchiver_initForReadingFromData :: proc(self: ^KeyedUnarchiver, data: ^Data, error: ^^Error) -> ^KeyedUnarchiver ---
+    KeyedUnarchiver_initForReadingFromData :: proc(self: ^KeyedUnarchiver, data: ^Data, error: ^^Error) -> instancetype ---
 
     @(objc_type=KeyedUnarchiver, objc_selector="unarchivedObjectOfClass:fromData:error:", objc_name="unarchivedObjectOfClass", objc_is_class_method=true)
     KeyedUnarchiver_unarchivedObjectOfClass :: proc(cls: Class, data: ^Data, error: ^^Error) -> id ---
@@ -41,10 +41,10 @@ foreign lib {
     KeyedUnarchiver_unarchivedDictionaryWithKeysOfClasses :: proc(keyClasses: ^Set, valueClasses: ^Set, data: ^Data, error: ^^Error) -> ^Dictionary ---
 
     @(objc_type=KeyedUnarchiver, objc_selector="init", objc_name="init")
-    KeyedUnarchiver_init :: proc(self: ^KeyedUnarchiver) -> ^KeyedUnarchiver ---
+    KeyedUnarchiver_init :: proc(self: ^KeyedUnarchiver) -> instancetype ---
 
     @(objc_type=KeyedUnarchiver, objc_selector="initForReadingWithData:", objc_name="initForReadingWithData")
-    KeyedUnarchiver_initForReadingWithData :: proc(self: ^KeyedUnarchiver, data: ^Data) -> ^KeyedUnarchiver ---
+    KeyedUnarchiver_initForReadingWithData :: proc(self: ^KeyedUnarchiver, data: ^Data) -> instancetype ---
 
     @(objc_type=KeyedUnarchiver, objc_selector="unarchiveObjectWithData:", objc_name="unarchiveObjectWithData", objc_is_class_method=true)
     KeyedUnarchiver_unarchiveObjectWithData :: proc(data: ^Data) -> id ---

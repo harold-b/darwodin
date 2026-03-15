@@ -26,10 +26,10 @@ TextFinder :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextFinder, objc_selector="init", objc_name="init")
-    TextFinder_init :: proc(self: ^TextFinder) -> ^TextFinder ---
+    TextFinder_init :: proc(self: ^TextFinder) -> instancetype ---
 
     @(objc_type=TextFinder, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextFinder_initWithCoder :: proc(self: ^TextFinder, coder: ^NS.Coder) -> ^TextFinder ---
+    TextFinder_initWithCoder :: proc(self: ^TextFinder, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextFinder, objc_selector="performAction:", objc_name="performAction")
     TextFinder_performAction :: proc(self: ^TextFinder, op: TextFinderAction) ---

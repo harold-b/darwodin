@@ -23,7 +23,7 @@ AudioUnitEffect :: struct { using _: AudioUnit, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitEffect, objc_selector="initWithAudioComponentDescription:", objc_name="initWithAudioComponentDescription")
-    AudioUnitEffect_initWithAudioComponentDescription :: proc(self: ^AudioUnitEffect, audioComponentDescription: Audio.ComponentDescription) -> ^AudioUnitEffect ---
+    AudioUnitEffect_initWithAudioComponentDescription :: proc(self: ^AudioUnitEffect, audioComponentDescription: Audio.ComponentDescription) -> instancetype ---
 
     @(objc_type=AudioUnitEffect, objc_selector="bypass", objc_name="bypass")
     AudioUnitEffect_bypass :: proc(self: ^AudioUnitEffect) -> bool ---

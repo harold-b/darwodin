@@ -20,7 +20,7 @@ HTTPURLResponse :: struct { using _: URLResponse, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HTTPURLResponse, objc_selector="initWithURL:statusCode:HTTPVersion:headerFields:", objc_name="initWithURL")
-    HTTPURLResponse_initWithURL :: proc(self: ^HTTPURLResponse, url: ^URL, statusCode: Integer, HTTPVersion: ^String, headerFields: ^Dictionary) -> ^HTTPURLResponse ---
+    HTTPURLResponse_initWithURL :: proc(self: ^HTTPURLResponse, url: ^URL, statusCode: Integer, HTTPVersion: ^String, headerFields: ^Dictionary) -> instancetype ---
 
     @(objc_type=HTTPURLResponse, objc_selector="valueForHTTPHeaderField:", objc_name="valueForHTTPHeaderField")
     HTTPURLResponse_valueForHTTPHeaderField :: proc(self: ^HTTPURLResponse, field: ^String) -> ^String ---

@@ -28,9 +28,9 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    init: proc(self: ^UI.TextFormattingViewController) -> ^UI.TextFormattingViewController,
-    initWithNibName: proc(self: ^UI.TextFormattingViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.TextFormattingViewController,
-    initWithConfiguration: proc(self: ^UI.TextFormattingViewController, configuration: ^UI.TextFormattingViewControllerConfiguration) -> ^UI.TextFormattingViewController,
+    init: proc(self: ^UI.TextFormattingViewController) -> instancetype,
+    initWithNibName: proc(self: ^UI.TextFormattingViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    initWithConfiguration: proc(self: ^UI.TextFormattingViewController, configuration: ^UI.TextFormattingViewControllerConfiguration) -> instancetype,
     configuration: proc(self: ^UI.TextFormattingViewController) -> ^UI.TextFormattingViewControllerConfiguration,
     formattingDescriptor: proc(self: ^UI.TextFormattingViewController) -> ^UI.TextFormattingViewControllerFormattingDescriptor,
     setFormattingDescriptor: proc(self: ^UI.TextFormattingViewController, formattingDescriptor: ^UI.TextFormattingViewControllerFormattingDescriptor),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextFormattingViewController, _: SEL) -> ^UI.TextFormattingViewController {
+        init :: proc "c" (self: ^UI.TextFormattingViewController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.TextFormattingViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.TextFormattingViewController {
+        initWithNibName :: proc "c" (self: ^UI.TextFormattingViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithConfiguration != nil {
-        initWithConfiguration :: proc "c" (self: ^UI.TextFormattingViewController, _: SEL, configuration: ^UI.TextFormattingViewControllerConfiguration) -> ^UI.TextFormattingViewController {
+        initWithConfiguration :: proc "c" (self: ^UI.TextFormattingViewController, _: SEL, configuration: ^UI.TextFormattingViewControllerConfiguration) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

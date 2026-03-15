@@ -24,10 +24,10 @@ ToolbarItemGroup :: struct { using _: ToolbarItem, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ToolbarItemGroup, objc_selector="groupWithItemIdentifier:titles:selectionMode:labels:target:action:", objc_name="groupWithItemIdentifier_titles_selectionMode_labels_target_action", objc_is_class_method=true)
-    ToolbarItemGroup_groupWithItemIdentifier_titles_selectionMode_labels_target_action :: proc(itemIdentifier: ^NS.String, titles: ^NS.Array, selectionMode: ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> ^ToolbarItemGroup ---
+    ToolbarItemGroup_groupWithItemIdentifier_titles_selectionMode_labels_target_action :: proc(itemIdentifier: ^NS.String, titles: ^NS.Array, selectionMode: ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ToolbarItemGroup, objc_selector="groupWithItemIdentifier:images:selectionMode:labels:target:action:", objc_name="groupWithItemIdentifier_images_selectionMode_labels_target_action", objc_is_class_method=true)
-    ToolbarItemGroup_groupWithItemIdentifier_images_selectionMode_labels_target_action :: proc(itemIdentifier: ^NS.String, images: ^NS.Array, selectionMode: ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> ^ToolbarItemGroup ---
+    ToolbarItemGroup_groupWithItemIdentifier_images_selectionMode_labels_target_action :: proc(itemIdentifier: ^NS.String, images: ^NS.Array, selectionMode: ToolbarItemGroupSelectionMode, labels: ^NS.Array, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ToolbarItemGroup, objc_selector="setSelected:atIndex:", objc_name="setSelected")
     ToolbarItemGroup_setSelected :: proc(self: ^ToolbarItemGroup, selected: bool, index: NS.Integer) ---

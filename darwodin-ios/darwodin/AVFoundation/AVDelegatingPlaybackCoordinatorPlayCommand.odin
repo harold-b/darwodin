@@ -23,7 +23,7 @@ DelegatingPlaybackCoordinatorPlayCommand :: struct { using _: DelegatingPlayback
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DelegatingPlaybackCoordinatorPlayCommand, objc_selector="init", objc_name="init")
-    DelegatingPlaybackCoordinatorPlayCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorPlayCommand) -> ^DelegatingPlaybackCoordinatorPlayCommand ---
+    DelegatingPlaybackCoordinatorPlayCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorPlayCommand) -> instancetype ---
 
     @(objc_type=DelegatingPlaybackCoordinatorPlayCommand, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DelegatingPlaybackCoordinatorPlayCommand_new :: proc() -> ^DelegatingPlaybackCoordinatorPlayCommand ---

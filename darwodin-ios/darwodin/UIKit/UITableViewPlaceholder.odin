@@ -22,10 +22,10 @@ TableViewPlaceholder :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TableViewPlaceholder, objc_selector="initWithInsertionIndexPath:reuseIdentifier:rowHeight:", objc_name="initWithInsertionIndexPath")
-    TableViewPlaceholder_initWithInsertionIndexPath :: proc(self: ^TableViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String, rowHeight: CG.Float) -> ^TableViewPlaceholder ---
+    TableViewPlaceholder_initWithInsertionIndexPath :: proc(self: ^TableViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String, rowHeight: CG.Float) -> instancetype ---
 
     @(objc_type=TableViewPlaceholder, objc_selector="init", objc_name="init")
-    TableViewPlaceholder_init :: proc(self: ^TableViewPlaceholder) -> ^TableViewPlaceholder ---
+    TableViewPlaceholder_init :: proc(self: ^TableViewPlaceholder) -> instancetype ---
 
     @(objc_type=TableViewPlaceholder, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TableViewPlaceholder_new :: proc() -> ^TableViewPlaceholder ---

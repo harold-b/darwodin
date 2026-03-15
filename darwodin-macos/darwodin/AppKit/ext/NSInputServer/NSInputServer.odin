@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^AK.InputServer, delegate: id, name: ^NS.String) -> ^AK.InputServer,
+    initWithDelegate: proc(self: ^AK.InputServer, delegate: id, name: ^NS.String) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^AK.InputServer, _: SEL, delegate: id, name: ^NS.String) -> ^AK.InputServer {
+        initWithDelegate :: proc "c" (self: ^AK.InputServer, _: SEL, delegate: id, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

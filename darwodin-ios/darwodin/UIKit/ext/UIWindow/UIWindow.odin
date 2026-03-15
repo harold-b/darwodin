@@ -28,7 +28,7 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithWindowScene: proc(self: ^UI.Window, windowScene: ^UI.WindowScene) -> ^UI.Window,
+    initWithWindowScene: proc(self: ^UI.Window, windowScene: ^UI.WindowScene) -> instancetype,
     setScreen: proc(self: ^UI.Window, screen: ^UI.Screen),
     becomeKeyWindow: proc(self: ^UI.Window),
     resignKeyWindow: proc(self: ^UI.Window),
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithWindowScene != nil {
-        initWithWindowScene :: proc "c" (self: ^UI.Window, _: SEL, windowScene: ^UI.WindowScene) -> ^UI.Window {
+        initWithWindowScene :: proc "c" (self: ^UI.Window, _: SEL, windowScene: ^UI.WindowScene) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

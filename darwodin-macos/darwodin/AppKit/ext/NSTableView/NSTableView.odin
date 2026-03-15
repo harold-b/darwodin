@@ -30,8 +30,8 @@ import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    initWithFrame: proc(self: ^AK.TableView, frameRect: NS.Rect) -> ^AK.TableView,
-    initWithCoder: proc(self: ^AK.TableView, coder: ^NS.Coder) -> ^AK.TableView,
+    initWithFrame: proc(self: ^AK.TableView, frameRect: NS.Rect) -> instancetype,
+    initWithCoder: proc(self: ^AK.TableView, coder: ^NS.Coder) -> instancetype,
     noteHeightOfRowsWithIndexesChanged: proc(self: ^AK.TableView, indexSet: ^NS.IndexSet),
     addTableColumn: proc(self: ^AK.TableView, tableColumn: ^AK.TableColumn),
     removeTableColumn: proc(self: ^AK.TableView, tableColumn: ^AK.TableColumn),
@@ -199,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.TableView, _: SEL, frameRect: NS.Rect) -> ^AK.TableView {
+        initWithFrame :: proc "c" (self: ^AK.TableView, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -209,7 +209,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TableView, _: SEL, coder: ^NS.Coder) -> ^AK.TableView {
+        initWithCoder :: proc "c" (self: ^AK.TableView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

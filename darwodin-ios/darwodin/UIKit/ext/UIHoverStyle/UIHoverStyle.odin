@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    styleWithEffect: proc(effect: ^UI.HoverEffect, shape: ^UI.Shape) -> ^UI.HoverStyle,
-    styleWithShape: proc(shape: ^UI.Shape) -> ^UI.HoverStyle,
-    automaticStyle: proc() -> ^UI.HoverStyle,
-    init: proc(self: ^UI.HoverStyle) -> ^UI.HoverStyle,
+    styleWithEffect: proc(effect: ^UI.HoverEffect, shape: ^UI.Shape) -> instancetype,
+    styleWithShape: proc(shape: ^UI.Shape) -> instancetype,
+    automaticStyle: proc() -> instancetype,
+    init: proc(self: ^UI.HoverStyle) -> instancetype,
     new: proc() -> ^UI.HoverStyle,
     effect: proc(self: ^UI.HoverStyle) -> ^UI.HoverEffect,
     setEffect: proc(self: ^UI.HoverStyle, effect: ^UI.HoverEffect),
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.styleWithEffect != nil {
-        styleWithEffect :: proc "c" (self: Class, _: SEL, effect: ^UI.HoverEffect, shape: ^UI.Shape) -> ^UI.HoverStyle {
+        styleWithEffect :: proc "c" (self: Class, _: SEL, effect: ^UI.HoverEffect, shape: ^UI.Shape) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("styleWithEffect:shape:"), auto_cast styleWithEffect, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.styleWithShape != nil {
-        styleWithShape :: proc "c" (self: Class, _: SEL, shape: ^UI.Shape) -> ^UI.HoverStyle {
+        styleWithShape :: proc "c" (self: Class, _: SEL, shape: ^UI.Shape) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("styleWithShape:"), auto_cast styleWithShape, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.automaticStyle != nil {
-        automaticStyle :: proc "c" (self: Class, _: SEL) -> ^UI.HoverStyle {
+        automaticStyle :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("automaticStyle"), auto_cast automaticStyle, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.HoverStyle, _: SEL) -> ^UI.HoverStyle {
+        init :: proc "c" (self: ^UI.HoverStyle, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

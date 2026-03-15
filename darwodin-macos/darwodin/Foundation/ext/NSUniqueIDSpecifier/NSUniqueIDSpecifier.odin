@@ -26,8 +26,8 @@ import "../NSScriptObjectSpecifier"
 
 VTable :: struct {
     super: NSScriptObjectSpecifier.VTable,
-    initWithCoder: proc(self: ^NS.UniqueIDSpecifier, inCoder: ^NS.Coder) -> ^NS.UniqueIDSpecifier,
-    initWithContainerClassDescription: proc(self: ^NS.UniqueIDSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, uniqueID: id) -> ^NS.UniqueIDSpecifier,
+    initWithCoder: proc(self: ^NS.UniqueIDSpecifier, inCoder: ^NS.Coder) -> instancetype,
+    initWithContainerClassDescription: proc(self: ^NS.UniqueIDSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, uniqueID: id) -> instancetype,
     uniqueID: proc(self: ^NS.UniqueIDSpecifier) -> id,
     setUniqueID: proc(self: ^NS.UniqueIDSpecifier, uniqueID: id),
 }
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScriptObjectSpecifier.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.UniqueIDSpecifier, _: SEL, inCoder: ^NS.Coder) -> ^NS.UniqueIDSpecifier {
+        initWithCoder :: proc "c" (self: ^NS.UniqueIDSpecifier, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerClassDescription != nil {
-        initWithContainerClassDescription :: proc "c" (self: ^NS.UniqueIDSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, uniqueID: id) -> ^NS.UniqueIDSpecifier {
+        initWithContainerClassDescription :: proc "c" (self: ^NS.UniqueIDSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, uniqueID: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

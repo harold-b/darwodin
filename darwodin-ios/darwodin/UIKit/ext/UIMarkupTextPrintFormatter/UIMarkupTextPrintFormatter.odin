@@ -28,7 +28,7 @@ import "../UIPrintFormatter"
 
 VTable :: struct {
     super: UIPrintFormatter.VTable,
-    initWithMarkupText: proc(self: ^UI.MarkupTextPrintFormatter, markupText: ^NS.String) -> ^UI.MarkupTextPrintFormatter,
+    initWithMarkupText: proc(self: ^UI.MarkupTextPrintFormatter, markupText: ^NS.String) -> instancetype,
     markupText: proc(self: ^UI.MarkupTextPrintFormatter) -> ^NS.String,
     setMarkupText: proc(self: ^UI.MarkupTextPrintFormatter, markupText: ^NS.String),
 }
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIPrintFormatter.extend(cls, &vt.super)
 
     if vt.initWithMarkupText != nil {
-        initWithMarkupText :: proc "c" (self: ^UI.MarkupTextPrintFormatter, _: SEL, markupText: ^NS.String) -> ^UI.MarkupTextPrintFormatter {
+        initWithMarkupText :: proc "c" (self: ^UI.MarkupTextPrintFormatter, _: SEL, markupText: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

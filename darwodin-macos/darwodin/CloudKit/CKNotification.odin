@@ -18,13 +18,13 @@ Notification :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Notification, objc_selector="init", objc_name="init")
-    Notification_init :: proc(self: ^Notification) -> ^Notification ---
+    Notification_init :: proc(self: ^Notification) -> instancetype ---
 
     @(objc_type=Notification, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Notification_new :: proc() -> ^Notification ---
 
     @(objc_type=Notification, objc_selector="notificationFromRemoteNotificationDictionary:", objc_name="notificationFromRemoteNotificationDictionary", objc_is_class_method=true)
-    Notification_notificationFromRemoteNotificationDictionary :: proc(notificationDictionary: ^NS.Dictionary) -> ^Notification ---
+    Notification_notificationFromRemoteNotificationDictionary :: proc(notificationDictionary: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=Notification, objc_selector="notificationType", objc_name="notificationType")
     Notification_notificationType :: proc(self: ^Notification) -> NotificationType ---

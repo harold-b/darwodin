@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithData: proc(self: ^UI.NSTextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> ^UI.NSTextAttachment,
+    initWithData: proc(self: ^UI.NSTextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> instancetype,
     textAttachmentViewProviderClassForFileType: proc(fileType: ^NS.String) -> Class,
     registerTextAttachmentViewProviderClass: proc(textAttachmentViewProviderClass: Class, fileType: ^NS.String),
     contents: proc(self: ^UI.NSTextAttachment) -> ^NS.Data,
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^UI.NSTextAttachment, _: SEL, contentData: ^NS.Data, uti: ^NS.String) -> ^UI.NSTextAttachment {
+        initWithData :: proc "c" (self: ^UI.NSTextAttachment, _: SEL, contentData: ^NS.Data, uti: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

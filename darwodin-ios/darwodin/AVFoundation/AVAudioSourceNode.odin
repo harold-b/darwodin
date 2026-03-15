@@ -25,11 +25,11 @@ AudioSourceNode :: struct { using _: AudioNode,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioSourceNode, objc_selector="init", objc_name="init")
-    AudioSourceNode_init :: proc(self: ^AudioSourceNode) -> ^AudioSourceNode ---
+    AudioSourceNode_init :: proc(self: ^AudioSourceNode) -> instancetype ---
 
     @(objc_type=AudioSourceNode, objc_selector="initWithRenderBlock:", objc_name="initWithRenderBlock")
-    AudioSourceNode_initWithRenderBlock :: proc(self: ^AudioSourceNode, block: AudioSourceNodeRenderBlock) -> ^AudioSourceNode ---
+    AudioSourceNode_initWithRenderBlock :: proc(self: ^AudioSourceNode, block: AudioSourceNodeRenderBlock) -> instancetype ---
 
     @(objc_type=AudioSourceNode, objc_selector="initWithFormat:renderBlock:", objc_name="initWithFormat")
-    AudioSourceNode_initWithFormat :: proc(self: ^AudioSourceNode, format: ^AudioFormat, block: AudioSourceNodeRenderBlock) -> ^AudioSourceNode ---
+    AudioSourceNode_initWithFormat :: proc(self: ^AudioSourceNode, format: ^AudioFormat, block: AudioSourceNodeRenderBlock) -> instancetype ---
 }

@@ -19,10 +19,10 @@ SphereObstacle :: struct { using _: Obstacle, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SphereObstacle, objc_selector="obstacleWithRadius:", objc_name="obstacleWithRadius", objc_is_class_method=true)
-    SphereObstacle_obstacleWithRadius :: proc(radius: cffi.float) -> ^SphereObstacle ---
+    SphereObstacle_obstacleWithRadius :: proc(radius: cffi.float) -> instancetype ---
 
     @(objc_type=SphereObstacle, objc_selector="initWithRadius:", objc_name="initWithRadius")
-    SphereObstacle_initWithRadius :: proc(self: ^SphereObstacle, radius: cffi.float) -> ^SphereObstacle ---
+    SphereObstacle_initWithRadius :: proc(self: ^SphereObstacle, radius: cffi.float) -> instancetype ---
 
     @(objc_type=SphereObstacle, objc_selector="radius", objc_name="radius")
     SphereObstacle_radius :: proc(self: ^SphereObstacle) -> cffi.float ---

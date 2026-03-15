@@ -28,9 +28,9 @@ import "../UICollectionViewLayout"
 
 VTable :: struct {
     super: UICollectionViewLayout.VTable,
-    initWithCurrentLayout: proc(self: ^UI.CollectionViewTransitionLayout, currentLayout: ^UI.CollectionViewLayout, newLayout: ^UI.CollectionViewLayout) -> ^UI.CollectionViewTransitionLayout,
-    initWithCoder: proc(self: ^UI.CollectionViewTransitionLayout, coder: ^NS.Coder) -> ^UI.CollectionViewTransitionLayout,
-    init: proc(self: ^UI.CollectionViewTransitionLayout) -> ^UI.CollectionViewTransitionLayout,
+    initWithCurrentLayout: proc(self: ^UI.CollectionViewTransitionLayout, currentLayout: ^UI.CollectionViewLayout, newLayout: ^UI.CollectionViewLayout) -> instancetype,
+    initWithCoder: proc(self: ^UI.CollectionViewTransitionLayout, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.CollectionViewTransitionLayout) -> instancetype,
     updateValue: proc(self: ^UI.CollectionViewTransitionLayout, value: CG.Float, key: ^NS.String),
     valueForAnimatedKey: proc(self: ^UI.CollectionViewTransitionLayout, key: ^NS.String) -> CG.Float,
     transitionProgress: proc(self: ^UI.CollectionViewTransitionLayout) -> CG.Float,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UICollectionViewLayout.extend(cls, &vt.super)
 
     if vt.initWithCurrentLayout != nil {
-        initWithCurrentLayout :: proc "c" (self: ^UI.CollectionViewTransitionLayout, _: SEL, currentLayout: ^UI.CollectionViewLayout, newLayout: ^UI.CollectionViewLayout) -> ^UI.CollectionViewTransitionLayout {
+        initWithCurrentLayout :: proc "c" (self: ^UI.CollectionViewTransitionLayout, _: SEL, currentLayout: ^UI.CollectionViewLayout, newLayout: ^UI.CollectionViewLayout) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCurrentLayout:nextLayout:"), auto_cast initWithCurrentLayout, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CollectionViewTransitionLayout, _: SEL, coder: ^NS.Coder) -> ^UI.CollectionViewTransitionLayout {
+        initWithCoder :: proc "c" (self: ^UI.CollectionViewTransitionLayout, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CollectionViewTransitionLayout, _: SEL) -> ^UI.CollectionViewTransitionLayout {
+        init :: proc "c" (self: ^UI.CollectionViewTransitionLayout, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

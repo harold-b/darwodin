@@ -26,13 +26,13 @@ TextLayoutFragment :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextLayoutFragment, objc_selector="initWithTextElement:range:", objc_name="initWithTextElement")
-    TextLayoutFragment_initWithTextElement :: proc(self: ^TextLayoutFragment, textElement: ^TextElement, rangeInElement: ^TextRange) -> ^TextLayoutFragment ---
+    TextLayoutFragment_initWithTextElement :: proc(self: ^TextLayoutFragment, textElement: ^TextElement, rangeInElement: ^TextRange) -> instancetype ---
 
     @(objc_type=TextLayoutFragment, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextLayoutFragment_initWithCoder :: proc(self: ^TextLayoutFragment, coder: ^NS.Coder) -> ^TextLayoutFragment ---
+    TextLayoutFragment_initWithCoder :: proc(self: ^TextLayoutFragment, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextLayoutFragment, objc_selector="init", objc_name="init")
-    TextLayoutFragment_init :: proc(self: ^TextLayoutFragment) -> ^TextLayoutFragment ---
+    TextLayoutFragment_init :: proc(self: ^TextLayoutFragment) -> instancetype ---
 
     @(objc_type=TextLayoutFragment, objc_selector="textLineFragmentForVerticalOffset:requiresExactMatch:", objc_name="textLineFragmentForVerticalOffset")
     TextLayoutFragment_textLineFragmentForVerticalOffset :: proc(self: ^TextLayoutFragment, verticalOffset: CG.Float, requiresExactMatch: bool) -> ^TextLineFragment ---

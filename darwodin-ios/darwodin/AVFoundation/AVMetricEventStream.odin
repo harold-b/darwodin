@@ -23,13 +23,13 @@ MetricEventStream :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricEventStream, objc_selector="init", objc_name="init")
-    MetricEventStream_init :: proc(self: ^MetricEventStream) -> ^MetricEventStream ---
+    MetricEventStream_init :: proc(self: ^MetricEventStream) -> instancetype ---
 
     @(objc_type=MetricEventStream, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricEventStream_new :: proc() -> ^MetricEventStream ---
 
     @(objc_type=MetricEventStream, objc_selector="eventStream", objc_name="eventStream", objc_is_class_method=true)
-    MetricEventStream_eventStream :: proc() -> ^MetricEventStream ---
+    MetricEventStream_eventStream :: proc() -> instancetype ---
 
     @(objc_type=MetricEventStream, objc_selector="addPublisher:", objc_name="addPublisher")
     MetricEventStream_addPublisher :: proc(self: ^MetricEventStream, publisher: ^MetricEventStreamPublisher) -> bool ---

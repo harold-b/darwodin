@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.BindingSelectionMarker) -> ^AK.BindingSelectionMarker,
+    init: proc(self: ^AK.BindingSelectionMarker) -> instancetype,
     setDefaultPlaceholder: proc(placeholder: id, marker: ^AK.BindingSelectionMarker, objectClass: Class, binding: ^NS.String),
     defaultPlaceholderForMarker: proc(marker: ^AK.BindingSelectionMarker, objectClass: Class, binding: ^NS.String) -> id,
     multipleValuesSelectionMarker: proc() -> ^AK.BindingSelectionMarker,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.BindingSelectionMarker, _: SEL) -> ^AK.BindingSelectionMarker {
+        init :: proc "c" (self: ^AK.BindingSelectionMarker, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

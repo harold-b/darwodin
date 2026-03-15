@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextElement: proc(self: ^UI.NSTextLayoutFragment, textElement: ^UI.NSTextElement, rangeInElement: ^UI.NSTextRange) -> ^UI.NSTextLayoutFragment,
-    initWithCoder: proc(self: ^UI.NSTextLayoutFragment, coder: ^NS.Coder) -> ^UI.NSTextLayoutFragment,
-    init: proc(self: ^UI.NSTextLayoutFragment) -> ^UI.NSTextLayoutFragment,
+    initWithTextElement: proc(self: ^UI.NSTextLayoutFragment, textElement: ^UI.NSTextElement, rangeInElement: ^UI.NSTextRange) -> instancetype,
+    initWithCoder: proc(self: ^UI.NSTextLayoutFragment, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.NSTextLayoutFragment) -> instancetype,
     textLineFragmentForVerticalOffset: proc(self: ^UI.NSTextLayoutFragment, verticalOffset: CG.Float, requiresExactMatch: bool) -> ^UI.NSTextLineFragment,
     textLineFragmentForTextLocation: proc(self: ^UI.NSTextLayoutFragment, textLocation: ^UI.NSTextLocation, isUpstreamAffinity: bool) -> ^UI.NSTextLineFragment,
     invalidateLayout: proc(self: ^UI.NSTextLayoutFragment),
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextElement != nil {
-        initWithTextElement :: proc "c" (self: ^UI.NSTextLayoutFragment, _: SEL, textElement: ^UI.NSTextElement, rangeInElement: ^UI.NSTextRange) -> ^UI.NSTextLayoutFragment {
+        initWithTextElement :: proc "c" (self: ^UI.NSTextLayoutFragment, _: SEL, textElement: ^UI.NSTextElement, rangeInElement: ^UI.NSTextRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTextElement:range:"), auto_cast initWithTextElement, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.NSTextLayoutFragment, _: SEL, coder: ^NS.Coder) -> ^UI.NSTextLayoutFragment {
+        initWithCoder :: proc "c" (self: ^UI.NSTextLayoutFragment, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSTextLayoutFragment, _: SEL) -> ^UI.NSTextLayoutFragment {
+        init :: proc "c" (self: ^UI.NSTextLayoutFragment, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -23,13 +23,13 @@ CapturePhotoOutputReadinessCoordinator :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhotoOutputReadinessCoordinator, objc_selector="init", objc_name="init")
-    CapturePhotoOutputReadinessCoordinator_init :: proc(self: ^CapturePhotoOutputReadinessCoordinator) -> ^CapturePhotoOutputReadinessCoordinator ---
+    CapturePhotoOutputReadinessCoordinator_init :: proc(self: ^CapturePhotoOutputReadinessCoordinator) -> instancetype ---
 
     @(objc_type=CapturePhotoOutputReadinessCoordinator, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CapturePhotoOutputReadinessCoordinator_new :: proc() -> ^CapturePhotoOutputReadinessCoordinator ---
 
     @(objc_type=CapturePhotoOutputReadinessCoordinator, objc_selector="initWithPhotoOutput:", objc_name="initWithPhotoOutput")
-    CapturePhotoOutputReadinessCoordinator_initWithPhotoOutput :: proc(self: ^CapturePhotoOutputReadinessCoordinator, photoOutput: ^CapturePhotoOutput) -> ^CapturePhotoOutputReadinessCoordinator ---
+    CapturePhotoOutputReadinessCoordinator_initWithPhotoOutput :: proc(self: ^CapturePhotoOutputReadinessCoordinator, photoOutput: ^CapturePhotoOutput) -> instancetype ---
 
     @(objc_type=CapturePhotoOutputReadinessCoordinator, objc_selector="startTrackingCaptureRequestUsingPhotoSettings:", objc_name="startTrackingCaptureRequestUsingPhotoSettings")
     CapturePhotoOutputReadinessCoordinator_startTrackingCaptureRequestUsingPhotoSettings :: proc(self: ^CapturePhotoOutputReadinessCoordinator, settings: ^CapturePhotoSettings) ---

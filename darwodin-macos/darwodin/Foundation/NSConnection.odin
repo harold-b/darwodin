@@ -26,10 +26,10 @@ foreign lib {
     Connection_defaultConnection :: proc() -> ^Connection ---
 
     @(objc_type=Connection, objc_selector="connectionWithRegisteredName:host:", objc_name="connectionWithRegisteredName_host", objc_is_class_method=true)
-    Connection_connectionWithRegisteredName_host :: proc(name: ^String, hostName: ^String) -> ^Connection ---
+    Connection_connectionWithRegisteredName_host :: proc(name: ^String, hostName: ^String) -> instancetype ---
 
     @(objc_type=Connection, objc_selector="connectionWithRegisteredName:host:usingNameServer:", objc_name="connectionWithRegisteredName_host_usingNameServer", objc_is_class_method=true)
-    Connection_connectionWithRegisteredName_host_usingNameServer :: proc(name: ^String, hostName: ^String, server: ^PortNameServer) -> ^Connection ---
+    Connection_connectionWithRegisteredName_host_usingNameServer :: proc(name: ^String, hostName: ^String, server: ^PortNameServer) -> instancetype ---
 
     @(objc_type=Connection, objc_selector="rootProxyForConnectionWithRegisteredName:host:", objc_name="rootProxyForConnectionWithRegisteredName_host", objc_is_class_method=true)
     Connection_rootProxyForConnectionWithRegisteredName_host :: proc(name: ^String, hostName: ^String) -> ^DistantObject ---
@@ -38,10 +38,10 @@ foreign lib {
     Connection_rootProxyForConnectionWithRegisteredName_host_usingNameServer :: proc(name: ^String, hostName: ^String, server: ^PortNameServer) -> ^DistantObject ---
 
     @(objc_type=Connection, objc_selector="serviceConnectionWithName:rootObject:usingNameServer:", objc_name="serviceConnectionWithName_rootObject_usingNameServer", objc_is_class_method=true)
-    Connection_serviceConnectionWithName_rootObject_usingNameServer :: proc(name: ^String, root: id, server: ^PortNameServer) -> ^Connection ---
+    Connection_serviceConnectionWithName_rootObject_usingNameServer :: proc(name: ^String, root: id, server: ^PortNameServer) -> instancetype ---
 
     @(objc_type=Connection, objc_selector="serviceConnectionWithName:rootObject:", objc_name="serviceConnectionWithName_rootObject", objc_is_class_method=true)
-    Connection_serviceConnectionWithName_rootObject :: proc(name: ^String, root: id) -> ^Connection ---
+    Connection_serviceConnectionWithName_rootObject :: proc(name: ^String, root: id) -> instancetype ---
 
     @(objc_type=Connection, objc_selector="invalidate", objc_name="invalidate")
     Connection_invalidate :: proc(self: ^Connection) ---
@@ -59,13 +59,13 @@ foreign lib {
     Connection_registerName_withNameServer :: proc(self: ^Connection, name: ^String, server: ^PortNameServer) -> bool ---
 
     @(objc_type=Connection, objc_selector="connectionWithReceivePort:sendPort:", objc_name="connectionWithReceivePort", objc_is_class_method=true)
-    Connection_connectionWithReceivePort :: proc(receivePort: ^Port, sendPort: ^Port) -> ^Connection ---
+    Connection_connectionWithReceivePort :: proc(receivePort: ^Port, sendPort: ^Port) -> instancetype ---
 
     @(objc_type=Connection, objc_selector="currentConversation", objc_name="currentConversation", objc_is_class_method=true)
     Connection_currentConversation :: proc() -> id ---
 
     @(objc_type=Connection, objc_selector="initWithReceivePort:sendPort:", objc_name="initWithReceivePort")
-    Connection_initWithReceivePort :: proc(self: ^Connection, receivePort: ^Port, sendPort: ^Port) -> ^Connection ---
+    Connection_initWithReceivePort :: proc(self: ^Connection, receivePort: ^Port, sendPort: ^Port) -> instancetype ---
 
     @(objc_type=Connection, objc_selector="enableMultipleThreads", objc_name="enableMultipleThreads")
     Connection_enableMultipleThreads :: proc(self: ^Connection) ---

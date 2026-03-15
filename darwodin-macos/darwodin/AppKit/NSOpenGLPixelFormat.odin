@@ -29,7 +29,7 @@ foreign lib {
     OpenGLPixelFormat_initWithCGLPixelFormatObj :: proc(self: ^OpenGLPixelFormat, format: CA.CGLPixelFormatObj) -> ^OpenGLPixelFormat ---
 
     @(objc_type=OpenGLPixelFormat, objc_selector="initWithAttributes:", objc_name="initWithAttributes")
-    OpenGLPixelFormat_initWithAttributes :: proc(self: ^OpenGLPixelFormat, attribs: ^OpenGLPixelFormatAttribute) -> ^OpenGLPixelFormat ---
+    OpenGLPixelFormat_initWithAttributes :: proc(self: ^OpenGLPixelFormat, attribs: ^OpenGLPixelFormatAttribute) -> instancetype ---
 
     @(objc_type=OpenGLPixelFormat, objc_selector="initWithData:", objc_name="initWithData")
     OpenGLPixelFormat_initWithData :: proc(self: ^OpenGLPixelFormat, attribs: ^NS.Data) -> id ---

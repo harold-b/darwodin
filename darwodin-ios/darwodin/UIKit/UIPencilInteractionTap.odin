@@ -25,7 +25,7 @@ foreign lib {
     PencilInteractionTap_new :: proc() -> ^PencilInteractionTap ---
 
     @(objc_type=PencilInteractionTap, objc_selector="init", objc_name="init")
-    PencilInteractionTap_init :: proc(self: ^PencilInteractionTap) -> ^PencilInteractionTap ---
+    PencilInteractionTap_init :: proc(self: ^PencilInteractionTap) -> instancetype ---
 
     @(objc_type=PencilInteractionTap, objc_selector="timestamp", objc_name="timestamp")
     PencilInteractionTap_timestamp :: proc(self: ^PencilInteractionTap) -> NS.TimeInterval ---

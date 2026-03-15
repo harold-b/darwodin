@@ -24,10 +24,10 @@ PointerRegion :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerRegion, objc_selector="regionWithRect:identifier:", objc_name="regionWithRect", objc_is_class_method=true)
-    PointerRegion_regionWithRect :: proc(rect: CG.Rect, identifier: ^NS.ObjectProtocol) -> ^PointerRegion ---
+    PointerRegion_regionWithRect :: proc(rect: CG.Rect, identifier: ^NS.ObjectProtocol) -> instancetype ---
 
     @(objc_type=PointerRegion, objc_selector="init", objc_name="init")
-    PointerRegion_init :: proc(self: ^PointerRegion) -> ^PointerRegion ---
+    PointerRegion_init :: proc(self: ^PointerRegion) -> instancetype ---
 
     @(objc_type=PointerRegion, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PointerRegion_new :: proc() -> ^PointerRegion ---

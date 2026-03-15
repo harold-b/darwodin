@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithComponentKey: proc(self: ^UI.TextFormattingViewControllerComponent, componentKey: ^NS.String, preferredSize: UI.TextFormattingViewControllerComponentSize) -> ^UI.TextFormattingViewControllerComponent,
-    init: proc(self: ^UI.TextFormattingViewControllerComponent) -> ^UI.TextFormattingViewControllerComponent,
+    initWithComponentKey: proc(self: ^UI.TextFormattingViewControllerComponent, componentKey: ^NS.String, preferredSize: UI.TextFormattingViewControllerComponentSize) -> instancetype,
+    init: proc(self: ^UI.TextFormattingViewControllerComponent) -> instancetype,
     new: proc() -> ^UI.TextFormattingViewControllerComponent,
     componentKey: proc(self: ^UI.TextFormattingViewControllerComponent) -> ^NS.String,
     preferredSize: proc(self: ^UI.TextFormattingViewControllerComponent) -> UI.TextFormattingViewControllerComponentSize,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithComponentKey != nil {
-        initWithComponentKey :: proc "c" (self: ^UI.TextFormattingViewControllerComponent, _: SEL, componentKey: ^NS.String, preferredSize: UI.TextFormattingViewControllerComponentSize) -> ^UI.TextFormattingViewControllerComponent {
+        initWithComponentKey :: proc "c" (self: ^UI.TextFormattingViewControllerComponent, _: SEL, componentKey: ^NS.String, preferredSize: UI.TextFormattingViewControllerComponentSize) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithComponentKey:preferredSize:"), auto_cast initWithComponentKey, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextFormattingViewControllerComponent, _: SEL) -> ^UI.TextFormattingViewControllerComponent {
+        init :: proc "c" (self: ^UI.TextFormattingViewControllerComponent, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

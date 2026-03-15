@@ -30,7 +30,7 @@ import "../NSToolbarItem"
 
 VTable :: struct {
     super: NSToolbarItem.VTable,
-    trackingSeparatorToolbarItemWithIdentifier: proc(identifier: ^NS.String, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> ^AK.TrackingSeparatorToolbarItem,
+    trackingSeparatorToolbarItemWithIdentifier: proc(identifier: ^NS.String, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> instancetype,
     splitView: proc(self: ^AK.TrackingSeparatorToolbarItem) -> ^AK.SplitView,
     setSplitView: proc(self: ^AK.TrackingSeparatorToolbarItem, splitView: ^AK.SplitView),
     dividerIndex: proc(self: ^AK.TrackingSeparatorToolbarItem) -> NS.Integer,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSToolbarItem.extend(cls, &vt.super)
 
     if vt.trackingSeparatorToolbarItemWithIdentifier != nil {
-        trackingSeparatorToolbarItemWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> ^AK.TrackingSeparatorToolbarItem {
+        trackingSeparatorToolbarItemWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

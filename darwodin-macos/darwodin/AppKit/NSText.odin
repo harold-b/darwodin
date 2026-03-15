@@ -27,10 +27,10 @@ Text :: struct { using _: View,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Text, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    Text_initWithFrame :: proc(self: ^Text, frameRect: NS.Rect) -> ^Text ---
+    Text_initWithFrame :: proc(self: ^Text, frameRect: NS.Rect) -> instancetype ---
 
     @(objc_type=Text, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Text_initWithCoder :: proc(self: ^Text, coder: ^NS.Coder) -> ^Text ---
+    Text_initWithCoder :: proc(self: ^Text, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Text, objc_selector="replaceCharactersInRange:withString:", objc_name="replaceCharactersInRange_withString")
     Text_replaceCharactersInRange_withString :: proc(self: ^Text, range: NS._NSRange, string: ^NS.String) ---

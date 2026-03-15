@@ -25,10 +25,10 @@ foreign lib {
     TargetedDragPreview_retargetedPreviewWithTarget :: proc(self: ^TargetedDragPreview, newTarget: ^DragPreviewTarget) -> ^TargetedDragPreview ---
 
     @(objc_type=TargetedDragPreview, objc_selector="previewForURL:target:", objc_name="previewForURL_target", objc_is_class_method=true)
-    TargetedDragPreview_previewForURL_target :: proc(url: ^NS.URL, target: ^DragPreviewTarget) -> ^TargetedDragPreview ---
+    TargetedDragPreview_previewForURL_target :: proc(url: ^NS.URL, target: ^DragPreviewTarget) -> instancetype ---
 
     @(objc_type=TargetedDragPreview, objc_selector="previewForURL:title:target:", objc_name="previewForURL_title_target", objc_is_class_method=true)
-    TargetedDragPreview_previewForURL_title_target :: proc(url: ^NS.URL, title: ^NS.String, target: ^DragPreviewTarget) -> ^TargetedDragPreview ---
+    TargetedDragPreview_previewForURL_title_target :: proc(url: ^NS.URL, title: ^NS.String, target: ^DragPreviewTarget) -> instancetype ---
 }
 
 @(objc_type=TargetedDragPreview, objc_name="previewForURL")

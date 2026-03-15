@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithItemProvider: proc(self: ^UI.DragItem, itemProvider: ^NS.ItemProvider) -> ^UI.DragItem,
-    init: proc(self: ^UI.DragItem) -> ^UI.DragItem,
+    initWithItemProvider: proc(self: ^UI.DragItem, itemProvider: ^NS.ItemProvider) -> instancetype,
+    init: proc(self: ^UI.DragItem) -> instancetype,
     new: proc() -> ^UI.DragItem,
     setNeedsDropPreviewUpdate: proc(self: ^UI.DragItem),
     itemProvider: proc(self: ^UI.DragItem) -> ^NS.ItemProvider,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithItemProvider != nil {
-        initWithItemProvider :: proc "c" (self: ^UI.DragItem, _: SEL, itemProvider: ^NS.ItemProvider) -> ^UI.DragItem {
+        initWithItemProvider :: proc "c" (self: ^UI.DragItem, _: SEL, itemProvider: ^NS.ItemProvider) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItemProvider:"), auto_cast initWithItemProvider, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.DragItem, _: SEL) -> ^UI.DragItem {
+        init :: proc "c" (self: ^UI.DragItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

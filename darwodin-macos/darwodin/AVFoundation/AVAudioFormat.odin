@@ -25,28 +25,28 @@ AudioFormat :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioFormat, objc_selector="initWithStreamDescription:", objc_name="initWithStreamDescription_")
-    AudioFormat_initWithStreamDescription_ :: proc(self: ^AudioFormat, asbd: ^Audio.StreamBasicDescription) -> ^AudioFormat ---
+    AudioFormat_initWithStreamDescription_ :: proc(self: ^AudioFormat, asbd: ^Audio.StreamBasicDescription) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="initWithStreamDescription:channelLayout:", objc_name="initWithStreamDescription_channelLayout")
-    AudioFormat_initWithStreamDescription_channelLayout :: proc(self: ^AudioFormat, asbd: ^Audio.StreamBasicDescription, layout: ^AudioChannelLayout) -> ^AudioFormat ---
+    AudioFormat_initWithStreamDescription_channelLayout :: proc(self: ^AudioFormat, asbd: ^Audio.StreamBasicDescription, layout: ^AudioChannelLayout) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="initStandardFormatWithSampleRate:channels:", objc_name="initStandardFormatWithSampleRate_channels")
-    AudioFormat_initStandardFormatWithSampleRate_channels :: proc(self: ^AudioFormat, sampleRate: cffi.double, channels: AudioChannelCount) -> ^AudioFormat ---
+    AudioFormat_initStandardFormatWithSampleRate_channels :: proc(self: ^AudioFormat, sampleRate: cffi.double, channels: AudioChannelCount) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="initStandardFormatWithSampleRate:channelLayout:", objc_name="initStandardFormatWithSampleRate_channelLayout")
-    AudioFormat_initStandardFormatWithSampleRate_channelLayout :: proc(self: ^AudioFormat, sampleRate: cffi.double, layout: ^AudioChannelLayout) -> ^AudioFormat ---
+    AudioFormat_initStandardFormatWithSampleRate_channelLayout :: proc(self: ^AudioFormat, sampleRate: cffi.double, layout: ^AudioChannelLayout) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="initWithCommonFormat:sampleRate:channels:interleaved:", objc_name="initWithCommonFormat_sampleRate_channels_interleaved")
-    AudioFormat_initWithCommonFormat_sampleRate_channels_interleaved :: proc(self: ^AudioFormat, format: AudioCommonFormat, sampleRate: cffi.double, channels: AudioChannelCount, interleaved: bool) -> ^AudioFormat ---
+    AudioFormat_initWithCommonFormat_sampleRate_channels_interleaved :: proc(self: ^AudioFormat, format: AudioCommonFormat, sampleRate: cffi.double, channels: AudioChannelCount, interleaved: bool) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="initWithCommonFormat:sampleRate:interleaved:channelLayout:", objc_name="initWithCommonFormat_sampleRate_interleaved_channelLayout")
-    AudioFormat_initWithCommonFormat_sampleRate_interleaved_channelLayout :: proc(self: ^AudioFormat, format: AudioCommonFormat, sampleRate: cffi.double, interleaved: bool, layout: ^AudioChannelLayout) -> ^AudioFormat ---
+    AudioFormat_initWithCommonFormat_sampleRate_interleaved_channelLayout :: proc(self: ^AudioFormat, format: AudioCommonFormat, sampleRate: cffi.double, interleaved: bool, layout: ^AudioChannelLayout) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="initWithSettings:", objc_name="initWithSettings")
-    AudioFormat_initWithSettings :: proc(self: ^AudioFormat, settings: ^NS.Dictionary) -> ^AudioFormat ---
+    AudioFormat_initWithSettings :: proc(self: ^AudioFormat, settings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="initWithCMAudioFormatDescription:", objc_name="initWithCMAudioFormatDescription")
-    AudioFormat_initWithCMAudioFormatDescription :: proc(self: ^AudioFormat, formatDescription: CM.AudioFormatDescriptionRef) -> ^AudioFormat ---
+    AudioFormat_initWithCMAudioFormatDescription :: proc(self: ^AudioFormat, formatDescription: CM.AudioFormatDescriptionRef) -> instancetype ---
 
     @(objc_type=AudioFormat, objc_selector="isEqual:", objc_name="isEqual")
     AudioFormat_isEqual :: proc(self: ^AudioFormat, object: id) -> bool ---

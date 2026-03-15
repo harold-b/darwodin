@@ -25,13 +25,13 @@ TextFormattingViewControllerFormattingDescriptor :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="init", objc_name="init")
-    TextFormattingViewControllerFormattingDescriptor_init :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^TextFormattingViewControllerFormattingDescriptor ---
+    TextFormattingViewControllerFormattingDescriptor_init :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> instancetype ---
 
     @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="initWithString:range:", objc_name="initWithString")
-    TextFormattingViewControllerFormattingDescriptor_initWithString :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, string: ^NS.AttributedString, range: NS._NSRange) -> ^TextFormattingViewControllerFormattingDescriptor ---
+    TextFormattingViewControllerFormattingDescriptor_initWithString :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, string: ^NS.AttributedString, range: NS._NSRange) -> instancetype ---
 
     @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="initWithAttributes:", objc_name="initWithAttributes")
-    TextFormattingViewControllerFormattingDescriptor_initWithAttributes :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, attributes: ^NS.Dictionary) -> ^TextFormattingViewControllerFormattingDescriptor ---
+    TextFormattingViewControllerFormattingDescriptor_initWithAttributes :: proc(self: ^TextFormattingViewControllerFormattingDescriptor, attributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=TextFormattingViewControllerFormattingDescriptor, objc_selector="fonts", objc_name="fonts")
     TextFormattingViewControllerFormattingDescriptor_fonts :: proc(self: ^TextFormattingViewControllerFormattingDescriptor) -> ^NS.Array ---

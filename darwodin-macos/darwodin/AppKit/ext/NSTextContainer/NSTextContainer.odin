@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSize: proc(self: ^AK.TextContainer, size: CG.Size) -> ^AK.TextContainer,
-    initWithCoder: proc(self: ^AK.TextContainer, coder: ^NS.Coder) -> ^AK.TextContainer,
+    initWithSize: proc(self: ^AK.TextContainer, size: CG.Size) -> instancetype,
+    initWithCoder: proc(self: ^AK.TextContainer, coder: ^NS.Coder) -> instancetype,
     lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect: proc(self: ^AK.TextContainer, proposedRect: CG.Rect, characterIndex: NS.UInteger, baseWritingDirection: AK.WritingDirection, remainingRect: ^CG.Rect) -> CG.Rect,
     textLayoutManager: proc(self: ^AK.TextContainer) -> ^AK.TextLayoutManager,
     size: proc(self: ^AK.TextContainer) -> CG.Size,
@@ -54,7 +54,7 @@ VTable :: struct {
     setExclusionPaths: proc(self: ^AK.TextContainer, exclusionPaths: ^NS.Array),
     textView: proc(self: ^AK.TextContainer) -> ^AK.TextView,
     setTextView: proc(self: ^AK.TextContainer, textView: ^AK.TextView),
-    initWithContainerSize: proc(self: ^AK.TextContainer, aContainerSize: NS.Size) -> ^AK.TextContainer,
+    initWithContainerSize: proc(self: ^AK.TextContainer, aContainerSize: NS.Size) -> instancetype,
     lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect: proc(self: ^AK.TextContainer, proposedRect: NS.Rect, sweepDirection: AK.LineSweepDirection, movementDirection: AK.LineMovementDirection, remainingRect: ^NS.Rect) -> NS.Rect,
     containsPoint: proc(self: ^AK.TextContainer, point: CG.Point) -> bool,
     containerSize: proc(self: ^AK.TextContainer) -> NS.Size,
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSize != nil {
-        initWithSize :: proc "c" (self: ^AK.TextContainer, _: SEL, size: CG.Size) -> ^AK.TextContainer {
+        initWithSize :: proc "c" (self: ^AK.TextContainer, _: SEL, size: CG.Size) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSize:"), auto_cast initWithSize, "@@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextContainer, _: SEL, coder: ^NS.Coder) -> ^AK.TextContainer {
+        initWithCoder :: proc "c" (self: ^AK.TextContainer, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -309,7 +309,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextView:"), auto_cast setTextView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerSize != nil {
-        initWithContainerSize :: proc "c" (self: ^AK.TextContainer, _: SEL, aContainerSize: NS.Size) -> ^AK.TextContainer {
+        initWithContainerSize :: proc "c" (self: ^AK.TextContainer, _: SEL, aContainerSize: NS.Size) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

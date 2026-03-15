@@ -22,10 +22,10 @@ TextSearchingFindSession :: struct { using _: FindSession, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextSearchingFindSession, objc_selector="initWithSearchableObject:", objc_name="initWithSearchableObject")
-    TextSearchingFindSession_initWithSearchableObject :: proc(self: ^TextSearchingFindSession, searchableObject: ^TextSearching) -> ^TextSearchingFindSession ---
+    TextSearchingFindSession_initWithSearchableObject :: proc(self: ^TextSearchingFindSession, searchableObject: ^TextSearching) -> instancetype ---
 
     @(objc_type=TextSearchingFindSession, objc_selector="init", objc_name="init")
-    TextSearchingFindSession_init :: proc(self: ^TextSearchingFindSession) -> ^TextSearchingFindSession ---
+    TextSearchingFindSession_init :: proc(self: ^TextSearchingFindSession) -> instancetype ---
 
     @(objc_type=TextSearchingFindSession, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextSearchingFindSession_new :: proc() -> ^TextSearchingFindSession ---

@@ -22,10 +22,10 @@ PreviewInteraction :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PreviewInteraction, objc_selector="initWithView:", objc_name="initWithView")
-    PreviewInteraction_initWithView :: proc(self: ^PreviewInteraction, view: ^View) -> ^PreviewInteraction ---
+    PreviewInteraction_initWithView :: proc(self: ^PreviewInteraction, view: ^View) -> instancetype ---
 
     @(objc_type=PreviewInteraction, objc_selector="init", objc_name="init")
-    PreviewInteraction_init :: proc(self: ^PreviewInteraction) -> ^PreviewInteraction ---
+    PreviewInteraction_init :: proc(self: ^PreviewInteraction) -> instancetype ---
 
     @(objc_type=PreviewInteraction, objc_selector="locationInCoordinateSpace:", objc_name="locationInCoordinateSpace")
     PreviewInteraction_locationInCoordinateSpace :: proc(self: ^PreviewInteraction, coordinateSpace: ^CoordinateSpace) -> CG.Point ---

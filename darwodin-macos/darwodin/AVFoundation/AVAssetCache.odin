@@ -26,7 +26,7 @@ foreign lib {
     AssetCache_mediaSelectionOptionsInMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Array ---
 
     @(objc_type=AssetCache, objc_selector="init", objc_name="init")
-    AssetCache_init :: proc(self: ^AssetCache) -> ^AssetCache ---
+    AssetCache_init :: proc(self: ^AssetCache) -> instancetype ---
 
     @(objc_type=AssetCache, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetCache_new :: proc() -> ^AssetCache ---

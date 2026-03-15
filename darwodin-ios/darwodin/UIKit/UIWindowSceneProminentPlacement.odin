@@ -22,5 +22,5 @@ WindowSceneProminentPlacement :: struct { using _: WindowScenePlacement, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneProminentPlacement, objc_selector="prominentPlacement", objc_name="prominentPlacement", objc_is_class_method=true)
-    WindowSceneProminentPlacement_prominentPlacement :: proc() -> ^WindowSceneProminentPlacement ---
+    WindowSceneProminentPlacement_prominentPlacement :: proc() -> instancetype ---
 }

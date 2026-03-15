@@ -23,7 +23,7 @@ PlayerPlaybackCoordinator :: struct { using _: PlaybackCoordinator, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerPlaybackCoordinator, objc_selector="init", objc_name="init")
-    PlayerPlaybackCoordinator_init :: proc(self: ^PlayerPlaybackCoordinator) -> ^PlayerPlaybackCoordinator ---
+    PlayerPlaybackCoordinator_init :: proc(self: ^PlayerPlaybackCoordinator) -> instancetype ---
 
     @(objc_type=PlayerPlaybackCoordinator, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PlayerPlaybackCoordinator_new :: proc() -> ^PlayerPlaybackCoordinator ---

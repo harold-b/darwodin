@@ -24,13 +24,13 @@ NSCollectionLayoutBoundarySupplementaryItem :: struct { using _: NSCollectionLay
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSCollectionLayoutBoundarySupplementaryItem, objc_selector="boundarySupplementaryItemWithLayoutSize:elementKind:alignment:", objc_name="boundarySupplementaryItemWithLayoutSize_elementKind_alignment", objc_is_class_method=true)
-    NSCollectionLayoutBoundarySupplementaryItem_boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc(layoutSize: ^NSCollectionLayoutSize, elementKind: ^NS.String, alignment: NSRectAlignment) -> ^NSCollectionLayoutBoundarySupplementaryItem ---
+    NSCollectionLayoutBoundarySupplementaryItem_boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc(layoutSize: ^NSCollectionLayoutSize, elementKind: ^NS.String, alignment: NSRectAlignment) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutBoundarySupplementaryItem, objc_selector="boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:", objc_name="boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset", objc_is_class_method=true)
-    NSCollectionLayoutBoundarySupplementaryItem_boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc(layoutSize: ^NSCollectionLayoutSize, elementKind: ^NS.String, alignment: NSRectAlignment, absoluteOffset: CG.Point) -> ^NSCollectionLayoutBoundarySupplementaryItem ---
+    NSCollectionLayoutBoundarySupplementaryItem_boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc(layoutSize: ^NSCollectionLayoutSize, elementKind: ^NS.String, alignment: NSRectAlignment, absoluteOffset: CG.Point) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutBoundarySupplementaryItem, objc_selector="init", objc_name="init")
-    NSCollectionLayoutBoundarySupplementaryItem_init :: proc(self: ^NSCollectionLayoutBoundarySupplementaryItem) -> ^NSCollectionLayoutBoundarySupplementaryItem ---
+    NSCollectionLayoutBoundarySupplementaryItem_init :: proc(self: ^NSCollectionLayoutBoundarySupplementaryItem) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutBoundarySupplementaryItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSCollectionLayoutBoundarySupplementaryItem_new :: proc() -> ^NSCollectionLayoutBoundarySupplementaryItem ---

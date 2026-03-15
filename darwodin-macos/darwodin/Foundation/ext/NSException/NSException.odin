@@ -27,7 +27,7 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     exceptionWithName: proc(name: ^NS.String, reason: ^NS.String, userInfo: ^NS.Dictionary) -> ^NS.Exception,
-    initWithName: proc(self: ^NS.Exception, aName: ^NS.String, aReason: ^NS.String, aUserInfo: ^NS.Dictionary) -> ^NS.Exception,
+    initWithName: proc(self: ^NS.Exception, aName: ^NS.String, aReason: ^NS.String, aUserInfo: ^NS.Dictionary) -> instancetype,
     raise_: proc(self: ^NS.Exception),
     name: proc(self: ^NS.Exception) -> ^NS.String,
     reason: proc(self: ^NS.Exception) -> ^NS.String,
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("exceptionWithName:reason:userInfo:"), auto_cast exceptionWithName, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithName != nil {
-        initWithName :: proc "c" (self: ^NS.Exception, _: SEL, aName: ^NS.String, aReason: ^NS.String, aUserInfo: ^NS.Dictionary) -> ^NS.Exception {
+        initWithName :: proc "c" (self: ^NS.Exception, _: SEL, aName: ^NS.String, aReason: ^NS.String, aUserInfo: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

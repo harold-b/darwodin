@@ -23,13 +23,13 @@ PlayerItemRenderedLegibleOutput :: struct { using _: PlayerItemOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemRenderedLegibleOutput, objc_selector="init", objc_name="init")
-    PlayerItemRenderedLegibleOutput_init :: proc(self: ^PlayerItemRenderedLegibleOutput) -> ^PlayerItemRenderedLegibleOutput ---
+    PlayerItemRenderedLegibleOutput_init :: proc(self: ^PlayerItemRenderedLegibleOutput) -> instancetype ---
 
     @(objc_type=PlayerItemRenderedLegibleOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PlayerItemRenderedLegibleOutput_new :: proc() -> ^PlayerItemRenderedLegibleOutput ---
 
     @(objc_type=PlayerItemRenderedLegibleOutput, objc_selector="initWithVideoDisplaySize:", objc_name="initWithVideoDisplaySize")
-    PlayerItemRenderedLegibleOutput_initWithVideoDisplaySize :: proc(self: ^PlayerItemRenderedLegibleOutput, videoDisplaySize: CG.Size) -> ^PlayerItemRenderedLegibleOutput ---
+    PlayerItemRenderedLegibleOutput_initWithVideoDisplaySize :: proc(self: ^PlayerItemRenderedLegibleOutput, videoDisplaySize: CG.Size) -> instancetype ---
 
     @(objc_type=PlayerItemRenderedLegibleOutput, objc_selector="setDelegate:queue:", objc_name="setDelegate")
     PlayerItemRenderedLegibleOutput_setDelegate :: proc(self: ^PlayerItemRenderedLegibleOutput, delegate: ^PlayerItemRenderedLegibleOutputPushDelegate, delegateQueue: CF.dispatch_queue_t) ---

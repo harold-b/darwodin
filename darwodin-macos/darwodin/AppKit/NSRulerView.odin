@@ -27,10 +27,10 @@ foreign lib {
     RulerView_registerUnitWithName :: proc(unitName: ^NS.String, abbreviation: ^NS.String, conversionFactor: CG.Float, stepUpCycle: ^NS.Array, stepDownCycle: ^NS.Array) ---
 
     @(objc_type=RulerView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    RulerView_initWithCoder :: proc(self: ^RulerView, coder: ^NS.Coder) -> ^RulerView ---
+    RulerView_initWithCoder :: proc(self: ^RulerView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=RulerView, objc_selector="initWithScrollView:orientation:", objc_name="initWithScrollView")
-    RulerView_initWithScrollView :: proc(self: ^RulerView, scrollView: ^ScrollView, orientation: RulerOrientation) -> ^RulerView ---
+    RulerView_initWithScrollView :: proc(self: ^RulerView, scrollView: ^ScrollView, orientation: RulerOrientation) -> instancetype ---
 
     @(objc_type=RulerView, objc_selector="addMarker:", objc_name="addMarker")
     RulerView_addMarker :: proc(self: ^RulerView, marker: ^RulerMarker) ---

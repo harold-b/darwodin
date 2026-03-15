@@ -26,16 +26,16 @@ TextLineFragment :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextLineFragment, objc_selector="initWithAttributedString:range:", objc_name="initWithAttributedString")
-    TextLineFragment_initWithAttributedString :: proc(self: ^TextLineFragment, attributedString: ^NS.AttributedString, range: NS._NSRange) -> ^TextLineFragment ---
+    TextLineFragment_initWithAttributedString :: proc(self: ^TextLineFragment, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype ---
 
     @(objc_type=TextLineFragment, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextLineFragment_initWithCoder :: proc(self: ^TextLineFragment, aDecoder: ^NS.Coder) -> ^TextLineFragment ---
+    TextLineFragment_initWithCoder :: proc(self: ^TextLineFragment, aDecoder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextLineFragment, objc_selector="initWithString:attributes:range:", objc_name="initWithString")
-    TextLineFragment_initWithString :: proc(self: ^TextLineFragment, string: ^NS.String, attributes: ^NS.Dictionary, range: NS._NSRange) -> ^TextLineFragment ---
+    TextLineFragment_initWithString :: proc(self: ^TextLineFragment, string: ^NS.String, attributes: ^NS.Dictionary, range: NS._NSRange) -> instancetype ---
 
     @(objc_type=TextLineFragment, objc_selector="init", objc_name="init")
-    TextLineFragment_init :: proc(self: ^TextLineFragment) -> ^TextLineFragment ---
+    TextLineFragment_init :: proc(self: ^TextLineFragment) -> instancetype ---
 
     @(objc_type=TextLineFragment, objc_selector="drawAtPoint:inContext:", objc_name="drawAtPoint")
     TextLineFragment_drawAtPoint :: proc(self: ^TextLineFragment, point: CG.Point, _context: CG.ContextRef) ---

@@ -23,31 +23,31 @@ Texture :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Texture, objc_selector="init", objc_name="init")
-    Texture_init :: proc(self: ^Texture) -> ^Texture ---
+    Texture_init :: proc(self: ^Texture) -> instancetype ---
 
     @(objc_type=Texture, objc_selector="textureNamed:", objc_name="textureNamed_", objc_is_class_method=true)
-    Texture_textureNamed_ :: proc(name: ^NS.String) -> ^Texture ---
+    Texture_textureNamed_ :: proc(name: ^NS.String) -> instancetype ---
 
     @(objc_type=Texture, objc_selector="textureNamed:bundle:", objc_name="textureNamed_bundle", objc_is_class_method=true)
-    Texture_textureNamed_bundle :: proc(name: ^NS.String, bundleOrNil: ^NS.Bundle) -> ^Texture ---
+    Texture_textureNamed_bundle :: proc(name: ^NS.String, bundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=Texture, objc_selector="textureNamed:assetResolver:", objc_name="textureNamed_assetResolver", objc_is_class_method=true)
-    Texture_textureNamed_assetResolver :: proc(name: ^NS.String, resolver: ^AssetResolver) -> ^Texture ---
+    Texture_textureNamed_assetResolver :: proc(name: ^NS.String, resolver: ^AssetResolver) -> instancetype ---
 
     @(objc_type=Texture, objc_selector="textureCubeWithImagesNamed:", objc_name="textureCubeWithImagesNamed_", objc_is_class_method=true)
-    Texture_textureCubeWithImagesNamed_ :: proc(names: ^NS.Array) -> ^Texture ---
+    Texture_textureCubeWithImagesNamed_ :: proc(names: ^NS.Array) -> instancetype ---
 
     @(objc_type=Texture, objc_selector="textureCubeWithImagesNamed:bundle:", objc_name="textureCubeWithImagesNamed_bundle", objc_is_class_method=true)
-    Texture_textureCubeWithImagesNamed_bundle :: proc(names: ^NS.Array, bundleOrNil: ^NS.Bundle) -> ^Texture ---
+    Texture_textureCubeWithImagesNamed_bundle :: proc(names: ^NS.Array, bundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=Texture, objc_selector="irradianceTextureCubeWithTexture:name:dimensions:", objc_name="irradianceTextureCubeWithTexture_name_dimensions", objc_is_class_method=true)
-    Texture_irradianceTextureCubeWithTexture_name_dimensions :: proc(texture: ^Texture, name: ^NS.String, dimensions: ^[2]cffi.int) -> ^Texture ---
+    Texture_irradianceTextureCubeWithTexture_name_dimensions :: proc(texture: ^Texture, name: ^NS.String, dimensions: ^[2]cffi.int) -> instancetype ---
 
     @(objc_type=Texture, objc_selector="irradianceTextureCubeWithTexture:name:dimensions:roughness:", objc_name="irradianceTextureCubeWithTexture_name_dimensions_roughness", objc_is_class_method=true)
-    Texture_irradianceTextureCubeWithTexture_name_dimensions_roughness :: proc(texture: ^Texture, name: ^NS.String, dimensions: ^[2]cffi.int, roughness: cffi.float) -> ^Texture ---
+    Texture_irradianceTextureCubeWithTexture_name_dimensions_roughness :: proc(texture: ^Texture, name: ^NS.String, dimensions: ^[2]cffi.int, roughness: cffi.float) -> instancetype ---
 
     @(objc_type=Texture, objc_selector="initWithData:topLeftOrigin:name:dimensions:rowStride:channelCount:channelEncoding:isCube:", objc_name="initWithData")
-    Texture_initWithData :: proc(self: ^Texture, pixelData: ^NS.Data, topLeftOrigin: bool, name: ^NS.String, dimensions: ^[2]cffi.int, rowStride: NS.Integer, channelCount: NS.UInteger, channelEncoding: TextureChannelEncoding, isCube: bool) -> ^Texture ---
+    Texture_initWithData :: proc(self: ^Texture, pixelData: ^NS.Data, topLeftOrigin: bool, name: ^NS.String, dimensions: ^[2]cffi.int, rowStride: NS.Integer, channelCount: NS.UInteger, channelEncoding: TextureChannelEncoding, isCube: bool) -> instancetype ---
 
     @(objc_type=Texture, objc_selector="writeToURL:", objc_name="writeToURL_")
     Texture_writeToURL_ :: proc(self: ^Texture, _URL: ^NS.URL) -> bool ---

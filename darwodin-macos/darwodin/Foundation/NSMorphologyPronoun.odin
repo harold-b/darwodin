@@ -26,10 +26,10 @@ foreign lib {
     MorphologyPronoun_new :: proc() -> ^MorphologyPronoun ---
 
     @(objc_type=MorphologyPronoun, objc_selector="init", objc_name="init")
-    MorphologyPronoun_init :: proc(self: ^MorphologyPronoun) -> ^MorphologyPronoun ---
+    MorphologyPronoun_init :: proc(self: ^MorphologyPronoun) -> instancetype ---
 
     @(objc_type=MorphologyPronoun, objc_selector="initWithPronoun:morphology:dependentMorphology:", objc_name="initWithPronoun")
-    MorphologyPronoun_initWithPronoun :: proc(self: ^MorphologyPronoun, pronoun: ^String, morphology: ^Morphology, dependentMorphology: ^Morphology) -> ^MorphologyPronoun ---
+    MorphologyPronoun_initWithPronoun :: proc(self: ^MorphologyPronoun, pronoun: ^String, morphology: ^Morphology, dependentMorphology: ^Morphology) -> instancetype ---
 
     @(objc_type=MorphologyPronoun, objc_selector="pronoun", objc_name="pronoun")
     MorphologyPronoun_pronoun :: proc(self: ^MorphologyPronoun) -> ^String ---

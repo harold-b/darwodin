@@ -23,7 +23,7 @@ CaptureManualExposureBracketedStillImageSettings :: struct { using _: CaptureBra
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureManualExposureBracketedStillImageSettings, objc_selector="manualExposureSettingsWithExposureDuration:ISO:", objc_name="manualExposureSettingsWithExposureDuration", objc_is_class_method=true)
-    CaptureManualExposureBracketedStillImageSettings_manualExposureSettingsWithExposureDuration :: proc(duration: CM.Time, ISO: cffi.float) -> ^CaptureManualExposureBracketedStillImageSettings ---
+    CaptureManualExposureBracketedStillImageSettings_manualExposureSettingsWithExposureDuration :: proc(duration: CM.Time, ISO: cffi.float) -> instancetype ---
 
     @(objc_type=CaptureManualExposureBracketedStillImageSettings, objc_selector="exposureDuration", objc_name="exposureDuration")
     CaptureManualExposureBracketedStillImageSettings_exposureDuration :: proc(self: ^CaptureManualExposureBracketedStillImageSettings) -> CM.Time ---

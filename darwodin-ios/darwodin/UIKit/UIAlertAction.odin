@@ -24,7 +24,7 @@ AlertAction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AlertAction, objc_selector="actionWithTitle:style:handler:", objc_name="actionWithTitle", objc_is_class_method=true)
-    AlertAction_actionWithTitle :: proc(title: ^NS.String, style: AlertActionStyle, handler: ^Objc_Block(proc "c" (action: ^AlertAction))) -> ^AlertAction ---
+    AlertAction_actionWithTitle :: proc(title: ^NS.String, style: AlertActionStyle, handler: ^Objc_Block(proc "c" (action: ^AlertAction))) -> instancetype ---
 
     @(objc_type=AlertAction, objc_selector="title", objc_name="title")
     AlertAction_title :: proc(self: ^AlertAction) -> ^NS.String ---

@@ -22,7 +22,7 @@ SwipeActionsConfiguration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SwipeActionsConfiguration, objc_selector="configurationWithActions:", objc_name="configurationWithActions", objc_is_class_method=true)
-    SwipeActionsConfiguration_configurationWithActions :: proc(actions: ^NS.Array) -> ^SwipeActionsConfiguration ---
+    SwipeActionsConfiguration_configurationWithActions :: proc(actions: ^NS.Array) -> instancetype ---
 
     @(objc_type=SwipeActionsConfiguration, objc_selector="actions", objc_name="actions")
     SwipeActionsConfiguration_actions :: proc(self: ^SwipeActionsConfiguration) -> ^NS.Array ---

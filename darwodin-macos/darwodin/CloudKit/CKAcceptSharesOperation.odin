@@ -18,10 +18,10 @@ AcceptSharesOperation :: struct { using _: Operation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AcceptSharesOperation, objc_selector="init", objc_name="init")
-    AcceptSharesOperation_init :: proc(self: ^AcceptSharesOperation) -> ^AcceptSharesOperation ---
+    AcceptSharesOperation_init :: proc(self: ^AcceptSharesOperation) -> instancetype ---
 
     @(objc_type=AcceptSharesOperation, objc_selector="initWithShareMetadatas:", objc_name="initWithShareMetadatas")
-    AcceptSharesOperation_initWithShareMetadatas :: proc(self: ^AcceptSharesOperation, shareMetadatas: ^NS.Array) -> ^AcceptSharesOperation ---
+    AcceptSharesOperation_initWithShareMetadatas :: proc(self: ^AcceptSharesOperation, shareMetadatas: ^NS.Array) -> instancetype ---
 
     @(objc_type=AcceptSharesOperation, objc_selector="shareMetadatas", objc_name="shareMetadatas")
     AcceptSharesOperation_shareMetadatas :: proc(self: ^AcceptSharesOperation) -> ^NS.Array ---

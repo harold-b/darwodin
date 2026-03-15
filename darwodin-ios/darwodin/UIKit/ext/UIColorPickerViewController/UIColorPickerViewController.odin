@@ -28,8 +28,8 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithNibName: proc(self: ^UI.ColorPickerViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.ColorPickerViewController,
-    init: proc(self: ^UI.ColorPickerViewController) -> ^UI.ColorPickerViewController,
+    initWithNibName: proc(self: ^UI.ColorPickerViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    init: proc(self: ^UI.ColorPickerViewController) -> instancetype,
     delegate: proc(self: ^UI.ColorPickerViewController) -> ^UI.ColorPickerViewControllerDelegate,
     setDelegate: proc(self: ^UI.ColorPickerViewController, delegate: ^UI.ColorPickerViewControllerDelegate),
     selectedColor: proc(self: ^UI.ColorPickerViewController) -> ^UI.Color,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.ColorPickerViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.ColorPickerViewController {
+        initWithNibName :: proc "c" (self: ^UI.ColorPickerViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ColorPickerViewController, _: SEL) -> ^UI.ColorPickerViewController {
+        init :: proc "c" (self: ^UI.ColorPickerViewController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

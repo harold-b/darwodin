@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.Task) -> ^NS.Task,
+    init: proc(self: ^NS.Task) -> instancetype,
     launchAndReturnError: proc(self: ^NS.Task, error: ^^NS.Error) -> bool,
     interrupt: proc(self: ^NS.Task),
     terminate: proc(self: ^NS.Task),
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.Task, _: SEL) -> ^NS.Task {
+        init :: proc "c" (self: ^NS.Task, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

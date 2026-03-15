@@ -28,8 +28,8 @@ import "../UIWindowSceneGeometryPreferences"
 
 VTable :: struct {
     super: UIWindowSceneGeometryPreferences.VTable,
-    init: proc(self: ^UI.WindowSceneGeometryPreferencesVision) -> ^UI.WindowSceneGeometryPreferencesVision,
-    initWithSize: proc(self: ^UI.WindowSceneGeometryPreferencesVision, size: CG.Size) -> ^UI.WindowSceneGeometryPreferencesVision,
+    init: proc(self: ^UI.WindowSceneGeometryPreferencesVision) -> instancetype,
+    initWithSize: proc(self: ^UI.WindowSceneGeometryPreferencesVision, size: CG.Size) -> instancetype,
     size: proc(self: ^UI.WindowSceneGeometryPreferencesVision) -> CG.Size,
     setSize: proc(self: ^UI.WindowSceneGeometryPreferencesVision, size: CG.Size),
     minimumSize: proc(self: ^UI.WindowSceneGeometryPreferencesVision) -> CG.Size,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIWindowSceneGeometryPreferences.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesVision, _: SEL) -> ^UI.WindowSceneGeometryPreferencesVision {
+        init :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesVision, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithSize != nil {
-        initWithSize :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesVision, _: SEL, size: CG.Size) -> ^UI.WindowSceneGeometryPreferencesVision {
+        initWithSize :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesVision, _: SEL, size: CG.Size) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

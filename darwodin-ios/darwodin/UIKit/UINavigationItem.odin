@@ -24,10 +24,10 @@ NavigationItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NavigationItem, objc_selector="initWithTitle:", objc_name="initWithTitle")
-    NavigationItem_initWithTitle :: proc(self: ^NavigationItem, title: ^NS.String) -> ^NavigationItem ---
+    NavigationItem_initWithTitle :: proc(self: ^NavigationItem, title: ^NS.String) -> instancetype ---
 
     @(objc_type=NavigationItem, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    NavigationItem_initWithCoder :: proc(self: ^NavigationItem, coder: ^NS.Coder) -> ^NavigationItem ---
+    NavigationItem_initWithCoder :: proc(self: ^NavigationItem, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=NavigationItem, objc_selector="setHidesBackButton:animated:", objc_name="setHidesBackButton_animated")
     NavigationItem_setHidesBackButton_animated :: proc(self: ^NavigationItem, hidesBackButton: bool, animated: bool) ---

@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    layoutManager: proc() -> ^CA.ConstraintLayoutManager,
+    layoutManager: proc() -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.layoutManager != nil {
-        layoutManager :: proc "c" (self: Class, _: SEL) -> ^CA.ConstraintLayoutManager {
+        layoutManager :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

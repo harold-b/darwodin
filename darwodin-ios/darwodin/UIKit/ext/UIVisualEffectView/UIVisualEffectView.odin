@@ -28,8 +28,8 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithEffect: proc(self: ^UI.VisualEffectView, effect: ^UI.VisualEffect) -> ^UI.VisualEffectView,
-    initWithCoder: proc(self: ^UI.VisualEffectView, coder: ^NS.Coder) -> ^UI.VisualEffectView,
+    initWithEffect: proc(self: ^UI.VisualEffectView, effect: ^UI.VisualEffect) -> instancetype,
+    initWithCoder: proc(self: ^UI.VisualEffectView, coder: ^NS.Coder) -> instancetype,
     contentView: proc(self: ^UI.VisualEffectView) -> ^UI.View,
     effect: proc(self: ^UI.VisualEffectView) -> ^UI.VisualEffect,
     setEffect: proc(self: ^UI.VisualEffectView, effect: ^UI.VisualEffect),
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithEffect != nil {
-        initWithEffect :: proc "c" (self: ^UI.VisualEffectView, _: SEL, effect: ^UI.VisualEffect) -> ^UI.VisualEffectView {
+        initWithEffect :: proc "c" (self: ^UI.VisualEffectView, _: SEL, effect: ^UI.VisualEffect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithEffect:"), auto_cast initWithEffect, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.VisualEffectView, _: SEL, coder: ^NS.Coder) -> ^UI.VisualEffectView {
+        initWithCoder :: proc "c" (self: ^UI.VisualEffectView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

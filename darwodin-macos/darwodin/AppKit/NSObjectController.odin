@@ -24,10 +24,10 @@ ObjectController :: struct { using _: Controller, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ObjectController, objc_selector="initWithContent:", objc_name="initWithContent")
-    ObjectController_initWithContent :: proc(self: ^ObjectController, content: id) -> ^ObjectController ---
+    ObjectController_initWithContent :: proc(self: ^ObjectController, content: id) -> instancetype ---
 
     @(objc_type=ObjectController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ObjectController_initWithCoder :: proc(self: ^ObjectController, coder: ^NS.Coder) -> ^ObjectController ---
+    ObjectController_initWithCoder :: proc(self: ^ObjectController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ObjectController, objc_selector="prepareContent", objc_name="prepareContent")
     ObjectController_prepareContent :: proc(self: ^ObjectController) ---

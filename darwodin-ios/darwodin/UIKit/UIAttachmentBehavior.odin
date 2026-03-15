@@ -22,31 +22,31 @@ AttachmentBehavior :: struct { using _: DynamicBehavior, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AttachmentBehavior, objc_selector="initWithItem:attachedToAnchor:", objc_name="initWithItem_attachedToAnchor")
-    AttachmentBehavior_initWithItem_attachedToAnchor :: proc(self: ^AttachmentBehavior, item: ^DynamicItem, point: CG.Point) -> ^AttachmentBehavior ---
+    AttachmentBehavior_initWithItem_attachedToAnchor :: proc(self: ^AttachmentBehavior, item: ^DynamicItem, point: CG.Point) -> instancetype ---
 
     @(objc_type=AttachmentBehavior, objc_selector="initWithItem:offsetFromCenter:attachedToAnchor:", objc_name="initWithItem_offsetFromCenter_attachedToAnchor")
-    AttachmentBehavior_initWithItem_offsetFromCenter_attachedToAnchor :: proc(self: ^AttachmentBehavior, item: ^DynamicItem, offset: Offset, point: CG.Point) -> ^AttachmentBehavior ---
+    AttachmentBehavior_initWithItem_offsetFromCenter_attachedToAnchor :: proc(self: ^AttachmentBehavior, item: ^DynamicItem, offset: Offset, point: CG.Point) -> instancetype ---
 
     @(objc_type=AttachmentBehavior, objc_selector="initWithItem:attachedToItem:", objc_name="initWithItem_attachedToItem")
-    AttachmentBehavior_initWithItem_attachedToItem :: proc(self: ^AttachmentBehavior, item1: ^DynamicItem, item2: ^DynamicItem) -> ^AttachmentBehavior ---
+    AttachmentBehavior_initWithItem_attachedToItem :: proc(self: ^AttachmentBehavior, item1: ^DynamicItem, item2: ^DynamicItem) -> instancetype ---
 
     @(objc_type=AttachmentBehavior, objc_selector="initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:", objc_name="initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter")
-    AttachmentBehavior_initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter :: proc(self: ^AttachmentBehavior, item1: ^DynamicItem, offset1: Offset, item2: ^DynamicItem, offset2: Offset) -> ^AttachmentBehavior ---
+    AttachmentBehavior_initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter :: proc(self: ^AttachmentBehavior, item1: ^DynamicItem, offset1: Offset, item2: ^DynamicItem, offset2: Offset) -> instancetype ---
 
     @(objc_type=AttachmentBehavior, objc_selector="slidingAttachmentWithItem:attachedToItem:attachmentAnchor:axisOfTranslation:", objc_name="slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation", objc_is_class_method=true)
-    AttachmentBehavior_slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation :: proc(item1: ^DynamicItem, item2: ^DynamicItem, point: CG.Point, axis: CG.Vector) -> ^AttachmentBehavior ---
+    AttachmentBehavior_slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation :: proc(item1: ^DynamicItem, item2: ^DynamicItem, point: CG.Point, axis: CG.Vector) -> instancetype ---
 
     @(objc_type=AttachmentBehavior, objc_selector="slidingAttachmentWithItem:attachmentAnchor:axisOfTranslation:", objc_name="slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation", objc_is_class_method=true)
-    AttachmentBehavior_slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation :: proc(item: ^DynamicItem, point: CG.Point, axis: CG.Vector) -> ^AttachmentBehavior ---
+    AttachmentBehavior_slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation :: proc(item: ^DynamicItem, point: CG.Point, axis: CG.Vector) -> instancetype ---
 
     @(objc_type=AttachmentBehavior, objc_selector="limitAttachmentWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:", objc_name="limitAttachmentWithItem", objc_is_class_method=true)
-    AttachmentBehavior_limitAttachmentWithItem :: proc(item1: ^DynamicItem, offset1: Offset, item2: ^DynamicItem, offset2: Offset) -> ^AttachmentBehavior ---
+    AttachmentBehavior_limitAttachmentWithItem :: proc(item1: ^DynamicItem, offset1: Offset, item2: ^DynamicItem, offset2: Offset) -> instancetype ---
 
     @(objc_type=AttachmentBehavior, objc_selector="fixedAttachmentWithItem:attachedToItem:attachmentAnchor:", objc_name="fixedAttachmentWithItem", objc_is_class_method=true)
-    AttachmentBehavior_fixedAttachmentWithItem :: proc(item1: ^DynamicItem, item2: ^DynamicItem, point: CG.Point) -> ^AttachmentBehavior ---
+    AttachmentBehavior_fixedAttachmentWithItem :: proc(item1: ^DynamicItem, item2: ^DynamicItem, point: CG.Point) -> instancetype ---
 
     @(objc_type=AttachmentBehavior, objc_selector="pinAttachmentWithItem:attachedToItem:attachmentAnchor:", objc_name="pinAttachmentWithItem", objc_is_class_method=true)
-    AttachmentBehavior_pinAttachmentWithItem :: proc(item1: ^DynamicItem, item2: ^DynamicItem, point: CG.Point) -> ^AttachmentBehavior ---
+    AttachmentBehavior_pinAttachmentWithItem :: proc(item1: ^DynamicItem, item2: ^DynamicItem, point: CG.Point) -> instancetype ---
 
     @(objc_type=AttachmentBehavior, objc_selector="items", objc_name="items")
     AttachmentBehavior_items :: proc(self: ^AttachmentBehavior) -> ^NS.Array ---

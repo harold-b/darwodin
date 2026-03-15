@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithMetalLayer: proc(self: ^CA.MetalDisplayLink, layer: ^CA.MetalLayer) -> ^CA.MetalDisplayLink,
+    initWithMetalLayer: proc(self: ^CA.MetalDisplayLink, layer: ^CA.MetalLayer) -> instancetype,
     addToRunLoop: proc(self: ^CA.MetalDisplayLink, runloop: ^NS.RunLoop, mode: ^NS.String),
     removeFromRunLoop: proc(self: ^CA.MetalDisplayLink, runloop: ^NS.RunLoop, mode: ^NS.String),
     invalidate: proc(self: ^CA.MetalDisplayLink),
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithMetalLayer != nil {
-        initWithMetalLayer :: proc "c" (self: ^CA.MetalDisplayLink, _: SEL, layer: ^CA.MetalLayer) -> ^CA.MetalDisplayLink {
+        initWithMetalLayer :: proc "c" (self: ^CA.MetalDisplayLink, _: SEL, layer: ^CA.MetalLayer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

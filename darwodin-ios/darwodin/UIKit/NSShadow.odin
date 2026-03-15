@@ -25,10 +25,10 @@ NSShadow :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSShadow, objc_selector="init", objc_name="init")
-    NSShadow_init :: proc(self: ^NSShadow) -> ^NSShadow ---
+    NSShadow_init :: proc(self: ^NSShadow) -> instancetype ---
 
     @(objc_type=NSShadow, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    NSShadow_initWithCoder :: proc(self: ^NSShadow, coder: ^NS.Coder) -> ^NSShadow ---
+    NSShadow_initWithCoder :: proc(self: ^NSShadow, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=NSShadow, objc_selector="shadowOffset", objc_name="shadowOffset")
     NSShadow_shadowOffset :: proc(self: ^NSShadow) -> CG.Size ---

@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithItemIdentifier: proc(self: ^AK.ToolbarItem, itemIdentifier: ^NS.String) -> ^AK.ToolbarItem,
+    initWithItemIdentifier: proc(self: ^AK.ToolbarItem, itemIdentifier: ^NS.String) -> instancetype,
     validate: proc(self: ^AK.ToolbarItem),
     itemIdentifier: proc(self: ^AK.ToolbarItem) -> ^NS.String,
     toolbar: proc(self: ^AK.ToolbarItem) -> ^AK.Toolbar,
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithItemIdentifier != nil {
-        initWithItemIdentifier :: proc "c" (self: ^AK.ToolbarItem, _: SEL, itemIdentifier: ^NS.String) -> ^AK.ToolbarItem {
+        initWithItemIdentifier :: proc "c" (self: ^AK.ToolbarItem, _: SEL, itemIdentifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

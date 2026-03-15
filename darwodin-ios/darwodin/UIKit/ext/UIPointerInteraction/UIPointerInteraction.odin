@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^UI.PointerInteraction, delegate: ^UI.PointerInteractionDelegate) -> ^UI.PointerInteraction,
+    initWithDelegate: proc(self: ^UI.PointerInteraction, delegate: ^UI.PointerInteractionDelegate) -> instancetype,
     invalidate: proc(self: ^UI.PointerInteraction),
     delegate: proc(self: ^UI.PointerInteraction) -> ^UI.PointerInteractionDelegate,
     isEnabled: proc(self: ^UI.PointerInteraction) -> bool,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.PointerInteraction, _: SEL, delegate: ^UI.PointerInteractionDelegate) -> ^UI.PointerInteraction {
+        initWithDelegate :: proc "c" (self: ^UI.PointerInteraction, _: SEL, delegate: ^UI.PointerInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

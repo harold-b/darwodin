@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.BarButtonItemAppearance) -> ^UI.BarButtonItemAppearance,
-    initWithStyle: proc(self: ^UI.BarButtonItemAppearance, style: UI.BarButtonItemStyle) -> ^UI.BarButtonItemAppearance,
-    initWithCoder: proc(self: ^UI.BarButtonItemAppearance, coder: ^NS.Coder) -> ^UI.BarButtonItemAppearance,
-    copy: proc(self: ^UI.BarButtonItemAppearance) -> ^UI.BarButtonItemAppearance,
+    init: proc(self: ^UI.BarButtonItemAppearance) -> instancetype,
+    initWithStyle: proc(self: ^UI.BarButtonItemAppearance, style: UI.BarButtonItemStyle) -> instancetype,
+    initWithCoder: proc(self: ^UI.BarButtonItemAppearance, coder: ^NS.Coder) -> instancetype,
+    copy: proc(self: ^UI.BarButtonItemAppearance) -> instancetype,
     configureWithDefaultForStyle: proc(self: ^UI.BarButtonItemAppearance, style: UI.BarButtonItemStyle),
     normal: proc(self: ^UI.BarButtonItemAppearance) -> ^UI.BarButtonItemStateAppearance,
     highlighted: proc(self: ^UI.BarButtonItemAppearance) -> ^UI.BarButtonItemStateAppearance,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.BarButtonItemAppearance, _: SEL) -> ^UI.BarButtonItemAppearance {
+        init :: proc "c" (self: ^UI.BarButtonItemAppearance, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithStyle != nil {
-        initWithStyle :: proc "c" (self: ^UI.BarButtonItemAppearance, _: SEL, style: UI.BarButtonItemStyle) -> ^UI.BarButtonItemAppearance {
+        initWithStyle :: proc "c" (self: ^UI.BarButtonItemAppearance, _: SEL, style: UI.BarButtonItemStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithStyle:"), auto_cast initWithStyle, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.BarButtonItemAppearance, _: SEL, coder: ^NS.Coder) -> ^UI.BarButtonItemAppearance {
+        initWithCoder :: proc "c" (self: ^UI.BarButtonItemAppearance, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.copy != nil {
-        copy :: proc "c" (self: ^UI.BarButtonItemAppearance, _: SEL) -> ^UI.BarButtonItemAppearance {
+        copy :: proc "c" (self: ^UI.BarButtonItemAppearance, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

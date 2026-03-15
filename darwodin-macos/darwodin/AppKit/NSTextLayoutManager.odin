@@ -27,10 +27,10 @@ TextLayoutManager :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextLayoutManager, objc_selector="init", objc_name="init")
-    TextLayoutManager_init :: proc(self: ^TextLayoutManager) -> ^TextLayoutManager ---
+    TextLayoutManager_init :: proc(self: ^TextLayoutManager) -> instancetype ---
 
     @(objc_type=TextLayoutManager, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TextLayoutManager_initWithCoder :: proc(self: ^TextLayoutManager, coder: ^NS.Coder) -> ^TextLayoutManager ---
+    TextLayoutManager_initWithCoder :: proc(self: ^TextLayoutManager, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextLayoutManager, objc_selector="replaceTextContentManager:", objc_name="replaceTextContentManager")
     TextLayoutManager_replaceTextContentManager :: proc(self: ^TextLayoutManager, textContentManager: ^TextContentManager) ---

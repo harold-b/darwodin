@@ -28,14 +28,14 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSessionDelegate: proc(self: ^UI.FindInteraction, sessionDelegate: ^UI.FindInteractionDelegate) -> ^UI.FindInteraction,
+    initWithSessionDelegate: proc(self: ^UI.FindInteraction, sessionDelegate: ^UI.FindInteractionDelegate) -> instancetype,
     presentFindNavigatorShowingReplace: proc(self: ^UI.FindInteraction, showingReplace: bool),
     dismissFindNavigator: proc(self: ^UI.FindInteraction),
     findNext: proc(self: ^UI.FindInteraction),
     findPrevious: proc(self: ^UI.FindInteraction),
     updateResultCount: proc(self: ^UI.FindInteraction),
     new: proc() -> ^UI.FindInteraction,
-    init: proc(self: ^UI.FindInteraction) -> ^UI.FindInteraction,
+    init: proc(self: ^UI.FindInteraction) -> instancetype,
     isFindNavigatorVisible: proc(self: ^UI.FindInteraction) -> bool,
     activeFindSession: proc(self: ^UI.FindInteraction) -> ^UI.FindSession,
     searchText: proc(self: ^UI.FindInteraction) -> ^NS.String,
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSessionDelegate != nil {
-        initWithSessionDelegate :: proc "c" (self: ^UI.FindInteraction, _: SEL, sessionDelegate: ^UI.FindInteractionDelegate) -> ^UI.FindInteraction {
+        initWithSessionDelegate :: proc "c" (self: ^UI.FindInteraction, _: SEL, sessionDelegate: ^UI.FindInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.FindInteraction, _: SEL) -> ^UI.FindInteraction {
+        init :: proc "c" (self: ^UI.FindInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

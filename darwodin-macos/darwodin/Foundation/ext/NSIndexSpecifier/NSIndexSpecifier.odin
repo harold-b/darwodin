@@ -26,7 +26,7 @@ import "../NSScriptObjectSpecifier"
 
 VTable :: struct {
     super: NSScriptObjectSpecifier.VTable,
-    initWithContainerClassDescription: proc(self: ^NS.IndexSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, index: NS.Integer) -> ^NS.IndexSpecifier,
+    initWithContainerClassDescription: proc(self: ^NS.IndexSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, index: NS.Integer) -> instancetype,
     index: proc(self: ^NS.IndexSpecifier) -> NS.Integer,
     setIndex: proc(self: ^NS.IndexSpecifier, index: NS.Integer),
 }
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScriptObjectSpecifier.extend(cls, &vt.super)
 
     if vt.initWithContainerClassDescription != nil {
-        initWithContainerClassDescription :: proc "c" (self: ^NS.IndexSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, index: NS.Integer) -> ^NS.IndexSpecifier {
+        initWithContainerClassDescription :: proc "c" (self: ^NS.IndexSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, index: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

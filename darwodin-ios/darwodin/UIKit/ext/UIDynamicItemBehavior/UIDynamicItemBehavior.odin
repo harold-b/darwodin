@@ -28,7 +28,7 @@ import "../UIDynamicBehavior"
 
 VTable :: struct {
     super: UIDynamicBehavior.VTable,
-    initWithItems: proc(self: ^UI.DynamicItemBehavior, items: ^NS.Array) -> ^UI.DynamicItemBehavior,
+    initWithItems: proc(self: ^UI.DynamicItemBehavior, items: ^NS.Array) -> instancetype,
     addItem: proc(self: ^UI.DynamicItemBehavior, item: ^UI.DynamicItem),
     removeItem: proc(self: ^UI.DynamicItemBehavior, item: ^UI.DynamicItem),
     addLinearVelocity: proc(self: ^UI.DynamicItemBehavior, velocity: CG.Point, item: ^UI.DynamicItem),
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIDynamicBehavior.extend(cls, &vt.super)
 
     if vt.initWithItems != nil {
-        initWithItems :: proc "c" (self: ^UI.DynamicItemBehavior, _: SEL, items: ^NS.Array) -> ^UI.DynamicItemBehavior {
+        initWithItems :: proc "c" (self: ^UI.DynamicItemBehavior, _: SEL, items: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

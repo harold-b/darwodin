@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    customItemWithFrame_: proc(frame: CG.Rect) -> ^UI.NSCollectionLayoutGroupCustomItem,
-    customItemWithFrame_zIndex: proc(frame: CG.Rect, zIndex: NS.Integer) -> ^UI.NSCollectionLayoutGroupCustomItem,
-    init: proc(self: ^UI.NSCollectionLayoutGroupCustomItem) -> ^UI.NSCollectionLayoutGroupCustomItem,
+    customItemWithFrame_: proc(frame: CG.Rect) -> instancetype,
+    customItemWithFrame_zIndex: proc(frame: CG.Rect, zIndex: NS.Integer) -> instancetype,
+    init: proc(self: ^UI.NSCollectionLayoutGroupCustomItem) -> instancetype,
     new: proc() -> ^UI.NSCollectionLayoutGroupCustomItem,
     frame: proc(self: ^UI.NSCollectionLayoutGroupCustomItem) -> CG.Rect,
     zIndex: proc(self: ^UI.NSCollectionLayoutGroupCustomItem) -> NS.Integer,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.customItemWithFrame_ != nil {
-        customItemWithFrame_ :: proc "c" (self: Class, _: SEL, frame: CG.Rect) -> ^UI.NSCollectionLayoutGroupCustomItem {
+        customItemWithFrame_ :: proc "c" (self: Class, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("customItemWithFrame:"), auto_cast customItemWithFrame_, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.customItemWithFrame_zIndex != nil {
-        customItemWithFrame_zIndex :: proc "c" (self: Class, _: SEL, frame: CG.Rect, zIndex: NS.Integer) -> ^UI.NSCollectionLayoutGroupCustomItem {
+        customItemWithFrame_zIndex :: proc "c" (self: Class, _: SEL, frame: CG.Rect, zIndex: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("customItemWithFrame:zIndex:"), auto_cast customItemWithFrame_zIndex, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}l") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSCollectionLayoutGroupCustomItem, _: SEL) -> ^UI.NSCollectionLayoutGroupCustomItem {
+        init :: proc "c" (self: ^UI.NSCollectionLayoutGroupCustomItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

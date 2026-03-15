@@ -29,7 +29,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.UpdateActionPhase,
-    init: proc(self: ^UI.UpdateActionPhase) -> ^UI.UpdateActionPhase,
+    init: proc(self: ^UI.UpdateActionPhase) -> instancetype,
     afterUpdateScheduled: proc() -> ^UI.UpdateActionPhase,
     beforeEventDispatch: proc() -> ^UI.UpdateActionPhase,
     afterEventDispatch: proc() -> ^UI.UpdateActionPhase,
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.UpdateActionPhase, _: SEL) -> ^UI.UpdateActionPhase {
+        init :: proc "c" (self: ^UI.UpdateActionPhase, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

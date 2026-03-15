@@ -23,7 +23,7 @@ ExposureBiasRange :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExposureBiasRange, objc_selector="init", objc_name="init")
-    ExposureBiasRange_init :: proc(self: ^ExposureBiasRange) -> ^ExposureBiasRange ---
+    ExposureBiasRange_init :: proc(self: ^ExposureBiasRange) -> instancetype ---
 
     @(objc_type=ExposureBiasRange, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ExposureBiasRange_new :: proc() -> ^ExposureBiasRange ---

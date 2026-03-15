@@ -27,7 +27,7 @@ Drawer :: struct { using _: Responder,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Drawer, objc_selector="initWithContentSize:preferredEdge:", objc_name="initWithContentSize")
-    Drawer_initWithContentSize :: proc(self: ^Drawer, contentSize: NS.Size, edge: NS.RectEdge) -> ^Drawer ---
+    Drawer_initWithContentSize :: proc(self: ^Drawer, contentSize: NS.Size, edge: NS.RectEdge) -> instancetype ---
 
     @(objc_type=Drawer, objc_selector="open", objc_name="open_")
     Drawer_open_ :: proc(self: ^Drawer) ---

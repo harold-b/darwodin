@@ -24,13 +24,13 @@ NSCollectionLayoutSupplementaryItem :: struct { using _: NSCollectionLayoutItem,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSCollectionLayoutSupplementaryItem, objc_selector="supplementaryItemWithLayoutSize:elementKind:containerAnchor:", objc_name="supplementaryItemWithLayoutSize_elementKind_containerAnchor", objc_is_class_method=true)
-    NSCollectionLayoutSupplementaryItem_supplementaryItemWithLayoutSize_elementKind_containerAnchor :: proc(layoutSize: ^NSCollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^NSCollectionLayoutAnchor) -> ^NSCollectionLayoutSupplementaryItem ---
+    NSCollectionLayoutSupplementaryItem_supplementaryItemWithLayoutSize_elementKind_containerAnchor :: proc(layoutSize: ^NSCollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^NSCollectionLayoutAnchor) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSupplementaryItem, objc_selector="supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:", objc_name="supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor", objc_is_class_method=true)
-    NSCollectionLayoutSupplementaryItem_supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor :: proc(layoutSize: ^NSCollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^NSCollectionLayoutAnchor, itemAnchor: ^NSCollectionLayoutAnchor) -> ^NSCollectionLayoutSupplementaryItem ---
+    NSCollectionLayoutSupplementaryItem_supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor :: proc(layoutSize: ^NSCollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^NSCollectionLayoutAnchor, itemAnchor: ^NSCollectionLayoutAnchor) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSupplementaryItem, objc_selector="init", objc_name="init")
-    NSCollectionLayoutSupplementaryItem_init :: proc(self: ^NSCollectionLayoutSupplementaryItem) -> ^NSCollectionLayoutSupplementaryItem ---
+    NSCollectionLayoutSupplementaryItem_init :: proc(self: ^NSCollectionLayoutSupplementaryItem) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutSupplementaryItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSCollectionLayoutSupplementaryItem_new :: proc() -> ^NSCollectionLayoutSupplementaryItem ---

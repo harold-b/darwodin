@@ -30,9 +30,9 @@ import "../NSTouchBarItem"
 
 VTable :: struct {
     super: NSTouchBarItem.VTable,
-    buttonTouchBarItemWithIdentifier_title_target_action: proc(identifier: ^NS.String, title: ^NS.String, target: id, action: SEL) -> ^AK.ButtonTouchBarItem,
-    buttonTouchBarItemWithIdentifier_image_target_action: proc(identifier: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> ^AK.ButtonTouchBarItem,
-    buttonTouchBarItemWithIdentifier_title_image_target_action: proc(identifier: ^NS.String, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> ^AK.ButtonTouchBarItem,
+    buttonTouchBarItemWithIdentifier_title_target_action: proc(identifier: ^NS.String, title: ^NS.String, target: id, action: SEL) -> instancetype,
+    buttonTouchBarItemWithIdentifier_image_target_action: proc(identifier: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype,
+    buttonTouchBarItemWithIdentifier_title_image_target_action: proc(identifier: ^NS.String, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype,
     title: proc(self: ^AK.ButtonTouchBarItem) -> ^NS.String,
     setTitle: proc(self: ^AK.ButtonTouchBarItem, title: ^NS.String),
     image: proc(self: ^AK.ButtonTouchBarItem) -> ^NS.Image,
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTouchBarItem.extend(cls, &vt.super)
 
     if vt.buttonTouchBarItemWithIdentifier_title_target_action != nil {
-        buttonTouchBarItemWithIdentifier_title_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, title: ^NS.String, target: id, action: SEL) -> ^AK.ButtonTouchBarItem {
+        buttonTouchBarItemWithIdentifier_title_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, title: ^NS.String, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonTouchBarItemWithIdentifier:title:target:action:"), auto_cast buttonTouchBarItemWithIdentifier_title_target_action, "@#:@@@:") do panic("Failed to register objC method.")
     }
     if vt.buttonTouchBarItemWithIdentifier_image_target_action != nil {
-        buttonTouchBarItemWithIdentifier_image_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> ^AK.ButtonTouchBarItem {
+        buttonTouchBarItemWithIdentifier_image_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonTouchBarItemWithIdentifier:image:target:action:"), auto_cast buttonTouchBarItemWithIdentifier_image_target_action, "@#:@@@:") do panic("Failed to register objC method.")
     }
     if vt.buttonTouchBarItemWithIdentifier_title_image_target_action != nil {
-        buttonTouchBarItemWithIdentifier_title_image_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> ^AK.ButtonTouchBarItem {
+        buttonTouchBarItemWithIdentifier_title_image_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

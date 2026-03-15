@@ -26,8 +26,8 @@ import "../NSUnitConverter"
 
 VTable :: struct {
     super: NSUnitConverter.VTable,
-    initWithCoefficient_: proc(self: ^NS.UnitConverterLinear, coefficient: cffi.double) -> ^NS.UnitConverterLinear,
-    initWithCoefficient_constant: proc(self: ^NS.UnitConverterLinear, coefficient: cffi.double, constant: cffi.double) -> ^NS.UnitConverterLinear,
+    initWithCoefficient_: proc(self: ^NS.UnitConverterLinear, coefficient: cffi.double) -> instancetype,
+    initWithCoefficient_constant: proc(self: ^NS.UnitConverterLinear, coefficient: cffi.double, constant: cffi.double) -> instancetype,
     coefficient: proc(self: ^NS.UnitConverterLinear) -> cffi.double,
     constant: proc(self: ^NS.UnitConverterLinear) -> cffi.double,
 }
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSUnitConverter.extend(cls, &vt.super)
 
     if vt.initWithCoefficient_ != nil {
-        initWithCoefficient_ :: proc "c" (self: ^NS.UnitConverterLinear, _: SEL, coefficient: cffi.double) -> ^NS.UnitConverterLinear {
+        initWithCoefficient_ :: proc "c" (self: ^NS.UnitConverterLinear, _: SEL, coefficient: cffi.double) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoefficient:"), auto_cast initWithCoefficient_, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.initWithCoefficient_constant != nil {
-        initWithCoefficient_constant :: proc "c" (self: ^NS.UnitConverterLinear, _: SEL, coefficient: cffi.double, constant: cffi.double) -> ^NS.UnitConverterLinear {
+        initWithCoefficient_constant :: proc "c" (self: ^NS.UnitConverterLinear, _: SEL, coefficient: cffi.double, constant: cffi.double) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

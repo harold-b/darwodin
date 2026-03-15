@@ -28,11 +28,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    activityItemsConfigurationWithObjects: proc(objects: ^NS.Array) -> ^UI.ActivityItemsConfiguration,
-    activityItemsConfigurationWithItemProviders: proc(itemProviders: ^NS.Array) -> ^UI.ActivityItemsConfiguration,
-    initWithObjects: proc(self: ^UI.ActivityItemsConfiguration, objects: ^NS.Array) -> ^UI.ActivityItemsConfiguration,
-    initWithItemProviders: proc(self: ^UI.ActivityItemsConfiguration, itemProviders: ^NS.Array) -> ^UI.ActivityItemsConfiguration,
-    init: proc(self: ^UI.ActivityItemsConfiguration) -> ^UI.ActivityItemsConfiguration,
+    activityItemsConfigurationWithObjects: proc(objects: ^NS.Array) -> instancetype,
+    activityItemsConfigurationWithItemProviders: proc(itemProviders: ^NS.Array) -> instancetype,
+    initWithObjects: proc(self: ^UI.ActivityItemsConfiguration, objects: ^NS.Array) -> instancetype,
+    initWithItemProviders: proc(self: ^UI.ActivityItemsConfiguration, itemProviders: ^NS.Array) -> instancetype,
+    init: proc(self: ^UI.ActivityItemsConfiguration) -> instancetype,
     new: proc() -> ^UI.ActivityItemsConfiguration,
     localObject: proc(self: ^UI.ActivityItemsConfiguration) -> id,
     setLocalObject: proc(self: ^UI.ActivityItemsConfiguration, localObject: id),
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.activityItemsConfigurationWithObjects != nil {
-        activityItemsConfigurationWithObjects :: proc "c" (self: Class, _: SEL, objects: ^NS.Array) -> ^UI.ActivityItemsConfiguration {
+        activityItemsConfigurationWithObjects :: proc "c" (self: Class, _: SEL, objects: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("activityItemsConfigurationWithObjects:"), auto_cast activityItemsConfigurationWithObjects, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.activityItemsConfigurationWithItemProviders != nil {
-        activityItemsConfigurationWithItemProviders :: proc "c" (self: Class, _: SEL, itemProviders: ^NS.Array) -> ^UI.ActivityItemsConfiguration {
+        activityItemsConfigurationWithItemProviders :: proc "c" (self: Class, _: SEL, itemProviders: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("activityItemsConfigurationWithItemProviders:"), auto_cast activityItemsConfigurationWithItemProviders, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithObjects != nil {
-        initWithObjects :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, objects: ^NS.Array) -> ^UI.ActivityItemsConfiguration {
+        initWithObjects :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, objects: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithObjects:"), auto_cast initWithObjects, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithItemProviders != nil {
-        initWithItemProviders :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, itemProviders: ^NS.Array) -> ^UI.ActivityItemsConfiguration {
+        initWithItemProviders :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL, itemProviders: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItemProviders:"), auto_cast initWithItemProviders, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> ^UI.ActivityItemsConfiguration {
+        init :: proc "c" (self: ^UI.ActivityItemsConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

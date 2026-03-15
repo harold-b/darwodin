@@ -23,7 +23,7 @@ QueuePlayer :: struct { using _: Player, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=QueuePlayer, objc_selector="queuePlayerWithItems:", objc_name="queuePlayerWithItems", objc_is_class_method=true)
-    QueuePlayer_queuePlayerWithItems :: proc(items: ^NS.Array) -> ^QueuePlayer ---
+    QueuePlayer_queuePlayerWithItems :: proc(items: ^NS.Array) -> instancetype ---
 
     @(objc_type=QueuePlayer, objc_selector="initWithItems:", objc_name="initWithItems")
     QueuePlayer_initWithItems :: proc(self: ^QueuePlayer, items: ^NS.Array) -> ^QueuePlayer ---

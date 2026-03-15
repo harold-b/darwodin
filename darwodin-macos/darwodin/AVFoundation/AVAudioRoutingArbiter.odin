@@ -23,7 +23,7 @@ AudioRoutingArbiter :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioRoutingArbiter, objc_selector="init", objc_name="init")
-    AudioRoutingArbiter_init :: proc(self: ^AudioRoutingArbiter) -> ^AudioRoutingArbiter ---
+    AudioRoutingArbiter_init :: proc(self: ^AudioRoutingArbiter) -> instancetype ---
 
     @(objc_type=AudioRoutingArbiter, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AudioRoutingArbiter_new :: proc() -> ^AudioRoutingArbiter ---

@@ -28,13 +28,13 @@ AdaptiveImageGlyph :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AdaptiveImageGlyph, objc_selector="initWithImageContent:", objc_name="initWithImageContent")
-    AdaptiveImageGlyph_initWithImageContent :: proc(self: ^AdaptiveImageGlyph, imageContent: ^NS.Data) -> ^AdaptiveImageGlyph ---
+    AdaptiveImageGlyph_initWithImageContent :: proc(self: ^AdaptiveImageGlyph, imageContent: ^NS.Data) -> instancetype ---
 
     @(objc_type=AdaptiveImageGlyph, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    AdaptiveImageGlyph_initWithCoder :: proc(self: ^AdaptiveImageGlyph, coder: ^NS.Coder) -> ^AdaptiveImageGlyph ---
+    AdaptiveImageGlyph_initWithCoder :: proc(self: ^AdaptiveImageGlyph, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=AdaptiveImageGlyph, objc_selector="init", objc_name="init")
-    AdaptiveImageGlyph_init :: proc(self: ^AdaptiveImageGlyph) -> ^AdaptiveImageGlyph ---
+    AdaptiveImageGlyph_init :: proc(self: ^AdaptiveImageGlyph) -> instancetype ---
 
     @(objc_type=AdaptiveImageGlyph, objc_selector="imageContent", objc_name="imageContent")
     AdaptiveImageGlyph_imageContent :: proc(self: ^AdaptiveImageGlyph) -> ^NS.Data ---

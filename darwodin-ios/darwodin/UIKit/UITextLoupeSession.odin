@@ -22,7 +22,7 @@ TextLoupeSession :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextLoupeSession, objc_selector="beginLoupeSessionAtPoint:fromSelectionWidgetView:inView:", objc_name="beginLoupeSessionAtPoint", objc_is_class_method=true)
-    TextLoupeSession_beginLoupeSessionAtPoint :: proc(point: CG.Point, selectionWidget: ^View, interactionView: ^View) -> ^TextLoupeSession ---
+    TextLoupeSession_beginLoupeSessionAtPoint :: proc(point: CG.Point, selectionWidget: ^View, interactionView: ^View) -> instancetype ---
 
     @(objc_type=TextLoupeSession, objc_selector="moveToPoint:withCaretRect:trackingCaret:", objc_name="moveToPoint")
     TextLoupeSession_moveToPoint :: proc(self: ^TextLoupeSession, point: CG.Point, caretRect: CG.Rect, tracksCaret: bool) ---

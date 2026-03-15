@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.AttributedStringMarkdownParsingOptions) -> ^NS.AttributedStringMarkdownParsingOptions,
+    init: proc(self: ^NS.AttributedStringMarkdownParsingOptions) -> instancetype,
     allowsExtendedAttributes: proc(self: ^NS.AttributedStringMarkdownParsingOptions) -> bool,
     setAllowsExtendedAttributes: proc(self: ^NS.AttributedStringMarkdownParsingOptions, allowsExtendedAttributes: bool),
     interpretedSyntax: proc(self: ^NS.AttributedStringMarkdownParsingOptions) -> NS.AttributedStringMarkdownInterpretedSyntax,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.AttributedStringMarkdownParsingOptions, _: SEL) -> ^NS.AttributedStringMarkdownParsingOptions {
+        init :: proc "c" (self: ^NS.AttributedStringMarkdownParsingOptions, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

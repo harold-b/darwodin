@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithPrimaryString: proc(self: ^AK.TextAlternatives, primaryString: ^NS.String, alternativeStrings: ^NS.Array) -> ^AK.TextAlternatives,
+    initWithPrimaryString: proc(self: ^AK.TextAlternatives, primaryString: ^NS.String, alternativeStrings: ^NS.Array) -> instancetype,
     noteSelectedAlternativeString: proc(self: ^AK.TextAlternatives, alternativeString: ^NS.String),
     primaryString: proc(self: ^AK.TextAlternatives) -> ^NS.String,
     alternativeStrings: proc(self: ^AK.TextAlternatives) -> ^NS.Array,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithPrimaryString != nil {
-        initWithPrimaryString :: proc "c" (self: ^AK.TextAlternatives, _: SEL, primaryString: ^NS.String, alternativeStrings: ^NS.Array) -> ^AK.TextAlternatives {
+        initWithPrimaryString :: proc "c" (self: ^AK.TextAlternatives, _: SEL, primaryString: ^NS.String, alternativeStrings: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

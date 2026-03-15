@@ -30,9 +30,9 @@ import "../NSCell"
 
 VTable :: struct {
     super: NSCell.VTable,
-    initTextCell: proc(self: ^AK.BrowserCell, string: ^NS.String) -> ^AK.BrowserCell,
-    initImageCell: proc(self: ^AK.BrowserCell, image: ^NS.Image) -> ^AK.BrowserCell,
-    initWithCoder: proc(self: ^AK.BrowserCell, coder: ^NS.Coder) -> ^AK.BrowserCell,
+    initTextCell: proc(self: ^AK.BrowserCell, string: ^NS.String) -> instancetype,
+    initImageCell: proc(self: ^AK.BrowserCell, image: ^NS.Image) -> instancetype,
+    initWithCoder: proc(self: ^AK.BrowserCell, coder: ^NS.Coder) -> instancetype,
     highlightColorInView: proc(self: ^AK.BrowserCell, controlView: ^AK.View) -> ^AK.Color,
     reset: proc(self: ^AK.BrowserCell),
     set: proc(self: ^AK.BrowserCell),
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.BrowserCell, _: SEL, string: ^NS.String) -> ^AK.BrowserCell {
+        initTextCell :: proc "c" (self: ^AK.BrowserCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.BrowserCell, _: SEL, image: ^NS.Image) -> ^AK.BrowserCell {
+        initImageCell :: proc "c" (self: ^AK.BrowserCell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initImageCell:"), auto_cast initImageCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.BrowserCell, _: SEL, coder: ^NS.Coder) -> ^AK.BrowserCell {
+        initWithCoder :: proc "c" (self: ^AK.BrowserCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

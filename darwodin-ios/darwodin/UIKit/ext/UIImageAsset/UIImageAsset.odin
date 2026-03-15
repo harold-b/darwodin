@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.ImageAsset) -> ^UI.ImageAsset,
-    initWithCoder: proc(self: ^UI.ImageAsset, coder: ^NS.Coder) -> ^UI.ImageAsset,
+    init: proc(self: ^UI.ImageAsset) -> instancetype,
+    initWithCoder: proc(self: ^UI.ImageAsset, coder: ^NS.Coder) -> instancetype,
     imageWithConfiguration: proc(self: ^UI.ImageAsset, configuration: ^UI.ImageConfiguration) -> ^UI.Image,
     registerImage_withConfiguration: proc(self: ^UI.ImageAsset, image: ^UI.Image, configuration: ^UI.ImageConfiguration),
     unregisterImageWithConfiguration: proc(self: ^UI.ImageAsset, configuration: ^UI.ImageConfiguration),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ImageAsset, _: SEL) -> ^UI.ImageAsset {
+        init :: proc "c" (self: ^UI.ImageAsset, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.ImageAsset, _: SEL, coder: ^NS.Coder) -> ^UI.ImageAsset {
+        initWithCoder :: proc "c" (self: ^UI.ImageAsset, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -26,7 +26,7 @@ import "../NSURLSessionTask"
 
 VTable :: struct {
     super: NSURLSessionTask.VTable,
-    init: proc(self: ^NS.URLSessionDataTask) -> ^NS.URLSessionDataTask,
+    init: proc(self: ^NS.URLSessionDataTask) -> instancetype,
     new: proc() -> ^NS.URLSessionDataTask,
 }
 
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSURLSessionTask.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSessionDataTask, _: SEL) -> ^NS.URLSessionDataTask {
+        init :: proc "c" (self: ^NS.URLSessionDataTask, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

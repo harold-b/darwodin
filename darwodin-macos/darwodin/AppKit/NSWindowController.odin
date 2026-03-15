@@ -26,19 +26,19 @@ WindowController :: struct { using _: Responder,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowController, objc_selector="initWithWindow:", objc_name="initWithWindow")
-    WindowController_initWithWindow :: proc(self: ^WindowController, window: ^Window) -> ^WindowController ---
+    WindowController_initWithWindow :: proc(self: ^WindowController, window: ^Window) -> instancetype ---
 
     @(objc_type=WindowController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    WindowController_initWithCoder :: proc(self: ^WindowController, coder: ^NS.Coder) -> ^WindowController ---
+    WindowController_initWithCoder :: proc(self: ^WindowController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=WindowController, objc_selector="initWithWindowNibName:", objc_name="initWithWindowNibName_")
-    WindowController_initWithWindowNibName_ :: proc(self: ^WindowController, windowNibName: ^NS.String) -> ^WindowController ---
+    WindowController_initWithWindowNibName_ :: proc(self: ^WindowController, windowNibName: ^NS.String) -> instancetype ---
 
     @(objc_type=WindowController, objc_selector="initWithWindowNibName:owner:", objc_name="initWithWindowNibName_owner")
-    WindowController_initWithWindowNibName_owner :: proc(self: ^WindowController, windowNibName: ^NS.String, owner: id) -> ^WindowController ---
+    WindowController_initWithWindowNibName_owner :: proc(self: ^WindowController, windowNibName: ^NS.String, owner: id) -> instancetype ---
 
     @(objc_type=WindowController, objc_selector="initWithWindowNibPath:owner:", objc_name="initWithWindowNibPath")
-    WindowController_initWithWindowNibPath :: proc(self: ^WindowController, windowNibPath: ^NS.String, owner: id) -> ^WindowController ---
+    WindowController_initWithWindowNibPath :: proc(self: ^WindowController, windowNibPath: ^NS.String, owner: id) -> instancetype ---
 
     @(objc_type=WindowController, objc_selector="setDocumentEdited:", objc_name="setDocumentEdited")
     WindowController_setDocumentEdited :: proc(self: ^WindowController, dirtyFlag: bool) ---

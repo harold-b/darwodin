@@ -30,7 +30,7 @@ VTable :: struct {
     receiveMessageWithCompletionHandler: proc(self: ^NS.URLSessionWebSocketTask, completionHandler: ^Objc_Block(proc "c" (message: ^NS.URLSessionWebSocketMessage, error: ^NS.Error))),
     sendPingWithPongReceiveHandler: proc(self: ^NS.URLSessionWebSocketTask, pongReceiveHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     cancelWithCloseCode: proc(self: ^NS.URLSessionWebSocketTask, closeCode: NS.URLSessionWebSocketCloseCode, reason: ^NS.Data),
-    init: proc(self: ^NS.URLSessionWebSocketTask) -> ^NS.URLSessionWebSocketTask,
+    init: proc(self: ^NS.URLSessionWebSocketTask) -> instancetype,
     new: proc() -> ^NS.URLSessionWebSocketTask,
     maximumMessageSize: proc(self: ^NS.URLSessionWebSocketTask) -> NS.Integer,
     setMaximumMessageSize: proc(self: ^NS.URLSessionWebSocketTask, maximumMessageSize: NS.Integer),
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancelWithCloseCode:reason:"), auto_cast cancelWithCloseCode, "v@:l@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSessionWebSocketTask, _: SEL) -> ^NS.URLSessionWebSocketTask {
+        init :: proc "c" (self: ^NS.URLSessionWebSocketTask, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -24,19 +24,19 @@ Command :: struct { using _: MenuElement,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Command, objc_selector="commandWithTitle:image:action:propertyList:", objc_name="commandWithTitle_image_action_propertyList", objc_is_class_method=true)
-    Command_commandWithTitle_image_action_propertyList :: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id) -> ^Command ---
+    Command_commandWithTitle_image_action_propertyList :: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id) -> instancetype ---
 
     @(objc_type=Command, objc_selector="commandWithTitle:image:action:propertyList:alternates:", objc_name="commandWithTitle_image_action_propertyList_alternates", objc_is_class_method=true)
-    Command_commandWithTitle_image_action_propertyList_alternates :: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> ^Command ---
+    Command_commandWithTitle_image_action_propertyList_alternates :: proc(title: ^NS.String, image: ^Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> instancetype ---
 
     @(objc_type=Command, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Command_new :: proc() -> ^Command ---
 
     @(objc_type=Command, objc_selector="init", objc_name="init")
-    Command_init :: proc(self: ^Command) -> ^Command ---
+    Command_init :: proc(self: ^Command) -> instancetype ---
 
     @(objc_type=Command, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Command_initWithCoder :: proc(self: ^Command, coder: ^NS.Coder) -> ^Command ---
+    Command_initWithCoder :: proc(self: ^Command, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Command, objc_selector="title", objc_name="title")
     Command_title :: proc(self: ^Command) -> ^NS.String ---

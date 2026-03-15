@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.TextContentManager) -> ^AK.TextContentManager,
-    initWithCoder: proc(self: ^AK.TextContentManager, coder: ^NS.Coder) -> ^AK.TextContentManager,
+    init: proc(self: ^AK.TextContentManager) -> instancetype,
+    initWithCoder: proc(self: ^AK.TextContentManager, coder: ^NS.Coder) -> instancetype,
     addTextLayoutManager: proc(self: ^AK.TextContentManager, textLayoutManager: ^AK.TextLayoutManager),
     removeTextLayoutManager: proc(self: ^AK.TextContentManager, textLayoutManager: ^AK.TextLayoutManager),
     synchronizeTextLayoutManagers: proc(self: ^AK.TextContentManager, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextContentManager, _: SEL) -> ^AK.TextContentManager {
+        init :: proc "c" (self: ^AK.TextContentManager, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextContentManager, _: SEL, coder: ^NS.Coder) -> ^AK.TextContentManager {
+        initWithCoder :: proc "c" (self: ^AK.TextContentManager, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

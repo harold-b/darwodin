@@ -25,13 +25,13 @@ TableViewController :: struct { using _: ViewController,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TableViewController, objc_selector="initWithStyle:", objc_name="initWithStyle")
-    TableViewController_initWithStyle :: proc(self: ^TableViewController, style: TableViewStyle) -> ^TableViewController ---
+    TableViewController_initWithStyle :: proc(self: ^TableViewController, style: TableViewStyle) -> instancetype ---
 
     @(objc_type=TableViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    TableViewController_initWithNibName :: proc(self: ^TableViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^TableViewController ---
+    TableViewController_initWithNibName :: proc(self: ^TableViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=TableViewController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TableViewController_initWithCoder :: proc(self: ^TableViewController, coder: ^NS.Coder) -> ^TableViewController ---
+    TableViewController_initWithCoder :: proc(self: ^TableViewController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TableViewController, objc_selector="tableView", objc_name="tableView")
     TableViewController_tableView :: proc(self: ^TableViewController) -> ^TableView ---

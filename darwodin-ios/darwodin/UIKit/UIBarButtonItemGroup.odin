@@ -24,10 +24,10 @@ BarButtonItemGroup :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BarButtonItemGroup, objc_selector="initWithBarButtonItems:representativeItem:", objc_name="initWithBarButtonItems")
-    BarButtonItemGroup_initWithBarButtonItems :: proc(self: ^BarButtonItemGroup, barButtonItems: ^NS.Array, representativeItem: ^BarButtonItem) -> ^BarButtonItemGroup ---
+    BarButtonItemGroup_initWithBarButtonItems :: proc(self: ^BarButtonItemGroup, barButtonItems: ^NS.Array, representativeItem: ^BarButtonItem) -> instancetype ---
 
     @(objc_type=BarButtonItemGroup, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    BarButtonItemGroup_initWithCoder :: proc(self: ^BarButtonItemGroup, coder: ^NS.Coder) -> ^BarButtonItemGroup ---
+    BarButtonItemGroup_initWithCoder :: proc(self: ^BarButtonItemGroup, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=BarButtonItemGroup, objc_selector="fixedGroupWithRepresentativeItem:items:", objc_name="fixedGroupWithRepresentativeItem", objc_is_class_method=true)
     BarButtonItemGroup_fixedGroupWithRepresentativeItem :: proc(representativeItem: ^BarButtonItem, items: ^NS.Array) -> ^BarButtonItemGroup ---

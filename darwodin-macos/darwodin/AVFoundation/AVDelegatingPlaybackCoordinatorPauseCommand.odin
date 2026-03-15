@@ -23,7 +23,7 @@ DelegatingPlaybackCoordinatorPauseCommand :: struct { using _: DelegatingPlaybac
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="init", objc_name="init")
-    DelegatingPlaybackCoordinatorPauseCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> ^DelegatingPlaybackCoordinatorPauseCommand ---
+    DelegatingPlaybackCoordinatorPauseCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> instancetype ---
 
     @(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DelegatingPlaybackCoordinatorPauseCommand_new :: proc() -> ^DelegatingPlaybackCoordinatorPauseCommand ---

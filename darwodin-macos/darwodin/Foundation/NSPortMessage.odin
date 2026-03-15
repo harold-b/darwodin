@@ -20,7 +20,7 @@ PortMessage :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PortMessage, objc_selector="initWithSendPort:receivePort:components:", objc_name="initWithSendPort")
-    PortMessage_initWithSendPort :: proc(self: ^PortMessage, sendPort: ^Port, replyPort: ^Port, components: ^Array) -> ^PortMessage ---
+    PortMessage_initWithSendPort :: proc(self: ^PortMessage, sendPort: ^Port, replyPort: ^Port, components: ^Array) -> instancetype ---
 
     @(objc_type=PortMessage, objc_selector="sendBeforeDate:", objc_name="sendBeforeDate")
     PortMessage_sendBeforeDate :: proc(self: ^PortMessage, date: ^Date) -> bool ---

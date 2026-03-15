@@ -24,10 +24,10 @@ ImageAsset :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ImageAsset, objc_selector="init", objc_name="init")
-    ImageAsset_init :: proc(self: ^ImageAsset) -> ^ImageAsset ---
+    ImageAsset_init :: proc(self: ^ImageAsset) -> instancetype ---
 
     @(objc_type=ImageAsset, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ImageAsset_initWithCoder :: proc(self: ^ImageAsset, coder: ^NS.Coder) -> ^ImageAsset ---
+    ImageAsset_initWithCoder :: proc(self: ^ImageAsset, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ImageAsset, objc_selector="imageWithConfiguration:", objc_name="imageWithConfiguration")
     ImageAsset_imageWithConfiguration :: proc(self: ^ImageAsset, configuration: ^ImageConfiguration) -> ^Image ---

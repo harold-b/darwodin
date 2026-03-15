@@ -23,22 +23,22 @@ PlayerLooper :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerLooper, objc_selector="init", objc_name="init")
-    PlayerLooper_init :: proc(self: ^PlayerLooper) -> ^PlayerLooper ---
+    PlayerLooper_init :: proc(self: ^PlayerLooper) -> instancetype ---
 
     @(objc_type=PlayerLooper, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PlayerLooper_new :: proc() -> ^PlayerLooper ---
 
     @(objc_type=PlayerLooper, objc_selector="playerLooperWithPlayer:templateItem:timeRange:", objc_name="playerLooperWithPlayer_templateItem_timeRange", objc_is_class_method=true)
-    PlayerLooper_playerLooperWithPlayer_templateItem_timeRange :: proc(player: ^QueuePlayer, itemToLoop: ^PlayerItem, loopRange: CM.TimeRange) -> ^PlayerLooper ---
+    PlayerLooper_playerLooperWithPlayer_templateItem_timeRange :: proc(player: ^QueuePlayer, itemToLoop: ^PlayerItem, loopRange: CM.TimeRange) -> instancetype ---
 
     @(objc_type=PlayerLooper, objc_selector="playerLooperWithPlayer:templateItem:", objc_name="playerLooperWithPlayer_templateItem", objc_is_class_method=true)
-    PlayerLooper_playerLooperWithPlayer_templateItem :: proc(player: ^QueuePlayer, itemToLoop: ^PlayerItem) -> ^PlayerLooper ---
+    PlayerLooper_playerLooperWithPlayer_templateItem :: proc(player: ^QueuePlayer, itemToLoop: ^PlayerItem) -> instancetype ---
 
     @(objc_type=PlayerLooper, objc_selector="initWithPlayer:templateItem:timeRange:", objc_name="initWithPlayer_templateItem_timeRange")
-    PlayerLooper_initWithPlayer_templateItem_timeRange :: proc(self: ^PlayerLooper, player: ^QueuePlayer, itemToLoop: ^PlayerItem, loopRange: CM.TimeRange) -> ^PlayerLooper ---
+    PlayerLooper_initWithPlayer_templateItem_timeRange :: proc(self: ^PlayerLooper, player: ^QueuePlayer, itemToLoop: ^PlayerItem, loopRange: CM.TimeRange) -> instancetype ---
 
     @(objc_type=PlayerLooper, objc_selector="initWithPlayer:templateItem:timeRange:existingItemsOrdering:", objc_name="initWithPlayer_templateItem_timeRange_existingItemsOrdering")
-    PlayerLooper_initWithPlayer_templateItem_timeRange_existingItemsOrdering :: proc(self: ^PlayerLooper, player: ^QueuePlayer, itemToLoop: ^PlayerItem, loopRange: CM.TimeRange, itemOrdering: PlayerLooperItemOrdering) -> ^PlayerLooper ---
+    PlayerLooper_initWithPlayer_templateItem_timeRange_existingItemsOrdering :: proc(self: ^PlayerLooper, player: ^QueuePlayer, itemToLoop: ^PlayerItem, loopRange: CM.TimeRange, itemOrdering: PlayerLooperItemOrdering) -> instancetype ---
 
     @(objc_type=PlayerLooper, objc_selector="disableLooping", objc_name="disableLooping")
     PlayerLooper_disableLooping :: proc(self: ^PlayerLooper) ---

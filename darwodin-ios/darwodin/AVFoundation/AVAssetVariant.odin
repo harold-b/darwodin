@@ -23,7 +23,7 @@ AssetVariant :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetVariant, objc_selector="init", objc_name="init")
-    AssetVariant_init :: proc(self: ^AssetVariant) -> ^AssetVariant ---
+    AssetVariant_init :: proc(self: ^AssetVariant) -> instancetype ---
 
     @(objc_type=AssetVariant, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetVariant_new :: proc() -> ^AssetVariant ---

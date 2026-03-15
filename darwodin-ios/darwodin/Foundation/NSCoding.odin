@@ -23,5 +23,5 @@ foreign lib {
     Coding_encodeWithCoder :: proc(self: ^Coding, coder: ^Coder) ---
 
     @(objc_type=Coding, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Coding_initWithCoder :: proc(self: ^Coding, coder: ^Coder) -> ^Coding ---
+    Coding_initWithCoder :: proc(self: ^Coding, coder: ^Coder) -> instancetype ---
 }

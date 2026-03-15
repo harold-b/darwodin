@@ -21,7 +21,7 @@ EnvironmentState :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=EnvironmentState, objc_selector="init", objc_name="init")
-    EnvironmentState_init :: proc(self: ^EnvironmentState) -> ^EnvironmentState ---
+    EnvironmentState_init :: proc(self: ^EnvironmentState) -> instancetype ---
 
     @(objc_type=EnvironmentState, objc_selector="new", objc_name="new", objc_is_class_method=true)
     EnvironmentState_new :: proc() -> ^EnvironmentState ---

@@ -23,7 +23,7 @@ MutableVideoCompositionInstruction :: struct { using _: VideoCompositionInstruct
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableVideoCompositionInstruction, objc_selector="videoCompositionInstruction", objc_name="videoCompositionInstruction", objc_is_class_method=true)
-    MutableVideoCompositionInstruction_videoCompositionInstruction :: proc() -> ^MutableVideoCompositionInstruction ---
+    MutableVideoCompositionInstruction_videoCompositionInstruction :: proc() -> instancetype ---
 
     @(objc_type=MutableVideoCompositionInstruction, objc_selector="timeRange", objc_name="timeRange")
     MutableVideoCompositionInstruction_timeRange :: proc(self: ^MutableVideoCompositionInstruction) -> CM.TimeRange ---

@@ -24,13 +24,13 @@ ButtonTouchBarItem :: struct { using _: TouchBarItem, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ButtonTouchBarItem, objc_selector="buttonTouchBarItemWithIdentifier:title:target:action:", objc_name="buttonTouchBarItemWithIdentifier_title_target_action", objc_is_class_method=true)
-    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_title_target_action :: proc(identifier: ^NS.String, title: ^NS.String, target: id, action: SEL) -> ^ButtonTouchBarItem ---
+    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_title_target_action :: proc(identifier: ^NS.String, title: ^NS.String, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ButtonTouchBarItem, objc_selector="buttonTouchBarItemWithIdentifier:image:target:action:", objc_name="buttonTouchBarItemWithIdentifier_image_target_action", objc_is_class_method=true)
-    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_image_target_action :: proc(identifier: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> ^ButtonTouchBarItem ---
+    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_image_target_action :: proc(identifier: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ButtonTouchBarItem, objc_selector="buttonTouchBarItemWithIdentifier:title:image:target:action:", objc_name="buttonTouchBarItemWithIdentifier_title_image_target_action", objc_is_class_method=true)
-    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_title_image_target_action :: proc(identifier: ^NS.String, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> ^ButtonTouchBarItem ---
+    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_title_image_target_action :: proc(identifier: ^NS.String, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ButtonTouchBarItem, objc_selector="title", objc_name="title")
     ButtonTouchBarItem_title :: proc(self: ^ButtonTouchBarItem) -> ^NS.String ---

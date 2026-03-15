@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithProperties: proc(self: ^NS.HTTPCookie, properties: ^NS.Dictionary) -> ^NS.HTTPCookie,
+    initWithProperties: proc(self: ^NS.HTTPCookie, properties: ^NS.Dictionary) -> instancetype,
     cookieWithProperties: proc(properties: ^NS.Dictionary) -> ^NS.HTTPCookie,
     requestHeaderFieldsWithCookies: proc(cookies: ^NS.Array) -> ^NS.Dictionary,
     cookiesWithResponseHeaderFields: proc(headerFields: ^NS.Dictionary, _URL: ^NS.URL) -> ^NS.Array,
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithProperties != nil {
-        initWithProperties :: proc "c" (self: ^NS.HTTPCookie, _: SEL, properties: ^NS.Dictionary) -> ^NS.HTTPCookie {
+        initWithProperties :: proc "c" (self: ^NS.HTTPCookie, _: SEL, properties: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

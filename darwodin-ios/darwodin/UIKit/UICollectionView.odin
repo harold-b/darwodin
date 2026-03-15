@@ -24,10 +24,10 @@ CollectionView :: struct { using _: ScrollView,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionView, objc_selector="initWithFrame:collectionViewLayout:", objc_name="initWithFrame")
-    CollectionView_initWithFrame :: proc(self: ^CollectionView, frame: CG.Rect, layout: ^CollectionViewLayout) -> ^CollectionView ---
+    CollectionView_initWithFrame :: proc(self: ^CollectionView, frame: CG.Rect, layout: ^CollectionViewLayout) -> instancetype ---
 
     @(objc_type=CollectionView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CollectionView_initWithCoder :: proc(self: ^CollectionView, coder: ^NS.Coder) -> ^CollectionView ---
+    CollectionView_initWithCoder :: proc(self: ^CollectionView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CollectionView, objc_selector="registerClass:forCellWithReuseIdentifier:", objc_name="registerClass_forCellWithReuseIdentifier")
     CollectionView_registerClass_forCellWithReuseIdentifier :: proc(self: ^CollectionView, cellClass: Class, identifier: ^NS.String) ---

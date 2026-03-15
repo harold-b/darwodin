@@ -53,9 +53,6 @@ StreamID                     :: CA.StreamID
 StreamPropertyListenerProc   :: CA.StreamPropertyListenerProc
 
 /// Enums
-FormatID                     :: CA.FormatID
-FormatFlag                   :: CA.FormatFlag
-FormatFlags                  :: CA.FormatFlags
 SMPTETimeType                :: CA.SMPTETimeType
 SMPTETimeFlags               :: CA.SMPTETimeFlags
 TimeStampFlags               :: CA.TimeStampFlags
@@ -64,6 +61,9 @@ ChannelFlags                 :: CA.ChannelFlags
 ChannelCoordinateIndex       :: CA.ChannelCoordinateIndex
 HardwarePowerHint            :: CA.HardwarePowerHint
 LevelControlTransferFunction :: CA.LevelControlTransferFunction
+FormatID                     :: CA.FormatID
+FormatFlags                  :: CA.FormatFlags
+FormatFlagsPreset            :: CA.FormatFlagsPreset
 
 /// Functions
 ObjectShow                        :: CA.ObjectShow

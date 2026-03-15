@@ -22,7 +22,7 @@ GraphicsPDFRenderer :: struct { using _: GraphicsRenderer, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GraphicsPDFRenderer, objc_selector="initWithBounds:format:", objc_name="initWithBounds")
-    GraphicsPDFRenderer_initWithBounds :: proc(self: ^GraphicsPDFRenderer, bounds: CG.Rect, format: ^GraphicsPDFRendererFormat) -> ^GraphicsPDFRenderer ---
+    GraphicsPDFRenderer_initWithBounds :: proc(self: ^GraphicsPDFRenderer, bounds: CG.Rect, format: ^GraphicsPDFRendererFormat) -> instancetype ---
 
     @(objc_type=GraphicsPDFRenderer, objc_selector="writePDFToURL:withActions:error:", objc_name="writePDFToURL")
     GraphicsPDFRenderer_writePDFToURL :: proc(self: ^GraphicsPDFRenderer, url: ^NS.URL, actions: GraphicsPDFDrawingActions, error: ^^NS.Error) -> bool ---

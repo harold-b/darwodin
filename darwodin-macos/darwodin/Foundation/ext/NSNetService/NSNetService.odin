@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDomain_type_name_port: proc(self: ^NS.NetService, domain: ^NS.String, type: ^NS.String, name: ^NS.String, port: cffi.int) -> ^NS.NetService,
-    initWithDomain_type_name: proc(self: ^NS.NetService, domain: ^NS.String, type: ^NS.String, name: ^NS.String) -> ^NS.NetService,
+    initWithDomain_type_name_port: proc(self: ^NS.NetService, domain: ^NS.String, type: ^NS.String, name: ^NS.String, port: cffi.int) -> instancetype,
+    initWithDomain_type_name: proc(self: ^NS.NetService, domain: ^NS.String, type: ^NS.String, name: ^NS.String) -> instancetype,
     scheduleInRunLoop: proc(self: ^NS.NetService, aRunLoop: ^NS.RunLoop, mode: ^NS.String),
     removeFromRunLoop: proc(self: ^NS.NetService, aRunLoop: ^NS.RunLoop, mode: ^NS.String),
     publish: proc(self: ^NS.NetService),
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDomain_type_name_port != nil {
-        initWithDomain_type_name_port :: proc "c" (self: ^NS.NetService, _: SEL, domain: ^NS.String, type: ^NS.String, name: ^NS.String, port: cffi.int) -> ^NS.NetService {
+        initWithDomain_type_name_port :: proc "c" (self: ^NS.NetService, _: SEL, domain: ^NS.String, type: ^NS.String, name: ^NS.String, port: cffi.int) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDomain:type:name:port:"), auto_cast initWithDomain_type_name_port, "@@:@@@i") do panic("Failed to register objC method.")
     }
     if vt.initWithDomain_type_name != nil {
-        initWithDomain_type_name :: proc "c" (self: ^NS.NetService, _: SEL, domain: ^NS.String, type: ^NS.String, name: ^NS.String) -> ^NS.NetService {
+        initWithDomain_type_name :: proc "c" (self: ^NS.NetService, _: SEL, domain: ^NS.String, type: ^NS.String, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,7 +28,7 @@ VTable :: struct {
     super: NSObject.VTable,
     addFilePresenter: proc(filePresenter: ^NS.FilePresenter),
     removeFilePresenter: proc(filePresenter: ^NS.FilePresenter),
-    initWithFilePresenter: proc(self: ^NS.FileCoordinator, filePresenterOrNil: ^NS.FilePresenter) -> ^NS.FileCoordinator,
+    initWithFilePresenter: proc(self: ^NS.FileCoordinator, filePresenterOrNil: ^NS.FilePresenter) -> instancetype,
     coordinateAccessWithIntents: proc(self: ^NS.FileCoordinator, intents: ^NS.Array, queue: ^NS.OperationQueue, accessor: ^Objc_Block(proc "c" (error: ^NS.Error))),
     coordinateReadingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, url: ^NS.URL, options: NS.FileCoordinatorReadingOptions, outError: ^^NS.Error, reader: ^Objc_Block(proc "c" (newURL: ^NS.URL))),
     coordinateWritingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, url: ^NS.URL, options: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, writer: ^Objc_Block(proc "c" (newURL: ^NS.URL))),
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("removeFilePresenter:"), auto_cast removeFilePresenter, "v#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFilePresenter != nil {
-        initWithFilePresenter :: proc "c" (self: ^NS.FileCoordinator, _: SEL, filePresenterOrNil: ^NS.FilePresenter) -> ^NS.FileCoordinator {
+        initWithFilePresenter :: proc "c" (self: ^NS.FileCoordinator, _: SEL, filePresenterOrNil: ^NS.FilePresenter) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

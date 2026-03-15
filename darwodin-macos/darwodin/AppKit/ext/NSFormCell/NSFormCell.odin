@@ -30,9 +30,9 @@ import "../NSActionCell"
 
 VTable :: struct {
     super: NSActionCell.VTable,
-    initTextCell: proc(self: ^AK.FormCell, string: ^NS.String) -> ^AK.FormCell,
-    initWithCoder: proc(self: ^AK.FormCell, coder: ^NS.Coder) -> ^AK.FormCell,
-    initImageCell: proc(self: ^AK.FormCell, image: ^NS.Image) -> ^AK.FormCell,
+    initTextCell: proc(self: ^AK.FormCell, string: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^AK.FormCell, coder: ^NS.Coder) -> instancetype,
+    initImageCell: proc(self: ^AK.FormCell, image: ^NS.Image) -> instancetype,
     titleWidth_size: proc(self: ^AK.FormCell, size: NS.Size) -> CG.Float,
     titleWidth_: proc(self: ^AK.FormCell) -> CG.Float,
     setTitleWidth: proc(self: ^AK.FormCell, titleWidth: CG.Float),
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSActionCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.FormCell, _: SEL, string: ^NS.String) -> ^AK.FormCell {
+        initTextCell :: proc "c" (self: ^AK.FormCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.FormCell, _: SEL, coder: ^NS.Coder) -> ^AK.FormCell {
+        initWithCoder :: proc "c" (self: ^AK.FormCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.FormCell, _: SEL, image: ^NS.Image) -> ^AK.FormCell {
+        initImageCell :: proc "c" (self: ^AK.FormCell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

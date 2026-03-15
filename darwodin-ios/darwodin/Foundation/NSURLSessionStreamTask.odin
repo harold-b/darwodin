@@ -41,7 +41,7 @@ foreign lib {
     URLSessionStreamTask_stopSecureConnection :: proc(self: ^URLSessionStreamTask) ---
 
     @(objc_type=URLSessionStreamTask, objc_selector="init", objc_name="init")
-    URLSessionStreamTask_init :: proc(self: ^URLSessionStreamTask) -> ^URLSessionStreamTask ---
+    URLSessionStreamTask_init :: proc(self: ^URLSessionStreamTask) -> instancetype ---
 
     @(objc_type=URLSessionStreamTask, objc_selector="new", objc_name="new", objc_is_class_method=true)
     URLSessionStreamTask_new :: proc() -> ^URLSessionStreamTask ---

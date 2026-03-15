@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithCommandDescription: proc(self: ^NS.ScriptCommand, commandDef: ^NS.ScriptCommandDescription) -> ^NS.ScriptCommand,
-    initWithCoder: proc(self: ^NS.ScriptCommand, inCoder: ^NS.Coder) -> ^NS.ScriptCommand,
+    initWithCommandDescription: proc(self: ^NS.ScriptCommand, commandDef: ^NS.ScriptCommandDescription) -> instancetype,
+    initWithCoder: proc(self: ^NS.ScriptCommand, inCoder: ^NS.Coder) -> instancetype,
     performDefaultImplementation: proc(self: ^NS.ScriptCommand) -> id,
     executeCommand: proc(self: ^NS.ScriptCommand) -> id,
     currentCommand: proc() -> ^NS.ScriptCommand,
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithCommandDescription != nil {
-        initWithCommandDescription :: proc "c" (self: ^NS.ScriptCommand, _: SEL, commandDef: ^NS.ScriptCommandDescription) -> ^NS.ScriptCommand {
+        initWithCommandDescription :: proc "c" (self: ^NS.ScriptCommand, _: SEL, commandDef: ^NS.ScriptCommandDescription) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCommandDescription:"), auto_cast initWithCommandDescription, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.ScriptCommand, _: SEL, inCoder: ^NS.Coder) -> ^NS.ScriptCommand {
+        initWithCoder :: proc "c" (self: ^NS.ScriptCommand, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -29,19 +29,19 @@ Document :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Document, objc_selector="init", objc_name="init")
-    Document_init :: proc(self: ^Document) -> ^Document ---
+    Document_init :: proc(self: ^Document) -> instancetype ---
 
     @(objc_type=Document, objc_selector="initWithType:error:", objc_name="initWithType")
-    Document_initWithType :: proc(self: ^Document, typeName: ^NS.String, outError: ^^NS.Error) -> ^Document ---
+    Document_initWithType :: proc(self: ^Document, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=Document, objc_selector="canConcurrentlyReadDocumentsOfType:", objc_name="canConcurrentlyReadDocumentsOfType", objc_is_class_method=true)
     Document_canConcurrentlyReadDocumentsOfType :: proc(typeName: ^NS.String) -> bool ---
 
     @(objc_type=Document, objc_selector="initWithContentsOfURL:ofType:error:", objc_name="initWithContentsOfURL_ofType_error")
-    Document_initWithContentsOfURL_ofType_error :: proc(self: ^Document, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^Document ---
+    Document_initWithContentsOfURL_ofType_error :: proc(self: ^Document, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=Document, objc_selector="initForURL:withContentsOfURL:ofType:error:", objc_name="initForURL")
-    Document_initForURL :: proc(self: ^Document, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^Document ---
+    Document_initForURL :: proc(self: ^Document, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=Document, objc_selector="performActivityWithSynchronousWaiting:usingBlock:", objc_name="performActivityWithSynchronousWaiting")
     Document_performActivityWithSynchronousWaiting :: proc(self: ^Document, waitSynchronously: bool, block: ^Objc_Block(proc "c" (activityCompletionHandler: ^Objc_Block(proc "c" ())))) ---

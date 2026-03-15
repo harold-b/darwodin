@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    sectionWithGroup: proc(group: ^UI.NSCollectionLayoutGroup) -> ^UI.NSCollectionLayoutSection,
-    init: proc(self: ^UI.NSCollectionLayoutSection) -> ^UI.NSCollectionLayoutSection,
+    sectionWithGroup: proc(group: ^UI.NSCollectionLayoutGroup) -> instancetype,
+    init: proc(self: ^UI.NSCollectionLayoutSection) -> instancetype,
     new: proc() -> ^UI.NSCollectionLayoutSection,
     contentInsets: proc(self: ^UI.NSCollectionLayoutSection) -> UI.NSDirectionalEdgeInsets,
     setContentInsets: proc(self: ^UI.NSCollectionLayoutSection, contentInsets: UI.NSDirectionalEdgeInsets),
@@ -50,7 +50,7 @@ VTable :: struct {
     setDecorationItems: proc(self: ^UI.NSCollectionLayoutSection, decorationItems: ^NS.Array),
     supplementariesFollowContentInsets: proc(self: ^UI.NSCollectionLayoutSection) -> bool,
     setSupplementariesFollowContentInsets: proc(self: ^UI.NSCollectionLayoutSection, supplementariesFollowContentInsets: bool),
-    sectionWithListConfiguration: proc(configuration: ^UI.CollectionLayoutListConfiguration, layoutEnvironment: ^UI.NSCollectionLayoutEnvironment) -> ^UI.NSCollectionLayoutSection,
+    sectionWithListConfiguration: proc(configuration: ^UI.CollectionLayoutListConfiguration, layoutEnvironment: ^UI.NSCollectionLayoutEnvironment) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.sectionWithGroup != nil {
-        sectionWithGroup :: proc "c" (self: Class, _: SEL, group: ^UI.NSCollectionLayoutGroup) -> ^UI.NSCollectionLayoutSection {
+        sectionWithGroup :: proc "c" (self: Class, _: SEL, group: ^UI.NSCollectionLayoutGroup) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sectionWithGroup:"), auto_cast sectionWithGroup, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSCollectionLayoutSection, _: SEL) -> ^UI.NSCollectionLayoutSection {
+        init :: proc "c" (self: ^UI.NSCollectionLayoutSection, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -281,7 +281,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSupplementariesFollowContentInsets:"), auto_cast setSupplementariesFollowContentInsets, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.sectionWithListConfiguration != nil {
-        sectionWithListConfiguration :: proc "c" (self: Class, _: SEL, configuration: ^UI.CollectionLayoutListConfiguration, layoutEnvironment: ^UI.NSCollectionLayoutEnvironment) -> ^UI.NSCollectionLayoutSection {
+        sectionWithListConfiguration :: proc "c" (self: Class, _: SEL, configuration: ^UI.CollectionLayoutListConfiguration, layoutEnvironment: ^UI.NSCollectionLayoutEnvironment) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

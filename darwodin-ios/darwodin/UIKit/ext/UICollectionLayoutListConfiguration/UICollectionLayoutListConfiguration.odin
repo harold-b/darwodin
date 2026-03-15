@@ -29,8 +29,8 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.CollectionLayoutListConfiguration,
-    init: proc(self: ^UI.CollectionLayoutListConfiguration) -> ^UI.CollectionLayoutListConfiguration,
-    initWithAppearance: proc(self: ^UI.CollectionLayoutListConfiguration, appearance: UI.CollectionLayoutListAppearance) -> ^UI.CollectionLayoutListConfiguration,
+    init: proc(self: ^UI.CollectionLayoutListConfiguration) -> instancetype,
+    initWithAppearance: proc(self: ^UI.CollectionLayoutListConfiguration, appearance: UI.CollectionLayoutListAppearance) -> instancetype,
     appearance: proc(self: ^UI.CollectionLayoutListConfiguration) -> UI.CollectionLayoutListAppearance,
     showsSeparators: proc(self: ^UI.CollectionLayoutListConfiguration) -> bool,
     setShowsSeparators: proc(self: ^UI.CollectionLayoutListConfiguration, showsSeparators: bool),
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CollectionLayoutListConfiguration, _: SEL) -> ^UI.CollectionLayoutListConfiguration {
+        init :: proc "c" (self: ^UI.CollectionLayoutListConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithAppearance != nil {
-        initWithAppearance :: proc "c" (self: ^UI.CollectionLayoutListConfiguration, _: SEL, appearance: UI.CollectionLayoutListAppearance) -> ^UI.CollectionLayoutListConfiguration {
+        initWithAppearance :: proc "c" (self: ^UI.CollectionLayoutListConfiguration, _: SEL, appearance: UI.CollectionLayoutListAppearance) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

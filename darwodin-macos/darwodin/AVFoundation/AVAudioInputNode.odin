@@ -25,7 +25,7 @@ AudioInputNode :: struct { using _: AudioIONode,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioInputNode, objc_selector="init", objc_name="init")
-    AudioInputNode_init :: proc(self: ^AudioInputNode) -> ^AudioInputNode ---
+    AudioInputNode_init :: proc(self: ^AudioInputNode) -> instancetype ---
 
     @(objc_type=AudioInputNode, objc_selector="setManualRenderingInputPCMFormat:inputBlock:", objc_name="setManualRenderingInputPCMFormat")
     AudioInputNode_setManualRenderingInputPCMFormat :: proc(self: ^AudioInputNode, format: ^AudioFormat, block: AudioIONodeInputBlock) -> bool ---

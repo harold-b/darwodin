@@ -24,16 +24,16 @@ Asset :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Asset, objc_selector="initWithURL:", objc_name="initWithURL_")
-    Asset_initWithURL_ :: proc(self: ^Asset, _URL: ^NS.URL) -> ^Asset ---
+    Asset_initWithURL_ :: proc(self: ^Asset, _URL: ^NS.URL) -> instancetype ---
 
     @(objc_type=Asset, objc_selector="initWithURL:vertexDescriptor:bufferAllocator:", objc_name="initWithURL_vertexDescriptor_bufferAllocator")
-    Asset_initWithURL_vertexDescriptor_bufferAllocator :: proc(self: ^Asset, _URL: ^NS.URL, vertexDescriptor: ^VertexDescriptor, bufferAllocator: ^MeshBufferAllocator) -> ^Asset ---
+    Asset_initWithURL_vertexDescriptor_bufferAllocator :: proc(self: ^Asset, _URL: ^NS.URL, vertexDescriptor: ^VertexDescriptor, bufferAllocator: ^MeshBufferAllocator) -> instancetype ---
 
     @(objc_type=Asset, objc_selector="initWithBufferAllocator:", objc_name="initWithBufferAllocator")
-    Asset_initWithBufferAllocator :: proc(self: ^Asset, bufferAllocator: ^MeshBufferAllocator) -> ^Asset ---
+    Asset_initWithBufferAllocator :: proc(self: ^Asset, bufferAllocator: ^MeshBufferAllocator) -> instancetype ---
 
     @(objc_type=Asset, objc_selector="initWithURL:vertexDescriptor:bufferAllocator:preserveTopology:error:", objc_name="initWithURL_vertexDescriptor_bufferAllocator_preserveTopology_error")
-    Asset_initWithURL_vertexDescriptor_bufferAllocator_preserveTopology_error :: proc(self: ^Asset, _URL: ^NS.URL, vertexDescriptor: ^VertexDescriptor, bufferAllocator: ^MeshBufferAllocator, preserveTopology: bool, error: ^^NS.Error) -> ^Asset ---
+    Asset_initWithURL_vertexDescriptor_bufferAllocator_preserveTopology_error :: proc(self: ^Asset, _URL: ^NS.URL, vertexDescriptor: ^VertexDescriptor, bufferAllocator: ^MeshBufferAllocator, preserveTopology: bool, error: ^^NS.Error) -> instancetype ---
 
     @(objc_type=Asset, objc_selector="exportAssetToURL:", objc_name="exportAssetToURL_")
     Asset_exportAssetToURL_ :: proc(self: ^Asset, _URL: ^NS.URL) -> bool ---

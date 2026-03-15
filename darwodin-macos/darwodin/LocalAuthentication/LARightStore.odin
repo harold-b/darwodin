@@ -40,7 +40,7 @@ foreign lib {
     RightStore_new :: proc() -> ^RightStore ---
 
     @(objc_type=RightStore, objc_selector="init", objc_name="init")
-    RightStore_init :: proc(self: ^RightStore) -> ^RightStore ---
+    RightStore_init :: proc(self: ^RightStore) -> instancetype ---
 
     @(objc_type=RightStore, objc_selector="sharedStore", objc_name="sharedStore", objc_is_class_method=true)
     RightStore_sharedStore :: proc() -> ^RightStore ---

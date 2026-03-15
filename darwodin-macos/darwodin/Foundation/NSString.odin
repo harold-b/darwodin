@@ -27,10 +27,10 @@ foreign lib {
     String_characterAtIndex :: proc(self: ^String, index: UInteger) -> unichar ---
 
     @(objc_type=String, objc_selector="init", objc_name="init")
-    String_init :: proc(self: ^String) -> ^String ---
+    String_init :: proc(self: ^String) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    String_initWithCoder :: proc(self: ^String, coder: ^Coder) -> ^String ---
+    String_initWithCoder :: proc(self: ^String, coder: ^Coder) -> instancetype ---
 
     @(objc_type=String, objc_selector="length", objc_name="length")
     String_length :: proc(self: ^String) -> UInteger ---
@@ -216,109 +216,109 @@ foreign lib {
     String_writeToFile_atomically_encoding_error :: proc(self: ^String, path: ^String, useAuxiliaryFile: bool, enc: StringEncoding, error: ^^Error) -> bool ---
 
     @(objc_type=String, objc_selector="initWithCharactersNoCopy:length:freeWhenDone:", objc_name="initWithCharactersNoCopy_length_freeWhenDone")
-    String_initWithCharactersNoCopy_length_freeWhenDone :: proc(self: ^String, characters: ^unichar, length: UInteger, freeBuffer: bool) -> ^String ---
+    String_initWithCharactersNoCopy_length_freeWhenDone :: proc(self: ^String, characters: ^unichar, length: UInteger, freeBuffer: bool) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithCharactersNoCopy:length:deallocator:", objc_name="initWithCharactersNoCopy_length_deallocator")
-    String_initWithCharactersNoCopy_length_deallocator :: proc(self: ^String, chars: ^unichar, len: UInteger, deallocator: ^Objc_Block(proc "c" (_: ^unichar, _1: UInteger))) -> ^String ---
+    String_initWithCharactersNoCopy_length_deallocator :: proc(self: ^String, chars: ^unichar, len: UInteger, deallocator: ^Objc_Block(proc "c" (_: ^unichar, _1: UInteger))) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithCharacters:length:", objc_name="initWithCharacters")
-    String_initWithCharacters :: proc(self: ^String, characters: ^unichar, length: UInteger) -> ^String ---
+    String_initWithCharacters :: proc(self: ^String, characters: ^unichar, length: UInteger) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithUTF8String:", objc_name="initWithUTF8String")
-    String_initWithUTF8String :: proc(self: ^String, nullTerminatedCString: cstring) -> ^String ---
+    String_initWithUTF8String :: proc(self: ^String, nullTerminatedCString: cstring) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithString:", objc_name="initWithString")
-    String_initWithString :: proc(self: ^String, aString: ^String) -> ^String ---
+    String_initWithString :: proc(self: ^String, aString: ^String) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithFormat:", objc_name="initWithFormat_")
-    String_initWithFormat_ :: proc(self: ^String, format: ^String) -> ^String ---
+    String_initWithFormat_ :: proc(self: ^String, format: ^String) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithFormat:arguments:", objc_name="initWithFormat_arguments")
-    String_initWithFormat_arguments :: proc(self: ^String, format: ^String, argList: ^cffi.va_list) -> ^String ---
+    String_initWithFormat_arguments :: proc(self: ^String, format: ^String, argList: ^cffi.va_list) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithFormat:locale:", objc_name="initWithFormat_locale")
-    String_initWithFormat_locale :: proc(self: ^String, format: ^String, locale: id) -> ^String ---
+    String_initWithFormat_locale :: proc(self: ^String, format: ^String, locale: id) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithFormat:locale:arguments:", objc_name="initWithFormat_locale_arguments")
-    String_initWithFormat_locale_arguments :: proc(self: ^String, format: ^String, locale: id, argList: ^cffi.va_list) -> ^String ---
+    String_initWithFormat_locale_arguments :: proc(self: ^String, format: ^String, locale: id, argList: ^cffi.va_list) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithValidatedFormat:validFormatSpecifiers:error:", objc_name="initWithValidatedFormat_validFormatSpecifiers_error")
-    String_initWithValidatedFormat_validFormatSpecifiers_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, error: ^^Error) -> ^String ---
+    String_initWithValidatedFormat_validFormatSpecifiers_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithValidatedFormat:validFormatSpecifiers:locale:error:", objc_name="initWithValidatedFormat_validFormatSpecifiers_locale_error")
-    String_initWithValidatedFormat_validFormatSpecifiers_locale_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, error: ^^Error) -> ^String ---
+    String_initWithValidatedFormat_validFormatSpecifiers_locale_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithValidatedFormat:validFormatSpecifiers:arguments:error:", objc_name="initWithValidatedFormat_validFormatSpecifiers_arguments_error")
-    String_initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, argList: ^cffi.va_list, error: ^^Error) -> ^String ---
+    String_initWithValidatedFormat_validFormatSpecifiers_arguments_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, argList: ^cffi.va_list, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:", objc_name="initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error")
-    String_initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: ^cffi.va_list, error: ^^Error) -> ^String ---
+    String_initWithValidatedFormat_validFormatSpecifiers_locale_arguments_error :: proc(self: ^String, format: ^String, validFormatSpecifiers: ^String, locale: id, argList: ^cffi.va_list, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithData:encoding:", objc_name="initWithData")
-    String_initWithData :: proc(self: ^String, data: ^Data, encoding: StringEncoding) -> ^String ---
+    String_initWithData :: proc(self: ^String, data: ^Data, encoding: StringEncoding) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithBytes:length:encoding:", objc_name="initWithBytes")
-    String_initWithBytes :: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding) -> ^String ---
+    String_initWithBytes :: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithBytesNoCopy:length:encoding:freeWhenDone:", objc_name="initWithBytesNoCopy_length_encoding_freeWhenDone")
-    String_initWithBytesNoCopy_length_encoding_freeWhenDone :: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, freeBuffer: bool) -> ^String ---
+    String_initWithBytesNoCopy_length_encoding_freeWhenDone :: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, freeBuffer: bool) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithBytesNoCopy:length:encoding:deallocator:", objc_name="initWithBytesNoCopy_length_encoding_deallocator")
-    String_initWithBytesNoCopy_length_encoding_deallocator :: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: UInteger))) -> ^String ---
+    String_initWithBytesNoCopy_length_encoding_deallocator :: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: UInteger))) -> instancetype ---
 
     @(objc_type=String, objc_selector="string", objc_name="string", objc_is_class_method=true)
-    String_string :: proc() -> ^String ---
+    String_string :: proc() -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithString:", objc_name="stringWithString", objc_is_class_method=true)
-    String_stringWithString :: proc(string: ^String) -> ^String ---
+    String_stringWithString :: proc(string: ^String) -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithCharacters:length:", objc_name="stringWithCharacters", objc_is_class_method=true)
-    String_stringWithCharacters :: proc(characters: ^unichar, length: UInteger) -> ^String ---
+    String_stringWithCharacters :: proc(characters: ^unichar, length: UInteger) -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithUTF8String:", objc_name="stringWithUTF8String", objc_is_class_method=true)
-    String_stringWithUTF8String :: proc(nullTerminatedCString: cstring) -> ^String ---
+    String_stringWithUTF8String :: proc(nullTerminatedCString: cstring) -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithFormat:", objc_name="stringWithFormat", objc_is_class_method=true)
-    String_stringWithFormat :: proc(format: ^String) -> ^String ---
+    String_stringWithFormat :: proc(format: ^String) -> instancetype ---
 
     @(objc_type=String, objc_selector="localizedStringWithFormat:", objc_name="localizedStringWithFormat", objc_is_class_method=true)
-    String_localizedStringWithFormat :: proc(format: ^String) -> ^String ---
+    String_localizedStringWithFormat :: proc(format: ^String) -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithValidatedFormat:validFormatSpecifiers:error:", objc_name="stringWithValidatedFormat", objc_is_class_method=true)
-    String_stringWithValidatedFormat :: proc(format: ^String, validFormatSpecifiers: ^String, error: ^^Error) -> ^String ---
+    String_stringWithValidatedFormat :: proc(format: ^String, validFormatSpecifiers: ^String, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="localizedStringWithValidatedFormat:validFormatSpecifiers:error:", objc_name="localizedStringWithValidatedFormat", objc_is_class_method=true)
-    String_localizedStringWithValidatedFormat :: proc(format: ^String, validFormatSpecifiers: ^String, error: ^^Error) -> ^String ---
+    String_localizedStringWithValidatedFormat :: proc(format: ^String, validFormatSpecifiers: ^String, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithCString:encoding:", objc_name="initWithCString_encoding")
-    String_initWithCString_encoding :: proc(self: ^String, nullTerminatedCString: cstring, encoding: StringEncoding) -> ^String ---
+    String_initWithCString_encoding :: proc(self: ^String, nullTerminatedCString: cstring, encoding: StringEncoding) -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithCString:encoding:", objc_name="stringWithCString_encoding", objc_is_class_method=true)
-    String_stringWithCString_encoding :: proc(cString: cstring, enc: StringEncoding) -> ^String ---
+    String_stringWithCString_encoding :: proc(cString: cstring, enc: StringEncoding) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithContentsOfURL:encoding:error:", objc_name="initWithContentsOfURL_encoding_error")
-    String_initWithContentsOfURL_encoding_error :: proc(self: ^String, url: ^URL, enc: StringEncoding, error: ^^Error) -> ^String ---
+    String_initWithContentsOfURL_encoding_error :: proc(self: ^String, url: ^URL, enc: StringEncoding, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithContentsOfFile:encoding:error:", objc_name="initWithContentsOfFile_encoding_error")
-    String_initWithContentsOfFile_encoding_error :: proc(self: ^String, path: ^String, enc: StringEncoding, error: ^^Error) -> ^String ---
+    String_initWithContentsOfFile_encoding_error :: proc(self: ^String, path: ^String, enc: StringEncoding, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithContentsOfURL:encoding:error:", objc_name="stringWithContentsOfURL_encoding_error", objc_is_class_method=true)
-    String_stringWithContentsOfURL_encoding_error :: proc(url: ^URL, enc: StringEncoding, error: ^^Error) -> ^String ---
+    String_stringWithContentsOfURL_encoding_error :: proc(url: ^URL, enc: StringEncoding, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithContentsOfFile:encoding:error:", objc_name="stringWithContentsOfFile_encoding_error", objc_is_class_method=true)
-    String_stringWithContentsOfFile_encoding_error :: proc(path: ^String, enc: StringEncoding, error: ^^Error) -> ^String ---
+    String_stringWithContentsOfFile_encoding_error :: proc(path: ^String, enc: StringEncoding, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithContentsOfURL:usedEncoding:error:", objc_name="initWithContentsOfURL_usedEncoding_error")
-    String_initWithContentsOfURL_usedEncoding_error :: proc(self: ^String, url: ^URL, enc: ^StringEncoding, error: ^^Error) -> ^String ---
+    String_initWithContentsOfURL_usedEncoding_error :: proc(self: ^String, url: ^URL, enc: ^StringEncoding, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithContentsOfFile:usedEncoding:error:", objc_name="initWithContentsOfFile_usedEncoding_error")
-    String_initWithContentsOfFile_usedEncoding_error :: proc(self: ^String, path: ^String, enc: ^StringEncoding, error: ^^Error) -> ^String ---
+    String_initWithContentsOfFile_usedEncoding_error :: proc(self: ^String, path: ^String, enc: ^StringEncoding, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithContentsOfURL:usedEncoding:error:", objc_name="stringWithContentsOfURL_usedEncoding_error", objc_is_class_method=true)
-    String_stringWithContentsOfURL_usedEncoding_error :: proc(url: ^URL, enc: ^StringEncoding, error: ^^Error) -> ^String ---
+    String_stringWithContentsOfURL_usedEncoding_error :: proc(url: ^URL, enc: ^StringEncoding, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="stringWithContentsOfFile:usedEncoding:error:", objc_name="stringWithContentsOfFile_usedEncoding_error", objc_is_class_method=true)
-    String_stringWithContentsOfFile_usedEncoding_error :: proc(path: ^String, enc: ^StringEncoding, error: ^^Error) -> ^String ---
+    String_stringWithContentsOfFile_usedEncoding_error :: proc(path: ^String, enc: ^StringEncoding, error: ^^Error) -> instancetype ---
 
     @(objc_type=String, objc_selector="doubleValue", objc_name="doubleValue")
     String_doubleValue :: proc(self: ^String) -> cffi.double ---

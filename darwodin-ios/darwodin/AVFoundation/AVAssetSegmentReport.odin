@@ -23,7 +23,7 @@ AssetSegmentReport :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetSegmentReport, objc_selector="init", objc_name="init")
-    AssetSegmentReport_init :: proc(self: ^AssetSegmentReport) -> ^AssetSegmentReport ---
+    AssetSegmentReport_init :: proc(self: ^AssetSegmentReport) -> instancetype ---
 
     @(objc_type=AssetSegmentReport, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetSegmentReport_new :: proc() -> ^AssetSegmentReport ---

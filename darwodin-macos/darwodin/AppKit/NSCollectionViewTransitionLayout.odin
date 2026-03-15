@@ -24,7 +24,7 @@ CollectionViewTransitionLayout :: struct { using _: CollectionViewLayout, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewTransitionLayout, objc_selector="initWithCurrentLayout:nextLayout:", objc_name="initWithCurrentLayout")
-    CollectionViewTransitionLayout_initWithCurrentLayout :: proc(self: ^CollectionViewTransitionLayout, currentLayout: ^CollectionViewLayout, newLayout: ^CollectionViewLayout) -> ^CollectionViewTransitionLayout ---
+    CollectionViewTransitionLayout_initWithCurrentLayout :: proc(self: ^CollectionViewTransitionLayout, currentLayout: ^CollectionViewLayout, newLayout: ^CollectionViewLayout) -> instancetype ---
 
     @(objc_type=CollectionViewTransitionLayout, objc_selector="updateValue:forAnimatedKey:", objc_name="updateValue")
     CollectionViewTransitionLayout_updateValue :: proc(self: ^CollectionViewTransitionLayout, value: CG.Float, key: ^NS.String) ---

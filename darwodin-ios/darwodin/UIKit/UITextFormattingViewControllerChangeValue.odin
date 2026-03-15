@@ -25,7 +25,7 @@ TextFormattingViewControllerChangeValue :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextFormattingViewControllerChangeValue, objc_selector="init", objc_name="init")
-    TextFormattingViewControllerChangeValue_init :: proc(self: ^TextFormattingViewControllerChangeValue) -> ^TextFormattingViewControllerChangeValue ---
+    TextFormattingViewControllerChangeValue_init :: proc(self: ^TextFormattingViewControllerChangeValue) -> instancetype ---
 
     @(objc_type=TextFormattingViewControllerChangeValue, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextFormattingViewControllerChangeValue_new :: proc() -> ^TextFormattingViewControllerChangeValue ---

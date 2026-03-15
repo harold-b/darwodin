@@ -23,5 +23,5 @@ AudioOutputNode :: struct { using _: AudioIONode, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioOutputNode, objc_selector="init", objc_name="init")
-    AudioOutputNode_init :: proc(self: ^AudioOutputNode) -> ^AudioOutputNode ---
+    AudioOutputNode_init :: proc(self: ^AudioOutputNode) -> instancetype ---
 }

@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithName_handler: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> ^AK.AccessibilityCustomAction,
-    initWithName_target_selector: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> ^AK.AccessibilityCustomAction,
+    initWithName_handler: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> instancetype,
+    initWithName_target_selector: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> instancetype,
     name: proc(self: ^AK.AccessibilityCustomAction) -> ^NS.String,
     setName: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String),
     handler: proc(self: ^AK.AccessibilityCustomAction) -> ^Objc_Block(proc "c" () -> bool),
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithName_handler != nil {
-        initWithName_handler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> ^AK.AccessibilityCustomAction {
+        initWithName_handler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:handler:"), auto_cast initWithName_handler, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.initWithName_target_selector != nil {
-        initWithName_target_selector :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> ^AK.AccessibilityCustomAction {
+        initWithName_target_selector :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

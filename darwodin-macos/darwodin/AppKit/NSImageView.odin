@@ -27,7 +27,7 @@ ImageView :: struct { using _: Control,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ImageView, objc_selector="imageViewWithImage:", objc_name="imageViewWithImage", objc_is_class_method=true)
-    ImageView_imageViewWithImage :: proc(image: ^NS.Image) -> ^ImageView ---
+    ImageView_imageViewWithImage :: proc(image: ^NS.Image) -> instancetype ---
 
     @(objc_type=ImageView, objc_selector="image", objc_name="image")
     ImageView_image :: proc(self: ^ImageView) -> ^NS.Image ---

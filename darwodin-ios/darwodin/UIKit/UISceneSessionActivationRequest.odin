@@ -24,16 +24,16 @@ SceneSessionActivationRequest :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SceneSessionActivationRequest, objc_selector="request", objc_name="request", objc_is_class_method=true)
-    SceneSessionActivationRequest_request :: proc() -> ^SceneSessionActivationRequest ---
+    SceneSessionActivationRequest_request :: proc() -> instancetype ---
 
     @(objc_type=SceneSessionActivationRequest, objc_selector="requestWithRole:", objc_name="requestWithRole", objc_is_class_method=true)
-    SceneSessionActivationRequest_requestWithRole :: proc(role: ^NS.String) -> ^SceneSessionActivationRequest ---
+    SceneSessionActivationRequest_requestWithRole :: proc(role: ^NS.String) -> instancetype ---
 
     @(objc_type=SceneSessionActivationRequest, objc_selector="requestWithSession:", objc_name="requestWithSession", objc_is_class_method=true)
-    SceneSessionActivationRequest_requestWithSession :: proc(session: ^SceneSession) -> ^SceneSessionActivationRequest ---
+    SceneSessionActivationRequest_requestWithSession :: proc(session: ^SceneSession) -> instancetype ---
 
     @(objc_type=SceneSessionActivationRequest, objc_selector="init", objc_name="init")
-    SceneSessionActivationRequest_init :: proc(self: ^SceneSessionActivationRequest) -> ^SceneSessionActivationRequest ---
+    SceneSessionActivationRequest_init :: proc(self: ^SceneSessionActivationRequest) -> instancetype ---
 
     @(objc_type=SceneSessionActivationRequest, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SceneSessionActivationRequest_new :: proc() -> ^SceneSessionActivationRequest ---

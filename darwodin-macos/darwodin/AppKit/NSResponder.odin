@@ -26,10 +26,10 @@ Responder :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Responder, objc_selector="init", objc_name="init")
-    Responder_init :: proc(self: ^Responder) -> ^Responder ---
+    Responder_init :: proc(self: ^Responder) -> instancetype ---
 
     @(objc_type=Responder, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Responder_initWithCoder :: proc(self: ^Responder, coder: ^NS.Coder) -> ^Responder ---
+    Responder_initWithCoder :: proc(self: ^Responder, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Responder, objc_selector="tryToPerform:with:", objc_name="tryToPerform")
     Responder_tryToPerform :: proc(self: ^Responder, action: SEL, object: id) -> bool ---

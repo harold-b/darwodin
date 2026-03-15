@@ -32,7 +32,7 @@ foreign lib {
     URLSessionWebSocketTask_cancelWithCloseCode :: proc(self: ^URLSessionWebSocketTask, closeCode: URLSessionWebSocketCloseCode, reason: ^Data) ---
 
     @(objc_type=URLSessionWebSocketTask, objc_selector="init", objc_name="init")
-    URLSessionWebSocketTask_init :: proc(self: ^URLSessionWebSocketTask) -> ^URLSessionWebSocketTask ---
+    URLSessionWebSocketTask_init :: proc(self: ^URLSessionWebSocketTask) -> instancetype ---
 
     @(objc_type=URLSessionWebSocketTask, objc_selector="new", objc_name="new", objc_is_class_method=true)
     URLSessionWebSocketTask_new :: proc() -> ^URLSessionWebSocketTask ---

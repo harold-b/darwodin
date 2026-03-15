@@ -24,10 +24,10 @@ WritingToolsCoordinatorContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WritingToolsCoordinatorContext, objc_selector="initWithAttributedString:range:", objc_name="initWithAttributedString")
-    WritingToolsCoordinatorContext_initWithAttributedString :: proc(self: ^WritingToolsCoordinatorContext, attributedString: ^NS.AttributedString, range: NS._NSRange) -> ^WritingToolsCoordinatorContext ---
+    WritingToolsCoordinatorContext_initWithAttributedString :: proc(self: ^WritingToolsCoordinatorContext, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype ---
 
     @(objc_type=WritingToolsCoordinatorContext, objc_selector="init", objc_name="init")
-    WritingToolsCoordinatorContext_init :: proc(self: ^WritingToolsCoordinatorContext) -> ^WritingToolsCoordinatorContext ---
+    WritingToolsCoordinatorContext_init :: proc(self: ^WritingToolsCoordinatorContext) -> instancetype ---
 
     @(objc_type=WritingToolsCoordinatorContext, objc_selector="attributedString", objc_name="attributedString")
     WritingToolsCoordinatorContext_attributedString :: proc(self: ^WritingToolsCoordinatorContext) -> ^NS.AttributedString ---

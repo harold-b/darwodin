@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.NSShadow) -> ^UI.NSShadow,
-    initWithCoder: proc(self: ^UI.NSShadow, coder: ^NS.Coder) -> ^UI.NSShadow,
+    init: proc(self: ^UI.NSShadow) -> instancetype,
+    initWithCoder: proc(self: ^UI.NSShadow, coder: ^NS.Coder) -> instancetype,
     shadowOffset: proc(self: ^UI.NSShadow) -> CG.Size,
     setShadowOffset: proc(self: ^UI.NSShadow, shadowOffset: CG.Size),
     shadowBlurRadius: proc(self: ^UI.NSShadow) -> CG.Float,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSShadow, _: SEL) -> ^UI.NSShadow {
+        init :: proc "c" (self: ^UI.NSShadow, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.NSShadow, _: SEL, coder: ^NS.Coder) -> ^UI.NSShadow {
+        initWithCoder :: proc "c" (self: ^UI.NSShadow, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

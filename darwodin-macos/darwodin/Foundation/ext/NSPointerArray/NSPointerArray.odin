@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithOptions: proc(self: ^NS.PointerArray, options: NS.PointerFunctionsOptions) -> ^NS.PointerArray,
-    initWithPointerFunctions: proc(self: ^NS.PointerArray, functions: ^NS.PointerFunctions) -> ^NS.PointerArray,
+    initWithOptions: proc(self: ^NS.PointerArray, options: NS.PointerFunctionsOptions) -> instancetype,
+    initWithPointerFunctions: proc(self: ^NS.PointerArray, functions: ^NS.PointerFunctions) -> instancetype,
     pointerArrayWithOptions: proc(options: NS.PointerFunctionsOptions) -> ^NS.PointerArray,
     pointerArrayWithPointerFunctions: proc(functions: ^NS.PointerFunctions) -> ^NS.PointerArray,
     pointerAtIndex: proc(self: ^NS.PointerArray, index: NS.UInteger) -> rawptr,
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithOptions != nil {
-        initWithOptions :: proc "c" (self: ^NS.PointerArray, _: SEL, options: NS.PointerFunctionsOptions) -> ^NS.PointerArray {
+        initWithOptions :: proc "c" (self: ^NS.PointerArray, _: SEL, options: NS.PointerFunctionsOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithOptions:"), auto_cast initWithOptions, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.initWithPointerFunctions != nil {
-        initWithPointerFunctions :: proc "c" (self: ^NS.PointerArray, _: SEL, functions: ^NS.PointerFunctions) -> ^NS.PointerArray {
+        initWithPointerFunctions :: proc "c" (self: ^NS.PointerArray, _: SEL, functions: ^NS.PointerFunctions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

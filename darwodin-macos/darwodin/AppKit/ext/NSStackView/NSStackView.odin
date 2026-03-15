@@ -30,7 +30,7 @@ import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    stackViewWithViews: proc(views: ^NS.Array) -> ^AK.StackView,
+    stackViewWithViews: proc(views: ^NS.Array) -> instancetype,
     setCustomSpacing: proc(self: ^AK.StackView, spacing: CG.Float, view: ^AK.View),
     customSpacingAfterView: proc(self: ^AK.StackView, view: ^AK.View) -> CG.Float,
     addArrangedSubview: proc(self: ^AK.StackView, view: ^AK.View),
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.stackViewWithViews != nil {
-        stackViewWithViews :: proc "c" (self: Class, _: SEL, views: ^NS.Array) -> ^AK.StackView {
+        stackViewWithViews :: proc "c" (self: Class, _: SEL, views: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

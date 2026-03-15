@@ -23,10 +23,10 @@ foreign lib {
     UserDefaults_resetStandardUserDefaults :: proc() ---
 
     @(objc_type=UserDefaults, objc_selector="init", objc_name="init")
-    UserDefaults_init :: proc(self: ^UserDefaults) -> ^UserDefaults ---
+    UserDefaults_init :: proc(self: ^UserDefaults) -> instancetype ---
 
     @(objc_type=UserDefaults, objc_selector="initWithSuiteName:", objc_name="initWithSuiteName")
-    UserDefaults_initWithSuiteName :: proc(self: ^UserDefaults, suitename: ^String) -> ^UserDefaults ---
+    UserDefaults_initWithSuiteName :: proc(self: ^UserDefaults, suitename: ^String) -> instancetype ---
 
     @(objc_type=UserDefaults, objc_selector="initWithUser:", objc_name="initWithUser")
     UserDefaults_initWithUser :: proc(self: ^UserDefaults, username: ^String) -> id ---

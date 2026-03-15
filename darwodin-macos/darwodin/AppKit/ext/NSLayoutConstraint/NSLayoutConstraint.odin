@@ -31,7 +31,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     constraintsWithVisualFormat: proc(format: ^NS.String, opts: AK.LayoutFormatOptions, metrics: ^NS.Dictionary, views: ^NS.Dictionary) -> ^NS.Array,
-    constraintWithItem: proc(view1: id, attr1: AK.LayoutAttribute, relation: AK.LayoutRelation, view2: id, attr2: AK.LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> ^AK.LayoutConstraint,
+    constraintWithItem: proc(view1: id, attr1: AK.LayoutAttribute, relation: AK.LayoutRelation, view2: id, attr2: AK.LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> instancetype,
     activateConstraints: proc(constraints: ^NS.Array),
     deactivateConstraints: proc(constraints: ^NS.Array),
     priority: proc(self: ^AK.LayoutConstraint) -> AK.LayoutPriority,
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("constraintsWithVisualFormat:options:metrics:views:"), auto_cast constraintsWithVisualFormat, "^void#:@L^void^void") do panic("Failed to register objC method.")
     }
     if vt.constraintWithItem != nil {
-        constraintWithItem :: proc "c" (self: Class, _: SEL, view1: id, attr1: AK.LayoutAttribute, relation: AK.LayoutRelation, view2: id, attr2: AK.LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> ^AK.LayoutConstraint {
+        constraintWithItem :: proc "c" (self: Class, _: SEL, view1: id, attr1: AK.LayoutAttribute, relation: AK.LayoutRelation, view2: id, attr2: AK.LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

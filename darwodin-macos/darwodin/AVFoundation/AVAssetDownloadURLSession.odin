@@ -38,7 +38,7 @@ foreign lib {
     AssetDownloadURLSession_assetDownloadTaskWithConfiguration :: proc(self: ^AssetDownloadURLSession, downloadConfiguration: ^AssetDownloadConfiguration) -> ^AssetDownloadTask ---
 
     @(objc_type=AssetDownloadURLSession, objc_selector="init", objc_name="init")
-    AssetDownloadURLSession_init :: proc(self: ^AssetDownloadURLSession) -> ^AssetDownloadURLSession ---
+    AssetDownloadURLSession_init :: proc(self: ^AssetDownloadURLSession) -> instancetype ---
 
     @(objc_type=AssetDownloadURLSession, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetDownloadURLSession_new :: proc() -> ^AssetDownloadURLSession ---

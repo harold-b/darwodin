@@ -22,13 +22,13 @@ NSTextViewportLayoutController :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSTextViewportLayoutController, objc_selector="initWithTextLayoutManager:", objc_name="initWithTextLayoutManager")
-    NSTextViewportLayoutController_initWithTextLayoutManager :: proc(self: ^NSTextViewportLayoutController, textLayoutManager: ^NSTextLayoutManager) -> ^NSTextViewportLayoutController ---
+    NSTextViewportLayoutController_initWithTextLayoutManager :: proc(self: ^NSTextViewportLayoutController, textLayoutManager: ^NSTextLayoutManager) -> instancetype ---
 
     @(objc_type=NSTextViewportLayoutController, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSTextViewportLayoutController_new :: proc() -> ^NSTextViewportLayoutController ---
 
     @(objc_type=NSTextViewportLayoutController, objc_selector="init", objc_name="init")
-    NSTextViewportLayoutController_init :: proc(self: ^NSTextViewportLayoutController) -> ^NSTextViewportLayoutController ---
+    NSTextViewportLayoutController_init :: proc(self: ^NSTextViewportLayoutController) -> instancetype ---
 
     @(objc_type=NSTextViewportLayoutController, objc_selector="layoutViewport", objc_name="layoutViewport")
     NSTextViewportLayoutController_layoutViewport :: proc(self: ^NSTextViewportLayoutController) ---

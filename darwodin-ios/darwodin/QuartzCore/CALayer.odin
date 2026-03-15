@@ -24,19 +24,19 @@ Layer :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Layer, objc_selector="layer", objc_name="layer", objc_is_class_method=true)
-    Layer_layer :: proc() -> ^Layer ---
+    Layer_layer :: proc() -> instancetype ---
 
     @(objc_type=Layer, objc_selector="init", objc_name="init")
-    Layer_init :: proc(self: ^Layer) -> ^Layer ---
+    Layer_init :: proc(self: ^Layer) -> instancetype ---
 
     @(objc_type=Layer, objc_selector="initWithLayer:", objc_name="initWithLayer")
-    Layer_initWithLayer :: proc(self: ^Layer, layer: id) -> ^Layer ---
+    Layer_initWithLayer :: proc(self: ^Layer, layer: id) -> instancetype ---
 
     @(objc_type=Layer, objc_selector="presentationLayer", objc_name="presentationLayer")
-    Layer_presentationLayer :: proc(self: ^Layer) -> ^Layer ---
+    Layer_presentationLayer :: proc(self: ^Layer) -> instancetype ---
 
     @(objc_type=Layer, objc_selector="modelLayer", objc_name="modelLayer")
-    Layer_modelLayer :: proc(self: ^Layer) -> ^Layer ---
+    Layer_modelLayer :: proc(self: ^Layer) -> instancetype ---
 
     @(objc_type=Layer, objc_selector="defaultValueForKey:", objc_name="defaultValueForKey", objc_is_class_method=true)
     Layer_defaultValueForKey :: proc(key: ^NS.String) -> id ---

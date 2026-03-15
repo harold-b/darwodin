@@ -22,7 +22,7 @@ PointerFunctions :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerFunctions, objc_selector="initWithOptions:", objc_name="initWithOptions")
-    PointerFunctions_initWithOptions :: proc(self: ^PointerFunctions, options: PointerFunctionsOptions) -> ^PointerFunctions ---
+    PointerFunctions_initWithOptions :: proc(self: ^PointerFunctions, options: PointerFunctionsOptions) -> instancetype ---
 
     @(objc_type=PointerFunctions, objc_selector="pointerFunctionsWithOptions:", objc_name="pointerFunctionsWithOptions", objc_is_class_method=true)
     PointerFunctions_pointerFunctionsWithOptions :: proc(options: PointerFunctionsOptions) -> ^PointerFunctions ---

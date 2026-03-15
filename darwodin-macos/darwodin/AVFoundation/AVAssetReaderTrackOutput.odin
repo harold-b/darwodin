@@ -23,16 +23,16 @@ AssetReaderTrackOutput :: struct { using _: AssetReaderOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderTrackOutput, objc_selector="init", objc_name="init")
-    AssetReaderTrackOutput_init :: proc(self: ^AssetReaderTrackOutput) -> ^AssetReaderTrackOutput ---
+    AssetReaderTrackOutput_init :: proc(self: ^AssetReaderTrackOutput) -> instancetype ---
 
     @(objc_type=AssetReaderTrackOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetReaderTrackOutput_new :: proc() -> ^AssetReaderTrackOutput ---
 
     @(objc_type=AssetReaderTrackOutput, objc_selector="assetReaderTrackOutputWithTrack:outputSettings:", objc_name="assetReaderTrackOutputWithTrack", objc_is_class_method=true)
-    AssetReaderTrackOutput_assetReaderTrackOutputWithTrack :: proc(track: ^AssetTrack, outputSettings: ^NS.Dictionary) -> ^AssetReaderTrackOutput ---
+    AssetReaderTrackOutput_assetReaderTrackOutputWithTrack :: proc(track: ^AssetTrack, outputSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AssetReaderTrackOutput, objc_selector="initWithTrack:outputSettings:", objc_name="initWithTrack")
-    AssetReaderTrackOutput_initWithTrack :: proc(self: ^AssetReaderTrackOutput, track: ^AssetTrack, outputSettings: ^NS.Dictionary) -> ^AssetReaderTrackOutput ---
+    AssetReaderTrackOutput_initWithTrack :: proc(self: ^AssetReaderTrackOutput, track: ^AssetTrack, outputSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AssetReaderTrackOutput, objc_selector="track", objc_name="track")
     AssetReaderTrackOutput_track :: proc(self: ^AssetReaderTrackOutput) -> ^AssetTrack ---

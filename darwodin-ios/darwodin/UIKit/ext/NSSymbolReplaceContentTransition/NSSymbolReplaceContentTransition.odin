@@ -28,12 +28,12 @@ import "../NSSymbolContentTransition"
 
 VTable :: struct {
     super: NSSymbolContentTransition.VTable,
-    transition: proc() -> ^UI.NSSymbolReplaceContentTransition,
-    replaceDownUpTransition: proc() -> ^UI.NSSymbolReplaceContentTransition,
-    replaceUpUpTransition: proc() -> ^UI.NSSymbolReplaceContentTransition,
-    replaceOffUpTransition: proc() -> ^UI.NSSymbolReplaceContentTransition,
-    transitionWithByLayer: proc(self: ^UI.NSSymbolReplaceContentTransition) -> ^UI.NSSymbolReplaceContentTransition,
-    transitionWithWholeSymbol: proc(self: ^UI.NSSymbolReplaceContentTransition) -> ^UI.NSSymbolReplaceContentTransition,
+    transition: proc() -> instancetype,
+    replaceDownUpTransition: proc() -> instancetype,
+    replaceUpUpTransition: proc() -> instancetype,
+    replaceOffUpTransition: proc() -> instancetype,
+    transitionWithByLayer: proc(self: ^UI.NSSymbolReplaceContentTransition) -> instancetype,
+    transitionWithWholeSymbol: proc(self: ^UI.NSSymbolReplaceContentTransition) -> instancetype,
     magicTransitionWithFallback: proc(fallback: ^UI.NSSymbolReplaceContentTransition) -> ^UI.NSSymbolMagicReplaceContentTransition,
 }
 
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSSymbolContentTransition.extend(cls, &vt.super)
 
     if vt.transition != nil {
-        transition :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolReplaceContentTransition {
+        transition :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("transition"), auto_cast transition, "@#:") do panic("Failed to register objC method.")
     }
     if vt.replaceDownUpTransition != nil {
-        replaceDownUpTransition :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolReplaceContentTransition {
+        replaceDownUpTransition :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("replaceDownUpTransition"), auto_cast replaceDownUpTransition, "@#:") do panic("Failed to register objC method.")
     }
     if vt.replaceUpUpTransition != nil {
-        replaceUpUpTransition :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolReplaceContentTransition {
+        replaceUpUpTransition :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("replaceUpUpTransition"), auto_cast replaceUpUpTransition, "@#:") do panic("Failed to register objC method.")
     }
     if vt.replaceOffUpTransition != nil {
-        replaceOffUpTransition :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolReplaceContentTransition {
+        replaceOffUpTransition :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("replaceOffUpTransition"), auto_cast replaceOffUpTransition, "@#:") do panic("Failed to register objC method.")
     }
     if vt.transitionWithByLayer != nil {
-        transitionWithByLayer :: proc "c" (self: ^UI.NSSymbolReplaceContentTransition, _: SEL) -> ^UI.NSSymbolReplaceContentTransition {
+        transitionWithByLayer :: proc "c" (self: ^UI.NSSymbolReplaceContentTransition, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("transitionWithByLayer"), auto_cast transitionWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.transitionWithWholeSymbol != nil {
-        transitionWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolReplaceContentTransition, _: SEL) -> ^UI.NSSymbolReplaceContentTransition {
+        transitionWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolReplaceContentTransition, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

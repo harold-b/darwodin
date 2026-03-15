@@ -29,7 +29,7 @@ VTable :: struct {
     cancel: proc(self: ^NS.URLSessionTask),
     suspend: proc(self: ^NS.URLSessionTask),
     resume: proc(self: ^NS.URLSessionTask),
-    init: proc(self: ^NS.URLSessionTask) -> ^NS.URLSessionTask,
+    init: proc(self: ^NS.URLSessionTask) -> instancetype,
     new: proc() -> ^NS.URLSessionTask,
     taskIdentifier: proc(self: ^NS.URLSessionTask) -> NS.UInteger,
     originalRequest: proc(self: ^NS.URLSessionTask) -> ^NS.URLRequest,
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resume"), auto_cast resume, "v@:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSessionTask, _: SEL) -> ^NS.URLSessionTask {
+        init :: proc "c" (self: ^NS.URLSessionTask, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

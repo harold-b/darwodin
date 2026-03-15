@@ -25,7 +25,7 @@ foreign lib {
     UpdateLink_new :: proc() -> ^UpdateLink ---
 
     @(objc_type=UpdateLink, objc_selector="init", objc_name="init")
-    UpdateLink_init :: proc(self: ^UpdateLink) -> ^UpdateLink ---
+    UpdateLink_init :: proc(self: ^UpdateLink) -> instancetype ---
 
     @(objc_type=UpdateLink, objc_selector="updateLinkForWindowScene:", objc_name="updateLinkForWindowScene_", objc_is_class_method=true)
     UpdateLink_updateLinkForWindowScene_ :: proc(windowScene: ^WindowScene) -> ^UpdateLink ---

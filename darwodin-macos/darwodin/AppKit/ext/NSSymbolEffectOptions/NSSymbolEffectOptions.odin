@@ -31,18 +31,18 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^AK.SymbolEffectOptions,
-    init: proc(self: ^AK.SymbolEffectOptions) -> ^AK.SymbolEffectOptions,
-    options: proc() -> ^AK.SymbolEffectOptions,
-    optionsWithRepeatingStatic: proc() -> ^AK.SymbolEffectOptions,
-    optionsWithRepeating: proc(self: ^AK.SymbolEffectOptions) -> ^AK.SymbolEffectOptions,
-    optionsWithNonRepeatingStatic: proc() -> ^AK.SymbolEffectOptions,
-    optionsWithNonRepeating: proc(self: ^AK.SymbolEffectOptions) -> ^AK.SymbolEffectOptions,
-    optionsWithRepeatCountStatic: proc(count: NS.Integer) -> ^AK.SymbolEffectOptions,
-    optionsWithRepeatCount: proc(self: ^AK.SymbolEffectOptions, count: NS.Integer) -> ^AK.SymbolEffectOptions,
-    optionsWithSpeedStatic: proc(speed: cffi.double) -> ^AK.SymbolEffectOptions,
-    optionsWithSpeed: proc(self: ^AK.SymbolEffectOptions, speed: cffi.double) -> ^AK.SymbolEffectOptions,
-    optionsWithRepeatBehaviorStatic: proc(behavior: ^AK.SymbolEffectOptionsRepeatBehavior) -> ^AK.SymbolEffectOptions,
-    optionsWithRepeatBehavior: proc(self: ^AK.SymbolEffectOptions, behavior: ^AK.SymbolEffectOptionsRepeatBehavior) -> ^AK.SymbolEffectOptions,
+    init: proc(self: ^AK.SymbolEffectOptions) -> instancetype,
+    options: proc() -> instancetype,
+    optionsWithRepeatingStatic: proc() -> instancetype,
+    optionsWithRepeating: proc(self: ^AK.SymbolEffectOptions) -> instancetype,
+    optionsWithNonRepeatingStatic: proc() -> instancetype,
+    optionsWithNonRepeating: proc(self: ^AK.SymbolEffectOptions) -> instancetype,
+    optionsWithRepeatCountStatic: proc(count: NS.Integer) -> instancetype,
+    optionsWithRepeatCount: proc(self: ^AK.SymbolEffectOptions, count: NS.Integer) -> instancetype,
+    optionsWithSpeedStatic: proc(speed: cffi.double) -> instancetype,
+    optionsWithSpeed: proc(self: ^AK.SymbolEffectOptions, speed: cffi.double) -> instancetype,
+    optionsWithRepeatBehaviorStatic: proc(behavior: ^AK.SymbolEffectOptionsRepeatBehavior) -> instancetype,
+    optionsWithRepeatBehavior: proc(self: ^AK.SymbolEffectOptions, behavior: ^AK.SymbolEffectOptionsRepeatBehavior) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL) -> ^AK.SymbolEffectOptions {
+        init :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.options != nil {
-        options :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolEffectOptions {
+        options :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("options"), auto_cast options, "@#:") do panic("Failed to register objC method.")
     }
     if vt.optionsWithRepeatingStatic != nil {
-        optionsWithRepeatingStatic :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolEffectOptions {
+        optionsWithRepeatingStatic :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("optionsWithRepeating"), auto_cast optionsWithRepeatingStatic, "@#:") do panic("Failed to register objC method.")
     }
     if vt.optionsWithRepeating != nil {
-        optionsWithRepeating :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL) -> ^AK.SymbolEffectOptions {
+        optionsWithRepeating :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("optionsWithRepeating"), auto_cast optionsWithRepeating, "@@:") do panic("Failed to register objC method.")
     }
     if vt.optionsWithNonRepeatingStatic != nil {
-        optionsWithNonRepeatingStatic :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolEffectOptions {
+        optionsWithNonRepeatingStatic :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("optionsWithNonRepeating"), auto_cast optionsWithNonRepeatingStatic, "@#:") do panic("Failed to register objC method.")
     }
     if vt.optionsWithNonRepeating != nil {
-        optionsWithNonRepeating :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL) -> ^AK.SymbolEffectOptions {
+        optionsWithNonRepeating :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("optionsWithNonRepeating"), auto_cast optionsWithNonRepeating, "@@:") do panic("Failed to register objC method.")
     }
     if vt.optionsWithRepeatCountStatic != nil {
-        optionsWithRepeatCountStatic :: proc "c" (self: Class, _: SEL, count: NS.Integer) -> ^AK.SymbolEffectOptions {
+        optionsWithRepeatCountStatic :: proc "c" (self: Class, _: SEL, count: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("optionsWithRepeatCount:"), auto_cast optionsWithRepeatCountStatic, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.optionsWithRepeatCount != nil {
-        optionsWithRepeatCount :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL, count: NS.Integer) -> ^AK.SymbolEffectOptions {
+        optionsWithRepeatCount :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL, count: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("optionsWithRepeatCount:"), auto_cast optionsWithRepeatCount, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.optionsWithSpeedStatic != nil {
-        optionsWithSpeedStatic :: proc "c" (self: Class, _: SEL, speed: cffi.double) -> ^AK.SymbolEffectOptions {
+        optionsWithSpeedStatic :: proc "c" (self: Class, _: SEL, speed: cffi.double) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("optionsWithSpeed:"), auto_cast optionsWithSpeedStatic, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.optionsWithSpeed != nil {
-        optionsWithSpeed :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL, speed: cffi.double) -> ^AK.SymbolEffectOptions {
+        optionsWithSpeed :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL, speed: cffi.double) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("optionsWithSpeed:"), auto_cast optionsWithSpeed, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.optionsWithRepeatBehaviorStatic != nil {
-        optionsWithRepeatBehaviorStatic :: proc "c" (self: Class, _: SEL, behavior: ^AK.SymbolEffectOptionsRepeatBehavior) -> ^AK.SymbolEffectOptions {
+        optionsWithRepeatBehaviorStatic :: proc "c" (self: Class, _: SEL, behavior: ^AK.SymbolEffectOptionsRepeatBehavior) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("optionsWithRepeatBehavior:"), auto_cast optionsWithRepeatBehaviorStatic, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.optionsWithRepeatBehavior != nil {
-        optionsWithRepeatBehavior :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL, behavior: ^AK.SymbolEffectOptionsRepeatBehavior) -> ^AK.SymbolEffectOptions {
+        optionsWithRepeatBehavior :: proc "c" (self: ^AK.SymbolEffectOptions, _: SEL, behavior: ^AK.SymbolEffectOptionsRepeatBehavior) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

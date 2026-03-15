@@ -23,7 +23,7 @@ CaptureMetadataOutput :: struct { using _: CaptureOutput, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureMetadataOutput, objc_selector="init", objc_name="init")
-    CaptureMetadataOutput_init :: proc(self: ^CaptureMetadataOutput) -> ^CaptureMetadataOutput ---
+    CaptureMetadataOutput_init :: proc(self: ^CaptureMetadataOutput) -> instancetype ---
 
     @(objc_type=CaptureMetadataOutput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureMetadataOutput_new :: proc() -> ^CaptureMetadataOutput ---

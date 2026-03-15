@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDomain: proc(self: ^NS.Error, domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> ^NS.Error,
-    errorWithDomain: proc(domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> ^NS.Error,
+    initWithDomain: proc(self: ^NS.Error, domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> instancetype,
+    errorWithDomain: proc(domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> instancetype,
     setUserInfoValueProviderForDomain: proc(errorDomain: ^NS.String, provider: ^Objc_Block(proc "c" (err: ^NS.Error, userInfoKey: ^NS.String) -> id)),
     userInfoValueProviderForDomain: proc(err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> ^Objc_Block(proc "c" (err: ^NS.Error, userInfoKey: ^NS.String, errorDomain: ^NS.String) -> id),
     domain: proc(self: ^NS.Error) -> ^NS.String,
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDomain != nil {
-        initWithDomain :: proc "c" (self: ^NS.Error, _: SEL, domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> ^NS.Error {
+        initWithDomain :: proc "c" (self: ^NS.Error, _: SEL, domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDomain:code:userInfo:"), auto_cast initWithDomain, "@@:@l^void") do panic("Failed to register objC method.")
     }
     if vt.errorWithDomain != nil {
-        errorWithDomain :: proc "c" (self: Class, _: SEL, domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> ^NS.Error {
+        errorWithDomain :: proc "c" (self: Class, _: SEL, domain: ^NS.String, code: NS.Integer, dict: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

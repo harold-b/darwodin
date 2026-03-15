@@ -22,10 +22,10 @@ CollectionViewPlaceholder :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewPlaceholder, objc_selector="initWithInsertionIndexPath:reuseIdentifier:", objc_name="initWithInsertionIndexPath")
-    CollectionViewPlaceholder_initWithInsertionIndexPath :: proc(self: ^CollectionViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String) -> ^CollectionViewPlaceholder ---
+    CollectionViewPlaceholder_initWithInsertionIndexPath :: proc(self: ^CollectionViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String) -> instancetype ---
 
     @(objc_type=CollectionViewPlaceholder, objc_selector="init", objc_name="init")
-    CollectionViewPlaceholder_init :: proc(self: ^CollectionViewPlaceholder) -> ^CollectionViewPlaceholder ---
+    CollectionViewPlaceholder_init :: proc(self: ^CollectionViewPlaceholder) -> instancetype ---
 
     @(objc_type=CollectionViewPlaceholder, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionViewPlaceholder_new :: proc() -> ^CollectionViewPlaceholder ---

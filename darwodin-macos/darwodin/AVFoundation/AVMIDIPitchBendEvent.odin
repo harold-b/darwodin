@@ -23,7 +23,7 @@ MIDIPitchBendEvent :: struct { using _: MIDIChannelEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDIPitchBendEvent, objc_selector="initWithChannel:value:", objc_name="initWithChannel")
-    MIDIPitchBendEvent_initWithChannel :: proc(self: ^MIDIPitchBendEvent, channel: CF.UInt32, value: CF.UInt32) -> ^MIDIPitchBendEvent ---
+    MIDIPitchBendEvent_initWithChannel :: proc(self: ^MIDIPitchBendEvent, channel: CF.UInt32, value: CF.UInt32) -> instancetype ---
 
     @(objc_type=MIDIPitchBendEvent, objc_selector="value", objc_name="value")
     MIDIPitchBendEvent_value :: proc(self: ^MIDIPitchBendEvent) -> CF.UInt32 ---

@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTraitCollection: proc(self: ^UI.ViewConfigurationState, traitCollection: ^UI.TraitCollection) -> ^UI.ViewConfigurationState,
-    initWithCoder: proc(self: ^UI.ViewConfigurationState, coder: ^NS.Coder) -> ^UI.ViewConfigurationState,
-    init: proc(self: ^UI.ViewConfigurationState) -> ^UI.ViewConfigurationState,
+    initWithTraitCollection: proc(self: ^UI.ViewConfigurationState, traitCollection: ^UI.TraitCollection) -> instancetype,
+    initWithCoder: proc(self: ^UI.ViewConfigurationState, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.ViewConfigurationState) -> instancetype,
     new: proc() -> ^UI.ViewConfigurationState,
     traitCollection: proc(self: ^UI.ViewConfigurationState) -> ^UI.TraitCollection,
     setTraitCollection: proc(self: ^UI.ViewConfigurationState, traitCollection: ^UI.TraitCollection),
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTraitCollection != nil {
-        initWithTraitCollection :: proc "c" (self: ^UI.ViewConfigurationState, _: SEL, traitCollection: ^UI.TraitCollection) -> ^UI.ViewConfigurationState {
+        initWithTraitCollection :: proc "c" (self: ^UI.ViewConfigurationState, _: SEL, traitCollection: ^UI.TraitCollection) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTraitCollection:"), auto_cast initWithTraitCollection, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.ViewConfigurationState, _: SEL, coder: ^NS.Coder) -> ^UI.ViewConfigurationState {
+        initWithCoder :: proc "c" (self: ^UI.ViewConfigurationState, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ViewConfigurationState, _: SEL) -> ^UI.ViewConfigurationState {
+        init :: proc "c" (self: ^UI.ViewConfigurationState, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

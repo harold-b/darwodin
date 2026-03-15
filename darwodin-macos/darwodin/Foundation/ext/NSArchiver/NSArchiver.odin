@@ -26,7 +26,7 @@ import "../NSCoder"
 
 VTable :: struct {
     super: NSCoder.VTable,
-    initForWritingWithMutableData: proc(self: ^NS.Archiver, mdata: ^NS.MutableData) -> ^NS.Archiver,
+    initForWritingWithMutableData: proc(self: ^NS.Archiver, mdata: ^NS.MutableData) -> instancetype,
     encodeRootObject: proc(self: ^NS.Archiver, rootObject: id),
     encodeConditionalObject: proc(self: ^NS.Archiver, object: id),
     archivedDataWithRootObject: proc(rootObject: id) -> ^NS.Data,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCoder.extend(cls, &vt.super)
 
     if vt.initForWritingWithMutableData != nil {
-        initForWritingWithMutableData :: proc "c" (self: ^NS.Archiver, _: SEL, mdata: ^NS.MutableData) -> ^NS.Archiver {
+        initForWritingWithMutableData :: proc "c" (self: ^NS.Archiver, _: SEL, mdata: ^NS.MutableData) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

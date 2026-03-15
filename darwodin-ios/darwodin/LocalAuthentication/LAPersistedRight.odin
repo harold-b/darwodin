@@ -22,7 +22,7 @@ foreign lib {
     PersistedRight_new :: proc() -> ^PersistedRight ---
 
     @(objc_type=PersistedRight, objc_selector="init", objc_name="init")
-    PersistedRight_init :: proc(self: ^PersistedRight) -> ^PersistedRight ---
+    PersistedRight_init :: proc(self: ^PersistedRight) -> instancetype ---
 
     @(objc_type=PersistedRight, objc_selector="key", objc_name="key")
     PersistedRight_key :: proc(self: ^PersistedRight) -> ^PrivateKey ---

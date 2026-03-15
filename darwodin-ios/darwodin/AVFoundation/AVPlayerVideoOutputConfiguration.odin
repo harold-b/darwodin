@@ -23,7 +23,7 @@ PlayerVideoOutputConfiguration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerVideoOutputConfiguration, objc_selector="init", objc_name="init")
-    PlayerVideoOutputConfiguration_init :: proc(self: ^PlayerVideoOutputConfiguration) -> ^PlayerVideoOutputConfiguration ---
+    PlayerVideoOutputConfiguration_init :: proc(self: ^PlayerVideoOutputConfiguration) -> instancetype ---
 
     @(objc_type=PlayerVideoOutputConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PlayerVideoOutputConfiguration_new :: proc() -> ^PlayerVideoOutputConfiguration ---

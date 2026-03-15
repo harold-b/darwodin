@@ -20,7 +20,7 @@ HTTPCookie :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HTTPCookie, objc_selector="initWithProperties:", objc_name="initWithProperties")
-    HTTPCookie_initWithProperties :: proc(self: ^HTTPCookie, properties: ^Dictionary) -> ^HTTPCookie ---
+    HTTPCookie_initWithProperties :: proc(self: ^HTTPCookie, properties: ^Dictionary) -> instancetype ---
 
     @(objc_type=HTTPCookie, objc_selector="cookieWithProperties:", objc_name="cookieWithProperties", objc_is_class_method=true)
     HTTPCookie_cookieWithProperties :: proc(properties: ^Dictionary) -> ^HTTPCookie ---

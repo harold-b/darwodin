@@ -22,7 +22,7 @@ CollisionBehavior :: struct { using _: DynamicBehavior, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollisionBehavior, objc_selector="initWithItems:", objc_name="initWithItems")
-    CollisionBehavior_initWithItems :: proc(self: ^CollisionBehavior, items: ^NS.Array) -> ^CollisionBehavior ---
+    CollisionBehavior_initWithItems :: proc(self: ^CollisionBehavior, items: ^NS.Array) -> instancetype ---
 
     @(objc_type=CollisionBehavior, objc_selector="addItem:", objc_name="addItem")
     CollisionBehavior_addItem :: proc(self: ^CollisionBehavior, item: ^DynamicItem) ---

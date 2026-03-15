@@ -23,7 +23,7 @@ CaptureAutoExposureBracketedStillImageSettings :: struct { using _: CaptureBrack
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureAutoExposureBracketedStillImageSettings, objc_selector="autoExposureSettingsWithExposureTargetBias:", objc_name="autoExposureSettingsWithExposureTargetBias", objc_is_class_method=true)
-    CaptureAutoExposureBracketedStillImageSettings_autoExposureSettingsWithExposureTargetBias :: proc(exposureTargetBias: cffi.float) -> ^CaptureAutoExposureBracketedStillImageSettings ---
+    CaptureAutoExposureBracketedStillImageSettings_autoExposureSettingsWithExposureTargetBias :: proc(exposureTargetBias: cffi.float) -> instancetype ---
 
     @(objc_type=CaptureAutoExposureBracketedStillImageSettings, objc_selector="exposureTargetBias", objc_name="exposureTargetBias")
     CaptureAutoExposureBracketedStillImageSettings_exposureTargetBias :: proc(self: ^CaptureAutoExposureBracketedStillImageSettings) -> cffi.float ---

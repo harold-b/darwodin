@@ -23,7 +23,7 @@ instancetype  :: intrinsics.objc_instancetype
 import NS "../../"
 
 VTable :: struct {
-    objectWithItemProviderData: proc(data: ^NS.Data, typeIdentifier: ^NS.String, outError: ^^NS.Error) -> ^NS.ItemProviderReading,
+    objectWithItemProviderData: proc(data: ^NS.Data, typeIdentifier: ^NS.String, outError: ^^NS.Error) -> instancetype,
     readableTypeIdentifiersForItemProvider: proc() -> ^NS.Array,
 }
 
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.objectWithItemProviderData != nil {
-        objectWithItemProviderData :: proc "c" (self: Class, _: SEL, data: ^NS.Data, typeIdentifier: ^NS.String, outError: ^^NS.Error) -> ^NS.ItemProviderReading {
+        objectWithItemProviderData :: proc "c" (self: Class, _: SEL, data: ^NS.Data, typeIdentifier: ^NS.String, outError: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

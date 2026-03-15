@@ -22,7 +22,7 @@ PageControlTimerProgress :: struct { using _: PageControlProgress, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PageControlTimerProgress, objc_selector="initWithPreferredDuration:", objc_name="initWithPreferredDuration")
-    PageControlTimerProgress_initWithPreferredDuration :: proc(self: ^PageControlTimerProgress, preferredDuration: NS.TimeInterval) -> ^PageControlTimerProgress ---
+    PageControlTimerProgress_initWithPreferredDuration :: proc(self: ^PageControlTimerProgress, preferredDuration: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=PageControlTimerProgress, objc_selector="resumeTimer", objc_name="resumeTimer")
     PageControlTimerProgress_resumeTimer :: proc(self: ^PageControlTimerProgress) ---
@@ -37,7 +37,7 @@ foreign lib {
     PageControlTimerProgress_durationForPage :: proc(self: ^PageControlTimerProgress, page: NS.Integer) -> NS.TimeInterval ---
 
     @(objc_type=PageControlTimerProgress, objc_selector="init", objc_name="init")
-    PageControlTimerProgress_init :: proc(self: ^PageControlTimerProgress) -> ^PageControlTimerProgress ---
+    PageControlTimerProgress_init :: proc(self: ^PageControlTimerProgress) -> instancetype ---
 
     @(objc_type=PageControlTimerProgress, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PageControlTimerProgress_new :: proc() -> ^PageControlTimerProgress ---

@@ -28,8 +28,8 @@ VTable :: struct {
     super: NSObject.VTable,
     objectForKey: proc(self: ^NS.Locale, key: ^NS.String) -> id,
     displayNameForKey: proc(self: ^NS.Locale, key: ^NS.String, value: id) -> ^NS.String,
-    initWithLocaleIdentifier: proc(self: ^NS.Locale, string: ^NS.String) -> ^NS.Locale,
-    initWithCoder: proc(self: ^NS.Locale, coder: ^NS.Coder) -> ^NS.Locale,
+    initWithLocaleIdentifier: proc(self: ^NS.Locale, string: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^NS.Locale, coder: ^NS.Coder) -> instancetype,
     localizedStringForLocaleIdentifier: proc(self: ^NS.Locale, localeIdentifier: ^NS.String) -> ^NS.String,
     localizedStringForLanguageCode: proc(self: ^NS.Locale, languageCode: ^NS.String) -> ^NS.String,
     localizedStringForCountryCode: proc(self: ^NS.Locale, countryCode: ^NS.String) -> ^NS.String,
@@ -59,8 +59,8 @@ VTable :: struct {
     quotationEndDelimiter: proc(self: ^NS.Locale) -> ^NS.String,
     alternateQuotationBeginDelimiter: proc(self: ^NS.Locale) -> ^NS.String,
     alternateQuotationEndDelimiter: proc(self: ^NS.Locale) -> ^NS.String,
-    localeWithLocaleIdentifier: proc(ident: ^NS.String) -> ^NS.Locale,
-    init: proc(self: ^NS.Locale) -> ^NS.Locale,
+    localeWithLocaleIdentifier: proc(ident: ^NS.String) -> instancetype,
+    init: proc(self: ^NS.Locale) -> instancetype,
     autoupdatingCurrentLocale: proc() -> ^NS.Locale,
     currentLocale: proc() -> ^NS.Locale,
     systemLocale: proc() -> ^NS.Locale,
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("displayNameForKey:value:"), auto_cast displayNameForKey, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithLocaleIdentifier != nil {
-        initWithLocaleIdentifier :: proc "c" (self: ^NS.Locale, _: SEL, string: ^NS.String) -> ^NS.Locale {
+        initWithLocaleIdentifier :: proc "c" (self: ^NS.Locale, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocaleIdentifier:"), auto_cast initWithLocaleIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.Locale, _: SEL, coder: ^NS.Coder) -> ^NS.Locale {
+        initWithCoder :: proc "c" (self: ^NS.Locale, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -418,7 +418,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alternateQuotationEndDelimiter"), auto_cast alternateQuotationEndDelimiter, "@@:") do panic("Failed to register objC method.")
     }
     if vt.localeWithLocaleIdentifier != nil {
-        localeWithLocaleIdentifier :: proc "c" (self: Class, _: SEL, ident: ^NS.String) -> ^NS.Locale {
+        localeWithLocaleIdentifier :: proc "c" (self: Class, _: SEL, ident: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -428,7 +428,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("localeWithLocaleIdentifier:"), auto_cast localeWithLocaleIdentifier, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.Locale, _: SEL) -> ^NS.Locale {
+        init :: proc "c" (self: ^NS.Locale, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

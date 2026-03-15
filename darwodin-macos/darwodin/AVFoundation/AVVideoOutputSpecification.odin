@@ -25,13 +25,13 @@ VideoOutputSpecification :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoOutputSpecification, objc_selector="init", objc_name="init")
-    VideoOutputSpecification_init :: proc(self: ^VideoOutputSpecification) -> ^VideoOutputSpecification ---
+    VideoOutputSpecification_init :: proc(self: ^VideoOutputSpecification) -> instancetype ---
 
     @(objc_type=VideoOutputSpecification, objc_selector="new", objc_name="new", objc_is_class_method=true)
     VideoOutputSpecification_new :: proc() -> ^VideoOutputSpecification ---
 
     @(objc_type=VideoOutputSpecification, objc_selector="initWithTagCollections:", objc_name="initWithTagCollections")
-    VideoOutputSpecification_initWithTagCollections :: proc(self: ^VideoOutputSpecification, tagCollections: ^NS.Array) -> ^VideoOutputSpecification ---
+    VideoOutputSpecification_initWithTagCollections :: proc(self: ^VideoOutputSpecification, tagCollections: ^NS.Array) -> instancetype ---
 
     @(objc_type=VideoOutputSpecification, objc_selector="setOutputPixelBufferAttributes:forTagCollection:", objc_name="setOutputPixelBufferAttributes")
     VideoOutputSpecification_setOutputPixelBufferAttributes :: proc(self: ^VideoOutputSpecification, pixelBufferAttributes: ^NS.Dictionary, tagCollection: CM.TagCollectionRef) ---

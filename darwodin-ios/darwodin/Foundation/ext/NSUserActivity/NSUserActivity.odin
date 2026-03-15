@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithActivityType: proc(self: ^NS.UserActivity, activityType: ^NS.String) -> ^NS.UserActivity,
-    init: proc(self: ^NS.UserActivity) -> ^NS.UserActivity,
+    initWithActivityType: proc(self: ^NS.UserActivity, activityType: ^NS.String) -> instancetype,
+    init: proc(self: ^NS.UserActivity) -> instancetype,
     addUserInfoEntriesFromDictionary: proc(self: ^NS.UserActivity, otherDictionary: ^NS.Dictionary),
     becomeCurrent: proc(self: ^NS.UserActivity),
     resignCurrent: proc(self: ^NS.UserActivity),
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithActivityType != nil {
-        initWithActivityType :: proc "c" (self: ^NS.UserActivity, _: SEL, activityType: ^NS.String) -> ^NS.UserActivity {
+        initWithActivityType :: proc "c" (self: ^NS.UserActivity, _: SEL, activityType: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithActivityType:"), auto_cast initWithActivityType, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.UserActivity, _: SEL) -> ^NS.UserActivity {
+        init :: proc "c" (self: ^NS.UserActivity, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

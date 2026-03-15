@@ -22,10 +22,10 @@ WindowSceneGeometryPreferencesIOS :: struct { using _: WindowSceneGeometryPrefer
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneGeometryPreferencesIOS, objc_selector="init", objc_name="init")
-    WindowSceneGeometryPreferencesIOS_init :: proc(self: ^WindowSceneGeometryPreferencesIOS) -> ^WindowSceneGeometryPreferencesIOS ---
+    WindowSceneGeometryPreferencesIOS_init :: proc(self: ^WindowSceneGeometryPreferencesIOS) -> instancetype ---
 
     @(objc_type=WindowSceneGeometryPreferencesIOS, objc_selector="initWithInterfaceOrientations:", objc_name="initWithInterfaceOrientations")
-    WindowSceneGeometryPreferencesIOS_initWithInterfaceOrientations :: proc(self: ^WindowSceneGeometryPreferencesIOS, interfaceOrientations: InterfaceOrientationMask) -> ^WindowSceneGeometryPreferencesIOS ---
+    WindowSceneGeometryPreferencesIOS_initWithInterfaceOrientations :: proc(self: ^WindowSceneGeometryPreferencesIOS, interfaceOrientations: InterfaceOrientationMask) -> instancetype ---
 
     @(objc_type=WindowSceneGeometryPreferencesIOS, objc_selector="interfaceOrientations", objc_name="interfaceOrientations")
     WindowSceneGeometryPreferencesIOS_interfaceOrientations :: proc(self: ^WindowSceneGeometryPreferencesIOS) -> InterfaceOrientationMask ---

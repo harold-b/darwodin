@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithBarButtonItems: proc(self: ^UI.BarButtonItemGroup, barButtonItems: ^NS.Array, representativeItem: ^UI.BarButtonItem) -> ^UI.BarButtonItemGroup,
-    initWithCoder: proc(self: ^UI.BarButtonItemGroup, coder: ^NS.Coder) -> ^UI.BarButtonItemGroup,
+    initWithBarButtonItems: proc(self: ^UI.BarButtonItemGroup, barButtonItems: ^NS.Array, representativeItem: ^UI.BarButtonItem) -> instancetype,
+    initWithCoder: proc(self: ^UI.BarButtonItemGroup, coder: ^NS.Coder) -> instancetype,
     fixedGroupWithRepresentativeItem: proc(representativeItem: ^UI.BarButtonItem, items: ^NS.Array) -> ^UI.BarButtonItemGroup,
     movableGroupWithCustomizationIdentifier: proc(customizationIdentifier: ^NS.String, representativeItem: ^UI.BarButtonItem, items: ^NS.Array) -> ^UI.BarButtonItemGroup,
     optionalGroupWithCustomizationIdentifier: proc(customizationIdentifier: ^NS.String, inDefaultCustomization: bool, representativeItem: ^UI.BarButtonItem, items: ^NS.Array) -> ^UI.BarButtonItemGroup,
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithBarButtonItems != nil {
-        initWithBarButtonItems :: proc "c" (self: ^UI.BarButtonItemGroup, _: SEL, barButtonItems: ^NS.Array, representativeItem: ^UI.BarButtonItem) -> ^UI.BarButtonItemGroup {
+        initWithBarButtonItems :: proc "c" (self: ^UI.BarButtonItemGroup, _: SEL, barButtonItems: ^NS.Array, representativeItem: ^UI.BarButtonItem) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBarButtonItems:representativeItem:"), auto_cast initWithBarButtonItems, "@@:^void@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.BarButtonItemGroup, _: SEL, coder: ^NS.Coder) -> ^UI.BarButtonItemGroup {
+        initWithCoder :: proc "c" (self: ^UI.BarButtonItemGroup, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

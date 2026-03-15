@@ -24,13 +24,13 @@ TextSelectionNavigation :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextSelectionNavigation, objc_selector="initWithDataSource:", objc_name="initWithDataSource")
-    TextSelectionNavigation_initWithDataSource :: proc(self: ^TextSelectionNavigation, dataSource: ^TextSelectionDataSource) -> ^TextSelectionNavigation ---
+    TextSelectionNavigation_initWithDataSource :: proc(self: ^TextSelectionNavigation, dataSource: ^TextSelectionDataSource) -> instancetype ---
 
     @(objc_type=TextSelectionNavigation, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextSelectionNavigation_new :: proc() -> ^TextSelectionNavigation ---
 
     @(objc_type=TextSelectionNavigation, objc_selector="init", objc_name="init")
-    TextSelectionNavigation_init :: proc(self: ^TextSelectionNavigation) -> ^TextSelectionNavigation ---
+    TextSelectionNavigation_init :: proc(self: ^TextSelectionNavigation) -> instancetype ---
 
     @(objc_type=TextSelectionNavigation, objc_selector="flushLayoutCache", objc_name="flushLayoutCache")
     TextSelectionNavigation_flushLayoutCache :: proc(self: ^TextSelectionNavigation) ---

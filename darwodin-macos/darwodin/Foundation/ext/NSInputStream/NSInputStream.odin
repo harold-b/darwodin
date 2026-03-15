@@ -28,13 +28,13 @@ VTable :: struct {
     super: NSStream.VTable,
     read: proc(self: ^NS.InputStream, buffer: ^cffi.uint8_t, len: NS.UInteger) -> NS.Integer,
     getBuffer: proc(self: ^NS.InputStream, buffer: ^^cffi.uint8_t, len: ^NS.UInteger) -> bool,
-    initWithData: proc(self: ^NS.InputStream, data: ^NS.Data) -> ^NS.InputStream,
-    initWithURL: proc(self: ^NS.InputStream, url: ^NS.URL) -> ^NS.InputStream,
+    initWithData: proc(self: ^NS.InputStream, data: ^NS.Data) -> instancetype,
+    initWithURL: proc(self: ^NS.InputStream, url: ^NS.URL) -> instancetype,
     hasBytesAvailable: proc(self: ^NS.InputStream) -> bool,
-    initWithFileAtPath: proc(self: ^NS.InputStream, path: ^NS.String) -> ^NS.InputStream,
-    inputStreamWithData: proc(data: ^NS.Data) -> ^NS.InputStream,
-    inputStreamWithFileAtPath: proc(path: ^NS.String) -> ^NS.InputStream,
-    inputStreamWithURL: proc(url: ^NS.URL) -> ^NS.InputStream,
+    initWithFileAtPath: proc(self: ^NS.InputStream, path: ^NS.String) -> instancetype,
+    inputStreamWithData: proc(data: ^NS.Data) -> instancetype,
+    inputStreamWithFileAtPath: proc(path: ^NS.String) -> instancetype,
+    inputStreamWithURL: proc(url: ^NS.URL) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getBuffer:length:"), auto_cast getBuffer, "B@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^NS.InputStream, _: SEL, data: ^NS.Data) -> ^NS.InputStream {
+        initWithData :: proc "c" (self: ^NS.InputStream, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:"), auto_cast initWithData, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^NS.InputStream, _: SEL, url: ^NS.URL) -> ^NS.InputStream {
+        initWithURL :: proc "c" (self: ^NS.InputStream, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasBytesAvailable"), auto_cast hasBytesAvailable, "B@:") do panic("Failed to register objC method.")
     }
     if vt.initWithFileAtPath != nil {
-        initWithFileAtPath :: proc "c" (self: ^NS.InputStream, _: SEL, path: ^NS.String) -> ^NS.InputStream {
+        initWithFileAtPath :: proc "c" (self: ^NS.InputStream, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFileAtPath:"), auto_cast initWithFileAtPath, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.inputStreamWithData != nil {
-        inputStreamWithData :: proc "c" (self: Class, _: SEL, data: ^NS.Data) -> ^NS.InputStream {
+        inputStreamWithData :: proc "c" (self: Class, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("inputStreamWithData:"), auto_cast inputStreamWithData, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.inputStreamWithFileAtPath != nil {
-        inputStreamWithFileAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> ^NS.InputStream {
+        inputStreamWithFileAtPath :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("inputStreamWithFileAtPath:"), auto_cast inputStreamWithFileAtPath, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.inputStreamWithURL != nil {
-        inputStreamWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> ^NS.InputStream {
+        inputStreamWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

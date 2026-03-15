@@ -18,10 +18,10 @@ HapticParameterCurveControlPoint :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticParameterCurveControlPoint, objc_selector="init", objc_name="init")
-    HapticParameterCurveControlPoint_init :: proc(self: ^HapticParameterCurveControlPoint) -> ^HapticParameterCurveControlPoint ---
+    HapticParameterCurveControlPoint_init :: proc(self: ^HapticParameterCurveControlPoint) -> instancetype ---
 
     @(objc_type=HapticParameterCurveControlPoint, objc_selector="initWithRelativeTime:value:", objc_name="initWithRelativeTime")
-    HapticParameterCurveControlPoint_initWithRelativeTime :: proc(self: ^HapticParameterCurveControlPoint, time: NS.TimeInterval, value: cffi.float) -> ^HapticParameterCurveControlPoint ---
+    HapticParameterCurveControlPoint_initWithRelativeTime :: proc(self: ^HapticParameterCurveControlPoint, time: NS.TimeInterval, value: cffi.float) -> instancetype ---
 
     @(objc_type=HapticParameterCurveControlPoint, objc_selector="relativeTime", objc_name="relativeTime")
     HapticParameterCurveControlPoint_relativeTime :: proc(self: ^HapticParameterCurveControlPoint) -> NS.TimeInterval ---

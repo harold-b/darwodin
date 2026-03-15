@@ -27,10 +27,10 @@ TableColumn :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TableColumn, objc_selector="initWithIdentifier:", objc_name="initWithIdentifier")
-    TableColumn_initWithIdentifier :: proc(self: ^TableColumn, identifier: ^NS.String) -> ^TableColumn ---
+    TableColumn_initWithIdentifier :: proc(self: ^TableColumn, identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=TableColumn, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TableColumn_initWithCoder :: proc(self: ^TableColumn, coder: ^NS.Coder) -> ^TableColumn ---
+    TableColumn_initWithCoder :: proc(self: ^TableColumn, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TableColumn, objc_selector="sizeToFit", objc_name="sizeToFit")
     TableColumn_sizeToFit :: proc(self: ^TableColumn) ---

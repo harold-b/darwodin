@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.TextInputPasswordRules) -> ^UI.TextInputPasswordRules,
+    init: proc(self: ^UI.TextInputPasswordRules) -> instancetype,
     new: proc() -> ^UI.TextInputPasswordRules,
-    passwordRulesWithDescriptor: proc(passwordRulesDescriptor: ^NS.String) -> ^UI.TextInputPasswordRules,
+    passwordRulesWithDescriptor: proc(passwordRulesDescriptor: ^NS.String) -> instancetype,
     passwordRulesDescriptor: proc(self: ^UI.TextInputPasswordRules) -> ^NS.String,
 }
 
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextInputPasswordRules, _: SEL) -> ^UI.TextInputPasswordRules {
+        init :: proc "c" (self: ^UI.TextInputPasswordRules, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.passwordRulesWithDescriptor != nil {
-        passwordRulesWithDescriptor :: proc "c" (self: Class, _: SEL, passwordRulesDescriptor: ^NS.String) -> ^UI.TextInputPasswordRules {
+        passwordRulesWithDescriptor :: proc "c" (self: Class, _: SEL, passwordRulesDescriptor: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

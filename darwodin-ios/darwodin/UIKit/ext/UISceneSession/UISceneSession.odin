@@ -29,7 +29,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.SceneSession,
-    init: proc(self: ^UI.SceneSession) -> ^UI.SceneSession,
+    init: proc(self: ^UI.SceneSession) -> instancetype,
     scene: proc(self: ^UI.SceneSession) -> ^UI.Scene,
     role: proc(self: ^UI.SceneSession) -> ^NS.String,
     configuration: proc(self: ^UI.SceneSession) -> ^UI.SceneConfiguration,
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SceneSession, _: SEL) -> ^UI.SceneSession {
+        init :: proc "c" (self: ^UI.SceneSession, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

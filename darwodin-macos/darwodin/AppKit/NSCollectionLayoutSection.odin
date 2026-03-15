@@ -26,10 +26,10 @@ CollectionLayoutSection :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionLayoutSection, objc_selector="sectionWithGroup:", objc_name="sectionWithGroup", objc_is_class_method=true)
-    CollectionLayoutSection_sectionWithGroup :: proc(group: ^CollectionLayoutGroup) -> ^CollectionLayoutSection ---
+    CollectionLayoutSection_sectionWithGroup :: proc(group: ^CollectionLayoutGroup) -> instancetype ---
 
     @(objc_type=CollectionLayoutSection, objc_selector="init", objc_name="init")
-    CollectionLayoutSection_init :: proc(self: ^CollectionLayoutSection) -> ^CollectionLayoutSection ---
+    CollectionLayoutSection_init :: proc(self: ^CollectionLayoutSection) -> instancetype ---
 
     @(objc_type=CollectionLayoutSection, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionLayoutSection_new :: proc() -> ^CollectionLayoutSection ---

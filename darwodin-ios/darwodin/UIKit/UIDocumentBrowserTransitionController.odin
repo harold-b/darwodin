@@ -24,7 +24,7 @@ DocumentBrowserTransitionController :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DocumentBrowserTransitionController, objc_selector="init", objc_name="init")
-    DocumentBrowserTransitionController_init :: proc(self: ^DocumentBrowserTransitionController) -> ^DocumentBrowserTransitionController ---
+    DocumentBrowserTransitionController_init :: proc(self: ^DocumentBrowserTransitionController) -> instancetype ---
 
     @(objc_type=DocumentBrowserTransitionController, objc_selector="loadingProgress", objc_name="loadingProgress")
     DocumentBrowserTransitionController_loadingProgress :: proc(self: ^DocumentBrowserTransitionController) -> ^NS.Progress ---

@@ -22,7 +22,7 @@ ZoomTransitionSourceViewProviderContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ZoomTransitionSourceViewProviderContext, objc_selector="init", objc_name="init")
-    ZoomTransitionSourceViewProviderContext_init :: proc(self: ^ZoomTransitionSourceViewProviderContext) -> ^ZoomTransitionSourceViewProviderContext ---
+    ZoomTransitionSourceViewProviderContext_init :: proc(self: ^ZoomTransitionSourceViewProviderContext) -> instancetype ---
 
     @(objc_type=ZoomTransitionSourceViewProviderContext, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ZoomTransitionSourceViewProviderContext_new :: proc() -> ^ZoomTransitionSourceViewProviderContext ---

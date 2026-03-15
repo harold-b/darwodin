@@ -25,13 +25,13 @@ foreign lib {
     Rule_performActionWithSystem :: proc(self: ^Rule, system: ^RuleSystem) ---
 
     @(objc_type=Rule, objc_selector="ruleWithPredicate:assertingFact:grade:", objc_name="ruleWithPredicate_assertingFact_grade", objc_is_class_method=true)
-    Rule_ruleWithPredicate_assertingFact_grade :: proc(predicate: ^NS.Predicate, fact: ^NS.ObjectProtocol, grade: cffi.float) -> ^Rule ---
+    Rule_ruleWithPredicate_assertingFact_grade :: proc(predicate: ^NS.Predicate, fact: ^NS.ObjectProtocol, grade: cffi.float) -> instancetype ---
 
     @(objc_type=Rule, objc_selector="ruleWithPredicate:retractingFact:grade:", objc_name="ruleWithPredicate_retractingFact_grade", objc_is_class_method=true)
-    Rule_ruleWithPredicate_retractingFact_grade :: proc(predicate: ^NS.Predicate, fact: ^NS.ObjectProtocol, grade: cffi.float) -> ^Rule ---
+    Rule_ruleWithPredicate_retractingFact_grade :: proc(predicate: ^NS.Predicate, fact: ^NS.ObjectProtocol, grade: cffi.float) -> instancetype ---
 
     @(objc_type=Rule, objc_selector="ruleWithBlockPredicate:action:", objc_name="ruleWithBlockPredicate", objc_is_class_method=true)
-    Rule_ruleWithBlockPredicate :: proc(predicate: ^Objc_Block(proc "c" (_: ^RuleSystem) -> bool), action: ^Objc_Block(proc "c" (_: ^RuleSystem))) -> ^Rule ---
+    Rule_ruleWithBlockPredicate :: proc(predicate: ^Objc_Block(proc "c" (_: ^RuleSystem) -> bool), action: ^Objc_Block(proc "c" (_: ^RuleSystem))) -> instancetype ---
 
     @(objc_type=Rule, objc_selector="salience", objc_name="salience")
     Rule_salience :: proc(self: ^Rule) -> NS.Integer ---

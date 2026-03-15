@@ -30,10 +30,10 @@ import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    initWithFrame: proc(self: ^AK.GridView, frameRect: NS.Rect) -> ^AK.GridView,
-    initWithCoder: proc(self: ^AK.GridView, coder: ^NS.Coder) -> ^AK.GridView,
-    gridViewWithNumberOfColumns: proc(columnCount: NS.Integer, rowCount: NS.Integer) -> ^AK.GridView,
-    gridViewWithViews: proc(rows: ^NS.Array) -> ^AK.GridView,
+    initWithFrame: proc(self: ^AK.GridView, frameRect: NS.Rect) -> instancetype,
+    initWithCoder: proc(self: ^AK.GridView, coder: ^NS.Coder) -> instancetype,
+    gridViewWithNumberOfColumns: proc(columnCount: NS.Integer, rowCount: NS.Integer) -> instancetype,
+    gridViewWithViews: proc(rows: ^NS.Array) -> instancetype,
     rowAtIndex: proc(self: ^AK.GridView, index: NS.Integer) -> ^AK.GridRow,
     indexOfRow: proc(self: ^AK.GridView, row: ^AK.GridRow) -> NS.Integer,
     columnAtIndex: proc(self: ^AK.GridView, index: NS.Integer) -> ^AK.GridColumn,
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.GridView, _: SEL, frameRect: NS.Rect) -> ^AK.GridView {
+        initWithFrame :: proc "c" (self: ^AK.GridView, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.GridView, _: SEL, coder: ^NS.Coder) -> ^AK.GridView {
+        initWithCoder :: proc "c" (self: ^AK.GridView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.gridViewWithNumberOfColumns != nil {
-        gridViewWithNumberOfColumns :: proc "c" (self: Class, _: SEL, columnCount: NS.Integer, rowCount: NS.Integer) -> ^AK.GridView {
+        gridViewWithNumberOfColumns :: proc "c" (self: Class, _: SEL, columnCount: NS.Integer, rowCount: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("gridViewWithNumberOfColumns:rows:"), auto_cast gridViewWithNumberOfColumns, "@#:ll") do panic("Failed to register objC method.")
     }
     if vt.gridViewWithViews != nil {
-        gridViewWithViews :: proc "c" (self: Class, _: SEL, rows: ^NS.Array) -> ^AK.GridView {
+        gridViewWithViews :: proc "c" (self: Class, _: SEL, rows: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

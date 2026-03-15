@@ -23,7 +23,7 @@ PresentationIntent :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PresentationIntent, objc_selector="init", objc_name="init")
-    PresentationIntent_init :: proc(self: ^PresentationIntent) -> ^PresentationIntent ---
+    PresentationIntent_init :: proc(self: ^PresentationIntent) -> instancetype ---
 
     @(objc_type=PresentationIntent, objc_selector="paragraphIntentWithIdentity:nestedInsideIntent:", objc_name="paragraphIntentWithIdentity", objc_is_class_method=true)
     PresentationIntent_paragraphIntentWithIdentity :: proc(identity: Integer, parent: ^PresentationIntent) -> ^PresentationIntent ---

@@ -22,10 +22,10 @@ WindowSceneActivationConfiguration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneActivationConfiguration, objc_selector="initWithUserActivity:", objc_name="initWithUserActivity")
-    WindowSceneActivationConfiguration_initWithUserActivity :: proc(self: ^WindowSceneActivationConfiguration, userActivity: ^NS.UserActivity) -> ^WindowSceneActivationConfiguration ---
+    WindowSceneActivationConfiguration_initWithUserActivity :: proc(self: ^WindowSceneActivationConfiguration, userActivity: ^NS.UserActivity) -> instancetype ---
 
     @(objc_type=WindowSceneActivationConfiguration, objc_selector="init", objc_name="init")
-    WindowSceneActivationConfiguration_init :: proc(self: ^WindowSceneActivationConfiguration) -> ^WindowSceneActivationConfiguration ---
+    WindowSceneActivationConfiguration_init :: proc(self: ^WindowSceneActivationConfiguration) -> instancetype ---
 
     @(objc_type=WindowSceneActivationConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     WindowSceneActivationConfiguration_new :: proc() -> ^WindowSceneActivationConfiguration ---

@@ -69,25 +69,25 @@ foreign lib {
     Image_imageWithCIImage_scale_orientation :: proc(ciImage: ^CIImage, scale: CG.Float, orientation: ImageOrientation) -> ^Image ---
 
     @(objc_type=Image, objc_selector="initWithContentsOfFile:", objc_name="initWithContentsOfFile")
-    Image_initWithContentsOfFile :: proc(self: ^Image, path: ^NS.String) -> ^Image ---
+    Image_initWithContentsOfFile :: proc(self: ^Image, path: ^NS.String) -> instancetype ---
 
     @(objc_type=Image, objc_selector="initWithData:", objc_name="initWithData_")
-    Image_initWithData_ :: proc(self: ^Image, data: ^NS.Data) -> ^Image ---
+    Image_initWithData_ :: proc(self: ^Image, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=Image, objc_selector="initWithData:scale:", objc_name="initWithData_scale")
-    Image_initWithData_scale :: proc(self: ^Image, data: ^NS.Data, scale: CG.Float) -> ^Image ---
+    Image_initWithData_scale :: proc(self: ^Image, data: ^NS.Data, scale: CG.Float) -> instancetype ---
 
     @(objc_type=Image, objc_selector="initWithCGImage:", objc_name="initWithCGImage_")
-    Image_initWithCGImage_ :: proc(self: ^Image, cgImage: CG.ImageRef) -> ^Image ---
+    Image_initWithCGImage_ :: proc(self: ^Image, cgImage: CG.ImageRef) -> instancetype ---
 
     @(objc_type=Image, objc_selector="initWithCGImage:scale:orientation:", objc_name="initWithCGImage_scale_orientation")
-    Image_initWithCGImage_scale_orientation :: proc(self: ^Image, cgImage: CG.ImageRef, scale: CG.Float, orientation: ImageOrientation) -> ^Image ---
+    Image_initWithCGImage_scale_orientation :: proc(self: ^Image, cgImage: CG.ImageRef, scale: CG.Float, orientation: ImageOrientation) -> instancetype ---
 
     @(objc_type=Image, objc_selector="initWithCIImage:", objc_name="initWithCIImage_")
-    Image_initWithCIImage_ :: proc(self: ^Image, ciImage: ^CIImage) -> ^Image ---
+    Image_initWithCIImage_ :: proc(self: ^Image, ciImage: ^CIImage) -> instancetype ---
 
     @(objc_type=Image, objc_selector="initWithCIImage:scale:orientation:", objc_name="initWithCIImage_scale_orientation")
-    Image_initWithCIImage_scale_orientation :: proc(self: ^Image, ciImage: ^CIImage, scale: CG.Float, orientation: ImageOrientation) -> ^Image ---
+    Image_initWithCIImage_scale_orientation :: proc(self: ^Image, ciImage: ^CIImage, scale: CG.Float, orientation: ImageOrientation) -> instancetype ---
 
     @(objc_type=Image, objc_selector="CGImage", objc_name="CGImage")
     Image_CGImage :: proc(self: ^Image) -> CG.ImageRef ---

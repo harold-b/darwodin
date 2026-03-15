@@ -24,55 +24,55 @@ BarButtonItem :: struct { using _: BarItem,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BarButtonItem, objc_selector="init", objc_name="init")
-    BarButtonItem_init :: proc(self: ^BarButtonItem) -> ^BarButtonItem ---
+    BarButtonItem_init :: proc(self: ^BarButtonItem) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    BarButtonItem_initWithCoder :: proc(self: ^BarButtonItem, coder: ^NS.Coder) -> ^BarButtonItem ---
+    BarButtonItem_initWithCoder :: proc(self: ^BarButtonItem, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithImage:style:target:action:", objc_name="initWithImage_style_target_action")
-    BarButtonItem_initWithImage_style_target_action :: proc(self: ^BarButtonItem, image: ^Image, style: BarButtonItemStyle, target: id, action: SEL) -> ^BarButtonItem ---
+    BarButtonItem_initWithImage_style_target_action :: proc(self: ^BarButtonItem, image: ^Image, style: BarButtonItemStyle, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithImage:landscapeImagePhone:style:target:action:", objc_name="initWithImage_landscapeImagePhone_style_target_action")
-    BarButtonItem_initWithImage_landscapeImagePhone_style_target_action :: proc(self: ^BarButtonItem, image: ^Image, landscapeImagePhone: ^Image, style: BarButtonItemStyle, target: id, action: SEL) -> ^BarButtonItem ---
+    BarButtonItem_initWithImage_landscapeImagePhone_style_target_action :: proc(self: ^BarButtonItem, image: ^Image, landscapeImagePhone: ^Image, style: BarButtonItemStyle, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithTitle:style:target:action:", objc_name="initWithTitle_style_target_action")
-    BarButtonItem_initWithTitle_style_target_action :: proc(self: ^BarButtonItem, title: ^NS.String, style: BarButtonItemStyle, target: id, action: SEL) -> ^BarButtonItem ---
+    BarButtonItem_initWithTitle_style_target_action :: proc(self: ^BarButtonItem, title: ^NS.String, style: BarButtonItemStyle, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithBarButtonSystemItem:target:action:", objc_name="initWithBarButtonSystemItem_target_action")
-    BarButtonItem_initWithBarButtonSystemItem_target_action :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, target: id, action: SEL) -> ^BarButtonItem ---
+    BarButtonItem_initWithBarButtonSystemItem_target_action :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithCustomView:", objc_name="initWithCustomView")
-    BarButtonItem_initWithCustomView :: proc(self: ^BarButtonItem, customView: ^View) -> ^BarButtonItem ---
+    BarButtonItem_initWithCustomView :: proc(self: ^BarButtonItem, customView: ^View) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithBarButtonSystemItem:primaryAction:", objc_name="initWithBarButtonSystemItem_primaryAction")
-    BarButtonItem_initWithBarButtonSystemItem_primaryAction :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, primaryAction: ^Action) -> ^BarButtonItem ---
+    BarButtonItem_initWithBarButtonSystemItem_primaryAction :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, primaryAction: ^Action) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithPrimaryAction:", objc_name="initWithPrimaryAction_")
-    BarButtonItem_initWithPrimaryAction_ :: proc(self: ^BarButtonItem, primaryAction: ^Action) -> ^BarButtonItem ---
+    BarButtonItem_initWithPrimaryAction_ :: proc(self: ^BarButtonItem, primaryAction: ^Action) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithBarButtonSystemItem:menu:", objc_name="initWithBarButtonSystemItem_menu")
-    BarButtonItem_initWithBarButtonSystemItem_menu :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, menu: ^Menu) -> ^BarButtonItem ---
+    BarButtonItem_initWithBarButtonSystemItem_menu :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, menu: ^Menu) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithTitle:menu:", objc_name="initWithTitle_menu")
-    BarButtonItem_initWithTitle_menu :: proc(self: ^BarButtonItem, title: ^NS.String, menu: ^Menu) -> ^BarButtonItem ---
+    BarButtonItem_initWithTitle_menu :: proc(self: ^BarButtonItem, title: ^NS.String, menu: ^Menu) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithImage:menu:", objc_name="initWithImage_menu")
-    BarButtonItem_initWithImage_menu :: proc(self: ^BarButtonItem, image: ^Image, menu: ^Menu) -> ^BarButtonItem ---
+    BarButtonItem_initWithImage_menu :: proc(self: ^BarButtonItem, image: ^Image, menu: ^Menu) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithPrimaryAction:menu:", objc_name="initWithPrimaryAction_menu")
-    BarButtonItem_initWithPrimaryAction_menu :: proc(self: ^BarButtonItem, primaryAction: ^Action, menu: ^Menu) -> ^BarButtonItem ---
+    BarButtonItem_initWithPrimaryAction_menu :: proc(self: ^BarButtonItem, primaryAction: ^Action, menu: ^Menu) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithBarButtonSystemItem:primaryAction:menu:", objc_name="initWithBarButtonSystemItem_primaryAction_menu")
-    BarButtonItem_initWithBarButtonSystemItem_primaryAction_menu :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, primaryAction: ^Action, menu: ^Menu) -> ^BarButtonItem ---
+    BarButtonItem_initWithBarButtonSystemItem_primaryAction_menu :: proc(self: ^BarButtonItem, systemItem: BarButtonSystemItem, primaryAction: ^Action, menu: ^Menu) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="initWithTitle:image:target:action:menu:", objc_name="initWithTitle_image_target_action_menu")
-    BarButtonItem_initWithTitle_image_target_action_menu :: proc(self: ^BarButtonItem, title: ^NS.String, image: ^Image, target: id, action: SEL, menu: ^Menu) -> ^BarButtonItem ---
+    BarButtonItem_initWithTitle_image_target_action_menu :: proc(self: ^BarButtonItem, title: ^NS.String, image: ^Image, target: id, action: SEL, menu: ^Menu) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="fixedSpaceItemOfWidth:", objc_name="fixedSpaceItemOfWidth", objc_is_class_method=true)
-    BarButtonItem_fixedSpaceItemOfWidth :: proc(width: CG.Float) -> ^BarButtonItem ---
+    BarButtonItem_fixedSpaceItemOfWidth :: proc(width: CG.Float) -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="flexibleSpaceItem", objc_name="flexibleSpaceItem", objc_is_class_method=true)
-    BarButtonItem_flexibleSpaceItem :: proc() -> ^BarButtonItem ---
+    BarButtonItem_flexibleSpaceItem :: proc() -> instancetype ---
 
     @(objc_type=BarButtonItem, objc_selector="creatingFixedGroup", objc_name="creatingFixedGroup")
     BarButtonItem_creatingFixedGroup :: proc(self: ^BarButtonItem) -> ^BarButtonItemGroup ---

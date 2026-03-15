@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.ScrubberLayout) -> ^AK.ScrubberLayout,
-    initWithCoder: proc(self: ^AK.ScrubberLayout, coder: ^NS.Coder) -> ^AK.ScrubberLayout,
+    init: proc(self: ^AK.ScrubberLayout) -> instancetype,
+    initWithCoder: proc(self: ^AK.ScrubberLayout, coder: ^NS.Coder) -> instancetype,
     invalidateLayout: proc(self: ^AK.ScrubberLayout),
     prepareLayout: proc(self: ^AK.ScrubberLayout),
     layoutAttributesForItemAtIndex: proc(self: ^AK.ScrubberLayout, index: NS.Integer) -> ^AK.ScrubberLayoutAttributes,
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) -> ^AK.ScrubberLayout {
+        init :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ScrubberLayout, _: SEL, coder: ^NS.Coder) -> ^AK.ScrubberLayout {
+        initWithCoder :: proc "c" (self: ^AK.ScrubberLayout, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

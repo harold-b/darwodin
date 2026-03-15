@@ -23,7 +23,7 @@ Submesh :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Submesh, objc_selector="init", objc_name="init")
-    Submesh_init :: proc(self: ^Submesh) -> ^Submesh ---
+    Submesh_init :: proc(self: ^Submesh) -> instancetype ---
 
     @(objc_type=Submesh, objc_selector="primitiveType", objc_name="primitiveType")
     Submesh_primitiveType :: proc(self: ^Submesh) -> MTL.PrimitiveType ---

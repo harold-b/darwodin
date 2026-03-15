@@ -30,9 +30,9 @@ import "../NSActionCell"
 
 VTable :: struct {
     super: NSActionCell.VTable,
-    initTextCell: proc(self: ^AK.DatePickerCell, string: ^NS.String) -> ^AK.DatePickerCell,
-    initWithCoder: proc(self: ^AK.DatePickerCell, coder: ^NS.Coder) -> ^AK.DatePickerCell,
-    initImageCell: proc(self: ^AK.DatePickerCell, image: ^NS.Image) -> ^AK.DatePickerCell,
+    initTextCell: proc(self: ^AK.DatePickerCell, string: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^AK.DatePickerCell, coder: ^NS.Coder) -> instancetype,
+    initImageCell: proc(self: ^AK.DatePickerCell, image: ^NS.Image) -> instancetype,
     datePickerStyle: proc(self: ^AK.DatePickerCell) -> AK.DatePickerStyle,
     setDatePickerStyle: proc(self: ^AK.DatePickerCell, datePickerStyle: AK.DatePickerStyle),
     drawsBackground: proc(self: ^AK.DatePickerCell) -> bool,
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSActionCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.DatePickerCell, _: SEL, string: ^NS.String) -> ^AK.DatePickerCell {
+        initTextCell :: proc "c" (self: ^AK.DatePickerCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.DatePickerCell, _: SEL, coder: ^NS.Coder) -> ^AK.DatePickerCell {
+        initWithCoder :: proc "c" (self: ^AK.DatePickerCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.DatePickerCell, _: SEL, image: ^NS.Image) -> ^AK.DatePickerCell {
+        initImageCell :: proc "c" (self: ^AK.DatePickerCell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

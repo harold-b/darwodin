@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    emitterCell: proc() -> ^CA.EmitterCell,
+    emitterCell: proc() -> instancetype,
     defaultValueForKey: proc(key: ^NS.String) -> id,
     shouldArchiveValueForKey: proc(self: ^CA.EmitterCell, key: ^NS.String) -> bool,
     name: proc(self: ^CA.EmitterCell) -> ^NS.String,
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.emitterCell != nil {
-        emitterCell :: proc "c" (self: Class, _: SEL) -> ^CA.EmitterCell {
+        emitterCell :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

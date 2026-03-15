@@ -22,13 +22,13 @@ XPCConnection :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=XPCConnection, objc_selector="initWithServiceName:", objc_name="initWithServiceName")
-    XPCConnection_initWithServiceName :: proc(self: ^XPCConnection, serviceName: ^String) -> ^XPCConnection ---
+    XPCConnection_initWithServiceName :: proc(self: ^XPCConnection, serviceName: ^String) -> instancetype ---
 
     @(objc_type=XPCConnection, objc_selector="initWithMachServiceName:options:", objc_name="initWithMachServiceName")
-    XPCConnection_initWithMachServiceName :: proc(self: ^XPCConnection, name: ^String, options: XPCConnectionOptions) -> ^XPCConnection ---
+    XPCConnection_initWithMachServiceName :: proc(self: ^XPCConnection, name: ^String, options: XPCConnectionOptions) -> instancetype ---
 
     @(objc_type=XPCConnection, objc_selector="initWithListenerEndpoint:", objc_name="initWithListenerEndpoint")
-    XPCConnection_initWithListenerEndpoint :: proc(self: ^XPCConnection, endpoint: ^XPCListenerEndpoint) -> ^XPCConnection ---
+    XPCConnection_initWithListenerEndpoint :: proc(self: ^XPCConnection, endpoint: ^XPCListenerEndpoint) -> instancetype ---
 
     @(objc_type=XPCConnection, objc_selector="remoteObjectProxyWithErrorHandler:", objc_name="remoteObjectProxyWithErrorHandler")
     XPCConnection_remoteObjectProxyWithErrorHandler :: proc(self: ^XPCConnection, handler: ^Objc_Block(proc "c" (error: ^Error))) -> id ---

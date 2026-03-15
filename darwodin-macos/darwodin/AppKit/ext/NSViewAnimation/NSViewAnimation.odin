@@ -30,7 +30,7 @@ import "../NSAnimation"
 
 VTable :: struct {
     super: NSAnimation.VTable,
-    initWithViewAnimations: proc(self: ^AK.ViewAnimation, viewAnimations: ^NS.Array) -> ^AK.ViewAnimation,
+    initWithViewAnimations: proc(self: ^AK.ViewAnimation, viewAnimations: ^NS.Array) -> instancetype,
     viewAnimations: proc(self: ^AK.ViewAnimation) -> ^NS.Array,
     setViewAnimations: proc(self: ^AK.ViewAnimation, viewAnimations: ^NS.Array),
 }
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSAnimation.extend(cls, &vt.super)
 
     if vt.initWithViewAnimations != nil {
-        initWithViewAnimations :: proc "c" (self: ^AK.ViewAnimation, _: SEL, viewAnimations: ^NS.Array) -> ^AK.ViewAnimation {
+        initWithViewAnimations :: proc "c" (self: ^AK.ViewAnimation, _: SEL, viewAnimations: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

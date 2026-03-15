@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithString: proc(self: ^NS.Scanner, string: ^NS.String) -> ^NS.Scanner,
+    initWithString: proc(self: ^NS.Scanner, string: ^NS.String) -> instancetype,
     string: proc(self: ^NS.Scanner) -> ^NS.String,
     scanLocation: proc(self: ^NS.Scanner) -> NS.UInteger,
     setScanLocation: proc(self: ^NS.Scanner, scanLocation: NS.UInteger),
@@ -50,7 +50,7 @@ VTable :: struct {
     scanCharactersFromSet: proc(self: ^NS.Scanner, set: ^NS.CharacterSet, result: ^^NS.String) -> bool,
     scanUpToString: proc(self: ^NS.Scanner, string: ^NS.String, result: ^^NS.String) -> bool,
     scanUpToCharactersFromSet: proc(self: ^NS.Scanner, set: ^NS.CharacterSet, result: ^^NS.String) -> bool,
-    scannerWithString: proc(string: ^NS.String) -> ^NS.Scanner,
+    scannerWithString: proc(string: ^NS.String) -> instancetype,
     localizedScannerWithString: proc(string: ^NS.String) -> id,
     isAtEnd: proc(self: ^NS.Scanner) -> bool,
     scanDecimal: proc(self: ^NS.Scanner, dcm: ^NS.Decimal) -> bool,
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithString != nil {
-        initWithString :: proc "c" (self: ^NS.Scanner, _: SEL, string: ^NS.String) -> ^NS.Scanner {
+        initWithString :: proc "c" (self: ^NS.Scanner, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -304,7 +304,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scanUpToCharactersFromSet:intoString:"), auto_cast scanUpToCharactersFromSet, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.scannerWithString != nil {
-        scannerWithString :: proc "c" (self: Class, _: SEL, string: ^NS.String) -> ^NS.Scanner {
+        scannerWithString :: proc "c" (self: Class, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

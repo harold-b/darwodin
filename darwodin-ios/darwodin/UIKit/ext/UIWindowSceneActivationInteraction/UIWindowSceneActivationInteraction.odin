@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithConfigurationProvider: proc(self: ^UI.WindowSceneActivationInteraction, configurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) -> ^UI.WindowSceneActivationInteraction,
-    init: proc(self: ^UI.WindowSceneActivationInteraction) -> ^UI.WindowSceneActivationInteraction,
+    initWithConfigurationProvider: proc(self: ^UI.WindowSceneActivationInteraction, configurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) -> instancetype,
+    init: proc(self: ^UI.WindowSceneActivationInteraction) -> instancetype,
     new: proc() -> ^UI.WindowSceneActivationInteraction,
 }
 
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithConfigurationProvider != nil {
-        initWithConfigurationProvider :: proc "c" (self: ^UI.WindowSceneActivationInteraction, _: SEL, configurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) -> ^UI.WindowSceneActivationInteraction {
+        initWithConfigurationProvider :: proc "c" (self: ^UI.WindowSceneActivationInteraction, _: SEL, configurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithConfigurationProvider:errorHandler:"), auto_cast initWithConfigurationProvider, "@@:??") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.WindowSceneActivationInteraction, _: SEL) -> ^UI.WindowSceneActivationInteraction {
+        init :: proc "c" (self: ^UI.WindowSceneActivationInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

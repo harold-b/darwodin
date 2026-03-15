@@ -30,10 +30,10 @@ foreign lib {
     SharingService_sharingServiceNamed :: proc(serviceName: ^NS.String) -> ^SharingService ---
 
     @(objc_type=SharingService, objc_selector="initWithTitle:image:alternateImage:handler:", objc_name="initWithTitle")
-    SharingService_initWithTitle :: proc(self: ^SharingService, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> ^SharingService ---
+    SharingService_initWithTitle :: proc(self: ^SharingService, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> instancetype ---
 
     @(objc_type=SharingService, objc_selector="init", objc_name="init")
-    SharingService_init :: proc(self: ^SharingService) -> ^SharingService ---
+    SharingService_init :: proc(self: ^SharingService) -> instancetype ---
 
     @(objc_type=SharingService, objc_selector="canPerformWithItems:", objc_name="canPerformWithItems")
     SharingService_canPerformWithItems :: proc(self: ^SharingService, items: ^NS.Array) -> bool ---

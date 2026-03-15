@@ -26,9 +26,9 @@ import "../NSScriptWhoseTest"
 
 VTable :: struct {
     super: NSScriptWhoseTest.VTable,
-    init: proc(self: ^NS.SpecifierTest) -> ^NS.SpecifierTest,
-    initWithCoder: proc(self: ^NS.SpecifierTest, inCoder: ^NS.Coder) -> ^NS.SpecifierTest,
-    initWithObjectSpecifier: proc(self: ^NS.SpecifierTest, obj1: ^NS.ScriptObjectSpecifier, compOp: NS.TestComparisonOperation, obj2: id) -> ^NS.SpecifierTest,
+    init: proc(self: ^NS.SpecifierTest) -> instancetype,
+    initWithCoder: proc(self: ^NS.SpecifierTest, inCoder: ^NS.Coder) -> instancetype,
+    initWithObjectSpecifier: proc(self: ^NS.SpecifierTest, obj1: ^NS.ScriptObjectSpecifier, compOp: NS.TestComparisonOperation, obj2: id) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScriptWhoseTest.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.SpecifierTest, _: SEL) -> ^NS.SpecifierTest {
+        init :: proc "c" (self: ^NS.SpecifierTest, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.SpecifierTest, _: SEL, inCoder: ^NS.Coder) -> ^NS.SpecifierTest {
+        initWithCoder :: proc "c" (self: ^NS.SpecifierTest, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithObjectSpecifier != nil {
-        initWithObjectSpecifier :: proc "c" (self: ^NS.SpecifierTest, _: SEL, obj1: ^NS.ScriptObjectSpecifier, compOp: NS.TestComparisonOperation, obj2: id) -> ^NS.SpecifierTest {
+        initWithObjectSpecifier :: proc "c" (self: ^NS.SpecifierTest, _: SEL, obj1: ^NS.ScriptObjectSpecifier, compOp: NS.TestComparisonOperation, obj2: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

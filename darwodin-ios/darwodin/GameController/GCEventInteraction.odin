@@ -22,7 +22,7 @@ EventInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=EventInteraction, objc_selector="init", objc_name="init")
-    EventInteraction_init :: proc(self: ^EventInteraction) -> ^EventInteraction ---
+    EventInteraction_init :: proc(self: ^EventInteraction) -> instancetype ---
 
     @(objc_type=EventInteraction, objc_selector="handledEventTypes", objc_name="handledEventTypes")
     EventInteraction_handledEventTypes :: proc(self: ^EventInteraction) -> UIEventTypes ---

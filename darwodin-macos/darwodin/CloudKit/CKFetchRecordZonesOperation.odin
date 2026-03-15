@@ -18,13 +18,13 @@ FetchRecordZonesOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchRecordZonesOperation, objc_selector="fetchAllRecordZonesOperation", objc_name="fetchAllRecordZonesOperation", objc_is_class_method=true)
-    FetchRecordZonesOperation_fetchAllRecordZonesOperation :: proc() -> ^FetchRecordZonesOperation ---
+    FetchRecordZonesOperation_fetchAllRecordZonesOperation :: proc() -> instancetype ---
 
     @(objc_type=FetchRecordZonesOperation, objc_selector="init", objc_name="init")
-    FetchRecordZonesOperation_init :: proc(self: ^FetchRecordZonesOperation) -> ^FetchRecordZonesOperation ---
+    FetchRecordZonesOperation_init :: proc(self: ^FetchRecordZonesOperation) -> instancetype ---
 
     @(objc_type=FetchRecordZonesOperation, objc_selector="initWithRecordZoneIDs:", objc_name="initWithRecordZoneIDs")
-    FetchRecordZonesOperation_initWithRecordZoneIDs :: proc(self: ^FetchRecordZonesOperation, zoneIDs: ^NS.Array) -> ^FetchRecordZonesOperation ---
+    FetchRecordZonesOperation_initWithRecordZoneIDs :: proc(self: ^FetchRecordZonesOperation, zoneIDs: ^NS.Array) -> instancetype ---
 
     @(objc_type=FetchRecordZonesOperation, objc_selector="recordZoneIDs", objc_name="recordZoneIDs")
     FetchRecordZonesOperation_recordZoneIDs :: proc(self: ^FetchRecordZonesOperation) -> ^NS.Array ---

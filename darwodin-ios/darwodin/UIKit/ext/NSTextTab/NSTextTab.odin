@@ -31,7 +31,7 @@ VTable :: struct {
     columnTerminatorsForLocale: proc(aLocale: ^NS.Locale) -> ^NS.CharacterSet,
     location: proc(self: ^UI.NSTextTab) -> CG.Float,
     options: proc(self: ^UI.NSTextTab) -> ^NS.Dictionary,
-    initWithTextAlignment: proc(self: ^UI.NSTextTab, alignment: UI.NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^UI.NSTextTab,
+    initWithTextAlignment: proc(self: ^UI.NSTextTab, alignment: UI.NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype,
     alignment: proc(self: ^UI.NSTextTab) -> UI.NSTextAlignment,
 }
 
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("options"), auto_cast options, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTextAlignment != nil {
-        initWithTextAlignment :: proc "c" (self: ^UI.NSTextTab, _: SEL, alignment: UI.NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^UI.NSTextTab {
+        initWithTextAlignment :: proc "c" (self: ^UI.NSTextTab, _: SEL, alignment: UI.NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

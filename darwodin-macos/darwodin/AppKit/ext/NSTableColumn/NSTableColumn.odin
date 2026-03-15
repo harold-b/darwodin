@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithIdentifier: proc(self: ^AK.TableColumn, identifier: ^NS.String) -> ^AK.TableColumn,
-    initWithCoder: proc(self: ^AK.TableColumn, coder: ^NS.Coder) -> ^AK.TableColumn,
+    initWithIdentifier: proc(self: ^AK.TableColumn, identifier: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^AK.TableColumn, coder: ^NS.Coder) -> instancetype,
     sizeToFit: proc(self: ^AK.TableColumn),
     identifier: proc(self: ^AK.TableColumn) -> ^NS.String,
     setIdentifier: proc(self: ^AK.TableColumn, identifier: ^NS.String),
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithIdentifier != nil {
-        initWithIdentifier :: proc "c" (self: ^AK.TableColumn, _: SEL, identifier: ^NS.String) -> ^AK.TableColumn {
+        initWithIdentifier :: proc "c" (self: ^AK.TableColumn, _: SEL, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIdentifier:"), auto_cast initWithIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TableColumn, _: SEL, coder: ^NS.Coder) -> ^AK.TableColumn {
+        initWithCoder :: proc "c" (self: ^AK.TableColumn, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

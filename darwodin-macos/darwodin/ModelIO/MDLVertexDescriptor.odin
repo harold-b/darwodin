@@ -23,7 +23,7 @@ VertexDescriptor :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexDescriptor, objc_selector="initWithVertexDescriptor:", objc_name="initWithVertexDescriptor")
-    VertexDescriptor_initWithVertexDescriptor :: proc(self: ^VertexDescriptor, vertexDescriptor: ^VertexDescriptor) -> ^VertexDescriptor ---
+    VertexDescriptor_initWithVertexDescriptor :: proc(self: ^VertexDescriptor, vertexDescriptor: ^VertexDescriptor) -> instancetype ---
 
     @(objc_type=VertexDescriptor, objc_selector="attributeNamed:", objc_name="attributeNamed")
     VertexDescriptor_attributeNamed :: proc(self: ^VertexDescriptor, name: ^NS.String) -> ^VertexAttribute ---

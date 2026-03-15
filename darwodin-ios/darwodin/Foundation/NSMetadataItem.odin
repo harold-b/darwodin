@@ -20,7 +20,7 @@ MetadataItem :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetadataItem, objc_selector="initWithURL:", objc_name="initWithURL")
-    MetadataItem_initWithURL :: proc(self: ^MetadataItem, url: ^URL) -> ^MetadataItem ---
+    MetadataItem_initWithURL :: proc(self: ^MetadataItem, url: ^URL) -> instancetype ---
 
     @(objc_type=MetadataItem, objc_selector="valueForAttribute:", objc_name="valueForAttribute")
     MetadataItem_valueForAttribute :: proc(self: ^MetadataItem, key: ^String) -> id ---

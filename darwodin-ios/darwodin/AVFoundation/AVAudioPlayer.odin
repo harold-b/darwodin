@@ -23,16 +23,16 @@ AudioPlayer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioPlayer, objc_selector="initWithContentsOfURL:error:", objc_name="initWithContentsOfURL_error")
-    AudioPlayer_initWithContentsOfURL_error :: proc(self: ^AudioPlayer, url: ^NS.URL, outError: ^^NS.Error) -> ^AudioPlayer ---
+    AudioPlayer_initWithContentsOfURL_error :: proc(self: ^AudioPlayer, url: ^NS.URL, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioPlayer, objc_selector="initWithData:error:", objc_name="initWithData_error")
-    AudioPlayer_initWithData_error :: proc(self: ^AudioPlayer, data: ^NS.Data, outError: ^^NS.Error) -> ^AudioPlayer ---
+    AudioPlayer_initWithData_error :: proc(self: ^AudioPlayer, data: ^NS.Data, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioPlayer, objc_selector="initWithContentsOfURL:fileTypeHint:error:", objc_name="initWithContentsOfURL_fileTypeHint_error")
-    AudioPlayer_initWithContentsOfURL_fileTypeHint_error :: proc(self: ^AudioPlayer, url: ^NS.URL, utiString: ^NS.String, outError: ^^NS.Error) -> ^AudioPlayer ---
+    AudioPlayer_initWithContentsOfURL_fileTypeHint_error :: proc(self: ^AudioPlayer, url: ^NS.URL, utiString: ^NS.String, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioPlayer, objc_selector="initWithData:fileTypeHint:error:", objc_name="initWithData_fileTypeHint_error")
-    AudioPlayer_initWithData_fileTypeHint_error :: proc(self: ^AudioPlayer, data: ^NS.Data, utiString: ^NS.String, outError: ^^NS.Error) -> ^AudioPlayer ---
+    AudioPlayer_initWithData_fileTypeHint_error :: proc(self: ^AudioPlayer, data: ^NS.Data, utiString: ^NS.String, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AudioPlayer, objc_selector="prepareToPlay", objc_name="prepareToPlay")
     AudioPlayer_prepareToPlay :: proc(self: ^AudioPlayer) -> bool ---

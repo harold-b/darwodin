@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.LocalNotification) -> ^UI.LocalNotification,
-    initWithCoder: proc(self: ^UI.LocalNotification, coder: ^NS.Coder) -> ^UI.LocalNotification,
+    init: proc(self: ^UI.LocalNotification) -> instancetype,
+    initWithCoder: proc(self: ^UI.LocalNotification, coder: ^NS.Coder) -> instancetype,
     fireDate: proc(self: ^UI.LocalNotification) -> ^NS.Date,
     setFireDate: proc(self: ^UI.LocalNotification, fireDate: ^NS.Date),
     timeZone: proc(self: ^UI.LocalNotification) -> ^NS.TimeZone,
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.LocalNotification, _: SEL) -> ^UI.LocalNotification {
+        init :: proc "c" (self: ^UI.LocalNotification, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.LocalNotification, _: SEL, coder: ^NS.Coder) -> ^UI.LocalNotification {
+        initWithCoder :: proc "c" (self: ^UI.LocalNotification, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -30,7 +30,7 @@ import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    colorWellWithStyle: proc(style: AK.ColorWellStyle) -> ^AK.ColorWell,
+    colorWellWithStyle: proc(style: AK.ColorWellStyle) -> instancetype,
     deactivate: proc(self: ^AK.ColorWell),
     activate: proc(self: ^AK.ColorWell, exclusive: bool),
     drawWellInside: proc(self: ^AK.ColorWell, insideRect: NS.Rect),
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.colorWellWithStyle != nil {
-        colorWellWithStyle :: proc "c" (self: Class, _: SEL, style: AK.ColorWellStyle) -> ^AK.ColorWell {
+        colorWellWithStyle :: proc "c" (self: Class, _: SEL, style: AK.ColorWellStyle) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

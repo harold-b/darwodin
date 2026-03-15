@@ -23,13 +23,13 @@ Unit :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Unit, objc_selector="init", objc_name="init")
-    Unit_init :: proc(self: ^Unit) -> ^Unit ---
+    Unit_init :: proc(self: ^Unit) -> instancetype ---
 
     @(objc_type=Unit, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Unit_new :: proc() -> ^Unit ---
 
     @(objc_type=Unit, objc_selector="initWithSymbol:", objc_name="initWithSymbol")
-    Unit_initWithSymbol :: proc(self: ^Unit, symbol: ^String) -> ^Unit ---
+    Unit_initWithSymbol :: proc(self: ^Unit, symbol: ^String) -> instancetype ---
 
     @(objc_type=Unit, objc_selector="symbol", objc_name="symbol")
     Unit_symbol :: proc(self: ^Unit) -> ^String ---

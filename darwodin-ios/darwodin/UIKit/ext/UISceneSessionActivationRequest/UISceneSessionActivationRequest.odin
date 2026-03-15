@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    request: proc() -> ^UI.SceneSessionActivationRequest,
-    requestWithRole: proc(role: ^NS.String) -> ^UI.SceneSessionActivationRequest,
-    requestWithSession: proc(session: ^UI.SceneSession) -> ^UI.SceneSessionActivationRequest,
-    init: proc(self: ^UI.SceneSessionActivationRequest) -> ^UI.SceneSessionActivationRequest,
+    request: proc() -> instancetype,
+    requestWithRole: proc(role: ^NS.String) -> instancetype,
+    requestWithSession: proc(session: ^UI.SceneSession) -> instancetype,
+    init: proc(self: ^UI.SceneSessionActivationRequest) -> instancetype,
     new: proc() -> ^UI.SceneSessionActivationRequest,
     role: proc(self: ^UI.SceneSessionActivationRequest) -> ^NS.String,
     session: proc(self: ^UI.SceneSessionActivationRequest) -> ^UI.SceneSession,
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.request != nil {
-        request :: proc "c" (self: Class, _: SEL) -> ^UI.SceneSessionActivationRequest {
+        request :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("request"), auto_cast request, "@#:") do panic("Failed to register objC method.")
     }
     if vt.requestWithRole != nil {
-        requestWithRole :: proc "c" (self: Class, _: SEL, role: ^NS.String) -> ^UI.SceneSessionActivationRequest {
+        requestWithRole :: proc "c" (self: Class, _: SEL, role: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("requestWithRole:"), auto_cast requestWithRole, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.requestWithSession != nil {
-        requestWithSession :: proc "c" (self: Class, _: SEL, session: ^UI.SceneSession) -> ^UI.SceneSessionActivationRequest {
+        requestWithSession :: proc "c" (self: Class, _: SEL, session: ^UI.SceneSession) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("requestWithSession:"), auto_cast requestWithSession, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SceneSessionActivationRequest, _: SEL) -> ^UI.SceneSessionActivationRequest {
+        init :: proc "c" (self: ^UI.SceneSessionActivationRequest, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

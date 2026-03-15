@@ -25,13 +25,13 @@ CollectionViewLayoutAttributes :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewLayoutAttributes, objc_selector="layoutAttributesForCellWithIndexPath:", objc_name="layoutAttributesForCellWithIndexPath", objc_is_class_method=true)
-    CollectionViewLayoutAttributes_layoutAttributesForCellWithIndexPath :: proc(indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes ---
+    CollectionViewLayoutAttributes_layoutAttributesForCellWithIndexPath :: proc(indexPath: ^NS.IndexPath) -> instancetype ---
 
     @(objc_type=CollectionViewLayoutAttributes, objc_selector="layoutAttributesForSupplementaryViewOfKind:withIndexPath:", objc_name="layoutAttributesForSupplementaryViewOfKind", objc_is_class_method=true)
-    CollectionViewLayoutAttributes_layoutAttributesForSupplementaryViewOfKind :: proc(elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes ---
+    CollectionViewLayoutAttributes_layoutAttributesForSupplementaryViewOfKind :: proc(elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> instancetype ---
 
     @(objc_type=CollectionViewLayoutAttributes, objc_selector="layoutAttributesForDecorationViewOfKind:withIndexPath:", objc_name="layoutAttributesForDecorationViewOfKind", objc_is_class_method=true)
-    CollectionViewLayoutAttributes_layoutAttributesForDecorationViewOfKind :: proc(decorationViewKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionViewLayoutAttributes ---
+    CollectionViewLayoutAttributes_layoutAttributesForDecorationViewOfKind :: proc(decorationViewKind: ^NS.String, indexPath: ^NS.IndexPath) -> instancetype ---
 
     @(objc_type=CollectionViewLayoutAttributes, objc_selector="frame", objc_name="frame")
     CollectionViewLayoutAttributes_frame :: proc(self: ^CollectionViewLayoutAttributes) -> CG.Rect ---

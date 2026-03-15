@@ -21,16 +21,16 @@ Reference :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Reference, objc_selector="init", objc_name="init")
-    Reference_init :: proc(self: ^Reference) -> ^Reference ---
+    Reference_init :: proc(self: ^Reference) -> instancetype ---
 
     @(objc_type=Reference, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Reference_new :: proc() -> ^Reference ---
 
     @(objc_type=Reference, objc_selector="initWithRecordID:action:", objc_name="initWithRecordID")
-    Reference_initWithRecordID :: proc(self: ^Reference, recordID: ^RecordID, action: ReferenceAction) -> ^Reference ---
+    Reference_initWithRecordID :: proc(self: ^Reference, recordID: ^RecordID, action: ReferenceAction) -> instancetype ---
 
     @(objc_type=Reference, objc_selector="initWithRecord:action:", objc_name="initWithRecord")
-    Reference_initWithRecord :: proc(self: ^Reference, record: ^Record, action: ReferenceAction) -> ^Reference ---
+    Reference_initWithRecord :: proc(self: ^Reference, record: ^Record, action: ReferenceAction) -> instancetype ---
 
     @(objc_type=Reference, objc_selector="referenceAction", objc_name="referenceAction")
     Reference_referenceAction :: proc(self: ^Reference) -> ReferenceAction ---

@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    iconWithType: proc(type: UI.ApplicationShortcutIconType) -> ^UI.ApplicationShortcutIcon,
-    iconWithTemplateImageName: proc(templateImageName: ^NS.String) -> ^UI.ApplicationShortcutIcon,
-    iconWithSystemImageName: proc(systemImageName: ^NS.String) -> ^UI.ApplicationShortcutIcon,
+    iconWithType: proc(type: UI.ApplicationShortcutIconType) -> instancetype,
+    iconWithTemplateImageName: proc(templateImageName: ^NS.String) -> instancetype,
+    iconWithSystemImageName: proc(systemImageName: ^NS.String) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.iconWithType != nil {
-        iconWithType :: proc "c" (self: Class, _: SEL, type: UI.ApplicationShortcutIconType) -> ^UI.ApplicationShortcutIcon {
+        iconWithType :: proc "c" (self: Class, _: SEL, type: UI.ApplicationShortcutIconType) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("iconWithType:"), auto_cast iconWithType, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.iconWithTemplateImageName != nil {
-        iconWithTemplateImageName :: proc "c" (self: Class, _: SEL, templateImageName: ^NS.String) -> ^UI.ApplicationShortcutIcon {
+        iconWithTemplateImageName :: proc "c" (self: Class, _: SEL, templateImageName: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("iconWithTemplateImageName:"), auto_cast iconWithTemplateImageName, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.iconWithSystemImageName != nil {
-        iconWithSystemImageName :: proc "c" (self: Class, _: SEL, systemImageName: ^NS.String) -> ^UI.ApplicationShortcutIcon {
+        iconWithSystemImageName :: proc "c" (self: Class, _: SEL, systemImageName: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

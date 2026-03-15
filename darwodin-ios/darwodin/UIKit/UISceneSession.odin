@@ -27,7 +27,7 @@ foreign lib {
     SceneSession_new :: proc() -> ^SceneSession ---
 
     @(objc_type=SceneSession, objc_selector="init", objc_name="init")
-    SceneSession_init :: proc(self: ^SceneSession) -> ^SceneSession ---
+    SceneSession_init :: proc(self: ^SceneSession) -> instancetype ---
 
     @(objc_type=SceneSession, objc_selector="scene", objc_name="scene")
     SceneSession_scene :: proc(self: ^SceneSession) -> ^Scene ---

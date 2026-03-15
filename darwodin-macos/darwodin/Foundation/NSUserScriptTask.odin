@@ -20,7 +20,7 @@ UserScriptTask :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserScriptTask, objc_selector="initWithURL:error:", objc_name="initWithURL")
-    UserScriptTask_initWithURL :: proc(self: ^UserScriptTask, url: ^URL, error: ^^Error) -> ^UserScriptTask ---
+    UserScriptTask_initWithURL :: proc(self: ^UserScriptTask, url: ^URL, error: ^^Error) -> instancetype ---
 
     @(objc_type=UserScriptTask, objc_selector="executeWithCompletionHandler:", objc_name="executeWithCompletionHandler")
     UserScriptTask_executeWithCompletionHandler :: proc(self: ^UserScriptTask, handler: UserScriptTaskCompletionHandler) ---

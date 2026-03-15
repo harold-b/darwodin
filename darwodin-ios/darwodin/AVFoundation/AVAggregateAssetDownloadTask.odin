@@ -23,7 +23,7 @@ AggregateAssetDownloadTask :: struct { using _: NS.URLSessionTask, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AggregateAssetDownloadTask, objc_selector="init", objc_name="init")
-    AggregateAssetDownloadTask_init :: proc(self: ^AggregateAssetDownloadTask) -> ^AggregateAssetDownloadTask ---
+    AggregateAssetDownloadTask_init :: proc(self: ^AggregateAssetDownloadTask) -> instancetype ---
 
     @(objc_type=AggregateAssetDownloadTask, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AggregateAssetDownloadTask_new :: proc() -> ^AggregateAssetDownloadTask ---

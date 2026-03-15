@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^UI.DropInteraction, delegate: ^UI.DropInteractionDelegate) -> ^UI.DropInteraction,
-    init: proc(self: ^UI.DropInteraction) -> ^UI.DropInteraction,
+    initWithDelegate: proc(self: ^UI.DropInteraction, delegate: ^UI.DropInteractionDelegate) -> instancetype,
+    init: proc(self: ^UI.DropInteraction) -> instancetype,
     new: proc() -> ^UI.DropInteraction,
     delegate: proc(self: ^UI.DropInteraction) -> ^UI.DropInteractionDelegate,
     allowsSimultaneousDropSessions: proc(self: ^UI.DropInteraction) -> bool,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.DropInteraction, _: SEL, delegate: ^UI.DropInteractionDelegate) -> ^UI.DropInteraction {
+        initWithDelegate :: proc "c" (self: ^UI.DropInteraction, _: SEL, delegate: ^UI.DropInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDelegate:"), auto_cast initWithDelegate, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.DropInteraction, _: SEL) -> ^UI.DropInteraction {
+        init :: proc "c" (self: ^UI.DropInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

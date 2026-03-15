@@ -24,10 +24,10 @@ ActivityItemProvider :: struct { using _: NS.Operation,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ActivityItemProvider, objc_selector="init", objc_name="init")
-    ActivityItemProvider_init :: proc(self: ^ActivityItemProvider) -> ^ActivityItemProvider ---
+    ActivityItemProvider_init :: proc(self: ^ActivityItemProvider) -> instancetype ---
 
     @(objc_type=ActivityItemProvider, objc_selector="initWithPlaceholderItem:", objc_name="initWithPlaceholderItem")
-    ActivityItemProvider_initWithPlaceholderItem :: proc(self: ^ActivityItemProvider, placeholderItem: id) -> ^ActivityItemProvider ---
+    ActivityItemProvider_initWithPlaceholderItem :: proc(self: ^ActivityItemProvider, placeholderItem: id) -> instancetype ---
 
     @(objc_type=ActivityItemProvider, objc_selector="placeholderItem", objc_name="placeholderItem")
     ActivityItemProvider_placeholderItem :: proc(self: ^ActivityItemProvider) -> id ---

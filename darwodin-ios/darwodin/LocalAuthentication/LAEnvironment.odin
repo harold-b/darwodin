@@ -22,7 +22,7 @@ foreign lib {
     Environment_new :: proc() -> ^Environment ---
 
     @(objc_type=Environment, objc_selector="init", objc_name="init")
-    Environment_init :: proc(self: ^Environment) -> ^Environment ---
+    Environment_init :: proc(self: ^Environment) -> instancetype ---
 
     @(objc_type=Environment, objc_selector="addObserver:", objc_name="addObserver")
     Environment_addObserver :: proc(self: ^Environment, observer: ^EnvironmentObserver) ---

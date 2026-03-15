@@ -21,16 +21,16 @@ VoxelArray :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=VoxelArray, objc_selector="initWithAsset:divisions:patchRadius:", objc_name="initWithAsset_divisions_patchRadius")
-    VoxelArray_initWithAsset_divisions_patchRadius :: proc(self: ^VoxelArray, asset: ^Asset, divisions: cffi.int, patchRadius: cffi.float) -> ^VoxelArray ---
+    VoxelArray_initWithAsset_divisions_patchRadius :: proc(self: ^VoxelArray, asset: ^Asset, divisions: cffi.int, patchRadius: cffi.float) -> instancetype ---
 
     @(objc_type=VoxelArray, objc_selector="initWithData:boundingBox:voxelExtent:", objc_name="initWithData")
-    VoxelArray_initWithData :: proc(self: ^VoxelArray, voxelData: ^NS.Data, boundingBox: AxisAlignedBoundingBox, voxelExtent: cffi.float) -> ^VoxelArray ---
+    VoxelArray_initWithData :: proc(self: ^VoxelArray, voxelData: ^NS.Data, boundingBox: AxisAlignedBoundingBox, voxelExtent: cffi.float) -> instancetype ---
 
     @(objc_type=VoxelArray, objc_selector="initWithAsset:divisions:interiorShells:exteriorShells:patchRadius:", objc_name="initWithAsset_divisions_interiorShells_exteriorShells_patchRadius")
-    VoxelArray_initWithAsset_divisions_interiorShells_exteriorShells_patchRadius :: proc(self: ^VoxelArray, asset: ^Asset, divisions: cffi.int, interiorShells: cffi.int, exteriorShells: cffi.int, patchRadius: cffi.float) -> ^VoxelArray ---
+    VoxelArray_initWithAsset_divisions_interiorShells_exteriorShells_patchRadius :: proc(self: ^VoxelArray, asset: ^Asset, divisions: cffi.int, interiorShells: cffi.int, exteriorShells: cffi.int, patchRadius: cffi.float) -> instancetype ---
 
     @(objc_type=VoxelArray, objc_selector="initWithAsset:divisions:interiorNBWidth:exteriorNBWidth:patchRadius:", objc_name="initWithAsset_divisions_interiorNBWidth_exteriorNBWidth_patchRadius")
-    VoxelArray_initWithAsset_divisions_interiorNBWidth_exteriorNBWidth_patchRadius :: proc(self: ^VoxelArray, asset: ^Asset, divisions: cffi.int, interiorNBWidth: cffi.float, exteriorNBWidth: cffi.float, patchRadius: cffi.float) -> ^VoxelArray ---
+    VoxelArray_initWithAsset_divisions_interiorNBWidth_exteriorNBWidth_patchRadius :: proc(self: ^VoxelArray, asset: ^Asset, divisions: cffi.int, interiorNBWidth: cffi.float, exteriorNBWidth: cffi.float, patchRadius: cffi.float) -> instancetype ---
 
     @(objc_type=VoxelArray, objc_selector="voxelExistsAtIndex:allowAnyX:allowAnyY:allowAnyZ:allowAnyShell:", objc_name="voxelExistsAtIndex")
     VoxelArray_voxelExistsAtIndex :: proc(self: ^VoxelArray, index: ^VoxelIndex, allowAnyX: bool, allowAnyY: bool, allowAnyZ: bool, allowAnyShell: bool) -> bool ---

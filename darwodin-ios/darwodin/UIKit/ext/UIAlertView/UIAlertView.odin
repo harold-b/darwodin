@@ -28,9 +28,9 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithTitle: proc(self: ^UI.AlertView, title: ^NS.String, message: ^NS.String, delegate: id, cancelButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> ^UI.AlertView,
+    initWithTitle: proc(self: ^UI.AlertView, title: ^NS.String, message: ^NS.String, delegate: id, cancelButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> instancetype,
     initWithFrame: proc(self: ^UI.AlertView, frame: CG.Rect) -> id,
-    initWithCoder: proc(self: ^UI.AlertView, coder: ^NS.Coder) -> ^UI.AlertView,
+    initWithCoder: proc(self: ^UI.AlertView, coder: ^NS.Coder) -> instancetype,
     addButtonWithTitle: proc(self: ^UI.AlertView, title: ^NS.String) -> NS.Integer,
     buttonTitleAtIndex: proc(self: ^UI.AlertView, buttonIndex: NS.Integer) -> ^NS.String,
     show: proc(self: ^UI.AlertView),
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^UI.AlertView, _: SEL, title: ^NS.String, message: ^NS.String, delegate: id, cancelButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> ^UI.AlertView {
+        initWithTitle :: proc "c" (self: ^UI.AlertView, _: SEL, title: ^NS.String, message: ^NS.String, delegate: id, cancelButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.AlertView, _: SEL, coder: ^NS.Coder) -> ^UI.AlertView {
+        initWithCoder :: proc "c" (self: ^UI.AlertView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

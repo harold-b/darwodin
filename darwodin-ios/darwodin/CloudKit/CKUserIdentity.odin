@@ -21,7 +21,7 @@ UserIdentity :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserIdentity, objc_selector="init", objc_name="init")
-    UserIdentity_init :: proc(self: ^UserIdentity) -> ^UserIdentity ---
+    UserIdentity_init :: proc(self: ^UserIdentity) -> instancetype ---
 
     @(objc_type=UserIdentity, objc_selector="new", objc_name="new", objc_is_class_method=true)
     UserIdentity_new :: proc() -> ^UserIdentity ---

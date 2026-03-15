@@ -25,7 +25,7 @@ TextFormattingViewControllerFormattingStyle :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextFormattingViewControllerFormattingStyle, objc_selector="initWithStyleKey:title:attributes:", objc_name="initWithStyleKey")
-    TextFormattingViewControllerFormattingStyle_initWithStyleKey :: proc(self: ^TextFormattingViewControllerFormattingStyle, styleKey: ^NS.String, string: ^NS.String, attributes: ^NS.Dictionary) -> ^TextFormattingViewControllerFormattingStyle ---
+    TextFormattingViewControllerFormattingStyle_initWithStyleKey :: proc(self: ^TextFormattingViewControllerFormattingStyle, styleKey: ^NS.String, string: ^NS.String, attributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=TextFormattingViewControllerFormattingStyle, objc_selector="styleKey", objc_name="styleKey")
     TextFormattingViewControllerFormattingStyle_styleKey :: proc(self: ^TextFormattingViewControllerFormattingStyle) -> ^NS.String ---

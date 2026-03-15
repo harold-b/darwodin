@@ -25,7 +25,7 @@ foreign lib {
     DomainStateCompanion_new :: proc() -> ^DomainStateCompanion ---
 
     @(objc_type=DomainStateCompanion, objc_selector="init", objc_name="init")
-    DomainStateCompanion_init :: proc(self: ^DomainStateCompanion) -> ^DomainStateCompanion ---
+    DomainStateCompanion_init :: proc(self: ^DomainStateCompanion) -> instancetype ---
 
     @(objc_type=DomainStateCompanion, objc_selector="availableCompanionTypes", objc_name="availableCompanionTypes")
     DomainStateCompanion_availableCompanionTypes :: proc(self: ^DomainStateCompanion) -> ^NS.Set ---

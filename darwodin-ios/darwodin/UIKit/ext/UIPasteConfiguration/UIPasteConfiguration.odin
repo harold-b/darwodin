@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.PasteConfiguration) -> ^UI.PasteConfiguration,
-    initWithAcceptableTypeIdentifiers: proc(self: ^UI.PasteConfiguration, acceptableTypeIdentifiers: ^NS.Array) -> ^UI.PasteConfiguration,
+    init: proc(self: ^UI.PasteConfiguration) -> instancetype,
+    initWithAcceptableTypeIdentifiers: proc(self: ^UI.PasteConfiguration, acceptableTypeIdentifiers: ^NS.Array) -> instancetype,
     addAcceptableTypeIdentifiers: proc(self: ^UI.PasteConfiguration, acceptableTypeIdentifiers: ^NS.Array),
-    initWithTypeIdentifiersForAcceptingClass: proc(self: ^UI.PasteConfiguration, aClass: ^Class) -> ^UI.PasteConfiguration,
+    initWithTypeIdentifiersForAcceptingClass: proc(self: ^UI.PasteConfiguration, aClass: ^Class) -> instancetype,
     addTypeIdentifiersForAcceptingClass: proc(self: ^UI.PasteConfiguration, aClass: ^Class),
     acceptableTypeIdentifiers: proc(self: ^UI.PasteConfiguration) -> ^NS.Array,
     setAcceptableTypeIdentifiers: proc(self: ^UI.PasteConfiguration, acceptableTypeIdentifiers: ^NS.Array),
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PasteConfiguration, _: SEL) -> ^UI.PasteConfiguration {
+        init :: proc "c" (self: ^UI.PasteConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithAcceptableTypeIdentifiers != nil {
-        initWithAcceptableTypeIdentifiers :: proc "c" (self: ^UI.PasteConfiguration, _: SEL, acceptableTypeIdentifiers: ^NS.Array) -> ^UI.PasteConfiguration {
+        initWithAcceptableTypeIdentifiers :: proc "c" (self: ^UI.PasteConfiguration, _: SEL, acceptableTypeIdentifiers: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addAcceptableTypeIdentifiers:"), auto_cast addAcceptableTypeIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithTypeIdentifiersForAcceptingClass != nil {
-        initWithTypeIdentifiersForAcceptingClass :: proc "c" (self: ^UI.PasteConfiguration, _: SEL, aClass: ^Class) -> ^UI.PasteConfiguration {
+        initWithTypeIdentifiersForAcceptingClass :: proc "c" (self: ^UI.PasteConfiguration, _: SEL, aClass: ^Class) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

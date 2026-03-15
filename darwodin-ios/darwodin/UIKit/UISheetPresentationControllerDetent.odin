@@ -22,19 +22,19 @@ SheetPresentationControllerDetent :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SheetPresentationControllerDetent, objc_selector="init", objc_name="init")
-    SheetPresentationControllerDetent_init :: proc(self: ^SheetPresentationControllerDetent) -> ^SheetPresentationControllerDetent ---
+    SheetPresentationControllerDetent_init :: proc(self: ^SheetPresentationControllerDetent) -> instancetype ---
 
     @(objc_type=SheetPresentationControllerDetent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SheetPresentationControllerDetent_new :: proc() -> ^SheetPresentationControllerDetent ---
 
     @(objc_type=SheetPresentationControllerDetent, objc_selector="mediumDetent", objc_name="mediumDetent", objc_is_class_method=true)
-    SheetPresentationControllerDetent_mediumDetent :: proc() -> ^SheetPresentationControllerDetent ---
+    SheetPresentationControllerDetent_mediumDetent :: proc() -> instancetype ---
 
     @(objc_type=SheetPresentationControllerDetent, objc_selector="largeDetent", objc_name="largeDetent", objc_is_class_method=true)
-    SheetPresentationControllerDetent_largeDetent :: proc() -> ^SheetPresentationControllerDetent ---
+    SheetPresentationControllerDetent_largeDetent :: proc() -> instancetype ---
 
     @(objc_type=SheetPresentationControllerDetent, objc_selector="customDetentWithIdentifier:resolver:", objc_name="customDetentWithIdentifier", objc_is_class_method=true)
-    SheetPresentationControllerDetent_customDetentWithIdentifier :: proc(identifier: ^NS.String, resolver: ^Objc_Block(proc "c" (_context: ^SheetPresentationControllerDetentResolutionContext) -> CG.Float)) -> ^SheetPresentationControllerDetent ---
+    SheetPresentationControllerDetent_customDetentWithIdentifier :: proc(identifier: ^NS.String, resolver: ^Objc_Block(proc "c" (_context: ^SheetPresentationControllerDetentResolutionContext) -> CG.Float)) -> instancetype ---
 
     @(objc_type=SheetPresentationControllerDetent, objc_selector="resolvedValueInContext:", objc_name="resolvedValueInContext")
     SheetPresentationControllerDetent_resolvedValueInContext :: proc(self: ^SheetPresentationControllerDetent, _context: ^SheetPresentationControllerDetentResolutionContext) -> CG.Float ---

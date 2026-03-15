@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSourceIdentifier: proc(self: ^UI.EventAttribution, sourceIdentifier: cffi.uint8_t, destinationURL: ^NS.URL, sourceDescription: ^NS.String, purchaser: ^NS.String) -> ^UI.EventAttribution,
-    init: proc(self: ^UI.EventAttribution) -> ^UI.EventAttribution,
+    initWithSourceIdentifier: proc(self: ^UI.EventAttribution, sourceIdentifier: cffi.uint8_t, destinationURL: ^NS.URL, sourceDescription: ^NS.String, purchaser: ^NS.String) -> instancetype,
+    init: proc(self: ^UI.EventAttribution) -> instancetype,
     new: proc() -> ^UI.EventAttribution,
     sourceIdentifier: proc(self: ^UI.EventAttribution) -> cffi.uint8_t,
     destinationURL: proc(self: ^UI.EventAttribution) -> ^NS.URL,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSourceIdentifier != nil {
-        initWithSourceIdentifier :: proc "c" (self: ^UI.EventAttribution, _: SEL, sourceIdentifier: cffi.uint8_t, destinationURL: ^NS.URL, sourceDescription: ^NS.String, purchaser: ^NS.String) -> ^UI.EventAttribution {
+        initWithSourceIdentifier :: proc "c" (self: ^UI.EventAttribution, _: SEL, sourceIdentifier: cffi.uint8_t, destinationURL: ^NS.URL, sourceDescription: ^NS.String, purchaser: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:"), auto_cast initWithSourceIdentifier, "@@:C@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.EventAttribution, _: SEL) -> ^UI.EventAttribution {
+        init :: proc "c" (self: ^UI.EventAttribution, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

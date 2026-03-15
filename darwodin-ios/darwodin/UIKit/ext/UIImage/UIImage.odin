@@ -43,13 +43,13 @@ VTable :: struct {
     imageWithCGImage_scale_orientation: proc(cgImage: CG.ImageRef, scale: CG.Float, orientation: UI.ImageOrientation) -> ^UI.Image,
     imageWithCIImage_: proc(ciImage: ^UI.CIImage) -> ^UI.Image,
     imageWithCIImage_scale_orientation: proc(ciImage: ^UI.CIImage, scale: CG.Float, orientation: UI.ImageOrientation) -> ^UI.Image,
-    initWithContentsOfFile: proc(self: ^UI.Image, path: ^NS.String) -> ^UI.Image,
-    initWithData_: proc(self: ^UI.Image, data: ^NS.Data) -> ^UI.Image,
-    initWithData_scale: proc(self: ^UI.Image, data: ^NS.Data, scale: CG.Float) -> ^UI.Image,
-    initWithCGImage_: proc(self: ^UI.Image, cgImage: CG.ImageRef) -> ^UI.Image,
-    initWithCGImage_scale_orientation: proc(self: ^UI.Image, cgImage: CG.ImageRef, scale: CG.Float, orientation: UI.ImageOrientation) -> ^UI.Image,
-    initWithCIImage_: proc(self: ^UI.Image, ciImage: ^UI.CIImage) -> ^UI.Image,
-    initWithCIImage_scale_orientation: proc(self: ^UI.Image, ciImage: ^UI.CIImage, scale: CG.Float, orientation: UI.ImageOrientation) -> ^UI.Image,
+    initWithContentsOfFile: proc(self: ^UI.Image, path: ^NS.String) -> instancetype,
+    initWithData_: proc(self: ^UI.Image, data: ^NS.Data) -> instancetype,
+    initWithData_scale: proc(self: ^UI.Image, data: ^NS.Data, scale: CG.Float) -> instancetype,
+    initWithCGImage_: proc(self: ^UI.Image, cgImage: CG.ImageRef) -> instancetype,
+    initWithCGImage_scale_orientation: proc(self: ^UI.Image, cgImage: CG.ImageRef, scale: CG.Float, orientation: UI.ImageOrientation) -> instancetype,
+    initWithCIImage_: proc(self: ^UI.Image, ciImage: ^UI.CIImage) -> instancetype,
+    initWithCIImage_scale_orientation: proc(self: ^UI.Image, ciImage: ^UI.CIImage, scale: CG.Float, orientation: UI.ImageOrientation) -> instancetype,
     _CGImage: proc(self: ^UI.Image) -> CG.ImageRef,
     animatedImageNamed: proc(name: ^NS.String, duration: NS.TimeInterval) -> ^UI.Image,
     animatedResizableImageNamed_capInsets_duration: proc(name: ^NS.String, capInsets: UI.EdgeInsets, duration: NS.TimeInterval) -> ^UI.Image,
@@ -265,7 +265,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageWithCIImage:scale:orientation:"), auto_cast imageWithCIImage_scale_orientation, "@#:@dl") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfFile != nil {
-        initWithContentsOfFile :: proc "c" (self: ^UI.Image, _: SEL, path: ^NS.String) -> ^UI.Image {
+        initWithContentsOfFile :: proc "c" (self: ^UI.Image, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -275,7 +275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfFile:"), auto_cast initWithContentsOfFile, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData_ != nil {
-        initWithData_ :: proc "c" (self: ^UI.Image, _: SEL, data: ^NS.Data) -> ^UI.Image {
+        initWithData_ :: proc "c" (self: ^UI.Image, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -285,7 +285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:"), auto_cast initWithData_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData_scale != nil {
-        initWithData_scale :: proc "c" (self: ^UI.Image, _: SEL, data: ^NS.Data, scale: CG.Float) -> ^UI.Image {
+        initWithData_scale :: proc "c" (self: ^UI.Image, _: SEL, data: ^NS.Data, scale: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -295,7 +295,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:scale:"), auto_cast initWithData_scale, "@@:@d") do panic("Failed to register objC method.")
     }
     if vt.initWithCGImage_ != nil {
-        initWithCGImage_ :: proc "c" (self: ^UI.Image, _: SEL, cgImage: CG.ImageRef) -> ^UI.Image {
+        initWithCGImage_ :: proc "c" (self: ^UI.Image, _: SEL, cgImage: CG.ImageRef) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -305,7 +305,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCGImage:"), auto_cast initWithCGImage_, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCGImage_scale_orientation != nil {
-        initWithCGImage_scale_orientation :: proc "c" (self: ^UI.Image, _: SEL, cgImage: CG.ImageRef, scale: CG.Float, orientation: UI.ImageOrientation) -> ^UI.Image {
+        initWithCGImage_scale_orientation :: proc "c" (self: ^UI.Image, _: SEL, cgImage: CG.ImageRef, scale: CG.Float, orientation: UI.ImageOrientation) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -315,7 +315,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCGImage:scale:orientation:"), auto_cast initWithCGImage_scale_orientation, "@@:^voiddl") do panic("Failed to register objC method.")
     }
     if vt.initWithCIImage_ != nil {
-        initWithCIImage_ :: proc "c" (self: ^UI.Image, _: SEL, ciImage: ^UI.CIImage) -> ^UI.Image {
+        initWithCIImage_ :: proc "c" (self: ^UI.Image, _: SEL, ciImage: ^UI.CIImage) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -325,7 +325,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCIImage:"), auto_cast initWithCIImage_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCIImage_scale_orientation != nil {
-        initWithCIImage_scale_orientation :: proc "c" (self: ^UI.Image, _: SEL, ciImage: ^UI.CIImage, scale: CG.Float, orientation: UI.ImageOrientation) -> ^UI.Image {
+        initWithCIImage_scale_orientation :: proc "c" (self: ^UI.Image, _: SEL, ciImage: ^UI.CIImage, scale: CG.Float, orientation: UI.ImageOrientation) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

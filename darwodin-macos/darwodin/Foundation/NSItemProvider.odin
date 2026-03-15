@@ -22,7 +22,7 @@ ItemProvider :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ItemProvider, objc_selector="init", objc_name="init")
-    ItemProvider_init :: proc(self: ^ItemProvider) -> ^ItemProvider ---
+    ItemProvider_init :: proc(self: ^ItemProvider) -> instancetype ---
 
     @(objc_type=ItemProvider, objc_selector="registerDataRepresentationForTypeIdentifier:visibility:loadHandler:", objc_name="registerDataRepresentationForTypeIdentifier")
     ItemProvider_registerDataRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (data: ^Data, error: ^Error))) -> ^Progress)) ---
@@ -49,7 +49,7 @@ foreign lib {
     ItemProvider_loadInPlaceFileRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (url: ^URL, isInPlace: bool, error: ^Error))) -> ^Progress ---
 
     @(objc_type=ItemProvider, objc_selector="initWithObject:", objc_name="initWithObject")
-    ItemProvider_initWithObject :: proc(self: ^ItemProvider, object: ^ItemProviderWriting) -> ^ItemProvider ---
+    ItemProvider_initWithObject :: proc(self: ^ItemProvider, object: ^ItemProviderWriting) -> instancetype ---
 
     @(objc_type=ItemProvider, objc_selector="registerObject:visibility:", objc_name="registerObject")
     ItemProvider_registerObject :: proc(self: ^ItemProvider, object: ^ItemProviderWriting, visibility: ItemProviderRepresentationVisibility) ---
@@ -64,10 +64,10 @@ foreign lib {
     ItemProvider_loadObjectOfClass :: proc(self: ^ItemProvider, aClass: ^Class, completionHandler: ^Objc_Block(proc "c" (object: ^ItemProviderReading, error: ^Error))) -> ^Progress ---
 
     @(objc_type=ItemProvider, objc_selector="initWithItem:typeIdentifier:", objc_name="initWithItem")
-    ItemProvider_initWithItem :: proc(self: ^ItemProvider, item: ^SecureCoding, typeIdentifier: ^String) -> ^ItemProvider ---
+    ItemProvider_initWithItem :: proc(self: ^ItemProvider, item: ^SecureCoding, typeIdentifier: ^String) -> instancetype ---
 
     @(objc_type=ItemProvider, objc_selector="initWithContentsOfURL:", objc_name="initWithContentsOfURL")
-    ItemProvider_initWithContentsOfURL :: proc(self: ^ItemProvider, fileURL: ^URL) -> ^ItemProvider ---
+    ItemProvider_initWithContentsOfURL :: proc(self: ^ItemProvider, fileURL: ^URL) -> instancetype ---
 
     @(objc_type=ItemProvider, objc_selector="registerItemForTypeIdentifier:loadHandler:", objc_name="registerItemForTypeIdentifier")
     ItemProvider_registerItemForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, loadHandler: ItemProviderLoadHandler) ---

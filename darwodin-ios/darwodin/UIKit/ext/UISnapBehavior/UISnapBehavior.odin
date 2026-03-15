@@ -28,7 +28,7 @@ import "../UIDynamicBehavior"
 
 VTable :: struct {
     super: UIDynamicBehavior.VTable,
-    initWithItem: proc(self: ^UI.SnapBehavior, item: ^UI.DynamicItem, point: CG.Point) -> ^UI.SnapBehavior,
+    initWithItem: proc(self: ^UI.SnapBehavior, item: ^UI.DynamicItem, point: CG.Point) -> instancetype,
     snapPoint: proc(self: ^UI.SnapBehavior) -> CG.Point,
     setSnapPoint: proc(self: ^UI.SnapBehavior, snapPoint: CG.Point),
     damping: proc(self: ^UI.SnapBehavior) -> CG.Float,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIDynamicBehavior.extend(cls, &vt.super)
 
     if vt.initWithItem != nil {
-        initWithItem :: proc "c" (self: ^UI.SnapBehavior, _: SEL, item: ^UI.DynamicItem, point: CG.Point) -> ^UI.SnapBehavior {
+        initWithItem :: proc "c" (self: ^UI.SnapBehavior, _: SEL, item: ^UI.DynamicItem, point: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

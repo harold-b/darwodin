@@ -23,10 +23,10 @@ FragmentedMovieMinder :: struct { using _: FragmentedAssetMinder, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FragmentedMovieMinder, objc_selector="fragmentedMovieMinderWithMovie:mindingInterval:", objc_name="fragmentedMovieMinderWithMovie", objc_is_class_method=true)
-    FragmentedMovieMinder_fragmentedMovieMinderWithMovie :: proc(movie: ^FragmentedMovie, mindingInterval: NS.TimeInterval) -> ^FragmentedMovieMinder ---
+    FragmentedMovieMinder_fragmentedMovieMinderWithMovie :: proc(movie: ^FragmentedMovie, mindingInterval: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=FragmentedMovieMinder, objc_selector="initWithMovie:mindingInterval:", objc_name="initWithMovie")
-    FragmentedMovieMinder_initWithMovie :: proc(self: ^FragmentedMovieMinder, movie: ^FragmentedMovie, mindingInterval: NS.TimeInterval) -> ^FragmentedMovieMinder ---
+    FragmentedMovieMinder_initWithMovie :: proc(self: ^FragmentedMovieMinder, movie: ^FragmentedMovie, mindingInterval: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=FragmentedMovieMinder, objc_selector="addFragmentedMovie:", objc_name="addFragmentedMovie")
     FragmentedMovieMinder_addFragmentedMovie :: proc(self: ^FragmentedMovieMinder, movie: ^FragmentedMovie) ---

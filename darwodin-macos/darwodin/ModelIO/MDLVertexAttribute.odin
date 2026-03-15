@@ -23,7 +23,7 @@ VertexAttribute :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexAttribute, objc_selector="initWithName:format:offset:bufferIndex:", objc_name="initWithName")
-    VertexAttribute_initWithName :: proc(self: ^VertexAttribute, name: ^NS.String, format: VertexFormat, offset: NS.UInteger, bufferIndex: NS.UInteger) -> ^VertexAttribute ---
+    VertexAttribute_initWithName :: proc(self: ^VertexAttribute, name: ^NS.String, format: VertexFormat, offset: NS.UInteger, bufferIndex: NS.UInteger) -> instancetype ---
 
     @(objc_type=VertexAttribute, objc_selector="name", objc_name="name")
     VertexAttribute_name :: proc(self: ^VertexAttribute) -> ^NS.String ---

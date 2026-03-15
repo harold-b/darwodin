@@ -28,13 +28,13 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.SpringTimingParameters) -> ^UI.SpringTimingParameters,
-    initWithCoder: proc(self: ^UI.SpringTimingParameters, coder: ^NS.Coder) -> ^UI.SpringTimingParameters,
-    initWithDampingRatio_initialVelocity: proc(self: ^UI.SpringTimingParameters, ratio: CG.Float, velocity: CG.Vector) -> ^UI.SpringTimingParameters,
-    initWithMass: proc(self: ^UI.SpringTimingParameters, mass: CG.Float, stiffness: CG.Float, damping: CG.Float, velocity: CG.Vector) -> ^UI.SpringTimingParameters,
-    initWithDampingRatio_: proc(self: ^UI.SpringTimingParameters, ratio: CG.Float) -> ^UI.SpringTimingParameters,
-    initWithDuration_bounce_initialVelocity: proc(self: ^UI.SpringTimingParameters, duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Vector) -> ^UI.SpringTimingParameters,
-    initWithDuration_bounce: proc(self: ^UI.SpringTimingParameters, duration: NS.TimeInterval, bounce: CG.Float) -> ^UI.SpringTimingParameters,
+    init: proc(self: ^UI.SpringTimingParameters) -> instancetype,
+    initWithCoder: proc(self: ^UI.SpringTimingParameters, coder: ^NS.Coder) -> instancetype,
+    initWithDampingRatio_initialVelocity: proc(self: ^UI.SpringTimingParameters, ratio: CG.Float, velocity: CG.Vector) -> instancetype,
+    initWithMass: proc(self: ^UI.SpringTimingParameters, mass: CG.Float, stiffness: CG.Float, damping: CG.Float, velocity: CG.Vector) -> instancetype,
+    initWithDampingRatio_: proc(self: ^UI.SpringTimingParameters, ratio: CG.Float) -> instancetype,
+    initWithDuration_bounce_initialVelocity: proc(self: ^UI.SpringTimingParameters, duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Vector) -> instancetype,
+    initWithDuration_bounce: proc(self: ^UI.SpringTimingParameters, duration: NS.TimeInterval, bounce: CG.Float) -> instancetype,
     initialVelocity: proc(self: ^UI.SpringTimingParameters) -> CG.Vector,
 }
 
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL) -> ^UI.SpringTimingParameters {
+        init :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, coder: ^NS.Coder) -> ^UI.SpringTimingParameters {
+        initWithCoder :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithDampingRatio_initialVelocity != nil {
-        initWithDampingRatio_initialVelocity :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, ratio: CG.Float, velocity: CG.Vector) -> ^UI.SpringTimingParameters {
+        initWithDampingRatio_initialVelocity :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, ratio: CG.Float, velocity: CG.Vector) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDampingRatio:initialVelocity:"), auto_cast initWithDampingRatio_initialVelocity, "@@:d{CGVector=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithMass != nil {
-        initWithMass :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, mass: CG.Float, stiffness: CG.Float, damping: CG.Float, velocity: CG.Vector) -> ^UI.SpringTimingParameters {
+        initWithMass :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, mass: CG.Float, stiffness: CG.Float, damping: CG.Float, velocity: CG.Vector) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMass:stiffness:damping:initialVelocity:"), auto_cast initWithMass, "@@:ddd{CGVector=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithDampingRatio_ != nil {
-        initWithDampingRatio_ :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, ratio: CG.Float) -> ^UI.SpringTimingParameters {
+        initWithDampingRatio_ :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, ratio: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDampingRatio:"), auto_cast initWithDampingRatio_, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.initWithDuration_bounce_initialVelocity != nil {
-        initWithDuration_bounce_initialVelocity :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Vector) -> ^UI.SpringTimingParameters {
+        initWithDuration_bounce_initialVelocity :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Vector) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDuration:bounce:initialVelocity:"), auto_cast initWithDuration_bounce_initialVelocity, "@@:dd{CGVector=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithDuration_bounce != nil {
-        initWithDuration_bounce :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, duration: NS.TimeInterval, bounce: CG.Float) -> ^UI.SpringTimingParameters {
+        initWithDuration_bounce :: proc "c" (self: ^UI.SpringTimingParameters, _: SEL, duration: NS.TimeInterval, bounce: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

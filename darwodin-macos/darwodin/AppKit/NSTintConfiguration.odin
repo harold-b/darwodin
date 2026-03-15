@@ -27,10 +27,10 @@ TintConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TintConfiguration, objc_selector="tintConfigurationWithPreferredColor:", objc_name="tintConfigurationWithPreferredColor", objc_is_class_method=true)
-    TintConfiguration_tintConfigurationWithPreferredColor :: proc(color: ^Color) -> ^TintConfiguration ---
+    TintConfiguration_tintConfigurationWithPreferredColor :: proc(color: ^Color) -> instancetype ---
 
     @(objc_type=TintConfiguration, objc_selector="tintConfigurationWithFixedColor:", objc_name="tintConfigurationWithFixedColor", objc_is_class_method=true)
-    TintConfiguration_tintConfigurationWithFixedColor :: proc(color: ^Color) -> ^TintConfiguration ---
+    TintConfiguration_tintConfigurationWithFixedColor :: proc(color: ^Color) -> instancetype ---
 
     @(objc_type=TintConfiguration, objc_selector="defaultTintConfiguration", objc_name="defaultTintConfiguration", objc_is_class_method=true)
     TintConfiguration_defaultTintConfiguration :: proc() -> ^TintConfiguration ---

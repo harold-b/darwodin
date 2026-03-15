@@ -28,10 +28,10 @@ foreign lib {
     Achievement_resetAchievementsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
 
     @(objc_type=Achievement, objc_selector="initWithIdentifier:", objc_name="initWithIdentifier_")
-    Achievement_initWithIdentifier_ :: proc(self: ^Achievement, identifier: ^NS.String) -> ^Achievement ---
+    Achievement_initWithIdentifier_ :: proc(self: ^Achievement, identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=Achievement, objc_selector="initWithIdentifier:player:", objc_name="initWithIdentifier_player")
-    Achievement_initWithIdentifier_player :: proc(self: ^Achievement, identifier: ^NS.String, player: ^Player) -> ^Achievement ---
+    Achievement_initWithIdentifier_player :: proc(self: ^Achievement, identifier: ^NS.String, player: ^Player) -> instancetype ---
 
     @(objc_type=Achievement, objc_selector="reportAchievements:withCompletionHandler:", objc_name="reportAchievements_withCompletionHandler", objc_is_class_method=true)
     Achievement_reportAchievements_withCompletionHandler :: proc(achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
@@ -70,7 +70,7 @@ foreign lib {
     Achievement_isHidden :: proc(self: ^Achievement) -> bool ---
 
     @(objc_type=Achievement, objc_selector="initWithIdentifier:forPlayer:", objc_name="initWithIdentifier_forPlayer")
-    Achievement_initWithIdentifier_forPlayer :: proc(self: ^Achievement, identifier: ^NS.String, playerID: ^NS.String) -> ^Achievement ---
+    Achievement_initWithIdentifier_forPlayer :: proc(self: ^Achievement, identifier: ^NS.String, playerID: ^NS.String) -> instancetype ---
 
     @(objc_type=Achievement, objc_selector="playerID", objc_name="playerID")
     Achievement_playerID :: proc(self: ^Achievement) -> ^NS.String ---

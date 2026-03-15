@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithPasteboardWriter: proc(self: ^AK.DraggingItem, pasteboardWriter: ^AK.PasteboardWriting) -> ^AK.DraggingItem,
-    init: proc(self: ^AK.DraggingItem) -> ^AK.DraggingItem,
+    initWithPasteboardWriter: proc(self: ^AK.DraggingItem, pasteboardWriter: ^AK.PasteboardWriting) -> instancetype,
+    init: proc(self: ^AK.DraggingItem) -> instancetype,
     setDraggingFrame_contents: proc(self: ^AK.DraggingItem, frame: NS.Rect, contents: id),
     item: proc(self: ^AK.DraggingItem) -> id,
     draggingFrame: proc(self: ^AK.DraggingItem) -> NS.Rect,
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithPasteboardWriter != nil {
-        initWithPasteboardWriter :: proc "c" (self: ^AK.DraggingItem, _: SEL, pasteboardWriter: ^AK.PasteboardWriting) -> ^AK.DraggingItem {
+        initWithPasteboardWriter :: proc "c" (self: ^AK.DraggingItem, _: SEL, pasteboardWriter: ^AK.PasteboardWriting) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPasteboardWriter:"), auto_cast initWithPasteboardWriter, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.DraggingItem, _: SEL) -> ^AK.DraggingItem {
+        init :: proc "c" (self: ^AK.DraggingItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

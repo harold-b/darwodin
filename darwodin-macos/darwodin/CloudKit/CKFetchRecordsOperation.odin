@@ -18,13 +18,13 @@ FetchRecordsOperation :: struct { using _: DatabaseOperation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchRecordsOperation, objc_selector="init", objc_name="init")
-    FetchRecordsOperation_init :: proc(self: ^FetchRecordsOperation) -> ^FetchRecordsOperation ---
+    FetchRecordsOperation_init :: proc(self: ^FetchRecordsOperation) -> instancetype ---
 
     @(objc_type=FetchRecordsOperation, objc_selector="initWithRecordIDs:", objc_name="initWithRecordIDs")
-    FetchRecordsOperation_initWithRecordIDs :: proc(self: ^FetchRecordsOperation, recordIDs: ^NS.Array) -> ^FetchRecordsOperation ---
+    FetchRecordsOperation_initWithRecordIDs :: proc(self: ^FetchRecordsOperation, recordIDs: ^NS.Array) -> instancetype ---
 
     @(objc_type=FetchRecordsOperation, objc_selector="fetchCurrentUserRecordOperation", objc_name="fetchCurrentUserRecordOperation", objc_is_class_method=true)
-    FetchRecordsOperation_fetchCurrentUserRecordOperation :: proc() -> ^FetchRecordsOperation ---
+    FetchRecordsOperation_fetchCurrentUserRecordOperation :: proc() -> instancetype ---
 
     @(objc_type=FetchRecordsOperation, objc_selector="recordIDs", objc_name="recordIDs")
     FetchRecordsOperation_recordIDs :: proc(self: ^FetchRecordsOperation) -> ^NS.Array ---

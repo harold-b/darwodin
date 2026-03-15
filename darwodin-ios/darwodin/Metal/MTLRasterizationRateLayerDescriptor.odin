@@ -24,13 +24,13 @@ RasterizationRateLayerDescriptor :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RasterizationRateLayerDescriptor, objc_selector="init", objc_name="init")
-    RasterizationRateLayerDescriptor_init :: proc(self: ^RasterizationRateLayerDescriptor) -> ^RasterizationRateLayerDescriptor ---
+    RasterizationRateLayerDescriptor_init :: proc(self: ^RasterizationRateLayerDescriptor) -> instancetype ---
 
     @(objc_type=RasterizationRateLayerDescriptor, objc_selector="initWithSampleCount:", objc_name="initWithSampleCount_")
-    RasterizationRateLayerDescriptor_initWithSampleCount_ :: proc(self: ^RasterizationRateLayerDescriptor, sampleCount: Size) -> ^RasterizationRateLayerDescriptor ---
+    RasterizationRateLayerDescriptor_initWithSampleCount_ :: proc(self: ^RasterizationRateLayerDescriptor, sampleCount: Size) -> instancetype ---
 
     @(objc_type=RasterizationRateLayerDescriptor, objc_selector="initWithSampleCount:horizontal:vertical:", objc_name="initWithSampleCount_horizontal_vertical")
-    RasterizationRateLayerDescriptor_initWithSampleCount_horizontal_vertical :: proc(self: ^RasterizationRateLayerDescriptor, sampleCount: Size, horizontal: ^cffi.float, vertical: ^cffi.float) -> ^RasterizationRateLayerDescriptor ---
+    RasterizationRateLayerDescriptor_initWithSampleCount_horizontal_vertical :: proc(self: ^RasterizationRateLayerDescriptor, sampleCount: Size, horizontal: ^cffi.float, vertical: ^cffi.float) -> instancetype ---
 
     @(objc_type=RasterizationRateLayerDescriptor, objc_selector="sampleCount", objc_name="sampleCount")
     RasterizationRateLayerDescriptor_sampleCount :: proc(self: ^RasterizationRateLayerDescriptor) -> Size ---

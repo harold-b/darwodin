@@ -27,9 +27,9 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     objectSpecifierWithDescriptor: proc(descriptor: ^NS.AppleEventDescriptor) -> ^NS.ScriptObjectSpecifier,
-    initWithContainerSpecifier: proc(self: ^NS.ScriptObjectSpecifier, container: ^NS.ScriptObjectSpecifier, property: ^NS.String) -> ^NS.ScriptObjectSpecifier,
-    initWithContainerClassDescription: proc(self: ^NS.ScriptObjectSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String) -> ^NS.ScriptObjectSpecifier,
-    initWithCoder: proc(self: ^NS.ScriptObjectSpecifier, inCoder: ^NS.Coder) -> ^NS.ScriptObjectSpecifier,
+    initWithContainerSpecifier: proc(self: ^NS.ScriptObjectSpecifier, container: ^NS.ScriptObjectSpecifier, property: ^NS.String) -> instancetype,
+    initWithContainerClassDescription: proc(self: ^NS.ScriptObjectSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^NS.ScriptObjectSpecifier, inCoder: ^NS.Coder) -> instancetype,
     indicesOfObjectsByEvaluatingWithContainer: proc(self: ^NS.ScriptObjectSpecifier, container: id, count: ^NS.Integer) -> ^NS.Integer,
     objectsByEvaluatingWithContainers: proc(self: ^NS.ScriptObjectSpecifier, containers: id) -> id,
     childSpecifier: proc(self: ^NS.ScriptObjectSpecifier) -> ^NS.ScriptObjectSpecifier,
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("objectSpecifierWithDescriptor:"), auto_cast objectSpecifierWithDescriptor, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerSpecifier != nil {
-        initWithContainerSpecifier :: proc "c" (self: ^NS.ScriptObjectSpecifier, _: SEL, container: ^NS.ScriptObjectSpecifier, property: ^NS.String) -> ^NS.ScriptObjectSpecifier {
+        initWithContainerSpecifier :: proc "c" (self: ^NS.ScriptObjectSpecifier, _: SEL, container: ^NS.ScriptObjectSpecifier, property: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContainerSpecifier:key:"), auto_cast initWithContainerSpecifier, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerClassDescription != nil {
-        initWithContainerClassDescription :: proc "c" (self: ^NS.ScriptObjectSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String) -> ^NS.ScriptObjectSpecifier {
+        initWithContainerClassDescription :: proc "c" (self: ^NS.ScriptObjectSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContainerClassDescription:containerSpecifier:key:"), auto_cast initWithContainerClassDescription, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.ScriptObjectSpecifier, _: SEL, inCoder: ^NS.Coder) -> ^NS.ScriptObjectSpecifier {
+        initWithCoder :: proc "c" (self: ^NS.ScriptObjectSpecifier, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -23,7 +23,7 @@ MetricPlayerItemInitialLikelyToKeepUpEvent :: struct { using _: MetricPlayerItem
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemInitialLikelyToKeepUpEvent, objc_selector="init", objc_name="init")
-    MetricPlayerItemInitialLikelyToKeepUpEvent_init :: proc(self: ^MetricPlayerItemInitialLikelyToKeepUpEvent) -> ^MetricPlayerItemInitialLikelyToKeepUpEvent ---
+    MetricPlayerItemInitialLikelyToKeepUpEvent_init :: proc(self: ^MetricPlayerItemInitialLikelyToKeepUpEvent) -> instancetype ---
 
     @(objc_type=MetricPlayerItemInitialLikelyToKeepUpEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricPlayerItemInitialLikelyToKeepUpEvent_new :: proc() -> ^MetricPlayerItemInitialLikelyToKeepUpEvent ---

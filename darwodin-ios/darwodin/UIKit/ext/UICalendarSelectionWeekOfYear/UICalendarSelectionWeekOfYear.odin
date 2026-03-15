@@ -29,7 +29,7 @@ import "../UICalendarSelection"
 VTable :: struct {
     super: UICalendarSelection.VTable,
     setSelectedWeekOfYear_animated: proc(self: ^UI.CalendarSelectionWeekOfYear, selectedWeekOfYear: ^NS.DateComponents, animated: bool),
-    initWithDelegate: proc(self: ^UI.CalendarSelectionWeekOfYear, delegate: ^UI.CalendarSelectionWeekOfYearDelegate) -> ^UI.CalendarSelectionWeekOfYear,
+    initWithDelegate: proc(self: ^UI.CalendarSelectionWeekOfYear, delegate: ^UI.CalendarSelectionWeekOfYearDelegate) -> instancetype,
     selectedWeekOfYear: proc(self: ^UI.CalendarSelectionWeekOfYear) -> ^NS.DateComponents,
     setSelectedWeekOfYear_: proc(self: ^UI.CalendarSelectionWeekOfYear, selectedWeekOfYear: ^NS.DateComponents),
     delegate: proc(self: ^UI.CalendarSelectionWeekOfYear) -> ^UI.CalendarSelectionWeekOfYearDelegate,
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedWeekOfYear:animated:"), auto_cast setSelectedWeekOfYear_animated, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.CalendarSelectionWeekOfYear, _: SEL, delegate: ^UI.CalendarSelectionWeekOfYearDelegate) -> ^UI.CalendarSelectionWeekOfYear {
+        initWithDelegate :: proc "c" (self: ^UI.CalendarSelectionWeekOfYear, _: SEL, delegate: ^UI.CalendarSelectionWeekOfYearDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -31,9 +31,9 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     separatorItem: proc() -> ^AK.MenuItem,
-    sectionHeaderWithTitle: proc(title: ^NS.String) -> ^AK.MenuItem,
-    initWithTitle: proc(self: ^AK.MenuItem, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> ^AK.MenuItem,
-    initWithCoder: proc(self: ^AK.MenuItem, coder: ^NS.Coder) -> ^AK.MenuItem,
+    sectionHeaderWithTitle: proc(title: ^NS.String) -> instancetype,
+    initWithTitle: proc(self: ^AK.MenuItem, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^AK.MenuItem, coder: ^NS.Coder) -> instancetype,
     usesUserKeyEquivalents: proc() -> bool,
     setUsesUserKeyEquivalents: proc(usesUserKeyEquivalents: bool),
     writingToolsItems: proc() -> ^NS.Array,
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("separatorItem"), auto_cast separatorItem, "@#:") do panic("Failed to register objC method.")
     }
     if vt.sectionHeaderWithTitle != nil {
-        sectionHeaderWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String) -> ^AK.MenuItem {
+        sectionHeaderWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sectionHeaderWithTitle:"), auto_cast sectionHeaderWithTitle, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^AK.MenuItem, _: SEL, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> ^AK.MenuItem {
+        initWithTitle :: proc "c" (self: ^AK.MenuItem, _: SEL, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:action:keyEquivalent:"), auto_cast initWithTitle, "@@:@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.MenuItem, _: SEL, coder: ^NS.Coder) -> ^AK.MenuItem {
+        initWithCoder :: proc "c" (self: ^AK.MenuItem, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

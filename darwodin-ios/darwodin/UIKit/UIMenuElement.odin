@@ -25,10 +25,10 @@ MenuElement :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MenuElement, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    MenuElement_initWithCoder :: proc(self: ^MenuElement, coder: ^NS.Coder) -> ^MenuElement ---
+    MenuElement_initWithCoder :: proc(self: ^MenuElement, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=MenuElement, objc_selector="init", objc_name="init")
-    MenuElement_init :: proc(self: ^MenuElement) -> ^MenuElement ---
+    MenuElement_init :: proc(self: ^MenuElement) -> instancetype ---
 
     @(objc_type=MenuElement, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MenuElement_new :: proc() -> ^MenuElement ---

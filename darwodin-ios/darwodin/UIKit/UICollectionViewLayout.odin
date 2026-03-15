@@ -24,10 +24,10 @@ CollectionViewLayout :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewLayout, objc_selector="init", objc_name="init")
-    CollectionViewLayout_init :: proc(self: ^CollectionViewLayout) -> ^CollectionViewLayout ---
+    CollectionViewLayout_init :: proc(self: ^CollectionViewLayout) -> instancetype ---
 
     @(objc_type=CollectionViewLayout, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CollectionViewLayout_initWithCoder :: proc(self: ^CollectionViewLayout, coder: ^NS.Coder) -> ^CollectionViewLayout ---
+    CollectionViewLayout_initWithCoder :: proc(self: ^CollectionViewLayout, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CollectionViewLayout, objc_selector="invalidateLayout", objc_name="invalidateLayout")
     CollectionViewLayout_invalidateLayout :: proc(self: ^CollectionViewLayout) ---

@@ -27,19 +27,19 @@ SharingCollaborationModeRestriction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SharingCollaborationModeRestriction, objc_selector="initWithDisabledMode:", objc_name="initWithDisabledMode_")
-    SharingCollaborationModeRestriction_initWithDisabledMode_ :: proc(self: ^SharingCollaborationModeRestriction, disabledMode: SharingCollaborationMode) -> ^SharingCollaborationModeRestriction ---
+    SharingCollaborationModeRestriction_initWithDisabledMode_ :: proc(self: ^SharingCollaborationModeRestriction, disabledMode: SharingCollaborationMode) -> instancetype ---
 
     @(objc_type=SharingCollaborationModeRestriction, objc_selector="initWithDisabledMode:alertTitle:alertMessage:", objc_name="initWithDisabledMode_alertTitle_alertMessage")
-    SharingCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage :: proc(self: ^SharingCollaborationModeRestriction, disabledMode: SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> ^SharingCollaborationModeRestriction ---
+    SharingCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage :: proc(self: ^SharingCollaborationModeRestriction, disabledMode: SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> instancetype ---
 
     @(objc_type=SharingCollaborationModeRestriction, objc_selector="initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:", objc_name="initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle")
-    SharingCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle :: proc(self: ^SharingCollaborationModeRestriction, disabledMode: SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> ^SharingCollaborationModeRestriction ---
+    SharingCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle :: proc(self: ^SharingCollaborationModeRestriction, disabledMode: SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> instancetype ---
 
     @(objc_type=SharingCollaborationModeRestriction, objc_selector="initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:", objc_name="initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL")
-    SharingCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL :: proc(self: ^SharingCollaborationModeRestriction, disabledMode: SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> ^SharingCollaborationModeRestriction ---
+    SharingCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL :: proc(self: ^SharingCollaborationModeRestriction, disabledMode: SharingCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> instancetype ---
 
     @(objc_type=SharingCollaborationModeRestriction, objc_selector="init", objc_name="init")
-    SharingCollaborationModeRestriction_init :: proc(self: ^SharingCollaborationModeRestriction) -> ^SharingCollaborationModeRestriction ---
+    SharingCollaborationModeRestriction_init :: proc(self: ^SharingCollaborationModeRestriction) -> instancetype ---
 
     @(objc_type=SharingCollaborationModeRestriction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SharingCollaborationModeRestriction_new :: proc() -> ^SharingCollaborationModeRestriction ---

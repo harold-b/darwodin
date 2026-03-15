@@ -23,7 +23,7 @@ MetricPlayerItemSeekEvent :: struct { using _: MetricPlayerItemRateChangeEvent, 
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemSeekEvent, objc_selector="init", objc_name="init")
-    MetricPlayerItemSeekEvent_init :: proc(self: ^MetricPlayerItemSeekEvent) -> ^MetricPlayerItemSeekEvent ---
+    MetricPlayerItemSeekEvent_init :: proc(self: ^MetricPlayerItemSeekEvent) -> instancetype ---
 
     @(objc_type=MetricPlayerItemSeekEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricPlayerItemSeekEvent_new :: proc() -> ^MetricPlayerItemSeekEvent ---

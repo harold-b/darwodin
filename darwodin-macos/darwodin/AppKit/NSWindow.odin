@@ -47,13 +47,13 @@ foreign lib {
     Window_contentRectForFrameRect_ :: proc(self: ^Window, frameRect: NS.Rect) -> NS.Rect ---
 
     @(objc_type=Window, objc_selector="initWithContentRect:styleMask:backing:defer:", objc_name="initWithContentRect_styleMask_backing_defer")
-    Window_initWithContentRect_styleMask_backing_defer :: proc(self: ^Window, contentRect: NS.Rect, style: WindowStyleMask, backingStoreType: BackingStoreType, flag: bool) -> ^Window ---
+    Window_initWithContentRect_styleMask_backing_defer :: proc(self: ^Window, contentRect: NS.Rect, style: WindowStyleMask, backingStoreType: BackingStoreType, flag: bool) -> instancetype ---
 
     @(objc_type=Window, objc_selector="initWithContentRect:styleMask:backing:defer:screen:", objc_name="initWithContentRect_styleMask_backing_defer_screen")
-    Window_initWithContentRect_styleMask_backing_defer_screen :: proc(self: ^Window, contentRect: NS.Rect, style: WindowStyleMask, backingStoreType: BackingStoreType, flag: bool, screen: ^Screen) -> ^Window ---
+    Window_initWithContentRect_styleMask_backing_defer_screen :: proc(self: ^Window, contentRect: NS.Rect, style: WindowStyleMask, backingStoreType: BackingStoreType, flag: bool, screen: ^Screen) -> instancetype ---
 
     @(objc_type=Window, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Window_initWithCoder :: proc(self: ^Window, coder: ^NS.Coder) -> ^Window ---
+    Window_initWithCoder :: proc(self: ^Window, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Window, objc_selector="addTitlebarAccessoryViewController:", objc_name="addTitlebarAccessoryViewController")
     Window_addTitlebarAccessoryViewController :: proc(self: ^Window, childViewController: ^TitlebarAccessoryViewController) ---
@@ -284,7 +284,7 @@ foreign lib {
     Window_windowNumberAtPoint :: proc(point: CG.Point, windowNumber: NS.Integer) -> NS.Integer ---
 
     @(objc_type=Window, objc_selector="windowWithContentViewController:", objc_name="windowWithContentViewController", objc_is_class_method=true)
-    Window_windowWithContentViewController :: proc(contentViewController: ^ViewController) -> ^Window ---
+    Window_windowWithContentViewController :: proc(contentViewController: ^ViewController) -> instancetype ---
 
     @(objc_type=Window, objc_selector="performWindowDragWithEvent:", objc_name="performWindowDragWithEvent")
     Window_performWindowDragWithEvent :: proc(self: ^Window, event: ^Event) ---

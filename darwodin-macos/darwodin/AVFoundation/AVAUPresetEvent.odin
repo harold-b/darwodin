@@ -23,7 +23,7 @@ AUPresetEvent :: struct { using _: MusicEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUPresetEvent, objc_selector="initWithScope:element:dictionary:", objc_name="initWithScope")
-    AUPresetEvent_initWithScope :: proc(self: ^AUPresetEvent, scope: CF.UInt32, element: CF.UInt32, presetDictionary: ^NS.Dictionary) -> ^AUPresetEvent ---
+    AUPresetEvent_initWithScope :: proc(self: ^AUPresetEvent, scope: CF.UInt32, element: CF.UInt32, presetDictionary: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AUPresetEvent, objc_selector="scope", objc_name="scope")
     AUPresetEvent_scope :: proc(self: ^AUPresetEvent) -> CF.UInt32 ---

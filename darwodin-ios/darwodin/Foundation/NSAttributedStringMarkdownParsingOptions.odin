@@ -22,7 +22,7 @@ AttributedStringMarkdownParsingOptions :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AttributedStringMarkdownParsingOptions, objc_selector="init", objc_name="init")
-    AttributedStringMarkdownParsingOptions_init :: proc(self: ^AttributedStringMarkdownParsingOptions) -> ^AttributedStringMarkdownParsingOptions ---
+    AttributedStringMarkdownParsingOptions_init :: proc(self: ^AttributedStringMarkdownParsingOptions) -> instancetype ---
 
     @(objc_type=AttributedStringMarkdownParsingOptions, objc_selector="allowsExtendedAttributes", objc_name="allowsExtendedAttributes")
     AttributedStringMarkdownParsingOptions_allowsExtendedAttributes :: proc(self: ^AttributedStringMarkdownParsingOptions) -> bool ---

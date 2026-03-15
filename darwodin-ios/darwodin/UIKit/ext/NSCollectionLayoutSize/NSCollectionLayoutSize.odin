@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    sizeWithWidthDimension: proc(width: ^UI.NSCollectionLayoutDimension, height: ^UI.NSCollectionLayoutDimension) -> ^UI.NSCollectionLayoutSize,
-    init: proc(self: ^UI.NSCollectionLayoutSize) -> ^UI.NSCollectionLayoutSize,
+    sizeWithWidthDimension: proc(width: ^UI.NSCollectionLayoutDimension, height: ^UI.NSCollectionLayoutDimension) -> instancetype,
+    init: proc(self: ^UI.NSCollectionLayoutSize) -> instancetype,
     new: proc() -> ^UI.NSCollectionLayoutSize,
     widthDimension: proc(self: ^UI.NSCollectionLayoutSize) -> ^UI.NSCollectionLayoutDimension,
     heightDimension: proc(self: ^UI.NSCollectionLayoutSize) -> ^UI.NSCollectionLayoutDimension,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.sizeWithWidthDimension != nil {
-        sizeWithWidthDimension :: proc "c" (self: Class, _: SEL, width: ^UI.NSCollectionLayoutDimension, height: ^UI.NSCollectionLayoutDimension) -> ^UI.NSCollectionLayoutSize {
+        sizeWithWidthDimension :: proc "c" (self: Class, _: SEL, width: ^UI.NSCollectionLayoutDimension, height: ^UI.NSCollectionLayoutDimension) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sizeWithWidthDimension:heightDimension:"), auto_cast sizeWithWidthDimension, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSCollectionLayoutSize, _: SEL) -> ^UI.NSCollectionLayoutSize {
+        init :: proc "c" (self: ^UI.NSCollectionLayoutSize, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

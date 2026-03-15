@@ -24,7 +24,7 @@ Storyboard :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Storyboard, objc_selector="storyboardWithName:bundle:", objc_name="storyboardWithName", objc_is_class_method=true)
-    Storyboard_storyboardWithName :: proc(name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> ^Storyboard ---
+    Storyboard_storyboardWithName :: proc(name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=Storyboard, objc_selector="instantiateInitialController", objc_name="instantiateInitialController")
     Storyboard_instantiateInitialController :: proc(self: ^Storyboard) -> id ---

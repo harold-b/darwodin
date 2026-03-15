@@ -22,7 +22,7 @@ GraphicsImageRendererFormat :: struct { using _: GraphicsRendererFormat, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GraphicsImageRendererFormat, objc_selector="formatForTraitCollection:", objc_name="formatForTraitCollection", objc_is_class_method=true)
-    GraphicsImageRendererFormat_formatForTraitCollection :: proc(traitCollection: ^TraitCollection) -> ^GraphicsImageRendererFormat ---
+    GraphicsImageRendererFormat_formatForTraitCollection :: proc(traitCollection: ^TraitCollection) -> instancetype ---
 
     @(objc_type=GraphicsImageRendererFormat, objc_selector="scale", objc_name="scale")
     GraphicsImageRendererFormat_scale :: proc(self: ^GraphicsImageRendererFormat) -> CG.Float ---

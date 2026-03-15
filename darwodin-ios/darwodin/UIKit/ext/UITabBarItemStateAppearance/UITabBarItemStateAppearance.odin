@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.TabBarItemStateAppearance) -> ^UI.TabBarItemStateAppearance,
+    init: proc(self: ^UI.TabBarItemStateAppearance) -> instancetype,
     new: proc() -> ^UI.TabBarItemStateAppearance,
     titleTextAttributes: proc(self: ^UI.TabBarItemStateAppearance) -> ^NS.Dictionary,
     setTitleTextAttributes: proc(self: ^UI.TabBarItemStateAppearance, titleTextAttributes: ^NS.Dictionary),
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TabBarItemStateAppearance, _: SEL) -> ^UI.TabBarItemStateAppearance {
+        init :: proc "c" (self: ^UI.TabBarItemStateAppearance, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

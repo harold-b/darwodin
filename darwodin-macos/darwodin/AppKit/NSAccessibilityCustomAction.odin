@@ -24,10 +24,10 @@ AccessibilityCustomAction :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithName:handler:", objc_name="initWithName_handler")
-    AccessibilityCustomAction_initWithName_handler :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithName_handler :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="initWithName:target:selector:", objc_name="initWithName_target_selector")
-    AccessibilityCustomAction_initWithName_target_selector :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> ^AccessibilityCustomAction ---
+    AccessibilityCustomAction_initWithName_target_selector :: proc(self: ^AccessibilityCustomAction, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> instancetype ---
 
     @(objc_type=AccessibilityCustomAction, objc_selector="name", objc_name="name")
     AccessibilityCustomAction_name :: proc(self: ^AccessibilityCustomAction) -> ^NS.String ---

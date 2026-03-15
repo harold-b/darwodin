@@ -21,16 +21,16 @@ Share :: struct { using _: Record,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Share, objc_selector="initWithRootRecord:", objc_name="initWithRootRecord_")
-    Share_initWithRootRecord_ :: proc(self: ^Share, rootRecord: ^Record) -> ^Share ---
+    Share_initWithRootRecord_ :: proc(self: ^Share, rootRecord: ^Record) -> instancetype ---
 
     @(objc_type=Share, objc_selector="initWithRootRecord:shareID:", objc_name="initWithRootRecord_shareID")
-    Share_initWithRootRecord_shareID :: proc(self: ^Share, rootRecord: ^Record, shareID: ^RecordID) -> ^Share ---
+    Share_initWithRootRecord_shareID :: proc(self: ^Share, rootRecord: ^Record, shareID: ^RecordID) -> instancetype ---
 
     @(objc_type=Share, objc_selector="initWithRecordZoneID:", objc_name="initWithRecordZoneID")
-    Share_initWithRecordZoneID :: proc(self: ^Share, recordZoneID: ^RecordZoneID) -> ^Share ---
+    Share_initWithRecordZoneID :: proc(self: ^Share, recordZoneID: ^RecordZoneID) -> instancetype ---
 
     @(objc_type=Share, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Share_initWithCoder :: proc(self: ^Share, aDecoder: ^NS.Coder) -> ^Share ---
+    Share_initWithCoder :: proc(self: ^Share, aDecoder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Share, objc_selector="addParticipant:", objc_name="addParticipant")
     Share_addParticipant :: proc(self: ^Share, participant: ^ShareParticipant) ---
@@ -39,19 +39,19 @@ foreign lib {
     Share_removeParticipant :: proc(self: ^Share, participant: ^ShareParticipant) ---
 
     @(objc_type=Share, objc_selector="init", objc_name="init")
-    Share_init :: proc(self: ^Share) -> ^Share ---
+    Share_init :: proc(self: ^Share) -> instancetype ---
 
     @(objc_type=Share, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Share_new :: proc() -> ^Share ---
 
     @(objc_type=Share, objc_selector="initWithRecordType:", objc_name="initWithRecordType_")
-    Share_initWithRecordType_ :: proc(self: ^Share, recordType: ^NS.String) -> ^Share ---
+    Share_initWithRecordType_ :: proc(self: ^Share, recordType: ^NS.String) -> instancetype ---
 
     @(objc_type=Share, objc_selector="initWithRecordType:recordID:", objc_name="initWithRecordType_recordID")
-    Share_initWithRecordType_recordID :: proc(self: ^Share, recordType: ^NS.String, recordID: ^RecordID) -> ^Share ---
+    Share_initWithRecordType_recordID :: proc(self: ^Share, recordType: ^NS.String, recordID: ^RecordID) -> instancetype ---
 
     @(objc_type=Share, objc_selector="initWithRecordType:zoneID:", objc_name="initWithRecordType_zoneID")
-    Share_initWithRecordType_zoneID :: proc(self: ^Share, recordType: ^NS.String, zoneID: ^RecordZoneID) -> ^Share ---
+    Share_initWithRecordType_zoneID :: proc(self: ^Share, recordType: ^NS.String, zoneID: ^RecordZoneID) -> instancetype ---
 
     @(objc_type=Share, objc_selector="publicPermission", objc_name="publicPermission")
     Share_publicPermission :: proc(self: ^Share) -> ShareParticipantPermission ---

@@ -27,8 +27,8 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     resetStandardUserDefaults: proc(),
-    init: proc(self: ^NS.UserDefaults) -> ^NS.UserDefaults,
-    initWithSuiteName: proc(self: ^NS.UserDefaults, suitename: ^NS.String) -> ^NS.UserDefaults,
+    init: proc(self: ^NS.UserDefaults) -> instancetype,
+    initWithSuiteName: proc(self: ^NS.UserDefaults, suitename: ^NS.String) -> instancetype,
     initWithUser: proc(self: ^NS.UserDefaults, username: ^NS.String) -> id,
     objectForKey: proc(self: ^NS.UserDefaults, defaultName: ^NS.String) -> id,
     setObject: proc(self: ^NS.UserDefaults, value: id, defaultName: ^NS.String),
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("resetStandardUserDefaults"), auto_cast resetStandardUserDefaults, "v#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.UserDefaults, _: SEL) -> ^NS.UserDefaults {
+        init :: proc "c" (self: ^NS.UserDefaults, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithSuiteName != nil {
-        initWithSuiteName :: proc "c" (self: ^NS.UserDefaults, _: SEL, suitename: ^NS.String) -> ^NS.UserDefaults {
+        initWithSuiteName :: proc "c" (self: ^NS.UserDefaults, _: SEL, suitename: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

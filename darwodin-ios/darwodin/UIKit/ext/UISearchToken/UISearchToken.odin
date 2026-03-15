@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.SearchToken) -> ^UI.SearchToken,
+    init: proc(self: ^UI.SearchToken) -> instancetype,
     new: proc() -> ^UI.SearchToken,
     tokenWithIcon: proc(icon: ^UI.Image, text: ^NS.String) -> ^UI.SearchToken,
     representedObject: proc(self: ^UI.SearchToken) -> id,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SearchToken, _: SEL) -> ^UI.SearchToken {
+        init :: proc "c" (self: ^UI.SearchToken, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

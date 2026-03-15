@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    treeNodeWithRepresentedObject: proc(modelObject: id) -> ^AK.TreeNode,
-    initWithRepresentedObject: proc(self: ^AK.TreeNode, modelObject: id) -> ^AK.TreeNode,
+    treeNodeWithRepresentedObject: proc(modelObject: id) -> instancetype,
+    initWithRepresentedObject: proc(self: ^AK.TreeNode, modelObject: id) -> instancetype,
     descendantNodeAtIndexPath: proc(self: ^AK.TreeNode, indexPath: ^NS.IndexPath) -> ^AK.TreeNode,
     sortWithSortDescriptors: proc(self: ^AK.TreeNode, sortDescriptors: ^NS.Array, recursively: bool),
     representedObject: proc(self: ^AK.TreeNode) -> id,
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.treeNodeWithRepresentedObject != nil {
-        treeNodeWithRepresentedObject :: proc "c" (self: Class, _: SEL, modelObject: id) -> ^AK.TreeNode {
+        treeNodeWithRepresentedObject :: proc "c" (self: Class, _: SEL, modelObject: id) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("treeNodeWithRepresentedObject:"), auto_cast treeNodeWithRepresentedObject, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithRepresentedObject != nil {
-        initWithRepresentedObject :: proc "c" (self: ^AK.TreeNode, _: SEL, modelObject: id) -> ^AK.TreeNode {
+        initWithRepresentedObject :: proc "c" (self: ^AK.TreeNode, _: SEL, modelObject: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -30,9 +30,9 @@ import "../NSCollectionLayoutSupplementaryItem"
 
 VTable :: struct {
     super: NSCollectionLayoutSupplementaryItem.VTable,
-    boundarySupplementaryItemWithLayoutSize_elementKind_alignment: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment) -> ^AK.CollectionLayoutBoundarySupplementaryItem,
-    boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment, absoluteOffset: CG.Point) -> ^AK.CollectionLayoutBoundarySupplementaryItem,
-    init: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem) -> ^AK.CollectionLayoutBoundarySupplementaryItem,
+    boundarySupplementaryItemWithLayoutSize_elementKind_alignment: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment) -> instancetype,
+    boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment, absoluteOffset: CG.Point) -> instancetype,
+    init: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem) -> instancetype,
     new: proc() -> ^AK.CollectionLayoutBoundarySupplementaryItem,
     extendsBoundary: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem) -> bool,
     setExtendsBoundary: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem, extendsBoundary: bool),
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionLayoutSupplementaryItem.extend(cls, &vt.super)
 
     if vt.boundarySupplementaryItemWithLayoutSize_elementKind_alignment != nil {
-        boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment) -> ^AK.CollectionLayoutBoundarySupplementaryItem {
+        boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:"), auto_cast boundarySupplementaryItemWithLayoutSize_elementKind_alignment, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset != nil {
-        boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment, absoluteOffset: CG.Point) -> ^AK.CollectionLayoutBoundarySupplementaryItem {
+        boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment, absoluteOffset: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:"), auto_cast boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset, "@#:@@l{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> ^AK.CollectionLayoutBoundarySupplementaryItem {
+        init :: proc "c" (self: ^AK.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

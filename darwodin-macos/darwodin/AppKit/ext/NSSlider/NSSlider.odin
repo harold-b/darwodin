@@ -54,8 +54,8 @@ VTable :: struct {
     setTickMarkPosition: proc(self: ^AK.Slider, tickMarkPosition: AK.TickMarkPosition),
     allowsTickMarkValuesOnly: proc(self: ^AK.Slider) -> bool,
     setAllowsTickMarkValuesOnly: proc(self: ^AK.Slider, allowsTickMarkValuesOnly: bool),
-    sliderWithTarget: proc(target: id, action: SEL) -> ^AK.Slider,
-    sliderWithValue: proc(value: cffi.double, minValue: cffi.double, maxValue: cffi.double, target: id, action: SEL) -> ^AK.Slider,
+    sliderWithTarget: proc(target: id, action: SEL) -> instancetype,
+    sliderWithValue: proc(value: cffi.double, minValue: cffi.double, maxValue: cffi.double, target: id, action: SEL) -> instancetype,
     setTitleCell: proc(self: ^AK.Slider, cell: ^AK.Cell),
     titleCell: proc(self: ^AK.Slider) -> id,
     setTitleColor: proc(self: ^AK.Slider, newColor: ^AK.Color),
@@ -317,7 +317,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsTickMarkValuesOnly:"), auto_cast setAllowsTickMarkValuesOnly, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.sliderWithTarget != nil {
-        sliderWithTarget :: proc "c" (self: Class, _: SEL, target: id, action: SEL) -> ^AK.Slider {
+        sliderWithTarget :: proc "c" (self: Class, _: SEL, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -327,7 +327,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sliderWithTarget:action:"), auto_cast sliderWithTarget, "@#:@:") do panic("Failed to register objC method.")
     }
     if vt.sliderWithValue != nil {
-        sliderWithValue :: proc "c" (self: Class, _: SEL, value: cffi.double, minValue: cffi.double, maxValue: cffi.double, target: id, action: SEL) -> ^AK.Slider {
+        sliderWithValue :: proc "c" (self: Class, _: SEL, value: cffi.double, minValue: cffi.double, maxValue: cffi.double, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

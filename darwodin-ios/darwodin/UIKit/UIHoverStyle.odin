@@ -24,16 +24,16 @@ HoverStyle :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HoverStyle, objc_selector="styleWithEffect:shape:", objc_name="styleWithEffect", objc_is_class_method=true)
-    HoverStyle_styleWithEffect :: proc(effect: ^HoverEffect, shape: ^Shape) -> ^HoverStyle ---
+    HoverStyle_styleWithEffect :: proc(effect: ^HoverEffect, shape: ^Shape) -> instancetype ---
 
     @(objc_type=HoverStyle, objc_selector="styleWithShape:", objc_name="styleWithShape", objc_is_class_method=true)
-    HoverStyle_styleWithShape :: proc(shape: ^Shape) -> ^HoverStyle ---
+    HoverStyle_styleWithShape :: proc(shape: ^Shape) -> instancetype ---
 
     @(objc_type=HoverStyle, objc_selector="automaticStyle", objc_name="automaticStyle", objc_is_class_method=true)
-    HoverStyle_automaticStyle :: proc() -> ^HoverStyle ---
+    HoverStyle_automaticStyle :: proc() -> instancetype ---
 
     @(objc_type=HoverStyle, objc_selector="init", objc_name="init")
-    HoverStyle_init :: proc(self: ^HoverStyle) -> ^HoverStyle ---
+    HoverStyle_init :: proc(self: ^HoverStyle) -> instancetype ---
 
     @(objc_type=HoverStyle, objc_selector="new", objc_name="new", objc_is_class_method=true)
     HoverStyle_new :: proc() -> ^HoverStyle ---

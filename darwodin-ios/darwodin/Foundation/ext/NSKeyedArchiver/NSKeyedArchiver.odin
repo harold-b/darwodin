@@ -26,10 +26,10 @@ import "../NSCoder"
 
 VTable :: struct {
     super: NSCoder.VTable,
-    initRequiringSecureCoding: proc(self: ^NS.KeyedArchiver, requiresSecureCoding: bool) -> ^NS.KeyedArchiver,
+    initRequiringSecureCoding: proc(self: ^NS.KeyedArchiver, requiresSecureCoding: bool) -> instancetype,
     archivedDataWithRootObject_requiringSecureCoding_error: proc(object: id, requiresSecureCoding: bool, error: ^^NS.Error) -> ^NS.Data,
-    init: proc(self: ^NS.KeyedArchiver) -> ^NS.KeyedArchiver,
-    initForWritingWithMutableData: proc(self: ^NS.KeyedArchiver, data: ^NS.MutableData) -> ^NS.KeyedArchiver,
+    init: proc(self: ^NS.KeyedArchiver) -> instancetype,
+    initForWritingWithMutableData: proc(self: ^NS.KeyedArchiver, data: ^NS.MutableData) -> instancetype,
     archivedDataWithRootObject_: proc(rootObject: id) -> ^NS.Data,
     archiveRootObject: proc(rootObject: id, path: ^NS.String) -> bool,
     finishEncoding: proc(self: ^NS.KeyedArchiver),
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCoder.extend(cls, &vt.super)
 
     if vt.initRequiringSecureCoding != nil {
-        initRequiringSecureCoding :: proc "c" (self: ^NS.KeyedArchiver, _: SEL, requiresSecureCoding: bool) -> ^NS.KeyedArchiver {
+        initRequiringSecureCoding :: proc "c" (self: ^NS.KeyedArchiver, _: SEL, requiresSecureCoding: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("archivedDataWithRootObject:requiringSecureCoding:error:"), auto_cast archivedDataWithRootObject_requiringSecureCoding_error, "@#:@B^void") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.KeyedArchiver, _: SEL) -> ^NS.KeyedArchiver {
+        init :: proc "c" (self: ^NS.KeyedArchiver, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initForWritingWithMutableData != nil {
-        initForWritingWithMutableData :: proc "c" (self: ^NS.KeyedArchiver, _: SEL, data: ^NS.MutableData) -> ^NS.KeyedArchiver {
+        initForWritingWithMutableData :: proc "c" (self: ^NS.KeyedArchiver, _: SEL, data: ^NS.MutableData) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

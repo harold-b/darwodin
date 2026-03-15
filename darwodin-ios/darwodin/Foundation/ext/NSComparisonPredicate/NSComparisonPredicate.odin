@@ -28,9 +28,9 @@ VTable :: struct {
     super: NSPredicate.VTable,
     predicateWithLeftExpression_rightExpression_modifier_type_options: proc(lhs: ^NS.Expression, rhs: ^NS.Expression, modifier: NS.ComparisonPredicateModifier, type: NS.PredicateOperatorType, options: NS.ComparisonPredicateOptions) -> ^NS.ComparisonPredicate,
     predicateWithLeftExpression_rightExpression_customSelector: proc(lhs: ^NS.Expression, rhs: ^NS.Expression, selector: SEL) -> ^NS.ComparisonPredicate,
-    initWithLeftExpression_rightExpression_modifier_type_options: proc(self: ^NS.ComparisonPredicate, lhs: ^NS.Expression, rhs: ^NS.Expression, modifier: NS.ComparisonPredicateModifier, type: NS.PredicateOperatorType, options: NS.ComparisonPredicateOptions) -> ^NS.ComparisonPredicate,
-    initWithLeftExpression_rightExpression_customSelector: proc(self: ^NS.ComparisonPredicate, lhs: ^NS.Expression, rhs: ^NS.Expression, selector: SEL) -> ^NS.ComparisonPredicate,
-    initWithCoder: proc(self: ^NS.ComparisonPredicate, coder: ^NS.Coder) -> ^NS.ComparisonPredicate,
+    initWithLeftExpression_rightExpression_modifier_type_options: proc(self: ^NS.ComparisonPredicate, lhs: ^NS.Expression, rhs: ^NS.Expression, modifier: NS.ComparisonPredicateModifier, type: NS.PredicateOperatorType, options: NS.ComparisonPredicateOptions) -> instancetype,
+    initWithLeftExpression_rightExpression_customSelector: proc(self: ^NS.ComparisonPredicate, lhs: ^NS.Expression, rhs: ^NS.Expression, selector: SEL) -> instancetype,
+    initWithCoder: proc(self: ^NS.ComparisonPredicate, coder: ^NS.Coder) -> instancetype,
     predicateOperatorType: proc(self: ^NS.ComparisonPredicate) -> NS.PredicateOperatorType,
     comparisonPredicateModifier: proc(self: ^NS.ComparisonPredicate) -> NS.ComparisonPredicateModifier,
     leftExpression: proc(self: ^NS.ComparisonPredicate) -> ^NS.Expression,
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("predicateWithLeftExpression:rightExpression:customSelector:"), auto_cast predicateWithLeftExpression_rightExpression_customSelector, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithLeftExpression_rightExpression_modifier_type_options != nil {
-        initWithLeftExpression_rightExpression_modifier_type_options :: proc "c" (self: ^NS.ComparisonPredicate, _: SEL, lhs: ^NS.Expression, rhs: ^NS.Expression, modifier: NS.ComparisonPredicateModifier, type: NS.PredicateOperatorType, options: NS.ComparisonPredicateOptions) -> ^NS.ComparisonPredicate {
+        initWithLeftExpression_rightExpression_modifier_type_options :: proc "c" (self: ^NS.ComparisonPredicate, _: SEL, lhs: ^NS.Expression, rhs: ^NS.Expression, modifier: NS.ComparisonPredicateModifier, type: NS.PredicateOperatorType, options: NS.ComparisonPredicateOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLeftExpression:rightExpression:modifier:type:options:"), auto_cast initWithLeftExpression_rightExpression_modifier_type_options, "@@:@@LLL") do panic("Failed to register objC method.")
     }
     if vt.initWithLeftExpression_rightExpression_customSelector != nil {
-        initWithLeftExpression_rightExpression_customSelector :: proc "c" (self: ^NS.ComparisonPredicate, _: SEL, lhs: ^NS.Expression, rhs: ^NS.Expression, selector: SEL) -> ^NS.ComparisonPredicate {
+        initWithLeftExpression_rightExpression_customSelector :: proc "c" (self: ^NS.ComparisonPredicate, _: SEL, lhs: ^NS.Expression, rhs: ^NS.Expression, selector: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLeftExpression:rightExpression:customSelector:"), auto_cast initWithLeftExpression_rightExpression_customSelector, "@@:@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.ComparisonPredicate, _: SEL, coder: ^NS.Coder) -> ^NS.ComparisonPredicate {
+        initWithCoder :: proc "c" (self: ^NS.ComparisonPredicate, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

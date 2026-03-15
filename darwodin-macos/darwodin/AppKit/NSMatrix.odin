@@ -27,13 +27,13 @@ Matrix :: struct { using _: Control,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Matrix, objc_selector="initWithFrame:", objc_name="initWithFrame_")
-    Matrix_initWithFrame_ :: proc(self: ^Matrix, frameRect: NS.Rect) -> ^Matrix ---
+    Matrix_initWithFrame_ :: proc(self: ^Matrix, frameRect: NS.Rect) -> instancetype ---
 
     @(objc_type=Matrix, objc_selector="initWithFrame:mode:prototype:numberOfRows:numberOfColumns:", objc_name="initWithFrame_mode_prototype_numberOfRows_numberOfColumns")
-    Matrix_initWithFrame_mode_prototype_numberOfRows_numberOfColumns :: proc(self: ^Matrix, frameRect: NS.Rect, mode: MatrixMode, cell: ^Cell, rowsHigh: NS.Integer, colsWide: NS.Integer) -> ^Matrix ---
+    Matrix_initWithFrame_mode_prototype_numberOfRows_numberOfColumns :: proc(self: ^Matrix, frameRect: NS.Rect, mode: MatrixMode, cell: ^Cell, rowsHigh: NS.Integer, colsWide: NS.Integer) -> instancetype ---
 
     @(objc_type=Matrix, objc_selector="initWithFrame:mode:cellClass:numberOfRows:numberOfColumns:", objc_name="initWithFrame_mode_cellClass_numberOfRows_numberOfColumns")
-    Matrix_initWithFrame_mode_cellClass_numberOfRows_numberOfColumns :: proc(self: ^Matrix, frameRect: NS.Rect, mode: MatrixMode, factoryId: Class, rowsHigh: NS.Integer, colsWide: NS.Integer) -> ^Matrix ---
+    Matrix_initWithFrame_mode_cellClass_numberOfRows_numberOfColumns :: proc(self: ^Matrix, frameRect: NS.Rect, mode: MatrixMode, factoryId: Class, rowsHigh: NS.Integer, colsWide: NS.Integer) -> instancetype ---
 
     @(objc_type=Matrix, objc_selector="makeCellAtRow:column:", objc_name="makeCellAtRow")
     Matrix_makeCellAtRow :: proc(self: ^Matrix, row: NS.Integer, col: NS.Integer) -> ^Cell ---

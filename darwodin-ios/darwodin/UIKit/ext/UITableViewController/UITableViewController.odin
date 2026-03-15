@@ -28,9 +28,9 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithStyle: proc(self: ^UI.TableViewController, style: UI.TableViewStyle) -> ^UI.TableViewController,
-    initWithNibName: proc(self: ^UI.TableViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.TableViewController,
-    initWithCoder: proc(self: ^UI.TableViewController, coder: ^NS.Coder) -> ^UI.TableViewController,
+    initWithStyle: proc(self: ^UI.TableViewController, style: UI.TableViewStyle) -> instancetype,
+    initWithNibName: proc(self: ^UI.TableViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    initWithCoder: proc(self: ^UI.TableViewController, coder: ^NS.Coder) -> instancetype,
     tableView: proc(self: ^UI.TableViewController) -> ^UI.TableView,
     setTableView: proc(self: ^UI.TableViewController, tableView: ^UI.TableView),
     clearsSelectionOnViewWillAppear: proc(self: ^UI.TableViewController) -> bool,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithStyle != nil {
-        initWithStyle :: proc "c" (self: ^UI.TableViewController, _: SEL, style: UI.TableViewStyle) -> ^UI.TableViewController {
+        initWithStyle :: proc "c" (self: ^UI.TableViewController, _: SEL, style: UI.TableViewStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithStyle:"), auto_cast initWithStyle, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.TableViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.TableViewController {
+        initWithNibName :: proc "c" (self: ^UI.TableViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.TableViewController, _: SEL, coder: ^NS.Coder) -> ^UI.TableViewController {
+        initWithCoder :: proc "c" (self: ^UI.TableViewController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

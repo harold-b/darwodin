@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithNotificationCenter: proc(self: ^NS.NotificationQueue, notificationCenter: ^NS.NotificationCenter) -> ^NS.NotificationQueue,
+    initWithNotificationCenter: proc(self: ^NS.NotificationQueue, notificationCenter: ^NS.NotificationCenter) -> instancetype,
     enqueueNotification_postingStyle: proc(self: ^NS.NotificationQueue, notification: ^NS.Notification, postingStyle: NS.PostingStyle),
     enqueueNotification_postingStyle_coalesceMask_forModes: proc(self: ^NS.NotificationQueue, notification: ^NS.Notification, postingStyle: NS.PostingStyle, coalesceMask: NS.NotificationCoalescing, modes: ^NS.Array),
     dequeueNotificationsMatching: proc(self: ^NS.NotificationQueue, notification: ^NS.Notification, coalesceMask: NS.UInteger),
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithNotificationCenter != nil {
-        initWithNotificationCenter :: proc "c" (self: ^NS.NotificationQueue, _: SEL, notificationCenter: ^NS.NotificationCenter) -> ^NS.NotificationQueue {
+        initWithNotificationCenter :: proc "c" (self: ^NS.NotificationQueue, _: SEL, notificationCenter: ^NS.NotificationCenter) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

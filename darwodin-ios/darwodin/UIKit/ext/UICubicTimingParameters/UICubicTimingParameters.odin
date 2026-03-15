@@ -28,10 +28,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.CubicTimingParameters) -> ^UI.CubicTimingParameters,
-    initWithCoder: proc(self: ^UI.CubicTimingParameters, coder: ^NS.Coder) -> ^UI.CubicTimingParameters,
-    initWithAnimationCurve: proc(self: ^UI.CubicTimingParameters, curve: UI.ViewAnimationCurve) -> ^UI.CubicTimingParameters,
-    initWithControlPoint1: proc(self: ^UI.CubicTimingParameters, point1: CG.Point, point2: CG.Point) -> ^UI.CubicTimingParameters,
+    init: proc(self: ^UI.CubicTimingParameters) -> instancetype,
+    initWithCoder: proc(self: ^UI.CubicTimingParameters, coder: ^NS.Coder) -> instancetype,
+    initWithAnimationCurve: proc(self: ^UI.CubicTimingParameters, curve: UI.ViewAnimationCurve) -> instancetype,
+    initWithControlPoint1: proc(self: ^UI.CubicTimingParameters, point1: CG.Point, point2: CG.Point) -> instancetype,
     animationCurve: proc(self: ^UI.CubicTimingParameters) -> UI.ViewAnimationCurve,
     controlPoint1: proc(self: ^UI.CubicTimingParameters) -> CG.Point,
     controlPoint2: proc(self: ^UI.CubicTimingParameters) -> CG.Point,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CubicTimingParameters, _: SEL) -> ^UI.CubicTimingParameters {
+        init :: proc "c" (self: ^UI.CubicTimingParameters, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CubicTimingParameters, _: SEL, coder: ^NS.Coder) -> ^UI.CubicTimingParameters {
+        initWithCoder :: proc "c" (self: ^UI.CubicTimingParameters, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithAnimationCurve != nil {
-        initWithAnimationCurve :: proc "c" (self: ^UI.CubicTimingParameters, _: SEL, curve: UI.ViewAnimationCurve) -> ^UI.CubicTimingParameters {
+        initWithAnimationCurve :: proc "c" (self: ^UI.CubicTimingParameters, _: SEL, curve: UI.ViewAnimationCurve) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAnimationCurve:"), auto_cast initWithAnimationCurve, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithControlPoint1 != nil {
-        initWithControlPoint1 :: proc "c" (self: ^UI.CubicTimingParameters, _: SEL, point1: CG.Point, point2: CG.Point) -> ^UI.CubicTimingParameters {
+        initWithControlPoint1 :: proc "c" (self: ^UI.CubicTimingParameters, _: SEL, point1: CG.Point, point2: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

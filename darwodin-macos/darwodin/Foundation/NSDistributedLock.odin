@@ -23,10 +23,10 @@ foreign lib {
     DistributedLock_lockWithPath :: proc(path: ^String) -> ^DistributedLock ---
 
     @(objc_type=DistributedLock, objc_selector="init", objc_name="init")
-    DistributedLock_init :: proc(self: ^DistributedLock) -> ^DistributedLock ---
+    DistributedLock_init :: proc(self: ^DistributedLock) -> instancetype ---
 
     @(objc_type=DistributedLock, objc_selector="initWithPath:", objc_name="initWithPath")
-    DistributedLock_initWithPath :: proc(self: ^DistributedLock, path: ^String) -> ^DistributedLock ---
+    DistributedLock_initWithPath :: proc(self: ^DistributedLock, path: ^String) -> instancetype ---
 
     @(objc_type=DistributedLock, objc_selector="tryLock", objc_name="tryLock")
     DistributedLock_tryLock :: proc(self: ^DistributedLock) -> bool ---

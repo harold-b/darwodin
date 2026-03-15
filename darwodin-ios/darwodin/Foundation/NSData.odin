@@ -63,76 +63,76 @@ foreign lib {
     Data_description :: proc(self: ^Data) -> ^String ---
 
     @(objc_type=Data, objc_selector="data", objc_name="data", objc_is_class_method=true)
-    Data_data :: proc() -> ^Data ---
+    Data_data :: proc() -> instancetype ---
 
     @(objc_type=Data, objc_selector="dataWithBytes:length:", objc_name="dataWithBytes", objc_is_class_method=true)
-    Data_dataWithBytes :: proc(bytes: rawptr, length: UInteger) -> ^Data ---
+    Data_dataWithBytes :: proc(bytes: rawptr, length: UInteger) -> instancetype ---
 
     @(objc_type=Data, objc_selector="dataWithBytesNoCopy:length:", objc_name="dataWithBytesNoCopy_length", objc_is_class_method=true)
-    Data_dataWithBytesNoCopy_length :: proc(bytes: rawptr, length: UInteger) -> ^Data ---
+    Data_dataWithBytesNoCopy_length :: proc(bytes: rawptr, length: UInteger) -> instancetype ---
 
     @(objc_type=Data, objc_selector="dataWithBytesNoCopy:length:freeWhenDone:", objc_name="dataWithBytesNoCopy_length_freeWhenDone", objc_is_class_method=true)
-    Data_dataWithBytesNoCopy_length_freeWhenDone :: proc(bytes: rawptr, length: UInteger, b: bool) -> ^Data ---
+    Data_dataWithBytesNoCopy_length_freeWhenDone :: proc(bytes: rawptr, length: UInteger, b: bool) -> instancetype ---
 
     @(objc_type=Data, objc_selector="dataWithContentsOfFile:options:error:", objc_name="dataWithContentsOfFile_options_error", objc_is_class_method=true)
-    Data_dataWithContentsOfFile_options_error :: proc(path: ^String, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> ^Data ---
+    Data_dataWithContentsOfFile_options_error :: proc(path: ^String, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> instancetype ---
 
     @(objc_type=Data, objc_selector="dataWithContentsOfURL:options:error:", objc_name="dataWithContentsOfURL_options_error", objc_is_class_method=true)
-    Data_dataWithContentsOfURL_options_error :: proc(url: ^URL, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> ^Data ---
+    Data_dataWithContentsOfURL_options_error :: proc(url: ^URL, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> instancetype ---
 
     @(objc_type=Data, objc_selector="dataWithContentsOfFile:", objc_name="dataWithContentsOfFile_", objc_is_class_method=true)
-    Data_dataWithContentsOfFile_ :: proc(path: ^String) -> ^Data ---
+    Data_dataWithContentsOfFile_ :: proc(path: ^String) -> instancetype ---
 
     @(objc_type=Data, objc_selector="dataWithContentsOfURL:", objc_name="dataWithContentsOfURL_", objc_is_class_method=true)
-    Data_dataWithContentsOfURL_ :: proc(url: ^URL) -> ^Data ---
+    Data_dataWithContentsOfURL_ :: proc(url: ^URL) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithBytes:length:", objc_name="initWithBytes")
-    Data_initWithBytes :: proc(self: ^Data, bytes: rawptr, length: UInteger) -> ^Data ---
+    Data_initWithBytes :: proc(self: ^Data, bytes: rawptr, length: UInteger) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithBytesNoCopy:length:", objc_name="initWithBytesNoCopy_length")
-    Data_initWithBytesNoCopy_length :: proc(self: ^Data, bytes: rawptr, length: UInteger) -> ^Data ---
+    Data_initWithBytesNoCopy_length :: proc(self: ^Data, bytes: rawptr, length: UInteger) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithBytesNoCopy:length:freeWhenDone:", objc_name="initWithBytesNoCopy_length_freeWhenDone")
-    Data_initWithBytesNoCopy_length_freeWhenDone :: proc(self: ^Data, bytes: rawptr, length: UInteger, b: bool) -> ^Data ---
+    Data_initWithBytesNoCopy_length_freeWhenDone :: proc(self: ^Data, bytes: rawptr, length: UInteger, b: bool) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithBytesNoCopy:length:deallocator:", objc_name="initWithBytesNoCopy_length_deallocator")
-    Data_initWithBytesNoCopy_length_deallocator :: proc(self: ^Data, bytes: rawptr, length: UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: UInteger))) -> ^Data ---
+    Data_initWithBytesNoCopy_length_deallocator :: proc(self: ^Data, bytes: rawptr, length: UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: UInteger))) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithContentsOfFile:options:error:", objc_name="initWithContentsOfFile_options_error")
-    Data_initWithContentsOfFile_options_error :: proc(self: ^Data, path: ^String, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> ^Data ---
+    Data_initWithContentsOfFile_options_error :: proc(self: ^Data, path: ^String, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithContentsOfURL:options:error:", objc_name="initWithContentsOfURL_options_error")
-    Data_initWithContentsOfURL_options_error :: proc(self: ^Data, url: ^URL, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> ^Data ---
+    Data_initWithContentsOfURL_options_error :: proc(self: ^Data, url: ^URL, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithContentsOfFile:", objc_name="initWithContentsOfFile_")
-    Data_initWithContentsOfFile_ :: proc(self: ^Data, path: ^String) -> ^Data ---
+    Data_initWithContentsOfFile_ :: proc(self: ^Data, path: ^String) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithContentsOfURL:", objc_name="initWithContentsOfURL_")
-    Data_initWithContentsOfURL_ :: proc(self: ^Data, url: ^URL) -> ^Data ---
+    Data_initWithContentsOfURL_ :: proc(self: ^Data, url: ^URL) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithData:", objc_name="initWithData")
-    Data_initWithData :: proc(self: ^Data, data: ^Data) -> ^Data ---
+    Data_initWithData :: proc(self: ^Data, data: ^Data) -> instancetype ---
 
     @(objc_type=Data, objc_selector="dataWithData:", objc_name="dataWithData", objc_is_class_method=true)
-    Data_dataWithData :: proc(data: ^Data) -> ^Data ---
+    Data_dataWithData :: proc(data: ^Data) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithBase64EncodedString:options:", objc_name="initWithBase64EncodedString")
-    Data_initWithBase64EncodedString :: proc(self: ^Data, base64String: ^String, options: DataBase64DecodingOptions) -> ^Data ---
+    Data_initWithBase64EncodedString :: proc(self: ^Data, base64String: ^String, options: DataBase64DecodingOptions) -> instancetype ---
 
     @(objc_type=Data, objc_selector="base64EncodedStringWithOptions:", objc_name="base64EncodedStringWithOptions")
     Data_base64EncodedStringWithOptions :: proc(self: ^Data, options: DataBase64EncodingOptions) -> ^String ---
 
     @(objc_type=Data, objc_selector="initWithBase64EncodedData:options:", objc_name="initWithBase64EncodedData")
-    Data_initWithBase64EncodedData :: proc(self: ^Data, base64Data: ^Data, options: DataBase64DecodingOptions) -> ^Data ---
+    Data_initWithBase64EncodedData :: proc(self: ^Data, base64Data: ^Data, options: DataBase64DecodingOptions) -> instancetype ---
 
     @(objc_type=Data, objc_selector="base64EncodedDataWithOptions:", objc_name="base64EncodedDataWithOptions")
     Data_base64EncodedDataWithOptions :: proc(self: ^Data, options: DataBase64EncodingOptions) -> ^Data ---
 
     @(objc_type=Data, objc_selector="decompressedDataUsingAlgorithm:error:", objc_name="decompressedDataUsingAlgorithm")
-    Data_decompressedDataUsingAlgorithm :: proc(self: ^Data, algorithm: DataCompressionAlgorithm, error: ^^Error) -> ^Data ---
+    Data_decompressedDataUsingAlgorithm :: proc(self: ^Data, algorithm: DataCompressionAlgorithm, error: ^^Error) -> instancetype ---
 
     @(objc_type=Data, objc_selector="compressedDataUsingAlgorithm:error:", objc_name="compressedDataUsingAlgorithm")
-    Data_compressedDataUsingAlgorithm :: proc(self: ^Data, algorithm: DataCompressionAlgorithm, error: ^^Error) -> ^Data ---
+    Data_compressedDataUsingAlgorithm :: proc(self: ^Data, algorithm: DataCompressionAlgorithm, error: ^^Error) -> instancetype ---
 
     @(objc_type=Data, objc_selector="getBytes:", objc_name="getBytes_")
     Data_getBytes_ :: proc(self: ^Data, buffer: rawptr) ---

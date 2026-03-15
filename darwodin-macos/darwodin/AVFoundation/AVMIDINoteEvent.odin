@@ -23,7 +23,7 @@ MIDINoteEvent :: struct { using _: MusicEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDINoteEvent, objc_selector="initWithChannel:key:velocity:duration:", objc_name="initWithChannel")
-    MIDINoteEvent_initWithChannel :: proc(self: ^MIDINoteEvent, channel: CF.UInt32, keyNum: CF.UInt32, velocity: CF.UInt32, duration: MusicTimeStamp) -> ^MIDINoteEvent ---
+    MIDINoteEvent_initWithChannel :: proc(self: ^MIDINoteEvent, channel: CF.UInt32, keyNum: CF.UInt32, velocity: CF.UInt32, duration: MusicTimeStamp) -> instancetype ---
 
     @(objc_type=MIDINoteEvent, objc_selector="channel", objc_name="channel")
     MIDINoteEvent_channel :: proc(self: ^MIDINoteEvent) -> CF.UInt32 ---

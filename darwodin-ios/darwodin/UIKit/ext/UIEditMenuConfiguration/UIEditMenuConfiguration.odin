@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    configurationWithIdentifier: proc(identifier: ^NS.Copying, sourcePoint: CG.Point) -> ^UI.EditMenuConfiguration,
-    init: proc(self: ^UI.EditMenuConfiguration) -> ^UI.EditMenuConfiguration,
+    configurationWithIdentifier: proc(identifier: ^NS.Copying, sourcePoint: CG.Point) -> instancetype,
+    init: proc(self: ^UI.EditMenuConfiguration) -> instancetype,
     new: proc() -> ^UI.EditMenuConfiguration,
     identifier: proc(self: ^UI.EditMenuConfiguration) -> ^NS.Copying,
     sourcePoint: proc(self: ^UI.EditMenuConfiguration) -> CG.Point,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.configurationWithIdentifier != nil {
-        configurationWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.Copying, sourcePoint: CG.Point) -> ^UI.EditMenuConfiguration {
+        configurationWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.Copying, sourcePoint: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithIdentifier:sourcePoint:"), auto_cast configurationWithIdentifier, "@#:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.EditMenuConfiguration, _: SEL) -> ^UI.EditMenuConfiguration {
+        init :: proc "c" (self: ^UI.EditMenuConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

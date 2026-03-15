@@ -30,7 +30,7 @@ VTable :: struct {
     super: UIViewController.VTable,
     setTabs_animated: proc(self: ^UI.TabBarController, tabs: ^NS.Array, animated: bool),
     tabForIdentifier: proc(self: ^UI.TabBarController, identifier: ^NS.String) -> ^UI.Tab,
-    initWithTabs: proc(self: ^UI.TabBarController, tabs: ^NS.Array) -> ^UI.TabBarController,
+    initWithTabs: proc(self: ^UI.TabBarController, tabs: ^NS.Array) -> instancetype,
     setTabBarHidden_animated: proc(self: ^UI.TabBarController, hidden: bool, animated: bool),
     setViewControllers_animated: proc(self: ^UI.TabBarController, viewControllers: ^NS.Array, animated: bool),
     delegate: proc(self: ^UI.TabBarController) -> ^UI.TabBarControllerDelegate,
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tabForIdentifier:"), auto_cast tabForIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithTabs != nil {
-        initWithTabs :: proc "c" (self: ^UI.TabBarController, _: SEL, tabs: ^NS.Array) -> ^UI.TabBarController {
+        initWithTabs :: proc "c" (self: ^UI.TabBarController, _: SEL, tabs: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

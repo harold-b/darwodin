@@ -24,10 +24,10 @@ MenuItemCell :: struct { using _: ButtonCell, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MenuItemCell, objc_selector="initTextCell:", objc_name="initTextCell")
-    MenuItemCell_initTextCell :: proc(self: ^MenuItemCell, string: ^NS.String) -> ^MenuItemCell ---
+    MenuItemCell_initTextCell :: proc(self: ^MenuItemCell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=MenuItemCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    MenuItemCell_initWithCoder :: proc(self: ^MenuItemCell, coder: ^NS.Coder) -> ^MenuItemCell ---
+    MenuItemCell_initWithCoder :: proc(self: ^MenuItemCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=MenuItemCell, objc_selector="calcSize", objc_name="calcSize")
     MenuItemCell_calcSize :: proc(self: ^MenuItemCell) ---

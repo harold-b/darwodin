@@ -28,19 +28,19 @@ Button :: struct { using _: Control,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Button, objc_selector="buttonWithTitle:image:target:action:", objc_name="buttonWithTitle_image_target_action", objc_is_class_method=true)
-    Button_buttonWithTitle_image_target_action :: proc(title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> ^Button ---
+    Button_buttonWithTitle_image_target_action :: proc(title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Button, objc_selector="buttonWithTitle:target:action:", objc_name="buttonWithTitle_target_action", objc_is_class_method=true)
-    Button_buttonWithTitle_target_action :: proc(title: ^NS.String, target: id, action: SEL) -> ^Button ---
+    Button_buttonWithTitle_target_action :: proc(title: ^NS.String, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Button, objc_selector="buttonWithImage:target:action:", objc_name="buttonWithImage", objc_is_class_method=true)
-    Button_buttonWithImage :: proc(image: ^NS.Image, target: id, action: SEL) -> ^Button ---
+    Button_buttonWithImage :: proc(image: ^NS.Image, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Button, objc_selector="checkboxWithTitle:target:action:", objc_name="checkboxWithTitle", objc_is_class_method=true)
-    Button_checkboxWithTitle :: proc(title: ^NS.String, target: id, action: SEL) -> ^Button ---
+    Button_checkboxWithTitle :: proc(title: ^NS.String, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Button, objc_selector="radioButtonWithTitle:target:action:", objc_name="radioButtonWithTitle", objc_is_class_method=true)
-    Button_radioButtonWithTitle :: proc(title: ^NS.String, target: id, action: SEL) -> ^Button ---
+    Button_radioButtonWithTitle :: proc(title: ^NS.String, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Button, objc_selector="setButtonType:", objc_name="setButtonType")
     Button_setButtonType :: proc(self: ^Button, type: ButtonType) ---

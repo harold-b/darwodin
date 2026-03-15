@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithContentVersion: proc(self: ^UI.NSFileProviderItemVersion, contentVersion: ^NS.Data, metadataVersion: ^NS.Data) -> ^UI.NSFileProviderItemVersion,
+    initWithContentVersion: proc(self: ^UI.NSFileProviderItemVersion, contentVersion: ^NS.Data, metadataVersion: ^NS.Data) -> instancetype,
     beforeFirstSyncComponent: proc() -> ^NS.Data,
     contentVersion: proc(self: ^UI.NSFileProviderItemVersion) -> ^NS.Data,
     metadataVersion: proc(self: ^UI.NSFileProviderItemVersion) -> ^NS.Data,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithContentVersion != nil {
-        initWithContentVersion :: proc "c" (self: ^UI.NSFileProviderItemVersion, _: SEL, contentVersion: ^NS.Data, metadataVersion: ^NS.Data) -> ^UI.NSFileProviderItemVersion {
+        initWithContentVersion :: proc "c" (self: ^UI.NSFileProviderItemVersion, _: SEL, contentVersion: ^NS.Data, metadataVersion: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

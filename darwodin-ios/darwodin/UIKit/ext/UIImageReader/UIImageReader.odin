@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    readerWithConfiguration: proc(configuration: ^UI.ImageReaderConfiguration) -> ^UI.ImageReader,
+    readerWithConfiguration: proc(configuration: ^UI.ImageReaderConfiguration) -> instancetype,
     imageWithContentsOfFileURL_: proc(self: ^UI.ImageReader, url: ^NS.URL) -> ^UI.Image,
     imageWithData_: proc(self: ^UI.ImageReader, data: ^NS.Data) -> ^UI.Image,
     imageWithContentsOfFileURL_completion: proc(self: ^UI.ImageReader, url: ^NS.URL, completion: ^Objc_Block(proc "c" (_: ^UI.Image))),
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.readerWithConfiguration != nil {
-        readerWithConfiguration :: proc "c" (self: Class, _: SEL, configuration: ^UI.ImageReaderConfiguration) -> ^UI.ImageReader {
+        readerWithConfiguration :: proc "c" (self: Class, _: SEL, configuration: ^UI.ImageReaderConfiguration) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

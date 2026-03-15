@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    layoutAttributesForItemAtIndex: proc(index: NS.Integer) -> ^AK.ScrubberLayoutAttributes,
+    layoutAttributesForItemAtIndex: proc(index: NS.Integer) -> instancetype,
     itemIndex: proc(self: ^AK.ScrubberLayoutAttributes) -> NS.Integer,
     setItemIndex: proc(self: ^AK.ScrubberLayoutAttributes, itemIndex: NS.Integer),
     frame: proc(self: ^AK.ScrubberLayoutAttributes) -> NS.Rect,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.layoutAttributesForItemAtIndex != nil {
-        layoutAttributesForItemAtIndex :: proc "c" (self: Class, _: SEL, index: NS.Integer) -> ^AK.ScrubberLayoutAttributes {
+        layoutAttributesForItemAtIndex :: proc "c" (self: Class, _: SEL, index: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

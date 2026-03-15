@@ -22,10 +22,10 @@ WindowSceneGeometryPreferencesVision :: struct { using _: WindowSceneGeometryPre
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneGeometryPreferencesVision, objc_selector="init", objc_name="init")
-    WindowSceneGeometryPreferencesVision_init :: proc(self: ^WindowSceneGeometryPreferencesVision) -> ^WindowSceneGeometryPreferencesVision ---
+    WindowSceneGeometryPreferencesVision_init :: proc(self: ^WindowSceneGeometryPreferencesVision) -> instancetype ---
 
     @(objc_type=WindowSceneGeometryPreferencesVision, objc_selector="initWithSize:", objc_name="initWithSize")
-    WindowSceneGeometryPreferencesVision_initWithSize :: proc(self: ^WindowSceneGeometryPreferencesVision, size: CG.Size) -> ^WindowSceneGeometryPreferencesVision ---
+    WindowSceneGeometryPreferencesVision_initWithSize :: proc(self: ^WindowSceneGeometryPreferencesVision, size: CG.Size) -> instancetype ---
 
     @(objc_type=WindowSceneGeometryPreferencesVision, objc_selector="size", objc_name="size")
     WindowSceneGeometryPreferencesVision_size :: proc(self: ^WindowSceneGeometryPreferencesVision) -> CG.Size ---

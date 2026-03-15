@@ -23,13 +23,13 @@ AUAudioUnitBusArray :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUAudioUnitBusArray, objc_selector="init", objc_name="init")
-    AUAudioUnitBusArray_init :: proc(self: ^AUAudioUnitBusArray) -> ^AUAudioUnitBusArray ---
+    AUAudioUnitBusArray_init :: proc(self: ^AUAudioUnitBusArray) -> instancetype ---
 
     @(objc_type=AUAudioUnitBusArray, objc_selector="initWithAudioUnit:busType:busses:", objc_name="initWithAudioUnit_busType_busses")
-    AUAudioUnitBusArray_initWithAudioUnit_busType_busses :: proc(self: ^AUAudioUnitBusArray, owner: ^AUAudioUnit, busType: AUAudioUnitBusType, busArray: ^NS.Array) -> ^AUAudioUnitBusArray ---
+    AUAudioUnitBusArray_initWithAudioUnit_busType_busses :: proc(self: ^AUAudioUnitBusArray, owner: ^AUAudioUnit, busType: AUAudioUnitBusType, busArray: ^NS.Array) -> instancetype ---
 
     @(objc_type=AUAudioUnitBusArray, objc_selector="initWithAudioUnit:busType:", objc_name="initWithAudioUnit_busType")
-    AUAudioUnitBusArray_initWithAudioUnit_busType :: proc(self: ^AUAudioUnitBusArray, owner: ^AUAudioUnit, busType: AUAudioUnitBusType) -> ^AUAudioUnitBusArray ---
+    AUAudioUnitBusArray_initWithAudioUnit_busType :: proc(self: ^AUAudioUnitBusArray, owner: ^AUAudioUnit, busType: AUAudioUnitBusType) -> instancetype ---
 
     @(objc_type=AUAudioUnitBusArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
     AUAudioUnitBusArray_objectAtIndexedSubscript :: proc(self: ^AUAudioUnitBusArray, index: NS.UInteger) -> ^AUAudioUnitBus ---

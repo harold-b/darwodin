@@ -28,11 +28,11 @@ import "../UIMenuElement"
 
 VTable :: struct {
     super: UIMenuElement.VTable,
-    commandWithTitle_image_action_propertyList: proc(title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id) -> ^UI.Command,
-    commandWithTitle_image_action_propertyList_alternates: proc(title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> ^UI.Command,
+    commandWithTitle_image_action_propertyList: proc(title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id) -> instancetype,
+    commandWithTitle_image_action_propertyList_alternates: proc(title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> instancetype,
     new: proc() -> ^UI.Command,
-    init: proc(self: ^UI.Command) -> ^UI.Command,
-    initWithCoder: proc(self: ^UI.Command, coder: ^NS.Coder) -> ^UI.Command,
+    init: proc(self: ^UI.Command) -> instancetype,
+    initWithCoder: proc(self: ^UI.Command, coder: ^NS.Coder) -> instancetype,
     title: proc(self: ^UI.Command) -> ^NS.String,
     setTitle: proc(self: ^UI.Command, title: ^NS.String),
     image: proc(self: ^UI.Command) -> ^UI.Image,
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIMenuElement.extend(cls, &vt.super)
 
     if vt.commandWithTitle_image_action_propertyList != nil {
-        commandWithTitle_image_action_propertyList :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id) -> ^UI.Command {
+        commandWithTitle_image_action_propertyList :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("commandWithTitle:image:action:propertyList:"), auto_cast commandWithTitle_image_action_propertyList, "@#:@@:@") do panic("Failed to register objC method.")
     }
     if vt.commandWithTitle_image_action_propertyList_alternates != nil {
-        commandWithTitle_image_action_propertyList_alternates :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> ^UI.Command {
+        commandWithTitle_image_action_propertyList_alternates :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^UI.Image, action: SEL, propertyList: id, alternates: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.Command, _: SEL) -> ^UI.Command {
+        init :: proc "c" (self: ^UI.Command, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.Command, _: SEL, coder: ^NS.Coder) -> ^UI.Command {
+        initWithCoder :: proc "c" (self: ^UI.Command, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithCoder: proc(self: ^AK.Movie, coder: ^NS.Coder) -> ^AK.Movie,
-    init: proc(self: ^AK.Movie) -> ^AK.Movie,
-    initWithMovie: proc(self: ^AK.Movie, movie: ^AK.QTMovie) -> ^AK.Movie,
+    initWithCoder: proc(self: ^AK.Movie, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^AK.Movie) -> instancetype,
+    initWithMovie: proc(self: ^AK.Movie, movie: ^AK.QTMovie) -> instancetype,
     _QTMovie: proc(self: ^AK.Movie) -> ^AK.QTMovie,
 }
 
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Movie, _: SEL, coder: ^NS.Coder) -> ^AK.Movie {
+        initWithCoder :: proc "c" (self: ^AK.Movie, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Movie, _: SEL) -> ^AK.Movie {
+        init :: proc "c" (self: ^AK.Movie, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithMovie != nil {
-        initWithMovie :: proc "c" (self: ^AK.Movie, _: SEL, movie: ^AK.QTMovie) -> ^AK.Movie {
+        initWithMovie :: proc "c" (self: ^AK.Movie, _: SEL, movie: ^AK.QTMovie) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

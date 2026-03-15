@@ -18,19 +18,19 @@ HapticEvent :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticEvent, objc_selector="init", objc_name="init")
-    HapticEvent_init :: proc(self: ^HapticEvent) -> ^HapticEvent ---
+    HapticEvent_init :: proc(self: ^HapticEvent) -> instancetype ---
 
     @(objc_type=HapticEvent, objc_selector="initWithEventType:parameters:relativeTime:", objc_name="initWithEventType_parameters_relativeTime")
-    HapticEvent_initWithEventType_parameters_relativeTime :: proc(self: ^HapticEvent, type: ^NS.String, eventParams: ^NS.Array, time: NS.TimeInterval) -> ^HapticEvent ---
+    HapticEvent_initWithEventType_parameters_relativeTime :: proc(self: ^HapticEvent, type: ^NS.String, eventParams: ^NS.Array, time: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=HapticEvent, objc_selector="initWithEventType:parameters:relativeTime:duration:", objc_name="initWithEventType_parameters_relativeTime_duration")
-    HapticEvent_initWithEventType_parameters_relativeTime_duration :: proc(self: ^HapticEvent, type: ^NS.String, eventParams: ^NS.Array, time: NS.TimeInterval, duration: NS.TimeInterval) -> ^HapticEvent ---
+    HapticEvent_initWithEventType_parameters_relativeTime_duration :: proc(self: ^HapticEvent, type: ^NS.String, eventParams: ^NS.Array, time: NS.TimeInterval, duration: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=HapticEvent, objc_selector="initWithAudioResourceID:parameters:relativeTime:", objc_name="initWithAudioResourceID_parameters_relativeTime")
-    HapticEvent_initWithAudioResourceID_parameters_relativeTime :: proc(self: ^HapticEvent, resID: HapticAudioResourceID, eventParams: ^NS.Array, time: NS.TimeInterval) -> ^HapticEvent ---
+    HapticEvent_initWithAudioResourceID_parameters_relativeTime :: proc(self: ^HapticEvent, resID: HapticAudioResourceID, eventParams: ^NS.Array, time: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=HapticEvent, objc_selector="initWithAudioResourceID:parameters:relativeTime:duration:", objc_name="initWithAudioResourceID_parameters_relativeTime_duration")
-    HapticEvent_initWithAudioResourceID_parameters_relativeTime_duration :: proc(self: ^HapticEvent, resID: HapticAudioResourceID, eventParams: ^NS.Array, time: NS.TimeInterval, duration: NS.TimeInterval) -> ^HapticEvent ---
+    HapticEvent_initWithAudioResourceID_parameters_relativeTime_duration :: proc(self: ^HapticEvent, resID: HapticAudioResourceID, eventParams: ^NS.Array, time: NS.TimeInterval, duration: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=HapticEvent, objc_selector="type", objc_name="type")
     HapticEvent_type :: proc(self: ^HapticEvent) -> ^NS.String ---

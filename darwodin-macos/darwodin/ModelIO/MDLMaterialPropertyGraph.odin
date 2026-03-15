@@ -21,10 +21,10 @@ MaterialPropertyGraph :: struct { using _: MaterialPropertyNode, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MaterialPropertyGraph, objc_selector="init", objc_name="init")
-    MaterialPropertyGraph_init :: proc(self: ^MaterialPropertyGraph) -> ^MaterialPropertyGraph ---
+    MaterialPropertyGraph_init :: proc(self: ^MaterialPropertyGraph) -> instancetype ---
 
     @(objc_type=MaterialPropertyGraph, objc_selector="initWithNodes:connections:", objc_name="initWithNodes")
-    MaterialPropertyGraph_initWithNodes :: proc(self: ^MaterialPropertyGraph, nodes: ^NS.Array, connections: ^NS.Array) -> ^MaterialPropertyGraph ---
+    MaterialPropertyGraph_initWithNodes :: proc(self: ^MaterialPropertyGraph, nodes: ^NS.Array, connections: ^NS.Array) -> instancetype ---
 
     @(objc_type=MaterialPropertyGraph, objc_selector="evaluate", objc_name="evaluate")
     MaterialPropertyGraph_evaluate :: proc(self: ^MaterialPropertyGraph) ---

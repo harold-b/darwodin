@@ -23,7 +23,7 @@ MutableAudioMix :: struct { using _: AudioMix, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableAudioMix, objc_selector="audioMix", objc_name="audioMix", objc_is_class_method=true)
-    MutableAudioMix_audioMix :: proc() -> ^MutableAudioMix ---
+    MutableAudioMix_audioMix :: proc() -> instancetype ---
 
     @(objc_type=MutableAudioMix, objc_selector="inputParameters", objc_name="inputParameters")
     MutableAudioMix_inputParameters :: proc(self: ^MutableAudioMix) -> ^NS.Array ---

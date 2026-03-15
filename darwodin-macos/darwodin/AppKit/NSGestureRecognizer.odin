@@ -26,10 +26,10 @@ GestureRecognizer :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GestureRecognizer, objc_selector="initWithTarget:action:", objc_name="initWithTarget")
-    GestureRecognizer_initWithTarget :: proc(self: ^GestureRecognizer, target: id, action: SEL) -> ^GestureRecognizer ---
+    GestureRecognizer_initWithTarget :: proc(self: ^GestureRecognizer, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=GestureRecognizer, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    GestureRecognizer_initWithCoder :: proc(self: ^GestureRecognizer, coder: ^NS.Coder) -> ^GestureRecognizer ---
+    GestureRecognizer_initWithCoder :: proc(self: ^GestureRecognizer, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=GestureRecognizer, objc_selector="locationInView:", objc_name="locationInView")
     GestureRecognizer_locationInView :: proc(self: ^GestureRecognizer, view: ^View) -> CG.Point ---

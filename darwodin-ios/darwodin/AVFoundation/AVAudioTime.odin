@@ -23,28 +23,28 @@ AudioTime :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioTime, objc_selector="initWithAudioTimeStamp:sampleRate:", objc_name="initWithAudioTimeStamp")
-    AudioTime_initWithAudioTimeStamp :: proc(self: ^AudioTime, ts: ^Audio.TimeStamp, sampleRate: cffi.double) -> ^AudioTime ---
+    AudioTime_initWithAudioTimeStamp :: proc(self: ^AudioTime, ts: ^Audio.TimeStamp, sampleRate: cffi.double) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="initWithHostTime:", objc_name="initWithHostTime_")
-    AudioTime_initWithHostTime_ :: proc(self: ^AudioTime, hostTime: cffi.uint64_t) -> ^AudioTime ---
+    AudioTime_initWithHostTime_ :: proc(self: ^AudioTime, hostTime: cffi.uint64_t) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="initWithSampleTime:atRate:", objc_name="initWithSampleTime")
-    AudioTime_initWithSampleTime :: proc(self: ^AudioTime, sampleTime: AudioFramePosition, sampleRate: cffi.double) -> ^AudioTime ---
+    AudioTime_initWithSampleTime :: proc(self: ^AudioTime, sampleTime: AudioFramePosition, sampleRate: cffi.double) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="initWithHostTime:sampleTime:atRate:", objc_name="initWithHostTime_sampleTime_atRate")
-    AudioTime_initWithHostTime_sampleTime_atRate :: proc(self: ^AudioTime, hostTime: cffi.uint64_t, sampleTime: AudioFramePosition, sampleRate: cffi.double) -> ^AudioTime ---
+    AudioTime_initWithHostTime_sampleTime_atRate :: proc(self: ^AudioTime, hostTime: cffi.uint64_t, sampleTime: AudioFramePosition, sampleRate: cffi.double) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="timeWithAudioTimeStamp:sampleRate:", objc_name="timeWithAudioTimeStamp", objc_is_class_method=true)
-    AudioTime_timeWithAudioTimeStamp :: proc(ts: ^Audio.TimeStamp, sampleRate: cffi.double) -> ^AudioTime ---
+    AudioTime_timeWithAudioTimeStamp :: proc(ts: ^Audio.TimeStamp, sampleRate: cffi.double) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="timeWithHostTime:", objc_name="timeWithHostTime_", objc_is_class_method=true)
-    AudioTime_timeWithHostTime_ :: proc(hostTime: cffi.uint64_t) -> ^AudioTime ---
+    AudioTime_timeWithHostTime_ :: proc(hostTime: cffi.uint64_t) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="timeWithSampleTime:atRate:", objc_name="timeWithSampleTime", objc_is_class_method=true)
-    AudioTime_timeWithSampleTime :: proc(sampleTime: AudioFramePosition, sampleRate: cffi.double) -> ^AudioTime ---
+    AudioTime_timeWithSampleTime :: proc(sampleTime: AudioFramePosition, sampleRate: cffi.double) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="timeWithHostTime:sampleTime:atRate:", objc_name="timeWithHostTime_sampleTime_atRate", objc_is_class_method=true)
-    AudioTime_timeWithHostTime_sampleTime_atRate :: proc(hostTime: cffi.uint64_t, sampleTime: AudioFramePosition, sampleRate: cffi.double) -> ^AudioTime ---
+    AudioTime_timeWithHostTime_sampleTime_atRate :: proc(hostTime: cffi.uint64_t, sampleTime: AudioFramePosition, sampleRate: cffi.double) -> instancetype ---
 
     @(objc_type=AudioTime, objc_selector="hostTimeForSeconds:", objc_name="hostTimeForSeconds", objc_is_class_method=true)
     AudioTime_hostTimeForSeconds :: proc(seconds: NS.TimeInterval) -> cffi.uint64_t ---

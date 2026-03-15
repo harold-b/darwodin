@@ -26,7 +26,7 @@ OpenGLContext :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=OpenGLContext, objc_selector="initWithFormat:shareContext:", objc_name="initWithFormat")
-    OpenGLContext_initWithFormat :: proc(self: ^OpenGLContext, format: ^OpenGLPixelFormat, share: ^OpenGLContext) -> ^OpenGLContext ---
+    OpenGLContext_initWithFormat :: proc(self: ^OpenGLContext, format: ^OpenGLPixelFormat, share: ^OpenGLContext) -> instancetype ---
 
     @(objc_type=OpenGLContext, objc_selector="initWithCGLContextObj:", objc_name="initWithCGLContextObj")
     OpenGLContext_initWithCGLContextObj :: proc(self: ^OpenGLContext, _context: CA.CGLContextObj) -> ^OpenGLContext ---

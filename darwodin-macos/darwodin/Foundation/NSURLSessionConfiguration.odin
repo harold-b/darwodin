@@ -25,7 +25,7 @@ foreign lib {
     URLSessionConfiguration_backgroundSessionConfigurationWithIdentifier :: proc(identifier: ^String) -> ^URLSessionConfiguration ---
 
     @(objc_type=URLSessionConfiguration, objc_selector="init", objc_name="init")
-    URLSessionConfiguration_init :: proc(self: ^URLSessionConfiguration) -> ^URLSessionConfiguration ---
+    URLSessionConfiguration_init :: proc(self: ^URLSessionConfiguration) -> instancetype ---
 
     @(objc_type=URLSessionConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     URLSessionConfiguration_new :: proc() -> ^URLSessionConfiguration ---

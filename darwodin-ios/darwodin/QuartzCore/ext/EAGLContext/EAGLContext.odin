@@ -27,9 +27,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^CA.EAGLContext) -> ^CA.EAGLContext,
-    initWithAPI_: proc(self: ^CA.EAGLContext, api: CA.EAGLRenderingAPI) -> ^CA.EAGLContext,
-    initWithAPI_sharegroup: proc(self: ^CA.EAGLContext, api: CA.EAGLRenderingAPI, sharegroup: ^CA.EAGLSharegroup) -> ^CA.EAGLContext,
+    init: proc(self: ^CA.EAGLContext) -> instancetype,
+    initWithAPI_: proc(self: ^CA.EAGLContext, api: CA.EAGLRenderingAPI) -> instancetype,
+    initWithAPI_sharegroup: proc(self: ^CA.EAGLContext, api: CA.EAGLRenderingAPI, sharegroup: ^CA.EAGLSharegroup) -> instancetype,
     setCurrentContext: proc(_context: ^CA.EAGLContext) -> bool,
     currentContext: proc() -> ^CA.EAGLContext,
     _API: proc(self: ^CA.EAGLContext) -> CA.EAGLRenderingAPI,
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^CA.EAGLContext, _: SEL) -> ^CA.EAGLContext {
+        init :: proc "c" (self: ^CA.EAGLContext, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithAPI_ != nil {
-        initWithAPI_ :: proc "c" (self: ^CA.EAGLContext, _: SEL, api: CA.EAGLRenderingAPI) -> ^CA.EAGLContext {
+        initWithAPI_ :: proc "c" (self: ^CA.EAGLContext, _: SEL, api: CA.EAGLRenderingAPI) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAPI:"), auto_cast initWithAPI_, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.initWithAPI_sharegroup != nil {
-        initWithAPI_sharegroup :: proc "c" (self: ^CA.EAGLContext, _: SEL, api: CA.EAGLRenderingAPI, sharegroup: ^CA.EAGLSharegroup) -> ^CA.EAGLContext {
+        initWithAPI_sharegroup :: proc "c" (self: ^CA.EAGLContext, _: SEL, api: CA.EAGLRenderingAPI, sharegroup: ^CA.EAGLSharegroup) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

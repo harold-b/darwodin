@@ -25,22 +25,22 @@ foreign lib {
     GameCenterViewController_setGameCenterDelegate :: proc(self: ^GameCenterViewController, gameCenterDelegate: ^GameCenterControllerDelegate) ---
 
     @(objc_type=GameCenterViewController, objc_selector="initWithState:", objc_name="initWithState")
-    GameCenterViewController_initWithState :: proc(self: ^GameCenterViewController, state: GameCenterViewControllerState) -> ^GameCenterViewController ---
+    GameCenterViewController_initWithState :: proc(self: ^GameCenterViewController, state: GameCenterViewControllerState) -> instancetype ---
 
     @(objc_type=GameCenterViewController, objc_selector="initWithLeaderboardID:playerScope:timeScope:", objc_name="initWithLeaderboardID")
-    GameCenterViewController_initWithLeaderboardID :: proc(self: ^GameCenterViewController, leaderboardID: ^NS.String, playerScope: LeaderboardPlayerScope, timeScope: LeaderboardTimeScope) -> ^GameCenterViewController ---
+    GameCenterViewController_initWithLeaderboardID :: proc(self: ^GameCenterViewController, leaderboardID: ^NS.String, playerScope: LeaderboardPlayerScope, timeScope: LeaderboardTimeScope) -> instancetype ---
 
     @(objc_type=GameCenterViewController, objc_selector="initWithLeaderboard:playerScope:", objc_name="initWithLeaderboard")
-    GameCenterViewController_initWithLeaderboard :: proc(self: ^GameCenterViewController, leaderboard: ^Leaderboard, playerScope: LeaderboardPlayerScope) -> ^GameCenterViewController ---
+    GameCenterViewController_initWithLeaderboard :: proc(self: ^GameCenterViewController, leaderboard: ^Leaderboard, playerScope: LeaderboardPlayerScope) -> instancetype ---
 
     @(objc_type=GameCenterViewController, objc_selector="initWithLeaderboardSetID:", objc_name="initWithLeaderboardSetID")
-    GameCenterViewController_initWithLeaderboardSetID :: proc(self: ^GameCenterViewController, leaderboardSetID: ^NS.String) -> ^GameCenterViewController ---
+    GameCenterViewController_initWithLeaderboardSetID :: proc(self: ^GameCenterViewController, leaderboardSetID: ^NS.String) -> instancetype ---
 
     @(objc_type=GameCenterViewController, objc_selector="initWithAchievementID:", objc_name="initWithAchievementID")
-    GameCenterViewController_initWithAchievementID :: proc(self: ^GameCenterViewController, achievementID: ^NS.String) -> ^GameCenterViewController ---
+    GameCenterViewController_initWithAchievementID :: proc(self: ^GameCenterViewController, achievementID: ^NS.String) -> instancetype ---
 
     @(objc_type=GameCenterViewController, objc_selector="initWithPlayer:", objc_name="initWithPlayer")
-    GameCenterViewController_initWithPlayer :: proc(self: ^GameCenterViewController, player: ^Player) -> ^GameCenterViewController ---
+    GameCenterViewController_initWithPlayer :: proc(self: ^GameCenterViewController, player: ^Player) -> instancetype ---
 
     @(objc_type=GameCenterViewController, objc_selector="viewState", objc_name="viewState")
     GameCenterViewController_viewState :: proc(self: ^GameCenterViewController) -> GameCenterViewControllerState ---

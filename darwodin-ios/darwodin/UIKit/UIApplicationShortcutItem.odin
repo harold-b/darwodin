@@ -25,13 +25,13 @@ ApplicationShortcutItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ApplicationShortcutItem, objc_selector="init", objc_name="init")
-    ApplicationShortcutItem_init :: proc(self: ^ApplicationShortcutItem) -> ^ApplicationShortcutItem ---
+    ApplicationShortcutItem_init :: proc(self: ^ApplicationShortcutItem) -> instancetype ---
 
     @(objc_type=ApplicationShortcutItem, objc_selector="initWithType:localizedTitle:localizedSubtitle:icon:userInfo:", objc_name="initWithType_localizedTitle_localizedSubtitle_icon_userInfo")
-    ApplicationShortcutItem_initWithType_localizedTitle_localizedSubtitle_icon_userInfo :: proc(self: ^ApplicationShortcutItem, type: ^NS.String, localizedTitle: ^NS.String, localizedSubtitle: ^NS.String, icon: ^ApplicationShortcutIcon, userInfo: ^NS.Dictionary) -> ^ApplicationShortcutItem ---
+    ApplicationShortcutItem_initWithType_localizedTitle_localizedSubtitle_icon_userInfo :: proc(self: ^ApplicationShortcutItem, type: ^NS.String, localizedTitle: ^NS.String, localizedSubtitle: ^NS.String, icon: ^ApplicationShortcutIcon, userInfo: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=ApplicationShortcutItem, objc_selector="initWithType:localizedTitle:", objc_name="initWithType_localizedTitle")
-    ApplicationShortcutItem_initWithType_localizedTitle :: proc(self: ^ApplicationShortcutItem, type: ^NS.String, localizedTitle: ^NS.String) -> ^ApplicationShortcutItem ---
+    ApplicationShortcutItem_initWithType_localizedTitle :: proc(self: ^ApplicationShortcutItem, type: ^NS.String, localizedTitle: ^NS.String) -> instancetype ---
 
     @(objc_type=ApplicationShortcutItem, objc_selector="type", objc_name="type")
     ApplicationShortcutItem_type :: proc(self: ^ApplicationShortcutItem) -> ^NS.String ---

@@ -23,13 +23,13 @@ CaptureDeviceRotationCoordinator :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeviceRotationCoordinator, objc_selector="init", objc_name="init")
-    CaptureDeviceRotationCoordinator_init :: proc(self: ^CaptureDeviceRotationCoordinator) -> ^CaptureDeviceRotationCoordinator ---
+    CaptureDeviceRotationCoordinator_init :: proc(self: ^CaptureDeviceRotationCoordinator) -> instancetype ---
 
     @(objc_type=CaptureDeviceRotationCoordinator, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureDeviceRotationCoordinator_new :: proc() -> ^CaptureDeviceRotationCoordinator ---
 
     @(objc_type=CaptureDeviceRotationCoordinator, objc_selector="initWithDevice:previewLayer:", objc_name="initWithDevice")
-    CaptureDeviceRotationCoordinator_initWithDevice :: proc(self: ^CaptureDeviceRotationCoordinator, device: ^CaptureDevice, previewLayer: ^CA.Layer) -> ^CaptureDeviceRotationCoordinator ---
+    CaptureDeviceRotationCoordinator_initWithDevice :: proc(self: ^CaptureDeviceRotationCoordinator, device: ^CaptureDevice, previewLayer: ^CA.Layer) -> instancetype ---
 
     @(objc_type=CaptureDeviceRotationCoordinator, objc_selector="device", objc_name="device")
     CaptureDeviceRotationCoordinator_device :: proc(self: ^CaptureDeviceRotationCoordinator) -> ^CaptureDevice ---

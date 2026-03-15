@@ -74,10 +74,10 @@ foreign lib {
     Expression_expressionForConditional :: proc(predicate: ^Predicate, trueExpression: ^Expression, falseExpression: ^Expression) -> ^Expression ---
 
     @(objc_type=Expression, objc_selector="initWithExpressionType:", objc_name="initWithExpressionType")
-    Expression_initWithExpressionType :: proc(self: ^Expression, type: ExpressionType) -> ^Expression ---
+    Expression_initWithExpressionType :: proc(self: ^Expression, type: ExpressionType) -> instancetype ---
 
     @(objc_type=Expression, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Expression_initWithCoder :: proc(self: ^Expression, coder: ^Coder) -> ^Expression ---
+    Expression_initWithCoder :: proc(self: ^Expression, coder: ^Coder) -> instancetype ---
 
     @(objc_type=Expression, objc_selector="expressionValueWithObject:context:", objc_name="expressionValueWithObject")
     Expression_expressionValueWithObject :: proc(self: ^Expression, object: id, _context: ^MutableDictionary) -> id ---

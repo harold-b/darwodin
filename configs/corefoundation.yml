@@ -159,14 +159,33 @@ Odin:
           Boolean           :: b8
           boolean_t         :: b32
 
-          // StringEncoding :: union #no_nil {
-          //     StringBuiltInEncodings,
-          //     StringEncodings,
-          // }
 
           KERN_SUCCESS            :: 0
           DISPATCH_TIME_NOW       :: 0
           DISPATCH_TIME_FOREVER   :: 0xFFFFFFFFFFFFFFFF
+
+          @(default_calling_convention="c")
+          foreign lib {
+              @(link_name = "__CFStringMakeConstantString")
+              StringMakeConstantString :: proc "c" ( c: cstring ) -> StringRef ---
+          }
+
+          STR :: StringMakeConstantString
+
+          StringCopyToOdinString :: proc( theString: StringRef, allocator := context.allocator ) -> (str: string, ok: bool) #optional_ok {
+              length := StringGetLength(theString)
+              max    := StringGetMaximumSizeForEncoding(length, StringEncoding(StringBuiltInEncodings.UTF8))
+
+              buf, err := make([]byte, max, allocator)
+              if err != nil {
+                  return
+              }
+
+              n: Index
+              StringGetBytes(theString, {0, length}, StringEncoding(StringBuiltInEncodings.UTF8), 0, false, raw_data(buf), Index(len(buf)), &n)
+              return string(buf[:n]), true
+          }
+
 
 
       TypeMap:

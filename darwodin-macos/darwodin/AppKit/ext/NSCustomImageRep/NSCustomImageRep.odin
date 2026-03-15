@@ -30,8 +30,8 @@ import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
-    initWithSize: proc(self: ^AK.CustomImageRep, size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: ^Objc_Block(proc "c" (dstRect: NS.Rect) -> bool)) -> ^AK.CustomImageRep,
-    initWithDrawSelector: proc(self: ^AK.CustomImageRep, selector: SEL, delegate: id) -> ^AK.CustomImageRep,
+    initWithSize: proc(self: ^AK.CustomImageRep, size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: ^Objc_Block(proc "c" (dstRect: NS.Rect) -> bool)) -> instancetype,
+    initWithDrawSelector: proc(self: ^AK.CustomImageRep, selector: SEL, delegate: id) -> instancetype,
     drawingHandler: proc(self: ^AK.CustomImageRep) -> ^Objc_Block(proc "c" () -> bool),
     drawSelector: proc(self: ^AK.CustomImageRep) -> SEL,
     delegate: proc(self: ^AK.CustomImageRep) -> id,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSImageRep.extend(cls, &vt.super)
 
     if vt.initWithSize != nil {
-        initWithSize :: proc "c" (self: ^AK.CustomImageRep, _: SEL, size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: ^Objc_Block(proc "c" (dstRect: NS.Rect) -> bool)) -> ^AK.CustomImageRep {
+        initWithSize :: proc "c" (self: ^AK.CustomImageRep, _: SEL, size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: ^Objc_Block(proc "c" (dstRect: NS.Rect) -> bool)) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSize:flipped:drawingHandler:"), auto_cast initWithSize, "@@:{CGSize=dd}B?") do panic("Failed to register objC method.")
     }
     if vt.initWithDrawSelector != nil {
-        initWithDrawSelector :: proc "c" (self: ^AK.CustomImageRep, _: SEL, selector: SEL, delegate: id) -> ^AK.CustomImageRep {
+        initWithDrawSelector :: proc "c" (self: ^AK.CustomImageRep, _: SEL, selector: SEL, delegate: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -24,28 +24,28 @@ Button :: struct { using _: Control,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Button, objc_selector="initWithFrame:", objc_name="initWithFrame_")
-    Button_initWithFrame_ :: proc(self: ^Button, frame: CG.Rect) -> ^Button ---
+    Button_initWithFrame_ :: proc(self: ^Button, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=Button, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Button_initWithCoder :: proc(self: ^Button, coder: ^NS.Coder) -> ^Button ---
+    Button_initWithCoder :: proc(self: ^Button, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Button, objc_selector="initWithFrame:primaryAction:", objc_name="initWithFrame_primaryAction")
-    Button_initWithFrame_primaryAction :: proc(self: ^Button, frame: CG.Rect, primaryAction: ^Action) -> ^Button ---
+    Button_initWithFrame_primaryAction :: proc(self: ^Button, frame: CG.Rect, primaryAction: ^Action) -> instancetype ---
 
     @(objc_type=Button, objc_selector="buttonWithType:", objc_name="buttonWithType_", objc_is_class_method=true)
-    Button_buttonWithType_ :: proc(buttonType: ButtonType) -> ^Button ---
+    Button_buttonWithType_ :: proc(buttonType: ButtonType) -> instancetype ---
 
     @(objc_type=Button, objc_selector="systemButtonWithImage:target:action:", objc_name="systemButtonWithImage", objc_is_class_method=true)
-    Button_systemButtonWithImage :: proc(image: ^Image, target: id, action: SEL) -> ^Button ---
+    Button_systemButtonWithImage :: proc(image: ^Image, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Button, objc_selector="systemButtonWithPrimaryAction:", objc_name="systemButtonWithPrimaryAction", objc_is_class_method=true)
-    Button_systemButtonWithPrimaryAction :: proc(primaryAction: ^Action) -> ^Button ---
+    Button_systemButtonWithPrimaryAction :: proc(primaryAction: ^Action) -> instancetype ---
 
     @(objc_type=Button, objc_selector="buttonWithType:primaryAction:", objc_name="buttonWithType_primaryAction", objc_is_class_method=true)
-    Button_buttonWithType_primaryAction :: proc(buttonType: ButtonType, primaryAction: ^Action) -> ^Button ---
+    Button_buttonWithType_primaryAction :: proc(buttonType: ButtonType, primaryAction: ^Action) -> instancetype ---
 
     @(objc_type=Button, objc_selector="buttonWithConfiguration:primaryAction:", objc_name="buttonWithConfiguration", objc_is_class_method=true)
-    Button_buttonWithConfiguration :: proc(configuration: ^ButtonConfiguration, primaryAction: ^Action) -> ^Button ---
+    Button_buttonWithConfiguration :: proc(configuration: ^ButtonConfiguration, primaryAction: ^Action) -> instancetype ---
 
     @(objc_type=Button, objc_selector="setNeedsUpdateConfiguration", objc_name="setNeedsUpdateConfiguration")
     Button_setNeedsUpdateConfiguration :: proc(self: ^Button) ---

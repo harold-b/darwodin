@@ -22,7 +22,7 @@ TabBarItemStateAppearance :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TabBarItemStateAppearance, objc_selector="init", objc_name="init")
-    TabBarItemStateAppearance_init :: proc(self: ^TabBarItemStateAppearance) -> ^TabBarItemStateAppearance ---
+    TabBarItemStateAppearance_init :: proc(self: ^TabBarItemStateAppearance) -> instancetype ---
 
     @(objc_type=TabBarItemStateAppearance, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TabBarItemStateAppearance_new :: proc() -> ^TabBarItemStateAppearance ---

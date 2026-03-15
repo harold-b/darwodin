@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    currentCollation: proc() -> ^UI.LocalizedIndexedCollation,
+    currentCollation: proc() -> instancetype,
     sectionForSectionIndexTitleAtIndex: proc(self: ^UI.LocalizedIndexedCollation, indexTitleIndex: NS.Integer) -> NS.Integer,
     sectionForObject: proc(self: ^UI.LocalizedIndexedCollation, object: id, selector: SEL) -> NS.Integer,
     sortedArrayFromArray: proc(self: ^UI.LocalizedIndexedCollation, array: ^NS.Array, selector: SEL) -> ^NS.Array,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.currentCollation != nil {
-        currentCollation :: proc "c" (self: Class, _: SEL) -> ^UI.LocalizedIndexedCollation {
+        currentCollation :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

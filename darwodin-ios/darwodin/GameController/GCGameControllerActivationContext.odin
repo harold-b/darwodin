@@ -20,7 +20,7 @@ GameControllerActivationContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GameControllerActivationContext, objc_selector="init", objc_name="init")
-    GameControllerActivationContext_init :: proc(self: ^GameControllerActivationContext) -> ^GameControllerActivationContext ---
+    GameControllerActivationContext_init :: proc(self: ^GameControllerActivationContext) -> instancetype ---
 
     @(objc_type=GameControllerActivationContext, objc_selector="previousApplicationBundleID", objc_name="previousApplicationBundleID")
     GameControllerActivationContext_previousApplicationBundleID :: proc(self: ^GameControllerActivationContext) -> ^NS.String ---

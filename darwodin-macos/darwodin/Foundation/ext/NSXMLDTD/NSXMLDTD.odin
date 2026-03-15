@@ -26,10 +26,10 @@ import "../NSXMLNode"
 
 VTable :: struct {
     super: NSXMLNode.VTable,
-    init: proc(self: ^NS.XMLDTD) -> ^NS.XMLDTD,
-    initWithKind: proc(self: ^NS.XMLDTD, kind: NS.XMLNodeKind, options: NS.XMLNodeOptions) -> ^NS.XMLDTD,
-    initWithContentsOfURL: proc(self: ^NS.XMLDTD, url: ^NS.URL, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDTD,
-    initWithData: proc(self: ^NS.XMLDTD, data: ^NS.Data, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDTD,
+    init: proc(self: ^NS.XMLDTD) -> instancetype,
+    initWithKind: proc(self: ^NS.XMLDTD, kind: NS.XMLNodeKind, options: NS.XMLNodeOptions) -> instancetype,
+    initWithContentsOfURL: proc(self: ^NS.XMLDTD, url: ^NS.URL, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype,
+    initWithData: proc(self: ^NS.XMLDTD, data: ^NS.Data, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype,
     insertChild: proc(self: ^NS.XMLDTD, child: ^NS.XMLNode, index: NS.UInteger),
     insertChildren: proc(self: ^NS.XMLDTD, children: ^NS.Array, index: NS.UInteger),
     removeChildAtIndex: proc(self: ^NS.XMLDTD, index: NS.UInteger),
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSXMLNode.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.XMLDTD, _: SEL) -> ^NS.XMLDTD {
+        init :: proc "c" (self: ^NS.XMLDTD, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithKind != nil {
-        initWithKind :: proc "c" (self: ^NS.XMLDTD, _: SEL, kind: NS.XMLNodeKind, options: NS.XMLNodeOptions) -> ^NS.XMLDTD {
+        initWithKind :: proc "c" (self: ^NS.XMLDTD, _: SEL, kind: NS.XMLNodeKind, options: NS.XMLNodeOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKind:options:"), auto_cast initWithKind, "@@:LL") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL != nil {
-        initWithContentsOfURL :: proc "c" (self: ^NS.XMLDTD, _: SEL, url: ^NS.URL, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDTD {
+        initWithContentsOfURL :: proc "c" (self: ^NS.XMLDTD, _: SEL, url: ^NS.URL, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:options:error:"), auto_cast initWithContentsOfURL, "@@:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^NS.XMLDTD, _: SEL, data: ^NS.Data, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> ^NS.XMLDTD {
+        initWithData :: proc "c" (self: ^NS.XMLDTD, _: SEL, data: ^NS.Data, mask: NS.XMLNodeOptions, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

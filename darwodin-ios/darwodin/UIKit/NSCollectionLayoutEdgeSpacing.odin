@@ -24,10 +24,10 @@ NSCollectionLayoutEdgeSpacing :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSCollectionLayoutEdgeSpacing, objc_selector="spacingForLeading:top:trailing:bottom:", objc_name="spacingForLeading", objc_is_class_method=true)
-    NSCollectionLayoutEdgeSpacing_spacingForLeading :: proc(leading: ^NSCollectionLayoutSpacing, top: ^NSCollectionLayoutSpacing, trailing: ^NSCollectionLayoutSpacing, bottom: ^NSCollectionLayoutSpacing) -> ^NSCollectionLayoutEdgeSpacing ---
+    NSCollectionLayoutEdgeSpacing_spacingForLeading :: proc(leading: ^NSCollectionLayoutSpacing, top: ^NSCollectionLayoutSpacing, trailing: ^NSCollectionLayoutSpacing, bottom: ^NSCollectionLayoutSpacing) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutEdgeSpacing, objc_selector="init", objc_name="init")
-    NSCollectionLayoutEdgeSpacing_init :: proc(self: ^NSCollectionLayoutEdgeSpacing) -> ^NSCollectionLayoutEdgeSpacing ---
+    NSCollectionLayoutEdgeSpacing_init :: proc(self: ^NSCollectionLayoutEdgeSpacing) -> instancetype ---
 
     @(objc_type=NSCollectionLayoutEdgeSpacing, objc_selector="new", objc_name="new", objc_is_class_method=true)
     NSCollectionLayoutEdgeSpacing_new :: proc() -> ^NSCollectionLayoutEdgeSpacing ---

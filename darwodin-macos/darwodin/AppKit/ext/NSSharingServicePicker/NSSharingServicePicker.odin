@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithItems: proc(self: ^AK.SharingServicePicker, items: ^NS.Array) -> ^AK.SharingServicePicker,
-    init: proc(self: ^AK.SharingServicePicker) -> ^AK.SharingServicePicker,
+    initWithItems: proc(self: ^AK.SharingServicePicker, items: ^NS.Array) -> instancetype,
+    init: proc(self: ^AK.SharingServicePicker) -> instancetype,
     showRelativeToRect: proc(self: ^AK.SharingServicePicker, rect: NS.Rect, view: ^AK.View, preferredEdge: NS.RectEdge),
     close: proc(self: ^AK.SharingServicePicker),
     delegate: proc(self: ^AK.SharingServicePicker) -> ^AK.SharingServicePickerDelegate,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithItems != nil {
-        initWithItems :: proc "c" (self: ^AK.SharingServicePicker, _: SEL, items: ^NS.Array) -> ^AK.SharingServicePicker {
+        initWithItems :: proc "c" (self: ^AK.SharingServicePicker, _: SEL, items: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItems:"), auto_cast initWithItems, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.SharingServicePicker, _: SEL) -> ^AK.SharingServicePicker {
+        init :: proc "c" (self: ^AK.SharingServicePicker, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

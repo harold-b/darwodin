@@ -23,7 +23,7 @@ AssetResourceLoadingRequest :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetResourceLoadingRequest, objc_selector="init", objc_name="init")
-    AssetResourceLoadingRequest_init :: proc(self: ^AssetResourceLoadingRequest) -> ^AssetResourceLoadingRequest ---
+    AssetResourceLoadingRequest_init :: proc(self: ^AssetResourceLoadingRequest) -> instancetype ---
 
     @(objc_type=AssetResourceLoadingRequest, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetResourceLoadingRequest_new :: proc() -> ^AssetResourceLoadingRequest ---

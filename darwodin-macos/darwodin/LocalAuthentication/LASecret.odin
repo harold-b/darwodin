@@ -25,5 +25,5 @@ foreign lib {
     Secret_new :: proc() -> ^Secret ---
 
     @(objc_type=Secret, objc_selector="init", objc_name="init")
-    Secret_init :: proc(self: ^Secret) -> ^Secret ---
+    Secret_init :: proc(self: ^Secret) -> instancetype ---
 }

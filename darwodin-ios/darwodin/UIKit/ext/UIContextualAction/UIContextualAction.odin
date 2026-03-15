@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    contextualActionWithStyle: proc(style: UI.ContextualActionStyle, title: ^NS.String, handler: UI.ContextualActionHandler) -> ^UI.ContextualAction,
+    contextualActionWithStyle: proc(style: UI.ContextualActionStyle, title: ^NS.String, handler: UI.ContextualActionHandler) -> instancetype,
     style: proc(self: ^UI.ContextualAction) -> UI.ContextualActionStyle,
     handler: proc(self: ^UI.ContextualAction) -> UI.ContextualActionHandler,
     title: proc(self: ^UI.ContextualAction) -> ^NS.String,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.contextualActionWithStyle != nil {
-        contextualActionWithStyle :: proc "c" (self: Class, _: SEL, style: UI.ContextualActionStyle, title: ^NS.String, handler: UI.ContextualActionHandler) -> ^UI.ContextualAction {
+        contextualActionWithStyle :: proc "c" (self: Class, _: SEL, style: UI.ContextualActionStyle, title: ^NS.String, handler: UI.ContextualActionHandler) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

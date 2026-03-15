@@ -58,7 +58,7 @@ foreign lib {
     Leaderboard_duration :: proc(self: ^Leaderboard) -> NS.TimeInterval ---
 
     @(objc_type=Leaderboard, objc_selector="initWithPlayerIDs:", objc_name="initWithPlayerIDs")
-    Leaderboard_initWithPlayerIDs :: proc(self: ^Leaderboard, playerIDs: ^NS.Array) -> ^Leaderboard ---
+    Leaderboard_initWithPlayerIDs :: proc(self: ^Leaderboard, playerIDs: ^NS.Array) -> instancetype ---
 
     @(objc_type=Leaderboard, objc_selector="loadCategoriesWithCompletionHandler:", objc_name="loadCategoriesWithCompletionHandler", objc_is_class_method=true)
     Leaderboard_loadCategoriesWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (categories: ^NS.Array, titles: ^NS.Array, error: ^NS.Error))) ---
@@ -67,10 +67,10 @@ foreign lib {
     Leaderboard_setDefaultLeaderboard :: proc(leaderboardIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
 
     @(objc_type=Leaderboard, objc_selector="init", objc_name="init")
-    Leaderboard_init :: proc(self: ^Leaderboard) -> ^Leaderboard ---
+    Leaderboard_init :: proc(self: ^Leaderboard) -> instancetype ---
 
     @(objc_type=Leaderboard, objc_selector="initWithPlayers:", objc_name="initWithPlayers")
-    Leaderboard_initWithPlayers :: proc(self: ^Leaderboard, players: ^NS.Array) -> ^Leaderboard ---
+    Leaderboard_initWithPlayers :: proc(self: ^Leaderboard, players: ^NS.Array) -> instancetype ---
 
     @(objc_type=Leaderboard, objc_selector="loadScoresWithCompletionHandler:", objc_name="loadScoresWithCompletionHandler")
     Leaderboard_loadScoresWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" (scores: ^NS.Array, error: ^NS.Error))) ---

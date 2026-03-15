@@ -30,8 +30,8 @@ import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    initWithFrame: proc(self: ^AK.Scrubber, frameRect: NS.Rect) -> ^AK.Scrubber,
-    initWithCoder: proc(self: ^AK.Scrubber, coder: ^NS.Coder) -> ^AK.Scrubber,
+    initWithFrame: proc(self: ^AK.Scrubber, frameRect: NS.Rect) -> instancetype,
+    initWithCoder: proc(self: ^AK.Scrubber, coder: ^NS.Coder) -> instancetype,
     reloadData: proc(self: ^AK.Scrubber),
     performSequentialBatchUpdates: proc(self: ^AK.Scrubber, updateBlock: ^Objc_Block(proc "c" ())),
     insertItemsAtIndexes: proc(self: ^AK.Scrubber, indexes: ^NS.IndexSet),
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.Scrubber, _: SEL, frameRect: NS.Rect) -> ^AK.Scrubber {
+        initWithFrame :: proc "c" (self: ^AK.Scrubber, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Scrubber, _: SEL, coder: ^NS.Coder) -> ^AK.Scrubber {
+        initWithCoder :: proc "c" (self: ^AK.Scrubber, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

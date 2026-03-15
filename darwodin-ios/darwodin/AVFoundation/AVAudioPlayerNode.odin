@@ -25,7 +25,7 @@ AudioPlayerNode :: struct { using _: AudioNode,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioPlayerNode, objc_selector="init", objc_name="init")
-    AudioPlayerNode_init :: proc(self: ^AudioPlayerNode) -> ^AudioPlayerNode ---
+    AudioPlayerNode_init :: proc(self: ^AudioPlayerNode) -> instancetype ---
 
     @(objc_type=AudioPlayerNode, objc_selector="scheduleBuffer:completionHandler:", objc_name="scheduleBuffer_completionHandler")
     AudioPlayerNode_scheduleBuffer_completionHandler :: proc(self: ^AudioPlayerNode, buffer: ^AudioPCMBuffer, completionHandler: AudioNodeCompletionHandler) ---

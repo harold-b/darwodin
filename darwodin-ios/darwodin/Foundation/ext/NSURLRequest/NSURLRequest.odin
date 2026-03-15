@@ -26,10 +26,10 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    requestWithURL_: proc(_URL: ^NS.URL) -> ^NS.URLRequest,
-    requestWithURL_cachePolicy_timeoutInterval: proc(_URL: ^NS.URL, cachePolicy: NS.URLRequestCachePolicy, timeoutInterval: NS.TimeInterval) -> ^NS.URLRequest,
-    initWithURL_: proc(self: ^NS.URLRequest, _URL: ^NS.URL) -> ^NS.URLRequest,
-    initWithURL_cachePolicy_timeoutInterval: proc(self: ^NS.URLRequest, _URL: ^NS.URL, cachePolicy: NS.URLRequestCachePolicy, timeoutInterval: NS.TimeInterval) -> ^NS.URLRequest,
+    requestWithURL_: proc(_URL: ^NS.URL) -> instancetype,
+    requestWithURL_cachePolicy_timeoutInterval: proc(_URL: ^NS.URL, cachePolicy: NS.URLRequestCachePolicy, timeoutInterval: NS.TimeInterval) -> instancetype,
+    initWithURL_: proc(self: ^NS.URLRequest, _URL: ^NS.URL) -> instancetype,
+    initWithURL_cachePolicy_timeoutInterval: proc(self: ^NS.URLRequest, _URL: ^NS.URL, cachePolicy: NS.URLRequestCachePolicy, timeoutInterval: NS.TimeInterval) -> instancetype,
     supportsSecureCoding: proc() -> bool,
     _URL: proc(self: ^NS.URLRequest) -> ^NS.URL,
     cachePolicy: proc(self: ^NS.URLRequest) -> NS.URLRequestCachePolicy,
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.requestWithURL_ != nil {
-        requestWithURL_ :: proc "c" (self: Class, _: SEL, _URL: ^NS.URL) -> ^NS.URLRequest {
+        requestWithURL_ :: proc "c" (self: Class, _: SEL, _URL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("requestWithURL:"), auto_cast requestWithURL_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.requestWithURL_cachePolicy_timeoutInterval != nil {
-        requestWithURL_cachePolicy_timeoutInterval :: proc "c" (self: Class, _: SEL, _URL: ^NS.URL, cachePolicy: NS.URLRequestCachePolicy, timeoutInterval: NS.TimeInterval) -> ^NS.URLRequest {
+        requestWithURL_cachePolicy_timeoutInterval :: proc "c" (self: Class, _: SEL, _URL: ^NS.URL, cachePolicy: NS.URLRequestCachePolicy, timeoutInterval: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("requestWithURL:cachePolicy:timeoutInterval:"), auto_cast requestWithURL_cachePolicy_timeoutInterval, "@#:@Ld") do panic("Failed to register objC method.")
     }
     if vt.initWithURL_ != nil {
-        initWithURL_ :: proc "c" (self: ^NS.URLRequest, _: SEL, _URL: ^NS.URL) -> ^NS.URLRequest {
+        initWithURL_ :: proc "c" (self: ^NS.URLRequest, _: SEL, _URL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithURL:"), auto_cast initWithURL_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithURL_cachePolicy_timeoutInterval != nil {
-        initWithURL_cachePolicy_timeoutInterval :: proc "c" (self: ^NS.URLRequest, _: SEL, _URL: ^NS.URL, cachePolicy: NS.URLRequestCachePolicy, timeoutInterval: NS.TimeInterval) -> ^NS.URLRequest {
+        initWithURL_cachePolicy_timeoutInterval :: proc "c" (self: ^NS.URLRequest, _: SEL, _URL: ^NS.URL, cachePolicy: NS.URLRequestCachePolicy, timeoutInterval: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

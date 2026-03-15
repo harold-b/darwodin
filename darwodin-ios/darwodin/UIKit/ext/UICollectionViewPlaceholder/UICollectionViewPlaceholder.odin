@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithInsertionIndexPath: proc(self: ^UI.CollectionViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String) -> ^UI.CollectionViewPlaceholder,
-    init: proc(self: ^UI.CollectionViewPlaceholder) -> ^UI.CollectionViewPlaceholder,
+    initWithInsertionIndexPath: proc(self: ^UI.CollectionViewPlaceholder, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String) -> instancetype,
+    init: proc(self: ^UI.CollectionViewPlaceholder) -> instancetype,
     new: proc() -> ^UI.CollectionViewPlaceholder,
     cellUpdateHandler: proc(self: ^UI.CollectionViewPlaceholder) -> ^Objc_Block(proc "c" ()),
     setCellUpdateHandler: proc(self: ^UI.CollectionViewPlaceholder, cellUpdateHandler: ^Objc_Block(proc "c" ())),
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithInsertionIndexPath != nil {
-        initWithInsertionIndexPath :: proc "c" (self: ^UI.CollectionViewPlaceholder, _: SEL, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String) -> ^UI.CollectionViewPlaceholder {
+        initWithInsertionIndexPath :: proc "c" (self: ^UI.CollectionViewPlaceholder, _: SEL, insertionIndexPath: ^NS.IndexPath, reuseIdentifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithInsertionIndexPath:reuseIdentifier:"), auto_cast initWithInsertionIndexPath, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CollectionViewPlaceholder, _: SEL) -> ^UI.CollectionViewPlaceholder {
+        init :: proc "c" (self: ^UI.CollectionViewPlaceholder, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

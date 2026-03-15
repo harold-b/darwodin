@@ -24,10 +24,10 @@ ToolTipInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ToolTipInteraction, objc_selector="init", objc_name="init")
-    ToolTipInteraction_init :: proc(self: ^ToolTipInteraction) -> ^ToolTipInteraction ---
+    ToolTipInteraction_init :: proc(self: ^ToolTipInteraction) -> instancetype ---
 
     @(objc_type=ToolTipInteraction, objc_selector="initWithDefaultToolTip:", objc_name="initWithDefaultToolTip")
-    ToolTipInteraction_initWithDefaultToolTip :: proc(self: ^ToolTipInteraction, defaultToolTip: ^NS.String) -> ^ToolTipInteraction ---
+    ToolTipInteraction_initWithDefaultToolTip :: proc(self: ^ToolTipInteraction, defaultToolTip: ^NS.String) -> instancetype ---
 
     @(objc_type=ToolTipInteraction, objc_selector="delegate", objc_name="delegate")
     ToolTipInteraction_delegate :: proc(self: ^ToolTipInteraction) -> ^ToolTipInteractionDelegate ---

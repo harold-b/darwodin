@@ -21,7 +21,7 @@ SubmeshTopology :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SubmeshTopology, objc_selector="initWithSubmesh:", objc_name="initWithSubmesh")
-    SubmeshTopology_initWithSubmesh :: proc(self: ^SubmeshTopology, submesh: ^Submesh) -> ^SubmeshTopology ---
+    SubmeshTopology_initWithSubmesh :: proc(self: ^SubmeshTopology, submesh: ^Submesh) -> instancetype ---
 
     @(objc_type=SubmeshTopology, objc_selector="faceTopology", objc_name="faceTopology")
     SubmeshTopology_faceTopology :: proc(self: ^SubmeshTopology) -> ^MeshBuffer ---

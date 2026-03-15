@@ -20,10 +20,10 @@ UserActivity :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserActivity, objc_selector="initWithActivityType:", objc_name="initWithActivityType")
-    UserActivity_initWithActivityType :: proc(self: ^UserActivity, activityType: ^String) -> ^UserActivity ---
+    UserActivity_initWithActivityType :: proc(self: ^UserActivity, activityType: ^String) -> instancetype ---
 
     @(objc_type=UserActivity, objc_selector="init", objc_name="init")
-    UserActivity_init :: proc(self: ^UserActivity) -> ^UserActivity ---
+    UserActivity_init :: proc(self: ^UserActivity) -> instancetype ---
 
     @(objc_type=UserActivity, objc_selector="addUserInfoEntriesFromDictionary:", objc_name="addUserInfoEntriesFromDictionary")
     UserActivity_addUserInfoEntriesFromDictionary :: proc(self: ^UserActivity, otherDictionary: ^Dictionary) ---

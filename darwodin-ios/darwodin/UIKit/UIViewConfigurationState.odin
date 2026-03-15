@@ -24,13 +24,13 @@ ViewConfigurationState :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ViewConfigurationState, objc_selector="initWithTraitCollection:", objc_name="initWithTraitCollection")
-    ViewConfigurationState_initWithTraitCollection :: proc(self: ^ViewConfigurationState, traitCollection: ^TraitCollection) -> ^ViewConfigurationState ---
+    ViewConfigurationState_initWithTraitCollection :: proc(self: ^ViewConfigurationState, traitCollection: ^TraitCollection) -> instancetype ---
 
     @(objc_type=ViewConfigurationState, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ViewConfigurationState_initWithCoder :: proc(self: ^ViewConfigurationState, coder: ^NS.Coder) -> ^ViewConfigurationState ---
+    ViewConfigurationState_initWithCoder :: proc(self: ^ViewConfigurationState, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ViewConfigurationState, objc_selector="init", objc_name="init")
-    ViewConfigurationState_init :: proc(self: ^ViewConfigurationState) -> ^ViewConfigurationState ---
+    ViewConfigurationState_init :: proc(self: ^ViewConfigurationState) -> instancetype ---
 
     @(objc_type=ViewConfigurationState, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ViewConfigurationState_new :: proc() -> ^ViewConfigurationState ---

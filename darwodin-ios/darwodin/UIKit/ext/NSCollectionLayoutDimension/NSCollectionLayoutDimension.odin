@@ -28,12 +28,12 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    fractionalWidthDimension: proc(fractionalWidth: CG.Float) -> ^UI.NSCollectionLayoutDimension,
-    fractionalHeightDimension: proc(fractionalHeight: CG.Float) -> ^UI.NSCollectionLayoutDimension,
-    absoluteDimension: proc(absoluteDimension: CG.Float) -> ^UI.NSCollectionLayoutDimension,
-    estimatedDimension: proc(estimatedDimension: CG.Float) -> ^UI.NSCollectionLayoutDimension,
-    uniformAcrossSiblingsWithEstimate: proc(estimatedDimension: CG.Float) -> ^UI.NSCollectionLayoutDimension,
-    init: proc(self: ^UI.NSCollectionLayoutDimension) -> ^UI.NSCollectionLayoutDimension,
+    fractionalWidthDimension: proc(fractionalWidth: CG.Float) -> instancetype,
+    fractionalHeightDimension: proc(fractionalHeight: CG.Float) -> instancetype,
+    absoluteDimension: proc(absoluteDimension: CG.Float) -> instancetype,
+    estimatedDimension: proc(estimatedDimension: CG.Float) -> instancetype,
+    uniformAcrossSiblingsWithEstimate: proc(estimatedDimension: CG.Float) -> instancetype,
+    init: proc(self: ^UI.NSCollectionLayoutDimension) -> instancetype,
     new: proc() -> ^UI.NSCollectionLayoutDimension,
     isFractionalWidth: proc(self: ^UI.NSCollectionLayoutDimension) -> bool,
     isFractionalHeight: proc(self: ^UI.NSCollectionLayoutDimension) -> bool,
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.fractionalWidthDimension != nil {
-        fractionalWidthDimension :: proc "c" (self: Class, _: SEL, fractionalWidth: CG.Float) -> ^UI.NSCollectionLayoutDimension {
+        fractionalWidthDimension :: proc "c" (self: Class, _: SEL, fractionalWidth: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fractionalWidthDimension:"), auto_cast fractionalWidthDimension, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.fractionalHeightDimension != nil {
-        fractionalHeightDimension :: proc "c" (self: Class, _: SEL, fractionalHeight: CG.Float) -> ^UI.NSCollectionLayoutDimension {
+        fractionalHeightDimension :: proc "c" (self: Class, _: SEL, fractionalHeight: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fractionalHeightDimension:"), auto_cast fractionalHeightDimension, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.absoluteDimension != nil {
-        absoluteDimension :: proc "c" (self: Class, _: SEL, absoluteDimension: CG.Float) -> ^UI.NSCollectionLayoutDimension {
+        absoluteDimension :: proc "c" (self: Class, _: SEL, absoluteDimension: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("absoluteDimension:"), auto_cast absoluteDimension, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.estimatedDimension != nil {
-        estimatedDimension :: proc "c" (self: Class, _: SEL, estimatedDimension: CG.Float) -> ^UI.NSCollectionLayoutDimension {
+        estimatedDimension :: proc "c" (self: Class, _: SEL, estimatedDimension: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("estimatedDimension:"), auto_cast estimatedDimension, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.uniformAcrossSiblingsWithEstimate != nil {
-        uniformAcrossSiblingsWithEstimate :: proc "c" (self: Class, _: SEL, estimatedDimension: CG.Float) -> ^UI.NSCollectionLayoutDimension {
+        uniformAcrossSiblingsWithEstimate :: proc "c" (self: Class, _: SEL, estimatedDimension: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("uniformAcrossSiblingsWithEstimate:"), auto_cast uniformAcrossSiblingsWithEstimate, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSCollectionLayoutDimension, _: SEL) -> ^UI.NSCollectionLayoutDimension {
+        init :: proc "c" (self: ^UI.NSCollectionLayoutDimension, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

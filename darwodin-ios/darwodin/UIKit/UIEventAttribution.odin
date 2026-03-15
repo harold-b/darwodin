@@ -24,10 +24,10 @@ EventAttribution :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=EventAttribution, objc_selector="initWithSourceIdentifier:destinationURL:sourceDescription:purchaser:", objc_name="initWithSourceIdentifier")
-    EventAttribution_initWithSourceIdentifier :: proc(self: ^EventAttribution, sourceIdentifier: cffi.uint8_t, destinationURL: ^NS.URL, sourceDescription: ^NS.String, purchaser: ^NS.String) -> ^EventAttribution ---
+    EventAttribution_initWithSourceIdentifier :: proc(self: ^EventAttribution, sourceIdentifier: cffi.uint8_t, destinationURL: ^NS.URL, sourceDescription: ^NS.String, purchaser: ^NS.String) -> instancetype ---
 
     @(objc_type=EventAttribution, objc_selector="init", objc_name="init")
-    EventAttribution_init :: proc(self: ^EventAttribution) -> ^EventAttribution ---
+    EventAttribution_init :: proc(self: ^EventAttribution) -> instancetype ---
 
     @(objc_type=EventAttribution, objc_selector="new", objc_name="new", objc_is_class_method=true)
     EventAttribution_new :: proc() -> ^EventAttribution ---

@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithUserActivity: proc(self: ^UI.WindowSceneActivationConfiguration, userActivity: ^NS.UserActivity) -> ^UI.WindowSceneActivationConfiguration,
-    init: proc(self: ^UI.WindowSceneActivationConfiguration) -> ^UI.WindowSceneActivationConfiguration,
+    initWithUserActivity: proc(self: ^UI.WindowSceneActivationConfiguration, userActivity: ^NS.UserActivity) -> instancetype,
+    init: proc(self: ^UI.WindowSceneActivationConfiguration) -> instancetype,
     new: proc() -> ^UI.WindowSceneActivationConfiguration,
     userActivity: proc(self: ^UI.WindowSceneActivationConfiguration) -> ^NS.UserActivity,
     options: proc(self: ^UI.WindowSceneActivationConfiguration) -> ^UI.WindowSceneActivationRequestOptions,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithUserActivity != nil {
-        initWithUserActivity :: proc "c" (self: ^UI.WindowSceneActivationConfiguration, _: SEL, userActivity: ^NS.UserActivity) -> ^UI.WindowSceneActivationConfiguration {
+        initWithUserActivity :: proc "c" (self: ^UI.WindowSceneActivationConfiguration, _: SEL, userActivity: ^NS.UserActivity) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithUserActivity:"), auto_cast initWithUserActivity, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.WindowSceneActivationConfiguration, _: SEL) -> ^UI.WindowSceneActivationConfiguration {
+        init :: proc "c" (self: ^UI.WindowSceneActivationConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

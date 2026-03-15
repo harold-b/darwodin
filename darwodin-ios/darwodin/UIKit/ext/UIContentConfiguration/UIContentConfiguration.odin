@@ -26,7 +26,7 @@ import UI "../../"
 
 VTable :: struct {
     makeContentView: proc(self: ^UI.ContentConfiguration) -> ^UI.View,
-    updatedConfigurationForState: proc(self: ^UI.ContentConfiguration, state: ^UI.ConfigurationState) -> ^UI.ContentConfiguration,
+    updatedConfigurationForState: proc(self: ^UI.ContentConfiguration, state: ^UI.ConfigurationState) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeContentView"), auto_cast makeContentView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.updatedConfigurationForState != nil {
-        updatedConfigurationForState :: proc "c" (self: ^UI.ContentConfiguration, _: SEL, state: ^UI.ConfigurationState) -> ^UI.ContentConfiguration {
+        updatedConfigurationForState :: proc "c" (self: ^UI.ContentConfiguration, _: SEL, state: ^UI.ConfigurationState) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

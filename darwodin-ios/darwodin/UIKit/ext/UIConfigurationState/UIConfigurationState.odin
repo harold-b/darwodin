@@ -25,7 +25,7 @@ instancetype  :: intrinsics.objc_instancetype
 import UI "../../"
 
 VTable :: struct {
-    initWithTraitCollection: proc(self: ^UI.ConfigurationState, traitCollection: ^UI.TraitCollection) -> ^UI.ConfigurationState,
+    initWithTraitCollection: proc(self: ^UI.ConfigurationState, traitCollection: ^UI.TraitCollection) -> instancetype,
     customStateForKey: proc(self: ^UI.ConfigurationState, key: ^NS.String) -> id,
     setCustomState: proc(self: ^UI.ConfigurationState, customState: id, key: ^NS.String),
     objectForKeyedSubscript: proc(self: ^UI.ConfigurationState, key: ^NS.String) -> id,
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.initWithTraitCollection != nil {
-        initWithTraitCollection :: proc "c" (self: ^UI.ConfigurationState, _: SEL, traitCollection: ^UI.TraitCollection) -> ^UI.ConfigurationState {
+        initWithTraitCollection :: proc "c" (self: ^UI.ConfigurationState, _: SEL, traitCollection: ^UI.TraitCollection) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

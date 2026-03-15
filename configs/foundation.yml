@@ -120,6 +120,10 @@ Odin:
               return
           }
 
+          STR :: #force_inline proc "contextless" ( #const s: cstring ) -> ^String {
+              return auto_cast CF.STR(s)
+          }
+
 
       # TypeMap:
 

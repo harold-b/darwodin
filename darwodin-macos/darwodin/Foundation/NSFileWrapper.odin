@@ -22,22 +22,22 @@ FileWrapper :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FileWrapper, objc_selector="initWithURL:options:error:", objc_name="initWithURL")
-    FileWrapper_initWithURL :: proc(self: ^FileWrapper, url: ^URL, options: FileWrapperReadingOptions, outError: ^^Error) -> ^FileWrapper ---
+    FileWrapper_initWithURL :: proc(self: ^FileWrapper, url: ^URL, options: FileWrapperReadingOptions, outError: ^^Error) -> instancetype ---
 
     @(objc_type=FileWrapper, objc_selector="initDirectoryWithFileWrappers:", objc_name="initDirectoryWithFileWrappers")
-    FileWrapper_initDirectoryWithFileWrappers :: proc(self: ^FileWrapper, childrenByPreferredName: ^Dictionary) -> ^FileWrapper ---
+    FileWrapper_initDirectoryWithFileWrappers :: proc(self: ^FileWrapper, childrenByPreferredName: ^Dictionary) -> instancetype ---
 
     @(objc_type=FileWrapper, objc_selector="initRegularFileWithContents:", objc_name="initRegularFileWithContents")
-    FileWrapper_initRegularFileWithContents :: proc(self: ^FileWrapper, contents: ^Data) -> ^FileWrapper ---
+    FileWrapper_initRegularFileWithContents :: proc(self: ^FileWrapper, contents: ^Data) -> instancetype ---
 
     @(objc_type=FileWrapper, objc_selector="initSymbolicLinkWithDestinationURL:", objc_name="initSymbolicLinkWithDestinationURL")
-    FileWrapper_initSymbolicLinkWithDestinationURL :: proc(self: ^FileWrapper, url: ^URL) -> ^FileWrapper ---
+    FileWrapper_initSymbolicLinkWithDestinationURL :: proc(self: ^FileWrapper, url: ^URL) -> instancetype ---
 
     @(objc_type=FileWrapper, objc_selector="initWithSerializedRepresentation:", objc_name="initWithSerializedRepresentation")
-    FileWrapper_initWithSerializedRepresentation :: proc(self: ^FileWrapper, serializeRepresentation: ^Data) -> ^FileWrapper ---
+    FileWrapper_initWithSerializedRepresentation :: proc(self: ^FileWrapper, serializeRepresentation: ^Data) -> instancetype ---
 
     @(objc_type=FileWrapper, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    FileWrapper_initWithCoder :: proc(self: ^FileWrapper, inCoder: ^Coder) -> ^FileWrapper ---
+    FileWrapper_initWithCoder :: proc(self: ^FileWrapper, inCoder: ^Coder) -> instancetype ---
 
     @(objc_type=FileWrapper, objc_selector="matchesContentsOfURL:", objc_name="matchesContentsOfURL")
     FileWrapper_matchesContentsOfURL :: proc(self: ^FileWrapper, url: ^URL) -> bool ---

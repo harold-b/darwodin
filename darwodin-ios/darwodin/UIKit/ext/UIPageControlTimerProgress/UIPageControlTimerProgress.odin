@@ -28,12 +28,12 @@ import "../UIPageControlProgress"
 
 VTable :: struct {
     super: UIPageControlProgress.VTable,
-    initWithPreferredDuration: proc(self: ^UI.PageControlTimerProgress, preferredDuration: NS.TimeInterval) -> ^UI.PageControlTimerProgress,
+    initWithPreferredDuration: proc(self: ^UI.PageControlTimerProgress, preferredDuration: NS.TimeInterval) -> instancetype,
     resumeTimer: proc(self: ^UI.PageControlTimerProgress),
     pauseTimer: proc(self: ^UI.PageControlTimerProgress),
     setDuration: proc(self: ^UI.PageControlTimerProgress, duration: NS.TimeInterval, page: NS.Integer),
     durationForPage: proc(self: ^UI.PageControlTimerProgress, page: NS.Integer) -> NS.TimeInterval,
-    init: proc(self: ^UI.PageControlTimerProgress) -> ^UI.PageControlTimerProgress,
+    init: proc(self: ^UI.PageControlTimerProgress) -> instancetype,
     new: proc() -> ^UI.PageControlTimerProgress,
     delegate: proc(self: ^UI.PageControlTimerProgress) -> ^UI.PageControlTimerProgressDelegate,
     setDelegate: proc(self: ^UI.PageControlTimerProgress, delegate: ^UI.PageControlTimerProgressDelegate),
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIPageControlProgress.extend(cls, &vt.super)
 
     if vt.initWithPreferredDuration != nil {
-        initWithPreferredDuration :: proc "c" (self: ^UI.PageControlTimerProgress, _: SEL, preferredDuration: NS.TimeInterval) -> ^UI.PageControlTimerProgress {
+        initWithPreferredDuration :: proc "c" (self: ^UI.PageControlTimerProgress, _: SEL, preferredDuration: NS.TimeInterval) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("durationForPage:"), auto_cast durationForPage, "d@:l") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PageControlTimerProgress, _: SEL) -> ^UI.PageControlTimerProgress {
+        init :: proc "c" (self: ^UI.PageControlTimerProgress, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

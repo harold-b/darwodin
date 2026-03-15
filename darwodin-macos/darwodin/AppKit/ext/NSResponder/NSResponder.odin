@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.Responder) -> ^AK.Responder,
-    initWithCoder: proc(self: ^AK.Responder, coder: ^NS.Coder) -> ^AK.Responder,
+    init: proc(self: ^AK.Responder) -> instancetype,
+    initWithCoder: proc(self: ^AK.Responder, coder: ^NS.Coder) -> instancetype,
     tryToPerform: proc(self: ^AK.Responder, action: SEL, object: id) -> bool,
     performKeyEquivalent: proc(self: ^AK.Responder, event: ^AK.Event) -> bool,
     validRequestorForSendType: proc(self: ^AK.Responder, sendType: ^NS.String, returnType: ^NS.String) -> id,
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Responder, _: SEL) -> ^AK.Responder {
+        init :: proc "c" (self: ^AK.Responder, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Responder, _: SEL, coder: ^NS.Coder) -> ^AK.Responder {
+        initWithCoder :: proc "c" (self: ^AK.Responder, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

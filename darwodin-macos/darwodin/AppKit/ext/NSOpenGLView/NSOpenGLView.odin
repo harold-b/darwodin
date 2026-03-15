@@ -31,7 +31,7 @@ import "../NSView"
 VTable :: struct {
     super: NSView.VTable,
     defaultPixelFormat: proc() -> ^AK.OpenGLPixelFormat,
-    initWithFrame: proc(self: ^AK.OpenGLView, frameRect: NS.Rect, format: ^AK.OpenGLPixelFormat) -> ^AK.OpenGLView,
+    initWithFrame: proc(self: ^AK.OpenGLView, frameRect: NS.Rect, format: ^AK.OpenGLPixelFormat) -> instancetype,
     clearGLContext: proc(self: ^AK.OpenGLView),
     update: proc(self: ^AK.OpenGLView),
     reshape: proc(self: ^AK.OpenGLView),
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPixelFormat"), auto_cast defaultPixelFormat, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.OpenGLView, _: SEL, frameRect: NS.Rect, format: ^AK.OpenGLPixelFormat) -> ^AK.OpenGLView {
+        initWithFrame :: proc "c" (self: ^AK.OpenGLView, _: SEL, frameRect: NS.Rect, format: ^AK.OpenGLPixelFormat) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

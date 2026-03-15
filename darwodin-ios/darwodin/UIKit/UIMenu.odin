@@ -31,10 +31,10 @@ foreign lib {
     Menu_menuWithTitle_image_identifier_options_children :: proc(title: ^NS.String, image: ^Image, identifier: ^NS.String, options: MenuOptions, children: ^NS.Array) -> ^Menu ---
 
     @(objc_type=Menu, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Menu_initWithCoder :: proc(self: ^Menu, coder: ^NS.Coder) -> ^Menu ---
+    Menu_initWithCoder :: proc(self: ^Menu, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="init", objc_name="init")
-    Menu_init :: proc(self: ^Menu) -> ^Menu ---
+    Menu_init :: proc(self: ^Menu) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Menu_new :: proc() -> ^Menu ---

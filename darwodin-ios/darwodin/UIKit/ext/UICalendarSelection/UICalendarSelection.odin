@@ -29,7 +29,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     updateSelectableDates: proc(self: ^UI.CalendarSelection),
-    init: proc(self: ^UI.CalendarSelection) -> ^UI.CalendarSelection,
+    init: proc(self: ^UI.CalendarSelection) -> instancetype,
     new: proc() -> ^UI.CalendarSelection,
 }
 
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateSelectableDates"), auto_cast updateSelectableDates, "v@:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CalendarSelection, _: SEL) -> ^UI.CalendarSelection {
+        init :: proc "c" (self: ^UI.CalendarSelection, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

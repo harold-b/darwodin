@@ -21,16 +21,16 @@ Query :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Query, objc_selector="init", objc_name="init")
-    Query_init :: proc(self: ^Query) -> ^Query ---
+    Query_init :: proc(self: ^Query) -> instancetype ---
 
     @(objc_type=Query, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Query_new :: proc() -> ^Query ---
 
     @(objc_type=Query, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Query_initWithCoder :: proc(self: ^Query, aDecoder: ^NS.Coder) -> ^Query ---
+    Query_initWithCoder :: proc(self: ^Query, aDecoder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Query, objc_selector="initWithRecordType:predicate:", objc_name="initWithRecordType")
-    Query_initWithRecordType :: proc(self: ^Query, recordType: ^NS.String, predicate: ^NS.Predicate) -> ^Query ---
+    Query_initWithRecordType :: proc(self: ^Query, recordType: ^NS.String, predicate: ^NS.Predicate) -> instancetype ---
 
     @(objc_type=Query, objc_selector="recordType", objc_name="recordType")
     Query_recordType :: proc(self: ^Query) -> ^NS.String ---

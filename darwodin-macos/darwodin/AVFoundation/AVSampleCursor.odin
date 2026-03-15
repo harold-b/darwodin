@@ -25,7 +25,7 @@ SampleCursor :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleCursor, objc_selector="init", objc_name="init")
-    SampleCursor_init :: proc(self: ^SampleCursor) -> ^SampleCursor ---
+    SampleCursor_init :: proc(self: ^SampleCursor) -> instancetype ---
 
     @(objc_type=SampleCursor, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SampleCursor_new :: proc() -> ^SampleCursor ---

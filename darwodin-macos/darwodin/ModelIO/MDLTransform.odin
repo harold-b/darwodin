@@ -24,22 +24,22 @@ Transform :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Transform, objc_selector="init", objc_name="init")
-    Transform_init :: proc(self: ^Transform) -> ^Transform ---
+    Transform_init :: proc(self: ^Transform) -> instancetype ---
 
     @(objc_type=Transform, objc_selector="initWithIdentity", objc_name="initWithIdentity")
-    Transform_initWithIdentity :: proc(self: ^Transform) -> ^Transform ---
+    Transform_initWithIdentity :: proc(self: ^Transform) -> instancetype ---
 
     @(objc_type=Transform, objc_selector="initWithTransformComponent:", objc_name="initWithTransformComponent_")
-    Transform_initWithTransformComponent_ :: proc(self: ^Transform, component: ^TransformComponent) -> ^Transform ---
+    Transform_initWithTransformComponent_ :: proc(self: ^Transform, component: ^TransformComponent) -> instancetype ---
 
     @(objc_type=Transform, objc_selector="initWithTransformComponent:resetsTransform:", objc_name="initWithTransformComponent_resetsTransform")
-    Transform_initWithTransformComponent_resetsTransform :: proc(self: ^Transform, component: ^TransformComponent, resetsTransform: bool) -> ^Transform ---
+    Transform_initWithTransformComponent_resetsTransform :: proc(self: ^Transform, component: ^TransformComponent, resetsTransform: bool) -> instancetype ---
 
     @(objc_type=Transform, objc_selector="initWithMatrix:", objc_name="initWithMatrix_")
-    Transform_initWithMatrix_ :: proc(self: ^Transform, _matrix: matrix[4,4]f32) -> ^Transform ---
+    Transform_initWithMatrix_ :: proc(self: ^Transform, _matrix: matrix[4,4]f32) -> instancetype ---
 
     @(objc_type=Transform, objc_selector="initWithMatrix:resetsTransform:", objc_name="initWithMatrix_resetsTransform")
-    Transform_initWithMatrix_resetsTransform :: proc(self: ^Transform, _matrix: matrix[4,4]f32, resetsTransform: bool) -> ^Transform ---
+    Transform_initWithMatrix_resetsTransform :: proc(self: ^Transform, _matrix: matrix[4,4]f32, resetsTransform: bool) -> instancetype ---
 
     @(objc_type=Transform, objc_selector="setIdentity", objc_name="setIdentity")
     Transform_setIdentity :: proc(self: ^Transform) ---

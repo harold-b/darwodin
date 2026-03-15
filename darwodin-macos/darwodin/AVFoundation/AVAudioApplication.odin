@@ -23,7 +23,7 @@ AudioApplication :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioApplication, objc_selector="init", objc_name="init")
-    AudioApplication_init :: proc(self: ^AudioApplication) -> ^AudioApplication ---
+    AudioApplication_init :: proc(self: ^AudioApplication) -> instancetype ---
 
     @(objc_type=AudioApplication, objc_selector="setInputMuted:error:", objc_name="setInputMuted")
     AudioApplication_setInputMuted :: proc(self: ^AudioApplication, muted: bool, outError: ^^NS.Error) -> bool ---

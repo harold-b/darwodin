@@ -26,12 +26,12 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithURL: proc(self: ^NS.FileWrapper, url: ^NS.URL, options: NS.FileWrapperReadingOptions, outError: ^^NS.Error) -> ^NS.FileWrapper,
-    initDirectoryWithFileWrappers: proc(self: ^NS.FileWrapper, childrenByPreferredName: ^NS.Dictionary) -> ^NS.FileWrapper,
-    initRegularFileWithContents: proc(self: ^NS.FileWrapper, contents: ^NS.Data) -> ^NS.FileWrapper,
-    initSymbolicLinkWithDestinationURL: proc(self: ^NS.FileWrapper, url: ^NS.URL) -> ^NS.FileWrapper,
-    initWithSerializedRepresentation: proc(self: ^NS.FileWrapper, serializeRepresentation: ^NS.Data) -> ^NS.FileWrapper,
-    initWithCoder: proc(self: ^NS.FileWrapper, inCoder: ^NS.Coder) -> ^NS.FileWrapper,
+    initWithURL: proc(self: ^NS.FileWrapper, url: ^NS.URL, options: NS.FileWrapperReadingOptions, outError: ^^NS.Error) -> instancetype,
+    initDirectoryWithFileWrappers: proc(self: ^NS.FileWrapper, childrenByPreferredName: ^NS.Dictionary) -> instancetype,
+    initRegularFileWithContents: proc(self: ^NS.FileWrapper, contents: ^NS.Data) -> instancetype,
+    initSymbolicLinkWithDestinationURL: proc(self: ^NS.FileWrapper, url: ^NS.URL) -> instancetype,
+    initWithSerializedRepresentation: proc(self: ^NS.FileWrapper, serializeRepresentation: ^NS.Data) -> instancetype,
+    initWithCoder: proc(self: ^NS.FileWrapper, inCoder: ^NS.Coder) -> instancetype,
     matchesContentsOfURL: proc(self: ^NS.FileWrapper, url: ^NS.URL) -> bool,
     readFromURL: proc(self: ^NS.FileWrapper, url: ^NS.URL, options: NS.FileWrapperReadingOptions, outError: ^^NS.Error) -> bool,
     writeToURL: proc(self: ^NS.FileWrapper, url: ^NS.URL, options: NS.FileWrapperWritingOptions, originalContentsURL: ^NS.URL, outError: ^^NS.Error) -> bool,
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^NS.FileWrapper, _: SEL, url: ^NS.URL, options: NS.FileWrapperReadingOptions, outError: ^^NS.Error) -> ^NS.FileWrapper {
+        initWithURL :: proc "c" (self: ^NS.FileWrapper, _: SEL, url: ^NS.URL, options: NS.FileWrapperReadingOptions, outError: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithURL:options:error:"), auto_cast initWithURL, "@@:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initDirectoryWithFileWrappers != nil {
-        initDirectoryWithFileWrappers :: proc "c" (self: ^NS.FileWrapper, _: SEL, childrenByPreferredName: ^NS.Dictionary) -> ^NS.FileWrapper {
+        initDirectoryWithFileWrappers :: proc "c" (self: ^NS.FileWrapper, _: SEL, childrenByPreferredName: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initDirectoryWithFileWrappers:"), auto_cast initDirectoryWithFileWrappers, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initRegularFileWithContents != nil {
-        initRegularFileWithContents :: proc "c" (self: ^NS.FileWrapper, _: SEL, contents: ^NS.Data) -> ^NS.FileWrapper {
+        initRegularFileWithContents :: proc "c" (self: ^NS.FileWrapper, _: SEL, contents: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initRegularFileWithContents:"), auto_cast initRegularFileWithContents, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initSymbolicLinkWithDestinationURL != nil {
-        initSymbolicLinkWithDestinationURL :: proc "c" (self: ^NS.FileWrapper, _: SEL, url: ^NS.URL) -> ^NS.FileWrapper {
+        initSymbolicLinkWithDestinationURL :: proc "c" (self: ^NS.FileWrapper, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initSymbolicLinkWithDestinationURL:"), auto_cast initSymbolicLinkWithDestinationURL, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithSerializedRepresentation != nil {
-        initWithSerializedRepresentation :: proc "c" (self: ^NS.FileWrapper, _: SEL, serializeRepresentation: ^NS.Data) -> ^NS.FileWrapper {
+        initWithSerializedRepresentation :: proc "c" (self: ^NS.FileWrapper, _: SEL, serializeRepresentation: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSerializedRepresentation:"), auto_cast initWithSerializedRepresentation, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.FileWrapper, _: SEL, inCoder: ^NS.Coder) -> ^NS.FileWrapper {
+        initWithCoder :: proc "c" (self: ^NS.FileWrapper, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

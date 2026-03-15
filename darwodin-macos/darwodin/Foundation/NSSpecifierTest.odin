@@ -20,11 +20,11 @@ SpecifierTest :: struct { using _: ScriptWhoseTest, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpecifierTest, objc_selector="init", objc_name="init")
-    SpecifierTest_init :: proc(self: ^SpecifierTest) -> ^SpecifierTest ---
+    SpecifierTest_init :: proc(self: ^SpecifierTest) -> instancetype ---
 
     @(objc_type=SpecifierTest, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    SpecifierTest_initWithCoder :: proc(self: ^SpecifierTest, inCoder: ^Coder) -> ^SpecifierTest ---
+    SpecifierTest_initWithCoder :: proc(self: ^SpecifierTest, inCoder: ^Coder) -> instancetype ---
 
     @(objc_type=SpecifierTest, objc_selector="initWithObjectSpecifier:comparisonOperator:testObject:", objc_name="initWithObjectSpecifier")
-    SpecifierTest_initWithObjectSpecifier :: proc(self: ^SpecifierTest, obj1: ^ScriptObjectSpecifier, compOp: TestComparisonOperation, obj2: id) -> ^SpecifierTest ---
+    SpecifierTest_initWithObjectSpecifier :: proc(self: ^SpecifierTest, obj1: ^ScriptObjectSpecifier, compOp: TestComparisonOperation, obj2: id) -> instancetype ---
 }

@@ -22,10 +22,10 @@ TableViewHeaderFooterView :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TableViewHeaderFooterView, objc_selector="initWithReuseIdentifier:", objc_name="initWithReuseIdentifier")
-    TableViewHeaderFooterView_initWithReuseIdentifier :: proc(self: ^TableViewHeaderFooterView, reuseIdentifier: ^NS.String) -> ^TableViewHeaderFooterView ---
+    TableViewHeaderFooterView_initWithReuseIdentifier :: proc(self: ^TableViewHeaderFooterView, reuseIdentifier: ^NS.String) -> instancetype ---
 
     @(objc_type=TableViewHeaderFooterView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TableViewHeaderFooterView_initWithCoder :: proc(self: ^TableViewHeaderFooterView, coder: ^NS.Coder) -> ^TableViewHeaderFooterView ---
+    TableViewHeaderFooterView_initWithCoder :: proc(self: ^TableViewHeaderFooterView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TableViewHeaderFooterView, objc_selector="setNeedsUpdateConfiguration", objc_name="setNeedsUpdateConfiguration")
     TableViewHeaderFooterView_setNeedsUpdateConfiguration :: proc(self: ^TableViewHeaderFooterView) ---

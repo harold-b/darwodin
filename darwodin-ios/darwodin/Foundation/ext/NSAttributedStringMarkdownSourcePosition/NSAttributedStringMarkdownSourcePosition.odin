@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithStartLine: proc(self: ^NS.AttributedStringMarkdownSourcePosition, startLine: NS.Integer, startColumn: NS.Integer, endLine: NS.Integer, endColumn: NS.Integer) -> ^NS.AttributedStringMarkdownSourcePosition,
+    initWithStartLine: proc(self: ^NS.AttributedStringMarkdownSourcePosition, startLine: NS.Integer, startColumn: NS.Integer, endLine: NS.Integer, endColumn: NS.Integer) -> instancetype,
     rangeInString: proc(self: ^NS.AttributedStringMarkdownSourcePosition, string: ^NS.String) -> NS._NSRange,
     startLine: proc(self: ^NS.AttributedStringMarkdownSourcePosition) -> NS.Integer,
     startColumn: proc(self: ^NS.AttributedStringMarkdownSourcePosition) -> NS.Integer,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithStartLine != nil {
-        initWithStartLine :: proc "c" (self: ^NS.AttributedStringMarkdownSourcePosition, _: SEL, startLine: NS.Integer, startColumn: NS.Integer, endLine: NS.Integer, endColumn: NS.Integer) -> ^NS.AttributedStringMarkdownSourcePosition {
+        initWithStartLine :: proc "c" (self: ^NS.AttributedStringMarkdownSourcePosition, _: SEL, startLine: NS.Integer, startColumn: NS.Integer, endLine: NS.Integer, endColumn: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

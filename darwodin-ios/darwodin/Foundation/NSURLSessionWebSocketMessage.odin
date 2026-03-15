@@ -20,13 +20,13 @@ URLSessionWebSocketMessage :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionWebSocketMessage, objc_selector="initWithData:", objc_name="initWithData")
-    URLSessionWebSocketMessage_initWithData :: proc(self: ^URLSessionWebSocketMessage, data: ^Data) -> ^URLSessionWebSocketMessage ---
+    URLSessionWebSocketMessage_initWithData :: proc(self: ^URLSessionWebSocketMessage, data: ^Data) -> instancetype ---
 
     @(objc_type=URLSessionWebSocketMessage, objc_selector="initWithString:", objc_name="initWithString")
-    URLSessionWebSocketMessage_initWithString :: proc(self: ^URLSessionWebSocketMessage, string: ^String) -> ^URLSessionWebSocketMessage ---
+    URLSessionWebSocketMessage_initWithString :: proc(self: ^URLSessionWebSocketMessage, string: ^String) -> instancetype ---
 
     @(objc_type=URLSessionWebSocketMessage, objc_selector="init", objc_name="init")
-    URLSessionWebSocketMessage_init :: proc(self: ^URLSessionWebSocketMessage) -> ^URLSessionWebSocketMessage ---
+    URLSessionWebSocketMessage_init :: proc(self: ^URLSessionWebSocketMessage) -> instancetype ---
 
     @(objc_type=URLSessionWebSocketMessage, objc_selector="new", objc_name="new", objc_is_class_method=true)
     URLSessionWebSocketMessage_new :: proc() -> ^URLSessionWebSocketMessage ---

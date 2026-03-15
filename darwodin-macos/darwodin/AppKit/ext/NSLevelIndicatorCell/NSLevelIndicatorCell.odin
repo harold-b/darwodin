@@ -30,7 +30,7 @@ import "../NSActionCell"
 
 VTable :: struct {
     super: NSActionCell.VTable,
-    initWithLevelIndicatorStyle: proc(self: ^AK.LevelIndicatorCell, levelIndicatorStyle: AK.LevelIndicatorStyle) -> ^AK.LevelIndicatorCell,
+    initWithLevelIndicatorStyle: proc(self: ^AK.LevelIndicatorCell, levelIndicatorStyle: AK.LevelIndicatorStyle) -> instancetype,
     rectOfTickMarkAtIndex: proc(self: ^AK.LevelIndicatorCell, index: NS.Integer) -> NS.Rect,
     tickMarkValueAtIndex: proc(self: ^AK.LevelIndicatorCell, index: NS.Integer) -> cffi.double,
     levelIndicatorStyle: proc(self: ^AK.LevelIndicatorCell) -> AK.LevelIndicatorStyle,
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSActionCell.extend(cls, &vt.super)
 
     if vt.initWithLevelIndicatorStyle != nil {
-        initWithLevelIndicatorStyle :: proc "c" (self: ^AK.LevelIndicatorCell, _: SEL, levelIndicatorStyle: AK.LevelIndicatorStyle) -> ^AK.LevelIndicatorCell {
+        initWithLevelIndicatorStyle :: proc "c" (self: ^AK.LevelIndicatorCell, _: SEL, levelIndicatorStyle: AK.LevelIndicatorStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

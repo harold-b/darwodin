@@ -25,7 +25,7 @@ foreign lib {
     MenuSystem_new :: proc() -> ^MenuSystem ---
 
     @(objc_type=MenuSystem, objc_selector="init", objc_name="init")
-    MenuSystem_init :: proc(self: ^MenuSystem) -> ^MenuSystem ---
+    MenuSystem_init :: proc(self: ^MenuSystem) -> instancetype ---
 
     @(objc_type=MenuSystem, objc_selector="setNeedsRebuild", objc_name="setNeedsRebuild")
     MenuSystem_setNeedsRebuild :: proc(self: ^MenuSystem) ---

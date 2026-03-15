@@ -31,12 +31,12 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     soundNamed: proc(name: ^NS.String) -> ^AK.Sound,
-    initWithContentsOfURL: proc(self: ^AK.Sound, url: ^NS.URL, byRef: bool) -> ^AK.Sound,
-    initWithContentsOfFile: proc(self: ^AK.Sound, path: ^NS.String, byRef: bool) -> ^AK.Sound,
-    initWithData: proc(self: ^AK.Sound, data: ^NS.Data) -> ^AK.Sound,
+    initWithContentsOfURL: proc(self: ^AK.Sound, url: ^NS.URL, byRef: bool) -> instancetype,
+    initWithContentsOfFile: proc(self: ^AK.Sound, path: ^NS.String, byRef: bool) -> instancetype,
+    initWithData: proc(self: ^AK.Sound, data: ^NS.Data) -> instancetype,
     setName: proc(self: ^AK.Sound, string: ^NS.String) -> bool,
     canInitWithPasteboard: proc(pasteboard: ^AK.Pasteboard) -> bool,
-    initWithPasteboard: proc(self: ^AK.Sound, pasteboard: ^AK.Pasteboard) -> ^AK.Sound,
+    initWithPasteboard: proc(self: ^AK.Sound, pasteboard: ^AK.Pasteboard) -> instancetype,
     writeToPasteboard: proc(self: ^AK.Sound, pasteboard: ^AK.Pasteboard),
     play: proc(self: ^AK.Sound) -> bool,
     pause: proc(self: ^AK.Sound) -> bool,
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("soundNamed:"), auto_cast soundNamed, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL != nil {
-        initWithContentsOfURL :: proc "c" (self: ^AK.Sound, _: SEL, url: ^NS.URL, byRef: bool) -> ^AK.Sound {
+        initWithContentsOfURL :: proc "c" (self: ^AK.Sound, _: SEL, url: ^NS.URL, byRef: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:byReference:"), auto_cast initWithContentsOfURL, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfFile != nil {
-        initWithContentsOfFile :: proc "c" (self: ^AK.Sound, _: SEL, path: ^NS.String, byRef: bool) -> ^AK.Sound {
+        initWithContentsOfFile :: proc "c" (self: ^AK.Sound, _: SEL, path: ^NS.String, byRef: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfFile:byReference:"), auto_cast initWithContentsOfFile, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.Sound, _: SEL, data: ^NS.Data) -> ^AK.Sound {
+        initWithData :: proc "c" (self: ^AK.Sound, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("canInitWithPasteboard:"), auto_cast canInitWithPasteboard, "B#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithPasteboard != nil {
-        initWithPasteboard :: proc "c" (self: ^AK.Sound, _: SEL, pasteboard: ^AK.Pasteboard) -> ^AK.Sound {
+        initWithPasteboard :: proc "c" (self: ^AK.Sound, _: SEL, pasteboard: ^AK.Pasteboard) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

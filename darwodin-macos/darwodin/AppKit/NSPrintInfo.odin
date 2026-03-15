@@ -27,13 +27,13 @@ PrintInfo :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PrintInfo, objc_selector="initWithDictionary:", objc_name="initWithDictionary")
-    PrintInfo_initWithDictionary :: proc(self: ^PrintInfo, attributes: ^NS.Dictionary) -> ^PrintInfo ---
+    PrintInfo_initWithDictionary :: proc(self: ^PrintInfo, attributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=PrintInfo, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    PrintInfo_initWithCoder :: proc(self: ^PrintInfo, coder: ^NS.Coder) -> ^PrintInfo ---
+    PrintInfo_initWithCoder :: proc(self: ^PrintInfo, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=PrintInfo, objc_selector="init", objc_name="init")
-    PrintInfo_init :: proc(self: ^PrintInfo) -> ^PrintInfo ---
+    PrintInfo_init :: proc(self: ^PrintInfo) -> instancetype ---
 
     @(objc_type=PrintInfo, objc_selector="dictionary", objc_name="dictionary")
     PrintInfo_dictionary :: proc(self: ^PrintInfo) -> ^NS.MutableDictionary ---

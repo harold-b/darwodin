@@ -22,10 +22,10 @@ AppleScript :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AppleScript, objc_selector="initWithContentsOfURL:error:", objc_name="initWithContentsOfURL")
-    AppleScript_initWithContentsOfURL :: proc(self: ^AppleScript, url: ^URL, errorInfo: ^^Dictionary) -> ^AppleScript ---
+    AppleScript_initWithContentsOfURL :: proc(self: ^AppleScript, url: ^URL, errorInfo: ^^Dictionary) -> instancetype ---
 
     @(objc_type=AppleScript, objc_selector="initWithSource:", objc_name="initWithSource")
-    AppleScript_initWithSource :: proc(self: ^AppleScript, source: ^String) -> ^AppleScript ---
+    AppleScript_initWithSource :: proc(self: ^AppleScript, source: ^String) -> instancetype ---
 
     @(objc_type=AppleScript, objc_selector="compileAndReturnError:", objc_name="compileAndReturnError")
     AppleScript_compileAndReturnError :: proc(self: ^AppleScript, errorInfo: ^^Dictionary) -> bool ---

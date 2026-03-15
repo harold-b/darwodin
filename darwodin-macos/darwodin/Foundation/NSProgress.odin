@@ -32,7 +32,7 @@ foreign lib {
     Progress_progressWithTotalUnitCount_parent_pendingUnitCount :: proc(unitCount: cffi.int64_t, parent: ^Progress, portionOfParentTotalUnitCount: cffi.int64_t) -> ^Progress ---
 
     @(objc_type=Progress, objc_selector="initWithParent:userInfo:", objc_name="initWithParent")
-    Progress_initWithParent :: proc(self: ^Progress, parentProgressOrNil: ^Progress, userInfoOrNil: ^Dictionary) -> ^Progress ---
+    Progress_initWithParent :: proc(self: ^Progress, parentProgressOrNil: ^Progress, userInfoOrNil: ^Dictionary) -> instancetype ---
 
     @(objc_type=Progress, objc_selector="becomeCurrentWithPendingUnitCount:", objc_name="becomeCurrentWithPendingUnitCount")
     Progress_becomeCurrentWithPendingUnitCount :: proc(self: ^Progress, unitCount: cffi.int64_t) ---

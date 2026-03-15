@@ -24,16 +24,16 @@ foreign lib {
     RecordZone_defaultRecordZone :: proc() -> ^RecordZone ---
 
     @(objc_type=RecordZone, objc_selector="init", objc_name="init")
-    RecordZone_init :: proc(self: ^RecordZone) -> ^RecordZone ---
+    RecordZone_init :: proc(self: ^RecordZone) -> instancetype ---
 
     @(objc_type=RecordZone, objc_selector="new", objc_name="new", objc_is_class_method=true)
     RecordZone_new :: proc() -> ^RecordZone ---
 
     @(objc_type=RecordZone, objc_selector="initWithZoneName:", objc_name="initWithZoneName")
-    RecordZone_initWithZoneName :: proc(self: ^RecordZone, zoneName: ^NS.String) -> ^RecordZone ---
+    RecordZone_initWithZoneName :: proc(self: ^RecordZone, zoneName: ^NS.String) -> instancetype ---
 
     @(objc_type=RecordZone, objc_selector="initWithZoneID:", objc_name="initWithZoneID")
-    RecordZone_initWithZoneID :: proc(self: ^RecordZone, zoneID: ^RecordZoneID) -> ^RecordZone ---
+    RecordZone_initWithZoneID :: proc(self: ^RecordZone, zoneID: ^RecordZoneID) -> instancetype ---
 
     @(objc_type=RecordZone, objc_selector="zoneID", objc_name="zoneID")
     RecordZone_zoneID :: proc(self: ^RecordZone) -> ^RecordZoneID ---

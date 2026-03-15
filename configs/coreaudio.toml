@@ -57,11 +57,26 @@ NoDistinctTypedefs = true
 DistinctTypeDefs = [
 ]
 
-AnonymousEnums = [
+SyntheticEnums = [
   { Name = "AudioFormatID",    FieldMatch = [ "^kAudioFormat(?!Flag).+" ] },
   { Name = "AudioFormatFlag",  FieldMatch = [ "^(kAudioFormatFlag(Is|sAre)|kLinearPCMFormatFlag|kAppleLosslessFormatFlag_).+" ] },
   { Name = "AudioFormatFlags", FieldMatch = [ "^kAudioFormatFlags(?!Are).+" ] },
 ]
+
+
+TypeTransforms = [
+  # Name mapping
+  { Type = '^AudioFormatFlags$', Transforms = [{ Kind = 'Map', Target = 'AudioFormatFlagsPreset' }] },
+  { Type = '^AudioFormatFlag$',  Transforms = [{ Kind = 'Map', Target = 'AudioFormatFlags' }] },
+  
+
+  { Type = '^(Audio).+', Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }] },
+
+  # # Transforms for bit_set types
+  { Type = '(Mask|(?<!Format)Flag|Option)$', Transforms = [{ Kind = 'AppendSuffix', Source = 's'   }] },
+  { Type = '^ChannelBitmap$',                Transforms = [{ Kind = 'RemoveSuffix', Source = 'Bit' }] },
+]
+
 
 [[Odin.Packages]]
 Name           = 'CoreAudio'
@@ -71,6 +86,12 @@ Filter         = '.*'
 
 # Imports = ["""
 # """]
+
+
+
+IgnoreEnumItems = [
+  '^AudioFormatFlag::kLinearPCMFormatFlag.+',
+]
 
 MacroFilter = [
   { 'Match' = '^(Audio|AU).+' }
@@ -83,13 +104,25 @@ MacroFilter = [
 # host_flavor_t = { File = 'host_info.h',  Type = 'host_flavor_t_int', Match = 'HOST_.+$' }
 
 
-
-
 [Odin.Packages.TypeMap]
-AudioFormatFlags = 'FormatFlag'
+AudioFormatFlags = 'FormatFlags'
 
 
 # Symbol Transformers
+
+[[Odin.BitSetMap]]
+Type       = '^AudioFormatFlag$'
+Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
+
+[[Odin.BitSetMap]]
+Type       = '(Mask|(?<!Format)Flags?|Options?)$' # Transforms the enum that will generate a bit_set to not have a collision type
+Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
+
+[[Odin.BitSetMap]]
+Type       = '^AudioChannelBitmap$' # Transforms the enum that will generate a bit_set to not have a collision type
+Transforms = [{ Kind = 'AppendSuffix', Source = 'Bit' }]
+
+
 [[Odin.EnumTransforms]]
 Type       = '.*'
 Transforms = [
@@ -106,27 +139,6 @@ Transforms = [
   { Kind = 'ReplacePrefix', Source = 'sAre', Target ='Are' },
 ]
 
-[[Odin.TypeTransforms]]
-Type       = '^(Audio).+'
-Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
-
-[[Odin.TypeTransforms]]
-Type       = '(Mask|(?<!Format)Flag|Option)$'  # Transforms for bit_set types
-Transforms = [{Kind = 'AppendSuffix', Source = 's' }]
-
-[[Odin.TypeTransforms]]
-Type       = '^ChannelBitmap$'  # Transforms for bit_set types
-Transforms = [{Kind = 'RemoveSuffix', Source = 'Bit' }]
-
-[[Odin.BitSetMap]]
-Type       = '(Mask|(?<!Format)Flags?|Options?)$' # Transforms the enum that will generate a bit_set to not have a collision type
-Transforms = [{ Kind = 'RemoveSuffix', Source = 's' }]
-
-[[Odin.BitSetMap]]
-Type       = '^AudioChannelBitmap$' # Transforms the enum that will generate a bit_set to not have a collision type
-Transforms = [{ Kind = 'AppendSuffix', Source = 'Bit' }]
-
-
 [[Odin.ProcTransforms]]
 Type       = '^(_*Audio).+'
 Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
@@ -138,3 +150,5 @@ Transforms = [{ Kind = 'ReplacePrefix', Source = '$group0', Target = 'k' }]
 [[Odin.VarTransforms]]
 Type       = '^(_*Audio).+'
 Transforms = [{ Kind = 'RemovePrefix', Source = '$group0' }]
+
+

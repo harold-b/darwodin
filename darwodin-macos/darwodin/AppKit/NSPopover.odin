@@ -28,10 +28,10 @@ Popover :: struct { using _: Responder,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Popover, objc_selector="init", objc_name="init")
-    Popover_init :: proc(self: ^Popover) -> ^Popover ---
+    Popover_init :: proc(self: ^Popover) -> instancetype ---
 
     @(objc_type=Popover, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Popover_initWithCoder :: proc(self: ^Popover, coder: ^NS.Coder) -> ^Popover ---
+    Popover_initWithCoder :: proc(self: ^Popover, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Popover, objc_selector="showRelativeToRect:ofView:preferredEdge:", objc_name="showRelativeToRect")
     Popover_showRelativeToRect :: proc(self: ^Popover, positioningRect: NS.Rect, positioningView: ^View, preferredEdge: NS.RectEdge) ---

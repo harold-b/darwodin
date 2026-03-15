@@ -25,7 +25,7 @@ foreign lib {
     OpenURLContext_new :: proc() -> ^OpenURLContext ---
 
     @(objc_type=OpenURLContext, objc_selector="init", objc_name="init")
-    OpenURLContext_init :: proc(self: ^OpenURLContext) -> ^OpenURLContext ---
+    OpenURLContext_init :: proc(self: ^OpenURLContext) -> instancetype ---
 
     @(objc_type=OpenURLContext, objc_selector="URL", objc_name="URL")
     OpenURLContext_URL :: proc(self: ^OpenURLContext) -> ^NS.URL ---

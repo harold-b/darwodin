@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    readingIntentWithURL: proc(url: ^NS.URL, options: NS.FileCoordinatorReadingOptions) -> ^NS.FileAccessIntent,
-    writingIntentWithURL: proc(url: ^NS.URL, options: NS.FileCoordinatorWritingOptions) -> ^NS.FileAccessIntent,
+    readingIntentWithURL: proc(url: ^NS.URL, options: NS.FileCoordinatorReadingOptions) -> instancetype,
+    writingIntentWithURL: proc(url: ^NS.URL, options: NS.FileCoordinatorWritingOptions) -> instancetype,
     _URL: proc(self: ^NS.FileAccessIntent) -> ^NS.URL,
 }
 
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.readingIntentWithURL != nil {
-        readingIntentWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, options: NS.FileCoordinatorReadingOptions) -> ^NS.FileAccessIntent {
+        readingIntentWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, options: NS.FileCoordinatorReadingOptions) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("readingIntentWithURL:options:"), auto_cast readingIntentWithURL, "@#:@L") do panic("Failed to register objC method.")
     }
     if vt.writingIntentWithURL != nil {
-        writingIntentWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, options: NS.FileCoordinatorWritingOptions) -> ^NS.FileAccessIntent {
+        writingIntentWithURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL, options: NS.FileCoordinatorWritingOptions) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

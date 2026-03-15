@@ -22,13 +22,13 @@ CellAccessoryPopUpMenu :: struct { using _: CellAccessory, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CellAccessoryPopUpMenu, objc_selector="initWithMenu:", objc_name="initWithMenu")
-    CellAccessoryPopUpMenu_initWithMenu :: proc(self: ^CellAccessoryPopUpMenu, menu: ^Menu) -> ^CellAccessoryPopUpMenu ---
+    CellAccessoryPopUpMenu_initWithMenu :: proc(self: ^CellAccessoryPopUpMenu, menu: ^Menu) -> instancetype ---
 
     @(objc_type=CellAccessoryPopUpMenu, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CellAccessoryPopUpMenu_initWithCoder :: proc(self: ^CellAccessoryPopUpMenu, coder: ^NS.Coder) -> ^CellAccessoryPopUpMenu ---
+    CellAccessoryPopUpMenu_initWithCoder :: proc(self: ^CellAccessoryPopUpMenu, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CellAccessoryPopUpMenu, objc_selector="init", objc_name="init")
-    CellAccessoryPopUpMenu_init :: proc(self: ^CellAccessoryPopUpMenu) -> ^CellAccessoryPopUpMenu ---
+    CellAccessoryPopUpMenu_init :: proc(self: ^CellAccessoryPopUpMenu) -> instancetype ---
 
     @(objc_type=CellAccessoryPopUpMenu, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CellAccessoryPopUpMenu_new :: proc() -> ^CellAccessoryPopUpMenu ---

@@ -22,16 +22,16 @@ TextDragPreviewRenderer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextDragPreviewRenderer, objc_selector="initWithLayoutManager:range:", objc_name="initWithLayoutManager_range")
-    TextDragPreviewRenderer_initWithLayoutManager_range :: proc(self: ^TextDragPreviewRenderer, layoutManager: ^NSLayoutManager, range: NS._NSRange) -> ^TextDragPreviewRenderer ---
+    TextDragPreviewRenderer_initWithLayoutManager_range :: proc(self: ^TextDragPreviewRenderer, layoutManager: ^NSLayoutManager, range: NS._NSRange) -> instancetype ---
 
     @(objc_type=TextDragPreviewRenderer, objc_selector="initWithLayoutManager:range:unifyRects:", objc_name="initWithLayoutManager_range_unifyRects")
-    TextDragPreviewRenderer_initWithLayoutManager_range_unifyRects :: proc(self: ^TextDragPreviewRenderer, layoutManager: ^NSLayoutManager, range: NS._NSRange, unifyRects: bool) -> ^TextDragPreviewRenderer ---
+    TextDragPreviewRenderer_initWithLayoutManager_range_unifyRects :: proc(self: ^TextDragPreviewRenderer, layoutManager: ^NSLayoutManager, range: NS._NSRange, unifyRects: bool) -> instancetype ---
 
     @(objc_type=TextDragPreviewRenderer, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextDragPreviewRenderer_new :: proc() -> ^TextDragPreviewRenderer ---
 
     @(objc_type=TextDragPreviewRenderer, objc_selector="init", objc_name="init")
-    TextDragPreviewRenderer_init :: proc(self: ^TextDragPreviewRenderer) -> ^TextDragPreviewRenderer ---
+    TextDragPreviewRenderer_init :: proc(self: ^TextDragPreviewRenderer) -> instancetype ---
 
     @(objc_type=TextDragPreviewRenderer, objc_selector="adjustFirstLineRect:bodyRect:lastLineRect:textOrigin:", objc_name="adjustFirstLineRect")
     TextDragPreviewRenderer_adjustFirstLineRect :: proc(self: ^TextDragPreviewRenderer, firstLineRect: ^CG.Rect, bodyRect: ^CG.Rect, lastLineRect: ^CG.Rect, origin: CG.Point) ---

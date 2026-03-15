@@ -24,7 +24,7 @@ FunctionStitchingInputNode :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FunctionStitchingInputNode, objc_selector="initWithArgumentIndex:", objc_name="initWithArgumentIndex")
-    FunctionStitchingInputNode_initWithArgumentIndex :: proc(self: ^FunctionStitchingInputNode, argument: NS.UInteger) -> ^FunctionStitchingInputNode ---
+    FunctionStitchingInputNode_initWithArgumentIndex :: proc(self: ^FunctionStitchingInputNode, argument: NS.UInteger) -> instancetype ---
 
     @(objc_type=FunctionStitchingInputNode, objc_selector="argumentIndex", objc_name="argumentIndex")
     FunctionStitchingInputNode_argumentIndex :: proc(self: ^FunctionStitchingInputNode) -> NS.UInteger ---

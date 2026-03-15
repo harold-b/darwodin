@@ -39,30 +39,30 @@ VTable :: struct {
     rangeOfData: proc(self: ^NS.Data, dataToFind: ^NS.Data, mask: NS.DataSearchOptions, searchRange: NS._NSRange) -> NS._NSRange,
     enumerateByteRangesUsingBlock: proc(self: ^NS.Data, block: ^Objc_Block(proc "c" (bytes: rawptr, byteRange: NS._NSRange, stop: ^bool))),
     description: proc(self: ^NS.Data) -> ^NS.String,
-    data: proc() -> ^NS.Data,
-    dataWithBytes: proc(bytes: rawptr, length: NS.UInteger) -> ^NS.Data,
-    dataWithBytesNoCopy_length: proc(bytes: rawptr, length: NS.UInteger) -> ^NS.Data,
-    dataWithBytesNoCopy_length_freeWhenDone: proc(bytes: rawptr, length: NS.UInteger, b: bool) -> ^NS.Data,
-    dataWithContentsOfFile_options_error: proc(path: ^NS.String, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data,
-    dataWithContentsOfURL_options_error: proc(url: ^NS.URL, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data,
-    dataWithContentsOfFile_: proc(path: ^NS.String) -> ^NS.Data,
-    dataWithContentsOfURL_: proc(url: ^NS.URL) -> ^NS.Data,
-    initWithBytes: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger) -> ^NS.Data,
-    initWithBytesNoCopy_length: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger) -> ^NS.Data,
-    initWithBytesNoCopy_length_freeWhenDone: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger, b: bool) -> ^NS.Data,
-    initWithBytesNoCopy_length_deallocator: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: NS.UInteger))) -> ^NS.Data,
-    initWithContentsOfFile_options_error: proc(self: ^NS.Data, path: ^NS.String, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data,
-    initWithContentsOfURL_options_error: proc(self: ^NS.Data, url: ^NS.URL, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data,
-    initWithContentsOfFile_: proc(self: ^NS.Data, path: ^NS.String) -> ^NS.Data,
-    initWithContentsOfURL_: proc(self: ^NS.Data, url: ^NS.URL) -> ^NS.Data,
-    initWithData: proc(self: ^NS.Data, data: ^NS.Data) -> ^NS.Data,
-    dataWithData: proc(data: ^NS.Data) -> ^NS.Data,
-    initWithBase64EncodedString: proc(self: ^NS.Data, base64String: ^NS.String, options: NS.DataBase64DecodingOptions) -> ^NS.Data,
+    data: proc() -> instancetype,
+    dataWithBytes: proc(bytes: rawptr, length: NS.UInteger) -> instancetype,
+    dataWithBytesNoCopy_length: proc(bytes: rawptr, length: NS.UInteger) -> instancetype,
+    dataWithBytesNoCopy_length_freeWhenDone: proc(bytes: rawptr, length: NS.UInteger, b: bool) -> instancetype,
+    dataWithContentsOfFile_options_error: proc(path: ^NS.String, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> instancetype,
+    dataWithContentsOfURL_options_error: proc(url: ^NS.URL, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> instancetype,
+    dataWithContentsOfFile_: proc(path: ^NS.String) -> instancetype,
+    dataWithContentsOfURL_: proc(url: ^NS.URL) -> instancetype,
+    initWithBytes: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger) -> instancetype,
+    initWithBytesNoCopy_length: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger) -> instancetype,
+    initWithBytesNoCopy_length_freeWhenDone: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger, b: bool) -> instancetype,
+    initWithBytesNoCopy_length_deallocator: proc(self: ^NS.Data, bytes: rawptr, length: NS.UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: NS.UInteger))) -> instancetype,
+    initWithContentsOfFile_options_error: proc(self: ^NS.Data, path: ^NS.String, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> instancetype,
+    initWithContentsOfURL_options_error: proc(self: ^NS.Data, url: ^NS.URL, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> instancetype,
+    initWithContentsOfFile_: proc(self: ^NS.Data, path: ^NS.String) -> instancetype,
+    initWithContentsOfURL_: proc(self: ^NS.Data, url: ^NS.URL) -> instancetype,
+    initWithData: proc(self: ^NS.Data, data: ^NS.Data) -> instancetype,
+    dataWithData: proc(data: ^NS.Data) -> instancetype,
+    initWithBase64EncodedString: proc(self: ^NS.Data, base64String: ^NS.String, options: NS.DataBase64DecodingOptions) -> instancetype,
     base64EncodedStringWithOptions: proc(self: ^NS.Data, options: NS.DataBase64EncodingOptions) -> ^NS.String,
-    initWithBase64EncodedData: proc(self: ^NS.Data, base64Data: ^NS.Data, options: NS.DataBase64DecodingOptions) -> ^NS.Data,
+    initWithBase64EncodedData: proc(self: ^NS.Data, base64Data: ^NS.Data, options: NS.DataBase64DecodingOptions) -> instancetype,
     base64EncodedDataWithOptions: proc(self: ^NS.Data, options: NS.DataBase64EncodingOptions) -> ^NS.Data,
-    decompressedDataUsingAlgorithm: proc(self: ^NS.Data, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> ^NS.Data,
-    compressedDataUsingAlgorithm: proc(self: ^NS.Data, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> ^NS.Data,
+    decompressedDataUsingAlgorithm: proc(self: ^NS.Data, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> instancetype,
+    compressedDataUsingAlgorithm: proc(self: ^NS.Data, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> instancetype,
     getBytes_: proc(self: ^NS.Data, buffer: rawptr),
     dataWithContentsOfMappedFile: proc(path: ^NS.String) -> id,
     initWithContentsOfMappedFile: proc(self: ^NS.Data, path: ^NS.String) -> id,
@@ -208,7 +208,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("description"), auto_cast description, "@@:") do panic("Failed to register objC method.")
     }
     if vt.data != nil {
-        data :: proc "c" (self: Class, _: SEL) -> ^NS.Data {
+        data :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -218,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("data"), auto_cast data, "@#:") do panic("Failed to register objC method.")
     }
     if vt.dataWithBytes != nil {
-        dataWithBytes :: proc "c" (self: Class, _: SEL, bytes: rawptr, length: NS.UInteger) -> ^NS.Data {
+        dataWithBytes :: proc "c" (self: Class, _: SEL, bytes: rawptr, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -228,7 +228,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithBytes:length:"), auto_cast dataWithBytes, "@#:^voidL") do panic("Failed to register objC method.")
     }
     if vt.dataWithBytesNoCopy_length != nil {
-        dataWithBytesNoCopy_length :: proc "c" (self: Class, _: SEL, bytes: rawptr, length: NS.UInteger) -> ^NS.Data {
+        dataWithBytesNoCopy_length :: proc "c" (self: Class, _: SEL, bytes: rawptr, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -238,7 +238,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithBytesNoCopy:length:"), auto_cast dataWithBytesNoCopy_length, "@#:^voidL") do panic("Failed to register objC method.")
     }
     if vt.dataWithBytesNoCopy_length_freeWhenDone != nil {
-        dataWithBytesNoCopy_length_freeWhenDone :: proc "c" (self: Class, _: SEL, bytes: rawptr, length: NS.UInteger, b: bool) -> ^NS.Data {
+        dataWithBytesNoCopy_length_freeWhenDone :: proc "c" (self: Class, _: SEL, bytes: rawptr, length: NS.UInteger, b: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -248,7 +248,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithBytesNoCopy:length:freeWhenDone:"), auto_cast dataWithBytesNoCopy_length_freeWhenDone, "@#:^voidLB") do panic("Failed to register objC method.")
     }
     if vt.dataWithContentsOfFile_options_error != nil {
-        dataWithContentsOfFile_options_error :: proc "c" (self: Class, _: SEL, path: ^NS.String, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data {
+        dataWithContentsOfFile_options_error :: proc "c" (self: Class, _: SEL, path: ^NS.String, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -258,7 +258,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithContentsOfFile:options:error:"), auto_cast dataWithContentsOfFile_options_error, "@#:@L^void") do panic("Failed to register objC method.")
     }
     if vt.dataWithContentsOfURL_options_error != nil {
-        dataWithContentsOfURL_options_error :: proc "c" (self: Class, _: SEL, url: ^NS.URL, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data {
+        dataWithContentsOfURL_options_error :: proc "c" (self: Class, _: SEL, url: ^NS.URL, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -268,7 +268,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithContentsOfURL:options:error:"), auto_cast dataWithContentsOfURL_options_error, "@#:@L^void") do panic("Failed to register objC method.")
     }
     if vt.dataWithContentsOfFile_ != nil {
-        dataWithContentsOfFile_ :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> ^NS.Data {
+        dataWithContentsOfFile_ :: proc "c" (self: Class, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -278,7 +278,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithContentsOfFile:"), auto_cast dataWithContentsOfFile_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.dataWithContentsOfURL_ != nil {
-        dataWithContentsOfURL_ :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> ^NS.Data {
+        dataWithContentsOfURL_ :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -288,7 +288,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithContentsOfURL:"), auto_cast dataWithContentsOfURL_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithBytes != nil {
-        initWithBytes :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger) -> ^NS.Data {
+        initWithBytes :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -298,7 +298,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytes:length:"), auto_cast initWithBytes, "@@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithBytesNoCopy_length != nil {
-        initWithBytesNoCopy_length :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger) -> ^NS.Data {
+        initWithBytesNoCopy_length :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -308,7 +308,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytesNoCopy:length:"), auto_cast initWithBytesNoCopy_length, "@@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithBytesNoCopy_length_freeWhenDone != nil {
-        initWithBytesNoCopy_length_freeWhenDone :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger, b: bool) -> ^NS.Data {
+        initWithBytesNoCopy_length_freeWhenDone :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger, b: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -318,7 +318,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytesNoCopy:length:freeWhenDone:"), auto_cast initWithBytesNoCopy_length_freeWhenDone, "@@:^voidLB") do panic("Failed to register objC method.")
     }
     if vt.initWithBytesNoCopy_length_deallocator != nil {
-        initWithBytesNoCopy_length_deallocator :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: NS.UInteger))) -> ^NS.Data {
+        initWithBytesNoCopy_length_deallocator :: proc "c" (self: ^NS.Data, _: SEL, bytes: rawptr, length: NS.UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: NS.UInteger))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -328,7 +328,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytesNoCopy:length:deallocator:"), auto_cast initWithBytesNoCopy_length_deallocator, "@@:^voidL?") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfFile_options_error != nil {
-        initWithContentsOfFile_options_error :: proc "c" (self: ^NS.Data, _: SEL, path: ^NS.String, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data {
+        initWithContentsOfFile_options_error :: proc "c" (self: ^NS.Data, _: SEL, path: ^NS.String, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -338,7 +338,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfFile:options:error:"), auto_cast initWithContentsOfFile_options_error, "@@:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL_options_error != nil {
-        initWithContentsOfURL_options_error :: proc "c" (self: ^NS.Data, _: SEL, url: ^NS.URL, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> ^NS.Data {
+        initWithContentsOfURL_options_error :: proc "c" (self: ^NS.Data, _: SEL, url: ^NS.URL, readOptionsMask: NS.DataReadingOptions, errorPtr: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -348,7 +348,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:options:error:"), auto_cast initWithContentsOfURL_options_error, "@@:@L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfFile_ != nil {
-        initWithContentsOfFile_ :: proc "c" (self: ^NS.Data, _: SEL, path: ^NS.String) -> ^NS.Data {
+        initWithContentsOfFile_ :: proc "c" (self: ^NS.Data, _: SEL, path: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -358,7 +358,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfFile:"), auto_cast initWithContentsOfFile_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL_ != nil {
-        initWithContentsOfURL_ :: proc "c" (self: ^NS.Data, _: SEL, url: ^NS.URL) -> ^NS.Data {
+        initWithContentsOfURL_ :: proc "c" (self: ^NS.Data, _: SEL, url: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -368,7 +368,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:"), auto_cast initWithContentsOfURL_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^NS.Data, _: SEL, data: ^NS.Data) -> ^NS.Data {
+        initWithData :: proc "c" (self: ^NS.Data, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -378,7 +378,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:"), auto_cast initWithData, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.dataWithData != nil {
-        dataWithData :: proc "c" (self: Class, _: SEL, data: ^NS.Data) -> ^NS.Data {
+        dataWithData :: proc "c" (self: Class, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -388,7 +388,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dataWithData:"), auto_cast dataWithData, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithBase64EncodedString != nil {
-        initWithBase64EncodedString :: proc "c" (self: ^NS.Data, _: SEL, base64String: ^NS.String, options: NS.DataBase64DecodingOptions) -> ^NS.Data {
+        initWithBase64EncodedString :: proc "c" (self: ^NS.Data, _: SEL, base64String: ^NS.String, options: NS.DataBase64DecodingOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -408,7 +408,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("base64EncodedStringWithOptions:"), auto_cast base64EncodedStringWithOptions, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.initWithBase64EncodedData != nil {
-        initWithBase64EncodedData :: proc "c" (self: ^NS.Data, _: SEL, base64Data: ^NS.Data, options: NS.DataBase64DecodingOptions) -> ^NS.Data {
+        initWithBase64EncodedData :: proc "c" (self: ^NS.Data, _: SEL, base64Data: ^NS.Data, options: NS.DataBase64DecodingOptions) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -428,7 +428,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("base64EncodedDataWithOptions:"), auto_cast base64EncodedDataWithOptions, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.decompressedDataUsingAlgorithm != nil {
-        decompressedDataUsingAlgorithm :: proc "c" (self: ^NS.Data, _: SEL, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> ^NS.Data {
+        decompressedDataUsingAlgorithm :: proc "c" (self: ^NS.Data, _: SEL, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -438,7 +438,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("decompressedDataUsingAlgorithm:error:"), auto_cast decompressedDataUsingAlgorithm, "@@:l^void") do panic("Failed to register objC method.")
     }
     if vt.compressedDataUsingAlgorithm != nil {
-        compressedDataUsingAlgorithm :: proc "c" (self: ^NS.Data, _: SEL, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> ^NS.Data {
+        compressedDataUsingAlgorithm :: proc "c" (self: ^NS.Data, _: SEL, algorithm: NS.DataCompressionAlgorithm, error: ^^NS.Error) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

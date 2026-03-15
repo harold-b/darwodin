@@ -26,19 +26,19 @@ CollectionLayoutDimension :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionLayoutDimension, objc_selector="fractionalWidthDimension:", objc_name="fractionalWidthDimension", objc_is_class_method=true)
-    CollectionLayoutDimension_fractionalWidthDimension :: proc(fractionalWidth: CG.Float) -> ^CollectionLayoutDimension ---
+    CollectionLayoutDimension_fractionalWidthDimension :: proc(fractionalWidth: CG.Float) -> instancetype ---
 
     @(objc_type=CollectionLayoutDimension, objc_selector="fractionalHeightDimension:", objc_name="fractionalHeightDimension", objc_is_class_method=true)
-    CollectionLayoutDimension_fractionalHeightDimension :: proc(fractionalHeight: CG.Float) -> ^CollectionLayoutDimension ---
+    CollectionLayoutDimension_fractionalHeightDimension :: proc(fractionalHeight: CG.Float) -> instancetype ---
 
     @(objc_type=CollectionLayoutDimension, objc_selector="absoluteDimension:", objc_name="absoluteDimension", objc_is_class_method=true)
-    CollectionLayoutDimension_absoluteDimension :: proc(absoluteDimension: CG.Float) -> ^CollectionLayoutDimension ---
+    CollectionLayoutDimension_absoluteDimension :: proc(absoluteDimension: CG.Float) -> instancetype ---
 
     @(objc_type=CollectionLayoutDimension, objc_selector="estimatedDimension:", objc_name="estimatedDimension", objc_is_class_method=true)
-    CollectionLayoutDimension_estimatedDimension :: proc(estimatedDimension: CG.Float) -> ^CollectionLayoutDimension ---
+    CollectionLayoutDimension_estimatedDimension :: proc(estimatedDimension: CG.Float) -> instancetype ---
 
     @(objc_type=CollectionLayoutDimension, objc_selector="init", objc_name="init")
-    CollectionLayoutDimension_init :: proc(self: ^CollectionLayoutDimension) -> ^CollectionLayoutDimension ---
+    CollectionLayoutDimension_init :: proc(self: ^CollectionLayoutDimension) -> instancetype ---
 
     @(objc_type=CollectionLayoutDimension, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionLayoutDimension_new :: proc() -> ^CollectionLayoutDimension ---

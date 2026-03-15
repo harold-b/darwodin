@@ -24,10 +24,10 @@ Toolbar :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Toolbar, objc_selector="initWithIdentifier:", objc_name="initWithIdentifier")
-    Toolbar_initWithIdentifier :: proc(self: ^Toolbar, identifier: ^NS.String) -> ^Toolbar ---
+    Toolbar_initWithIdentifier :: proc(self: ^Toolbar, identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=Toolbar, objc_selector="init", objc_name="init")
-    Toolbar_init :: proc(self: ^Toolbar) -> ^Toolbar ---
+    Toolbar_init :: proc(self: ^Toolbar) -> instancetype ---
 
     @(objc_type=Toolbar, objc_selector="insertItemWithItemIdentifier:atIndex:", objc_name="insertItemWithItemIdentifier")
     Toolbar_insertItemWithItemIdentifier :: proc(self: ^Toolbar, itemIdentifier: ^NS.String, index: NS.Integer) ---

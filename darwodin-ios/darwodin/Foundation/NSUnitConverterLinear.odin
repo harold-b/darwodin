@@ -22,10 +22,10 @@ UnitConverterLinear :: struct { using _: UnitConverter,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitConverterLinear, objc_selector="initWithCoefficient:", objc_name="initWithCoefficient_")
-    UnitConverterLinear_initWithCoefficient_ :: proc(self: ^UnitConverterLinear, coefficient: cffi.double) -> ^UnitConverterLinear ---
+    UnitConverterLinear_initWithCoefficient_ :: proc(self: ^UnitConverterLinear, coefficient: cffi.double) -> instancetype ---
 
     @(objc_type=UnitConverterLinear, objc_selector="initWithCoefficient:constant:", objc_name="initWithCoefficient_constant")
-    UnitConverterLinear_initWithCoefficient_constant :: proc(self: ^UnitConverterLinear, coefficient: cffi.double, constant: cffi.double) -> ^UnitConverterLinear ---
+    UnitConverterLinear_initWithCoefficient_constant :: proc(self: ^UnitConverterLinear, coefficient: cffi.double, constant: cffi.double) -> instancetype ---
 
     @(objc_type=UnitConverterLinear, objc_selector="coefficient", objc_name="coefficient")
     UnitConverterLinear_coefficient :: proc(self: ^UnitConverterLinear) -> cffi.double ---

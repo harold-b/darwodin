@@ -20,10 +20,10 @@ URLCache :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLCache, objc_selector="initWithMemoryCapacity:diskCapacity:diskPath:", objc_name="initWithMemoryCapacity_diskCapacity_diskPath")
-    URLCache_initWithMemoryCapacity_diskCapacity_diskPath :: proc(self: ^URLCache, memoryCapacity: UInteger, diskCapacity: UInteger, path: ^String) -> ^URLCache ---
+    URLCache_initWithMemoryCapacity_diskCapacity_diskPath :: proc(self: ^URLCache, memoryCapacity: UInteger, diskCapacity: UInteger, path: ^String) -> instancetype ---
 
     @(objc_type=URLCache, objc_selector="initWithMemoryCapacity:diskCapacity:directoryURL:", objc_name="initWithMemoryCapacity_diskCapacity_directoryURL")
-    URLCache_initWithMemoryCapacity_diskCapacity_directoryURL :: proc(self: ^URLCache, memoryCapacity: UInteger, diskCapacity: UInteger, directoryURL: ^URL) -> ^URLCache ---
+    URLCache_initWithMemoryCapacity_diskCapacity_directoryURL :: proc(self: ^URLCache, memoryCapacity: UInteger, diskCapacity: UInteger, directoryURL: ^URL) -> instancetype ---
 
     @(objc_type=URLCache, objc_selector="cachedResponseForRequest:", objc_name="cachedResponseForRequest")
     URLCache_cachedResponseForRequest :: proc(self: ^URLCache, request: ^URLRequest) -> ^CachedURLResponse ---

@@ -26,22 +26,22 @@ SpeechSynthesisMarker :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesisMarker, objc_selector="initWithMarkerType:forTextRange:atByteSampleOffset:", objc_name="initWithMarkerType")
-    SpeechSynthesisMarker_initWithMarkerType :: proc(self: ^SpeechSynthesisMarker, type: SpeechSynthesisMarkerMark, range: NS._NSRange, byteSampleOffset: NS.UInteger) -> ^SpeechSynthesisMarker ---
+    SpeechSynthesisMarker_initWithMarkerType :: proc(self: ^SpeechSynthesisMarker, type: SpeechSynthesisMarkerMark, range: NS._NSRange, byteSampleOffset: NS.UInteger) -> instancetype ---
 
     @(objc_type=SpeechSynthesisMarker, objc_selector="initWithWordRange:atByteSampleOffset:", objc_name="initWithWordRange")
-    SpeechSynthesisMarker_initWithWordRange :: proc(self: ^SpeechSynthesisMarker, range: NS._NSRange, byteSampleOffset: NS.Integer) -> ^SpeechSynthesisMarker ---
+    SpeechSynthesisMarker_initWithWordRange :: proc(self: ^SpeechSynthesisMarker, range: NS._NSRange, byteSampleOffset: NS.Integer) -> instancetype ---
 
     @(objc_type=SpeechSynthesisMarker, objc_selector="initWithSentenceRange:atByteSampleOffset:", objc_name="initWithSentenceRange")
-    SpeechSynthesisMarker_initWithSentenceRange :: proc(self: ^SpeechSynthesisMarker, range: NS._NSRange, byteSampleOffset: NS.Integer) -> ^SpeechSynthesisMarker ---
+    SpeechSynthesisMarker_initWithSentenceRange :: proc(self: ^SpeechSynthesisMarker, range: NS._NSRange, byteSampleOffset: NS.Integer) -> instancetype ---
 
     @(objc_type=SpeechSynthesisMarker, objc_selector="initWithParagraphRange:atByteSampleOffset:", objc_name="initWithParagraphRange")
-    SpeechSynthesisMarker_initWithParagraphRange :: proc(self: ^SpeechSynthesisMarker, range: NS._NSRange, byteSampleOffset: NS.Integer) -> ^SpeechSynthesisMarker ---
+    SpeechSynthesisMarker_initWithParagraphRange :: proc(self: ^SpeechSynthesisMarker, range: NS._NSRange, byteSampleOffset: NS.Integer) -> instancetype ---
 
     @(objc_type=SpeechSynthesisMarker, objc_selector="initWithPhonemeString:atByteSampleOffset:", objc_name="initWithPhonemeString")
-    SpeechSynthesisMarker_initWithPhonemeString :: proc(self: ^SpeechSynthesisMarker, phoneme: ^NS.String, byteSampleOffset: NS.Integer) -> ^SpeechSynthesisMarker ---
+    SpeechSynthesisMarker_initWithPhonemeString :: proc(self: ^SpeechSynthesisMarker, phoneme: ^NS.String, byteSampleOffset: NS.Integer) -> instancetype ---
 
     @(objc_type=SpeechSynthesisMarker, objc_selector="initWithBookmarkName:atByteSampleOffset:", objc_name="initWithBookmarkName")
-    SpeechSynthesisMarker_initWithBookmarkName :: proc(self: ^SpeechSynthesisMarker, mark: ^NS.String, byteSampleOffset: NS.Integer) -> ^SpeechSynthesisMarker ---
+    SpeechSynthesisMarker_initWithBookmarkName :: proc(self: ^SpeechSynthesisMarker, mark: ^NS.String, byteSampleOffset: NS.Integer) -> instancetype ---
 
     @(objc_type=SpeechSynthesisMarker, objc_selector="mark", objc_name="mark")
     SpeechSynthesisMarker_mark :: proc(self: ^SpeechSynthesisMarker) -> SpeechSynthesisMarkerMark ---

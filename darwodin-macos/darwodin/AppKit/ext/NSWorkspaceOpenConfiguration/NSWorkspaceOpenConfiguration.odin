@@ -30,7 +30,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    configuration: proc() -> ^AK.WorkspaceOpenConfiguration,
+    configuration: proc() -> instancetype,
     promptsUserIfNeeded: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
     setPromptsUserIfNeeded: proc(self: ^AK.WorkspaceOpenConfiguration, promptsUserIfNeeded: bool),
     addsToRecentItems: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.configuration != nil {
-        configuration :: proc "c" (self: Class, _: SEL) -> ^AK.WorkspaceOpenConfiguration {
+        configuration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

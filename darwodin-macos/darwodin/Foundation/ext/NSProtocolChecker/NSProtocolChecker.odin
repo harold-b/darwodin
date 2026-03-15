@@ -28,8 +28,8 @@ VTable :: struct {
     super: NSProxy.VTable,
     protocol: proc(self: ^NS.ProtocolChecker) -> ^NS.Protocol,
     target: proc(self: ^NS.ProtocolChecker) -> ^NS.Object,
-    protocolCheckerWithTarget: proc(anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> ^NS.ProtocolChecker,
-    initWithTarget: proc(self: ^NS.ProtocolChecker, anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> ^NS.ProtocolChecker,
+    protocolCheckerWithTarget: proc(anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> instancetype,
+    initWithTarget: proc(self: ^NS.ProtocolChecker, anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("target"), auto_cast target, "@@:") do panic("Failed to register objC method.")
     }
     if vt.protocolCheckerWithTarget != nil {
-        protocolCheckerWithTarget :: proc "c" (self: Class, _: SEL, anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> ^NS.ProtocolChecker {
+        protocolCheckerWithTarget :: proc "c" (self: Class, _: SEL, anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("protocolCheckerWithTarget:protocol:"), auto_cast protocolCheckerWithTarget, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithTarget != nil {
-        initWithTarget :: proc "c" (self: ^NS.ProtocolChecker, _: SEL, anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> ^NS.ProtocolChecker {
+        initWithTarget :: proc "c" (self: ^NS.ProtocolChecker, _: SEL, anObject: ^NS.Object, aProtocol: ^NS.Protocol) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

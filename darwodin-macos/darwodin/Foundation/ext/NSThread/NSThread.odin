@@ -34,9 +34,9 @@ VTable :: struct {
     exit: proc(),
     threadPriorityStatic: proc() -> cffi.double,
     setThreadPriorityStatic: proc(p: cffi.double) -> bool,
-    init: proc(self: ^NS.Thread) -> ^NS.Thread,
-    initWithTarget: proc(self: ^NS.Thread, target: id, selector: SEL, argument: id) -> ^NS.Thread,
-    initWithBlock: proc(self: ^NS.Thread, block: ^Objc_Block(proc "c" ())) -> ^NS.Thread,
+    init: proc(self: ^NS.Thread) -> instancetype,
+    initWithTarget: proc(self: ^NS.Thread, target: id, selector: SEL, argument: id) -> instancetype,
+    initWithBlock: proc(self: ^NS.Thread, block: ^Objc_Block(proc "c" ())) -> instancetype,
     cancel: proc(self: ^NS.Thread),
     start: proc(self: ^NS.Thread),
     _main: proc(self: ^NS.Thread),
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setThreadPriority:"), auto_cast setThreadPriorityStatic, "B#:d") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.Thread, _: SEL) -> ^NS.Thread {
+        init :: proc "c" (self: ^NS.Thread, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -158,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTarget != nil {
-        initWithTarget :: proc "c" (self: ^NS.Thread, _: SEL, target: id, selector: SEL, argument: id) -> ^NS.Thread {
+        initWithTarget :: proc "c" (self: ^NS.Thread, _: SEL, target: id, selector: SEL, argument: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -168,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTarget:selector:object:"), auto_cast initWithTarget, "@@:@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithBlock != nil {
-        initWithBlock :: proc "c" (self: ^NS.Thread, _: SEL, block: ^Objc_Block(proc "c" ())) -> ^NS.Thread {
+        initWithBlock :: proc "c" (self: ^NS.Thread, _: SEL, block: ^Objc_Block(proc "c" ())) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

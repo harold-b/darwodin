@@ -23,22 +23,22 @@ AssetWriterInput :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriterInput, objc_selector="init", objc_name="init")
-    AssetWriterInput_init :: proc(self: ^AssetWriterInput) -> ^AssetWriterInput ---
+    AssetWriterInput_init :: proc(self: ^AssetWriterInput) -> instancetype ---
 
     @(objc_type=AssetWriterInput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetWriterInput_new :: proc() -> ^AssetWriterInput ---
 
     @(objc_type=AssetWriterInput, objc_selector="assetWriterInputWithMediaType:outputSettings:", objc_name="assetWriterInputWithMediaType_outputSettings", objc_is_class_method=true)
-    AssetWriterInput_assetWriterInputWithMediaType_outputSettings :: proc(mediaType: ^NS.String, outputSettings: ^NS.Dictionary) -> ^AssetWriterInput ---
+    AssetWriterInput_assetWriterInputWithMediaType_outputSettings :: proc(mediaType: ^NS.String, outputSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AssetWriterInput, objc_selector="assetWriterInputWithMediaType:outputSettings:sourceFormatHint:", objc_name="assetWriterInputWithMediaType_outputSettings_sourceFormatHint", objc_is_class_method=true)
-    AssetWriterInput_assetWriterInputWithMediaType_outputSettings_sourceFormatHint :: proc(mediaType: ^NS.String, outputSettings: ^NS.Dictionary, sourceFormatHint: CM.FormatDescriptionRef) -> ^AssetWriterInput ---
+    AssetWriterInput_assetWriterInputWithMediaType_outputSettings_sourceFormatHint :: proc(mediaType: ^NS.String, outputSettings: ^NS.Dictionary, sourceFormatHint: CM.FormatDescriptionRef) -> instancetype ---
 
     @(objc_type=AssetWriterInput, objc_selector="initWithMediaType:outputSettings:", objc_name="initWithMediaType_outputSettings")
-    AssetWriterInput_initWithMediaType_outputSettings :: proc(self: ^AssetWriterInput, mediaType: ^NS.String, outputSettings: ^NS.Dictionary) -> ^AssetWriterInput ---
+    AssetWriterInput_initWithMediaType_outputSettings :: proc(self: ^AssetWriterInput, mediaType: ^NS.String, outputSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=AssetWriterInput, objc_selector="initWithMediaType:outputSettings:sourceFormatHint:", objc_name="initWithMediaType_outputSettings_sourceFormatHint")
-    AssetWriterInput_initWithMediaType_outputSettings_sourceFormatHint :: proc(self: ^AssetWriterInput, mediaType: ^NS.String, outputSettings: ^NS.Dictionary, sourceFormatHint: CM.FormatDescriptionRef) -> ^AssetWriterInput ---
+    AssetWriterInput_initWithMediaType_outputSettings_sourceFormatHint :: proc(self: ^AssetWriterInput, mediaType: ^NS.String, outputSettings: ^NS.Dictionary, sourceFormatHint: CM.FormatDescriptionRef) -> instancetype ---
 
     @(objc_type=AssetWriterInput, objc_selector="requestMediaDataWhenReadyOnQueue:usingBlock:", objc_name="requestMediaDataWhenReadyOnQueue")
     AssetWriterInput_requestMediaDataWhenReadyOnQueue :: proc(self: ^AssetWriterInput, queue: CF.dispatch_queue_t, block: ^Objc_Block(proc "c" ())) ---

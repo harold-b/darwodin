@@ -75,10 +75,10 @@ VTable :: struct {
     setAutomaticTextCompletionEnabled: proc(self: ^AK.TextField, automaticTextCompletionEnabled: bool),
     allowsCharacterPickerTouchBarItem: proc(self: ^AK.TextField) -> bool,
     setAllowsCharacterPickerTouchBarItem: proc(self: ^AK.TextField, allowsCharacterPickerTouchBarItem: bool),
-    labelWithString: proc(stringValue: ^NS.String) -> ^AK.TextField,
-    wrappingLabelWithString: proc(stringValue: ^NS.String) -> ^AK.TextField,
-    labelWithAttributedString: proc(attributedStringValue: ^NS.AttributedString) -> ^AK.TextField,
-    textFieldWithString: proc(stringValue: ^NS.String) -> ^AK.TextField,
+    labelWithString: proc(stringValue: ^NS.String) -> instancetype,
+    wrappingLabelWithString: proc(stringValue: ^NS.String) -> instancetype,
+    labelWithAttributedString: proc(attributedStringValue: ^NS.AttributedString) -> instancetype,
+    textFieldWithString: proc(stringValue: ^NS.String) -> instancetype,
     allowsEditingTextAttributes: proc(self: ^AK.TextField) -> bool,
     setAllowsEditingTextAttributes: proc(self: ^AK.TextField, allowsEditingTextAttributes: bool),
     importsGraphics: proc(self: ^AK.TextField) -> bool,
@@ -544,7 +544,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsCharacterPickerTouchBarItem:"), auto_cast setAllowsCharacterPickerTouchBarItem, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.labelWithString != nil {
-        labelWithString :: proc "c" (self: Class, _: SEL, stringValue: ^NS.String) -> ^AK.TextField {
+        labelWithString :: proc "c" (self: Class, _: SEL, stringValue: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -554,7 +554,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("labelWithString:"), auto_cast labelWithString, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.wrappingLabelWithString != nil {
-        wrappingLabelWithString :: proc "c" (self: Class, _: SEL, stringValue: ^NS.String) -> ^AK.TextField {
+        wrappingLabelWithString :: proc "c" (self: Class, _: SEL, stringValue: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -564,7 +564,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("wrappingLabelWithString:"), auto_cast wrappingLabelWithString, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.labelWithAttributedString != nil {
-        labelWithAttributedString :: proc "c" (self: Class, _: SEL, attributedStringValue: ^NS.AttributedString) -> ^AK.TextField {
+        labelWithAttributedString :: proc "c" (self: Class, _: SEL, attributedStringValue: ^NS.AttributedString) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -574,7 +574,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("labelWithAttributedString:"), auto_cast labelWithAttributedString, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.textFieldWithString != nil {
-        textFieldWithString :: proc "c" (self: Class, _: SEL, stringValue: ^NS.String) -> ^AK.TextField {
+        textFieldWithString :: proc "c" (self: Class, _: SEL, stringValue: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

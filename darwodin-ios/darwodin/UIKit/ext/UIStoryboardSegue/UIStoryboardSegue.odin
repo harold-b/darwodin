@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    segueWithIdentifier: proc(identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController, performHandler: ^Objc_Block(proc "c" ())) -> ^UI.StoryboardSegue,
-    initWithIdentifier: proc(self: ^UI.StoryboardSegue, identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController) -> ^UI.StoryboardSegue,
-    init: proc(self: ^UI.StoryboardSegue) -> ^UI.StoryboardSegue,
+    segueWithIdentifier: proc(identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController, performHandler: ^Objc_Block(proc "c" ())) -> instancetype,
+    initWithIdentifier: proc(self: ^UI.StoryboardSegue, identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController) -> instancetype,
+    init: proc(self: ^UI.StoryboardSegue) -> instancetype,
     perform: proc(self: ^UI.StoryboardSegue),
     identifier: proc(self: ^UI.StoryboardSegue) -> ^NS.String,
     sourceViewController: proc(self: ^UI.StoryboardSegue) -> ^UI.ViewController,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.segueWithIdentifier != nil {
-        segueWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController, performHandler: ^Objc_Block(proc "c" ())) -> ^UI.StoryboardSegue {
+        segueWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController, performHandler: ^Objc_Block(proc "c" ())) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("segueWithIdentifier:source:destination:performHandler:"), auto_cast segueWithIdentifier, "@#:@@@?") do panic("Failed to register objC method.")
     }
     if vt.initWithIdentifier != nil {
-        initWithIdentifier :: proc "c" (self: ^UI.StoryboardSegue, _: SEL, identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController) -> ^UI.StoryboardSegue {
+        initWithIdentifier :: proc "c" (self: ^UI.StoryboardSegue, _: SEL, identifier: ^NS.String, source: ^UI.ViewController, destination: ^UI.ViewController) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIdentifier:source:destination:"), auto_cast initWithIdentifier, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.StoryboardSegue, _: SEL) -> ^UI.StoryboardSegue {
+        init :: proc "c" (self: ^UI.StoryboardSegue, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

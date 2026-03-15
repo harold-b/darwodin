@@ -29,9 +29,9 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.UpdateInfo,
-    init: proc(self: ^UI.UpdateInfo) -> ^UI.UpdateInfo,
-    currentUpdateInfoForWindowScene: proc(windowScene: ^UI.WindowScene) -> ^UI.UpdateInfo,
-    currentUpdateInfoForView: proc(view: ^UI.View) -> ^UI.UpdateInfo,
+    init: proc(self: ^UI.UpdateInfo) -> instancetype,
+    currentUpdateInfoForWindowScene: proc(windowScene: ^UI.WindowScene) -> instancetype,
+    currentUpdateInfoForView: proc(view: ^UI.View) -> instancetype,
     modelTime: proc(self: ^UI.UpdateInfo) -> NS.TimeInterval,
     completionDeadlineTime: proc(self: ^UI.UpdateInfo) -> NS.TimeInterval,
     estimatedPresentationTime: proc(self: ^UI.UpdateInfo) -> NS.TimeInterval,
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.UpdateInfo, _: SEL) -> ^UI.UpdateInfo {
+        init :: proc "c" (self: ^UI.UpdateInfo, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.currentUpdateInfoForWindowScene != nil {
-        currentUpdateInfoForWindowScene :: proc "c" (self: Class, _: SEL, windowScene: ^UI.WindowScene) -> ^UI.UpdateInfo {
+        currentUpdateInfoForWindowScene :: proc "c" (self: Class, _: SEL, windowScene: ^UI.WindowScene) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("currentUpdateInfoForWindowScene:"), auto_cast currentUpdateInfoForWindowScene, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.currentUpdateInfoForView != nil {
-        currentUpdateInfoForView :: proc "c" (self: Class, _: SEL, view: ^UI.View) -> ^UI.UpdateInfo {
+        currentUpdateInfoForView :: proc "c" (self: Class, _: SEL, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

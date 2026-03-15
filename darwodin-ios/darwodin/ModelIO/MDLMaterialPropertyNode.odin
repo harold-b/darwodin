@@ -23,10 +23,10 @@ MaterialPropertyNode :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MaterialPropertyNode, objc_selector="init", objc_name="init")
-    MaterialPropertyNode_init :: proc(self: ^MaterialPropertyNode) -> ^MaterialPropertyNode ---
+    MaterialPropertyNode_init :: proc(self: ^MaterialPropertyNode) -> instancetype ---
 
     @(objc_type=MaterialPropertyNode, objc_selector="initWithInputs:outputs:evaluationFunction:", objc_name="initWithInputs")
-    MaterialPropertyNode_initWithInputs :: proc(self: ^MaterialPropertyNode, inputs: ^NS.Array, outputs: ^NS.Array, function: ^Objc_Block(proc "c" (_: ^MaterialPropertyNode))) -> ^MaterialPropertyNode ---
+    MaterialPropertyNode_initWithInputs :: proc(self: ^MaterialPropertyNode, inputs: ^NS.Array, outputs: ^NS.Array, function: ^Objc_Block(proc "c" (_: ^MaterialPropertyNode))) -> instancetype ---
 
     @(objc_type=MaterialPropertyNode, objc_selector="evaluationFunction", objc_name="evaluationFunction")
     MaterialPropertyNode_evaluationFunction :: proc(self: ^MaterialPropertyNode) -> ^Objc_Block(proc "c" ()) ---

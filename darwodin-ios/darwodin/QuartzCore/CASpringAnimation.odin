@@ -21,7 +21,7 @@ SpringAnimation :: struct { using _: BasicAnimation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpringAnimation, objc_selector="initWithPerceptualDuration:bounce:", objc_name="initWithPerceptualDuration")
-    SpringAnimation_initWithPerceptualDuration :: proc(self: ^SpringAnimation, perceptualDuration: CF.TimeInterval, bounce: CG.Float) -> ^SpringAnimation ---
+    SpringAnimation_initWithPerceptualDuration :: proc(self: ^SpringAnimation, perceptualDuration: CF.TimeInterval, bounce: CG.Float) -> instancetype ---
 
     @(objc_type=SpringAnimation, objc_selector="mass", objc_name="mass")
     SpringAnimation_mass :: proc(self: ^SpringAnimation) -> CG.Float ---

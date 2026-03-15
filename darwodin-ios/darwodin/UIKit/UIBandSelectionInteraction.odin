@@ -24,10 +24,10 @@ BandSelectionInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BandSelectionInteraction, objc_selector="initWithSelectionHandler:", objc_name="initWithSelectionHandler")
-    BandSelectionInteraction_initWithSelectionHandler :: proc(self: ^BandSelectionInteraction, selectionHandler: ^Objc_Block(proc "c" (interaction: ^BandSelectionInteraction))) -> ^BandSelectionInteraction ---
+    BandSelectionInteraction_initWithSelectionHandler :: proc(self: ^BandSelectionInteraction, selectionHandler: ^Objc_Block(proc "c" (interaction: ^BandSelectionInteraction))) -> instancetype ---
 
     @(objc_type=BandSelectionInteraction, objc_selector="init", objc_name="init")
-    BandSelectionInteraction_init :: proc(self: ^BandSelectionInteraction) -> ^BandSelectionInteraction ---
+    BandSelectionInteraction_init :: proc(self: ^BandSelectionInteraction) -> instancetype ---
 
     @(objc_type=BandSelectionInteraction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     BandSelectionInteraction_new :: proc() -> ^BandSelectionInteraction ---

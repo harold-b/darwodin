@@ -30,8 +30,8 @@ import "../NSResponder"
 
 VTable :: struct {
     super: NSResponder.VTable,
-    initWithNibName: proc(self: ^AK.ViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^AK.ViewController,
-    initWithCoder: proc(self: ^AK.ViewController, coder: ^NS.Coder) -> ^AK.ViewController,
+    initWithNibName: proc(self: ^AK.ViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    initWithCoder: proc(self: ^AK.ViewController, coder: ^NS.Coder) -> instancetype,
     loadView: proc(self: ^AK.ViewController),
     loadViewIfNeeded: proc(self: ^AK.ViewController),
     commitEditingWithDelegate: proc(self: ^AK.ViewController, delegate: id, didCommitSelector: SEL, contextInfo: rawptr),
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSResponder.extend(cls, &vt.super)
 
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^AK.ViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^AK.ViewController {
+        initWithNibName :: proc "c" (self: ^AK.ViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ViewController, _: SEL, coder: ^NS.Coder) -> ^AK.ViewController {
+        initWithCoder :: proc "c" (self: ^AK.ViewController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

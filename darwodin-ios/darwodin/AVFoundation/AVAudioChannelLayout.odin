@@ -25,22 +25,22 @@ AudioChannelLayout :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioChannelLayout, objc_selector="init", objc_name="init")
-    AudioChannelLayout_init :: proc(self: ^AudioChannelLayout) -> ^AudioChannelLayout ---
+    AudioChannelLayout_init :: proc(self: ^AudioChannelLayout) -> instancetype ---
 
     @(objc_type=AudioChannelLayout, objc_selector="initWithLayoutTag:", objc_name="initWithLayoutTag")
-    AudioChannelLayout_initWithLayoutTag :: proc(self: ^AudioChannelLayout, layoutTag: Audio.ChannelLayoutTag) -> ^AudioChannelLayout ---
+    AudioChannelLayout_initWithLayoutTag :: proc(self: ^AudioChannelLayout, layoutTag: Audio.ChannelLayoutTag) -> instancetype ---
 
     @(objc_type=AudioChannelLayout, objc_selector="initWithLayout:", objc_name="initWithLayout")
-    AudioChannelLayout_initWithLayout :: proc(self: ^AudioChannelLayout, layout: ^Audio.ChannelLayout) -> ^AudioChannelLayout ---
+    AudioChannelLayout_initWithLayout :: proc(self: ^AudioChannelLayout, layout: ^Audio.ChannelLayout) -> instancetype ---
 
     @(objc_type=AudioChannelLayout, objc_selector="isEqual:", objc_name="isEqual")
     AudioChannelLayout_isEqual :: proc(self: ^AudioChannelLayout, object: id) -> bool ---
 
     @(objc_type=AudioChannelLayout, objc_selector="layoutWithLayoutTag:", objc_name="layoutWithLayoutTag", objc_is_class_method=true)
-    AudioChannelLayout_layoutWithLayoutTag :: proc(layoutTag: Audio.ChannelLayoutTag) -> ^AudioChannelLayout ---
+    AudioChannelLayout_layoutWithLayoutTag :: proc(layoutTag: Audio.ChannelLayoutTag) -> instancetype ---
 
     @(objc_type=AudioChannelLayout, objc_selector="layoutWithLayout:", objc_name="layoutWithLayout", objc_is_class_method=true)
-    AudioChannelLayout_layoutWithLayout :: proc(layout: ^Audio.ChannelLayout) -> ^AudioChannelLayout ---
+    AudioChannelLayout_layoutWithLayout :: proc(layout: ^Audio.ChannelLayout) -> instancetype ---
 
     @(objc_type=AudioChannelLayout, objc_selector="layoutTag", objc_name="layoutTag")
     AudioChannelLayout_layoutTag :: proc(self: ^AudioChannelLayout) -> Audio.ChannelLayoutTag ---

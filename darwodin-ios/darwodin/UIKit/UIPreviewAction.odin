@@ -25,7 +25,7 @@ PreviewAction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PreviewAction, objc_selector="actionWithTitle:style:handler:", objc_name="actionWithTitle", objc_is_class_method=true)
-    PreviewAction_actionWithTitle :: proc(title: ^NS.String, style: PreviewActionStyle, handler: ^Objc_Block(proc "c" (action: ^PreviewAction, previewViewController: ^ViewController))) -> ^PreviewAction ---
+    PreviewAction_actionWithTitle :: proc(title: ^NS.String, style: PreviewActionStyle, handler: ^Objc_Block(proc "c" (action: ^PreviewAction, previewViewController: ^ViewController))) -> instancetype ---
 
     @(objc_type=PreviewAction, objc_selector="handler", objc_name="handler")
     PreviewAction_handler :: proc(self: ^PreviewAction) -> ^Objc_Block(proc "c" ()) ---

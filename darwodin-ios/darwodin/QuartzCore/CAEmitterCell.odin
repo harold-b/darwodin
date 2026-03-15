@@ -24,7 +24,7 @@ EmitterCell :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=EmitterCell, objc_selector="emitterCell", objc_name="emitterCell", objc_is_class_method=true)
-    EmitterCell_emitterCell :: proc() -> ^EmitterCell ---
+    EmitterCell_emitterCell :: proc() -> instancetype ---
 
     @(objc_type=EmitterCell, objc_selector="defaultValueForKey:", objc_name="defaultValueForKey", objc_is_class_method=true)
     EmitterCell_defaultValueForKey :: proc(key: ^NS.String) -> id ---

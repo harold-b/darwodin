@@ -22,13 +22,13 @@ AlertView :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AlertView, objc_selector="initWithTitle:message:delegate:cancelButtonTitle:otherButtonTitles:", objc_name="initWithTitle")
-    AlertView_initWithTitle :: proc(self: ^AlertView, title: ^NS.String, message: ^NS.String, delegate: id, cancelButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> ^AlertView ---
+    AlertView_initWithTitle :: proc(self: ^AlertView, title: ^NS.String, message: ^NS.String, delegate: id, cancelButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> instancetype ---
 
     @(objc_type=AlertView, objc_selector="initWithFrame:", objc_name="initWithFrame")
     AlertView_initWithFrame :: proc(self: ^AlertView, frame: CG.Rect) -> id ---
 
     @(objc_type=AlertView, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    AlertView_initWithCoder :: proc(self: ^AlertView, coder: ^NS.Coder) -> ^AlertView ---
+    AlertView_initWithCoder :: proc(self: ^AlertView, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=AlertView, objc_selector="addButtonWithTitle:", objc_name="addButtonWithTitle")
     AlertView_addButtonWithTitle :: proc(self: ^AlertView, title: ^NS.String) -> NS.Integer ---

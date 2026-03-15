@@ -24,7 +24,7 @@ PackedJointAnimation :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PackedJointAnimation, objc_selector="initWithName:jointPaths:", objc_name="initWithName")
-    PackedJointAnimation_initWithName :: proc(self: ^PackedJointAnimation, name: ^NS.String, jointPaths: ^NS.Array) -> ^PackedJointAnimation ---
+    PackedJointAnimation_initWithName :: proc(self: ^PackedJointAnimation, name: ^NS.String, jointPaths: ^NS.Array) -> instancetype ---
 
     @(objc_type=PackedJointAnimation, objc_selector="jointPaths", objc_name="jointPaths")
     PackedJointAnimation_jointPaths :: proc(self: ^PackedJointAnimation) -> ^NS.Array ---

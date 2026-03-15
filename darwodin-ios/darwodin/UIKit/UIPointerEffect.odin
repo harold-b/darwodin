@@ -25,10 +25,10 @@ PointerEffect :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerEffect, objc_selector="effectWithPreview:", objc_name="effectWithPreview", objc_is_class_method=true)
-    PointerEffect_effectWithPreview :: proc(preview: ^TargetedPreview) -> ^PointerEffect ---
+    PointerEffect_effectWithPreview :: proc(preview: ^TargetedPreview) -> instancetype ---
 
     @(objc_type=PointerEffect, objc_selector="init", objc_name="init")
-    PointerEffect_init :: proc(self: ^PointerEffect) -> ^PointerEffect ---
+    PointerEffect_init :: proc(self: ^PointerEffect) -> instancetype ---
 
     @(objc_type=PointerEffect, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PointerEffect_new :: proc() -> ^PointerEffect ---

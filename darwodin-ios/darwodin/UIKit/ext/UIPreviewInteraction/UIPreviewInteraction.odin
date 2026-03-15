@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithView: proc(self: ^UI.PreviewInteraction, view: ^UI.View) -> ^UI.PreviewInteraction,
-    init: proc(self: ^UI.PreviewInteraction) -> ^UI.PreviewInteraction,
+    initWithView: proc(self: ^UI.PreviewInteraction, view: ^UI.View) -> instancetype,
+    init: proc(self: ^UI.PreviewInteraction) -> instancetype,
     locationInCoordinateSpace: proc(self: ^UI.PreviewInteraction, coordinateSpace: ^UI.CoordinateSpace) -> CG.Point,
     cancelInteraction: proc(self: ^UI.PreviewInteraction),
     view: proc(self: ^UI.PreviewInteraction) -> ^UI.View,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithView != nil {
-        initWithView :: proc "c" (self: ^UI.PreviewInteraction, _: SEL, view: ^UI.View) -> ^UI.PreviewInteraction {
+        initWithView :: proc "c" (self: ^UI.PreviewInteraction, _: SEL, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithView:"), auto_cast initWithView, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PreviewInteraction, _: SEL) -> ^UI.PreviewInteraction {
+        init :: proc "c" (self: ^UI.PreviewInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

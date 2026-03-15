@@ -23,7 +23,7 @@ MetricPlayerItemRateChangeEvent :: struct { using _: MetricEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemRateChangeEvent, objc_selector="init", objc_name="init")
-    MetricPlayerItemRateChangeEvent_init :: proc(self: ^MetricPlayerItemRateChangeEvent) -> ^MetricPlayerItemRateChangeEvent ---
+    MetricPlayerItemRateChangeEvent_init :: proc(self: ^MetricPlayerItemRateChangeEvent) -> instancetype ---
 
     @(objc_type=MetricPlayerItemRateChangeEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricPlayerItemRateChangeEvent_new :: proc() -> ^MetricPlayerItemRateChangeEvent ---

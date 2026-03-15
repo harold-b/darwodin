@@ -22,10 +22,10 @@ FontPickerViewController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FontPickerViewController, objc_selector="initWithConfiguration:", objc_name="initWithConfiguration")
-    FontPickerViewController_initWithConfiguration :: proc(self: ^FontPickerViewController, configuration: ^FontPickerViewControllerConfiguration) -> ^FontPickerViewController ---
+    FontPickerViewController_initWithConfiguration :: proc(self: ^FontPickerViewController, configuration: ^FontPickerViewControllerConfiguration) -> instancetype ---
 
     @(objc_type=FontPickerViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    FontPickerViewController_initWithNibName :: proc(self: ^FontPickerViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^FontPickerViewController ---
+    FontPickerViewController_initWithNibName :: proc(self: ^FontPickerViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=FontPickerViewController, objc_selector="configuration", objc_name="configuration")
     FontPickerViewController_configuration :: proc(self: ^FontPickerViewController) -> ^FontPickerViewControllerConfiguration ---

@@ -23,7 +23,7 @@ DelegatingPlaybackCoordinatorBufferingCommand :: struct { using _: DelegatingPla
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DelegatingPlaybackCoordinatorBufferingCommand, objc_selector="init", objc_name="init")
-    DelegatingPlaybackCoordinatorBufferingCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorBufferingCommand) -> ^DelegatingPlaybackCoordinatorBufferingCommand ---
+    DelegatingPlaybackCoordinatorBufferingCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorBufferingCommand) -> instancetype ---
 
     @(objc_type=DelegatingPlaybackCoordinatorBufferingCommand, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DelegatingPlaybackCoordinatorBufferingCommand_new :: proc() -> ^DelegatingPlaybackCoordinatorBufferingCommand ---

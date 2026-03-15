@@ -28,8 +28,8 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithImage_: proc(self: ^UI.ImageView, image: ^UI.Image) -> ^UI.ImageView,
-    initWithImage_highlightedImage: proc(self: ^UI.ImageView, image: ^UI.Image, highlightedImage: ^UI.Image) -> ^UI.ImageView,
+    initWithImage_: proc(self: ^UI.ImageView, image: ^UI.Image) -> instancetype,
+    initWithImage_highlightedImage: proc(self: ^UI.ImageView, image: ^UI.Image, highlightedImage: ^UI.Image) -> instancetype,
     startAnimating: proc(self: ^UI.ImageView),
     stopAnimating: proc(self: ^UI.ImageView),
     image: proc(self: ^UI.ImageView) -> ^UI.Image,
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithImage_ != nil {
-        initWithImage_ :: proc "c" (self: ^UI.ImageView, _: SEL, image: ^UI.Image) -> ^UI.ImageView {
+        initWithImage_ :: proc "c" (self: ^UI.ImageView, _: SEL, image: ^UI.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImage:"), auto_cast initWithImage_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithImage_highlightedImage != nil {
-        initWithImage_highlightedImage :: proc "c" (self: ^UI.ImageView, _: SEL, image: ^UI.Image, highlightedImage: ^UI.Image) -> ^UI.ImageView {
+        initWithImage_highlightedImage :: proc "c" (self: ^UI.ImageView, _: SEL, image: ^UI.Image, highlightedImage: ^UI.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

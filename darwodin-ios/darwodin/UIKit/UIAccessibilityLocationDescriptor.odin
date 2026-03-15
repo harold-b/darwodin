@@ -22,19 +22,19 @@ AccessibilityLocationDescriptor :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccessibilityLocationDescriptor, objc_selector="init", objc_name="init")
-    AccessibilityLocationDescriptor_init :: proc(self: ^AccessibilityLocationDescriptor) -> ^AccessibilityLocationDescriptor ---
+    AccessibilityLocationDescriptor_init :: proc(self: ^AccessibilityLocationDescriptor) -> instancetype ---
 
     @(objc_type=AccessibilityLocationDescriptor, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AccessibilityLocationDescriptor_new :: proc() -> ^AccessibilityLocationDescriptor ---
 
     @(objc_type=AccessibilityLocationDescriptor, objc_selector="initWithName:view:", objc_name="initWithName_view")
-    AccessibilityLocationDescriptor_initWithName_view :: proc(self: ^AccessibilityLocationDescriptor, name: ^NS.String, view: ^View) -> ^AccessibilityLocationDescriptor ---
+    AccessibilityLocationDescriptor_initWithName_view :: proc(self: ^AccessibilityLocationDescriptor, name: ^NS.String, view: ^View) -> instancetype ---
 
     @(objc_type=AccessibilityLocationDescriptor, objc_selector="initWithName:point:inView:", objc_name="initWithName_point_inView")
-    AccessibilityLocationDescriptor_initWithName_point_inView :: proc(self: ^AccessibilityLocationDescriptor, name: ^NS.String, point: CG.Point, view: ^View) -> ^AccessibilityLocationDescriptor ---
+    AccessibilityLocationDescriptor_initWithName_point_inView :: proc(self: ^AccessibilityLocationDescriptor, name: ^NS.String, point: CG.Point, view: ^View) -> instancetype ---
 
     @(objc_type=AccessibilityLocationDescriptor, objc_selector="initWithAttributedName:point:inView:", objc_name="initWithAttributedName")
-    AccessibilityLocationDescriptor_initWithAttributedName :: proc(self: ^AccessibilityLocationDescriptor, attributedName: ^NS.AttributedString, point: CG.Point, view: ^View) -> ^AccessibilityLocationDescriptor ---
+    AccessibilityLocationDescriptor_initWithAttributedName :: proc(self: ^AccessibilityLocationDescriptor, attributedName: ^NS.AttributedString, point: CG.Point, view: ^View) -> instancetype ---
 
     @(objc_type=AccessibilityLocationDescriptor, objc_selector="view", objc_name="view")
     AccessibilityLocationDescriptor_view :: proc(self: ^AccessibilityLocationDescriptor) -> ^View ---

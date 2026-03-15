@@ -26,28 +26,28 @@ BitmapImageRep :: struct { using _: ImageRep,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BitmapImageRep, objc_selector="initWithFocusedViewRect:", objc_name="initWithFocusedViewRect")
-    BitmapImageRep_initWithFocusedViewRect :: proc(self: ^BitmapImageRep, rect: NS.Rect) -> ^BitmapImageRep ---
+    BitmapImageRep_initWithFocusedViewRect :: proc(self: ^BitmapImageRep, rect: NS.Rect) -> instancetype ---
 
     @(objc_type=BitmapImageRep, objc_selector="initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:", objc_name="initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel")
-    BitmapImageRep_initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel :: proc(self: ^BitmapImageRep, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, rBytes: NS.Integer, pBits: NS.Integer) -> ^BitmapImageRep ---
+    BitmapImageRep_initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bytesPerRow_bitsPerPixel :: proc(self: ^BitmapImageRep, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, rBytes: NS.Integer, pBits: NS.Integer) -> instancetype ---
 
     @(objc_type=BitmapImageRep, objc_selector="initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:", objc_name="initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel")
-    BitmapImageRep_initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel :: proc(self: ^BitmapImageRep, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, bitmapFormat: BitmapFormat, rBytes: NS.Integer, pBits: NS.Integer) -> ^BitmapImageRep ---
+    BitmapImageRep_initWithBitmapDataPlanes_pixelsWide_pixelsHigh_bitsPerSample_samplesPerPixel_hasAlpha_isPlanar_colorSpaceName_bitmapFormat_bytesPerRow_bitsPerPixel :: proc(self: ^BitmapImageRep, planes: ^^cffi.uchar, width: NS.Integer, height: NS.Integer, bps: NS.Integer, spp: NS.Integer, alpha: bool, isPlanar: bool, colorSpaceName: ^NS.String, bitmapFormat: BitmapFormat, rBytes: NS.Integer, pBits: NS.Integer) -> instancetype ---
 
     @(objc_type=BitmapImageRep, objc_selector="initWithCGImage:", objc_name="initWithCGImage")
-    BitmapImageRep_initWithCGImage :: proc(self: ^BitmapImageRep, cgImage: CG.ImageRef) -> ^BitmapImageRep ---
+    BitmapImageRep_initWithCGImage :: proc(self: ^BitmapImageRep, cgImage: CG.ImageRef) -> instancetype ---
 
     @(objc_type=BitmapImageRep, objc_selector="initWithCIImage:", objc_name="initWithCIImage")
-    BitmapImageRep_initWithCIImage :: proc(self: ^BitmapImageRep, ciImage: ^CIImage) -> ^BitmapImageRep ---
+    BitmapImageRep_initWithCIImage :: proc(self: ^BitmapImageRep, ciImage: ^CIImage) -> instancetype ---
 
     @(objc_type=BitmapImageRep, objc_selector="imageRepsWithData:", objc_name="imageRepsWithData", objc_is_class_method=true)
     BitmapImageRep_imageRepsWithData :: proc(data: ^NS.Data) -> ^NS.Array ---
 
     @(objc_type=BitmapImageRep, objc_selector="imageRepWithData:", objc_name="imageRepWithData", objc_is_class_method=true)
-    BitmapImageRep_imageRepWithData :: proc(data: ^NS.Data) -> ^BitmapImageRep ---
+    BitmapImageRep_imageRepWithData :: proc(data: ^NS.Data) -> instancetype ---
 
     @(objc_type=BitmapImageRep, objc_selector="initWithData:", objc_name="initWithData")
-    BitmapImageRep_initWithData :: proc(self: ^BitmapImageRep, data: ^NS.Data) -> ^BitmapImageRep ---
+    BitmapImageRep_initWithData :: proc(self: ^BitmapImageRep, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=BitmapImageRep, objc_selector="getBitmapDataPlanes:", objc_name="getBitmapDataPlanes")
     BitmapImageRep_getBitmapDataPlanes :: proc(self: ^BitmapImageRep, data: ^^cffi.uchar) ---
@@ -80,7 +80,7 @@ foreign lib {
     BitmapImageRep_colorizeByMappingGray :: proc(self: ^BitmapImageRep, midPoint: CG.Float, midPointColor: ^Color, shadowColor: ^Color, lightColor: ^Color) ---
 
     @(objc_type=BitmapImageRep, objc_selector="initForIncrementalLoad", objc_name="initForIncrementalLoad")
-    BitmapImageRep_initForIncrementalLoad :: proc(self: ^BitmapImageRep) -> ^BitmapImageRep ---
+    BitmapImageRep_initForIncrementalLoad :: proc(self: ^BitmapImageRep) -> instancetype ---
 
     @(objc_type=BitmapImageRep, objc_selector="incrementalLoadFromData:complete:", objc_name="incrementalLoadFromData")
     BitmapImageRep_incrementalLoadFromData :: proc(self: ^BitmapImageRep, data: ^NS.Data, complete: bool) -> NS.Integer ---

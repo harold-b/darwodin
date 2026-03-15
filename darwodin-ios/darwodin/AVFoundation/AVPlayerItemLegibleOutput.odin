@@ -38,7 +38,7 @@ foreign lib {
     PlayerItemLegibleOutput_setAdvanceIntervalForDelegateInvocation :: proc(self: ^PlayerItemLegibleOutput, advanceIntervalForDelegateInvocation: NS.TimeInterval) ---
 
     @(objc_type=PlayerItemLegibleOutput, objc_selector="initWithMediaSubtypesForNativeRepresentation:", objc_name="initWithMediaSubtypesForNativeRepresentation")
-    PlayerItemLegibleOutput_initWithMediaSubtypesForNativeRepresentation :: proc(self: ^PlayerItemLegibleOutput, subtypes: ^NS.Array) -> ^PlayerItemLegibleOutput ---
+    PlayerItemLegibleOutput_initWithMediaSubtypesForNativeRepresentation :: proc(self: ^PlayerItemLegibleOutput, subtypes: ^NS.Array) -> instancetype ---
 
     @(objc_type=PlayerItemLegibleOutput, objc_selector="textStylingResolution", objc_name="textStylingResolution")
     PlayerItemLegibleOutput_textStylingResolution :: proc(self: ^PlayerItemLegibleOutput) -> ^NS.String ---

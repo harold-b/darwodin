@@ -28,7 +28,7 @@ import "../../../QuartzCore/ext/CALayer"
 
 VTable :: struct {
     super: CALayer.VTable,
-    initWithContainerView: proc(self: ^UI.HoverEffectLayer, containerView: ^UI.View, style: ^UI.HoverStyle) -> ^UI.HoverEffectLayer,
+    initWithContainerView: proc(self: ^UI.HoverEffectLayer, containerView: ^UI.View, style: ^UI.HoverStyle) -> instancetype,
     hoverStyle: proc(self: ^UI.HoverEffectLayer) -> ^UI.HoverStyle,
     setHoverStyle: proc(self: ^UI.HoverEffectLayer, hoverStyle: ^UI.HoverStyle),
     containerView: proc(self: ^UI.HoverEffectLayer) -> ^UI.View,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     CALayer.extend(cls, &vt.super)
 
     if vt.initWithContainerView != nil {
-        initWithContainerView :: proc "c" (self: ^UI.HoverEffectLayer, _: SEL, containerView: ^UI.View, style: ^UI.HoverStyle) -> ^UI.HoverEffectLayer {
+        initWithContainerView :: proc "c" (self: ^UI.HoverEffectLayer, _: SEL, containerView: ^UI.View, style: ^UI.HoverStyle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

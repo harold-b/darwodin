@@ -24,10 +24,10 @@ Switch :: struct { using _: Control,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Switch, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    Switch_initWithFrame :: proc(self: ^Switch, frame: CG.Rect) -> ^Switch ---
+    Switch_initWithFrame :: proc(self: ^Switch, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=Switch, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Switch_initWithCoder :: proc(self: ^Switch, coder: ^NS.Coder) -> ^Switch ---
+    Switch_initWithCoder :: proc(self: ^Switch, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Switch, objc_selector="setOn:animated:", objc_name="setOn_animated")
     Switch_setOn_animated :: proc(self: ^Switch, on: bool, animated: bool) ---

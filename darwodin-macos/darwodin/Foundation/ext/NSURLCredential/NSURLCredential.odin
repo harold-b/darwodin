@@ -27,16 +27,16 @@ import "../NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     persistence: proc(self: ^NS.URLCredential) -> NS.URLCredentialPersistence,
-    initWithUser: proc(self: ^NS.URLCredential, user: ^NS.String, password: ^NS.String, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential,
+    initWithUser: proc(self: ^NS.URLCredential, user: ^NS.String, password: ^NS.String, persistence: NS.URLCredentialPersistence) -> instancetype,
     credentialWithUser: proc(user: ^NS.String, password: ^NS.String, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential,
     user: proc(self: ^NS.URLCredential) -> ^NS.String,
     password: proc(self: ^NS.URLCredential) -> ^NS.String,
     hasPassword: proc(self: ^NS.URLCredential) -> bool,
-    initWithIdentity: proc(self: ^NS.URLCredential, identity: Sec.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential,
+    initWithIdentity: proc(self: ^NS.URLCredential, identity: Sec.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> instancetype,
     credentialWithIdentity: proc(identity: Sec.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential,
     identity: proc(self: ^NS.URLCredential) -> Sec.SecIdentityRef,
     certificates: proc(self: ^NS.URLCredential) -> ^NS.Array,
-    initWithTrust: proc(self: ^NS.URLCredential, trust: Sec.SecTrustRef) -> ^NS.URLCredential,
+    initWithTrust: proc(self: ^NS.URLCredential, trust: Sec.SecTrustRef) -> instancetype,
     credentialForTrust: proc(trust: Sec.SecTrustRef) -> ^NS.URLCredential,
 }
 
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("persistence"), auto_cast persistence, "L@:") do panic("Failed to register objC method.")
     }
     if vt.initWithUser != nil {
-        initWithUser :: proc "c" (self: ^NS.URLCredential, _: SEL, user: ^NS.String, password: ^NS.String, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential {
+        initWithUser :: proc "c" (self: ^NS.URLCredential, _: SEL, user: ^NS.String, password: ^NS.String, persistence: NS.URLCredentialPersistence) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasPassword"), auto_cast hasPassword, "B@:") do panic("Failed to register objC method.")
     }
     if vt.initWithIdentity != nil {
-        initWithIdentity :: proc "c" (self: ^NS.URLCredential, _: SEL, identity: Sec.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> ^NS.URLCredential {
+        initWithIdentity :: proc "c" (self: ^NS.URLCredential, _: SEL, identity: Sec.SecIdentityRef, certArray: ^NS.Array, persistence: NS.URLCredentialPersistence) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("certificates"), auto_cast certificates, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTrust != nil {
-        initWithTrust :: proc "c" (self: ^NS.URLCredential, _: SEL, trust: Sec.SecTrustRef) -> ^NS.URLCredential {
+        initWithTrust :: proc "c" (self: ^NS.URLCredential, _: SEL, trust: Sec.SecTrustRef) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

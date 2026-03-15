@@ -22,7 +22,7 @@ SearchDisplayController :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SearchDisplayController, objc_selector="initWithSearchBar:contentsController:", objc_name="initWithSearchBar")
-    SearchDisplayController_initWithSearchBar :: proc(self: ^SearchDisplayController, searchBar: ^SearchBar, viewController: ^ViewController) -> ^SearchDisplayController ---
+    SearchDisplayController_initWithSearchBar :: proc(self: ^SearchDisplayController, searchBar: ^SearchBar, viewController: ^ViewController) -> instancetype ---
 
     @(objc_type=SearchDisplayController, objc_selector="setActive:animated:", objc_name="setActive_animated")
     SearchDisplayController_setActive_animated :: proc(self: ^SearchDisplayController, visible: bool, animated: bool) ---

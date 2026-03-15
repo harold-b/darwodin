@@ -34,9 +34,9 @@ VTable :: struct {
     setPredicate: proc(self: ^AK.PredicateEditorRowTemplate, predicate: ^NS.Predicate),
     predicateWithSubpredicates: proc(self: ^AK.PredicateEditorRowTemplate, subpredicates: ^NS.Array) -> ^NS.Predicate,
     displayableSubpredicatesOfPredicate: proc(self: ^AK.PredicateEditorRowTemplate, predicate: ^NS.Predicate) -> ^NS.Array,
-    initWithLeftExpressions_rightExpressions_modifier_operators_options: proc(self: ^AK.PredicateEditorRowTemplate, leftExpressions: ^NS.Array, rightExpressions: ^NS.Array, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> ^AK.PredicateEditorRowTemplate,
-    initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options: proc(self: ^AK.PredicateEditorRowTemplate, leftExpressions: ^NS.Array, attributeType: AK.AttributeType, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> ^AK.PredicateEditorRowTemplate,
-    initWithCompoundTypes: proc(self: ^AK.PredicateEditorRowTemplate, compoundTypes: ^NS.Array) -> ^AK.PredicateEditorRowTemplate,
+    initWithLeftExpressions_rightExpressions_modifier_operators_options: proc(self: ^AK.PredicateEditorRowTemplate, leftExpressions: ^NS.Array, rightExpressions: ^NS.Array, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> instancetype,
+    initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options: proc(self: ^AK.PredicateEditorRowTemplate, leftExpressions: ^NS.Array, attributeType: AK.AttributeType, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> instancetype,
+    initWithCompoundTypes: proc(self: ^AK.PredicateEditorRowTemplate, compoundTypes: ^NS.Array) -> instancetype,
     templatesWithAttributeKeyPaths: proc(keyPaths: ^NS.Array, entityDescription: ^AK.EntityDescription) -> ^NS.Array,
     templateViews: proc(self: ^AK.PredicateEditorRowTemplate) -> ^NS.Array,
     leftExpressions: proc(self: ^AK.PredicateEditorRowTemplate) -> ^NS.Array,
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("displayableSubpredicatesOfPredicate:"), auto_cast displayableSubpredicatesOfPredicate, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithLeftExpressions_rightExpressions_modifier_operators_options != nil {
-        initWithLeftExpressions_rightExpressions_modifier_operators_options :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, leftExpressions: ^NS.Array, rightExpressions: ^NS.Array, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> ^AK.PredicateEditorRowTemplate {
+        initWithLeftExpressions_rightExpressions_modifier_operators_options :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, leftExpressions: ^NS.Array, rightExpressions: ^NS.Array, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLeftExpressions:rightExpressions:modifier:operators:options:"), auto_cast initWithLeftExpressions_rightExpressions_modifier_operators_options, "@@:^void^voidL^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options != nil {
-        initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, leftExpressions: ^NS.Array, attributeType: AK.AttributeType, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> ^AK.PredicateEditorRowTemplate {
+        initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, leftExpressions: ^NS.Array, attributeType: AK.AttributeType, modifier: NS.ComparisonPredicateModifier, operators: ^NS.Array, options: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:"), auto_cast initWithLeftExpressions_rightExpressionAttributeType_modifier_operators_options, "@@:^voidLL^voidL") do panic("Failed to register objC method.")
     }
     if vt.initWithCompoundTypes != nil {
-        initWithCompoundTypes :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, compoundTypes: ^NS.Array) -> ^AK.PredicateEditorRowTemplate {
+        initWithCompoundTypes :: proc "c" (self: ^AK.PredicateEditorRowTemplate, _: SEL, compoundTypes: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

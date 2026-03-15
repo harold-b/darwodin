@@ -22,8 +22,9 @@ instancetype  :: intrinsics.objc_instancetype
 
 @export foreign import lib "system:GameController.framework"
 
-CHHapticEngine :: NS.Object
-IOHIDDeviceRef :: struct {}
+
+  CHHapticEngine :: NS.Object
+  IOHIDDeviceRef :: struct {}
 
 
 

@@ -28,7 +28,7 @@ import "../UIWindowScenePlacement"
 
 VTable :: struct {
     super: UIWindowScenePlacement.VTable,
-    placementToReplaceSceneSession: proc(sceneSession: ^UI.SceneSession) -> ^UI.WindowSceneReplacePlacement,
+    placementToReplaceSceneSession: proc(sceneSession: ^UI.SceneSession) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIWindowScenePlacement.extend(cls, &vt.super)
 
     if vt.placementToReplaceSceneSession != nil {
-        placementToReplaceSceneSession :: proc "c" (self: Class, _: SEL, sceneSession: ^UI.SceneSession) -> ^UI.WindowSceneReplacePlacement {
+        placementToReplaceSceneSession :: proc "c" (self: Class, _: SEL, sceneSession: ^UI.SceneSession) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

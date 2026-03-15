@@ -30,5 +30,5 @@ foreign lib {
     SymbolEffect_new :: proc() -> ^SymbolEffect ---
 
     @(objc_type=SymbolEffect, objc_selector="init", objc_name="init")
-    SymbolEffect_init :: proc(self: ^SymbolEffect) -> ^SymbolEffect ---
+    SymbolEffect_init :: proc(self: ^SymbolEffect) -> instancetype ---
 }

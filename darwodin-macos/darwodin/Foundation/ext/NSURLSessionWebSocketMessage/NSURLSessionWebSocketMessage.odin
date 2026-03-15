@@ -26,9 +26,9 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithData: proc(self: ^NS.URLSessionWebSocketMessage, data: ^NS.Data) -> ^NS.URLSessionWebSocketMessage,
-    initWithString: proc(self: ^NS.URLSessionWebSocketMessage, string: ^NS.String) -> ^NS.URLSessionWebSocketMessage,
-    init: proc(self: ^NS.URLSessionWebSocketMessage) -> ^NS.URLSessionWebSocketMessage,
+    initWithData: proc(self: ^NS.URLSessionWebSocketMessage, data: ^NS.Data) -> instancetype,
+    initWithString: proc(self: ^NS.URLSessionWebSocketMessage, string: ^NS.String) -> instancetype,
+    init: proc(self: ^NS.URLSessionWebSocketMessage) -> instancetype,
     new: proc() -> ^NS.URLSessionWebSocketMessage,
     type: proc(self: ^NS.URLSessionWebSocketMessage) -> NS.URLSessionWebSocketMessageType,
     data: proc(self: ^NS.URLSessionWebSocketMessage) -> ^NS.Data,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^NS.URLSessionWebSocketMessage, _: SEL, data: ^NS.Data) -> ^NS.URLSessionWebSocketMessage {
+        initWithData :: proc "c" (self: ^NS.URLSessionWebSocketMessage, _: SEL, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:"), auto_cast initWithData, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithString != nil {
-        initWithString :: proc "c" (self: ^NS.URLSessionWebSocketMessage, _: SEL, string: ^NS.String) -> ^NS.URLSessionWebSocketMessage {
+        initWithString :: proc "c" (self: ^NS.URLSessionWebSocketMessage, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:"), auto_cast initWithString, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSessionWebSocketMessage, _: SEL) -> ^NS.URLSessionWebSocketMessage {
+        init :: proc "c" (self: ^NS.URLSessionWebSocketMessage, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

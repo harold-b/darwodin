@@ -22,7 +22,7 @@ TabSidebarItemRequest :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TabSidebarItemRequest, objc_selector="init", objc_name="init")
-    TabSidebarItemRequest_init :: proc(self: ^TabSidebarItemRequest) -> ^TabSidebarItemRequest ---
+    TabSidebarItemRequest_init :: proc(self: ^TabSidebarItemRequest) -> instancetype ---
 
     @(objc_type=TabSidebarItemRequest, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TabSidebarItemRequest_new :: proc() -> ^TabSidebarItemRequest ---

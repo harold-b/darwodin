@@ -19,10 +19,10 @@ GraphNode2D :: struct { using _: GraphNode, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GraphNode2D, objc_selector="nodeWithPoint:", objc_name="nodeWithPoint", objc_is_class_method=true)
-    GraphNode2D_nodeWithPoint :: proc(point: ^vector_float2) -> ^GraphNode2D ---
+    GraphNode2D_nodeWithPoint :: proc(point: ^vector_float2) -> instancetype ---
 
     @(objc_type=GraphNode2D, objc_selector="initWithPoint:", objc_name="initWithPoint")
-    GraphNode2D_initWithPoint :: proc(self: ^GraphNode2D, point: ^vector_float2) -> ^GraphNode2D ---
+    GraphNode2D_initWithPoint :: proc(self: ^GraphNode2D, point: ^vector_float2) -> instancetype ---
 
     @(objc_type=GraphNode2D, objc_selector="position", objc_name="position")
     GraphNode2D_position :: proc(self: ^GraphNode2D) -> vector_float2 ---

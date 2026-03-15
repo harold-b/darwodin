@@ -28,10 +28,10 @@ Controller :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Controller, objc_selector="init", objc_name="init")
-    Controller_init :: proc(self: ^Controller) -> ^Controller ---
+    Controller_init :: proc(self: ^Controller) -> instancetype ---
 
     @(objc_type=Controller, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Controller_initWithCoder :: proc(self: ^Controller, coder: ^NS.Coder) -> ^Controller ---
+    Controller_initWithCoder :: proc(self: ^Controller, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Controller, objc_selector="objectDidBeginEditing:", objc_name="objectDidBeginEditing")
     Controller_objectDidBeginEditing :: proc(self: ^Controller, editor: ^Editor) ---

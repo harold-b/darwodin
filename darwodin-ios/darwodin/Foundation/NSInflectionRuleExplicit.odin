@@ -20,7 +20,7 @@ InflectionRuleExplicit :: struct { using _: InflectionRule, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=InflectionRuleExplicit, objc_selector="initWithMorphology:", objc_name="initWithMorphology")
-    InflectionRuleExplicit_initWithMorphology :: proc(self: ^InflectionRuleExplicit, morphology: ^Morphology) -> ^InflectionRuleExplicit ---
+    InflectionRuleExplicit_initWithMorphology :: proc(self: ^InflectionRuleExplicit, morphology: ^Morphology) -> instancetype ---
 
     @(objc_type=InflectionRuleExplicit, objc_selector="morphology", objc_name="morphology")
     InflectionRuleExplicit_morphology :: proc(self: ^InflectionRuleExplicit) -> ^Morphology ---

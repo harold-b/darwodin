@@ -28,9 +28,9 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithSearchResultsController: proc(self: ^UI.SearchController, searchResultsController: ^UI.ViewController) -> ^UI.SearchController,
-    initWithNibName: proc(self: ^UI.SearchController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.SearchController,
-    initWithCoder: proc(self: ^UI.SearchController, coder: ^NS.Coder) -> ^UI.SearchController,
+    initWithSearchResultsController: proc(self: ^UI.SearchController, searchResultsController: ^UI.ViewController) -> instancetype,
+    initWithNibName: proc(self: ^UI.SearchController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    initWithCoder: proc(self: ^UI.SearchController, coder: ^NS.Coder) -> instancetype,
     searchResultsUpdater: proc(self: ^UI.SearchController) -> ^UI.SearchResultsUpdating,
     setSearchResultsUpdater: proc(self: ^UI.SearchController, searchResultsUpdater: ^UI.SearchResultsUpdating),
     isActive: proc(self: ^UI.SearchController) -> bool,
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithSearchResultsController != nil {
-        initWithSearchResultsController :: proc "c" (self: ^UI.SearchController, _: SEL, searchResultsController: ^UI.ViewController) -> ^UI.SearchController {
+        initWithSearchResultsController :: proc "c" (self: ^UI.SearchController, _: SEL, searchResultsController: ^UI.ViewController) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSearchResultsController:"), auto_cast initWithSearchResultsController, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.SearchController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.SearchController {
+        initWithNibName :: proc "c" (self: ^UI.SearchController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.SearchController, _: SEL, coder: ^NS.Coder) -> ^UI.SearchController {
+        initWithCoder :: proc "c" (self: ^UI.SearchController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

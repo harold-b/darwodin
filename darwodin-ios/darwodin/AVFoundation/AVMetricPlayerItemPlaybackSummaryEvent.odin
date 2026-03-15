@@ -23,7 +23,7 @@ MetricPlayerItemPlaybackSummaryEvent :: struct { using _: MetricEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemPlaybackSummaryEvent, objc_selector="init", objc_name="init")
-    MetricPlayerItemPlaybackSummaryEvent_init :: proc(self: ^MetricPlayerItemPlaybackSummaryEvent) -> ^MetricPlayerItemPlaybackSummaryEvent ---
+    MetricPlayerItemPlaybackSummaryEvent_init :: proc(self: ^MetricPlayerItemPlaybackSummaryEvent) -> instancetype ---
 
     @(objc_type=MetricPlayerItemPlaybackSummaryEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricPlayerItemPlaybackSummaryEvent_new :: proc() -> ^MetricPlayerItemPlaybackSummaryEvent ---

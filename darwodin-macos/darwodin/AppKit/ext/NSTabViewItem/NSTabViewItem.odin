@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    tabViewItemWithViewController: proc(viewController: ^AK.ViewController) -> ^AK.TabViewItem,
-    initWithIdentifier: proc(self: ^AK.TabViewItem, identifier: id) -> ^AK.TabViewItem,
+    tabViewItemWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
+    initWithIdentifier: proc(self: ^AK.TabViewItem, identifier: id) -> instancetype,
     drawLabel: proc(self: ^AK.TabViewItem, shouldTruncateLabel: bool, labelRect: NS.Rect),
     sizeOfLabel: proc(self: ^AK.TabViewItem, computeMin: bool) -> NS.Size,
     identifier: proc(self: ^AK.TabViewItem) -> id,
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.tabViewItemWithViewController != nil {
-        tabViewItemWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> ^AK.TabViewItem {
+        tabViewItemWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("tabViewItemWithViewController:"), auto_cast tabViewItemWithViewController, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithIdentifier != nil {
-        initWithIdentifier :: proc "c" (self: ^AK.TabViewItem, _: SEL, identifier: id) -> ^AK.TabViewItem {
+        initWithIdentifier :: proc "c" (self: ^AK.TabViewItem, _: SEL, identifier: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

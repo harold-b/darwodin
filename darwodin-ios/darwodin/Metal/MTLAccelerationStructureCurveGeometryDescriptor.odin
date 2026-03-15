@@ -22,7 +22,7 @@ AccelerationStructureCurveGeometryDescriptor :: struct { using _: AccelerationSt
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccelerationStructureCurveGeometryDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
-    AccelerationStructureCurveGeometryDescriptor_descriptor :: proc() -> ^AccelerationStructureCurveGeometryDescriptor ---
+    AccelerationStructureCurveGeometryDescriptor_descriptor :: proc() -> instancetype ---
 
     @(objc_type=AccelerationStructureCurveGeometryDescriptor, objc_selector="controlPointBuffer", objc_name="controlPointBuffer")
     AccelerationStructureCurveGeometryDescriptor_controlPointBuffer :: proc(self: ^AccelerationStructureCurveGeometryDescriptor) -> ^Buffer ---

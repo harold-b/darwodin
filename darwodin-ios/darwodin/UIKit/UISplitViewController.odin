@@ -22,13 +22,13 @@ SplitViewController :: struct { using _: ViewController, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SplitViewController, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    SplitViewController_initWithCoder :: proc(self: ^SplitViewController, coder: ^NS.Coder) -> ^SplitViewController ---
+    SplitViewController_initWithCoder :: proc(self: ^SplitViewController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=SplitViewController, objc_selector="initWithNibName:bundle:", objc_name="initWithNibName")
-    SplitViewController_initWithNibName :: proc(self: ^SplitViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^SplitViewController ---
+    SplitViewController_initWithNibName :: proc(self: ^SplitViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=SplitViewController, objc_selector="initWithStyle:", objc_name="initWithStyle")
-    SplitViewController_initWithStyle :: proc(self: ^SplitViewController, style: SplitViewControllerStyle) -> ^SplitViewController ---
+    SplitViewController_initWithStyle :: proc(self: ^SplitViewController, style: SplitViewControllerStyle) -> instancetype ---
 
     @(objc_type=SplitViewController, objc_selector="setViewController:forColumn:", objc_name="setViewController")
     SplitViewController_setViewController :: proc(self: ^SplitViewController, vc: ^ViewController, column: SplitViewControllerColumn) ---

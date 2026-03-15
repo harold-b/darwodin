@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSize: proc(self: ^UI.NSTextContainer, size: CG.Size) -> ^UI.NSTextContainer,
-    initWithCoder: proc(self: ^UI.NSTextContainer, coder: ^NS.Coder) -> ^UI.NSTextContainer,
+    initWithSize: proc(self: ^UI.NSTextContainer, size: CG.Size) -> instancetype,
+    initWithCoder: proc(self: ^UI.NSTextContainer, coder: ^NS.Coder) -> instancetype,
     lineFragmentRectForProposedRect: proc(self: ^UI.NSTextContainer, proposedRect: CG.Rect, characterIndex: NS.UInteger, baseWritingDirection: UI.NSWritingDirection, remainingRect: ^CG.Rect) -> CG.Rect,
     textLayoutManager: proc(self: ^UI.NSTextContainer) -> ^UI.NSTextLayoutManager,
     size: proc(self: ^UI.NSTextContainer) -> CG.Size,
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSize != nil {
-        initWithSize :: proc "c" (self: ^UI.NSTextContainer, _: SEL, size: CG.Size) -> ^UI.NSTextContainer {
+        initWithSize :: proc "c" (self: ^UI.NSTextContainer, _: SEL, size: CG.Size) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSize:"), auto_cast initWithSize, "@@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.NSTextContainer, _: SEL, coder: ^NS.Coder) -> ^UI.NSTextContainer {
+        initWithCoder :: proc "c" (self: ^UI.NSTextContainer, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

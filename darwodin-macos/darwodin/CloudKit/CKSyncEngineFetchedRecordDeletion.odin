@@ -18,7 +18,7 @@ SyncEngineFetchedRecordDeletion :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineFetchedRecordDeletion, objc_selector="init", objc_name="init")
-    SyncEngineFetchedRecordDeletion_init :: proc(self: ^SyncEngineFetchedRecordDeletion) -> ^SyncEngineFetchedRecordDeletion ---
+    SyncEngineFetchedRecordDeletion_init :: proc(self: ^SyncEngineFetchedRecordDeletion) -> instancetype ---
 
     @(objc_type=SyncEngineFetchedRecordDeletion, objc_selector="new", objc_name="new", objc_is_class_method=true)
     SyncEngineFetchedRecordDeletion_new :: proc() -> ^SyncEngineFetchedRecordDeletion ---

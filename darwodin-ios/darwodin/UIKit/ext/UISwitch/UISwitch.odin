@@ -28,8 +28,8 @@ import "../UIControl"
 
 VTable :: struct {
     super: UIControl.VTable,
-    initWithFrame: proc(self: ^UI.Switch, frame: CG.Rect) -> ^UI.Switch,
-    initWithCoder: proc(self: ^UI.Switch, coder: ^NS.Coder) -> ^UI.Switch,
+    initWithFrame: proc(self: ^UI.Switch, frame: CG.Rect) -> instancetype,
+    initWithCoder: proc(self: ^UI.Switch, coder: ^NS.Coder) -> instancetype,
     setOn_animated: proc(self: ^UI.Switch, on: bool, animated: bool),
     onTintColor: proc(self: ^UI.Switch) -> ^UI.Color,
     setOnTintColor: proc(self: ^UI.Switch, onTintColor: ^UI.Color),
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIControl.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.Switch, _: SEL, frame: CG.Rect) -> ^UI.Switch {
+        initWithFrame :: proc "c" (self: ^UI.Switch, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.Switch, _: SEL, coder: ^NS.Coder) -> ^UI.Switch {
+        initWithCoder :: proc "c" (self: ^UI.Switch, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

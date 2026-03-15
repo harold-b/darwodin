@@ -22,7 +22,7 @@ foreign lib {
     EnvironmentMechanism_new :: proc() -> ^EnvironmentMechanism ---
 
     @(objc_type=EnvironmentMechanism, objc_selector="init", objc_name="init")
-    EnvironmentMechanism_init :: proc(self: ^EnvironmentMechanism) -> ^EnvironmentMechanism ---
+    EnvironmentMechanism_init :: proc(self: ^EnvironmentMechanism) -> instancetype ---
 
     @(objc_type=EnvironmentMechanism, objc_selector="isUsable", objc_name="isUsable")
     EnvironmentMechanism_isUsable :: proc(self: ^EnvironmentMechanism) -> bool ---

@@ -22,10 +22,10 @@ Scene :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Scene, objc_selector="sceneWithFileNamed:", objc_name="sceneWithFileNamed_", objc_is_class_method=true)
-    Scene_sceneWithFileNamed_ :: proc(filename: ^NS.String) -> ^Scene ---
+    Scene_sceneWithFileNamed_ :: proc(filename: ^NS.String) -> instancetype ---
 
     @(objc_type=Scene, objc_selector="sceneWithFileNamed:rootNode:", objc_name="sceneWithFileNamed_rootNode", objc_is_class_method=true)
-    Scene_sceneWithFileNamed_rootNode :: proc(filename: ^NS.String, rootNode: ^SceneRootNodeType) -> ^Scene ---
+    Scene_sceneWithFileNamed_rootNode :: proc(filename: ^NS.String, rootNode: ^SceneRootNodeType) -> instancetype ---
 
     @(objc_type=Scene, objc_selector="addEntity:", objc_name="addEntity")
     Scene_addEntity :: proc(self: ^Scene, entity: ^Entity) ---

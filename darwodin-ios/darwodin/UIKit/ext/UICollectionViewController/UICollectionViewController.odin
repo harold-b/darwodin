@@ -28,9 +28,9 @@ import "../UIViewController"
 
 VTable :: struct {
     super: UIViewController.VTable,
-    initWithCollectionViewLayout: proc(self: ^UI.CollectionViewController, layout: ^UI.CollectionViewLayout) -> ^UI.CollectionViewController,
-    initWithNibName: proc(self: ^UI.CollectionViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.CollectionViewController,
-    initWithCoder: proc(self: ^UI.CollectionViewController, coder: ^NS.Coder) -> ^UI.CollectionViewController,
+    initWithCollectionViewLayout: proc(self: ^UI.CollectionViewController, layout: ^UI.CollectionViewLayout) -> instancetype,
+    initWithNibName: proc(self: ^UI.CollectionViewController, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype,
+    initWithCoder: proc(self: ^UI.CollectionViewController, coder: ^NS.Coder) -> instancetype,
     collectionView: proc(self: ^UI.CollectionViewController) -> ^UI.CollectionView,
     setCollectionView: proc(self: ^UI.CollectionViewController, collectionView: ^UI.CollectionView),
     clearsSelectionOnViewWillAppear: proc(self: ^UI.CollectionViewController) -> bool,
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIViewController.extend(cls, &vt.super)
 
     if vt.initWithCollectionViewLayout != nil {
-        initWithCollectionViewLayout :: proc "c" (self: ^UI.CollectionViewController, _: SEL, layout: ^UI.CollectionViewLayout) -> ^UI.CollectionViewController {
+        initWithCollectionViewLayout :: proc "c" (self: ^UI.CollectionViewController, _: SEL, layout: ^UI.CollectionViewLayout) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCollectionViewLayout:"), auto_cast initWithCollectionViewLayout, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithNibName != nil {
-        initWithNibName :: proc "c" (self: ^UI.CollectionViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> ^UI.CollectionViewController {
+        initWithNibName :: proc "c" (self: ^UI.CollectionViewController, _: SEL, nibNameOrNil: ^NS.String, nibBundleOrNil: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibName:bundle:"), auto_cast initWithNibName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CollectionViewController, _: SEL, coder: ^NS.Coder) -> ^UI.CollectionViewController {
+        initWithCoder :: proc "c" (self: ^UI.CollectionViewController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

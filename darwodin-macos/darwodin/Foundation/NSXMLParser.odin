@@ -20,13 +20,13 @@ XMLParser :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=XMLParser, objc_selector="initWithContentsOfURL:", objc_name="initWithContentsOfURL")
-    XMLParser_initWithContentsOfURL :: proc(self: ^XMLParser, url: ^URL) -> ^XMLParser ---
+    XMLParser_initWithContentsOfURL :: proc(self: ^XMLParser, url: ^URL) -> instancetype ---
 
     @(objc_type=XMLParser, objc_selector="initWithData:", objc_name="initWithData")
-    XMLParser_initWithData :: proc(self: ^XMLParser, data: ^Data) -> ^XMLParser ---
+    XMLParser_initWithData :: proc(self: ^XMLParser, data: ^Data) -> instancetype ---
 
     @(objc_type=XMLParser, objc_selector="initWithStream:", objc_name="initWithStream")
-    XMLParser_initWithStream :: proc(self: ^XMLParser, stream: ^InputStream) -> ^XMLParser ---
+    XMLParser_initWithStream :: proc(self: ^XMLParser, stream: ^InputStream) -> instancetype ---
 
     @(objc_type=XMLParser, objc_selector="parse", objc_name="parse")
     XMLParser_parse :: proc(self: ^XMLParser) -> bool ---

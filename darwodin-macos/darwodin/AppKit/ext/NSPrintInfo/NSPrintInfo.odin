@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDictionary: proc(self: ^AK.PrintInfo, attributes: ^NS.Dictionary) -> ^AK.PrintInfo,
-    initWithCoder: proc(self: ^AK.PrintInfo, coder: ^NS.Coder) -> ^AK.PrintInfo,
-    init: proc(self: ^AK.PrintInfo) -> ^AK.PrintInfo,
+    initWithDictionary: proc(self: ^AK.PrintInfo, attributes: ^NS.Dictionary) -> instancetype,
+    initWithCoder: proc(self: ^AK.PrintInfo, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^AK.PrintInfo) -> instancetype,
     dictionary: proc(self: ^AK.PrintInfo) -> ^NS.MutableDictionary,
     setUpPrintOperationDefaultValues: proc(self: ^AK.PrintInfo),
     _PMPrintSession: proc(self: ^AK.PrintInfo) -> rawptr,
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDictionary != nil {
-        initWithDictionary :: proc "c" (self: ^AK.PrintInfo, _: SEL, attributes: ^NS.Dictionary) -> ^AK.PrintInfo {
+        initWithDictionary :: proc "c" (self: ^AK.PrintInfo, _: SEL, attributes: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDictionary:"), auto_cast initWithDictionary, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.PrintInfo, _: SEL, coder: ^NS.Coder) -> ^AK.PrintInfo {
+        initWithCoder :: proc "c" (self: ^AK.PrintInfo, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> ^AK.PrintInfo {
+        init :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -26,8 +26,8 @@ import "../NSScriptObjectSpecifier"
 
 VTable :: struct {
     super: NSScriptObjectSpecifier.VTable,
-    initWithCoder: proc(self: ^NS.RelativeSpecifier, inCoder: ^NS.Coder) -> ^NS.RelativeSpecifier,
-    initWithContainerClassDescription: proc(self: ^NS.RelativeSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, relPos: NS.RelativePosition, baseSpecifier: ^NS.ScriptObjectSpecifier) -> ^NS.RelativeSpecifier,
+    initWithCoder: proc(self: ^NS.RelativeSpecifier, inCoder: ^NS.Coder) -> instancetype,
+    initWithContainerClassDescription: proc(self: ^NS.RelativeSpecifier, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, relPos: NS.RelativePosition, baseSpecifier: ^NS.ScriptObjectSpecifier) -> instancetype,
     relativePosition: proc(self: ^NS.RelativeSpecifier) -> NS.RelativePosition,
     setRelativePosition: proc(self: ^NS.RelativeSpecifier, relativePosition: NS.RelativePosition),
     baseSpecifier: proc(self: ^NS.RelativeSpecifier) -> ^NS.ScriptObjectSpecifier,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScriptObjectSpecifier.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.RelativeSpecifier, _: SEL, inCoder: ^NS.Coder) -> ^NS.RelativeSpecifier {
+        initWithCoder :: proc "c" (self: ^NS.RelativeSpecifier, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerClassDescription != nil {
-        initWithContainerClassDescription :: proc "c" (self: ^NS.RelativeSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, relPos: NS.RelativePosition, baseSpecifier: ^NS.ScriptObjectSpecifier) -> ^NS.RelativeSpecifier {
+        initWithContainerClassDescription :: proc "c" (self: ^NS.RelativeSpecifier, _: SEL, classDesc: ^NS.ScriptClassDescription, container: ^NS.ScriptObjectSpecifier, property: ^NS.String, relPos: NS.RelativePosition, baseSpecifier: ^NS.ScriptObjectSpecifier) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

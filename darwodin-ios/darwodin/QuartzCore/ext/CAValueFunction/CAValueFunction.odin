@@ -27,7 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    functionWithName: proc(name: ^NS.String) -> ^CA.ValueFunction,
+    functionWithName: proc(name: ^NS.String) -> instancetype,
     name: proc(self: ^CA.ValueFunction) -> ^NS.String,
 }
 
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.functionWithName != nil {
-        functionWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^CA.ValueFunction {
+        functionWithName :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

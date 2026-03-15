@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTraitCollection: proc(self: ^UI.ContentUnavailableConfigurationState, traitCollection: ^UI.TraitCollection) -> ^UI.ContentUnavailableConfigurationState,
-    initWithCoder: proc(self: ^UI.ContentUnavailableConfigurationState, coder: ^NS.Coder) -> ^UI.ContentUnavailableConfigurationState,
-    init: proc(self: ^UI.ContentUnavailableConfigurationState) -> ^UI.ContentUnavailableConfigurationState,
+    initWithTraitCollection: proc(self: ^UI.ContentUnavailableConfigurationState, traitCollection: ^UI.TraitCollection) -> instancetype,
+    initWithCoder: proc(self: ^UI.ContentUnavailableConfigurationState, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.ContentUnavailableConfigurationState) -> instancetype,
     new: proc() -> ^UI.ContentUnavailableConfigurationState,
     traitCollection: proc(self: ^UI.ContentUnavailableConfigurationState) -> ^UI.TraitCollection,
     setTraitCollection: proc(self: ^UI.ContentUnavailableConfigurationState, traitCollection: ^UI.TraitCollection),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTraitCollection != nil {
-        initWithTraitCollection :: proc "c" (self: ^UI.ContentUnavailableConfigurationState, _: SEL, traitCollection: ^UI.TraitCollection) -> ^UI.ContentUnavailableConfigurationState {
+        initWithTraitCollection :: proc "c" (self: ^UI.ContentUnavailableConfigurationState, _: SEL, traitCollection: ^UI.TraitCollection) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTraitCollection:"), auto_cast initWithTraitCollection, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.ContentUnavailableConfigurationState, _: SEL, coder: ^NS.Coder) -> ^UI.ContentUnavailableConfigurationState {
+        initWithCoder :: proc "c" (self: ^UI.ContentUnavailableConfigurationState, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ContentUnavailableConfigurationState, _: SEL) -> ^UI.ContentUnavailableConfigurationState {
+        init :: proc "c" (self: ^UI.ContentUnavailableConfigurationState, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -26,7 +26,7 @@ WorkspaceOpenConfiguration :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WorkspaceOpenConfiguration, objc_selector="configuration", objc_name="configuration", objc_is_class_method=true)
-    WorkspaceOpenConfiguration_configuration :: proc() -> ^WorkspaceOpenConfiguration ---
+    WorkspaceOpenConfiguration_configuration :: proc() -> instancetype ---
 
     @(objc_type=WorkspaceOpenConfiguration, objc_selector="promptsUserIfNeeded", objc_name="promptsUserIfNeeded")
     WorkspaceOpenConfiguration_promptsUserIfNeeded :: proc(self: ^WorkspaceOpenConfiguration) -> bool ---

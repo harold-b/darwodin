@@ -28,11 +28,11 @@ import "../UIHoverStyle"
 
 VTable :: struct {
     super: UIHoverStyle.VTable,
-    styleWithEffect: proc(effect: ^UI.PointerEffect, shape: ^UI.PointerShape) -> ^UI.PointerStyle,
-    styleWithShape: proc(shape: ^UI.PointerShape, axes: UI.Axis) -> ^UI.PointerStyle,
-    hiddenPointerStyle: proc() -> ^UI.PointerStyle,
-    systemPointerStyle: proc() -> ^UI.PointerStyle,
-    init: proc(self: ^UI.PointerStyle) -> ^UI.PointerStyle,
+    styleWithEffect: proc(effect: ^UI.PointerEffect, shape: ^UI.PointerShape) -> instancetype,
+    styleWithShape: proc(shape: ^UI.PointerShape, axes: UI.Axis) -> instancetype,
+    hiddenPointerStyle: proc() -> instancetype,
+    systemPointerStyle: proc() -> instancetype,
+    init: proc(self: ^UI.PointerStyle) -> instancetype,
     new: proc() -> ^UI.PointerStyle,
     accessories: proc(self: ^UI.PointerStyle) -> ^NS.Array,
     setAccessories: proc(self: ^UI.PointerStyle, accessories: ^NS.Array),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIHoverStyle.extend(cls, &vt.super)
 
     if vt.styleWithEffect != nil {
-        styleWithEffect :: proc "c" (self: Class, _: SEL, effect: ^UI.PointerEffect, shape: ^UI.PointerShape) -> ^UI.PointerStyle {
+        styleWithEffect :: proc "c" (self: Class, _: SEL, effect: ^UI.PointerEffect, shape: ^UI.PointerShape) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("styleWithEffect:shape:"), auto_cast styleWithEffect, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.styleWithShape != nil {
-        styleWithShape :: proc "c" (self: Class, _: SEL, shape: ^UI.PointerShape, axes: UI.Axis) -> ^UI.PointerStyle {
+        styleWithShape :: proc "c" (self: Class, _: SEL, shape: ^UI.PointerShape, axes: UI.Axis) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("styleWithShape:constrainedAxes:"), auto_cast styleWithShape, "@#:@L") do panic("Failed to register objC method.")
     }
     if vt.hiddenPointerStyle != nil {
-        hiddenPointerStyle :: proc "c" (self: Class, _: SEL) -> ^UI.PointerStyle {
+        hiddenPointerStyle :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("hiddenPointerStyle"), auto_cast hiddenPointerStyle, "@#:") do panic("Failed to register objC method.")
     }
     if vt.systemPointerStyle != nil {
-        systemPointerStyle :: proc "c" (self: Class, _: SEL) -> ^UI.PointerStyle {
+        systemPointerStyle :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemPointerStyle"), auto_cast systemPointerStyle, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.PointerStyle, _: SEL) -> ^UI.PointerStyle {
+        init :: proc "c" (self: ^UI.PointerStyle, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

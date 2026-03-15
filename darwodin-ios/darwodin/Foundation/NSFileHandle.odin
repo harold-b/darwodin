@@ -22,10 +22,10 @@ FileHandle :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FileHandle, objc_selector="initWithFileDescriptor:closeOnDealloc:", objc_name="initWithFileDescriptor_closeOnDealloc")
-    FileHandle_initWithFileDescriptor_closeOnDealloc :: proc(self: ^FileHandle, fd: cffi.int, closeopt: bool) -> ^FileHandle ---
+    FileHandle_initWithFileDescriptor_closeOnDealloc :: proc(self: ^FileHandle, fd: cffi.int, closeopt: bool) -> instancetype ---
 
     @(objc_type=FileHandle, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    FileHandle_initWithCoder :: proc(self: ^FileHandle, coder: ^Coder) -> ^FileHandle ---
+    FileHandle_initWithCoder :: proc(self: ^FileHandle, coder: ^Coder) -> instancetype ---
 
     @(objc_type=FileHandle, objc_selector="readDataToEndOfFileAndReturnError:", objc_name="readDataToEndOfFileAndReturnError")
     FileHandle_readDataToEndOfFileAndReturnError :: proc(self: ^FileHandle, error: ^^Error) -> ^Data ---
@@ -58,22 +58,22 @@ foreign lib {
     FileHandle_availableData :: proc(self: ^FileHandle) -> ^Data ---
 
     @(objc_type=FileHandle, objc_selector="fileHandleForReadingAtPath:", objc_name="fileHandleForReadingAtPath", objc_is_class_method=true)
-    FileHandle_fileHandleForReadingAtPath :: proc(path: ^String) -> ^FileHandle ---
+    FileHandle_fileHandleForReadingAtPath :: proc(path: ^String) -> instancetype ---
 
     @(objc_type=FileHandle, objc_selector="fileHandleForWritingAtPath:", objc_name="fileHandleForWritingAtPath", objc_is_class_method=true)
-    FileHandle_fileHandleForWritingAtPath :: proc(path: ^String) -> ^FileHandle ---
+    FileHandle_fileHandleForWritingAtPath :: proc(path: ^String) -> instancetype ---
 
     @(objc_type=FileHandle, objc_selector="fileHandleForUpdatingAtPath:", objc_name="fileHandleForUpdatingAtPath", objc_is_class_method=true)
-    FileHandle_fileHandleForUpdatingAtPath :: proc(path: ^String) -> ^FileHandle ---
+    FileHandle_fileHandleForUpdatingAtPath :: proc(path: ^String) -> instancetype ---
 
     @(objc_type=FileHandle, objc_selector="fileHandleForReadingFromURL:error:", objc_name="fileHandleForReadingFromURL", objc_is_class_method=true)
-    FileHandle_fileHandleForReadingFromURL :: proc(url: ^URL, error: ^^Error) -> ^FileHandle ---
+    FileHandle_fileHandleForReadingFromURL :: proc(url: ^URL, error: ^^Error) -> instancetype ---
 
     @(objc_type=FileHandle, objc_selector="fileHandleForWritingToURL:error:", objc_name="fileHandleForWritingToURL", objc_is_class_method=true)
-    FileHandle_fileHandleForWritingToURL :: proc(url: ^URL, error: ^^Error) -> ^FileHandle ---
+    FileHandle_fileHandleForWritingToURL :: proc(url: ^URL, error: ^^Error) -> instancetype ---
 
     @(objc_type=FileHandle, objc_selector="fileHandleForUpdatingURL:error:", objc_name="fileHandleForUpdatingURL", objc_is_class_method=true)
-    FileHandle_fileHandleForUpdatingURL :: proc(url: ^URL, error: ^^Error) -> ^FileHandle ---
+    FileHandle_fileHandleForUpdatingURL :: proc(url: ^URL, error: ^^Error) -> instancetype ---
 
     @(objc_type=FileHandle, objc_selector="fileHandleWithStandardInput", objc_name="fileHandleWithStandardInput", objc_is_class_method=true)
     FileHandle_fileHandleWithStandardInput :: proc() -> ^FileHandle ---
@@ -124,7 +124,7 @@ foreign lib {
     FileHandle_setWriteabilityHandler :: proc(self: ^FileHandle, writeabilityHandler: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=FileHandle, objc_selector="initWithFileDescriptor:", objc_name="initWithFileDescriptor_")
-    FileHandle_initWithFileDescriptor_ :: proc(self: ^FileHandle, fd: cffi.int) -> ^FileHandle ---
+    FileHandle_initWithFileDescriptor_ :: proc(self: ^FileHandle, fd: cffi.int) -> instancetype ---
 
     @(objc_type=FileHandle, objc_selector="fileDescriptor", objc_name="fileDescriptor")
     FileHandle_fileDescriptor :: proc(self: ^FileHandle) -> cffi.int ---

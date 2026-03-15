@@ -22,7 +22,7 @@ DynamicItemBehavior :: struct { using _: DynamicBehavior, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DynamicItemBehavior, objc_selector="initWithItems:", objc_name="initWithItems")
-    DynamicItemBehavior_initWithItems :: proc(self: ^DynamicItemBehavior, items: ^NS.Array) -> ^DynamicItemBehavior ---
+    DynamicItemBehavior_initWithItems :: proc(self: ^DynamicItemBehavior, items: ^NS.Array) -> instancetype ---
 
     @(objc_type=DynamicItemBehavior, objc_selector="addItem:", objc_name="addItem")
     DynamicItemBehavior_addItem :: proc(self: ^DynamicItemBehavior, item: ^DynamicItem) ---

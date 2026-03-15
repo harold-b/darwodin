@@ -22,7 +22,7 @@ AccelerationStructureBoundingBoxGeometryDescriptor :: struct { using _: Accelera
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccelerationStructureBoundingBoxGeometryDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
-    AccelerationStructureBoundingBoxGeometryDescriptor_descriptor :: proc() -> ^AccelerationStructureBoundingBoxGeometryDescriptor ---
+    AccelerationStructureBoundingBoxGeometryDescriptor_descriptor :: proc() -> instancetype ---
 
     @(objc_type=AccelerationStructureBoundingBoxGeometryDescriptor, objc_selector="boundingBoxBuffer", objc_name="boundingBoxBuffer")
     AccelerationStructureBoundingBoxGeometryDescriptor_boundingBoxBuffer :: proc(self: ^AccelerationStructureBoundingBoxGeometryDescriptor) -> ^Buffer ---

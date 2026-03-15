@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.WindowScenePlacement) -> ^UI.WindowScenePlacement,
+    init: proc(self: ^UI.WindowScenePlacement) -> instancetype,
     new: proc() -> ^UI.WindowScenePlacement,
 }
 
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.WindowScenePlacement, _: SEL) -> ^UI.WindowScenePlacement {
+        init :: proc "c" (self: ^UI.WindowScenePlacement, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

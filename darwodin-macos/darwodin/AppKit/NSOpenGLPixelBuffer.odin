@@ -24,7 +24,7 @@ OpenGLPixelBuffer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=OpenGLPixelBuffer, objc_selector="initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:", objc_name="initWithTextureTarget")
-    OpenGLPixelBuffer_initWithTextureTarget :: proc(self: ^OpenGLPixelBuffer, target: CA.GLenum, format: CA.GLenum, maxLevel: CA.GLint, pixelsWide: CA.GLsizei, pixelsHigh: CA.GLsizei) -> ^OpenGLPixelBuffer ---
+    OpenGLPixelBuffer_initWithTextureTarget :: proc(self: ^OpenGLPixelBuffer, target: CA.GLenum, format: CA.GLenum, maxLevel: CA.GLint, pixelsWide: CA.GLsizei, pixelsHigh: CA.GLsizei) -> instancetype ---
 
     @(objc_type=OpenGLPixelBuffer, objc_selector="initWithCGLPBufferObj:", objc_name="initWithCGLPBufferObj")
     OpenGLPixelBuffer_initWithCGLPBufferObj :: proc(self: ^OpenGLPixelBuffer, pbuffer: CA.CGLPBufferObj) -> ^OpenGLPixelBuffer ---

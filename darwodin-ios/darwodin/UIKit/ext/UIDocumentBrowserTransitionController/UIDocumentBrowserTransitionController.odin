@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.DocumentBrowserTransitionController) -> ^UI.DocumentBrowserTransitionController,
+    init: proc(self: ^UI.DocumentBrowserTransitionController) -> instancetype,
     loadingProgress: proc(self: ^UI.DocumentBrowserTransitionController) -> ^NS.Progress,
     setLoadingProgress: proc(self: ^UI.DocumentBrowserTransitionController, loadingProgress: ^NS.Progress),
     targetView: proc(self: ^UI.DocumentBrowserTransitionController) -> ^UI.View,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.DocumentBrowserTransitionController, _: SEL) -> ^UI.DocumentBrowserTransitionController {
+        init :: proc "c" (self: ^UI.DocumentBrowserTransitionController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

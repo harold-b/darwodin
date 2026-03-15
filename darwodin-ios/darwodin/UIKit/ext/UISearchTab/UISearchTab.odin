@@ -28,7 +28,7 @@ import "../UITab"
 
 VTable :: struct {
     super: UITab.VTable,
-    initWithViewControllerProvider: proc(self: ^UI.SearchTab, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> ^UI.SearchTab,
+    initWithViewControllerProvider: proc(self: ^UI.SearchTab, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UITab.extend(cls, &vt.super)
 
     if vt.initWithViewControllerProvider != nil {
-        initWithViewControllerProvider :: proc "c" (self: ^UI.SearchTab, _: SEL, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> ^UI.SearchTab {
+        initWithViewControllerProvider :: proc "c" (self: ^UI.SearchTab, _: SEL, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

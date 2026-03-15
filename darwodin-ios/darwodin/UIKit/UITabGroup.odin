@@ -25,7 +25,7 @@ foreign lib {
     TabGroup_tabForIdentifier :: proc(self: ^TabGroup, identifier: ^NS.String) -> ^Tab ---
 
     @(objc_type=TabGroup, objc_selector="initWithTitle:image:identifier:children:viewControllerProvider:", objc_name="initWithTitle")
-    TabGroup_initWithTitle :: proc(self: ^TabGroup, title: ^NS.String, image: ^Image, identifier: ^NS.String, children: ^NS.Array, viewControllerProvider: ^Objc_Block(proc "c" (_: ^Tab) -> ^ViewController)) -> ^TabGroup ---
+    TabGroup_initWithTitle :: proc(self: ^TabGroup, title: ^NS.String, image: ^Image, identifier: ^NS.String, children: ^NS.Array, viewControllerProvider: ^Objc_Block(proc "c" (_: ^Tab) -> ^ViewController)) -> instancetype ---
 
     @(objc_type=TabGroup, objc_selector="selectedChild", objc_name="selectedChild")
     TabGroup_selectedChild :: proc(self: ^TabGroup) -> ^Tab ---

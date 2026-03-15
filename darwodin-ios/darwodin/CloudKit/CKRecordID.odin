@@ -21,16 +21,16 @@ RecordID :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RecordID, objc_selector="init", objc_name="init")
-    RecordID_init :: proc(self: ^RecordID) -> ^RecordID ---
+    RecordID_init :: proc(self: ^RecordID) -> instancetype ---
 
     @(objc_type=RecordID, objc_selector="new", objc_name="new", objc_is_class_method=true)
     RecordID_new :: proc() -> ^RecordID ---
 
     @(objc_type=RecordID, objc_selector="initWithRecordName:", objc_name="initWithRecordName_")
-    RecordID_initWithRecordName_ :: proc(self: ^RecordID, recordName: ^NS.String) -> ^RecordID ---
+    RecordID_initWithRecordName_ :: proc(self: ^RecordID, recordName: ^NS.String) -> instancetype ---
 
     @(objc_type=RecordID, objc_selector="initWithRecordName:zoneID:", objc_name="initWithRecordName_zoneID")
-    RecordID_initWithRecordName_zoneID :: proc(self: ^RecordID, recordName: ^NS.String, zoneID: ^RecordZoneID) -> ^RecordID ---
+    RecordID_initWithRecordName_zoneID :: proc(self: ^RecordID, recordName: ^NS.String, zoneID: ^RecordZoneID) -> instancetype ---
 
     @(objc_type=RecordID, objc_selector="recordName", objc_name="recordName")
     RecordID_recordName :: proc(self: ^RecordID) -> ^NS.String ---

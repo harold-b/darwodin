@@ -24,10 +24,10 @@ EPSImageRep :: struct { using _: ImageRep, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=EPSImageRep, objc_selector="imageRepWithData:", objc_name="imageRepWithData", objc_is_class_method=true)
-    EPSImageRep_imageRepWithData :: proc(epsData: ^NS.Data) -> ^EPSImageRep ---
+    EPSImageRep_imageRepWithData :: proc(epsData: ^NS.Data) -> instancetype ---
 
     @(objc_type=EPSImageRep, objc_selector="initWithData:", objc_name="initWithData")
-    EPSImageRep_initWithData :: proc(self: ^EPSImageRep, epsData: ^NS.Data) -> ^EPSImageRep ---
+    EPSImageRep_initWithData :: proc(self: ^EPSImageRep, epsData: ^NS.Data) -> instancetype ---
 
     @(objc_type=EPSImageRep, objc_selector="prepareGState", objc_name="prepareGState")
     EPSImageRep_prepareGState :: proc(self: ^EPSImageRep) ---

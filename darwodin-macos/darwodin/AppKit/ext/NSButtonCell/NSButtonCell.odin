@@ -30,9 +30,9 @@ import "../NSActionCell"
 
 VTable :: struct {
     super: NSActionCell.VTable,
-    initTextCell: proc(self: ^AK.ButtonCell, string: ^NS.String) -> ^AK.ButtonCell,
-    initImageCell: proc(self: ^AK.ButtonCell, image: ^NS.Image) -> ^AK.ButtonCell,
-    initWithCoder: proc(self: ^AK.ButtonCell, coder: ^NS.Coder) -> ^AK.ButtonCell,
+    initTextCell: proc(self: ^AK.ButtonCell, string: ^NS.String) -> instancetype,
+    initImageCell: proc(self: ^AK.ButtonCell, image: ^NS.Image) -> instancetype,
+    initWithCoder: proc(self: ^AK.ButtonCell, coder: ^NS.Coder) -> instancetype,
     setButtonType: proc(self: ^AK.ButtonCell, type: AK.ButtonType),
     setPeriodicDelay: proc(self: ^AK.ButtonCell, delay: cffi.float, interval: cffi.float),
     getPeriodicDelay: proc(self: ^AK.ButtonCell, delay: ^cffi.float, interval: ^cffi.float),
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSActionCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.ButtonCell, _: SEL, string: ^NS.String) -> ^AK.ButtonCell {
+        initTextCell :: proc "c" (self: ^AK.ButtonCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.ButtonCell, _: SEL, image: ^NS.Image) -> ^AK.ButtonCell {
+        initImageCell :: proc "c" (self: ^AK.ButtonCell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initImageCell:"), auto_cast initImageCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ButtonCell, _: SEL, coder: ^NS.Coder) -> ^AK.ButtonCell {
+        initWithCoder :: proc "c" (self: ^AK.ButtonCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,11 +28,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithRanges: proc(self: ^UI.NSTextSelection, textRanges: ^NS.Array, affinity: UI.NSTextSelectionAffinity, granularity: UI.NSTextSelectionGranularity) -> ^UI.NSTextSelection,
-    initWithCoder: proc(self: ^UI.NSTextSelection, coder: ^NS.Coder) -> ^UI.NSTextSelection,
-    initWithRange: proc(self: ^UI.NSTextSelection, range: ^UI.NSTextRange, affinity: UI.NSTextSelectionAffinity, granularity: UI.NSTextSelectionGranularity) -> ^UI.NSTextSelection,
-    initWithLocation: proc(self: ^UI.NSTextSelection, location: ^UI.NSTextLocation, affinity: UI.NSTextSelectionAffinity) -> ^UI.NSTextSelection,
-    init: proc(self: ^UI.NSTextSelection) -> ^UI.NSTextSelection,
+    initWithRanges: proc(self: ^UI.NSTextSelection, textRanges: ^NS.Array, affinity: UI.NSTextSelectionAffinity, granularity: UI.NSTextSelectionGranularity) -> instancetype,
+    initWithCoder: proc(self: ^UI.NSTextSelection, coder: ^NS.Coder) -> instancetype,
+    initWithRange: proc(self: ^UI.NSTextSelection, range: ^UI.NSTextRange, affinity: UI.NSTextSelectionAffinity, granularity: UI.NSTextSelectionGranularity) -> instancetype,
+    initWithLocation: proc(self: ^UI.NSTextSelection, location: ^UI.NSTextLocation, affinity: UI.NSTextSelectionAffinity) -> instancetype,
+    init: proc(self: ^UI.NSTextSelection) -> instancetype,
     textSelectionWithTextRanges: proc(self: ^UI.NSTextSelection, textRanges: ^NS.Array) -> ^UI.NSTextSelection,
     textRanges: proc(self: ^UI.NSTextSelection) -> ^NS.Array,
     granularity: proc(self: ^UI.NSTextSelection) -> UI.NSTextSelectionGranularity,
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithRanges != nil {
-        initWithRanges :: proc "c" (self: ^UI.NSTextSelection, _: SEL, textRanges: ^NS.Array, affinity: UI.NSTextSelectionAffinity, granularity: UI.NSTextSelectionGranularity) -> ^UI.NSTextSelection {
+        initWithRanges :: proc "c" (self: ^UI.NSTextSelection, _: SEL, textRanges: ^NS.Array, affinity: UI.NSTextSelectionAffinity, granularity: UI.NSTextSelectionGranularity) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRanges:affinity:granularity:"), auto_cast initWithRanges, "@@:^voidll") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.NSTextSelection, _: SEL, coder: ^NS.Coder) -> ^UI.NSTextSelection {
+        initWithCoder :: proc "c" (self: ^UI.NSTextSelection, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithRange != nil {
-        initWithRange :: proc "c" (self: ^UI.NSTextSelection, _: SEL, range: ^UI.NSTextRange, affinity: UI.NSTextSelectionAffinity, granularity: UI.NSTextSelectionGranularity) -> ^UI.NSTextSelection {
+        initWithRange :: proc "c" (self: ^UI.NSTextSelection, _: SEL, range: ^UI.NSTextRange, affinity: UI.NSTextSelectionAffinity, granularity: UI.NSTextSelectionGranularity) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRange:affinity:granularity:"), auto_cast initWithRange, "@@:@ll") do panic("Failed to register objC method.")
     }
     if vt.initWithLocation != nil {
-        initWithLocation :: proc "c" (self: ^UI.NSTextSelection, _: SEL, location: ^UI.NSTextLocation, affinity: UI.NSTextSelectionAffinity) -> ^UI.NSTextSelection {
+        initWithLocation :: proc "c" (self: ^UI.NSTextSelection, _: SEL, location: ^UI.NSTextLocation, affinity: UI.NSTextSelectionAffinity) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocation:affinity:"), auto_cast initWithLocation, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSTextSelection, _: SEL) -> ^UI.NSTextSelection {
+        init :: proc "c" (self: ^UI.NSTextSelection, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

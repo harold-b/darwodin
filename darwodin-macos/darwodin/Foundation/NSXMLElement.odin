@@ -20,19 +20,19 @@ XMLElement :: struct { using _: XMLNode, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=XMLElement, objc_selector="initWithName:", objc_name="initWithName_")
-    XMLElement_initWithName_ :: proc(self: ^XMLElement, name: ^String) -> ^XMLElement ---
+    XMLElement_initWithName_ :: proc(self: ^XMLElement, name: ^String) -> instancetype ---
 
     @(objc_type=XMLElement, objc_selector="initWithName:URI:", objc_name="initWithName_URI")
-    XMLElement_initWithName_URI :: proc(self: ^XMLElement, name: ^String, URI: ^String) -> ^XMLElement ---
+    XMLElement_initWithName_URI :: proc(self: ^XMLElement, name: ^String, URI: ^String) -> instancetype ---
 
     @(objc_type=XMLElement, objc_selector="initWithName:stringValue:", objc_name="initWithName_stringValue")
-    XMLElement_initWithName_stringValue :: proc(self: ^XMLElement, name: ^String, string: ^String) -> ^XMLElement ---
+    XMLElement_initWithName_stringValue :: proc(self: ^XMLElement, name: ^String, string: ^String) -> instancetype ---
 
     @(objc_type=XMLElement, objc_selector="initWithXMLString:error:", objc_name="initWithXMLString")
-    XMLElement_initWithXMLString :: proc(self: ^XMLElement, string: ^String, error: ^^Error) -> ^XMLElement ---
+    XMLElement_initWithXMLString :: proc(self: ^XMLElement, string: ^String, error: ^^Error) -> instancetype ---
 
     @(objc_type=XMLElement, objc_selector="initWithKind:options:", objc_name="initWithKind")
-    XMLElement_initWithKind :: proc(self: ^XMLElement, kind: XMLNodeKind, options: XMLNodeOptions) -> ^XMLElement ---
+    XMLElement_initWithKind :: proc(self: ^XMLElement, kind: XMLNodeKind, options: XMLNodeOptions) -> instancetype ---
 
     @(objc_type=XMLElement, objc_selector="elementsForName:", objc_name="elementsForName")
     XMLElement_elementsForName :: proc(self: ^XMLElement, name: ^String) -> ^Array ---

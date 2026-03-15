@@ -23,28 +23,28 @@ SortDescriptor :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SortDescriptor, objc_selector="sortDescriptorWithKey:ascending:", objc_name="sortDescriptorWithKey_ascending", objc_is_class_method=true)
-    SortDescriptor_sortDescriptorWithKey_ascending :: proc(key: ^String, ascending: bool) -> ^SortDescriptor ---
+    SortDescriptor_sortDescriptorWithKey_ascending :: proc(key: ^String, ascending: bool) -> instancetype ---
 
     @(objc_type=SortDescriptor, objc_selector="sortDescriptorWithKey:ascending:selector:", objc_name="sortDescriptorWithKey_ascending_selector", objc_is_class_method=true)
-    SortDescriptor_sortDescriptorWithKey_ascending_selector :: proc(key: ^String, ascending: bool, selector: SEL) -> ^SortDescriptor ---
+    SortDescriptor_sortDescriptorWithKey_ascending_selector :: proc(key: ^String, ascending: bool, selector: SEL) -> instancetype ---
 
     @(objc_type=SortDescriptor, objc_selector="initWithKey:ascending:", objc_name="initWithKey_ascending")
-    SortDescriptor_initWithKey_ascending :: proc(self: ^SortDescriptor, key: ^String, ascending: bool) -> ^SortDescriptor ---
+    SortDescriptor_initWithKey_ascending :: proc(self: ^SortDescriptor, key: ^String, ascending: bool) -> instancetype ---
 
     @(objc_type=SortDescriptor, objc_selector="initWithKey:ascending:selector:", objc_name="initWithKey_ascending_selector")
-    SortDescriptor_initWithKey_ascending_selector :: proc(self: ^SortDescriptor, key: ^String, ascending: bool, selector: SEL) -> ^SortDescriptor ---
+    SortDescriptor_initWithKey_ascending_selector :: proc(self: ^SortDescriptor, key: ^String, ascending: bool, selector: SEL) -> instancetype ---
 
     @(objc_type=SortDescriptor, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    SortDescriptor_initWithCoder :: proc(self: ^SortDescriptor, coder: ^Coder) -> ^SortDescriptor ---
+    SortDescriptor_initWithCoder :: proc(self: ^SortDescriptor, coder: ^Coder) -> instancetype ---
 
     @(objc_type=SortDescriptor, objc_selector="allowEvaluation", objc_name="allowEvaluation")
     SortDescriptor_allowEvaluation :: proc(self: ^SortDescriptor) ---
 
     @(objc_type=SortDescriptor, objc_selector="sortDescriptorWithKey:ascending:comparator:", objc_name="sortDescriptorWithKey_ascending_comparator", objc_is_class_method=true)
-    SortDescriptor_sortDescriptorWithKey_ascending_comparator :: proc(key: ^String, ascending: bool, cmptr: Comparator) -> ^SortDescriptor ---
+    SortDescriptor_sortDescriptorWithKey_ascending_comparator :: proc(key: ^String, ascending: bool, cmptr: Comparator) -> instancetype ---
 
     @(objc_type=SortDescriptor, objc_selector="initWithKey:ascending:comparator:", objc_name="initWithKey_ascending_comparator")
-    SortDescriptor_initWithKey_ascending_comparator :: proc(self: ^SortDescriptor, key: ^String, ascending: bool, cmptr: Comparator) -> ^SortDescriptor ---
+    SortDescriptor_initWithKey_ascending_comparator :: proc(self: ^SortDescriptor, key: ^String, ascending: bool, cmptr: Comparator) -> instancetype ---
 
     @(objc_type=SortDescriptor, objc_selector="compareObject:toObject:", objc_name="compareObject")
     SortDescriptor_compareObject :: proc(self: ^SortDescriptor, object1: id, object2: id) -> ComparisonResult ---

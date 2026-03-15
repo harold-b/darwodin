@@ -48,7 +48,7 @@ VTable :: struct {
     webSocketTaskWithURL_: proc(self: ^NS.URLSession, url: ^NS.URL) -> ^NS.URLSessionWebSocketTask,
     webSocketTaskWithURL_protocols: proc(self: ^NS.URLSession, url: ^NS.URL, protocols: ^NS.Array) -> ^NS.URLSessionWebSocketTask,
     webSocketTaskWithRequest: proc(self: ^NS.URLSession, request: ^NS.URLRequest) -> ^NS.URLSessionWebSocketTask,
-    init: proc(self: ^NS.URLSession) -> ^NS.URLSession,
+    init: proc(self: ^NS.URLSession) -> instancetype,
     new: proc() -> ^NS.URLSession,
     sharedSession: proc() -> ^NS.URLSession,
     delegateQueue: proc(self: ^NS.URLSession) -> ^NS.OperationQueue,
@@ -294,7 +294,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("webSocketTaskWithRequest:"), auto_cast webSocketTaskWithRequest, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSession, _: SEL) -> ^NS.URLSession {
+        init :: proc "c" (self: ^NS.URLSession, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

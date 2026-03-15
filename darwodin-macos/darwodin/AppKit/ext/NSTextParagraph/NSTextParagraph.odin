@@ -30,7 +30,7 @@ import "../NSTextElement"
 
 VTable :: struct {
     super: NSTextElement.VTable,
-    initWithAttributedString: proc(self: ^AK.TextParagraph, attributedString: ^NS.AttributedString) -> ^AK.TextParagraph,
+    initWithAttributedString: proc(self: ^AK.TextParagraph, attributedString: ^NS.AttributedString) -> instancetype,
     attributedString: proc(self: ^AK.TextParagraph) -> ^NS.AttributedString,
     paragraphContentRange: proc(self: ^AK.TextParagraph) -> ^AK.TextRange,
     paragraphSeparatorRange: proc(self: ^AK.TextParagraph) -> ^AK.TextRange,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextElement.extend(cls, &vt.super)
 
     if vt.initWithAttributedString != nil {
-        initWithAttributedString :: proc "c" (self: ^AK.TextParagraph, _: SEL, attributedString: ^NS.AttributedString) -> ^AK.TextParagraph {
+        initWithAttributedString :: proc "c" (self: ^AK.TextParagraph, _: SEL, attributedString: ^NS.AttributedString) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

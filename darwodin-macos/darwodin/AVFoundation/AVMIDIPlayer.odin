@@ -23,10 +23,10 @@ MIDIPlayer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDIPlayer, objc_selector="initWithContentsOfURL:soundBankURL:error:", objc_name="initWithContentsOfURL")
-    MIDIPlayer_initWithContentsOfURL :: proc(self: ^MIDIPlayer, inURL: ^NS.URL, bankURL: ^NS.URL, outError: ^^NS.Error) -> ^MIDIPlayer ---
+    MIDIPlayer_initWithContentsOfURL :: proc(self: ^MIDIPlayer, inURL: ^NS.URL, bankURL: ^NS.URL, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=MIDIPlayer, objc_selector="initWithData:soundBankURL:error:", objc_name="initWithData")
-    MIDIPlayer_initWithData :: proc(self: ^MIDIPlayer, data: ^NS.Data, bankURL: ^NS.URL, outError: ^^NS.Error) -> ^MIDIPlayer ---
+    MIDIPlayer_initWithData :: proc(self: ^MIDIPlayer, data: ^NS.Data, bankURL: ^NS.URL, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=MIDIPlayer, objc_selector="prepareToPlay", objc_name="prepareToPlay")
     MIDIPlayer_prepareToPlay :: proc(self: ^MIDIPlayer) ---

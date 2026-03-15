@@ -28,9 +28,9 @@ import "../UIGraphicsRenderer"
 
 VTable :: struct {
     super: UIGraphicsRenderer.VTable,
-    initWithSize_: proc(self: ^UI.GraphicsImageRenderer, size: CG.Size) -> ^UI.GraphicsImageRenderer,
-    initWithSize_format: proc(self: ^UI.GraphicsImageRenderer, size: CG.Size, format: ^UI.GraphicsImageRendererFormat) -> ^UI.GraphicsImageRenderer,
-    initWithBounds: proc(self: ^UI.GraphicsImageRenderer, bounds: CG.Rect, format: ^UI.GraphicsImageRendererFormat) -> ^UI.GraphicsImageRenderer,
+    initWithSize_: proc(self: ^UI.GraphicsImageRenderer, size: CG.Size) -> instancetype,
+    initWithSize_format: proc(self: ^UI.GraphicsImageRenderer, size: CG.Size, format: ^UI.GraphicsImageRendererFormat) -> instancetype,
+    initWithBounds: proc(self: ^UI.GraphicsImageRenderer, bounds: CG.Rect, format: ^UI.GraphicsImageRendererFormat) -> instancetype,
     imageWithActions: proc(self: ^UI.GraphicsImageRenderer, actions: UI.GraphicsImageDrawingActions) -> ^UI.Image,
     _PNGDataWithActions: proc(self: ^UI.GraphicsImageRenderer, actions: UI.GraphicsImageDrawingActions) -> ^NS.Data,
     _JPEGDataWithCompressionQuality: proc(self: ^UI.GraphicsImageRenderer, compressionQuality: CG.Float, actions: UI.GraphicsImageDrawingActions) -> ^NS.Data,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIGraphicsRenderer.extend(cls, &vt.super)
 
     if vt.initWithSize_ != nil {
-        initWithSize_ :: proc "c" (self: ^UI.GraphicsImageRenderer, _: SEL, size: CG.Size) -> ^UI.GraphicsImageRenderer {
+        initWithSize_ :: proc "c" (self: ^UI.GraphicsImageRenderer, _: SEL, size: CG.Size) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSize:"), auto_cast initWithSize_, "@@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithSize_format != nil {
-        initWithSize_format :: proc "c" (self: ^UI.GraphicsImageRenderer, _: SEL, size: CG.Size, format: ^UI.GraphicsImageRendererFormat) -> ^UI.GraphicsImageRenderer {
+        initWithSize_format :: proc "c" (self: ^UI.GraphicsImageRenderer, _: SEL, size: CG.Size, format: ^UI.GraphicsImageRendererFormat) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSize:format:"), auto_cast initWithSize_format, "@@:{CGSize=dd}@") do panic("Failed to register objC method.")
     }
     if vt.initWithBounds != nil {
-        initWithBounds :: proc "c" (self: ^UI.GraphicsImageRenderer, _: SEL, bounds: CG.Rect, format: ^UI.GraphicsImageRendererFormat) -> ^UI.GraphicsImageRenderer {
+        initWithBounds :: proc "c" (self: ^UI.GraphicsImageRenderer, _: SEL, bounds: CG.Rect, format: ^UI.GraphicsImageRendererFormat) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

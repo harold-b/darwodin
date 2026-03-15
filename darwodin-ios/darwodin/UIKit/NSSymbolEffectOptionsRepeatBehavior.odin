@@ -28,22 +28,22 @@ foreign lib {
     NSSymbolEffectOptionsRepeatBehavior_new :: proc() -> ^NSSymbolEffectOptionsRepeatBehavior ---
 
     @(objc_type=NSSymbolEffectOptionsRepeatBehavior, objc_selector="init", objc_name="init")
-    NSSymbolEffectOptionsRepeatBehavior_init :: proc(self: ^NSSymbolEffectOptionsRepeatBehavior) -> ^NSSymbolEffectOptionsRepeatBehavior ---
+    NSSymbolEffectOptionsRepeatBehavior_init :: proc(self: ^NSSymbolEffectOptionsRepeatBehavior) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptionsRepeatBehavior, objc_selector="behaviorPeriodic", objc_name="behaviorPeriodic", objc_is_class_method=true)
-    NSSymbolEffectOptionsRepeatBehavior_behaviorPeriodic :: proc() -> ^NSSymbolEffectOptionsRepeatBehavior ---
+    NSSymbolEffectOptionsRepeatBehavior_behaviorPeriodic :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptionsRepeatBehavior, objc_selector="behaviorPeriodicWithCount:", objc_name="behaviorPeriodicWithCount_", objc_is_class_method=true)
-    NSSymbolEffectOptionsRepeatBehavior_behaviorPeriodicWithCount_ :: proc(count: NS.Integer) -> ^NSSymbolEffectOptionsRepeatBehavior ---
+    NSSymbolEffectOptionsRepeatBehavior_behaviorPeriodicWithCount_ :: proc(count: NS.Integer) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptionsRepeatBehavior, objc_selector="behaviorPeriodicWithDelay:", objc_name="behaviorPeriodicWithDelay", objc_is_class_method=true)
-    NSSymbolEffectOptionsRepeatBehavior_behaviorPeriodicWithDelay :: proc(delay: cffi.double) -> ^NSSymbolEffectOptionsRepeatBehavior ---
+    NSSymbolEffectOptionsRepeatBehavior_behaviorPeriodicWithDelay :: proc(delay: cffi.double) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptionsRepeatBehavior, objc_selector="behaviorPeriodicWithCount:delay:", objc_name="behaviorPeriodicWithCount_delay", objc_is_class_method=true)
-    NSSymbolEffectOptionsRepeatBehavior_behaviorPeriodicWithCount_delay :: proc(count: NS.Integer, delay: cffi.double) -> ^NSSymbolEffectOptionsRepeatBehavior ---
+    NSSymbolEffectOptionsRepeatBehavior_behaviorPeriodicWithCount_delay :: proc(count: NS.Integer, delay: cffi.double) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptionsRepeatBehavior, objc_selector="behaviorContinuous", objc_name="behaviorContinuous", objc_is_class_method=true)
-    NSSymbolEffectOptionsRepeatBehavior_behaviorContinuous :: proc() -> ^NSSymbolEffectOptionsRepeatBehavior ---
+    NSSymbolEffectOptionsRepeatBehavior_behaviorContinuous :: proc() -> instancetype ---
 }
 
 @(objc_type=NSSymbolEffectOptionsRepeatBehavior, objc_name="behaviorPeriodicWithCount")

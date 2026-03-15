@@ -28,11 +28,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.AccessibilityLocationDescriptor) -> ^UI.AccessibilityLocationDescriptor,
+    init: proc(self: ^UI.AccessibilityLocationDescriptor) -> instancetype,
     new: proc() -> ^UI.AccessibilityLocationDescriptor,
-    initWithName_view: proc(self: ^UI.AccessibilityLocationDescriptor, name: ^NS.String, view: ^UI.View) -> ^UI.AccessibilityLocationDescriptor,
-    initWithName_point_inView: proc(self: ^UI.AccessibilityLocationDescriptor, name: ^NS.String, point: CG.Point, view: ^UI.View) -> ^UI.AccessibilityLocationDescriptor,
-    initWithAttributedName: proc(self: ^UI.AccessibilityLocationDescriptor, attributedName: ^NS.AttributedString, point: CG.Point, view: ^UI.View) -> ^UI.AccessibilityLocationDescriptor,
+    initWithName_view: proc(self: ^UI.AccessibilityLocationDescriptor, name: ^NS.String, view: ^UI.View) -> instancetype,
+    initWithName_point_inView: proc(self: ^UI.AccessibilityLocationDescriptor, name: ^NS.String, point: CG.Point, view: ^UI.View) -> instancetype,
+    initWithAttributedName: proc(self: ^UI.AccessibilityLocationDescriptor, attributedName: ^NS.AttributedString, point: CG.Point, view: ^UI.View) -> instancetype,
     view: proc(self: ^UI.AccessibilityLocationDescriptor) -> ^UI.View,
     point: proc(self: ^UI.AccessibilityLocationDescriptor) -> CG.Point,
     name: proc(self: ^UI.AccessibilityLocationDescriptor) -> ^NS.String,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.AccessibilityLocationDescriptor, _: SEL) -> ^UI.AccessibilityLocationDescriptor {
+        init :: proc "c" (self: ^UI.AccessibilityLocationDescriptor, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithName_view != nil {
-        initWithName_view :: proc "c" (self: ^UI.AccessibilityLocationDescriptor, _: SEL, name: ^NS.String, view: ^UI.View) -> ^UI.AccessibilityLocationDescriptor {
+        initWithName_view :: proc "c" (self: ^UI.AccessibilityLocationDescriptor, _: SEL, name: ^NS.String, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:view:"), auto_cast initWithName_view, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithName_point_inView != nil {
-        initWithName_point_inView :: proc "c" (self: ^UI.AccessibilityLocationDescriptor, _: SEL, name: ^NS.String, point: CG.Point, view: ^UI.View) -> ^UI.AccessibilityLocationDescriptor {
+        initWithName_point_inView :: proc "c" (self: ^UI.AccessibilityLocationDescriptor, _: SEL, name: ^NS.String, point: CG.Point, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:point:inView:"), auto_cast initWithName_point_inView, "@@:@{CGPoint=dd}@") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedName != nil {
-        initWithAttributedName :: proc "c" (self: ^UI.AccessibilityLocationDescriptor, _: SEL, attributedName: ^NS.AttributedString, point: CG.Point, view: ^UI.View) -> ^UI.AccessibilityLocationDescriptor {
+        initWithAttributedName :: proc "c" (self: ^UI.AccessibilityLocationDescriptor, _: SEL, attributedName: ^NS.AttributedString, point: CG.Point, view: ^UI.View) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,9 +28,9 @@ import "../UICellAccessory"
 
 VTable :: struct {
     super: UICellAccessory.VTable,
-    initWithCustomView: proc(self: ^UI.CellAccessoryCustomView, customView: ^UI.View, placement: UI.CellAccessoryPlacement) -> ^UI.CellAccessoryCustomView,
-    initWithCoder: proc(self: ^UI.CellAccessoryCustomView, coder: ^NS.Coder) -> ^UI.CellAccessoryCustomView,
-    init: proc(self: ^UI.CellAccessoryCustomView) -> ^UI.CellAccessoryCustomView,
+    initWithCustomView: proc(self: ^UI.CellAccessoryCustomView, customView: ^UI.View, placement: UI.CellAccessoryPlacement) -> instancetype,
+    initWithCoder: proc(self: ^UI.CellAccessoryCustomView, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.CellAccessoryCustomView) -> instancetype,
     new: proc() -> ^UI.CellAccessoryCustomView,
     customView: proc(self: ^UI.CellAccessoryCustomView) -> ^UI.View,
     placement: proc(self: ^UI.CellAccessoryCustomView) -> UI.CellAccessoryPlacement,
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UICellAccessory.extend(cls, &vt.super)
 
     if vt.initWithCustomView != nil {
-        initWithCustomView :: proc "c" (self: ^UI.CellAccessoryCustomView, _: SEL, customView: ^UI.View, placement: UI.CellAccessoryPlacement) -> ^UI.CellAccessoryCustomView {
+        initWithCustomView :: proc "c" (self: ^UI.CellAccessoryCustomView, _: SEL, customView: ^UI.View, placement: UI.CellAccessoryPlacement) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCustomView:placement:"), auto_cast initWithCustomView, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CellAccessoryCustomView, _: SEL, coder: ^NS.Coder) -> ^UI.CellAccessoryCustomView {
+        initWithCoder :: proc "c" (self: ^UI.CellAccessoryCustomView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CellAccessoryCustomView, _: SEL) -> ^UI.CellAccessoryCustomView {
+        init :: proc "c" (self: ^UI.CellAccessoryCustomView, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

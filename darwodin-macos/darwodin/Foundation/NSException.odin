@@ -26,7 +26,7 @@ foreign lib {
     Exception_exceptionWithName :: proc(name: ^String, reason: ^String, userInfo: ^Dictionary) -> ^Exception ---
 
     @(objc_type=Exception, objc_selector="initWithName:reason:userInfo:", objc_name="initWithName")
-    Exception_initWithName :: proc(self: ^Exception, aName: ^String, aReason: ^String, aUserInfo: ^Dictionary) -> ^Exception ---
+    Exception_initWithName :: proc(self: ^Exception, aName: ^String, aReason: ^String, aUserInfo: ^Dictionary) -> instancetype ---
 
     @(objc_type=Exception, objc_selector="raise", objc_name="raise_")
     Exception_raise_ :: proc(self: ^Exception) ---

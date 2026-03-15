@@ -25,11 +25,11 @@ DisplayCriteria :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DisplayCriteria, objc_selector="init", objc_name="init")
-    DisplayCriteria_init :: proc(self: ^DisplayCriteria) -> ^DisplayCriteria ---
+    DisplayCriteria_init :: proc(self: ^DisplayCriteria) -> instancetype ---
 
     @(objc_type=DisplayCriteria, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DisplayCriteria_new :: proc() -> ^DisplayCriteria ---
 
     @(objc_type=DisplayCriteria, objc_selector="initWithRefreshRate:formatDescription:", objc_name="initWithRefreshRate")
-    DisplayCriteria_initWithRefreshRate :: proc(self: ^DisplayCriteria, refreshRate: cffi.float, formatDescription: CM.FormatDescriptionRef) -> ^DisplayCriteria ---
+    DisplayCriteria_initWithRefreshRate :: proc(self: ^DisplayCriteria, refreshRate: cffi.float, formatDescription: CM.FormatDescriptionRef) -> instancetype ---
 }

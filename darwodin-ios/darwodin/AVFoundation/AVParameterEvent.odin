@@ -23,7 +23,7 @@ ParameterEvent :: struct { using _: MusicEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ParameterEvent, objc_selector="initWithParameterID:scope:element:value:", objc_name="initWithParameterID")
-    ParameterEvent_initWithParameterID :: proc(self: ^ParameterEvent, parameterID: CF.UInt32, scope: CF.UInt32, element: CF.UInt32, value: cffi.float) -> ^ParameterEvent ---
+    ParameterEvent_initWithParameterID :: proc(self: ^ParameterEvent, parameterID: CF.UInt32, scope: CF.UInt32, element: CF.UInt32, value: cffi.float) -> instancetype ---
 
     @(objc_type=ParameterEvent, objc_selector="parameterID", objc_name="parameterID")
     ParameterEvent_parameterID :: proc(self: ^ParameterEvent) -> CF.UInt32 ---

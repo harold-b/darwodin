@@ -24,7 +24,7 @@ ColorWell :: struct { using _: Control, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ColorWell, objc_selector="colorWellWithStyle:", objc_name="colorWellWithStyle", objc_is_class_method=true)
-    ColorWell_colorWellWithStyle :: proc(style: ColorWellStyle) -> ^ColorWell ---
+    ColorWell_colorWellWithStyle :: proc(style: ColorWellStyle) -> instancetype ---
 
     @(objc_type=ColorWell, objc_selector="deactivate", objc_name="deactivate")
     ColorWell_deactivate :: proc(self: ^ColorWell) ---

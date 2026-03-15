@@ -24,13 +24,13 @@ FormCell :: struct { using _: ActionCell, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FormCell, objc_selector="initTextCell:", objc_name="initTextCell")
-    FormCell_initTextCell :: proc(self: ^FormCell, string: ^NS.String) -> ^FormCell ---
+    FormCell_initTextCell :: proc(self: ^FormCell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=FormCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    FormCell_initWithCoder :: proc(self: ^FormCell, coder: ^NS.Coder) -> ^FormCell ---
+    FormCell_initWithCoder :: proc(self: ^FormCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=FormCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    FormCell_initImageCell :: proc(self: ^FormCell, image: ^NS.Image) -> ^FormCell ---
+    FormCell_initImageCell :: proc(self: ^FormCell, image: ^NS.Image) -> instancetype ---
 
     @(objc_type=FormCell, objc_selector="titleWidth:", objc_name="titleWidth_size")
     FormCell_titleWidth_size :: proc(self: ^FormCell, size: NS.Size) -> CG.Float ---

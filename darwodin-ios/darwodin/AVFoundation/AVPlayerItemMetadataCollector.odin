@@ -23,7 +23,7 @@ PlayerItemMetadataCollector :: struct { using _: PlayerItemMediaDataCollector, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemMetadataCollector, objc_selector="initWithIdentifiers:classifyingLabels:", objc_name="initWithIdentifiers")
-    PlayerItemMetadataCollector_initWithIdentifiers :: proc(self: ^PlayerItemMetadataCollector, identifiers: ^NS.Array, classifyingLabels: ^NS.Array) -> ^PlayerItemMetadataCollector ---
+    PlayerItemMetadataCollector_initWithIdentifiers :: proc(self: ^PlayerItemMetadataCollector, identifiers: ^NS.Array, classifyingLabels: ^NS.Array) -> instancetype ---
 
     @(objc_type=PlayerItemMetadataCollector, objc_selector="setDelegate:queue:", objc_name="setDelegate")
     PlayerItemMetadataCollector_setDelegate :: proc(self: ^PlayerItemMetadataCollector, delegate: ^PlayerItemMetadataCollectorPushDelegate, delegateQueue: CF.dispatch_queue_t) ---

@@ -30,8 +30,8 @@ import "../NSResponder"
 
 VTable :: struct {
     super: NSResponder.VTable,
-    init: proc(self: ^AK.Popover) -> ^AK.Popover,
-    initWithCoder: proc(self: ^AK.Popover, coder: ^NS.Coder) -> ^AK.Popover,
+    init: proc(self: ^AK.Popover) -> instancetype,
+    initWithCoder: proc(self: ^AK.Popover, coder: ^NS.Coder) -> instancetype,
     showRelativeToRect: proc(self: ^AK.Popover, positioningRect: NS.Rect, positioningView: ^AK.View, preferredEdge: NS.RectEdge),
     showRelativeToToolbarItem: proc(self: ^AK.Popover, toolbarItem: ^AK.ToolbarItem),
     performClose: proc(self: ^AK.Popover, sender: id),
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSResponder.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Popover, _: SEL) -> ^AK.Popover {
+        init :: proc "c" (self: ^AK.Popover, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Popover, _: SEL, coder: ^NS.Coder) -> ^AK.Popover {
+        initWithCoder :: proc "c" (self: ^AK.Popover, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

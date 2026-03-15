@@ -26,13 +26,13 @@ CollectionLayoutItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionLayoutItem, objc_selector="itemWithLayoutSize:", objc_name="itemWithLayoutSize_", objc_is_class_method=true)
-    CollectionLayoutItem_itemWithLayoutSize_ :: proc(layoutSize: ^CollectionLayoutSize) -> ^CollectionLayoutItem ---
+    CollectionLayoutItem_itemWithLayoutSize_ :: proc(layoutSize: ^CollectionLayoutSize) -> instancetype ---
 
     @(objc_type=CollectionLayoutItem, objc_selector="itemWithLayoutSize:supplementaryItems:", objc_name="itemWithLayoutSize_supplementaryItems", objc_is_class_method=true)
-    CollectionLayoutItem_itemWithLayoutSize_supplementaryItems :: proc(layoutSize: ^CollectionLayoutSize, supplementaryItems: ^NS.Array) -> ^CollectionLayoutItem ---
+    CollectionLayoutItem_itemWithLayoutSize_supplementaryItems :: proc(layoutSize: ^CollectionLayoutSize, supplementaryItems: ^NS.Array) -> instancetype ---
 
     @(objc_type=CollectionLayoutItem, objc_selector="init", objc_name="init")
-    CollectionLayoutItem_init :: proc(self: ^CollectionLayoutItem) -> ^CollectionLayoutItem ---
+    CollectionLayoutItem_init :: proc(self: ^CollectionLayoutItem) -> instancetype ---
 
     @(objc_type=CollectionLayoutItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionLayoutItem_new :: proc() -> ^CollectionLayoutItem ---

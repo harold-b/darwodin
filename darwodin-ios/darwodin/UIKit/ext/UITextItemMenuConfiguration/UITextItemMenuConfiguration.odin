@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    configurationWithMenu: proc(menu: ^UI.Menu) -> ^UI.TextItemMenuConfiguration,
-    configurationWithPreview: proc(preview: ^UI.TextItemMenuPreview, menu: ^UI.Menu) -> ^UI.TextItemMenuConfiguration,
-    init: proc(self: ^UI.TextItemMenuConfiguration) -> ^UI.TextItemMenuConfiguration,
+    configurationWithMenu: proc(menu: ^UI.Menu) -> instancetype,
+    configurationWithPreview: proc(preview: ^UI.TextItemMenuPreview, menu: ^UI.Menu) -> instancetype,
+    init: proc(self: ^UI.TextItemMenuConfiguration) -> instancetype,
     new: proc() -> ^UI.TextItemMenuConfiguration,
 }
 
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.configurationWithMenu != nil {
-        configurationWithMenu :: proc "c" (self: Class, _: SEL, menu: ^UI.Menu) -> ^UI.TextItemMenuConfiguration {
+        configurationWithMenu :: proc "c" (self: Class, _: SEL, menu: ^UI.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithMenu:"), auto_cast configurationWithMenu, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.configurationWithPreview != nil {
-        configurationWithPreview :: proc "c" (self: Class, _: SEL, preview: ^UI.TextItemMenuPreview, menu: ^UI.Menu) -> ^UI.TextItemMenuConfiguration {
+        configurationWithPreview :: proc "c" (self: Class, _: SEL, preview: ^UI.TextItemMenuPreview, menu: ^UI.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithPreview:menu:"), auto_cast configurationWithPreview, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextItemMenuConfiguration, _: SEL) -> ^UI.TextItemMenuConfiguration {
+        init :: proc "c" (self: ^UI.TextItemMenuConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

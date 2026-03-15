@@ -21,13 +21,13 @@ foreign lib {
     HapticEngine_capabilitiesForHardware :: proc() -> ^HapticDeviceCapability ---
 
     @(objc_type=HapticEngine, objc_selector="init", objc_name="init")
-    HapticEngine_init :: proc(self: ^HapticEngine) -> ^HapticEngine ---
+    HapticEngine_init :: proc(self: ^HapticEngine) -> instancetype ---
 
     @(objc_type=HapticEngine, objc_selector="initAndReturnError:", objc_name="initAndReturnError")
-    HapticEngine_initAndReturnError :: proc(self: ^HapticEngine, error: ^^NS.Error) -> ^HapticEngine ---
+    HapticEngine_initAndReturnError :: proc(self: ^HapticEngine, error: ^^NS.Error) -> instancetype ---
 
     @(objc_type=HapticEngine, objc_selector="initWithAudioSession:error:", objc_name="initWithAudioSession")
-    HapticEngine_initWithAudioSession :: proc(self: ^HapticEngine, audioSession: ^AVAudioSession, error: ^^NS.Error) -> ^HapticEngine ---
+    HapticEngine_initWithAudioSession :: proc(self: ^HapticEngine, audioSession: ^AVAudioSession, error: ^^NS.Error) -> instancetype ---
 
     @(objc_type=HapticEngine, objc_selector="startWithCompletionHandler:", objc_name="startWithCompletionHandler")
     HapticEngine_startWithCompletionHandler :: proc(self: ^HapticEngine, completionHandler: HapticCompletionHandler) ---

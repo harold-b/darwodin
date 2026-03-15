@@ -25,19 +25,19 @@ ActivityCollaborationModeRestriction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ActivityCollaborationModeRestriction, objc_selector="initWithDisabledMode:", objc_name="initWithDisabledMode_")
-    ActivityCollaborationModeRestriction_initWithDisabledMode_ :: proc(self: ^ActivityCollaborationModeRestriction, disabledMode: ActivityCollaborationMode) -> ^ActivityCollaborationModeRestriction ---
+    ActivityCollaborationModeRestriction_initWithDisabledMode_ :: proc(self: ^ActivityCollaborationModeRestriction, disabledMode: ActivityCollaborationMode) -> instancetype ---
 
     @(objc_type=ActivityCollaborationModeRestriction, objc_selector="initWithDisabledMode:alertTitle:alertMessage:", objc_name="initWithDisabledMode_alertTitle_alertMessage")
-    ActivityCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage :: proc(self: ^ActivityCollaborationModeRestriction, disabledMode: ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> ^ActivityCollaborationModeRestriction ---
+    ActivityCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage :: proc(self: ^ActivityCollaborationModeRestriction, disabledMode: ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String) -> instancetype ---
 
     @(objc_type=ActivityCollaborationModeRestriction, objc_selector="initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:", objc_name="initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle")
-    ActivityCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle :: proc(self: ^ActivityCollaborationModeRestriction, disabledMode: ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> ^ActivityCollaborationModeRestriction ---
+    ActivityCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle :: proc(self: ^ActivityCollaborationModeRestriction, disabledMode: ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String) -> instancetype ---
 
     @(objc_type=ActivityCollaborationModeRestriction, objc_selector="initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:", objc_name="initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL")
-    ActivityCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL :: proc(self: ^ActivityCollaborationModeRestriction, disabledMode: ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> ^ActivityCollaborationModeRestriction ---
+    ActivityCollaborationModeRestriction_initWithDisabledMode_alertTitle_alertMessage_alertDismissButtonTitle_alertRecoverySuggestionButtonTitle_alertRecoverySuggestionButtonLaunchURL :: proc(self: ^ActivityCollaborationModeRestriction, disabledMode: ActivityCollaborationMode, alertTitle: ^NS.String, alertMessage: ^NS.String, alertDismissButtonTitle: ^NS.String, alertRecoverySuggestionButtonTitle: ^NS.String, alertRecoverySuggestionButtonLaunchURL: ^NS.URL) -> instancetype ---
 
     @(objc_type=ActivityCollaborationModeRestriction, objc_selector="init", objc_name="init")
-    ActivityCollaborationModeRestriction_init :: proc(self: ^ActivityCollaborationModeRestriction) -> ^ActivityCollaborationModeRestriction ---
+    ActivityCollaborationModeRestriction_init :: proc(self: ^ActivityCollaborationModeRestriction) -> instancetype ---
 
     @(objc_type=ActivityCollaborationModeRestriction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ActivityCollaborationModeRestriction_new :: proc() -> ^ActivityCollaborationModeRestriction ---

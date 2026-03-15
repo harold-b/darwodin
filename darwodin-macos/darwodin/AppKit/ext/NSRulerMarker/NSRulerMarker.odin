@@ -30,9 +30,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithRulerView: proc(self: ^AK.RulerMarker, ruler: ^AK.RulerView, location: CG.Float, image: ^NS.Image, imageOrigin: CG.Point) -> ^AK.RulerMarker,
-    initWithCoder: proc(self: ^AK.RulerMarker, coder: ^NS.Coder) -> ^AK.RulerMarker,
-    init: proc(self: ^AK.RulerMarker) -> ^AK.RulerMarker,
+    initWithRulerView: proc(self: ^AK.RulerMarker, ruler: ^AK.RulerView, location: CG.Float, image: ^NS.Image, imageOrigin: CG.Point) -> instancetype,
+    initWithCoder: proc(self: ^AK.RulerMarker, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^AK.RulerMarker) -> instancetype,
     drawRect: proc(self: ^AK.RulerMarker, rect: NS.Rect),
     trackMouse: proc(self: ^AK.RulerMarker, mouseDownEvent: ^AK.Event, isAdding: bool) -> bool,
     ruler: proc(self: ^AK.RulerMarker) -> ^AK.RulerView,
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithRulerView != nil {
-        initWithRulerView :: proc "c" (self: ^AK.RulerMarker, _: SEL, ruler: ^AK.RulerView, location: CG.Float, image: ^NS.Image, imageOrigin: CG.Point) -> ^AK.RulerMarker {
+        initWithRulerView :: proc "c" (self: ^AK.RulerMarker, _: SEL, ruler: ^AK.RulerView, location: CG.Float, image: ^NS.Image, imageOrigin: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRulerView:markerLocation:image:imageOrigin:"), auto_cast initWithRulerView, "@@:@d@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.RulerMarker, _: SEL, coder: ^NS.Coder) -> ^AK.RulerMarker {
+        initWithCoder :: proc "c" (self: ^AK.RulerMarker, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.RulerMarker, _: SEL) -> ^AK.RulerMarker {
+        init :: proc "c" (self: ^AK.RulerMarker, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

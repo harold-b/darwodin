@@ -28,10 +28,10 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithConfiguration: proc(self: ^UI.ListContentView, configuration: ^UI.ListContentConfiguration) -> ^UI.ListContentView,
-    initWithCoder: proc(self: ^UI.ListContentView, coder: ^NS.Coder) -> ^UI.ListContentView,
-    initWithFrame: proc(self: ^UI.ListContentView, frame: CG.Rect) -> ^UI.ListContentView,
-    init: proc(self: ^UI.ListContentView) -> ^UI.ListContentView,
+    initWithConfiguration: proc(self: ^UI.ListContentView, configuration: ^UI.ListContentConfiguration) -> instancetype,
+    initWithCoder: proc(self: ^UI.ListContentView, coder: ^NS.Coder) -> instancetype,
+    initWithFrame: proc(self: ^UI.ListContentView, frame: CG.Rect) -> instancetype,
+    init: proc(self: ^UI.ListContentView) -> instancetype,
     new: proc() -> ^UI.ListContentView,
     configuration: proc(self: ^UI.ListContentView) -> ^UI.ListContentConfiguration,
     setConfiguration: proc(self: ^UI.ListContentView, configuration: ^UI.ListContentConfiguration),
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithConfiguration != nil {
-        initWithConfiguration :: proc "c" (self: ^UI.ListContentView, _: SEL, configuration: ^UI.ListContentConfiguration) -> ^UI.ListContentView {
+        initWithConfiguration :: proc "c" (self: ^UI.ListContentView, _: SEL, configuration: ^UI.ListContentConfiguration) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithConfiguration:"), auto_cast initWithConfiguration, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.ListContentView, _: SEL, coder: ^NS.Coder) -> ^UI.ListContentView {
+        initWithCoder :: proc "c" (self: ^UI.ListContentView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.ListContentView, _: SEL, frame: CG.Rect) -> ^UI.ListContentView {
+        initWithFrame :: proc "c" (self: ^UI.ListContentView, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ListContentView, _: SEL) -> ^UI.ListContentView {
+        init :: proc "c" (self: ^UI.ListContentView, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

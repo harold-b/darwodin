@@ -30,8 +30,8 @@ import "../NSController"
 
 VTable :: struct {
     super: NSController.VTable,
-    initWithContent: proc(self: ^AK.ObjectController, content: id) -> ^AK.ObjectController,
-    initWithCoder: proc(self: ^AK.ObjectController, coder: ^NS.Coder) -> ^AK.ObjectController,
+    initWithContent: proc(self: ^AK.ObjectController, content: id) -> instancetype,
+    initWithCoder: proc(self: ^AK.ObjectController, coder: ^NS.Coder) -> instancetype,
     prepareContent: proc(self: ^AK.ObjectController),
     newObject: proc(self: ^AK.ObjectController) -> id,
     addObject: proc(self: ^AK.ObjectController, object: id),
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSController.extend(cls, &vt.super)
 
     if vt.initWithContent != nil {
-        initWithContent :: proc "c" (self: ^AK.ObjectController, _: SEL, content: id) -> ^AK.ObjectController {
+        initWithContent :: proc "c" (self: ^AK.ObjectController, _: SEL, content: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContent:"), auto_cast initWithContent, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ObjectController, _: SEL, coder: ^NS.Coder) -> ^AK.ObjectController {
+        initWithCoder :: proc "c" (self: ^AK.ObjectController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

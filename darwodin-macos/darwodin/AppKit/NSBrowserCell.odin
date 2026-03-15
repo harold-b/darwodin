@@ -24,13 +24,13 @@ BrowserCell :: struct { using _: Cell, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BrowserCell, objc_selector="initTextCell:", objc_name="initTextCell")
-    BrowserCell_initTextCell :: proc(self: ^BrowserCell, string: ^NS.String) -> ^BrowserCell ---
+    BrowserCell_initTextCell :: proc(self: ^BrowserCell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=BrowserCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    BrowserCell_initImageCell :: proc(self: ^BrowserCell, image: ^NS.Image) -> ^BrowserCell ---
+    BrowserCell_initImageCell :: proc(self: ^BrowserCell, image: ^NS.Image) -> instancetype ---
 
     @(objc_type=BrowserCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    BrowserCell_initWithCoder :: proc(self: ^BrowserCell, coder: ^NS.Coder) -> ^BrowserCell ---
+    BrowserCell_initWithCoder :: proc(self: ^BrowserCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=BrowserCell, objc_selector="highlightColorInView:", objc_name="highlightColorInView")
     BrowserCell_highlightColorInView :: proc(self: ^BrowserCell, controlView: ^View) -> ^Color ---

@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithLabel: proc(self: ^AK.AccessibilityCustomRotor, label: ^NS.String, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> ^AK.AccessibilityCustomRotor,
-    initWithRotorType: proc(self: ^AK.AccessibilityCustomRotor, rotorType: AK.AccessibilityCustomRotorType, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> ^AK.AccessibilityCustomRotor,
+    initWithLabel: proc(self: ^AK.AccessibilityCustomRotor, label: ^NS.String, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> instancetype,
+    initWithRotorType: proc(self: ^AK.AccessibilityCustomRotor, rotorType: AK.AccessibilityCustomRotorType, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> instancetype,
     type: proc(self: ^AK.AccessibilityCustomRotor) -> AK.AccessibilityCustomRotorType,
     setType: proc(self: ^AK.AccessibilityCustomRotor, type: AK.AccessibilityCustomRotorType),
     label: proc(self: ^AK.AccessibilityCustomRotor) -> ^NS.String,
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithLabel != nil {
-        initWithLabel :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, label: ^NS.String, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> ^AK.AccessibilityCustomRotor {
+        initWithLabel :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, label: ^NS.String, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLabel:itemSearchDelegate:"), auto_cast initWithLabel, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithRotorType != nil {
-        initWithRotorType :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, rotorType: AK.AccessibilityCustomRotorType, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> ^AK.AccessibilityCustomRotor {
+        initWithRotorType :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, rotorType: AK.AccessibilityCustomRotorType, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

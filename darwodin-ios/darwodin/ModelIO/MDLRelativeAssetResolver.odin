@@ -23,7 +23,7 @@ RelativeAssetResolver :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RelativeAssetResolver, objc_selector="initWithAsset:", objc_name="initWithAsset")
-    RelativeAssetResolver_initWithAsset :: proc(self: ^RelativeAssetResolver, asset: ^Asset) -> ^RelativeAssetResolver ---
+    RelativeAssetResolver_initWithAsset :: proc(self: ^RelativeAssetResolver, asset: ^Asset) -> instancetype ---
 
     @(objc_type=RelativeAssetResolver, objc_selector="asset", objc_name="asset")
     RelativeAssetResolver_asset :: proc(self: ^RelativeAssetResolver) -> ^Asset ---

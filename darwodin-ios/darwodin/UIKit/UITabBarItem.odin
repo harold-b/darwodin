@@ -22,19 +22,19 @@ TabBarItem :: struct { using _: BarItem, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TabBarItem, objc_selector="init", objc_name="init")
-    TabBarItem_init :: proc(self: ^TabBarItem) -> ^TabBarItem ---
+    TabBarItem_init :: proc(self: ^TabBarItem) -> instancetype ---
 
     @(objc_type=TabBarItem, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TabBarItem_initWithCoder :: proc(self: ^TabBarItem, coder: ^NS.Coder) -> ^TabBarItem ---
+    TabBarItem_initWithCoder :: proc(self: ^TabBarItem, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TabBarItem, objc_selector="initWithTitle:image:tag:", objc_name="initWithTitle_image_tag")
-    TabBarItem_initWithTitle_image_tag :: proc(self: ^TabBarItem, title: ^NS.String, image: ^Image, tag: NS.Integer) -> ^TabBarItem ---
+    TabBarItem_initWithTitle_image_tag :: proc(self: ^TabBarItem, title: ^NS.String, image: ^Image, tag: NS.Integer) -> instancetype ---
 
     @(objc_type=TabBarItem, objc_selector="initWithTitle:image:selectedImage:", objc_name="initWithTitle_image_selectedImage")
-    TabBarItem_initWithTitle_image_selectedImage :: proc(self: ^TabBarItem, title: ^NS.String, image: ^Image, selectedImage: ^Image) -> ^TabBarItem ---
+    TabBarItem_initWithTitle_image_selectedImage :: proc(self: ^TabBarItem, title: ^NS.String, image: ^Image, selectedImage: ^Image) -> instancetype ---
 
     @(objc_type=TabBarItem, objc_selector="initWithTabBarSystemItem:tag:", objc_name="initWithTabBarSystemItem")
-    TabBarItem_initWithTabBarSystemItem :: proc(self: ^TabBarItem, systemItem: TabBarSystemItem, tag: NS.Integer) -> ^TabBarItem ---
+    TabBarItem_initWithTabBarSystemItem :: proc(self: ^TabBarItem, systemItem: TabBarSystemItem, tag: NS.Integer) -> instancetype ---
 
     @(objc_type=TabBarItem, objc_selector="setFinishedSelectedImage:withFinishedUnselectedImage:", objc_name="setFinishedSelectedImage")
     TabBarItem_setFinishedSelectedImage :: proc(self: ^TabBarItem, selectedImage: ^Image, unselectedImage: ^Image) ---

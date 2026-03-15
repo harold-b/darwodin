@@ -26,9 +26,9 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.BundleResourceRequest) -> ^NS.BundleResourceRequest,
-    initWithTags_: proc(self: ^NS.BundleResourceRequest, tags: ^NS.Set) -> ^NS.BundleResourceRequest,
-    initWithTags_bundle: proc(self: ^NS.BundleResourceRequest, tags: ^NS.Set, bundle: ^NS.Bundle) -> ^NS.BundleResourceRequest,
+    init: proc(self: ^NS.BundleResourceRequest) -> instancetype,
+    initWithTags_: proc(self: ^NS.BundleResourceRequest, tags: ^NS.Set) -> instancetype,
+    initWithTags_bundle: proc(self: ^NS.BundleResourceRequest, tags: ^NS.Set, bundle: ^NS.Bundle) -> instancetype,
     beginAccessingResourcesWithCompletionHandler: proc(self: ^NS.BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     conditionallyBeginAccessingResourcesWithCompletionHandler: proc(self: ^NS.BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (resourcesAvailable: bool))),
     endAccessingResources: proc(self: ^NS.BundleResourceRequest),
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL) -> ^NS.BundleResourceRequest {
+        init :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTags_ != nil {
-        initWithTags_ :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL, tags: ^NS.Set) -> ^NS.BundleResourceRequest {
+        initWithTags_ :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL, tags: ^NS.Set) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTags:"), auto_cast initWithTags_, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithTags_bundle != nil {
-        initWithTags_bundle :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL, tags: ^NS.Set, bundle: ^NS.Bundle) -> ^NS.BundleResourceRequest {
+        initWithTags_bundle :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL, tags: ^NS.Set, bundle: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

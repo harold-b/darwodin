@@ -19,10 +19,10 @@ PerlinNoiseSource :: struct { using _: CoherentNoiseSource, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PerlinNoiseSource, objc_selector="perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:", objc_name="perlinNoiseSourceWithFrequency", objc_is_class_method=true)
-    PerlinNoiseSource_perlinNoiseSourceWithFrequency :: proc(frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> ^PerlinNoiseSource ---
+    PerlinNoiseSource_perlinNoiseSourceWithFrequency :: proc(frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
 
     @(objc_type=PerlinNoiseSource, objc_selector="initWithFrequency:octaveCount:persistence:lacunarity:seed:", objc_name="initWithFrequency")
-    PerlinNoiseSource_initWithFrequency :: proc(self: ^PerlinNoiseSource, frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> ^PerlinNoiseSource ---
+    PerlinNoiseSource_initWithFrequency :: proc(self: ^PerlinNoiseSource, frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
 
     @(objc_type=PerlinNoiseSource, objc_selector="persistence", objc_name="persistence")
     PerlinNoiseSource_persistence :: proc(self: ^PerlinNoiseSource) -> cffi.double ---

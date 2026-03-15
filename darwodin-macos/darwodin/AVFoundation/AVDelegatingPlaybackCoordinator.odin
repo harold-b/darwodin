@@ -23,7 +23,7 @@ DelegatingPlaybackCoordinator :: struct { using _: PlaybackCoordinator, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DelegatingPlaybackCoordinator, objc_selector="initWithPlaybackControlDelegate:", objc_name="initWithPlaybackControlDelegate")
-    DelegatingPlaybackCoordinator_initWithPlaybackControlDelegate :: proc(self: ^DelegatingPlaybackCoordinator, playbackControlDelegate: ^PlaybackCoordinatorPlaybackControlDelegate) -> ^DelegatingPlaybackCoordinator ---
+    DelegatingPlaybackCoordinator_initWithPlaybackControlDelegate :: proc(self: ^DelegatingPlaybackCoordinator, playbackControlDelegate: ^PlaybackCoordinatorPlaybackControlDelegate) -> instancetype ---
 
     @(objc_type=DelegatingPlaybackCoordinator, objc_selector="coordinateRateChangeToRate:options:", objc_name="coordinateRateChangeToRate")
     DelegatingPlaybackCoordinator_coordinateRateChangeToRate :: proc(self: ^DelegatingPlaybackCoordinator, rate: cffi.float, options: DelegatingPlaybackCoordinatorRateChangeOptions) ---

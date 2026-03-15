@@ -19,10 +19,10 @@ CylindersNoiseSource :: struct { using _: NoiseSource, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CylindersNoiseSource, objc_selector="cylindersNoiseWithFrequency:", objc_name="cylindersNoiseWithFrequency", objc_is_class_method=true)
-    CylindersNoiseSource_cylindersNoiseWithFrequency :: proc(frequency: cffi.double) -> ^CylindersNoiseSource ---
+    CylindersNoiseSource_cylindersNoiseWithFrequency :: proc(frequency: cffi.double) -> instancetype ---
 
     @(objc_type=CylindersNoiseSource, objc_selector="initWithFrequency:", objc_name="initWithFrequency")
-    CylindersNoiseSource_initWithFrequency :: proc(self: ^CylindersNoiseSource, frequency: cffi.double) -> ^CylindersNoiseSource ---
+    CylindersNoiseSource_initWithFrequency :: proc(self: ^CylindersNoiseSource, frequency: cffi.double) -> instancetype ---
 
     @(objc_type=CylindersNoiseSource, objc_selector="frequency", objc_name="frequency")
     CylindersNoiseSource_frequency :: proc(self: ^CylindersNoiseSource) -> cffi.double ---

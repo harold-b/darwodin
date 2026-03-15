@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.UserNotificationCategory) -> ^UI.UserNotificationCategory,
-    initWithCoder: proc(self: ^UI.UserNotificationCategory, coder: ^NS.Coder) -> ^UI.UserNotificationCategory,
+    init: proc(self: ^UI.UserNotificationCategory) -> instancetype,
+    initWithCoder: proc(self: ^UI.UserNotificationCategory, coder: ^NS.Coder) -> instancetype,
     actionsForContext: proc(self: ^UI.UserNotificationCategory, _context: UI.UserNotificationActionContext) -> ^NS.Array,
     identifier: proc(self: ^UI.UserNotificationCategory) -> ^NS.String,
 }
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.UserNotificationCategory, _: SEL) -> ^UI.UserNotificationCategory {
+        init :: proc "c" (self: ^UI.UserNotificationCategory, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.UserNotificationCategory, _: SEL, coder: ^NS.Coder) -> ^UI.UserNotificationCategory {
+        initWithCoder :: proc "c" (self: ^UI.UserNotificationCategory, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

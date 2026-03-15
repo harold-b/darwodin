@@ -18,7 +18,7 @@ Database :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Database, objc_selector="init", objc_name="init")
-    Database_init :: proc(self: ^Database) -> ^Database ---
+    Database_init :: proc(self: ^Database) -> instancetype ---
 
     @(objc_type=Database, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Database_new :: proc() -> ^Database ---

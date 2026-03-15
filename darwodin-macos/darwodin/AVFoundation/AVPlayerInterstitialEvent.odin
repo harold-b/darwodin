@@ -25,22 +25,22 @@ PlayerInterstitialEvent :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerInterstitialEvent, objc_selector="init", objc_name="init")
-    PlayerInterstitialEvent_init :: proc(self: ^PlayerInterstitialEvent) -> ^PlayerInterstitialEvent ---
+    PlayerInterstitialEvent_init :: proc(self: ^PlayerInterstitialEvent) -> instancetype ---
 
     @(objc_type=PlayerInterstitialEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PlayerInterstitialEvent_new :: proc() -> ^PlayerInterstitialEvent ---
 
     @(objc_type=PlayerInterstitialEvent, objc_selector="interstitialEventWithPrimaryItem:identifier:time:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:", objc_name="interstitialEventWithPrimaryItem_identifier_time_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes", objc_is_class_method=true)
-    PlayerInterstitialEvent_interstitialEventWithPrimaryItem_identifier_time_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes :: proc(primaryItem: ^PlayerItem, identifier: ^NS.String, time: CM.Time, templateItems: ^NS.Array, restrictions: PlayerInterstitialEventRestrictions, resumptionOffset: CM.Time, playoutLimit: CM.Time, userDefinedAttributes: ^NS.Dictionary) -> ^PlayerInterstitialEvent ---
+    PlayerInterstitialEvent_interstitialEventWithPrimaryItem_identifier_time_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes :: proc(primaryItem: ^PlayerItem, identifier: ^NS.String, time: CM.Time, templateItems: ^NS.Array, restrictions: PlayerInterstitialEventRestrictions, resumptionOffset: CM.Time, playoutLimit: CM.Time, userDefinedAttributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=PlayerInterstitialEvent, objc_selector="interstitialEventWithPrimaryItem:identifier:date:templateItems:restrictions:resumptionOffset:playoutLimit:userDefinedAttributes:", objc_name="interstitialEventWithPrimaryItem_identifier_date_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes", objc_is_class_method=true)
-    PlayerInterstitialEvent_interstitialEventWithPrimaryItem_identifier_date_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes :: proc(primaryItem: ^PlayerItem, identifier: ^NS.String, date: ^NS.Date, templateItems: ^NS.Array, restrictions: PlayerInterstitialEventRestrictions, resumptionOffset: CM.Time, playoutLimit: CM.Time, userDefinedAttributes: ^NS.Dictionary) -> ^PlayerInterstitialEvent ---
+    PlayerInterstitialEvent_interstitialEventWithPrimaryItem_identifier_date_templateItems_restrictions_resumptionOffset_playoutLimit_userDefinedAttributes :: proc(primaryItem: ^PlayerItem, identifier: ^NS.String, date: ^NS.Date, templateItems: ^NS.Array, restrictions: PlayerInterstitialEventRestrictions, resumptionOffset: CM.Time, playoutLimit: CM.Time, userDefinedAttributes: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=PlayerInterstitialEvent, objc_selector="interstitialEventWithPrimaryItem:time:", objc_name="interstitialEventWithPrimaryItem_time", objc_is_class_method=true)
-    PlayerInterstitialEvent_interstitialEventWithPrimaryItem_time :: proc(primaryItem: ^PlayerItem, time: CM.Time) -> ^PlayerInterstitialEvent ---
+    PlayerInterstitialEvent_interstitialEventWithPrimaryItem_time :: proc(primaryItem: ^PlayerItem, time: CM.Time) -> instancetype ---
 
     @(objc_type=PlayerInterstitialEvent, objc_selector="interstitialEventWithPrimaryItem:date:", objc_name="interstitialEventWithPrimaryItem_date", objc_is_class_method=true)
-    PlayerInterstitialEvent_interstitialEventWithPrimaryItem_date :: proc(primaryItem: ^PlayerItem, date: ^NS.Date) -> ^PlayerInterstitialEvent ---
+    PlayerInterstitialEvent_interstitialEventWithPrimaryItem_date :: proc(primaryItem: ^PlayerItem, date: ^NS.Date) -> instancetype ---
 
     @(objc_type=PlayerInterstitialEvent, objc_selector="primaryItem", objc_name="primaryItem")
     PlayerInterstitialEvent_primaryItem :: proc(self: ^PlayerInterstitialEvent) -> ^PlayerItem ---

@@ -29,8 +29,8 @@ import "../UITargetedPreview"
 VTable :: struct {
     super: UITargetedPreview.VTable,
     retargetedPreviewWithTarget: proc(self: ^UI.TargetedDragPreview, newTarget: ^UI.DragPreviewTarget) -> ^UI.TargetedDragPreview,
-    previewForURL_target: proc(url: ^NS.URL, target: ^UI.DragPreviewTarget) -> ^UI.TargetedDragPreview,
-    previewForURL_title_target: proc(url: ^NS.URL, title: ^NS.String, target: ^UI.DragPreviewTarget) -> ^UI.TargetedDragPreview,
+    previewForURL_target: proc(url: ^NS.URL, target: ^UI.DragPreviewTarget) -> instancetype,
+    previewForURL_title_target: proc(url: ^NS.URL, title: ^NS.String, target: ^UI.DragPreviewTarget) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("retargetedPreviewWithTarget:"), auto_cast retargetedPreviewWithTarget, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.previewForURL_target != nil {
-        previewForURL_target :: proc "c" (self: Class, _: SEL, url: ^NS.URL, target: ^UI.DragPreviewTarget) -> ^UI.TargetedDragPreview {
+        previewForURL_target :: proc "c" (self: Class, _: SEL, url: ^NS.URL, target: ^UI.DragPreviewTarget) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("previewForURL:target:"), auto_cast previewForURL_target, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.previewForURL_title_target != nil {
-        previewForURL_title_target :: proc "c" (self: Class, _: SEL, url: ^NS.URL, title: ^NS.String, target: ^UI.DragPreviewTarget) -> ^UI.TargetedDragPreview {
+        previewForURL_title_target :: proc "c" (self: Class, _: SEL, url: ^NS.URL, title: ^NS.String, target: ^UI.DragPreviewTarget) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

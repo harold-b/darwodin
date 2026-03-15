@@ -22,10 +22,10 @@ CollectionViewCellRegistration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewCellRegistration, objc_selector="registrationWithCellClass:configurationHandler:", objc_name="registrationWithCellClass", objc_is_class_method=true)
-    CollectionViewCellRegistration_registrationWithCellClass :: proc(cellClass: Class, configurationHandler: CollectionViewCellRegistrationConfigurationHandler) -> ^CollectionViewCellRegistration ---
+    CollectionViewCellRegistration_registrationWithCellClass :: proc(cellClass: Class, configurationHandler: CollectionViewCellRegistrationConfigurationHandler) -> instancetype ---
 
     @(objc_type=CollectionViewCellRegistration, objc_selector="registrationWithCellNib:configurationHandler:", objc_name="registrationWithCellNib", objc_is_class_method=true)
-    CollectionViewCellRegistration_registrationWithCellNib :: proc(cellNib: ^Nib, configurationHandler: CollectionViewCellRegistrationConfigurationHandler) -> ^CollectionViewCellRegistration ---
+    CollectionViewCellRegistration_registrationWithCellNib :: proc(cellNib: ^Nib, configurationHandler: CollectionViewCellRegistrationConfigurationHandler) -> instancetype ---
 
     @(objc_type=CollectionViewCellRegistration, objc_selector="cellClass", objc_name="cellClass")
     CollectionViewCellRegistration_cellClass :: proc(self: ^CollectionViewCellRegistration) -> Class ---

@@ -23,19 +23,19 @@ AssetWriter :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriter, objc_selector="init", objc_name="init")
-    AssetWriter_init :: proc(self: ^AssetWriter) -> ^AssetWriter ---
+    AssetWriter_init :: proc(self: ^AssetWriter) -> instancetype ---
 
     @(objc_type=AssetWriter, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetWriter_new :: proc() -> ^AssetWriter ---
 
     @(objc_type=AssetWriter, objc_selector="assetWriterWithURL:fileType:error:", objc_name="assetWriterWithURL", objc_is_class_method=true)
-    AssetWriter_assetWriterWithURL :: proc(outputURL: ^NS.URL, outputFileType: ^NS.String, outError: ^^NS.Error) -> ^AssetWriter ---
+    AssetWriter_assetWriterWithURL :: proc(outputURL: ^NS.URL, outputFileType: ^NS.String, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AssetWriter, objc_selector="initWithURL:fileType:error:", objc_name="initWithURL")
-    AssetWriter_initWithURL :: proc(self: ^AssetWriter, outputURL: ^NS.URL, outputFileType: ^NS.String, outError: ^^NS.Error) -> ^AssetWriter ---
+    AssetWriter_initWithURL :: proc(self: ^AssetWriter, outputURL: ^NS.URL, outputFileType: ^NS.String, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=AssetWriter, objc_selector="initWithContentType:", objc_name="initWithContentType")
-    AssetWriter_initWithContentType :: proc(self: ^AssetWriter, outputContentType: ^UTType) -> ^AssetWriter ---
+    AssetWriter_initWithContentType :: proc(self: ^AssetWriter, outputContentType: ^UTType) -> instancetype ---
 
     @(objc_type=AssetWriter, objc_selector="canApplyOutputSettings:forMediaType:", objc_name="canApplyOutputSettings")
     AssetWriter_canApplyOutputSettings :: proc(self: ^AssetWriter, outputSettings: ^NS.Dictionary, mediaType: ^NS.String) -> bool ---

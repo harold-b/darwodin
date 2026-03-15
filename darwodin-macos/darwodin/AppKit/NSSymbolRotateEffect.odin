@@ -24,17 +24,17 @@ SymbolRotateEffect :: struct { using _: SymbolEffect, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SymbolRotateEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    SymbolRotateEffect_effect :: proc() -> ^SymbolRotateEffect ---
+    SymbolRotateEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=SymbolRotateEffect, objc_selector="rotateClockwiseEffect", objc_name="rotateClockwiseEffect", objc_is_class_method=true)
-    SymbolRotateEffect_rotateClockwiseEffect :: proc() -> ^SymbolRotateEffect ---
+    SymbolRotateEffect_rotateClockwiseEffect :: proc() -> instancetype ---
 
     @(objc_type=SymbolRotateEffect, objc_selector="rotateCounterClockwiseEffect", objc_name="rotateCounterClockwiseEffect", objc_is_class_method=true)
-    SymbolRotateEffect_rotateCounterClockwiseEffect :: proc() -> ^SymbolRotateEffect ---
+    SymbolRotateEffect_rotateCounterClockwiseEffect :: proc() -> instancetype ---
 
     @(objc_type=SymbolRotateEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
-    SymbolRotateEffect_effectWithByLayer :: proc(self: ^SymbolRotateEffect) -> ^SymbolRotateEffect ---
+    SymbolRotateEffect_effectWithByLayer :: proc(self: ^SymbolRotateEffect) -> instancetype ---
 
     @(objc_type=SymbolRotateEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
-    SymbolRotateEffect_effectWithWholeSymbol :: proc(self: ^SymbolRotateEffect) -> ^SymbolRotateEffect ---
+    SymbolRotateEffect_effectWithWholeSymbol :: proc(self: ^SymbolRotateEffect) -> instancetype ---
 }

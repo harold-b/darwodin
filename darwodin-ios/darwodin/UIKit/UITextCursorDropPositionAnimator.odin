@@ -22,7 +22,7 @@ TextCursorDropPositionAnimator :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextCursorDropPositionAnimator, objc_selector="initWithTextCursorView:textInput:", objc_name="initWithTextCursorView")
-    TextCursorDropPositionAnimator_initWithTextCursorView :: proc(self: ^TextCursorDropPositionAnimator, cursorView: ^View, textInput: ^View) -> ^TextCursorDropPositionAnimator ---
+    TextCursorDropPositionAnimator_initWithTextCursorView :: proc(self: ^TextCursorDropPositionAnimator, cursorView: ^View, textInput: ^View) -> instancetype ---
 
     @(objc_type=TextCursorDropPositionAnimator, objc_selector="setCursorVisible:animated:", objc_name="setCursorVisible")
     TextCursorDropPositionAnimator_setCursorVisible :: proc(self: ^TextCursorDropPositionAnimator, visible: bool, animated: bool) ---
@@ -34,7 +34,7 @@ foreign lib {
     TextCursorDropPositionAnimator_animateAlongsideChanges :: proc(self: ^TextCursorDropPositionAnimator, animation: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=TextCursorDropPositionAnimator, objc_selector="init", objc_name="init")
-    TextCursorDropPositionAnimator_init :: proc(self: ^TextCursorDropPositionAnimator) -> ^TextCursorDropPositionAnimator ---
+    TextCursorDropPositionAnimator_init :: proc(self: ^TextCursorDropPositionAnimator) -> instancetype ---
 
     @(objc_type=TextCursorDropPositionAnimator, objc_selector="cursorView", objc_name="cursorView")
     TextCursorDropPositionAnimator_cursorView :: proc(self: ^TextCursorDropPositionAnimator) -> ^View ---

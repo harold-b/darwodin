@@ -30,8 +30,8 @@ import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
-    imageRepWithData: proc(pdfData: ^NS.Data) -> ^AK.PDFImageRep,
-    initWithData: proc(self: ^AK.PDFImageRep, pdfData: ^NS.Data) -> ^AK.PDFImageRep,
+    imageRepWithData: proc(pdfData: ^NS.Data) -> instancetype,
+    initWithData: proc(self: ^AK.PDFImageRep, pdfData: ^NS.Data) -> instancetype,
     _PDFRepresentation: proc(self: ^AK.PDFImageRep) -> ^NS.Data,
     bounds: proc(self: ^AK.PDFImageRep) -> NS.Rect,
     currentPage: proc(self: ^AK.PDFImageRep) -> NS.Integer,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSImageRep.extend(cls, &vt.super)
 
     if vt.imageRepWithData != nil {
-        imageRepWithData :: proc "c" (self: Class, _: SEL, pdfData: ^NS.Data) -> ^AK.PDFImageRep {
+        imageRepWithData :: proc "c" (self: Class, _: SEL, pdfData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithData:"), auto_cast imageRepWithData, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.PDFImageRep, _: SEL, pdfData: ^NS.Data) -> ^AK.PDFImageRep {
+        initWithData :: proc "c" (self: ^AK.PDFImageRep, _: SEL, pdfData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

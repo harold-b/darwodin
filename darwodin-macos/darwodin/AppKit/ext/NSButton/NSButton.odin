@@ -30,11 +30,11 @@ import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    buttonWithTitle_image_target_action: proc(title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> ^AK.Button,
-    buttonWithTitle_target_action: proc(title: ^NS.String, target: id, action: SEL) -> ^AK.Button,
-    buttonWithImage: proc(image: ^NS.Image, target: id, action: SEL) -> ^AK.Button,
-    checkboxWithTitle: proc(title: ^NS.String, target: id, action: SEL) -> ^AK.Button,
-    radioButtonWithTitle: proc(title: ^NS.String, target: id, action: SEL) -> ^AK.Button,
+    buttonWithTitle_image_target_action: proc(title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype,
+    buttonWithTitle_target_action: proc(title: ^NS.String, target: id, action: SEL) -> instancetype,
+    buttonWithImage: proc(image: ^NS.Image, target: id, action: SEL) -> instancetype,
+    checkboxWithTitle: proc(title: ^NS.String, target: id, action: SEL) -> instancetype,
+    radioButtonWithTitle: proc(title: ^NS.String, target: id, action: SEL) -> instancetype,
     setButtonType: proc(self: ^AK.Button, type: AK.ButtonType),
     setPeriodicDelay: proc(self: ^AK.Button, delay: cffi.float, interval: cffi.float),
     getPeriodicDelay: proc(self: ^AK.Button, delay: ^cffi.float, interval: ^cffi.float),
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.buttonWithTitle_image_target_action != nil {
-        buttonWithTitle_image_target_action :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> ^AK.Button {
+        buttonWithTitle_image_target_action :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonWithTitle:image:target:action:"), auto_cast buttonWithTitle_image_target_action, "@#:@@@:") do panic("Failed to register objC method.")
     }
     if vt.buttonWithTitle_target_action != nil {
-        buttonWithTitle_target_action :: proc "c" (self: Class, _: SEL, title: ^NS.String, target: id, action: SEL) -> ^AK.Button {
+        buttonWithTitle_target_action :: proc "c" (self: Class, _: SEL, title: ^NS.String, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonWithTitle:target:action:"), auto_cast buttonWithTitle_target_action, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.buttonWithImage != nil {
-        buttonWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image, target: id, action: SEL) -> ^AK.Button {
+        buttonWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonWithImage:target:action:"), auto_cast buttonWithImage, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.checkboxWithTitle != nil {
-        checkboxWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, target: id, action: SEL) -> ^AK.Button {
+        checkboxWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("checkboxWithTitle:target:action:"), auto_cast checkboxWithTitle, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.radioButtonWithTitle != nil {
-        radioButtonWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, target: id, action: SEL) -> ^AK.Button {
+        radioButtonWithTitle :: proc "c" (self: Class, _: SEL, title: ^NS.String, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

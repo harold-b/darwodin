@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.TextFinder) -> ^AK.TextFinder,
-    initWithCoder: proc(self: ^AK.TextFinder, coder: ^NS.Coder) -> ^AK.TextFinder,
+    init: proc(self: ^AK.TextFinder) -> instancetype,
+    initWithCoder: proc(self: ^AK.TextFinder, coder: ^NS.Coder) -> instancetype,
     performAction: proc(self: ^AK.TextFinder, op: AK.TextFinderAction),
     validateAction: proc(self: ^AK.TextFinder, op: AK.TextFinderAction) -> bool,
     cancelFindIndicator: proc(self: ^AK.TextFinder),
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextFinder, _: SEL) -> ^AK.TextFinder {
+        init :: proc "c" (self: ^AK.TextFinder, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextFinder, _: SEL, coder: ^NS.Coder) -> ^AK.TextFinder {
+        initWithCoder :: proc "c" (self: ^AK.TextFinder, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

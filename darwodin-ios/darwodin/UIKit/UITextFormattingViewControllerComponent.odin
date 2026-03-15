@@ -25,10 +25,10 @@ TextFormattingViewControllerComponent :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextFormattingViewControllerComponent, objc_selector="initWithComponentKey:preferredSize:", objc_name="initWithComponentKey")
-    TextFormattingViewControllerComponent_initWithComponentKey :: proc(self: ^TextFormattingViewControllerComponent, componentKey: ^NS.String, preferredSize: TextFormattingViewControllerComponentSize) -> ^TextFormattingViewControllerComponent ---
+    TextFormattingViewControllerComponent_initWithComponentKey :: proc(self: ^TextFormattingViewControllerComponent, componentKey: ^NS.String, preferredSize: TextFormattingViewControllerComponentSize) -> instancetype ---
 
     @(objc_type=TextFormattingViewControllerComponent, objc_selector="init", objc_name="init")
-    TextFormattingViewControllerComponent_init :: proc(self: ^TextFormattingViewControllerComponent) -> ^TextFormattingViewControllerComponent ---
+    TextFormattingViewControllerComponent_init :: proc(self: ^TextFormattingViewControllerComponent) -> instancetype ---
 
     @(objc_type=TextFormattingViewControllerComponent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextFormattingViewControllerComponent_new :: proc() -> ^TextFormattingViewControllerComponent ---

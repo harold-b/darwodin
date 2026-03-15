@@ -44,13 +44,13 @@ foreign lib {
     Thread_setThreadPriorityStatic :: proc(p: cffi.double) -> bool ---
 
     @(objc_type=Thread, objc_selector="init", objc_name="init")
-    Thread_init :: proc(self: ^Thread) -> ^Thread ---
+    Thread_init :: proc(self: ^Thread) -> instancetype ---
 
     @(objc_type=Thread, objc_selector="initWithTarget:selector:object:", objc_name="initWithTarget")
-    Thread_initWithTarget :: proc(self: ^Thread, target: id, selector: SEL, argument: id) -> ^Thread ---
+    Thread_initWithTarget :: proc(self: ^Thread, target: id, selector: SEL, argument: id) -> instancetype ---
 
     @(objc_type=Thread, objc_selector="initWithBlock:", objc_name="initWithBlock")
-    Thread_initWithBlock :: proc(self: ^Thread, block: ^Objc_Block(proc "c" ())) -> ^Thread ---
+    Thread_initWithBlock :: proc(self: ^Thread, block: ^Objc_Block(proc "c" ())) -> instancetype ---
 
     @(objc_type=Thread, objc_selector="cancel", objc_name="cancel")
     Thread_cancel :: proc(self: ^Thread) ---

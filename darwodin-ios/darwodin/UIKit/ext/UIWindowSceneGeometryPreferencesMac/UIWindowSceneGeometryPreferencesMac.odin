@@ -28,8 +28,8 @@ import "../UIWindowSceneGeometryPreferences"
 
 VTable :: struct {
     super: UIWindowSceneGeometryPreferences.VTable,
-    init: proc(self: ^UI.WindowSceneGeometryPreferencesMac) -> ^UI.WindowSceneGeometryPreferencesMac,
-    initWithSystemFrame: proc(self: ^UI.WindowSceneGeometryPreferencesMac, systemFrame: CG.Rect) -> ^UI.WindowSceneGeometryPreferencesMac,
+    init: proc(self: ^UI.WindowSceneGeometryPreferencesMac) -> instancetype,
+    initWithSystemFrame: proc(self: ^UI.WindowSceneGeometryPreferencesMac, systemFrame: CG.Rect) -> instancetype,
     systemFrame: proc(self: ^UI.WindowSceneGeometryPreferencesMac) -> CG.Rect,
     setSystemFrame: proc(self: ^UI.WindowSceneGeometryPreferencesMac, systemFrame: CG.Rect),
 }
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIWindowSceneGeometryPreferences.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesMac, _: SEL) -> ^UI.WindowSceneGeometryPreferencesMac {
+        init :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesMac, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithSystemFrame != nil {
-        initWithSystemFrame :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesMac, _: SEL, systemFrame: CG.Rect) -> ^UI.WindowSceneGeometryPreferencesMac {
+        initWithSystemFrame :: proc "c" (self: ^UI.WindowSceneGeometryPreferencesMac, _: SEL, systemFrame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

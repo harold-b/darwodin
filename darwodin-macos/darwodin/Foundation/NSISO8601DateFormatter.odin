@@ -22,7 +22,7 @@ ISO8601DateFormatter :: struct { using _: Formatter,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ISO8601DateFormatter, objc_selector="init", objc_name="init")
-    ISO8601DateFormatter_init :: proc(self: ^ISO8601DateFormatter) -> ^ISO8601DateFormatter ---
+    ISO8601DateFormatter_init :: proc(self: ^ISO8601DateFormatter) -> instancetype ---
 
     @(objc_type=ISO8601DateFormatter, objc_selector="stringFromDate:", objc_name="stringFromDate_")
     ISO8601DateFormatter_stringFromDate_ :: proc(self: ^ISO8601DateFormatter, date: ^Date) -> ^String ---

@@ -24,10 +24,10 @@ StepperTouchBarItem :: struct { using _: TouchBarItem, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=StepperTouchBarItem, objc_selector="stepperTouchBarItemWithIdentifier:formatter:", objc_name="stepperTouchBarItemWithIdentifier_formatter", objc_is_class_method=true)
-    StepperTouchBarItem_stepperTouchBarItemWithIdentifier_formatter :: proc(identifier: ^NS.String, formatter: ^NS.Formatter) -> ^StepperTouchBarItem ---
+    StepperTouchBarItem_stepperTouchBarItemWithIdentifier_formatter :: proc(identifier: ^NS.String, formatter: ^NS.Formatter) -> instancetype ---
 
     @(objc_type=StepperTouchBarItem, objc_selector="stepperTouchBarItemWithIdentifier:drawingHandler:", objc_name="stepperTouchBarItemWithIdentifier_drawingHandler", objc_is_class_method=true)
-    StepperTouchBarItem_stepperTouchBarItemWithIdentifier_drawingHandler :: proc(identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" (rect: NS.Rect, value: cffi.double))) -> ^StepperTouchBarItem ---
+    StepperTouchBarItem_stepperTouchBarItemWithIdentifier_drawingHandler :: proc(identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" (rect: NS.Rect, value: cffi.double))) -> instancetype ---
 
     @(objc_type=StepperTouchBarItem, objc_selector="maxValue", objc_name="maxValue")
     StepperTouchBarItem_maxValue :: proc(self: ^StepperTouchBarItem) -> cffi.double ---

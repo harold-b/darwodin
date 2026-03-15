@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithIdentifier: proc(self: ^AK.Toolbar, identifier: ^NS.String) -> ^AK.Toolbar,
-    init: proc(self: ^AK.Toolbar) -> ^AK.Toolbar,
+    initWithIdentifier: proc(self: ^AK.Toolbar, identifier: ^NS.String) -> instancetype,
+    init: proc(self: ^AK.Toolbar) -> instancetype,
     insertItemWithItemIdentifier: proc(self: ^AK.Toolbar, itemIdentifier: ^NS.String, index: NS.Integer),
     removeItemAtIndex: proc(self: ^AK.Toolbar, index: NS.Integer),
     removeItemWithItemIdentifier: proc(self: ^AK.Toolbar, itemIdentifier: ^NS.String),
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithIdentifier != nil {
-        initWithIdentifier :: proc "c" (self: ^AK.Toolbar, _: SEL, identifier: ^NS.String) -> ^AK.Toolbar {
+        initWithIdentifier :: proc "c" (self: ^AK.Toolbar, _: SEL, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIdentifier:"), auto_cast initWithIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Toolbar, _: SEL) -> ^AK.Toolbar {
+        init :: proc "c" (self: ^AK.Toolbar, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

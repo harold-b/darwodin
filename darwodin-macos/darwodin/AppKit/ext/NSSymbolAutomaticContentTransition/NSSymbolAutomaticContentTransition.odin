@@ -30,7 +30,7 @@ import "../NSSymbolContentTransition"
 
 VTable :: struct {
     super: NSSymbolContentTransition.VTable,
-    transition: proc() -> ^AK.SymbolAutomaticContentTransition,
+    transition: proc() -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSSymbolContentTransition.extend(cls, &vt.super)
 
     if vt.transition != nil {
-        transition :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolAutomaticContentTransition {
+        transition :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

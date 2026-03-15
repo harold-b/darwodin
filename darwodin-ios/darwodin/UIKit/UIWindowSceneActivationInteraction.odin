@@ -24,10 +24,10 @@ WindowSceneActivationInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneActivationInteraction, objc_selector="initWithConfigurationProvider:errorHandler:", objc_name="initWithConfigurationProvider")
-    WindowSceneActivationInteraction_initWithConfigurationProvider :: proc(self: ^WindowSceneActivationInteraction, configurationProvider: WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) -> ^WindowSceneActivationInteraction ---
+    WindowSceneActivationInteraction_initWithConfigurationProvider :: proc(self: ^WindowSceneActivationInteraction, configurationProvider: WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) -> instancetype ---
 
     @(objc_type=WindowSceneActivationInteraction, objc_selector="init", objc_name="init")
-    WindowSceneActivationInteraction_init :: proc(self: ^WindowSceneActivationInteraction) -> ^WindowSceneActivationInteraction ---
+    WindowSceneActivationInteraction_init :: proc(self: ^WindowSceneActivationInteraction) -> instancetype ---
 
     @(objc_type=WindowSceneActivationInteraction, objc_selector="new", objc_name="new", objc_is_class_method=true)
     WindowSceneActivationInteraction_new :: proc() -> ^WindowSceneActivationInteraction ---

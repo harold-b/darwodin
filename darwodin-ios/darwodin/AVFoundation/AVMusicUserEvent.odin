@@ -23,7 +23,7 @@ MusicUserEvent :: struct { using _: MusicEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MusicUserEvent, objc_selector="initWithData:", objc_name="initWithData")
-    MusicUserEvent_initWithData :: proc(self: ^MusicUserEvent, data: ^NS.Data) -> ^MusicUserEvent ---
+    MusicUserEvent_initWithData :: proc(self: ^MusicUserEvent, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=MusicUserEvent, objc_selector="sizeInBytes", objc_name="sizeInBytes")
     MusicUserEvent_sizeInBytes :: proc(self: ^MusicUserEvent) -> CF.UInt32 ---

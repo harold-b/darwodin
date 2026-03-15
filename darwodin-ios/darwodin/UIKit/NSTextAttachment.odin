@@ -25,7 +25,7 @@ NSTextAttachment :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSTextAttachment, objc_selector="initWithData:ofType:", objc_name="initWithData")
-    NSTextAttachment_initWithData :: proc(self: ^NSTextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> ^NSTextAttachment ---
+    NSTextAttachment_initWithData :: proc(self: ^NSTextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> instancetype ---
 
     @(objc_type=NSTextAttachment, objc_selector="textAttachmentViewProviderClassForFileType:", objc_name="textAttachmentViewProviderClassForFileType", objc_is_class_method=true)
     NSTextAttachment_textAttachmentViewProviderClassForFileType :: proc(fileType: ^NS.String) -> Class ---

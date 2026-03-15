@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.ScreenshotService) -> ^UI.ScreenshotService,
+    init: proc(self: ^UI.ScreenshotService) -> instancetype,
     new: proc() -> ^UI.ScreenshotService,
     delegate: proc(self: ^UI.ScreenshotService) -> ^UI.ScreenshotServiceDelegate,
     setDelegate: proc(self: ^UI.ScreenshotService, delegate: ^UI.ScreenshotServiceDelegate),
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ScreenshotService, _: SEL) -> ^UI.ScreenshotService {
+        init :: proc "c" (self: ^UI.ScreenshotService, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -23,10 +23,10 @@ Notification :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Notification, objc_selector="initWithName:object:userInfo:", objc_name="initWithName")
-    Notification_initWithName :: proc(self: ^Notification, name: ^String, object: id, userInfo: ^Dictionary) -> ^Notification ---
+    Notification_initWithName :: proc(self: ^Notification, name: ^String, object: id, userInfo: ^Dictionary) -> instancetype ---
 
     @(objc_type=Notification, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Notification_initWithCoder :: proc(self: ^Notification, coder: ^Coder) -> ^Notification ---
+    Notification_initWithCoder :: proc(self: ^Notification, coder: ^Coder) -> instancetype ---
 
     @(objc_type=Notification, objc_selector="name", objc_name="name")
     Notification_name :: proc(self: ^Notification) -> ^String ---
@@ -38,13 +38,13 @@ foreign lib {
     Notification_userInfo :: proc(self: ^Notification) -> ^Dictionary ---
 
     @(objc_type=Notification, objc_selector="notificationWithName:object:", objc_name="notificationWithName_object", objc_is_class_method=true)
-    Notification_notificationWithName_object :: proc(aName: ^String, anObject: id) -> ^Notification ---
+    Notification_notificationWithName_object :: proc(aName: ^String, anObject: id) -> instancetype ---
 
     @(objc_type=Notification, objc_selector="notificationWithName:object:userInfo:", objc_name="notificationWithName_object_userInfo", objc_is_class_method=true)
-    Notification_notificationWithName_object_userInfo :: proc(aName: ^String, anObject: id, aUserInfo: ^Dictionary) -> ^Notification ---
+    Notification_notificationWithName_object_userInfo :: proc(aName: ^String, anObject: id, aUserInfo: ^Dictionary) -> instancetype ---
 
     @(objc_type=Notification, objc_selector="init", objc_name="init")
-    Notification_init :: proc(self: ^Notification) -> ^Notification ---
+    Notification_init :: proc(self: ^Notification) -> instancetype ---
 }
 
 @(objc_type=Notification, objc_name="notificationWithName")

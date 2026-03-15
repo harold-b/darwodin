@@ -24,7 +24,7 @@ TextTableBlock :: struct { using _: TextBlock, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextTableBlock, objc_selector="initWithTable:startingRow:rowSpan:startingColumn:columnSpan:", objc_name="initWithTable")
-    TextTableBlock_initWithTable :: proc(self: ^TextTableBlock, table: ^TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> ^TextTableBlock ---
+    TextTableBlock_initWithTable :: proc(self: ^TextTableBlock, table: ^TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype ---
 
     @(objc_type=TextTableBlock, objc_selector="table", objc_name="table")
     TextTableBlock_table :: proc(self: ^TextTableBlock) -> ^TextTable ---

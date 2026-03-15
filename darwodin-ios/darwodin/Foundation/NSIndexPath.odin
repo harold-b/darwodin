@@ -23,16 +23,16 @@ IndexPath :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndexPath, objc_selector="indexPathWithIndex:", objc_name="indexPathWithIndex", objc_is_class_method=true)
-    IndexPath_indexPathWithIndex :: proc(index: UInteger) -> ^IndexPath ---
+    IndexPath_indexPathWithIndex :: proc(index: UInteger) -> instancetype ---
 
     @(objc_type=IndexPath, objc_selector="indexPathWithIndexes:length:", objc_name="indexPathWithIndexes", objc_is_class_method=true)
-    IndexPath_indexPathWithIndexes :: proc(indexes: ^UInteger, length: UInteger) -> ^IndexPath ---
+    IndexPath_indexPathWithIndexes :: proc(indexes: ^UInteger, length: UInteger) -> instancetype ---
 
     @(objc_type=IndexPath, objc_selector="initWithIndexes:length:", objc_name="initWithIndexes")
-    IndexPath_initWithIndexes :: proc(self: ^IndexPath, indexes: ^UInteger, length: UInteger) -> ^IndexPath ---
+    IndexPath_initWithIndexes :: proc(self: ^IndexPath, indexes: ^UInteger, length: UInteger) -> instancetype ---
 
     @(objc_type=IndexPath, objc_selector="initWithIndex:", objc_name="initWithIndex")
-    IndexPath_initWithIndex :: proc(self: ^IndexPath, index: UInteger) -> ^IndexPath ---
+    IndexPath_initWithIndex :: proc(self: ^IndexPath, index: UInteger) -> instancetype ---
 
     @(objc_type=IndexPath, objc_selector="indexPathByAddingIndex:", objc_name="indexPathByAddingIndex")
     IndexPath_indexPathByAddingIndex :: proc(self: ^IndexPath, index: UInteger) -> ^IndexPath ---

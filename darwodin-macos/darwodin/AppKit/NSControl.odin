@@ -24,10 +24,10 @@ Control :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Control, objc_selector="initWithFrame:", objc_name="initWithFrame")
-    Control_initWithFrame :: proc(self: ^Control, frameRect: NS.Rect) -> ^Control ---
+    Control_initWithFrame :: proc(self: ^Control, frameRect: NS.Rect) -> instancetype ---
 
     @(objc_type=Control, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Control_initWithCoder :: proc(self: ^Control, coder: ^NS.Coder) -> ^Control ---
+    Control_initWithCoder :: proc(self: ^Control, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Control, objc_selector="sizeThatFits:", objc_name="sizeThatFits")
     Control_sizeThatFits :: proc(self: ^Control, size: NS.Size) -> NS.Size ---

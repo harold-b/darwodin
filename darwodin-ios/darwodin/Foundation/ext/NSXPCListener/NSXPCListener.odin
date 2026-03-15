@@ -28,7 +28,7 @@ VTable :: struct {
     super: NSObject.VTable,
     serviceListener: proc() -> ^NS.XPCListener,
     anonymousListener: proc() -> ^NS.XPCListener,
-    initWithMachServiceName: proc(self: ^NS.XPCListener, name: ^NS.String) -> ^NS.XPCListener,
+    initWithMachServiceName: proc(self: ^NS.XPCListener, name: ^NS.String) -> instancetype,
     resume: proc(self: ^NS.XPCListener),
     suspend: proc(self: ^NS.XPCListener),
     activate: proc(self: ^NS.XPCListener),
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("anonymousListener"), auto_cast anonymousListener, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithMachServiceName != nil {
-        initWithMachServiceName :: proc "c" (self: ^NS.XPCListener, _: SEL, name: ^NS.String) -> ^NS.XPCListener {
+        initWithMachServiceName :: proc "c" (self: ^NS.XPCListener, _: SEL, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

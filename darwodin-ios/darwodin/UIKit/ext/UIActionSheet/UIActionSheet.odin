@@ -28,7 +28,7 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithTitle: proc(self: ^UI.ActionSheet, title: ^NS.String, delegate: ^UI.ActionSheetDelegate, cancelButtonTitle: ^NS.String, destructiveButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> ^UI.ActionSheet,
+    initWithTitle: proc(self: ^UI.ActionSheet, title: ^NS.String, delegate: ^UI.ActionSheetDelegate, cancelButtonTitle: ^NS.String, destructiveButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> instancetype,
     addButtonWithTitle: proc(self: ^UI.ActionSheet, title: ^NS.String) -> NS.Integer,
     buttonTitleAtIndex: proc(self: ^UI.ActionSheet, buttonIndex: NS.Integer) -> ^NS.String,
     showFromToolbar: proc(self: ^UI.ActionSheet, view: ^UI.Toolbar),
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^UI.ActionSheet, _: SEL, title: ^NS.String, delegate: ^UI.ActionSheetDelegate, cancelButtonTitle: ^NS.String, destructiveButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> ^UI.ActionSheet {
+        initWithTitle :: proc "c" (self: ^UI.ActionSheet, _: SEL, title: ^NS.String, delegate: ^UI.ActionSheetDelegate, cancelButtonTitle: ^NS.String, destructiveButtonTitle: ^NS.String, otherButtonTitles: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -23,10 +23,10 @@ Error :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Error, objc_selector="initWithDomain:code:userInfo:", objc_name="initWithDomain")
-    Error_initWithDomain :: proc(self: ^Error, domain: ^String, code: Integer, dict: ^Dictionary) -> ^Error ---
+    Error_initWithDomain :: proc(self: ^Error, domain: ^String, code: Integer, dict: ^Dictionary) -> instancetype ---
 
     @(objc_type=Error, objc_selector="errorWithDomain:code:userInfo:", objc_name="errorWithDomain", objc_is_class_method=true)
-    Error_errorWithDomain :: proc(domain: ^String, code: Integer, dict: ^Dictionary) -> ^Error ---
+    Error_errorWithDomain :: proc(domain: ^String, code: Integer, dict: ^Dictionary) -> instancetype ---
 
     @(objc_type=Error, objc_selector="setUserInfoValueProviderForDomain:provider:", objc_name="setUserInfoValueProviderForDomain", objc_is_class_method=true)
     Error_setUserInfoValueProviderForDomain :: proc(errorDomain: ^String, provider: ^Objc_Block(proc "c" (err: ^Error, userInfoKey: ^String) -> id)) ---

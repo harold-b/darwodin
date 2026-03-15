@@ -25,13 +25,13 @@ TextInputPasswordRules :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextInputPasswordRules, objc_selector="init", objc_name="init")
-    TextInputPasswordRules_init :: proc(self: ^TextInputPasswordRules) -> ^TextInputPasswordRules ---
+    TextInputPasswordRules_init :: proc(self: ^TextInputPasswordRules) -> instancetype ---
 
     @(objc_type=TextInputPasswordRules, objc_selector="new", objc_name="new", objc_is_class_method=true)
     TextInputPasswordRules_new :: proc() -> ^TextInputPasswordRules ---
 
     @(objc_type=TextInputPasswordRules, objc_selector="passwordRulesWithDescriptor:", objc_name="passwordRulesWithDescriptor", objc_is_class_method=true)
-    TextInputPasswordRules_passwordRulesWithDescriptor :: proc(passwordRulesDescriptor: ^NS.String) -> ^TextInputPasswordRules ---
+    TextInputPasswordRules_passwordRulesWithDescriptor :: proc(passwordRulesDescriptor: ^NS.String) -> instancetype ---
 
     @(objc_type=TextInputPasswordRules, objc_selector="passwordRulesDescriptor", objc_name="passwordRulesDescriptor")
     TextInputPasswordRules_passwordRulesDescriptor :: proc(self: ^TextInputPasswordRules) -> ^NS.String ---

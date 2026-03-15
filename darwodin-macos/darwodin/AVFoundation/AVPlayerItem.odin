@@ -25,28 +25,28 @@ PlayerItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItem, objc_selector="init", objc_name="init")
-    PlayerItem_init :: proc(self: ^PlayerItem) -> ^PlayerItem ---
+    PlayerItem_init :: proc(self: ^PlayerItem) -> instancetype ---
 
     @(objc_type=PlayerItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PlayerItem_new :: proc() -> ^PlayerItem ---
 
     @(objc_type=PlayerItem, objc_selector="playerItemWithURL:", objc_name="playerItemWithURL", objc_is_class_method=true)
-    PlayerItem_playerItemWithURL :: proc(_URL: ^NS.URL) -> ^PlayerItem ---
+    PlayerItem_playerItemWithURL :: proc(_URL: ^NS.URL) -> instancetype ---
 
     @(objc_type=PlayerItem, objc_selector="playerItemWithAsset:", objc_name="playerItemWithAsset_", objc_is_class_method=true)
-    PlayerItem_playerItemWithAsset_ :: proc(asset: ^Asset) -> ^PlayerItem ---
+    PlayerItem_playerItemWithAsset_ :: proc(asset: ^Asset) -> instancetype ---
 
     @(objc_type=PlayerItem, objc_selector="playerItemWithAsset:automaticallyLoadedAssetKeys:", objc_name="playerItemWithAsset_automaticallyLoadedAssetKeys", objc_is_class_method=true)
-    PlayerItem_playerItemWithAsset_automaticallyLoadedAssetKeys :: proc(asset: ^Asset, automaticallyLoadedAssetKeys: ^NS.Array) -> ^PlayerItem ---
+    PlayerItem_playerItemWithAsset_automaticallyLoadedAssetKeys :: proc(asset: ^Asset, automaticallyLoadedAssetKeys: ^NS.Array) -> instancetype ---
 
     @(objc_type=PlayerItem, objc_selector="initWithURL:", objc_name="initWithURL")
-    PlayerItem_initWithURL :: proc(self: ^PlayerItem, _URL: ^NS.URL) -> ^PlayerItem ---
+    PlayerItem_initWithURL :: proc(self: ^PlayerItem, _URL: ^NS.URL) -> instancetype ---
 
     @(objc_type=PlayerItem, objc_selector="initWithAsset:", objc_name="initWithAsset_")
-    PlayerItem_initWithAsset_ :: proc(self: ^PlayerItem, asset: ^Asset) -> ^PlayerItem ---
+    PlayerItem_initWithAsset_ :: proc(self: ^PlayerItem, asset: ^Asset) -> instancetype ---
 
     @(objc_type=PlayerItem, objc_selector="initWithAsset:automaticallyLoadedAssetKeys:", objc_name="initWithAsset_automaticallyLoadedAssetKeys")
-    PlayerItem_initWithAsset_automaticallyLoadedAssetKeys :: proc(self: ^PlayerItem, asset: ^Asset, automaticallyLoadedAssetKeys: ^NS.Array) -> ^PlayerItem ---
+    PlayerItem_initWithAsset_automaticallyLoadedAssetKeys :: proc(self: ^PlayerItem, asset: ^Asset, automaticallyLoadedAssetKeys: ^NS.Array) -> instancetype ---
 
     @(objc_type=PlayerItem, objc_selector="copyWithZone:", objc_name="copyWithZone")
     PlayerItem_copyWithZone :: proc(self: ^PlayerItem, zone: ^NS.Zone) -> id ---

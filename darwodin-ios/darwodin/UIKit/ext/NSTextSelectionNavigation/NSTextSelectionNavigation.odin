@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDataSource: proc(self: ^UI.NSTextSelectionNavigation, dataSource: ^UI.NSTextSelectionDataSource) -> ^UI.NSTextSelectionNavigation,
+    initWithDataSource: proc(self: ^UI.NSTextSelectionNavigation, dataSource: ^UI.NSTextSelectionDataSource) -> instancetype,
     new: proc() -> ^UI.NSTextSelectionNavigation,
-    init: proc(self: ^UI.NSTextSelectionNavigation) -> ^UI.NSTextSelectionNavigation,
+    init: proc(self: ^UI.NSTextSelectionNavigation) -> instancetype,
     flushLayoutCache: proc(self: ^UI.NSTextSelectionNavigation),
     destinationSelectionForTextSelection: proc(self: ^UI.NSTextSelectionNavigation, textSelection: ^UI.NSTextSelection, direction: UI.NSTextSelectionNavigationDirection, destination: UI.NSTextSelectionNavigationDestination, extending: bool, confined: bool) -> ^UI.NSTextSelection,
     textSelectionsInteractingAtPoint: proc(self: ^UI.NSTextSelectionNavigation, point: CG.Point, containerLocation: ^UI.NSTextLocation, anchors: ^NS.Array, modifiers: UI.NSTextSelectionNavigationModifier, selecting: bool, bounds: CG.Rect) -> ^NS.Array,
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDataSource != nil {
-        initWithDataSource :: proc "c" (self: ^UI.NSTextSelectionNavigation, _: SEL, dataSource: ^UI.NSTextSelectionDataSource) -> ^UI.NSTextSelectionNavigation {
+        initWithDataSource :: proc "c" (self: ^UI.NSTextSelectionNavigation, _: SEL, dataSource: ^UI.NSTextSelectionDataSource) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSTextSelectionNavigation, _: SEL) -> ^UI.NSTextSelectionNavigation {
+        init :: proc "c" (self: ^UI.NSTextSelectionNavigation, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

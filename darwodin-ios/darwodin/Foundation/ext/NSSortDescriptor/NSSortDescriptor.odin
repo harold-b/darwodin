@@ -26,14 +26,14 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    sortDescriptorWithKey_ascending: proc(key: ^NS.String, ascending: bool) -> ^NS.SortDescriptor,
-    sortDescriptorWithKey_ascending_selector: proc(key: ^NS.String, ascending: bool, selector: SEL) -> ^NS.SortDescriptor,
-    initWithKey_ascending: proc(self: ^NS.SortDescriptor, key: ^NS.String, ascending: bool) -> ^NS.SortDescriptor,
-    initWithKey_ascending_selector: proc(self: ^NS.SortDescriptor, key: ^NS.String, ascending: bool, selector: SEL) -> ^NS.SortDescriptor,
-    initWithCoder: proc(self: ^NS.SortDescriptor, coder: ^NS.Coder) -> ^NS.SortDescriptor,
+    sortDescriptorWithKey_ascending: proc(key: ^NS.String, ascending: bool) -> instancetype,
+    sortDescriptorWithKey_ascending_selector: proc(key: ^NS.String, ascending: bool, selector: SEL) -> instancetype,
+    initWithKey_ascending: proc(self: ^NS.SortDescriptor, key: ^NS.String, ascending: bool) -> instancetype,
+    initWithKey_ascending_selector: proc(self: ^NS.SortDescriptor, key: ^NS.String, ascending: bool, selector: SEL) -> instancetype,
+    initWithCoder: proc(self: ^NS.SortDescriptor, coder: ^NS.Coder) -> instancetype,
     allowEvaluation: proc(self: ^NS.SortDescriptor),
-    sortDescriptorWithKey_ascending_comparator: proc(key: ^NS.String, ascending: bool, cmptr: NS.Comparator) -> ^NS.SortDescriptor,
-    initWithKey_ascending_comparator: proc(self: ^NS.SortDescriptor, key: ^NS.String, ascending: bool, cmptr: NS.Comparator) -> ^NS.SortDescriptor,
+    sortDescriptorWithKey_ascending_comparator: proc(key: ^NS.String, ascending: bool, cmptr: NS.Comparator) -> instancetype,
+    initWithKey_ascending_comparator: proc(self: ^NS.SortDescriptor, key: ^NS.String, ascending: bool, cmptr: NS.Comparator) -> instancetype,
     compareObject: proc(self: ^NS.SortDescriptor, object1: id, object2: id) -> NS.ComparisonResult,
     key: proc(self: ^NS.SortDescriptor) -> ^NS.String,
     ascending: proc(self: ^NS.SortDescriptor) -> bool,
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.sortDescriptorWithKey_ascending != nil {
-        sortDescriptorWithKey_ascending :: proc "c" (self: Class, _: SEL, key: ^NS.String, ascending: bool) -> ^NS.SortDescriptor {
+        sortDescriptorWithKey_ascending :: proc "c" (self: Class, _: SEL, key: ^NS.String, ascending: bool) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sortDescriptorWithKey:ascending:"), auto_cast sortDescriptorWithKey_ascending, "@#:@B") do panic("Failed to register objC method.")
     }
     if vt.sortDescriptorWithKey_ascending_selector != nil {
-        sortDescriptorWithKey_ascending_selector :: proc "c" (self: Class, _: SEL, key: ^NS.String, ascending: bool, selector: SEL) -> ^NS.SortDescriptor {
+        sortDescriptorWithKey_ascending_selector :: proc "c" (self: Class, _: SEL, key: ^NS.String, ascending: bool, selector: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sortDescriptorWithKey:ascending:selector:"), auto_cast sortDescriptorWithKey_ascending_selector, "@#:@B:") do panic("Failed to register objC method.")
     }
     if vt.initWithKey_ascending != nil {
-        initWithKey_ascending :: proc "c" (self: ^NS.SortDescriptor, _: SEL, key: ^NS.String, ascending: bool) -> ^NS.SortDescriptor {
+        initWithKey_ascending :: proc "c" (self: ^NS.SortDescriptor, _: SEL, key: ^NS.String, ascending: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKey:ascending:"), auto_cast initWithKey_ascending, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.initWithKey_ascending_selector != nil {
-        initWithKey_ascending_selector :: proc "c" (self: ^NS.SortDescriptor, _: SEL, key: ^NS.String, ascending: bool, selector: SEL) -> ^NS.SortDescriptor {
+        initWithKey_ascending_selector :: proc "c" (self: ^NS.SortDescriptor, _: SEL, key: ^NS.String, ascending: bool, selector: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKey:ascending:selector:"), auto_cast initWithKey_ascending_selector, "@@:@B:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.SortDescriptor, _: SEL, coder: ^NS.Coder) -> ^NS.SortDescriptor {
+        initWithCoder :: proc "c" (self: ^NS.SortDescriptor, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowEvaluation"), auto_cast allowEvaluation, "v@:") do panic("Failed to register objC method.")
     }
     if vt.sortDescriptorWithKey_ascending_comparator != nil {
-        sortDescriptorWithKey_ascending_comparator :: proc "c" (self: Class, _: SEL, key: ^NS.String, ascending: bool, cmptr: NS.Comparator) -> ^NS.SortDescriptor {
+        sortDescriptorWithKey_ascending_comparator :: proc "c" (self: Class, _: SEL, key: ^NS.String, ascending: bool, cmptr: NS.Comparator) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sortDescriptorWithKey:ascending:comparator:"), auto_cast sortDescriptorWithKey_ascending_comparator, "@#:@B?") do panic("Failed to register objC method.")
     }
     if vt.initWithKey_ascending_comparator != nil {
-        initWithKey_ascending_comparator :: proc "c" (self: ^NS.SortDescriptor, _: SEL, key: ^NS.String, ascending: bool, cmptr: NS.Comparator) -> ^NS.SortDescriptor {
+        initWithKey_ascending_comparator :: proc "c" (self: ^NS.SortDescriptor, _: SEL, key: ^NS.String, ascending: bool, cmptr: NS.Comparator) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithClient: proc(self: ^AK.TextCheckingController, client: ^AK.TextCheckingClient) -> ^AK.TextCheckingController,
-    init: proc(self: ^AK.TextCheckingController) -> ^AK.TextCheckingController,
+    initWithClient: proc(self: ^AK.TextCheckingController, client: ^AK.TextCheckingClient) -> instancetype,
+    init: proc(self: ^AK.TextCheckingController) -> instancetype,
     invalidate: proc(self: ^AK.TextCheckingController),
     didChangeTextInRange: proc(self: ^AK.TextCheckingController, range: NS._NSRange),
     insertedTextInRange: proc(self: ^AK.TextCheckingController, range: NS._NSRange),
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithClient != nil {
-        initWithClient :: proc "c" (self: ^AK.TextCheckingController, _: SEL, client: ^AK.TextCheckingClient) -> ^AK.TextCheckingController {
+        initWithClient :: proc "c" (self: ^AK.TextCheckingController, _: SEL, client: ^AK.TextCheckingClient) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithClient:"), auto_cast initWithClient, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextCheckingController, _: SEL) -> ^AK.TextCheckingController {
+        init :: proc "c" (self: ^AK.TextCheckingController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

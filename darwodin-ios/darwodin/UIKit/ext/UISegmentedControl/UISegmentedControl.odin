@@ -28,10 +28,10 @@ import "../UIControl"
 
 VTable :: struct {
     super: UIControl.VTable,
-    initWithFrame_: proc(self: ^UI.SegmentedControl, frame: CG.Rect) -> ^UI.SegmentedControl,
-    initWithCoder: proc(self: ^UI.SegmentedControl, coder: ^NS.Coder) -> ^UI.SegmentedControl,
-    initWithItems: proc(self: ^UI.SegmentedControl, items: ^NS.Array) -> ^UI.SegmentedControl,
-    initWithFrame_actions: proc(self: ^UI.SegmentedControl, frame: CG.Rect, actions: ^NS.Array) -> ^UI.SegmentedControl,
+    initWithFrame_: proc(self: ^UI.SegmentedControl, frame: CG.Rect) -> instancetype,
+    initWithCoder: proc(self: ^UI.SegmentedControl, coder: ^NS.Coder) -> instancetype,
+    initWithItems: proc(self: ^UI.SegmentedControl, items: ^NS.Array) -> instancetype,
+    initWithFrame_actions: proc(self: ^UI.SegmentedControl, frame: CG.Rect, actions: ^NS.Array) -> instancetype,
     insertSegmentWithAction: proc(self: ^UI.SegmentedControl, action: ^UI.Action, segment: NS.UInteger, animated: bool),
     setAction: proc(self: ^UI.SegmentedControl, action: ^UI.Action, segment: NS.UInteger),
     actionForSegmentAtIndex: proc(self: ^UI.SegmentedControl, segment: NS.UInteger) -> ^UI.Action,
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIControl.extend(cls, &vt.super)
 
     if vt.initWithFrame_ != nil {
-        initWithFrame_ :: proc "c" (self: ^UI.SegmentedControl, _: SEL, frame: CG.Rect) -> ^UI.SegmentedControl {
+        initWithFrame_ :: proc "c" (self: ^UI.SegmentedControl, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame_, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.SegmentedControl, _: SEL, coder: ^NS.Coder) -> ^UI.SegmentedControl {
+        initWithCoder :: proc "c" (self: ^UI.SegmentedControl, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithItems != nil {
-        initWithItems :: proc "c" (self: ^UI.SegmentedControl, _: SEL, items: ^NS.Array) -> ^UI.SegmentedControl {
+        initWithItems :: proc "c" (self: ^UI.SegmentedControl, _: SEL, items: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItems:"), auto_cast initWithItems, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame_actions != nil {
-        initWithFrame_actions :: proc "c" (self: ^UI.SegmentedControl, _: SEL, frame: CG.Rect, actions: ^NS.Array) -> ^UI.SegmentedControl {
+        initWithFrame_actions :: proc "c" (self: ^UI.SegmentedControl, _: SEL, frame: CG.Rect, actions: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

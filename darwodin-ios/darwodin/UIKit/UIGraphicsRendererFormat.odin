@@ -24,10 +24,10 @@ GraphicsRendererFormat :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GraphicsRendererFormat, objc_selector="defaultFormat", objc_name="defaultFormat", objc_is_class_method=true)
-    GraphicsRendererFormat_defaultFormat :: proc() -> ^GraphicsRendererFormat ---
+    GraphicsRendererFormat_defaultFormat :: proc() -> instancetype ---
 
     @(objc_type=GraphicsRendererFormat, objc_selector="preferredFormat", objc_name="preferredFormat", objc_is_class_method=true)
-    GraphicsRendererFormat_preferredFormat :: proc() -> ^GraphicsRendererFormat ---
+    GraphicsRendererFormat_preferredFormat :: proc() -> instancetype ---
 
     @(objc_type=GraphicsRendererFormat, objc_selector="bounds", objc_name="bounds")
     GraphicsRendererFormat_bounds :: proc(self: ^GraphicsRendererFormat) -> CG.Rect ---

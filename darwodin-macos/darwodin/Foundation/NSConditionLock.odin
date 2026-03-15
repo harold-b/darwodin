@@ -22,7 +22,7 @@ ConditionLock :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ConditionLock, objc_selector="initWithCondition:", objc_name="initWithCondition")
-    ConditionLock_initWithCondition :: proc(self: ^ConditionLock, condition: Integer) -> ^ConditionLock ---
+    ConditionLock_initWithCondition :: proc(self: ^ConditionLock, condition: Integer) -> instancetype ---
 
     @(objc_type=ConditionLock, objc_selector="lockWhenCondition:", objc_name="lockWhenCondition_")
     ConditionLock_lockWhenCondition_ :: proc(self: ^ConditionLock, condition: Integer) ---

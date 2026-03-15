@@ -23,10 +23,10 @@ AudioSequencer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioSequencer, objc_selector="init", objc_name="init")
-    AudioSequencer_init :: proc(self: ^AudioSequencer) -> ^AudioSequencer ---
+    AudioSequencer_init :: proc(self: ^AudioSequencer) -> instancetype ---
 
     @(objc_type=AudioSequencer, objc_selector="initWithAudioEngine:", objc_name="initWithAudioEngine")
-    AudioSequencer_initWithAudioEngine :: proc(self: ^AudioSequencer, engine: ^AudioEngine) -> ^AudioSequencer ---
+    AudioSequencer_initWithAudioEngine :: proc(self: ^AudioSequencer, engine: ^AudioEngine) -> instancetype ---
 
     @(objc_type=AudioSequencer, objc_selector="loadFromURL:options:error:", objc_name="loadFromURL")
     AudioSequencer_loadFromURL :: proc(self: ^AudioSequencer, fileURL: ^NS.URL, options: MusicSequenceLoadOptions, outError: ^^NS.Error) -> bool ---

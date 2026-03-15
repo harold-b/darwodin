@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    spacingForLeading: proc(leading: ^UI.NSCollectionLayoutSpacing, top: ^UI.NSCollectionLayoutSpacing, trailing: ^UI.NSCollectionLayoutSpacing, bottom: ^UI.NSCollectionLayoutSpacing) -> ^UI.NSCollectionLayoutEdgeSpacing,
-    init: proc(self: ^UI.NSCollectionLayoutEdgeSpacing) -> ^UI.NSCollectionLayoutEdgeSpacing,
+    spacingForLeading: proc(leading: ^UI.NSCollectionLayoutSpacing, top: ^UI.NSCollectionLayoutSpacing, trailing: ^UI.NSCollectionLayoutSpacing, bottom: ^UI.NSCollectionLayoutSpacing) -> instancetype,
+    init: proc(self: ^UI.NSCollectionLayoutEdgeSpacing) -> instancetype,
     new: proc() -> ^UI.NSCollectionLayoutEdgeSpacing,
     leading: proc(self: ^UI.NSCollectionLayoutEdgeSpacing) -> ^UI.NSCollectionLayoutSpacing,
     top: proc(self: ^UI.NSCollectionLayoutEdgeSpacing) -> ^UI.NSCollectionLayoutSpacing,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.spacingForLeading != nil {
-        spacingForLeading :: proc "c" (self: Class, _: SEL, leading: ^UI.NSCollectionLayoutSpacing, top: ^UI.NSCollectionLayoutSpacing, trailing: ^UI.NSCollectionLayoutSpacing, bottom: ^UI.NSCollectionLayoutSpacing) -> ^UI.NSCollectionLayoutEdgeSpacing {
+        spacingForLeading :: proc "c" (self: Class, _: SEL, leading: ^UI.NSCollectionLayoutSpacing, top: ^UI.NSCollectionLayoutSpacing, trailing: ^UI.NSCollectionLayoutSpacing, bottom: ^UI.NSCollectionLayoutSpacing) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("spacingForLeading:top:trailing:bottom:"), auto_cast spacingForLeading, "@#:@@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.NSCollectionLayoutEdgeSpacing, _: SEL) -> ^UI.NSCollectionLayoutEdgeSpacing {
+        init :: proc "c" (self: ^UI.NSCollectionLayoutEdgeSpacing, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

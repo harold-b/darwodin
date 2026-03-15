@@ -27,10 +27,10 @@ import "../NSProxy"
 VTable :: struct {
     super: NSProxy.VTable,
     proxyWithTarget: proc(target: id, connection: ^NS.Connection) -> id,
-    initWithTarget: proc(self: ^NS.DistantObject, target: id, connection: ^NS.Connection) -> ^NS.DistantObject,
+    initWithTarget: proc(self: ^NS.DistantObject, target: id, connection: ^NS.Connection) -> instancetype,
     proxyWithLocal: proc(target: id, connection: ^NS.Connection) -> id,
-    initWithLocal: proc(self: ^NS.DistantObject, target: id, connection: ^NS.Connection) -> ^NS.DistantObject,
-    initWithCoder: proc(self: ^NS.DistantObject, inCoder: ^NS.Coder) -> ^NS.DistantObject,
+    initWithLocal: proc(self: ^NS.DistantObject, target: id, connection: ^NS.Connection) -> instancetype,
+    initWithCoder: proc(self: ^NS.DistantObject, inCoder: ^NS.Coder) -> instancetype,
     setProtocolForProxy: proc(self: ^NS.DistantObject, proto: ^NS.Protocol),
     connectionForProxy: proc(self: ^NS.DistantObject) -> ^NS.Connection,
 }
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("proxyWithTarget:connection:"), auto_cast proxyWithTarget, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithTarget != nil {
-        initWithTarget :: proc "c" (self: ^NS.DistantObject, _: SEL, target: id, connection: ^NS.Connection) -> ^NS.DistantObject {
+        initWithTarget :: proc "c" (self: ^NS.DistantObject, _: SEL, target: id, connection: ^NS.Connection) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("proxyWithLocal:connection:"), auto_cast proxyWithLocal, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithLocal != nil {
-        initWithLocal :: proc "c" (self: ^NS.DistantObject, _: SEL, target: id, connection: ^NS.Connection) -> ^NS.DistantObject {
+        initWithLocal :: proc "c" (self: ^NS.DistantObject, _: SEL, target: id, connection: ^NS.Connection) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocal:connection:"), auto_cast initWithLocal, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.DistantObject, _: SEL, inCoder: ^NS.Coder) -> ^NS.DistantObject {
+        initWithCoder :: proc "c" (self: ^NS.DistantObject, _: SEL, inCoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -20,22 +20,22 @@ SocketPort :: struct { using _: Port, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SocketPort, objc_selector="init", objc_name="init")
-    SocketPort_init :: proc(self: ^SocketPort) -> ^SocketPort ---
+    SocketPort_init :: proc(self: ^SocketPort) -> instancetype ---
 
     @(objc_type=SocketPort, objc_selector="initWithTCPPort:", objc_name="initWithTCPPort")
-    SocketPort_initWithTCPPort :: proc(self: ^SocketPort, port: cffi.ushort) -> ^SocketPort ---
+    SocketPort_initWithTCPPort :: proc(self: ^SocketPort, port: cffi.ushort) -> instancetype ---
 
     @(objc_type=SocketPort, objc_selector="initWithProtocolFamily:socketType:protocol:address:", objc_name="initWithProtocolFamily_socketType_protocol_address")
-    SocketPort_initWithProtocolFamily_socketType_protocol_address :: proc(self: ^SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^Data) -> ^SocketPort ---
+    SocketPort_initWithProtocolFamily_socketType_protocol_address :: proc(self: ^SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^Data) -> instancetype ---
 
     @(objc_type=SocketPort, objc_selector="initWithProtocolFamily:socketType:protocol:socket:", objc_name="initWithProtocolFamily_socketType_protocol_socket")
-    SocketPort_initWithProtocolFamily_socketType_protocol_socket :: proc(self: ^SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, sock: SocketNativeHandle) -> ^SocketPort ---
+    SocketPort_initWithProtocolFamily_socketType_protocol_socket :: proc(self: ^SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, sock: SocketNativeHandle) -> instancetype ---
 
     @(objc_type=SocketPort, objc_selector="initRemoteWithTCPPort:host:", objc_name="initRemoteWithTCPPort")
-    SocketPort_initRemoteWithTCPPort :: proc(self: ^SocketPort, port: cffi.ushort, hostName: ^String) -> ^SocketPort ---
+    SocketPort_initRemoteWithTCPPort :: proc(self: ^SocketPort, port: cffi.ushort, hostName: ^String) -> instancetype ---
 
     @(objc_type=SocketPort, objc_selector="initRemoteWithProtocolFamily:socketType:protocol:address:", objc_name="initRemoteWithProtocolFamily")
-    SocketPort_initRemoteWithProtocolFamily :: proc(self: ^SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^Data) -> ^SocketPort ---
+    SocketPort_initRemoteWithProtocolFamily :: proc(self: ^SocketPort, family: cffi.int, type: cffi.int, protocol: cffi.int, address: ^Data) -> instancetype ---
 
     @(objc_type=SocketPort, objc_selector="protocolFamily", objc_name="protocolFamily")
     SocketPort_protocolFamily :: proc(self: ^SocketPort) -> cffi.int ---

@@ -23,7 +23,7 @@ ContinuityDevice :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContinuityDevice, objc_selector="init", objc_name="init")
-    ContinuityDevice_init :: proc(self: ^ContinuityDevice) -> ^ContinuityDevice ---
+    ContinuityDevice_init :: proc(self: ^ContinuityDevice) -> instancetype ---
 
     @(objc_type=ContinuityDevice, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ContinuityDevice_new :: proc() -> ^ContinuityDevice ---

@@ -32,7 +32,7 @@ foreign lib {
     URLSessionTask_resume :: proc(self: ^URLSessionTask) ---
 
     @(objc_type=URLSessionTask, objc_selector="init", objc_name="init")
-    URLSessionTask_init :: proc(self: ^URLSessionTask) -> ^URLSessionTask ---
+    URLSessionTask_init :: proc(self: ^URLSessionTask) -> instancetype ---
 
     @(objc_type=URLSessionTask, objc_selector="new", objc_name="new", objc_is_class_method=true)
     URLSessionTask_new :: proc() -> ^URLSessionTask ---

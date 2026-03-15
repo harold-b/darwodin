@@ -28,9 +28,9 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.TextFormattingViewControllerFormattingDescriptor) -> ^UI.TextFormattingViewControllerFormattingDescriptor,
-    initWithString: proc(self: ^UI.TextFormattingViewControllerFormattingDescriptor, string: ^NS.AttributedString, range: NS._NSRange) -> ^UI.TextFormattingViewControllerFormattingDescriptor,
-    initWithAttributes: proc(self: ^UI.TextFormattingViewControllerFormattingDescriptor, attributes: ^NS.Dictionary) -> ^UI.TextFormattingViewControllerFormattingDescriptor,
+    init: proc(self: ^UI.TextFormattingViewControllerFormattingDescriptor) -> instancetype,
+    initWithString: proc(self: ^UI.TextFormattingViewControllerFormattingDescriptor, string: ^NS.AttributedString, range: NS._NSRange) -> instancetype,
+    initWithAttributes: proc(self: ^UI.TextFormattingViewControllerFormattingDescriptor, attributes: ^NS.Dictionary) -> instancetype,
     fonts: proc(self: ^UI.TextFormattingViewControllerFormattingDescriptor) -> ^NS.Array,
     setFonts: proc(self: ^UI.TextFormattingViewControllerFormattingDescriptor, fonts: ^NS.Array),
     textColors: proc(self: ^UI.TextFormattingViewControllerFormattingDescriptor) -> ^NS.Array,
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextFormattingViewControllerFormattingDescriptor, _: SEL) -> ^UI.TextFormattingViewControllerFormattingDescriptor {
+        init :: proc "c" (self: ^UI.TextFormattingViewControllerFormattingDescriptor, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithString != nil {
-        initWithString :: proc "c" (self: ^UI.TextFormattingViewControllerFormattingDescriptor, _: SEL, string: ^NS.AttributedString, range: NS._NSRange) -> ^UI.TextFormattingViewControllerFormattingDescriptor {
+        initWithString :: proc "c" (self: ^UI.TextFormattingViewControllerFormattingDescriptor, _: SEL, string: ^NS.AttributedString, range: NS._NSRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:range:"), auto_cast initWithString, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributes != nil {
-        initWithAttributes :: proc "c" (self: ^UI.TextFormattingViewControllerFormattingDescriptor, _: SEL, attributes: ^NS.Dictionary) -> ^UI.TextFormattingViewControllerFormattingDescriptor {
+        initWithAttributes :: proc "c" (self: ^UI.TextFormattingViewControllerFormattingDescriptor, _: SEL, attributes: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

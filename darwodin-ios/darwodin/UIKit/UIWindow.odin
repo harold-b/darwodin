@@ -22,7 +22,7 @@ Window :: struct { using _: View, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Window, objc_selector="initWithWindowScene:", objc_name="initWithWindowScene")
-    Window_initWithWindowScene :: proc(self: ^Window, windowScene: ^WindowScene) -> ^Window ---
+    Window_initWithWindowScene :: proc(self: ^Window, windowScene: ^WindowScene) -> instancetype ---
 
     @(objc_type=Window, objc_selector="setScreen:", objc_name="setScreen")
     Window_setScreen :: proc(self: ^Window, screen: ^Screen) ---

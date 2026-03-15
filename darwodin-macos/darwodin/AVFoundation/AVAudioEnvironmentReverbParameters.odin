@@ -23,7 +23,7 @@ AudioEnvironmentReverbParameters :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioEnvironmentReverbParameters, objc_selector="init", objc_name="init")
-    AudioEnvironmentReverbParameters_init :: proc(self: ^AudioEnvironmentReverbParameters) -> ^AudioEnvironmentReverbParameters ---
+    AudioEnvironmentReverbParameters_init :: proc(self: ^AudioEnvironmentReverbParameters) -> instancetype ---
 
     @(objc_type=AudioEnvironmentReverbParameters, objc_selector="loadFactoryReverbPreset:", objc_name="loadFactoryReverbPreset")
     AudioEnvironmentReverbParameters_loadFactoryReverbPreset :: proc(self: ^AudioEnvironmentReverbParameters, preset: AudioUnitReverbPreset) ---

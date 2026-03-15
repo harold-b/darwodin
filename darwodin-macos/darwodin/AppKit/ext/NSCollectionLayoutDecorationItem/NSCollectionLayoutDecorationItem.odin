@@ -30,8 +30,8 @@ import "../NSCollectionLayoutItem"
 
 VTable :: struct {
     super: NSCollectionLayoutItem.VTable,
-    backgroundDecorationItemWithElementKind: proc(elementKind: ^NS.String) -> ^AK.CollectionLayoutDecorationItem,
-    init: proc(self: ^AK.CollectionLayoutDecorationItem) -> ^AK.CollectionLayoutDecorationItem,
+    backgroundDecorationItemWithElementKind: proc(elementKind: ^NS.String) -> instancetype,
+    init: proc(self: ^AK.CollectionLayoutDecorationItem) -> instancetype,
     new: proc() -> ^AK.CollectionLayoutDecorationItem,
     zIndex: proc(self: ^AK.CollectionLayoutDecorationItem) -> NS.Integer,
     setZIndex: proc(self: ^AK.CollectionLayoutDecorationItem, zIndex: NS.Integer),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionLayoutItem.extend(cls, &vt.super)
 
     if vt.backgroundDecorationItemWithElementKind != nil {
-        backgroundDecorationItemWithElementKind :: proc "c" (self: Class, _: SEL, elementKind: ^NS.String) -> ^AK.CollectionLayoutDecorationItem {
+        backgroundDecorationItemWithElementKind :: proc "c" (self: Class, _: SEL, elementKind: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("backgroundDecorationItemWithElementKind:"), auto_cast backgroundDecorationItemWithElementKind, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutDecorationItem, _: SEL) -> ^AK.CollectionLayoutDecorationItem {
+        init :: proc "c" (self: ^AK.CollectionLayoutDecorationItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

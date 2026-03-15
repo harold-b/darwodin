@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.SymbolEffectCompletionContext) -> ^UI.SymbolEffectCompletionContext,
+    init: proc(self: ^UI.SymbolEffectCompletionContext) -> instancetype,
     new: proc() -> ^UI.SymbolEffectCompletionContext,
     isFinished: proc(self: ^UI.SymbolEffectCompletionContext) -> bool,
     sender: proc(self: ^UI.SymbolEffectCompletionContext) -> id,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SymbolEffectCompletionContext, _: SEL) -> ^UI.SymbolEffectCompletionContext {
+        init :: proc "c" (self: ^UI.SymbolEffectCompletionContext, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

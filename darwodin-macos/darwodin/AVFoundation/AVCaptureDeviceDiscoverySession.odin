@@ -23,13 +23,13 @@ CaptureDeviceDiscoverySession :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeviceDiscoverySession, objc_selector="init", objc_name="init")
-    CaptureDeviceDiscoverySession_init :: proc(self: ^CaptureDeviceDiscoverySession) -> ^CaptureDeviceDiscoverySession ---
+    CaptureDeviceDiscoverySession_init :: proc(self: ^CaptureDeviceDiscoverySession) -> instancetype ---
 
     @(objc_type=CaptureDeviceDiscoverySession, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureDeviceDiscoverySession_new :: proc() -> ^CaptureDeviceDiscoverySession ---
 
     @(objc_type=CaptureDeviceDiscoverySession, objc_selector="discoverySessionWithDeviceTypes:mediaType:position:", objc_name="discoverySessionWithDeviceTypes", objc_is_class_method=true)
-    CaptureDeviceDiscoverySession_discoverySessionWithDeviceTypes :: proc(deviceTypes: ^NS.Array, mediaType: ^NS.String, position: CaptureDevicePosition) -> ^CaptureDeviceDiscoverySession ---
+    CaptureDeviceDiscoverySession_discoverySessionWithDeviceTypes :: proc(deviceTypes: ^NS.Array, mediaType: ^NS.String, position: CaptureDevicePosition) -> instancetype ---
 
     @(objc_type=CaptureDeviceDiscoverySession, objc_selector="devices", objc_name="devices")
     CaptureDeviceDiscoverySession_devices :: proc(self: ^CaptureDeviceDiscoverySession) -> ^NS.Array ---

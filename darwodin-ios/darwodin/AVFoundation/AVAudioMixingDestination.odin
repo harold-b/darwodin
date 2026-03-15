@@ -25,7 +25,7 @@ AudioMixingDestination :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioMixingDestination, objc_selector="init", objc_name="init")
-    AudioMixingDestination_init :: proc(self: ^AudioMixingDestination) -> ^AudioMixingDestination ---
+    AudioMixingDestination_init :: proc(self: ^AudioMixingDestination) -> instancetype ---
 
     @(objc_type=AudioMixingDestination, objc_selector="connectionPoint", objc_name="connectionPoint")
     AudioMixingDestination_connectionPoint :: proc(self: ^AudioMixingDestination) -> ^AudioConnectionPoint ---

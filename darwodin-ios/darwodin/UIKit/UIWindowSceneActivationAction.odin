@@ -22,13 +22,13 @@ WindowSceneActivationAction :: struct { using _: Action, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowSceneActivationAction, objc_selector="actionWithIdentifier:alternateAction:configurationProvider:", objc_name="actionWithIdentifier", objc_is_class_method=true)
-    WindowSceneActivationAction_actionWithIdentifier :: proc(identifier: ^NS.String, alternateAction: ^Action, configurationProvider: WindowSceneActivationActionConfigurationProvider) -> ^WindowSceneActivationAction ---
+    WindowSceneActivationAction_actionWithIdentifier :: proc(identifier: ^NS.String, alternateAction: ^Action, configurationProvider: WindowSceneActivationActionConfigurationProvider) -> instancetype ---
 
     @(objc_type=WindowSceneActivationAction, objc_selector="actionWithHandler:", objc_name="actionWithHandler", objc_is_class_method=true)
-    WindowSceneActivationAction_actionWithHandler :: proc(handler: ActionHandler) -> ^WindowSceneActivationAction ---
+    WindowSceneActivationAction_actionWithHandler :: proc(handler: ActionHandler) -> instancetype ---
 
     @(objc_type=WindowSceneActivationAction, objc_selector="actionWithTitle:image:identifier:handler:", objc_name="actionWithTitle", objc_is_class_method=true)
-    WindowSceneActivationAction_actionWithTitle :: proc(title: ^NS.String, image: ^Image, identifier: ^NS.String, handler: ActionHandler) -> ^WindowSceneActivationAction ---
+    WindowSceneActivationAction_actionWithTitle :: proc(title: ^NS.String, image: ^Image, identifier: ^NS.String, handler: ActionHandler) -> instancetype ---
 
     @(objc_type=WindowSceneActivationAction, objc_selector="title", objc_name="title")
     WindowSceneActivationAction_title :: proc(self: ^WindowSceneActivationAction) -> ^NS.String ---

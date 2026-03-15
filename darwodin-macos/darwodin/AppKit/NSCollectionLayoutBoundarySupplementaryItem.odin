@@ -26,13 +26,13 @@ CollectionLayoutBoundarySupplementaryItem :: struct { using _: CollectionLayoutS
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionLayoutBoundarySupplementaryItem, objc_selector="boundarySupplementaryItemWithLayoutSize:elementKind:alignment:", objc_name="boundarySupplementaryItemWithLayoutSize_elementKind_alignment", objc_is_class_method=true)
-    CollectionLayoutBoundarySupplementaryItem_boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc(layoutSize: ^CollectionLayoutSize, elementKind: ^NS.String, alignment: RectAlignment) -> ^CollectionLayoutBoundarySupplementaryItem ---
+    CollectionLayoutBoundarySupplementaryItem_boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc(layoutSize: ^CollectionLayoutSize, elementKind: ^NS.String, alignment: RectAlignment) -> instancetype ---
 
     @(objc_type=CollectionLayoutBoundarySupplementaryItem, objc_selector="boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:", objc_name="boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset", objc_is_class_method=true)
-    CollectionLayoutBoundarySupplementaryItem_boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc(layoutSize: ^CollectionLayoutSize, elementKind: ^NS.String, alignment: RectAlignment, absoluteOffset: CG.Point) -> ^CollectionLayoutBoundarySupplementaryItem ---
+    CollectionLayoutBoundarySupplementaryItem_boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc(layoutSize: ^CollectionLayoutSize, elementKind: ^NS.String, alignment: RectAlignment, absoluteOffset: CG.Point) -> instancetype ---
 
     @(objc_type=CollectionLayoutBoundarySupplementaryItem, objc_selector="init", objc_name="init")
-    CollectionLayoutBoundarySupplementaryItem_init :: proc(self: ^CollectionLayoutBoundarySupplementaryItem) -> ^CollectionLayoutBoundarySupplementaryItem ---
+    CollectionLayoutBoundarySupplementaryItem_init :: proc(self: ^CollectionLayoutBoundarySupplementaryItem) -> instancetype ---
 
     @(objc_type=CollectionLayoutBoundarySupplementaryItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionLayoutBoundarySupplementaryItem_new :: proc() -> ^CollectionLayoutBoundarySupplementaryItem ---

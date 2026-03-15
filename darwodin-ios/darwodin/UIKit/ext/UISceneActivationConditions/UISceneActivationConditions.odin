@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.SceneActivationConditions) -> ^UI.SceneActivationConditions,
-    initWithCoder: proc(self: ^UI.SceneActivationConditions, aDecoder: ^NS.Coder) -> ^UI.SceneActivationConditions,
+    init: proc(self: ^UI.SceneActivationConditions) -> instancetype,
+    initWithCoder: proc(self: ^UI.SceneActivationConditions, aDecoder: ^NS.Coder) -> instancetype,
     canActivateForTargetContentIdentifierPredicate: proc(self: ^UI.SceneActivationConditions) -> ^NS.Predicate,
     setCanActivateForTargetContentIdentifierPredicate: proc(self: ^UI.SceneActivationConditions, canActivateForTargetContentIdentifierPredicate: ^NS.Predicate),
     prefersToActivateForTargetContentIdentifierPredicate: proc(self: ^UI.SceneActivationConditions) -> ^NS.Predicate,
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.SceneActivationConditions, _: SEL) -> ^UI.SceneActivationConditions {
+        init :: proc "c" (self: ^UI.SceneActivationConditions, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.SceneActivationConditions, _: SEL, aDecoder: ^NS.Coder) -> ^UI.SceneActivationConditions {
+        initWithCoder :: proc "c" (self: ^UI.SceneActivationConditions, _: SEL, aDecoder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.MotionEffect) -> ^UI.MotionEffect,
-    initWithCoder: proc(self: ^UI.MotionEffect, coder: ^NS.Coder) -> ^UI.MotionEffect,
+    init: proc(self: ^UI.MotionEffect) -> instancetype,
+    initWithCoder: proc(self: ^UI.MotionEffect, coder: ^NS.Coder) -> instancetype,
     keyPathsAndRelativeValuesForViewerOffset: proc(self: ^UI.MotionEffect, viewerOffset: UI.Offset) -> ^NS.Dictionary,
 }
 
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.MotionEffect, _: SEL) -> ^UI.MotionEffect {
+        init :: proc "c" (self: ^UI.MotionEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.MotionEffect, _: SEL, coder: ^NS.Coder) -> ^UI.MotionEffect {
+        initWithCoder :: proc "c" (self: ^UI.MotionEffect, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

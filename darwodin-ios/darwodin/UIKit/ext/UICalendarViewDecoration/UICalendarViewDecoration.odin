@@ -28,13 +28,13 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.CalendarViewDecoration) -> ^UI.CalendarViewDecoration,
-    initWithImage: proc(self: ^UI.CalendarViewDecoration, image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> ^UI.CalendarViewDecoration,
-    initWithCustomViewProvider: proc(self: ^UI.CalendarViewDecoration, customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> ^UI.CalendarViewDecoration,
-    decorationWithColor: proc(color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> ^UI.CalendarViewDecoration,
-    decorationWithImage_: proc(image: ^UI.Image) -> ^UI.CalendarViewDecoration,
-    decorationWithImage_color_size: proc(image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> ^UI.CalendarViewDecoration,
-    decorationWithCustomViewProvider: proc(customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> ^UI.CalendarViewDecoration,
+    init: proc(self: ^UI.CalendarViewDecoration) -> instancetype,
+    initWithImage: proc(self: ^UI.CalendarViewDecoration, image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> instancetype,
+    initWithCustomViewProvider: proc(self: ^UI.CalendarViewDecoration, customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> instancetype,
+    decorationWithColor: proc(color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> instancetype,
+    decorationWithImage_: proc(image: ^UI.Image) -> instancetype,
+    decorationWithImage_color_size: proc(image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> instancetype,
+    decorationWithCustomViewProvider: proc(customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CalendarViewDecoration, _: SEL) -> ^UI.CalendarViewDecoration {
+        init :: proc "c" (self: ^UI.CalendarViewDecoration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithImage != nil {
-        initWithImage :: proc "c" (self: ^UI.CalendarViewDecoration, _: SEL, image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> ^UI.CalendarViewDecoration {
+        initWithImage :: proc "c" (self: ^UI.CalendarViewDecoration, _: SEL, image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImage:color:size:"), auto_cast initWithImage, "@@:@@l") do panic("Failed to register objC method.")
     }
     if vt.initWithCustomViewProvider != nil {
-        initWithCustomViewProvider :: proc "c" (self: ^UI.CalendarViewDecoration, _: SEL, customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> ^UI.CalendarViewDecoration {
+        initWithCustomViewProvider :: proc "c" (self: ^UI.CalendarViewDecoration, _: SEL, customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCustomViewProvider:"), auto_cast initWithCustomViewProvider, "@@:?") do panic("Failed to register objC method.")
     }
     if vt.decorationWithColor != nil {
-        decorationWithColor :: proc "c" (self: Class, _: SEL, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> ^UI.CalendarViewDecoration {
+        decorationWithColor :: proc "c" (self: Class, _: SEL, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("decorationWithColor:size:"), auto_cast decorationWithColor, "@#:@l") do panic("Failed to register objC method.")
     }
     if vt.decorationWithImage_ != nil {
-        decorationWithImage_ :: proc "c" (self: Class, _: SEL, image: ^UI.Image) -> ^UI.CalendarViewDecoration {
+        decorationWithImage_ :: proc "c" (self: Class, _: SEL, image: ^UI.Image) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("decorationWithImage:"), auto_cast decorationWithImage_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.decorationWithImage_color_size != nil {
-        decorationWithImage_color_size :: proc "c" (self: Class, _: SEL, image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> ^UI.CalendarViewDecoration {
+        decorationWithImage_color_size :: proc "c" (self: Class, _: SEL, image: ^UI.Image, color: ^UI.Color, size: UI.CalendarViewDecorationSize) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("decorationWithImage:color:size:"), auto_cast decorationWithImage_color_size, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.decorationWithCustomViewProvider != nil {
-        decorationWithCustomViewProvider :: proc "c" (self: Class, _: SEL, customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> ^UI.CalendarViewDecoration {
+        decorationWithCustomViewProvider :: proc "c" (self: Class, _: SEL, customViewProvider: ^Objc_Block(proc "c" () -> ^UI.View)) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

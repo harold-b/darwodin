@@ -23,22 +23,22 @@ MutableMovie :: struct { using _: Movie, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableMovie, objc_selector="movieWithURL:options:error:", objc_name="movieWithURL", objc_is_class_method=true)
-    MutableMovie_movieWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary, outError: ^^NS.Error) -> ^MutableMovie ---
+    MutableMovie_movieWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=MutableMovie, objc_selector="initWithURL:options:error:", objc_name="initWithURL")
-    MutableMovie_initWithURL :: proc(self: ^MutableMovie, _URL: ^NS.URL, options: ^NS.Dictionary, outError: ^^NS.Error) -> ^MutableMovie ---
+    MutableMovie_initWithURL :: proc(self: ^MutableMovie, _URL: ^NS.URL, options: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=MutableMovie, objc_selector="movieWithData:options:error:", objc_name="movieWithData", objc_is_class_method=true)
-    MutableMovie_movieWithData :: proc(data: ^NS.Data, options: ^NS.Dictionary, outError: ^^NS.Error) -> ^MutableMovie ---
+    MutableMovie_movieWithData :: proc(data: ^NS.Data, options: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=MutableMovie, objc_selector="initWithData:options:error:", objc_name="initWithData")
-    MutableMovie_initWithData :: proc(self: ^MutableMovie, data: ^NS.Data, options: ^NS.Dictionary, outError: ^^NS.Error) -> ^MutableMovie ---
+    MutableMovie_initWithData :: proc(self: ^MutableMovie, data: ^NS.Data, options: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=MutableMovie, objc_selector="movieWithSettingsFromMovie:options:error:", objc_name="movieWithSettingsFromMovie", objc_is_class_method=true)
-    MutableMovie_movieWithSettingsFromMovie :: proc(movie: ^Movie, options: ^NS.Dictionary, outError: ^^NS.Error) -> ^MutableMovie ---
+    MutableMovie_movieWithSettingsFromMovie :: proc(movie: ^Movie, options: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=MutableMovie, objc_selector="initWithSettingsFromMovie:options:error:", objc_name="initWithSettingsFromMovie")
-    MutableMovie_initWithSettingsFromMovie :: proc(self: ^MutableMovie, movie: ^Movie, options: ^NS.Dictionary, outError: ^^NS.Error) -> ^MutableMovie ---
+    MutableMovie_initWithSettingsFromMovie :: proc(self: ^MutableMovie, movie: ^Movie, options: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=MutableMovie, objc_selector="preferredRate", objc_name="preferredRate")
     MutableMovie_preferredRate :: proc(self: ^MutableMovie) -> cffi.float ---

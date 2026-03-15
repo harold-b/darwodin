@@ -24,7 +24,7 @@ SpeechSynthesizer :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesizer, objc_selector="initWithVoice:", objc_name="initWithVoice")
-    SpeechSynthesizer_initWithVoice :: proc(self: ^SpeechSynthesizer, voice: ^NS.String) -> ^SpeechSynthesizer ---
+    SpeechSynthesizer_initWithVoice :: proc(self: ^SpeechSynthesizer, voice: ^NS.String) -> instancetype ---
 
     @(objc_type=SpeechSynthesizer, objc_selector="startSpeakingString:", objc_name="startSpeakingString_")
     SpeechSynthesizer_startSpeakingString_ :: proc(self: ^SpeechSynthesizer, string: ^NS.String) -> bool ---

@@ -25,10 +25,10 @@ TraitCollection :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TraitCollection, objc_selector="init", objc_name="init")
-    TraitCollection_init :: proc(self: ^TraitCollection) -> ^TraitCollection ---
+    TraitCollection_init :: proc(self: ^TraitCollection) -> instancetype ---
 
     @(objc_type=TraitCollection, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    TraitCollection_initWithCoder :: proc(self: ^TraitCollection, coder: ^NS.Coder) -> ^TraitCollection ---
+    TraitCollection_initWithCoder :: proc(self: ^TraitCollection, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TraitCollection, objc_selector="containsTraitsInCollection:", objc_name="containsTraitsInCollection")
     TraitCollection_containsTraitsInCollection :: proc(self: ^TraitCollection, trait: ^TraitCollection) -> bool ---

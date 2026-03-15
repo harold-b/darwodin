@@ -22,7 +22,7 @@ ItemProviderReading :: struct { using _: intrinsics.objc_object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ItemProviderReading, objc_selector="objectWithItemProviderData:typeIdentifier:error:", objc_name="objectWithItemProviderData", objc_is_class_method=true)
-    ItemProviderReading_objectWithItemProviderData :: proc(data: ^Data, typeIdentifier: ^String, outError: ^^Error) -> ^ItemProviderReading ---
+    ItemProviderReading_objectWithItemProviderData :: proc(data: ^Data, typeIdentifier: ^String, outError: ^^Error) -> instancetype ---
 
     @(objc_type=ItemProviderReading, objc_selector="readableTypeIdentifiersForItemProvider", objc_name="readableTypeIdentifiersForItemProvider", objc_is_class_method=true)
     ItemProviderReading_readableTypeIdentifiersForItemProvider :: proc() -> ^Array ---

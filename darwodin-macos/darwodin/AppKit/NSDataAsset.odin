@@ -26,13 +26,13 @@ DataAsset :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DataAsset, objc_selector="init", objc_name="init")
-    DataAsset_init :: proc(self: ^DataAsset) -> ^DataAsset ---
+    DataAsset_init :: proc(self: ^DataAsset) -> instancetype ---
 
     @(objc_type=DataAsset, objc_selector="initWithName:", objc_name="initWithName_")
-    DataAsset_initWithName_ :: proc(self: ^DataAsset, name: ^NS.String) -> ^DataAsset ---
+    DataAsset_initWithName_ :: proc(self: ^DataAsset, name: ^NS.String) -> instancetype ---
 
     @(objc_type=DataAsset, objc_selector="initWithName:bundle:", objc_name="initWithName_bundle")
-    DataAsset_initWithName_bundle :: proc(self: ^DataAsset, name: ^NS.String, bundle: ^NS.Bundle) -> ^DataAsset ---
+    DataAsset_initWithName_bundle :: proc(self: ^DataAsset, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=DataAsset, objc_selector="name", objc_name="name")
     DataAsset_name :: proc(self: ^DataAsset) -> ^NS.String ---

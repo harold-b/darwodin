@@ -21,13 +21,13 @@ EAGLContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=EAGLContext, objc_selector="init", objc_name="init")
-    EAGLContext_init :: proc(self: ^EAGLContext) -> ^EAGLContext ---
+    EAGLContext_init :: proc(self: ^EAGLContext) -> instancetype ---
 
     @(objc_type=EAGLContext, objc_selector="initWithAPI:", objc_name="initWithAPI_")
-    EAGLContext_initWithAPI_ :: proc(self: ^EAGLContext, api: EAGLRenderingAPI) -> ^EAGLContext ---
+    EAGLContext_initWithAPI_ :: proc(self: ^EAGLContext, api: EAGLRenderingAPI) -> instancetype ---
 
     @(objc_type=EAGLContext, objc_selector="initWithAPI:sharegroup:", objc_name="initWithAPI_sharegroup")
-    EAGLContext_initWithAPI_sharegroup :: proc(self: ^EAGLContext, api: EAGLRenderingAPI, sharegroup: ^EAGLSharegroup) -> ^EAGLContext ---
+    EAGLContext_initWithAPI_sharegroup :: proc(self: ^EAGLContext, api: EAGLRenderingAPI, sharegroup: ^EAGLSharegroup) -> instancetype ---
 
     @(objc_type=EAGLContext, objc_selector="setCurrentContext:", objc_name="setCurrentContext", objc_is_class_method=true)
     EAGLContext_setCurrentContext :: proc(_context: ^EAGLContext) -> bool ---

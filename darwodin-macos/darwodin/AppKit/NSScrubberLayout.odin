@@ -26,10 +26,10 @@ ScrubberLayout :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScrubberLayout, objc_selector="init", objc_name="init")
-    ScrubberLayout_init :: proc(self: ^ScrubberLayout) -> ^ScrubberLayout ---
+    ScrubberLayout_init :: proc(self: ^ScrubberLayout) -> instancetype ---
 
     @(objc_type=ScrubberLayout, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    ScrubberLayout_initWithCoder :: proc(self: ^ScrubberLayout, coder: ^NS.Coder) -> ^ScrubberLayout ---
+    ScrubberLayout_initWithCoder :: proc(self: ^ScrubberLayout, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=ScrubberLayout, objc_selector="invalidateLayout", objc_name="invalidateLayout")
     ScrubberLayout_invalidateLayout :: proc(self: ^ScrubberLayout) ---

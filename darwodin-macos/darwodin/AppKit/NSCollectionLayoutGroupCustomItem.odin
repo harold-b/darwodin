@@ -26,13 +26,13 @@ CollectionLayoutGroupCustomItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionLayoutGroupCustomItem, objc_selector="customItemWithFrame:", objc_name="customItemWithFrame_", objc_is_class_method=true)
-    CollectionLayoutGroupCustomItem_customItemWithFrame_ :: proc(frame: NS.Rect) -> ^CollectionLayoutGroupCustomItem ---
+    CollectionLayoutGroupCustomItem_customItemWithFrame_ :: proc(frame: NS.Rect) -> instancetype ---
 
     @(objc_type=CollectionLayoutGroupCustomItem, objc_selector="customItemWithFrame:zIndex:", objc_name="customItemWithFrame_zIndex", objc_is_class_method=true)
-    CollectionLayoutGroupCustomItem_customItemWithFrame_zIndex :: proc(frame: NS.Rect, zIndex: NS.Integer) -> ^CollectionLayoutGroupCustomItem ---
+    CollectionLayoutGroupCustomItem_customItemWithFrame_zIndex :: proc(frame: NS.Rect, zIndex: NS.Integer) -> instancetype ---
 
     @(objc_type=CollectionLayoutGroupCustomItem, objc_selector="init", objc_name="init")
-    CollectionLayoutGroupCustomItem_init :: proc(self: ^CollectionLayoutGroupCustomItem) -> ^CollectionLayoutGroupCustomItem ---
+    CollectionLayoutGroupCustomItem_init :: proc(self: ^CollectionLayoutGroupCustomItem) -> instancetype ---
 
     @(objc_type=CollectionLayoutGroupCustomItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionLayoutGroupCustomItem_new :: proc() -> ^CollectionLayoutGroupCustomItem ---

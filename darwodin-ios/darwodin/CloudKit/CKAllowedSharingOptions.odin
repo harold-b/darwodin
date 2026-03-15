@@ -21,7 +21,7 @@ AllowedSharingOptions :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AllowedSharingOptions, objc_selector="initWithAllowedParticipantPermissionOptions:allowedParticipantAccessOptions:", objc_name="initWithAllowedParticipantPermissionOptions")
-    AllowedSharingOptions_initWithAllowedParticipantPermissionOptions :: proc(self: ^AllowedSharingOptions, allowedParticipantPermissionOptions: SharingParticipantPermissionOptions, allowedParticipantAccessOptions: SharingParticipantAccessOptions) -> ^AllowedSharingOptions ---
+    AllowedSharingOptions_initWithAllowedParticipantPermissionOptions :: proc(self: ^AllowedSharingOptions, allowedParticipantPermissionOptions: SharingParticipantPermissionOptions, allowedParticipantAccessOptions: SharingParticipantAccessOptions) -> instancetype ---
 
     @(objc_type=AllowedSharingOptions, objc_selector="allowedParticipantPermissionOptions", objc_name="allowedParticipantPermissionOptions")
     AllowedSharingOptions_allowedParticipantPermissionOptions :: proc(self: ^AllowedSharingOptions) -> SharingParticipantPermissionOptions ---

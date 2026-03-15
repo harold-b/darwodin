@@ -18,7 +18,7 @@ DiscoverAllUserIdentitiesOperation :: struct { using _: Operation, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DiscoverAllUserIdentitiesOperation, objc_selector="init", objc_name="init")
-    DiscoverAllUserIdentitiesOperation_init :: proc(self: ^DiscoverAllUserIdentitiesOperation) -> ^DiscoverAllUserIdentitiesOperation ---
+    DiscoverAllUserIdentitiesOperation_init :: proc(self: ^DiscoverAllUserIdentitiesOperation) -> instancetype ---
 
     @(objc_type=DiscoverAllUserIdentitiesOperation, objc_selector="userIdentityDiscoveredBlock", objc_name="userIdentityDiscoveredBlock")
     DiscoverAllUserIdentitiesOperation_userIdentityDiscoveredBlock :: proc(self: ^DiscoverAllUserIdentitiesOperation) -> ^Objc_Block(proc "c" ()) ---

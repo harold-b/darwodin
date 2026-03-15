@@ -23,7 +23,7 @@ CapturePhoto :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhoto, objc_selector="init", objc_name="init")
-    CapturePhoto_init :: proc(self: ^CapturePhoto) -> ^CapturePhoto ---
+    CapturePhoto_init :: proc(self: ^CapturePhoto) -> instancetype ---
 
     @(objc_type=CapturePhoto, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CapturePhoto_new :: proc() -> ^CapturePhoto ---

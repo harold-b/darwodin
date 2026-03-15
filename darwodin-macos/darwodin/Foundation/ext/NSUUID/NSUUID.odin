@@ -26,10 +26,10 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    _UUID: proc() -> ^NS.UUID,
-    init: proc(self: ^NS.UUID) -> ^NS.UUID,
-    initWithUUIDString: proc(self: ^NS.UUID, string: ^NS.String) -> ^NS.UUID,
-    initWithUUIDBytes: proc(self: ^NS.UUID, bytes: ^cffi.uchar) -> ^NS.UUID,
+    _UUID: proc() -> instancetype,
+    init: proc(self: ^NS.UUID) -> instancetype,
+    initWithUUIDString: proc(self: ^NS.UUID, string: ^NS.String) -> instancetype,
+    initWithUUIDBytes: proc(self: ^NS.UUID, bytes: ^cffi.uchar) -> instancetype,
     getUUIDBytes: proc(self: ^NS.UUID, uuid: ^cffi.uchar),
     compare: proc(self: ^NS.UUID, otherUUID: ^NS.UUID) -> NS.ComparisonResult,
     _UUIDString: proc(self: ^NS.UUID) -> ^NS.String,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt._UUID != nil {
-        _UUID :: proc "c" (self: Class, _: SEL) -> ^NS.UUID {
+        _UUID :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("UUID"), auto_cast _UUID, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.UUID, _: SEL) -> ^NS.UUID {
+        init :: proc "c" (self: ^NS.UUID, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithUUIDString != nil {
-        initWithUUIDString :: proc "c" (self: ^NS.UUID, _: SEL, string: ^NS.String) -> ^NS.UUID {
+        initWithUUIDString :: proc "c" (self: ^NS.UUID, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithUUIDString:"), auto_cast initWithUUIDString, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithUUIDBytes != nil {
-        initWithUUIDBytes :: proc "c" (self: ^NS.UUID, _: SEL, bytes: ^cffi.uchar) -> ^NS.UUID {
+        initWithUUIDBytes :: proc "c" (self: ^NS.UUID, _: SEL, bytes: ^cffi.uchar) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

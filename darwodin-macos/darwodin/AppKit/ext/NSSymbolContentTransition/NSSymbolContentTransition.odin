@@ -31,7 +31,7 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^AK.SymbolContentTransition,
-    init: proc(self: ^AK.SymbolContentTransition) -> ^AK.SymbolContentTransition,
+    init: proc(self: ^AK.SymbolContentTransition) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.SymbolContentTransition, _: SEL) -> ^AK.SymbolContentTransition {
+        init :: proc "c" (self: ^AK.SymbolContentTransition, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

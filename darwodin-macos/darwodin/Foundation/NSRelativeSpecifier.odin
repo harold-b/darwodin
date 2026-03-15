@@ -20,10 +20,10 @@ RelativeSpecifier :: struct { using _: ScriptObjectSpecifier, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RelativeSpecifier, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    RelativeSpecifier_initWithCoder :: proc(self: ^RelativeSpecifier, inCoder: ^Coder) -> ^RelativeSpecifier ---
+    RelativeSpecifier_initWithCoder :: proc(self: ^RelativeSpecifier, inCoder: ^Coder) -> instancetype ---
 
     @(objc_type=RelativeSpecifier, objc_selector="initWithContainerClassDescription:containerSpecifier:key:relativePosition:baseSpecifier:", objc_name="initWithContainerClassDescription")
-    RelativeSpecifier_initWithContainerClassDescription :: proc(self: ^RelativeSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, relPos: RelativePosition, baseSpecifier: ^ScriptObjectSpecifier) -> ^RelativeSpecifier ---
+    RelativeSpecifier_initWithContainerClassDescription :: proc(self: ^RelativeSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, relPos: RelativePosition, baseSpecifier: ^ScriptObjectSpecifier) -> instancetype ---
 
     @(objc_type=RelativeSpecifier, objc_selector="relativePosition", objc_name="relativePosition")
     RelativeSpecifier_relativePosition :: proc(self: ^RelativeSpecifier) -> RelativePosition ---

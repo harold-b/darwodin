@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.FocusMovementHint) -> ^UI.FocusMovementHint,
+    init: proc(self: ^UI.FocusMovementHint) -> instancetype,
     new: proc() -> ^UI.FocusMovementHint,
     movementDirection: proc(self: ^UI.FocusMovementHint) -> CG.Vector,
     perspectiveTransform: proc(self: ^UI.FocusMovementHint) -> CA.Transform3D,
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.FocusMovementHint, _: SEL) -> ^UI.FocusMovementHint {
+        init :: proc "c" (self: ^UI.FocusMovementHint, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

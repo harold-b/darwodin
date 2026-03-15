@@ -23,16 +23,16 @@ Submesh :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Submesh, objc_selector="initWithName:indexBuffer:indexCount:indexType:geometryType:material:", objc_name="initWithName_indexBuffer_indexCount_indexType_geometryType_material")
-    Submesh_initWithName_indexBuffer_indexCount_indexType_geometryType_material :: proc(self: ^Submesh, name: ^NS.String, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material) -> ^Submesh ---
+    Submesh_initWithName_indexBuffer_indexCount_indexType_geometryType_material :: proc(self: ^Submesh, name: ^NS.String, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material) -> instancetype ---
 
     @(objc_type=Submesh, objc_selector="initWithIndexBuffer:indexCount:indexType:geometryType:material:", objc_name="initWithIndexBuffer")
-    Submesh_initWithIndexBuffer :: proc(self: ^Submesh, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material) -> ^Submesh ---
+    Submesh_initWithIndexBuffer :: proc(self: ^Submesh, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material) -> instancetype ---
 
     @(objc_type=Submesh, objc_selector="initWithName:indexBuffer:indexCount:indexType:geometryType:material:topology:", objc_name="initWithName_indexBuffer_indexCount_indexType_geometryType_material_topology")
-    Submesh_initWithName_indexBuffer_indexCount_indexType_geometryType_material_topology :: proc(self: ^Submesh, name: ^NS.String, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material, topology: ^SubmeshTopology) -> ^Submesh ---
+    Submesh_initWithName_indexBuffer_indexCount_indexType_geometryType_material_topology :: proc(self: ^Submesh, name: ^NS.String, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material, topology: ^SubmeshTopology) -> instancetype ---
 
     @(objc_type=Submesh, objc_selector="initWithMDLSubmesh:indexType:geometryType:", objc_name="initWithMDLSubmesh")
-    Submesh_initWithMDLSubmesh :: proc(self: ^Submesh, submesh: ^Submesh, indexType: IndexBitDepth, geometryType: GeometryType) -> ^Submesh ---
+    Submesh_initWithMDLSubmesh :: proc(self: ^Submesh, submesh: ^Submesh, indexType: IndexBitDepth, geometryType: GeometryType) -> instancetype ---
 
     @(objc_type=Submesh, objc_selector="indexBufferAsIndexType:", objc_name="indexBufferAsIndexType")
     Submesh_indexBufferAsIndexType :: proc(self: ^Submesh, indexType: IndexBitDepth) -> ^MeshBuffer ---

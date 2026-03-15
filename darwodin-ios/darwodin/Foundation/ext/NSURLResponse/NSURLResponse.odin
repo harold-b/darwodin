@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithURL: proc(self: ^NS.URLResponse, _URL: ^NS.URL, MIMEType: ^NS.String, length: NS.Integer, name: ^NS.String) -> ^NS.URLResponse,
+    initWithURL: proc(self: ^NS.URLResponse, _URL: ^NS.URL, MIMEType: ^NS.String, length: NS.Integer, name: ^NS.String) -> instancetype,
     _URL: proc(self: ^NS.URLResponse) -> ^NS.URL,
     _MIMEType: proc(self: ^NS.URLResponse) -> ^NS.String,
     expectedContentLength: proc(self: ^NS.URLResponse) -> cffi.longlong,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithURL != nil {
-        initWithURL :: proc "c" (self: ^NS.URLResponse, _: SEL, _URL: ^NS.URL, MIMEType: ^NS.String, length: NS.Integer, name: ^NS.String) -> ^NS.URLResponse {
+        initWithURL :: proc "c" (self: ^NS.URLResponse, _: SEL, _URL: ^NS.URL, MIMEType: ^NS.String, length: NS.Integer, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

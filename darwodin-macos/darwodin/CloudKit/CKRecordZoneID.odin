@@ -21,13 +21,13 @@ RecordZoneID :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RecordZoneID, objc_selector="init", objc_name="init")
-    RecordZoneID_init :: proc(self: ^RecordZoneID) -> ^RecordZoneID ---
+    RecordZoneID_init :: proc(self: ^RecordZoneID) -> instancetype ---
 
     @(objc_type=RecordZoneID, objc_selector="new", objc_name="new", objc_is_class_method=true)
     RecordZoneID_new :: proc() -> ^RecordZoneID ---
 
     @(objc_type=RecordZoneID, objc_selector="initWithZoneName:ownerName:", objc_name="initWithZoneName")
-    RecordZoneID_initWithZoneName :: proc(self: ^RecordZoneID, zoneName: ^NS.String, ownerName: ^NS.String) -> ^RecordZoneID ---
+    RecordZoneID_initWithZoneName :: proc(self: ^RecordZoneID, zoneName: ^NS.String, ownerName: ^NS.String) -> instancetype ---
 
     @(objc_type=RecordZoneID, objc_selector="zoneName", objc_name="zoneName")
     RecordZoneID_zoneName :: proc(self: ^RecordZoneID) -> ^NS.String ---

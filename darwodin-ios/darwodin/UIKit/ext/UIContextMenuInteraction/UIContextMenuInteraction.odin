@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^UI.ContextMenuInteraction, delegate: ^UI.ContextMenuInteractionDelegate) -> ^UI.ContextMenuInteraction,
-    init: proc(self: ^UI.ContextMenuInteraction) -> ^UI.ContextMenuInteraction,
+    initWithDelegate: proc(self: ^UI.ContextMenuInteraction, delegate: ^UI.ContextMenuInteractionDelegate) -> instancetype,
+    init: proc(self: ^UI.ContextMenuInteraction) -> instancetype,
     new: proc() -> ^UI.ContextMenuInteraction,
     locationInView: proc(self: ^UI.ContextMenuInteraction, view: ^UI.View) -> CG.Point,
     updateVisibleMenuWithBlock: proc(self: ^UI.ContextMenuInteraction, block: ^Objc_Block(proc "c" (visibleMenu: ^UI.Menu) -> ^UI.Menu)),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.ContextMenuInteraction, _: SEL, delegate: ^UI.ContextMenuInteractionDelegate) -> ^UI.ContextMenuInteraction {
+        initWithDelegate :: proc "c" (self: ^UI.ContextMenuInteraction, _: SEL, delegate: ^UI.ContextMenuInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDelegate:"), auto_cast initWithDelegate, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ContextMenuInteraction, _: SEL) -> ^UI.ContextMenuInteraction {
+        init :: proc "c" (self: ^UI.ContextMenuInteraction, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

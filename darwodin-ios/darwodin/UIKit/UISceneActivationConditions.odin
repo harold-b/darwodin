@@ -24,10 +24,10 @@ SceneActivationConditions :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SceneActivationConditions, objc_selector="init", objc_name="init")
-    SceneActivationConditions_init :: proc(self: ^SceneActivationConditions) -> ^SceneActivationConditions ---
+    SceneActivationConditions_init :: proc(self: ^SceneActivationConditions) -> instancetype ---
 
     @(objc_type=SceneActivationConditions, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    SceneActivationConditions_initWithCoder :: proc(self: ^SceneActivationConditions, aDecoder: ^NS.Coder) -> ^SceneActivationConditions ---
+    SceneActivationConditions_initWithCoder :: proc(self: ^SceneActivationConditions, aDecoder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=SceneActivationConditions, objc_selector="canActivateForTargetContentIdentifierPredicate", objc_name="canActivateForTargetContentIdentifierPredicate")
     SceneActivationConditions_canActivateForTargetContentIdentifierPredicate :: proc(self: ^SceneActivationConditions) -> ^NS.Predicate ---

@@ -30,9 +30,9 @@ import "../NSTouchBarItem"
 
 VTable :: struct {
     super: NSTouchBarItem.VTable,
-    groupItemWithIdentifier_items: proc(identifier: ^NS.String, items: ^NS.Array) -> ^AK.GroupTouchBarItem,
-    groupItemWithIdentifier_items_allowedCompressionOptions: proc(identifier: ^NS.String, items: ^NS.Array, allowedCompressionOptions: ^AK.UserInterfaceCompressionOptions) -> ^AK.GroupTouchBarItem,
-    alertStyleGroupItemWithIdentifier: proc(identifier: ^NS.String) -> ^AK.GroupTouchBarItem,
+    groupItemWithIdentifier_items: proc(identifier: ^NS.String, items: ^NS.Array) -> instancetype,
+    groupItemWithIdentifier_items_allowedCompressionOptions: proc(identifier: ^NS.String, items: ^NS.Array, allowedCompressionOptions: ^AK.UserInterfaceCompressionOptions) -> instancetype,
+    alertStyleGroupItemWithIdentifier: proc(identifier: ^NS.String) -> instancetype,
     groupTouchBar: proc(self: ^AK.GroupTouchBarItem) -> ^AK.TouchBar,
     setGroupTouchBar: proc(self: ^AK.GroupTouchBarItem, groupTouchBar: ^AK.TouchBar),
     customizationLabel: proc(self: ^AK.GroupTouchBarItem) -> ^NS.String,
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTouchBarItem.extend(cls, &vt.super)
 
     if vt.groupItemWithIdentifier_items != nil {
-        groupItemWithIdentifier_items :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, items: ^NS.Array) -> ^AK.GroupTouchBarItem {
+        groupItemWithIdentifier_items :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, items: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("groupItemWithIdentifier:items:"), auto_cast groupItemWithIdentifier_items, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.groupItemWithIdentifier_items_allowedCompressionOptions != nil {
-        groupItemWithIdentifier_items_allowedCompressionOptions :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, items: ^NS.Array, allowedCompressionOptions: ^AK.UserInterfaceCompressionOptions) -> ^AK.GroupTouchBarItem {
+        groupItemWithIdentifier_items_allowedCompressionOptions :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, items: ^NS.Array, allowedCompressionOptions: ^AK.UserInterfaceCompressionOptions) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("groupItemWithIdentifier:items:allowedCompressionOptions:"), auto_cast groupItemWithIdentifier_items_allowedCompressionOptions, "@#:@^void@") do panic("Failed to register objC method.")
     }
     if vt.alertStyleGroupItemWithIdentifier != nil {
-        alertStyleGroupItemWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> ^AK.GroupTouchBarItem {
+        alertStyleGroupItemWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

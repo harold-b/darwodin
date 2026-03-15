@@ -23,7 +23,7 @@ foreign lib {
     MachPort_portWithMachPort_ :: proc(machPort: cffi.uint32_t) -> ^Port ---
 
     @(objc_type=MachPort, objc_selector="initWithMachPort:", objc_name="initWithMachPort_")
-    MachPort_initWithMachPort_ :: proc(self: ^MachPort, machPort: cffi.uint32_t) -> ^MachPort ---
+    MachPort_initWithMachPort_ :: proc(self: ^MachPort, machPort: cffi.uint32_t) -> instancetype ---
 
     @(objc_type=MachPort, objc_selector="setDelegate:", objc_name="setDelegate")
     MachPort_setDelegate :: proc(self: ^MachPort, anObject: ^MachPortDelegate) ---
@@ -35,7 +35,7 @@ foreign lib {
     MachPort_portWithMachPort_options :: proc(machPort: cffi.uint32_t, f: MachPortOptions) -> ^Port ---
 
     @(objc_type=MachPort, objc_selector="initWithMachPort:options:", objc_name="initWithMachPort_options")
-    MachPort_initWithMachPort_options :: proc(self: ^MachPort, machPort: cffi.uint32_t, f: MachPortOptions) -> ^MachPort ---
+    MachPort_initWithMachPort_options :: proc(self: ^MachPort, machPort: cffi.uint32_t, f: MachPortOptions) -> instancetype ---
 
     @(objc_type=MachPort, objc_selector="scheduleInRunLoop:forMode:", objc_name="scheduleInRunLoop")
     MachPort_scheduleInRunLoop :: proc(self: ^MachPort, runLoop: ^RunLoop, mode: ^String) ---

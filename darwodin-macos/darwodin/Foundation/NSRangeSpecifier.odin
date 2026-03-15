@@ -20,10 +20,10 @@ RangeSpecifier :: struct { using _: ScriptObjectSpecifier, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RangeSpecifier, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    RangeSpecifier_initWithCoder :: proc(self: ^RangeSpecifier, inCoder: ^Coder) -> ^RangeSpecifier ---
+    RangeSpecifier_initWithCoder :: proc(self: ^RangeSpecifier, inCoder: ^Coder) -> instancetype ---
 
     @(objc_type=RangeSpecifier, objc_selector="initWithContainerClassDescription:containerSpecifier:key:startSpecifier:endSpecifier:", objc_name="initWithContainerClassDescription")
-    RangeSpecifier_initWithContainerClassDescription :: proc(self: ^RangeSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, startSpec: ^ScriptObjectSpecifier, endSpec: ^ScriptObjectSpecifier) -> ^RangeSpecifier ---
+    RangeSpecifier_initWithContainerClassDescription :: proc(self: ^RangeSpecifier, classDesc: ^ScriptClassDescription, container: ^ScriptObjectSpecifier, property: ^String, startSpec: ^ScriptObjectSpecifier, endSpec: ^ScriptObjectSpecifier) -> instancetype ---
 
     @(objc_type=RangeSpecifier, objc_selector="startSpecifier", objc_name="startSpecifier")
     RangeSpecifier_startSpecifier :: proc(self: ^RangeSpecifier) -> ^ScriptObjectSpecifier ---

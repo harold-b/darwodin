@@ -24,7 +24,7 @@ PencilInteraction :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PencilInteraction, objc_selector="initWithDelegate:", objc_name="initWithDelegate")
-    PencilInteraction_initWithDelegate :: proc(self: ^PencilInteraction, delegate: ^PencilInteractionDelegate) -> ^PencilInteraction ---
+    PencilInteraction_initWithDelegate :: proc(self: ^PencilInteraction, delegate: ^PencilInteractionDelegate) -> instancetype ---
 
     @(objc_type=PencilInteraction, objc_selector="preferredTapAction", objc_name="preferredTapAction", objc_is_class_method=true)
     PencilInteraction_preferredTapAction :: proc() -> PencilPreferredAction ---

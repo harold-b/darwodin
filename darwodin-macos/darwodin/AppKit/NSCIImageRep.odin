@@ -24,10 +24,10 @@ CIImageRep :: struct { using _: ImageRep, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CIImageRep, objc_selector="imageRepWithCIImage:", objc_name="imageRepWithCIImage", objc_is_class_method=true)
-    CIImageRep_imageRepWithCIImage :: proc(image: ^CIImage) -> ^CIImageRep ---
+    CIImageRep_imageRepWithCIImage :: proc(image: ^CIImage) -> instancetype ---
 
     @(objc_type=CIImageRep, objc_selector="initWithCIImage:", objc_name="initWithCIImage")
-    CIImageRep_initWithCIImage :: proc(self: ^CIImageRep, image: ^CIImage) -> ^CIImageRep ---
+    CIImageRep_initWithCIImage :: proc(self: ^CIImageRep, image: ^CIImage) -> instancetype ---
 
     @(objc_type=CIImageRep, objc_selector="CIImage", objc_name="CIImage")
     CIImageRep_CIImage :: proc(self: ^CIImageRep) -> ^CIImage ---

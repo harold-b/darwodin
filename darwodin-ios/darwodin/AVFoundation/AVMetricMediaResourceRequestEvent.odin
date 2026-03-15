@@ -23,7 +23,7 @@ MetricMediaResourceRequestEvent :: struct { using _: MetricEvent, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricMediaResourceRequestEvent, objc_selector="init", objc_name="init")
-    MetricMediaResourceRequestEvent_init :: proc(self: ^MetricMediaResourceRequestEvent) -> ^MetricMediaResourceRequestEvent ---
+    MetricMediaResourceRequestEvent_init :: proc(self: ^MetricMediaResourceRequestEvent) -> instancetype ---
 
     @(objc_type=MetricMediaResourceRequestEvent, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MetricMediaResourceRequestEvent_new :: proc() -> ^MetricMediaResourceRequestEvent ---

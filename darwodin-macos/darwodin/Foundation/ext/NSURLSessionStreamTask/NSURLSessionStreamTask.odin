@@ -33,7 +33,7 @@ VTable :: struct {
     closeRead: proc(self: ^NS.URLSessionStreamTask),
     startSecureConnection: proc(self: ^NS.URLSessionStreamTask),
     stopSecureConnection: proc(self: ^NS.URLSessionStreamTask),
-    init: proc(self: ^NS.URLSessionStreamTask) -> ^NS.URLSessionStreamTask,
+    init: proc(self: ^NS.URLSessionStreamTask) -> instancetype,
     new: proc() -> ^NS.URLSessionStreamTask,
 }
 
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("stopSecureConnection"), auto_cast stopSecureConnection, "v@:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSessionStreamTask, _: SEL) -> ^NS.URLSessionStreamTask {
+        init :: proc "c" (self: ^NS.URLSessionStreamTask, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

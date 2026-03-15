@@ -20,7 +20,7 @@ Task :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Task, objc_selector="init", objc_name="init")
-    Task_init :: proc(self: ^Task) -> ^Task ---
+    Task_init :: proc(self: ^Task) -> instancetype ---
 
     @(objc_type=Task, objc_selector="launchAndReturnError:", objc_name="launchAndReturnError")
     Task_launchAndReturnError :: proc(self: ^Task, error: ^^Error) -> bool ---

@@ -20,10 +20,10 @@ OperationGroup :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=OperationGroup, objc_selector="init", objc_name="init")
-    OperationGroup_init :: proc(self: ^OperationGroup) -> ^OperationGroup ---
+    OperationGroup_init :: proc(self: ^OperationGroup) -> instancetype ---
 
     @(objc_type=OperationGroup, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    OperationGroup_initWithCoder :: proc(self: ^OperationGroup, aDecoder: ^NS.Coder) -> ^OperationGroup ---
+    OperationGroup_initWithCoder :: proc(self: ^OperationGroup, aDecoder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=OperationGroup, objc_selector="operationGroupID", objc_name="operationGroupID")
     OperationGroup_operationGroupID :: proc(self: ^OperationGroup) -> ^NS.String ---

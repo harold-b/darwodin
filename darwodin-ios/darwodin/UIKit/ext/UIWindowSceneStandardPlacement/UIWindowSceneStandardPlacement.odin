@@ -28,7 +28,7 @@ import "../UIWindowScenePlacement"
 
 VTable :: struct {
     super: UIWindowScenePlacement.VTable,
-    standardPlacement: proc() -> ^UI.WindowSceneStandardPlacement,
+    standardPlacement: proc() -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIWindowScenePlacement.extend(cls, &vt.super)
 
     if vt.standardPlacement != nil {
-        standardPlacement :: proc "c" (self: Class, _: SEL) -> ^UI.WindowSceneStandardPlacement {
+        standardPlacement :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

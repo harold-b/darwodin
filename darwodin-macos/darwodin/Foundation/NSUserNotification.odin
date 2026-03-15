@@ -22,7 +22,7 @@ UserNotification :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserNotification, objc_selector="init", objc_name="init")
-    UserNotification_init :: proc(self: ^UserNotification) -> ^UserNotification ---
+    UserNotification_init :: proc(self: ^UserNotification) -> instancetype ---
 
     @(objc_type=UserNotification, objc_selector="title", objc_name="title")
     UserNotification_title :: proc(self: ^UserNotification) -> ^String ---

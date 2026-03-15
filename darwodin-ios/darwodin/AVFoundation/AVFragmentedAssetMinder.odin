@@ -23,10 +23,10 @@ FragmentedAssetMinder :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FragmentedAssetMinder, objc_selector="fragmentedAssetMinderWithAsset:mindingInterval:", objc_name="fragmentedAssetMinderWithAsset", objc_is_class_method=true)
-    FragmentedAssetMinder_fragmentedAssetMinderWithAsset :: proc(asset: ^Asset, mindingInterval: NS.TimeInterval) -> ^FragmentedAssetMinder ---
+    FragmentedAssetMinder_fragmentedAssetMinderWithAsset :: proc(asset: ^Asset, mindingInterval: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=FragmentedAssetMinder, objc_selector="initWithAsset:mindingInterval:", objc_name="initWithAsset")
-    FragmentedAssetMinder_initWithAsset :: proc(self: ^FragmentedAssetMinder, asset: ^Asset, mindingInterval: NS.TimeInterval) -> ^FragmentedAssetMinder ---
+    FragmentedAssetMinder_initWithAsset :: proc(self: ^FragmentedAssetMinder, asset: ^Asset, mindingInterval: NS.TimeInterval) -> instancetype ---
 
     @(objc_type=FragmentedAssetMinder, objc_selector="addFragmentedAsset:", objc_name="addFragmentedAsset")
     FragmentedAssetMinder_addFragmentedAsset :: proc(self: ^FragmentedAssetMinder, asset: ^Asset) ---

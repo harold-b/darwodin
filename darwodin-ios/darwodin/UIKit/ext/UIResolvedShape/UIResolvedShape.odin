@@ -30,7 +30,7 @@ VTable :: struct {
     super: NSObject.VTable,
     shapeByApplyingInsets: proc(self: ^UI.ResolvedShape, insets: UI.EdgeInsets) -> ^UI.ResolvedShape,
     shapeByApplyingInset: proc(self: ^UI.ResolvedShape, inset: CG.Float) -> ^UI.ResolvedShape,
-    init: proc(self: ^UI.ResolvedShape) -> ^UI.ResolvedShape,
+    init: proc(self: ^UI.ResolvedShape) -> instancetype,
     new: proc() -> ^UI.ResolvedShape,
     shape: proc(self: ^UI.ResolvedShape) -> ^UI.Shape,
     boundingRect: proc(self: ^UI.ResolvedShape) -> CG.Rect,
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shapeByApplyingInset:"), auto_cast shapeByApplyingInset, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ResolvedShape, _: SEL) -> ^UI.ResolvedShape {
+        init :: proc "c" (self: ^UI.ResolvedShape, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

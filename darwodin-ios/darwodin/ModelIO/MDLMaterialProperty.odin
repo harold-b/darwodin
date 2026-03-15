@@ -24,37 +24,37 @@ MaterialProperty :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MaterialProperty, objc_selector="init", objc_name="init")
-    MaterialProperty_init :: proc(self: ^MaterialProperty) -> ^MaterialProperty ---
+    MaterialProperty_init :: proc(self: ^MaterialProperty) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:", objc_name="initWithName_semantic")
-    MaterialProperty_initWithName_semantic :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float:", objc_name="initWithName_semantic_float")
-    MaterialProperty_initWithName_semantic_float :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: cffi.float) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_float :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: cffi.float) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float2:", objc_name="initWithName_semantic_float2")
-    MaterialProperty_initWithName_semantic_float2 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float2) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_float2 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float2) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float3:", objc_name="initWithName_semantic_float3")
-    MaterialProperty_initWithName_semantic_float3 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float3) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_float3 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float3) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:float4:", objc_name="initWithName_semantic_float4")
-    MaterialProperty_initWithName_semantic_float4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float4) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_float4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: ^vector_float4) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:matrix4x4:", objc_name="initWithName_semantic_matrix4x4")
-    MaterialProperty_initWithName_semantic_matrix4x4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: matrix[4,4]f32) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_matrix4x4 :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, value: matrix[4,4]f32) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:URL:", objc_name="initWithName_semantic_URL")
-    MaterialProperty_initWithName_semantic_URL :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, _URL: ^NS.URL) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_URL :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, _URL: ^NS.URL) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:string:", objc_name="initWithName_semantic_string")
-    MaterialProperty_initWithName_semantic_string :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, string: ^NS.String) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_string :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, string: ^NS.String) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:textureSampler:", objc_name="initWithName_semantic_textureSampler")
-    MaterialProperty_initWithName_semantic_textureSampler :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, textureSampler: ^TextureSampler) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_textureSampler :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, textureSampler: ^TextureSampler) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="initWithName:semantic:color:", objc_name="initWithName_semantic_color")
-    MaterialProperty_initWithName_semantic_color :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, color: CG.ColorRef) -> ^MaterialProperty ---
+    MaterialProperty_initWithName_semantic_color :: proc(self: ^MaterialProperty, name: ^NS.String, semantic: MaterialSemantic, color: CG.ColorRef) -> instancetype ---
 
     @(objc_type=MaterialProperty, objc_selector="setProperties:", objc_name="setProperties")
     MaterialProperty_setProperties :: proc(self: ^MaterialProperty, property: ^MaterialProperty) ---

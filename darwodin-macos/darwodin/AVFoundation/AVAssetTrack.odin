@@ -26,7 +26,7 @@ AssetTrack :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetTrack, objc_selector="init", objc_name="init")
-    AssetTrack_init :: proc(self: ^AssetTrack) -> ^AssetTrack ---
+    AssetTrack_init :: proc(self: ^AssetTrack) -> instancetype ---
 
     @(objc_type=AssetTrack, objc_selector="new", objc_name="new", objc_is_class_method=true)
     AssetTrack_new :: proc() -> ^AssetTrack ---

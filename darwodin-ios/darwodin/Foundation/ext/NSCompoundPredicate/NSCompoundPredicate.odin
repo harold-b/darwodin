@@ -26,8 +26,8 @@ import "../NSPredicate"
 
 VTable :: struct {
     super: NSPredicate.VTable,
-    initWithType: proc(self: ^NS.CompoundPredicate, type: NS.CompoundPredicateType, subpredicates: ^NS.Array) -> ^NS.CompoundPredicate,
-    initWithCoder: proc(self: ^NS.CompoundPredicate, coder: ^NS.Coder) -> ^NS.CompoundPredicate,
+    initWithType: proc(self: ^NS.CompoundPredicate, type: NS.CompoundPredicateType, subpredicates: ^NS.Array) -> instancetype,
+    initWithCoder: proc(self: ^NS.CompoundPredicate, coder: ^NS.Coder) -> instancetype,
     andPredicateWithSubpredicates: proc(subpredicates: ^NS.Array) -> ^NS.CompoundPredicate,
     orPredicateWithSubpredicates: proc(subpredicates: ^NS.Array) -> ^NS.CompoundPredicate,
     notPredicateWithSubpredicate: proc(predicate: ^NS.Predicate) -> ^NS.CompoundPredicate,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSPredicate.extend(cls, &vt.super)
 
     if vt.initWithType != nil {
-        initWithType :: proc "c" (self: ^NS.CompoundPredicate, _: SEL, type: NS.CompoundPredicateType, subpredicates: ^NS.Array) -> ^NS.CompoundPredicate {
+        initWithType :: proc "c" (self: ^NS.CompoundPredicate, _: SEL, type: NS.CompoundPredicateType, subpredicates: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithType:subpredicates:"), auto_cast initWithType, "@@:L^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^NS.CompoundPredicate, _: SEL, coder: ^NS.Coder) -> ^NS.CompoundPredicate {
+        initWithCoder :: proc "c" (self: ^NS.CompoundPredicate, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

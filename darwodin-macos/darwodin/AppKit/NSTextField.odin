@@ -163,16 +163,16 @@ foreign lib {
     TextField_setAllowsCharacterPickerTouchBarItem :: proc(self: ^TextField, allowsCharacterPickerTouchBarItem: bool) ---
 
     @(objc_type=TextField, objc_selector="labelWithString:", objc_name="labelWithString", objc_is_class_method=true)
-    TextField_labelWithString :: proc(stringValue: ^NS.String) -> ^TextField ---
+    TextField_labelWithString :: proc(stringValue: ^NS.String) -> instancetype ---
 
     @(objc_type=TextField, objc_selector="wrappingLabelWithString:", objc_name="wrappingLabelWithString", objc_is_class_method=true)
-    TextField_wrappingLabelWithString :: proc(stringValue: ^NS.String) -> ^TextField ---
+    TextField_wrappingLabelWithString :: proc(stringValue: ^NS.String) -> instancetype ---
 
     @(objc_type=TextField, objc_selector="labelWithAttributedString:", objc_name="labelWithAttributedString", objc_is_class_method=true)
-    TextField_labelWithAttributedString :: proc(attributedStringValue: ^NS.AttributedString) -> ^TextField ---
+    TextField_labelWithAttributedString :: proc(attributedStringValue: ^NS.AttributedString) -> instancetype ---
 
     @(objc_type=TextField, objc_selector="textFieldWithString:", objc_name="textFieldWithString", objc_is_class_method=true)
-    TextField_textFieldWithString :: proc(stringValue: ^NS.String) -> ^TextField ---
+    TextField_textFieldWithString :: proc(stringValue: ^NS.String) -> instancetype ---
 
     @(objc_type=TextField, objc_selector="allowsEditingTextAttributes", objc_name="allowsEditingTextAttributes")
     TextField_allowsEditingTextAttributes :: proc(self: ^TextField) -> bool ---

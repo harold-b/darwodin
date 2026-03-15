@@ -22,10 +22,10 @@ URLAuthenticationChallenge :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLAuthenticationChallenge, objc_selector="initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:", objc_name="initWithProtectionSpace")
-    URLAuthenticationChallenge_initWithProtectionSpace :: proc(self: ^URLAuthenticationChallenge, space: ^URLProtectionSpace, credential: ^URLCredential, previousFailureCount: Integer, response: ^URLResponse, error: ^Error, sender: ^URLAuthenticationChallengeSender) -> ^URLAuthenticationChallenge ---
+    URLAuthenticationChallenge_initWithProtectionSpace :: proc(self: ^URLAuthenticationChallenge, space: ^URLProtectionSpace, credential: ^URLCredential, previousFailureCount: Integer, response: ^URLResponse, error: ^Error, sender: ^URLAuthenticationChallengeSender) -> instancetype ---
 
     @(objc_type=URLAuthenticationChallenge, objc_selector="initWithAuthenticationChallenge:sender:", objc_name="initWithAuthenticationChallenge")
-    URLAuthenticationChallenge_initWithAuthenticationChallenge :: proc(self: ^URLAuthenticationChallenge, challenge: ^URLAuthenticationChallenge, sender: ^URLAuthenticationChallengeSender) -> ^URLAuthenticationChallenge ---
+    URLAuthenticationChallenge_initWithAuthenticationChallenge :: proc(self: ^URLAuthenticationChallenge, challenge: ^URLAuthenticationChallenge, sender: ^URLAuthenticationChallengeSender) -> instancetype ---
 
     @(objc_type=URLAuthenticationChallenge, objc_selector="protectionSpace", objc_name="protectionSpace")
     URLAuthenticationChallenge_protectionSpace :: proc(self: ^URLAuthenticationChallenge) -> ^URLProtectionSpace ---

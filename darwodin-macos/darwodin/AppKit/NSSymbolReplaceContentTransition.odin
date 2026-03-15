@@ -24,22 +24,22 @@ SymbolReplaceContentTransition :: struct { using _: SymbolContentTransition, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SymbolReplaceContentTransition, objc_selector="transition", objc_name="transition", objc_is_class_method=true)
-    SymbolReplaceContentTransition_transition :: proc() -> ^SymbolReplaceContentTransition ---
+    SymbolReplaceContentTransition_transition :: proc() -> instancetype ---
 
     @(objc_type=SymbolReplaceContentTransition, objc_selector="replaceDownUpTransition", objc_name="replaceDownUpTransition", objc_is_class_method=true)
-    SymbolReplaceContentTransition_replaceDownUpTransition :: proc() -> ^SymbolReplaceContentTransition ---
+    SymbolReplaceContentTransition_replaceDownUpTransition :: proc() -> instancetype ---
 
     @(objc_type=SymbolReplaceContentTransition, objc_selector="replaceUpUpTransition", objc_name="replaceUpUpTransition", objc_is_class_method=true)
-    SymbolReplaceContentTransition_replaceUpUpTransition :: proc() -> ^SymbolReplaceContentTransition ---
+    SymbolReplaceContentTransition_replaceUpUpTransition :: proc() -> instancetype ---
 
     @(objc_type=SymbolReplaceContentTransition, objc_selector="replaceOffUpTransition", objc_name="replaceOffUpTransition", objc_is_class_method=true)
-    SymbolReplaceContentTransition_replaceOffUpTransition :: proc() -> ^SymbolReplaceContentTransition ---
+    SymbolReplaceContentTransition_replaceOffUpTransition :: proc() -> instancetype ---
 
     @(objc_type=SymbolReplaceContentTransition, objc_selector="transitionWithByLayer", objc_name="transitionWithByLayer")
-    SymbolReplaceContentTransition_transitionWithByLayer :: proc(self: ^SymbolReplaceContentTransition) -> ^SymbolReplaceContentTransition ---
+    SymbolReplaceContentTransition_transitionWithByLayer :: proc(self: ^SymbolReplaceContentTransition) -> instancetype ---
 
     @(objc_type=SymbolReplaceContentTransition, objc_selector="transitionWithWholeSymbol", objc_name="transitionWithWholeSymbol")
-    SymbolReplaceContentTransition_transitionWithWholeSymbol :: proc(self: ^SymbolReplaceContentTransition) -> ^SymbolReplaceContentTransition ---
+    SymbolReplaceContentTransition_transitionWithWholeSymbol :: proc(self: ^SymbolReplaceContentTransition) -> instancetype ---
 
     @(objc_type=SymbolReplaceContentTransition, objc_selector="magicTransitionWithFallback:", objc_name="magicTransitionWithFallback", objc_is_class_method=true)
     SymbolReplaceContentTransition_magicTransitionWithFallback :: proc(fallback: ^SymbolReplaceContentTransition) -> ^SymbolMagicReplaceContentTransition ---

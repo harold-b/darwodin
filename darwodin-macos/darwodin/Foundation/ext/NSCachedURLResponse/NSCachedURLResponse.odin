@@ -26,8 +26,8 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithResponse_data: proc(self: ^NS.CachedURLResponse, response: ^NS.URLResponse, data: ^NS.Data) -> ^NS.CachedURLResponse,
-    initWithResponse_data_userInfo_storagePolicy: proc(self: ^NS.CachedURLResponse, response: ^NS.URLResponse, data: ^NS.Data, userInfo: ^NS.Dictionary, storagePolicy: NS.URLCacheStoragePolicy) -> ^NS.CachedURLResponse,
+    initWithResponse_data: proc(self: ^NS.CachedURLResponse, response: ^NS.URLResponse, data: ^NS.Data) -> instancetype,
+    initWithResponse_data_userInfo_storagePolicy: proc(self: ^NS.CachedURLResponse, response: ^NS.URLResponse, data: ^NS.Data, userInfo: ^NS.Dictionary, storagePolicy: NS.URLCacheStoragePolicy) -> instancetype,
     response: proc(self: ^NS.CachedURLResponse) -> ^NS.URLResponse,
     data: proc(self: ^NS.CachedURLResponse) -> ^NS.Data,
     userInfo: proc(self: ^NS.CachedURLResponse) -> ^NS.Dictionary,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithResponse_data != nil {
-        initWithResponse_data :: proc "c" (self: ^NS.CachedURLResponse, _: SEL, response: ^NS.URLResponse, data: ^NS.Data) -> ^NS.CachedURLResponse {
+        initWithResponse_data :: proc "c" (self: ^NS.CachedURLResponse, _: SEL, response: ^NS.URLResponse, data: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithResponse:data:"), auto_cast initWithResponse_data, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithResponse_data_userInfo_storagePolicy != nil {
-        initWithResponse_data_userInfo_storagePolicy :: proc "c" (self: ^NS.CachedURLResponse, _: SEL, response: ^NS.URLResponse, data: ^NS.Data, userInfo: ^NS.Dictionary, storagePolicy: NS.URLCacheStoragePolicy) -> ^NS.CachedURLResponse {
+        initWithResponse_data_userInfo_storagePolicy :: proc "c" (self: ^NS.CachedURLResponse, _: SEL, response: ^NS.URLResponse, data: ^NS.Data, userInfo: ^NS.Dictionary, storagePolicy: NS.URLCacheStoragePolicy) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

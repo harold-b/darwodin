@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.UserNotification) -> ^NS.UserNotification,
+    init: proc(self: ^NS.UserNotification) -> instancetype,
     title: proc(self: ^NS.UserNotification) -> ^NS.String,
     setTitle: proc(self: ^NS.UserNotification, title: ^NS.String),
     subtitle: proc(self: ^NS.UserNotification) -> ^NS.String,
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.UserNotification, _: SEL) -> ^NS.UserNotification {
+        init :: proc "c" (self: ^NS.UserNotification, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

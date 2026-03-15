@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDuration: proc(self: ^AK.Animation, duration: NS.TimeInterval, animationCurve: AK.AnimationCurve) -> ^AK.Animation,
-    initWithCoder: proc(self: ^AK.Animation, coder: ^NS.Coder) -> ^AK.Animation,
+    initWithDuration: proc(self: ^AK.Animation, duration: NS.TimeInterval, animationCurve: AK.AnimationCurve) -> instancetype,
+    initWithCoder: proc(self: ^AK.Animation, coder: ^NS.Coder) -> instancetype,
     startAnimation: proc(self: ^AK.Animation),
     stopAnimation: proc(self: ^AK.Animation),
     addProgressMark: proc(self: ^AK.Animation, progressMark: AK.AnimationProgress),
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDuration != nil {
-        initWithDuration :: proc "c" (self: ^AK.Animation, _: SEL, duration: NS.TimeInterval, animationCurve: AK.AnimationCurve) -> ^AK.Animation {
+        initWithDuration :: proc "c" (self: ^AK.Animation, _: SEL, duration: NS.TimeInterval, animationCurve: AK.AnimationCurve) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDuration:animationCurve:"), auto_cast initWithDuration, "@@:dL") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Animation, _: SEL, coder: ^NS.Coder) -> ^AK.Animation {
+        initWithCoder :: proc "c" (self: ^AK.Animation, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

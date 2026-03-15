@@ -22,7 +22,7 @@ UserNotificationAction :: struct { using _: Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserNotificationAction, objc_selector="actionWithIdentifier:title:", objc_name="actionWithIdentifier", objc_is_class_method=true)
-    UserNotificationAction_actionWithIdentifier :: proc(identifier: ^String, title: ^String) -> ^UserNotificationAction ---
+    UserNotificationAction_actionWithIdentifier :: proc(identifier: ^String, title: ^String) -> instancetype ---
 
     @(objc_type=UserNotificationAction, objc_selector="identifier", objc_name="identifier")
     UserNotificationAction_identifier :: proc(self: ^UserNotificationAction) -> ^String ---

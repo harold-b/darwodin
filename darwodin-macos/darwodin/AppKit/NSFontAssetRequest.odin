@@ -26,10 +26,10 @@ FontAssetRequest :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FontAssetRequest, objc_selector="init", objc_name="init")
-    FontAssetRequest_init :: proc(self: ^FontAssetRequest) -> ^FontAssetRequest ---
+    FontAssetRequest_init :: proc(self: ^FontAssetRequest) -> instancetype ---
 
     @(objc_type=FontAssetRequest, objc_selector="initWithFontDescriptors:options:", objc_name="initWithFontDescriptors")
-    FontAssetRequest_initWithFontDescriptors :: proc(self: ^FontAssetRequest, fontDescriptors: ^NS.Array, options: FontAssetRequestOptions) -> ^FontAssetRequest ---
+    FontAssetRequest_initWithFontDescriptors :: proc(self: ^FontAssetRequest, fontDescriptors: ^NS.Array, options: FontAssetRequestOptions) -> instancetype ---
 
     @(objc_type=FontAssetRequest, objc_selector="downloadFontAssetsWithCompletionHandler:", objc_name="downloadFontAssetsWithCompletionHandler")
     FontAssetRequest_downloadFontAssetsWithCompletionHandler :: proc(self: ^FontAssetRequest, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error) -> bool)) ---

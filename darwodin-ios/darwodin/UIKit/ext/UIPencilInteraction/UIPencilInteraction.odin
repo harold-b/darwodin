@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^UI.PencilInteraction, delegate: ^UI.PencilInteractionDelegate) -> ^UI.PencilInteraction,
+    initWithDelegate: proc(self: ^UI.PencilInteraction, delegate: ^UI.PencilInteractionDelegate) -> instancetype,
     preferredTapAction: proc() -> UI.PencilPreferredAction,
     preferredSqueezeAction: proc() -> UI.PencilPreferredAction,
     prefersPencilOnlyDrawing: proc() -> bool,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^UI.PencilInteraction, _: SEL, delegate: ^UI.PencilInteractionDelegate) -> ^UI.PencilInteraction {
+        initWithDelegate :: proc "c" (self: ^UI.PencilInteraction, _: SEL, delegate: ^UI.PencilInteractionDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithContentViewController: proc(self: ^UI.PopoverController, viewController: ^UI.ViewController) -> ^UI.PopoverController,
+    initWithContentViewController: proc(self: ^UI.PopoverController, viewController: ^UI.ViewController) -> instancetype,
     setContentViewController_animated: proc(self: ^UI.PopoverController, viewController: ^UI.ViewController, animated: bool),
     setPopoverContentSize_animated: proc(self: ^UI.PopoverController, size: CG.Size, animated: bool),
     presentPopoverFromRect: proc(self: ^UI.PopoverController, rect: CG.Rect, view: ^UI.View, arrowDirections: UI.PopoverArrowDirection, animated: bool),
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithContentViewController != nil {
-        initWithContentViewController :: proc "c" (self: ^UI.PopoverController, _: SEL, viewController: ^UI.ViewController) -> ^UI.PopoverController {
+        initWithContentViewController :: proc "c" (self: ^UI.PopoverController, _: SEL, viewController: ^UI.ViewController) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithData: proc(self: ^AK.TextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> ^AK.TextAttachment,
-    initWithFileWrapper: proc(self: ^AK.TextAttachment, fileWrapper: ^NS.FileWrapper) -> ^AK.TextAttachment,
+    initWithData: proc(self: ^AK.TextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> instancetype,
+    initWithFileWrapper: proc(self: ^AK.TextAttachment, fileWrapper: ^NS.FileWrapper) -> instancetype,
     textAttachmentViewProviderClassForFileType: proc(fileType: ^NS.String) -> Class,
     registerTextAttachmentViewProviderClass: proc(textAttachmentViewProviderClass: Class, fileType: ^NS.String),
     contents: proc(self: ^AK.TextAttachment) -> ^NS.Data,
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.TextAttachment, _: SEL, contentData: ^NS.Data, uti: ^NS.String) -> ^AK.TextAttachment {
+        initWithData :: proc "c" (self: ^AK.TextAttachment, _: SEL, contentData: ^NS.Data, uti: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:ofType:"), auto_cast initWithData, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFileWrapper != nil {
-        initWithFileWrapper :: proc "c" (self: ^AK.TextAttachment, _: SEL, fileWrapper: ^NS.FileWrapper) -> ^AK.TextAttachment {
+        initWithFileWrapper :: proc "c" (self: ^AK.TextAttachment, _: SEL, fileWrapper: ^NS.FileWrapper) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

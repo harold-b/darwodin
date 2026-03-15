@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.ItemProvider) -> ^NS.ItemProvider,
+    init: proc(self: ^NS.ItemProvider) -> instancetype,
     registerDataRepresentationForTypeIdentifier: proc(self: ^NS.ItemProvider, typeIdentifier: ^NS.String, visibility: NS.ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, error: ^NS.Error))) -> ^NS.Progress)),
     registerFileRepresentationForTypeIdentifier: proc(self: ^NS.ItemProvider, typeIdentifier: ^NS.String, fileOptions: NS.ItemProviderFileOptions, visibility: NS.ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (url: ^NS.URL, coordinated: bool, error: ^NS.Error))) -> ^NS.Progress)),
     registeredTypeIdentifiersWithFileOptions: proc(self: ^NS.ItemProvider, fileOptions: NS.ItemProviderFileOptions) -> ^NS.Array,
@@ -35,13 +35,13 @@ VTable :: struct {
     loadDataRepresentationForTypeIdentifier: proc(self: ^NS.ItemProvider, typeIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, error: ^NS.Error))) -> ^NS.Progress,
     loadFileRepresentationForTypeIdentifier: proc(self: ^NS.ItemProvider, typeIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (url: ^NS.URL, error: ^NS.Error))) -> ^NS.Progress,
     loadInPlaceFileRepresentationForTypeIdentifier: proc(self: ^NS.ItemProvider, typeIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (url: ^NS.URL, isInPlace: bool, error: ^NS.Error))) -> ^NS.Progress,
-    initWithObject: proc(self: ^NS.ItemProvider, object: ^NS.ItemProviderWriting) -> ^NS.ItemProvider,
+    initWithObject: proc(self: ^NS.ItemProvider, object: ^NS.ItemProviderWriting) -> instancetype,
     registerObject: proc(self: ^NS.ItemProvider, object: ^NS.ItemProviderWriting, visibility: NS.ItemProviderRepresentationVisibility),
     registerObjectOfClass: proc(self: ^NS.ItemProvider, aClass: ^Class, visibility: NS.ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (object: ^NS.ItemProviderWriting, error: ^NS.Error))) -> ^NS.Progress)),
     canLoadObjectOfClass: proc(self: ^NS.ItemProvider, aClass: ^Class) -> bool,
     loadObjectOfClass: proc(self: ^NS.ItemProvider, aClass: ^Class, completionHandler: ^Objc_Block(proc "c" (object: ^NS.ItemProviderReading, error: ^NS.Error))) -> ^NS.Progress,
-    initWithItem: proc(self: ^NS.ItemProvider, item: ^NS.SecureCoding, typeIdentifier: ^NS.String) -> ^NS.ItemProvider,
-    initWithContentsOfURL: proc(self: ^NS.ItemProvider, fileURL: ^NS.URL) -> ^NS.ItemProvider,
+    initWithItem: proc(self: ^NS.ItemProvider, item: ^NS.SecureCoding, typeIdentifier: ^NS.String) -> instancetype,
+    initWithContentsOfURL: proc(self: ^NS.ItemProvider, fileURL: ^NS.URL) -> instancetype,
     registerItemForTypeIdentifier: proc(self: ^NS.ItemProvider, typeIdentifier: ^NS.String, loadHandler: NS.ItemProviderLoadHandler),
     loadItemForTypeIdentifier: proc(self: ^NS.ItemProvider, typeIdentifier: ^NS.String, options: ^NS.Dictionary, completionHandler: NS.ItemProviderCompletionHandler),
     registeredTypeIdentifiers: proc(self: ^NS.ItemProvider) -> ^NS.Array,
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.ItemProvider, _: SEL) -> ^NS.ItemProvider {
+        init :: proc "c" (self: ^NS.ItemProvider, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:"), auto_cast loadInPlaceFileRepresentationForTypeIdentifier, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.initWithObject != nil {
-        initWithObject :: proc "c" (self: ^NS.ItemProvider, _: SEL, object: ^NS.ItemProviderWriting) -> ^NS.ItemProvider {
+        initWithObject :: proc "c" (self: ^NS.ItemProvider, _: SEL, object: ^NS.ItemProviderWriting) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("loadObjectOfClass:completionHandler:"), auto_cast loadObjectOfClass, "@@:^void?") do panic("Failed to register objC method.")
     }
     if vt.initWithItem != nil {
-        initWithItem :: proc "c" (self: ^NS.ItemProvider, _: SEL, item: ^NS.SecureCoding, typeIdentifier: ^NS.String) -> ^NS.ItemProvider {
+        initWithItem :: proc "c" (self: ^NS.ItemProvider, _: SEL, item: ^NS.SecureCoding, typeIdentifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItem:typeIdentifier:"), auto_cast initWithItem, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL != nil {
-        initWithContentsOfURL :: proc "c" (self: ^NS.ItemProvider, _: SEL, fileURL: ^NS.URL) -> ^NS.ItemProvider {
+        initWithContentsOfURL :: proc "c" (self: ^NS.ItemProvider, _: SEL, fileURL: ^NS.URL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

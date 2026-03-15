@@ -991,85 +991,6 @@ StreamID :: ObjectID
 /// AudioStreamPropertyListenerProc
 StreamPropertyListenerProc :: proc "c" (inStream: StreamID, inChannel: CF.UInt32, inPropertyID: DevicePropertyID, inClientData: rawptr) -> CF.OSStatus
 
-/// AudioFormatID
-FormatID :: enum cffi.uint {
-    LinearPCM            = 1819304813,
-    AC3                  = 1633889587,
-    _60958AC3            = 1667326771,
-    AppleIMA4            = 1768775988,
-    MPEG4AAC             = 1633772320,
-    MPEG4CELP            = 1667591280,
-    MPEG4HVXC            = 1752594531,
-    MPEG4TwinVQ          = 1953986161,
-    MACE3                = 1296122675,
-    MACE6                = 1296122678,
-    ULaw                 = 1970037111,
-    ALaw                 = 1634492791,
-    QDesign              = 1363430723,
-    QDesign2             = 1363430706,
-    QUALCOMM             = 1365470320,
-    MPEGLayer1           = 778924081,
-    MPEGLayer2           = 778924082,
-    MPEGLayer3           = 778924083,
-    TimeCode             = 1953066341,
-    MIDIStream           = 1835623529,
-    ParameterValueStream = 1634760307,
-    AppleLossless        = 1634492771,
-    MPEG4AAC_HE          = 1633772392,
-    MPEG4AAC_LD          = 1633772396,
-    MPEG4AAC_ELD         = 1633772389,
-    MPEG4AAC_ELD_SBR     = 1633772390,
-    MPEG4AAC_ELD_V2      = 1633772391,
-    MPEG4AAC_HE_V2       = 1633772400,
-    MPEG4AAC_Spatial     = 1633772403,
-    MPEGD_USAC           = 1970495843,
-    AMR                  = 1935764850,
-    AMR_WB               = 1935767394,
-    Audible              = 1096107074,
-    iLBC                 = 1768710755,
-    DVIIntelIMA          = 1836253201,
-    MicrosoftGSM         = 1836253233,
-    AES3                 = 1634038579,
-    EnhancedAC3          = 1700998451,
-    FLAC                 = 1718378851,
-    Opus                 = 1869641075,
-    APAC                 = 1634754915,
-}
-
-/// AudioFormatFlag
-FormatFlag :: enum cffi.uint {
-    IsFloat                          = 1,
-    IsBigEndian                      = 2,
-    IsSignedInteger                  = 4,
-    IsPacked                         = 8,
-    IsAlignedHigh                    = 16,
-    IsNonInterleaved                 = 32,
-    IsNonMixable                     = 64,
-    AreAllClear                      = 2147483648,
-    LinearPCMFormatFlagIsFloat       = 1,
-    LinearPCMFormatFlagIsBigEndian   = 2,
-    LinearPCMFormatFlagIsSignedInteger = 4,
-    LinearPCMFormatFlagIsPacked      = 8,
-    LinearPCMFormatFlagIsAlignedHigh = 16,
-    LinearPCMFormatFlagIsNonInterleaved = 32,
-    LinearPCMFormatFlagIsNonMixable  = 64,
-    LinearPCMFormatFlagsSampleFractionShift = 7,
-    LinearPCMFormatFlagsSampleFractionMask = 8064,
-    LinearPCMFormatFlagsAreAllClear  = 2147483648,
-    AppleLosslessFormatFlag_16BitSourceData = 1,
-    AppleLosslessFormatFlag_20BitSourceData = 2,
-    AppleLosslessFormatFlag_24BitSourceData = 3,
-    AppleLosslessFormatFlag_32BitSourceData = 4,
-}
-
-/// AudioFormatFlags
-FormatFlags :: enum cffi.uint {
-    NativeEndian      = 0,
-    Canonical         = 9,
-    UnitCanonical     = 41,
-    NativeFloatPacked = 9,
-}
-
 /// SMPTETimeType
 SMPTETimeType :: enum cffi.uint {
     _24       = 0,
@@ -1181,6 +1102,87 @@ LevelControlTransferFunction :: enum cffi.uint {
     _12Over1 = 15,
 }
 
+/// AudioFormatID
+FormatID :: enum cffi.uint {
+    LinearPCM            = 1819304813,
+    AC3                  = 1633889587,
+    _60958AC3            = 1667326771,
+    AppleIMA4            = 1768775988,
+    MPEG4AAC             = 1633772320,
+    MPEG4CELP            = 1667591280,
+    MPEG4HVXC            = 1752594531,
+    MPEG4TwinVQ          = 1953986161,
+    MACE3                = 1296122675,
+    MACE6                = 1296122678,
+    ULaw                 = 1970037111,
+    ALaw                 = 1634492791,
+    QDesign              = 1363430723,
+    QDesign2             = 1363430706,
+    QUALCOMM             = 1365470320,
+    MPEGLayer1           = 778924081,
+    MPEGLayer2           = 778924082,
+    MPEGLayer3           = 778924083,
+    TimeCode             = 1953066341,
+    MIDIStream           = 1835623529,
+    ParameterValueStream = 1634760307,
+    AppleLossless        = 1634492771,
+    MPEG4AAC_HE          = 1633772392,
+    MPEG4AAC_LD          = 1633772396,
+    MPEG4AAC_ELD         = 1633772389,
+    MPEG4AAC_ELD_SBR     = 1633772390,
+    MPEG4AAC_ELD_V2      = 1633772391,
+    MPEG4AAC_HE_V2       = 1633772400,
+    MPEG4AAC_Spatial     = 1633772403,
+    MPEGD_USAC           = 1970495843,
+    AMR                  = 1935764850,
+    AMR_WB               = 1935767394,
+    Audible              = 1096107074,
+    iLBC                 = 1768710755,
+    DVIIntelIMA          = 1836253201,
+    MicrosoftGSM         = 1836253233,
+    AES3                 = 1634038579,
+    EnhancedAC3          = 1700998451,
+    FLAC                 = 1718378851,
+    Opus                 = 1869641075,
+    APAC                 = 1634754915,
+}
+
+/// AudioFormatFlag
+FormatFlag :: enum cffi.uint {
+    IsFloat                          = 0,
+    IsBigEndian                      = 1,
+    IsSignedInteger                  = 2,
+    IsPacked                         = 3,
+    IsAlignedHigh                    = 4,
+    IsNonInterleaved                 = 5,
+    IsNonMixable                     = 6,
+    AreAllClear                      = 31,
+    AppleLosslessFormatFlag_16BitSourceData = 0,
+    AppleLosslessFormatFlag_20BitSourceData = 1,
+    AppleLosslessFormatFlag_32BitSourceData = 2,
+    // LinearPCMFormatFlagIsFloat = 1,
+    // LinearPCMFormatFlagIsBigEndian = 2,
+    // LinearPCMFormatFlagIsSignedInteger = 4,
+    // LinearPCMFormatFlagIsPacked = 8,
+    // LinearPCMFormatFlagIsAlignedHigh = 16,
+    // LinearPCMFormatFlagIsNonInterleaved = 32,
+    // LinearPCMFormatFlagIsNonMixable = 64,
+    // LinearPCMFormatFlagsSampleFractionShift = 7,
+    // LinearPCMFormatFlagsSampleFractionMask = 8064,
+    // LinearPCMFormatFlagsAreAllClear = 2147483648,
+}
+FormatFlags :: bit_set[FormatFlag; cffi.uint]
+
+FormatFlags_AppleLosslessFormatFlag_24BitSourceData :: FormatFlags { .AppleLosslessFormatFlag_16BitSourceData, .AppleLosslessFormatFlag_20BitSourceData, }
+
+/// AudioFormatFlags
+FormatFlagsPreset :: enum cffi.uint {
+    NativeEndian      = 0,
+    Canonical         = 9,
+    UnitCanonical     = 41,
+    NativeFloatPacked = 9,
+}
+
 /// AudioValueRange
 ValueRange :: struct #align (8) {
     mMinimum: cffi.double,
@@ -1216,7 +1218,7 @@ BufferList :: struct #align (8) {
 StreamBasicDescription :: struct #align (8) {
     mSampleRate:       cffi.double,
     mFormatID:         FormatID,
-    mFormatFlags:      FormatFlag,
+    mFormatFlags:      FormatFlags,
     mBytesPerPacket:   CF.UInt32,
     mFramesPerPacket:  CF.UInt32,
     mBytesPerFrame:    CF.UInt32,

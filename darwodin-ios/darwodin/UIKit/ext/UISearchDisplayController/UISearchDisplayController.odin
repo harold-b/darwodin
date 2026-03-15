@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSearchBar: proc(self: ^UI.SearchDisplayController, searchBar: ^UI.SearchBar, viewController: ^UI.ViewController) -> ^UI.SearchDisplayController,
+    initWithSearchBar: proc(self: ^UI.SearchDisplayController, searchBar: ^UI.SearchBar, viewController: ^UI.ViewController) -> instancetype,
     setActive_animated: proc(self: ^UI.SearchDisplayController, visible: bool, animated: bool),
     delegate: proc(self: ^UI.SearchDisplayController) -> ^UI.SearchDisplayDelegate,
     setDelegate: proc(self: ^UI.SearchDisplayController, delegate: ^UI.SearchDisplayDelegate),
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSearchBar != nil {
-        initWithSearchBar :: proc "c" (self: ^UI.SearchDisplayController, _: SEL, searchBar: ^UI.SearchBar, viewController: ^UI.ViewController) -> ^UI.SearchDisplayController {
+        initWithSearchBar :: proc "c" (self: ^UI.SearchDisplayController, _: SEL, searchBar: ^UI.SearchBar, viewController: ^UI.ViewController) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

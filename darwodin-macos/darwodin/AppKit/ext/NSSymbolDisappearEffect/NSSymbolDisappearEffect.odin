@@ -30,11 +30,11 @@ import "../NSSymbolEffect"
 
 VTable :: struct {
     super: NSSymbolEffect.VTable,
-    effect: proc() -> ^AK.SymbolDisappearEffect,
-    disappearUpEffect: proc() -> ^AK.SymbolDisappearEffect,
-    disappearDownEffect: proc() -> ^AK.SymbolDisappearEffect,
-    effectWithByLayer: proc(self: ^AK.SymbolDisappearEffect) -> ^AK.SymbolDisappearEffect,
-    effectWithWholeSymbol: proc(self: ^AK.SymbolDisappearEffect) -> ^AK.SymbolDisappearEffect,
+    effect: proc() -> instancetype,
+    disappearUpEffect: proc() -> instancetype,
+    disappearDownEffect: proc() -> instancetype,
+    effectWithByLayer: proc(self: ^AK.SymbolDisappearEffect) -> instancetype,
+    effectWithWholeSymbol: proc(self: ^AK.SymbolDisappearEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSSymbolEffect.extend(cls, &vt.super)
 
     if vt.effect != nil {
-        effect :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolDisappearEffect {
+        effect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.disappearUpEffect != nil {
-        disappearUpEffect :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolDisappearEffect {
+        disappearUpEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("disappearUpEffect"), auto_cast disappearUpEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.disappearDownEffect != nil {
-        disappearDownEffect :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolDisappearEffect {
+        disappearDownEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("disappearDownEffect"), auto_cast disappearDownEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.effectWithByLayer != nil {
-        effectWithByLayer :: proc "c" (self: ^AK.SymbolDisappearEffect, _: SEL) -> ^AK.SymbolDisappearEffect {
+        effectWithByLayer :: proc "c" (self: ^AK.SymbolDisappearEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithByLayer"), auto_cast effectWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithWholeSymbol != nil {
-        effectWithWholeSymbol :: proc "c" (self: ^AK.SymbolDisappearEffect, _: SEL) -> ^AK.SymbolDisappearEffect {
+        effectWithWholeSymbol :: proc "c" (self: ^AK.SymbolDisappearEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

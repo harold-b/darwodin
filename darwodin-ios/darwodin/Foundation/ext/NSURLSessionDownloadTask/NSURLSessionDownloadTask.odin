@@ -27,7 +27,7 @@ import "../NSURLSessionTask"
 VTable :: struct {
     super: NSURLSessionTask.VTable,
     cancelByProducingResumeData: proc(self: ^NS.URLSessionDownloadTask, completionHandler: ^Objc_Block(proc "c" (resumeData: ^NS.Data))),
-    init: proc(self: ^NS.URLSessionDownloadTask) -> ^NS.URLSessionDownloadTask,
+    init: proc(self: ^NS.URLSessionDownloadTask) -> instancetype,
     new: proc() -> ^NS.URLSessionDownloadTask,
 }
 
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancelByProducingResumeData:"), auto_cast cancelByProducingResumeData, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.URLSessionDownloadTask, _: SEL) -> ^NS.URLSessionDownloadTask {
+        init :: proc "c" (self: ^NS.URLSessionDownloadTask, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

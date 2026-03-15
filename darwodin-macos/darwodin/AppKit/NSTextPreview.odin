@@ -24,13 +24,13 @@ TextPreview :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextPreview, objc_selector="initWithSnapshotImage:presentationFrame:candidateRects:", objc_name="initWithSnapshotImage_presentationFrame_candidateRects")
-    TextPreview_initWithSnapshotImage_presentationFrame_candidateRects :: proc(self: ^TextPreview, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect, candidateRects: ^NS.Array) -> ^TextPreview ---
+    TextPreview_initWithSnapshotImage_presentationFrame_candidateRects :: proc(self: ^TextPreview, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect, candidateRects: ^NS.Array) -> instancetype ---
 
     @(objc_type=TextPreview, objc_selector="initWithSnapshotImage:presentationFrame:", objc_name="initWithSnapshotImage_presentationFrame")
-    TextPreview_initWithSnapshotImage_presentationFrame :: proc(self: ^TextPreview, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect) -> ^TextPreview ---
+    TextPreview_initWithSnapshotImage_presentationFrame :: proc(self: ^TextPreview, snapshotImage: CG.ImageRef, presentationFrame: NS.Rect) -> instancetype ---
 
     @(objc_type=TextPreview, objc_selector="init", objc_name="init")
-    TextPreview_init :: proc(self: ^TextPreview) -> ^TextPreview ---
+    TextPreview_init :: proc(self: ^TextPreview) -> instancetype ---
 
     @(objc_type=TextPreview, objc_selector="previewImage", objc_name="previewImage")
     TextPreview_previewImage :: proc(self: ^TextPreview) -> CG.ImageRef ---

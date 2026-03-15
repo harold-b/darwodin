@@ -26,13 +26,13 @@ CollectionLayoutSupplementaryItem :: struct { using _: CollectionLayoutItem,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionLayoutSupplementaryItem, objc_selector="supplementaryItemWithLayoutSize:elementKind:containerAnchor:", objc_name="supplementaryItemWithLayoutSize_elementKind_containerAnchor", objc_is_class_method=true)
-    CollectionLayoutSupplementaryItem_supplementaryItemWithLayoutSize_elementKind_containerAnchor :: proc(layoutSize: ^CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^CollectionLayoutAnchor) -> ^CollectionLayoutSupplementaryItem ---
+    CollectionLayoutSupplementaryItem_supplementaryItemWithLayoutSize_elementKind_containerAnchor :: proc(layoutSize: ^CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^CollectionLayoutAnchor) -> instancetype ---
 
     @(objc_type=CollectionLayoutSupplementaryItem, objc_selector="supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:", objc_name="supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor", objc_is_class_method=true)
-    CollectionLayoutSupplementaryItem_supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor :: proc(layoutSize: ^CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^CollectionLayoutAnchor, itemAnchor: ^CollectionLayoutAnchor) -> ^CollectionLayoutSupplementaryItem ---
+    CollectionLayoutSupplementaryItem_supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor :: proc(layoutSize: ^CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^CollectionLayoutAnchor, itemAnchor: ^CollectionLayoutAnchor) -> instancetype ---
 
     @(objc_type=CollectionLayoutSupplementaryItem, objc_selector="init", objc_name="init")
-    CollectionLayoutSupplementaryItem_init :: proc(self: ^CollectionLayoutSupplementaryItem) -> ^CollectionLayoutSupplementaryItem ---
+    CollectionLayoutSupplementaryItem_init :: proc(self: ^CollectionLayoutSupplementaryItem) -> instancetype ---
 
     @(objc_type=CollectionLayoutSupplementaryItem, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CollectionLayoutSupplementaryItem_new :: proc() -> ^CollectionLayoutSupplementaryItem ---

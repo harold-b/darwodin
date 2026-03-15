@@ -24,16 +24,16 @@ SegmentedControl :: struct { using _: Control,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SegmentedControl, objc_selector="initWithFrame:", objc_name="initWithFrame_")
-    SegmentedControl_initWithFrame_ :: proc(self: ^SegmentedControl, frame: CG.Rect) -> ^SegmentedControl ---
+    SegmentedControl_initWithFrame_ :: proc(self: ^SegmentedControl, frame: CG.Rect) -> instancetype ---
 
     @(objc_type=SegmentedControl, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    SegmentedControl_initWithCoder :: proc(self: ^SegmentedControl, coder: ^NS.Coder) -> ^SegmentedControl ---
+    SegmentedControl_initWithCoder :: proc(self: ^SegmentedControl, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=SegmentedControl, objc_selector="initWithItems:", objc_name="initWithItems")
-    SegmentedControl_initWithItems :: proc(self: ^SegmentedControl, items: ^NS.Array) -> ^SegmentedControl ---
+    SegmentedControl_initWithItems :: proc(self: ^SegmentedControl, items: ^NS.Array) -> instancetype ---
 
     @(objc_type=SegmentedControl, objc_selector="initWithFrame:actions:", objc_name="initWithFrame_actions")
-    SegmentedControl_initWithFrame_actions :: proc(self: ^SegmentedControl, frame: CG.Rect, actions: ^NS.Array) -> ^SegmentedControl ---
+    SegmentedControl_initWithFrame_actions :: proc(self: ^SegmentedControl, frame: CG.Rect, actions: ^NS.Array) -> instancetype ---
 
     @(objc_type=SegmentedControl, objc_selector="insertSegmentWithAction:atIndex:animated:", objc_name="insertSegmentWithAction")
     SegmentedControl_insertSegmentWithAction :: proc(self: ^SegmentedControl, action: ^Action, segment: NS.UInteger, animated: bool) ---

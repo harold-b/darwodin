@@ -25,7 +25,7 @@ AudioUnitGenerator :: struct { using _: AudioUnit,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitGenerator, objc_selector="initWithAudioComponentDescription:", objc_name="initWithAudioComponentDescription")
-    AudioUnitGenerator_initWithAudioComponentDescription :: proc(self: ^AudioUnitGenerator, audioComponentDescription: Audio.ComponentDescription) -> ^AudioUnitGenerator ---
+    AudioUnitGenerator_initWithAudioComponentDescription :: proc(self: ^AudioUnitGenerator, audioComponentDescription: Audio.ComponentDescription) -> instancetype ---
 
     @(objc_type=AudioUnitGenerator, objc_selector="bypass", objc_name="bypass")
     AudioUnitGenerator_bypass :: proc(self: ^AudioUnitGenerator) -> bool ---

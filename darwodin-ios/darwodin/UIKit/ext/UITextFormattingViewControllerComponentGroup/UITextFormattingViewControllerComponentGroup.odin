@@ -28,8 +28,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithComponents: proc(self: ^UI.TextFormattingViewControllerComponentGroup, components: ^NS.Array) -> ^UI.TextFormattingViewControllerComponentGroup,
-    init: proc(self: ^UI.TextFormattingViewControllerComponentGroup) -> ^UI.TextFormattingViewControllerComponentGroup,
+    initWithComponents: proc(self: ^UI.TextFormattingViewControllerComponentGroup, components: ^NS.Array) -> instancetype,
+    init: proc(self: ^UI.TextFormattingViewControllerComponentGroup) -> instancetype,
     new: proc() -> ^UI.TextFormattingViewControllerComponentGroup,
     components: proc(self: ^UI.TextFormattingViewControllerComponentGroup) -> ^NS.Array,
 }
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithComponents != nil {
-        initWithComponents :: proc "c" (self: ^UI.TextFormattingViewControllerComponentGroup, _: SEL, components: ^NS.Array) -> ^UI.TextFormattingViewControllerComponentGroup {
+        initWithComponents :: proc "c" (self: ^UI.TextFormattingViewControllerComponentGroup, _: SEL, components: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithComponents:"), auto_cast initWithComponents, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TextFormattingViewControllerComponentGroup, _: SEL) -> ^UI.TextFormattingViewControllerComponentGroup {
+        init :: proc "c" (self: ^UI.TextFormattingViewControllerComponentGroup, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

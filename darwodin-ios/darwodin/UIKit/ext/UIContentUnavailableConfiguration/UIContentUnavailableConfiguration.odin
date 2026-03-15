@@ -28,11 +28,11 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    emptyConfiguration: proc() -> ^UI.ContentUnavailableConfiguration,
-    loadingConfiguration: proc() -> ^UI.ContentUnavailableConfiguration,
-    searchConfiguration: proc() -> ^UI.ContentUnavailableConfiguration,
+    emptyConfiguration: proc() -> instancetype,
+    loadingConfiguration: proc() -> instancetype,
+    searchConfiguration: proc() -> instancetype,
     new: proc() -> ^UI.ContentUnavailableConfiguration,
-    init: proc(self: ^UI.ContentUnavailableConfiguration) -> ^UI.ContentUnavailableConfiguration,
+    init: proc(self: ^UI.ContentUnavailableConfiguration) -> instancetype,
     image: proc(self: ^UI.ContentUnavailableConfiguration) -> ^UI.Image,
     setImage: proc(self: ^UI.ContentUnavailableConfiguration, image: ^UI.Image),
     imageProperties: proc(self: ^UI.ContentUnavailableConfiguration) -> ^UI.ContentUnavailableImageProperties,
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.emptyConfiguration != nil {
-        emptyConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ContentUnavailableConfiguration {
+        emptyConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("emptyConfiguration"), auto_cast emptyConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.loadingConfiguration != nil {
-        loadingConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ContentUnavailableConfiguration {
+        loadingConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("loadingConfiguration"), auto_cast loadingConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.searchConfiguration != nil {
-        searchConfiguration :: proc "c" (self: Class, _: SEL) -> ^UI.ContentUnavailableConfiguration {
+        searchConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ContentUnavailableConfiguration, _: SEL) -> ^UI.ContentUnavailableConfiguration {
+        init :: proc "c" (self: ^UI.ContentUnavailableConfiguration, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

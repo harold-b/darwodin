@@ -19,10 +19,10 @@ SpheresNoiseSource :: struct { using _: NoiseSource, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpheresNoiseSource, objc_selector="spheresNoiseWithFrequency:", objc_name="spheresNoiseWithFrequency", objc_is_class_method=true)
-    SpheresNoiseSource_spheresNoiseWithFrequency :: proc(frequency: cffi.double) -> ^SpheresNoiseSource ---
+    SpheresNoiseSource_spheresNoiseWithFrequency :: proc(frequency: cffi.double) -> instancetype ---
 
     @(objc_type=SpheresNoiseSource, objc_selector="initWithFrequency:", objc_name="initWithFrequency")
-    SpheresNoiseSource_initWithFrequency :: proc(self: ^SpheresNoiseSource, frequency: cffi.double) -> ^SpheresNoiseSource ---
+    SpheresNoiseSource_initWithFrequency :: proc(self: ^SpheresNoiseSource, frequency: cffi.double) -> instancetype ---
 
     @(objc_type=SpheresNoiseSource, objc_selector="frequency", objc_name="frequency")
     SpheresNoiseSource_frequency :: proc(self: ^SpheresNoiseSource) -> cffi.double ---

@@ -25,31 +25,31 @@ BezierPath :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=BezierPath, objc_selector="bezierPath", objc_name="bezierPath", objc_is_class_method=true)
-    BezierPath_bezierPath :: proc() -> ^BezierPath ---
+    BezierPath_bezierPath :: proc() -> instancetype ---
 
     @(objc_type=BezierPath, objc_selector="bezierPathWithRect:", objc_name="bezierPathWithRect", objc_is_class_method=true)
-    BezierPath_bezierPathWithRect :: proc(rect: CG.Rect) -> ^BezierPath ---
+    BezierPath_bezierPathWithRect :: proc(rect: CG.Rect) -> instancetype ---
 
     @(objc_type=BezierPath, objc_selector="bezierPathWithOvalInRect:", objc_name="bezierPathWithOvalInRect", objc_is_class_method=true)
-    BezierPath_bezierPathWithOvalInRect :: proc(rect: CG.Rect) -> ^BezierPath ---
+    BezierPath_bezierPathWithOvalInRect :: proc(rect: CG.Rect) -> instancetype ---
 
     @(objc_type=BezierPath, objc_selector="bezierPathWithRoundedRect:cornerRadius:", objc_name="bezierPathWithRoundedRect_cornerRadius", objc_is_class_method=true)
-    BezierPath_bezierPathWithRoundedRect_cornerRadius :: proc(rect: CG.Rect, cornerRadius: CG.Float) -> ^BezierPath ---
+    BezierPath_bezierPathWithRoundedRect_cornerRadius :: proc(rect: CG.Rect, cornerRadius: CG.Float) -> instancetype ---
 
     @(objc_type=BezierPath, objc_selector="bezierPathWithRoundedRect:byRoundingCorners:cornerRadii:", objc_name="bezierPathWithRoundedRect_byRoundingCorners_cornerRadii", objc_is_class_method=true)
-    BezierPath_bezierPathWithRoundedRect_byRoundingCorners_cornerRadii :: proc(rect: CG.Rect, corners: RectCorner, cornerRadii: CG.Size) -> ^BezierPath ---
+    BezierPath_bezierPathWithRoundedRect_byRoundingCorners_cornerRadii :: proc(rect: CG.Rect, corners: RectCorner, cornerRadii: CG.Size) -> instancetype ---
 
     @(objc_type=BezierPath, objc_selector="bezierPathWithArcCenter:radius:startAngle:endAngle:clockwise:", objc_name="bezierPathWithArcCenter", objc_is_class_method=true)
-    BezierPath_bezierPathWithArcCenter :: proc(center: CG.Point, radius: CG.Float, startAngle: CG.Float, endAngle: CG.Float, clockwise: bool) -> ^BezierPath ---
+    BezierPath_bezierPathWithArcCenter :: proc(center: CG.Point, radius: CG.Float, startAngle: CG.Float, endAngle: CG.Float, clockwise: bool) -> instancetype ---
 
     @(objc_type=BezierPath, objc_selector="bezierPathWithCGPath:", objc_name="bezierPathWithCGPath", objc_is_class_method=true)
-    BezierPath_bezierPathWithCGPath :: proc(CGPath: CG.PathRef) -> ^BezierPath ---
+    BezierPath_bezierPathWithCGPath :: proc(CGPath: CG.PathRef) -> instancetype ---
 
     @(objc_type=BezierPath, objc_selector="init", objc_name="init")
-    BezierPath_init :: proc(self: ^BezierPath) -> ^BezierPath ---
+    BezierPath_init :: proc(self: ^BezierPath) -> instancetype ---
 
     @(objc_type=BezierPath, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    BezierPath_initWithCoder :: proc(self: ^BezierPath, coder: ^NS.Coder) -> ^BezierPath ---
+    BezierPath_initWithCoder :: proc(self: ^BezierPath, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=BezierPath, objc_selector="CGPath", objc_name="CGPath")
     BezierPath_CGPath :: proc(self: ^BezierPath) -> CG.PathRef ---

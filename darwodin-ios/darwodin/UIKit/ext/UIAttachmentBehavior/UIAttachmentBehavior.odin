@@ -28,15 +28,15 @@ import "../UIDynamicBehavior"
 
 VTable :: struct {
     super: UIDynamicBehavior.VTable,
-    initWithItem_attachedToAnchor: proc(self: ^UI.AttachmentBehavior, item: ^UI.DynamicItem, point: CG.Point) -> ^UI.AttachmentBehavior,
-    initWithItem_offsetFromCenter_attachedToAnchor: proc(self: ^UI.AttachmentBehavior, item: ^UI.DynamicItem, offset: UI.Offset, point: CG.Point) -> ^UI.AttachmentBehavior,
-    initWithItem_attachedToItem: proc(self: ^UI.AttachmentBehavior, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem) -> ^UI.AttachmentBehavior,
-    initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter: proc(self: ^UI.AttachmentBehavior, item1: ^UI.DynamicItem, offset1: UI.Offset, item2: ^UI.DynamicItem, offset2: UI.Offset) -> ^UI.AttachmentBehavior,
-    slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation: proc(item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point, axis: CG.Vector) -> ^UI.AttachmentBehavior,
-    slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation: proc(item: ^UI.DynamicItem, point: CG.Point, axis: CG.Vector) -> ^UI.AttachmentBehavior,
-    limitAttachmentWithItem: proc(item1: ^UI.DynamicItem, offset1: UI.Offset, item2: ^UI.DynamicItem, offset2: UI.Offset) -> ^UI.AttachmentBehavior,
-    fixedAttachmentWithItem: proc(item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point) -> ^UI.AttachmentBehavior,
-    pinAttachmentWithItem: proc(item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point) -> ^UI.AttachmentBehavior,
+    initWithItem_attachedToAnchor: proc(self: ^UI.AttachmentBehavior, item: ^UI.DynamicItem, point: CG.Point) -> instancetype,
+    initWithItem_offsetFromCenter_attachedToAnchor: proc(self: ^UI.AttachmentBehavior, item: ^UI.DynamicItem, offset: UI.Offset, point: CG.Point) -> instancetype,
+    initWithItem_attachedToItem: proc(self: ^UI.AttachmentBehavior, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem) -> instancetype,
+    initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter: proc(self: ^UI.AttachmentBehavior, item1: ^UI.DynamicItem, offset1: UI.Offset, item2: ^UI.DynamicItem, offset2: UI.Offset) -> instancetype,
+    slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation: proc(item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point, axis: CG.Vector) -> instancetype,
+    slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation: proc(item: ^UI.DynamicItem, point: CG.Point, axis: CG.Vector) -> instancetype,
+    limitAttachmentWithItem: proc(item1: ^UI.DynamicItem, offset1: UI.Offset, item2: ^UI.DynamicItem, offset2: UI.Offset) -> instancetype,
+    fixedAttachmentWithItem: proc(item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point) -> instancetype,
+    pinAttachmentWithItem: proc(item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point) -> instancetype,
     items: proc(self: ^UI.AttachmentBehavior) -> ^NS.Array,
     attachedBehaviorType: proc(self: ^UI.AttachmentBehavior) -> UI.AttachmentBehaviorType,
     anchorPoint: proc(self: ^UI.AttachmentBehavior) -> CG.Point,
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIDynamicBehavior.extend(cls, &vt.super)
 
     if vt.initWithItem_attachedToAnchor != nil {
-        initWithItem_attachedToAnchor :: proc "c" (self: ^UI.AttachmentBehavior, _: SEL, item: ^UI.DynamicItem, point: CG.Point) -> ^UI.AttachmentBehavior {
+        initWithItem_attachedToAnchor :: proc "c" (self: ^UI.AttachmentBehavior, _: SEL, item: ^UI.DynamicItem, point: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItem:attachedToAnchor:"), auto_cast initWithItem_attachedToAnchor, "@@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithItem_offsetFromCenter_attachedToAnchor != nil {
-        initWithItem_offsetFromCenter_attachedToAnchor :: proc "c" (self: ^UI.AttachmentBehavior, _: SEL, item: ^UI.DynamicItem, offset: UI.Offset, point: CG.Point) -> ^UI.AttachmentBehavior {
+        initWithItem_offsetFromCenter_attachedToAnchor :: proc "c" (self: ^UI.AttachmentBehavior, _: SEL, item: ^UI.DynamicItem, offset: UI.Offset, point: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItem:offsetFromCenter:attachedToAnchor:"), auto_cast initWithItem_offsetFromCenter_attachedToAnchor, "@@:@{UIOffset=dd}{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithItem_attachedToItem != nil {
-        initWithItem_attachedToItem :: proc "c" (self: ^UI.AttachmentBehavior, _: SEL, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem) -> ^UI.AttachmentBehavior {
+        initWithItem_attachedToItem :: proc "c" (self: ^UI.AttachmentBehavior, _: SEL, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItem:attachedToItem:"), auto_cast initWithItem_attachedToItem, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter != nil {
-        initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter :: proc "c" (self: ^UI.AttachmentBehavior, _: SEL, item1: ^UI.DynamicItem, offset1: UI.Offset, item2: ^UI.DynamicItem, offset2: UI.Offset) -> ^UI.AttachmentBehavior {
+        initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter :: proc "c" (self: ^UI.AttachmentBehavior, _: SEL, item1: ^UI.DynamicItem, offset1: UI.Offset, item2: ^UI.DynamicItem, offset2: UI.Offset) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:"), auto_cast initWithItem_offsetFromCenter_attachedToItem_offsetFromCenter, "@@:@{UIOffset=dd}@{UIOffset=dd}") do panic("Failed to register objC method.")
     }
     if vt.slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation != nil {
-        slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation :: proc "c" (self: Class, _: SEL, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point, axis: CG.Vector) -> ^UI.AttachmentBehavior {
+        slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation :: proc "c" (self: Class, _: SEL, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point, axis: CG.Vector) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("slidingAttachmentWithItem:attachedToItem:attachmentAnchor:axisOfTranslation:"), auto_cast slidingAttachmentWithItem_attachedToItem_attachmentAnchor_axisOfTranslation, "@#:@@{CGPoint=dd}{CGVector=dd}") do panic("Failed to register objC method.")
     }
     if vt.slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation != nil {
-        slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation :: proc "c" (self: Class, _: SEL, item: ^UI.DynamicItem, point: CG.Point, axis: CG.Vector) -> ^UI.AttachmentBehavior {
+        slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation :: proc "c" (self: Class, _: SEL, item: ^UI.DynamicItem, point: CG.Point, axis: CG.Vector) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("slidingAttachmentWithItem:attachmentAnchor:axisOfTranslation:"), auto_cast slidingAttachmentWithItem_attachmentAnchor_axisOfTranslation, "@#:@{CGPoint=dd}{CGVector=dd}") do panic("Failed to register objC method.")
     }
     if vt.limitAttachmentWithItem != nil {
-        limitAttachmentWithItem :: proc "c" (self: Class, _: SEL, item1: ^UI.DynamicItem, offset1: UI.Offset, item2: ^UI.DynamicItem, offset2: UI.Offset) -> ^UI.AttachmentBehavior {
+        limitAttachmentWithItem :: proc "c" (self: Class, _: SEL, item1: ^UI.DynamicItem, offset1: UI.Offset, item2: ^UI.DynamicItem, offset2: UI.Offset) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("limitAttachmentWithItem:offsetFromCenter:attachedToItem:offsetFromCenter:"), auto_cast limitAttachmentWithItem, "@#:@{UIOffset=dd}@{UIOffset=dd}") do panic("Failed to register objC method.")
     }
     if vt.fixedAttachmentWithItem != nil {
-        fixedAttachmentWithItem :: proc "c" (self: Class, _: SEL, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point) -> ^UI.AttachmentBehavior {
+        fixedAttachmentWithItem :: proc "c" (self: Class, _: SEL, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fixedAttachmentWithItem:attachedToItem:attachmentAnchor:"), auto_cast fixedAttachmentWithItem, "@#:@@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.pinAttachmentWithItem != nil {
-        pinAttachmentWithItem :: proc "c" (self: Class, _: SEL, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point) -> ^UI.AttachmentBehavior {
+        pinAttachmentWithItem :: proc "c" (self: Class, _: SEL, item1: ^UI.DynamicItem, item2: ^UI.DynamicItem, point: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

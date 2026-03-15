@@ -28,10 +28,10 @@ import "../UIView"
 
 VTable :: struct {
     super: UIView.VTable,
-    initWithConfiguration: proc(self: ^UI.ContentUnavailableView, configuration: ^UI.ContentUnavailableConfiguration) -> ^UI.ContentUnavailableView,
-    initWithCoder: proc(self: ^UI.ContentUnavailableView, coder: ^NS.Coder) -> ^UI.ContentUnavailableView,
-    initWithFrame: proc(self: ^UI.ContentUnavailableView, frame: CG.Rect) -> ^UI.ContentUnavailableView,
-    init: proc(self: ^UI.ContentUnavailableView) -> ^UI.ContentUnavailableView,
+    initWithConfiguration: proc(self: ^UI.ContentUnavailableView, configuration: ^UI.ContentUnavailableConfiguration) -> instancetype,
+    initWithCoder: proc(self: ^UI.ContentUnavailableView, coder: ^NS.Coder) -> instancetype,
+    initWithFrame: proc(self: ^UI.ContentUnavailableView, frame: CG.Rect) -> instancetype,
+    init: proc(self: ^UI.ContentUnavailableView) -> instancetype,
     new: proc() -> ^UI.ContentUnavailableView,
     configuration: proc(self: ^UI.ContentUnavailableView) -> ^UI.ContentUnavailableConfiguration,
     setConfiguration: proc(self: ^UI.ContentUnavailableView, configuration: ^UI.ContentUnavailableConfiguration),
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIView.extend(cls, &vt.super)
 
     if vt.initWithConfiguration != nil {
-        initWithConfiguration :: proc "c" (self: ^UI.ContentUnavailableView, _: SEL, configuration: ^UI.ContentUnavailableConfiguration) -> ^UI.ContentUnavailableView {
+        initWithConfiguration :: proc "c" (self: ^UI.ContentUnavailableView, _: SEL, configuration: ^UI.ContentUnavailableConfiguration) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithConfiguration:"), auto_cast initWithConfiguration, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.ContentUnavailableView, _: SEL, coder: ^NS.Coder) -> ^UI.ContentUnavailableView {
+        initWithCoder :: proc "c" (self: ^UI.ContentUnavailableView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^UI.ContentUnavailableView, _: SEL, frame: CG.Rect) -> ^UI.ContentUnavailableView {
+        initWithFrame :: proc "c" (self: ^UI.ContentUnavailableView, _: SEL, frame: CG.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ContentUnavailableView, _: SEL) -> ^UI.ContentUnavailableView {
+        init :: proc "c" (self: ^UI.ContentUnavailableView, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

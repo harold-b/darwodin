@@ -22,7 +22,7 @@ PushBehavior :: struct { using _: DynamicBehavior, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PushBehavior, objc_selector="initWithItems:mode:", objc_name="initWithItems")
-    PushBehavior_initWithItems :: proc(self: ^PushBehavior, items: ^NS.Array, mode: PushBehaviorMode) -> ^PushBehavior ---
+    PushBehavior_initWithItems :: proc(self: ^PushBehavior, items: ^NS.Array, mode: PushBehaviorMode) -> instancetype ---
 
     @(objc_type=PushBehavior, objc_selector="addItem:", objc_name="addItem")
     PushBehavior_addItem :: proc(self: ^PushBehavior, item: ^DynamicItem) ---

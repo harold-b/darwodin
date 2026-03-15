@@ -24,7 +24,7 @@ TextParagraph :: struct { using _: TextElement, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextParagraph, objc_selector="initWithAttributedString:", objc_name="initWithAttributedString")
-    TextParagraph_initWithAttributedString :: proc(self: ^TextParagraph, attributedString: ^NS.AttributedString) -> ^TextParagraph ---
+    TextParagraph_initWithAttributedString :: proc(self: ^TextParagraph, attributedString: ^NS.AttributedString) -> instancetype ---
 
     @(objc_type=TextParagraph, objc_selector="attributedString", objc_name="attributedString")
     TextParagraph_attributedString :: proc(self: ^TextParagraph) -> ^NS.AttributedString ---

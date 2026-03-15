@@ -30,10 +30,10 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.UserInterfaceCompressionOptions) -> ^AK.UserInterfaceCompressionOptions,
-    initWithCoder: proc(self: ^AK.UserInterfaceCompressionOptions, coder: ^NS.Coder) -> ^AK.UserInterfaceCompressionOptions,
-    initWithIdentifier: proc(self: ^AK.UserInterfaceCompressionOptions, identifier: ^NS.String) -> ^AK.UserInterfaceCompressionOptions,
-    initWithCompressionOptions: proc(self: ^AK.UserInterfaceCompressionOptions, options: ^NS.Set) -> ^AK.UserInterfaceCompressionOptions,
+    init: proc(self: ^AK.UserInterfaceCompressionOptions) -> instancetype,
+    initWithCoder: proc(self: ^AK.UserInterfaceCompressionOptions, coder: ^NS.Coder) -> instancetype,
+    initWithIdentifier: proc(self: ^AK.UserInterfaceCompressionOptions, identifier: ^NS.String) -> instancetype,
+    initWithCompressionOptions: proc(self: ^AK.UserInterfaceCompressionOptions, options: ^NS.Set) -> instancetype,
     containsOptions: proc(self: ^AK.UserInterfaceCompressionOptions, options: ^AK.UserInterfaceCompressionOptions) -> bool,
     intersectsOptions: proc(self: ^AK.UserInterfaceCompressionOptions, options: ^AK.UserInterfaceCompressionOptions) -> bool,
     optionsByAddingOptions: proc(self: ^AK.UserInterfaceCompressionOptions, options: ^AK.UserInterfaceCompressionOptions) -> ^AK.UserInterfaceCompressionOptions,
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.UserInterfaceCompressionOptions, _: SEL) -> ^AK.UserInterfaceCompressionOptions {
+        init :: proc "c" (self: ^AK.UserInterfaceCompressionOptions, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.UserInterfaceCompressionOptions, _: SEL, coder: ^NS.Coder) -> ^AK.UserInterfaceCompressionOptions {
+        initWithCoder :: proc "c" (self: ^AK.UserInterfaceCompressionOptions, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithIdentifier != nil {
-        initWithIdentifier :: proc "c" (self: ^AK.UserInterfaceCompressionOptions, _: SEL, identifier: ^NS.String) -> ^AK.UserInterfaceCompressionOptions {
+        initWithIdentifier :: proc "c" (self: ^AK.UserInterfaceCompressionOptions, _: SEL, identifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithIdentifier:"), auto_cast initWithIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCompressionOptions != nil {
-        initWithCompressionOptions :: proc "c" (self: ^AK.UserInterfaceCompressionOptions, _: SEL, options: ^NS.Set) -> ^AK.UserInterfaceCompressionOptions {
+        initWithCompressionOptions :: proc "c" (self: ^AK.UserInterfaceCompressionOptions, _: SEL, options: ^NS.Set) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

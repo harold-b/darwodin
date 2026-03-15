@@ -35,7 +35,7 @@ foreign lib {
     NSTextTab_options :: proc(self: ^NSTextTab) -> ^NS.Dictionary ---
 
     @(objc_type=NSTextTab, objc_selector="initWithTextAlignment:location:options:", objc_name="initWithTextAlignment")
-    NSTextTab_initWithTextAlignment :: proc(self: ^NSTextTab, alignment: NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> ^NSTextTab ---
+    NSTextTab_initWithTextAlignment :: proc(self: ^NSTextTab, alignment: NSTextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=NSTextTab, objc_selector="alignment", objc_name="alignment")
     NSTextTab_alignment :: proc(self: ^NSTextTab) -> NSTextAlignment ---

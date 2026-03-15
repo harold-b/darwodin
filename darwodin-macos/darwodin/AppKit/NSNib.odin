@@ -26,10 +26,10 @@ Nib :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Nib, objc_selector="initWithNibNamed:bundle:", objc_name="initWithNibNamed")
-    Nib_initWithNibNamed :: proc(self: ^Nib, nibName: ^NS.String, bundle: ^NS.Bundle) -> ^Nib ---
+    Nib_initWithNibNamed :: proc(self: ^Nib, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=Nib, objc_selector="initWithNibData:bundle:", objc_name="initWithNibData")
-    Nib_initWithNibData :: proc(self: ^Nib, nibData: ^NS.Data, bundle: ^NS.Bundle) -> ^Nib ---
+    Nib_initWithNibData :: proc(self: ^Nib, nibData: ^NS.Data, bundle: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=Nib, objc_selector="instantiateWithOwner:topLevelObjects:", objc_name="instantiateWithOwner")
     Nib_instantiateWithOwner :: proc(self: ^Nib, owner: id, topLevelObjects: ^^NS.Array) -> bool ---

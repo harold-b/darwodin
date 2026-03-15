@@ -30,8 +30,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    segueWithIdentifier: proc(identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: ^Objc_Block(proc "c" ())) -> ^AK.StoryboardSegue,
-    initWithIdentifier: proc(self: ^AK.StoryboardSegue, identifier: ^NS.String, sourceController: id, destinationController: id) -> ^AK.StoryboardSegue,
+    segueWithIdentifier: proc(identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: ^Objc_Block(proc "c" ())) -> instancetype,
+    initWithIdentifier: proc(self: ^AK.StoryboardSegue, identifier: ^NS.String, sourceController: id, destinationController: id) -> instancetype,
     perform: proc(self: ^AK.StoryboardSegue),
     identifier: proc(self: ^AK.StoryboardSegue) -> ^NS.String,
     sourceController: proc(self: ^AK.StoryboardSegue) -> id,
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.segueWithIdentifier != nil {
-        segueWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: ^Objc_Block(proc "c" ())) -> ^AK.StoryboardSegue {
+        segueWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, sourceController: id, destinationController: id, performHandler: ^Objc_Block(proc "c" ())) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("segueWithIdentifier:source:destination:performHandler:"), auto_cast segueWithIdentifier, "@#:@@@?") do panic("Failed to register objC method.")
     }
     if vt.initWithIdentifier != nil {
-        initWithIdentifier :: proc "c" (self: ^AK.StoryboardSegue, _: SEL, identifier: ^NS.String, sourceController: id, destinationController: id) -> ^AK.StoryboardSegue {
+        initWithIdentifier :: proc "c" (self: ^AK.StoryboardSegue, _: SEL, identifier: ^NS.String, sourceController: id, destinationController: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

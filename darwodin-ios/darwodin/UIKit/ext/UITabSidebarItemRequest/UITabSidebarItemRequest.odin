@@ -28,7 +28,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^UI.TabSidebarItemRequest) -> ^UI.TabSidebarItemRequest,
+    init: proc(self: ^UI.TabSidebarItemRequest) -> instancetype,
     new: proc() -> ^UI.TabSidebarItemRequest,
     tab: proc(self: ^UI.TabSidebarItemRequest) -> ^UI.Tab,
     action: proc(self: ^UI.TabSidebarItemRequest) -> ^UI.Action,
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.TabSidebarItemRequest, _: SEL) -> ^UI.TabSidebarItemRequest {
+        init :: proc "c" (self: ^UI.TabSidebarItemRequest, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

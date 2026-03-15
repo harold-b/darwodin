@@ -28,9 +28,9 @@ import "../UICellAccessory"
 
 VTable :: struct {
     super: UICellAccessory.VTable,
-    initWithText: proc(self: ^UI.CellAccessoryLabel, text: ^NS.String) -> ^UI.CellAccessoryLabel,
-    initWithCoder: proc(self: ^UI.CellAccessoryLabel, coder: ^NS.Coder) -> ^UI.CellAccessoryLabel,
-    init: proc(self: ^UI.CellAccessoryLabel) -> ^UI.CellAccessoryLabel,
+    initWithText: proc(self: ^UI.CellAccessoryLabel, text: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^UI.CellAccessoryLabel, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.CellAccessoryLabel) -> instancetype,
     new: proc() -> ^UI.CellAccessoryLabel,
     text: proc(self: ^UI.CellAccessoryLabel) -> ^NS.String,
     font: proc(self: ^UI.CellAccessoryLabel) -> ^UI.Font,
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UICellAccessory.extend(cls, &vt.super)
 
     if vt.initWithText != nil {
-        initWithText :: proc "c" (self: ^UI.CellAccessoryLabel, _: SEL, text: ^NS.String) -> ^UI.CellAccessoryLabel {
+        initWithText :: proc "c" (self: ^UI.CellAccessoryLabel, _: SEL, text: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithText:"), auto_cast initWithText, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^UI.CellAccessoryLabel, _: SEL, coder: ^NS.Coder) -> ^UI.CellAccessoryLabel {
+        initWithCoder :: proc "c" (self: ^UI.CellAccessoryLabel, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.CellAccessoryLabel, _: SEL) -> ^UI.CellAccessoryLabel {
+        init :: proc "c" (self: ^UI.CellAccessoryLabel, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

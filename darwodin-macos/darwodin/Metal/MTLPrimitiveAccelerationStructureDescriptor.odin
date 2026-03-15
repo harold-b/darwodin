@@ -22,7 +22,7 @@ PrimitiveAccelerationStructureDescriptor :: struct { using _: AccelerationStruct
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PrimitiveAccelerationStructureDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
-    PrimitiveAccelerationStructureDescriptor_descriptor :: proc() -> ^PrimitiveAccelerationStructureDescriptor ---
+    PrimitiveAccelerationStructureDescriptor_descriptor :: proc() -> instancetype ---
 
     @(objc_type=PrimitiveAccelerationStructureDescriptor, objc_selector="geometryDescriptors", objc_name="geometryDescriptors")
     PrimitiveAccelerationStructureDescriptor_geometryDescriptors :: proc(self: ^PrimitiveAccelerationStructureDescriptor) -> ^NS.Array ---

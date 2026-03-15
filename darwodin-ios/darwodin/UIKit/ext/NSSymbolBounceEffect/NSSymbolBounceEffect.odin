@@ -28,11 +28,11 @@ import "../NSSymbolEffect"
 
 VTable :: struct {
     super: NSSymbolEffect.VTable,
-    effect: proc() -> ^UI.NSSymbolBounceEffect,
-    bounceUpEffect: proc() -> ^UI.NSSymbolBounceEffect,
-    bounceDownEffect: proc() -> ^UI.NSSymbolBounceEffect,
-    effectWithByLayer: proc(self: ^UI.NSSymbolBounceEffect) -> ^UI.NSSymbolBounceEffect,
-    effectWithWholeSymbol: proc(self: ^UI.NSSymbolBounceEffect) -> ^UI.NSSymbolBounceEffect,
+    effect: proc() -> instancetype,
+    bounceUpEffect: proc() -> instancetype,
+    bounceDownEffect: proc() -> instancetype,
+    effectWithByLayer: proc(self: ^UI.NSSymbolBounceEffect) -> instancetype,
+    effectWithWholeSymbol: proc(self: ^UI.NSSymbolBounceEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSSymbolEffect.extend(cls, &vt.super)
 
     if vt.effect != nil {
-        effect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolBounceEffect {
+        effect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.bounceUpEffect != nil {
-        bounceUpEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolBounceEffect {
+        bounceUpEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bounceUpEffect"), auto_cast bounceUpEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.bounceDownEffect != nil {
-        bounceDownEffect :: proc "c" (self: Class, _: SEL) -> ^UI.NSSymbolBounceEffect {
+        bounceDownEffect :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("bounceDownEffect"), auto_cast bounceDownEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.effectWithByLayer != nil {
-        effectWithByLayer :: proc "c" (self: ^UI.NSSymbolBounceEffect, _: SEL) -> ^UI.NSSymbolBounceEffect {
+        effectWithByLayer :: proc "c" (self: ^UI.NSSymbolBounceEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithByLayer"), auto_cast effectWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithWholeSymbol != nil {
-        effectWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolBounceEffect, _: SEL) -> ^UI.NSSymbolBounceEffect {
+        effectWithWholeSymbol :: proc "c" (self: ^UI.NSSymbolBounceEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

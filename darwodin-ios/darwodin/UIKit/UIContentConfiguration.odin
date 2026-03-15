@@ -28,5 +28,5 @@ foreign lib {
     ContentConfiguration_makeContentView :: proc(self: ^ContentConfiguration) -> ^View ---
 
     @(objc_type=ContentConfiguration, objc_selector="updatedConfigurationForState:", objc_name="updatedConfigurationForState")
-    ContentConfiguration_updatedConfigurationForState :: proc(self: ^ContentConfiguration, state: ^ConfigurationState) -> ^ContentConfiguration ---
+    ContentConfiguration_updatedConfigurationForState :: proc(self: ^ContentConfiguration, state: ^ConfigurationState) -> instancetype ---
 }

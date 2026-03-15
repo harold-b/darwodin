@@ -28,7 +28,7 @@ import "../UIResponder"
 
 VTable :: struct {
     super: UIResponder.VTable,
-    initWithAccessibilityContainer: proc(self: ^UI.AccessibilityElement, container: id) -> ^UI.AccessibilityElement,
+    initWithAccessibilityContainer: proc(self: ^UI.AccessibilityElement, container: id) -> instancetype,
     accessibilityContainer: proc(self: ^UI.AccessibilityElement) -> id,
     setAccessibilityContainer: proc(self: ^UI.AccessibilityElement, accessibilityContainer: id),
     isAccessibilityElement: proc(self: ^UI.AccessibilityElement) -> bool,
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIResponder.extend(cls, &vt.super)
 
     if vt.initWithAccessibilityContainer != nil {
-        initWithAccessibilityContainer :: proc "c" (self: ^UI.AccessibilityElement, _: SEL, container: id) -> ^UI.AccessibilityElement {
+        initWithAccessibilityContainer :: proc "c" (self: ^UI.AccessibilityElement, _: SEL, container: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

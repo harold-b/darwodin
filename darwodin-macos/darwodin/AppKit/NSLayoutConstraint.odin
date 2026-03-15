@@ -27,7 +27,7 @@ foreign lib {
     LayoutConstraint_constraintsWithVisualFormat :: proc(format: ^NS.String, opts: LayoutFormatOptions, metrics: ^NS.Dictionary, views: ^NS.Dictionary) -> ^NS.Array ---
 
     @(objc_type=LayoutConstraint, objc_selector="constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:", objc_name="constraintWithItem", objc_is_class_method=true)
-    LayoutConstraint_constraintWithItem :: proc(view1: id, attr1: LayoutAttribute, relation: LayoutRelation, view2: id, attr2: LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> ^LayoutConstraint ---
+    LayoutConstraint_constraintWithItem :: proc(view1: id, attr1: LayoutAttribute, relation: LayoutRelation, view2: id, attr2: LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> instancetype ---
 
     @(objc_type=LayoutConstraint, objc_selector="activateConstraints:", objc_name="activateConstraints", objc_is_class_method=true)
     LayoutConstraint_activateConstraints :: proc(constraints: ^NS.Array) ---

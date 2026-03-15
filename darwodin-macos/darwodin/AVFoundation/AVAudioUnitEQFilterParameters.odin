@@ -23,7 +23,7 @@ AudioUnitEQFilterParameters :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitEQFilterParameters, objc_selector="init", objc_name="init")
-    AudioUnitEQFilterParameters_init :: proc(self: ^AudioUnitEQFilterParameters) -> ^AudioUnitEQFilterParameters ---
+    AudioUnitEQFilterParameters_init :: proc(self: ^AudioUnitEQFilterParameters) -> instancetype ---
 
     @(objc_type=AudioUnitEQFilterParameters, objc_selector="filterType", objc_name="filterType")
     AudioUnitEQFilterParameters_filterType :: proc(self: ^AudioUnitEQFilterParameters) -> AudioUnitEQFilterType ---

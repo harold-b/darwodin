@@ -22,10 +22,10 @@ EditMenuConfiguration :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=EditMenuConfiguration, objc_selector="configurationWithIdentifier:sourcePoint:", objc_name="configurationWithIdentifier", objc_is_class_method=true)
-    EditMenuConfiguration_configurationWithIdentifier :: proc(identifier: ^NS.Copying, sourcePoint: CG.Point) -> ^EditMenuConfiguration ---
+    EditMenuConfiguration_configurationWithIdentifier :: proc(identifier: ^NS.Copying, sourcePoint: CG.Point) -> instancetype ---
 
     @(objc_type=EditMenuConfiguration, objc_selector="init", objc_name="init")
-    EditMenuConfiguration_init :: proc(self: ^EditMenuConfiguration) -> ^EditMenuConfiguration ---
+    EditMenuConfiguration_init :: proc(self: ^EditMenuConfiguration) -> instancetype ---
 
     @(objc_type=EditMenuConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     EditMenuConfiguration_new :: proc() -> ^EditMenuConfiguration ---

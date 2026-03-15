@@ -30,9 +30,9 @@ import "../NSTextFieldCell"
 
 VTable :: struct {
     super: NSTextFieldCell.VTable,
-    initTextCell: proc(self: ^AK.SearchFieldCell, string: ^NS.String) -> ^AK.SearchFieldCell,
-    initWithCoder: proc(self: ^AK.SearchFieldCell, coder: ^NS.Coder) -> ^AK.SearchFieldCell,
-    initImageCell: proc(self: ^AK.SearchFieldCell, image: ^NS.Image) -> ^AK.SearchFieldCell,
+    initTextCell: proc(self: ^AK.SearchFieldCell, string: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^AK.SearchFieldCell, coder: ^NS.Coder) -> instancetype,
+    initImageCell: proc(self: ^AK.SearchFieldCell, image: ^NS.Image) -> instancetype,
     resetSearchButtonCell: proc(self: ^AK.SearchFieldCell),
     resetCancelButtonCell: proc(self: ^AK.SearchFieldCell),
     searchTextRectForBounds: proc(self: ^AK.SearchFieldCell, rect: NS.Rect) -> NS.Rect,
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextFieldCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, string: ^NS.String) -> ^AK.SearchFieldCell {
+        initTextCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, coder: ^NS.Coder) -> ^AK.SearchFieldCell {
+        initWithCoder :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, image: ^NS.Image) -> ^AK.SearchFieldCell {
+        initImageCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

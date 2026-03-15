@@ -23,7 +23,7 @@ RenderedCaptionImage :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderedCaptionImage, objc_selector="init", objc_name="init")
-    RenderedCaptionImage_init :: proc(self: ^RenderedCaptionImage) -> ^RenderedCaptionImage ---
+    RenderedCaptionImage_init :: proc(self: ^RenderedCaptionImage) -> instancetype ---
 
     @(objc_type=RenderedCaptionImage, objc_selector="new", objc_name="new", objc_is_class_method=true)
     RenderedCaptionImage_new :: proc() -> ^RenderedCaptionImage ---

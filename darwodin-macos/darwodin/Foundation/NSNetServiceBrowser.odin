@@ -20,7 +20,7 @@ NetServiceBrowser :: struct { using _: Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NetServiceBrowser, objc_selector="init", objc_name="init")
-    NetServiceBrowser_init :: proc(self: ^NetServiceBrowser) -> ^NetServiceBrowser ---
+    NetServiceBrowser_init :: proc(self: ^NetServiceBrowser) -> instancetype ---
 
     @(objc_type=NetServiceBrowser, objc_selector="scheduleInRunLoop:forMode:", objc_name="scheduleInRunLoop")
     NetServiceBrowser_scheduleInRunLoop :: proc(self: ^NetServiceBrowser, aRunLoop: ^RunLoop, mode: ^String) ---

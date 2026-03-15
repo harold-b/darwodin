@@ -28,12 +28,12 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    zoomWithOptions: proc(options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View)) -> ^UI.ViewControllerTransition,
-    coverVerticalTransition: proc() -> ^UI.ViewControllerTransition,
-    flipHorizontalTransition: proc() -> ^UI.ViewControllerTransition,
-    crossDissolveTransition: proc() -> ^UI.ViewControllerTransition,
-    partialCurlTransition: proc() -> ^UI.ViewControllerTransition,
-    init: proc(self: ^UI.ViewControllerTransition) -> ^UI.ViewControllerTransition,
+    zoomWithOptions: proc(options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View)) -> instancetype,
+    coverVerticalTransition: proc() -> instancetype,
+    flipHorizontalTransition: proc() -> instancetype,
+    crossDissolveTransition: proc() -> instancetype,
+    partialCurlTransition: proc() -> instancetype,
+    init: proc(self: ^UI.ViewControllerTransition) -> instancetype,
     new: proc() -> ^UI.ViewControllerTransition,
 }
 
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.zoomWithOptions != nil {
-        zoomWithOptions :: proc "c" (self: Class, _: SEL, options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View)) -> ^UI.ViewControllerTransition {
+        zoomWithOptions :: proc "c" (self: Class, _: SEL, options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View)) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("zoomWithOptions:sourceViewProvider:"), auto_cast zoomWithOptions, "@#:@?") do panic("Failed to register objC method.")
     }
     if vt.coverVerticalTransition != nil {
-        coverVerticalTransition :: proc "c" (self: Class, _: SEL) -> ^UI.ViewControllerTransition {
+        coverVerticalTransition :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("coverVerticalTransition"), auto_cast coverVerticalTransition, "@#:") do panic("Failed to register objC method.")
     }
     if vt.flipHorizontalTransition != nil {
-        flipHorizontalTransition :: proc "c" (self: Class, _: SEL) -> ^UI.ViewControllerTransition {
+        flipHorizontalTransition :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("flipHorizontalTransition"), auto_cast flipHorizontalTransition, "@#:") do panic("Failed to register objC method.")
     }
     if vt.crossDissolveTransition != nil {
-        crossDissolveTransition :: proc "c" (self: Class, _: SEL) -> ^UI.ViewControllerTransition {
+        crossDissolveTransition :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("crossDissolveTransition"), auto_cast crossDissolveTransition, "@#:") do panic("Failed to register objC method.")
     }
     if vt.partialCurlTransition != nil {
-        partialCurlTransition :: proc "c" (self: Class, _: SEL) -> ^UI.ViewControllerTransition {
+        partialCurlTransition :: proc "c" (self: Class, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("partialCurlTransition"), auto_cast partialCurlTransition, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^UI.ViewControllerTransition, _: SEL) -> ^UI.ViewControllerTransition {
+        init :: proc "c" (self: ^UI.ViewControllerTransition, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

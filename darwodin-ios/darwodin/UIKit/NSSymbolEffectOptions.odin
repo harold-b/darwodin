@@ -28,38 +28,38 @@ foreign lib {
     NSSymbolEffectOptions_new :: proc() -> ^NSSymbolEffectOptions ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="init", objc_name="init")
-    NSSymbolEffectOptions_init :: proc(self: ^NSSymbolEffectOptions) -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_init :: proc(self: ^NSSymbolEffectOptions) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="options", objc_name="options", objc_is_class_method=true)
-    NSSymbolEffectOptions_options :: proc() -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_options :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithRepeating", objc_name="optionsWithRepeatingStatic", objc_is_class_method=true)
-    NSSymbolEffectOptions_optionsWithRepeatingStatic :: proc() -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithRepeatingStatic :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithRepeating", objc_name="optionsWithRepeating")
-    NSSymbolEffectOptions_optionsWithRepeating :: proc(self: ^NSSymbolEffectOptions) -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithRepeating :: proc(self: ^NSSymbolEffectOptions) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithNonRepeating", objc_name="optionsWithNonRepeatingStatic", objc_is_class_method=true)
-    NSSymbolEffectOptions_optionsWithNonRepeatingStatic :: proc() -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithNonRepeatingStatic :: proc() -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithNonRepeating", objc_name="optionsWithNonRepeating")
-    NSSymbolEffectOptions_optionsWithNonRepeating :: proc(self: ^NSSymbolEffectOptions) -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithNonRepeating :: proc(self: ^NSSymbolEffectOptions) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithRepeatCount:", objc_name="optionsWithRepeatCountStatic", objc_is_class_method=true)
-    NSSymbolEffectOptions_optionsWithRepeatCountStatic :: proc(count: NS.Integer) -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithRepeatCountStatic :: proc(count: NS.Integer) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithRepeatCount:", objc_name="optionsWithRepeatCount")
-    NSSymbolEffectOptions_optionsWithRepeatCount :: proc(self: ^NSSymbolEffectOptions, count: NS.Integer) -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithRepeatCount :: proc(self: ^NSSymbolEffectOptions, count: NS.Integer) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithSpeed:", objc_name="optionsWithSpeedStatic", objc_is_class_method=true)
-    NSSymbolEffectOptions_optionsWithSpeedStatic :: proc(speed: cffi.double) -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithSpeedStatic :: proc(speed: cffi.double) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithSpeed:", objc_name="optionsWithSpeed")
-    NSSymbolEffectOptions_optionsWithSpeed :: proc(self: ^NSSymbolEffectOptions, speed: cffi.double) -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithSpeed :: proc(self: ^NSSymbolEffectOptions, speed: cffi.double) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithRepeatBehavior:", objc_name="optionsWithRepeatBehaviorStatic", objc_is_class_method=true)
-    NSSymbolEffectOptions_optionsWithRepeatBehaviorStatic :: proc(behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithRepeatBehaviorStatic :: proc(behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> instancetype ---
 
     @(objc_type=NSSymbolEffectOptions, objc_selector="optionsWithRepeatBehavior:", objc_name="optionsWithRepeatBehavior")
-    NSSymbolEffectOptions_optionsWithRepeatBehavior :: proc(self: ^NSSymbolEffectOptions, behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> ^NSSymbolEffectOptions ---
+    NSSymbolEffectOptions_optionsWithRepeatBehavior :: proc(self: ^NSSymbolEffectOptions, behavior: ^NSSymbolEffectOptionsRepeatBehavior) -> instancetype ---
 }

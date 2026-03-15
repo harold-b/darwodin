@@ -24,10 +24,10 @@ HoverHighlightEffect :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=HoverHighlightEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
-    HoverHighlightEffect_effect :: proc() -> ^HoverHighlightEffect ---
+    HoverHighlightEffect_effect :: proc() -> instancetype ---
 
     @(objc_type=HoverHighlightEffect, objc_selector="init", objc_name="init")
-    HoverHighlightEffect_init :: proc(self: ^HoverHighlightEffect) -> ^HoverHighlightEffect ---
+    HoverHighlightEffect_init :: proc(self: ^HoverHighlightEffect) -> instancetype ---
 
     @(objc_type=HoverHighlightEffect, objc_selector="new", objc_name="new", objc_is_class_method=true)
     HoverHighlightEffect_new :: proc() -> ^HoverHighlightEffect ---

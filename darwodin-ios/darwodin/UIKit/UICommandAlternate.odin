@@ -25,16 +25,16 @@ CommandAlternate :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CommandAlternate, objc_selector="alternateWithTitle:action:modifierFlags:", objc_name="alternateWithTitle", objc_is_class_method=true)
-    CommandAlternate_alternateWithTitle :: proc(title: ^NS.String, action: SEL, modifierFlags: KeyModifierFlags) -> ^CommandAlternate ---
+    CommandAlternate_alternateWithTitle :: proc(title: ^NS.String, action: SEL, modifierFlags: KeyModifierFlags) -> instancetype ---
 
     @(objc_type=CommandAlternate, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CommandAlternate_new :: proc() -> ^CommandAlternate ---
 
     @(objc_type=CommandAlternate, objc_selector="init", objc_name="init")
-    CommandAlternate_init :: proc(self: ^CommandAlternate) -> ^CommandAlternate ---
+    CommandAlternate_init :: proc(self: ^CommandAlternate) -> instancetype ---
 
     @(objc_type=CommandAlternate, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    CommandAlternate_initWithCoder :: proc(self: ^CommandAlternate, coder: ^NS.Coder) -> ^CommandAlternate ---
+    CommandAlternate_initWithCoder :: proc(self: ^CommandAlternate, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CommandAlternate, objc_selector="title", objc_name="title")
     CommandAlternate_title :: proc(self: ^CommandAlternate) -> ^NS.String ---

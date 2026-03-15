@@ -20,19 +20,19 @@ XMLDocument :: struct { using _: XMLNode, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=XMLDocument, objc_selector="init", objc_name="init")
-    XMLDocument_init :: proc(self: ^XMLDocument) -> ^XMLDocument ---
+    XMLDocument_init :: proc(self: ^XMLDocument) -> instancetype ---
 
     @(objc_type=XMLDocument, objc_selector="initWithXMLString:options:error:", objc_name="initWithXMLString")
-    XMLDocument_initWithXMLString :: proc(self: ^XMLDocument, string: ^String, mask: XMLNodeOptions, error: ^^Error) -> ^XMLDocument ---
+    XMLDocument_initWithXMLString :: proc(self: ^XMLDocument, string: ^String, mask: XMLNodeOptions, error: ^^Error) -> instancetype ---
 
     @(objc_type=XMLDocument, objc_selector="initWithContentsOfURL:options:error:", objc_name="initWithContentsOfURL")
-    XMLDocument_initWithContentsOfURL :: proc(self: ^XMLDocument, url: ^URL, mask: XMLNodeOptions, error: ^^Error) -> ^XMLDocument ---
+    XMLDocument_initWithContentsOfURL :: proc(self: ^XMLDocument, url: ^URL, mask: XMLNodeOptions, error: ^^Error) -> instancetype ---
 
     @(objc_type=XMLDocument, objc_selector="initWithData:options:error:", objc_name="initWithData")
-    XMLDocument_initWithData :: proc(self: ^XMLDocument, data: ^Data, mask: XMLNodeOptions, error: ^^Error) -> ^XMLDocument ---
+    XMLDocument_initWithData :: proc(self: ^XMLDocument, data: ^Data, mask: XMLNodeOptions, error: ^^Error) -> instancetype ---
 
     @(objc_type=XMLDocument, objc_selector="initWithRootElement:", objc_name="initWithRootElement")
-    XMLDocument_initWithRootElement :: proc(self: ^XMLDocument, element: ^XMLElement) -> ^XMLDocument ---
+    XMLDocument_initWithRootElement :: proc(self: ^XMLDocument, element: ^XMLElement) -> instancetype ---
 
     @(objc_type=XMLDocument, objc_selector="replacementClassForClass:", objc_name="replacementClassForClass", objc_is_class_method=true)
     XMLDocument_replacementClassForClass :: proc(cls: Class) -> Class ---

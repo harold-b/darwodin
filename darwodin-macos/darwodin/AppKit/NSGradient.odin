@@ -27,19 +27,19 @@ Gradient :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Gradient, objc_selector="initWithStartingColor:endingColor:", objc_name="initWithStartingColor")
-    Gradient_initWithStartingColor :: proc(self: ^Gradient, startingColor: ^Color, endingColor: ^Color) -> ^Gradient ---
+    Gradient_initWithStartingColor :: proc(self: ^Gradient, startingColor: ^Color, endingColor: ^Color) -> instancetype ---
 
     @(objc_type=Gradient, objc_selector="initWithColors:", objc_name="initWithColors_")
-    Gradient_initWithColors_ :: proc(self: ^Gradient, colorArray: ^NS.Array) -> ^Gradient ---
+    Gradient_initWithColors_ :: proc(self: ^Gradient, colorArray: ^NS.Array) -> instancetype ---
 
     @(objc_type=Gradient, objc_selector="initWithColorsAndLocations:", objc_name="initWithColorsAndLocations")
-    Gradient_initWithColorsAndLocations :: proc(self: ^Gradient, firstColor: ^Color) -> ^Gradient ---
+    Gradient_initWithColorsAndLocations :: proc(self: ^Gradient, firstColor: ^Color) -> instancetype ---
 
     @(objc_type=Gradient, objc_selector="initWithColors:atLocations:colorSpace:", objc_name="initWithColors_atLocations_colorSpace")
-    Gradient_initWithColors_atLocations_colorSpace :: proc(self: ^Gradient, colorArray: ^NS.Array, locations: ^CG.Float, colorSpace: ^ColorSpace) -> ^Gradient ---
+    Gradient_initWithColors_atLocations_colorSpace :: proc(self: ^Gradient, colorArray: ^NS.Array, locations: ^CG.Float, colorSpace: ^ColorSpace) -> instancetype ---
 
     @(objc_type=Gradient, objc_selector="initWithCoder:", objc_name="initWithCoder")
-    Gradient_initWithCoder :: proc(self: ^Gradient, coder: ^NS.Coder) -> ^Gradient ---
+    Gradient_initWithCoder :: proc(self: ^Gradient, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=Gradient, objc_selector="drawFromPoint:toPoint:options:", objc_name="drawFromPoint")
     Gradient_drawFromPoint :: proc(self: ^Gradient, startingPoint: CG.Point, endingPoint: CG.Point, options: GradientDrawingOptions) ---

@@ -27,10 +27,10 @@ TextAttachment :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextAttachment, objc_selector="initWithData:ofType:", objc_name="initWithData")
-    TextAttachment_initWithData :: proc(self: ^TextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> ^TextAttachment ---
+    TextAttachment_initWithData :: proc(self: ^TextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> instancetype ---
 
     @(objc_type=TextAttachment, objc_selector="initWithFileWrapper:", objc_name="initWithFileWrapper")
-    TextAttachment_initWithFileWrapper :: proc(self: ^TextAttachment, fileWrapper: ^NS.FileWrapper) -> ^TextAttachment ---
+    TextAttachment_initWithFileWrapper :: proc(self: ^TextAttachment, fileWrapper: ^NS.FileWrapper) -> instancetype ---
 
     @(objc_type=TextAttachment, objc_selector="textAttachmentViewProviderClassForFileType:", objc_name="textAttachmentViewProviderClassForFileType", objc_is_class_method=true)
     TextAttachment_textAttachmentViewProviderClassForFileType :: proc(fileType: ^NS.String) -> Class ---

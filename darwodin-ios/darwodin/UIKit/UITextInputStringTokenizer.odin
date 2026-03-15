@@ -24,5 +24,5 @@ TextInputStringTokenizer :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextInputStringTokenizer, objc_selector="initWithTextInput:", objc_name="initWithTextInput")
-    TextInputStringTokenizer_initWithTextInput :: proc(self: ^TextInputStringTokenizer, textInput: ^Responder) -> ^TextInputStringTokenizer ---
+    TextInputStringTokenizer_initWithTextInput :: proc(self: ^TextInputStringTokenizer, textInput: ^Responder) -> instancetype ---
 }

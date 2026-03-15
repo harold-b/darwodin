@@ -23,16 +23,16 @@ CompositionTrackSegment :: struct { using _: AssetTrackSegment, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CompositionTrackSegment, objc_selector="compositionTrackSegmentWithURL:trackID:sourceTimeRange:targetTimeRange:", objc_name="compositionTrackSegmentWithURL", objc_is_class_method=true)
-    CompositionTrackSegment_compositionTrackSegmentWithURL :: proc(_URL: ^NS.URL, trackID: CM.PersistentTrackID, sourceTimeRange: CM.TimeRange, targetTimeRange: CM.TimeRange) -> ^CompositionTrackSegment ---
+    CompositionTrackSegment_compositionTrackSegmentWithURL :: proc(_URL: ^NS.URL, trackID: CM.PersistentTrackID, sourceTimeRange: CM.TimeRange, targetTimeRange: CM.TimeRange) -> instancetype ---
 
     @(objc_type=CompositionTrackSegment, objc_selector="compositionTrackSegmentWithTimeRange:", objc_name="compositionTrackSegmentWithTimeRange", objc_is_class_method=true)
-    CompositionTrackSegment_compositionTrackSegmentWithTimeRange :: proc(timeRange: CM.TimeRange) -> ^CompositionTrackSegment ---
+    CompositionTrackSegment_compositionTrackSegmentWithTimeRange :: proc(timeRange: CM.TimeRange) -> instancetype ---
 
     @(objc_type=CompositionTrackSegment, objc_selector="initWithURL:trackID:sourceTimeRange:targetTimeRange:", objc_name="initWithURL")
-    CompositionTrackSegment_initWithURL :: proc(self: ^CompositionTrackSegment, _URL: ^NS.URL, trackID: CM.PersistentTrackID, sourceTimeRange: CM.TimeRange, targetTimeRange: CM.TimeRange) -> ^CompositionTrackSegment ---
+    CompositionTrackSegment_initWithURL :: proc(self: ^CompositionTrackSegment, _URL: ^NS.URL, trackID: CM.PersistentTrackID, sourceTimeRange: CM.TimeRange, targetTimeRange: CM.TimeRange) -> instancetype ---
 
     @(objc_type=CompositionTrackSegment, objc_selector="initWithTimeRange:", objc_name="initWithTimeRange")
-    CompositionTrackSegment_initWithTimeRange :: proc(self: ^CompositionTrackSegment, timeRange: CM.TimeRange) -> ^CompositionTrackSegment ---
+    CompositionTrackSegment_initWithTimeRange :: proc(self: ^CompositionTrackSegment, timeRange: CM.TimeRange) -> instancetype ---
 
     @(objc_type=CompositionTrackSegment, objc_selector="isEmpty", objc_name="isEmpty")
     CompositionTrackSegment_isEmpty :: proc(self: ^CompositionTrackSegment) -> bool ---

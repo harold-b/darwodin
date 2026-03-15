@@ -26,7 +26,7 @@ import "../NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^NS.NetServiceBrowser) -> ^NS.NetServiceBrowser,
+    init: proc(self: ^NS.NetServiceBrowser) -> instancetype,
     scheduleInRunLoop: proc(self: ^NS.NetServiceBrowser, aRunLoop: ^NS.RunLoop, mode: ^NS.String),
     removeFromRunLoop: proc(self: ^NS.NetServiceBrowser, aRunLoop: ^NS.RunLoop, mode: ^NS.String),
     searchForBrowsableDomains: proc(self: ^NS.NetServiceBrowser),
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^NS.NetServiceBrowser, _: SEL) -> ^NS.NetServiceBrowser {
+        init :: proc "c" (self: ^NS.NetServiceBrowser, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
