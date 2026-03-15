@@ -1,0 +1,53 @@
+package darwodin_GameKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import CF "../CoreFoundation"
+import NS "../Foundation"
+import AK "../AppKit"
+
+
+
+///
+/// GKChallengeDefinition
+///
+@(objc_class="GKChallengeDefinition", objc_superclass=NS.Object)
+ChallengeDefinition :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ChallengeDefinition, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
+    ChallengeDefinition_loadImageWithCompletionHandler :: proc(self: ^ChallengeDefinition, completionHandler: ^Objc_Block(proc "c" (image: ^NS.Image, error: ^NS.Error))) ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="identifier", objc_name="identifier")
+    ChallengeDefinition_identifier :: proc(self: ^ChallengeDefinition) -> ^NS.String ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="groupIdentifier", objc_name="groupIdentifier")
+    ChallengeDefinition_groupIdentifier :: proc(self: ^ChallengeDefinition) -> ^NS.String ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="title", objc_name="title")
+    ChallengeDefinition_title :: proc(self: ^ChallengeDefinition) -> ^NS.String ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="details", objc_name="details")
+    ChallengeDefinition_details :: proc(self: ^ChallengeDefinition) -> ^NS.String ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="durationOptions", objc_name="durationOptions")
+    ChallengeDefinition_durationOptions :: proc(self: ^ChallengeDefinition) -> ^NS.Array ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="isRepeatable", objc_name="isRepeatable")
+    ChallengeDefinition_isRepeatable :: proc(self: ^ChallengeDefinition) -> bool ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="leaderboard", objc_name="leaderboard")
+    ChallengeDefinition_leaderboard :: proc(self: ^ChallengeDefinition) -> ^Leaderboard ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="releaseState", objc_name="releaseState")
+    ChallengeDefinition_releaseState :: proc(self: ^ChallengeDefinition) -> ReleaseState ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="loadChallengeDefinitionsWithCompletionHandler:", objc_name="loadChallengeDefinitionsWithCompletionHandler", objc_is_class_method=true)
+    ChallengeDefinition_loadChallengeDefinitionsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (challengeDefinitions: ^NS.Array, error: ^NS.Error))) ---
+
+    @(objc_type=ChallengeDefinition, objc_selector="hasActiveChallengesWithCompletionHandler:", objc_name="hasActiveChallengesWithCompletionHandler")
+    ChallengeDefinition_hasActiveChallengesWithCompletionHandler :: proc(self: ^ChallengeDefinition, completionHandler: ^Objc_Block(proc "c" (hasActiveChallenges: bool, error: ^NS.Error))) ---
+}

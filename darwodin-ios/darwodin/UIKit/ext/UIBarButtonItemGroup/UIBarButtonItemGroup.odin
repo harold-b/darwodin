@@ -33,6 +33,7 @@ VTable :: struct {
     fixedGroupWithRepresentativeItem: proc(representativeItem: ^UI.BarButtonItem, items: ^NS.Array) -> ^UI.BarButtonItemGroup,
     movableGroupWithCustomizationIdentifier: proc(customizationIdentifier: ^NS.String, representativeItem: ^UI.BarButtonItem, items: ^NS.Array) -> ^UI.BarButtonItemGroup,
     optionalGroupWithCustomizationIdentifier: proc(customizationIdentifier: ^NS.String, inDefaultCustomization: bool, representativeItem: ^UI.BarButtonItem, items: ^NS.Array) -> ^UI.BarButtonItemGroup,
+    groupWithFixedSpace: proc() -> ^UI.BarButtonItemGroup,
     barButtonItems: proc(self: ^UI.BarButtonItemGroup) -> ^NS.Array,
     setBarButtonItems: proc(self: ^UI.BarButtonItemGroup, barButtonItems: ^NS.Array),
     representativeItem: proc(self: ^UI.BarButtonItemGroup) -> ^UI.BarButtonItem,
@@ -102,6 +103,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:"), auto_cast optionalGroupWithCustomizationIdentifier, "@#:@B@^void") do panic("Failed to register objC method.")
+    }
+    if vt.groupWithFixedSpace != nil {
+        groupWithFixedSpace :: proc "c" (self: Class, _: SEL) -> ^UI.BarButtonItemGroup {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).groupWithFixedSpace()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("groupWithFixedSpace"), auto_cast groupWithFixedSpace, "@#:") do panic("Failed to register objC method.")
     }
     if vt.barButtonItems != nil {
         barButtonItems :: proc "c" (self: ^UI.BarButtonItemGroup, _: SEL) -> ^NS.Array {

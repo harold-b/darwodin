@@ -311,6 +311,12 @@ foreign lib {
     @(objc_type=AUAudioUnit, objc_selector="osWorkgroup", objc_name="osWorkgroup")
     AUAudioUnit_osWorkgroup :: proc(self: ^AUAudioUnit) -> CF.os_workgroup_t ---
 
+    @(objc_type=AUAudioUnit, objc_selector="intendedSpatialExperience", objc_name="intendedSpatialExperience")
+    AUAudioUnit_intendedSpatialExperience :: proc(self: ^AUAudioUnit) -> ^CASpatialAudioExperience ---
+
+    @(objc_type=AUAudioUnit, objc_selector="setIntendedSpatialExperience:", objc_name="setIntendedSpatialExperience")
+    AUAudioUnit_setIntendedSpatialExperience :: proc(self: ^AUAudioUnit, intendedSpatialExperience: ^CASpatialAudioExperience) ---
+
     @(objc_type=AUAudioUnit, objc_selector="registerSubclass:asComponentDescription:name:version:", objc_name="registerSubclass", objc_is_class_method=true)
     AUAudioUnit_registerSubclass :: proc(cls: Class, componentDescription: ComponentDescription, name: ^NS.String, version: CF.UInt32) ---
 

@@ -38,4 +38,16 @@ foreign lib {
 
     @(objc_type=ColorWell, objc_selector="setSelectedColor:", objc_name="setSelectedColor")
     ColorWell_setSelectedColor :: proc(self: ^ColorWell, selectedColor: ^Color) ---
+
+    @(objc_type=ColorWell, objc_selector="supportsEyedropper", objc_name="supportsEyedropper")
+    ColorWell_supportsEyedropper :: proc(self: ^ColorWell) -> bool ---
+
+    @(objc_type=ColorWell, objc_selector="setSupportsEyedropper:", objc_name="setSupportsEyedropper")
+    ColorWell_setSupportsEyedropper :: proc(self: ^ColorWell, supportsEyedropper: bool) ---
+
+    @(objc_type=ColorWell, objc_selector="maximumLinearExposure", objc_name="maximumLinearExposure")
+    ColorWell_maximumLinearExposure :: proc(self: ^ColorWell) -> CG.Float ---
+
+    @(objc_type=ColorWell, objc_selector="setMaximumLinearExposure:", objc_name="setMaximumLinearExposure")
+    ColorWell_setMaximumLinearExposure :: proc(self: ^ColorWell, maximumLinearExposure: CG.Float) ---
 }

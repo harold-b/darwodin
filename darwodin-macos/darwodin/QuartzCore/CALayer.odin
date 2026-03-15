@@ -299,6 +299,18 @@ foreign lib {
     @(objc_type=Layer, objc_selector="setToneMapMode:", objc_name="setToneMapMode")
     Layer_setToneMapMode :: proc(self: ^Layer, toneMapMode: ^NS.String) ---
 
+    @(objc_type=Layer, objc_selector="preferredDynamicRange", objc_name="preferredDynamicRange")
+    Layer_preferredDynamicRange :: proc(self: ^Layer) -> ^NS.String ---
+
+    @(objc_type=Layer, objc_selector="setPreferredDynamicRange:", objc_name="setPreferredDynamicRange")
+    Layer_setPreferredDynamicRange :: proc(self: ^Layer, preferredDynamicRange: ^NS.String) ---
+
+    @(objc_type=Layer, objc_selector="contentsHeadroom", objc_name="contentsHeadroom")
+    Layer_contentsHeadroom :: proc(self: ^Layer) -> CG.Float ---
+
+    @(objc_type=Layer, objc_selector="setContentsHeadroom:", objc_name="setContentsHeadroom")
+    Layer_setContentsHeadroom :: proc(self: ^Layer, contentsHeadroom: CG.Float) ---
+
     @(objc_type=Layer, objc_selector="wantsDynamicContentScaling", objc_name="wantsDynamicContentScaling")
     Layer_wantsDynamicContentScaling :: proc(self: ^Layer) -> bool ---
 

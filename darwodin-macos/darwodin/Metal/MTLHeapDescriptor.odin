@@ -64,4 +64,10 @@ foreign lib {
 
     @(objc_type=HeapDescriptor, objc_selector="setType:", objc_name="setType")
     HeapDescriptor_setType :: proc(self: ^HeapDescriptor, type: HeapType) ---
+
+    @(objc_type=HeapDescriptor, objc_selector="maxCompatiblePlacementSparsePageSize", objc_name="maxCompatiblePlacementSparsePageSize")
+    HeapDescriptor_maxCompatiblePlacementSparsePageSize :: proc(self: ^HeapDescriptor) -> SparsePageSize ---
+
+    @(objc_type=HeapDescriptor, objc_selector="setMaxCompatiblePlacementSparsePageSize:", objc_name="setMaxCompatiblePlacementSparsePageSize")
+    HeapDescriptor_setMaxCompatiblePlacementSparsePageSize :: proc(self: ^HeapDescriptor, maxCompatiblePlacementSparsePageSize: SparsePageSize) ---
 }

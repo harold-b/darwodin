@@ -40,6 +40,8 @@ VTable :: struct {
     configurationWithHierarchicalColor: proc(hierarchicalColor: ^AK.Color) -> instancetype,
     configurationWithPaletteColors: proc(paletteColors: ^NS.Array) -> instancetype,
     configurationPreferringMulticolor: proc() -> instancetype,
+    configurationWithVariableValueMode: proc(variableValueMode: AK.ImageSymbolVariableValueMode) -> instancetype,
+    configurationWithColorRenderingMode: proc(mode: AK.ImageSymbolColorRenderingMode) -> instancetype,
     configurationByApplyingConfiguration: proc(self: ^AK.ImageSymbolConfiguration, configuration: ^AK.ImageSymbolConfiguration) -> instancetype,
 }
 
@@ -149,6 +151,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationPreferringMulticolor"), auto_cast configurationPreferringMulticolor, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.configurationWithVariableValueMode != nil {
+        configurationWithVariableValueMode :: proc "c" (self: Class, _: SEL, variableValueMode: AK.ImageSymbolVariableValueMode) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).configurationWithVariableValueMode( variableValueMode)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithVariableValueMode:"), auto_cast configurationWithVariableValueMode, "@#:l") do panic("Failed to register objC method.")
+    }
+    if vt.configurationWithColorRenderingMode != nil {
+        configurationWithColorRenderingMode :: proc "c" (self: Class, _: SEL, mode: AK.ImageSymbolColorRenderingMode) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).configurationWithColorRenderingMode( mode)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithColorRenderingMode:"), auto_cast configurationWithColorRenderingMode, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.configurationByApplyingConfiguration != nil {
         configurationByApplyingConfiguration :: proc "c" (self: ^AK.ImageSymbolConfiguration, _: SEL, configuration: ^AK.ImageSymbolConfiguration) -> instancetype {

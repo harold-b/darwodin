@@ -68,6 +68,24 @@ foreign lib {
     @(objc_type=IndirectRenderCommand, objc_selector="clearBarrier", objc_name="clearBarrier")
     IndirectRenderCommand_clearBarrier :: proc(self: ^IndirectRenderCommand) ---
 
+    @(objc_type=IndirectRenderCommand, objc_selector="setDepthStencilState:", objc_name="setDepthStencilState")
+    IndirectRenderCommand_setDepthStencilState :: proc(self: ^IndirectRenderCommand, depthStencilState: ^DepthStencilState) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setDepthBias:slopeScale:clamp:", objc_name="setDepthBias")
+    IndirectRenderCommand_setDepthBias :: proc(self: ^IndirectRenderCommand, depthBias: cffi.float, slopeScale: cffi.float, clamp: cffi.float) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setDepthClipMode:", objc_name="setDepthClipMode")
+    IndirectRenderCommand_setDepthClipMode :: proc(self: ^IndirectRenderCommand, depthClipMode: DepthClipMode) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setCullMode:", objc_name="setCullMode")
+    IndirectRenderCommand_setCullMode :: proc(self: ^IndirectRenderCommand, cullMode: CullMode) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setFrontFacingWinding:", objc_name="setFrontFacingWinding")
+    IndirectRenderCommand_setFrontFacingWinding :: proc(self: ^IndirectRenderCommand, frontFacingWindning: Winding) ---
+
+    @(objc_type=IndirectRenderCommand, objc_selector="setTriangleFillMode:", objc_name="setTriangleFillMode")
+    IndirectRenderCommand_setTriangleFillMode :: proc(self: ^IndirectRenderCommand, fillMode: TriangleFillMode) ---
+
     @(objc_type=IndirectRenderCommand, objc_selector="reset", objc_name="reset")
     IndirectRenderCommand_reset :: proc(self: ^IndirectRenderCommand) ---
 }

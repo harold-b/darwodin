@@ -42,6 +42,15 @@ foreign lib {
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="finishCancelledRequest", objc_name="finishCancelledRequest")
     AsynchronousVideoCompositionRequest_finishCancelledRequest :: proc(self: ^AsynchronousVideoCompositionRequest) ---
 
+    @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="sourceTaggedBufferGroupByTrackID:", objc_name="sourceTaggedBufferGroupByTrackID")
+    AsynchronousVideoCompositionRequest_sourceTaggedBufferGroupByTrackID :: proc(self: ^AsynchronousVideoCompositionRequest, trackID: CM.PersistentTrackID) -> CM.TaggedBufferGroupRef ---
+
+    @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="finishWithComposedTaggedBufferGroup:", objc_name="finishWithComposedTaggedBufferGroup")
+    AsynchronousVideoCompositionRequest_finishWithComposedTaggedBufferGroup :: proc(self: ^AsynchronousVideoCompositionRequest, taggedBufferGroup: CM.TaggedBufferGroupRef) ---
+
+    @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="attachSpatialVideoConfiguration:toPixelBuffer:", objc_name="attachSpatialVideoConfiguration")
+    AsynchronousVideoCompositionRequest_attachSpatialVideoConfiguration :: proc(self: ^AsynchronousVideoCompositionRequest, spatialVideoConfiguration: ^SpatialVideoConfiguration, pixelBuffer: CVPixelBufferRef) ---
+
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="renderContext", objc_name="renderContext")
     AsynchronousVideoCompositionRequest_renderContext :: proc(self: ^AsynchronousVideoCompositionRequest) -> ^VideoCompositionRenderContext ---
 

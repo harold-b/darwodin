@@ -36,11 +36,23 @@ foreign lib {
     @(objc_type=NavigationBarAppearance, objc_selector="setTitlePositionAdjustment:", objc_name="setTitlePositionAdjustment")
     NavigationBarAppearance_setTitlePositionAdjustment :: proc(self: ^NavigationBarAppearance, titlePositionAdjustment: Offset) ---
 
+    @(objc_type=NavigationBarAppearance, objc_selector="subtitleTextAttributes", objc_name="subtitleTextAttributes")
+    NavigationBarAppearance_subtitleTextAttributes :: proc(self: ^NavigationBarAppearance) -> ^NS.Dictionary ---
+
+    @(objc_type=NavigationBarAppearance, objc_selector="setSubtitleTextAttributes:", objc_name="setSubtitleTextAttributes")
+    NavigationBarAppearance_setSubtitleTextAttributes :: proc(self: ^NavigationBarAppearance, subtitleTextAttributes: ^NS.Dictionary) ---
+
     @(objc_type=NavigationBarAppearance, objc_selector="largeTitleTextAttributes", objc_name="largeTitleTextAttributes")
     NavigationBarAppearance_largeTitleTextAttributes :: proc(self: ^NavigationBarAppearance) -> ^NS.Dictionary ---
 
     @(objc_type=NavigationBarAppearance, objc_selector="setLargeTitleTextAttributes:", objc_name="setLargeTitleTextAttributes")
     NavigationBarAppearance_setLargeTitleTextAttributes :: proc(self: ^NavigationBarAppearance, largeTitleTextAttributes: ^NS.Dictionary) ---
+
+    @(objc_type=NavigationBarAppearance, objc_selector="largeSubtitleTextAttributes", objc_name="largeSubtitleTextAttributes")
+    NavigationBarAppearance_largeSubtitleTextAttributes :: proc(self: ^NavigationBarAppearance) -> ^NS.Dictionary ---
+
+    @(objc_type=NavigationBarAppearance, objc_selector="setLargeSubtitleTextAttributes:", objc_name="setLargeSubtitleTextAttributes")
+    NavigationBarAppearance_setLargeSubtitleTextAttributes :: proc(self: ^NavigationBarAppearance, largeSubtitleTextAttributes: ^NS.Dictionary) ---
 
     @(objc_type=NavigationBarAppearance, objc_selector="buttonAppearance", objc_name="buttonAppearance")
     NavigationBarAppearance_buttonAppearance :: proc(self: ^NavigationBarAppearance) -> ^BarButtonItemAppearance ---
@@ -48,11 +60,11 @@ foreign lib {
     @(objc_type=NavigationBarAppearance, objc_selector="setButtonAppearance:", objc_name="setButtonAppearance")
     NavigationBarAppearance_setButtonAppearance :: proc(self: ^NavigationBarAppearance, buttonAppearance: ^BarButtonItemAppearance) ---
 
-    @(objc_type=NavigationBarAppearance, objc_selector="doneButtonAppearance", objc_name="doneButtonAppearance")
-    NavigationBarAppearance_doneButtonAppearance :: proc(self: ^NavigationBarAppearance) -> ^BarButtonItemAppearance ---
+    @(objc_type=NavigationBarAppearance, objc_selector="prominentButtonAppearance", objc_name="prominentButtonAppearance")
+    NavigationBarAppearance_prominentButtonAppearance :: proc(self: ^NavigationBarAppearance) -> ^BarButtonItemAppearance ---
 
-    @(objc_type=NavigationBarAppearance, objc_selector="setDoneButtonAppearance:", objc_name="setDoneButtonAppearance")
-    NavigationBarAppearance_setDoneButtonAppearance :: proc(self: ^NavigationBarAppearance, doneButtonAppearance: ^BarButtonItemAppearance) ---
+    @(objc_type=NavigationBarAppearance, objc_selector="setProminentButtonAppearance:", objc_name="setProminentButtonAppearance")
+    NavigationBarAppearance_setProminentButtonAppearance :: proc(self: ^NavigationBarAppearance, prominentButtonAppearance: ^BarButtonItemAppearance) ---
 
     @(objc_type=NavigationBarAppearance, objc_selector="backButtonAppearance", objc_name="backButtonAppearance")
     NavigationBarAppearance_backButtonAppearance :: proc(self: ^NavigationBarAppearance) -> ^BarButtonItemAppearance ---
@@ -65,4 +77,10 @@ foreign lib {
 
     @(objc_type=NavigationBarAppearance, objc_selector="backIndicatorTransitionMaskImage", objc_name="backIndicatorTransitionMaskImage")
     NavigationBarAppearance_backIndicatorTransitionMaskImage :: proc(self: ^NavigationBarAppearance) -> ^Image ---
+
+    @(objc_type=NavigationBarAppearance, objc_selector="doneButtonAppearance", objc_name="doneButtonAppearance")
+    NavigationBarAppearance_doneButtonAppearance :: proc(self: ^NavigationBarAppearance) -> ^BarButtonItemAppearance ---
+
+    @(objc_type=NavigationBarAppearance, objc_selector="setDoneButtonAppearance:", objc_name="setDoneButtonAppearance")
+    NavigationBarAppearance_setDoneButtonAppearance :: proc(self: ^NavigationBarAppearance, doneButtonAppearance: ^BarButtonItemAppearance) ---
 }

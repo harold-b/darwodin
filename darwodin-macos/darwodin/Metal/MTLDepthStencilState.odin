@@ -28,4 +28,7 @@ foreign lib {
 
     @(objc_type=DepthStencilState, objc_selector="device", objc_name="device")
     DepthStencilState_device :: proc(self: ^DepthStencilState) -> ^Device ---
+
+    @(objc_type=DepthStencilState, objc_selector="gpuResourceID", objc_name="gpuResourceID")
+    DepthStencilState_gpuResourceID :: proc(self: ^DepthStencilState) -> ResourceID ---
 }

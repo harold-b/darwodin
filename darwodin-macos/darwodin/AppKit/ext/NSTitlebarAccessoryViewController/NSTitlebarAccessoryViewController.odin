@@ -41,6 +41,8 @@ VTable :: struct {
     setHidden: proc(self: ^AK.TitlebarAccessoryViewController, hidden: bool),
     automaticallyAdjustsSize: proc(self: ^AK.TitlebarAccessoryViewController) -> bool,
     setAutomaticallyAdjustsSize: proc(self: ^AK.TitlebarAccessoryViewController, automaticallyAdjustsSize: bool),
+    preferredScrollEdgeEffectStyle: proc(self: ^AK.TitlebarAccessoryViewController) -> ^AK.ScrollEdgeEffectStyle,
+    setPreferredScrollEdgeEffectStyle: proc(self: ^AK.TitlebarAccessoryViewController, preferredScrollEdgeEffectStyle: ^AK.ScrollEdgeEffectStyle),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -159,6 +161,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyAdjustsSize:"), auto_cast setAutomaticallyAdjustsSize, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.preferredScrollEdgeEffectStyle != nil {
+        preferredScrollEdgeEffectStyle :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL) -> ^AK.ScrollEdgeEffectStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredScrollEdgeEffectStyle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredScrollEdgeEffectStyle"), auto_cast preferredScrollEdgeEffectStyle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredScrollEdgeEffectStyle != nil {
+        setPreferredScrollEdgeEffectStyle :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL, preferredScrollEdgeEffectStyle: ^AK.ScrollEdgeEffectStyle) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredScrollEdgeEffectStyle(self, preferredScrollEdgeEffectStyle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredScrollEdgeEffectStyle:"), auto_cast setPreferredScrollEdgeEffectStyle, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

@@ -26,4 +26,7 @@ foreign lib {
 
     @(objc_type=ButtonElement, objc_selector="touchedInput", objc_name="touchedInput")
     ButtonElement_touchedInput :: proc(self: ^ButtonElement) -> ^TouchedStateInput ---
+
+    @(objc_type=ButtonElement, objc_selector="forceInput", objc_name="forceInput")
+    ButtonElement_forceInput :: proc(self: ^ButtonElement) -> ^LinearInput ---
 }

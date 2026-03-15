@@ -62,6 +62,12 @@ foreign lib {
     @(objc_type=MenuLeaf, objc_selector="setState:", objc_name="setState")
     MenuLeaf_setState :: proc(self: ^MenuLeaf, state: MenuElementState) ---
 
+    @(objc_type=MenuLeaf, objc_selector="repeatBehavior", objc_name="repeatBehavior")
+    MenuLeaf_repeatBehavior :: proc(self: ^MenuLeaf) -> MenuElementRepeatBehavior ---
+
+    @(objc_type=MenuLeaf, objc_selector="setRepeatBehavior:", objc_name="setRepeatBehavior")
+    MenuLeaf_setRepeatBehavior :: proc(self: ^MenuLeaf, repeatBehavior: MenuElementRepeatBehavior) ---
+
     @(objc_type=MenuLeaf, objc_selector="sender", objc_name="sender")
     MenuLeaf_sender :: proc(self: ^MenuLeaf) -> id ---
 

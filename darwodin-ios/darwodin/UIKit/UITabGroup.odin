@@ -77,4 +77,10 @@ foreign lib {
 
     @(objc_type=TabGroup, objc_selector="setSidebarAppearance:", objc_name="setSidebarAppearance")
     TabGroup_setSidebarAppearance :: proc(self: ^TabGroup, sidebarAppearance: TabGroupSidebarAppearance) ---
+
+    @(objc_type=TabGroup, objc_selector="isSidebarDestination", objc_name="isSidebarDestination")
+    TabGroup_isSidebarDestination :: proc(self: ^TabGroup) -> bool ---
+
+    @(objc_type=TabGroup, objc_selector="setIsSidebarDestination:", objc_name="setIsSidebarDestination")
+    TabGroup_setIsSidebarDestination :: proc(self: ^TabGroup, isSidebarDestination: bool) ---
 }

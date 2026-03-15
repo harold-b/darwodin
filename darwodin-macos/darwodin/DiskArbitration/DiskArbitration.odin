@@ -87,6 +87,7 @@ foreign lib {
     @(link_name="kDADiskDescriptionBusNameKey") kDiskDescriptionBusNameKey: CF.StringRef
     @(link_name="kDADiskDescriptionBusPathKey") kDiskDescriptionBusPathKey: CF.StringRef
     @(link_name="kDADiskDescriptionFSKitPrefix") kDiskDescriptionFSKitPrefix: CF.StringRef
+    @(link_name="kDADiskDescriptionRepairRunningKey") kDiskDescriptionRepairRunningKey: CF.StringRef
     @(link_name="kDADiskDescriptionMatchMediaUnformatted") kDiskDescriptionMatchMediaUnformatted: CF.DictionaryRef
     @(link_name="kDADiskDescriptionMatchMediaWhole") kDiskDescriptionMatchMediaWhole: CF.DictionaryRef
     @(link_name="kDADiskDescriptionMatchVolumeMountable") kDiskDescriptionMatchVolumeMountable: CF.DictionaryRef

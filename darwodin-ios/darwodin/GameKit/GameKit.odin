@@ -172,6 +172,21 @@ ChallengeState :: enum cffi.long {
     Declined  = 3,
 }
 
+/// GKGameActivityState
+GameActivityState :: enum cffi.ulong {
+    Initialized = 0,
+    Active      = 1,
+    Paused      = 2,
+    Ended       = 4,
+}
+
+/// GKGameActivityPlayStyle
+GameActivityPlayStyle :: enum cffi.long {
+    Unspecified  = 0,
+    Synchronous  = 1,
+    Asynchronous = 2,
+}
+
 /// GKConnectionState
 ConnectionState :: enum cffi.long {
     NotConnected = 0,

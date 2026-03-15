@@ -97,6 +97,9 @@ foreign lib {
 
     @(objc_type=BlitCommandEncoder, objc_selector="resolveCounters:inRange:destinationBuffer:destinationOffset:", objc_name="resolveCounters")
     BlitCommandEncoder_resolveCounters :: proc(self: ^BlitCommandEncoder, sampleBuffer: ^CounterSampleBuffer, range: NS._NSRange, destinationBuffer: ^Buffer, destinationOffset: NS.UInteger) ---
+
+    @(objc_type=BlitCommandEncoder, objc_selector="copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:", objc_name="copyFromTensor")
+    BlitCommandEncoder_copyFromTensor :: proc(self: ^BlitCommandEncoder, sourceTensor: ^Tensor, sourceOrigin: ^TensorExtents, sourceDimensions: ^TensorExtents, destinationTensor: ^Tensor, destinationOrigin: ^TensorExtents, destinationDimensions: ^TensorExtents) ---
 }
 
 @(objc_type=BlitCommandEncoder, objc_name="copyFromBuffer")

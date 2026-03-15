@@ -20,6 +20,9 @@ Renderer :: struct { using _: NS.Object, }
 
 @(default_calling_convention="c")
 foreign lib {
+    @(objc_type=Renderer, objc_selector="rendererWithCGLContext:options:", objc_name="rendererWithCGLContext", objc_is_class_method=true)
+    Renderer_rendererWithCGLContext :: proc(ctx: rawptr, dict: ^NS.Dictionary) -> ^Renderer ---
+
     @(objc_type=Renderer, objc_selector="rendererWithMTLTexture:options:", objc_name="rendererWithMTLTexture", objc_is_class_method=true)
     Renderer_rendererWithMTLTexture :: proc(tex: ^MTLTexture, dict: ^NS.Dictionary) -> ^Renderer ---
 

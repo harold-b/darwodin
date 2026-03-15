@@ -41,4 +41,10 @@ foreign lib {
 
     @(objc_type=SheetPresentationControllerDetent, objc_selector="identifier", objc_name="identifier")
     SheetPresentationControllerDetent_identifier :: proc(self: ^SheetPresentationControllerDetent) -> ^NS.String ---
+
+    @(objc_type=SheetPresentationControllerDetent, objc_selector="backgroundEffect", objc_name="backgroundEffect")
+    SheetPresentationControllerDetent_backgroundEffect :: proc(self: ^SheetPresentationControllerDetent) -> ^VisualEffect ---
+
+    @(objc_type=SheetPresentationControllerDetent, objc_selector="setBackgroundEffect:", objc_name="setBackgroundEffect")
+    SheetPresentationControllerDetent_setBackgroundEffect :: proc(self: ^SheetPresentationControllerDetent, backgroundEffect: ^VisualEffect) ---
 }

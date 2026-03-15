@@ -346,6 +346,17 @@ foreign lib {
     @(link_name="NSCalendarIdentifierRepublicOfChina") CalendarIdentifierRepublicOfChina: ^String
     @(link_name="NSCalendarIdentifierIslamicTabular") CalendarIdentifierIslamicTabular: ^String
     @(link_name="NSCalendarIdentifierIslamicUmmAlQura") CalendarIdentifierIslamicUmmAlQura: ^String
+    @(link_name="NSCalendarIdentifierBangla") CalendarIdentifierBangla: ^String
+    @(link_name="NSCalendarIdentifierGujarati") CalendarIdentifierGujarati: ^String
+    @(link_name="NSCalendarIdentifierKannada") CalendarIdentifierKannada: ^String
+    @(link_name="NSCalendarIdentifierMalayalam") CalendarIdentifierMalayalam: ^String
+    @(link_name="NSCalendarIdentifierMarathi") CalendarIdentifierMarathi: ^String
+    @(link_name="NSCalendarIdentifierOdia") CalendarIdentifierOdia: ^String
+    @(link_name="NSCalendarIdentifierTamil") CalendarIdentifierTamil: ^String
+    @(link_name="NSCalendarIdentifierTelugu") CalendarIdentifierTelugu: ^String
+    @(link_name="NSCalendarIdentifierVikram") CalendarIdentifierVikram: ^String
+    @(link_name="NSCalendarIdentifierDangi") CalendarIdentifierDangi: ^String
+    @(link_name="NSCalendarIdentifierVietnamese") CalendarIdentifierVietnamese: ^String
     @(link_name="NSCalendarDayChangedNotification") CalendarDayChangedNotification: ^String
     @(link_name="NSInflectionConceptsKey") InflectionConceptsKey: ^String
     @(link_name="NSInlinePresentationIntentAttributeName") InlinePresentationIntentAttributeName: ^String
@@ -361,6 +372,7 @@ foreign lib {
     @(link_name="NSInflectionReferentConceptAttributeName") InflectionReferentConceptAttributeName: ^String
     @(link_name="NSInflectionAlternativeAttributeName") InflectionAlternativeAttributeName: ^String
     @(link_name="NSLocalizedNumberFormatAttributeName") LocalizedNumberFormatAttributeName: ^String
+    @(link_name="NSListItemDelimiterAttributeName") ListItemDelimiterAttributeName: ^String
     @(link_name="NSPresentationIntentAttributeName") PresentationIntentAttributeName: ^String
     @(link_name="NSCurrentLocaleDidChangeNotification") CurrentLocaleDidChangeNotification: ^String
     @(link_name="NSLocaleIdentifier") LocaleIdentifier: ^String
@@ -595,6 +607,8 @@ foreign lib {
     @(link_name="NSURLUbiquitousSharedItemRoleParticipant") URLUbiquitousSharedItemRoleParticipant: ^String
     @(link_name="NSURLUbiquitousSharedItemPermissionsReadOnly") URLUbiquitousSharedItemPermissionsReadOnly: ^String
     @(link_name="NSURLUbiquitousSharedItemPermissionsReadWrite") URLUbiquitousSharedItemPermissionsReadWrite: ^String
+    @(link_name="NSURLUbiquitousItemSupportedSyncControlsKey") URLUbiquitousItemSupportedSyncControlsKey: ^String
+    @(link_name="NSURLUbiquitousItemIsSyncPausedKey") URLUbiquitousItemIsSyncPausedKey: ^String
     @(link_name="NSFileManagerUnmountDissentingProcessIdentifierErrorKey") FileManagerUnmountDissentingProcessIdentifierErrorKey: ^String
     @(link_name="NSUbiquityIdentityDidChangeNotification") UbiquityIdentityDidChangeNotification: ^String
     @(link_name="NSFileType") FileType: ^String
@@ -1529,6 +1543,9 @@ xpc_activity_handler_t :: ^Objc_Block(proc "c" (activity: xpc_activity_t))
 /// xpc_activity_state_t
 xpc_activity_state_t :: distinct cffi.long
 
+/// xpc_peer_requirement_t
+xpc_peer_requirement_t :: distinct ^xpc_peer_requirement_s
+
 /// xpc_finalizer_t
 xpc_finalizer_t :: proc "c" (value: rawptr)
 
@@ -1704,6 +1721,8 @@ CalendarUnit :: enum cffi.ulong {
     DayOfYear                     = 65536,
     Calendar                      = 1048576,
     TimeZone                      = 2097152,
+    IsLeapMonth                   = 1073741824,
+    IsRepeatedDay                 = 2147483648,
     EraCalendarUnit               = 2,
     YearCalendarUnit              = 4,
     MonthCalendarUnit             = 8,
@@ -2130,6 +2149,25 @@ FileManagerUnmountOptions :: enum cffi.ulong {
     WithoutUI                 = 2,
 }
 
+/// NSFileManagerSupportedSyncControls
+FileManagerSupportedSyncControls :: enum cffi.ulong {
+    PauseSync            = 1,
+    FailUploadOnConflict = 2,
+}
+
+/// NSFileManagerResumeSyncBehavior
+FileManagerResumeSyncBehavior :: enum cffi.long {
+    PreserveLocalChanges          = 0,
+    AfterUploadWithFailOnConflict = 1,
+    DropLocalChanges              = 2,
+}
+
+/// NSFileManagerUploadLocalVersionConflictPolicy
+FileManagerUploadLocalVersionConflictPolicy :: enum cffi.long {
+    Default        = 0,
+    FailOnConflict = 1,
+}
+
 /// NSPointerFunctionsOptions
 PointerFunctionsOptions :: enum cffi.ulong {
     StrongMemory             = 0,
@@ -2446,9 +2484,10 @@ URLCredentialPersistence :: enum cffi.ulong {
 
 /// NSURLErrorNetworkUnavailableReason
 URLErrorNetworkUnavailableReason :: enum cffi.long {
-    Cellular    = 0,
-    Expensive   = 1,
-    Constrained = 2,
+    Cellular         = 0,
+    Expensive        = 1,
+    Constrained      = 2,
+    UltraConstrained = 3,
 }
 
 /// NSURLRequestCachePolicy
@@ -2959,6 +2998,9 @@ _xpc_rich_error_s :: struct {}
 
 /// _xpc_activity_s
 _xpc_activity_s :: struct {}
+
+/// xpc_peer_requirement_s
+xpc_peer_requirement_s :: struct {}
 
 /// _xpc_dictionary_s
 _xpc_dictionary_s :: struct {}

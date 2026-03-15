@@ -41,6 +41,42 @@ foreign lib {
     @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setInheritBuffers:", objc_name="setInheritBuffers")
     IndirectCommandBufferDescriptor_setInheritBuffers :: proc(self: ^IndirectCommandBufferDescriptor, inheritBuffers: bool) ---
 
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="inheritDepthStencilState", objc_name="inheritDepthStencilState")
+    IndirectCommandBufferDescriptor_inheritDepthStencilState :: proc(self: ^IndirectCommandBufferDescriptor) -> bool ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setInheritDepthStencilState:", objc_name="setInheritDepthStencilState")
+    IndirectCommandBufferDescriptor_setInheritDepthStencilState :: proc(self: ^IndirectCommandBufferDescriptor, inheritDepthStencilState: bool) ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="inheritDepthBias", objc_name="inheritDepthBias")
+    IndirectCommandBufferDescriptor_inheritDepthBias :: proc(self: ^IndirectCommandBufferDescriptor) -> bool ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setInheritDepthBias:", objc_name="setInheritDepthBias")
+    IndirectCommandBufferDescriptor_setInheritDepthBias :: proc(self: ^IndirectCommandBufferDescriptor, inheritDepthBias: bool) ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="inheritDepthClipMode", objc_name="inheritDepthClipMode")
+    IndirectCommandBufferDescriptor_inheritDepthClipMode :: proc(self: ^IndirectCommandBufferDescriptor) -> bool ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setInheritDepthClipMode:", objc_name="setInheritDepthClipMode")
+    IndirectCommandBufferDescriptor_setInheritDepthClipMode :: proc(self: ^IndirectCommandBufferDescriptor, inheritDepthClipMode: bool) ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="inheritCullMode", objc_name="inheritCullMode")
+    IndirectCommandBufferDescriptor_inheritCullMode :: proc(self: ^IndirectCommandBufferDescriptor) -> bool ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setInheritCullMode:", objc_name="setInheritCullMode")
+    IndirectCommandBufferDescriptor_setInheritCullMode :: proc(self: ^IndirectCommandBufferDescriptor, inheritCullMode: bool) ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="inheritFrontFacingWinding", objc_name="inheritFrontFacingWinding")
+    IndirectCommandBufferDescriptor_inheritFrontFacingWinding :: proc(self: ^IndirectCommandBufferDescriptor) -> bool ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setInheritFrontFacingWinding:", objc_name="setInheritFrontFacingWinding")
+    IndirectCommandBufferDescriptor_setInheritFrontFacingWinding :: proc(self: ^IndirectCommandBufferDescriptor, inheritFrontFacingWinding: bool) ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="inheritTriangleFillMode", objc_name="inheritTriangleFillMode")
+    IndirectCommandBufferDescriptor_inheritTriangleFillMode :: proc(self: ^IndirectCommandBufferDescriptor) -> bool ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setInheritTriangleFillMode:", objc_name="setInheritTriangleFillMode")
+    IndirectCommandBufferDescriptor_setInheritTriangleFillMode :: proc(self: ^IndirectCommandBufferDescriptor, inheritTriangleFillMode: bool) ---
+
     @(objc_type=IndirectCommandBufferDescriptor, objc_selector="maxVertexBufferBindCount", objc_name="maxVertexBufferBindCount")
     IndirectCommandBufferDescriptor_maxVertexBufferBindCount :: proc(self: ^IndirectCommandBufferDescriptor) -> NS.UInteger ---
 
@@ -94,4 +130,10 @@ foreign lib {
 
     @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setSupportDynamicAttributeStride:", objc_name="setSupportDynamicAttributeStride")
     IndirectCommandBufferDescriptor_setSupportDynamicAttributeStride :: proc(self: ^IndirectCommandBufferDescriptor, supportDynamicAttributeStride: bool) ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="supportColorAttachmentMapping", objc_name="supportColorAttachmentMapping")
+    IndirectCommandBufferDescriptor_supportColorAttachmentMapping :: proc(self: ^IndirectCommandBufferDescriptor) -> bool ---
+
+    @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setSupportColorAttachmentMapping:", objc_name="setSupportColorAttachmentMapping")
+    IndirectCommandBufferDescriptor_setSupportColorAttachmentMapping :: proc(self: ^IndirectCommandBufferDescriptor, supportColorAttachmentMapping: bool) ---
 }

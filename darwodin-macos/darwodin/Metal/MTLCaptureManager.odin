@@ -33,6 +33,9 @@ foreign lib {
     @(objc_type=CaptureManager, objc_selector="newCaptureScopeWithCommandQueue:", objc_name="newCaptureScopeWithCommandQueue")
     CaptureManager_newCaptureScopeWithCommandQueue :: proc(self: ^CaptureManager, commandQueue: ^CommandQueue) -> ^CaptureScope ---
 
+    @(objc_type=CaptureManager, objc_selector="newCaptureScopeWithMTL4CommandQueue:", objc_name="newCaptureScopeWithMTL4CommandQueue")
+    CaptureManager_newCaptureScopeWithMTL4CommandQueue :: proc(self: ^CaptureManager, commandQueue: ^MTL4CommandQueue) -> ^CaptureScope ---
+
     @(objc_type=CaptureManager, objc_selector="supportsDestination:", objc_name="supportsDestination")
     CaptureManager_supportsDestination :: proc(self: ^CaptureManager, destination: CaptureDestination) -> bool ---
 

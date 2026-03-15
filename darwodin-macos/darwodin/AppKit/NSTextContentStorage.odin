@@ -46,6 +46,12 @@ foreign lib {
     @(objc_type=TextContentStorage, objc_selector="setDelegate:", objc_name="setDelegate")
     TextContentStorage_setDelegate :: proc(self: ^TextContentStorage, delegate: ^TextContentStorageDelegate) ---
 
+    @(objc_type=TextContentStorage, objc_selector="includesTextListMarkers", objc_name="includesTextListMarkers")
+    TextContentStorage_includesTextListMarkers :: proc(self: ^TextContentStorage) -> bool ---
+
+    @(objc_type=TextContentStorage, objc_selector="setIncludesTextListMarkers:", objc_name="setIncludesTextListMarkers")
+    TextContentStorage_setIncludesTextListMarkers :: proc(self: ^TextContentStorage, includesTextListMarkers: bool) ---
+
     @(objc_type=TextContentStorage, objc_selector="attributedString", objc_name="attributedString")
     TextContentStorage_attributedString :: proc(self: ^TextContentStorage) -> ^NS.AttributedString ---
 

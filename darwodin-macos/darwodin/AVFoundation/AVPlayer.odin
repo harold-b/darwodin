@@ -226,6 +226,27 @@ foreign lib {
     @(objc_type=Player, objc_selector="setVideoOutput:", objc_name="setVideoOutput")
     Player_setVideoOutput :: proc(self: ^Player, videoOutput: ^PlayerVideoOutput) ---
 
+    @(objc_type=Player, objc_selector="networkResourcePriority", objc_name="networkResourcePriority")
+    Player_networkResourcePriority :: proc(self: ^Player) -> PlayerNetworkResourcePriority ---
+
+    @(objc_type=Player, objc_selector="setNetworkResourcePriority:", objc_name="setNetworkResourcePriority")
+    Player_setNetworkResourcePriority :: proc(self: ^Player, networkResourcePriority: PlayerNetworkResourcePriority) ---
+
+    @(objc_type=Player, objc_selector="intendedSpatialAudioExperience", objc_name="intendedSpatialAudioExperience")
+    Player_intendedSpatialAudioExperience :: proc(self: ^Player) -> ^CASpatialAudioExperience ---
+
+    @(objc_type=Player, objc_selector="setIntendedSpatialAudioExperience:", objc_name="setIntendedSpatialAudioExperience")
+    Player_setIntendedSpatialAudioExperience :: proc(self: ^Player, intendedSpatialAudioExperience: ^CASpatialAudioExperience) ---
+
+    @(objc_type=Player, objc_selector="audioOutputSuppressedDueToNonMixableAudioRoute", objc_name="audioOutputSuppressedDueToNonMixableAudioRoute")
+    Player_audioOutputSuppressedDueToNonMixableAudioRoute :: proc(self: ^Player) -> bool ---
+
+    @(objc_type=Player, objc_selector="isObservationEnabled", objc_name="isObservationEnabled", objc_is_class_method=true)
+    Player_isObservationEnabled :: proc() -> bool ---
+
+    @(objc_type=Player, objc_selector="setObservationEnabled:", objc_name="setObservationEnabled", objc_is_class_method=true)
+    Player_setObservationEnabled :: proc(observationEnabled: bool) ---
+
     @(objc_type=Player, objc_selector="isClosedCaptionDisplayEnabled", objc_name="isClosedCaptionDisplayEnabled")
     Player_isClosedCaptionDisplayEnabled :: proc(self: ^Player) -> bool ---
 

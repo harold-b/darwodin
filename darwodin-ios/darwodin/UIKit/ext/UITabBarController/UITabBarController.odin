@@ -32,6 +32,7 @@ VTable :: struct {
     tabForIdentifier: proc(self: ^UI.TabBarController, identifier: ^NS.String) -> ^UI.Tab,
     initWithTabs: proc(self: ^UI.TabBarController, tabs: ^NS.Array) -> instancetype,
     setTabBarHidden_animated: proc(self: ^UI.TabBarController, hidden: bool, animated: bool),
+    setBottomAccessory_animated: proc(self: ^UI.TabBarController, bottomAccessory: ^UI.TabAccessory, animated: bool),
     setViewControllers_animated: proc(self: ^UI.TabBarController, viewControllers: ^NS.Array, animated: bool),
     delegate: proc(self: ^UI.TabBarController) -> ^UI.TabBarControllerDelegate,
     setDelegate: proc(self: ^UI.TabBarController, delegate: ^UI.TabBarControllerDelegate),
@@ -46,8 +47,13 @@ VTable :: struct {
     setSelectedTab: proc(self: ^UI.TabBarController, selectedTab: ^UI.Tab),
     tabs: proc(self: ^UI.TabBarController) -> ^NS.Array,
     setTabs_: proc(self: ^UI.TabBarController, tabs: ^NS.Array),
+    tabBarMinimizeBehavior: proc(self: ^UI.TabBarController) -> UI.TabBarMinimizeBehavior,
+    setTabBarMinimizeBehavior: proc(self: ^UI.TabBarController, tabBarMinimizeBehavior: UI.TabBarMinimizeBehavior),
     isTabBarHidden: proc(self: ^UI.TabBarController) -> bool,
     setTabBarHidden_: proc(self: ^UI.TabBarController, tabBarHidden: bool),
+    contentLayoutGuide: proc(self: ^UI.TabBarController) -> ^UI.LayoutGuide,
+    bottomAccessory: proc(self: ^UI.TabBarController) -> ^UI.TabAccessory,
+    setBottomAccessory_: proc(self: ^UI.TabBarController, bottomAccessory: ^UI.TabAccessory),
     viewControllers: proc(self: ^UI.TabBarController) -> ^NS.Array,
     setViewControllers_: proc(self: ^UI.TabBarController, viewControllers: ^NS.Array),
     selectedViewController: proc(self: ^UI.TabBarController) -> ^UI.ViewController,
@@ -106,6 +112,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTabBarHidden:animated:"), auto_cast setTabBarHidden_animated, "v@:BB") do panic("Failed to register objC method.")
+    }
+    if vt.setBottomAccessory_animated != nil {
+        setBottomAccessory_animated :: proc "c" (self: ^UI.TabBarController, _: SEL, bottomAccessory: ^UI.TabAccessory, animated: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBottomAccessory_animated(self, bottomAccessory, animated)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBottomAccessory:animated:"), auto_cast setBottomAccessory_animated, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.setViewControllers_animated != nil {
         setViewControllers_animated :: proc "c" (self: ^UI.TabBarController, _: SEL, viewControllers: ^NS.Array, animated: bool) {
@@ -247,6 +263,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTabs:"), auto_cast setTabs_, "v@:^void") do panic("Failed to register objC method.")
     }
+    if vt.tabBarMinimizeBehavior != nil {
+        tabBarMinimizeBehavior :: proc "c" (self: ^UI.TabBarController, _: SEL) -> UI.TabBarMinimizeBehavior {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).tabBarMinimizeBehavior(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabBarMinimizeBehavior"), auto_cast tabBarMinimizeBehavior, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTabBarMinimizeBehavior != nil {
+        setTabBarMinimizeBehavior :: proc "c" (self: ^UI.TabBarController, _: SEL, tabBarMinimizeBehavior: UI.TabBarMinimizeBehavior) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setTabBarMinimizeBehavior(self, tabBarMinimizeBehavior)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTabBarMinimizeBehavior:"), auto_cast setTabBarMinimizeBehavior, "v@:l") do panic("Failed to register objC method.")
+    }
     if vt.isTabBarHidden != nil {
         isTabBarHidden :: proc "c" (self: ^UI.TabBarController, _: SEL) -> bool {
 
@@ -266,6 +302,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTabBarHidden:"), auto_cast setTabBarHidden_, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.contentLayoutGuide != nil {
+        contentLayoutGuide :: proc "c" (self: ^UI.TabBarController, _: SEL) -> ^UI.LayoutGuide {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).contentLayoutGuide(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentLayoutGuide"), auto_cast contentLayoutGuide, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.bottomAccessory != nil {
+        bottomAccessory :: proc "c" (self: ^UI.TabBarController, _: SEL) -> ^UI.TabAccessory {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).bottomAccessory(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("bottomAccessory"), auto_cast bottomAccessory, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBottomAccessory_ != nil {
+        setBottomAccessory_ :: proc "c" (self: ^UI.TabBarController, _: SEL, bottomAccessory: ^UI.TabAccessory) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBottomAccessory_(self, bottomAccessory)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBottomAccessory:"), auto_cast setBottomAccessory_, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.viewControllers != nil {
         viewControllers :: proc "c" (self: ^UI.TabBarController, _: SEL) -> ^NS.Array {

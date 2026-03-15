@@ -130,4 +130,10 @@ foreign lib {
 
     @(objc_type=TextInputTraitsProtocol, objc_selector="setConversationContext:", objc_name="setConversationContext")
     TextInputTraitsProtocol_setConversationContext :: proc(self: ^TextInputTraitsProtocol, conversationContext: ^ConversationContext) ---
+
+    @(objc_type=TextInputTraitsProtocol, objc_selector="allowsNumberPadPopover", objc_name="allowsNumberPadPopover")
+    TextInputTraitsProtocol_allowsNumberPadPopover :: proc(self: ^TextInputTraitsProtocol) -> bool ---
+
+    @(objc_type=TextInputTraitsProtocol, objc_selector="setAllowsNumberPadPopover:", objc_name="setAllowsNumberPadPopover")
+    TextInputTraitsProtocol_setAllowsNumberPadPopover :: proc(self: ^TextInputTraitsProtocol, allowsNumberPadPopover: bool) ---
 }

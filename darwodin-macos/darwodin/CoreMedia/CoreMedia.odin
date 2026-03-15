@@ -404,9 +404,32 @@ foreign lib {
     @(link_name="kCMFormatDescriptionProjectionKind_Rectilinear") kFormatDescriptionProjectionKind_Rectilinear: CF.StringRef
     @(link_name="kCMFormatDescriptionProjectionKind_Equirectangular") kFormatDescriptionProjectionKind_Equirectangular: CF.StringRef
     @(link_name="kCMFormatDescriptionProjectionKind_HalfEquirectangular") kFormatDescriptionProjectionKind_HalfEquirectangular: CF.StringRef
+    @(link_name="kCMFormatDescriptionProjectionKind_ParametricImmersive") kFormatDescriptionProjectionKind_ParametricImmersive: CF.StringRef
+    @(link_name="kCMFormatDescriptionProjectionKind_AppleImmersiveVideo") kFormatDescriptionProjectionKind_AppleImmersiveVideo: CF.StringRef
     @(link_name="kCMFormatDescriptionExtension_ViewPackingKind") kFormatDescriptionExtension_ViewPackingKind: CF.StringRef
     @(link_name="kCMFormatDescriptionViewPackingKind_SideBySide") kFormatDescriptionViewPackingKind_SideBySide: CF.StringRef
     @(link_name="kCMFormatDescriptionViewPackingKind_OverUnder") kFormatDescriptionViewPackingKind_OverUnder: CF.StringRef
+    @(link_name="kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection") kFormatDescriptionExtension_CameraCalibrationDataLensCollection: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensAlgorithmKind") kFormatDescriptionCameraCalibration_LensAlgorithmKind: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens") kFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensDomain") kFormatDescriptionCameraCalibration_LensDomain: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensDomain_Color") kFormatDescriptionCameraCalibrationLensDomain_Color: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensIdentifier") kFormatDescriptionCameraCalibration_LensIdentifier: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensRole") kFormatDescriptionCameraCalibration_LensRole: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensRole_Mono") kFormatDescriptionCameraCalibrationLensRole_Mono: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensRole_Left") kFormatDescriptionCameraCalibrationLensRole_Left: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensRole_Right") kFormatDescriptionCameraCalibrationLensRole_Right: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensDistortions") kFormatDescriptionCameraCalibration_LensDistortions: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX") kFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY") kFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_RadialAngleLimit") kFormatDescriptionCameraCalibration_RadialAngleLimit: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_IntrinsicMatrix") kFormatDescriptionCameraCalibration_IntrinsicMatrix: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset") kFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions") kFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_ExtrinsicOriginSource") kFormatDescriptionCameraCalibration_ExtrinsicOriginSource: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline") kFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline: CF.StringRef
+    @(link_name="kCMFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion") kFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion: CF.StringRef
+    @(link_name="kCMFormatDescriptionExtension_ConvertedFromExternalSphericalTags") kFormatDescriptionExtension_ConvertedFromExternalSphericalTags: CF.StringRef
     @(link_name="kCMTextFormatDescriptionExtension_DisplayFlags") kTextFormatDescriptionExtension_DisplayFlags: CF.StringRef
     @(link_name="kCMTextFormatDescriptionExtension_BackgroundColor") kTextFormatDescriptionExtension_BackgroundColor: CF.StringRef
     @(link_name="kCMTextFormatDescriptionColor_Red") kTextFormatDescriptionColor_Red: CF.StringRef
@@ -539,6 +562,7 @@ foreign lib {
     @(link_name="kCMTagProjectionTypeEquirectangular") kTagProjectionTypeEquirectangular: Tag
     @(link_name="kCMTagProjectionTypeHalfEquirectangular") kTagProjectionTypeHalfEquirectangular: Tag
     @(link_name="kCMTagProjectionTypeFisheye") kTagProjectionTypeFisheye: Tag
+    @(link_name="kCMTagProjectionTypeParametricImmersive") kTagProjectionTypeParametricImmersive: Tag
     @(link_name="kCMTagPackingTypeNone") kTagPackingTypeNone: Tag
     @(link_name="kCMTagPackingTypeSideBySide") kTagPackingTypeSideBySide: Tag
     @(link_name="kCMTagPackingTypeOverUnder") kTagPackingTypeOverUnder: Tag
@@ -606,6 +630,11 @@ foreign lib {
     @(link_name="kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions") kMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions: CF.StringRef
     @(link_name="kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier") kMetadataIdentifier_QuickTimeMetadataSegmentIdentifier: CF.StringRef
     @(link_name="kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance") kMetadataIdentifier_QuickTimeMetadataSceneIlluminance: CF.StringRef
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataSpatialAudioMix") kMetadataIdentifier_QuickTimeMetadataSpatialAudioMix: CF.StringRef
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono") kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono: CF.StringRef
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft") kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft: CF.StringRef
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight") kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight: CF.StringRef
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia") kMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: CF.StringRef
     @(link_name="kCMMetadataBaseDataType_RawData") kMetadataBaseDataType_RawData: CF.StringRef
     @(link_name="kCMMetadataBaseDataType_UTF8") kMetadataBaseDataType_UTF8: CF.StringRef
     @(link_name="kCMMetadataBaseDataType_UTF16") kMetadataBaseDataType_UTF16: CF.StringRef
@@ -631,6 +660,8 @@ foreign lib {
     @(link_name="kCMMetadataBaseDataType_PolylineF32") kMetadataBaseDataType_PolylineF32: CF.StringRef
     @(link_name="kCMMetadataBaseDataType_JSON") kMetadataBaseDataType_JSON: CF.StringRef
     @(link_name="kCMMetadataBaseDataType_PerspectiveTransformF64") kMetadataBaseDataType_PerspectiveTransformF64: CF.StringRef
+    @(link_name="kCMMetadataBaseDataType_RasterRectangleValue") kMetadataBaseDataType_RasterRectangleValue: CF.StringRef
+    @(link_name="kCMMetadataBaseDataType_ExtendedRasterRectangleValue") kMetadataBaseDataType_ExtendedRasterRectangleValue: CF.StringRef
     @(link_name="kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709") kMetadataDataType_QuickTimeMetadataLocation_ISO6709: CF.StringRef
     @(link_name="kCMMetadataDataType_QuickTimeMetadataDirection") kMetadataDataType_QuickTimeMetadataDirection: CF.StringRef
     @(link_name="kCMMetadataDataType_QuickTimeMetadataUUID") kMetadataDataType_QuickTimeMetadataUUID: CF.StringRef
@@ -1629,6 +1660,9 @@ foreign lib {
     @(link_name="CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup")
     TaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup :: proc(allocator: CF.AllocatorRef, taggedBufferGroup: TaggedBufferGroupRef, formatDescriptionOut: ^TaggedBufferGroupFormatDescriptionRef) -> CF.OSStatus ---
 
+    @(link_name="CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions")
+    TaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions :: proc(allocator: CF.AllocatorRef, taggedBufferGroup: TaggedBufferGroupRef, extensions: CF.DictionaryRef, formatDescriptionOut: ^TaggedBufferGroupFormatDescriptionRef) -> CF.OSStatus ---
+
     @(link_name="CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup")
     TaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup :: proc(desc: TaggedBufferGroupFormatDescriptionRef, taggedBufferGroup: TaggedBufferGroupRef) -> CF.Boolean ---
 
@@ -2354,6 +2388,7 @@ ProjectionType :: enum cffi.ulonglong {
     kCMProjectionType_Equirectangular = 1701934441,
     kCMProjectionType_HalfEquirectangular = 1751478645,
     kCMProjectionType_Fisheye        = 1718186856,
+    kCMProjectionType_ParametricImmersive = 1886546285,
 }
 
 /// CMPackingType

@@ -73,6 +73,7 @@ VTable :: struct {
     isActive: proc(self: ^AK.Application) -> bool,
     isHidden: proc(self: ^AK.Application) -> bool,
     isRunning: proc(self: ^AK.Application) -> bool,
+    applicationShouldSuppressHighDynamicRangeContent: proc(self: ^AK.Application) -> bool,
     modalWindow: proc(self: ^AK.Application) -> ^AK.Window,
     windows: proc(self: ^AK.Application) -> ^NS.Array,
     mainMenu: proc(self: ^AK.Application) -> ^AK.Menu,
@@ -585,6 +586,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isRunning"), auto_cast isRunning, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.applicationShouldSuppressHighDynamicRangeContent != nil {
+        applicationShouldSuppressHighDynamicRangeContent :: proc "c" (self: ^AK.Application, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).applicationShouldSuppressHighDynamicRangeContent(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("applicationShouldSuppressHighDynamicRangeContent"), auto_cast applicationShouldSuppressHighDynamicRangeContent, "B@:") do panic("Failed to register objC method.")
     }
     if vt.modalWindow != nil {
         modalWindow :: proc "c" (self: ^AK.Application, _: SEL) -> ^AK.Window {

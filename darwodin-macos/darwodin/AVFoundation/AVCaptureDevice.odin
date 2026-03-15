@@ -100,6 +100,18 @@ foreign lib {
     @(objc_type=CaptureDevice, objc_selector="setActiveVideoMaxFrameDuration:", objc_name="setActiveVideoMaxFrameDuration")
     CaptureDevice_setActiveVideoMaxFrameDuration :: proc(self: ^CaptureDevice, activeVideoMaxFrameDuration: CM.Time) ---
 
+    @(objc_type=CaptureDevice, objc_selector="isVideoFrameDurationLocked", objc_name="isVideoFrameDurationLocked")
+    CaptureDevice_isVideoFrameDurationLocked :: proc(self: ^CaptureDevice) -> bool ---
+
+    @(objc_type=CaptureDevice, objc_selector="minSupportedLockedVideoFrameDuration", objc_name="minSupportedLockedVideoFrameDuration")
+    CaptureDevice_minSupportedLockedVideoFrameDuration :: proc(self: ^CaptureDevice) -> CM.Time ---
+
+    @(objc_type=CaptureDevice, objc_selector="isFollowingExternalSyncDevice", objc_name="isFollowingExternalSyncDevice")
+    CaptureDevice_isFollowingExternalSyncDevice :: proc(self: ^CaptureDevice) -> bool ---
+
+    @(objc_type=CaptureDevice, objc_selector="minSupportedExternalSyncFrameDuration", objc_name="minSupportedExternalSyncFrameDuration")
+    CaptureDevice_minSupportedExternalSyncFrameDuration :: proc(self: ^CaptureDevice) -> CM.Time ---
+
     @(objc_type=CaptureDevice, objc_selector="isAutoVideoFrameRateEnabled", objc_name="isAutoVideoFrameRateEnabled")
     CaptureDevice_isAutoVideoFrameRateEnabled :: proc(self: ^CaptureDevice) -> bool ---
 
@@ -217,8 +229,20 @@ foreign lib {
     @(objc_type=CaptureDevice, objc_selector="isFocusModeSupported:", objc_name="isFocusModeSupported")
     CaptureDevice_isFocusModeSupported :: proc(self: ^CaptureDevice, focusMode: CaptureFocusMode) -> bool ---
 
+    @(objc_type=CaptureDevice, objc_selector="defaultRectForFocusPointOfInterest:", objc_name="defaultRectForFocusPointOfInterest")
+    CaptureDevice_defaultRectForFocusPointOfInterest :: proc(self: ^CaptureDevice, pointOfInterest: CG.Point) -> CG.Rect ---
+
     @(objc_type=CaptureDevice, objc_selector="setFocusModeLockedWithLensPosition:completionHandler:", objc_name="setFocusModeLockedWithLensPosition")
     CaptureDevice_setFocusModeLockedWithLensPosition :: proc(self: ^CaptureDevice, lensPosition: cffi.float, handler: ^Objc_Block(proc "c" (syncTime: CM.Time))) ---
+
+    @(objc_type=CaptureDevice, objc_selector="setCinematicVideoTrackingFocusWithDetectedObjectID:focusMode:", objc_name="setCinematicVideoTrackingFocusWithDetectedObjectID")
+    CaptureDevice_setCinematicVideoTrackingFocusWithDetectedObjectID :: proc(self: ^CaptureDevice, detectedObjectID: NS.Integer, focusMode: CaptureCinematicVideoFocusMode) ---
+
+    @(objc_type=CaptureDevice, objc_selector="setCinematicVideoTrackingFocusAtPoint:focusMode:", objc_name="setCinematicVideoTrackingFocusAtPoint")
+    CaptureDevice_setCinematicVideoTrackingFocusAtPoint :: proc(self: ^CaptureDevice, point: CG.Point, focusMode: CaptureCinematicVideoFocusMode) ---
+
+    @(objc_type=CaptureDevice, objc_selector="setCinematicVideoFixedFocusAtPoint:focusMode:", objc_name="setCinematicVideoFixedFocusAtPoint")
+    CaptureDevice_setCinematicVideoFixedFocusAtPoint :: proc(self: ^CaptureDevice, point: CG.Point, focusMode: CaptureCinematicVideoFocusMode) ---
 
     @(objc_type=CaptureDevice, objc_selector="isLockingFocusWithCustomLensPositionSupported", objc_name="isLockingFocusWithCustomLensPositionSupported")
     CaptureDevice_isLockingFocusWithCustomLensPositionSupported :: proc(self: ^CaptureDevice) -> bool ---
@@ -237,6 +261,18 @@ foreign lib {
 
     @(objc_type=CaptureDevice, objc_selector="setFocusPointOfInterest:", objc_name="setFocusPointOfInterest")
     CaptureDevice_setFocusPointOfInterest :: proc(self: ^CaptureDevice, focusPointOfInterest: CG.Point) ---
+
+    @(objc_type=CaptureDevice, objc_selector="isFocusRectOfInterestSupported", objc_name="isFocusRectOfInterestSupported")
+    CaptureDevice_isFocusRectOfInterestSupported :: proc(self: ^CaptureDevice) -> bool ---
+
+    @(objc_type=CaptureDevice, objc_selector="minFocusRectOfInterestSize", objc_name="minFocusRectOfInterestSize")
+    CaptureDevice_minFocusRectOfInterestSize :: proc(self: ^CaptureDevice) -> CG.Size ---
+
+    @(objc_type=CaptureDevice, objc_selector="focusRectOfInterest", objc_name="focusRectOfInterest")
+    CaptureDevice_focusRectOfInterest :: proc(self: ^CaptureDevice) -> CG.Rect ---
+
+    @(objc_type=CaptureDevice, objc_selector="setFocusRectOfInterest:", objc_name="setFocusRectOfInterest")
+    CaptureDevice_setFocusRectOfInterest :: proc(self: ^CaptureDevice, focusRectOfInterest: CG.Rect) ---
 
     @(objc_type=CaptureDevice, objc_selector="isAdjustingFocus", objc_name="isAdjustingFocus")
     CaptureDevice_isAdjustingFocus :: proc(self: ^CaptureDevice) -> bool ---
@@ -280,6 +316,9 @@ foreign lib {
     @(objc_type=CaptureDevice, objc_selector="isExposureModeSupported:", objc_name="isExposureModeSupported")
     CaptureDevice_isExposureModeSupported :: proc(self: ^CaptureDevice, exposureMode: CaptureExposureMode) -> bool ---
 
+    @(objc_type=CaptureDevice, objc_selector="defaultRectForExposurePointOfInterest:", objc_name="defaultRectForExposurePointOfInterest")
+    CaptureDevice_defaultRectForExposurePointOfInterest :: proc(self: ^CaptureDevice, pointOfInterest: CG.Point) -> CG.Rect ---
+
     @(objc_type=CaptureDevice, objc_selector="setExposureModeCustomWithDuration:ISO:completionHandler:", objc_name="setExposureModeCustomWithDuration")
     CaptureDevice_setExposureModeCustomWithDuration :: proc(self: ^CaptureDevice, duration: CM.Time, ISO: cffi.float, handler: ^Objc_Block(proc "c" (syncTime: CM.Time))) ---
 
@@ -300,6 +339,18 @@ foreign lib {
 
     @(objc_type=CaptureDevice, objc_selector="setExposurePointOfInterest:", objc_name="setExposurePointOfInterest")
     CaptureDevice_setExposurePointOfInterest :: proc(self: ^CaptureDevice, exposurePointOfInterest: CG.Point) ---
+
+    @(objc_type=CaptureDevice, objc_selector="isExposureRectOfInterestSupported", objc_name="isExposureRectOfInterestSupported")
+    CaptureDevice_isExposureRectOfInterestSupported :: proc(self: ^CaptureDevice) -> bool ---
+
+    @(objc_type=CaptureDevice, objc_selector="minExposureRectOfInterestSize", objc_name="minExposureRectOfInterestSize")
+    CaptureDevice_minExposureRectOfInterestSize :: proc(self: ^CaptureDevice) -> CG.Size ---
+
+    @(objc_type=CaptureDevice, objc_selector="exposureRectOfInterest", objc_name="exposureRectOfInterest")
+    CaptureDevice_exposureRectOfInterest :: proc(self: ^CaptureDevice) -> CG.Rect ---
+
+    @(objc_type=CaptureDevice, objc_selector="setExposureRectOfInterest:", objc_name="setExposureRectOfInterest")
+    CaptureDevice_setExposureRectOfInterest :: proc(self: ^CaptureDevice, exposureRectOfInterest: CG.Rect) ---
 
     @(objc_type=CaptureDevice, objc_selector="automaticallyAdjustsFaceDrivenAutoExposureEnabled", objc_name="automaticallyAdjustsFaceDrivenAutoExposureEnabled")
     CaptureDevice_automaticallyAdjustsFaceDrivenAutoExposureEnabled :: proc(self: ^CaptureDevice) -> bool ---
@@ -351,6 +402,9 @@ foreign lib {
 
     @(objc_type=CaptureDevice, objc_selector="isWhiteBalanceModeSupported:", objc_name="isWhiteBalanceModeSupported")
     CaptureDevice_isWhiteBalanceModeSupported :: proc(self: ^CaptureDevice, whiteBalanceMode: CaptureWhiteBalanceMode) -> bool ---
+
+    @(objc_type=CaptureDevice, objc_selector="setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues:completionHandler:", objc_name="setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues")
+    CaptureDevice_setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues :: proc(self: ^CaptureDevice, whiteBalanceTemperatureAndTintValues: CaptureWhiteBalanceTemperatureAndTintValues, handler: ^Objc_Block(proc "c" (syncTime: CM.Time))) ---
 
     @(objc_type=CaptureDevice, objc_selector="setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:", objc_name="setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains")
     CaptureDevice_setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains :: proc(self: ^CaptureDevice, whiteBalanceGains: CaptureWhiteBalanceGains, handler: ^Objc_Block(proc "c" (syncTime: CM.Time))) ---
@@ -565,9 +619,45 @@ foreign lib {
     @(objc_type=CaptureDevice, objc_selector="spatialCaptureDiscomfortReasons", objc_name="spatialCaptureDiscomfortReasons")
     CaptureDevice_spatialCaptureDiscomfortReasons :: proc(self: ^CaptureDevice) -> ^NS.Set ---
 
+    @(objc_type=CaptureDevice, objc_selector="cinematicVideoCaptureSceneMonitoringStatuses", objc_name="cinematicVideoCaptureSceneMonitoringStatuses")
+    CaptureDevice_cinematicVideoCaptureSceneMonitoringStatuses :: proc(self: ^CaptureDevice) -> ^NS.Set ---
+
+    @(objc_type=CaptureDevice, objc_selector="setDynamicAspectRatio:completionHandler:", objc_name="setDynamicAspectRatio")
+    CaptureDevice_setDynamicAspectRatio :: proc(self: ^CaptureDevice, dynamicAspectRatio: ^NS.String, handler: ^Objc_Block(proc "c" (syncTime: CM.Time, error: ^NS.Error))) ---
+
+    @(objc_type=CaptureDevice, objc_selector="dynamicAspectRatio", objc_name="dynamicAspectRatio")
+    CaptureDevice_dynamicAspectRatio :: proc(self: ^CaptureDevice) -> ^NS.String ---
+
+    @(objc_type=CaptureDevice, objc_selector="dynamicDimensions", objc_name="dynamicDimensions")
+    CaptureDevice_dynamicDimensions :: proc(self: ^CaptureDevice) -> CM.VideoDimensions ---
+
+    @(objc_type=CaptureDevice, objc_selector="smartFramingMonitor", objc_name="smartFramingMonitor")
+    CaptureDevice_smartFramingMonitor :: proc(self: ^CaptureDevice) -> ^CaptureSmartFramingMonitor ---
+
+    @(objc_type=CaptureDevice, objc_selector="nominalFocalLengthIn35mmFilm", objc_name="nominalFocalLengthIn35mmFilm")
+    CaptureDevice_nominalFocalLengthIn35mmFilm :: proc(self: ^CaptureDevice) -> cffi.float ---
+
     @(objc_type=CaptureDevice, objc_selector="isStudioLightEnabled", objc_name="isStudioLightEnabled", objc_is_class_method=true)
     CaptureDevice_isStudioLightEnabled :: proc() -> bool ---
 
     @(objc_type=CaptureDevice, objc_selector="isStudioLightActive", objc_name="isStudioLightActive")
     CaptureDevice_isStudioLightActive :: proc(self: ^CaptureDevice) -> bool ---
+
+    @(objc_type=CaptureDevice, objc_selector="isEdgeLightEnabled", objc_name="isEdgeLightEnabled", objc_is_class_method=true)
+    CaptureDevice_isEdgeLightEnabled :: proc() -> bool ---
+
+    @(objc_type=CaptureDevice, objc_selector="isEdgeLightActive", objc_name="isEdgeLightActive", objc_is_class_method=true)
+    CaptureDevice_isEdgeLightActive :: proc() -> bool ---
+
+    @(objc_type=CaptureDevice, objc_selector="setCameraLensSmudgeDetectionEnabled:detectionInterval:", objc_name="setCameraLensSmudgeDetectionEnabled")
+    CaptureDevice_setCameraLensSmudgeDetectionEnabled :: proc(self: ^CaptureDevice, cameraLensSmudgeDetectionEnabled: bool, detectionInterval: CM.Time) ---
+
+    @(objc_type=CaptureDevice, objc_selector="isCameraLensSmudgeDetectionEnabled", objc_name="isCameraLensSmudgeDetectionEnabled")
+    CaptureDevice_isCameraLensSmudgeDetectionEnabled :: proc(self: ^CaptureDevice) -> bool ---
+
+    @(objc_type=CaptureDevice, objc_selector="cameraLensSmudgeDetectionInterval", objc_name="cameraLensSmudgeDetectionInterval")
+    CaptureDevice_cameraLensSmudgeDetectionInterval :: proc(self: ^CaptureDevice) -> CM.Time ---
+
+    @(objc_type=CaptureDevice, objc_selector="cameraLensSmudgeDetectionStatus", objc_name="cameraLensSmudgeDetectionStatus")
+    CaptureDevice_cameraLensSmudgeDetectionStatus :: proc(self: ^CaptureDevice) -> CaptureCameraLensSmudgeDetectionStatus ---
 }

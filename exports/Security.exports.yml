@@ -794,6 +794,7 @@ Functions:
     ::SecCertificateCopyNormalizedIssuerContent: Sec.SecCertificateCopyNormalizedIssuerContent
     ::SecCertificateCopyNormalizedSubjectContent: Sec.SecCertificateCopyNormalizedSubjectContent
     ::SecIdentityGetTypeID: Sec.SecIdentityGetTypeID
+    ::SecIdentityCreate: Sec.SecIdentityCreate
     ::SecIdentityCreateWithCertificate: Sec.SecIdentityCreateWithCertificate
     ::SecIdentityCopyCertificate: Sec.SecIdentityCopyCertificate
     ::SecIdentityCopyPrivateKey: Sec.SecIdentityCopyPrivateKey

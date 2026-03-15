@@ -31,10 +31,13 @@ VTable :: struct {
     init: proc(self: ^UI.WindowSceneGeometry) -> instancetype,
     new: proc() -> ^UI.WindowSceneGeometry,
     systemFrame: proc(self: ^UI.WindowSceneGeometry) -> CG.Rect,
+    coordinateSpace: proc(self: ^UI.WindowSceneGeometry) -> ^UI.CoordinateSpace,
     interfaceOrientation: proc(self: ^UI.WindowSceneGeometry) -> UI.InterfaceOrientation,
+    isInterfaceOrientationLocked: proc(self: ^UI.WindowSceneGeometry) -> bool,
     minimumSize: proc(self: ^UI.WindowSceneGeometry) -> CG.Size,
     maximumSize: proc(self: ^UI.WindowSceneGeometry) -> CG.Size,
     resizingRestrictions: proc(self: ^UI.WindowSceneGeometry) -> UI.WindowSceneResizingRestrictions,
+    isInteractivelyResizing: proc(self: ^UI.WindowSceneGeometry) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -74,6 +77,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("systemFrame"), auto_cast systemFrame, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
+    if vt.coordinateSpace != nil {
+        coordinateSpace :: proc "c" (self: ^UI.WindowSceneGeometry, _: SEL) -> ^UI.CoordinateSpace {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).coordinateSpace(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("coordinateSpace"), auto_cast coordinateSpace, "@@:") do panic("Failed to register objC method.")
+    }
     if vt.interfaceOrientation != nil {
         interfaceOrientation :: proc "c" (self: ^UI.WindowSceneGeometry, _: SEL) -> UI.InterfaceOrientation {
 
@@ -83,6 +96,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("interfaceOrientation"), auto_cast interfaceOrientation, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.isInterfaceOrientationLocked != nil {
+        isInterfaceOrientationLocked :: proc "c" (self: ^UI.WindowSceneGeometry, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isInterfaceOrientationLocked(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isInterfaceOrientationLocked"), auto_cast isInterfaceOrientationLocked, "B@:") do panic("Failed to register objC method.")
     }
     if vt.minimumSize != nil {
         minimumSize :: proc "c" (self: ^UI.WindowSceneGeometry, _: SEL) -> CG.Size {
@@ -113,6 +136,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("resizingRestrictions"), auto_cast resizingRestrictions, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.isInteractivelyResizing != nil {
+        isInteractivelyResizing :: proc "c" (self: ^UI.WindowSceneGeometry, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isInteractivelyResizing(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isInteractivelyResizing"), auto_cast isInteractivelyResizing, "B@:") do panic("Failed to register objC method.")
     }
 }
 

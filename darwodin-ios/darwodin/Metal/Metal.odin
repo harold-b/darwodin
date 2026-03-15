@@ -30,6 +30,7 @@ BufferLayoutStrideDynamic :: 18446744073709551615
 AttributeStrideStatic     :: 18446744073709551615
 
 foreign lib {
+    @(link_name="MTLTensorDomain") TensorDomain: ^NS.String
     @(link_name="MTLLibraryErrorDomain") LibraryErrorDomain: ^NS.String
     @(link_name="MTLCommonCounterTimestamp") CommonCounterTimestamp: ^NS.String
     @(link_name="MTLCommonCounterTessellationInputPatches") CommonCounterTessellationInputPatches: ^NS.String
@@ -52,6 +53,7 @@ foreign lib {
     @(link_name="MTLCounterErrorDomain") CounterErrorDomain: ^NS.String
     @(link_name="MTLCommandBufferErrorDomain") CommandBufferErrorDomain: ^NS.String
     @(link_name="MTLCommandBufferEncoderInfoErrorKey") CommandBufferEncoderInfoErrorKey: ^NS.String
+    @(link_name="MTL4CommandQueueErrorDomain") 4CommandQueueErrorDomain: ^NS.String
     @(link_name="MTLCaptureErrorDomain") CaptureErrorDomain: ^NS.String
     @(link_name="MTLDynamicLibraryDomain") DynamicLibraryDomain: ^NS.String
     @(link_name="MTLLogStateErrorDomain") LogStateErrorDomain: ^NS.String
@@ -84,17 +86,11 @@ foreign lib {
 /// MTLCoordinate2D
 Coordinate2D :: distinct SamplePosition
 
+/// MTLGPUAddress
+GPUAddress :: distinct cffi.uint64_t
+
 /// MTLArgumentAccess
 ArgumentAccess :: distinct BindingAccess
-
-/// MTLAutoreleasedArgument
-AutoreleasedArgument :: distinct ^Argument
-
-/// MTLCommonCounter
-CommonCounter :: distinct ^NS.String
-
-/// MTLCommonCounterSet
-CommonCounterSet :: distinct ^NS.String
 
 /// MTLAutoreleasedRenderPipelineReflection
 AutoreleasedRenderPipelineReflection :: distinct ^RenderPipelineReflection
@@ -117,6 +113,24 @@ NewComputePipelineStateCompletionHandler :: ^Objc_Block(proc "c" (computePipelin
 /// MTLNewComputePipelineStateWithReflectionCompletionHandler
 NewComputePipelineStateWithReflectionCompletionHandler :: ^Objc_Block(proc "c" (computePipelineState: ^ComputePipelineState, reflection: ^ComputePipelineReflection, error: ^NS.Error))
 
+/// MTLNewDynamicLibraryCompletionHandler
+NewDynamicLibraryCompletionHandler :: ^Objc_Block(proc "c" (library: ^DynamicLibraryProtocol, error: ^NS.Error))
+
+/// MTLAutoreleasedArgument
+AutoreleasedArgument :: distinct ^Argument
+
+/// MTLCommonCounter
+CommonCounter :: distinct ^NS.String
+
+/// MTLCommonCounterSet
+CommonCounterSet :: distinct ^NS.String
+
+/// MTL4NewBinaryFunctionCompletionHandler
+MTL4NewBinaryFunctionCompletionHandler :: ^Objc_Block(proc "c" (function: ^MTL4BinaryFunctionProtocol, error: ^NS.Error))
+
+/// MTL4NewMachineLearningPipelineStateCompletionHandler
+MTL4NewMachineLearningPipelineStateCompletionHandler :: ^Objc_Block(proc "c" (mlPipelineState: ^MTL4MachineLearningPipelineState, error: ^NS.Error))
+
 /// MTLTimestamp
 Timestamp :: distinct cffi.uint64_t
 
@@ -138,6 +152,9 @@ AxisAlignedBoundingBox :: distinct _MTLAxisAlignedBoundingBox
 /// MTLSharedEventNotificationBlock
 SharedEventNotificationBlock :: ^Objc_Block(proc "c" (_: ^SharedEvent, value: cffi.uint64_t))
 
+/// MTL4CommitFeedbackHandler
+MTL4CommitFeedbackHandler :: ^Objc_Block(proc "c" (commitFeedback: ^MTL4CommitFeedback))
+
 /// MTLIOCommandBufferHandler
 IOCommandBufferHandler :: ^Objc_Block(proc "c" (_: ^IOCommandBuffer))
 
@@ -156,6 +173,21 @@ BarrierScope :: enum cffi.ulong {
     Buffers       = 1,
     Textures      = 2,
     RenderTargets = 4,
+}
+
+/// MTLStages
+Stages :: enum cffi.ulong {
+    StageVertex                = 1,
+    StageFragment              = 2,
+    StageTile                  = 4,
+    StageObject                = 8,
+    StageMesh                  = 16,
+    StageResourceState         = 67108864,
+    StageDispatch              = 134217728,
+    StageBlit                  = 268435456,
+    StageAccelerationStructure = 536870912,
+    StageMachineLearning       = 1073741824,
+    StageAll                   = 9223372036854775807,
 }
 
 /// MTLPurgeableState
@@ -199,6 +231,26 @@ ResourceOption :: enum cffi.ulong {
 ResourceOptions :: bit_set[ResourceOption; cffi.ulong]
 
 ResourceOptions_StorageModeMemoryless :: ResourceOptions { .StorageModeManaged, .StorageModePrivate, }
+
+/// MTLSparsePageSize
+SparsePageSize :: enum cffi.long {
+    _16  = 101,
+    _64  = 102,
+    _256 = 103,
+}
+
+/// MTLBufferSparseTier
+BufferSparseTier :: enum cffi.long {
+    None = 0,
+    _1   = 1,
+}
+
+/// MTLTextureSparseTier
+TextureSparseTier :: enum cffi.long {
+    None = 0,
+    _1   = 1,
+    _2   = 2,
+}
 
 /// MTLPixelFormat
 PixelFormat :: enum cffi.ulong {
@@ -341,46 +393,7 @@ PixelFormat :: enum cffi.ulong {
     Depth32Float_Stencil8 = 260,
     X32_Stencil8          = 261,
     X24_Stencil8          = 262,
-}
-
-/// MTLTextureType
-TextureType :: enum cffi.ulong {
-    _1D                 = 0,
-    _1DArray            = 1,
-    _2D                 = 2,
-    _2DArray            = 3,
-    _2DMultisample      = 4,
-    Cube                = 5,
-    CubeArray           = 6,
-    _3D                 = 7,
-    _2DMultisampleArray = 8,
-    TextureBuffer       = 9,
-}
-
-/// MTLTextureSwizzle
-TextureSwizzle :: enum cffi.uchar {
-    Zero  = 0,
-    One   = 1,
-    Red   = 2,
-    Green = 3,
-    Blue  = 4,
-    Alpha = 5,
-}
-
-/// MTLTextureUsage
-TextureUsage :: enum cffi.ulong {
-    Unknown         = 0,
-    ShaderRead      = 1,
-    ShaderWrite     = 2,
-    RenderTarget    = 4,
-    PixelFormatView = 16,
-    ShaderAtomic    = 32,
-}
-
-/// MTLTextureCompressionType
-TextureCompressionType :: enum cffi.long {
-    Lossless = 0,
-    Lossy    = 1,
+    Unspecialized         = 263,
 }
 
 /// MTLDataType
@@ -480,6 +493,82 @@ DataType :: enum cffi.ulong {
     BFloat2                        = 122,
     BFloat3                        = 123,
     BFloat4                        = 124,
+    DepthStencilState              = 139,
+    Tensor                         = 140,
+}
+
+/// MTLTensorDataType
+TensorDataType :: enum cffi.long {
+    None     = 0,
+    Float32  = 3,
+    Float16  = 16,
+    BFloat16 = 121,
+    Int8     = 45,
+    UInt8    = 49,
+    Int16    = 37,
+    UInt16   = 41,
+    Int32    = 29,
+    UInt32   = 33,
+}
+
+/// MTLTensorError
+TensorError :: enum cffi.long {
+    None              = 0,
+    InternalError     = 1,
+    InvalidDescriptor = 2,
+}
+
+/// MTLTensorUsage
+TensorUsage :: enum cffi.ulong {
+    Compute         = 1,
+    Render          = 2,
+    MachineLearning = 4,
+}
+
+/// MTLTextureType
+TextureType :: enum cffi.ulong {
+    _1D                 = 0,
+    _1DArray            = 1,
+    _2D                 = 2,
+    _2DArray            = 3,
+    _2DMultisample      = 4,
+    Cube                = 5,
+    CubeArray           = 6,
+    _3D                 = 7,
+    _2DMultisampleArray = 8,
+    TextureBuffer       = 9,
+}
+
+/// MTLTextureSwizzle
+TextureSwizzle :: enum cffi.uchar {
+    Zero  = 0,
+    One   = 1,
+    Red   = 2,
+    Green = 3,
+    Blue  = 4,
+    Alpha = 5,
+}
+
+/// MTLTextureUsage
+TextureUsage :: enum cffi.ulong {
+    Unknown         = 0,
+    ShaderRead      = 1,
+    ShaderWrite     = 2,
+    RenderTarget    = 4,
+    PixelFormatView = 16,
+    ShaderAtomic    = 32,
+}
+
+/// MTLTextureCompressionType
+TextureCompressionType :: enum cffi.long {
+    Lossless = 0,
+    Lossy    = 1,
+}
+
+/// MTLIndexType
+IndexType :: enum cffi.ulong {
+    UInt16 = 0,
+    UInt32 = 1,
 }
 
 /// MTLBindingType
@@ -495,6 +584,7 @@ BindingType :: enum cffi.long {
     InstanceAccelerationStructure  = 26,
     IntersectionFunctionTable      = 27,
     ObjectPayload                  = 34,
+    Tensor                         = 37,
 }
 
 /// MTLArgumentType
@@ -527,6 +617,7 @@ FunctionOption :: enum cffi.ulong {
     StoreFunctionInMetalPipelinesScript = 1,
     StoreFunctionInMetalScript       = 1,
     FailOnBinaryArchiveMiss          = 2,
+    PipelineIndependent              = 3,
 }
 FunctionOptions :: bit_set[FunctionOption; cffi.ulong]
 
@@ -561,6 +652,7 @@ LanguageVersion :: enum cffi.ulong {
     _3_0 = 196608,
     _3_1 = 196609,
     _3_2 = 196610,
+    _4_0 = 262144,
 }
 
 /// MTLLibraryType
@@ -611,6 +703,26 @@ CounterSampleBufferError :: enum cffi.long {
     Internal    = 2,
 }
 
+/// MTL4CompilerTaskStatus
+MTL4CompilerTaskStatus :: enum cffi.long {
+    None      = 0,
+    Scheduled = 1,
+    Compiling = 2,
+    Finished  = 3,
+}
+
+/// MTL4CounterHeapType
+MTL4CounterHeapType :: enum cffi.long {
+    Invalid   = 0,
+    Timestamp = 1,
+}
+
+/// MTL4TimestampGranularity
+MTL4TimestampGranularity :: enum cffi.long {
+    Relaxed = 0,
+    Precise = 1,
+}
+
 /// MTLIOCompressionMethod
 IOCompressionMethod :: enum cffi.long {
     Zlib     = 0,
@@ -652,7 +764,9 @@ FeatureSet :: enum cffi.ulong {
     TVOS_GPUFamily1_v1          = 30000,
     tvOS_GPUFamily1_v2          = 30001,
     tvOS_GPUFamily1_v3          = 30002,
+    tvOS_GPUFamily2_v1          = 30003,
     tvOS_GPUFamily1_v4          = 30004,
+    tvOS_GPUFamily2_v2          = 30005,
 }
 
 /// MTLGPUFamily
@@ -666,6 +780,7 @@ GPUFamily :: enum cffi.long {
     Apple7       = 1007,
     Apple8       = 1008,
     Apple9       = 1009,
+    Apple10      = 1010,
     Mac1         = 2001,
     Mac2         = 2002,
     Common1      = 3001,
@@ -674,6 +789,7 @@ GPUFamily :: enum cffi.long {
     MacCatalyst1 = 4001,
     MacCatalyst2 = 4002,
     Metal3       = 5001,
+    Metal4       = 5002,
 }
 
 /// MTLPipelineOption
@@ -702,13 +818,6 @@ ArgumentBuffersTier :: enum cffi.ulong {
 SparseTextureRegionAlignmentMode :: enum cffi.ulong {
     Outward = 0,
     Inward  = 1,
-}
-
-/// MTLSparsePageSize
-SparsePageSize :: enum cffi.long {
-    _16  = 101,
-    _64  = 102,
-    _256 = 103,
 }
 
 /// MTLCounterSamplingPoint
@@ -748,6 +857,12 @@ StoreActionOption :: enum cffi.ulong {
     CustomSamplePositions = 0,
 }
 StoreActionOptions :: bit_set[StoreActionOption; cffi.ulong]
+
+/// MTLVisibilityResultType
+VisibilityResultType :: enum cffi.long {
+    Reset      = 0,
+    Accumulate = 1,
+}
 
 /// MTLMultisampleDepthResolveFilter
 MultisampleDepthResolveFilter :: enum cffi.ulong {
@@ -966,12 +1081,6 @@ AttributeFormat :: enum cffi.ulong {
     FloatRGB9E5           = 55,
 }
 
-/// MTLIndexType
-IndexType :: enum cffi.ulong {
-    UInt16 = 0,
-    UInt32 = 1,
-}
-
 /// MTLStepFunction
 StepFunction :: enum cffi.ulong {
     Constant                     = 0,
@@ -1071,6 +1180,7 @@ BlendFactor :: enum cffi.ulong {
     OneMinusSource1Color     = 16,
     Source1Alpha             = 17,
     OneMinusSource1Alpha     = 18,
+    Unspecialized            = 19,
 }
 
 /// MTLBlendOperation
@@ -1080,14 +1190,16 @@ BlendOperation :: enum cffi.ulong {
     ReverseSubtract = 2,
     Min             = 3,
     Max             = 4,
+    Unspecialized   = 5,
 }
 
 /// MTLColorWriteMask
 ColorWriteMask :: enum cffi.ulong {
-    Red   = 3,
-    Green = 2,
-    Blue  = 1,
-    Alpha = 0,
+    Red           = 3,
+    Green         = 2,
+    Blue          = 1,
+    Alpha         = 0,
+    Unspecialized = 4,
 }
 ColorWriteMasks :: bit_set[ColorWriteMask; cffi.ulong]
 
@@ -1159,12 +1271,28 @@ SamplerBorderColor :: enum cffi.ulong {
     OpaqueWhite      = 2,
 }
 
+/// MTLSamplerReductionMode
+SamplerReductionMode :: enum cffi.ulong {
+    WeightedAverage = 0,
+    Minimum         = 1,
+    Maximum         = 2,
+}
+
+/// MTLAccelerationStructureRefitOptions
+AccelerationStructureRefitOption :: enum cffi.ulong {
+    VertexData       = 0,
+    PerPrimitiveData = 1,
+}
+AccelerationStructureRefitOptions :: bit_set[AccelerationStructureRefitOption; cffi.ulong]
+
 /// MTLAccelerationStructureUsage
 AccelerationStructureUsage :: enum cffi.ulong {
-    None            = 0,
-    Refit           = 1,
-    PreferFastBuild = 2,
-    ExtendedLimits  = 4,
+    None                   = 0,
+    Refit                  = 1,
+    PreferFastBuild        = 2,
+    ExtendedLimits         = 4,
+    PreferFastIntersection = 16,
+    MinimizeMemory         = 32,
 }
 
 /// MTLAccelerationStructureInstanceOptions
@@ -1231,6 +1359,31 @@ HeapType :: enum cffi.long {
     Sparse    = 2,
 }
 
+/// MTL4VisibilityOptions
+MTL4VisibilityOption :: enum cffi.ulong {
+    Device        = 0,
+    ResourceAlias = 1,
+}
+MTL4VisibilityOptions :: bit_set[MTL4VisibilityOption; cffi.ulong]
+
+/// MTL4RenderEncoderOptions
+MTL4RenderEncoderOption :: enum cffi.ulong {
+    Suspending = 0,
+    Resuming   = 1,
+}
+MTL4RenderEncoderOptions :: bit_set[MTL4RenderEncoderOption; cffi.ulong]
+
+/// MTL4CommandQueueError
+MTL4CommandQueueError :: enum cffi.long {
+    None          = 0,
+    Timeout       = 1,
+    NotPermitted  = 2,
+    OutOfMemory   = 3,
+    DeviceRemoved = 4,
+    AccessRevoked = 5,
+    Internal      = 6,
+}
+
 /// MTLCaptureError
 CaptureError :: enum cffi.long {
     NotSupported      = 1,
@@ -1260,13 +1413,6 @@ IndirectCommandType :: enum cffi.ulong {
 FunctionLogType :: enum cffi.ulong {
     Validation = 0,
 }
-
-/// MTLAccelerationStructureRefitOptions
-AccelerationStructureRefitOption :: enum cffi.ulong {
-    VertexData       = 0,
-    PerPrimitiveData = 1,
-}
-AccelerationStructureRefitOptions :: bit_set[AccelerationStructureRefitOption; cffi.ulong]
 
 /// MTLDynamicLibraryError
 DynamicLibraryError :: enum cffi.ulong {
@@ -1305,15 +1451,17 @@ BinaryArchiveError :: enum cffi.ulong {
 
 /// MTLIntersectionFunctionSignature
 IntersectionFunctionSignature :: enum cffi.ulong {
-    None            = 0,
-    Instancing      = 1,
-    TriangleData    = 2,
-    WorldSpaceData  = 4,
-    InstanceMotion  = 8,
-    PrimitiveMotion = 16,
-    ExtendedLimits  = 32,
-    MaxLevels       = 64,
-    CurveData       = 128,
+    None                       = 0,
+    Instancing                 = 1,
+    TriangleData               = 2,
+    WorldSpaceData             = 4,
+    InstanceMotion             = 8,
+    PrimitiveMotion            = 16,
+    ExtendedLimits             = 32,
+    MaxLevels                  = 64,
+    CurveData                  = 128,
+    IntersectionFunctionBuffer = 256,
+    UserData                   = 512,
 }
 
 /// MTLStitchedLibraryOptions
@@ -1355,6 +1503,56 @@ IOCompressionStatus :: enum cffi.long {
     Complete = 0,
     Error    = 1,
 }
+
+/// MTL4ShaderReflection
+MTL4ShaderReflection :: enum cffi.ulong {
+    None           = 0,
+    BindingInfo    = 1,
+    BufferTypeInfo = 2,
+}
+
+/// MTL4AlphaToOneState
+MTL4AlphaToOneState :: enum cffi.long {
+    Disabled = 0,
+    Enabled  = 1,
+}
+
+/// MTL4AlphaToCoverageState
+MTL4AlphaToCoverageState :: enum cffi.long {
+    Disabled = 0,
+    Enabled  = 1,
+}
+
+/// MTL4BlendState
+MTL4BlendState :: enum cffi.long {
+    Disabled      = 0,
+    Enabled       = 1,
+    Unspecialized = 2,
+}
+
+/// MTL4IndirectCommandBufferSupportState
+MTL4IndirectCommandBufferSupportState :: enum cffi.long {
+    Disabled = 0,
+    Enabled  = 1,
+}
+
+/// MTL4LogicalToPhysicalColorAttachmentMappingState
+MTL4LogicalToPhysicalColorAttachmentMappingState :: enum cffi.long {
+    Identity  = 0,
+    Inherited = 1,
+}
+
+/// MTL4PipelineDataSetSerializerConfiguration
+MTL4PipelineDataSetSerializerConfiguration :: enum cffi.ulong {
+    CaptureDescriptors = 1,
+    CaptureBinaries    = 2,
+}
+
+/// MTL4BinaryFunctionOptions
+MTL4BinaryFunctionOption :: enum cffi.ulong {
+    PipelineIndependent = 1,
+}
+MTL4BinaryFunctionOptions :: bit_set[MTL4BinaryFunctionOption; cffi.ulong]
 
 /// MTLOrigin
 Origin :: struct #align (8) {
@@ -1431,6 +1629,12 @@ CounterResultStatistic :: struct #align (8) {
 }
 #assert(size_of(CounterResultStatistic) == 64)
 
+/// MTL4TimestampHeapEntry
+MTL4TimestampHeapEntry :: struct #align (8) {
+    timestamp: cffi.uint64_t,
+}
+#assert(size_of(MTL4TimestampHeapEntry) == 8)
+
 /// MTLAccelerationStructureSizes
 AccelerationStructureSizes :: struct #align (8) {
     accelerationStructureSize: NS.UInteger,
@@ -1473,6 +1677,13 @@ DispatchThreadgroupsIndirectArguments :: struct #align (4) {
     threadgroupsPerGrid: [3]cffi.uint32_t,
 }
 #assert(size_of(DispatchThreadgroupsIndirectArguments) == 12)
+
+/// MTLDispatchThreadsIndirectArguments
+DispatchThreadsIndirectArguments :: struct #align (4) {
+    threadsPerGrid:        [3]cffi.uint32_t,
+    threadsPerThreadgroup: [3]cffi.uint32_t,
+}
+#assert(size_of(DispatchThreadsIndirectArguments) == 24)
 
 /// MTLStageInRegionIndirectArguments
 StageInRegionIndirectArguments :: struct #align (4) {
@@ -1549,6 +1760,13 @@ TriangleTessellationFactorsHalf :: struct #align (2) {
     insideTessellationFactor: cffi.uint16_t,
 }
 #assert(size_of(TriangleTessellationFactorsHalf) == 8)
+
+/// MTL4BufferRange
+MTL4BufferRange :: struct #align (8) {
+    bufferAddress: GPUAddress,
+    length:        cffi.uint64_t,
+}
+#assert(size_of(MTL4BufferRange) == 16)
 
 /// _MTLPackedFloat3
 _MTLPackedFloat3 :: struct #align (4) {
@@ -1659,10 +1877,54 @@ IndirectAccelerationStructureMotionInstanceDescriptor :: struct #align (8) {
 }
 #assert(size_of(IndirectAccelerationStructureMotionInstanceDescriptor) == 48)
 
+/// MTL4UpdateSparseTextureMappingOperation
+MTL4UpdateSparseTextureMappingOperation :: struct #align (8) {
+    mode:          SparseTextureMappingMode,
+    textureRegion: Region,
+    textureLevel:  NS.UInteger,
+    textureSlice:  NS.UInteger,
+    heapOffset:    NS.UInteger,
+}
+#assert(size_of(MTL4UpdateSparseTextureMappingOperation) == 80)
+
+/// MTL4CopySparseTextureMappingOperation
+MTL4CopySparseTextureMappingOperation :: struct #align (8) {
+    sourceRegion:      Region,
+    sourceLevel:       NS.UInteger,
+    sourceSlice:       NS.UInteger,
+    destinationOrigin: Origin,
+    destinationLevel:  NS.UInteger,
+    destinationSlice:  NS.UInteger,
+}
+#assert(size_of(MTL4CopySparseTextureMappingOperation) == 104)
+
+/// MTL4UpdateSparseBufferMappingOperation
+MTL4UpdateSparseBufferMappingOperation :: struct #align (8) {
+    mode:        SparseTextureMappingMode,
+    bufferRange: NS._NSRange,
+    heapOffset:  NS.UInteger,
+}
+#assert(size_of(MTL4UpdateSparseBufferMappingOperation) == 32)
+
+/// MTL4CopySparseBufferMappingOperation
+MTL4CopySparseBufferMappingOperation :: struct #align (8) {
+    sourceRange:       NS._NSRange,
+    destinationOffset: NS.UInteger,
+}
+#assert(size_of(MTL4CopySparseBufferMappingOperation) == 24)
+
 /// MTLIndirectCommandBufferExecutionRange
 IndirectCommandBufferExecutionRange :: struct #align (4) {
     location: cffi.uint32_t,
     length:   cffi.uint32_t,
 }
 #assert(size_of(IndirectCommandBufferExecutionRange) == 8)
+
+/// MTLIntersectionFunctionBufferArguments
+IntersectionFunctionBufferArguments :: struct #align (8) {
+    intersectionFunctionBuffer:     cffi.uint64_t,
+    intersectionFunctionBufferSize: cffi.uint64_t,
+    intersectionFunctionStride:     cffi.uint64_t,
+}
+#assert(size_of(IntersectionFunctionBufferArguments) == 24)
 

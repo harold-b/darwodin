@@ -40,4 +40,7 @@ foreign lib {
 
     @(objc_type=CaptureScope, objc_selector="commandQueue", objc_name="commandQueue")
     CaptureScope_commandQueue :: proc(self: ^CaptureScope) -> ^CommandQueue ---
+
+    @(objc_type=CaptureScope, objc_selector="mtl4CommandQueue", objc_name="mtl4CommandQueue")
+    CaptureScope_mtl4CommandQueue :: proc(self: ^CaptureScope) -> ^MTL4CommandQueue ---
 }

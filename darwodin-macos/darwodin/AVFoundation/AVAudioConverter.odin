@@ -88,6 +88,24 @@ foreign lib {
     @(objc_type=AudioConverter, objc_selector="setPrimeInfo:", objc_name="setPrimeInfo")
     AudioConverter_setPrimeInfo :: proc(self: ^AudioConverter, primeInfo: AudioConverterPrimeInfo) ---
 
+    @(objc_type=AudioConverter, objc_selector="audioSyncPacketFrequency", objc_name="audioSyncPacketFrequency")
+    AudioConverter_audioSyncPacketFrequency :: proc(self: ^AudioConverter) -> NS.Integer ---
+
+    @(objc_type=AudioConverter, objc_selector="setAudioSyncPacketFrequency:", objc_name="setAudioSyncPacketFrequency")
+    AudioConverter_setAudioSyncPacketFrequency :: proc(self: ^AudioConverter, audioSyncPacketFrequency: NS.Integer) ---
+
+    @(objc_type=AudioConverter, objc_selector="contentSource", objc_name="contentSource")
+    AudioConverter_contentSource :: proc(self: ^AudioConverter) -> AudioContentSource ---
+
+    @(objc_type=AudioConverter, objc_selector="setContentSource:", objc_name="setContentSource")
+    AudioConverter_setContentSource :: proc(self: ^AudioConverter, contentSource: AudioContentSource) ---
+
+    @(objc_type=AudioConverter, objc_selector="dynamicRangeControlConfiguration", objc_name="dynamicRangeControlConfiguration")
+    AudioConverter_dynamicRangeControlConfiguration :: proc(self: ^AudioConverter) -> AudioDynamicRangeControlConfiguration ---
+
+    @(objc_type=AudioConverter, objc_selector="setDynamicRangeControlConfiguration:", objc_name="setDynamicRangeControlConfiguration")
+    AudioConverter_setDynamicRangeControlConfiguration :: proc(self: ^AudioConverter, dynamicRangeControlConfiguration: AudioDynamicRangeControlConfiguration) ---
+
     @(objc_type=AudioConverter, objc_selector="bitRate", objc_name="bitRate")
     AudioConverter_bitRate :: proc(self: ^AudioConverter) -> NS.Integer ---
 

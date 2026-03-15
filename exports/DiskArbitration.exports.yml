@@ -120,6 +120,7 @@ ExternVars:
     ::kDADiskDescriptionBusNameKey: DA.kDiskDescriptionBusNameKey
     ::kDADiskDescriptionBusPathKey: DA.kDiskDescriptionBusPathKey
     ::kDADiskDescriptionFSKitPrefix: DA.kDiskDescriptionFSKitPrefix
+    ::kDADiskDescriptionRepairRunningKey: DA.kDiskDescriptionRepairRunningKey
     ::kDADiskDescriptionMatchMediaUnformatted: DA.kDiskDescriptionMatchMediaUnformatted
     ::kDADiskDescriptionMatchMediaWhole: DA.kDiskDescriptionMatchMediaWhole
     ::kDADiskDescriptionMatchVolumeMountable: DA.kDiskDescriptionMatchVolumeMountable
@@ -167,6 +168,7 @@ ExternTypes:
     ::kDADiskDescriptionBusNameKey: CF.StringRef
     ::kDADiskDescriptionBusPathKey: CF.StringRef
     ::kDADiskDescriptionFSKitPrefix: CF.StringRef
+    ::kDADiskDescriptionRepairRunningKey: CF.StringRef
     ::kDADiskDescriptionMatchMediaUnformatted: CF.DictionaryRef
     ::kDADiskDescriptionMatchMediaWhole: CF.DictionaryRef
     ::kDADiskDescriptionMatchVolumeMountable: CF.DictionaryRef

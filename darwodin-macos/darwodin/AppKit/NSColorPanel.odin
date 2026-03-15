@@ -82,4 +82,10 @@ foreign lib {
 
     @(objc_type=ColorPanel, objc_selector="alpha", objc_name="alpha")
     ColorPanel_alpha :: proc(self: ^ColorPanel) -> CG.Float ---
+
+    @(objc_type=ColorPanel, objc_selector="maximumLinearExposure", objc_name="maximumLinearExposure")
+    ColorPanel_maximumLinearExposure :: proc(self: ^ColorPanel) -> CG.Float ---
+
+    @(objc_type=ColorPanel, objc_selector="setMaximumLinearExposure:", objc_name="setMaximumLinearExposure")
+    ColorPanel_setMaximumLinearExposure :: proc(self: ^ColorPanel, maximumLinearExposure: CG.Float) ---
 }

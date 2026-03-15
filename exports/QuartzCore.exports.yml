@@ -54,6 +54,7 @@ Typedefs:
     CALayerContentsFilter: CA.LayerContentsFilter
     CALayerCornerCurve: CA.LayerCornerCurve
     CAToneMapMode: CA.ToneMapMode
+    CADynamicRange: CA.DynamicRange
     CAAnimationCalculationMode: CA.AnimationCalculationMode
     CAAnimationRotationMode: CA.AnimationRotationMode
     CATransitionType: CA.TransitionType
@@ -209,6 +210,10 @@ ExternVars:
     ::CAToneMapModeAutomatic: CA.ToneMapModeAutomatic
     ::CAToneMapModeNever: CA.ToneMapModeNever
     ::CAToneMapModeIfSupported: CA.ToneMapModeIfSupported
+    ::CADynamicRangeAutomatic: CA.DynamicRangeAutomatic
+    ::CADynamicRangeStandard: CA.DynamicRangeStandard
+    ::CADynamicRangeConstrainedHigh: CA.DynamicRangeConstrainedHigh
+    ::CADynamicRangeHigh: CA.DynamicRangeHigh
     ::kCAGravityCenter: CA.GravityCenter
     ::kCAGravityTop: CA.GravityTop
     ::kCAGravityBottom: CA.GravityBottom
@@ -224,6 +229,7 @@ ExternVars:
     ::kCAContentsFormatRGBA8Uint: CA.ContentsFormatRGBA8Uint
     ::kCAContentsFormatRGBA16Float: CA.ContentsFormatRGBA16Float
     ::kCAContentsFormatGray8Uint: CA.ContentsFormatGray8Uint
+    ::kCAContentsFormatAutomatic: CA.ContentsFormatAutomatic
     ::kCAFilterNearest: CA.FilterNearest
     ::kCAFilterLinear: CA.FilterLinear
     ::kCAFilterTrilinear: CA.FilterTrilinear
@@ -319,6 +325,10 @@ ExternTypes:
     ::CAToneMapModeAutomatic: ^NS.String
     ::CAToneMapModeNever: ^NS.String
     ::CAToneMapModeIfSupported: ^NS.String
+    ::CADynamicRangeAutomatic: ^NS.String
+    ::CADynamicRangeStandard: ^NS.String
+    ::CADynamicRangeConstrainedHigh: ^NS.String
+    ::CADynamicRangeHigh: ^NS.String
     ::kCAGravityCenter: ^NS.String
     ::kCAGravityTop: ^NS.String
     ::kCAGravityBottom: ^NS.String
@@ -334,6 +344,7 @@ ExternTypes:
     ::kCAContentsFormatRGBA8Uint: ^NS.String
     ::kCAContentsFormatRGBA16Float: ^NS.String
     ::kCAContentsFormatGray8Uint: ^NS.String
+    ::kCAContentsFormatAutomatic: ^NS.String
     ::kCAFilterNearest: ^NS.String
     ::kCAFilterLinear: ^NS.String
     ::kCAFilterTrilinear: ^NS.String

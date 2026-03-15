@@ -45,6 +45,8 @@ VTable :: struct {
     splitViewControllerDidExpand: proc(self: ^UI.SplitViewControllerDelegate, svc: ^UI.SplitViewController),
     splitViewController_willShowColumn: proc(self: ^UI.SplitViewControllerDelegate, svc: ^UI.SplitViewController, column: UI.SplitViewControllerColumn),
     splitViewController_willHideColumn: proc(self: ^UI.SplitViewControllerDelegate, svc: ^UI.SplitViewController, column: UI.SplitViewControllerColumn),
+    splitViewController_didShowColumn: proc(self: ^UI.SplitViewControllerDelegate, svc: ^UI.SplitViewController, column: UI.SplitViewControllerColumn),
+    splitViewController_didHideColumn: proc(self: ^UI.SplitViewControllerDelegate, svc: ^UI.SplitViewController, column: UI.SplitViewControllerColumn),
     splitViewControllerInteractivePresentationGestureWillBegin: proc(self: ^UI.SplitViewControllerDelegate, svc: ^UI.SplitViewController),
     splitViewControllerInteractivePresentationGestureDidEnd: proc(self: ^UI.SplitViewControllerDelegate, svc: ^UI.SplitViewController),
 }
@@ -252,6 +254,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitViewController:willHideColumn:"), auto_cast splitViewController_willHideColumn, "v@:@l") do panic("Failed to register objC method.")
+    }
+    if vt.splitViewController_didShowColumn != nil {
+        splitViewController_didShowColumn :: proc "c" (self: ^UI.SplitViewControllerDelegate, _: SEL, svc: ^UI.SplitViewController, column: UI.SplitViewControllerColumn) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).splitViewController_didShowColumn(self, svc, column)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("splitViewController:didShowColumn:"), auto_cast splitViewController_didShowColumn, "v@:@l") do panic("Failed to register objC method.")
+    }
+    if vt.splitViewController_didHideColumn != nil {
+        splitViewController_didHideColumn :: proc "c" (self: ^UI.SplitViewControllerDelegate, _: SEL, svc: ^UI.SplitViewController, column: UI.SplitViewControllerColumn) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).splitViewController_didHideColumn(self, svc, column)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("splitViewController:didHideColumn:"), auto_cast splitViewController_didHideColumn, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.splitViewControllerInteractivePresentationGestureWillBegin != nil {
         splitViewControllerInteractivePresentationGestureWillBegin :: proc "c" (self: ^UI.SplitViewControllerDelegate, _: SEL, svc: ^UI.SplitViewController) {

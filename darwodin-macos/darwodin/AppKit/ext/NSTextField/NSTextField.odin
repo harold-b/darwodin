@@ -71,6 +71,12 @@ VTable :: struct {
     setAllowsWritingTools: proc(self: ^AK.TextField, allowsWritingTools: bool),
     allowsWritingToolsAffordance: proc(self: ^AK.TextField) -> bool,
     setAllowsWritingToolsAffordance: proc(self: ^AK.TextField, allowsWritingToolsAffordance: bool),
+    placeholderStrings: proc(self: ^AK.TextField) -> ^NS.Array,
+    setPlaceholderStrings: proc(self: ^AK.TextField, placeholderStrings: ^NS.Array),
+    placeholderAttributedStrings: proc(self: ^AK.TextField) -> ^NS.Array,
+    setPlaceholderAttributedStrings: proc(self: ^AK.TextField, placeholderAttributedStrings: ^NS.Array),
+    resolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^AK.TextField) -> bool,
+    setResolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^AK.TextField, resolvesNaturalAlignmentWithBaseWritingDirection: bool),
     isAutomaticTextCompletionEnabled: proc(self: ^AK.TextField) -> bool,
     setAutomaticTextCompletionEnabled: proc(self: ^AK.TextField, automaticTextCompletionEnabled: bool),
     allowsCharacterPickerTouchBarItem: proc(self: ^AK.TextField) -> bool,
@@ -502,6 +508,66 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsWritingToolsAffordance:"), auto_cast setAllowsWritingToolsAffordance, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.placeholderStrings != nil {
+        placeholderStrings :: proc "c" (self: ^AK.TextField, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).placeholderStrings(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("placeholderStrings"), auto_cast placeholderStrings, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPlaceholderStrings != nil {
+        setPlaceholderStrings :: proc "c" (self: ^AK.TextField, _: SEL, placeholderStrings: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPlaceholderStrings(self, placeholderStrings)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPlaceholderStrings:"), auto_cast setPlaceholderStrings, "v@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.placeholderAttributedStrings != nil {
+        placeholderAttributedStrings :: proc "c" (self: ^AK.TextField, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).placeholderAttributedStrings(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("placeholderAttributedStrings"), auto_cast placeholderAttributedStrings, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPlaceholderAttributedStrings != nil {
+        setPlaceholderAttributedStrings :: proc "c" (self: ^AK.TextField, _: SEL, placeholderAttributedStrings: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPlaceholderAttributedStrings(self, placeholderAttributedStrings)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPlaceholderAttributedStrings:"), auto_cast setPlaceholderAttributedStrings, "v@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.resolvesNaturalAlignmentWithBaseWritingDirection != nil {
+        resolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).resolvesNaturalAlignmentWithBaseWritingDirection(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resolvesNaturalAlignmentWithBaseWritingDirection"), auto_cast resolvesNaturalAlignmentWithBaseWritingDirection, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setResolvesNaturalAlignmentWithBaseWritingDirection != nil {
+        setResolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^AK.TextField, _: SEL, resolvesNaturalAlignmentWithBaseWritingDirection: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setResolvesNaturalAlignmentWithBaseWritingDirection(self, resolvesNaturalAlignmentWithBaseWritingDirection)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setResolvesNaturalAlignmentWithBaseWritingDirection:"), auto_cast setResolvesNaturalAlignmentWithBaseWritingDirection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isAutomaticTextCompletionEnabled != nil {
         isAutomaticTextCompletionEnabled :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {

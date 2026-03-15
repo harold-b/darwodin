@@ -22,6 +22,9 @@ AudioFile :: struct { using _: NS.Object, }
 
 @(default_calling_convention="c")
 foreign lib {
+    @(objc_type=AudioFile, objc_selector="init", objc_name="init")
+    AudioFile_init :: proc(self: ^AudioFile) -> instancetype ---
+
     @(objc_type=AudioFile, objc_selector="initForReading:error:", objc_name="initForReading_error")
     AudioFile_initForReading_error :: proc(self: ^AudioFile, fileURL: ^NS.URL, outError: ^^NS.Error) -> instancetype ---
 

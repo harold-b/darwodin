@@ -27,6 +27,9 @@ VideoCompositionInstruction :: struct { using _: NS.Object,
 
 @(default_calling_convention="c")
 foreign lib {
+    @(objc_type=VideoCompositionInstruction, objc_selector="videoCompositionInstructionWithInstruction:", objc_name="videoCompositionInstructionWithInstruction", objc_is_class_method=true)
+    VideoCompositionInstruction_videoCompositionInstructionWithInstruction :: proc(instruction: ^VideoCompositionInstruction) -> ^VideoCompositionInstruction ---
+
     @(objc_type=VideoCompositionInstruction, objc_selector="timeRange", objc_name="timeRange")
     VideoCompositionInstruction_timeRange :: proc(self: ^VideoCompositionInstruction) -> CM.TimeRange ---
 

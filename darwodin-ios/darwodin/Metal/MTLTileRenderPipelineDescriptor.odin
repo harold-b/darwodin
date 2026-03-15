@@ -97,4 +97,10 @@ foreign lib {
 
     @(objc_type=TileRenderPipelineDescriptor, objc_selector="setShaderValidation:", objc_name="setShaderValidation")
     TileRenderPipelineDescriptor_setShaderValidation :: proc(self: ^TileRenderPipelineDescriptor, shaderValidation: ShaderValidation) ---
+
+    @(objc_type=TileRenderPipelineDescriptor, objc_selector="requiredThreadsPerThreadgroup", objc_name="requiredThreadsPerThreadgroup")
+    TileRenderPipelineDescriptor_requiredThreadsPerThreadgroup :: proc(self: ^TileRenderPipelineDescriptor) -> Size ---
+
+    @(objc_type=TileRenderPipelineDescriptor, objc_selector="setRequiredThreadsPerThreadgroup:", objc_name="setRequiredThreadsPerThreadgroup")
+    TileRenderPipelineDescriptor_setRequiredThreadsPerThreadgroup :: proc(self: ^TileRenderPipelineDescriptor, requiredThreadsPerThreadgroup: Size) ---
 }

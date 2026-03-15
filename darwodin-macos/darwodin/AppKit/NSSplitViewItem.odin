@@ -38,6 +38,24 @@ foreign lib {
     @(objc_type=SplitViewItem, objc_selector="inspectorWithViewController:", objc_name="inspectorWithViewController", objc_is_class_method=true)
     SplitViewItem_inspectorWithViewController :: proc(viewController: ^ViewController) -> instancetype ---
 
+    @(objc_type=SplitViewItem, objc_selector="addTopAlignedAccessoryViewController:", objc_name="addTopAlignedAccessoryViewController")
+    SplitViewItem_addTopAlignedAccessoryViewController :: proc(self: ^SplitViewItem, childViewController: ^SplitViewItemAccessoryViewController) ---
+
+    @(objc_type=SplitViewItem, objc_selector="insertTopAlignedAccessoryViewController:atIndex:", objc_name="insertTopAlignedAccessoryViewController")
+    SplitViewItem_insertTopAlignedAccessoryViewController :: proc(self: ^SplitViewItem, childViewController: ^SplitViewItemAccessoryViewController, index: NS.Integer) ---
+
+    @(objc_type=SplitViewItem, objc_selector="removeTopAlignedAccessoryViewControllerAtIndex:", objc_name="removeTopAlignedAccessoryViewControllerAtIndex")
+    SplitViewItem_removeTopAlignedAccessoryViewControllerAtIndex :: proc(self: ^SplitViewItem, index: NS.Integer) ---
+
+    @(objc_type=SplitViewItem, objc_selector="addBottomAlignedAccessoryViewController:", objc_name="addBottomAlignedAccessoryViewController")
+    SplitViewItem_addBottomAlignedAccessoryViewController :: proc(self: ^SplitViewItem, childViewController: ^SplitViewItemAccessoryViewController) ---
+
+    @(objc_type=SplitViewItem, objc_selector="insertBottomAlignedAccessoryViewController:atIndex:", objc_name="insertBottomAlignedAccessoryViewController")
+    SplitViewItem_insertBottomAlignedAccessoryViewController :: proc(self: ^SplitViewItem, childViewController: ^SplitViewItemAccessoryViewController, index: NS.Integer) ---
+
+    @(objc_type=SplitViewItem, objc_selector="removeBottomAlignedAccessoryViewControllerAtIndex:", objc_name="removeBottomAlignedAccessoryViewControllerAtIndex")
+    SplitViewItem_removeBottomAlignedAccessoryViewControllerAtIndex :: proc(self: ^SplitViewItem, index: NS.Integer) ---
+
     @(objc_type=SplitViewItem, objc_selector="behavior", objc_name="behavior")
     SplitViewItem_behavior :: proc(self: ^SplitViewItem) -> SplitViewItemBehavior ---
 
@@ -118,4 +136,22 @@ foreign lib {
 
     @(objc_type=SplitViewItem, objc_selector="setTitlebarSeparatorStyle:", objc_name="setTitlebarSeparatorStyle")
     SplitViewItem_setTitlebarSeparatorStyle :: proc(self: ^SplitViewItem, titlebarSeparatorStyle: TitlebarSeparatorStyle) ---
+
+    @(objc_type=SplitViewItem, objc_selector="automaticallyAdjustsSafeAreaInsets", objc_name="automaticallyAdjustsSafeAreaInsets")
+    SplitViewItem_automaticallyAdjustsSafeAreaInsets :: proc(self: ^SplitViewItem) -> bool ---
+
+    @(objc_type=SplitViewItem, objc_selector="setAutomaticallyAdjustsSafeAreaInsets:", objc_name="setAutomaticallyAdjustsSafeAreaInsets")
+    SplitViewItem_setAutomaticallyAdjustsSafeAreaInsets :: proc(self: ^SplitViewItem, automaticallyAdjustsSafeAreaInsets: bool) ---
+
+    @(objc_type=SplitViewItem, objc_selector="topAlignedAccessoryViewControllers", objc_name="topAlignedAccessoryViewControllers")
+    SplitViewItem_topAlignedAccessoryViewControllers :: proc(self: ^SplitViewItem) -> ^NS.Array ---
+
+    @(objc_type=SplitViewItem, objc_selector="setTopAlignedAccessoryViewControllers:", objc_name="setTopAlignedAccessoryViewControllers")
+    SplitViewItem_setTopAlignedAccessoryViewControllers :: proc(self: ^SplitViewItem, topAlignedAccessoryViewControllers: ^NS.Array) ---
+
+    @(objc_type=SplitViewItem, objc_selector="bottomAlignedAccessoryViewControllers", objc_name="bottomAlignedAccessoryViewControllers")
+    SplitViewItem_bottomAlignedAccessoryViewControllers :: proc(self: ^SplitViewItem) -> ^NS.Array ---
+
+    @(objc_type=SplitViewItem, objc_selector="setBottomAlignedAccessoryViewControllers:", objc_name="setBottomAlignedAccessoryViewControllers")
+    SplitViewItem_setBottomAlignedAccessoryViewControllers :: proc(self: ^SplitViewItem, bottomAlignedAccessoryViewControllers: ^NS.Array) ---
 }

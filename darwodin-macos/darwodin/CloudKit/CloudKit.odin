@@ -160,6 +160,7 @@ ErrorCode :: enum cffi.long {
     ServerResponseLost             = 34,
     AssetNotAvailable              = 35,
     AccountTemporarilyUnavailable  = 36,
+    ParticipantAlreadyInvited      = 37,
 }
 
 /// CKNotificationType
@@ -185,6 +186,12 @@ RecordZoneCapabilities :: enum cffi.ulong {
     apabilityZoneWideSharing = 8,
 }
 
+/// CKRecordZoneEncryptionScope
+RecordZoneEncryptionScope :: enum cffi.long {
+    PerRecord = 0,
+    PerZone   = 1,
+}
+
 /// CKShareParticipantAcceptanceStatus
 ShareParticipantAcceptanceStatus :: enum cffi.long {
     Unknown  = 0,
@@ -203,10 +210,11 @@ ShareParticipantPermission :: enum cffi.long {
 
 /// CKShareParticipantRole
 ShareParticipantRole :: enum cffi.long {
-    Unknown     = 0,
-    Owner       = 1,
-    PrivateUser = 3,
-    PublicUser  = 4,
+    Unknown       = 0,
+    Owner         = 1,
+    PrivateUser   = 3,
+    PublicUser    = 4,
+    Administrator = 2,
 }
 
 /// CKShareParticipantType

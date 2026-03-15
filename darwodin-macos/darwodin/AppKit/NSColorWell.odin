@@ -82,4 +82,10 @@ foreign lib {
 
     @(objc_type=ColorWell, objc_selector="setSupportsAlpha:", objc_name="setSupportsAlpha")
     ColorWell_setSupportsAlpha :: proc(self: ^ColorWell, supportsAlpha: bool) ---
+
+    @(objc_type=ColorWell, objc_selector="maximumLinearExposure", objc_name="maximumLinearExposure")
+    ColorWell_maximumLinearExposure :: proc(self: ^ColorWell) -> CG.Float ---
+
+    @(objc_type=ColorWell, objc_selector="setMaximumLinearExposure:", objc_name="setMaximumLinearExposure")
+    ColorWell_setMaximumLinearExposure :: proc(self: ^ColorWell, maximumLinearExposure: CG.Float) ---
 }

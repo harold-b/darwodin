@@ -39,19 +39,20 @@ BiometryType :: enum cffi.long {
 
 /// LACompanionType
 CompanionType :: enum cffi.long {
-    Watch = 1,
-    Mac   = 2,
+    Watch  = 1,
+    Mac    = 2,
+    Vision = 4,
 }
 
 /// LAPolicy
 Policy :: enum cffi.long {
     DeviceOwnerAuthenticationWithBiometrics = 1,
     DeviceOwnerAuthentication        = 2,
-    DeviceOwnerAuthenticationWithWatch = 3,
     DeviceOwnerAuthenticationWithCompanion = 3,
-    DeviceOwnerAuthenticationWithBiometricsOrWatch = 4,
     DeviceOwnerAuthenticationWithBiometricsOrCompanion = 4,
     DeviceOwnerAuthenticationWithWristDetection = 5,
+    DeviceOwnerAuthenticationWithWatch = 3,
+    DeviceOwnerAuthenticationWithBiometricsOrWatch = 4,
 }
 
 /// LACredentialType

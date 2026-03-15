@@ -53,6 +53,7 @@ VTable :: struct {
     delegate: proc(self: ^UI.NavigationController) -> ^UI.NavigationControllerDelegate,
     setDelegate: proc(self: ^UI.NavigationController, delegate: ^UI.NavigationControllerDelegate),
     interactivePopGestureRecognizer: proc(self: ^UI.NavigationController) -> ^UI.GestureRecognizer,
+    interactiveContentPopGestureRecognizer: proc(self: ^UI.NavigationController) -> ^UI.GestureRecognizer,
     hidesBarsWhenKeyboardAppears: proc(self: ^UI.NavigationController) -> bool,
     setHidesBarsWhenKeyboardAppears: proc(self: ^UI.NavigationController, hidesBarsWhenKeyboardAppears: bool),
     hidesBarsOnSwipe: proc(self: ^UI.NavigationController) -> bool,
@@ -321,6 +322,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("interactivePopGestureRecognizer"), auto_cast interactivePopGestureRecognizer, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.interactiveContentPopGestureRecognizer != nil {
+        interactiveContentPopGestureRecognizer :: proc "c" (self: ^UI.NavigationController, _: SEL) -> ^UI.GestureRecognizer {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).interactiveContentPopGestureRecognizer(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("interactiveContentPopGestureRecognizer"), auto_cast interactiveContentPopGestureRecognizer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.hidesBarsWhenKeyboardAppears != nil {
         hidesBarsWhenKeyboardAppears :: proc "c" (self: ^UI.NavigationController, _: SEL) -> bool {

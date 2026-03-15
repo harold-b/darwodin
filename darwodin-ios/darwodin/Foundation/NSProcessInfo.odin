@@ -117,4 +117,7 @@ foreign lib {
 
     @(objc_type=ProcessInfo, objc_selector="isiOSAppOnMac", objc_name="isiOSAppOnMac")
     ProcessInfo_isiOSAppOnMac :: proc(self: ^ProcessInfo) -> bool ---
+
+    @(objc_type=ProcessInfo, objc_selector="isiOSAppOnVision", objc_name="isiOSAppOnVision")
+    ProcessInfo_isiOSAppOnVision :: proc(self: ^ProcessInfo) -> bool ---
 }

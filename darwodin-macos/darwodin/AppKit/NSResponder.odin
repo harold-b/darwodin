@@ -64,6 +64,9 @@ foreign lib {
     @(objc_type=Responder, objc_selector="mouseDragged:", objc_name="mouseDragged")
     Responder_mouseDragged :: proc(self: ^Responder, event: ^Event) ---
 
+    @(objc_type=Responder, objc_selector="mouseCancelled:", objc_name="mouseCancelled")
+    Responder_mouseCancelled :: proc(self: ^Responder, event: ^Event) ---
+
     @(objc_type=Responder, objc_selector="scrollWheel:", objc_name="scrollWheel")
     Responder_scrollWheel :: proc(self: ^Responder, event: ^Event) ---
 

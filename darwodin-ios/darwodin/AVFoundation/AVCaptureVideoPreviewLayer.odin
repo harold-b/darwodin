@@ -93,4 +93,13 @@ foreign lib {
 
     @(objc_type=CaptureVideoPreviewLayer, objc_selector="setMirrored:", objc_name="setMirrored")
     CaptureVideoPreviewLayer_setMirrored :: proc(self: ^CaptureVideoPreviewLayer, mirrored: bool) ---
+
+    @(objc_type=CaptureVideoPreviewLayer, objc_selector="isDeferredStartSupported", objc_name="isDeferredStartSupported")
+    CaptureVideoPreviewLayer_isDeferredStartSupported :: proc(self: ^CaptureVideoPreviewLayer) -> bool ---
+
+    @(objc_type=CaptureVideoPreviewLayer, objc_selector="isDeferredStartEnabled", objc_name="isDeferredStartEnabled")
+    CaptureVideoPreviewLayer_isDeferredStartEnabled :: proc(self: ^CaptureVideoPreviewLayer) -> bool ---
+
+    @(objc_type=CaptureVideoPreviewLayer, objc_selector="setDeferredStartEnabled:", objc_name="setDeferredStartEnabled")
+    CaptureVideoPreviewLayer_setDeferredStartEnabled :: proc(self: ^CaptureVideoPreviewLayer, deferredStartEnabled: bool) ---
 }

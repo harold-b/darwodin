@@ -63,6 +63,12 @@ foreign lib {
     @(objc_type=Scene, objc_selector="setActivationConditions:", objc_name="setActivationConditions")
     Scene_setActivationConditions :: proc(self: ^Scene, activationConditions: ^SceneActivationConditions) ---
 
+    @(objc_type=Scene, objc_selector="destructionConditions", objc_name="destructionConditions")
+    Scene_destructionConditions :: proc(self: ^Scene) -> ^NS.Set ---
+
+    @(objc_type=Scene, objc_selector="setDestructionConditions:", objc_name="setDestructionConditions")
+    Scene_setDestructionConditions :: proc(self: ^Scene, destructionConditions: ^NS.Set) ---
+
     @(objc_type=Scene, objc_selector="pointerLockState", objc_name="pointerLockState")
     Scene_pointerLockState :: proc(self: ^Scene) -> ^PointerLockState ---
 

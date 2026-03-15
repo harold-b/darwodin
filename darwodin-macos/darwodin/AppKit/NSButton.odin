@@ -150,6 +150,12 @@ foreign lib {
     @(objc_type=Button, objc_selector="setContentTintColor:", objc_name="setContentTintColor")
     Button_setContentTintColor :: proc(self: ^Button, contentTintColor: ^Color) ---
 
+    @(objc_type=Button, objc_selector="tintProminence", objc_name="tintProminence")
+    Button_tintProminence :: proc(self: ^Button) -> TintProminence ---
+
+    @(objc_type=Button, objc_selector="setTintProminence:", objc_name="setTintProminence")
+    Button_setTintProminence :: proc(self: ^Button, tintProminence: TintProminence) ---
+
     @(objc_type=Button, objc_selector="image", objc_name="image")
     Button_image :: proc(self: ^Button) -> ^NS.Image ---
 
@@ -212,6 +218,12 @@ foreign lib {
 
     @(objc_type=Button, objc_selector="activeCompressionOptions", objc_name="activeCompressionOptions")
     Button_activeCompressionOptions :: proc(self: ^Button) -> ^UserInterfaceCompressionOptions ---
+
+    @(objc_type=Button, objc_selector="borderShape", objc_name="borderShape")
+    Button_borderShape :: proc(self: ^Button) -> ControlBorderShape ---
+
+    @(objc_type=Button, objc_selector="setBorderShape:", objc_name="setBorderShape")
+    Button_setBorderShape :: proc(self: ^Button, borderShape: ControlBorderShape) ---
 
     @(objc_type=Button, objc_selector="setTitleWithMnemonic:", objc_name="setTitleWithMnemonic")
     Button_setTitleWithMnemonic :: proc(self: ^Button, stringWithAmpersand: ^NS.String) ---

@@ -39,6 +39,9 @@ foreign lib {
     @(objc_type=TextViewDelegate, objc_selector="textView:shouldChangeTextInRange:replacementText:", objc_name="textView_shouldChangeTextInRange_replacementText")
     TextViewDelegate_textView_shouldChangeTextInRange_replacementText :: proc(self: ^TextViewDelegate, textView: ^TextView, range: NS._NSRange, text: ^NS.String) -> bool ---
 
+    @(objc_type=TextViewDelegate, objc_selector="textView:shouldChangeTextInRanges:replacementText:", objc_name="textView_shouldChangeTextInRanges_replacementText")
+    TextViewDelegate_textView_shouldChangeTextInRanges_replacementText :: proc(self: ^TextViewDelegate, textView: ^TextView, ranges: ^NS.Array, text: ^NS.String) -> bool ---
+
     @(objc_type=TextViewDelegate, objc_selector="textViewDidChange:", objc_name="textViewDidChange")
     TextViewDelegate_textViewDidChange :: proc(self: ^TextViewDelegate, textView: ^TextView) ---
 
@@ -47,6 +50,9 @@ foreign lib {
 
     @(objc_type=TextViewDelegate, objc_selector="textView:editMenuForTextInRange:suggestedActions:", objc_name="textView_editMenuForTextInRange_suggestedActions")
     TextViewDelegate_textView_editMenuForTextInRange_suggestedActions :: proc(self: ^TextViewDelegate, textView: ^TextView, range: NS._NSRange, suggestedActions: ^NS.Array) -> ^Menu ---
+
+    @(objc_type=TextViewDelegate, objc_selector="textView:editMenuForTextInRanges:suggestedActions:", objc_name="textView_editMenuForTextInRanges_suggestedActions")
+    TextViewDelegate_textView_editMenuForTextInRanges_suggestedActions :: proc(self: ^TextViewDelegate, textView: ^TextView, ranges: ^NS.Array, suggestedActions: ^NS.Array) -> ^Menu ---
 
     @(objc_type=TextViewDelegate, objc_selector="textView:willPresentEditMenuWithAnimator:", objc_name="textView_willPresentEditMenuWithAnimator")
     TextViewDelegate_textView_willPresentEditMenuWithAnimator :: proc(self: ^TextViewDelegate, textView: ^TextView, animator: ^EditMenuInteractionAnimating) ---

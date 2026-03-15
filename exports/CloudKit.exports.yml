@@ -24,6 +24,7 @@ Enums:
     CKNotificationType: CK.NotificationType
     CKQueryNotificationReason: CK.QueryNotificationReason
     CKRecordZoneCapabilities: CK.RecordZoneCapabilities
+    CKRecordZoneEncryptionScope: CK.RecordZoneEncryptionScope
     CKShareParticipantAcceptanceStatus: CK.ShareParticipantAcceptanceStatus
     CKShareParticipantPermission: CK.ShareParticipantPermission
     CKShareParticipantRole: CK.ShareParticipantRole
@@ -69,6 +70,8 @@ ObjCClasses:
     CKRecordZoneNotification: CK.RecordZoneNotification
     CKDatabaseNotification: CK.DatabaseNotification
     CKServerChangeToken: CK.ServerChangeToken
+    CKShareAccessRequester: CK.ShareAccessRequester
+    CKShareBlockedIdentity: CK.ShareBlockedIdentity
     CKUserIdentityLookupInfo: CK.UserIdentityLookupInfo
     CKAcceptSharesOperation: CK.AcceptSharesOperation
     CKDiscoverAllUserIdentitiesOperation: CK.DiscoverAllUserIdentitiesOperation
@@ -93,6 +96,7 @@ ObjCClasses:
     CKModifySubscriptionsOperation: CK.ModifySubscriptionsOperation
     CKQueryCursor: CK.QueryCursor
     CKQueryOperation: CK.QueryOperation
+    CKShareRequestAccessOperation: CK.ShareRequestAccessOperation
     CKAllowedSharingOptions: CK.AllowedSharingOptions
     CKSystemSharingUIObserver: CK.SystemSharingUIObserver
     CKSyncEnginePendingRecordZoneChange: CK.SyncEnginePendingRecordZoneChange
@@ -115,18 +119,18 @@ ObjCClasses:
     CKSyncEngineDidFetchChangesEvent: CK.SyncEngineDidFetchChangesEvent
     CKSyncEngineDidFetchRecordZoneChangesEvent: CK.SyncEngineDidFetchRecordZoneChangesEvent
     CKSyncEngineDidSendChangesEvent: CK.SyncEngineDidSendChangesEvent
-    CKSyncEngineFailedRecordSave: CK.SyncEngineFailedRecordSave
-    CKSyncEngineFailedZoneSave: CK.SyncEngineFailedZoneSave
     CKSyncEngineFetchedDatabaseChangesEvent: CK.SyncEngineFetchedDatabaseChangesEvent
     CKSyncEngineFetchedRecordDeletion: CK.SyncEngineFetchedRecordDeletion
     CKSyncEngineFetchedRecordZoneChangesEvent: CK.SyncEngineFetchedRecordZoneChangesEvent
-    CKSyncEngineFetchedZoneDeletion: CK.SyncEngineFetchedZoneDeletion
     CKSyncEngineSentDatabaseChangesEvent: CK.SyncEngineSentDatabaseChangesEvent
     CKSyncEngineSentRecordZoneChangesEvent: CK.SyncEngineSentRecordZoneChangesEvent
     CKSyncEngineStateUpdateEvent: CK.SyncEngineStateUpdateEvent
     CKSyncEngineWillFetchChangesEvent: CK.SyncEngineWillFetchChangesEvent
     CKSyncEngineWillFetchRecordZoneChangesEvent: CK.SyncEngineWillFetchRecordZoneChangesEvent
     CKSyncEngineWillSendChangesEvent: CK.SyncEngineWillSendChangesEvent
+    CKSyncEngineFailedRecordSave: CK.SyncEngineFailedRecordSave
+    CKSyncEngineFailedZoneSave: CK.SyncEngineFailedZoneSave
+    CKSyncEngineFetchedZoneDeletion: CK.SyncEngineFetchedZoneDeletion
 
 ObjCProtocols:
     CKRecordValue: CK.RecordValue

@@ -35,6 +35,8 @@ VTable :: struct {
     setStartProgress: proc(self: ^CA.Transition, startProgress: cffi.float),
     endProgress: proc(self: ^CA.Transition) -> cffi.float,
     setEndProgress: proc(self: ^CA.Transition, endProgress: cffi.float),
+    filter: proc(self: ^CA.Transition) -> id,
+    setFilter: proc(self: ^CA.Transition, filter: id),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -123,6 +125,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEndProgress:"), auto_cast setEndProgress, "v@:f") do panic("Failed to register objC method.")
+    }
+    if vt.filter != nil {
+        filter :: proc "c" (self: ^CA.Transition, _: SEL) -> id {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).filter(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("filter"), auto_cast filter, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setFilter != nil {
+        setFilter :: proc "c" (self: ^CA.Transition, _: SEL, filter: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setFilter(self, filter)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setFilter:"), auto_cast setFilter, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

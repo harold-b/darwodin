@@ -31,10 +31,12 @@ VTable :: struct {
     textFieldDidEndEditing_: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField),
     textFieldDidEndEditing_reason: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, reason: UI.TextFieldDidEndEditingReason),
     textField_shouldChangeCharactersInRange_replacementString: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, range: NS._NSRange, string: ^NS.String) -> bool,
+    textField_shouldChangeCharactersInRanges_replacementString: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, ranges: ^NS.Array, string: ^NS.String) -> bool,
     textFieldDidChangeSelection: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField),
     textFieldShouldClear: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField) -> bool,
     textFieldShouldReturn: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField) -> bool,
     textField_editMenuForCharactersInRange_suggestedActions: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, range: NS._NSRange, suggestedActions: ^NS.Array) -> ^UI.Menu,
+    textField_editMenuForCharactersInRanges_suggestedActions: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, ranges: ^NS.Array, suggestedActions: ^NS.Array) -> ^UI.Menu,
     textField_willPresentEditMenuWithAnimator: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, animator: ^UI.EditMenuInteractionAnimating),
     textField_willDismissEditMenuWithAnimator: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, animator: ^UI.EditMenuInteractionAnimating),
     textField_insertInputSuggestion: proc(self: ^UI.TextFieldDelegate, textField: ^UI.TextField, inputSuggestion: ^UI.InputSuggestion),
@@ -104,6 +106,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textField:shouldChangeCharactersInRange:replacementString:"), auto_cast textField_shouldChangeCharactersInRange_replacementString, "B@:@{_NSRange=LL}@") do panic("Failed to register objC method.")
     }
+    if vt.textField_shouldChangeCharactersInRanges_replacementString != nil {
+        textField_shouldChangeCharactersInRanges_replacementString :: proc "c" (self: ^UI.TextFieldDelegate, _: SEL, textField: ^UI.TextField, ranges: ^NS.Array, string: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).textField_shouldChangeCharactersInRanges_replacementString(self, textField, ranges, string)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textField:shouldChangeCharactersInRanges:replacementString:"), auto_cast textField_shouldChangeCharactersInRanges_replacementString, "B@:@^void@") do panic("Failed to register objC method.")
+    }
     if vt.textFieldDidChangeSelection != nil {
         textFieldDidChangeSelection :: proc "c" (self: ^UI.TextFieldDelegate, _: SEL, textField: ^UI.TextField) {
 
@@ -143,6 +155,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textField:editMenuForCharactersInRange:suggestedActions:"), auto_cast textField_editMenuForCharactersInRange_suggestedActions, "@@:@{_NSRange=LL}^void") do panic("Failed to register objC method.")
+    }
+    if vt.textField_editMenuForCharactersInRanges_suggestedActions != nil {
+        textField_editMenuForCharactersInRanges_suggestedActions :: proc "c" (self: ^UI.TextFieldDelegate, _: SEL, textField: ^UI.TextField, ranges: ^NS.Array, suggestedActions: ^NS.Array) -> ^UI.Menu {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).textField_editMenuForCharactersInRanges_suggestedActions(self, textField, ranges, suggestedActions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textField:editMenuForCharactersInRanges:suggestedActions:"), auto_cast textField_editMenuForCharactersInRanges_suggestedActions, "@@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.textField_willPresentEditMenuWithAnimator != nil {
         textField_willPresentEditMenuWithAnimator :: proc "c" (self: ^UI.TextFieldDelegate, _: SEL, textField: ^UI.TextField, animator: ^UI.EditMenuInteractionAnimating) {

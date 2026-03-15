@@ -22,8 +22,14 @@ SpatialScalerDescriptor :: struct { using _: NS.Object,
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=SpatialScalerDescriptor, objc_selector="newSpatialScalerWithDevice:", objc_name="newSpatialScalerWithDevice")
-    SpatialScalerDescriptor_newSpatialScalerWithDevice :: proc(self: ^SpatialScalerDescriptor, device: ^MTL.Device) -> ^SpatialScaler ---
+    @(objc_type=SpatialScalerDescriptor, objc_selector="newSpatialScalerWithDevice:", objc_name="newSpatialScalerWithDevice_")
+    SpatialScalerDescriptor_newSpatialScalerWithDevice_ :: proc(self: ^SpatialScalerDescriptor, device: ^MTL.Device) -> ^SpatialScaler ---
+
+    @(objc_type=SpatialScalerDescriptor, objc_selector="newSpatialScalerWithDevice:compiler:", objc_name="newSpatialScalerWithDevice_compiler")
+    SpatialScalerDescriptor_newSpatialScalerWithDevice_compiler :: proc(self: ^SpatialScalerDescriptor, device: ^MTL.Device, compiler: ^MTL.4Compiler) -> ^MTL4FXSpatialScaler ---
+
+    @(objc_type=SpatialScalerDescriptor, objc_selector="supportsMetal4FX:", objc_name="supportsMetal4FX", objc_is_class_method=true)
+    SpatialScalerDescriptor_supportsMetal4FX :: proc(device: ^MTL.Device) -> bool ---
 
     @(objc_type=SpatialScalerDescriptor, objc_selector="supportsDevice:", objc_name="supportsDevice", objc_is_class_method=true)
     SpatialScalerDescriptor_supportsDevice :: proc(device: ^MTL.Device) -> bool ---
@@ -70,3 +76,10 @@ foreign lib {
     @(objc_type=SpatialScalerDescriptor, objc_selector="setColorProcessingMode:", objc_name="setColorProcessingMode")
     SpatialScalerDescriptor_setColorProcessingMode :: proc(self: ^SpatialScalerDescriptor, colorProcessingMode: SpatialScalerColorProcessingMode) ---
 }
+
+@(objc_type=SpatialScalerDescriptor, objc_name="newSpatialScalerWithDevice")
+SpatialScalerDescriptor_newSpatialScalerWithDevice :: proc {
+    SpatialScalerDescriptor_newSpatialScalerWithDevice_,
+    SpatialScalerDescriptor_newSpatialScalerWithDevice_compiler,
+}
+

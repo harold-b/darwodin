@@ -15,9 +15,7 @@ import UI "../UIKit"
 /// GCEventInteraction
 ///
 @(objc_class="GCEventInteraction", objc_superclass=NS.Object)
-EventInteraction :: struct { using _: NS.Object, 
-    using _: UI.Interaction,
-}
+EventInteraction :: struct { using _: NS.Object, }
 
 @(default_calling_convention="c")
 foreign lib {
@@ -29,4 +27,10 @@ foreign lib {
 
     @(objc_type=EventInteraction, objc_selector="setHandledEventTypes:", objc_name="setHandledEventTypes")
     EventInteraction_setHandledEventTypes :: proc(self: ^EventInteraction, handledEventTypes: UIEventTypes) ---
+
+    @(objc_type=EventInteraction, objc_selector="receivesEventsInView", objc_name="receivesEventsInView")
+    EventInteraction_receivesEventsInView :: proc(self: ^EventInteraction) -> bool ---
+
+    @(objc_type=EventInteraction, objc_selector="setReceivesEventsInView:", objc_name="setReceivesEventsInView")
+    EventInteraction_setReceivesEventsInView :: proc(self: ^EventInteraction, receivesEventsInView: bool) ---
 }

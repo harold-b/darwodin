@@ -46,6 +46,8 @@ VTable :: struct {
     setAllowsExpensiveNetworkAccess: proc(self: ^NS.URLSessionConfiguration, allowsExpensiveNetworkAccess: bool),
     allowsConstrainedNetworkAccess: proc(self: ^NS.URLSessionConfiguration) -> bool,
     setAllowsConstrainedNetworkAccess: proc(self: ^NS.URLSessionConfiguration, allowsConstrainedNetworkAccess: bool),
+    allowsUltraConstrainedNetworkAccess: proc(self: ^NS.URLSessionConfiguration) -> bool,
+    setAllowsUltraConstrainedNetworkAccess: proc(self: ^NS.URLSessionConfiguration, allowsUltraConstrainedNetworkAccess: bool),
     requiresDNSSECValidation: proc(self: ^NS.URLSessionConfiguration) -> bool,
     setRequiresDNSSECValidation: proc(self: ^NS.URLSessionConfiguration, requiresDNSSECValidation: bool),
     waitsForConnectivity: proc(self: ^NS.URLSessionConfiguration) -> bool,
@@ -90,6 +92,8 @@ VTable :: struct {
     setMultipathServiceType: proc(self: ^NS.URLSessionConfiguration, multipathServiceType: NS.URLSessionMultipathServiceType),
     usesClassicLoadingMode: proc(self: ^NS.URLSessionConfiguration) -> bool,
     setUsesClassicLoadingMode: proc(self: ^NS.URLSessionConfiguration, usesClassicLoadingMode: bool),
+    enablesEarlyData: proc(self: ^NS.URLSessionConfiguration) -> bool,
+    setEnablesEarlyData: proc(self: ^NS.URLSessionConfiguration, enablesEarlyData: bool),
     backgroundSessionConfiguration: proc(identifier: ^NS.String) -> ^NS.URLSessionConfiguration,
 }
 
@@ -299,6 +303,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsConstrainedNetworkAccess:"), auto_cast setAllowsConstrainedNetworkAccess, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.allowsUltraConstrainedNetworkAccess != nil {
+        allowsUltraConstrainedNetworkAccess :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).allowsUltraConstrainedNetworkAccess(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsUltraConstrainedNetworkAccess"), auto_cast allowsUltraConstrainedNetworkAccess, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsUltraConstrainedNetworkAccess != nil {
+        setAllowsUltraConstrainedNetworkAccess :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, allowsUltraConstrainedNetworkAccess: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAllowsUltraConstrainedNetworkAccess(self, allowsUltraConstrainedNetworkAccess)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsUltraConstrainedNetworkAccess:"), auto_cast setAllowsUltraConstrainedNetworkAccess, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.requiresDNSSECValidation != nil {
         requiresDNSSECValidation :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> bool {
@@ -739,6 +763,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesClassicLoadingMode:"), auto_cast setUsesClassicLoadingMode, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.enablesEarlyData != nil {
+        enablesEarlyData :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).enablesEarlyData(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("enablesEarlyData"), auto_cast enablesEarlyData, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setEnablesEarlyData != nil {
+        setEnablesEarlyData :: proc "c" (self: ^NS.URLSessionConfiguration, _: SEL, enablesEarlyData: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setEnablesEarlyData(self, enablesEarlyData)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setEnablesEarlyData:"), auto_cast setEnablesEarlyData, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.backgroundSessionConfiguration != nil {
         backgroundSessionConfiguration :: proc "c" (self: Class, _: SEL, identifier: ^NS.String) -> ^NS.URLSessionConfiguration {

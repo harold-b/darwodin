@@ -39,6 +39,7 @@ VTable :: struct {
     allowsCellularAccess: proc(self: ^NS.URLRequest) -> bool,
     allowsExpensiveNetworkAccess: proc(self: ^NS.URLRequest) -> bool,
     allowsConstrainedNetworkAccess: proc(self: ^NS.URLRequest) -> bool,
+    allowsUltraConstrainedNetworkAccess: proc(self: ^NS.URLRequest) -> bool,
     assumesHTTP3Capable: proc(self: ^NS.URLRequest) -> bool,
     attribution: proc(self: ^NS.URLRequest) -> NS.URLRequestAttribution,
     requiresDNSSECValidation: proc(self: ^NS.URLRequest) -> bool,
@@ -189,6 +190,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsConstrainedNetworkAccess"), auto_cast allowsConstrainedNetworkAccess, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.allowsUltraConstrainedNetworkAccess != nil {
+        allowsUltraConstrainedNetworkAccess :: proc "c" (self: ^NS.URLRequest, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).allowsUltraConstrainedNetworkAccess(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsUltraConstrainedNetworkAccess"), auto_cast allowsUltraConstrainedNetworkAccess, "B@:") do panic("Failed to register objC method.")
     }
     if vt.assumesHTTP3Capable != nil {
         assumesHTTP3Capable :: proc "c" (self: ^NS.URLRequest, _: SEL) -> bool {

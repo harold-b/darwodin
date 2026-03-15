@@ -51,6 +51,9 @@ foreign lib {
     @(objc_type=VideoCompositing, objc_selector="supportsHDRSourceFrames", objc_name="supportsHDRSourceFrames")
     VideoCompositing_supportsHDRSourceFrames :: proc(self: ^VideoCompositing) -> bool ---
 
+    @(objc_type=VideoCompositing, objc_selector="supportsSourceTaggedBuffers", objc_name="supportsSourceTaggedBuffers")
+    VideoCompositing_supportsSourceTaggedBuffers :: proc(self: ^VideoCompositing) -> bool ---
+
     @(objc_type=VideoCompositing, objc_selector="canConformColorOfSourceFrames", objc_name="canConformColorOfSourceFrames")
     VideoCompositing_canConformColorOfSourceFrames :: proc(self: ^VideoCompositing) -> bool ---
 }

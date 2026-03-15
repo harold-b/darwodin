@@ -45,4 +45,10 @@ foreign lib {
 
     @(objc_type=CaptureAudioDataOutput, objc_selector="setAudioSettings:", objc_name="setAudioSettings")
     CaptureAudioDataOutput_setAudioSettings :: proc(self: ^CaptureAudioDataOutput, audioSettings: ^NS.Dictionary) ---
+
+    @(objc_type=CaptureAudioDataOutput, objc_selector="spatialAudioChannelLayoutTag", objc_name="spatialAudioChannelLayoutTag")
+    CaptureAudioDataOutput_spatialAudioChannelLayoutTag :: proc(self: ^CaptureAudioDataOutput) -> Audio.ChannelLayoutTag ---
+
+    @(objc_type=CaptureAudioDataOutput, objc_selector="setSpatialAudioChannelLayoutTag:", objc_name="setSpatialAudioChannelLayoutTag")
+    CaptureAudioDataOutput_setSpatialAudioChannelLayoutTag :: proc(self: ^CaptureAudioDataOutput, spatialAudioChannelLayoutTag: Audio.ChannelLayoutTag) ---
 }

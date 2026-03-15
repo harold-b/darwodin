@@ -92,6 +92,18 @@ foreign lib {
     @(objc_type=Slider, objc_selector="setContinuous:", objc_name="setContinuous")
     Slider_setContinuous :: proc(self: ^Slider, continuous: bool) ---
 
+    @(objc_type=Slider, objc_selector="trackConfiguration", objc_name="trackConfiguration")
+    Slider_trackConfiguration :: proc(self: ^Slider) -> ^SliderTrackConfiguration ---
+
+    @(objc_type=Slider, objc_selector="setTrackConfiguration:", objc_name="setTrackConfiguration")
+    Slider_setTrackConfiguration :: proc(self: ^Slider, trackConfiguration: ^SliderTrackConfiguration) ---
+
+    @(objc_type=Slider, objc_selector="sliderStyle", objc_name="sliderStyle")
+    Slider_sliderStyle :: proc(self: ^Slider) -> SliderStyle ---
+
+    @(objc_type=Slider, objc_selector="setSliderStyle:", objc_name="setSliderStyle")
+    Slider_setSliderStyle :: proc(self: ^Slider, sliderStyle: SliderStyle) ---
+
     @(objc_type=Slider, objc_selector="minimumTrackTintColor", objc_name="minimumTrackTintColor")
     Slider_minimumTrackTintColor :: proc(self: ^Slider) -> ^Color ---
 

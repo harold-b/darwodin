@@ -11,11 +11,13 @@ Structs:
     MTLCounterResultTimestamp: MTL.CounterResultTimestamp
     MTLCounterResultStageUtilization: MTL.CounterResultStageUtilization
     MTLCounterResultStatistic: MTL.CounterResultStatistic
+    MTL4TimestampHeapEntry: MTL.MTL4TimestampHeapEntry
     MTLAccelerationStructureSizes: MTL.AccelerationStructureSizes
     MTLSizeAndAlign: MTL.SizeAndAlign
     MTLMapIndirectArguments: MTL.MapIndirectArguments
     MTLClearColor: MTL.ClearColor
     MTLDispatchThreadgroupsIndirectArguments: MTL.DispatchThreadgroupsIndirectArguments
+    MTLDispatchThreadsIndirectArguments: MTL.DispatchThreadsIndirectArguments
     MTLStageInRegionIndirectArguments: MTL.StageInRegionIndirectArguments
     MTLScissorRect: MTL.ScissorRect
     MTLViewport: MTL.Viewport
@@ -25,6 +27,7 @@ Structs:
     MTLDrawPatchIndirectArguments: MTL.DrawPatchIndirectArguments
     MTLQuadTessellationFactorsHalf: MTL.QuadTessellationFactorsHalf
     MTLTriangleTessellationFactorsHalf: MTL.TriangleTessellationFactorsHalf
+    MTL4BufferRange: MTL.MTL4BufferRange
     _MTLPackedFloat3: MTL._MTLPackedFloat3
     MTLPackedFloatQuaternion: MTL.PackedFloatQuaternion
     _MTLPackedFloat4x3: MTL._MTLPackedFloat4x3
@@ -35,16 +38,17 @@ Structs:
     MTLAccelerationStructureMotionInstanceDescriptor: MTL.AccelerationStructureMotionInstanceDescriptor
     MTLIndirectAccelerationStructureInstanceDescriptor: MTL.IndirectAccelerationStructureInstanceDescriptor
     MTLIndirectAccelerationStructureMotionInstanceDescriptor: MTL.IndirectAccelerationStructureMotionInstanceDescriptor
+    MTL4UpdateSparseTextureMappingOperation: MTL.MTL4UpdateSparseTextureMappingOperation
+    MTL4CopySparseTextureMappingOperation: MTL.MTL4CopySparseTextureMappingOperation
+    MTL4UpdateSparseBufferMappingOperation: MTL.MTL4UpdateSparseBufferMappingOperation
+    MTL4CopySparseBufferMappingOperation: MTL.MTL4CopySparseBufferMappingOperation
     MTLIndirectCommandBufferExecutionRange: MTL.IndirectCommandBufferExecutionRange
+    MTLIntersectionFunctionBufferArguments: MTL.IntersectionFunctionBufferArguments
 
 Typedefs:
     MTLCoordinate2D: MTL.Coordinate2D
+    MTLGPUAddress: MTL.GPUAddress
     MTLArgumentAccess: MTL.ArgumentAccess
-    MTLAutoreleasedArgument: MTL.AutoreleasedArgument
-    MTLCommonCounter: MTL.CommonCounter
-    MTLCommonCounterSet: MTL.CommonCounterSet
-    MTLDeviceNotificationName: MTL.DeviceNotificationName
-    MTLDeviceNotificationHandler: MTL.DeviceNotificationHandler
     MTLAutoreleasedRenderPipelineReflection: MTL.AutoreleasedRenderPipelineReflection
     MTLAutoreleasedComputePipelineReflection: MTL.AutoreleasedComputePipelineReflection
     MTLNewLibraryCompletionHandler: MTL.NewLibraryCompletionHandler
@@ -52,6 +56,14 @@ Typedefs:
     MTLNewRenderPipelineStateWithReflectionCompletionHandler: MTL.NewRenderPipelineStateWithReflectionCompletionHandler
     MTLNewComputePipelineStateCompletionHandler: MTL.NewComputePipelineStateCompletionHandler
     MTLNewComputePipelineStateWithReflectionCompletionHandler: MTL.NewComputePipelineStateWithReflectionCompletionHandler
+    MTLNewDynamicLibraryCompletionHandler: MTL.NewDynamicLibraryCompletionHandler
+    MTLAutoreleasedArgument: MTL.AutoreleasedArgument
+    MTLCommonCounter: MTL.CommonCounter
+    MTLCommonCounterSet: MTL.CommonCounterSet
+    MTL4NewBinaryFunctionCompletionHandler: MTL.MTL4NewBinaryFunctionCompletionHandler
+    MTL4NewMachineLearningPipelineStateCompletionHandler: MTL.MTL4NewMachineLearningPipelineStateCompletionHandler
+    MTLDeviceNotificationName: MTL.DeviceNotificationName
+    MTLDeviceNotificationHandler: MTL.DeviceNotificationHandler
     MTLTimestamp: MTL.Timestamp
     MTLCommandBufferHandler: MTL.CommandBufferHandler
     MTLDrawablePresentedHandler: MTL.DrawablePresentedHandler
@@ -59,23 +71,32 @@ Typedefs:
     MTLPackedFloat4x3: MTL.PackedFloat4x3
     MTLAxisAlignedBoundingBox: MTL.AxisAlignedBoundingBox
     MTLSharedEventNotificationBlock: MTL.SharedEventNotificationBlock
+    MTL4CommitFeedbackHandler: MTL.MTL4CommitFeedbackHandler
     MTLIOCommandBufferHandler: MTL.IOCommandBufferHandler
     MTLIOCompressionContext: MTL.IOCompressionContext
 
 Enums:
     MTLResourceUsage: MTL.ResourceUsage
     MTLBarrierScope: MTL.BarrierScope
+    MTLStages: MTL.Stages
     MTLPurgeableState: MTL.PurgeableState
     MTLCPUCacheMode: MTL.CPUCacheMode
     MTLStorageMode: MTL.StorageMode
     MTLHazardTrackingMode: MTL.HazardTrackingMode
     MTLResourceOptions: MTL.ResourceOptions
+    MTLSparsePageSize: MTL.SparsePageSize
+    MTLBufferSparseTier: MTL.BufferSparseTier
+    MTLTextureSparseTier: MTL.TextureSparseTier
     MTLPixelFormat: MTL.PixelFormat
+    MTLDataType: MTL.DataType
+    MTLTensorDataType: MTL.TensorDataType
+    MTLTensorError: MTL.TensorError
+    MTLTensorUsage: MTL.TensorUsage
     MTLTextureType: MTL.TextureType
     MTLTextureSwizzle: MTL.TextureSwizzle
     MTLTextureUsage: MTL.TextureUsage
     MTLTextureCompressionType: MTL.TextureCompressionType
-    MTLDataType: MTL.DataType
+    MTLIndexType: MTL.IndexType
     MTLBindingType: MTL.BindingType
     MTLArgumentType: MTL.ArgumentType
     MTLBindingAccess: MTL.BindingAccess
@@ -90,6 +111,9 @@ Enums:
     MTLMathFloatingPointFunctions: MTL.MathFloatingPointFunctions
     MTLLibraryError: MTL.LibraryError
     MTLCounterSampleBufferError: MTL.CounterSampleBufferError
+    MTL4CompilerTaskStatus: MTL.MTL4CompilerTaskStatus
+    MTL4CounterHeapType: MTL.MTL4CounterHeapType
+    MTL4TimestampGranularity: MTL.MTL4TimestampGranularity
     MTLIOCompressionMethod: MTL.IOCompressionMethod
     MTLFeatureSet: MTL.FeatureSet
     MTLGPUFamily: MTL.GPUFamily
@@ -98,12 +122,12 @@ Enums:
     MTLReadWriteTextureTier: MTL.ReadWriteTextureTier
     MTLArgumentBuffersTier: MTL.ArgumentBuffersTier
     MTLSparseTextureRegionAlignmentMode: MTL.SparseTextureRegionAlignmentMode
-    MTLSparsePageSize: MTL.SparsePageSize
     MTLCounterSamplingPoint: MTL.CounterSamplingPoint
     MTLSparseTextureMappingMode: MTL.SparseTextureMappingMode
     MTLLoadAction: MTL.LoadAction
     MTLStoreAction: MTL.StoreAction
     MTLStoreActionOptions: MTL.StoreActionOptions
+    MTLVisibilityResultType: MTL.VisibilityResultType
     MTLMultisampleDepthResolveFilter: MTL.MultisampleDepthResolveFilter
     MTLMultisampleStencilResolveFilter: MTL.MultisampleStencilResolveFilter
     MTLBlitOption: MTL.BlitOptions
@@ -117,7 +141,6 @@ Enums:
     MTLVertexFormat: MTL.VertexFormat
     MTLVertexStepFunction: MTL.VertexStepFunction
     MTLAttributeFormat: MTL.AttributeFormat
-    MTLIndexType: MTL.IndexType
     MTLStepFunction: MTL.StepFunction
     MTLMutability: MTL.Mutability
     MTLShaderValidation: MTL.ShaderValidation
@@ -140,6 +163,8 @@ Enums:
     MTLSamplerMipFilter: MTL.SamplerMipFilter
     MTLSamplerAddressMode: MTL.SamplerAddressMode
     MTLSamplerBorderColor: MTL.SamplerBorderColor
+    MTLSamplerReductionMode: MTL.SamplerReductionMode
+    MTLAccelerationStructureRefitOptions: MTL.AccelerationStructureRefitOptions
     MTLAccelerationStructureUsage: MTL.AccelerationStructureUsage
     MTLAccelerationStructureInstanceOptions: MTL.AccelerationStructureInstanceOptions
     MTLMatrixLayout: MTL.MatrixLayout
@@ -150,11 +175,13 @@ Enums:
     MTLAccelerationStructureInstanceDescriptorType: MTL.AccelerationStructureInstanceDescriptorType
     MTLTransformType: MTL.TransformType
     MTLHeapType: MTL.HeapType
+    MTL4VisibilityOptions: MTL.MTL4VisibilityOptions
+    MTL4RenderEncoderOptions: MTL.MTL4RenderEncoderOptions
+    MTL4CommandQueueError: MTL.MTL4CommandQueueError
     MTLCaptureError: MTL.CaptureError
     MTLCaptureDestination: MTL.CaptureDestination
     MTLIndirectCommandType: MTL.IndirectCommandType
     MTLFunctionLogType: MTL.FunctionLogType
-    MTLAccelerationStructureRefitOptions: MTL.AccelerationStructureRefitOptions
     MTLDynamicLibraryError: MTL.DynamicLibraryError
     MTLLogLevel: MTL.LogLevel
     MTLLogStateError: MTL.LogStateError
@@ -166,25 +193,52 @@ Enums:
     MTLIOError: MTL.IOError
     MTLIOStatus: MTL.IOStatus
     MTLIOCompressionStatus: MTL.IOCompressionStatus
+    MTL4ShaderReflection: MTL.MTL4ShaderReflection
+    MTL4AlphaToOneState: MTL.MTL4AlphaToOneState
+    MTL4AlphaToCoverageState: MTL.MTL4AlphaToCoverageState
+    MTL4BlendState: MTL.MTL4BlendState
+    MTL4IndirectCommandBufferSupportState: MTL.MTL4IndirectCommandBufferSupportState
+    MTL4LogicalToPhysicalColorAttachmentMappingState: MTL.MTL4LogicalToPhysicalColorAttachmentMappingState
+    MTL4PipelineDataSetSerializerConfiguration: MTL.MTL4PipelineDataSetSerializerConfiguration
+    MTL4BinaryFunctionOptions: MTL.MTL4BinaryFunctionOptions
 
 ObjCClasses:
+    MTLTensorExtents: MTL.TensorExtents
+    MTLTensorDescriptor: MTL.TensorDescriptor
     MTLTextureDescriptor: MTL.TextureDescriptor
     MTLSharedTextureHandle: MTL.SharedTextureHandle
+    MTLTextureViewDescriptor: MTL.TextureViewDescriptor
     MTLArgument: MTL.Argument
     MTLStructType: MTL.StructType
     MTLArrayType: MTL.ArrayType
     MTLTextureReferenceType: MTL.TextureReferenceType
     MTLPointerType: MTL.PointerType
+    MTLTensorReferenceType: MTL.TensorReferenceType
     MTLType: MTL.Type
     MTLStructMember: MTL.StructMember
     MTLFunctionConstantValues: MTL.FunctionConstantValues
     MTLFunctionDescriptor: MTL.FunctionDescriptor
     MTLIntersectionFunctionDescriptor: MTL.IntersectionFunctionDescriptor
     MTLCompileOptions: MTL.CompileOptions
+    MTLRenderPipelineReflection: MTL.RenderPipelineReflection
+    MTLComputePipelineReflection: MTL.ComputePipelineReflection
     MTLVertexAttribute: MTL.VertexAttribute
     MTLAttribute: MTL.Attribute
     MTLFunctionConstant: MTL.FunctionConstant
+    MTLFunctionReflection: MTL.FunctionReflection
     MTLCounterSampleBufferDescriptor: MTL.CounterSampleBufferDescriptor
+    MTL4LibraryDescriptor: MTL.MTL4LibraryDescriptor
+    MTL4FunctionDescriptor: MTL.MTL4FunctionDescriptor
+    MTL4RenderPipelineDescriptor: MTL.MTL4RenderPipelineDescriptor
+    MTL4ComputePipelineDescriptor: MTL.MTL4ComputePipelineDescriptor
+    MTL4PipelineDescriptor: MTL.MTL4PipelineDescriptor
+    MTL4MachineLearningPipelineDescriptor: MTL.MTL4MachineLearningPipelineDescriptor
+    MTL4BinaryFunctionDescriptor: MTL.MTL4BinaryFunctionDescriptor
+    MTL4PipelineStageDynamicLinkingDescriptor: MTL.MTL4PipelineStageDynamicLinkingDescriptor
+    MTL4RenderPipelineDynamicLinkingDescriptor: MTL.MTL4RenderPipelineDynamicLinkingDescriptor
+    MTL4CompilerDescriptor: MTL.MTL4CompilerDescriptor
+    MTL4CompilerTaskOptions: MTL.MTL4CompilerTaskOptions
+    MTL4CounterHeapDescriptor: MTL.MTL4CounterHeapDescriptor
     MTLRasterizationRateLayerDescriptor: MTL.RasterizationRateLayerDescriptor
     MTLRasterizationRateMapDescriptor: MTL.RasterizationRateMapDescriptor
     MTLTileRenderPipelineDescriptor: MTL.TileRenderPipelineDescriptor
@@ -197,9 +251,7 @@ ObjCClasses:
     MTLRenderPassDescriptor: MTL.RenderPassDescriptor
     MTLComputePassDescriptor: MTL.ComputePassDescriptor
     MTLBlitPassDescriptor: MTL.BlitPassDescriptor
-    MTLRenderPipelineReflection: MTL.RenderPipelineReflection
     MTLComputePipelineDescriptor: MTL.ComputePipelineDescriptor
-    MTLComputePipelineReflection: MTL.ComputePipelineReflection
     MTLCommandQueueDescriptor: MTL.CommandQueueDescriptor
     MTLHeapDescriptor: MTL.HeapDescriptor
     MTLIndirectCommandBufferDescriptor: MTL.IndirectCommandBufferDescriptor
@@ -211,6 +263,11 @@ ObjCClasses:
     MTLStitchedLibraryDescriptor: MTL.StitchedLibraryDescriptor
     MTLLogStateDescriptor: MTL.LogStateDescriptor
     MTLResidencySetDescriptor: MTL.ResidencySetDescriptor
+    MTL4CommandQueueDescriptor: MTL.MTL4CommandQueueDescriptor
+    MTL4CommandAllocatorDescriptor: MTL.MTL4CommandAllocatorDescriptor
+    MTL4ArgumentTableDescriptor: MTL.MTL4ArgumentTableDescriptor
+    MTLResourceViewPoolDescriptor: MTL.ResourceViewPoolDescriptor
+    MTL4PipelineDataSetSerializerDescriptor: MTL.MTL4PipelineDataSetSerializerDescriptor
     MTLIOCommandQueueDescriptor: MTL.IOCommandQueueDescriptor
     MTLArgumentDescriptor: MTL.ArgumentDescriptor
     MTLArchitecture: MTL.Architecture
@@ -244,8 +301,10 @@ ObjCClasses:
     MTLPipelineBufferDescriptor: MTL.PipelineBufferDescriptor
     MTLPipelineBufferDescriptorArray: MTL.PipelineBufferDescriptorArray
     MTLLinkedFunctions: MTL.LinkedFunctions
+    MTLLogicalToPhysicalColorAttachmentMap: MTL.LogicalToPhysicalColorAttachmentMap
     MTLRenderPipelineColorAttachmentDescriptorArray: MTL.RenderPipelineColorAttachmentDescriptorArray
     MTLRenderPipelineFunctionsDescriptor: MTL.RenderPipelineFunctionsDescriptor
+    MTL4RenderPipelineBinaryFunctionsDescriptor: MTL.MTL4RenderPipelineBinaryFunctionsDescriptor
     MTLTileRenderPipelineColorAttachmentDescriptor: MTL.TileRenderPipelineColorAttachmentDescriptor
     MTLTileRenderPipelineColorAttachmentDescriptorArray: MTL.TileRenderPipelineColorAttachmentDescriptorArray
     MTLAccelerationStructureGeometryDescriptor: MTL.AccelerationStructureGeometryDescriptor
@@ -259,9 +318,12 @@ ObjCClasses:
     MTLAccelerationStructureMotionCurveGeometryDescriptor: MTL.AccelerationStructureMotionCurveGeometryDescriptor
     MTLInstanceAccelerationStructureDescriptor: MTL.InstanceAccelerationStructureDescriptor
     MTLIndirectInstanceAccelerationStructureDescriptor: MTL.IndirectInstanceAccelerationStructureDescriptor
+    MTL4RenderPassDescriptor: MTL.MTL4RenderPassDescriptor
+    MTL4CommandBufferOptions: MTL.MTL4CommandBufferOptions
+    MTLSharedEventListener: MTL.SharedEventListener
+    MTL4CommitOptions: MTL.MTL4CommitOptions
     MTLCaptureDescriptor: MTL.CaptureDescriptor
     MTLCaptureManager: MTL.CaptureManager
-    MTLSharedEventListener: MTL.SharedEventListener
     MTLAccelerationStructurePassSampleBufferAttachmentDescriptor: MTL.AccelerationStructurePassSampleBufferAttachmentDescriptor
     MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray: MTL.AccelerationStructurePassSampleBufferAttachmentDescriptorArray
     MTLRasterizationRateSampleArray: MTL.RasterizationRateSampleArray
@@ -270,6 +332,29 @@ ObjCClasses:
     MTLFunctionStitchingInputNode: MTL.FunctionStitchingInputNode
     MTLFunctionStitchingFunctionNode: MTL.FunctionStitchingFunctionNode
     MTLFunctionStitchingGraph: MTL.FunctionStitchingGraph
+    MTL4AccelerationStructureDescriptor: MTL.MTL4AccelerationStructureDescriptor
+    MTL4AccelerationStructureGeometryDescriptor: MTL.MTL4AccelerationStructureGeometryDescriptor
+    MTL4PrimitiveAccelerationStructureDescriptor: MTL.MTL4PrimitiveAccelerationStructureDescriptor
+    MTL4AccelerationStructureTriangleGeometryDescriptor: MTL.MTL4AccelerationStructureTriangleGeometryDescriptor
+    MTL4AccelerationStructureBoundingBoxGeometryDescriptor: MTL.MTL4AccelerationStructureBoundingBoxGeometryDescriptor
+    MTL4AccelerationStructureMotionTriangleGeometryDescriptor: MTL.MTL4AccelerationStructureMotionTriangleGeometryDescriptor
+    MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor: MTL.MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor
+    MTL4AccelerationStructureCurveGeometryDescriptor: MTL.MTL4AccelerationStructureCurveGeometryDescriptor
+    MTL4AccelerationStructureMotionCurveGeometryDescriptor: MTL.MTL4AccelerationStructureMotionCurveGeometryDescriptor
+    MTL4InstanceAccelerationStructureDescriptor: MTL.MTL4InstanceAccelerationStructureDescriptor
+    MTL4IndirectInstanceAccelerationStructureDescriptor: MTL.MTL4IndirectInstanceAccelerationStructureDescriptor
+    MTL4LibraryFunctionDescriptor: MTL.MTL4LibraryFunctionDescriptor
+    MTL4SpecializedFunctionDescriptor: MTL.MTL4SpecializedFunctionDescriptor
+    MTL4StitchedFunctionDescriptor: MTL.MTL4StitchedFunctionDescriptor
+    MTL4PipelineOptions: MTL.MTL4PipelineOptions
+    MTL4StaticLinkingDescriptor: MTL.MTL4StaticLinkingDescriptor
+    MTL4RenderPipelineColorAttachmentDescriptor: MTL.MTL4RenderPipelineColorAttachmentDescriptor
+    MTL4RenderPipelineColorAttachmentDescriptorArray: MTL.MTL4RenderPipelineColorAttachmentDescriptorArray
+    MTL4MachineLearningPipelineReflection: MTL.MTL4MachineLearningPipelineReflection
+    MTL4TileRenderPipelineDescriptor: MTL.MTL4TileRenderPipelineDescriptor
+    MTL4MeshRenderPipelineDescriptor: MTL.MTL4MeshRenderPipelineDescriptor
+    MTL4BinaryFunction: MTL.MTL4BinaryFunction
+    MTLDynamicLibrary: MTL.DynamicLibrary
 
 ObjCProtocols:
     MTLDevice: MTL.Device
@@ -277,26 +362,35 @@ ObjCProtocols:
     MTLAllocation: MTL.Allocation
     MTLHeap: MTL.Heap
     MTLResource: MTL.Resource
-    MTLTexture: MTL.Texture
     MTLBuffer: MTL.Buffer
+    MTLTensor: MTL.Tensor
+    MTLTexture: MTL.Texture
     MTLBinding: MTL.Binding
     MTLBufferBinding: MTL.BufferBinding
     MTLThreadgroupBinding: MTL.ThreadgroupBinding
     MTLTextureBinding: MTL.TextureBinding
     MTLObjectPayloadBinding: MTL.ObjectPayloadBinding
+    MTLTensorBinding: MTL.TensorBinding
     MTLBinaryArchive: MTL.BinaryArchive
     MTLFunction: MTL.Function
     MTLLibrary: MTL.Library
-    MTLDynamicLibrary: MTL.DynamicLibrary
+    MTLDynamicLibrary: MTL.DynamicLibraryProtocol
+    MTLRenderPipelineState: MTL.RenderPipelineState
+    MTLComputePipelineState: MTL.ComputePipelineState
     MTLArgumentEncoder: MTL.ArgumentEncoder
     MTLCounter: MTL.Counter
     MTLCounterSet: MTL.CounterSet
     MTLCounterSampleBuffer: MTL.CounterSampleBuffer
+    MTL4Compiler: MTL.MTL4Compiler
+    MTL4CompilerTask: MTL.MTL4CompilerTask
+    MTL4BinaryFunction: MTL.MTL4BinaryFunctionProtocol
+    MTL4MachineLearningPipelineState: MTL.MTL4MachineLearningPipelineState
+    MTL4Archive: MTL.MTL4Archive
+    MTL4PipelineDataSetSerializer: MTL.MTL4PipelineDataSetSerializer
+    MTL4CounterHeap: MTL.MTL4CounterHeap
     MTLCommandQueue: MTL.CommandQueue
     MTLDepthStencilState: MTL.DepthStencilState
     MTLSamplerState: MTL.SamplerState
-    MTLRenderPipelineState: MTL.RenderPipelineState
-    MTLComputePipelineState: MTL.ComputePipelineState
     MTLFence: MTL.Fence
     MTLRasterizationRateMap: MTL.RasterizationRateMap
     MTLIndirectRenderCommandEncoder: MTL.IndirectRenderCommandEncoder
@@ -310,6 +404,11 @@ ObjCProtocols:
     MTLIntersectionFunctionTable: MTL.IntersectionFunctionTable
     MTLLogState: MTL.LogState
     MTLResidencySet: MTL.ResidencySet
+    MTL4CommandQueue: MTL.MTL4CommandQueue
+    MTL4CommandBuffer: MTL.MTL4CommandBuffer
+    MTL4CommandAllocator: MTL.MTL4CommandAllocator
+    MTL4ArgumentTable: MTL.MTL4ArgumentTable
+    MTLTextureViewPool: MTL.TextureViewPool
     MTLIOFileHandle: MTL.IOFileHandle
     MTLIOCommandQueue: MTL.IOCommandQueue
     MTLResourceStateCommandEncoder: MTL.ResourceStateCommandEncoder
@@ -322,6 +421,11 @@ ObjCProtocols:
     MTLLogContainer: MTL.LogContainer
     MTLAccelerationStructureCommandEncoder: MTL.AccelerationStructureCommandEncoder
     MTLCommandBufferEncoderInfo: MTL.CommandBufferEncoderInfo
+    MTL4CommandEncoder: MTL.MTL4CommandEncoder
+    MTL4RenderCommandEncoder: MTL.MTL4RenderCommandEncoder
+    MTL4ComputeCommandEncoder: MTL.MTL4ComputeCommandEncoder
+    MTL4MachineLearningCommandEncoder: MTL.MTL4MachineLearningCommandEncoder
+    MTL4CommitFeedback: MTL.MTL4CommitFeedback
     MTLCaptureScope: MTL.CaptureScope
     MTLIndirectRenderCommand: MTL.IndirectRenderCommand
     MTLIndirectComputeCommand: MTL.IndirectComputeCommand
@@ -332,6 +436,7 @@ ObjCProtocols:
     MTLIOCommandBuffer: MTL.IOCommandBuffer
     MTLIOScratchBuffer: MTL.IOScratchBuffer
     MTLIOScratchBufferAllocator: MTL.IOScratchBufferAllocator
+    MTLResourceViewPool: MTL.ResourceViewPool
 
 
 Functions:
@@ -345,6 +450,7 @@ Functions:
     ::MTLIOFlushAndDestroyCompressionContext: MTL.IOFlushAndDestroyCompressionContext
 
 ExternVars:
+    ::MTLTensorDomain: MTL.TensorDomain
     ::MTLLibraryErrorDomain: MTL.LibraryErrorDomain
     ::MTLCommonCounterTimestamp: MTL.CommonCounterTimestamp
     ::MTLCommonCounterTessellationInputPatches: MTL.CommonCounterTessellationInputPatches
@@ -370,6 +476,7 @@ ExternVars:
     ::MTLDeviceWasRemovedNotification: MTL.DeviceWasRemovedNotification
     ::MTLCommandBufferErrorDomain: MTL.CommandBufferErrorDomain
     ::MTLCommandBufferEncoderInfoErrorKey: MTL.CommandBufferEncoderInfoErrorKey
+    ::MTL4CommandQueueErrorDomain: MTL.4CommandQueueErrorDomain
     ::MTLCaptureErrorDomain: MTL.CaptureErrorDomain
     ::MTLDynamicLibraryDomain: MTL.DynamicLibraryDomain
     ::MTLLogStateErrorDomain: MTL.LogStateErrorDomain
@@ -377,6 +484,7 @@ ExternVars:
     ::MTLIOErrorDomain: MTL.IOErrorDomain
 
 ExternTypes:
+    ::MTLTensorDomain: ^NS.String
     ::MTLLibraryErrorDomain: ^NS.String
     ::MTLCommonCounterTimestamp: ^NS.String
     ::MTLCommonCounterTessellationInputPatches: ^NS.String
@@ -402,6 +510,7 @@ ExternTypes:
     ::MTLDeviceWasRemovedNotification: ^NS.String
     ::MTLCommandBufferErrorDomain: ^NS.String
     ::MTLCommandBufferEncoderInfoErrorKey: ^NS.String
+    ::MTL4CommandQueueErrorDomain: ^NS.String
     ::MTLCaptureErrorDomain: ^NS.String
     ::MTLDynamicLibraryDomain: ^NS.String
     ::MTLLogStateErrorDomain: ^NS.String

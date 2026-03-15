@@ -36,4 +36,13 @@ foreign lib {
 
     @(objc_type=MetricPlayerItemVariantSwitchStartEvent, objc_selector="loadedTimeRanges", objc_name="loadedTimeRanges")
     MetricPlayerItemVariantSwitchStartEvent_loadedTimeRanges :: proc(self: ^MetricPlayerItemVariantSwitchStartEvent) -> ^NS.Array ---
+
+    @(objc_type=MetricPlayerItemVariantSwitchStartEvent, objc_selector="videoRendition", objc_name="videoRendition")
+    MetricPlayerItemVariantSwitchStartEvent_videoRendition :: proc(self: ^MetricPlayerItemVariantSwitchStartEvent) -> ^MetricMediaRendition ---
+
+    @(objc_type=MetricPlayerItemVariantSwitchStartEvent, objc_selector="audioRendition", objc_name="audioRendition")
+    MetricPlayerItemVariantSwitchStartEvent_audioRendition :: proc(self: ^MetricPlayerItemVariantSwitchStartEvent) -> ^MetricMediaRendition ---
+
+    @(objc_type=MetricPlayerItemVariantSwitchStartEvent, objc_selector="subtitleRendition", objc_name="subtitleRendition")
+    MetricPlayerItemVariantSwitchStartEvent_subtitleRendition :: proc(self: ^MetricPlayerItemVariantSwitchStartEvent) -> ^MetricMediaRendition ---
 }

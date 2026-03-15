@@ -37,6 +37,7 @@ VTable :: struct {
     startingItemNumber: proc(self: ^UI.NSTextList) -> NS.Integer,
     setStartingItemNumber: proc(self: ^UI.NSTextList, startingItemNumber: NS.Integer),
     isOrdered: proc(self: ^UI.NSTextList) -> bool,
+    includesTextListMarkers: proc() -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -135,6 +136,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isOrdered"), auto_cast isOrdered, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.includesTextListMarkers != nil {
+        includesTextListMarkers :: proc "c" (self: Class, _: SEL) -> bool {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).includesTextListMarkers()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("includesTextListMarkers"), auto_cast includesTextListMarkers, "B#:") do panic("Failed to register objC method.")
     }
 }
 

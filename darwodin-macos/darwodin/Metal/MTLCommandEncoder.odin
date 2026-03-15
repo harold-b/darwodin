@@ -26,6 +26,9 @@ foreign lib {
     @(objc_type=CommandEncoder, objc_selector="endEncoding", objc_name="endEncoding")
     CommandEncoder_endEncoding :: proc(self: ^CommandEncoder) ---
 
+    @(objc_type=CommandEncoder, objc_selector="barrierAfterQueueStages:beforeStages:", objc_name="barrierAfterQueueStages")
+    CommandEncoder_barrierAfterQueueStages :: proc(self: ^CommandEncoder, afterQueueStages: Stages, beforeStages: Stages) ---
+
     @(objc_type=CommandEncoder, objc_selector="insertDebugSignpost:", objc_name="insertDebugSignpost")
     CommandEncoder_insertDebugSignpost :: proc(self: ^CommandEncoder, string: ^NS.String) ---
 

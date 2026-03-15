@@ -80,6 +80,9 @@ foreign lib {
     @(objc_type=Cell, objc_selector="drawingRectForBounds:", objc_name="drawingRectForBounds")
     Cell_drawingRectForBounds :: proc(self: ^Cell, rect: NS.Rect) -> NS.Rect ---
 
+    @(objc_type=Cell, objc_selector="_bulletStringForString:bulletCharacter:", objc_name="_bulletStringForString", objc_is_class_method=true)
+    Cell__bulletStringForString :: proc(string: ^NS.String, bulletChar: NS.unichar) -> ^NS.String ---
+
     @(objc_type=Cell, objc_selector="cellSizeForBounds:", objc_name="cellSizeForBounds")
     Cell_cellSizeForBounds :: proc(self: ^Cell, rect: NS.Rect) -> NS.Size ---
 

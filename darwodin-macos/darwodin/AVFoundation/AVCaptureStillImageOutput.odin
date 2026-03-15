@@ -64,6 +64,15 @@ foreign lib {
     @(objc_type=CaptureStillImageOutput, objc_selector="setHighResolutionStillImageOutputEnabled:", objc_name="setHighResolutionStillImageOutputEnabled")
     CaptureStillImageOutput_setHighResolutionStillImageOutputEnabled :: proc(self: ^CaptureStillImageOutput, highResolutionStillImageOutputEnabled: bool) ---
 
+    @(objc_type=CaptureStillImageOutput, objc_selector="isCameraSensorOrientationCompensationSupported", objc_name="isCameraSensorOrientationCompensationSupported")
+    CaptureStillImageOutput_isCameraSensorOrientationCompensationSupported :: proc(self: ^CaptureStillImageOutput) -> bool ---
+
+    @(objc_type=CaptureStillImageOutput, objc_selector="isCameraSensorOrientationCompensationEnabled", objc_name="isCameraSensorOrientationCompensationEnabled")
+    CaptureStillImageOutput_isCameraSensorOrientationCompensationEnabled :: proc(self: ^CaptureStillImageOutput) -> bool ---
+
+    @(objc_type=CaptureStillImageOutput, objc_selector="setCameraSensorOrientationCompensationEnabled:", objc_name="setCameraSensorOrientationCompensationEnabled")
+    CaptureStillImageOutput_setCameraSensorOrientationCompensationEnabled :: proc(self: ^CaptureStillImageOutput, cameraSensorOrientationCompensationEnabled: bool) ---
+
     @(objc_type=CaptureStillImageOutput, objc_selector="isCapturingStillImage", objc_name="isCapturingStillImage")
     CaptureStillImageOutput_isCapturingStillImage :: proc(self: ^CaptureStillImageOutput) -> bool ---
 

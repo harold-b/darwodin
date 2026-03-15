@@ -41,6 +41,9 @@ foreign lib {
     @(objc_type=SearchBarDelegate, objc_selector="searchBar:shouldChangeTextInRange:replacementText:", objc_name="searchBar_shouldChangeTextInRange_replacementText")
     SearchBarDelegate_searchBar_shouldChangeTextInRange_replacementText :: proc(self: ^SearchBarDelegate, searchBar: ^SearchBar, range: NS._NSRange, text: ^NS.String) -> bool ---
 
+    @(objc_type=SearchBarDelegate, objc_selector="searchBar:shouldChangeTextInRanges:replacementText:", objc_name="searchBar_shouldChangeTextInRanges_replacementText")
+    SearchBarDelegate_searchBar_shouldChangeTextInRanges_replacementText :: proc(self: ^SearchBarDelegate, searchBar: ^SearchBar, ranges: ^NS.Array, replacementText: ^NS.String) -> bool ---
+
     @(objc_type=SearchBarDelegate, objc_selector="searchBarSearchButtonClicked:", objc_name="searchBarSearchButtonClicked")
     SearchBarDelegate_searchBarSearchButtonClicked :: proc(self: ^SearchBarDelegate, searchBar: ^SearchBar) ---
 
@@ -61,6 +64,7 @@ foreign lib {
 SearchBarDelegate_searchBar :: proc {
     SearchBarDelegate_searchBar_textDidChange,
     SearchBarDelegate_searchBar_shouldChangeTextInRange_replacementText,
+    SearchBarDelegate_searchBar_shouldChangeTextInRanges_replacementText,
     SearchBarDelegate_searchBar_selectedScopeButtonIndexDidChange,
 }
 

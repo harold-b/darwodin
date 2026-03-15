@@ -51,6 +51,10 @@ VTable :: struct {
     setMaximumValueImage: proc(self: ^UI.Slider, maximumValueImage: ^UI.Image),
     isContinuous: proc(self: ^UI.Slider) -> bool,
     setContinuous: proc(self: ^UI.Slider, continuous: bool),
+    trackConfiguration: proc(self: ^UI.Slider) -> ^UI.SliderTrackConfiguration,
+    setTrackConfiguration: proc(self: ^UI.Slider, trackConfiguration: ^UI.SliderTrackConfiguration),
+    sliderStyle: proc(self: ^UI.Slider) -> UI.SliderStyle,
+    setSliderStyle: proc(self: ^UI.Slider, sliderStyle: UI.SliderStyle),
     minimumTrackTintColor: proc(self: ^UI.Slider) -> ^UI.Color,
     setMinimumTrackTintColor: proc(self: ^UI.Slider, minimumTrackTintColor: ^UI.Color),
     maximumTrackTintColor: proc(self: ^UI.Slider) -> ^UI.Color,
@@ -301,6 +305,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContinuous:"), auto_cast setContinuous, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.trackConfiguration != nil {
+        trackConfiguration :: proc "c" (self: ^UI.Slider, _: SEL) -> ^UI.SliderTrackConfiguration {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).trackConfiguration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("trackConfiguration"), auto_cast trackConfiguration, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTrackConfiguration != nil {
+        setTrackConfiguration :: proc "c" (self: ^UI.Slider, _: SEL, trackConfiguration: ^UI.SliderTrackConfiguration) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setTrackConfiguration(self, trackConfiguration)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTrackConfiguration:"), auto_cast setTrackConfiguration, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.sliderStyle != nil {
+        sliderStyle :: proc "c" (self: ^UI.Slider, _: SEL) -> UI.SliderStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).sliderStyle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sliderStyle"), auto_cast sliderStyle, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSliderStyle != nil {
+        setSliderStyle :: proc "c" (self: ^UI.Slider, _: SEL, sliderStyle: UI.SliderStyle) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSliderStyle(self, sliderStyle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSliderStyle:"), auto_cast setSliderStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.minimumTrackTintColor != nil {
         minimumTrackTintColor :: proc "c" (self: ^UI.Slider, _: SEL) -> ^UI.Color {

@@ -254,6 +254,7 @@ foreign lib {
     @(link_name="UIMenuServices") MenuServices: ^NS.String
     @(link_name="UIMenuHide") MenuHide: ^NS.String
     @(link_name="UIMenuQuit") MenuQuit: ^NS.String
+    @(link_name="UIMenuNewItem") MenuNewItem: ^NS.String
     @(link_name="UIMenuNewScene") MenuNewScene: ^NS.String
     @(link_name="UIMenuOpen") MenuOpen: ^NS.String
     @(link_name="UIMenuOpenRecent") MenuOpenRecent: ^NS.String
@@ -263,6 +264,7 @@ foreign lib {
     @(link_name="UIMenuUndoRedo") MenuUndoRedo: ^NS.String
     @(link_name="UIMenuStandardEdit") MenuStandardEdit: ^NS.String
     @(link_name="UIMenuFind") MenuFind: ^NS.String
+    @(link_name="UIMenuFindPanel") MenuFindPanel: ^NS.String
     @(link_name="UIMenuReplace") MenuReplace: ^NS.String
     @(link_name="UIMenuShare") MenuShare: ^NS.String
     @(link_name="UIMenuTextStyle") MenuTextStyle: ^NS.String
@@ -347,6 +349,7 @@ foreign lib {
     @(link_name="UIActionPasteAndMatchStyle") ActionPasteAndMatchStyle: ^NS.String
     @(link_name="UIActionPasteAndGo") ActionPasteAndGo: ^NS.String
     @(link_name="UIActionPasteAndSearch") ActionPasteAndSearch: ^NS.String
+    @(link_name="UIActionNewFromPasteboard") ActionNewFromPasteboard: ^NS.String
     @(link_name="UIScrollViewDecelerationRateNormal") ScrollViewDecelerationRateNormal: ScrollViewDecelerationRate
     @(link_name="UIScrollViewDecelerationRateFast") ScrollViewDecelerationRateFast: ScrollViewDecelerationRate
     @(link_name="UIAccessibilityCustomActionCategoryEdit") AccessibilityCustomActionCategoryEdit: ^NS.String
@@ -515,6 +518,8 @@ foreign lib {
     @(link_name="UIListContentImageStandardDimension") ListContentImageStandardDimension: CG.Float
     @(link_name="UIDocumentCreationIntentDefault") DocumentCreationIntentDefault: ^NS.String
     @(link_name="UIDocumentStateChangedNotification") DocumentStateChangedNotification: ^NS.String
+    @(link_name="UIDocumentDidMoveToWritableLocationNotification") DocumentDidMoveToWritableLocationNotification: ^NS.String
+    @(link_name="UIDocumentDidMoveToWritableLocationOldURLKey") DocumentDidMoveToWritableLocationOldURLKey: ^NS.String
     @(link_name="NSUserActivityDocumentURLKey") NSUserActivityDocumentURLKey: ^NS.String
     @(link_name="NSFileProviderRootContainerItemIdentifier") NSFileProviderRootContainerItemIdentifier: ^NS.String
     @(link_name="NSFileProviderWorkingSetContainerItemIdentifier") NSFileProviderWorkingSetContainerItemIdentifier: ^NS.String
@@ -538,6 +543,7 @@ foreign lib {
     @(link_name="UIWindowSceneSessionRoleExternalDisplayNonInteractive") WindowSceneSessionRoleExternalDisplayNonInteractive: ^NS.String
     @(link_name="UIWindowSceneSessionRoleExternalDisplay") WindowSceneSessionRoleExternalDisplay: ^NS.String
     @(link_name="UIWindowSceneSessionRoleVolumetricApplication") WindowSceneSessionRoleVolumetricApplication: ^NS.String
+    @(link_name="UIWindowSceneSessionRoleAssistiveAccessApplication") WindowSceneSessionRoleAssistiveAccessApplication: ^NS.String
     @(link_name="UIMenuControllerWillShowMenuNotification") MenuControllerWillShowMenuNotification: ^NS.String
     @(link_name="UIMenuControllerDidShowMenuNotification") MenuControllerDidShowMenuNotification: ^NS.String
     @(link_name="UIMenuControllerWillHideMenuNotification") MenuControllerWillHideMenuNotification: ^NS.String
@@ -1248,6 +1254,9 @@ SheetPresentationControllerDetentIdentifier :: distinct ^NS.String
 /// UIGraphicsDrawingActions
 GraphicsDrawingActions :: ^Objc_Block(proc "c" (rendererContext: ^GraphicsRendererContext))
 
+/// UIDeferredMenuElementIdentifier
+DeferredMenuElementIdentifier :: distinct ^NS.String
+
 /// UIWindowSceneActivationActionConfigurationProvider
 WindowSceneActivationActionConfigurationProvider :: ^Objc_Block(proc "c" (action: ^WindowSceneActivationAction) -> ^WindowSceneActivationConfiguration)
 
@@ -1321,6 +1330,14 @@ RectEdge :: enum cffi.ulong {
     All    = 15,
 }
 
+/// UIAxis
+Axis :: enum cffi.ulong {
+    Neither    = 0,
+    Horizontal = 1,
+    Vertical   = 2,
+    Both       = 3,
+}
+
 /// UIRectCorner
 RectCorner :: enum cffi.ulong {
     TopLeft     = 1,
@@ -1328,14 +1345,6 @@ RectCorner :: enum cffi.ulong {
     BottomLeft  = 4,
     BottomRight = 8,
     AllCorners  = 18446744073709551615,
-}
-
-/// UIAxis
-Axis :: enum cffi.ulong {
-    Neither    = 0,
-    Horizontal = 1,
-    Vertical   = 2,
-    Both       = 3,
 }
 
 /// NSDirectionalRectEdge
@@ -1459,6 +1468,20 @@ ImageSymbolWeight :: enum cffi.long {
     Black       = 9,
 }
 
+/// UIImageSymbolVariableValueMode
+ImageSymbolVariableValueMode :: enum cffi.long {
+    Automatic = 0,
+    Color     = 1,
+    Draw      = 2,
+}
+
+/// UIImageSymbolColorRenderingMode
+ImageSymbolColorRenderingMode :: enum cffi.long {
+    Automatic = 0,
+    Flat      = 1,
+    Gradient  = 2,
+}
+
 /// NSUnderlineStyle
 NSUnderlineStyle :: enum cffi.long {
     None              = 0,
@@ -1527,10 +1550,11 @@ NSLineBreakStrategy :: enum cffi.ulong {
 
 /// NSStringDrawingOptions
 NSStringDrawingOptions :: enum cffi.long {
-    UsesLineFragmentOrigin   = 1,
-    UsesFontLeading          = 2,
-    UsesDeviceMetrics        = 8,
-    TruncatesLastVisibleLine = 32,
+    UsesLineFragmentOrigin           = 1,
+    UsesFontLeading                  = 2,
+    UsesDeviceMetrics                = 8,
+    TruncatesLastVisibleLine         = 32,
+    ResolvesNaturalAlignmentWithBaseWritingDirection = 512,
 }
 
 /// UIMenuElementState
@@ -1546,6 +1570,13 @@ MenuElementAttributes :: enum cffi.ulong {
     Destructive        = 2,
     Hidden             = 4,
     KeepsMenuPresented = 8,
+}
+
+/// UIMenuElementRepeatBehavior
+MenuElementRepeatBehavior :: enum cffi.long {
+    Automatic     = 0,
+    Repeatable    = 1,
+    NonRepeatable = 2,
 }
 
 /// UIMenuOptions
@@ -1603,11 +1634,11 @@ EventSubtype :: enum cffi.long {
 }
 
 /// UIEventButtonMask
-EventButtonMaskFlag :: enum cffi.long {
+EventButtonFlag :: enum cffi.long {
     Primary   = 0,
     Secondary = 1,
 }
-EventButtonMask :: bit_set[EventButtonMaskFlag; cffi.long]
+EventButtonMask :: bit_set[EventButtonFlag; cffi.long]
 
 /// UIEditingInteractionConfiguration
 EditingInteractionConfiguration :: enum cffi.long {
@@ -1701,6 +1732,13 @@ ImageDynamicRange :: enum cffi.long {
     High            = 2,
 }
 
+/// UIHDRHeadroomUsageLimit
+HDRHeadroomUsageLimit :: enum cffi.long {
+    Unspecified = -1,
+    Active      = 0,
+    Inactive    = 1,
+}
+
 /// UIDynamicItemCollisionBoundsType
 DynamicItemCollisionBoundsType :: enum cffi.ulong {
     Rectangle = 0,
@@ -1785,13 +1823,13 @@ InterfaceOrientation :: enum cffi.long {
 }
 
 /// UIInterfaceOrientationMask
-InterfaceOrientationMaskFlag :: enum cffi.ulong {
+InterfaceOrientationFlag :: enum cffi.ulong {
     Portrait           = 1,
     LandscapeLeft      = 4,
     LandscapeRight     = 3,
     PortraitUpsideDown = 2,
 }
-InterfaceOrientationMask :: bit_set[InterfaceOrientationMaskFlag; cffi.ulong]
+InterfaceOrientationMask :: bit_set[InterfaceOrientationFlag; cffi.ulong]
 
 InterfaceOrientationMask_Landscape :: InterfaceOrientationMask { .LandscapeRight, .LandscapeLeft, }
 
@@ -1889,6 +1927,21 @@ ListEnvironment :: enum cffi.long {
     SidebarPlain = 6,
 }
 
+/// UITabAccessoryEnvironment
+TabAccessoryEnvironment :: enum cffi.long {
+    Unspecified = 0,
+    None        = 1,
+    Regular     = 2,
+    Inline      = 3,
+}
+
+/// UISplitViewControllerLayoutEnvironment
+SplitViewControllerLayoutEnvironment :: enum cffi.long {
+    None      = 0,
+    Expanded  = 1,
+    Collapsed = 2,
+}
+
 /// UIFocusHeading
 FocusHeading :: enum cffi.ulong {
     None     = 0,
@@ -1907,6 +1960,20 @@ FocusItemDeferralMode :: enum cffi.long {
     Automatic = 0,
     Always    = 1,
     Never     = 2,
+}
+
+/// UIViewLayoutRegionAdaptivityAxis
+ViewLayoutRegionAdaptivityAxis :: enum cffi.ulong {
+    None       = 0,
+    Horizontal = 1,
+    Vertical   = 2,
+}
+
+/// UIFocusHaloEffectPosition
+FocusHaloEffectPosition :: enum cffi.long {
+    Automatic = 0,
+    Outside   = 1,
+    Inside    = 2,
 }
 
 /// UIViewAnimationCurve
@@ -1981,6 +2048,7 @@ ViewAnimationOptions :: enum cffi.ulong {
     OptionPreferredFramesPerSecondDefault = 0,
     OptionPreferredFramesPerSecond60 = 50331648,
     OptionPreferredFramesPerSecond30 = 117440512,
+    OptionFlushUpdates               = 268435456,
 }
 
 /// UIViewKeyframeAnimationOptions
@@ -2238,11 +2306,12 @@ WritingToolsBehavior :: enum cffi.long {
 
 /// UIWritingToolsResultOptions
 WritingToolsResultOptions :: enum cffi.ulong {
-    Default   = 0,
-    PlainText = 1,
-    RichText  = 2,
-    List      = 4,
-    Table     = 8,
+    Default            = 0,
+    PlainText          = 1,
+    RichText           = 2,
+    List               = 4,
+    Table              = 8,
+    PresentationIntent = 16,
 }
 
 /// UITextStorageDirection
@@ -2680,9 +2749,10 @@ BarPosition :: enum cffi.long {
 
 /// UIBarButtonItemStyle
 BarButtonItemStyle :: enum cffi.long {
-    Plain    = 0,
-    Bordered = 1,
-    Done     = 2,
+    Plain     = 0,
+    Prominent = 2,
+    Bordered  = 1,
+    Done      = 2,
 }
 
 /// UIBarButtonSystemItem
@@ -2900,11 +2970,11 @@ TableViewCellAccessoryType :: enum cffi.long {
 }
 
 /// UITableViewCellStateMask
-TableViewCellStateMaskFlag :: enum cffi.ulong {
+TableViewCellStateFlag :: enum cffi.ulong {
     ShowingEditControlMask        = 0,
     ShowingDeleteConfirmationMask = 1,
 }
-TableViewCellStateMask :: bit_set[TableViewCellStateMaskFlag; cffi.ulong]
+TableViewCellStateMask :: bit_set[TableViewCellStateFlag; cffi.ulong]
 
 /// UITableViewCellDragState
 TableViewCellDragState :: enum cffi.long {
@@ -3271,9 +3341,12 @@ NavigationItemBackButtonDisplayMode :: enum cffi.long {
 
 /// UINavigationItemSearchBarPlacement
 NavigationItemSearchBarPlacement :: enum cffi.long {
-    Automatic = 0,
-    Inline    = 1,
-    Stacked   = 2,
+    Automatic          = 0,
+    Integrated         = 1,
+    Stacked            = 2,
+    IntegratedCentered = 3,
+    IntegratedButton   = 4,
+    Inline             = 1,
 }
 
 /// UINavigationItemStyle
@@ -3403,6 +3476,12 @@ BlurEffectStyle :: enum cffi.long {
     SystemChromeMaterialDark     = 20,
 }
 
+/// UIGlassEffectStyle
+GlassEffectStyle :: enum cffi.long {
+    Regular = 0,
+    Clear   = 1,
+}
+
 /// UIVibrancyEffectStyle
 VibrancyEffectStyle :: enum cffi.long {
     Label           = 0,
@@ -3430,11 +3509,11 @@ ScrollType :: enum cffi.ulong {
 }
 
 /// UIScrollTypeMask
-ScrollTypeMaskFlag :: enum cffi.long {
+ScrollTypeFlag :: enum cffi.long {
     Discrete   = 0,
     Continuous = 1,
 }
-ScrollTypeMask :: bit_set[ScrollTypeMaskFlag; cffi.long]
+ScrollTypeMask :: bit_set[ScrollTypeFlag; cffi.long]
 
 ScrollTypeMask_All :: ScrollTypeMask { .Discrete, .Continuous, }
 
@@ -3593,6 +3672,12 @@ MenuControllerArrowDirection :: enum cffi.long {
 InterpolatingMotionEffectType :: enum cffi.long {
     TiltAlongHorizontalAxis = 0,
     TiltAlongVerticalAxis   = 1,
+}
+
+/// UISliderStyle
+SliderStyle :: enum cffi.long {
+    Default   = 0,
+    Thumbless = 1,
 }
 
 /// UIBehavioralStyle
@@ -3810,6 +3895,7 @@ SplitViewControllerColumn :: enum cffi.long {
     Supplementary = 1,
     Secondary     = 2,
     Compact       = 3,
+    Inspector     = 4,
 }
 
 /// UISplitViewControllerSplitBehavior
@@ -3846,6 +3932,14 @@ TabBarControllerMode :: enum cffi.long {
     Automatic  = 0,
     TabBar     = 1,
     TabSidebar = 2,
+}
+
+/// UITabBarMinimizeBehavior
+TabBarMinimizeBehavior :: enum cffi.long {
+    Automatic    = 0,
+    Never        = 1,
+    OnScrollDown = 2,
+    OnScrollUp   = 3,
 }
 
 /// UITabBarSystemItem
@@ -4070,6 +4164,21 @@ WindowSceneResizingRestrictions :: enum cffi.long {
     Freeform    = 3,
 }
 
+/// UIMenuSystemElementGroupPreference
+MenuSystemElementGroupPreference :: enum cffi.long {
+    Automatic = 0,
+    Removed   = 1,
+    Included  = 2,
+}
+
+/// UIMenuSystemFindElementGroupConfigurationStyle
+MenuSystemFindElementGroupConfigurationStyle :: enum cffi.long {
+    Automatic       = 0,
+    Search          = 1,
+    NonEditableText = 2,
+    EditableText    = 3,
+}
+
 /// UIPointerEffectTintMode
 PointerEffectTintMode :: enum cffi.long {
     None     = 0,
@@ -4090,13 +4199,6 @@ WindowScenePresentationStyle :: enum cffi.ulong {
     Automatic = 0,
     Standard  = 1,
     Prominent = 2,
-}
-
-/// UIFocusHaloEffectPosition
-FocusHaloEffectPosition :: enum cffi.long {
-    Automatic = 0,
-    Outside   = 1,
-    Inside    = 2,
 }
 
 /// UICalendarViewDecorationSize

@@ -103,6 +103,7 @@ Typedefs:
     UIScribbleElementIdentifier: UI.ScribbleElementIdentifier
     UISheetPresentationControllerDetentIdentifier: UI.SheetPresentationControllerDetentIdentifier
     UIGraphicsDrawingActions: UI.GraphicsDrawingActions
+    UIDeferredMenuElementIdentifier: UI.DeferredMenuElementIdentifier
     UIWindowSceneActivationActionConfigurationProvider: UI.WindowSceneActivationActionConfigurationProvider
     UIWindowSceneActivationInteractionConfigurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider
     UITextFormattingViewControllerTextAlignment: UI.TextFormattingViewControllerTextAlignment
@@ -121,8 +122,8 @@ Enums:
     UIAccessibilityDirectTouchOptions: UI.AccessibilityDirectTouchOptions
     UIAccessibilityExpandedStatus: UI.AccessibilityExpandedStatus
     UIRectEdge: UI.RectEdge
-    UIRectCorner: UI.RectCorner
     UIAxis: UI.Axis
+    UIRectCorner: UI.RectCorner
     NSDirectionalRectEdge: UI.NSDirectionalRectEdge
     UIDirectionalRectEdge: UI.DirectionalRectEdge
     NSRectAlignment: UI.NSRectAlignment
@@ -134,6 +135,8 @@ Enums:
     UIImageRenderingMode: UI.ImageRenderingMode
     UIImageSymbolScale: UI.ImageSymbolScale
     UIImageSymbolWeight: UI.ImageSymbolWeight
+    UIImageSymbolVariableValueMode: UI.ImageSymbolVariableValueMode
+    UIImageSymbolColorRenderingMode: UI.ImageSymbolColorRenderingMode
     NSUnderlineStyle: UI.NSUnderlineStyle
     NSWritingDirectionFormatType: UI.NSWritingDirectionFormatType
     NSTextScalingType: UI.NSTextScalingType
@@ -145,6 +148,7 @@ Enums:
     NSStringDrawingOptions: UI.NSStringDrawingOptions
     UIMenuElementState: UI.MenuElementState
     UIMenuElementAttributes: UI.MenuElementAttributes
+    UIMenuElementRepeatBehavior: UI.MenuElementRepeatBehavior
     UIMenuOptions: UI.MenuOptions
     UIMenuElementSize: UI.MenuElementSize
     UIKeyModifierFlags: UI.KeyModifierFlags
@@ -164,6 +168,7 @@ Enums:
     UIUserInterfaceActiveAppearance: UI.UserInterfaceActiveAppearance
     UINSToolbarItemPresentationSize: UI.NSToolbarItemPresentationSize
     UIImageDynamicRange: UI.ImageDynamicRange
+    UIHDRHeadroomUsageLimit: UI.HDRHeadroomUsageLimit
     UIDynamicItemCollisionBoundsType: UI.DynamicItemCollisionBoundsType
     NSLayoutRelation: UI.NSLayoutRelation
     NSLayoutAttribute: UI.NSLayoutAttribute
@@ -181,8 +186,12 @@ Enums:
     UISceneCaptureState: UI.SceneCaptureState
     UISceneErrorCode: UI.SceneErrorCode
     UIListEnvironment: UI.ListEnvironment
+    UITabAccessoryEnvironment: UI.TabAccessoryEnvironment
+    UISplitViewControllerLayoutEnvironment: UI.SplitViewControllerLayoutEnvironment
     UIFocusHeading: UI.FocusHeading
     UIFocusItemDeferralMode: UI.FocusItemDeferralMode
+    UIViewLayoutRegionAdaptivityAxis: UI.ViewLayoutRegionAdaptivityAxis
+    UIFocusHaloEffectPosition: UI.FocusHaloEffectPosition
     UIViewAnimationCurve: UI.ViewAnimationCurve
     UIViewContentMode: UI.ViewContentMode
     UIViewAnimationTransition: UI.ViewAnimationTransition
@@ -336,6 +345,7 @@ Enums:
     NSFileProviderFileSystemFlags: UI.NSFileProviderFileSystemFlags
     NSFileProviderContentPolicy: UI.NSFileProviderContentPolicy
     UIBlurEffectStyle: UI.BlurEffectStyle
+    UIGlassEffectStyle: UI.GlassEffectStyle
     UIVibrancyEffectStyle: UI.VibrancyEffectStyle
     UIGraphicsImageRendererFormatRange: UI.GraphicsImageRendererFormatRange
     UIScrollType: UI.ScrollType
@@ -359,6 +369,7 @@ Enums:
     UICornerCurve: UI.CornerCurve
     UIMenuControllerArrowDirection: UI.MenuControllerArrowDirection
     UIInterpolatingMotionEffectType: UI.InterpolatingMotionEffectType
+    UISliderStyle: UI.SliderStyle
     UIBehavioralStyle: UI.BehavioralStyle
     UINavigationBarNSToolbarSection: UI.NavigationBarNSToolbarSection
     UIPageControlInteractionState: UI.PageControlInteractionState
@@ -391,6 +402,7 @@ Enums:
     UISwitchStyle: UI.SwitchStyle
     UITabBarItemPositioning: UI.TabBarItemPositioning
     UITabBarControllerMode: UI.TabBarControllerMode
+    UITabBarMinimizeBehavior: UI.TabBarMinimizeBehavior
     UITabBarSystemItem: UI.TabBarSystemItem
     UITextSearchFoundTextStyle: UI.TextSearchFoundTextStyle
     UIFindSessionSearchResultDisplayStyle: UI.FindSessionSearchResultDisplayStyle
@@ -419,10 +431,11 @@ Enums:
     UIPencilPreferredAction: UI.PencilPreferredAction
     UIPencilInteractionPhase: UI.PencilInteractionPhase
     UIWindowSceneResizingRestrictions: UI.WindowSceneResizingRestrictions
+    UIMenuSystemElementGroupPreference: UI.MenuSystemElementGroupPreference
+    UIMenuSystemFindElementGroupConfigurationStyle: UI.MenuSystemFindElementGroupConfigurationStyle
     UIPointerEffectTintMode: UI.PointerEffectTintMode
     UIBandSelectionInteractionState: UI.BandSelectionInteractionState
     UIWindowScenePresentationStyle: UI.WindowScenePresentationStyle
-    UIFocusHaloEffectPosition: UI.FocusHaloEffectPosition
     UICalendarViewDecorationSize: UI.CalendarViewDecorationSize
     UIEditMenuArrowDirection: UI.EditMenuArrowDirection
     UIContentUnavailableAlignment: UI.ContentUnavailableAlignment
@@ -509,6 +522,8 @@ ObjCClasses:
     UIPasteConfiguration: UI.PasteConfiguration
     UIPress: UI.Press
     UIPressesEvent: UI.PressesEvent
+    UIDeferredMenuElement: UI.DeferredMenuElement
+    UIDeferredMenuElementProvider: UI.DeferredMenuElementProvider
     UIResponder: UI.Responder
     UIInputViewController: UI.InputViewController
     UITextInputMode: UI.TextInputMode
@@ -537,15 +552,24 @@ ObjCClasses:
     UITraitImageDynamicRange: UI.TraitImageDynamicRange
     UITraitTypesettingLanguage: UI.TraitTypesettingLanguage
     UITraitSceneCaptureState: UI.TraitSceneCaptureState
+    UITraitHDRHeadroomUsageLimit: UI.TraitHDRHeadroomUsageLimit
+    UITraitResolvesNaturalAlignmentWithBaseWritingDirection: UI.TraitResolvesNaturalAlignmentWithBaseWritingDirection
     UIDevice: UI.Device
     UITraitListEnvironment: UI.TraitListEnvironment
+    UITabAccessory: UI.TabAccessory
+    UITraitTabAccessoryEnvironment: UI.TraitTabAccessoryEnvironment
+    UITraitSplitViewControllerLayoutEnvironment: UI.TraitSplitViewControllerLayoutEnvironment
     NSLayoutXAxisAnchor: UI.NSLayoutXAxisAnchor
     UILayoutGuide: UI.LayoutGuide
     UIFocusGuide: UI.FocusGuide
     UIFocusAnimationCoordinator: UI.FocusAnimationCoordinator
+    UIFocusEffect: UI.FocusEffect
     UIFocusUpdateContext: UI.FocusUpdateContext
     UIFocusMovementHint: UI.FocusMovementHint
-    UIFocusEffect: UI.FocusEffect
+    UIViewLayoutRegion: UI.ViewLayoutRegion
+    UIFocusHaloEffect: UI.FocusHaloEffect
+    UICornerRadius: UI.CornerRadius
+    UICornerConfiguration: UI.CornerConfiguration
     UIViewController: UI.ViewController
     UIMotionEffect: UI.MotionEffect
     UIKeyboardLayoutGuide: UI.KeyboardLayoutGuide
@@ -557,6 +581,8 @@ ObjCClasses:
     UIToolTipInteraction: UI.ToolTipInteraction
     UIControl: UI.Control
     UIRefreshControl: UI.RefreshControl
+    UIScrollEdgeEffectStyle: UI.ScrollEdgeEffectStyle
+    UIScrollEdgeEffect: UI.ScrollEdgeEffect
     UIImageView: UI.ImageView
     UIPanGestureRecognizer: UI.PanGestureRecognizer
     UIPinchGestureRecognizer: UI.PinchGestureRecognizer
@@ -611,6 +637,7 @@ ObjCClasses:
     UIOpenURLContext: UI.OpenURLContext
     UISceneOpenExternalURLOptions: UI.SceneOpenExternalURLOptions
     UISceneActivationConditions: UI.SceneActivationConditions
+    UISceneDestructionCondition: UI.SceneDestructionCondition
     UIPointerLockState: UI.PointerLockState
     UINavigationItem: UI.NavigationItem
     UITabBarItem: UI.TabBarItem
@@ -644,17 +671,21 @@ ObjCClasses:
     NSSymbolWiggleEffect: UI.NSSymbolWiggleEffect
     NSSymbolRotateEffect: UI.NSSymbolRotateEffect
     NSSymbolBreatheEffect: UI.NSSymbolBreatheEffect
+    NSSymbolDrawOnEffect: UI.NSSymbolDrawOnEffect
+    NSSymbolDrawOffEffect: UI.NSSymbolDrawOffEffect
     NSSymbolMagicReplaceContentTransition: UI.NSSymbolMagicReplaceContentTransition
     NSSymbolReplaceContentTransition: UI.NSSymbolReplaceContentTransition
     NSSymbolAutomaticContentTransition: UI.NSSymbolAutomaticContentTransition
     UIVisualEffect: UI.VisualEffect
     UIShadowProperties: UI.ShadowProperties
     UIBackgroundConfiguration: UI.BackgroundConfiguration
+    UISymbolContentTransition: UI.SymbolContentTransition
     UIButtonConfiguration: UI.ButtonConfiguration
     UIPointerStyle: UI.PointerStyle
     UIPointerEffect: UI.PointerEffect
     UIPointerShape: UI.PointerShape
     UIActivityIndicatorView: UI.ActivityIndicatorView
+    UIBarButtonItemBadge: UI.BarButtonItemBadge
     UICollectionView: UI.CollectionView
     UICollectionReusableView: UI.CollectionReusableView
     UICollectionViewCell: UI.CollectionViewCell
@@ -737,7 +768,6 @@ ObjCClasses:
     UISearchController: UI.SearchController
     UINavigationBarAppearance: UI.NavigationBarAppearance
     UIDocumentProperties: UI.DocumentProperties
-    UIDeferredMenuElement: UI.DeferredMenuElement
     UIDocument: UI.Document
     UIDocumentViewControllerLaunchOptions: UI.DocumentViewControllerLaunchOptions
     UIDocumentViewController: UI.DocumentViewController
@@ -748,9 +778,13 @@ ObjCClasses:
     UICloudSharingController: UI.CloudSharingController
     NSFileProviderItemVersion: UI.NSFileProviderItemVersion
     NSFileProviderExtension: UI.NSFileProviderExtension
+    UIColorEffect: UI.ColorEffect
     UIBlurEffect: UI.BlurEffect
+    UIGlassEffect: UI.GlassEffect
+    UIGlassContainerEffect: UI.GlassContainerEffect
     UIVibrancyEffect: UI.VibrancyEffect
     UIVisualEffectView: UI.VisualEffectView
+    UIBackgroundExtensionView: UI.BackgroundExtensionView
     UIFontPickerViewControllerConfiguration: UI.FontPickerViewControllerConfiguration
     UIFontPickerViewController: UI.FontPickerViewController
     UIGraphicsRendererFormat: UI.GraphicsRendererFormat
@@ -775,15 +809,16 @@ ObjCClasses:
     UIUserNotificationAction: UI.UserNotificationAction
     UIMutableUserNotificationCategory: UI.MutableUserNotificationCategory
     UIMutableUserNotificationAction: UI.MutableUserNotificationAction
+    UIFocusSystem: UI.FocusSystem
     UIEventAttribution: UI.EventAttribution
     UISceneOpenURLOptions: UI.SceneOpenURLOptions
-    UIWindowSceneDelegate: UI.WindowSceneDelegate
     UISceneSizeRestrictions: UI.SceneSizeRestrictions
+    UISceneWindowingControlStyle: UI.SceneWindowingControlStyle
+    UIWindowSceneDelegate: UI.WindowSceneDelegate
     UISceneWindowingBehaviors: UI.SceneWindowingBehaviors
     UIWindowSceneGeometry: UI.WindowSceneGeometry
     UIWindowSceneGeometryPreferences: UI.WindowSceneGeometryPreferences
     UIWindowSceneDestructionRequestOptions: UI.WindowSceneDestructionRequestOptions
-    UIFocusSystem: UI.FocusSystem
     UIFocusDebugger: UI.FocusDebugger
     UIHoverHighlightEffect: UI.HoverHighlightEffect
     UIHoverLiftEffect: UI.HoverLiftEffect
@@ -803,6 +838,8 @@ ObjCClasses:
     UIMenuController: UI.MenuController
     UIInterpolatingMotionEffect: UI.InterpolatingMotionEffect
     UIMotionEffectGroup: UI.MotionEffectGroup
+    UISliderTick: UI.SliderTick
+    UISliderTrackConfiguration: UI.SliderTrackConfiguration
     UISlider: UI.Slider
     UIPageControlProgress: UI.PageControlProgress
     UIPageControlTimerProgress: UI.PageControlTimerProgress
@@ -817,6 +854,7 @@ ObjCClasses:
     UIRotationGestureRecognizer: UI.RotationGestureRecognizer
     UIScreenMode: UI.ScreenMode
     UIScreenEdgePanGestureRecognizer: UI.ScreenEdgePanGestureRecognizer
+    UIScrollEdgeElementContainerInteraction: UI.ScrollEdgeElementContainerInteraction
     UISearchTextField: UI.SearchTextField
     UISearchBar: UI.SearchBar
     UISearchContainerViewController: UI.SearchContainerViewController
@@ -909,6 +947,10 @@ ObjCClasses:
     UIStatusBarManager: UI.StatusBarManager
     UIScreenshotService: UI.ScreenshotService
     UIMenuSystem: UI.MenuSystem
+    UIMenuSystemFindElementGroupConfiguration: UI.MenuSystemFindElementGroupConfiguration
+    UIContextMenuSystem: UI.ContextMenuSystem
+    UIMainMenuSystemConfiguration: UI.MainMenuSystemConfiguration
+    UIMainMenuSystem: UI.MainMenuSystem
     UITextFormattingCoordinator: UI.TextFormattingCoordinator
     UIPointerRegion: UI.PointerRegion
     UIPointerAccessory: UI.PointerAccessory
@@ -925,7 +967,6 @@ ObjCClasses:
     UIWindowSceneActivationAction: UI.WindowSceneActivationAction
     UIWindowSceneActivationInteraction: UI.WindowSceneActivationInteraction
     UIWindowSceneDragInteraction: UI.WindowSceneDragInteraction
-    UIFocusHaloEffect: UI.FocusHaloEffect
     UIToolTipConfiguration: UI.ToolTipConfiguration
     UICalendarSelection: UI.CalendarSelection
     UICalendarViewDecoration: UI.CalendarViewDecoration
@@ -1472,6 +1513,7 @@ ExternVars:
     ::UIMenuServices: UI.MenuServices
     ::UIMenuHide: UI.MenuHide
     ::UIMenuQuit: UI.MenuQuit
+    ::UIMenuNewItem: UI.MenuNewItem
     ::UIMenuNewScene: UI.MenuNewScene
     ::UIMenuOpen: UI.MenuOpen
     ::UIMenuOpenRecent: UI.MenuOpenRecent
@@ -1481,6 +1523,7 @@ ExternVars:
     ::UIMenuUndoRedo: UI.MenuUndoRedo
     ::UIMenuStandardEdit: UI.MenuStandardEdit
     ::UIMenuFind: UI.MenuFind
+    ::UIMenuFindPanel: UI.MenuFindPanel
     ::UIMenuReplace: UI.MenuReplace
     ::UIMenuShare: UI.MenuShare
     ::UIMenuTextStyle: UI.MenuTextStyle
@@ -1565,6 +1608,7 @@ ExternVars:
     ::UIActionPasteAndMatchStyle: UI.ActionPasteAndMatchStyle
     ::UIActionPasteAndGo: UI.ActionPasteAndGo
     ::UIActionPasteAndSearch: UI.ActionPasteAndSearch
+    ::UIActionNewFromPasteboard: UI.ActionNewFromPasteboard
     ::UIScrollViewDecelerationRateNormal: UI.ScrollViewDecelerationRateNormal
     ::UIScrollViewDecelerationRateFast: UI.ScrollViewDecelerationRateFast
     ::UIAccessibilityCustomActionCategoryEdit: UI.AccessibilityCustomActionCategoryEdit
@@ -1733,6 +1777,8 @@ ExternVars:
     ::UIListContentImageStandardDimension: UI.ListContentImageStandardDimension
     ::UIDocumentCreationIntentDefault: UI.DocumentCreationIntentDefault
     ::UIDocumentStateChangedNotification: UI.DocumentStateChangedNotification
+    ::UIDocumentDidMoveToWritableLocationNotification: UI.DocumentDidMoveToWritableLocationNotification
+    ::UIDocumentDidMoveToWritableLocationOldURLKey: UI.DocumentDidMoveToWritableLocationOldURLKey
     ::NSUserActivityDocumentURLKey: UI.NSUserActivityDocumentURLKey
     ::NSFileProviderRootContainerItemIdentifier: UI.NSFileProviderRootContainerItemIdentifier
     ::NSFileProviderWorkingSetContainerItemIdentifier: UI.NSFileProviderWorkingSetContainerItemIdentifier
@@ -1756,6 +1802,7 @@ ExternVars:
     ::UIWindowSceneSessionRoleExternalDisplayNonInteractive: UI.WindowSceneSessionRoleExternalDisplayNonInteractive
     ::UIWindowSceneSessionRoleExternalDisplay: UI.WindowSceneSessionRoleExternalDisplay
     ::UIWindowSceneSessionRoleVolumetricApplication: UI.WindowSceneSessionRoleVolumetricApplication
+    ::UIWindowSceneSessionRoleAssistiveAccessApplication: UI.WindowSceneSessionRoleAssistiveAccessApplication
     ::UIMenuControllerWillShowMenuNotification: UI.MenuControllerWillShowMenuNotification
     ::UIMenuControllerDidShowMenuNotification: UI.MenuControllerDidShowMenuNotification
     ::UIMenuControllerWillHideMenuNotification: UI.MenuControllerWillHideMenuNotification
@@ -2125,6 +2172,7 @@ ExternTypes:
     ::UIMenuServices: ^NS.String
     ::UIMenuHide: ^NS.String
     ::UIMenuQuit: ^NS.String
+    ::UIMenuNewItem: ^NS.String
     ::UIMenuNewScene: ^NS.String
     ::UIMenuOpen: ^NS.String
     ::UIMenuOpenRecent: ^NS.String
@@ -2134,6 +2182,7 @@ ExternTypes:
     ::UIMenuUndoRedo: ^NS.String
     ::UIMenuStandardEdit: ^NS.String
     ::UIMenuFind: ^NS.String
+    ::UIMenuFindPanel: ^NS.String
     ::UIMenuReplace: ^NS.String
     ::UIMenuShare: ^NS.String
     ::UIMenuTextStyle: ^NS.String
@@ -2218,6 +2267,7 @@ ExternTypes:
     ::UIActionPasteAndMatchStyle: ^NS.String
     ::UIActionPasteAndGo: ^NS.String
     ::UIActionPasteAndSearch: ^NS.String
+    ::UIActionNewFromPasteboard: ^NS.String
     ::UIScrollViewDecelerationRateNormal: ScrollViewDecelerationRate
     ::UIScrollViewDecelerationRateFast: ScrollViewDecelerationRate
     ::UIAccessibilityCustomActionCategoryEdit: ^NS.String
@@ -2386,6 +2436,8 @@ ExternTypes:
     ::UIListContentImageStandardDimension: CG.Float
     ::UIDocumentCreationIntentDefault: ^NS.String
     ::UIDocumentStateChangedNotification: ^NS.String
+    ::UIDocumentDidMoveToWritableLocationNotification: ^NS.String
+    ::UIDocumentDidMoveToWritableLocationOldURLKey: ^NS.String
     ::NSUserActivityDocumentURLKey: ^NS.String
     ::NSFileProviderRootContainerItemIdentifier: ^NS.String
     ::NSFileProviderWorkingSetContainerItemIdentifier: ^NS.String
@@ -2409,6 +2461,7 @@ ExternTypes:
     ::UIWindowSceneSessionRoleExternalDisplayNonInteractive: ^NS.String
     ::UIWindowSceneSessionRoleExternalDisplay: ^NS.String
     ::UIWindowSceneSessionRoleVolumetricApplication: ^NS.String
+    ::UIWindowSceneSessionRoleAssistiveAccessApplication: ^NS.String
     ::UIMenuControllerWillShowMenuNotification: ^NS.String
     ::UIMenuControllerDidShowMenuNotification: ^NS.String
     ::UIMenuControllerWillHideMenuNotification: ^NS.String

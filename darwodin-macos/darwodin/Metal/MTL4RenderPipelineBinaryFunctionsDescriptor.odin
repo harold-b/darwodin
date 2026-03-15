@@ -1,0 +1,58 @@
+package darwodin_Metal
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// MTL4RenderPipelineBinaryFunctionsDescriptor
+///
+@(objc_class="MTL4RenderPipelineBinaryFunctionsDescriptor", objc_superclass=NS.Object)
+MTL4RenderPipelineBinaryFunctionsDescriptor :: struct { using _: NS.Object, 
+    using _: NS.Copying,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="reset", objc_name="reset")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_reset :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor) ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="vertexAdditionalBinaryFunctions", objc_name="vertexAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_vertexAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor) -> ^NS.Array ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="setVertexAdditionalBinaryFunctions:", objc_name="setVertexAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_setVertexAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor, vertexAdditionalBinaryFunctions: ^NS.Array) ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="fragmentAdditionalBinaryFunctions", objc_name="fragmentAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_fragmentAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor) -> ^NS.Array ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="setFragmentAdditionalBinaryFunctions:", objc_name="setFragmentAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_setFragmentAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor, fragmentAdditionalBinaryFunctions: ^NS.Array) ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="tileAdditionalBinaryFunctions", objc_name="tileAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_tileAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor) -> ^NS.Array ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="setTileAdditionalBinaryFunctions:", objc_name="setTileAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_setTileAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor, tileAdditionalBinaryFunctions: ^NS.Array) ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="objectAdditionalBinaryFunctions", objc_name="objectAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_objectAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor) -> ^NS.Array ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="setObjectAdditionalBinaryFunctions:", objc_name="setObjectAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_setObjectAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor, objectAdditionalBinaryFunctions: ^NS.Array) ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="meshAdditionalBinaryFunctions", objc_name="meshAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_meshAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor) -> ^NS.Array ---
+
+    @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="setMeshAdditionalBinaryFunctions:", objc_name="setMeshAdditionalBinaryFunctions")
+    MTL4RenderPipelineBinaryFunctionsDescriptor_setMeshAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor, meshAdditionalBinaryFunctions: ^NS.Array) ---
+}

@@ -50,6 +50,8 @@ VTable :: struct {
     setScrubsLinearly: proc(self: ^UI.ViewPropertyAnimator, scrubsLinearly: bool),
     pausesOnCompletion: proc(self: ^UI.ViewPropertyAnimator) -> bool,
     setPausesOnCompletion: proc(self: ^UI.ViewPropertyAnimator, pausesOnCompletion: bool),
+    flushUpdates: proc(self: ^UI.ViewPropertyAnimator) -> bool,
+    setFlushUpdates: proc(self: ^UI.ViewPropertyAnimator, flushUpdates: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -278,6 +280,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPausesOnCompletion:"), auto_cast setPausesOnCompletion, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.flushUpdates != nil {
+        flushUpdates :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).flushUpdates(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("flushUpdates"), auto_cast flushUpdates, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setFlushUpdates != nil {
+        setFlushUpdates :: proc "c" (self: ^UI.ViewPropertyAnimator, _: SEL, flushUpdates: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setFlushUpdates(self, flushUpdates)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setFlushUpdates:"), auto_cast setFlushUpdates, "v@:B") do panic("Failed to register objC method.")
     }
 }
 

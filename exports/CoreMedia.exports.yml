@@ -585,6 +585,7 @@ Functions:
     ::CMTaggedBufferGroupGetCMSampleBufferForTagCollection: CM.TaggedBufferGroupGetCMSampleBufferForTagCollection
     ::CMTaggedBufferGroupGetNumberOfMatchesForTagCollection: CM.TaggedBufferGroupGetNumberOfMatchesForTagCollection
     ::CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup: CM.TaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroup
+    ::CMTaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions: CM.TaggedBufferGroupFormatDescriptionCreateForTaggedBufferGroupWithExtensions
     ::CMTaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup: CM.TaggedBufferGroupFormatDescriptionMatchesTaggedBufferGroup
     ::CMSampleBufferCreateForTaggedBufferGroup: CM.SampleBufferCreateForTaggedBufferGroup
     ::CMSampleBufferGetTaggedBufferGroup: CM.SampleBufferGetTaggedBufferGroup
@@ -781,9 +782,32 @@ ExternVars:
     ::kCMFormatDescriptionProjectionKind_Rectilinear: CM.kFormatDescriptionProjectionKind_Rectilinear
     ::kCMFormatDescriptionProjectionKind_Equirectangular: CM.kFormatDescriptionProjectionKind_Equirectangular
     ::kCMFormatDescriptionProjectionKind_HalfEquirectangular: CM.kFormatDescriptionProjectionKind_HalfEquirectangular
+    ::kCMFormatDescriptionProjectionKind_ParametricImmersive: CM.kFormatDescriptionProjectionKind_ParametricImmersive
+    ::kCMFormatDescriptionProjectionKind_AppleImmersiveVideo: CM.kFormatDescriptionProjectionKind_AppleImmersiveVideo
     ::kCMFormatDescriptionExtension_ViewPackingKind: CM.kFormatDescriptionExtension_ViewPackingKind
     ::kCMFormatDescriptionViewPackingKind_SideBySide: CM.kFormatDescriptionViewPackingKind_SideBySide
     ::kCMFormatDescriptionViewPackingKind_OverUnder: CM.kFormatDescriptionViewPackingKind_OverUnder
+    ::kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection: CM.kFormatDescriptionExtension_CameraCalibrationDataLensCollection
+    ::kCMFormatDescriptionCameraCalibration_LensAlgorithmKind: CM.kFormatDescriptionCameraCalibration_LensAlgorithmKind
+    ::kCMFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens: CM.kFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens
+    ::kCMFormatDescriptionCameraCalibration_LensDomain: CM.kFormatDescriptionCameraCalibration_LensDomain
+    ::kCMFormatDescriptionCameraCalibrationLensDomain_Color: CM.kFormatDescriptionCameraCalibrationLensDomain_Color
+    ::kCMFormatDescriptionCameraCalibration_LensIdentifier: CM.kFormatDescriptionCameraCalibration_LensIdentifier
+    ::kCMFormatDescriptionCameraCalibration_LensRole: CM.kFormatDescriptionCameraCalibration_LensRole
+    ::kCMFormatDescriptionCameraCalibrationLensRole_Mono: CM.kFormatDescriptionCameraCalibrationLensRole_Mono
+    ::kCMFormatDescriptionCameraCalibrationLensRole_Left: CM.kFormatDescriptionCameraCalibrationLensRole_Left
+    ::kCMFormatDescriptionCameraCalibrationLensRole_Right: CM.kFormatDescriptionCameraCalibrationLensRole_Right
+    ::kCMFormatDescriptionCameraCalibration_LensDistortions: CM.kFormatDescriptionCameraCalibration_LensDistortions
+    ::kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX: CM.kFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX
+    ::kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY: CM.kFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY
+    ::kCMFormatDescriptionCameraCalibration_RadialAngleLimit: CM.kFormatDescriptionCameraCalibration_RadialAngleLimit
+    ::kCMFormatDescriptionCameraCalibration_IntrinsicMatrix: CM.kFormatDescriptionCameraCalibration_IntrinsicMatrix
+    ::kCMFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset: CM.kFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset
+    ::kCMFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions: CM.kFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions
+    ::kCMFormatDescriptionCameraCalibration_ExtrinsicOriginSource: CM.kFormatDescriptionCameraCalibration_ExtrinsicOriginSource
+    ::kCMFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline: CM.kFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline
+    ::kCMFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion: CM.kFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion
+    ::kCMFormatDescriptionExtension_ConvertedFromExternalSphericalTags: CM.kFormatDescriptionExtension_ConvertedFromExternalSphericalTags
     ::kCMTextFormatDescriptionExtension_DisplayFlags: CM.kTextFormatDescriptionExtension_DisplayFlags
     ::kCMTextFormatDescriptionExtension_BackgroundColor: CM.kTextFormatDescriptionExtension_BackgroundColor
     ::kCMTextFormatDescriptionColor_Red: CM.kTextFormatDescriptionColor_Red
@@ -916,6 +940,7 @@ ExternVars:
     ::kCMTagProjectionTypeEquirectangular: CM.kTagProjectionTypeEquirectangular
     ::kCMTagProjectionTypeHalfEquirectangular: CM.kTagProjectionTypeHalfEquirectangular
     ::kCMTagProjectionTypeFisheye: CM.kTagProjectionTypeFisheye
+    ::kCMTagProjectionTypeParametricImmersive: CM.kTagProjectionTypeParametricImmersive
     ::kCMTagPackingTypeNone: CM.kTagPackingTypeNone
     ::kCMTagPackingTypeSideBySide: CM.kTagPackingTypeSideBySide
     ::kCMTagPackingTypeOverUnder: CM.kTagPackingTypeOverUnder
@@ -983,6 +1008,11 @@ ExternVars:
     ::kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions: CM.kMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions
     ::kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier: CM.kMetadataIdentifier_QuickTimeMetadataSegmentIdentifier
     ::kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance: CM.kMetadataIdentifier_QuickTimeMetadataSceneIlluminance
+    ::kCMMetadataIdentifier_QuickTimeMetadataSpatialAudioMix: CM.kMetadataIdentifier_QuickTimeMetadataSpatialAudioMix
+    ::kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono: CM.kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono
+    ::kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft: CM.kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft
+    ::kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight: CM.kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight
+    ::kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: CM.kMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia
     ::kCMMetadataBaseDataType_RawData: CM.kMetadataBaseDataType_RawData
     ::kCMMetadataBaseDataType_UTF8: CM.kMetadataBaseDataType_UTF8
     ::kCMMetadataBaseDataType_UTF16: CM.kMetadataBaseDataType_UTF16
@@ -1008,6 +1038,8 @@ ExternVars:
     ::kCMMetadataBaseDataType_PolylineF32: CM.kMetadataBaseDataType_PolylineF32
     ::kCMMetadataBaseDataType_JSON: CM.kMetadataBaseDataType_JSON
     ::kCMMetadataBaseDataType_PerspectiveTransformF64: CM.kMetadataBaseDataType_PerspectiveTransformF64
+    ::kCMMetadataBaseDataType_RasterRectangleValue: CM.kMetadataBaseDataType_RasterRectangleValue
+    ::kCMMetadataBaseDataType_ExtendedRasterRectangleValue: CM.kMetadataBaseDataType_ExtendedRasterRectangleValue
     ::kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709: CM.kMetadataDataType_QuickTimeMetadataLocation_ISO6709
     ::kCMMetadataDataType_QuickTimeMetadataDirection: CM.kMetadataDataType_QuickTimeMetadataDirection
     ::kCMMetadataDataType_QuickTimeMetadataUUID: CM.kMetadataDataType_QuickTimeMetadataUUID
@@ -1130,9 +1162,32 @@ ExternTypes:
     ::kCMFormatDescriptionProjectionKind_Rectilinear: CF.StringRef
     ::kCMFormatDescriptionProjectionKind_Equirectangular: CF.StringRef
     ::kCMFormatDescriptionProjectionKind_HalfEquirectangular: CF.StringRef
+    ::kCMFormatDescriptionProjectionKind_ParametricImmersive: CF.StringRef
+    ::kCMFormatDescriptionProjectionKind_AppleImmersiveVideo: CF.StringRef
     ::kCMFormatDescriptionExtension_ViewPackingKind: CF.StringRef
     ::kCMFormatDescriptionViewPackingKind_SideBySide: CF.StringRef
     ::kCMFormatDescriptionViewPackingKind_OverUnder: CF.StringRef
+    ::kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_LensAlgorithmKind: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_LensDomain: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibrationLensDomain_Color: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_LensIdentifier: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_LensRole: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibrationLensRole_Mono: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibrationLensRole_Left: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibrationLensRole_Right: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_LensDistortions: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_RadialAngleLimit: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_IntrinsicMatrix: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_ExtrinsicOriginSource: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline: CF.StringRef
+    ::kCMFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion: CF.StringRef
+    ::kCMFormatDescriptionExtension_ConvertedFromExternalSphericalTags: CF.StringRef
     ::kCMTextFormatDescriptionExtension_DisplayFlags: CF.StringRef
     ::kCMTextFormatDescriptionExtension_BackgroundColor: CF.StringRef
     ::kCMTextFormatDescriptionColor_Red: CF.StringRef
@@ -1265,6 +1320,7 @@ ExternTypes:
     ::kCMTagProjectionTypeEquirectangular: Tag
     ::kCMTagProjectionTypeHalfEquirectangular: Tag
     ::kCMTagProjectionTypeFisheye: Tag
+    ::kCMTagProjectionTypeParametricImmersive: Tag
     ::kCMTagPackingTypeNone: Tag
     ::kCMTagPackingTypeSideBySide: Tag
     ::kCMTagPackingTypeOverUnder: Tag
@@ -1332,6 +1388,11 @@ ExternTypes:
     ::kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions: CF.StringRef
     ::kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier: CF.StringRef
     ::kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance: CF.StringRef
+    ::kCMMetadataIdentifier_QuickTimeMetadataSpatialAudioMix: CF.StringRef
+    ::kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono: CF.StringRef
+    ::kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft: CF.StringRef
+    ::kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight: CF.StringRef
+    ::kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: CF.StringRef
     ::kCMMetadataBaseDataType_RawData: CF.StringRef
     ::kCMMetadataBaseDataType_UTF8: CF.StringRef
     ::kCMMetadataBaseDataType_UTF16: CF.StringRef
@@ -1357,6 +1418,8 @@ ExternTypes:
     ::kCMMetadataBaseDataType_PolylineF32: CF.StringRef
     ::kCMMetadataBaseDataType_JSON: CF.StringRef
     ::kCMMetadataBaseDataType_PerspectiveTransformF64: CF.StringRef
+    ::kCMMetadataBaseDataType_RasterRectangleValue: CF.StringRef
+    ::kCMMetadataBaseDataType_ExtendedRasterRectangleValue: CF.StringRef
     ::kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709: CF.StringRef
     ::kCMMetadataDataType_QuickTimeMetadataDirection: CF.StringRef
     ::kCMMetadataDataType_QuickTimeMetadataUUID: CF.StringRef

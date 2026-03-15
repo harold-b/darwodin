@@ -91,6 +91,10 @@ VTable :: struct {
     setDecelerationRate: proc(self: ^UI.ScrollView, decelerationRate: UI.ScrollViewDecelerationRate),
     indexDisplayMode: proc(self: ^UI.ScrollView) -> UI.ScrollViewIndexDisplayMode,
     setIndexDisplayMode: proc(self: ^UI.ScrollView, indexDisplayMode: UI.ScrollViewIndexDisplayMode),
+    topEdgeEffect: proc(self: ^UI.ScrollView) -> ^UI.ScrollEdgeEffect,
+    leftEdgeEffect: proc(self: ^UI.ScrollView) -> ^UI.ScrollEdgeEffect,
+    bottomEdgeEffect: proc(self: ^UI.ScrollView) -> ^UI.ScrollEdgeEffect,
+    rightEdgeEffect: proc(self: ^UI.ScrollView) -> ^UI.ScrollEdgeEffect,
     isTracking: proc(self: ^UI.ScrollView) -> bool,
     isDragging: proc(self: ^UI.ScrollView) -> bool,
     isDecelerating: proc(self: ^UI.ScrollView) -> bool,
@@ -121,6 +125,8 @@ VTable :: struct {
     setRefreshControl: proc(self: ^UI.ScrollView, refreshControl: ^UI.RefreshControl),
     allowsKeyboardScrolling: proc(self: ^UI.ScrollView) -> bool,
     setAllowsKeyboardScrolling: proc(self: ^UI.ScrollView, allowsKeyboardScrolling: bool),
+    lookToScrollAxes: proc(self: ^UI.ScrollView) -> UI.Axis,
+    setLookToScrollAxes: proc(self: ^UI.ScrollView, lookToScrollAxes: UI.Axis),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -760,6 +766,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIndexDisplayMode:"), auto_cast setIndexDisplayMode, "v@:l") do panic("Failed to register objC method.")
     }
+    if vt.topEdgeEffect != nil {
+        topEdgeEffect :: proc "c" (self: ^UI.ScrollView, _: SEL) -> ^UI.ScrollEdgeEffect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).topEdgeEffect(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("topEdgeEffect"), auto_cast topEdgeEffect, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.leftEdgeEffect != nil {
+        leftEdgeEffect :: proc "c" (self: ^UI.ScrollView, _: SEL) -> ^UI.ScrollEdgeEffect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).leftEdgeEffect(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("leftEdgeEffect"), auto_cast leftEdgeEffect, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.bottomEdgeEffect != nil {
+        bottomEdgeEffect :: proc "c" (self: ^UI.ScrollView, _: SEL) -> ^UI.ScrollEdgeEffect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).bottomEdgeEffect(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("bottomEdgeEffect"), auto_cast bottomEdgeEffect, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.rightEdgeEffect != nil {
+        rightEdgeEffect :: proc "c" (self: ^UI.ScrollView, _: SEL) -> ^UI.ScrollEdgeEffect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).rightEdgeEffect(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rightEdgeEffect"), auto_cast rightEdgeEffect, "@@:") do panic("Failed to register objC method.")
+    }
     if vt.isTracking != nil {
         isTracking :: proc "c" (self: ^UI.ScrollView, _: SEL) -> bool {
 
@@ -1059,6 +1105,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsKeyboardScrolling:"), auto_cast setAllowsKeyboardScrolling, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.lookToScrollAxes != nil {
+        lookToScrollAxes :: proc "c" (self: ^UI.ScrollView, _: SEL) -> UI.Axis {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).lookToScrollAxes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("lookToScrollAxes"), auto_cast lookToScrollAxes, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLookToScrollAxes != nil {
+        setLookToScrollAxes :: proc "c" (self: ^UI.ScrollView, _: SEL, lookToScrollAxes: UI.Axis) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setLookToScrollAxes(self, lookToScrollAxes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLookToScrollAxes:"), auto_cast setLookToScrollAxes, "v@:L") do panic("Failed to register objC method.")
     }
 }
 

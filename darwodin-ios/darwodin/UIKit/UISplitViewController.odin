@@ -42,6 +42,9 @@ foreign lib {
     @(objc_type=SplitViewController, objc_selector="showColumn:", objc_name="showColumn")
     SplitViewController_showColumn :: proc(self: ^SplitViewController, column: SplitViewControllerColumn) ---
 
+    @(objc_type=SplitViewController, objc_selector="isShowingColumn:", objc_name="isShowingColumn")
+    SplitViewController_isShowingColumn :: proc(self: ^SplitViewController, column: SplitViewControllerColumn) -> bool ---
+
     @(objc_type=SplitViewController, objc_selector="showViewController:sender:", objc_name="showViewController")
     SplitViewController_showViewController :: proc(self: ^SplitViewController, vc: ^ViewController, sender: id) ---
 
@@ -158,6 +161,48 @@ foreign lib {
 
     @(objc_type=SplitViewController, objc_selector="supplementaryColumnWidth", objc_name="supplementaryColumnWidth")
     SplitViewController_supplementaryColumnWidth :: proc(self: ^SplitViewController) -> CG.Float ---
+
+    @(objc_type=SplitViewController, objc_selector="preferredSecondaryColumnWidthFraction", objc_name="preferredSecondaryColumnWidthFraction")
+    SplitViewController_preferredSecondaryColumnWidthFraction :: proc(self: ^SplitViewController) -> CG.Float ---
+
+    @(objc_type=SplitViewController, objc_selector="setPreferredSecondaryColumnWidthFraction:", objc_name="setPreferredSecondaryColumnWidthFraction")
+    SplitViewController_setPreferredSecondaryColumnWidthFraction :: proc(self: ^SplitViewController, preferredSecondaryColumnWidthFraction: CG.Float) ---
+
+    @(objc_type=SplitViewController, objc_selector="preferredSecondaryColumnWidth", objc_name="preferredSecondaryColumnWidth")
+    SplitViewController_preferredSecondaryColumnWidth :: proc(self: ^SplitViewController) -> CG.Float ---
+
+    @(objc_type=SplitViewController, objc_selector="setPreferredSecondaryColumnWidth:", objc_name="setPreferredSecondaryColumnWidth")
+    SplitViewController_setPreferredSecondaryColumnWidth :: proc(self: ^SplitViewController, preferredSecondaryColumnWidth: CG.Float) ---
+
+    @(objc_type=SplitViewController, objc_selector="minimumSecondaryColumnWidth", objc_name="minimumSecondaryColumnWidth")
+    SplitViewController_minimumSecondaryColumnWidth :: proc(self: ^SplitViewController) -> CG.Float ---
+
+    @(objc_type=SplitViewController, objc_selector="setMinimumSecondaryColumnWidth:", objc_name="setMinimumSecondaryColumnWidth")
+    SplitViewController_setMinimumSecondaryColumnWidth :: proc(self: ^SplitViewController, minimumSecondaryColumnWidth: CG.Float) ---
+
+    @(objc_type=SplitViewController, objc_selector="preferredInspectorColumnWidthFraction", objc_name="preferredInspectorColumnWidthFraction")
+    SplitViewController_preferredInspectorColumnWidthFraction :: proc(self: ^SplitViewController) -> CG.Float ---
+
+    @(objc_type=SplitViewController, objc_selector="setPreferredInspectorColumnWidthFraction:", objc_name="setPreferredInspectorColumnWidthFraction")
+    SplitViewController_setPreferredInspectorColumnWidthFraction :: proc(self: ^SplitViewController, preferredInspectorColumnWidthFraction: CG.Float) ---
+
+    @(objc_type=SplitViewController, objc_selector="preferredInspectorColumnWidth", objc_name="preferredInspectorColumnWidth")
+    SplitViewController_preferredInspectorColumnWidth :: proc(self: ^SplitViewController) -> CG.Float ---
+
+    @(objc_type=SplitViewController, objc_selector="setPreferredInspectorColumnWidth:", objc_name="setPreferredInspectorColumnWidth")
+    SplitViewController_setPreferredInspectorColumnWidth :: proc(self: ^SplitViewController, preferredInspectorColumnWidth: CG.Float) ---
+
+    @(objc_type=SplitViewController, objc_selector="minimumInspectorColumnWidth", objc_name="minimumInspectorColumnWidth")
+    SplitViewController_minimumInspectorColumnWidth :: proc(self: ^SplitViewController) -> CG.Float ---
+
+    @(objc_type=SplitViewController, objc_selector="setMinimumInspectorColumnWidth:", objc_name="setMinimumInspectorColumnWidth")
+    SplitViewController_setMinimumInspectorColumnWidth :: proc(self: ^SplitViewController, minimumInspectorColumnWidth: CG.Float) ---
+
+    @(objc_type=SplitViewController, objc_selector="maximumInspectorColumnWidth", objc_name="maximumInspectorColumnWidth")
+    SplitViewController_maximumInspectorColumnWidth :: proc(self: ^SplitViewController) -> CG.Float ---
+
+    @(objc_type=SplitViewController, objc_selector="setMaximumInspectorColumnWidth:", objc_name="setMaximumInspectorColumnWidth")
+    SplitViewController_setMaximumInspectorColumnWidth :: proc(self: ^SplitViewController, maximumInspectorColumnWidth: CG.Float) ---
 
     @(objc_type=SplitViewController, objc_selector="primaryEdge", objc_name="primaryEdge")
     SplitViewController_primaryEdge :: proc(self: ^SplitViewController) -> SplitViewControllerPrimaryEdge ---

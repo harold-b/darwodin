@@ -33,6 +33,9 @@ foreign lib {
     @(objc_type=ArrayType, objc_selector="elementPointerType", objc_name="elementPointerType")
     ArrayType_elementPointerType :: proc(self: ^ArrayType) -> ^PointerType ---
 
+    @(objc_type=ArrayType, objc_selector="elementTensorReferenceType", objc_name="elementTensorReferenceType")
+    ArrayType_elementTensorReferenceType :: proc(self: ^ArrayType) -> ^TensorReferenceType ---
+
     @(objc_type=ArrayType, objc_selector="elementType", objc_name="elementType")
     ArrayType_elementType :: proc(self: ^ArrayType) -> DataType ---
 

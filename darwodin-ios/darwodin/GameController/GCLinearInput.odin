@@ -42,6 +42,9 @@ foreign lib {
     @(objc_type=LinearInput, objc_selector="lastValueLatency", objc_name="lastValueLatency")
     LinearInput_lastValueLatency :: proc(self: ^LinearInput) -> NS.TimeInterval ---
 
+    @(objc_type=LinearInput, objc_selector="physicalExtents", objc_name="physicalExtents")
+    LinearInput_physicalExtents :: proc(self: ^LinearInput) -> ^PhysicalInputExtents ---
+
     @(objc_type=LinearInput, objc_selector="sources", objc_name="sources")
     LinearInput_sources :: proc(self: ^LinearInput) -> ^NS.Set ---
 }

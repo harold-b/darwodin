@@ -23,11 +23,12 @@ instancetype  :: intrinsics.objc_instancetype
 
 @(require, export) foreign import lib "system:QuartzCore.framework"
 
-MTLDevice :: NS.Object
-MTLTexture :: NS.Object
-MTLDrawable :: NS.Object
-MTLPixelFormat :: cffi.ulong
-CVTimeStamp :: struct {}
+MTLDevice       :: NS.Object
+MTLTexture      :: NS.Object
+MTLDrawable     :: NS.Object
+MTLResidencySet :: NS.Object
+MTLPixelFormat  :: cffi.ulong
+CVTimeStamp     :: struct {}
 
 
 
@@ -40,6 +41,10 @@ foreign lib {
     @(link_name="CAToneMapModeAutomatic") ToneMapModeAutomatic: ^NS.String
     @(link_name="CAToneMapModeNever") ToneMapModeNever: ^NS.String
     @(link_name="CAToneMapModeIfSupported") ToneMapModeIfSupported: ^NS.String
+    @(link_name="CADynamicRangeAutomatic") DynamicRangeAutomatic: ^NS.String
+    @(link_name="CADynamicRangeStandard") DynamicRangeStandard: ^NS.String
+    @(link_name="CADynamicRangeConstrainedHigh") DynamicRangeConstrainedHigh: ^NS.String
+    @(link_name="CADynamicRangeHigh") DynamicRangeHigh: ^NS.String
     @(link_name="kCAGravityCenter") GravityCenter: ^NS.String
     @(link_name="kCAGravityTop") GravityTop: ^NS.String
     @(link_name="kCAGravityBottom") GravityBottom: ^NS.String
@@ -55,6 +60,7 @@ foreign lib {
     @(link_name="kCAContentsFormatRGBA8Uint") ContentsFormatRGBA8Uint: ^NS.String
     @(link_name="kCAContentsFormatRGBA16Float") ContentsFormatRGBA16Float: ^NS.String
     @(link_name="kCAContentsFormatGray8Uint") ContentsFormatGray8Uint: ^NS.String
+    @(link_name="kCAContentsFormatAutomatic") ContentsFormatAutomatic: ^NS.String
     @(link_name="kCAFilterNearest") FilterNearest: ^NS.String
     @(link_name="kCAFilterLinear") FilterLinear: ^NS.String
     @(link_name="kCAFilterTrilinear") FilterTrilinear: ^NS.String
@@ -217,6 +223,9 @@ LayerCornerCurve :: distinct ^NS.String
 /// CAToneMapMode
 ToneMapMode :: distinct ^NS.String
 
+/// CADynamicRange
+DynamicRange :: distinct ^NS.String
+
 /// CAAnimationCalculationMode
 AnimationCalculationMode :: distinct ^NS.String
 
@@ -265,6 +274,17 @@ TextLayerAlignmentMode :: distinct ^NS.String
 /// CAValueFunctionName
 ValueFunctionName :: distinct ^NS.String
 
+/// CAAutoresizingMask
+AutoresizingMaskFlag :: enum cffi.uint {
+    kCALayerMinXMargin    = 0,
+    kCALayerWidthSizable  = 1,
+    kCALayerMaxXMargin    = 2,
+    kCALayerMinYMargin    = 3,
+    kCALayerHeightSizable = 4,
+    kCALayerMaxYMargin    = 5,
+}
+AutoresizingMask :: bit_set[AutoresizingMaskFlag; cffi.uint]
+
 /// CAEdgeAntialiasingMask
 EdgeAntialiasingMaskFlag :: enum cffi.uint {
     kCALayerLeftEdge   = 0,
@@ -282,6 +302,18 @@ CornerMaskFlag :: enum cffi.ulong {
     kCALayerMaxXMaxYCorner = 3,
 }
 CornerMask :: bit_set[CornerMaskFlag; cffi.ulong]
+
+/// CAConstraintAttribute
+ConstraintAttribute :: enum cffi.int {
+    kCAConstraintMinX   = 0,
+    kCAConstraintMidX   = 1,
+    kCAConstraintMaxX   = 2,
+    kCAConstraintWidth  = 3,
+    kCAConstraintMinY   = 4,
+    kCAConstraintMidY   = 5,
+    kCAConstraintMaxY   = 6,
+    kCAConstraintHeight = 7,
+}
 
 /// EAGLRenderingAPI
 EAGLRenderingAPI :: enum cffi.ulong {

@@ -26,6 +26,9 @@ foreign lib {
     @(objc_type=ShareParticipant, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ShareParticipant_new :: proc() -> ^ShareParticipant ---
 
+    @(objc_type=ShareParticipant, objc_selector="oneTimeURLParticipant", objc_name="oneTimeURLParticipant", objc_is_class_method=true)
+    ShareParticipant_oneTimeURLParticipant :: proc() -> instancetype ---
+
     @(objc_type=ShareParticipant, objc_selector="userIdentity", objc_name="userIdentity")
     ShareParticipant_userIdentity :: proc(self: ^ShareParticipant) -> ^UserIdentity ---
 
@@ -52,4 +55,10 @@ foreign lib {
 
     @(objc_type=ShareParticipant, objc_selector="participantID", objc_name="participantID")
     ShareParticipant_participantID :: proc(self: ^ShareParticipant) -> ^NS.String ---
+
+    @(objc_type=ShareParticipant, objc_selector="isApprovedRequester", objc_name="isApprovedRequester")
+    ShareParticipant_isApprovedRequester :: proc(self: ^ShareParticipant) -> bool ---
+
+    @(objc_type=ShareParticipant, objc_selector="dateAddedToShare", objc_name="dateAddedToShare")
+    ShareParticipant_dateAddedToShare :: proc(self: ^ShareParticipant) -> ^NS.Date ---
 }

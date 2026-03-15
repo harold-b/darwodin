@@ -35,6 +35,7 @@ VTable :: struct {
     viewControllerForColumn: proc(self: ^UI.SplitViewController, column: UI.SplitViewControllerColumn) -> ^UI.ViewController,
     hideColumn: proc(self: ^UI.SplitViewController, column: UI.SplitViewControllerColumn),
     showColumn: proc(self: ^UI.SplitViewController, column: UI.SplitViewControllerColumn),
+    isShowingColumn: proc(self: ^UI.SplitViewController, column: UI.SplitViewControllerColumn) -> bool,
     showViewController: proc(self: ^UI.SplitViewController, vc: ^UI.ViewController, sender: id),
     showDetailViewController: proc(self: ^UI.SplitViewController, vc: ^UI.ViewController, sender: id),
     style: proc(self: ^UI.SplitViewController) -> UI.SplitViewControllerStyle,
@@ -74,6 +75,20 @@ VTable :: struct {
     maximumSupplementaryColumnWidth: proc(self: ^UI.SplitViewController) -> CG.Float,
     setMaximumSupplementaryColumnWidth: proc(self: ^UI.SplitViewController, maximumSupplementaryColumnWidth: CG.Float),
     supplementaryColumnWidth: proc(self: ^UI.SplitViewController) -> CG.Float,
+    preferredSecondaryColumnWidthFraction: proc(self: ^UI.SplitViewController) -> CG.Float,
+    setPreferredSecondaryColumnWidthFraction: proc(self: ^UI.SplitViewController, preferredSecondaryColumnWidthFraction: CG.Float),
+    preferredSecondaryColumnWidth: proc(self: ^UI.SplitViewController) -> CG.Float,
+    setPreferredSecondaryColumnWidth: proc(self: ^UI.SplitViewController, preferredSecondaryColumnWidth: CG.Float),
+    minimumSecondaryColumnWidth: proc(self: ^UI.SplitViewController) -> CG.Float,
+    setMinimumSecondaryColumnWidth: proc(self: ^UI.SplitViewController, minimumSecondaryColumnWidth: CG.Float),
+    preferredInspectorColumnWidthFraction: proc(self: ^UI.SplitViewController) -> CG.Float,
+    setPreferredInspectorColumnWidthFraction: proc(self: ^UI.SplitViewController, preferredInspectorColumnWidthFraction: CG.Float),
+    preferredInspectorColumnWidth: proc(self: ^UI.SplitViewController) -> CG.Float,
+    setPreferredInspectorColumnWidth: proc(self: ^UI.SplitViewController, preferredInspectorColumnWidth: CG.Float),
+    minimumInspectorColumnWidth: proc(self: ^UI.SplitViewController) -> CG.Float,
+    setMinimumInspectorColumnWidth: proc(self: ^UI.SplitViewController, minimumInspectorColumnWidth: CG.Float),
+    maximumInspectorColumnWidth: proc(self: ^UI.SplitViewController) -> CG.Float,
+    setMaximumInspectorColumnWidth: proc(self: ^UI.SplitViewController, maximumInspectorColumnWidth: CG.Float),
     primaryEdge: proc(self: ^UI.SplitViewController) -> UI.SplitViewControllerPrimaryEdge,
     setPrimaryEdge: proc(self: ^UI.SplitViewController, primaryEdge: UI.SplitViewControllerPrimaryEdge),
     primaryBackgroundStyle: proc(self: ^UI.SplitViewController) -> UI.SplitViewControllerBackgroundStyle,
@@ -156,6 +171,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("showColumn:"), auto_cast showColumn, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.isShowingColumn != nil {
+        isShowingColumn :: proc "c" (self: ^UI.SplitViewController, _: SEL, column: UI.SplitViewControllerColumn) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isShowingColumn(self, column)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isShowingColumn:"), auto_cast isShowingColumn, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.showViewController != nil {
         showViewController :: proc "c" (self: ^UI.SplitViewController, _: SEL, vc: ^UI.ViewController, sender: id) {
@@ -546,6 +571,146 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("supplementaryColumnWidth"), auto_cast supplementaryColumnWidth, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.preferredSecondaryColumnWidthFraction != nil {
+        preferredSecondaryColumnWidthFraction :: proc "c" (self: ^UI.SplitViewController, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredSecondaryColumnWidthFraction(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredSecondaryColumnWidthFraction"), auto_cast preferredSecondaryColumnWidthFraction, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredSecondaryColumnWidthFraction != nil {
+        setPreferredSecondaryColumnWidthFraction :: proc "c" (self: ^UI.SplitViewController, _: SEL, preferredSecondaryColumnWidthFraction: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredSecondaryColumnWidthFraction(self, preferredSecondaryColumnWidthFraction)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredSecondaryColumnWidthFraction:"), auto_cast setPreferredSecondaryColumnWidthFraction, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.preferredSecondaryColumnWidth != nil {
+        preferredSecondaryColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredSecondaryColumnWidth(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredSecondaryColumnWidth"), auto_cast preferredSecondaryColumnWidth, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredSecondaryColumnWidth != nil {
+        setPreferredSecondaryColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL, preferredSecondaryColumnWidth: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredSecondaryColumnWidth(self, preferredSecondaryColumnWidth)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredSecondaryColumnWidth:"), auto_cast setPreferredSecondaryColumnWidth, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.minimumSecondaryColumnWidth != nil {
+        minimumSecondaryColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).minimumSecondaryColumnWidth(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("minimumSecondaryColumnWidth"), auto_cast minimumSecondaryColumnWidth, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMinimumSecondaryColumnWidth != nil {
+        setMinimumSecondaryColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL, minimumSecondaryColumnWidth: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setMinimumSecondaryColumnWidth(self, minimumSecondaryColumnWidth)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumSecondaryColumnWidth:"), auto_cast setMinimumSecondaryColumnWidth, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.preferredInspectorColumnWidthFraction != nil {
+        preferredInspectorColumnWidthFraction :: proc "c" (self: ^UI.SplitViewController, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredInspectorColumnWidthFraction(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredInspectorColumnWidthFraction"), auto_cast preferredInspectorColumnWidthFraction, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredInspectorColumnWidthFraction != nil {
+        setPreferredInspectorColumnWidthFraction :: proc "c" (self: ^UI.SplitViewController, _: SEL, preferredInspectorColumnWidthFraction: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredInspectorColumnWidthFraction(self, preferredInspectorColumnWidthFraction)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredInspectorColumnWidthFraction:"), auto_cast setPreferredInspectorColumnWidthFraction, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.preferredInspectorColumnWidth != nil {
+        preferredInspectorColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredInspectorColumnWidth(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredInspectorColumnWidth"), auto_cast preferredInspectorColumnWidth, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredInspectorColumnWidth != nil {
+        setPreferredInspectorColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL, preferredInspectorColumnWidth: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredInspectorColumnWidth(self, preferredInspectorColumnWidth)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredInspectorColumnWidth:"), auto_cast setPreferredInspectorColumnWidth, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.minimumInspectorColumnWidth != nil {
+        minimumInspectorColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).minimumInspectorColumnWidth(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("minimumInspectorColumnWidth"), auto_cast minimumInspectorColumnWidth, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMinimumInspectorColumnWidth != nil {
+        setMinimumInspectorColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL, minimumInspectorColumnWidth: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setMinimumInspectorColumnWidth(self, minimumInspectorColumnWidth)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumInspectorColumnWidth:"), auto_cast setMinimumInspectorColumnWidth, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.maximumInspectorColumnWidth != nil {
+        maximumInspectorColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).maximumInspectorColumnWidth(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("maximumInspectorColumnWidth"), auto_cast maximumInspectorColumnWidth, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMaximumInspectorColumnWidth != nil {
+        setMaximumInspectorColumnWidth :: proc "c" (self: ^UI.SplitViewController, _: SEL, maximumInspectorColumnWidth: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setMaximumInspectorColumnWidth(self, maximumInspectorColumnWidth)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumInspectorColumnWidth:"), auto_cast setMaximumInspectorColumnWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.primaryEdge != nil {
         primaryEdge :: proc "c" (self: ^UI.SplitViewController, _: SEL) -> UI.SplitViewControllerPrimaryEdge {

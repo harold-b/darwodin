@@ -86,6 +86,12 @@ foreign lib {
     @(objc_type=ArgumentEncoder, objc_selector="setIntersectionFunctionTables:withRange:", objc_name="setIntersectionFunctionTables")
     ArgumentEncoder_setIntersectionFunctionTables :: proc(self: ^ArgumentEncoder, intersectionFunctionTables: ^^IntersectionFunctionTable, range: NS._NSRange) ---
 
+    @(objc_type=ArgumentEncoder, objc_selector="setDepthStencilState:atIndex:", objc_name="setDepthStencilState")
+    ArgumentEncoder_setDepthStencilState :: proc(self: ^ArgumentEncoder, depthStencilState: ^DepthStencilState, index: NS.UInteger) ---
+
+    @(objc_type=ArgumentEncoder, objc_selector="setDepthStencilStates:withRange:", objc_name="setDepthStencilStates")
+    ArgumentEncoder_setDepthStencilStates :: proc(self: ^ArgumentEncoder, depthStencilStates: ^^DepthStencilState, range: NS._NSRange) ---
+
     @(objc_type=ArgumentEncoder, objc_selector="device", objc_name="device")
     ArgumentEncoder_device :: proc(self: ^ArgumentEncoder) -> ^Device ---
 

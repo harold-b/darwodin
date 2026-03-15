@@ -31,6 +31,9 @@ foreign lib {
     @(objc_type=VideoComposition, objc_selector="videoCompositionWithPropertiesOfAsset:completionHandler:", objc_name="videoCompositionWithPropertiesOfAsset_completionHandler", objc_is_class_method=true)
     VideoComposition_videoCompositionWithPropertiesOfAsset_completionHandler :: proc(asset: ^Asset, completionHandler: ^Objc_Block(proc "c" (videoComposition: ^VideoComposition, error: ^NS.Error))) ---
 
+    @(objc_type=VideoComposition, objc_selector="videoCompositionWithVideoComposition:", objc_name="videoCompositionWithVideoComposition", objc_is_class_method=true)
+    VideoComposition_videoCompositionWithVideoComposition :: proc(videoComposition: ^VideoComposition) -> ^VideoComposition ---
+
     @(objc_type=VideoComposition, objc_selector="customVideoCompositorClass", objc_name="customVideoCompositorClass")
     VideoComposition_customVideoCompositorClass :: proc(self: ^VideoComposition) -> ^Class ---
 
@@ -54,6 +57,12 @@ foreign lib {
 
     @(objc_type=VideoComposition, objc_selector="sourceSampleDataTrackIDs", objc_name="sourceSampleDataTrackIDs")
     VideoComposition_sourceSampleDataTrackIDs :: proc(self: ^VideoComposition) -> ^NS.Array ---
+
+    @(objc_type=VideoComposition, objc_selector="outputBufferDescription", objc_name="outputBufferDescription")
+    VideoComposition_outputBufferDescription :: proc(self: ^VideoComposition) -> ^NS.Array ---
+
+    @(objc_type=VideoComposition, objc_selector="spatialVideoConfigurations", objc_name="spatialVideoConfigurations")
+    VideoComposition_spatialVideoConfigurations :: proc(self: ^VideoComposition) -> ^NS.Array ---
 
     @(objc_type=VideoComposition, objc_selector="colorPrimaries", objc_name="colorPrimaries")
     VideoComposition_colorPrimaries :: proc(self: ^VideoComposition) -> ^NS.String ---

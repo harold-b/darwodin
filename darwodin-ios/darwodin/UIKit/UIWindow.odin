@@ -24,6 +24,12 @@ foreign lib {
     @(objc_type=Window, objc_selector="initWithWindowScene:", objc_name="initWithWindowScene")
     Window_initWithWindowScene :: proc(self: ^Window, windowScene: ^WindowScene) -> instancetype ---
 
+    @(objc_type=Window, objc_selector="initWithFrame:", objc_name="initWithFrame")
+    Window_initWithFrame :: proc(self: ^Window, frame: CG.Rect) -> instancetype ---
+
+    @(objc_type=Window, objc_selector="init", objc_name="init")
+    Window_init :: proc(self: ^Window) -> instancetype ---
+
     @(objc_type=Window, objc_selector="setScreen:", objc_name="setScreen")
     Window_setScreen :: proc(self: ^Window, screen: ^Screen) ---
 

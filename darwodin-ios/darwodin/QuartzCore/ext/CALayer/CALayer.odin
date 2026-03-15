@@ -65,6 +65,8 @@ VTable :: struct {
     needsLayout: proc(self: ^CA.Layer) -> bool,
     layoutIfNeeded: proc(self: ^CA.Layer),
     layoutSublayers: proc(self: ^CA.Layer),
+    resizeSublayersWithOldSize: proc(self: ^CA.Layer, size: CG.Size),
+    resizeWithOldSuperlayerSize: proc(self: ^CA.Layer, size: CG.Size),
     defaultActionForKey: proc(event: ^NS.String) -> ^CA.Action,
     actionForKey: proc(self: ^CA.Layer, event: ^NS.String) -> ^CA.Action,
     addAnimation: proc(self: ^CA.Layer, anim: ^CA.Animation, key: ^NS.String),
@@ -117,6 +119,12 @@ VTable :: struct {
     setWantsExtendedDynamicRangeContent: proc(self: ^CA.Layer, wantsExtendedDynamicRangeContent: bool),
     toneMapMode: proc(self: ^CA.Layer) -> ^NS.String,
     setToneMapMode: proc(self: ^CA.Layer, toneMapMode: ^NS.String),
+    preferredDynamicRange: proc(self: ^CA.Layer) -> ^NS.String,
+    setPreferredDynamicRange: proc(self: ^CA.Layer, preferredDynamicRange: ^NS.String),
+    contentsHeadroom: proc(self: ^CA.Layer) -> CG.Float,
+    setContentsHeadroom: proc(self: ^CA.Layer, contentsHeadroom: CG.Float),
+    wantsDynamicContentScaling: proc(self: ^CA.Layer) -> bool,
+    setWantsDynamicContentScaling: proc(self: ^CA.Layer, wantsDynamicContentScaling: bool),
     minificationFilter: proc(self: ^CA.Layer) -> ^NS.String,
     setMinificationFilter: proc(self: ^CA.Layer, minificationFilter: ^NS.String),
     magnificationFilter: proc(self: ^CA.Layer) -> ^NS.String,
@@ -169,6 +177,10 @@ VTable :: struct {
     setShadowRadius: proc(self: ^CA.Layer, shadowRadius: CG.Float),
     shadowPath: proc(self: ^CA.Layer) -> CG.PathRef,
     setShadowPath: proc(self: ^CA.Layer, shadowPath: CG.PathRef),
+    autoresizingMask: proc(self: ^CA.Layer) -> CA.AutoresizingMask,
+    setAutoresizingMask: proc(self: ^CA.Layer, autoresizingMask: CA.AutoresizingMask),
+    layoutManager: proc(self: ^CA.Layer) -> ^CA.LayoutManager,
+    setLayoutManager: proc(self: ^CA.Layer, layoutManager: ^CA.LayoutManager),
     actions: proc(self: ^CA.Layer) -> ^NS.Dictionary,
     setActions: proc(self: ^CA.Layer, actions: ^NS.Dictionary),
     name: proc(self: ^CA.Layer) -> ^NS.String,
@@ -177,6 +189,10 @@ VTable :: struct {
     setDelegate: proc(self: ^CA.Layer, delegate: ^CA.LayerDelegate),
     style: proc(self: ^CA.Layer) -> ^NS.Dictionary,
     setStyle: proc(self: ^CA.Layer, style: ^NS.Dictionary),
+    addConstraint: proc(self: ^CA.Layer, c: ^CA.Constraint),
+    constraints: proc(self: ^CA.Layer) -> ^NS.Array,
+    setConstraints: proc(self: ^CA.Layer, constraints: ^NS.Array),
+    layerWithRemoteClientId: proc(client_id: cffi.uint32_t) -> ^CA.Layer,
     scrollPoint: proc(self: ^CA.Layer, p: CG.Point),
     scrollRectToVisible: proc(self: ^CA.Layer, r: CG.Rect),
     visibleRect: proc(self: ^CA.Layer) -> CG.Rect,
@@ -568,6 +584,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutSublayers"), auto_cast layoutSublayers, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.resizeSublayersWithOldSize != nil {
+        resizeSublayersWithOldSize :: proc "c" (self: ^CA.Layer, _: SEL, size: CG.Size) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).resizeSublayersWithOldSize(self, size)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resizeSublayersWithOldSize:"), auto_cast resizeSublayersWithOldSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
+    }
+    if vt.resizeWithOldSuperlayerSize != nil {
+        resizeWithOldSuperlayerSize :: proc "c" (self: ^CA.Layer, _: SEL, size: CG.Size) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).resizeWithOldSuperlayerSize(self, size)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resizeWithOldSuperlayerSize:"), auto_cast resizeWithOldSuperlayerSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.defaultActionForKey != nil {
         defaultActionForKey :: proc "c" (self: Class, _: SEL, event: ^NS.String) -> ^CA.Action {
@@ -1089,6 +1125,66 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setToneMapMode:"), auto_cast setToneMapMode, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.preferredDynamicRange != nil {
+        preferredDynamicRange :: proc "c" (self: ^CA.Layer, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredDynamicRange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredDynamicRange"), auto_cast preferredDynamicRange, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredDynamicRange != nil {
+        setPreferredDynamicRange :: proc "c" (self: ^CA.Layer, _: SEL, preferredDynamicRange: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredDynamicRange(self, preferredDynamicRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredDynamicRange:"), auto_cast setPreferredDynamicRange, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.contentsHeadroom != nil {
+        contentsHeadroom :: proc "c" (self: ^CA.Layer, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).contentsHeadroom(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsHeadroom"), auto_cast contentsHeadroom, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setContentsHeadroom != nil {
+        setContentsHeadroom :: proc "c" (self: ^CA.Layer, _: SEL, contentsHeadroom: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setContentsHeadroom(self, contentsHeadroom)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setContentsHeadroom:"), auto_cast setContentsHeadroom, "v@:d") do panic("Failed to register objC method.")
+    }
+    if vt.wantsDynamicContentScaling != nil {
+        wantsDynamicContentScaling :: proc "c" (self: ^CA.Layer, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).wantsDynamicContentScaling(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("wantsDynamicContentScaling"), auto_cast wantsDynamicContentScaling, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setWantsDynamicContentScaling != nil {
+        setWantsDynamicContentScaling :: proc "c" (self: ^CA.Layer, _: SEL, wantsDynamicContentScaling: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setWantsDynamicContentScaling(self, wantsDynamicContentScaling)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setWantsDynamicContentScaling:"), auto_cast setWantsDynamicContentScaling, "v@:B") do panic("Failed to register objC method.")
+    }
     if vt.minificationFilter != nil {
         minificationFilter :: proc "c" (self: ^CA.Layer, _: SEL) -> ^NS.String {
 
@@ -1609,6 +1705,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShadowPath:"), auto_cast setShadowPath, "v@:^void") do panic("Failed to register objC method.")
     }
+    if vt.autoresizingMask != nil {
+        autoresizingMask :: proc "c" (self: ^CA.Layer, _: SEL) -> CA.AutoresizingMask {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).autoresizingMask(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("autoresizingMask"), auto_cast autoresizingMask, "I@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutoresizingMask != nil {
+        setAutoresizingMask :: proc "c" (self: ^CA.Layer, _: SEL, autoresizingMask: CA.AutoresizingMask) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAutoresizingMask(self, autoresizingMask)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutoresizingMask:"), auto_cast setAutoresizingMask, "v@:I") do panic("Failed to register objC method.")
+    }
+    if vt.layoutManager != nil {
+        layoutManager :: proc "c" (self: ^CA.Layer, _: SEL) -> ^CA.LayoutManager {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).layoutManager(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager"), auto_cast layoutManager, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLayoutManager != nil {
+        setLayoutManager :: proc "c" (self: ^CA.Layer, _: SEL, layoutManager: ^CA.LayoutManager) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setLayoutManager(self, layoutManager)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLayoutManager:"), auto_cast setLayoutManager, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.actions != nil {
         actions :: proc "c" (self: ^CA.Layer, _: SEL) -> ^NS.Dictionary {
 
@@ -1688,6 +1824,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setStyle:"), auto_cast setStyle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.addConstraint != nil {
+        addConstraint :: proc "c" (self: ^CA.Layer, _: SEL, c: ^CA.Constraint) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).addConstraint(self, c)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addConstraint:"), auto_cast addConstraint, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.constraints != nil {
+        constraints :: proc "c" (self: ^CA.Layer, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).constraints(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("constraints"), auto_cast constraints, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setConstraints != nil {
+        setConstraints :: proc "c" (self: ^CA.Layer, _: SEL, constraints: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setConstraints(self, constraints)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setConstraints:"), auto_cast setConstraints, "v@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.layerWithRemoteClientId != nil {
+        layerWithRemoteClientId :: proc "c" (self: Class, _: SEL, client_id: cffi.uint32_t) -> ^CA.Layer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).layerWithRemoteClientId( client_id)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("layerWithRemoteClientId:"), auto_cast layerWithRemoteClientId, "@#:I") do panic("Failed to register objC method.")
     }
     if vt.scrollPoint != nil {
         scrollPoint :: proc "c" (self: ^CA.Layer, _: SEL, p: CG.Point) {

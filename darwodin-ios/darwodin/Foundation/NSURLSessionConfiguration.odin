@@ -81,6 +81,12 @@ foreign lib {
     @(objc_type=URLSessionConfiguration, objc_selector="setAllowsConstrainedNetworkAccess:", objc_name="setAllowsConstrainedNetworkAccess")
     URLSessionConfiguration_setAllowsConstrainedNetworkAccess :: proc(self: ^URLSessionConfiguration, allowsConstrainedNetworkAccess: bool) ---
 
+    @(objc_type=URLSessionConfiguration, objc_selector="allowsUltraConstrainedNetworkAccess", objc_name="allowsUltraConstrainedNetworkAccess")
+    URLSessionConfiguration_allowsUltraConstrainedNetworkAccess :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setAllowsUltraConstrainedNetworkAccess:", objc_name="setAllowsUltraConstrainedNetworkAccess")
+    URLSessionConfiguration_setAllowsUltraConstrainedNetworkAccess :: proc(self: ^URLSessionConfiguration, allowsUltraConstrainedNetworkAccess: bool) ---
+
     @(objc_type=URLSessionConfiguration, objc_selector="requiresDNSSECValidation", objc_name="requiresDNSSECValidation")
     URLSessionConfiguration_requiresDNSSECValidation :: proc(self: ^URLSessionConfiguration) -> bool ---
 
@@ -212,6 +218,12 @@ foreign lib {
 
     @(objc_type=URLSessionConfiguration, objc_selector="setUsesClassicLoadingMode:", objc_name="setUsesClassicLoadingMode")
     URLSessionConfiguration_setUsesClassicLoadingMode :: proc(self: ^URLSessionConfiguration, usesClassicLoadingMode: bool) ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="enablesEarlyData", objc_name="enablesEarlyData")
+    URLSessionConfiguration_enablesEarlyData :: proc(self: ^URLSessionConfiguration) -> bool ---
+
+    @(objc_type=URLSessionConfiguration, objc_selector="setEnablesEarlyData:", objc_name="setEnablesEarlyData")
+    URLSessionConfiguration_setEnablesEarlyData :: proc(self: ^URLSessionConfiguration, enablesEarlyData: bool) ---
 
     @(objc_type=URLSessionConfiguration, objc_selector="backgroundSessionConfiguration:", objc_name="backgroundSessionConfiguration", objc_is_class_method=true)
     URLSessionConfiguration_backgroundSessionConfiguration :: proc(identifier: ^String) -> ^URLSessionConfiguration ---

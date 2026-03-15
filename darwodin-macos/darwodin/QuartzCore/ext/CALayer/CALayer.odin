@@ -119,6 +119,10 @@ VTable :: struct {
     setWantsExtendedDynamicRangeContent: proc(self: ^CA.Layer, wantsExtendedDynamicRangeContent: bool),
     toneMapMode: proc(self: ^CA.Layer) -> ^NS.String,
     setToneMapMode: proc(self: ^CA.Layer, toneMapMode: ^NS.String),
+    preferredDynamicRange: proc(self: ^CA.Layer) -> ^NS.String,
+    setPreferredDynamicRange: proc(self: ^CA.Layer, preferredDynamicRange: ^NS.String),
+    contentsHeadroom: proc(self: ^CA.Layer) -> CG.Float,
+    setContentsHeadroom: proc(self: ^CA.Layer, contentsHeadroom: CG.Float),
     wantsDynamicContentScaling: proc(self: ^CA.Layer) -> bool,
     setWantsDynamicContentScaling: proc(self: ^CA.Layer, wantsDynamicContentScaling: bool),
     minificationFilter: proc(self: ^CA.Layer) -> ^NS.String,
@@ -1120,6 +1124,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setToneMapMode:"), auto_cast setToneMapMode, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.preferredDynamicRange != nil {
+        preferredDynamicRange :: proc "c" (self: ^CA.Layer, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).preferredDynamicRange(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("preferredDynamicRange"), auto_cast preferredDynamicRange, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPreferredDynamicRange != nil {
+        setPreferredDynamicRange :: proc "c" (self: ^CA.Layer, _: SEL, preferredDynamicRange: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPreferredDynamicRange(self, preferredDynamicRange)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredDynamicRange:"), auto_cast setPreferredDynamicRange, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.contentsHeadroom != nil {
+        contentsHeadroom :: proc "c" (self: ^CA.Layer, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).contentsHeadroom(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("contentsHeadroom"), auto_cast contentsHeadroom, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setContentsHeadroom != nil {
+        setContentsHeadroom :: proc "c" (self: ^CA.Layer, _: SEL, contentsHeadroom: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setContentsHeadroom(self, contentsHeadroom)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setContentsHeadroom:"), auto_cast setContentsHeadroom, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.wantsDynamicContentScaling != nil {
         wantsDynamicContentScaling :: proc "c" (self: ^CA.Layer, _: SEL) -> bool {

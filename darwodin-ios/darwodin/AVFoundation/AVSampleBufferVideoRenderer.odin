@@ -48,6 +48,9 @@ foreign lib {
     @(objc_type=SampleBufferVideoRenderer, objc_selector="resetUpcomingSampleBufferPresentationTimeExpectations", objc_name="resetUpcomingSampleBufferPresentationTimeExpectations")
     SampleBufferVideoRenderer_resetUpcomingSampleBufferPresentationTimeExpectations :: proc(self: ^SampleBufferVideoRenderer) ---
 
+    @(objc_type=SampleBufferVideoRenderer, objc_selector="recommendedPixelBufferAttributes", objc_name="recommendedPixelBufferAttributes")
+    SampleBufferVideoRenderer_recommendedPixelBufferAttributes :: proc(self: ^SampleBufferVideoRenderer) -> ^NS.Dictionary ---
+
     @(objc_type=SampleBufferVideoRenderer, objc_selector="loadVideoPerformanceMetricsWithCompletionHandler:", objc_name="loadVideoPerformanceMetricsWithCompletionHandler")
     SampleBufferVideoRenderer_loadVideoPerformanceMetricsWithCompletionHandler :: proc(self: ^SampleBufferVideoRenderer, completionHandler: ^Objc_Block(proc "c" (videoPerformanceMetrics: ^VideoPerformanceMetrics))) ---
 }

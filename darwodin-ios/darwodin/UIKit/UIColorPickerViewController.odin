@@ -44,4 +44,16 @@ foreign lib {
 
     @(objc_type=ColorPickerViewController, objc_selector="setSupportsAlpha:", objc_name="setSupportsAlpha")
     ColorPickerViewController_setSupportsAlpha :: proc(self: ^ColorPickerViewController, supportsAlpha: bool) ---
+
+    @(objc_type=ColorPickerViewController, objc_selector="supportsEyedropper", objc_name="supportsEyedropper")
+    ColorPickerViewController_supportsEyedropper :: proc(self: ^ColorPickerViewController) -> bool ---
+
+    @(objc_type=ColorPickerViewController, objc_selector="setSupportsEyedropper:", objc_name="setSupportsEyedropper")
+    ColorPickerViewController_setSupportsEyedropper :: proc(self: ^ColorPickerViewController, supportsEyedropper: bool) ---
+
+    @(objc_type=ColorPickerViewController, objc_selector="maximumLinearExposure", objc_name="maximumLinearExposure")
+    ColorPickerViewController_maximumLinearExposure :: proc(self: ^ColorPickerViewController) -> CG.Float ---
+
+    @(objc_type=ColorPickerViewController, objc_selector="setMaximumLinearExposure:", objc_name="setMaximumLinearExposure")
+    ColorPickerViewController_setMaximumLinearExposure :: proc(self: ^ColorPickerViewController, maximumLinearExposure: CG.Float) ---
 }

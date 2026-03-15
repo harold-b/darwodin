@@ -103,4 +103,10 @@ foreign lib {
 
     @(objc_type=HapticEngine, objc_selector="setAutoShutdownEnabled:", objc_name="setAutoShutdownEnabled")
     HapticEngine_setAutoShutdownEnabled :: proc(self: ^HapticEngine, autoShutdownEnabled: bool) ---
+
+    @(objc_type=HapticEngine, objc_selector="intendedSpatialExperience", objc_name="intendedSpatialExperience")
+    HapticEngine_intendedSpatialExperience :: proc(self: ^HapticEngine) -> ^CASpatialAudioExperience ---
+
+    @(objc_type=HapticEngine, objc_selector="setIntendedSpatialExperience:", objc_name="setIntendedSpatialExperience")
+    HapticEngine_setIntendedSpatialExperience :: proc(self: ^HapticEngine, intendedSpatialExperience: ^CASpatialAudioExperience) ---
 }

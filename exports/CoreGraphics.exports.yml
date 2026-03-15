@@ -33,6 +33,10 @@ Structs:
     CGShading: CG.Shading
     CGFunction: CG.Function
     CGFunctionCallbacks: CG.FunctionCallbacks
+    CGContentToneMappingInfo: CG.ContentToneMappingInfo
+    CGRenderingBufferProvider: CG.RenderingBufferProvider
+    CGContentInfo: CG.ContentInfo
+    CGBitmapParameters: CG.BitmapParameters
     CGColorConversionInfo: CG.ColorConversionInfo
     CGColorBufferFormat: CG.ColorBufferFormat
     CGColorDataFormat: CG.ColorDataFormat
@@ -98,6 +102,7 @@ Typedefs:
     CGFunctionRef: CG.FunctionRef
     CGFunctionEvaluateCallback: CG.FunctionEvaluateCallback
     CGFunctionReleaseInfoCallback: CG.FunctionReleaseInfoCallback
+    CGRenderingBufferProviderRef: CG.RenderingBufferProviderRef
     CGBitmapContextReleaseDataCallback: CG.BitmapContextReleaseDataCallback
     CGColorConversionInfoRef: CG.ColorConversionInfoRef
     CGDataConsumerRef: CG.DataConsumerRef
@@ -162,6 +167,7 @@ Enums:
     CGGlyphDeprecatedEnum: CG.GlyphDeprecatedEnum
     CGGradientDrawingOptions: CG.GradientDrawingOptions
     CGImageAlphaInfo: CG.ImageAlphaInfo
+    CGImageComponentInfo: CG.ImageComponentInfo
     CGImageByteOrderInfo: CG.ImageByteOrderInfo
     CGImagePixelFormatInfo: CG.ImagePixelFormatInfo
     CGBitmapInfo: CG.BitmapInfo
@@ -178,6 +184,9 @@ Enums:
     CGTextEncoding: CG.TextEncoding
     CGInterpolationQuality: CG.InterpolationQuality
     CGBlendMode: CG.BlendMode
+    CGColorModel: CG.ColorModel
+    CGComponent: CG.Component
+    CGBitmapLayout: CG.BitmapLayout
     CGColorConversionInfoTransformType: CG.ColorConversionInfoTransformType
     CGError: CG.Error
     CGPDFTagType: CG.PDFTagType
@@ -321,6 +330,8 @@ Functions:
     ::CGColorCreateGenericCMYK: CG.ColorCreateGenericCMYK
     ::CGColorCreateGenericGrayGamma2_2: CG.ColorCreateGenericGrayGamma2_2
     ::CGColorCreateSRGB: CG.ColorCreateSRGB
+    ::CGColorCreateWithContentHeadroom: CG.ColorCreateWithContentHeadroom
+    ::CGColorGetContentHeadroom: CG.ColorGetContentHeadroom
     ::CGColorGetConstantColor: CG.ColorGetConstantColor
     ::CGColorCreateWithPattern: CG.ColorCreateWithPattern
     ::CGColorCreateCopy: CG.ColorCreateCopy
@@ -367,9 +378,11 @@ Functions:
     ::CGFontCopyTableForTag: CG.FontCopyTableForTag
     ::CGGradientGetTypeID: CG.GradientGetTypeID
     ::CGGradientCreateWithColorComponents: CG.GradientCreateWithColorComponents
+    ::CGGradientCreateWithContentHeadroom: CG.GradientCreateWithContentHeadroom
     ::CGGradientCreateWithColors: CG.GradientCreateWithColors
     ::CGGradientRetain: CG.GradientRetain
     ::CGGradientRelease: CG.GradientRelease
+    ::CGGradientGetContentHeadroom: CG.GradientGetContentHeadroom
     ::CGImageGetTypeID: CG.ImageGetTypeID
     ::CGImageCreate: CG.ImageCreate
     ::CGImageMaskCreate: CG.ImageMaskCreate
@@ -383,6 +396,11 @@ Functions:
     ::CGImageCreateWithContentHeadroom: CG.ImageCreateWithContentHeadroom
     ::CGImageCreateCopyWithContentHeadroom: CG.ImageCreateCopyWithContentHeadroom
     ::CGImageGetContentHeadroom: CG.ImageGetContentHeadroom
+    ::CGImageCalculateContentHeadroom: CG.ImageCalculateContentHeadroom
+    ::CGImageGetContentAverageLightLevel: CG.ImageGetContentAverageLightLevel
+    ::CGImageCalculateContentAverageLightLevel: CG.ImageCalculateContentAverageLightLevel
+    ::CGImageCreateCopyWithContentAverageLightLevel: CG.ImageCreateCopyWithContentAverageLightLevel
+    ::CGImageCreateCopyWithCalculatedHDRStats: CG.ImageCreateCopyWithCalculatedHDRStats
     ::CGImageRetain: CG.ImageRetain
     ::CGImageRelease: CG.ImageRelease
     ::CGImageIsMask: CG.ImageIsMask
@@ -520,9 +538,13 @@ Functions:
     ::CGFunctionRelease: CG.FunctionRelease
     ::CGShadingGetTypeID: CG.ShadingGetTypeID
     ::CGShadingCreateAxial: CG.ShadingCreateAxial
+    ::CGShadingCreateAxialWithContentHeadroom: CG.ShadingCreateAxialWithContentHeadroom
     ::CGShadingCreateRadial: CG.ShadingCreateRadial
+    ::CGShadingCreateRadialWithContentHeadroom: CG.ShadingCreateRadialWithContentHeadroom
     ::CGShadingRetain: CG.ShadingRetain
     ::CGShadingRelease: CG.ShadingRelease
+    ::CGShadingGetContentHeadroom: CG.ShadingGetContentHeadroom
+    ::CGEXRToneMappingGammaGetDefaultOptions: CG.EXRToneMappingGammaGetDefaultOptions
     ::CGContextGetTypeID: CG.ContextGetTypeID
     ::CGContextSaveGState: CG.ContextSaveGState
     ::CGContextRestoreGState: CG.ContextRestoreGState
@@ -598,6 +620,8 @@ Functions:
     ::CGContextDrawImage: CG.ContextDrawImage
     ::CGContextDrawTiledImage: CG.ContextDrawTiledImage
     ::CGContextDrawImageApplyingToneMapping: CG.ContextDrawImageApplyingToneMapping
+    ::CGContextGetContentToneMappingInfo: CG.ContextGetContentToneMappingInfo
+    ::CGContextSetContentToneMappingInfo: CG.ContextSetContentToneMappingInfo
     ::CGContextGetInterpolationQuality: CG.ContextGetInterpolationQuality
     ::CGContextSetInterpolationQuality: CG.ContextSetInterpolationQuality
     ::CGContextSetShadowWithColor: CG.ContextSetShadowWithColor
@@ -622,6 +646,7 @@ Functions:
     ::CGContextRelease: CG.ContextRelease
     ::CGContextFlush: CG.ContextFlush
     ::CGContextSynchronize: CG.ContextSynchronize
+    ::CGContextSynchronizeAttributes: CG.ContextSynchronizeAttributes
     ::CGContextSetShouldAntialias: CG.ContextSetShouldAntialias
     ::CGContextSetAllowsAntialiasing: CG.ContextSetAllowsAntialiasing
     ::CGContextSetShouldSmoothFonts: CG.ContextSetShouldSmoothFonts
@@ -647,8 +672,15 @@ Functions:
     ::CGContextShowGlyphsAtPoint: CG.ContextShowGlyphsAtPoint
     ::CGContextShowGlyphsWithAdvances: CG.ContextShowGlyphsWithAdvances
     ::CGContextDrawPDFDocument: CG.ContextDrawPDFDocument
+    ::CGRenderingBufferProviderCreate: CG.RenderingBufferProviderCreate
+    ::CGRenderingBufferProviderCreateWithCFData: CG.RenderingBufferProviderCreateWithCFData
+    ::CGRenderingBufferProviderGetSize: CG.RenderingBufferProviderGetSize
+    ::CGRenderingBufferLockBytePtr: CG.RenderingBufferLockBytePtr
+    ::CGRenderingBufferUnlockBytePtr: CG.RenderingBufferUnlockBytePtr
+    ::CGRenderingBufferProviderGetTypeID: CG.RenderingBufferProviderGetTypeID
     ::CGBitmapContextCreateWithData: CG.BitmapContextCreateWithData
     ::CGBitmapContextCreate: CG.BitmapContextCreate
+    ::CGBitmapContextCreateAdaptive: CG.BitmapContextCreateAdaptive
     ::CGBitmapContextGetData: CG.BitmapContextGetData
     ::CGBitmapContextGetWidth: CG.BitmapContextGetWidth
     ::CGBitmapContextGetHeight: CG.BitmapContextGetHeight
@@ -986,6 +1018,13 @@ ExternVars:
     ::kCGUseBT1886ForCoreVideoGamma: CG.UseBT1886ForCoreVideoGamma
     ::kCGSkipBoostToHDR: CG.SkipBoostToHDR
     ::kCGUseLegacyHDREcosystem: CG.UseLegacyHDREcosystem
+    ::kCGPreferredDynamicRange: CG.PreferredDynamicRange
+    ::kCGDynamicRangeHigh: CG.DynamicRangeHigh
+    ::kCGDynamicRangeConstrained: CG.DynamicRangeConstrained
+    ::kCGDynamicRangeStandard: CG.DynamicRangeStandard
+    ::kCGContentAverageLightLevel: CG.ContentAverageLightLevel
+    ::kCGContentAverageLightLevelNits: CG.ContentAverageLightLevelNits
+    ::kCGAdaptiveMaximumBitDepth: CG.AdaptiveMaximumBitDepth
     ::kCGColorConversionBlackPointCompensation: CG.ColorConversionBlackPointCompensation
     ::kCGColorConversionTRCSize: CG.ColorConversionTRCSize
     ::kCGPDFContextMediaBox: CG.PDFContextMediaBox
@@ -1111,6 +1150,13 @@ ExternTypes:
     ::kCGUseBT1886ForCoreVideoGamma: CF.StringRef
     ::kCGSkipBoostToHDR: CF.StringRef
     ::kCGUseLegacyHDREcosystem: CF.StringRef
+    ::kCGPreferredDynamicRange: CF.StringRef
+    ::kCGDynamicRangeHigh: CF.StringRef
+    ::kCGDynamicRangeConstrained: CF.StringRef
+    ::kCGDynamicRangeStandard: CF.StringRef
+    ::kCGContentAverageLightLevel: CF.StringRef
+    ::kCGContentAverageLightLevelNits: CF.StringRef
+    ::kCGAdaptiveMaximumBitDepth: CF.StringRef
     ::kCGColorConversionBlackPointCompensation: CF.StringRef
     ::kCGColorConversionTRCSize: CF.StringRef
     ::kCGPDFContextMediaBox: CF.StringRef

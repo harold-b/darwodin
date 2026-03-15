@@ -104,6 +104,12 @@ foreign lib {
     @(objc_type=TextLayoutManager, objc_selector="setUsesHyphenation:", objc_name="setUsesHyphenation")
     TextLayoutManager_setUsesHyphenation :: proc(self: ^TextLayoutManager, usesHyphenation: bool) ---
 
+    @(objc_type=TextLayoutManager, objc_selector="resolvesNaturalAlignmentWithBaseWritingDirection", objc_name="resolvesNaturalAlignmentWithBaseWritingDirection")
+    TextLayoutManager_resolvesNaturalAlignmentWithBaseWritingDirection :: proc(self: ^TextLayoutManager) -> bool ---
+
+    @(objc_type=TextLayoutManager, objc_selector="setResolvesNaturalAlignmentWithBaseWritingDirection:", objc_name="setResolvesNaturalAlignmentWithBaseWritingDirection")
+    TextLayoutManager_setResolvesNaturalAlignmentWithBaseWritingDirection :: proc(self: ^TextLayoutManager, resolvesNaturalAlignmentWithBaseWritingDirection: bool) ---
+
     @(objc_type=TextLayoutManager, objc_selector="textContentManager", objc_name="textContentManager")
     TextLayoutManager_textContentManager :: proc(self: ^TextLayoutManager) -> ^TextContentManager ---
 

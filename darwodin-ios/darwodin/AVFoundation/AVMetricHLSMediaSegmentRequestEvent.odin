@@ -43,6 +43,9 @@ foreign lib {
     @(objc_type=MetricHLSMediaSegmentRequestEvent, objc_selector="indexFileURL", objc_name="indexFileURL")
     MetricHLSMediaSegmentRequestEvent_indexFileURL :: proc(self: ^MetricHLSMediaSegmentRequestEvent) -> ^NS.URL ---
 
+    @(objc_type=MetricHLSMediaSegmentRequestEvent, objc_selector="segmentDuration", objc_name="segmentDuration")
+    MetricHLSMediaSegmentRequestEvent_segmentDuration :: proc(self: ^MetricHLSMediaSegmentRequestEvent) -> NS.TimeInterval ---
+
     @(objc_type=MetricHLSMediaSegmentRequestEvent, objc_selector="mediaResourceRequestEvent", objc_name="mediaResourceRequestEvent")
     MetricHLSMediaSegmentRequestEvent_mediaResourceRequestEvent :: proc(self: ^MetricHLSMediaSegmentRequestEvent) -> ^MetricMediaResourceRequestEvent ---
 }

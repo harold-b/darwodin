@@ -43,4 +43,10 @@ foreign lib {
 
     @(objc_type=RecordZone, objc_selector="share", objc_name="share")
     RecordZone_share :: proc(self: ^RecordZone) -> ^Reference ---
+
+    @(objc_type=RecordZone, objc_selector="encryptionScope", objc_name="encryptionScope")
+    RecordZone_encryptionScope :: proc(self: ^RecordZone) -> RecordZoneEncryptionScope ---
+
+    @(objc_type=RecordZone, objc_selector="setEncryptionScope:", objc_name="setEncryptionScope")
+    RecordZone_setEncryptionScope :: proc(self: ^RecordZone, encryptionScope: RecordZoneEncryptionScope) ---
 }

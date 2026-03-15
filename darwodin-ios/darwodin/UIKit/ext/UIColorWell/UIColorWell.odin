@@ -34,6 +34,10 @@ VTable :: struct {
     setSupportsAlpha: proc(self: ^UI.ColorWell, supportsAlpha: bool),
     selectedColor: proc(self: ^UI.ColorWell) -> ^UI.Color,
     setSelectedColor: proc(self: ^UI.ColorWell, selectedColor: ^UI.Color),
+    supportsEyedropper: proc(self: ^UI.ColorWell) -> bool,
+    setSupportsEyedropper: proc(self: ^UI.ColorWell, supportsEyedropper: bool),
+    maximumLinearExposure: proc(self: ^UI.ColorWell) -> CG.Float,
+    setMaximumLinearExposure: proc(self: ^UI.ColorWell, maximumLinearExposure: CG.Float),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -102,6 +106,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedColor:"), auto_cast setSelectedColor, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.supportsEyedropper != nil {
+        supportsEyedropper :: proc "c" (self: ^UI.ColorWell, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).supportsEyedropper(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("supportsEyedropper"), auto_cast supportsEyedropper, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSupportsEyedropper != nil {
+        setSupportsEyedropper :: proc "c" (self: ^UI.ColorWell, _: SEL, supportsEyedropper: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSupportsEyedropper(self, supportsEyedropper)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSupportsEyedropper:"), auto_cast setSupportsEyedropper, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.maximumLinearExposure != nil {
+        maximumLinearExposure :: proc "c" (self: ^UI.ColorWell, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).maximumLinearExposure(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("maximumLinearExposure"), auto_cast maximumLinearExposure, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMaximumLinearExposure != nil {
+        setMaximumLinearExposure :: proc "c" (self: ^UI.ColorWell, _: SEL, maximumLinearExposure: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setMaximumLinearExposure(self, maximumLinearExposure)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumLinearExposure:"), auto_cast setMaximumLinearExposure, "v@:d") do panic("Failed to register objC method.")
     }
 }
 

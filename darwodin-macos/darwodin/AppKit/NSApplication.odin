@@ -157,6 +157,9 @@ foreign lib {
     @(objc_type=Application, objc_selector="isRunning", objc_name="isRunning")
     Application_isRunning :: proc(self: ^Application) -> bool ---
 
+    @(objc_type=Application, objc_selector="applicationShouldSuppressHighDynamicRangeContent", objc_name="applicationShouldSuppressHighDynamicRangeContent")
+    Application_applicationShouldSuppressHighDynamicRangeContent :: proc(self: ^Application) -> bool ---
+
     @(objc_type=Application, objc_selector="modalWindow", objc_name="modalWindow")
     Application_modalWindow :: proc(self: ^Application) -> ^Window ---
 

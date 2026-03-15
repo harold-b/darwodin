@@ -76,6 +76,12 @@ foreign lib {
     @(objc_type=TextView, objc_selector="setSelectedRange:", objc_name="setSelectedRange")
     TextView_setSelectedRange :: proc(self: ^TextView, selectedRange: NS._NSRange) ---
 
+    @(objc_type=TextView, objc_selector="selectedRanges", objc_name="selectedRanges")
+    TextView_selectedRanges :: proc(self: ^TextView) -> ^NS.Array ---
+
+    @(objc_type=TextView, objc_selector="setSelectedRanges:", objc_name="setSelectedRanges")
+    TextView_setSelectedRanges :: proc(self: ^TextView, selectedRanges: ^NS.Array) ---
+
     @(objc_type=TextView, objc_selector="isEditable", objc_name="isEditable")
     TextView_isEditable :: proc(self: ^TextView) -> bool ---
 

@@ -775,6 +775,9 @@ foreign lib {
     @(link_name="SecIdentityGetTypeID")
     SecIdentityGetTypeID :: proc() -> CF.TypeID ---
 
+    @(link_name="SecIdentityCreate")
+    SecIdentityCreate :: proc(allocator: CF.AllocatorRef, certificate: SecCertificateRef, privateKey: SecKeyRef) -> SecIdentityRef ---
+
     @(link_name="SecIdentityCopyCertificate")
     SecIdentityCopyCertificate :: proc(identityRef: SecIdentityRef, certificateRef: ^SecCertificateRef) -> CF.OSStatus ---
 

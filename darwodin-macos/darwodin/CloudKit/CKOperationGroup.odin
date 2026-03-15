@@ -15,6 +15,7 @@ import NS "../Foundation"
 @(objc_class="CKOperationGroup", objc_superclass=NS.Object)
 OperationGroup :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
+    using _: NS.Copying,
 }
 
 @(default_calling_convention="c")

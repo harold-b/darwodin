@@ -268,6 +268,8 @@ VTable :: struct {
     safeAreaLayoutGuide: proc(self: ^AK.View) -> ^AK.LayoutGuide,
     safeAreaRect: proc(self: ^AK.View) -> NS.Rect,
     layoutMarginsGuide: proc(self: ^AK.View) -> ^AK.LayoutGuide,
+    prefersCompactControlSizeMetrics: proc(self: ^AK.View) -> bool,
+    setPrefersCompactControlSizeMetrics: proc(self: ^AK.View, prefersCompactControlSizeMetrics: bool),
     addTrackingArea: proc(self: ^AK.View, trackingArea: ^AK.TrackingArea),
     removeTrackingArea: proc(self: ^AK.View, trackingArea: ^AK.TrackingArea),
     updateTrackingAreas: proc(self: ^AK.View),
@@ -348,6 +350,9 @@ VTable :: struct {
     addLayoutGuide: proc(self: ^AK.View, guide: ^AK.LayoutGuide),
     removeLayoutGuide: proc(self: ^AK.View, guide: ^AK.LayoutGuide),
     layoutGuides: proc(self: ^AK.View) -> ^NS.Array,
+    layoutGuideForLayoutRegion: proc(self: ^AK.View, layoutRegion: ^AK.ViewLayoutRegion) -> ^AK.LayoutGuide,
+    edgeInsetsForLayoutRegion: proc(self: ^AK.View, layoutRegion: ^AK.ViewLayoutRegion) -> NS.EdgeInsets,
+    rectForLayoutRegion: proc(self: ^AK.View, layoutRegion: ^AK.ViewLayoutRegion) -> NS.Rect,
     rulerView_shouldMoveMarker: proc(self: ^AK.View, ruler: ^AK.RulerView, marker: ^AK.RulerMarker) -> bool,
     rulerView_willMoveMarker_toLocation: proc(self: ^AK.View, ruler: ^AK.RulerView, marker: ^AK.RulerMarker, location: CG.Float) -> CG.Float,
     rulerView_didMoveMarker: proc(self: ^AK.View, ruler: ^AK.RulerView, marker: ^AK.RulerMarker),
@@ -2755,6 +2760,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutMarginsGuide"), auto_cast layoutMarginsGuide, "@@:") do panic("Failed to register objC method.")
     }
+    if vt.prefersCompactControlSizeMetrics != nil {
+        prefersCompactControlSizeMetrics :: proc "c" (self: ^AK.View, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).prefersCompactControlSizeMetrics(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prefersCompactControlSizeMetrics"), auto_cast prefersCompactControlSizeMetrics, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setPrefersCompactControlSizeMetrics != nil {
+        setPrefersCompactControlSizeMetrics :: proc "c" (self: ^AK.View, _: SEL, prefersCompactControlSizeMetrics: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setPrefersCompactControlSizeMetrics(self, prefersCompactControlSizeMetrics)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setPrefersCompactControlSizeMetrics:"), auto_cast setPrefersCompactControlSizeMetrics, "v@:B") do panic("Failed to register objC method.")
+    }
     if vt.addTrackingArea != nil {
         addTrackingArea :: proc "c" (self: ^AK.View, _: SEL, trackingArea: ^AK.TrackingArea) {
 
@@ -3554,6 +3579,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutGuides"), auto_cast layoutGuides, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.layoutGuideForLayoutRegion != nil {
+        layoutGuideForLayoutRegion :: proc "c" (self: ^AK.View, _: SEL, layoutRegion: ^AK.ViewLayoutRegion) -> ^AK.LayoutGuide {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).layoutGuideForLayoutRegion(self, layoutRegion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutGuideForLayoutRegion:"), auto_cast layoutGuideForLayoutRegion, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.edgeInsetsForLayoutRegion != nil {
+        edgeInsetsForLayoutRegion :: proc "c" (self: ^AK.View, _: SEL, layoutRegion: ^AK.ViewLayoutRegion) -> NS.EdgeInsets {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).edgeInsetsForLayoutRegion(self, layoutRegion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("edgeInsetsForLayoutRegion:"), auto_cast edgeInsetsForLayoutRegion, "{NSEdgeInsets=dddd}@:@") do panic("Failed to register objC method.")
+    }
+    if vt.rectForLayoutRegion != nil {
+        rectForLayoutRegion :: proc "c" (self: ^AK.View, _: SEL, layoutRegion: ^AK.ViewLayoutRegion) -> NS.Rect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).rectForLayoutRegion(self, layoutRegion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("rectForLayoutRegion:"), auto_cast rectForLayoutRegion, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@") do panic("Failed to register objC method.")
     }
     if vt.rulerView_shouldMoveMarker != nil {
         rulerView_shouldMoveMarker :: proc "c" (self: ^AK.View, _: SEL, ruler: ^AK.RulerView, marker: ^AK.RulerMarker) -> bool {

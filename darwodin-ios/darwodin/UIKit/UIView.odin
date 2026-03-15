@@ -37,6 +37,9 @@ foreign lib {
     @(objc_type=View, objc_selector="initWithCoder:", objc_name="initWithCoder")
     View_initWithCoder :: proc(self: ^View, coder: ^NS.Coder) -> instancetype ---
 
+    @(objc_type=View, objc_selector="init", objc_name="init")
+    View_init :: proc(self: ^View) -> instancetype ---
+
     @(objc_type=View, objc_selector="userInterfaceLayoutDirectionForSemanticContentAttribute:", objc_name="userInterfaceLayoutDirectionForSemanticContentAttribute_", objc_is_class_method=true)
     View_userInterfaceLayoutDirectionForSemanticContentAttribute_ :: proc(attribute: SemanticContentAttribute) -> UserInterfaceLayoutDirection ---
 
@@ -231,6 +234,15 @@ foreign lib {
 
     @(objc_type=View, objc_selector="viewWithTag:", objc_name="viewWithTag")
     View_viewWithTag :: proc(self: ^View, tag: NS.Integer) -> ^View ---
+
+    @(objc_type=View, objc_selector="setNeedsUpdateProperties", objc_name="setNeedsUpdateProperties")
+    View_setNeedsUpdateProperties :: proc(self: ^View) ---
+
+    @(objc_type=View, objc_selector="updateProperties", objc_name="updateProperties")
+    View_updateProperties :: proc(self: ^View) ---
+
+    @(objc_type=View, objc_selector="updatePropertiesIfNeeded", objc_name="updatePropertiesIfNeeded")
+    View_updatePropertiesIfNeeded :: proc(self: ^View) ---
 
     @(objc_type=View, objc_selector="setNeedsLayout", objc_name="setNeedsLayout")
     View_setNeedsLayout :: proc(self: ^View) ---
@@ -663,6 +675,24 @@ foreign lib {
 
     @(objc_type=View, objc_selector="updateTraitsIfNeeded", objc_name="updateTraitsIfNeeded")
     View_updateTraitsIfNeeded :: proc(self: ^View) ---
+
+    @(objc_type=View, objc_selector="layoutGuideForLayoutRegion:", objc_name="layoutGuideForLayoutRegion")
+    View_layoutGuideForLayoutRegion :: proc(self: ^View, layoutRegion: ^ViewLayoutRegion) -> ^LayoutGuide ---
+
+    @(objc_type=View, objc_selector="edgeInsetsForLayoutRegion:", objc_name="edgeInsetsForLayoutRegion")
+    View_edgeInsetsForLayoutRegion :: proc(self: ^View, layoutRegion: ^ViewLayoutRegion) -> EdgeInsets ---
+
+    @(objc_type=View, objc_selector="directionalEdgeInsetsForLayoutRegion:", objc_name="directionalEdgeInsetsForLayoutRegion")
+    View_directionalEdgeInsetsForLayoutRegion :: proc(self: ^View, layoutRegion: ^ViewLayoutRegion) -> NSDirectionalEdgeInsets ---
+
+    @(objc_type=View, objc_selector="effectiveRadiusForCorner:", objc_name="effectiveRadiusForCorner")
+    View_effectiveRadiusForCorner :: proc(self: ^View, corner: RectCorner) -> CG.Float ---
+
+    @(objc_type=View, objc_selector="cornerConfiguration", objc_name="cornerConfiguration")
+    View_cornerConfiguration :: proc(self: ^View) -> ^CornerConfiguration ---
+
+    @(objc_type=View, objc_selector="setCornerConfiguration:", objc_name="setCornerConfiguration")
+    View_setCornerConfiguration :: proc(self: ^View, cornerConfiguration: ^CornerConfiguration) ---
 
     @(objc_type=View, objc_selector="addInteraction:", objc_name="addInteraction")
     View_addInteraction :: proc(self: ^View, interaction: ^Interaction) ---

@@ -61,6 +61,8 @@ VTable :: struct {
     setAllowedWritingToolsResultOptions: proc(self: ^UI.TextInputTraitsProtocol, allowedWritingToolsResultOptions: UI.WritingToolsResultOptions),
     conversationContext: proc(self: ^UI.TextInputTraitsProtocol) -> ^UI.ConversationContext,
     setConversationContext: proc(self: ^UI.TextInputTraitsProtocol, conversationContext: ^UI.ConversationContext),
+    allowsNumberPadPopover: proc(self: ^UI.TextInputTraitsProtocol) -> bool,
+    setAllowsNumberPadPopover: proc(self: ^UI.TextInputTraitsProtocol, allowsNumberPadPopover: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -426,6 +428,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setConversationContext:"), auto_cast setConversationContext, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.allowsNumberPadPopover != nil {
+        allowsNumberPadPopover :: proc "c" (self: ^UI.TextInputTraitsProtocol, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).allowsNumberPadPopover(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsNumberPadPopover"), auto_cast allowsNumberPadPopover, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsNumberPadPopover != nil {
+        setAllowsNumberPadPopover :: proc "c" (self: ^UI.TextInputTraitsProtocol, _: SEL, allowsNumberPadPopover: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setAllowsNumberPadPopover(self, allowsNumberPadPopover)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsNumberPadPopover:"), auto_cast setAllowsNumberPadPopover, "v@:B") do panic("Failed to register objC method.")
     }
 }
 

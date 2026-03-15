@@ -27,12 +27,12 @@ foreign lib {
     @(objc_type=FocusUpdateContext, objc_selector="nextFocusedItem", objc_name="nextFocusedItem")
     FocusUpdateContext_nextFocusedItem :: proc(self: ^FocusUpdateContext) -> ^FocusItem ---
 
+    @(objc_type=FocusUpdateContext, objc_selector="focusHeading", objc_name="focusHeading")
+    FocusUpdateContext_focusHeading :: proc(self: ^FocusUpdateContext) -> FocusHeading ---
+
     @(objc_type=FocusUpdateContext, objc_selector="previouslyFocusedView", objc_name="previouslyFocusedView")
     FocusUpdateContext_previouslyFocusedView :: proc(self: ^FocusUpdateContext) -> ^View ---
 
     @(objc_type=FocusUpdateContext, objc_selector="nextFocusedView", objc_name="nextFocusedView")
     FocusUpdateContext_nextFocusedView :: proc(self: ^FocusUpdateContext) -> ^View ---
-
-    @(objc_type=FocusUpdateContext, objc_selector="focusHeading", objc_name="focusHeading")
-    FocusUpdateContext_focusHeading :: proc(self: ^FocusUpdateContext) -> FocusHeading ---
 }

@@ -24,4 +24,10 @@ AudioOutputNode :: struct { using _: AudioIONode, }
 foreign lib {
     @(objc_type=AudioOutputNode, objc_selector="init", objc_name="init")
     AudioOutputNode_init :: proc(self: ^AudioOutputNode) -> instancetype ---
+
+    @(objc_type=AudioOutputNode, objc_selector="intendedSpatialExperience", objc_name="intendedSpatialExperience")
+    AudioOutputNode_intendedSpatialExperience :: proc(self: ^AudioOutputNode) -> ^CASpatialAudioExperience ---
+
+    @(objc_type=AudioOutputNode, objc_selector="setIntendedSpatialExperience:", objc_name="setIntendedSpatialExperience")
+    AudioOutputNode_setIntendedSpatialExperience :: proc(self: ^AudioOutputNode, intendedSpatialExperience: ^CASpatialAudioExperience) ---
 }

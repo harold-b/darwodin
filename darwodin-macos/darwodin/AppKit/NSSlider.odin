@@ -46,6 +46,12 @@ foreign lib {
     @(objc_type=Slider, objc_selector="setMaxValue:", objc_name="setMaxValue")
     Slider_setMaxValue :: proc(self: ^Slider, maxValue: cffi.double) ---
 
+    @(objc_type=Slider, objc_selector="neutralValue", objc_name="neutralValue")
+    Slider_neutralValue :: proc(self: ^Slider) -> cffi.double ---
+
+    @(objc_type=Slider, objc_selector="setNeutralValue:", objc_name="setNeutralValue")
+    Slider_setNeutralValue :: proc(self: ^Slider, neutralValue: cffi.double) ---
+
     @(objc_type=Slider, objc_selector="altIncrementValue", objc_name="altIncrementValue")
     Slider_altIncrementValue :: proc(self: ^Slider) -> cffi.double ---
 
@@ -66,6 +72,12 @@ foreign lib {
 
     @(objc_type=Slider, objc_selector="setTrackFillColor:", objc_name="setTrackFillColor")
     Slider_setTrackFillColor :: proc(self: ^Slider, trackFillColor: ^Color) ---
+
+    @(objc_type=Slider, objc_selector="tintProminence", objc_name="tintProminence")
+    Slider_tintProminence :: proc(self: ^Slider) -> TintProminence ---
+
+    @(objc_type=Slider, objc_selector="setTintProminence:", objc_name="setTintProminence")
+    Slider_setTintProminence :: proc(self: ^Slider, tintProminence: TintProminence) ---
 
     @(objc_type=Slider, objc_selector="tickMarkValueAtIndex:", objc_name="tickMarkValueAtIndex")
     Slider_tickMarkValueAtIndex :: proc(self: ^Slider, index: NS.Integer) -> cffi.double ---

@@ -61,11 +61,12 @@ Odin:
 
       Imports:
         - |
-          MTLDevice :: NS.Object
-          MTLTexture :: NS.Object
-          MTLDrawable :: NS.Object
-          MTLPixelFormat :: cffi.ulong
-          CVTimeStamp :: struct {}
+          MTLDevice       :: NS.Object
+          MTLTexture      :: NS.Object
+          MTLDrawable     :: NS.Object
+          MTLResidencySet :: NS.Object
+          MTLPixelFormat  :: cffi.ulong
+          CVTimeStamp     :: struct {}
 
       TypeMap:
         MTLDevice: MTLDevice

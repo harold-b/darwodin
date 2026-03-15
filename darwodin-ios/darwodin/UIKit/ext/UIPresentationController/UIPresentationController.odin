@@ -50,6 +50,8 @@ VTable :: struct {
     shouldRemovePresentersView: proc(self: ^UI.PresentationController) -> bool,
     overrideTraitCollection: proc(self: ^UI.PresentationController) -> ^UI.TraitCollection,
     setOverrideTraitCollection: proc(self: ^UI.PresentationController, overrideTraitCollection: ^UI.TraitCollection),
+    backgroundEffect: proc(self: ^UI.PresentationController) -> ^UI.VisualEffect,
+    setBackgroundEffect: proc(self: ^UI.PresentationController, backgroundEffect: ^UI.VisualEffect),
     traitOverrides: proc(self: ^UI.PresentationController) -> ^UI.TraitOverrides,
 }
 
@@ -279,6 +281,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setOverrideTraitCollection:"), auto_cast setOverrideTraitCollection, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.backgroundEffect != nil {
+        backgroundEffect :: proc "c" (self: ^UI.PresentationController, _: SEL) -> ^UI.VisualEffect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).backgroundEffect(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundEffect"), auto_cast backgroundEffect, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBackgroundEffect != nil {
+        setBackgroundEffect :: proc "c" (self: ^UI.PresentationController, _: SEL, backgroundEffect: ^UI.VisualEffect) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBackgroundEffect(self, backgroundEffect)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundEffect:"), auto_cast setBackgroundEffect, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.traitOverrides != nil {
         traitOverrides :: proc "c" (self: ^UI.PresentationController, _: SEL) -> ^UI.TraitOverrides {

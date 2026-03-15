@@ -30,18 +30,23 @@ VTable :: struct {
     super: NSObject.VTable,
     colorWithWhite: proc(white: CG.Float, alpha: CG.Float) -> ^UI.Color,
     colorWithHue: proc(hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^UI.Color,
-    colorWithRed: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color,
+    colorWithRed_green_blue_alpha: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color,
     colorWithDisplayP3Red: proc(displayP3Red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color,
     colorWithCGColor: proc(cgColor: CG.ColorRef) -> ^UI.Color,
     colorWithPatternImage: proc(image: ^UI.Image) -> ^UI.Color,
     colorWithCIColor: proc(ciColor: ^UI.CIColor) -> ^UI.Color,
     initWithWhite: proc(self: ^UI.Color, white: CG.Float, alpha: CG.Float) -> ^UI.Color,
     initWithHue: proc(self: ^UI.Color, hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^UI.Color,
-    initWithRed: proc(self: ^UI.Color, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color,
+    initWithRed_green_blue_alpha: proc(self: ^UI.Color, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color,
     initWithDisplayP3Red: proc(self: ^UI.Color, displayP3Red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color,
     initWithCGColor: proc(self: ^UI.Color, cgColor: CG.ColorRef) -> ^UI.Color,
     initWithPatternImage: proc(self: ^UI.Color, image: ^UI.Image) -> ^UI.Color,
     initWithCIColor: proc(self: ^UI.Color, ciColor: ^UI.CIColor) -> ^UI.Color,
+    initWithRed_green_blue_alpha_exposure: proc(self: ^UI.Color, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, exposure: CG.Float) -> ^UI.Color,
+    colorWithRed_green_blue_alpha_exposure: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, exposure: CG.Float) -> ^UI.Color,
+    initWithRed_green_blue_alpha_linearExposure: proc(self: ^UI.Color, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, linearExposure: CG.Float) -> ^UI.Color,
+    colorWithRed_green_blue_alpha_linearExposure: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, linearExposure: CG.Float) -> ^UI.Color,
+    colorByApplyingContentHeadroom: proc(self: ^UI.Color, contentHeadroom: CG.Float) -> ^UI.Color,
     set: proc(self: ^UI.Color),
     setFill: proc(self: ^UI.Color),
     setStroke: proc(self: ^UI.Color),
@@ -66,6 +71,8 @@ VTable :: struct {
     brownColor: proc() -> ^UI.Color,
     clearColor: proc() -> ^UI.Color,
     _CIColor: proc(self: ^UI.Color) -> ^UI.CIColor,
+    linearExposure: proc(self: ^UI.Color) -> CG.Float,
+    standardDynamicRangeColor: proc(self: ^UI.Color) -> ^UI.Color,
     colorNamed_: proc(name: ^NS.String) -> ^UI.Color,
     colorNamed_inBundle_compatibleWithTraitCollection: proc(name: ^NS.String, bundle: ^NS.Bundle, traitCollection: ^UI.TraitCollection) -> ^UI.Color,
     colorWithDynamicProvider: proc(dynamicProvider: ^Objc_Block(proc "c" (traitCollection: ^UI.TraitCollection) -> ^UI.Color)) -> ^UI.Color,
@@ -146,15 +153,15 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("colorWithHue:saturation:brightness:alpha:"), auto_cast colorWithHue, "@#:dddd") do panic("Failed to register objC method.")
     }
-    if vt.colorWithRed != nil {
-        colorWithRed :: proc "c" (self: Class, _: SEL, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color {
+    if vt.colorWithRed_green_blue_alpha != nil {
+        colorWithRed_green_blue_alpha :: proc "c" (self: Class, _: SEL, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).colorWithRed( red, green, blue, alpha)
+            return (cast(^VTable)vt_ctx.super_vt).colorWithRed_green_blue_alpha( red, green, blue, alpha)
         }
 
-        if !class_addMethod(meta, intrinsics.objc_find_selector("colorWithRed:green:blue:alpha:"), auto_cast colorWithRed, "@#:dddd") do panic("Failed to register objC method.")
+        if !class_addMethod(meta, intrinsics.objc_find_selector("colorWithRed:green:blue:alpha:"), auto_cast colorWithRed_green_blue_alpha, "@#:dddd") do panic("Failed to register objC method.")
     }
     if vt.colorWithDisplayP3Red != nil {
         colorWithDisplayP3Red :: proc "c" (self: Class, _: SEL, displayP3Red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color {
@@ -216,15 +223,15 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithHue:saturation:brightness:alpha:"), auto_cast initWithHue, "@@:dddd") do panic("Failed to register objC method.")
     }
-    if vt.initWithRed != nil {
-        initWithRed :: proc "c" (self: ^UI.Color, _: SEL, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color {
+    if vt.initWithRed_green_blue_alpha != nil {
+        initWithRed_green_blue_alpha :: proc "c" (self: ^UI.Color, _: SEL, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).initWithRed(self, red, green, blue, alpha)
+            return (cast(^VTable)vt_ctx.super_vt).initWithRed_green_blue_alpha(self, red, green, blue, alpha)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRed:green:blue:alpha:"), auto_cast initWithRed, "@@:dddd") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRed:green:blue:alpha:"), auto_cast initWithRed_green_blue_alpha, "@@:dddd") do panic("Failed to register objC method.")
     }
     if vt.initWithDisplayP3Red != nil {
         initWithDisplayP3Red :: proc "c" (self: ^UI.Color, _: SEL, displayP3Red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^UI.Color {
@@ -265,6 +272,56 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCIColor:"), auto_cast initWithCIColor, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithRed_green_blue_alpha_exposure != nil {
+        initWithRed_green_blue_alpha_exposure :: proc "c" (self: ^UI.Color, _: SEL, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, exposure: CG.Float) -> ^UI.Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).initWithRed_green_blue_alpha_exposure(self, red, green, blue, alpha, exposure)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRed:green:blue:alpha:exposure:"), auto_cast initWithRed_green_blue_alpha_exposure, "@@:ddddd") do panic("Failed to register objC method.")
+    }
+    if vt.colorWithRed_green_blue_alpha_exposure != nil {
+        colorWithRed_green_blue_alpha_exposure :: proc "c" (self: Class, _: SEL, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, exposure: CG.Float) -> ^UI.Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).colorWithRed_green_blue_alpha_exposure( red, green, blue, alpha, exposure)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("colorWithRed:green:blue:alpha:exposure:"), auto_cast colorWithRed_green_blue_alpha_exposure, "@#:ddddd") do panic("Failed to register objC method.")
+    }
+    if vt.initWithRed_green_blue_alpha_linearExposure != nil {
+        initWithRed_green_blue_alpha_linearExposure :: proc "c" (self: ^UI.Color, _: SEL, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, linearExposure: CG.Float) -> ^UI.Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).initWithRed_green_blue_alpha_linearExposure(self, red, green, blue, alpha, linearExposure)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRed:green:blue:alpha:linearExposure:"), auto_cast initWithRed_green_blue_alpha_linearExposure, "@@:ddddd") do panic("Failed to register objC method.")
+    }
+    if vt.colorWithRed_green_blue_alpha_linearExposure != nil {
+        colorWithRed_green_blue_alpha_linearExposure :: proc "c" (self: Class, _: SEL, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, linearExposure: CG.Float) -> ^UI.Color {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).colorWithRed_green_blue_alpha_linearExposure( red, green, blue, alpha, linearExposure)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("colorWithRed:green:blue:alpha:linearExposure:"), auto_cast colorWithRed_green_blue_alpha_linearExposure, "@#:ddddd") do panic("Failed to register objC method.")
+    }
+    if vt.colorByApplyingContentHeadroom != nil {
+        colorByApplyingContentHeadroom :: proc "c" (self: ^UI.Color, _: SEL, contentHeadroom: CG.Float) -> ^UI.Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).colorByApplyingContentHeadroom(self, contentHeadroom)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("colorByApplyingContentHeadroom:"), auto_cast colorByApplyingContentHeadroom, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.set != nil {
         set :: proc "c" (self: ^UI.Color, _: SEL) {
@@ -505,6 +562,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("CIColor"), auto_cast _CIColor, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.linearExposure != nil {
+        linearExposure :: proc "c" (self: ^UI.Color, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).linearExposure(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("linearExposure"), auto_cast linearExposure, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.standardDynamicRangeColor != nil {
+        standardDynamicRangeColor :: proc "c" (self: ^UI.Color, _: SEL) -> ^UI.Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).standardDynamicRangeColor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("standardDynamicRangeColor"), auto_cast standardDynamicRangeColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.colorNamed_ != nil {
         colorNamed_ :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^UI.Color {

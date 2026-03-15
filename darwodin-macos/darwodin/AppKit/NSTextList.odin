@@ -52,6 +52,9 @@ foreign lib {
 
     @(objc_type=TextList, objc_selector="isOrdered", objc_name="isOrdered")
     TextList_isOrdered :: proc(self: ^TextList) -> bool ---
+
+    @(objc_type=TextList, objc_selector="includesTextListMarkers", objc_name="includesTextListMarkers", objc_is_class_method=true)
+    TextList_includesTextListMarkers :: proc() -> bool ---
 }
 
 @(objc_type=TextList, objc_name="initWithMarkerFormat")

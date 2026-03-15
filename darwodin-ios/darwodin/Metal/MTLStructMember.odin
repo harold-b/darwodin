@@ -33,6 +33,9 @@ foreign lib {
     @(objc_type=StructMember, objc_selector="pointerType", objc_name="pointerType")
     StructMember_pointerType :: proc(self: ^StructMember) -> ^PointerType ---
 
+    @(objc_type=StructMember, objc_selector="tensorReferenceType", objc_name="tensorReferenceType")
+    StructMember_tensorReferenceType :: proc(self: ^StructMember) -> ^TensorReferenceType ---
+
     @(objc_type=StructMember, objc_selector="name", objc_name="name")
     StructMember_name :: proc(self: ^StructMember) -> ^NS.String ---
 

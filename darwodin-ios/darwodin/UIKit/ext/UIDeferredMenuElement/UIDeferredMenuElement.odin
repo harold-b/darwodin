@@ -30,6 +30,8 @@ VTable :: struct {
     super: UIMenuElement.VTable,
     elementWithProvider: proc(elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> instancetype,
     elementWithUncachedProvider: proc(elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> instancetype,
+    elementUsingFocusWithIdentifier: proc(identifier: ^NS.String, shouldCacheItems: bool) -> instancetype,
+    identifier: proc(self: ^UI.DeferredMenuElement) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -58,6 +60,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("elementWithUncachedProvider:"), auto_cast elementWithUncachedProvider, "@#:?") do panic("Failed to register objC method.")
+    }
+    if vt.elementUsingFocusWithIdentifier != nil {
+        elementUsingFocusWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, shouldCacheItems: bool) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).elementUsingFocusWithIdentifier( identifier, shouldCacheItems)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("elementUsingFocusWithIdentifier:shouldCacheItems:"), auto_cast elementUsingFocusWithIdentifier, "@#:@B") do panic("Failed to register objC method.")
+    }
+    if vt.identifier != nil {
+        identifier :: proc "c" (self: ^UI.DeferredMenuElement, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).identifier(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("identifier"), auto_cast identifier, "@@:") do panic("Failed to register objC method.")
     }
 }
 

@@ -47,5 +47,8 @@ foreign lib {
 
     @(objc_type=AssetDownloadDelegate, objc_selector="URLSession:assetDownloadTask:willDownloadVariants:", objc_name="URLSession_assetDownloadTask_willDownloadVariants")
     AssetDownloadDelegate_URLSession_assetDownloadTask_willDownloadVariants :: proc(self: ^AssetDownloadDelegate, session: ^NS.URLSession, assetDownloadTask: ^AssetDownloadTask, variants: ^NS.Array) ---
+
+    @(objc_type=AssetDownloadDelegate, objc_selector="URLSession:assetDownloadTask:didReceiveMetricEvent:", objc_name="URLSession_assetDownloadTask_didReceiveMetricEvent")
+    AssetDownloadDelegate_URLSession_assetDownloadTask_didReceiveMetricEvent :: proc(self: ^AssetDownloadDelegate, session: ^NS.URLSession, assetDownloadTask: ^AssetDownloadTask, metricEvent: ^MetricEvent) ---
 }
 

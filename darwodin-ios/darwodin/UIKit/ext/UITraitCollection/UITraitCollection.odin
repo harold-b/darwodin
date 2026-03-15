@@ -50,6 +50,9 @@ VTable :: struct {
     traitCollectionWithTypesettingLanguage: proc(language: ^NS.String) -> ^UI.TraitCollection,
     traitCollectionWithSceneCaptureState: proc(sceneCaptureState: UI.SceneCaptureState) -> ^UI.TraitCollection,
     traitCollectionWithListEnvironment: proc(listEnvironment: UI.ListEnvironment) -> ^UI.TraitCollection,
+    traitCollectionWithTabAccessoryEnvironment: proc(tabAccessoryEnvironment: UI.TabAccessoryEnvironment) -> ^UI.TraitCollection,
+    traitCollectionWithHDRHeadroomUsageLimit: proc(hdrHeadroomUsageLimit: UI.HDRHeadroomUsageLimit) -> ^UI.TraitCollection,
+    traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection: proc(resolvesNaturalAlignmentWithBaseWritingDirection: bool) -> ^UI.TraitCollection,
     userInterfaceIdiom: proc(self: ^UI.TraitCollection) -> UI.UserInterfaceIdiom,
     userInterfaceStyle: proc(self: ^UI.TraitCollection) -> UI.UserInterfaceStyle,
     layoutDirection: proc(self: ^UI.TraitCollection) -> UI.TraitEnvironmentLayoutDirection,
@@ -68,6 +71,10 @@ VTable :: struct {
     typesettingLanguage: proc(self: ^UI.TraitCollection) -> ^NS.String,
     sceneCaptureState: proc(self: ^UI.TraitCollection) -> UI.SceneCaptureState,
     listEnvironment: proc(self: ^UI.TraitCollection) -> UI.ListEnvironment,
+    tabAccessoryEnvironment: proc(self: ^UI.TraitCollection) -> UI.TabAccessoryEnvironment,
+    splitViewControllerLayoutEnvironment: proc(self: ^UI.TraitCollection) -> UI.SplitViewControllerLayoutEnvironment,
+    hdrHeadroomUsageLimit: proc(self: ^UI.TraitCollection) -> UI.HDRHeadroomUsageLimit,
+    resolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^UI.TraitCollection) -> bool,
     traitCollectionWithTraits: proc(mutations: UI.TraitMutations) -> ^UI.TraitCollection,
     traitCollectionByModifyingTraits: proc(self: ^UI.TraitCollection, mutations: UI.TraitMutations) -> ^UI.TraitCollection,
     traitCollectionWithCGFloatValue: proc(value: CG.Float, trait: ^Class) -> ^UI.TraitCollection,
@@ -316,6 +323,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("traitCollectionWithListEnvironment:"), auto_cast traitCollectionWithListEnvironment, "@#:l") do panic("Failed to register objC method.")
     }
+    if vt.traitCollectionWithTabAccessoryEnvironment != nil {
+        traitCollectionWithTabAccessoryEnvironment :: proc "c" (self: Class, _: SEL, tabAccessoryEnvironment: UI.TabAccessoryEnvironment) -> ^UI.TraitCollection {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).traitCollectionWithTabAccessoryEnvironment( tabAccessoryEnvironment)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("traitCollectionWithTabAccessoryEnvironment:"), auto_cast traitCollectionWithTabAccessoryEnvironment, "@#:l") do panic("Failed to register objC method.")
+    }
+    if vt.traitCollectionWithHDRHeadroomUsageLimit != nil {
+        traitCollectionWithHDRHeadroomUsageLimit :: proc "c" (self: Class, _: SEL, hdrHeadroomUsageLimit: UI.HDRHeadroomUsageLimit) -> ^UI.TraitCollection {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).traitCollectionWithHDRHeadroomUsageLimit( hdrHeadroomUsageLimit)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("traitCollectionWithHDRHeadroomUsageLimit:"), auto_cast traitCollectionWithHDRHeadroomUsageLimit, "@#:l") do panic("Failed to register objC method.")
+    }
+    if vt.traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection != nil {
+        traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: Class, _: SEL, resolvesNaturalAlignmentWithBaseWritingDirection: bool) -> ^UI.TraitCollection {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection( resolvesNaturalAlignmentWithBaseWritingDirection)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection:"), auto_cast traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection, "@#:B") do panic("Failed to register objC method.")
+    }
     if vt.userInterfaceIdiom != nil {
         userInterfaceIdiom :: proc "c" (self: ^UI.TraitCollection, _: SEL) -> UI.UserInterfaceIdiom {
 
@@ -495,6 +532,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("listEnvironment"), auto_cast listEnvironment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.tabAccessoryEnvironment != nil {
+        tabAccessoryEnvironment :: proc "c" (self: ^UI.TraitCollection, _: SEL) -> UI.TabAccessoryEnvironment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).tabAccessoryEnvironment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabAccessoryEnvironment"), auto_cast tabAccessoryEnvironment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.splitViewControllerLayoutEnvironment != nil {
+        splitViewControllerLayoutEnvironment :: proc "c" (self: ^UI.TraitCollection, _: SEL) -> UI.SplitViewControllerLayoutEnvironment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).splitViewControllerLayoutEnvironment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("splitViewControllerLayoutEnvironment"), auto_cast splitViewControllerLayoutEnvironment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.hdrHeadroomUsageLimit != nil {
+        hdrHeadroomUsageLimit :: proc "c" (self: ^UI.TraitCollection, _: SEL) -> UI.HDRHeadroomUsageLimit {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).hdrHeadroomUsageLimit(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hdrHeadroomUsageLimit"), auto_cast hdrHeadroomUsageLimit, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.resolvesNaturalAlignmentWithBaseWritingDirection != nil {
+        resolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^UI.TraitCollection, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).resolvesNaturalAlignmentWithBaseWritingDirection(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resolvesNaturalAlignmentWithBaseWritingDirection"), auto_cast resolvesNaturalAlignmentWithBaseWritingDirection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.traitCollectionWithTraits != nil {
         traitCollectionWithTraits :: proc "c" (self: Class, _: SEL, mutations: UI.TraitMutations) -> ^UI.TraitCollection {

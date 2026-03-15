@@ -54,6 +54,12 @@ foreign lib {
     @(objc_type=AchievementDescription, objc_selector="releaseState", objc_name="releaseState")
     AchievementDescription_releaseState :: proc(self: ^AchievementDescription) -> ReleaseState ---
 
+    @(objc_type=AchievementDescription, objc_selector="activityIdentifier", objc_name="activityIdentifier")
+    AchievementDescription_activityIdentifier :: proc(self: ^AchievementDescription) -> ^NS.String ---
+
+    @(objc_type=AchievementDescription, objc_selector="activityProperties", objc_name="activityProperties")
+    AchievementDescription_activityProperties :: proc(self: ^AchievementDescription) -> ^NS.Dictionary ---
+
     @(objc_type=AchievementDescription, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
     AchievementDescription_loadImageWithCompletionHandler :: proc(self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" (image: ^NS.Image, error: ^NS.Error))) ---
 

@@ -85,6 +85,12 @@ foreign lib {
     @(objc_type=MutableVideoComposition, objc_selector="setSourceSampleDataTrackIDs:", objc_name="setSourceSampleDataTrackIDs")
     MutableVideoComposition_setSourceSampleDataTrackIDs :: proc(self: ^MutableVideoComposition, sourceSampleDataTrackIDs: ^NS.Array) ---
 
+    @(objc_type=MutableVideoComposition, objc_selector="outputBufferDescription", objc_name="outputBufferDescription")
+    MutableVideoComposition_outputBufferDescription :: proc(self: ^MutableVideoComposition) -> ^NS.Array ---
+
+    @(objc_type=MutableVideoComposition, objc_selector="setOutputBufferDescription:", objc_name="setOutputBufferDescription")
+    MutableVideoComposition_setOutputBufferDescription :: proc(self: ^MutableVideoComposition, outputBufferDescription: ^NS.Array) ---
+
     @(objc_type=MutableVideoComposition, objc_selector="colorPrimaries", objc_name="colorPrimaries")
     MutableVideoComposition_colorPrimaries :: proc(self: ^MutableVideoComposition) -> ^NS.String ---
 

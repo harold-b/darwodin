@@ -31,9 +31,24 @@ foreign lib {
     @(objc_type=PlayerInterstitialEventController, objc_selector="cancelCurrentEventWithResumptionOffset:", objc_name="cancelCurrentEventWithResumptionOffset")
     PlayerInterstitialEventController_cancelCurrentEventWithResumptionOffset :: proc(self: ^PlayerInterstitialEventController, resumptionOffset: CM.Time) ---
 
+    @(objc_type=PlayerInterstitialEventController, objc_selector="skipCurrentEvent", objc_name="skipCurrentEvent")
+    PlayerInterstitialEventController_skipCurrentEvent :: proc(self: ^PlayerInterstitialEventController) ---
+
     @(objc_type=PlayerInterstitialEventController, objc_selector="events", objc_name="events")
     PlayerInterstitialEventController_events :: proc(self: ^PlayerInterstitialEventController) -> ^NS.Array ---
 
     @(objc_type=PlayerInterstitialEventController, objc_selector="setEvents:", objc_name="setEvents")
     PlayerInterstitialEventController_setEvents :: proc(self: ^PlayerInterstitialEventController, events: ^NS.Array) ---
+
+    @(objc_type=PlayerInterstitialEventController, objc_selector="localizedStringsBundle", objc_name="localizedStringsBundle")
+    PlayerInterstitialEventController_localizedStringsBundle :: proc(self: ^PlayerInterstitialEventController) -> ^NS.Bundle ---
+
+    @(objc_type=PlayerInterstitialEventController, objc_selector="setLocalizedStringsBundle:", objc_name="setLocalizedStringsBundle")
+    PlayerInterstitialEventController_setLocalizedStringsBundle :: proc(self: ^PlayerInterstitialEventController, localizedStringsBundle: ^NS.Bundle) ---
+
+    @(objc_type=PlayerInterstitialEventController, objc_selector="localizedStringsTableName", objc_name="localizedStringsTableName")
+    PlayerInterstitialEventController_localizedStringsTableName :: proc(self: ^PlayerInterstitialEventController) -> ^NS.String ---
+
+    @(objc_type=PlayerInterstitialEventController, objc_selector="setLocalizedStringsTableName:", objc_name="setLocalizedStringsTableName")
+    PlayerInterstitialEventController_setLocalizedStringsTableName :: proc(self: ^PlayerInterstitialEventController, localizedStringsTableName: ^NS.String) ---
 }

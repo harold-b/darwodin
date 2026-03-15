@@ -35,6 +35,8 @@ VTable :: struct {
     adjustedRangeFromRange: proc(self: ^UI.NSTextContentStorage, textRange: ^UI.NSTextRange, forEditingTextSelection: bool) -> ^UI.NSTextRange,
     delegate: proc(self: ^UI.NSTextContentStorage) -> ^UI.NSTextContentStorageDelegate,
     setDelegate: proc(self: ^UI.NSTextContentStorage, delegate: ^UI.NSTextContentStorageDelegate),
+    includesTextListMarkers: proc(self: ^UI.NSTextContentStorage) -> bool,
+    setIncludesTextListMarkers: proc(self: ^UI.NSTextContentStorage, includesTextListMarkers: bool),
     attributedString: proc(self: ^UI.NSTextContentStorage) -> ^NS.AttributedString,
     setAttributedString: proc(self: ^UI.NSTextContentStorage, attributedString: ^NS.AttributedString),
 }
@@ -115,6 +117,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.includesTextListMarkers != nil {
+        includesTextListMarkers :: proc "c" (self: ^UI.NSTextContentStorage, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).includesTextListMarkers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("includesTextListMarkers"), auto_cast includesTextListMarkers, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setIncludesTextListMarkers != nil {
+        setIncludesTextListMarkers :: proc "c" (self: ^UI.NSTextContentStorage, _: SEL, includesTextListMarkers: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setIncludesTextListMarkers(self, includesTextListMarkers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIncludesTextListMarkers:"), auto_cast setIncludesTextListMarkers, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.attributedString != nil {
         attributedString :: proc "c" (self: ^UI.NSTextContentStorage, _: SEL) -> ^NS.AttributedString {

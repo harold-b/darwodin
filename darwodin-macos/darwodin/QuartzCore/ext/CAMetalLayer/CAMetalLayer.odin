@@ -53,6 +53,7 @@ VTable :: struct {
     setAllowsNextDrawableTimeout: proc(self: ^CA.MetalLayer, allowsNextDrawableTimeout: bool),
     developerHUDProperties: proc(self: ^CA.MetalLayer) -> ^NS.Dictionary,
     setDeveloperHUDProperties: proc(self: ^CA.MetalLayer, developerHUDProperties: ^NS.Dictionary),
+    residencySet: proc(self: ^CA.MetalLayer) -> ^CA.MTLResidencySet,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -321,6 +322,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDeveloperHUDProperties:"), auto_cast setDeveloperHUDProperties, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.residencySet != nil {
+        residencySet :: proc "c" (self: ^CA.MetalLayer, _: SEL) -> ^CA.MTLResidencySet {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).residencySet(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("residencySet"), auto_cast residencySet, "@@:") do panic("Failed to register objC method.")
     }
 }
 

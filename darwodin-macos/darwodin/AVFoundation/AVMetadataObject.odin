@@ -39,4 +39,16 @@ foreign lib {
 
     @(objc_type=MetadataObject, objc_selector="type", objc_name="type")
     MetadataObject_type :: proc(self: ^MetadataObject) -> ^NS.String ---
+
+    @(objc_type=MetadataObject, objc_selector="groupID", objc_name="groupID")
+    MetadataObject_groupID :: proc(self: ^MetadataObject) -> NS.Integer ---
+
+    @(objc_type=MetadataObject, objc_selector="objectID", objc_name="objectID")
+    MetadataObject_objectID :: proc(self: ^MetadataObject) -> NS.Integer ---
+
+    @(objc_type=MetadataObject, objc_selector="cinematicVideoFocusMode", objc_name="cinematicVideoFocusMode")
+    MetadataObject_cinematicVideoFocusMode :: proc(self: ^MetadataObject) -> CaptureCinematicVideoFocusMode ---
+
+    @(objc_type=MetadataObject, objc_selector="isFixedFocus", objc_name="isFixedFocus")
+    MetadataObject_isFixedFocus :: proc(self: ^MetadataObject) -> bool ---
 }

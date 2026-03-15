@@ -47,6 +47,7 @@ VTable :: struct {
     targetForAction: proc(self: ^UI.Responder, action: SEL, sender: id) -> id,
     buildMenuWithBuilder: proc(self: ^UI.Responder, builder: ^UI.MenuBuilder),
     validateCommand: proc(self: ^UI.Responder, command: ^UI.Command),
+    providerForDeferredMenuElement: proc(self: ^UI.Responder, deferredElement: ^UI.DeferredMenuElement) -> ^UI.DeferredMenuElementProvider,
     nextResponder: proc(self: ^UI.Responder) -> ^UI.Responder,
     canBecomeFirstResponder: proc(self: ^UI.Responder) -> bool,
     canResignFirstResponder: proc(self: ^UI.Responder) -> bool,
@@ -268,6 +269,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("validateCommand:"), auto_cast validateCommand, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.providerForDeferredMenuElement != nil {
+        providerForDeferredMenuElement :: proc "c" (self: ^UI.Responder, _: SEL, deferredElement: ^UI.DeferredMenuElement) -> ^UI.DeferredMenuElementProvider {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).providerForDeferredMenuElement(self, deferredElement)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("providerForDeferredMenuElement:"), auto_cast providerForDeferredMenuElement, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.nextResponder != nil {
         nextResponder :: proc "c" (self: ^UI.Responder, _: SEL) -> ^UI.Responder {

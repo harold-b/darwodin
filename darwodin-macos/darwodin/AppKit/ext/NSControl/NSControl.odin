@@ -42,7 +42,6 @@ VTable :: struct {
     takeStringValueFrom: proc(self: ^AK.Control, sender: id),
     takeObjectValueFrom: proc(self: ^AK.Control, sender: id),
     takeIntegerValueFrom: proc(self: ^AK.Control, sender: id),
-    mouseDown: proc(self: ^AK.Control, event: ^AK.Event),
     performClick: proc(self: ^AK.Control, sender: id),
     expansionFrameWithFrame: proc(self: ^AK.Control, contentFrame: NS.Rect) -> NS.Rect,
     drawWithExpansionFrame: proc(self: ^AK.Control, contentFrame: NS.Rect, view: ^AK.View),
@@ -241,16 +240,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("takeIntegerValueFrom:"), auto_cast takeIntegerValueFrom, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.mouseDown != nil {
-        mouseDown :: proc "c" (self: ^AK.Control, _: SEL, event: ^AK.Event) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).mouseDown(self, event)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("mouseDown:"), auto_cast mouseDown, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.performClick != nil {
         performClick :: proc "c" (self: ^AK.Control, _: SEL, sender: id) {

@@ -93,6 +93,12 @@ foreign lib {
     @(objc_type=PlayerInterstitialEvent, objc_selector="contentMayVary", objc_name="contentMayVary")
     PlayerInterstitialEvent_contentMayVary :: proc(self: ^PlayerInterstitialEvent) -> bool ---
 
+    @(objc_type=PlayerInterstitialEvent, objc_selector="skipControlTimeRange", objc_name="skipControlTimeRange")
+    PlayerInterstitialEvent_skipControlTimeRange :: proc(self: ^PlayerInterstitialEvent) -> CM.TimeRange ---
+
+    @(objc_type=PlayerInterstitialEvent, objc_selector="skipControlLocalizedLabelBundleKey", objc_name="skipControlLocalizedLabelBundleKey")
+    PlayerInterstitialEvent_skipControlLocalizedLabelBundleKey :: proc(self: ^PlayerInterstitialEvent) -> ^NS.String ---
+
     @(objc_type=PlayerInterstitialEvent, objc_selector="setPrimaryItem:", objc_name="setPrimaryItem")
     PlayerInterstitialEvent_setPrimaryItem :: proc(self: ^PlayerInterstitialEvent, primaryItem: ^PlayerItem) ---
 
@@ -146,6 +152,12 @@ foreign lib {
 
     @(objc_type=PlayerInterstitialEvent, objc_selector="setPlannedDuration:", objc_name="setPlannedDuration")
     PlayerInterstitialEvent_setPlannedDuration :: proc(self: ^PlayerInterstitialEvent, plannedDuration: CM.Time) ---
+
+    @(objc_type=PlayerInterstitialEvent, objc_selector="setSkipControlTimeRange:", objc_name="setSkipControlTimeRange")
+    PlayerInterstitialEvent_setSkipControlTimeRange :: proc(self: ^PlayerInterstitialEvent, skipControlTimeRange: CM.TimeRange) ---
+
+    @(objc_type=PlayerInterstitialEvent, objc_selector="setSkipControlLocalizedLabelBundleKey:", objc_name="setSkipControlLocalizedLabelBundleKey")
+    PlayerInterstitialEvent_setSkipControlLocalizedLabelBundleKey :: proc(self: ^PlayerInterstitialEvent, skipControlLocalizedLabelBundleKey: ^NS.String) ---
 }
 
 @(objc_type=PlayerInterstitialEvent, objc_name="interstitialEventWithPrimaryItem")

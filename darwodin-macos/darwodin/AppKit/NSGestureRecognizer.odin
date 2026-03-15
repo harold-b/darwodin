@@ -106,6 +106,15 @@ foreign lib {
     @(objc_type=GestureRecognizer, objc_selector="setDelaysRotationEvents:", objc_name="setDelaysRotationEvents")
     GestureRecognizer_setDelaysRotationEvents :: proc(self: ^GestureRecognizer, delaysRotationEvents: bool) ---
 
+    @(objc_type=GestureRecognizer, objc_selector="name", objc_name="name")
+    GestureRecognizer_name :: proc(self: ^GestureRecognizer) -> ^NS.String ---
+
+    @(objc_type=GestureRecognizer, objc_selector="setName:", objc_name="setName")
+    GestureRecognizer_setName :: proc(self: ^GestureRecognizer, name: ^NS.String) ---
+
+    @(objc_type=GestureRecognizer, objc_selector="modifierFlags", objc_name="modifierFlags")
+    GestureRecognizer_modifierFlags :: proc(self: ^GestureRecognizer) -> EventModifierFlags ---
+
     @(objc_type=GestureRecognizer, objc_selector="allowedTouchTypes", objc_name="allowedTouchTypes")
     GestureRecognizer_allowedTouchTypes :: proc(self: ^GestureRecognizer) -> TouchTypeMask ---
 
@@ -153,6 +162,9 @@ foreign lib {
 
     @(objc_type=GestureRecognizer, objc_selector="otherMouseDragged:", objc_name="otherMouseDragged")
     GestureRecognizer_otherMouseDragged :: proc(self: ^GestureRecognizer, event: ^Event) ---
+
+    @(objc_type=GestureRecognizer, objc_selector="mouseCancelled:", objc_name="mouseCancelled")
+    GestureRecognizer_mouseCancelled :: proc(self: ^GestureRecognizer, event: ^Event) ---
 
     @(objc_type=GestureRecognizer, objc_selector="keyDown:", objc_name="keyDown")
     GestureRecognizer_keyDown :: proc(self: ^GestureRecognizer, event: ^Event) ---

@@ -27,6 +27,9 @@ foreign lib {
     @(objc_type=SharedEventListener, objc_selector="initWithDispatchQueue:", objc_name="initWithDispatchQueue")
     SharedEventListener_initWithDispatchQueue :: proc(self: ^SharedEventListener, dispatchQueue: CF.dispatch_queue_t) -> instancetype ---
 
+    @(objc_type=SharedEventListener, objc_selector="sharedListener", objc_name="sharedListener", objc_is_class_method=true)
+    SharedEventListener_sharedListener :: proc() -> ^SharedEventListener ---
+
     @(objc_type=SharedEventListener, objc_selector="dispatchQueue", objc_name="dispatchQueue")
     SharedEventListener_dispatchQueue :: proc(self: ^SharedEventListener) -> CF.dispatch_queue_t ---
 }

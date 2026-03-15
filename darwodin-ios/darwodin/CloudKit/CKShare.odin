@@ -38,6 +38,9 @@ foreign lib {
     @(objc_type=Share, objc_selector="removeParticipant:", objc_name="removeParticipant")
     Share_removeParticipant :: proc(self: ^Share, participant: ^ShareParticipant) ---
 
+    @(objc_type=Share, objc_selector="oneTimeURLForParticipantID:", objc_name="oneTimeURLForParticipantID")
+    Share_oneTimeURLForParticipantID :: proc(self: ^Share, participantID: ^NS.String) -> ^NS.URL ---
+
     @(objc_type=Share, objc_selector="init", objc_name="init")
     Share_init :: proc(self: ^Share) -> instancetype ---
 
@@ -52,6 +55,15 @@ foreign lib {
 
     @(objc_type=Share, objc_selector="initWithRecordType:zoneID:", objc_name="initWithRecordType_zoneID")
     Share_initWithRecordType_zoneID :: proc(self: ^Share, recordType: ^NS.String, zoneID: ^RecordZoneID) -> instancetype ---
+
+    @(objc_type=Share, objc_selector="denyRequesters:", objc_name="denyRequesters")
+    Share_denyRequesters :: proc(self: ^Share, requesters: ^NS.Array) ---
+
+    @(objc_type=Share, objc_selector="blockRequesters:", objc_name="blockRequesters")
+    Share_blockRequesters :: proc(self: ^Share, requesters: ^NS.Array) ---
+
+    @(objc_type=Share, objc_selector="unblockIdentities:", objc_name="unblockIdentities")
+    Share_unblockIdentities :: proc(self: ^Share, blockedIdentities: ^NS.Array) ---
 
     @(objc_type=Share, objc_selector="publicPermission", objc_name="publicPermission")
     Share_publicPermission :: proc(self: ^Share) -> ShareParticipantPermission ---
@@ -70,6 +82,18 @@ foreign lib {
 
     @(objc_type=Share, objc_selector="currentUserParticipant", objc_name="currentUserParticipant")
     Share_currentUserParticipant :: proc(self: ^Share) -> ^ShareParticipant ---
+
+    @(objc_type=Share, objc_selector="requesters", objc_name="requesters")
+    Share_requesters :: proc(self: ^Share) -> ^NS.Array ---
+
+    @(objc_type=Share, objc_selector="blockedIdentities", objc_name="blockedIdentities")
+    Share_blockedIdentities :: proc(self: ^Share) -> ^NS.Array ---
+
+    @(objc_type=Share, objc_selector="allowsAccessRequests", objc_name="allowsAccessRequests")
+    Share_allowsAccessRequests :: proc(self: ^Share) -> bool ---
+
+    @(objc_type=Share, objc_selector="setAllowsAccessRequests:", objc_name="setAllowsAccessRequests")
+    Share_setAllowsAccessRequests :: proc(self: ^Share, allowsAccessRequests: bool) ---
 }
 
 @(objc_type=Share, objc_name="initWithRootRecord")

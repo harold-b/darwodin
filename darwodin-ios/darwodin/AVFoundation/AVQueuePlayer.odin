@@ -26,7 +26,7 @@ foreign lib {
     QueuePlayer_queuePlayerWithItems :: proc(items: ^NS.Array) -> instancetype ---
 
     @(objc_type=QueuePlayer, objc_selector="initWithItems:", objc_name="initWithItems")
-    QueuePlayer_initWithItems :: proc(self: ^QueuePlayer, items: ^NS.Array) -> ^QueuePlayer ---
+    QueuePlayer_initWithItems :: proc(self: ^QueuePlayer, items: ^NS.Array) -> instancetype ---
 
     @(objc_type=QueuePlayer, objc_selector="items", objc_name="items")
     QueuePlayer_items :: proc(self: ^QueuePlayer) -> ^NS.Array ---

@@ -97,4 +97,7 @@ foreign lib {
 
     @(objc_type=MetalLayer, objc_selector="setDeveloperHUDProperties:", objc_name="setDeveloperHUDProperties")
     MetalLayer_setDeveloperHUDProperties :: proc(self: ^MetalLayer, developerHUDProperties: ^NS.Dictionary) ---
+
+    @(objc_type=MetalLayer, objc_selector="residencySet", objc_name="residencySet")
+    MetalLayer_residencySet :: proc(self: ^MetalLayer) -> ^MTLResidencySet ---
 }

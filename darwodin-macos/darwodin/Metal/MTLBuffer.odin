@@ -32,6 +32,9 @@ foreign lib {
     @(objc_type=Buffer, objc_selector="newTextureWithDescriptor:offset:bytesPerRow:", objc_name="newTextureWithDescriptor")
     Buffer_newTextureWithDescriptor :: proc(self: ^Buffer, descriptor: ^TextureDescriptor, offset: NS.UInteger, bytesPerRow: NS.UInteger) -> ^Texture ---
 
+    @(objc_type=Buffer, objc_selector="newTensorWithDescriptor:offset:error:", objc_name="newTensorWithDescriptor")
+    Buffer_newTensorWithDescriptor :: proc(self: ^Buffer, descriptor: ^TensorDescriptor, offset: NS.UInteger, error: ^^NS.Error) -> ^Tensor ---
+
     @(objc_type=Buffer, objc_selector="addDebugMarker:range:", objc_name="addDebugMarker")
     Buffer_addDebugMarker :: proc(self: ^Buffer, marker: ^NS.String, range: NS._NSRange) ---
 
@@ -48,5 +51,8 @@ foreign lib {
     Buffer_remoteStorageBuffer :: proc(self: ^Buffer) -> ^Buffer ---
 
     @(objc_type=Buffer, objc_selector="gpuAddress", objc_name="gpuAddress")
-    Buffer_gpuAddress :: proc(self: ^Buffer) -> cffi.uint64_t ---
+    Buffer_gpuAddress :: proc(self: ^Buffer) -> GPUAddress ---
+
+    @(objc_type=Buffer, objc_selector="sparseBufferTier", objc_name="sparseBufferTier")
+    Buffer_sparseBufferTier :: proc(self: ^Buffer) -> BufferSparseTier ---
 }

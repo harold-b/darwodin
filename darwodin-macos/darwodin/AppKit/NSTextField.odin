@@ -150,6 +150,24 @@ foreign lib {
     @(objc_type=TextField, objc_selector="setAllowsWritingToolsAffordance:", objc_name="setAllowsWritingToolsAffordance")
     TextField_setAllowsWritingToolsAffordance :: proc(self: ^TextField, allowsWritingToolsAffordance: bool) ---
 
+    @(objc_type=TextField, objc_selector="placeholderStrings", objc_name="placeholderStrings")
+    TextField_placeholderStrings :: proc(self: ^TextField) -> ^NS.Array ---
+
+    @(objc_type=TextField, objc_selector="setPlaceholderStrings:", objc_name="setPlaceholderStrings")
+    TextField_setPlaceholderStrings :: proc(self: ^TextField, placeholderStrings: ^NS.Array) ---
+
+    @(objc_type=TextField, objc_selector="placeholderAttributedStrings", objc_name="placeholderAttributedStrings")
+    TextField_placeholderAttributedStrings :: proc(self: ^TextField) -> ^NS.Array ---
+
+    @(objc_type=TextField, objc_selector="setPlaceholderAttributedStrings:", objc_name="setPlaceholderAttributedStrings")
+    TextField_setPlaceholderAttributedStrings :: proc(self: ^TextField, placeholderAttributedStrings: ^NS.Array) ---
+
+    @(objc_type=TextField, objc_selector="resolvesNaturalAlignmentWithBaseWritingDirection", objc_name="resolvesNaturalAlignmentWithBaseWritingDirection")
+    TextField_resolvesNaturalAlignmentWithBaseWritingDirection :: proc(self: ^TextField) -> bool ---
+
+    @(objc_type=TextField, objc_selector="setResolvesNaturalAlignmentWithBaseWritingDirection:", objc_name="setResolvesNaturalAlignmentWithBaseWritingDirection")
+    TextField_setResolvesNaturalAlignmentWithBaseWritingDirection :: proc(self: ^TextField, resolvesNaturalAlignmentWithBaseWritingDirection: bool) ---
+
     @(objc_type=TextField, objc_selector="isAutomaticTextCompletionEnabled", objc_name="isAutomaticTextCompletionEnabled")
     TextField_isAutomaticTextCompletionEnabled :: proc(self: ^TextField) -> bool ---
 

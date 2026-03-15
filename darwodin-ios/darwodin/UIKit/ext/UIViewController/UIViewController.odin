@@ -50,6 +50,9 @@ VTable :: struct {
     viewDidAppear: proc(self: ^UI.ViewController, animated: bool),
     viewWillDisappear: proc(self: ^UI.ViewController, animated: bool),
     viewDidDisappear: proc(self: ^UI.ViewController, animated: bool),
+    setNeedsUpdateProperties: proc(self: ^UI.ViewController),
+    updateProperties: proc(self: ^UI.ViewController),
+    updatePropertiesIfNeeded: proc(self: ^UI.ViewController),
     viewWillLayoutSubviews: proc(self: ^UI.ViewController),
     viewDidLayoutSubviews: proc(self: ^UI.ViewController),
     didReceiveMemoryWarning: proc(self: ^UI.ViewController),
@@ -197,6 +200,9 @@ VTable :: struct {
     contentUnavailableConfigurationState: proc(self: ^UI.ViewController) -> ^UI.ContentUnavailableConfigurationState,
     setNeedsUpdateContentUnavailableConfiguration: proc(self: ^UI.ViewController),
     updateContentUnavailableConfigurationUsingState: proc(self: ^UI.ViewController, state: ^UI.ContentUnavailableConfigurationState),
+    childViewControllerForInterfaceOrientationLock: proc(self: ^UI.ViewController) -> ^UI.ViewController,
+    prefersInterfaceOrientationLocked: proc(self: ^UI.ViewController) -> bool,
+    setNeedsUpdateOfPrefersInterfaceOrientationLocked: proc(self: ^UI.ViewController),
     previewActionItems: proc(self: ^UI.ViewController) -> ^NS.Array,
     traitOverrides: proc(self: ^UI.ViewController) -> ^UI.TraitOverrides,
     updateTraitsIfNeeded: proc(self: ^UI.ViewController),
@@ -452,6 +458,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewDidDisappear:"), auto_cast viewDidDisappear, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.setNeedsUpdateProperties != nil {
+        setNeedsUpdateProperties :: proc "c" (self: ^UI.ViewController, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setNeedsUpdateProperties(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNeedsUpdateProperties"), auto_cast setNeedsUpdateProperties, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.updateProperties != nil {
+        updateProperties :: proc "c" (self: ^UI.ViewController, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).updateProperties(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updateProperties"), auto_cast updateProperties, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.updatePropertiesIfNeeded != nil {
+        updatePropertiesIfNeeded :: proc "c" (self: ^UI.ViewController, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).updatePropertiesIfNeeded(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updatePropertiesIfNeeded"), auto_cast updatePropertiesIfNeeded, "v@:") do panic("Failed to register objC method.")
     }
     if vt.viewWillLayoutSubviews != nil {
         viewWillLayoutSubviews :: proc "c" (self: ^UI.ViewController, _: SEL) {
@@ -1922,6 +1958,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateContentUnavailableConfigurationUsingState:"), auto_cast updateContentUnavailableConfigurationUsingState, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.childViewControllerForInterfaceOrientationLock != nil {
+        childViewControllerForInterfaceOrientationLock :: proc "c" (self: ^UI.ViewController, _: SEL) -> ^UI.ViewController {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).childViewControllerForInterfaceOrientationLock(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("childViewControllerForInterfaceOrientationLock"), auto_cast childViewControllerForInterfaceOrientationLock, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.prefersInterfaceOrientationLocked != nil {
+        prefersInterfaceOrientationLocked :: proc "c" (self: ^UI.ViewController, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).prefersInterfaceOrientationLocked(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prefersInterfaceOrientationLocked"), auto_cast prefersInterfaceOrientationLocked, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setNeedsUpdateOfPrefersInterfaceOrientationLocked != nil {
+        setNeedsUpdateOfPrefersInterfaceOrientationLocked :: proc "c" (self: ^UI.ViewController, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setNeedsUpdateOfPrefersInterfaceOrientationLocked(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNeedsUpdateOfPrefersInterfaceOrientationLocked"), auto_cast setNeedsUpdateOfPrefersInterfaceOrientationLocked, "v@:") do panic("Failed to register objC method.")
     }
     if vt.previewActionItems != nil {
         previewActionItems :: proc "c" (self: ^UI.ViewController, _: SEL) -> ^NS.Array {

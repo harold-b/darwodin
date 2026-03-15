@@ -43,4 +43,10 @@ foreign lib {
 
     @(objc_type=Transition, objc_selector="setEndProgress:", objc_name="setEndProgress")
     Transition_setEndProgress :: proc(self: ^Transition, endProgress: cffi.float) ---
+
+    @(objc_type=Transition, objc_selector="filter", objc_name="filter")
+    Transition_filter :: proc(self: ^Transition) -> id ---
+
+    @(objc_type=Transition, objc_selector="setFilter:", objc_name="setFilter")
+    Transition_setFilter :: proc(self: ^Transition, filter: id) ---
 }

@@ -42,4 +42,13 @@ foreign lib {
 
     @(objc_type=CaptureOutput, objc_selector="connections", objc_name="connections")
     CaptureOutput_connections :: proc(self: ^CaptureOutput) -> ^NS.Array ---
+
+    @(objc_type=CaptureOutput, objc_selector="isDeferredStartSupported", objc_name="isDeferredStartSupported")
+    CaptureOutput_isDeferredStartSupported :: proc(self: ^CaptureOutput) -> bool ---
+
+    @(objc_type=CaptureOutput, objc_selector="isDeferredStartEnabled", objc_name="isDeferredStartEnabled")
+    CaptureOutput_isDeferredStartEnabled :: proc(self: ^CaptureOutput) -> bool ---
+
+    @(objc_type=CaptureOutput, objc_selector="setDeferredStartEnabled:", objc_name="setDeferredStartEnabled")
+    CaptureOutput_setDeferredStartEnabled :: proc(self: ^CaptureOutput, deferredStartEnabled: bool) ---
 }

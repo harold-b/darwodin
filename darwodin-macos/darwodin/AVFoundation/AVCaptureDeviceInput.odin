@@ -31,6 +31,12 @@ foreign lib {
     @(objc_type=CaptureDeviceInput, objc_selector="portsWithMediaType:sourceDeviceType:sourceDevicePosition:", objc_name="portsWithMediaType")
     CaptureDeviceInput_portsWithMediaType :: proc(self: ^CaptureDeviceInput, mediaType: ^NS.String, sourceDeviceType: ^NS.String, sourceDevicePosition: CaptureDevicePosition) -> ^NS.Array ---
 
+    @(objc_type=CaptureDeviceInput, objc_selector="followExternalSyncDevice:videoFrameDuration:delegate:", objc_name="followExternalSyncDevice")
+    CaptureDeviceInput_followExternalSyncDevice :: proc(self: ^CaptureDeviceInput, externalSyncDevice: ^ExternalSyncDevice, frameDuration: CM.Time, delegate: ^ExternalSyncDeviceDelegate) ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="unfollowExternalSyncDevice", objc_name="unfollowExternalSyncDevice")
+    CaptureDeviceInput_unfollowExternalSyncDevice :: proc(self: ^CaptureDeviceInput) ---
+
     @(objc_type=CaptureDeviceInput, objc_selector="isMultichannelAudioModeSupported:", objc_name="isMultichannelAudioModeSupported")
     CaptureDeviceInput_isMultichannelAudioModeSupported :: proc(self: ^CaptureDeviceInput, multichannelAudioMode: CaptureMultichannelAudioMode) -> bool ---
 
@@ -49,6 +55,24 @@ foreign lib {
     @(objc_type=CaptureDeviceInput, objc_selector="setVideoMinFrameDurationOverride:", objc_name="setVideoMinFrameDurationOverride")
     CaptureDeviceInput_setVideoMinFrameDurationOverride :: proc(self: ^CaptureDeviceInput, videoMinFrameDurationOverride: CM.Time) ---
 
+    @(objc_type=CaptureDeviceInput, objc_selector="isLockedVideoFrameDurationSupported", objc_name="isLockedVideoFrameDurationSupported")
+    CaptureDeviceInput_isLockedVideoFrameDurationSupported :: proc(self: ^CaptureDeviceInput) -> bool ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="activeLockedVideoFrameDuration", objc_name="activeLockedVideoFrameDuration")
+    CaptureDeviceInput_activeLockedVideoFrameDuration :: proc(self: ^CaptureDeviceInput) -> CM.Time ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="setActiveLockedVideoFrameDuration:", objc_name="setActiveLockedVideoFrameDuration")
+    CaptureDeviceInput_setActiveLockedVideoFrameDuration :: proc(self: ^CaptureDeviceInput, activeLockedVideoFrameDuration: CM.Time) ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="isExternalSyncSupported", objc_name="isExternalSyncSupported")
+    CaptureDeviceInput_isExternalSyncSupported :: proc(self: ^CaptureDeviceInput) -> bool ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="activeExternalSyncVideoFrameDuration", objc_name="activeExternalSyncVideoFrameDuration")
+    CaptureDeviceInput_activeExternalSyncVideoFrameDuration :: proc(self: ^CaptureDeviceInput) -> CM.Time ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="externalSyncDevice", objc_name="externalSyncDevice")
+    CaptureDeviceInput_externalSyncDevice :: proc(self: ^CaptureDeviceInput) -> ^ExternalSyncDevice ---
+
     @(objc_type=CaptureDeviceInput, objc_selector="multichannelAudioMode", objc_name="multichannelAudioMode")
     CaptureDeviceInput_multichannelAudioMode :: proc(self: ^CaptureDeviceInput) -> CaptureMultichannelAudioMode ---
 
@@ -63,4 +87,19 @@ foreign lib {
 
     @(objc_type=CaptureDeviceInput, objc_selector="setWindNoiseRemovalEnabled:", objc_name="setWindNoiseRemovalEnabled")
     CaptureDeviceInput_setWindNoiseRemovalEnabled :: proc(self: ^CaptureDeviceInput, windNoiseRemovalEnabled: bool) ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="isCinematicVideoCaptureSupported", objc_name="isCinematicVideoCaptureSupported")
+    CaptureDeviceInput_isCinematicVideoCaptureSupported :: proc(self: ^CaptureDeviceInput) -> bool ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="isCinematicVideoCaptureEnabled", objc_name="isCinematicVideoCaptureEnabled")
+    CaptureDeviceInput_isCinematicVideoCaptureEnabled :: proc(self: ^CaptureDeviceInput) -> bool ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="setCinematicVideoCaptureEnabled:", objc_name="setCinematicVideoCaptureEnabled")
+    CaptureDeviceInput_setCinematicVideoCaptureEnabled :: proc(self: ^CaptureDeviceInput, cinematicVideoCaptureEnabled: bool) ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="simulatedAperture", objc_name="simulatedAperture")
+    CaptureDeviceInput_simulatedAperture :: proc(self: ^CaptureDeviceInput) -> cffi.float ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="setSimulatedAperture:", objc_name="setSimulatedAperture")
+    CaptureDeviceInput_setSimulatedAperture :: proc(self: ^CaptureDeviceInput, simulatedAperture: cffi.float) ---
 }

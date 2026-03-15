@@ -39,4 +39,7 @@ foreign lib {
 
     @(objc_type=AssetVariant, objc_selector="audioAttributes", objc_name="audioAttributes")
     AssetVariant_audioAttributes :: proc(self: ^AssetVariant) -> ^AssetVariantAudioAttributes ---
+
+    @(objc_type=AssetVariant, objc_selector="URL", objc_name="URL")
+    AssetVariant_URL :: proc(self: ^AssetVariant) -> ^NS.URL ---
 }

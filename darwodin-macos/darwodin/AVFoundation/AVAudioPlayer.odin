@@ -144,6 +144,12 @@ foreign lib {
 
     @(objc_type=AudioPlayer, objc_selector="setChannelAssignments:", objc_name="setChannelAssignments")
     AudioPlayer_setChannelAssignments :: proc(self: ^AudioPlayer, channelAssignments: ^NS.Array) ---
+
+    @(objc_type=AudioPlayer, objc_selector="intendedSpatialExperience", objc_name="intendedSpatialExperience")
+    AudioPlayer_intendedSpatialExperience :: proc(self: ^AudioPlayer) -> ^CASpatialAudioExperience ---
+
+    @(objc_type=AudioPlayer, objc_selector="setIntendedSpatialExperience:", objc_name="setIntendedSpatialExperience")
+    AudioPlayer_setIntendedSpatialExperience :: proc(self: ^AudioPlayer, intendedSpatialExperience: ^CASpatialAudioExperience) ---
 }
 
 @(objc_type=AudioPlayer, objc_name="initWithContentsOfURL")

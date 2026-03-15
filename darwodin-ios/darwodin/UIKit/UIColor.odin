@@ -30,8 +30,8 @@ foreign lib {
     @(objc_type=Color, objc_selector="colorWithHue:saturation:brightness:alpha:", objc_name="colorWithHue", objc_is_class_method=true)
     Color_colorWithHue :: proc(hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color ---
 
-    @(objc_type=Color, objc_selector="colorWithRed:green:blue:alpha:", objc_name="colorWithRed", objc_is_class_method=true)
-    Color_colorWithRed :: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
+    @(objc_type=Color, objc_selector="colorWithRed:green:blue:alpha:", objc_name="colorWithRed_green_blue_alpha", objc_is_class_method=true)
+    Color_colorWithRed_green_blue_alpha :: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
 
     @(objc_type=Color, objc_selector="colorWithDisplayP3Red:green:blue:alpha:", objc_name="colorWithDisplayP3Red", objc_is_class_method=true)
     Color_colorWithDisplayP3Red :: proc(displayP3Red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
@@ -51,8 +51,8 @@ foreign lib {
     @(objc_type=Color, objc_selector="initWithHue:saturation:brightness:alpha:", objc_name="initWithHue")
     Color_initWithHue :: proc(self: ^Color, hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color ---
 
-    @(objc_type=Color, objc_selector="initWithRed:green:blue:alpha:", objc_name="initWithRed")
-    Color_initWithRed :: proc(self: ^Color, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
+    @(objc_type=Color, objc_selector="initWithRed:green:blue:alpha:", objc_name="initWithRed_green_blue_alpha")
+    Color_initWithRed_green_blue_alpha :: proc(self: ^Color, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
 
     @(objc_type=Color, objc_selector="initWithDisplayP3Red:green:blue:alpha:", objc_name="initWithDisplayP3Red")
     Color_initWithDisplayP3Red :: proc(self: ^Color, displayP3Red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^Color ---
@@ -65,6 +65,21 @@ foreign lib {
 
     @(objc_type=Color, objc_selector="initWithCIColor:", objc_name="initWithCIColor")
     Color_initWithCIColor :: proc(self: ^Color, ciColor: ^CIColor) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="initWithRed:green:blue:alpha:exposure:", objc_name="initWithRed_green_blue_alpha_exposure")
+    Color_initWithRed_green_blue_alpha_exposure :: proc(self: ^Color, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, exposure: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithRed:green:blue:alpha:exposure:", objc_name="colorWithRed_green_blue_alpha_exposure", objc_is_class_method=true)
+    Color_colorWithRed_green_blue_alpha_exposure :: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, exposure: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="initWithRed:green:blue:alpha:linearExposure:", objc_name="initWithRed_green_blue_alpha_linearExposure")
+    Color_initWithRed_green_blue_alpha_linearExposure :: proc(self: ^Color, red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, linearExposure: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorWithRed:green:blue:alpha:linearExposure:", objc_name="colorWithRed_green_blue_alpha_linearExposure", objc_is_class_method=true)
+    Color_colorWithRed_green_blue_alpha_linearExposure :: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, linearExposure: CG.Float) -> ^Color ---
+
+    @(objc_type=Color, objc_selector="colorByApplyingContentHeadroom:", objc_name="colorByApplyingContentHeadroom")
+    Color_colorByApplyingContentHeadroom :: proc(self: ^Color, contentHeadroom: CG.Float) -> ^Color ---
 
     @(objc_type=Color, objc_selector="set", objc_name="set")
     Color_set :: proc(self: ^Color) ---
@@ -137,6 +152,12 @@ foreign lib {
 
     @(objc_type=Color, objc_selector="CIColor", objc_name="CIColor")
     Color_CIColor :: proc(self: ^Color) -> ^CIColor ---
+
+    @(objc_type=Color, objc_selector="linearExposure", objc_name="linearExposure")
+    Color_linearExposure :: proc(self: ^Color) -> CG.Float ---
+
+    @(objc_type=Color, objc_selector="standardDynamicRangeColor", objc_name="standardDynamicRangeColor")
+    Color_standardDynamicRangeColor :: proc(self: ^Color) -> ^Color ---
 
     @(objc_type=Color, objc_selector="colorNamed:", objc_name="colorNamed_", objc_is_class_method=true)
     Color_colorNamed_ :: proc(name: ^NS.String) -> ^Color ---

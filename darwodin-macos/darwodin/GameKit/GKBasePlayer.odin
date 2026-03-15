@@ -14,7 +14,9 @@ import AK "../AppKit"
 /// GKBasePlayer
 ///
 @(objc_class="GKBasePlayer", objc_superclass=NS.Object)
-BasePlayer :: struct { using _: NS.Object, }
+BasePlayer :: struct { using _: NS.Object, 
+    using _: NS.Copying,
+}
 
 @(default_calling_convention="c")
 foreign lib {

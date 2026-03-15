@@ -80,6 +80,9 @@ foreign lib {
     @(objc_type=Screen, objc_selector="auxiliaryTopRightArea", objc_name="auxiliaryTopRightArea")
     Screen_auxiliaryTopRightArea :: proc(self: ^Screen) -> NS.Rect ---
 
+    @(objc_type=Screen, objc_selector="CGDirectDisplayID", objc_name="CGDirectDisplayID")
+    Screen_CGDirectDisplayID :: proc(self: ^Screen) -> CG.DirectDisplayID ---
+
     @(objc_type=Screen, objc_selector="maximumExtendedDynamicRangeColorComponentValue", objc_name="maximumExtendedDynamicRangeColorComponentValue")
     Screen_maximumExtendedDynamicRangeColorComponentValue :: proc(self: ^Screen) -> CG.Float ---
 

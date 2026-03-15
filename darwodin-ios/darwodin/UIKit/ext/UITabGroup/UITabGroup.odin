@@ -47,6 +47,8 @@ VTable :: struct {
     setSidebarActions: proc(self: ^UI.TabGroup, sidebarActions: ^NS.Array),
     sidebarAppearance: proc(self: ^UI.TabGroup) -> UI.TabGroupSidebarAppearance,
     setSidebarAppearance: proc(self: ^UI.TabGroup, sidebarAppearance: UI.TabGroupSidebarAppearance),
+    isSidebarDestination: proc(self: ^UI.TabGroup) -> bool,
+    setIsSidebarDestination: proc(self: ^UI.TabGroup, isSidebarDestination: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -245,6 +247,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSidebarAppearance:"), auto_cast setSidebarAppearance, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.isSidebarDestination != nil {
+        isSidebarDestination :: proc "c" (self: ^UI.TabGroup, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isSidebarDestination(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isSidebarDestination"), auto_cast isSidebarDestination, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setIsSidebarDestination != nil {
+        setIsSidebarDestination :: proc "c" (self: ^UI.TabGroup, _: SEL, isSidebarDestination: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setIsSidebarDestination(self, isSidebarDestination)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIsSidebarDestination:"), auto_cast setIsSidebarDestination, "v@:B") do panic("Failed to register objC method.")
     }
 }
 

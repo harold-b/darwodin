@@ -10,11 +10,20 @@ Enums:
 
 ObjCClasses:
     MTLFXTemporalScalerDescriptor: MTLFX.TemporalScalerDescriptor
+    MTLFXTemporalDenoisedScalerDescriptor: MTLFX.TemporalDenoisedScalerDescriptor
     MTLFXSpatialScalerDescriptor: MTLFX.SpatialScalerDescriptor
+    MTLFXFrameInterpolatorDescriptor: MTLFX.FrameInterpolatorDescriptor
 
 ObjCProtocols:
     MTLFXTemporalScaler: MTLFX.TemporalScaler
+    MTLFXFrameInterpolatableScaler: MTLFX.FrameInterpolatableScaler
+    MTLFXTemporalScalerBase: MTLFX.TemporalScalerBase
+    MTLFXTemporalDenoisedScaler: MTLFX.TemporalDenoisedScaler
+    MTLFXTemporalDenoisedScalerBase: MTLFX.TemporalDenoisedScalerBase
     MTLFXSpatialScaler: MTLFX.SpatialScaler
+    MTLFXSpatialScalerBase: MTLFX.SpatialScalerBase
+    MTLFXFrameInterpolator: MTLFX.FrameInterpolator
+    MTLFXFrameInterpolatorBase: MTLFX.FrameInterpolatorBase
 
 
 Functions:

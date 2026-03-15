@@ -145,6 +145,12 @@ foreign lib {
     @(objc_type=DateComponents, objc_selector="setLeapMonth:", objc_name="setLeapMonth")
     DateComponents_setLeapMonth :: proc(self: ^DateComponents, leapMonth: bool) ---
 
+    @(objc_type=DateComponents, objc_selector="isRepeatedDay", objc_name="isRepeatedDay")
+    DateComponents_isRepeatedDay :: proc(self: ^DateComponents) -> bool ---
+
+    @(objc_type=DateComponents, objc_selector="setRepeatedDay:", objc_name="setRepeatedDay")
+    DateComponents_setRepeatedDay :: proc(self: ^DateComponents, repeatedDay: bool) ---
+
     @(objc_type=DateComponents, objc_selector="date", objc_name="date")
     DateComponents_date :: proc(self: ^DateComponents) -> ^Date ---
 

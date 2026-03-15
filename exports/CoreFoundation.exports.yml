@@ -409,6 +409,7 @@ Functions:
     ::CFAllocatorSetDefault: CF.AllocatorSetDefault
     ::CFAllocatorGetDefault: CF.AllocatorGetDefault
     ::CFAllocatorCreate: CF.AllocatorCreate
+    ::CFAllocatorCreateWithZone: CF.AllocatorCreateWithZone
     ::CFAllocatorAllocateTyped: CF.AllocatorAllocateTyped
     ::CFAllocatorReallocateTyped: CF.AllocatorReallocateTyped
     ::CFAllocatorAllocateBytes: CF.AllocatorAllocateBytes
@@ -1256,6 +1257,7 @@ Functions:
     ::CFAttributedStringBeginEditing: CF.AttributedStringBeginEditing
     ::CFAttributedStringEndEditing: CF.AttributedStringEndEditing
     ::CFAttributedStringGetBidiLevelsAndResolvedDirections: CF.AttributedStringGetBidiLevelsAndResolvedDirections
+    ::CFAttributedStringGetStatisticalWritingDirections: CF.AttributedStringGetStatisticalWritingDirections
     ::CFURLEnumeratorGetTypeID: CF.URLEnumeratorGetTypeID
     ::CFURLEnumeratorCreateForDirectoryURL: CF.URLEnumeratorCreateForDirectoryURL
     ::CFURLEnumeratorCreateForMountedVolumes: CF.URLEnumeratorCreateForMountedVolumes
@@ -1386,6 +1388,17 @@ ExternVars:
     ::kCFISO8601Calendar: CF.kISO8601Calendar
     ::kCFIslamicTabularCalendar: CF.kIslamicTabularCalendar
     ::kCFIslamicUmmAlQuraCalendar: CF.kIslamicUmmAlQuraCalendar
+    ::kCFBanglaCalendar: CF.kBanglaCalendar
+    ::kCFGujaratiCalendar: CF.kGujaratiCalendar
+    ::kCFKannadaCalendar: CF.kKannadaCalendar
+    ::kCFMalayalamCalendar: CF.kMalayalamCalendar
+    ::kCFMarathiCalendar: CF.kMarathiCalendar
+    ::kCFOdiaCalendar: CF.kOdiaCalendar
+    ::kCFTamilCalendar: CF.kTamilCalendar
+    ::kCFTeluguCalendar: CF.kTeluguCalendar
+    ::kCFVikramCalendar: CF.kVikramCalendar
+    ::kCFDangiCalendar: CF.kDangiCalendar
+    ::kCFVietnameseCalendar: CF.kVietnameseCalendar
     ::kCFAbsoluteTimeIntervalSince1970: CF.kAbsoluteTimeIntervalSince1970
     ::kCFAbsoluteTimeIntervalSince1904: CF.kAbsoluteTimeIntervalSince1904
     ::kCFErrorDomainPOSIX: CF.kErrorDomainPOSIX
@@ -1627,6 +1640,8 @@ ExternVars:
     ::kCFURLUbiquitousItemDownloadingStatusNotDownloaded: CF.kURLUbiquitousItemDownloadingStatusNotDownloaded
     ::kCFURLUbiquitousItemDownloadingStatusDownloaded: CF.kURLUbiquitousItemDownloadingStatusDownloaded
     ::kCFURLUbiquitousItemDownloadingStatusCurrent: CF.kURLUbiquitousItemDownloadingStatusCurrent
+    ::kCFURLUbiquitousItemSupportedSyncControlsKey: CF.kURLUbiquitousItemSupportedSyncControlsKey
+    ::kCFURLUbiquitousItemIsSyncPausedKey: CF.kURLUbiquitousItemIsSyncPausedKey
     ::kCFRunLoopDefaultMode: CF.kRunLoopDefaultMode
     ::kCFRunLoopCommonModes: CF.kRunLoopCommonModes
     ::kCFSocketCommandKey: CF.kSocketCommandKey
@@ -1697,6 +1712,10 @@ ExternVars:
     ::kCFUserNotificationPopUpSelectionKey: CF.kUserNotificationPopUpSelectionKey
     ::kCFUserNotificationAlertTopMostKey: CF.kUserNotificationAlertTopMostKey
     ::kCFUserNotificationKeyboardTypesKey: CF.kUserNotificationKeyboardTypesKey
+    ::kCFUserNotificationAlertAccessibilityIdentifierKey: CF.kUserNotificationAlertAccessibilityIdentifierKey
+    ::kCFUserNotificationDefaultButtonAccessibilityIdentifierKey: CF.kUserNotificationDefaultButtonAccessibilityIdentifierKey
+    ::kCFUserNotificationAlternateButtonAccessibilityIdentifierKey: CF.kUserNotificationAlternateButtonAccessibilityIdentifierKey
+    ::kCFUserNotificationOtherButtonAccessibilityIdentifierKey: CF.kUserNotificationOtherButtonAccessibilityIdentifierKey
     ::kCFXMLTreeErrorDescription: CF.kXMLTreeErrorDescription
     ::kCFXMLTreeErrorLineNumber: CF.kXMLTreeErrorLineNumber
     ::kCFXMLTreeErrorLocation: CF.kXMLTreeErrorLocation
@@ -1752,6 +1771,17 @@ ExternTypes:
     ::kCFISO8601Calendar: CalendarIdentifier
     ::kCFIslamicTabularCalendar: CalendarIdentifier
     ::kCFIslamicUmmAlQuraCalendar: CalendarIdentifier
+    ::kCFBanglaCalendar: CalendarIdentifier
+    ::kCFGujaratiCalendar: CalendarIdentifier
+    ::kCFKannadaCalendar: CalendarIdentifier
+    ::kCFMalayalamCalendar: CalendarIdentifier
+    ::kCFMarathiCalendar: CalendarIdentifier
+    ::kCFOdiaCalendar: CalendarIdentifier
+    ::kCFTamilCalendar: CalendarIdentifier
+    ::kCFTeluguCalendar: CalendarIdentifier
+    ::kCFVikramCalendar: CalendarIdentifier
+    ::kCFDangiCalendar: CalendarIdentifier
+    ::kCFVietnameseCalendar: CalendarIdentifier
     ::kCFAbsoluteTimeIntervalSince1970: TimeInterval
     ::kCFAbsoluteTimeIntervalSince1904: TimeInterval
     ::kCFErrorDomainPOSIX: ErrorDomain
@@ -1993,6 +2023,8 @@ ExternTypes:
     ::kCFURLUbiquitousItemDownloadingStatusNotDownloaded: StringRef
     ::kCFURLUbiquitousItemDownloadingStatusDownloaded: StringRef
     ::kCFURLUbiquitousItemDownloadingStatusCurrent: StringRef
+    ::kCFURLUbiquitousItemSupportedSyncControlsKey: StringRef
+    ::kCFURLUbiquitousItemIsSyncPausedKey: StringRef
     ::kCFRunLoopDefaultMode: RunLoopMode
     ::kCFRunLoopCommonModes: RunLoopMode
     ::kCFSocketCommandKey: StringRef
@@ -2063,6 +2095,10 @@ ExternTypes:
     ::kCFUserNotificationPopUpSelectionKey: StringRef
     ::kCFUserNotificationAlertTopMostKey: StringRef
     ::kCFUserNotificationKeyboardTypesKey: StringRef
+    ::kCFUserNotificationAlertAccessibilityIdentifierKey: StringRef
+    ::kCFUserNotificationDefaultButtonAccessibilityIdentifierKey: StringRef
+    ::kCFUserNotificationAlternateButtonAccessibilityIdentifierKey: StringRef
+    ::kCFUserNotificationOtherButtonAccessibilityIdentifierKey: StringRef
     ::kCFXMLTreeErrorDescription: StringRef
     ::kCFXMLTreeErrorLineNumber: StringRef
     ::kCFXMLTreeErrorLocation: StringRef

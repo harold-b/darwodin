@@ -33,16 +33,22 @@ VTable :: struct {
     setTitleTextAttributes: proc(self: ^UI.NavigationBarAppearance, titleTextAttributes: ^NS.Dictionary),
     titlePositionAdjustment: proc(self: ^UI.NavigationBarAppearance) -> UI.Offset,
     setTitlePositionAdjustment: proc(self: ^UI.NavigationBarAppearance, titlePositionAdjustment: UI.Offset),
+    subtitleTextAttributes: proc(self: ^UI.NavigationBarAppearance) -> ^NS.Dictionary,
+    setSubtitleTextAttributes: proc(self: ^UI.NavigationBarAppearance, subtitleTextAttributes: ^NS.Dictionary),
     largeTitleTextAttributes: proc(self: ^UI.NavigationBarAppearance) -> ^NS.Dictionary,
     setLargeTitleTextAttributes: proc(self: ^UI.NavigationBarAppearance, largeTitleTextAttributes: ^NS.Dictionary),
+    largeSubtitleTextAttributes: proc(self: ^UI.NavigationBarAppearance) -> ^NS.Dictionary,
+    setLargeSubtitleTextAttributes: proc(self: ^UI.NavigationBarAppearance, largeSubtitleTextAttributes: ^NS.Dictionary),
     buttonAppearance: proc(self: ^UI.NavigationBarAppearance) -> ^UI.BarButtonItemAppearance,
     setButtonAppearance: proc(self: ^UI.NavigationBarAppearance, buttonAppearance: ^UI.BarButtonItemAppearance),
-    doneButtonAppearance: proc(self: ^UI.NavigationBarAppearance) -> ^UI.BarButtonItemAppearance,
-    setDoneButtonAppearance: proc(self: ^UI.NavigationBarAppearance, doneButtonAppearance: ^UI.BarButtonItemAppearance),
+    prominentButtonAppearance: proc(self: ^UI.NavigationBarAppearance) -> ^UI.BarButtonItemAppearance,
+    setProminentButtonAppearance: proc(self: ^UI.NavigationBarAppearance, prominentButtonAppearance: ^UI.BarButtonItemAppearance),
     backButtonAppearance: proc(self: ^UI.NavigationBarAppearance) -> ^UI.BarButtonItemAppearance,
     setBackButtonAppearance: proc(self: ^UI.NavigationBarAppearance, backButtonAppearance: ^UI.BarButtonItemAppearance),
     backIndicatorImage: proc(self: ^UI.NavigationBarAppearance) -> ^UI.Image,
     backIndicatorTransitionMaskImage: proc(self: ^UI.NavigationBarAppearance) -> ^UI.Image,
+    doneButtonAppearance: proc(self: ^UI.NavigationBarAppearance) -> ^UI.BarButtonItemAppearance,
+    setDoneButtonAppearance: proc(self: ^UI.NavigationBarAppearance, doneButtonAppearance: ^UI.BarButtonItemAppearance),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -102,6 +108,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitlePositionAdjustment:"), auto_cast setTitlePositionAdjustment, "v@:{UIOffset=dd}") do panic("Failed to register objC method.")
     }
+    if vt.subtitleTextAttributes != nil {
+        subtitleTextAttributes :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).subtitleTextAttributes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subtitleTextAttributes"), auto_cast subtitleTextAttributes, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSubtitleTextAttributes != nil {
+        setSubtitleTextAttributes :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL, subtitleTextAttributes: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSubtitleTextAttributes(self, subtitleTextAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSubtitleTextAttributes:"), auto_cast setSubtitleTextAttributes, "v@:^void") do panic("Failed to register objC method.")
+    }
     if vt.largeTitleTextAttributes != nil {
         largeTitleTextAttributes :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL) -> ^NS.Dictionary {
 
@@ -121,6 +147,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLargeTitleTextAttributes:"), auto_cast setLargeTitleTextAttributes, "v@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.largeSubtitleTextAttributes != nil {
+        largeSubtitleTextAttributes :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL) -> ^NS.Dictionary {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).largeSubtitleTextAttributes(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("largeSubtitleTextAttributes"), auto_cast largeSubtitleTextAttributes, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLargeSubtitleTextAttributes != nil {
+        setLargeSubtitleTextAttributes :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL, largeSubtitleTextAttributes: ^NS.Dictionary) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setLargeSubtitleTextAttributes(self, largeSubtitleTextAttributes)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLargeSubtitleTextAttributes:"), auto_cast setLargeSubtitleTextAttributes, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.buttonAppearance != nil {
         buttonAppearance :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL) -> ^UI.BarButtonItemAppearance {
@@ -142,25 +188,25 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setButtonAppearance:"), auto_cast setButtonAppearance, "v@:@") do panic("Failed to register objC method.")
     }
-    if vt.doneButtonAppearance != nil {
-        doneButtonAppearance :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL) -> ^UI.BarButtonItemAppearance {
+    if vt.prominentButtonAppearance != nil {
+        prominentButtonAppearance :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL) -> ^UI.BarButtonItemAppearance {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).doneButtonAppearance(self)
+            return (cast(^VTable)vt_ctx.super_vt).prominentButtonAppearance(self)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("doneButtonAppearance"), auto_cast doneButtonAppearance, "@@:") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prominentButtonAppearance"), auto_cast prominentButtonAppearance, "@@:") do panic("Failed to register objC method.")
     }
-    if vt.setDoneButtonAppearance != nil {
-        setDoneButtonAppearance :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL, doneButtonAppearance: ^UI.BarButtonItemAppearance) {
+    if vt.setProminentButtonAppearance != nil {
+        setProminentButtonAppearance :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL, prominentButtonAppearance: ^UI.BarButtonItemAppearance) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
-            (cast(^VTable)vt_ctx.super_vt).setDoneButtonAppearance(self, doneButtonAppearance)
+            (cast(^VTable)vt_ctx.super_vt).setProminentButtonAppearance(self, prominentButtonAppearance)
         }
 
-        if !class_addMethod(cls, intrinsics.objc_find_selector("setDoneButtonAppearance:"), auto_cast setDoneButtonAppearance, "v@:@") do panic("Failed to register objC method.")
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setProminentButtonAppearance:"), auto_cast setProminentButtonAppearance, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.backButtonAppearance != nil {
         backButtonAppearance :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL) -> ^UI.BarButtonItemAppearance {
@@ -201,6 +247,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("backIndicatorTransitionMaskImage"), auto_cast backIndicatorTransitionMaskImage, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.doneButtonAppearance != nil {
+        doneButtonAppearance :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL) -> ^UI.BarButtonItemAppearance {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).doneButtonAppearance(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("doneButtonAppearance"), auto_cast doneButtonAppearance, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDoneButtonAppearance != nil {
+        setDoneButtonAppearance :: proc "c" (self: ^UI.NavigationBarAppearance, _: SEL, doneButtonAppearance: ^UI.BarButtonItemAppearance) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setDoneButtonAppearance(self, doneButtonAppearance)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDoneButtonAppearance:"), auto_cast setDoneButtonAppearance, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

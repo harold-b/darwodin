@@ -67,6 +67,8 @@ VTable :: struct {
     setDayOfYear: proc(self: ^NS.DateComponents, dayOfYear: NS.Integer),
     isLeapMonth: proc(self: ^NS.DateComponents) -> bool,
     setLeapMonth: proc(self: ^NS.DateComponents, leapMonth: bool),
+    isRepeatedDay: proc(self: ^NS.DateComponents) -> bool,
+    setRepeatedDay: proc(self: ^NS.DateComponents, repeatedDay: bool),
     date: proc(self: ^NS.DateComponents) -> ^NS.Date,
     isValidDate: proc(self: ^NS.DateComponents) -> bool,
 }
@@ -487,6 +489,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLeapMonth:"), auto_cast setLeapMonth, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.isRepeatedDay != nil {
+        isRepeatedDay :: proc "c" (self: ^NS.DateComponents, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isRepeatedDay(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isRepeatedDay"), auto_cast isRepeatedDay, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRepeatedDay != nil {
+        setRepeatedDay :: proc "c" (self: ^NS.DateComponents, _: SEL, repeatedDay: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setRepeatedDay(self, repeatedDay)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRepeatedDay:"), auto_cast setRepeatedDay, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.date != nil {
         date :: proc "c" (self: ^NS.DateComponents, _: SEL) -> ^NS.Date {

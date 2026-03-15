@@ -32,32 +32,32 @@ foreign lib {
     @(objc_type=SyncEngineEvent, objc_selector="accountChangeEvent", objc_name="accountChangeEvent")
     SyncEngineEvent_accountChangeEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineAccountChangeEvent ---
 
+    @(objc_type=SyncEngineEvent, objc_selector="willFetchChangesEvent", objc_name="willFetchChangesEvent")
+    SyncEngineEvent_willFetchChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineWillFetchChangesEvent ---
+
     @(objc_type=SyncEngineEvent, objc_selector="fetchedDatabaseChangesEvent", objc_name="fetchedDatabaseChangesEvent")
     SyncEngineEvent_fetchedDatabaseChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineFetchedDatabaseChangesEvent ---
 
+    @(objc_type=SyncEngineEvent, objc_selector="didFetchChangesEvent", objc_name="didFetchChangesEvent")
+    SyncEngineEvent_didFetchChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineDidFetchChangesEvent ---
+
+    @(objc_type=SyncEngineEvent, objc_selector="willFetchRecordZoneChangesEvent", objc_name="willFetchRecordZoneChangesEvent")
+    SyncEngineEvent_willFetchRecordZoneChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineWillFetchRecordZoneChangesEvent ---
+
     @(objc_type=SyncEngineEvent, objc_selector="fetchedRecordZoneChangesEvent", objc_name="fetchedRecordZoneChangesEvent")
     SyncEngineEvent_fetchedRecordZoneChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineFetchedRecordZoneChangesEvent ---
+
+    @(objc_type=SyncEngineEvent, objc_selector="didFetchRecordZoneChangesEvent", objc_name="didFetchRecordZoneChangesEvent")
+    SyncEngineEvent_didFetchRecordZoneChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineDidFetchRecordZoneChangesEvent ---
+
+    @(objc_type=SyncEngineEvent, objc_selector="willSendChangesEvent", objc_name="willSendChangesEvent")
+    SyncEngineEvent_willSendChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineWillSendChangesEvent ---
 
     @(objc_type=SyncEngineEvent, objc_selector="sentDatabaseChangesEvent", objc_name="sentDatabaseChangesEvent")
     SyncEngineEvent_sentDatabaseChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineSentDatabaseChangesEvent ---
 
     @(objc_type=SyncEngineEvent, objc_selector="sentRecordZoneChangesEvent", objc_name="sentRecordZoneChangesEvent")
     SyncEngineEvent_sentRecordZoneChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineSentRecordZoneChangesEvent ---
-
-    @(objc_type=SyncEngineEvent, objc_selector="willFetchChangesEvent", objc_name="willFetchChangesEvent")
-    SyncEngineEvent_willFetchChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineWillFetchChangesEvent ---
-
-    @(objc_type=SyncEngineEvent, objc_selector="willFetchRecordZoneChangesEvent", objc_name="willFetchRecordZoneChangesEvent")
-    SyncEngineEvent_willFetchRecordZoneChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineWillFetchRecordZoneChangesEvent ---
-
-    @(objc_type=SyncEngineEvent, objc_selector="didFetchRecordZoneChangesEvent", objc_name="didFetchRecordZoneChangesEvent")
-    SyncEngineEvent_didFetchRecordZoneChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineDidFetchRecordZoneChangesEvent ---
-
-    @(objc_type=SyncEngineEvent, objc_selector="didFetchChangesEvent", objc_name="didFetchChangesEvent")
-    SyncEngineEvent_didFetchChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineDidFetchChangesEvent ---
-
-    @(objc_type=SyncEngineEvent, objc_selector="willSendChangesEvent", objc_name="willSendChangesEvent")
-    SyncEngineEvent_willSendChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineWillSendChangesEvent ---
 
     @(objc_type=SyncEngineEvent, objc_selector="didSendChangesEvent", objc_name="didSendChangesEvent")
     SyncEngineEvent_didSendChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineDidSendChangesEvent ---

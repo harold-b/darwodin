@@ -29,6 +29,8 @@ import "../UIView"
 VTable :: struct {
     super: UIView.VTable,
     initWithWindowScene: proc(self: ^UI.Window, windowScene: ^UI.WindowScene) -> instancetype,
+    initWithFrame: proc(self: ^UI.Window, frame: CG.Rect) -> instancetype,
+    init: proc(self: ^UI.Window) -> instancetype,
     setScreen: proc(self: ^UI.Window, screen: ^UI.Screen),
     becomeKeyWindow: proc(self: ^UI.Window),
     resignKeyWindow: proc(self: ^UI.Window),
@@ -69,6 +71,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithWindowScene:"), auto_cast initWithWindowScene, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.initWithFrame != nil {
+        initWithFrame :: proc "c" (self: ^UI.Window, _: SEL, frame: CG.Rect) -> instancetype {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).initWithFrame(self, frame)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
+    }
+    if vt.init != nil {
+        init :: proc "c" (self: ^UI.Window, _: SEL) -> instancetype {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).init(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setScreen != nil {
         setScreen :: proc "c" (self: ^UI.Window, _: SEL, screen: ^UI.Screen) {

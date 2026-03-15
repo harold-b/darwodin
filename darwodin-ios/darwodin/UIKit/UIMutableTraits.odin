@@ -148,4 +148,22 @@ foreign lib {
 
     @(objc_type=MutableTraits, objc_selector="setListEnvironment:", objc_name="setListEnvironment")
     MutableTraits_setListEnvironment :: proc(self: ^MutableTraits, listEnvironment: ListEnvironment) ---
+
+    @(objc_type=MutableTraits, objc_selector="tabAccessoryEnvironment", objc_name="tabAccessoryEnvironment")
+    MutableTraits_tabAccessoryEnvironment :: proc(self: ^MutableTraits) -> TabAccessoryEnvironment ---
+
+    @(objc_type=MutableTraits, objc_selector="setTabAccessoryEnvironment:", objc_name="setTabAccessoryEnvironment")
+    MutableTraits_setTabAccessoryEnvironment :: proc(self: ^MutableTraits, tabAccessoryEnvironment: TabAccessoryEnvironment) ---
+
+    @(objc_type=MutableTraits, objc_selector="splitViewControllerLayoutEnvironment", objc_name="splitViewControllerLayoutEnvironment")
+    MutableTraits_splitViewControllerLayoutEnvironment :: proc(self: ^MutableTraits) -> SplitViewControllerLayoutEnvironment ---
+
+    @(objc_type=MutableTraits, objc_selector="setSplitViewControllerLayoutEnvironment:", objc_name="setSplitViewControllerLayoutEnvironment")
+    MutableTraits_setSplitViewControllerLayoutEnvironment :: proc(self: ^MutableTraits, splitViewControllerLayoutEnvironment: SplitViewControllerLayoutEnvironment) ---
+
+    @(objc_type=MutableTraits, objc_selector="resolvesNaturalAlignmentWithBaseWritingDirection", objc_name="resolvesNaturalAlignmentWithBaseWritingDirection")
+    MutableTraits_resolvesNaturalAlignmentWithBaseWritingDirection :: proc(self: ^MutableTraits) -> bool ---
+
+    @(objc_type=MutableTraits, objc_selector="setResolvesNaturalAlignmentWithBaseWritingDirection:", objc_name="setResolvesNaturalAlignmentWithBaseWritingDirection")
+    MutableTraits_setResolvesNaturalAlignmentWithBaseWritingDirection :: proc(self: ^MutableTraits, resolvesNaturalAlignmentWithBaseWritingDirection: bool) ---
 }

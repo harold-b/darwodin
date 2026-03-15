@@ -1,0 +1,43 @@
+package darwodin_Metal
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// MTL4BinaryFunctionDescriptor
+///
+@(objc_class="MTL4BinaryFunctionDescriptor", objc_superclass=NS.Object)
+MTL4BinaryFunctionDescriptor :: struct { using _: NS.Object, 
+    using _: NS.Copying,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=MTL4BinaryFunctionDescriptor, objc_selector="name", objc_name="name")
+    MTL4BinaryFunctionDescriptor_name :: proc(self: ^MTL4BinaryFunctionDescriptor) -> ^NS.String ---
+
+    @(objc_type=MTL4BinaryFunctionDescriptor, objc_selector="setName:", objc_name="setName")
+    MTL4BinaryFunctionDescriptor_setName :: proc(self: ^MTL4BinaryFunctionDescriptor, name: ^NS.String) ---
+
+    @(objc_type=MTL4BinaryFunctionDescriptor, objc_selector="functionDescriptor", objc_name="functionDescriptor")
+    MTL4BinaryFunctionDescriptor_functionDescriptor :: proc(self: ^MTL4BinaryFunctionDescriptor) -> ^MTL4FunctionDescriptor ---
+
+    @(objc_type=MTL4BinaryFunctionDescriptor, objc_selector="setFunctionDescriptor:", objc_name="setFunctionDescriptor")
+    MTL4BinaryFunctionDescriptor_setFunctionDescriptor :: proc(self: ^MTL4BinaryFunctionDescriptor, functionDescriptor: ^MTL4FunctionDescriptor) ---
+
+    @(objc_type=MTL4BinaryFunctionDescriptor, objc_selector="options", objc_name="options")
+    MTL4BinaryFunctionDescriptor_options :: proc(self: ^MTL4BinaryFunctionDescriptor) -> MTL4BinaryFunctionOptions ---
+
+    @(objc_type=MTL4BinaryFunctionDescriptor, objc_selector="setOptions:", objc_name="setOptions")
+    MTL4BinaryFunctionDescriptor_setOptions :: proc(self: ^MTL4BinaryFunctionDescriptor, options: MTL4BinaryFunctionOptions) ---
+}

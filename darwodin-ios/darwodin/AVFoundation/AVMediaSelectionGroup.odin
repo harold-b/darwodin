@@ -50,5 +50,8 @@ foreign lib {
 
     @(objc_type=MediaSelectionGroup, objc_selector="mediaSelectionOptionsFromArray:withoutMediaCharacteristics:", objc_name="mediaSelectionOptionsFromArray_withoutMediaCharacteristics", objc_is_class_method=true)
     MediaSelectionGroup_mediaSelectionOptionsFromArray_withoutMediaCharacteristics :: proc(mediaSelectionOptions: ^NS.Array, mediaCharacteristics: ^NS.Array) -> ^NS.Array ---
+
+    @(objc_type=MediaSelectionGroup, objc_selector="customMediaSelectionScheme", objc_name="customMediaSelectionScheme")
+    MediaSelectionGroup_customMediaSelectionScheme :: proc(self: ^MediaSelectionGroup) -> ^CustomMediaSelectionScheme ---
 }
 

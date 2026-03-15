@@ -175,4 +175,16 @@ foreign lib {
 
     @(objc_type=MeshRenderPipelineDescriptor, objc_selector="setShaderValidation:", objc_name="setShaderValidation")
     MeshRenderPipelineDescriptor_setShaderValidation :: proc(self: ^MeshRenderPipelineDescriptor, shaderValidation: ShaderValidation) ---
+
+    @(objc_type=MeshRenderPipelineDescriptor, objc_selector="requiredThreadsPerObjectThreadgroup", objc_name="requiredThreadsPerObjectThreadgroup")
+    MeshRenderPipelineDescriptor_requiredThreadsPerObjectThreadgroup :: proc(self: ^MeshRenderPipelineDescriptor) -> Size ---
+
+    @(objc_type=MeshRenderPipelineDescriptor, objc_selector="setRequiredThreadsPerObjectThreadgroup:", objc_name="setRequiredThreadsPerObjectThreadgroup")
+    MeshRenderPipelineDescriptor_setRequiredThreadsPerObjectThreadgroup :: proc(self: ^MeshRenderPipelineDescriptor, requiredThreadsPerObjectThreadgroup: Size) ---
+
+    @(objc_type=MeshRenderPipelineDescriptor, objc_selector="requiredThreadsPerMeshThreadgroup", objc_name="requiredThreadsPerMeshThreadgroup")
+    MeshRenderPipelineDescriptor_requiredThreadsPerMeshThreadgroup :: proc(self: ^MeshRenderPipelineDescriptor) -> Size ---
+
+    @(objc_type=MeshRenderPipelineDescriptor, objc_selector="setRequiredThreadsPerMeshThreadgroup:", objc_name="setRequiredThreadsPerMeshThreadgroup")
+    MeshRenderPipelineDescriptor_setRequiredThreadsPerMeshThreadgroup :: proc(self: ^MeshRenderPipelineDescriptor, requiredThreadsPerMeshThreadgroup: Size) ---
 }

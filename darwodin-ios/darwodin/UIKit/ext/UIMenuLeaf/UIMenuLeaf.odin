@@ -38,6 +38,8 @@ VTable :: struct {
     setAttributes: proc(self: ^UI.MenuLeaf, attributes: UI.MenuElementAttributes),
     state: proc(self: ^UI.MenuLeaf) -> UI.MenuElementState,
     setState: proc(self: ^UI.MenuLeaf, state: UI.MenuElementState),
+    repeatBehavior: proc(self: ^UI.MenuLeaf) -> UI.MenuElementRepeatBehavior,
+    setRepeatBehavior: proc(self: ^UI.MenuLeaf, repeatBehavior: UI.MenuElementRepeatBehavior),
     sender: proc(self: ^UI.MenuLeaf) -> id,
     presentationSourceItem: proc(self: ^UI.MenuLeaf) -> ^UI.PopoverPresentationControllerSourceItem,
 }
@@ -175,6 +177,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setState:"), auto_cast setState, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.repeatBehavior != nil {
+        repeatBehavior :: proc "c" (self: ^UI.MenuLeaf, _: SEL) -> UI.MenuElementRepeatBehavior {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).repeatBehavior(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("repeatBehavior"), auto_cast repeatBehavior, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setRepeatBehavior != nil {
+        setRepeatBehavior :: proc "c" (self: ^UI.MenuLeaf, _: SEL, repeatBehavior: UI.MenuElementRepeatBehavior) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setRepeatBehavior(self, repeatBehavior)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setRepeatBehavior:"), auto_cast setRepeatBehavior, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.sender != nil {
         sender :: proc "c" (self: ^UI.MenuLeaf, _: SEL) -> id {

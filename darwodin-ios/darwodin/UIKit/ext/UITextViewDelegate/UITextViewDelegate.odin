@@ -30,9 +30,11 @@ VTable :: struct {
     textViewDidBeginEditing: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView),
     textViewDidEndEditing: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView),
     textView_shouldChangeTextInRange_replacementText: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, range: NS._NSRange, text: ^NS.String) -> bool,
+    textView_shouldChangeTextInRanges_replacementText: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, ranges: ^NS.Array, text: ^NS.String) -> bool,
     textViewDidChange: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView),
     textViewDidChangeSelection: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView),
     textView_editMenuForTextInRange_suggestedActions: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, range: NS._NSRange, suggestedActions: ^NS.Array) -> ^UI.Menu,
+    textView_editMenuForTextInRanges_suggestedActions: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, ranges: ^NS.Array, suggestedActions: ^NS.Array) -> ^UI.Menu,
     textView_willPresentEditMenuWithAnimator: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, animator: ^UI.EditMenuInteractionAnimating),
     textView_willDismissEditMenuWithAnimator: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, animator: ^UI.EditMenuInteractionAnimating),
     textView_primaryActionForTextItem_defaultAction: proc(self: ^UI.TextViewDelegate, textView: ^UI.TextView, textItem: ^UI.TextItem, defaultAction: ^UI.Action) -> ^UI.Action,
@@ -107,6 +109,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldChangeTextInRange:replacementText:"), auto_cast textView_shouldChangeTextInRange_replacementText, "B@:@{_NSRange=LL}@") do panic("Failed to register objC method.")
     }
+    if vt.textView_shouldChangeTextInRanges_replacementText != nil {
+        textView_shouldChangeTextInRanges_replacementText :: proc "c" (self: ^UI.TextViewDelegate, _: SEL, textView: ^UI.TextView, ranges: ^NS.Array, text: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).textView_shouldChangeTextInRanges_replacementText(self, textView, ranges, text)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:shouldChangeTextInRanges:replacementText:"), auto_cast textView_shouldChangeTextInRanges_replacementText, "B@:@^void@") do panic("Failed to register objC method.")
+    }
     if vt.textViewDidChange != nil {
         textViewDidChange :: proc "c" (self: ^UI.TextViewDelegate, _: SEL, textView: ^UI.TextView) {
 
@@ -136,6 +148,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("textView:editMenuForTextInRange:suggestedActions:"), auto_cast textView_editMenuForTextInRange_suggestedActions, "@@:@{_NSRange=LL}^void") do panic("Failed to register objC method.")
+    }
+    if vt.textView_editMenuForTextInRanges_suggestedActions != nil {
+        textView_editMenuForTextInRanges_suggestedActions :: proc "c" (self: ^UI.TextViewDelegate, _: SEL, textView: ^UI.TextView, ranges: ^NS.Array, suggestedActions: ^NS.Array) -> ^UI.Menu {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).textView_editMenuForTextInRanges_suggestedActions(self, textView, ranges, suggestedActions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("textView:editMenuForTextInRanges:suggestedActions:"), auto_cast textView_editMenuForTextInRanges_suggestedActions, "@@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.textView_willPresentEditMenuWithAnimator != nil {
         textView_willPresentEditMenuWithAnimator :: proc "c" (self: ^UI.TextViewDelegate, _: SEL, textView: ^UI.TextView, animator: ^UI.EditMenuInteractionAnimating) {

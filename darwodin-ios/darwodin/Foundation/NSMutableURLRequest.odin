@@ -67,6 +67,12 @@ foreign lib {
     @(objc_type=MutableURLRequest, objc_selector="setAllowsConstrainedNetworkAccess:", objc_name="setAllowsConstrainedNetworkAccess")
     MutableURLRequest_setAllowsConstrainedNetworkAccess :: proc(self: ^MutableURLRequest, allowsConstrainedNetworkAccess: bool) ---
 
+    @(objc_type=MutableURLRequest, objc_selector="allowsUltraConstrainedNetworkAccess", objc_name="allowsUltraConstrainedNetworkAccess")
+    MutableURLRequest_allowsUltraConstrainedNetworkAccess :: proc(self: ^MutableURLRequest) -> bool ---
+
+    @(objc_type=MutableURLRequest, objc_selector="setAllowsUltraConstrainedNetworkAccess:", objc_name="setAllowsUltraConstrainedNetworkAccess")
+    MutableURLRequest_setAllowsUltraConstrainedNetworkAccess :: proc(self: ^MutableURLRequest, allowsUltraConstrainedNetworkAccess: bool) ---
+
     @(objc_type=MutableURLRequest, objc_selector="assumesHTTP3Capable", objc_name="assumesHTTP3Capable")
     MutableURLRequest_assumesHTTP3Capable :: proc(self: ^MutableURLRequest) -> bool ---
 

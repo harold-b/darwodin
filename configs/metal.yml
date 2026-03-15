@@ -85,7 +85,7 @@ Odin:
     - Kind: UnderscoreNumbers
 
   TypeTransforms:
-    - Type: ^(MTL).+
+    - Type: ^(MTL(?!4)).+
       Transforms:
       - Kind  : RemovePrefix
         Source: $group0

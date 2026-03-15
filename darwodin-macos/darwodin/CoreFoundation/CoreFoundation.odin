@@ -160,6 +160,17 @@ foreign lib {
     @(link_name="kCFISO8601Calendar") kISO8601Calendar: CalendarIdentifier
     @(link_name="kCFIslamicTabularCalendar") kIslamicTabularCalendar: CalendarIdentifier
     @(link_name="kCFIslamicUmmAlQuraCalendar") kIslamicUmmAlQuraCalendar: CalendarIdentifier
+    @(link_name="kCFBanglaCalendar") kBanglaCalendar: CalendarIdentifier
+    @(link_name="kCFGujaratiCalendar") kGujaratiCalendar: CalendarIdentifier
+    @(link_name="kCFKannadaCalendar") kKannadaCalendar: CalendarIdentifier
+    @(link_name="kCFMalayalamCalendar") kMalayalamCalendar: CalendarIdentifier
+    @(link_name="kCFMarathiCalendar") kMarathiCalendar: CalendarIdentifier
+    @(link_name="kCFOdiaCalendar") kOdiaCalendar: CalendarIdentifier
+    @(link_name="kCFTamilCalendar") kTamilCalendar: CalendarIdentifier
+    @(link_name="kCFTeluguCalendar") kTeluguCalendar: CalendarIdentifier
+    @(link_name="kCFVikramCalendar") kVikramCalendar: CalendarIdentifier
+    @(link_name="kCFDangiCalendar") kDangiCalendar: CalendarIdentifier
+    @(link_name="kCFVietnameseCalendar") kVietnameseCalendar: CalendarIdentifier
     @(link_name="kCFAbsoluteTimeIntervalSince1970") kAbsoluteTimeIntervalSince1970: TimeInterval
     @(link_name="kCFAbsoluteTimeIntervalSince1904") kAbsoluteTimeIntervalSince1904: TimeInterval
     @(link_name="kCFErrorDomainPOSIX") kErrorDomainPOSIX: ErrorDomain
@@ -401,6 +412,8 @@ foreign lib {
     @(link_name="kCFURLUbiquitousItemDownloadingStatusNotDownloaded") kURLUbiquitousItemDownloadingStatusNotDownloaded: StringRef
     @(link_name="kCFURLUbiquitousItemDownloadingStatusDownloaded") kURLUbiquitousItemDownloadingStatusDownloaded: StringRef
     @(link_name="kCFURLUbiquitousItemDownloadingStatusCurrent") kURLUbiquitousItemDownloadingStatusCurrent: StringRef
+    @(link_name="kCFURLUbiquitousItemSupportedSyncControlsKey") kURLUbiquitousItemSupportedSyncControlsKey: StringRef
+    @(link_name="kCFURLUbiquitousItemIsSyncPausedKey") kURLUbiquitousItemIsSyncPausedKey: StringRef
     @(link_name="kCFRunLoopDefaultMode") kRunLoopDefaultMode: RunLoopMode
     @(link_name="kCFRunLoopCommonModes") kRunLoopCommonModes: RunLoopMode
     @(link_name="kCFSocketCommandKey") kSocketCommandKey: StringRef
@@ -471,6 +484,10 @@ foreign lib {
     @(link_name="kCFUserNotificationPopUpSelectionKey") kUserNotificationPopUpSelectionKey: StringRef
     @(link_name="kCFUserNotificationAlertTopMostKey") kUserNotificationAlertTopMostKey: StringRef
     @(link_name="kCFUserNotificationKeyboardTypesKey") kUserNotificationKeyboardTypesKey: StringRef
+    @(link_name="kCFUserNotificationAlertAccessibilityIdentifierKey") kUserNotificationAlertAccessibilityIdentifierKey: StringRef
+    @(link_name="kCFUserNotificationDefaultButtonAccessibilityIdentifierKey") kUserNotificationDefaultButtonAccessibilityIdentifierKey: StringRef
+    @(link_name="kCFUserNotificationAlternateButtonAccessibilityIdentifierKey") kUserNotificationAlternateButtonAccessibilityIdentifierKey: StringRef
+    @(link_name="kCFUserNotificationOtherButtonAccessibilityIdentifierKey") kUserNotificationOtherButtonAccessibilityIdentifierKey: StringRef
     @(link_name="kCFXMLTreeErrorDescription") kXMLTreeErrorDescription: StringRef
     @(link_name="kCFXMLTreeErrorLineNumber") kXMLTreeErrorLineNumber: StringRef
     @(link_name="kCFXMLTreeErrorLocation") kXMLTreeErrorLocation: StringRef
@@ -493,6 +510,9 @@ foreign lib {
 
     @(link_name="CFAllocatorCreate")
     AllocatorCreate :: proc(allocator: AllocatorRef, _context: ^AllocatorContext) -> AllocatorRef ---
+
+    @(link_name="CFAllocatorCreateWithZone")
+    AllocatorCreateWithZone :: proc(allocator: AllocatorRef, zone: ^libc._malloc_zone_t) -> AllocatorRef ---
 
     @(link_name="CFAllocatorAllocateTyped")
     AllocatorAllocateTyped :: proc(allocator: AllocatorRef, size: Index, descriptor: AllocatorTypeID, hint: OptionFlags) -> rawptr ---
@@ -3034,6 +3054,9 @@ foreign lib {
 
     @(link_name="CFAttributedStringGetBidiLevelsAndResolvedDirections")
     AttributedStringGetBidiLevelsAndResolvedDirections :: proc(attributedString: AttributedStringRef, range: Range, baseDirection: cffi.int8_t, bidiLevels: ^cffi.uint8_t, baseDirections: ^cffi.uint8_t) -> cffi.bool ---
+
+    @(link_name="CFAttributedStringGetStatisticalWritingDirections")
+    AttributedStringGetStatisticalWritingDirections :: proc(attributedString: AttributedStringRef, range: Range, baseDirection: cffi.int8_t, bidiLevels: ^cffi.uint8_t, baseDirections: ^cffi.uint8_t) -> cffi.bool ---
 
     @(link_name="CFURLEnumeratorGetTypeID")
     URLEnumeratorGetTypeID :: proc() -> TypeID ---

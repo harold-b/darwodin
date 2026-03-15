@@ -30,6 +30,8 @@ VTable :: struct {
     application_didFinishLaunchingWithOptions: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, launchOptions: ^NS.Dictionary) -> bool,
     applicationDidBecomeActive: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
     applicationWillResignActive: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
+    applicationDidEnterBackground: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
+    applicationWillEnterForeground: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
     application_handleOpenURL: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, url: ^NS.URL) -> bool,
     application_openURL_sourceApplication_annotation: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, url: ^NS.URL, sourceApplication: ^NS.String, annotation: id) -> bool,
     application_openURL_options: proc(self: ^UI.ApplicationDelegate, app: ^UI.Application, url: ^NS.URL, options: ^NS.Dictionary) -> bool,
@@ -57,8 +59,6 @@ VTable :: struct {
     applicationShouldRequestHealthAuthorization: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
     application_handlerForIntent: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, intent: ^UI.INIntent) -> id,
     application_handleIntent_completionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, intent: ^UI.INIntent, completionHandler: ^Objc_Block(proc "c" (intentResponse: ^UI.INIntentResponse))),
-    applicationDidEnterBackground: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
-    applicationWillEnterForeground: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
     applicationProtectedDataWillBecomeUnavailable: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
     applicationProtectedDataDidBecomeAvailable: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
     application_supportedInterfaceOrientationsForWindow: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, window: ^UI.Window) -> UI.InterfaceOrientationMask,
@@ -135,6 +135,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("applicationWillResignActive:"), auto_cast applicationWillResignActive, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.applicationDidEnterBackground != nil {
+        applicationDidEnterBackground :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).applicationDidEnterBackground(self, application)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("applicationDidEnterBackground:"), auto_cast applicationDidEnterBackground, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.applicationWillEnterForeground != nil {
+        applicationWillEnterForeground :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).applicationWillEnterForeground(self, application)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("applicationWillEnterForeground:"), auto_cast applicationWillEnterForeground, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.application_handleOpenURL != nil {
         application_handleOpenURL :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, url: ^NS.URL) -> bool {
@@ -405,26 +425,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("application:handleIntent:completionHandler:"), auto_cast application_handleIntent_completionHandler, "v@:@@?") do panic("Failed to register objC method.")
-    }
-    if vt.applicationDidEnterBackground != nil {
-        applicationDidEnterBackground :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.protocol_vt).applicationDidEnterBackground(self, application)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("applicationDidEnterBackground:"), auto_cast applicationDidEnterBackground, "v@:@") do panic("Failed to register objC method.")
-    }
-    if vt.applicationWillEnterForeground != nil {
-        applicationWillEnterForeground :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application) {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            (cast(^VTable)vt_ctx.protocol_vt).applicationWillEnterForeground(self, application)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("applicationWillEnterForeground:"), auto_cast applicationWillEnterForeground, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.applicationProtectedDataWillBecomeUnavailable != nil {
         applicationProtectedDataWillBecomeUnavailable :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application) {

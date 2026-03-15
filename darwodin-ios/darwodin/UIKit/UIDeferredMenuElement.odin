@@ -26,4 +26,10 @@ foreign lib {
 
     @(objc_type=DeferredMenuElement, objc_selector="elementWithUncachedProvider:", objc_name="elementWithUncachedProvider", objc_is_class_method=true)
     DeferredMenuElement_elementWithUncachedProvider :: proc(elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> instancetype ---
+
+    @(objc_type=DeferredMenuElement, objc_selector="elementUsingFocusWithIdentifier:shouldCacheItems:", objc_name="elementUsingFocusWithIdentifier", objc_is_class_method=true)
+    DeferredMenuElement_elementUsingFocusWithIdentifier :: proc(identifier: ^NS.String, shouldCacheItems: bool) -> instancetype ---
+
+    @(objc_type=DeferredMenuElement, objc_selector="identifier", objc_name="identifier")
+    DeferredMenuElement_identifier :: proc(self: ^DeferredMenuElement) -> ^NS.String ---
 }

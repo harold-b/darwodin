@@ -48,6 +48,18 @@ foreign lib {
     @(objc_type=ButtonConfiguration, objc_selector="borderedProminentButtonConfiguration", objc_name="borderedProminentButtonConfiguration", objc_is_class_method=true)
     ButtonConfiguration_borderedProminentButtonConfiguration :: proc() -> instancetype ---
 
+    @(objc_type=ButtonConfiguration, objc_selector="glassButtonConfiguration", objc_name="glassButtonConfiguration", objc_is_class_method=true)
+    ButtonConfiguration_glassButtonConfiguration :: proc() -> instancetype ---
+
+    @(objc_type=ButtonConfiguration, objc_selector="prominentGlassButtonConfiguration", objc_name="prominentGlassButtonConfiguration", objc_is_class_method=true)
+    ButtonConfiguration_prominentGlassButtonConfiguration :: proc() -> instancetype ---
+
+    @(objc_type=ButtonConfiguration, objc_selector="clearGlassButtonConfiguration", objc_name="clearGlassButtonConfiguration", objc_is_class_method=true)
+    ButtonConfiguration_clearGlassButtonConfiguration :: proc() -> instancetype ---
+
+    @(objc_type=ButtonConfiguration, objc_selector="prominentClearGlassButtonConfiguration", objc_name="prominentClearGlassButtonConfiguration", objc_is_class_method=true)
+    ButtonConfiguration_prominentClearGlassButtonConfiguration :: proc() -> instancetype ---
+
     @(objc_type=ButtonConfiguration, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ButtonConfiguration_new :: proc() -> ^ButtonConfiguration ---
 
@@ -113,6 +125,12 @@ foreign lib {
 
     @(objc_type=ButtonConfiguration, objc_selector="setPreferredSymbolConfigurationForImage:", objc_name="setPreferredSymbolConfigurationForImage")
     ButtonConfiguration_setPreferredSymbolConfigurationForImage :: proc(self: ^ButtonConfiguration, preferredSymbolConfigurationForImage: ^ImageSymbolConfiguration) ---
+
+    @(objc_type=ButtonConfiguration, objc_selector="symbolContentTransition", objc_name="symbolContentTransition")
+    ButtonConfiguration_symbolContentTransition :: proc(self: ^ButtonConfiguration) -> ^SymbolContentTransition ---
+
+    @(objc_type=ButtonConfiguration, objc_selector="setSymbolContentTransition:", objc_name="setSymbolContentTransition")
+    ButtonConfiguration_setSymbolContentTransition :: proc(self: ^ButtonConfiguration, symbolContentTransition: ^SymbolContentTransition) ---
 
     @(objc_type=ButtonConfiguration, objc_selector="showsActivityIndicator", objc_name="showsActivityIndicator")
     ButtonConfiguration_showsActivityIndicator :: proc(self: ^ButtonConfiguration) -> bool ---

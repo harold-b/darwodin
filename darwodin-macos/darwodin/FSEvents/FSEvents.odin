@@ -399,6 +399,7 @@ EventStreamCreateFlagMarkSelf            :: 32
 EventStreamCreateFlagUseExtendedData     :: 64
 EventStreamCreateFlagFullHistory         :: 128
 EventStreamCreateWithDocID               :: 256
+EventStreamCreateDeviceState             :: 512
 EventStreamEventFlagNone                 :: 0
 EventStreamEventFlagMustScanSubDirs      :: 1
 EventStreamEventFlagUserDropped          :: 2

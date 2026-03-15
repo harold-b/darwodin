@@ -104,6 +104,9 @@ foreign lib {
     @(objc_type=RenderCommandEncoder, objc_selector="setDepthBias:slopeScale:clamp:", objc_name="setDepthBias")
     RenderCommandEncoder_setDepthBias :: proc(self: ^RenderCommandEncoder, depthBias: cffi.float, slopeScale: cffi.float, clamp: cffi.float) ---
 
+    @(objc_type=RenderCommandEncoder, objc_selector="setDepthTestMinBound:maxBound:", objc_name="setDepthTestMinBound")
+    RenderCommandEncoder_setDepthTestMinBound :: proc(self: ^RenderCommandEncoder, minBound: cffi.float, maxBound: cffi.float) ---
+
     @(objc_type=RenderCommandEncoder, objc_selector="setScissorRect:", objc_name="setScissorRect")
     RenderCommandEncoder_setScissorRect :: proc(self: ^RenderCommandEncoder, rect: ScissorRect) ---
 
@@ -403,6 +406,9 @@ foreign lib {
 
     @(objc_type=RenderCommandEncoder, objc_selector="sampleCountersInBuffer:atSampleIndex:withBarrier:", objc_name="sampleCountersInBuffer")
     RenderCommandEncoder_sampleCountersInBuffer :: proc(self: ^RenderCommandEncoder, sampleBuffer: ^CounterSampleBuffer, sampleIndex: NS.UInteger, barrier: bool) ---
+
+    @(objc_type=RenderCommandEncoder, objc_selector="setColorAttachmentMap:", objc_name="setColorAttachmentMap")
+    RenderCommandEncoder_setColorAttachmentMap :: proc(self: ^RenderCommandEncoder, mapping: ^LogicalToPhysicalColorAttachmentMap) ---
 
     @(objc_type=RenderCommandEncoder, objc_selector="tileWidth", objc_name="tileWidth")
     RenderCommandEncoder_tileWidth :: proc(self: ^RenderCommandEncoder) -> NS.UInteger ---

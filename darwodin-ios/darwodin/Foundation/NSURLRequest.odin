@@ -62,6 +62,9 @@ foreign lib {
     @(objc_type=URLRequest, objc_selector="allowsConstrainedNetworkAccess", objc_name="allowsConstrainedNetworkAccess")
     URLRequest_allowsConstrainedNetworkAccess :: proc(self: ^URLRequest) -> bool ---
 
+    @(objc_type=URLRequest, objc_selector="allowsUltraConstrainedNetworkAccess", objc_name="allowsUltraConstrainedNetworkAccess")
+    URLRequest_allowsUltraConstrainedNetworkAccess :: proc(self: ^URLRequest) -> bool ---
+
     @(objc_type=URLRequest, objc_selector="assumesHTTP3Capable", objc_name="assumesHTTP3Capable")
     URLRequest_assumesHTTP3Capable :: proc(self: ^URLRequest) -> bool ---
 

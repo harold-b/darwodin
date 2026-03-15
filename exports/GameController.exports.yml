@@ -50,6 +50,7 @@ Enums:
 ObjCClasses:
     GCColor: GC.Color
     GCPhysicalInputProfile: GC.PhysicalInputProfile
+    GCDeviceHaptics: GC.DeviceHaptics
     GCPhysicalInputElementCollection: GC.PhysicalInputElementCollection
     GCDeviceLight: GC.DeviceLight
     GCDeviceBattery: GC.DeviceBattery
@@ -76,7 +77,7 @@ ObjCClasses:
     GCDirectionalGamepad: GC.DirectionalGamepad
     GCControllerInputState: GC.ControllerInputState
     GCControllerLiveInput: GC.ControllerLiveInput
-    GCDeviceHaptics: GC.DeviceHaptics
+    GCStylus: GC.Stylus
     GCKeyboard: GC.Keyboard
     GCMouse: GC.Mouse
     GCRacingWheelInput: GC.RacingWheelInput
@@ -87,6 +88,7 @@ ObjCClasses:
     GCEventViewController: GC.EventViewController
 
 ObjCProtocols:
+    GCDevicePhysicalInput: GC.DevicePhysicalInput
     GCDevice: GC.Device
     GCPhysicalInputElementName: GC.PhysicalInputElementName
     GCButtonElementName: GC.ButtonElementName
@@ -95,6 +97,7 @@ ObjCProtocols:
     GCDirectionPadElementName: GC.DirectionPadElementName
     GCPhysicalInputElement: GC.PhysicalInputElement
     GCPhysicalInputSource: GC.PhysicalInputSource
+    GCPhysicalInputExtents: GC.PhysicalInputExtents
     GCLinearInput: GC.LinearInput
     GCPressedStateInput: GC.PressedStateInput
     GCTouchedStateInput: GC.TouchedStateInput
@@ -108,7 +111,6 @@ ObjCProtocols:
     GCDirectionPadElement: GC.DirectionPadElement
     GCDevicePhysicalInputState: GC.DevicePhysicalInputState
     GCDevicePhysicalInputStateDiff: GC.DevicePhysicalInputStateDiff
-    GCDevicePhysicalInput: GC.DevicePhysicalInput
     GCButtonInput: GC.ButtonInput
     GCSwitchInput: GC.SwitchInput
 
@@ -130,6 +132,7 @@ ExternVars:
     ::GCProductCategoryMFi: GC.ProductCategoryMFi
     ::GCProductCategoryXboxOne: GC.ProductCategoryXboxOne
     ::GCProductCategoryHID: GC.ProductCategoryHID
+    ::GCProductCategorySpatialController: GC.ProductCategorySpatialController
     ::GCProductCategoryArcadeStick: GC.ProductCategoryArcadeStick
     ::GCProductCategorySiriRemote1stGen: GC.ProductCategorySiriRemote1stGen
     ::GCProductCategorySiriRemote2ndGen: GC.ProductCategorySiriRemote2ndGen
@@ -138,19 +141,24 @@ ExternVars:
     ::GCProductCategoryCoalescedRemote: GC.ProductCategoryCoalescedRemote
     ::GCProductCategoryMouse: GC.ProductCategoryMouse
     ::GCProductCategoryKeyboard: GC.ProductCategoryKeyboard
+    ::GCProductCategorySpatialStylus: GC.ProductCategorySpatialStylus
     ::GCInputButtonA: GC.InputButtonA
     ::GCInputButtonB: GC.InputButtonB
     ::GCInputButtonX: GC.InputButtonX
     ::GCInputButtonY: GC.InputButtonY
     ::GCInputDirectionPad: GC.InputDirectionPad
+    ::GCInputThumbstick: GC.InputThumbstick
     ::GCInputLeftThumbstick: GC.InputLeftThumbstick
     ::GCInputRightThumbstick: GC.InputRightThumbstick
+    ::GCInputThumbstickButton: GC.InputThumbstickButton
     ::GCInputLeftThumbstickButton: GC.InputLeftThumbstickButton
     ::GCInputRightThumbstickButton: GC.InputRightThumbstickButton
+    ::GCInputGripButton: GC.InputGripButton
     ::GCInputLeftShoulder: GC.InputLeftShoulder
     ::GCInputRightShoulder: GC.InputRightShoulder
     ::GCInputLeftBumper: GC.InputLeftBumper
     ::GCInputRightBumper: GC.InputRightBumper
+    ::GCInputTrigger: GC.InputTrigger
     ::GCInputLeftTrigger: GC.InputLeftTrigger
     ::GCInputRightTrigger: GC.InputRightTrigger
     ::GCInputButtonHome: GC.InputButtonHome
@@ -171,6 +179,9 @@ ExternVars:
     ::GCInputPedalClutch: GC.InputPedalClutch
     ::GCInputLeftPaddle: GC.InputLeftPaddle
     ::GCInputRightPaddle: GC.InputRightPaddle
+    ::GCInputStylusTip: GC.InputStylusTip
+    ::GCInputStylusPrimaryButton: GC.InputStylusPrimaryButton
+    ::GCInputStylusSecondaryButton: GC.InputStylusSecondaryButton
     ::GCCurrentExtendedGamepadSnapshotDataVersion: GC.CurrentExtendedGamepadSnapshotDataVersion
     ::GCKeyCodeKeyA: GC.KeyCodeKeyA
     ::GCKeyCodeKeyB: GC.KeyCodeKeyB
@@ -454,6 +465,8 @@ ExternVars:
     ::GCControllerDidBecomeCurrentNotification: GC.ControllerDidBecomeCurrentNotification
     ::GCControllerDidStopBeingCurrentNotification: GC.ControllerDidStopBeingCurrentNotification
     ::GCControllerUserCustomizationsDidChangeNotification: GC.ControllerUserCustomizationsDidChangeNotification
+    ::GCStylusDidConnectNotification: GC.StylusDidConnectNotification
+    ::GCStylusDidDisconnectNotification: GC.StylusDidDisconnectNotification
     ::GCKeyboardDidConnectNotification: GC.KeyboardDidConnectNotification
     ::GCKeyboardDidDisconnectNotification: GC.KeyboardDidDisconnectNotification
     ::GCMouseDidConnectNotification: GC.MouseDidConnectNotification
@@ -479,6 +492,7 @@ ExternTypes:
     ::GCProductCategoryMFi: ^NS.String
     ::GCProductCategoryXboxOne: ^NS.String
     ::GCProductCategoryHID: ^NS.String
+    ::GCProductCategorySpatialController: ^NS.String
     ::GCProductCategoryArcadeStick: ^NS.String
     ::GCProductCategorySiriRemote1stGen: ^NS.String
     ::GCProductCategorySiriRemote2ndGen: ^NS.String
@@ -487,19 +501,24 @@ ExternTypes:
     ::GCProductCategoryCoalescedRemote: ^NS.String
     ::GCProductCategoryMouse: ^NS.String
     ::GCProductCategoryKeyboard: ^NS.String
+    ::GCProductCategorySpatialStylus: ^NS.String
     ::GCInputButtonA: ^NS.String
     ::GCInputButtonB: ^NS.String
     ::GCInputButtonX: ^NS.String
     ::GCInputButtonY: ^NS.String
     ::GCInputDirectionPad: ^NS.String
+    ::GCInputThumbstick: ^NS.String
     ::GCInputLeftThumbstick: ^NS.String
     ::GCInputRightThumbstick: ^NS.String
+    ::GCInputThumbstickButton: ^NS.String
     ::GCInputLeftThumbstickButton: ^NS.String
     ::GCInputRightThumbstickButton: ^NS.String
+    ::GCInputGripButton: ^NS.String
     ::GCInputLeftShoulder: ^NS.String
     ::GCInputRightShoulder: ^NS.String
     ::GCInputLeftBumper: ^NS.String
     ::GCInputRightBumper: ^NS.String
+    ::GCInputTrigger: ^NS.String
     ::GCInputLeftTrigger: ^NS.String
     ::GCInputRightTrigger: ^NS.String
     ::GCInputButtonHome: ^NS.String
@@ -520,6 +539,9 @@ ExternTypes:
     ::GCInputPedalClutch: ^NS.String
     ::GCInputLeftPaddle: ^NS.String
     ::GCInputRightPaddle: ^NS.String
+    ::GCInputStylusTip: ^NS.String
+    ::GCInputStylusPrimaryButton: ^NS.String
+    ::GCInputStylusSecondaryButton: ^NS.String
     ::GCCurrentExtendedGamepadSnapshotDataVersion: ExtendedGamepadSnapshotDataVersion
     ::GCKeyCodeKeyA: KeyCode
     ::GCKeyCodeKeyB: KeyCode
@@ -803,6 +825,8 @@ ExternTypes:
     ::GCControllerDidBecomeCurrentNotification: ^NS.String
     ::GCControllerDidStopBeingCurrentNotification: ^NS.String
     ::GCControllerUserCustomizationsDidChangeNotification: ^NS.String
+    ::GCStylusDidConnectNotification: ^NS.String
+    ::GCStylusDidDisconnectNotification: ^NS.String
     ::GCKeyboardDidConnectNotification: ^NS.String
     ::GCKeyboardDidDisconnectNotification: ^NS.String
     ::GCMouseDidConnectNotification: ^NS.String

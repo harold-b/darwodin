@@ -80,6 +80,9 @@ foreign lib {
     @(objc_type=Responder, objc_selector="validateCommand:", objc_name="validateCommand")
     Responder_validateCommand :: proc(self: ^Responder, command: ^Command) ---
 
+    @(objc_type=Responder, objc_selector="providerForDeferredMenuElement:", objc_name="providerForDeferredMenuElement")
+    Responder_providerForDeferredMenuElement :: proc(self: ^Responder, deferredElement: ^DeferredMenuElement) -> ^DeferredMenuElementProvider ---
+
     @(objc_type=Responder, objc_selector="nextResponder", objc_name="nextResponder")
     Responder_nextResponder :: proc(self: ^Responder) -> ^Responder ---
 

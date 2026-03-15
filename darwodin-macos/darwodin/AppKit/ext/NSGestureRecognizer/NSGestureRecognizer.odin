@@ -57,6 +57,9 @@ VTable :: struct {
     setDelaysMagnificationEvents: proc(self: ^AK.GestureRecognizer, delaysMagnificationEvents: bool),
     delaysRotationEvents: proc(self: ^AK.GestureRecognizer) -> bool,
     setDelaysRotationEvents: proc(self: ^AK.GestureRecognizer, delaysRotationEvents: bool),
+    name: proc(self: ^AK.GestureRecognizer) -> ^NS.String,
+    setName: proc(self: ^AK.GestureRecognizer, name: ^NS.String),
+    modifierFlags: proc(self: ^AK.GestureRecognizer) -> AK.EventModifierFlags,
     allowedTouchTypes: proc(self: ^AK.GestureRecognizer) -> AK.TouchTypeMask,
     setAllowedTouchTypes: proc(self: ^AK.GestureRecognizer, allowedTouchTypes: AK.TouchTypeMask),
     reset: proc(self: ^AK.GestureRecognizer),
@@ -73,6 +76,7 @@ VTable :: struct {
     mouseDragged: proc(self: ^AK.GestureRecognizer, event: ^AK.Event),
     rightMouseDragged: proc(self: ^AK.GestureRecognizer, event: ^AK.Event),
     otherMouseDragged: proc(self: ^AK.GestureRecognizer, event: ^AK.Event),
+    mouseCancelled: proc(self: ^AK.GestureRecognizer, event: ^AK.Event),
     keyDown: proc(self: ^AK.GestureRecognizer, event: ^AK.Event),
     keyUp: proc(self: ^AK.GestureRecognizer, event: ^AK.Event),
     flagsChanged: proc(self: ^AK.GestureRecognizer, event: ^AK.Event),
@@ -364,6 +368,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelaysRotationEvents:"), auto_cast setDelaysRotationEvents, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.name != nil {
+        name :: proc "c" (self: ^AK.GestureRecognizer, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).name(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("name"), auto_cast name, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setName != nil {
+        setName :: proc "c" (self: ^AK.GestureRecognizer, _: SEL, name: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setName(self, name)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setName:"), auto_cast setName, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.modifierFlags != nil {
+        modifierFlags :: proc "c" (self: ^AK.GestureRecognizer, _: SEL) -> AK.EventModifierFlags {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).modifierFlags(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("modifierFlags"), auto_cast modifierFlags, "L@:") do panic("Failed to register objC method.")
+    }
     if vt.allowedTouchTypes != nil {
         allowedTouchTypes :: proc "c" (self: ^AK.GestureRecognizer, _: SEL) -> AK.TouchTypeMask {
 
@@ -523,6 +557,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("otherMouseDragged:"), auto_cast otherMouseDragged, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.mouseCancelled != nil {
+        mouseCancelled :: proc "c" (self: ^AK.GestureRecognizer, _: SEL, event: ^AK.Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).mouseCancelled(self, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mouseCancelled:"), auto_cast mouseCancelled, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.keyDown != nil {
         keyDown :: proc "c" (self: ^AK.GestureRecognizer, _: SEL, event: ^AK.Event) {

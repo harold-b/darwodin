@@ -23,6 +23,7 @@ Structs:
     _xpc_bool_s: AK._xpc_bool_s
     _xpc_rich_error_s: AK._xpc_rich_error_s
     _xpc_activity_s: AK._xpc_activity_s
+    xpc_peer_requirement_s: AK.xpc_peer_requirement_s
     _xpc_dictionary_s: AK._xpc_dictionary_s
     xpc_session_s: AK.xpc_session_s
     xpc_listener_s: AK.xpc_listener_s
@@ -56,6 +57,8 @@ Typedefs:
     NSAccessibilitySubrole: AK.AccessibilitySubrole
     NSAccessibilityNotificationUserInfoKey: AK.AccessibilityNotificationUserInfoKey
     NSAccessibilityLoadingToken: AK.AccessibilityLoadingToken
+    NSAccessibilitySearchKey: AK.AccessibilitySearchKey
+    NSAccessibilityDateTimeComponentsFlags: AK.AccessibilityDateTimeComponentsFlags
     NSWorkspaceDesktopImageOptionKey: AK.WorkspaceDesktopImageOptionKey
     NSWorkspaceFileOperationName: AK.WorkspaceFileOperationName
     NSWorkspaceLaunchConfigurationKey: AK.WorkspaceLaunchConfigurationKey
@@ -249,6 +252,7 @@ Typedefs:
     xpc_activity_t: AK.xpc_activity_t
     xpc_activity_handler_t: AK.xpc_activity_handler_t
     xpc_activity_state_t: AK.xpc_activity_state_t
+    xpc_peer_requirement_t: AK.xpc_peer_requirement_t
     xpc_finalizer_t: AK.xpc_finalizer_t
     xpc_session_t: AK.xpc_session_t
     xpc_session_cancel_handler_t: AK.xpc_session_cancel_handler_t
@@ -395,9 +399,11 @@ Enums:
     NSAlertStyle: AK.AlertStyle
     NSTitlePosition: AK.TitlePosition
     NSBoxType: AK.BoxType
+    NSControlBorderShape: AK.ControlBorderShape
     NSButtonType: AK.ButtonType
     NSBezelStyle: AK.BezelStyle
     NSGradientType: AK.GradientType
+    NSTintProminence: AK.TintProminence
     NSPopoverAppearance: AK.PopoverAppearance
     NSPopoverBehavior: AK.PopoverBehavior
     NSViewControllerTransitionOptions: AK.ViewControllerTransitionOptions
@@ -436,6 +442,7 @@ Enums:
     NSWindowBackingLocation: AK.WindowBackingLocation
     NSFontPanelModeMask: AK.FontPanelModeMask
     NSMatrixMode: AK.MatrixMode
+    NSGlassEffectViewStyle: AK.GlassEffectViewStyle
     NSMenuItemBadgeType: AK.MenuItemBadgeType
     NSColorSpaceModel: AK.ColorSpaceModel
     NSImageLayoutDirection: AK.ImageLayoutDirection
@@ -460,6 +467,8 @@ Enums:
     NSImageCacheMode: AK.ImageCacheMode
     NSImageResizingMode: AK.ImageResizingMode
     NSImageSymbolScale: AK.ImageSymbolScale
+    NSImageSymbolVariableValueMode: AK.ImageSymbolVariableValueMode
+    NSImageSymbolColorRenderingMode: AK.ImageSymbolColorRenderingMode
     NSImageAlignment: AK.ImageAlignment
     NSImageFrameStyle: AK.ImageFrameStyle
     NSImageDynamicRange: AK.ImageDynamicRange
@@ -524,6 +533,8 @@ Enums:
     NSTrackingAreaOptions: AK.TrackingAreaOptions
     NSToolbarDisplayMode: AK.ToolbarDisplayMode
     NSToolbarSizeMode: AK.ToolbarSizeMode
+    NSToolbarItemStyle: AK.ToolbarItemStyle
+    NSViewLayoutRegionAdaptivityAxis: AK.ViewLayoutRegionAdaptivityAxis
     NSComboButtonStyle: AK.ComboButtonStyle
     NSSelectionGranularity: AK.SelectionGranularity
     NSSelectionAffinity: AK.SelectionAffinity
@@ -663,6 +674,9 @@ Enums:
     NSFileManagerItemReplacementOptions: AK.FileManagerItemReplacementOptions
     NSURLRelationship: AK.URLRelationship
     NSFileManagerUnmountOptions: AK.FileManagerUnmountOptions
+    NSFileManagerSupportedSyncControls: AK.FileManagerSupportedSyncControls
+    NSFileManagerResumeSyncBehavior: AK.FileManagerResumeSyncBehavior
+    NSFileManagerUploadLocalVersionConflictPolicy: AK.FileManagerUploadLocalVersionConflictPolicy
     NSPointerFunctionsOptions: AK.PointerFunctionsOptions
     NSHTTPCookieAcceptPolicy: AK.HTTPCookieAcceptPolicy
     NSJSONReadingOptions: AK.JSONReadingOptions
@@ -834,6 +848,7 @@ ObjCClasses:
     NSButton: AK.Button
     NSAlert: AK.Alert
     NSAnimationContext: AK.AnimationContext
+    NSBackgroundExtensionView: AK.BackgroundExtensionView
     NSBox: AK.Box
     NSControl: AK.Control
     NSSound: AK.Sound
@@ -888,6 +903,8 @@ ObjCClasses:
     NSMatrix: AK.Matrix
     NSFormCell: AK.FormCell
     NSForm: AK.Form
+    NSGlassEffectView: AK.GlassEffectView
+    NSGlassEffectContainerView: AK.GlassEffectContainerView
     NSImageRep: AK.ImageRep
     NSScroller: AK.Scroller
     NSBrowser: AK.Browser
@@ -932,6 +949,8 @@ ObjCClasses:
     NSSymbolWiggleEffect: AK.SymbolWiggleEffect
     NSSymbolRotateEffect: AK.SymbolRotateEffect
     NSSymbolBreatheEffect: AK.SymbolBreatheEffect
+    NSSymbolDrawOnEffect: AK.SymbolDrawOnEffect
+    NSSymbolDrawOffEffect: AK.SymbolDrawOffEffect
     NSSymbolContentTransition: AK.SymbolContentTransition
     NSSymbolMagicReplaceContentTransition: AK.SymbolMagicReplaceContentTransition
     NSSymbolReplaceContentTransition: AK.SymbolReplaceContentTransition
@@ -957,8 +976,10 @@ ObjCClasses:
     NSSpeechSynthesizer: AK.SpeechSynthesizer
     NSSpellChecker: AK.SpellChecker
     NSSplitView: AK.SplitView
+    NSSplitViewItemAccessoryViewController: AK.SplitViewItemAccessoryViewController
     NSSplitViewItem: AK.SplitViewItem
     NSSplitViewController: AK.SplitViewController
+    NSScrollEdgeEffectStyle: AK.ScrollEdgeEffectStyle
     NSProgressIndicator: AK.ProgressIndicator
     NSPopoverTouchBarItem: AK.PopoverTouchBarItem
     NSMenuItemCell: AK.MenuItemCell
@@ -992,7 +1013,9 @@ ObjCClasses:
     NSRulerMarker: AK.RulerMarker
     NSTokenFieldCell: AK.TokenFieldCell
     NSTokenField: AK.TokenField
+    NSItemBadge: AK.ItemBadge
     NSTrackingSeparatorToolbarItem: AK.TrackingSeparatorToolbarItem
+    NSViewLayoutRegion: AK.ViewLayoutRegion
     NSComboBox: AK.ComboBox
     NSComboBoxCell: AK.ComboBoxCell
     NSComboButton: AK.ComboButton
@@ -1193,6 +1216,7 @@ ObjCClasses:
     NSFileSecurity: AK.FileSecurity
     NSDirectoryEnumerator: AK.DirectoryEnumerator
     NSFileProviderService: AK.FileProviderService
+    NSFileVersion: AK.FileVersion
     NSFileManager: AK.FileManager
     NSPointerFunctions: AK.PointerFunctions
     NSHashTable: AK.HashTable
@@ -1285,7 +1309,6 @@ ObjCClasses:
     NSExtensionItem: AK.ExtensionItem
     NSFileAccessIntent: AK.FileAccessIntent
     NSFileCoordinator: AK.FileCoordinator
-    NSFileVersion: AK.FileVersion
     NSFileWrapper: AK.FileWrapper
     NSLinguisticTagger: AK.LinguisticTagger
     NSMetadataItem: AK.MetadataItem
@@ -1896,6 +1919,15 @@ ExternVars:
     ::NSAccessibilityContainsProtectedContentAttribute: AK.AccessibilityContainsProtectedContentAttribute
     ::NSAccessibilityAlternateUIVisibleAttribute: AK.AccessibilityAlternateUIVisibleAttribute
     ::NSAccessibilityRequiredAttribute: AK.AccessibilityRequiredAttribute
+    ::NSAccessibilityAutoInteractableAttribute: AK.AccessibilityAutoInteractableAttribute
+    ::NSAccessibilityDateTimeComponentsAttribute: AK.AccessibilityDateTimeComponentsAttribute
+    ::NSAccessibilityEmbeddedImageDescriptionAttribute: AK.AccessibilityEmbeddedImageDescriptionAttribute
+    ::NSAccessibilityPathAttribute: AK.AccessibilityPathAttribute
+    ::NSAccessibilityTextInputMarkedRangeAttribute: AK.AccessibilityTextInputMarkedRangeAttribute
+    ::NSAccessibilityBlockQuoteLevelAttribute: AK.AccessibilityBlockQuoteLevelAttribute
+    ::NSAccessibilityHeadingLevelAttribute: AK.AccessibilityHeadingLevelAttribute
+    ::NSAccessibilityLanguageAttribute: AK.AccessibilityLanguageAttribute
+    ::NSAccessibilityVisitedAttribute: AK.AccessibilityVisitedAttribute
     ::NSAccessibilityTitleUIElementAttribute: AK.AccessibilityTitleUIElementAttribute
     ::NSAccessibilityServesAsTitleForUIElementsAttribute: AK.AccessibilityServesAsTitleForUIElementsAttribute
     ::NSAccessibilityLinkedUIElementsAttribute: AK.AccessibilityLinkedUIElementsAttribute
@@ -1929,6 +1961,11 @@ ExternVars:
     ::NSAccessibilityLinkTextAttribute: AK.AccessibilityLinkTextAttribute
     ::NSAccessibilityAutocorrectedTextAttribute: AK.AccessibilityAutocorrectedTextAttribute
     ::NSAccessibilityTextAlignmentAttribute: AK.AccessibilityTextAlignmentAttribute
+    ::NSAccessibilityFontBoldAttribute: AK.AccessibilityFontBoldAttribute
+    ::NSAccessibilityFontItalicAttribute: AK.AccessibilityFontItalicAttribute
+    ::NSAccessibilityChildrenInNavigationOrderAttribute: AK.AccessibilityChildrenInNavigationOrderAttribute
+    ::NSAccessibilityIndexForChildUIElementAttribute: AK.AccessibilityIndexForChildUIElementAttribute
+    ::NSAccessibilityIndexForChildUIElementInNavigationOrderAttribute: AK.AccessibilityIndexForChildUIElementInNavigationOrderAttribute
     ::NSAccessibilityListItemPrefixTextAttribute: AK.AccessibilityListItemPrefixTextAttribute
     ::NSAccessibilityListItemIndexTextAttribute: AK.AccessibilityListItemIndexTextAttribute
     ::NSAccessibilityListItemLevelTextAttribute: AK.AccessibilityListItemLevelTextAttribute
@@ -1937,6 +1974,7 @@ ExternVars:
     ::NSAccessibilityLanguageTextAttribute: AK.AccessibilityLanguageTextAttribute
     ::NSAccessibilityCustomTextAttribute: AK.AccessibilityCustomTextAttribute
     ::NSAccessibilityAnnotationTextAttribute: AK.AccessibilityAnnotationTextAttribute
+    ::NSAccessibilityTextCompletionAttribute: AK.AccessibilityTextCompletionAttribute
     ::NSAccessibilityAnnotationLabel: AK.AccessibilityAnnotationLabel
     ::NSAccessibilityAnnotationElement: AK.AccessibilityAnnotationElement
     ::NSAccessibilityAnnotationLocation: AK.AccessibilityAnnotationLocation
@@ -2037,6 +2075,7 @@ ExternVars:
     ::NSAccessibilityRaiseAction: AK.AccessibilityRaiseAction
     ::NSAccessibilityShowMenuAction: AK.AccessibilityShowMenuAction
     ::NSAccessibilityDeleteAction: AK.AccessibilityDeleteAction
+    ::NSAccessibilityScrollToVisibleAction: AK.AccessibilityScrollToVisibleAction
     ::NSAccessibilityShowAlternateUIAction: AK.AccessibilityShowAlternateUIAction
     ::NSAccessibilityShowDefaultUIAction: AK.AccessibilityShowDefaultUIAction
     ::NSAccessibilityMainWindowChangedNotification: AK.AccessibilityMainWindowChangedNotification
@@ -2068,6 +2107,15 @@ ExternVars:
     ::NSAccessibilitySelectedColumnsChangedNotification: AK.AccessibilitySelectedColumnsChangedNotification
     ::NSAccessibilityRowExpandedNotification: AK.AccessibilityRowExpandedNotification
     ::NSAccessibilityRowCollapsedNotification: AK.AccessibilityRowCollapsedNotification
+    ::NSAccessibilityAutocorrectionOccurredNotification: AK.AccessibilityAutocorrectionOccurredNotification
+    ::NSAccessibilityTextInputMarkingSessionBeganNotification: AK.AccessibilityTextInputMarkingSessionBeganNotification
+    ::NSAccessibilityTextInputMarkingSessionEndedNotification: AK.AccessibilityTextInputMarkingSessionEndedNotification
+    ::NSAccessibilityDraggingSourceDragBeganNotification: AK.AccessibilityDraggingSourceDragBeganNotification
+    ::NSAccessibilityDraggingSourceDragEndedNotification: AK.AccessibilityDraggingSourceDragEndedNotification
+    ::NSAccessibilityDraggingDestinationDropAllowedNotification: AK.AccessibilityDraggingDestinationDropAllowedNotification
+    ::NSAccessibilityDraggingDestinationDropNotAllowedNotification: AK.AccessibilityDraggingDestinationDropNotAllowedNotification
+    ::NSAccessibilityDraggingDestinationDragAcceptedNotification: AK.AccessibilityDraggingDestinationDragAcceptedNotification
+    ::NSAccessibilityDraggingDestinationDragNotAcceptedNotification: AK.AccessibilityDraggingDestinationDragNotAcceptedNotification
     ::NSAccessibilitySelectedCellsChangedNotification: AK.AccessibilitySelectedCellsChangedNotification
     ::NSAccessibilityUnitsChangedNotification: AK.AccessibilityUnitsChangedNotification
     ::NSAccessibilitySelectedChildrenMovedNotification: AK.AccessibilitySelectedChildrenMovedNotification
@@ -2121,10 +2169,14 @@ ExternVars:
     ::NSAccessibilityDisclosureTriangleRole: AK.AccessibilityDisclosureTriangleRole
     ::NSAccessibilityGridRole: AK.AccessibilityGridRole
     ::NSAccessibilityRelevanceIndicatorRole: AK.AccessibilityRelevanceIndicatorRole
+    ::NSAccessibilityDateTimeAreaRole: AK.AccessibilityDateTimeAreaRole
     ::NSAccessibilityLevelIndicatorRole: AK.AccessibilityLevelIndicatorRole
     ::NSAccessibilityCellRole: AK.AccessibilityCellRole
     ::NSAccessibilityPopoverRole: AK.AccessibilityPopoverRole
     ::NSAccessibilityPageRole: AK.AccessibilityPageRole
+    ::NSAccessibilityHeadingRole: AK.AccessibilityHeadingRole
+    ::NSAccessibilityListMarkerRole: AK.AccessibilityListMarkerRole
+    ::NSAccessibilityWebAreaRole: AK.AccessibilityWebAreaRole
     ::NSAccessibilityLayoutAreaRole: AK.AccessibilityLayoutAreaRole
     ::NSAccessibilityLayoutItemRole: AK.AccessibilityLayoutItemRole
     ::NSAccessibilityHandleRole: AK.AccessibilityHandleRole
@@ -2160,9 +2212,66 @@ ExternVars:
     ::NSAccessibilityTabButtonSubrole: AK.AccessibilityTabButtonSubrole
     ::NSAccessibilityCollectionListSubrole: AK.AccessibilityCollectionListSubrole
     ::NSAccessibilitySectionListSubrole: AK.AccessibilitySectionListSubrole
+    ::NSAccessibilitySuggestionSubrole: AK.AccessibilitySuggestionSubrole
     ::NSAccessibilityUIElementsKey: AK.AccessibilityUIElementsKey
     ::NSAccessibilityPriorityKey: AK.AccessibilityPriorityKey
     ::NSAccessibilityAnnouncementKey: AK.AccessibilityAnnouncementKey
+    ::NSAccessibilityUIElementsForSearchPredicateParameterizedAttribute: AK.AccessibilityUIElementsForSearchPredicateParameterizedAttribute
+    ::NSAccessibilityResultsForSearchPredicateParameterizedAttribute: AK.AccessibilityResultsForSearchPredicateParameterizedAttribute
+    ::NSAccessibilitySearchIdentifiersKey: AK.AccessibilitySearchIdentifiersKey
+    ::NSAccessibilitySearchCurrentElementKey: AK.AccessibilitySearchCurrentElementKey
+    ::NSAccessibilitySearchCurrentRangeKey: AK.AccessibilitySearchCurrentRangeKey
+    ::NSAccessibilitySearchDirectionKey: AK.AccessibilitySearchDirectionKey
+    ::NSAccessibilitySearchResultsLimitKey: AK.AccessibilitySearchResultsLimitKey
+    ::NSAccessibilitySearchTextKey: AK.AccessibilitySearchTextKey
+    ::NSAccessibilitySearchDirectionNext: AK.AccessibilitySearchDirectionNext
+    ::NSAccessibilitySearchDirectionPrevious: AK.AccessibilitySearchDirectionPrevious
+    ::NSAccessibilitySearchResultElementKey: AK.AccessibilitySearchResultElementKey
+    ::NSAccessibilitySearchResultRangeKey: AK.AccessibilitySearchResultRangeKey
+    ::NSAccessibilitySearchResultDescriptionOverrideKey: AK.AccessibilitySearchResultDescriptionOverrideKey
+    ::NSAccessibilitySearchResultLoaderKey: AK.AccessibilitySearchResultLoaderKey
+    ::NSAccessibilityAnyTypeSearchKey: AK.AccessibilityAnyTypeSearchKey
+    ::NSAccessibilityArticleSearchKey: AK.AccessibilityArticleSearchKey
+    ::NSAccessibilityBlockquoteSameLevelSearchKey: AK.AccessibilityBlockquoteSameLevelSearchKey
+    ::NSAccessibilityBlockquoteSearchKey: AK.AccessibilityBlockquoteSearchKey
+    ::NSAccessibilityBoldFontSearchKey: AK.AccessibilityBoldFontSearchKey
+    ::NSAccessibilityButtonSearchKey: AK.AccessibilityButtonSearchKey
+    ::NSAccessibilityCheckBoxSearchKey: AK.AccessibilityCheckBoxSearchKey
+    ::NSAccessibilityControlSearchKey: AK.AccessibilityControlSearchKey
+    ::NSAccessibilityDifferentTypeSearchKey: AK.AccessibilityDifferentTypeSearchKey
+    ::NSAccessibilityFontChangeSearchKey: AK.AccessibilityFontChangeSearchKey
+    ::NSAccessibilityFontColorChangeSearchKey: AK.AccessibilityFontColorChangeSearchKey
+    ::NSAccessibilityFrameSearchKey: AK.AccessibilityFrameSearchKey
+    ::NSAccessibilityGraphicSearchKey: AK.AccessibilityGraphicSearchKey
+    ::NSAccessibilityHeadingLevel1SearchKey: AK.AccessibilityHeadingLevel1SearchKey
+    ::NSAccessibilityHeadingLevel2SearchKey: AK.AccessibilityHeadingLevel2SearchKey
+    ::NSAccessibilityHeadingLevel3SearchKey: AK.AccessibilityHeadingLevel3SearchKey
+    ::NSAccessibilityHeadingLevel4SearchKey: AK.AccessibilityHeadingLevel4SearchKey
+    ::NSAccessibilityHeadingLevel5SearchKey: AK.AccessibilityHeadingLevel5SearchKey
+    ::NSAccessibilityHeadingLevel6SearchKey: AK.AccessibilityHeadingLevel6SearchKey
+    ::NSAccessibilityHeadingSameLevelSearchKey: AK.AccessibilityHeadingSameLevelSearchKey
+    ::NSAccessibilityHeadingSearchKey: AK.AccessibilityHeadingSearchKey
+    ::NSAccessibilityItalicFontSearchKey: AK.AccessibilityItalicFontSearchKey
+    ::NSAccessibilityKeyboardFocusableSearchKey: AK.AccessibilityKeyboardFocusableSearchKey
+    ::NSAccessibilityLandmarkSearchKey: AK.AccessibilityLandmarkSearchKey
+    ::NSAccessibilityLinkSearchKey: AK.AccessibilityLinkSearchKey
+    ::NSAccessibilityListSearchKey: AK.AccessibilityListSearchKey
+    ::NSAccessibilityLiveRegionSearchKey: AK.AccessibilityLiveRegionSearchKey
+    ::NSAccessibilityMisspelledWordSearchKey: AK.AccessibilityMisspelledWordSearchKey
+    ::NSAccessibilityOutlineSearchKey: AK.AccessibilityOutlineSearchKey
+    ::NSAccessibilityPlainTextSearchKey: AK.AccessibilityPlainTextSearchKey
+    ::NSAccessibilityRadioGroupSearchKey: AK.AccessibilityRadioGroupSearchKey
+    ::NSAccessibilitySameTypeSearchKey: AK.AccessibilitySameTypeSearchKey
+    ::NSAccessibilityStaticTextSearchKey: AK.AccessibilityStaticTextSearchKey
+    ::NSAccessibilityStyleChangeSearchKey: AK.AccessibilityStyleChangeSearchKey
+    ::NSAccessibilityTableSameLevelSearchKey: AK.AccessibilityTableSameLevelSearchKey
+    ::NSAccessibilityTableSearchKey: AK.AccessibilityTableSearchKey
+    ::NSAccessibilityTextFieldSearchKey: AK.AccessibilityTextFieldSearchKey
+    ::NSAccessibilityTextStateChangeTypeKey: AK.AccessibilityTextStateChangeTypeKey
+    ::NSAccessibilityTextStateSyncKey: AK.AccessibilityTextStateSyncKey
+    ::NSAccessibilityUnderlineSearchKey: AK.AccessibilityUnderlineSearchKey
+    ::NSAccessibilityUnvisitedLinkSearchKey: AK.AccessibilityUnvisitedLinkSearchKey
+    ::NSAccessibilityVisitedLinkSearchKey: AK.AccessibilityVisitedLinkSearchKey
     ::NSAccessibilitySortButtonRole: AK.AccessibilitySortButtonRole
     ::NSWorkspaceDesktopImageScalingKey: AK.WorkspaceDesktopImageScalingKey
     ::NSWorkspaceDesktopImageAllowClippingKey: AK.WorkspaceDesktopImageAllowClippingKey
@@ -2520,6 +2629,8 @@ ExternVars:
     ::NSApplicationDidChangeScreenParametersNotification: AK.ApplicationDidChangeScreenParametersNotification
     ::NSApplicationProtectedDataWillBecomeUnavailableNotification: AK.ApplicationProtectedDataWillBecomeUnavailableNotification
     ::NSApplicationProtectedDataDidBecomeAvailableNotification: AK.ApplicationProtectedDataDidBecomeAvailableNotification
+    ::NSApplicationShouldBeginSuppressingHighDynamicRangeContentNotification: AK.ApplicationShouldBeginSuppressingHighDynamicRangeContentNotification
+    ::NSApplicationShouldEndSuppressingHighDynamicRangeContentNotification: AK.ApplicationShouldEndSuppressingHighDynamicRangeContentNotification
     ::NSApplicationLaunchIsDefaultLaunchKey: AK.ApplicationLaunchIsDefaultLaunchKey
     ::NSApplicationLaunchUserNotificationKey: AK.ApplicationLaunchUserNotificationKey
     ::NSApplicationLaunchRemoteNotificationKey: AK.ApplicationLaunchRemoteNotificationKey
@@ -3246,6 +3357,17 @@ ExternVars:
     ::NSCalendarIdentifierRepublicOfChina: AK.CalendarIdentifierRepublicOfChina
     ::NSCalendarIdentifierIslamicTabular: AK.CalendarIdentifierIslamicTabular
     ::NSCalendarIdentifierIslamicUmmAlQura: AK.CalendarIdentifierIslamicUmmAlQura
+    ::NSCalendarIdentifierBangla: AK.CalendarIdentifierBangla
+    ::NSCalendarIdentifierGujarati: AK.CalendarIdentifierGujarati
+    ::NSCalendarIdentifierKannada: AK.CalendarIdentifierKannada
+    ::NSCalendarIdentifierMalayalam: AK.CalendarIdentifierMalayalam
+    ::NSCalendarIdentifierMarathi: AK.CalendarIdentifierMarathi
+    ::NSCalendarIdentifierOdia: AK.CalendarIdentifierOdia
+    ::NSCalendarIdentifierTamil: AK.CalendarIdentifierTamil
+    ::NSCalendarIdentifierTelugu: AK.CalendarIdentifierTelugu
+    ::NSCalendarIdentifierVikram: AK.CalendarIdentifierVikram
+    ::NSCalendarIdentifierDangi: AK.CalendarIdentifierDangi
+    ::NSCalendarIdentifierVietnamese: AK.CalendarIdentifierVietnamese
     ::NSCalendarDayChangedNotification: AK.CalendarDayChangedNotification
     ::NSInflectionConceptsKey: AK.InflectionConceptsKey
     ::NSInlinePresentationIntentAttributeName: AK.InlinePresentationIntentAttributeName
@@ -3261,6 +3383,7 @@ ExternVars:
     ::NSInflectionReferentConceptAttributeName: AK.InflectionReferentConceptAttributeName
     ::NSInflectionAlternativeAttributeName: AK.InflectionAlternativeAttributeName
     ::NSLocalizedNumberFormatAttributeName: AK.LocalizedNumberFormatAttributeName
+    ::NSListItemDelimiterAttributeName: AK.ListItemDelimiterAttributeName
     ::NSPresentationIntentAttributeName: AK.PresentationIntentAttributeName
     ::NSCurrentLocaleDidChangeNotification: AK.CurrentLocaleDidChangeNotification
     ::NSLocaleIdentifier: AK.LocaleIdentifier
@@ -3506,6 +3629,8 @@ ExternVars:
     ::NSURLUbiquitousSharedItemRoleParticipant: AK.URLUbiquitousSharedItemRoleParticipant
     ::NSURLUbiquitousSharedItemPermissionsReadOnly: AK.URLUbiquitousSharedItemPermissionsReadOnly
     ::NSURLUbiquitousSharedItemPermissionsReadWrite: AK.URLUbiquitousSharedItemPermissionsReadWrite
+    ::NSURLUbiquitousItemSupportedSyncControlsKey: AK.URLUbiquitousItemSupportedSyncControlsKey
+    ::NSURLUbiquitousItemIsSyncPausedKey: AK.URLUbiquitousItemIsSyncPausedKey
     ::NSFileManagerUnmountDissentingProcessIdentifierErrorKey: AK.FileManagerUnmountDissentingProcessIdentifierErrorKey
     ::NSUbiquityIdentityDidChangeNotification: AK.UbiquityIdentityDidChangeNotification
     ::NSFileType: AK.FileType
@@ -4114,6 +4239,15 @@ ExternTypes:
     ::NSAccessibilityContainsProtectedContentAttribute: ^NS.String
     ::NSAccessibilityAlternateUIVisibleAttribute: ^NS.String
     ::NSAccessibilityRequiredAttribute: ^NS.String
+    ::NSAccessibilityAutoInteractableAttribute: ^NS.String
+    ::NSAccessibilityDateTimeComponentsAttribute: ^NS.String
+    ::NSAccessibilityEmbeddedImageDescriptionAttribute: ^NS.String
+    ::NSAccessibilityPathAttribute: ^NS.String
+    ::NSAccessibilityTextInputMarkedRangeAttribute: ^NS.String
+    ::NSAccessibilityBlockQuoteLevelAttribute: ^NS.String
+    ::NSAccessibilityHeadingLevelAttribute: ^NS.String
+    ::NSAccessibilityLanguageAttribute: ^NS.String
+    ::NSAccessibilityVisitedAttribute: ^NS.String
     ::NSAccessibilityTitleUIElementAttribute: ^NS.String
     ::NSAccessibilityServesAsTitleForUIElementsAttribute: ^NS.String
     ::NSAccessibilityLinkedUIElementsAttribute: ^NS.String
@@ -4147,6 +4281,11 @@ ExternTypes:
     ::NSAccessibilityLinkTextAttribute: ^NS.String
     ::NSAccessibilityAutocorrectedTextAttribute: ^NS.String
     ::NSAccessibilityTextAlignmentAttribute: ^NS.String
+    ::NSAccessibilityFontBoldAttribute: ^NS.String
+    ::NSAccessibilityFontItalicAttribute: ^NS.String
+    ::NSAccessibilityChildrenInNavigationOrderAttribute: ^NS.String
+    ::NSAccessibilityIndexForChildUIElementAttribute: ^NS.String
+    ::NSAccessibilityIndexForChildUIElementInNavigationOrderAttribute: ^NS.String
     ::NSAccessibilityListItemPrefixTextAttribute: ^NS.String
     ::NSAccessibilityListItemIndexTextAttribute: ^NS.String
     ::NSAccessibilityListItemLevelTextAttribute: ^NS.String
@@ -4155,6 +4294,7 @@ ExternTypes:
     ::NSAccessibilityLanguageTextAttribute: ^NS.String
     ::NSAccessibilityCustomTextAttribute: ^NS.String
     ::NSAccessibilityAnnotationTextAttribute: ^NS.String
+    ::NSAccessibilityTextCompletionAttribute: ^NS.String
     ::NSAccessibilityAnnotationLabel: ^NS.String
     ::NSAccessibilityAnnotationElement: ^NS.String
     ::NSAccessibilityAnnotationLocation: ^NS.String
@@ -4255,6 +4395,7 @@ ExternTypes:
     ::NSAccessibilityRaiseAction: ^NS.String
     ::NSAccessibilityShowMenuAction: ^NS.String
     ::NSAccessibilityDeleteAction: ^NS.String
+    ::NSAccessibilityScrollToVisibleAction: ^NS.String
     ::NSAccessibilityShowAlternateUIAction: ^NS.String
     ::NSAccessibilityShowDefaultUIAction: ^NS.String
     ::NSAccessibilityMainWindowChangedNotification: ^NS.String
@@ -4286,6 +4427,15 @@ ExternTypes:
     ::NSAccessibilitySelectedColumnsChangedNotification: ^NS.String
     ::NSAccessibilityRowExpandedNotification: ^NS.String
     ::NSAccessibilityRowCollapsedNotification: ^NS.String
+    ::NSAccessibilityAutocorrectionOccurredNotification: ^NS.String
+    ::NSAccessibilityTextInputMarkingSessionBeganNotification: ^NS.String
+    ::NSAccessibilityTextInputMarkingSessionEndedNotification: ^NS.String
+    ::NSAccessibilityDraggingSourceDragBeganNotification: ^NS.String
+    ::NSAccessibilityDraggingSourceDragEndedNotification: ^NS.String
+    ::NSAccessibilityDraggingDestinationDropAllowedNotification: ^NS.String
+    ::NSAccessibilityDraggingDestinationDropNotAllowedNotification: ^NS.String
+    ::NSAccessibilityDraggingDestinationDragAcceptedNotification: ^NS.String
+    ::NSAccessibilityDraggingDestinationDragNotAcceptedNotification: ^NS.String
     ::NSAccessibilitySelectedCellsChangedNotification: ^NS.String
     ::NSAccessibilityUnitsChangedNotification: ^NS.String
     ::NSAccessibilitySelectedChildrenMovedNotification: ^NS.String
@@ -4339,10 +4489,14 @@ ExternTypes:
     ::NSAccessibilityDisclosureTriangleRole: ^NS.String
     ::NSAccessibilityGridRole: ^NS.String
     ::NSAccessibilityRelevanceIndicatorRole: ^NS.String
+    ::NSAccessibilityDateTimeAreaRole: ^NS.String
     ::NSAccessibilityLevelIndicatorRole: ^NS.String
     ::NSAccessibilityCellRole: ^NS.String
     ::NSAccessibilityPopoverRole: ^NS.String
     ::NSAccessibilityPageRole: ^NS.String
+    ::NSAccessibilityHeadingRole: ^NS.String
+    ::NSAccessibilityListMarkerRole: ^NS.String
+    ::NSAccessibilityWebAreaRole: ^NS.String
     ::NSAccessibilityLayoutAreaRole: ^NS.String
     ::NSAccessibilityLayoutItemRole: ^NS.String
     ::NSAccessibilityHandleRole: ^NS.String
@@ -4378,9 +4532,66 @@ ExternTypes:
     ::NSAccessibilityTabButtonSubrole: ^NS.String
     ::NSAccessibilityCollectionListSubrole: ^NS.String
     ::NSAccessibilitySectionListSubrole: ^NS.String
+    ::NSAccessibilitySuggestionSubrole: ^NS.String
     ::NSAccessibilityUIElementsKey: ^NS.String
     ::NSAccessibilityPriorityKey: ^NS.String
     ::NSAccessibilityAnnouncementKey: ^NS.String
+    ::NSAccessibilityUIElementsForSearchPredicateParameterizedAttribute: ^NS.String
+    ::NSAccessibilityResultsForSearchPredicateParameterizedAttribute: ^NS.String
+    ::NSAccessibilitySearchIdentifiersKey: ^NS.String
+    ::NSAccessibilitySearchCurrentElementKey: ^NS.String
+    ::NSAccessibilitySearchCurrentRangeKey: ^NS.String
+    ::NSAccessibilitySearchDirectionKey: ^NS.String
+    ::NSAccessibilitySearchResultsLimitKey: ^NS.String
+    ::NSAccessibilitySearchTextKey: ^NS.String
+    ::NSAccessibilitySearchDirectionNext: ^NS.String
+    ::NSAccessibilitySearchDirectionPrevious: ^NS.String
+    ::NSAccessibilitySearchResultElementKey: ^NS.String
+    ::NSAccessibilitySearchResultRangeKey: ^NS.String
+    ::NSAccessibilitySearchResultDescriptionOverrideKey: ^NS.String
+    ::NSAccessibilitySearchResultLoaderKey: ^NS.String
+    ::NSAccessibilityAnyTypeSearchKey: ^NS.String
+    ::NSAccessibilityArticleSearchKey: ^NS.String
+    ::NSAccessibilityBlockquoteSameLevelSearchKey: ^NS.String
+    ::NSAccessibilityBlockquoteSearchKey: ^NS.String
+    ::NSAccessibilityBoldFontSearchKey: ^NS.String
+    ::NSAccessibilityButtonSearchKey: ^NS.String
+    ::NSAccessibilityCheckBoxSearchKey: ^NS.String
+    ::NSAccessibilityControlSearchKey: ^NS.String
+    ::NSAccessibilityDifferentTypeSearchKey: ^NS.String
+    ::NSAccessibilityFontChangeSearchKey: ^NS.String
+    ::NSAccessibilityFontColorChangeSearchKey: ^NS.String
+    ::NSAccessibilityFrameSearchKey: ^NS.String
+    ::NSAccessibilityGraphicSearchKey: ^NS.String
+    ::NSAccessibilityHeadingLevel1SearchKey: ^NS.String
+    ::NSAccessibilityHeadingLevel2SearchKey: ^NS.String
+    ::NSAccessibilityHeadingLevel3SearchKey: ^NS.String
+    ::NSAccessibilityHeadingLevel4SearchKey: ^NS.String
+    ::NSAccessibilityHeadingLevel5SearchKey: ^NS.String
+    ::NSAccessibilityHeadingLevel6SearchKey: ^NS.String
+    ::NSAccessibilityHeadingSameLevelSearchKey: ^NS.String
+    ::NSAccessibilityHeadingSearchKey: ^NS.String
+    ::NSAccessibilityItalicFontSearchKey: ^NS.String
+    ::NSAccessibilityKeyboardFocusableSearchKey: ^NS.String
+    ::NSAccessibilityLandmarkSearchKey: ^NS.String
+    ::NSAccessibilityLinkSearchKey: ^NS.String
+    ::NSAccessibilityListSearchKey: ^NS.String
+    ::NSAccessibilityLiveRegionSearchKey: ^NS.String
+    ::NSAccessibilityMisspelledWordSearchKey: ^NS.String
+    ::NSAccessibilityOutlineSearchKey: ^NS.String
+    ::NSAccessibilityPlainTextSearchKey: ^NS.String
+    ::NSAccessibilityRadioGroupSearchKey: ^NS.String
+    ::NSAccessibilitySameTypeSearchKey: ^NS.String
+    ::NSAccessibilityStaticTextSearchKey: ^NS.String
+    ::NSAccessibilityStyleChangeSearchKey: ^NS.String
+    ::NSAccessibilityTableSameLevelSearchKey: ^NS.String
+    ::NSAccessibilityTableSearchKey: ^NS.String
+    ::NSAccessibilityTextFieldSearchKey: ^NS.String
+    ::NSAccessibilityTextStateChangeTypeKey: ^NS.String
+    ::NSAccessibilityTextStateSyncKey: ^NS.String
+    ::NSAccessibilityUnderlineSearchKey: ^NS.String
+    ::NSAccessibilityUnvisitedLinkSearchKey: ^NS.String
+    ::NSAccessibilityVisitedLinkSearchKey: ^NS.String
     ::NSAccessibilitySortButtonRole: ^NS.String
     ::NSWorkspaceDesktopImageScalingKey: ^NS.String
     ::NSWorkspaceDesktopImageAllowClippingKey: ^NS.String
@@ -4738,6 +4949,8 @@ ExternTypes:
     ::NSApplicationDidChangeScreenParametersNotification: ^NS.String
     ::NSApplicationProtectedDataWillBecomeUnavailableNotification: ^NS.String
     ::NSApplicationProtectedDataDidBecomeAvailableNotification: ^NS.String
+    ::NSApplicationShouldBeginSuppressingHighDynamicRangeContentNotification: ^NS.String
+    ::NSApplicationShouldEndSuppressingHighDynamicRangeContentNotification: ^NS.String
     ::NSApplicationLaunchIsDefaultLaunchKey: ^NS.String
     ::NSApplicationLaunchUserNotificationKey: ^NS.String
     ::NSApplicationLaunchRemoteNotificationKey: ^NS.String
@@ -5431,6 +5644,10 @@ ConstVars:
     ::NSPasteboardContentsNotAvailableError: AK.PasteboardContentsNotAvailableError
     ::NSPasteboardErrorMinimum: AK.PasteboardErrorMinimum
     ::NSPasteboardErrorMaximum: AK.PasteboardErrorMaximum
+    ::NSAccessibilityHourMinuteDateTimeComponentsFlag: AK.AccessibilityHourMinuteDateTimeComponentsFlag
+    ::NSAccessibilityHourMinuteSecondDateTimeComponentsFlag: AK.AccessibilityHourMinuteSecondDateTimeComponentsFlag
+    ::NSAccessibilityYearMonthDateTimeComponentsFlag: AK.AccessibilityYearMonthDateTimeComponentsFlag
+    ::NSAccessibilityYearMonthDayDateTimeComponentsFlag: AK.AccessibilityYearMonthDayDateTimeComponentsFlag
     ::NSUpArrowFunctionKey: AK.UpArrowFunctionKey
     ::NSDownArrowFunctionKey: AK.DownArrowFunctionKey
     ::NSLeftArrowFunctionKey: AK.LeftArrowFunctionKey

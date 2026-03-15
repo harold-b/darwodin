@@ -41,6 +41,9 @@ foreign lib {
     @(objc_type=ResponderStandardEditActions, objc_selector="pasteAndSearch:", objc_name="pasteAndSearch")
     ResponderStandardEditActions_pasteAndSearch :: proc(self: ^ResponderStandardEditActions, sender: id) ---
 
+    @(objc_type=ResponderStandardEditActions, objc_selector="newFromPasteboard:", objc_name="newFromPasteboard")
+    ResponderStandardEditActions_newFromPasteboard :: proc(self: ^ResponderStandardEditActions, sender: id) ---
+
     @(objc_type=ResponderStandardEditActions, objc_selector="select:", objc_name="select")
     ResponderStandardEditActions_select :: proc(self: ^ResponderStandardEditActions, sender: id) ---
 
@@ -70,6 +73,18 @@ foreign lib {
 
     @(objc_type=ResponderStandardEditActions, objc_selector="decreaseSize:", objc_name="decreaseSize")
     ResponderStandardEditActions_decreaseSize :: proc(self: ^ResponderStandardEditActions, sender: id) ---
+
+    @(objc_type=ResponderStandardEditActions, objc_selector="alignLeft:", objc_name="alignLeft")
+    ResponderStandardEditActions_alignLeft :: proc(self: ^ResponderStandardEditActions, sender: id) ---
+
+    @(objc_type=ResponderStandardEditActions, objc_selector="alignCenter:", objc_name="alignCenter")
+    ResponderStandardEditActions_alignCenter :: proc(self: ^ResponderStandardEditActions, sender: id) ---
+
+    @(objc_type=ResponderStandardEditActions, objc_selector="alignJustified:", objc_name="alignJustified")
+    ResponderStandardEditActions_alignJustified :: proc(self: ^ResponderStandardEditActions, sender: id) ---
+
+    @(objc_type=ResponderStandardEditActions, objc_selector="alignRight:", objc_name="alignRight")
+    ResponderStandardEditActions_alignRight :: proc(self: ^ResponderStandardEditActions, sender: id) ---
 
     @(objc_type=ResponderStandardEditActions, objc_selector="find:", objc_name="find")
     ResponderStandardEditActions_find :: proc(self: ^ResponderStandardEditActions, sender: id) ---
@@ -103,6 +118,15 @@ foreign lib {
 
     @(objc_type=ResponderStandardEditActions, objc_selector="export:", objc_name="export")
     ResponderStandardEditActions_export :: proc(self: ^ResponderStandardEditActions, sender: id) ---
+
+    @(objc_type=ResponderStandardEditActions, objc_selector="toggleSidebar:", objc_name="toggleSidebar")
+    ResponderStandardEditActions_toggleSidebar :: proc(self: ^ResponderStandardEditActions, sender: id) ---
+
+    @(objc_type=ResponderStandardEditActions, objc_selector="toggleInspector:", objc_name="toggleInspector")
+    ResponderStandardEditActions_toggleInspector :: proc(self: ^ResponderStandardEditActions, sender: id) ---
+
+    @(objc_type=ResponderStandardEditActions, objc_selector="performClose:", objc_name="performClose")
+    ResponderStandardEditActions_performClose :: proc(self: ^ResponderStandardEditActions, sender: id) ---
 
     @(objc_type=ResponderStandardEditActions, objc_selector="showWritingTools:", objc_name="showWritingTools")
     ResponderStandardEditActions_showWritingTools :: proc(self: ^ResponderStandardEditActions, sender: id) ---

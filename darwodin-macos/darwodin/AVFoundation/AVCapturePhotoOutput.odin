@@ -253,6 +253,15 @@ foreign lib {
     @(objc_type=CapturePhotoOutput, objc_selector="isShutterSoundSuppressionSupported", objc_name="isShutterSoundSuppressionSupported")
     CapturePhotoOutput_isShutterSoundSuppressionSupported :: proc(self: ^CapturePhotoOutput) -> bool ---
 
+    @(objc_type=CapturePhotoOutput, objc_selector="isCameraSensorOrientationCompensationSupported", objc_name="isCameraSensorOrientationCompensationSupported")
+    CapturePhotoOutput_isCameraSensorOrientationCompensationSupported :: proc(self: ^CapturePhotoOutput) -> bool ---
+
+    @(objc_type=CapturePhotoOutput, objc_selector="isCameraSensorOrientationCompensationEnabled", objc_name="isCameraSensorOrientationCompensationEnabled")
+    CapturePhotoOutput_isCameraSensorOrientationCompensationEnabled :: proc(self: ^CapturePhotoOutput) -> bool ---
+
+    @(objc_type=CapturePhotoOutput, objc_selector="setCameraSensorOrientationCompensationEnabled:", objc_name="setCameraSensorOrientationCompensationEnabled")
+    CapturePhotoOutput_setCameraSensorOrientationCompensationEnabled :: proc(self: ^CapturePhotoOutput, cameraSensorOrientationCompensationEnabled: bool) ---
+
     @(objc_type=CapturePhotoOutput, objc_selector="isDepthDataDeliverySupported", objc_name="isDepthDataDeliverySupported")
     CapturePhotoOutput_isDepthDataDeliverySupported :: proc(self: ^CapturePhotoOutput) -> bool ---
 

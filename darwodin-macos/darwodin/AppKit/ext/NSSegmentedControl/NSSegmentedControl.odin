@@ -72,6 +72,8 @@ VTable :: struct {
     segmentDistribution: proc(self: ^AK.SegmentedControl) -> AK.SegmentDistribution,
     setSegmentDistribution: proc(self: ^AK.SegmentedControl, segmentDistribution: AK.SegmentDistribution),
     activeCompressionOptions: proc(self: ^AK.SegmentedControl) -> ^AK.UserInterfaceCompressionOptions,
+    borderShape: proc(self: ^AK.SegmentedControl) -> AK.ControlBorderShape,
+    setBorderShape: proc(self: ^AK.SegmentedControl, borderShape: AK.ControlBorderShape),
     segmentedControlWithLabels: proc(labels: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype,
     segmentedControlWithImages: proc(images: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype,
 }
@@ -502,6 +504,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("activeCompressionOptions"), auto_cast activeCompressionOptions, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.borderShape != nil {
+        borderShape :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> AK.ControlBorderShape {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).borderShape(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("borderShape"), auto_cast borderShape, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBorderShape != nil {
+        setBorderShape :: proc "c" (self: ^AK.SegmentedControl, _: SEL, borderShape: AK.ControlBorderShape) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBorderShape(self, borderShape)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderShape:"), auto_cast setBorderShape, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.segmentedControlWithLabels != nil {
         segmentedControlWithLabels :: proc "c" (self: Class, _: SEL, labels: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype {

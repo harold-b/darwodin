@@ -90,6 +90,15 @@ foreign lib {
     @(objc_type=TraitCollection, objc_selector="traitCollectionWithListEnvironment:", objc_name="traitCollectionWithListEnvironment", objc_is_class_method=true)
     TraitCollection_traitCollectionWithListEnvironment :: proc(listEnvironment: ListEnvironment) -> ^TraitCollection ---
 
+    @(objc_type=TraitCollection, objc_selector="traitCollectionWithTabAccessoryEnvironment:", objc_name="traitCollectionWithTabAccessoryEnvironment", objc_is_class_method=true)
+    TraitCollection_traitCollectionWithTabAccessoryEnvironment :: proc(tabAccessoryEnvironment: TabAccessoryEnvironment) -> ^TraitCollection ---
+
+    @(objc_type=TraitCollection, objc_selector="traitCollectionWithHDRHeadroomUsageLimit:", objc_name="traitCollectionWithHDRHeadroomUsageLimit", objc_is_class_method=true)
+    TraitCollection_traitCollectionWithHDRHeadroomUsageLimit :: proc(hdrHeadroomUsageLimit: HDRHeadroomUsageLimit) -> ^TraitCollection ---
+
+    @(objc_type=TraitCollection, objc_selector="traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection:", objc_name="traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection", objc_is_class_method=true)
+    TraitCollection_traitCollectionWithResolvesNaturalAlignmentWithBaseWritingDirection :: proc(resolvesNaturalAlignmentWithBaseWritingDirection: bool) -> ^TraitCollection ---
+
     @(objc_type=TraitCollection, objc_selector="userInterfaceIdiom", objc_name="userInterfaceIdiom")
     TraitCollection_userInterfaceIdiom :: proc(self: ^TraitCollection) -> UserInterfaceIdiom ---
 
@@ -143,6 +152,18 @@ foreign lib {
 
     @(objc_type=TraitCollection, objc_selector="listEnvironment", objc_name="listEnvironment")
     TraitCollection_listEnvironment :: proc(self: ^TraitCollection) -> ListEnvironment ---
+
+    @(objc_type=TraitCollection, objc_selector="tabAccessoryEnvironment", objc_name="tabAccessoryEnvironment")
+    TraitCollection_tabAccessoryEnvironment :: proc(self: ^TraitCollection) -> TabAccessoryEnvironment ---
+
+    @(objc_type=TraitCollection, objc_selector="splitViewControllerLayoutEnvironment", objc_name="splitViewControllerLayoutEnvironment")
+    TraitCollection_splitViewControllerLayoutEnvironment :: proc(self: ^TraitCollection) -> SplitViewControllerLayoutEnvironment ---
+
+    @(objc_type=TraitCollection, objc_selector="hdrHeadroomUsageLimit", objc_name="hdrHeadroomUsageLimit")
+    TraitCollection_hdrHeadroomUsageLimit :: proc(self: ^TraitCollection) -> HDRHeadroomUsageLimit ---
+
+    @(objc_type=TraitCollection, objc_selector="resolvesNaturalAlignmentWithBaseWritingDirection", objc_name="resolvesNaturalAlignmentWithBaseWritingDirection")
+    TraitCollection_resolvesNaturalAlignmentWithBaseWritingDirection :: proc(self: ^TraitCollection) -> bool ---
 
     @(objc_type=TraitCollection, objc_selector="traitCollectionWithTraits:", objc_name="traitCollectionWithTraits", objc_is_class_method=true)
     TraitCollection_traitCollectionWithTraits :: proc(mutations: TraitMutations) -> ^TraitCollection ---

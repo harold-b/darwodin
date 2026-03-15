@@ -24,6 +24,8 @@ Enums:
     GKGameCenterViewControllerState: GK.GameCenterViewControllerState
     GKAccessPointLocation: GK.AccessPointLocation
     GKChallengeState: GK.ChallengeState
+    GKGameActivityState: GK.GameActivityState
+    GKGameActivityPlayStyle: GK.GameActivityPlayStyle
     GKConnectionState: GK.ConnectionState
     GKTransportType: GK.TransportType
     GKGameSessionErrorCode: GK.GameSessionErrorCode
@@ -114,6 +116,7 @@ ObjCClasses:
     GKAchievement: GK.Achievement
     GKDialogController: GK.DialogController
     GKGameCenterViewController: GK.GameCenterViewController
+    GKGameActivity: GK.GameActivity
     GKAccessPoint: GK.AccessPoint
     GKAchievementDescription: GK.AchievementDescription
     GKAchievementViewController: GK.AchievementViewController
@@ -121,20 +124,22 @@ ObjCClasses:
     GKChallenge: GK.Challenge
     GKScoreChallenge: GK.ScoreChallenge
     GKAchievementChallenge: GK.AchievementChallenge
+    GKChallengeDefinition: GK.ChallengeDefinition
     GKChallengeEventHandler: GK.ChallengeEventHandler
     GKChallengesViewController: GK.ChallengesViewController
     GKCloudPlayer: GK.CloudPlayer
     GKFriendRequestComposeViewController: GK.FriendRequestComposeViewController
+    GKGameActivityDefinition: GK.GameActivityDefinition
+    GKMatch: GK.Match
+    GKMatchRequest: GK.MatchRequest
+    GKTurnBasedMatch: GK.TurnBasedMatch
     GKGameSession: GK.GameSession
     GKLeaderboardSet: GK.LeaderboardSet
     GKLeaderboardViewController: GK.LeaderboardViewController
-    GKMatchRequest: GK.MatchRequest
-    GKTurnBasedMatch: GK.TurnBasedMatch
     GKTurnBasedExchange: GK.TurnBasedExchange
     GKTurnBasedExchangeReply: GK.TurnBasedExchangeReply
     GKTurnBasedParticipant: GK.TurnBasedParticipant
     GKTurnBasedEventHandler: GK.TurnBasedEventHandler
-    GKMatch: GK.Match
     GKInvite: GK.Invite
     GKMatchedPlayers: GK.MatchedPlayers
     GKMatchmaker: GK.Matchmaker
@@ -162,13 +167,13 @@ ObjCProtocols:
     GKChallengesViewControllerDelegate: GK.ChallengesViewControllerDelegate
     GKChallengeListener: GK.ChallengeListener
     GKFriendRequestComposeViewControllerDelegate: GK.FriendRequestComposeViewControllerDelegate
+    GKGameActivityListener: GK.GameActivityListener
     GKGameSessionEventListener: GK.GameSessionEventListener
     GKLeaderboardViewControllerDelegate: GK.LeaderboardViewControllerDelegate
     GKTurnBasedEventListener: GK.TurnBasedEventListener
     GKTurnBasedEventHandlerDelegate: GK.TurnBasedEventHandlerDelegate
     GKInviteEventListener: GK.InviteEventListener
     GKSavedGameListener: GK.SavedGameListener
-    GKGameActivityListener: GK.GameActivityListener
     GKLocalPlayerListener: GK.LocalPlayerListener
     GKMatchDelegate: GK.MatchDelegate
     GKMatchmakerViewControllerDelegate: GK.MatchmakerViewControllerDelegate

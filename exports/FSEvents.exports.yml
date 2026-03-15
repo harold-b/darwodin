@@ -658,6 +658,7 @@ ConstVars:
     ::kFSEventStreamCreateFlagUseExtendedData: FS.EventStreamCreateFlagUseExtendedData
     ::kFSEventStreamCreateFlagFullHistory: FS.EventStreamCreateFlagFullHistory
     ::kFSEventStreamCreateWithDocID: FS.EventStreamCreateWithDocID
+    ::kFSEventStreamCreateDeviceState: FS.EventStreamCreateDeviceState
     ::kFSEventStreamEventFlagNone: FS.EventStreamEventFlagNone
     ::kFSEventStreamEventFlagMustScanSubDirs: FS.EventStreamEventFlagMustScanSubDirs
     ::kFSEventStreamEventFlagUserDropped: FS.EventStreamEventFlagUserDropped

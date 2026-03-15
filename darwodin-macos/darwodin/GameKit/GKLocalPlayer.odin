@@ -24,12 +24,6 @@ foreign lib {
     @(objc_type=LocalPlayer, objc_selector="loadChallengableFriendsWithCompletionHandler:", objc_name="loadChallengableFriendsWithCompletionHandler")
     LocalPlayer_loadChallengableFriendsWithCompletionHandler :: proc(self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (challengableFriends: ^NS.Array, error: ^NS.Error))) ---
 
-    @(objc_type=LocalPlayer, objc_selector="setDefaultLeaderboardIdentifier:completionHandler:", objc_name="setDefaultLeaderboardIdentifier")
-    LocalPlayer_setDefaultLeaderboardIdentifier :: proc(self: ^LocalPlayer, leaderboardIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
-
-    @(objc_type=LocalPlayer, objc_selector="loadDefaultLeaderboardIdentifierWithCompletionHandler:", objc_name="loadDefaultLeaderboardIdentifierWithCompletionHandler")
-    LocalPlayer_loadDefaultLeaderboardIdentifierWithCompletionHandler :: proc(self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (leaderboardIdentifier: ^NS.String, error: ^NS.Error))) ---
-
     @(objc_type=LocalPlayer, objc_selector="fetchItemsForIdentityVerificationSignature:", objc_name="fetchItemsForIdentityVerificationSignature")
     LocalPlayer_fetchItemsForIdentityVerificationSignature :: proc(self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (publicKeyURL: ^NS.URL, signature: ^NS.Data, salt: ^NS.Data, timestamp: cffi.uint64_t, error: ^NS.Error))) ---
 
@@ -74,6 +68,12 @@ foreign lib {
 
     @(objc_type=LocalPlayer, objc_selector="generateIdentityVerificationSignatureWithCompletionHandler:", objc_name="generateIdentityVerificationSignatureWithCompletionHandler")
     LocalPlayer_generateIdentityVerificationSignatureWithCompletionHandler :: proc(self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (publicKeyUrl: ^NS.URL, signature: ^NS.Data, salt: ^NS.Data, timestamp: cffi.uint64_t, error: ^NS.Error))) ---
+
+    @(objc_type=LocalPlayer, objc_selector="loadDefaultLeaderboardIdentifierWithCompletionHandler:", objc_name="loadDefaultLeaderboardIdentifierWithCompletionHandler")
+    LocalPlayer_loadDefaultLeaderboardIdentifierWithCompletionHandler :: proc(self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (leaderboardIdentifier: ^NS.String, error: ^NS.Error))) ---
+
+    @(objc_type=LocalPlayer, objc_selector="setDefaultLeaderboardIdentifier:completionHandler:", objc_name="setDefaultLeaderboardIdentifier")
+    LocalPlayer_setDefaultLeaderboardIdentifier :: proc(self: ^LocalPlayer, leaderboardIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
 
     @(objc_type=LocalPlayer, objc_selector="loadFriendsWithCompletionHandler:", objc_name="loadFriendsWithCompletionHandler")
     LocalPlayer_loadFriendsWithCompletionHandler :: proc(self: ^LocalPlayer, completionHandler: ^Objc_Block(proc "c" (friendIDs: ^NS.Array, error: ^NS.Error))) ---

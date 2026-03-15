@@ -41,6 +41,9 @@ foreign lib {
     @(objc_type=TextFieldDelegate, objc_selector="textField:shouldChangeCharactersInRange:replacementString:", objc_name="textField_shouldChangeCharactersInRange_replacementString")
     TextFieldDelegate_textField_shouldChangeCharactersInRange_replacementString :: proc(self: ^TextFieldDelegate, textField: ^TextField, range: NS._NSRange, string: ^NS.String) -> bool ---
 
+    @(objc_type=TextFieldDelegate, objc_selector="textField:shouldChangeCharactersInRanges:replacementString:", objc_name="textField_shouldChangeCharactersInRanges_replacementString")
+    TextFieldDelegate_textField_shouldChangeCharactersInRanges_replacementString :: proc(self: ^TextFieldDelegate, textField: ^TextField, ranges: ^NS.Array, string: ^NS.String) -> bool ---
+
     @(objc_type=TextFieldDelegate, objc_selector="textFieldDidChangeSelection:", objc_name="textFieldDidChangeSelection")
     TextFieldDelegate_textFieldDidChangeSelection :: proc(self: ^TextFieldDelegate, textField: ^TextField) ---
 
@@ -52,6 +55,9 @@ foreign lib {
 
     @(objc_type=TextFieldDelegate, objc_selector="textField:editMenuForCharactersInRange:suggestedActions:", objc_name="textField_editMenuForCharactersInRange_suggestedActions")
     TextFieldDelegate_textField_editMenuForCharactersInRange_suggestedActions :: proc(self: ^TextFieldDelegate, textField: ^TextField, range: NS._NSRange, suggestedActions: ^NS.Array) -> ^Menu ---
+
+    @(objc_type=TextFieldDelegate, objc_selector="textField:editMenuForCharactersInRanges:suggestedActions:", objc_name="textField_editMenuForCharactersInRanges_suggestedActions")
+    TextFieldDelegate_textField_editMenuForCharactersInRanges_suggestedActions :: proc(self: ^TextFieldDelegate, textField: ^TextField, ranges: ^NS.Array, suggestedActions: ^NS.Array) -> ^Menu ---
 
     @(objc_type=TextFieldDelegate, objc_selector="textField:willPresentEditMenuWithAnimator:", objc_name="textField_willPresentEditMenuWithAnimator")
     TextFieldDelegate_textField_willPresentEditMenuWithAnimator :: proc(self: ^TextFieldDelegate, textField: ^TextField, animator: ^EditMenuInteractionAnimating) ---

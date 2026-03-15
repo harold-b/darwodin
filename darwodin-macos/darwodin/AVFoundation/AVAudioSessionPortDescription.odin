@@ -51,4 +51,7 @@ foreign lib {
 
     @(objc_type=AudioSessionPortDescription, objc_selector="preferredDataSource", objc_name="preferredDataSource")
     AudioSessionPortDescription_preferredDataSource :: proc(self: ^AudioSessionPortDescription) -> ^AudioSessionDataSourceDescription ---
+
+    @(objc_type=AudioSessionPortDescription, objc_selector="bluetoothMicrophoneExtension", objc_name="bluetoothMicrophoneExtension")
+    AudioSessionPortDescription_bluetoothMicrophoneExtension :: proc(self: ^AudioSessionPortDescription) -> ^AudioSessionPortExtensionBluetoothMicrophone ---
 }

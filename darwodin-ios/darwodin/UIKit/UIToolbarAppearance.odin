@@ -27,6 +27,12 @@ foreign lib {
     @(objc_type=ToolbarAppearance, objc_selector="setButtonAppearance:", objc_name="setButtonAppearance")
     ToolbarAppearance_setButtonAppearance :: proc(self: ^ToolbarAppearance, buttonAppearance: ^BarButtonItemAppearance) ---
 
+    @(objc_type=ToolbarAppearance, objc_selector="prominentButtonAppearance", objc_name="prominentButtonAppearance")
+    ToolbarAppearance_prominentButtonAppearance :: proc(self: ^ToolbarAppearance) -> ^BarButtonItemAppearance ---
+
+    @(objc_type=ToolbarAppearance, objc_selector="setProminentButtonAppearance:", objc_name="setProminentButtonAppearance")
+    ToolbarAppearance_setProminentButtonAppearance :: proc(self: ^ToolbarAppearance, prominentButtonAppearance: ^BarButtonItemAppearance) ---
+
     @(objc_type=ToolbarAppearance, objc_selector="doneButtonAppearance", objc_name="doneButtonAppearance")
     ToolbarAppearance_doneButtonAppearance :: proc(self: ^ToolbarAppearance) -> ^BarButtonItemAppearance ---
 

@@ -42,6 +42,8 @@ VTable :: struct {
     setAllowsExpensiveNetworkAccess: proc(self: ^NS.MutableURLRequest, allowsExpensiveNetworkAccess: bool),
     allowsConstrainedNetworkAccess: proc(self: ^NS.MutableURLRequest) -> bool,
     setAllowsConstrainedNetworkAccess: proc(self: ^NS.MutableURLRequest, allowsConstrainedNetworkAccess: bool),
+    allowsUltraConstrainedNetworkAccess: proc(self: ^NS.MutableURLRequest) -> bool,
+    setAllowsUltraConstrainedNetworkAccess: proc(self: ^NS.MutableURLRequest, allowsUltraConstrainedNetworkAccess: bool),
     assumesHTTP3Capable: proc(self: ^NS.MutableURLRequest) -> bool,
     setAssumesHTTP3Capable: proc(self: ^NS.MutableURLRequest, assumesHTTP3Capable: bool),
     attribution: proc(self: ^NS.MutableURLRequest) -> NS.URLRequestAttribution,
@@ -234,6 +236,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsConstrainedNetworkAccess:"), auto_cast setAllowsConstrainedNetworkAccess, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.allowsUltraConstrainedNetworkAccess != nil {
+        allowsUltraConstrainedNetworkAccess :: proc "c" (self: ^NS.MutableURLRequest, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).allowsUltraConstrainedNetworkAccess(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowsUltraConstrainedNetworkAccess"), auto_cast allowsUltraConstrainedNetworkAccess, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAllowsUltraConstrainedNetworkAccess != nil {
+        setAllowsUltraConstrainedNetworkAccess :: proc "c" (self: ^NS.MutableURLRequest, _: SEL, allowsUltraConstrainedNetworkAccess: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAllowsUltraConstrainedNetworkAccess(self, allowsUltraConstrainedNetworkAccess)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsUltraConstrainedNetworkAccess:"), auto_cast setAllowsUltraConstrainedNetworkAccess, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.assumesHTTP3Capable != nil {
         assumesHTTP3Capable :: proc "c" (self: ^NS.MutableURLRequest, _: SEL) -> bool {

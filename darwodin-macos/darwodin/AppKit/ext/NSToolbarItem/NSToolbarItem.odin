@@ -58,6 +58,10 @@ VTable :: struct {
     setTitle: proc(self: ^AK.ToolbarItem, title: ^NS.String),
     isBordered: proc(self: ^AK.ToolbarItem) -> bool,
     setBordered: proc(self: ^AK.ToolbarItem, bordered: bool),
+    backgroundTintColor: proc(self: ^AK.ToolbarItem) -> ^AK.Color,
+    setBackgroundTintColor: proc(self: ^AK.ToolbarItem, backgroundTintColor: ^AK.Color),
+    style: proc(self: ^AK.ToolbarItem) -> AK.ToolbarItemStyle,
+    setStyle: proc(self: ^AK.ToolbarItem, style: AK.ToolbarItemStyle),
     isNavigational: proc(self: ^AK.ToolbarItem) -> bool,
     setNavigational: proc(self: ^AK.ToolbarItem, navigational: bool),
     view: proc(self: ^AK.ToolbarItem) -> ^AK.View,
@@ -71,6 +75,8 @@ VTable :: struct {
     setMaxSize: proc(self: ^AK.ToolbarItem, maxSize: NS.Size),
     visibilityPriority: proc(self: ^AK.ToolbarItem) -> AK.ToolbarItemVisibilityPriority,
     setVisibilityPriority: proc(self: ^AK.ToolbarItem, visibilityPriority: AK.ToolbarItemVisibilityPriority),
+    badge: proc(self: ^AK.ToolbarItem) -> ^AK.ItemBadge,
+    setBadge: proc(self: ^AK.ToolbarItem, badge: ^AK.ItemBadge),
     autovalidates: proc(self: ^AK.ToolbarItem) -> bool,
     setAutovalidates: proc(self: ^AK.ToolbarItem, autovalidates: bool),
     allowsDuplicatesInToolbar: proc(self: ^AK.ToolbarItem) -> bool,
@@ -363,6 +369,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBordered:"), auto_cast setBordered, "v@:B") do panic("Failed to register objC method.")
     }
+    if vt.backgroundTintColor != nil {
+        backgroundTintColor :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^AK.Color {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).backgroundTintColor(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundTintColor"), auto_cast backgroundTintColor, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBackgroundTintColor != nil {
+        setBackgroundTintColor :: proc "c" (self: ^AK.ToolbarItem, _: SEL, backgroundTintColor: ^AK.Color) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBackgroundTintColor(self, backgroundTintColor)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundTintColor:"), auto_cast setBackgroundTintColor, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.style != nil {
+        style :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> AK.ToolbarItemStyle {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).style(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("style"), auto_cast style, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setStyle != nil {
+        setStyle :: proc "c" (self: ^AK.ToolbarItem, _: SEL, style: AK.ToolbarItemStyle) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setStyle(self, style)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setStyle:"), auto_cast setStyle, "v@:l") do panic("Failed to register objC method.")
+    }
     if vt.isNavigational != nil {
         isNavigational :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> bool {
 
@@ -492,6 +538,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVisibilityPriority:"), auto_cast setVisibilityPriority, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.badge != nil {
+        badge :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^AK.ItemBadge {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).badge(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("badge"), auto_cast badge, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBadge != nil {
+        setBadge :: proc "c" (self: ^AK.ToolbarItem, _: SEL, badge: ^AK.ItemBadge) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBadge(self, badge)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBadge:"), auto_cast setBadge, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.autovalidates != nil {
         autovalidates :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> bool {

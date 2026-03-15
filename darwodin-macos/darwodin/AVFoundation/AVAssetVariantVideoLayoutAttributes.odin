@@ -30,4 +30,7 @@ foreign lib {
 
     @(objc_type=AssetVariantVideoLayoutAttributes, objc_selector="stereoViewComponents", objc_name="stereoViewComponents")
     AssetVariantVideoLayoutAttributes_stereoViewComponents :: proc(self: ^AssetVariantVideoLayoutAttributes) -> CM.StereoViewComponents ---
+
+    @(objc_type=AssetVariantVideoLayoutAttributes, objc_selector="projectionType", objc_name="projectionType")
+    AssetVariantVideoLayoutAttributes_projectionType :: proc(self: ^AssetVariantVideoLayoutAttributes) -> CM.ProjectionType ---
 }

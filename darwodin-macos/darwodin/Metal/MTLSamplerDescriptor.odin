@@ -71,6 +71,12 @@ foreign lib {
     @(objc_type=SamplerDescriptor, objc_selector="setBorderColor:", objc_name="setBorderColor")
     SamplerDescriptor_setBorderColor :: proc(self: ^SamplerDescriptor, borderColor: SamplerBorderColor) ---
 
+    @(objc_type=SamplerDescriptor, objc_selector="reductionMode", objc_name="reductionMode")
+    SamplerDescriptor_reductionMode :: proc(self: ^SamplerDescriptor) -> SamplerReductionMode ---
+
+    @(objc_type=SamplerDescriptor, objc_selector="setReductionMode:", objc_name="setReductionMode")
+    SamplerDescriptor_setReductionMode :: proc(self: ^SamplerDescriptor, reductionMode: SamplerReductionMode) ---
+
     @(objc_type=SamplerDescriptor, objc_selector="normalizedCoordinates", objc_name="normalizedCoordinates")
     SamplerDescriptor_normalizedCoordinates :: proc(self: ^SamplerDescriptor) -> bool ---
 
@@ -94,6 +100,12 @@ foreign lib {
 
     @(objc_type=SamplerDescriptor, objc_selector="setLodAverage:", objc_name="setLodAverage")
     SamplerDescriptor_setLodAverage :: proc(self: ^SamplerDescriptor, lodAverage: bool) ---
+
+    @(objc_type=SamplerDescriptor, objc_selector="lodBias", objc_name="lodBias")
+    SamplerDescriptor_lodBias :: proc(self: ^SamplerDescriptor) -> cffi.float ---
+
+    @(objc_type=SamplerDescriptor, objc_selector="setLodBias:", objc_name="setLodBias")
+    SamplerDescriptor_setLodBias :: proc(self: ^SamplerDescriptor, lodBias: cffi.float) ---
 
     @(objc_type=SamplerDescriptor, objc_selector="compareFunction", objc_name="compareFunction")
     SamplerDescriptor_compareFunction :: proc(self: ^SamplerDescriptor) -> CompareFunction ---

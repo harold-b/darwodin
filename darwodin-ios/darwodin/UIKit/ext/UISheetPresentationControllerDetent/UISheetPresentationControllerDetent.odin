@@ -35,6 +35,8 @@ VTable :: struct {
     customDetentWithIdentifier: proc(identifier: ^NS.String, resolver: ^Objc_Block(proc "c" (_context: ^UI.SheetPresentationControllerDetentResolutionContext) -> CG.Float)) -> instancetype,
     resolvedValueInContext: proc(self: ^UI.SheetPresentationControllerDetent, _context: ^UI.SheetPresentationControllerDetentResolutionContext) -> CG.Float,
     identifier: proc(self: ^UI.SheetPresentationControllerDetent) -> ^NS.String,
+    backgroundEffect: proc(self: ^UI.SheetPresentationControllerDetent) -> ^UI.VisualEffect,
+    setBackgroundEffect: proc(self: ^UI.SheetPresentationControllerDetent, backgroundEffect: ^UI.VisualEffect),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -113,6 +115,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("identifier"), auto_cast identifier, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.backgroundEffect != nil {
+        backgroundEffect :: proc "c" (self: ^UI.SheetPresentationControllerDetent, _: SEL) -> ^UI.VisualEffect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).backgroundEffect(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundEffect"), auto_cast backgroundEffect, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBackgroundEffect != nil {
+        setBackgroundEffect :: proc "c" (self: ^UI.SheetPresentationControllerDetent, _: SEL, backgroundEffect: ^UI.VisualEffect) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBackgroundEffect(self, backgroundEffect)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundEffect:"), auto_cast setBackgroundEffect, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

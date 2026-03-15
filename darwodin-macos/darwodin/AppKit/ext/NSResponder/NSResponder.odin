@@ -43,6 +43,7 @@ VTable :: struct {
     otherMouseUp: proc(self: ^AK.Responder, event: ^AK.Event),
     mouseMoved: proc(self: ^AK.Responder, event: ^AK.Event),
     mouseDragged: proc(self: ^AK.Responder, event: ^AK.Event),
+    mouseCancelled: proc(self: ^AK.Responder, event: ^AK.Event),
     scrollWheel: proc(self: ^AK.Responder, event: ^AK.Event),
     rightMouseDragged: proc(self: ^AK.Responder, event: ^AK.Event),
     otherMouseDragged: proc(self: ^AK.Responder, event: ^AK.Event),
@@ -245,6 +246,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("mouseDragged:"), auto_cast mouseDragged, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.mouseCancelled != nil {
+        mouseCancelled :: proc "c" (self: ^AK.Responder, _: SEL, event: ^AK.Event) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).mouseCancelled(self, event)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("mouseCancelled:"), auto_cast mouseCancelled, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.scrollWheel != nil {
         scrollWheel :: proc "c" (self: ^AK.Responder, _: SEL, event: ^AK.Event) {

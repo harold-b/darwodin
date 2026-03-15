@@ -89,6 +89,12 @@ foreign lib {
 
     @(objc_type=ViewPropertyAnimator, objc_selector="setPausesOnCompletion:", objc_name="setPausesOnCompletion")
     ViewPropertyAnimator_setPausesOnCompletion :: proc(self: ^ViewPropertyAnimator, pausesOnCompletion: bool) ---
+
+    @(objc_type=ViewPropertyAnimator, objc_selector="flushUpdates", objc_name="flushUpdates")
+    ViewPropertyAnimator_flushUpdates :: proc(self: ^ViewPropertyAnimator) -> bool ---
+
+    @(objc_type=ViewPropertyAnimator, objc_selector="setFlushUpdates:", objc_name="setFlushUpdates")
+    ViewPropertyAnimator_setFlushUpdates :: proc(self: ^ViewPropertyAnimator, flushUpdates: bool) ---
 }
 
 @(objc_type=ViewPropertyAnimator, objc_name="initWithDuration")

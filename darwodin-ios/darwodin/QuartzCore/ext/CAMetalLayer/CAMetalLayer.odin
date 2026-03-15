@@ -47,10 +47,13 @@ VTable :: struct {
     setWantsExtendedDynamicRangeContent: proc(self: ^CA.MetalLayer, wantsExtendedDynamicRangeContent: bool),
     _EDRMetadata: proc(self: ^CA.MetalLayer) -> ^CA.EDRMetadata,
     setEDRMetadata: proc(self: ^CA.MetalLayer, _EDRMetadata: ^CA.EDRMetadata),
+    displaySyncEnabled: proc(self: ^CA.MetalLayer) -> bool,
+    setDisplaySyncEnabled: proc(self: ^CA.MetalLayer, displaySyncEnabled: bool),
     allowsNextDrawableTimeout: proc(self: ^CA.MetalLayer) -> bool,
     setAllowsNextDrawableTimeout: proc(self: ^CA.MetalLayer, allowsNextDrawableTimeout: bool),
     developerHUDProperties: proc(self: ^CA.MetalLayer) -> ^NS.Dictionary,
     setDeveloperHUDProperties: proc(self: ^CA.MetalLayer, developerHUDProperties: ^NS.Dictionary),
+    residencySet: proc(self: ^CA.MetalLayer) -> ^CA.MTLResidencySet,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -260,6 +263,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEDRMetadata:"), auto_cast setEDRMetadata, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.displaySyncEnabled != nil {
+        displaySyncEnabled :: proc "c" (self: ^CA.MetalLayer, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).displaySyncEnabled(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("displaySyncEnabled"), auto_cast displaySyncEnabled, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDisplaySyncEnabled != nil {
+        setDisplaySyncEnabled :: proc "c" (self: ^CA.MetalLayer, _: SEL, displaySyncEnabled: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setDisplaySyncEnabled(self, displaySyncEnabled)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDisplaySyncEnabled:"), auto_cast setDisplaySyncEnabled, "v@:B") do panic("Failed to register objC method.")
+    }
     if vt.allowsNextDrawableTimeout != nil {
         allowsNextDrawableTimeout :: proc "c" (self: ^CA.MetalLayer, _: SEL) -> bool {
 
@@ -299,6 +322,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDeveloperHUDProperties:"), auto_cast setDeveloperHUDProperties, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.residencySet != nil {
+        residencySet :: proc "c" (self: ^CA.MetalLayer, _: SEL) -> ^CA.MTLResidencySet {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).residencySet(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("residencySet"), auto_cast residencySet, "@@:") do panic("Failed to register objC method.")
     }
 }
 

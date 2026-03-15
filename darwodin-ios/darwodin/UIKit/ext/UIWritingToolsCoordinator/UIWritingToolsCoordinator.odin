@@ -44,6 +44,8 @@ VTable :: struct {
     behavior: proc(self: ^UI.WritingToolsCoordinator) -> UI.WritingToolsBehavior,
     preferredResultOptions: proc(self: ^UI.WritingToolsCoordinator) -> UI.WritingToolsResultOptions,
     setPreferredResultOptions: proc(self: ^UI.WritingToolsCoordinator, preferredResultOptions: UI.WritingToolsResultOptions),
+    includesTextListMarkers: proc(self: ^UI.WritingToolsCoordinator) -> bool,
+    setIncludesTextListMarkers: proc(self: ^UI.WritingToolsCoordinator, includesTextListMarkers: bool),
     resultOptions: proc(self: ^UI.WritingToolsCoordinator) -> UI.WritingToolsResultOptions,
 }
 
@@ -213,6 +215,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredResultOptions:"), auto_cast setPreferredResultOptions, "v@:L") do panic("Failed to register objC method.")
+    }
+    if vt.includesTextListMarkers != nil {
+        includesTextListMarkers :: proc "c" (self: ^UI.WritingToolsCoordinator, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).includesTextListMarkers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("includesTextListMarkers"), auto_cast includesTextListMarkers, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setIncludesTextListMarkers != nil {
+        setIncludesTextListMarkers :: proc "c" (self: ^UI.WritingToolsCoordinator, _: SEL, includesTextListMarkers: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setIncludesTextListMarkers(self, includesTextListMarkers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIncludesTextListMarkers:"), auto_cast setIncludesTextListMarkers, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.resultOptions != nil {
         resultOptions :: proc "c" (self: ^UI.WritingToolsCoordinator, _: SEL) -> UI.WritingToolsResultOptions {

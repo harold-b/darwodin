@@ -61,6 +61,9 @@ foreign lib {
     @(objc_type=ContentKeyRequest, objc_selector="contentKey", objc_name="contentKey")
     ContentKeyRequest_contentKey :: proc(self: ^ContentKeyRequest) -> ^ContentKey ---
 
+    @(objc_type=ContentKeyRequest, objc_selector="originatingRecipient", objc_name="originatingRecipient")
+    ContentKeyRequest_originatingRecipient :: proc(self: ^ContentKeyRequest) -> ^ContentKeyRecipient ---
+
     @(objc_type=ContentKeyRequest, objc_selector="renewsExpiringResponseData", objc_name="renewsExpiringResponseData")
     ContentKeyRequest_renewsExpiringResponseData :: proc(self: ^ContentKeyRequest) -> bool ---
 }

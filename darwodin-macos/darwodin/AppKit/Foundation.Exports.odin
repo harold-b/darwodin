@@ -125,6 +125,7 @@ URLComponents                          :: NS.URLComponents
 FileSecurity                           :: NS.FileSecurity
 DirectoryEnumerator                    :: NS.DirectoryEnumerator
 FileProviderService                    :: NS.FileProviderService
+FileVersion                            :: NS.FileVersion
 FileManager                            :: NS.FileManager
 PointerFunctions                       :: NS.PointerFunctions
 HashTable                              :: NS.HashTable
@@ -217,7 +218,6 @@ ExtensionContext                       :: NS.ExtensionContext
 ExtensionItem                          :: NS.ExtensionItem
 FileAccessIntent                       :: NS.FileAccessIntent
 FileCoordinator                        :: NS.FileCoordinator
-FileVersion                            :: NS.FileVersion
 FileWrapper                            :: NS.FileWrapper
 LinguisticTagger                       :: NS.LinguisticTagger
 MetadataItem                           :: NS.MetadataItem
@@ -372,6 +372,7 @@ _xpc_endpoint_s                 :: NS._xpc_endpoint_s
 _xpc_bool_s                     :: NS._xpc_bool_s
 _xpc_rich_error_s               :: NS._xpc_rich_error_s
 _xpc_activity_s                 :: NS._xpc_activity_s
+xpc_peer_requirement_s          :: NS.xpc_peer_requirement_s
 _xpc_dictionary_s               :: NS._xpc_dictionary_s
 xpc_session_s                   :: NS.xpc_session_s
 xpc_listener_s                  :: NS.xpc_listener_s
@@ -456,6 +457,7 @@ xpc_rich_error_t                        :: NS.xpc_rich_error_t
 xpc_activity_t                          :: NS.xpc_activity_t
 xpc_activity_handler_t                  :: NS.xpc_activity_handler_t
 xpc_activity_state_t                    :: NS.xpc_activity_state_t
+xpc_peer_requirement_t                  :: NS.xpc_peer_requirement_t
 xpc_finalizer_t                         :: NS.xpc_finalizer_t
 xpc_session_t                           :: NS.xpc_session_t
 xpc_session_cancel_handler_t            :: NS.xpc_session_cancel_handler_t
@@ -572,6 +574,9 @@ DirectoryEnumerationOptions                   :: NS.DirectoryEnumerationOptions
 FileManagerItemReplacementOptions             :: NS.FileManagerItemReplacementOptions
 URLRelationship                               :: NS.URLRelationship
 FileManagerUnmountOptions                     :: NS.FileManagerUnmountOptions
+FileManagerSupportedSyncControls              :: NS.FileManagerSupportedSyncControls
+FileManagerResumeSyncBehavior                 :: NS.FileManagerResumeSyncBehavior
+FileManagerUploadLocalVersionConflictPolicy   :: NS.FileManagerUploadLocalVersionConflictPolicy
 PointerFunctionsOptions                       :: NS.PointerFunctionsOptions
 HTTPCookieAcceptPolicy                        :: NS.HTTPCookieAcceptPolicy
 JSONReadingOptions                            :: NS.JSONReadingOptions
@@ -1141,6 +1146,17 @@ foreign Foundation_exports {
     @(link_name="NSCalendarIdentifierRepublicOfChina") CalendarIdentifierRepublicOfChina: ^String
     @(link_name="NSCalendarIdentifierIslamicTabular") CalendarIdentifierIslamicTabular: ^String
     @(link_name="NSCalendarIdentifierIslamicUmmAlQura") CalendarIdentifierIslamicUmmAlQura: ^String
+    @(link_name="NSCalendarIdentifierBangla") CalendarIdentifierBangla: ^String
+    @(link_name="NSCalendarIdentifierGujarati") CalendarIdentifierGujarati: ^String
+    @(link_name="NSCalendarIdentifierKannada") CalendarIdentifierKannada: ^String
+    @(link_name="NSCalendarIdentifierMalayalam") CalendarIdentifierMalayalam: ^String
+    @(link_name="NSCalendarIdentifierMarathi") CalendarIdentifierMarathi: ^String
+    @(link_name="NSCalendarIdentifierOdia") CalendarIdentifierOdia: ^String
+    @(link_name="NSCalendarIdentifierTamil") CalendarIdentifierTamil: ^String
+    @(link_name="NSCalendarIdentifierTelugu") CalendarIdentifierTelugu: ^String
+    @(link_name="NSCalendarIdentifierVikram") CalendarIdentifierVikram: ^String
+    @(link_name="NSCalendarIdentifierDangi") CalendarIdentifierDangi: ^String
+    @(link_name="NSCalendarIdentifierVietnamese") CalendarIdentifierVietnamese: ^String
     @(link_name="NSCalendarDayChangedNotification") CalendarDayChangedNotification: ^String
     @(link_name="NSInflectionConceptsKey") InflectionConceptsKey: ^String
     @(link_name="NSInlinePresentationIntentAttributeName") InlinePresentationIntentAttributeName: ^String
@@ -1156,6 +1172,7 @@ foreign Foundation_exports {
     @(link_name="NSInflectionReferentConceptAttributeName") InflectionReferentConceptAttributeName: ^String
     @(link_name="NSInflectionAlternativeAttributeName") InflectionAlternativeAttributeName: ^String
     @(link_name="NSLocalizedNumberFormatAttributeName") LocalizedNumberFormatAttributeName: ^String
+    @(link_name="NSListItemDelimiterAttributeName") ListItemDelimiterAttributeName: ^String
     @(link_name="NSPresentationIntentAttributeName") PresentationIntentAttributeName: ^String
     @(link_name="NSCurrentLocaleDidChangeNotification") CurrentLocaleDidChangeNotification: ^String
     @(link_name="NSLocaleIdentifier") LocaleIdentifier: ^String
@@ -1401,6 +1418,8 @@ foreign Foundation_exports {
     @(link_name="NSURLUbiquitousSharedItemRoleParticipant") URLUbiquitousSharedItemRoleParticipant: ^String
     @(link_name="NSURLUbiquitousSharedItemPermissionsReadOnly") URLUbiquitousSharedItemPermissionsReadOnly: ^String
     @(link_name="NSURLUbiquitousSharedItemPermissionsReadWrite") URLUbiquitousSharedItemPermissionsReadWrite: ^String
+    @(link_name="NSURLUbiquitousItemSupportedSyncControlsKey") URLUbiquitousItemSupportedSyncControlsKey: ^String
+    @(link_name="NSURLUbiquitousItemIsSyncPausedKey") URLUbiquitousItemIsSyncPausedKey: ^String
     @(link_name="NSFileManagerUnmountDissentingProcessIdentifierErrorKey") FileManagerUnmountDissentingProcessIdentifierErrorKey: ^String
     @(link_name="NSUbiquityIdentityDidChangeNotification") UbiquityIdentityDidChangeNotification: ^String
     @(link_name="NSFileType") FileType: ^String

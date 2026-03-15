@@ -45,6 +45,7 @@ VTable :: struct {
     initWithTitle_image_target_action_menu: proc(self: ^UI.BarButtonItem, title: ^NS.String, image: ^UI.Image, target: id, action: SEL, menu: ^UI.Menu) -> instancetype,
     fixedSpaceItemOfWidth: proc(width: CG.Float) -> instancetype,
     flexibleSpaceItem: proc() -> instancetype,
+    fixedSpaceItem: proc() -> instancetype,
     creatingFixedGroup: proc(self: ^UI.BarButtonItem) -> ^UI.BarButtonItemGroup,
     creatingMovableGroupWithCustomizationIdentifier: proc(self: ^UI.BarButtonItem, customizationIdentifier: ^NS.String) -> ^UI.BarButtonItemGroup,
     creatingOptionalGroupWithCustomizationIdentifier: proc(self: ^UI.BarButtonItem, customizationIdentifier: ^NS.String, inDefaultCustomization: bool) -> ^UI.BarButtonItemGroup,
@@ -90,6 +91,12 @@ VTable :: struct {
     setSymbolAnimationEnabled: proc(self: ^UI.BarButtonItem, symbolAnimationEnabled: bool),
     menuRepresentation: proc(self: ^UI.BarButtonItem) -> ^UI.MenuElement,
     setMenuRepresentation: proc(self: ^UI.BarButtonItem, menuRepresentation: ^UI.MenuElement),
+    hidesSharedBackground: proc(self: ^UI.BarButtonItem) -> bool,
+    setHidesSharedBackground: proc(self: ^UI.BarButtonItem, hidesSharedBackground: bool),
+    sharesBackground: proc(self: ^UI.BarButtonItem) -> bool,
+    setSharesBackground: proc(self: ^UI.BarButtonItem, sharesBackground: bool),
+    identifier: proc(self: ^UI.BarButtonItem) -> ^NS.String,
+    setIdentifier: proc(self: ^UI.BarButtonItem, identifier: ^NS.String),
     tintColor: proc(self: ^UI.BarButtonItem) -> ^UI.Color,
     setTintColor: proc(self: ^UI.BarButtonItem, tintColor: ^UI.Color),
     addSymbolEffect_: proc(self: ^UI.BarButtonItem, symbolEffect: ^UI.NSSymbolEffect),
@@ -104,6 +111,8 @@ VTable :: struct {
     setSymbolImage_withContentTransition: proc(self: ^UI.BarButtonItem, symbolImage: ^UI.Image, transition: ^UI.NSSymbolContentTransition),
     setSymbolImage_withContentTransition_options: proc(self: ^UI.BarButtonItem, symbolImage: ^UI.Image, transition: ^UI.NSSymbolContentTransition, options: ^UI.NSSymbolEffectOptions),
     buttonGroup: proc(self: ^UI.BarButtonItem) -> ^UI.BarButtonItemGroup,
+    badge: proc(self: ^UI.BarButtonItem) -> ^UI.BarButtonItemBadge,
+    setBadge: proc(self: ^UI.BarButtonItem, badge: ^UI.BarButtonItemBadge),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -282,6 +291,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("flexibleSpaceItem"), auto_cast flexibleSpaceItem, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.fixedSpaceItem != nil {
+        fixedSpaceItem :: proc "c" (self: Class, _: SEL) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).fixedSpaceItem()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("fixedSpaceItem"), auto_cast fixedSpaceItem, "@#:") do panic("Failed to register objC method.")
     }
     if vt.creatingFixedGroup != nil {
         creatingFixedGroup :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> ^UI.BarButtonItemGroup {
@@ -733,6 +752,66 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMenuRepresentation:"), auto_cast setMenuRepresentation, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.hidesSharedBackground != nil {
+        hidesSharedBackground :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).hidesSharedBackground(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("hidesSharedBackground"), auto_cast hidesSharedBackground, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setHidesSharedBackground != nil {
+        setHidesSharedBackground :: proc "c" (self: ^UI.BarButtonItem, _: SEL, hidesSharedBackground: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setHidesSharedBackground(self, hidesSharedBackground)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setHidesSharedBackground:"), auto_cast setHidesSharedBackground, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.sharesBackground != nil {
+        sharesBackground :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).sharesBackground(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("sharesBackground"), auto_cast sharesBackground, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSharesBackground != nil {
+        setSharesBackground :: proc "c" (self: ^UI.BarButtonItem, _: SEL, sharesBackground: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSharesBackground(self, sharesBackground)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSharesBackground:"), auto_cast setSharesBackground, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.identifier != nil {
+        identifier :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).identifier(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("identifier"), auto_cast identifier, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setIdentifier != nil {
+        setIdentifier :: proc "c" (self: ^UI.BarButtonItem, _: SEL, identifier: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setIdentifier(self, identifier)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIdentifier:"), auto_cast setIdentifier, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.tintColor != nil {
         tintColor :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> ^UI.Color {
 
@@ -872,6 +951,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("buttonGroup"), auto_cast buttonGroup, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.badge != nil {
+        badge :: proc "c" (self: ^UI.BarButtonItem, _: SEL) -> ^UI.BarButtonItemBadge {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).badge(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("badge"), auto_cast badge, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBadge != nil {
+        setBadge :: proc "c" (self: ^UI.BarButtonItem, _: SEL, badge: ^UI.BarButtonItemBadge) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBadge(self, badge)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBadge:"), auto_cast setBadge, "v@:@") do panic("Failed to register objC method.")
     }
 }
 

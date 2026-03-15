@@ -59,9 +59,6 @@ foreign lib {
     @(objc_type=Control, objc_selector="takeIntegerValueFrom:", objc_name="takeIntegerValueFrom")
     Control_takeIntegerValueFrom :: proc(self: ^Control, sender: id) ---
 
-    @(objc_type=Control, objc_selector="mouseDown:", objc_name="mouseDown")
-    Control_mouseDown :: proc(self: ^Control, event: ^Event) ---
-
     @(objc_type=Control, objc_selector="performClick:", objc_name="performClick")
     Control_performClick :: proc(self: ^Control, sender: id) ---
 

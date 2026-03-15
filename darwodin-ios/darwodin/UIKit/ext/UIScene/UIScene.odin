@@ -42,6 +42,8 @@ VTable :: struct {
     setSubtitle: proc(self: ^UI.Scene, subtitle: ^NS.String),
     activationConditions: proc(self: ^UI.Scene) -> ^UI.SceneActivationConditions,
     setActivationConditions: proc(self: ^UI.Scene, activationConditions: ^UI.SceneActivationConditions),
+    destructionConditions: proc(self: ^UI.Scene) -> ^NS.Set,
+    setDestructionConditions: proc(self: ^UI.Scene, destructionConditions: ^NS.Set),
     pointerLockState: proc(self: ^UI.Scene) -> ^UI.PointerLockState,
     extendStateRestoration: proc(self: ^UI.Scene),
     completeStateRestoration: proc(self: ^UI.Scene),
@@ -195,6 +197,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setActivationConditions:"), auto_cast setActivationConditions, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.destructionConditions != nil {
+        destructionConditions :: proc "c" (self: ^UI.Scene, _: SEL) -> ^NS.Set {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).destructionConditions(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("destructionConditions"), auto_cast destructionConditions, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setDestructionConditions != nil {
+        setDestructionConditions :: proc "c" (self: ^UI.Scene, _: SEL, destructionConditions: ^NS.Set) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setDestructionConditions(self, destructionConditions)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setDestructionConditions:"), auto_cast setDestructionConditions, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.pointerLockState != nil {
         pointerLockState :: proc "c" (self: ^UI.Scene, _: SEL) -> ^UI.PointerLockState {

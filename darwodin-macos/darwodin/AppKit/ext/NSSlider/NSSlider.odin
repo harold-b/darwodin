@@ -37,6 +37,8 @@ VTable :: struct {
     setMinValue: proc(self: ^AK.Slider, minValue: cffi.double),
     maxValue: proc(self: ^AK.Slider) -> cffi.double,
     setMaxValue: proc(self: ^AK.Slider, maxValue: cffi.double),
+    neutralValue: proc(self: ^AK.Slider) -> cffi.double,
+    setNeutralValue: proc(self: ^AK.Slider, neutralValue: cffi.double),
     altIncrementValue: proc(self: ^AK.Slider) -> cffi.double,
     setAltIncrementValue: proc(self: ^AK.Slider, altIncrementValue: cffi.double),
     knobThickness: proc(self: ^AK.Slider) -> CG.Float,
@@ -44,6 +46,8 @@ VTable :: struct {
     setVertical: proc(self: ^AK.Slider, vertical: bool),
     trackFillColor: proc(self: ^AK.Slider) -> ^AK.Color,
     setTrackFillColor: proc(self: ^AK.Slider, trackFillColor: ^AK.Color),
+    tintProminence: proc(self: ^AK.Slider) -> AK.TintProminence,
+    setTintProminence: proc(self: ^AK.Slider, tintProminence: AK.TintProminence),
     tickMarkValueAtIndex: proc(self: ^AK.Slider, index: NS.Integer) -> cffi.double,
     rectOfTickMarkAtIndex: proc(self: ^AK.Slider, index: NS.Integer) -> NS.Rect,
     indexOfTickMarkAtPoint: proc(self: ^AK.Slider, point: CG.Point) -> NS.Integer,
@@ -146,6 +150,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaxValue:"), auto_cast setMaxValue, "v@:d") do panic("Failed to register objC method.")
     }
+    if vt.neutralValue != nil {
+        neutralValue :: proc "c" (self: ^AK.Slider, _: SEL) -> cffi.double {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).neutralValue(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("neutralValue"), auto_cast neutralValue, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setNeutralValue != nil {
+        setNeutralValue :: proc "c" (self: ^AK.Slider, _: SEL, neutralValue: cffi.double) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setNeutralValue(self, neutralValue)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNeutralValue:"), auto_cast setNeutralValue, "v@:d") do panic("Failed to register objC method.")
+    }
     if vt.altIncrementValue != nil {
         altIncrementValue :: proc "c" (self: ^AK.Slider, _: SEL) -> cffi.double {
 
@@ -215,6 +239,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTrackFillColor:"), auto_cast setTrackFillColor, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.tintProminence != nil {
+        tintProminence :: proc "c" (self: ^AK.Slider, _: SEL) -> AK.TintProminence {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).tintProminence(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tintProminence"), auto_cast tintProminence, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTintProminence != nil {
+        setTintProminence :: proc "c" (self: ^AK.Slider, _: SEL, tintProminence: AK.TintProminence) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setTintProminence(self, tintProminence)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTintProminence:"), auto_cast setTintProminence, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.tickMarkValueAtIndex != nil {
         tickMarkValueAtIndex :: proc "c" (self: ^AK.Slider, _: SEL, index: NS.Integer) -> cffi.double {

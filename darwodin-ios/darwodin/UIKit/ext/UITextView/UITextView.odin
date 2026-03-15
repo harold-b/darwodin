@@ -45,6 +45,8 @@ VTable :: struct {
     setTextAlignment: proc(self: ^UI.TextView, textAlignment: UI.NSTextAlignment),
     selectedRange: proc(self: ^UI.TextView) -> NS._NSRange,
     setSelectedRange: proc(self: ^UI.TextView, selectedRange: NS._NSRange),
+    selectedRanges: proc(self: ^UI.TextView) -> ^NS.Array,
+    setSelectedRanges: proc(self: ^UI.TextView, selectedRanges: ^NS.Array),
     isEditable: proc(self: ^UI.TextView) -> bool,
     setEditable: proc(self: ^UI.TextView, editable: bool),
     isSelectable: proc(self: ^UI.TextView) -> bool,
@@ -269,6 +271,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRange:"), auto_cast setSelectedRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
+    }
+    if vt.selectedRanges != nil {
+        selectedRanges :: proc "c" (self: ^UI.TextView, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).selectedRanges(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRanges"), auto_cast selectedRanges, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSelectedRanges != nil {
+        setSelectedRanges :: proc "c" (self: ^UI.TextView, _: SEL, selectedRanges: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSelectedRanges(self, selectedRanges)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedRanges:"), auto_cast setSelectedRanges, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.isEditable != nil {
         isEditable :: proc "c" (self: ^UI.TextView, _: SEL) -> bool {

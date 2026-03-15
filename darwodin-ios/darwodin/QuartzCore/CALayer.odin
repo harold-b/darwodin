@@ -137,6 +137,12 @@ foreign lib {
     @(objc_type=Layer, objc_selector="layoutSublayers", objc_name="layoutSublayers")
     Layer_layoutSublayers :: proc(self: ^Layer) ---
 
+    @(objc_type=Layer, objc_selector="resizeSublayersWithOldSize:", objc_name="resizeSublayersWithOldSize")
+    Layer_resizeSublayersWithOldSize :: proc(self: ^Layer, size: CG.Size) ---
+
+    @(objc_type=Layer, objc_selector="resizeWithOldSuperlayerSize:", objc_name="resizeWithOldSuperlayerSize")
+    Layer_resizeWithOldSuperlayerSize :: proc(self: ^Layer, size: CG.Size) ---
+
     @(objc_type=Layer, objc_selector="defaultActionForKey:", objc_name="defaultActionForKey", objc_is_class_method=true)
     Layer_defaultActionForKey :: proc(event: ^NS.String) -> ^Action ---
 
@@ -292,6 +298,24 @@ foreign lib {
 
     @(objc_type=Layer, objc_selector="setToneMapMode:", objc_name="setToneMapMode")
     Layer_setToneMapMode :: proc(self: ^Layer, toneMapMode: ^NS.String) ---
+
+    @(objc_type=Layer, objc_selector="preferredDynamicRange", objc_name="preferredDynamicRange")
+    Layer_preferredDynamicRange :: proc(self: ^Layer) -> ^NS.String ---
+
+    @(objc_type=Layer, objc_selector="setPreferredDynamicRange:", objc_name="setPreferredDynamicRange")
+    Layer_setPreferredDynamicRange :: proc(self: ^Layer, preferredDynamicRange: ^NS.String) ---
+
+    @(objc_type=Layer, objc_selector="contentsHeadroom", objc_name="contentsHeadroom")
+    Layer_contentsHeadroom :: proc(self: ^Layer) -> CG.Float ---
+
+    @(objc_type=Layer, objc_selector="setContentsHeadroom:", objc_name="setContentsHeadroom")
+    Layer_setContentsHeadroom :: proc(self: ^Layer, contentsHeadroom: CG.Float) ---
+
+    @(objc_type=Layer, objc_selector="wantsDynamicContentScaling", objc_name="wantsDynamicContentScaling")
+    Layer_wantsDynamicContentScaling :: proc(self: ^Layer) -> bool ---
+
+    @(objc_type=Layer, objc_selector="setWantsDynamicContentScaling:", objc_name="setWantsDynamicContentScaling")
+    Layer_setWantsDynamicContentScaling :: proc(self: ^Layer, wantsDynamicContentScaling: bool) ---
 
     @(objc_type=Layer, objc_selector="minificationFilter", objc_name="minificationFilter")
     Layer_minificationFilter :: proc(self: ^Layer) -> ^NS.String ---
@@ -449,6 +473,18 @@ foreign lib {
     @(objc_type=Layer, objc_selector="setShadowPath:", objc_name="setShadowPath")
     Layer_setShadowPath :: proc(self: ^Layer, shadowPath: CG.PathRef) ---
 
+    @(objc_type=Layer, objc_selector="autoresizingMask", objc_name="autoresizingMask")
+    Layer_autoresizingMask :: proc(self: ^Layer) -> AutoresizingMask ---
+
+    @(objc_type=Layer, objc_selector="setAutoresizingMask:", objc_name="setAutoresizingMask")
+    Layer_setAutoresizingMask :: proc(self: ^Layer, autoresizingMask: AutoresizingMask) ---
+
+    @(objc_type=Layer, objc_selector="layoutManager", objc_name="layoutManager")
+    Layer_layoutManager :: proc(self: ^Layer) -> ^LayoutManager ---
+
+    @(objc_type=Layer, objc_selector="setLayoutManager:", objc_name="setLayoutManager")
+    Layer_setLayoutManager :: proc(self: ^Layer, layoutManager: ^LayoutManager) ---
+
     @(objc_type=Layer, objc_selector="actions", objc_name="actions")
     Layer_actions :: proc(self: ^Layer) -> ^NS.Dictionary ---
 
@@ -472,6 +508,18 @@ foreign lib {
 
     @(objc_type=Layer, objc_selector="setStyle:", objc_name="setStyle")
     Layer_setStyle :: proc(self: ^Layer, style: ^NS.Dictionary) ---
+
+    @(objc_type=Layer, objc_selector="addConstraint:", objc_name="addConstraint")
+    Layer_addConstraint :: proc(self: ^Layer, c: ^Constraint) ---
+
+    @(objc_type=Layer, objc_selector="constraints", objc_name="constraints")
+    Layer_constraints :: proc(self: ^Layer) -> ^NS.Array ---
+
+    @(objc_type=Layer, objc_selector="setConstraints:", objc_name="setConstraints")
+    Layer_setConstraints :: proc(self: ^Layer, constraints: ^NS.Array) ---
+
+    @(objc_type=Layer, objc_selector="layerWithRemoteClientId:", objc_name="layerWithRemoteClientId", objc_is_class_method=true)
+    Layer_layerWithRemoteClientId :: proc(client_id: cffi.uint32_t) -> ^Layer ---
 
     @(objc_type=Layer, objc_selector="scrollPoint:", objc_name="scrollPoint")
     Layer_scrollPoint :: proc(self: ^Layer, p: CG.Point) ---

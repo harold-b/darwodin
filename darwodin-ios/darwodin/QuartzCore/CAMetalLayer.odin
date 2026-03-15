@@ -80,6 +80,12 @@ foreign lib {
     @(objc_type=MetalLayer, objc_selector="setEDRMetadata:", objc_name="setEDRMetadata")
     MetalLayer_setEDRMetadata :: proc(self: ^MetalLayer, _EDRMetadata: ^EDRMetadata) ---
 
+    @(objc_type=MetalLayer, objc_selector="displaySyncEnabled", objc_name="displaySyncEnabled")
+    MetalLayer_displaySyncEnabled :: proc(self: ^MetalLayer) -> bool ---
+
+    @(objc_type=MetalLayer, objc_selector="setDisplaySyncEnabled:", objc_name="setDisplaySyncEnabled")
+    MetalLayer_setDisplaySyncEnabled :: proc(self: ^MetalLayer, displaySyncEnabled: bool) ---
+
     @(objc_type=MetalLayer, objc_selector="allowsNextDrawableTimeout", objc_name="allowsNextDrawableTimeout")
     MetalLayer_allowsNextDrawableTimeout :: proc(self: ^MetalLayer) -> bool ---
 
@@ -91,4 +97,7 @@ foreign lib {
 
     @(objc_type=MetalLayer, objc_selector="setDeveloperHUDProperties:", objc_name="setDeveloperHUDProperties")
     MetalLayer_setDeveloperHUDProperties :: proc(self: ^MetalLayer, developerHUDProperties: ^NS.Dictionary) ---
+
+    @(objc_type=MetalLayer, objc_selector="residencySet", objc_name="residencySet")
+    MetalLayer_residencySet :: proc(self: ^MetalLayer) -> ^MTLResidencySet ---
 }

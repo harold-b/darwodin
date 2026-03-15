@@ -83,6 +83,10 @@ VTable :: struct {
     evictUbiquitousItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, error: ^^NS.Error) -> bool,
     _URLForUbiquityContainerIdentifier: proc(self: ^NS.FileManager, containerIdentifier: ^NS.String) -> ^NS.URL,
     _URLForPublishingUbiquitousItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, outDate: ^^NS.Date, error: ^^NS.Error) -> ^NS.URL,
+    pauseSyncForUbiquitousItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    resumeSyncForUbiquitousItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, behavior: NS.FileManagerResumeSyncBehavior, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    fetchLatestRemoteVersionOfItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (latestRemoteVersion: ^NS.FileVersion, error: ^NS.Error))),
+    uploadLocalVersionOfUbiquitousItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, conflictResolutionPolicy: NS.FileManagerUploadLocalVersionConflictPolicy, completionHandler: ^Objc_Block(proc "c" (uploadedVersion: ^NS.FileVersion, error: ^NS.Error))),
     getFileProviderServicesForItemAtURL: proc(self: ^NS.FileManager, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (services: ^NS.Dictionary, error: ^NS.Error))),
     containerURLForSecurityApplicationGroupIdentifier: proc(self: ^NS.FileManager, groupIdentifier: ^NS.String) -> ^NS.URL,
     defaultManager: proc() -> ^NS.FileManager,
@@ -671,6 +675,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLForPublishingUbiquitousItemAtURL:expirationDate:error:"), auto_cast _URLForPublishingUbiquitousItemAtURL, "@@:@^void^void") do panic("Failed to register objC method.")
+    }
+    if vt.pauseSyncForUbiquitousItemAtURL != nil {
+        pauseSyncForUbiquitousItemAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).pauseSyncForUbiquitousItemAtURL(self, url, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("pauseSyncForUbiquitousItemAtURL:completionHandler:"), auto_cast pauseSyncForUbiquitousItemAtURL, "v@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.resumeSyncForUbiquitousItemAtURL != nil {
+        resumeSyncForUbiquitousItemAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, behavior: NS.FileManagerResumeSyncBehavior, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).resumeSyncForUbiquitousItemAtURL(self, url, behavior, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resumeSyncForUbiquitousItemAtURL:withBehavior:completionHandler:"), auto_cast resumeSyncForUbiquitousItemAtURL, "v@:@l?") do panic("Failed to register objC method.")
+    }
+    if vt.fetchLatestRemoteVersionOfItemAtURL != nil {
+        fetchLatestRemoteVersionOfItemAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (latestRemoteVersion: ^NS.FileVersion, error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).fetchLatestRemoteVersionOfItemAtURL(self, url, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("fetchLatestRemoteVersionOfItemAtURL:completionHandler:"), auto_cast fetchLatestRemoteVersionOfItemAtURL, "v@:@?") do panic("Failed to register objC method.")
+    }
+    if vt.uploadLocalVersionOfUbiquitousItemAtURL != nil {
+        uploadLocalVersionOfUbiquitousItemAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, conflictResolutionPolicy: NS.FileManagerUploadLocalVersionConflictPolicy, completionHandler: ^Objc_Block(proc "c" (uploadedVersion: ^NS.FileVersion, error: ^NS.Error))) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).uploadLocalVersionOfUbiquitousItemAtURL(self, url, conflictResolutionPolicy, completionHandler)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("uploadLocalVersionOfUbiquitousItemAtURL:withConflictResolutionPolicy:completionHandler:"), auto_cast uploadLocalVersionOfUbiquitousItemAtURL, "v@:@l?") do panic("Failed to register objC method.")
     }
     if vt.getFileProviderServicesForItemAtURL != nil {
         getFileProviderServicesForItemAtURL :: proc "c" (self: ^NS.FileManager, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (services: ^NS.Dictionary, error: ^NS.Error))) {

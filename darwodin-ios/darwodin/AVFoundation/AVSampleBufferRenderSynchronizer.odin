@@ -63,6 +63,12 @@ foreign lib {
 
     @(objc_type=SampleBufferRenderSynchronizer, objc_selector="removeTimeObserver:", objc_name="removeTimeObserver")
     SampleBufferRenderSynchronizer_removeTimeObserver :: proc(self: ^SampleBufferRenderSynchronizer, observer: id) ---
+
+    @(objc_type=SampleBufferRenderSynchronizer, objc_selector="intendedSpatialAudioExperience", objc_name="intendedSpatialAudioExperience")
+    SampleBufferRenderSynchronizer_intendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer) -> ^CASpatialAudioExperience ---
+
+    @(objc_type=SampleBufferRenderSynchronizer, objc_selector="setIntendedSpatialAudioExperience:", objc_name="setIntendedSpatialAudioExperience")
+    SampleBufferRenderSynchronizer_setIntendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer, intendedSpatialAudioExperience: ^CASpatialAudioExperience) ---
 }
 
 @(objc_type=SampleBufferRenderSynchronizer, objc_name="setRate")

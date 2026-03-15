@@ -51,4 +51,7 @@ foreign lib {
 
     @(objc_type=CaptureMetadataOutput, objc_selector="setRectOfInterest:", objc_name="setRectOfInterest")
     CaptureMetadataOutput_setRectOfInterest :: proc(self: ^CaptureMetadataOutput, rectOfInterest: CG.Rect) ---
+
+    @(objc_type=CaptureMetadataOutput, objc_selector="requiredMetadataObjectTypesForCinematicVideoCapture", objc_name="requiredMetadataObjectTypesForCinematicVideoCapture")
+    CaptureMetadataOutput_requiredMetadataObjectTypesForCinematicVideoCapture :: proc(self: ^CaptureMetadataOutput) -> ^NS.Array ---
 }

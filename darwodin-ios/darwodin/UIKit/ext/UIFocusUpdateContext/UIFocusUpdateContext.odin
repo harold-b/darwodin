@@ -30,9 +30,9 @@ VTable :: struct {
     super: NSObject.VTable,
     previouslyFocusedItem: proc(self: ^UI.FocusUpdateContext) -> ^UI.FocusItem,
     nextFocusedItem: proc(self: ^UI.FocusUpdateContext) -> ^UI.FocusItem,
+    focusHeading: proc(self: ^UI.FocusUpdateContext) -> UI.FocusHeading,
     previouslyFocusedView: proc(self: ^UI.FocusUpdateContext) -> ^UI.View,
     nextFocusedView: proc(self: ^UI.FocusUpdateContext) -> ^UI.View,
-    focusHeading: proc(self: ^UI.FocusUpdateContext) -> UI.FocusHeading,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -62,6 +62,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("nextFocusedItem"), auto_cast nextFocusedItem, "@@:") do panic("Failed to register objC method.")
     }
+    if vt.focusHeading != nil {
+        focusHeading :: proc "c" (self: ^UI.FocusUpdateContext, _: SEL) -> UI.FocusHeading {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).focusHeading(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("focusHeading"), auto_cast focusHeading, "L@:") do panic("Failed to register objC method.")
+    }
     if vt.previouslyFocusedView != nil {
         previouslyFocusedView :: proc "c" (self: ^UI.FocusUpdateContext, _: SEL) -> ^UI.View {
 
@@ -81,16 +91,6 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("nextFocusedView"), auto_cast nextFocusedView, "@@:") do panic("Failed to register objC method.")
-    }
-    if vt.focusHeading != nil {
-        focusHeading :: proc "c" (self: ^UI.FocusUpdateContext, _: SEL) -> UI.FocusHeading {
-
-            vt_ctx := ObjC.object_get_vtable_info(self)
-            context = vt_ctx._context
-            return (cast(^VTable)vt_ctx.super_vt).focusHeading(self)
-        }
-
-        if !class_addMethod(cls, intrinsics.objc_find_selector("focusHeading"), auto_cast focusHeading, "L@:") do panic("Failed to register objC method.")
     }
 }
 

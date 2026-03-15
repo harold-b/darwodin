@@ -31,6 +31,7 @@ VTable :: struct {
     pasteAndMatchStyle: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     pasteAndGo: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     pasteAndSearch: proc(self: ^UI.ResponderStandardEditActions, sender: id),
+    newFromPasteboard: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     select: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     selectAll: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     delete: proc(self: ^UI.ResponderStandardEditActions, sender: id),
@@ -41,6 +42,10 @@ VTable :: struct {
     toggleUnderline: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     increaseSize: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     decreaseSize: proc(self: ^UI.ResponderStandardEditActions, sender: id),
+    alignLeft: proc(self: ^UI.ResponderStandardEditActions, sender: id),
+    alignCenter: proc(self: ^UI.ResponderStandardEditActions, sender: id),
+    alignJustified: proc(self: ^UI.ResponderStandardEditActions, sender: id),
+    alignRight: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     find: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     findAndReplace: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     findNext: proc(self: ^UI.ResponderStandardEditActions, sender: id),
@@ -52,6 +57,9 @@ VTable :: struct {
     duplicate: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     move: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     export: proc(self: ^UI.ResponderStandardEditActions, sender: id),
+    toggleSidebar: proc(self: ^UI.ResponderStandardEditActions, sender: id),
+    toggleInspector: proc(self: ^UI.ResponderStandardEditActions, sender: id),
+    performClose: proc(self: ^UI.ResponderStandardEditActions, sender: id),
     showWritingTools: proc(self: ^UI.ResponderStandardEditActions, sender: id),
 }
 
@@ -118,6 +126,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("pasteAndSearch:"), auto_cast pasteAndSearch, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.newFromPasteboard != nil {
+        newFromPasteboard :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).newFromPasteboard(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("newFromPasteboard:"), auto_cast newFromPasteboard, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.select != nil {
         select :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
@@ -218,6 +236,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("decreaseSize:"), auto_cast decreaseSize, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.alignLeft != nil {
+        alignLeft :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).alignLeft(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignLeft:"), auto_cast alignLeft, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.alignCenter != nil {
+        alignCenter :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).alignCenter(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignCenter:"), auto_cast alignCenter, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.alignJustified != nil {
+        alignJustified :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).alignJustified(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignJustified:"), auto_cast alignJustified, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.alignRight != nil {
+        alignRight :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).alignRight(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("alignRight:"), auto_cast alignRight, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.find != nil {
         find :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
@@ -328,6 +386,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("export:"), auto_cast export, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.toggleSidebar != nil {
+        toggleSidebar :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).toggleSidebar(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleSidebar:"), auto_cast toggleSidebar, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.toggleInspector != nil {
+        toggleInspector :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).toggleInspector(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("toggleInspector:"), auto_cast toggleInspector, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.performClose != nil {
+        performClose :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).performClose(self, sender)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("performClose:"), auto_cast performClose, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.showWritingTools != nil {
         showWritingTools :: proc "c" (self: ^UI.ResponderStandardEditActions, _: SEL, sender: id) {

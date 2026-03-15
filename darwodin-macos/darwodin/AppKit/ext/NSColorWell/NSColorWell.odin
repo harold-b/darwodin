@@ -50,6 +50,8 @@ VTable :: struct {
     setPulldownAction: proc(self: ^AK.ColorWell, pulldownAction: SEL),
     supportsAlpha: proc(self: ^AK.ColorWell) -> bool,
     setSupportsAlpha: proc(self: ^AK.ColorWell, supportsAlpha: bool),
+    maximumLinearExposure: proc(self: ^AK.ColorWell) -> CG.Float,
+    setMaximumLinearExposure: proc(self: ^AK.ColorWell, maximumLinearExposure: CG.Float),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -258,6 +260,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSupportsAlpha:"), auto_cast setSupportsAlpha, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.maximumLinearExposure != nil {
+        maximumLinearExposure :: proc "c" (self: ^AK.ColorWell, _: SEL) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).maximumLinearExposure(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("maximumLinearExposure"), auto_cast maximumLinearExposure, "d@:") do panic("Failed to register objC method.")
+    }
+    if vt.setMaximumLinearExposure != nil {
+        setMaximumLinearExposure :: proc "c" (self: ^AK.ColorWell, _: SEL, maximumLinearExposure: CG.Float) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setMaximumLinearExposure(self, maximumLinearExposure)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumLinearExposure:"), auto_cast setMaximumLinearExposure, "v@:d") do panic("Failed to register objC method.")
     }
 }
 

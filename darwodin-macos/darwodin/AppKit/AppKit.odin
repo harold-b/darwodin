@@ -134,6 +134,10 @@ PasteboardInvalidArgumentError                      :: 67586
 PasteboardContentsNotAvailableError                 :: 67587
 PasteboardErrorMinimum                              :: 67584
 PasteboardErrorMaximum                              :: 67839
+AccessibilityHourMinuteDateTimeComponentsFlag       :: 12
+AccessibilityHourMinuteSecondDateTimeComponentsFlag :: 14
+AccessibilityYearMonthDateTimeComponentsFlag        :: 192
+AccessibilityYearMonthDayDateTimeComponentsFlag     :: 224
 UpArrowFunctionKey                                  :: 63232
 DownArrowFunctionKey                                :: 63233
 LeftArrowFunctionKey                                :: 63234
@@ -846,6 +850,15 @@ foreign lib {
     @(link_name="NSAccessibilityContainsProtectedContentAttribute") AccessibilityContainsProtectedContentAttribute: ^NS.String
     @(link_name="NSAccessibilityAlternateUIVisibleAttribute") AccessibilityAlternateUIVisibleAttribute: ^NS.String
     @(link_name="NSAccessibilityRequiredAttribute") AccessibilityRequiredAttribute: ^NS.String
+    @(link_name="NSAccessibilityAutoInteractableAttribute") AccessibilityAutoInteractableAttribute: ^NS.String
+    @(link_name="NSAccessibilityDateTimeComponentsAttribute") AccessibilityDateTimeComponentsAttribute: ^NS.String
+    @(link_name="NSAccessibilityEmbeddedImageDescriptionAttribute") AccessibilityEmbeddedImageDescriptionAttribute: ^NS.String
+    @(link_name="NSAccessibilityPathAttribute") AccessibilityPathAttribute: ^NS.String
+    @(link_name="NSAccessibilityTextInputMarkedRangeAttribute") AccessibilityTextInputMarkedRangeAttribute: ^NS.String
+    @(link_name="NSAccessibilityBlockQuoteLevelAttribute") AccessibilityBlockQuoteLevelAttribute: ^NS.String
+    @(link_name="NSAccessibilityHeadingLevelAttribute") AccessibilityHeadingLevelAttribute: ^NS.String
+    @(link_name="NSAccessibilityLanguageAttribute") AccessibilityLanguageAttribute: ^NS.String
+    @(link_name="NSAccessibilityVisitedAttribute") AccessibilityVisitedAttribute: ^NS.String
     @(link_name="NSAccessibilityTitleUIElementAttribute") AccessibilityTitleUIElementAttribute: ^NS.String
     @(link_name="NSAccessibilityServesAsTitleForUIElementsAttribute") AccessibilityServesAsTitleForUIElementsAttribute: ^NS.String
     @(link_name="NSAccessibilityLinkedUIElementsAttribute") AccessibilityLinkedUIElementsAttribute: ^NS.String
@@ -879,6 +892,11 @@ foreign lib {
     @(link_name="NSAccessibilityLinkTextAttribute") AccessibilityLinkTextAttribute: ^NS.String
     @(link_name="NSAccessibilityAutocorrectedTextAttribute") AccessibilityAutocorrectedTextAttribute: ^NS.String
     @(link_name="NSAccessibilityTextAlignmentAttribute") AccessibilityTextAlignmentAttribute: ^NS.String
+    @(link_name="NSAccessibilityFontBoldAttribute") AccessibilityFontBoldAttribute: ^NS.String
+    @(link_name="NSAccessibilityFontItalicAttribute") AccessibilityFontItalicAttribute: ^NS.String
+    @(link_name="NSAccessibilityChildrenInNavigationOrderAttribute") AccessibilityChildrenInNavigationOrderAttribute: ^NS.String
+    @(link_name="NSAccessibilityIndexForChildUIElementAttribute") AccessibilityIndexForChildUIElementAttribute: ^NS.String
+    @(link_name="NSAccessibilityIndexForChildUIElementInNavigationOrderAttribute") AccessibilityIndexForChildUIElementInNavigationOrderAttribute: ^NS.String
     @(link_name="NSAccessibilityListItemPrefixTextAttribute") AccessibilityListItemPrefixTextAttribute: ^NS.String
     @(link_name="NSAccessibilityListItemIndexTextAttribute") AccessibilityListItemIndexTextAttribute: ^NS.String
     @(link_name="NSAccessibilityListItemLevelTextAttribute") AccessibilityListItemLevelTextAttribute: ^NS.String
@@ -887,6 +905,7 @@ foreign lib {
     @(link_name="NSAccessibilityLanguageTextAttribute") AccessibilityLanguageTextAttribute: ^NS.String
     @(link_name="NSAccessibilityCustomTextAttribute") AccessibilityCustomTextAttribute: ^NS.String
     @(link_name="NSAccessibilityAnnotationTextAttribute") AccessibilityAnnotationTextAttribute: ^NS.String
+    @(link_name="NSAccessibilityTextCompletionAttribute") AccessibilityTextCompletionAttribute: ^NS.String
     @(link_name="NSAccessibilityAnnotationLabel") AccessibilityAnnotationLabel: ^NS.String
     @(link_name="NSAccessibilityAnnotationElement") AccessibilityAnnotationElement: ^NS.String
     @(link_name="NSAccessibilityAnnotationLocation") AccessibilityAnnotationLocation: ^NS.String
@@ -987,6 +1006,7 @@ foreign lib {
     @(link_name="NSAccessibilityRaiseAction") AccessibilityRaiseAction: ^NS.String
     @(link_name="NSAccessibilityShowMenuAction") AccessibilityShowMenuAction: ^NS.String
     @(link_name="NSAccessibilityDeleteAction") AccessibilityDeleteAction: ^NS.String
+    @(link_name="NSAccessibilityScrollToVisibleAction") AccessibilityScrollToVisibleAction: ^NS.String
     @(link_name="NSAccessibilityShowAlternateUIAction") AccessibilityShowAlternateUIAction: ^NS.String
     @(link_name="NSAccessibilityShowDefaultUIAction") AccessibilityShowDefaultUIAction: ^NS.String
     @(link_name="NSAccessibilityMainWindowChangedNotification") AccessibilityMainWindowChangedNotification: ^NS.String
@@ -1018,6 +1038,15 @@ foreign lib {
     @(link_name="NSAccessibilitySelectedColumnsChangedNotification") AccessibilitySelectedColumnsChangedNotification: ^NS.String
     @(link_name="NSAccessibilityRowExpandedNotification") AccessibilityRowExpandedNotification: ^NS.String
     @(link_name="NSAccessibilityRowCollapsedNotification") AccessibilityRowCollapsedNotification: ^NS.String
+    @(link_name="NSAccessibilityAutocorrectionOccurredNotification") AccessibilityAutocorrectionOccurredNotification: ^NS.String
+    @(link_name="NSAccessibilityTextInputMarkingSessionBeganNotification") AccessibilityTextInputMarkingSessionBeganNotification: ^NS.String
+    @(link_name="NSAccessibilityTextInputMarkingSessionEndedNotification") AccessibilityTextInputMarkingSessionEndedNotification: ^NS.String
+    @(link_name="NSAccessibilityDraggingSourceDragBeganNotification") AccessibilityDraggingSourceDragBeganNotification: ^NS.String
+    @(link_name="NSAccessibilityDraggingSourceDragEndedNotification") AccessibilityDraggingSourceDragEndedNotification: ^NS.String
+    @(link_name="NSAccessibilityDraggingDestinationDropAllowedNotification") AccessibilityDraggingDestinationDropAllowedNotification: ^NS.String
+    @(link_name="NSAccessibilityDraggingDestinationDropNotAllowedNotification") AccessibilityDraggingDestinationDropNotAllowedNotification: ^NS.String
+    @(link_name="NSAccessibilityDraggingDestinationDragAcceptedNotification") AccessibilityDraggingDestinationDragAcceptedNotification: ^NS.String
+    @(link_name="NSAccessibilityDraggingDestinationDragNotAcceptedNotification") AccessibilityDraggingDestinationDragNotAcceptedNotification: ^NS.String
     @(link_name="NSAccessibilitySelectedCellsChangedNotification") AccessibilitySelectedCellsChangedNotification: ^NS.String
     @(link_name="NSAccessibilityUnitsChangedNotification") AccessibilityUnitsChangedNotification: ^NS.String
     @(link_name="NSAccessibilitySelectedChildrenMovedNotification") AccessibilitySelectedChildrenMovedNotification: ^NS.String
@@ -1071,10 +1100,14 @@ foreign lib {
     @(link_name="NSAccessibilityDisclosureTriangleRole") AccessibilityDisclosureTriangleRole: ^NS.String
     @(link_name="NSAccessibilityGridRole") AccessibilityGridRole: ^NS.String
     @(link_name="NSAccessibilityRelevanceIndicatorRole") AccessibilityRelevanceIndicatorRole: ^NS.String
+    @(link_name="NSAccessibilityDateTimeAreaRole") AccessibilityDateTimeAreaRole: ^NS.String
     @(link_name="NSAccessibilityLevelIndicatorRole") AccessibilityLevelIndicatorRole: ^NS.String
     @(link_name="NSAccessibilityCellRole") AccessibilityCellRole: ^NS.String
     @(link_name="NSAccessibilityPopoverRole") AccessibilityPopoverRole: ^NS.String
     @(link_name="NSAccessibilityPageRole") AccessibilityPageRole: ^NS.String
+    @(link_name="NSAccessibilityHeadingRole") AccessibilityHeadingRole: ^NS.String
+    @(link_name="NSAccessibilityListMarkerRole") AccessibilityListMarkerRole: ^NS.String
+    @(link_name="NSAccessibilityWebAreaRole") AccessibilityWebAreaRole: ^NS.String
     @(link_name="NSAccessibilityLayoutAreaRole") AccessibilityLayoutAreaRole: ^NS.String
     @(link_name="NSAccessibilityLayoutItemRole") AccessibilityLayoutItemRole: ^NS.String
     @(link_name="NSAccessibilityHandleRole") AccessibilityHandleRole: ^NS.String
@@ -1110,9 +1143,66 @@ foreign lib {
     @(link_name="NSAccessibilityTabButtonSubrole") AccessibilityTabButtonSubrole: ^NS.String
     @(link_name="NSAccessibilityCollectionListSubrole") AccessibilityCollectionListSubrole: ^NS.String
     @(link_name="NSAccessibilitySectionListSubrole") AccessibilitySectionListSubrole: ^NS.String
+    @(link_name="NSAccessibilitySuggestionSubrole") AccessibilitySuggestionSubrole: ^NS.String
     @(link_name="NSAccessibilityUIElementsKey") AccessibilityUIElementsKey: ^NS.String
     @(link_name="NSAccessibilityPriorityKey") AccessibilityPriorityKey: ^NS.String
     @(link_name="NSAccessibilityAnnouncementKey") AccessibilityAnnouncementKey: ^NS.String
+    @(link_name="NSAccessibilityUIElementsForSearchPredicateParameterizedAttribute") AccessibilityUIElementsForSearchPredicateParameterizedAttribute: ^NS.String
+    @(link_name="NSAccessibilityResultsForSearchPredicateParameterizedAttribute") AccessibilityResultsForSearchPredicateParameterizedAttribute: ^NS.String
+    @(link_name="NSAccessibilitySearchIdentifiersKey") AccessibilitySearchIdentifiersKey: ^NS.String
+    @(link_name="NSAccessibilitySearchCurrentElementKey") AccessibilitySearchCurrentElementKey: ^NS.String
+    @(link_name="NSAccessibilitySearchCurrentRangeKey") AccessibilitySearchCurrentRangeKey: ^NS.String
+    @(link_name="NSAccessibilitySearchDirectionKey") AccessibilitySearchDirectionKey: ^NS.String
+    @(link_name="NSAccessibilitySearchResultsLimitKey") AccessibilitySearchResultsLimitKey: ^NS.String
+    @(link_name="NSAccessibilitySearchTextKey") AccessibilitySearchTextKey: ^NS.String
+    @(link_name="NSAccessibilitySearchDirectionNext") AccessibilitySearchDirectionNext: ^NS.String
+    @(link_name="NSAccessibilitySearchDirectionPrevious") AccessibilitySearchDirectionPrevious: ^NS.String
+    @(link_name="NSAccessibilitySearchResultElementKey") AccessibilitySearchResultElementKey: ^NS.String
+    @(link_name="NSAccessibilitySearchResultRangeKey") AccessibilitySearchResultRangeKey: ^NS.String
+    @(link_name="NSAccessibilitySearchResultDescriptionOverrideKey") AccessibilitySearchResultDescriptionOverrideKey: ^NS.String
+    @(link_name="NSAccessibilitySearchResultLoaderKey") AccessibilitySearchResultLoaderKey: ^NS.String
+    @(link_name="NSAccessibilityAnyTypeSearchKey") AccessibilityAnyTypeSearchKey: ^NS.String
+    @(link_name="NSAccessibilityArticleSearchKey") AccessibilityArticleSearchKey: ^NS.String
+    @(link_name="NSAccessibilityBlockquoteSameLevelSearchKey") AccessibilityBlockquoteSameLevelSearchKey: ^NS.String
+    @(link_name="NSAccessibilityBlockquoteSearchKey") AccessibilityBlockquoteSearchKey: ^NS.String
+    @(link_name="NSAccessibilityBoldFontSearchKey") AccessibilityBoldFontSearchKey: ^NS.String
+    @(link_name="NSAccessibilityButtonSearchKey") AccessibilityButtonSearchKey: ^NS.String
+    @(link_name="NSAccessibilityCheckBoxSearchKey") AccessibilityCheckBoxSearchKey: ^NS.String
+    @(link_name="NSAccessibilityControlSearchKey") AccessibilityControlSearchKey: ^NS.String
+    @(link_name="NSAccessibilityDifferentTypeSearchKey") AccessibilityDifferentTypeSearchKey: ^NS.String
+    @(link_name="NSAccessibilityFontChangeSearchKey") AccessibilityFontChangeSearchKey: ^NS.String
+    @(link_name="NSAccessibilityFontColorChangeSearchKey") AccessibilityFontColorChangeSearchKey: ^NS.String
+    @(link_name="NSAccessibilityFrameSearchKey") AccessibilityFrameSearchKey: ^NS.String
+    @(link_name="NSAccessibilityGraphicSearchKey") AccessibilityGraphicSearchKey: ^NS.String
+    @(link_name="NSAccessibilityHeadingLevel1SearchKey") AccessibilityHeadingLevel1SearchKey: ^NS.String
+    @(link_name="NSAccessibilityHeadingLevel2SearchKey") AccessibilityHeadingLevel2SearchKey: ^NS.String
+    @(link_name="NSAccessibilityHeadingLevel3SearchKey") AccessibilityHeadingLevel3SearchKey: ^NS.String
+    @(link_name="NSAccessibilityHeadingLevel4SearchKey") AccessibilityHeadingLevel4SearchKey: ^NS.String
+    @(link_name="NSAccessibilityHeadingLevel5SearchKey") AccessibilityHeadingLevel5SearchKey: ^NS.String
+    @(link_name="NSAccessibilityHeadingLevel6SearchKey") AccessibilityHeadingLevel6SearchKey: ^NS.String
+    @(link_name="NSAccessibilityHeadingSameLevelSearchKey") AccessibilityHeadingSameLevelSearchKey: ^NS.String
+    @(link_name="NSAccessibilityHeadingSearchKey") AccessibilityHeadingSearchKey: ^NS.String
+    @(link_name="NSAccessibilityItalicFontSearchKey") AccessibilityItalicFontSearchKey: ^NS.String
+    @(link_name="NSAccessibilityKeyboardFocusableSearchKey") AccessibilityKeyboardFocusableSearchKey: ^NS.String
+    @(link_name="NSAccessibilityLandmarkSearchKey") AccessibilityLandmarkSearchKey: ^NS.String
+    @(link_name="NSAccessibilityLinkSearchKey") AccessibilityLinkSearchKey: ^NS.String
+    @(link_name="NSAccessibilityListSearchKey") AccessibilityListSearchKey: ^NS.String
+    @(link_name="NSAccessibilityLiveRegionSearchKey") AccessibilityLiveRegionSearchKey: ^NS.String
+    @(link_name="NSAccessibilityMisspelledWordSearchKey") AccessibilityMisspelledWordSearchKey: ^NS.String
+    @(link_name="NSAccessibilityOutlineSearchKey") AccessibilityOutlineSearchKey: ^NS.String
+    @(link_name="NSAccessibilityPlainTextSearchKey") AccessibilityPlainTextSearchKey: ^NS.String
+    @(link_name="NSAccessibilityRadioGroupSearchKey") AccessibilityRadioGroupSearchKey: ^NS.String
+    @(link_name="NSAccessibilitySameTypeSearchKey") AccessibilitySameTypeSearchKey: ^NS.String
+    @(link_name="NSAccessibilityStaticTextSearchKey") AccessibilityStaticTextSearchKey: ^NS.String
+    @(link_name="NSAccessibilityStyleChangeSearchKey") AccessibilityStyleChangeSearchKey: ^NS.String
+    @(link_name="NSAccessibilityTableSameLevelSearchKey") AccessibilityTableSameLevelSearchKey: ^NS.String
+    @(link_name="NSAccessibilityTableSearchKey") AccessibilityTableSearchKey: ^NS.String
+    @(link_name="NSAccessibilityTextFieldSearchKey") AccessibilityTextFieldSearchKey: ^NS.String
+    @(link_name="NSAccessibilityTextStateChangeTypeKey") AccessibilityTextStateChangeTypeKey: ^NS.String
+    @(link_name="NSAccessibilityTextStateSyncKey") AccessibilityTextStateSyncKey: ^NS.String
+    @(link_name="NSAccessibilityUnderlineSearchKey") AccessibilityUnderlineSearchKey: ^NS.String
+    @(link_name="NSAccessibilityUnvisitedLinkSearchKey") AccessibilityUnvisitedLinkSearchKey: ^NS.String
+    @(link_name="NSAccessibilityVisitedLinkSearchKey") AccessibilityVisitedLinkSearchKey: ^NS.String
     @(link_name="NSAccessibilitySortButtonRole") AccessibilitySortButtonRole: ^NS.String
     @(link_name="NSWorkspaceDesktopImageScalingKey") WorkspaceDesktopImageScalingKey: ^NS.String
     @(link_name="NSWorkspaceDesktopImageAllowClippingKey") WorkspaceDesktopImageAllowClippingKey: ^NS.String
@@ -1470,6 +1560,8 @@ foreign lib {
     @(link_name="NSApplicationDidChangeScreenParametersNotification") ApplicationDidChangeScreenParametersNotification: ^NS.String
     @(link_name="NSApplicationProtectedDataWillBecomeUnavailableNotification") ApplicationProtectedDataWillBecomeUnavailableNotification: ^NS.String
     @(link_name="NSApplicationProtectedDataDidBecomeAvailableNotification") ApplicationProtectedDataDidBecomeAvailableNotification: ^NS.String
+    @(link_name="NSApplicationShouldBeginSuppressingHighDynamicRangeContentNotification") ApplicationShouldBeginSuppressingHighDynamicRangeContentNotification: ^NS.String
+    @(link_name="NSApplicationShouldEndSuppressingHighDynamicRangeContentNotification") ApplicationShouldEndSuppressingHighDynamicRangeContentNotification: ^NS.String
     @(link_name="NSApplicationLaunchIsDefaultLaunchKey") ApplicationLaunchIsDefaultLaunchKey: ^NS.String
     @(link_name="NSApplicationLaunchUserNotificationKey") ApplicationLaunchUserNotificationKey: ^NS.String
     @(link_name="NSApplicationLaunchRemoteNotificationKey") ApplicationLaunchRemoteNotificationKey: ^NS.String
@@ -2459,6 +2551,12 @@ AccessibilityNotificationUserInfoKey :: distinct ^NS.String
 /// NSAccessibilityLoadingToken
 AccessibilityLoadingToken :: distinct ^id
 
+/// NSAccessibilitySearchKey
+AccessibilitySearchKey :: distinct ^NS.String
+
+/// NSAccessibilityDateTimeComponentsFlags
+AccessibilityDateTimeComponentsFlags :: distinct NS.UInteger
+
 /// NSWorkspaceDesktopImageOptionKey
 WorkspaceDesktopImageOptionKey :: distinct ^NS.String
 
@@ -3099,6 +3197,7 @@ EventType :: enum cffi.ulong {
     Pressure           = 34,
     DirectTouch        = 37,
     ChangeMode         = 38,
+    MouseCancelled     = 40,
 }
 
 /// NSEventMask
@@ -3136,6 +3235,7 @@ EventMaskFlag :: enum cffi.ulonglong {
     Pressure           = 34,
     DirectTouch        = 37,
     ChangeMode         = 38,
+    MouseCancelled     = 40,
 }
 EventMask :: bit_set[EventMaskFlag; cffi.ulonglong]
 
@@ -3503,10 +3603,11 @@ ControlTint :: enum cffi.ulong {
 
 /// NSControlSize
 ControlSize :: enum cffi.ulong {
-    Regular = 0,
-    Small   = 1,
-    Mini    = 2,
-    Large   = 3,
+    Regular    = 0,
+    Small      = 1,
+    Mini       = 2,
+    Large      = 3,
+    ExtraLarge = 4,
 }
 
 /// NSCellHitResult
@@ -3708,6 +3809,14 @@ BoxType :: enum cffi.ulong {
     Custom    = 4,
 }
 
+/// NSControlBorderShape
+ControlBorderShape :: enum cffi.long {
+    Automatic        = 0,
+    Capsule          = 1,
+    RoundedRectangle = 2,
+    Circle           = 3,
+}
+
 /// NSButtonType
 ButtonType :: enum cffi.ulong {
     MomentaryLight        = 0,
@@ -3736,6 +3845,7 @@ BezelStyle :: enum cffi.ulong {
     AccessoryBar       = 13,
     PushDisclosure     = 14,
     Badge              = 15,
+    Glass              = 16,
     ShadowlessSquare   = 6,
     TexturedSquare     = 8,
     Rounded            = 1,
@@ -3754,6 +3864,14 @@ GradientType :: enum cffi.ulong {
     ConcaveStrong = 2,
     ConvexWeak    = 3,
     ConvexStrong  = 4,
+}
+
+/// NSTintProminence
+TintProminence :: enum cffi.long {
+    Automatic = 0,
+    None      = 1,
+    Primary   = 2,
+    Secondary = 3,
 }
 
 /// NSPopoverAppearance
@@ -4111,6 +4229,12 @@ MatrixMode :: enum cffi.ulong {
     TrackModeMatrix     = 3,
 }
 
+/// NSGlassEffectViewStyle
+GlassEffectViewStyle :: enum cffi.long {
+    Regular = 0,
+    Clear   = 1,
+}
+
 /// NSMenuItemBadgeType
 MenuItemBadgeType :: enum cffi.long {
     None     = 0,
@@ -4342,6 +4466,20 @@ ImageSymbolScale :: enum cffi.long {
     Small  = 1,
     Medium = 2,
     Large  = 3,
+}
+
+/// NSImageSymbolVariableValueMode
+ImageSymbolVariableValueMode :: enum cffi.long {
+    Automatic = 0,
+    Color     = 1,
+    Draw      = 2,
+}
+
+/// NSImageSymbolColorRenderingMode
+ImageSymbolColorRenderingMode :: enum cffi.long {
+    Automatic = 0,
+    Flat      = 1,
+    Gradient  = 2,
 }
 
 /// NSImageAlignment
@@ -4711,11 +4849,12 @@ WritingToolsBehavior :: enum cffi.long {
 
 /// NSWritingToolsResultOptions
 WritingToolsResultOptions :: enum cffi.ulong {
-    Default   = 0,
-    PlainText = 1,
-    RichText  = 2,
-    List      = 4,
-    Table     = 8,
+    Default            = 0,
+    PlainText          = 1,
+    RichText           = 2,
+    List               = 4,
+    Table              = 8,
+    PresentationIntent = 16,
 }
 
 /// NSTextFieldBezelStyle
@@ -4873,6 +5012,19 @@ ToolbarSizeMode :: enum cffi.ulong {
     Small   = 2,
 }
 
+/// NSToolbarItemStyle
+ToolbarItemStyle :: enum cffi.long {
+    Plain     = 0,
+    Prominent = 1,
+}
+
+/// NSViewLayoutRegionAdaptivityAxis
+ViewLayoutRegionAdaptivityAxis :: enum cffi.long {
+    None       = 0,
+    Horizontal = 1,
+    Vertical   = 2,
+}
+
 /// NSComboButtonStyle
 ComboButtonStyle :: enum cffi.long {
     Split   = 0,
@@ -5003,12 +5155,13 @@ TableViewRowActionStyle :: enum cffi.long {
 
 /// NSStringDrawingOptions
 StringDrawingOptions :: enum cffi.long {
-    UsesLineFragmentOrigin        = 1,
-    UsesFontLeading               = 2,
-    UsesDeviceMetrics             = 8,
-    TruncatesLastVisibleLine      = 32,
-    DisableScreenFontSubstitution = 4,
-    OneShot                       = 16,
+    UsesLineFragmentOrigin           = 1,
+    UsesFontLeading                  = 2,
+    UsesDeviceMetrics                = 8,
+    TruncatesLastVisibleLine         = 32,
+    ResolvesNaturalAlignmentWithBaseWritingDirection = 512,
+    DisableScreenFontSubstitution    = 4,
+    OneShot                          = 16,
 }
 
 /// NSRulerOrientation

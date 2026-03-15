@@ -108,6 +108,13 @@ foreign lib {
     @(link_name="kCGUseBT1886ForCoreVideoGamma") UseBT1886ForCoreVideoGamma: CF.StringRef
     @(link_name="kCGSkipBoostToHDR") SkipBoostToHDR: CF.StringRef
     @(link_name="kCGUseLegacyHDREcosystem") UseLegacyHDREcosystem: CF.StringRef
+    @(link_name="kCGPreferredDynamicRange") PreferredDynamicRange: CF.StringRef
+    @(link_name="kCGDynamicRangeHigh") DynamicRangeHigh: CF.StringRef
+    @(link_name="kCGDynamicRangeConstrained") DynamicRangeConstrained: CF.StringRef
+    @(link_name="kCGDynamicRangeStandard") DynamicRangeStandard: CF.StringRef
+    @(link_name="kCGContentAverageLightLevel") ContentAverageLightLevel: CF.StringRef
+    @(link_name="kCGContentAverageLightLevelNits") ContentAverageLightLevelNits: CF.StringRef
+    @(link_name="kCGAdaptiveMaximumBitDepth") AdaptiveMaximumBitDepth: CF.StringRef
     @(link_name="kCGColorConversionBlackPointCompensation") ColorConversionBlackPointCompensation: CF.StringRef
     @(link_name="kCGColorConversionTRCSize") ColorConversionTRCSize: CF.StringRef
     @(link_name="kCGPDFContextMediaBox") PDFContextMediaBox: CF.StringRef
@@ -424,7 +431,7 @@ foreign lib {
     ColorSpaceCreateExtendedLinearized :: proc(space: ColorSpaceRef) -> ColorSpaceRef ---
 
     @(link_name="CGColorSpaceCreateCopyWithStandardRange")
-    ColorSpaceCreateCopyWithStandardRange :: proc(s: ColorSpaceRef) -> ColorSpaceRef ---
+    ColorSpaceCreateCopyWithStandardRange :: proc(space: ColorSpaceRef) -> ColorSpaceRef ---
 
     @(link_name="CGColorSpaceCreateWithICCProfile")
     ColorSpaceCreateWithICCProfile :: proc(data: CF.DataRef) -> ColorSpaceRef ---
@@ -464,6 +471,12 @@ foreign lib {
 
     @(link_name="CGColorCreateSRGB")
     ColorCreateSRGB :: proc(red: Float, green: Float, blue: Float, alpha: Float) -> ColorRef ---
+
+    @(link_name="CGColorCreateWithContentHeadroom")
+    ColorCreateWithContentHeadroom :: proc(headroom: cffi.float, space: ColorSpaceRef, red: Float, green: Float, blue: Float, alpha: Float) -> ColorRef ---
+
+    @(link_name="CGColorGetContentHeadroom")
+    ColorGetContentHeadroom :: proc(color: ColorRef) -> cffi.float ---
 
     @(link_name="CGColorGetConstantColor")
     ColorGetConstantColor :: proc(colorName: CF.StringRef) -> ColorRef ---
@@ -603,6 +616,9 @@ foreign lib {
     @(link_name="CGGradientCreateWithColorComponents")
     GradientCreateWithColorComponents :: proc(space: ColorSpaceRef, components: ^Float, locations: ^Float, count: cffi.size_t) -> GradientRef ---
 
+    @(link_name="CGGradientCreateWithContentHeadroom")
+    GradientCreateWithContentHeadroom :: proc(headroom: cffi.float, space: ColorSpaceRef, components: ^Float, locations: ^Float, count: cffi.size_t) -> GradientRef ---
+
     @(link_name="CGGradientCreateWithColors")
     GradientCreateWithColors :: proc(space: ColorSpaceRef, colors: CF.ArrayRef, locations: ^Float) -> GradientRef ---
 
@@ -611,6 +627,9 @@ foreign lib {
 
     @(link_name="CGGradientRelease")
     GradientRelease :: proc(gradient: GradientRef) ---
+
+    @(link_name="CGGradientGetContentHeadroom")
+    GradientGetContentHeadroom :: proc(gradient: GradientRef) -> cffi.float ---
 
     @(link_name="CGImageGetTypeID")
     ImageGetTypeID :: proc() -> CF.TypeID ---
@@ -650,6 +669,21 @@ foreign lib {
 
     @(link_name="CGImageGetContentHeadroom")
     ImageGetContentHeadroom :: proc(image: ImageRef) -> cffi.float ---
+
+    @(link_name="CGImageCalculateContentHeadroom")
+    ImageCalculateContentHeadroom :: proc(image: ImageRef) -> cffi.float ---
+
+    @(link_name="CGImageGetContentAverageLightLevel")
+    ImageGetContentAverageLightLevel :: proc(image: ImageRef) -> cffi.float ---
+
+    @(link_name="CGImageCalculateContentAverageLightLevel")
+    ImageCalculateContentAverageLightLevel :: proc(image: ImageRef) -> cffi.float ---
+
+    @(link_name="CGImageCreateCopyWithContentAverageLightLevel")
+    ImageCreateCopyWithContentAverageLightLevel :: proc(image: ImageRef, avll: cffi.float) -> ImageRef ---
+
+    @(link_name="CGImageCreateCopyWithCalculatedHDRStats")
+    ImageCreateCopyWithCalculatedHDRStats :: proc(image: ImageRef) -> ImageRef ---
 
     @(link_name="CGImageRetain")
     ImageRetain :: proc(image: ImageRef) -> ImageRef ---
@@ -1062,14 +1096,26 @@ foreign lib {
     @(link_name="CGShadingCreateAxial")
     ShadingCreateAxial :: proc(space: ColorSpaceRef, start: Point, end: Point, function: FunctionRef, extendStart: cffi.bool, extendEnd: cffi.bool) -> ShadingRef ---
 
+    @(link_name="CGShadingCreateAxialWithContentHeadroom")
+    ShadingCreateAxialWithContentHeadroom :: proc(headroom: cffi.float, space: ColorSpaceRef, start: Point, end: Point, function: FunctionRef, extendStart: cffi.bool, extendEnd: cffi.bool) -> ShadingRef ---
+
     @(link_name="CGShadingCreateRadial")
     ShadingCreateRadial :: proc(space: ColorSpaceRef, start: Point, startRadius: Float, end: Point, endRadius: Float, function: FunctionRef, extendStart: cffi.bool, extendEnd: cffi.bool) -> ShadingRef ---
+
+    @(link_name="CGShadingCreateRadialWithContentHeadroom")
+    ShadingCreateRadialWithContentHeadroom :: proc(headroom: cffi.float, space: ColorSpaceRef, start: Point, startRadius: Float, end: Point, endRadius: Float, function: FunctionRef, extendStart: cffi.bool, extendEnd: cffi.bool) -> ShadingRef ---
 
     @(link_name="CGShadingRetain")
     ShadingRetain :: proc(shading: ShadingRef) -> ShadingRef ---
 
     @(link_name="CGShadingRelease")
     ShadingRelease :: proc(shading: ShadingRef) ---
+
+    @(link_name="CGShadingGetContentHeadroom")
+    ShadingGetContentHeadroom :: proc(shading: ShadingRef) -> cffi.float ---
+
+    @(link_name="CGEXRToneMappingGammaGetDefaultOptions")
+    EXRToneMappingGammaGetDefaultOptions :: proc() -> CF.DictionaryRef ---
 
     @(link_name="CGContextGetTypeID")
     ContextGetTypeID :: proc() -> CF.TypeID ---
@@ -1296,6 +1342,12 @@ foreign lib {
     @(link_name="CGContextDrawImageApplyingToneMapping")
     ContextDrawImageApplyingToneMapping :: proc(c: ContextRef, r: Rect, image: ImageRef, method: ToneMapping, options: CF.DictionaryRef) -> cffi.bool ---
 
+    @(link_name="CGContextGetContentToneMappingInfo")
+    ContextGetContentToneMappingInfo :: proc(c: ContextRef) -> ContentToneMappingInfo ---
+
+    @(link_name="CGContextSetContentToneMappingInfo")
+    ContextSetContentToneMappingInfo :: proc(c: ContextRef, info: ContentToneMappingInfo) ---
+
     @(link_name="CGContextGetInterpolationQuality")
     ContextGetInterpolationQuality :: proc(c: ContextRef) -> InterpolationQuality ---
 
@@ -1367,6 +1419,9 @@ foreign lib {
 
     @(link_name="CGContextSynchronize")
     ContextSynchronize :: proc(c: ContextRef) ---
+
+    @(link_name="CGContextSynchronizeAttributes")
+    ContextSynchronizeAttributes :: proc(c: ContextRef) ---
 
     @(link_name="CGContextSetShouldAntialias")
     ContextSetShouldAntialias :: proc(c: ContextRef, shouldAntialias: cffi.bool) ---
@@ -1443,11 +1498,32 @@ foreign lib {
     @(link_name="CGContextDrawPDFDocument")
     ContextDrawPDFDocument :: proc(c: ContextRef, rect: Rect, document: PDFDocumentRef, page: cffi.int) ---
 
+    @(link_name="CGRenderingBufferProviderCreate")
+    RenderingBufferProviderCreate :: proc(info: rawptr, size: cffi.size_t, lockPointer: ^Objc_Block(proc "c" (info: rawptr) -> rawptr), unlockPointer: ^Objc_Block(proc "c" (info: rawptr, pointer: rawptr)), releaseInfo: ^Objc_Block(proc "c" (info: rawptr))) -> RenderingBufferProviderRef ---
+
+    @(link_name="CGRenderingBufferProviderCreateWithCFData")
+    RenderingBufferProviderCreateWithCFData :: proc(data: CF.MutableDataRef) -> RenderingBufferProviderRef ---
+
+    @(link_name="CGRenderingBufferProviderGetSize")
+    RenderingBufferProviderGetSize :: proc(provider: RenderingBufferProviderRef) -> cffi.size_t ---
+
+    @(link_name="CGRenderingBufferLockBytePtr")
+    RenderingBufferLockBytePtr :: proc(provider: RenderingBufferProviderRef) -> rawptr ---
+
+    @(link_name="CGRenderingBufferUnlockBytePtr")
+    RenderingBufferUnlockBytePtr :: proc(provider: RenderingBufferProviderRef) ---
+
+    @(link_name="CGRenderingBufferProviderGetTypeID")
+    RenderingBufferProviderGetTypeID :: proc() -> CF.TypeID ---
+
     @(link_name="CGBitmapContextCreateWithData")
-    BitmapContextCreateWithData :: proc(data: rawptr, width: cffi.size_t, height: cffi.size_t, bitsPerComponent: cffi.size_t, bytesPerRow: cffi.size_t, space: ColorSpaceRef, bitmapInfo: cffi.uint32_t, releaseCallback: BitmapContextReleaseDataCallback, releaseInfo: rawptr) -> ContextRef ---
+    BitmapContextCreateWithData :: proc(data: rawptr, width: cffi.size_t, height: cffi.size_t, bitsPerComponent: cffi.size_t, bytesPerRow: cffi.size_t, space: ColorSpaceRef, bitmapInfo: BitmapInfo, releaseCallback: BitmapContextReleaseDataCallback, releaseInfo: rawptr) -> ContextRef ---
 
     @(link_name="CGBitmapContextCreate")
-    BitmapContextCreate :: proc(data: rawptr, width: cffi.size_t, height: cffi.size_t, bitsPerComponent: cffi.size_t, bytesPerRow: cffi.size_t, space: ColorSpaceRef, bitmapInfo: cffi.uint32_t) -> ContextRef ---
+    BitmapContextCreate :: proc(data: rawptr, width: cffi.size_t, height: cffi.size_t, bitsPerComponent: cffi.size_t, bytesPerRow: cffi.size_t, space: ColorSpaceRef, bitmapInfo: BitmapInfo) -> ContextRef ---
+
+    @(link_name="CGBitmapContextCreateAdaptive")
+    BitmapContextCreateAdaptive :: proc(width: cffi.size_t, height: cffi.size_t, auxiliaryInfo: CF.DictionaryRef, onResolve: ^Objc_Block(proc "c" (_: ^ContentInfo, _1: ^BitmapParameters) -> cffi.bool), onAllocate: ^Objc_Block(proc "c" (_: ^ContentInfo, _1: ^BitmapParameters) -> RenderingBufferProviderRef), onFree: ^Objc_Block(proc "c" (_: RenderingBufferProviderRef, _1: ^ContentInfo, _2: ^BitmapParameters)), onError: ^Objc_Block(proc "c" (_: CF.ErrorRef, _1: ^ContentInfo, _2: ^BitmapParameters))) -> ContextRef ---
 
     @(link_name="CGBitmapContextGetData")
     BitmapContextGetData :: proc(_context: ContextRef) -> rawptr ---
@@ -1799,6 +1875,9 @@ FunctionEvaluateCallback :: proc "c" (info: rawptr, _in: ^Float, out: ^Float)
 /// CGFunctionReleaseInfoCallback
 FunctionReleaseInfoCallback :: proc "c" (info: rawptr)
 
+/// CGRenderingBufferProviderRef
+RenderingBufferProviderRef :: distinct ^RenderingBufferProvider
+
 /// CGBitmapContextReleaseDataCallback
 BitmapContextReleaseDataCallback :: proc "c" (releaseInfo: rawptr, data: rawptr)
 
@@ -1903,6 +1982,12 @@ ImageAlphaInfo :: enum cffi.uint {
     Only               = 7,
 }
 
+/// CGImageComponentInfo
+ImageComponentInfo :: enum cffi.uint {
+    Integer = 0,
+    Float   = 256,
+}
+
 /// CGImageByteOrderInfo
 ImageByteOrderInfo :: enum cffi.uint {
     Mask      = 28672,
@@ -1911,6 +1996,8 @@ ImageByteOrderInfo :: enum cffi.uint {
     _32Little = 8192,
     _16Big    = 12288,
     _32Big    = 16384,
+    _16Host   = 4096,
+    _32Host   = 8192,
 }
 
 /// CGImagePixelFormatInfo
@@ -1925,15 +2012,18 @@ ImagePixelFormatInfo :: enum cffi.uint {
 
 /// CGBitmapInfo
 BitmapInfo :: enum cffi.uint {
-    AlphaInfoMask     = 31,
-    FloatInfoMask     = 3840,
-    FloatComponents   = 256,
-    ByteOrderMask     = 28672,
-    ByteOrderDefault  = 0,
-    ByteOrder16Little = 4096,
-    ByteOrder32Little = 8192,
-    ByteOrder16Big    = 12288,
-    ByteOrder32Big    = 16384,
+    AlphaInfoMask       = 31,
+    ComponentInfoMask   = 3840,
+    ByteOrderInfoMask   = 28672,
+    PixelFormatInfoMask = 983040,
+    FloatInfoMask       = 3840,
+    ByteOrderMask       = 28672,
+    FloatComponents     = 256,
+    ByteOrderDefault    = 0,
+    ByteOrder16Little   = 4096,
+    ByteOrder32Little   = 8192,
+    ByteOrder16Big      = 12288,
+    ByteOrder32Big      = 16384,
 }
 
 /// CGLineJoin
@@ -2076,6 +2166,43 @@ BlendMode :: enum cffi.int {
     XOR             = 25,
     PlusDarker      = 26,
     PlusLighter     = 27,
+}
+
+/// CGColorModel
+ColorModel :: enum cffi.uint {
+    NoColorant = 0,
+    Gray       = 1,
+    RGB        = 2,
+    CMYK       = 4,
+    Lab        = 8,
+    DeviceN    = 16,
+}
+
+/// CGComponent
+Component :: enum cffi.uint {
+    Unknown      = 0,
+    Integer8Bit  = 1,
+    Integer10Bit = 6,
+    Integer16Bit = 2,
+    Integer32Bit = 3,
+    Float16Bit   = 5,
+    Float32Bit   = 4,
+}
+
+/// CGBitmapLayout
+BitmapLayout :: enum cffi.uint {
+    AlphaOnly = 0,
+    Gray      = 1,
+    GrayAlpha = 2,
+    RGBA      = 3,
+    ARGB      = 4,
+    RGBX      = 5,
+    XRGB      = 6,
+    BGRA      = 7,
+    BGRX      = 8,
+    ABGR      = 9,
+    XBGR      = 10,
+    CMYK      = 11,
 }
 
 /// CGColorConversionInfoTransformType
@@ -2304,6 +2431,42 @@ FunctionCallbacks :: struct #align (8) {
     releaseInfo: FunctionReleaseInfoCallback,
 }
 #assert(size_of(FunctionCallbacks) == 24)
+
+/// CGContentToneMappingInfo
+ContentToneMappingInfo :: struct #align (8) {
+    method:  ToneMapping,
+    options: CF.DictionaryRef,
+}
+#assert(size_of(ContentToneMappingInfo) == 16)
+
+/// CGRenderingBufferProvider
+RenderingBufferProvider :: struct {}
+
+/// CGContentInfo
+ContentInfo :: struct #align (4) {
+    deepestImageComponent:  Component,
+    contentColorModels:     ColorModel,
+    hasWideGamut:           cffi.bool,
+    hasTransparency:        cffi.bool,
+    largestContentHeadroom: cffi.float,
+}
+#assert(size_of(ContentInfo) == 16)
+
+/// CGBitmapParameters
+BitmapParameters :: struct #align (8) {
+    width:                 cffi.size_t,
+    height:                cffi.size_t,
+    bytesPerPixel:         cffi.size_t,
+    alignedBytesPerRow:    cffi.size_t,
+    component:             Component,
+    layout:                BitmapLayout,
+    format:                ImagePixelFormatInfo,
+    colorSpace:            ColorSpaceRef,
+    hasPremultipliedAlpha: cffi.bool,
+    byteOrder:             CF.ByteOrder,
+    edrTargetHeadroom:     cffi.float,
+}
+#assert(size_of(BitmapParameters) == 80)
 
 /// CGColorConversionInfo
 ColorConversionInfo :: struct {}

@@ -36,6 +36,9 @@ foreign lib {
     @(objc_type=TabBarController, objc_selector="setTabBarHidden:animated:", objc_name="setTabBarHidden_animated")
     TabBarController_setTabBarHidden_animated :: proc(self: ^TabBarController, hidden: bool, animated: bool) ---
 
+    @(objc_type=TabBarController, objc_selector="setBottomAccessory:animated:", objc_name="setBottomAccessory_animated")
+    TabBarController_setBottomAccessory_animated :: proc(self: ^TabBarController, bottomAccessory: ^TabAccessory, animated: bool) ---
+
     @(objc_type=TabBarController, objc_selector="setViewControllers:animated:", objc_name="setViewControllers_animated")
     TabBarController_setViewControllers_animated :: proc(self: ^TabBarController, viewControllers: ^NS.Array, animated: bool) ---
 
@@ -78,11 +81,26 @@ foreign lib {
     @(objc_type=TabBarController, objc_selector="setTabs:", objc_name="setTabs_")
     TabBarController_setTabs_ :: proc(self: ^TabBarController, tabs: ^NS.Array) ---
 
+    @(objc_type=TabBarController, objc_selector="tabBarMinimizeBehavior", objc_name="tabBarMinimizeBehavior")
+    TabBarController_tabBarMinimizeBehavior :: proc(self: ^TabBarController) -> TabBarMinimizeBehavior ---
+
+    @(objc_type=TabBarController, objc_selector="setTabBarMinimizeBehavior:", objc_name="setTabBarMinimizeBehavior")
+    TabBarController_setTabBarMinimizeBehavior :: proc(self: ^TabBarController, tabBarMinimizeBehavior: TabBarMinimizeBehavior) ---
+
     @(objc_type=TabBarController, objc_selector="isTabBarHidden", objc_name="isTabBarHidden")
     TabBarController_isTabBarHidden :: proc(self: ^TabBarController) -> bool ---
 
     @(objc_type=TabBarController, objc_selector="setTabBarHidden:", objc_name="setTabBarHidden_")
     TabBarController_setTabBarHidden_ :: proc(self: ^TabBarController, tabBarHidden: bool) ---
+
+    @(objc_type=TabBarController, objc_selector="contentLayoutGuide", objc_name="contentLayoutGuide")
+    TabBarController_contentLayoutGuide :: proc(self: ^TabBarController) -> ^LayoutGuide ---
+
+    @(objc_type=TabBarController, objc_selector="bottomAccessory", objc_name="bottomAccessory")
+    TabBarController_bottomAccessory :: proc(self: ^TabBarController) -> ^TabAccessory ---
+
+    @(objc_type=TabBarController, objc_selector="setBottomAccessory:", objc_name="setBottomAccessory_")
+    TabBarController_setBottomAccessory_ :: proc(self: ^TabBarController, bottomAccessory: ^TabAccessory) ---
 
     @(objc_type=TabBarController, objc_selector="viewControllers", objc_name="viewControllers")
     TabBarController_viewControllers :: proc(self: ^TabBarController) -> ^NS.Array ---
@@ -125,6 +143,12 @@ TabBarController_setTabs :: proc {
 TabBarController_setTabBarHidden :: proc {
     TabBarController_setTabBarHidden_animated,
     TabBarController_setTabBarHidden_,
+}
+
+@(objc_type=TabBarController, objc_name="setBottomAccessory")
+TabBarController_setBottomAccessory :: proc {
+    TabBarController_setBottomAccessory_animated,
+    TabBarController_setBottomAccessory_,
 }
 
 @(objc_type=TabBarController, objc_name="setViewControllers")

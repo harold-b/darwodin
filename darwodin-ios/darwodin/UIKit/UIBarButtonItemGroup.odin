@@ -38,6 +38,9 @@ foreign lib {
     @(objc_type=BarButtonItemGroup, objc_selector="optionalGroupWithCustomizationIdentifier:inDefaultCustomization:representativeItem:items:", objc_name="optionalGroupWithCustomizationIdentifier", objc_is_class_method=true)
     BarButtonItemGroup_optionalGroupWithCustomizationIdentifier :: proc(customizationIdentifier: ^NS.String, inDefaultCustomization: bool, representativeItem: ^BarButtonItem, items: ^NS.Array) -> ^BarButtonItemGroup ---
 
+    @(objc_type=BarButtonItemGroup, objc_selector="groupWithFixedSpace", objc_name="groupWithFixedSpace", objc_is_class_method=true)
+    BarButtonItemGroup_groupWithFixedSpace :: proc() -> ^BarButtonItemGroup ---
+
     @(objc_type=BarButtonItemGroup, objc_selector="barButtonItems", objc_name="barButtonItems")
     BarButtonItemGroup_barButtonItems :: proc(self: ^BarButtonItemGroup) -> ^NS.Array ---
 

@@ -36,4 +36,10 @@ foreign lib {
 
     @(objc_type=PlayerPlaybackCoordinator, objc_selector="setDelegate:", objc_name="setDelegate")
     PlayerPlaybackCoordinator_setDelegate :: proc(self: ^PlayerPlaybackCoordinator, delegate: ^PlayerPlaybackCoordinatorDelegate) ---
+
+    @(objc_type=PlayerPlaybackCoordinator, objc_selector="coordinateUsingCoordinationMedium:error:", objc_name="coordinateUsingCoordinationMedium")
+    PlayerPlaybackCoordinator_coordinateUsingCoordinationMedium :: proc(self: ^PlayerPlaybackCoordinator, coordinationMedium: ^PlaybackCoordinationMedium, outError: ^^NS.Error) -> bool ---
+
+    @(objc_type=PlayerPlaybackCoordinator, objc_selector="playbackCoordinationMedium", objc_name="playbackCoordinationMedium")
+    PlayerPlaybackCoordinator_playbackCoordinationMedium :: proc(self: ^PlayerPlaybackCoordinator) -> ^PlaybackCoordinationMedium ---
 }

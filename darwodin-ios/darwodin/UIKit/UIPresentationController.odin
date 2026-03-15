@@ -92,6 +92,12 @@ foreign lib {
     @(objc_type=PresentationController, objc_selector="setOverrideTraitCollection:", objc_name="setOverrideTraitCollection")
     PresentationController_setOverrideTraitCollection :: proc(self: ^PresentationController, overrideTraitCollection: ^TraitCollection) ---
 
+    @(objc_type=PresentationController, objc_selector="backgroundEffect", objc_name="backgroundEffect")
+    PresentationController_backgroundEffect :: proc(self: ^PresentationController) -> ^VisualEffect ---
+
+    @(objc_type=PresentationController, objc_selector="setBackgroundEffect:", objc_name="setBackgroundEffect")
+    PresentationController_setBackgroundEffect :: proc(self: ^PresentationController, backgroundEffect: ^VisualEffect) ---
+
     @(objc_type=PresentationController, objc_selector="traitOverrides", objc_name="traitOverrides")
     PresentationController_traitOverrides :: proc(self: ^PresentationController) -> ^TraitOverrides ---
 }

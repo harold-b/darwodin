@@ -108,6 +108,7 @@ Structs:
     AudioBufferList: Audio.BufferList
     AudioStreamBasicDescription: Audio.StreamBasicDescription
     AudioStreamPacketDescription: Audio.StreamPacketDescription
+    AudioStreamPacketDependencyDescription: Audio.StreamPacketDependencyDescription
     SMPTETime: Audio.SMPTETime
     AudioTimeStamp: Audio.TimeStamp
     AudioClassDescription: Audio.ClassDescription
@@ -221,6 +222,7 @@ Typedefs:
     AudioConverterRef: Audio.ConverterRef
     AudioConverterPropertyID: Audio.ConverterPropertyID
     AudioConverterComplexInputDataProc: Audio.ConverterComplexInputDataProc
+    AudioConverterComplexInputDataProcRealtimeSafe: Audio.ConverterComplexInputDataProcRealtimeSafe
     AudioConverterInputDataProc: Audio.ConverterInputDataProc
     AudioFileTypeID: Audio.FileTypeID
     AudioFileID: Audio.FileID
@@ -354,6 +356,7 @@ Enums:
     AUAudioUnitBusType: Audio.AUAudioUnitBusType
     AUHostTransportStateFlags: Audio.AUHostTransportStateFlags
     AURenderEventType: Audio.AURenderEventType
+    AUAudioMixRenderingStyle: Audio.AUAudioMixRenderingStyle
     AudioConverterOptions: Audio.ConverterOptions
     AudioFileFlags: Audio.FileFlags
     AudioFilePermissions: Audio.FilePermissions
@@ -492,6 +495,8 @@ Functions:
     ::AudioConverterSetProperty: Audio.ConverterSetProperty
     ::AudioConverterConvertBuffer: Audio.ConverterConvertBuffer
     ::AudioConverterFillComplexBuffer: Audio.ConverterFillComplexBuffer
+    ::AudioConverterFillComplexBufferRealtimeSafe: Audio.ConverterFillComplexBufferRealtimeSafe
+    ::AudioConverterFillComplexBufferWithPacketDependencies: Audio.ConverterFillComplexBufferWithPacketDependencies
     ::AudioConverterConvertComplexBuffer: Audio.ConverterConvertComplexBuffer
     ::AudioConverterFillBuffer: Audio.ConverterFillBuffer
     ::AudioFileCreateWithURL: Audio.FileCreateWithURL
@@ -505,6 +510,7 @@ Functions:
     ::AudioFileReadPacketData: Audio.FileReadPacketData
     ::AudioFileReadPackets: Audio.FileReadPackets
     ::AudioFileWritePackets: Audio.FileWritePackets
+    ::AudioFileWritePacketsWithDependencies: Audio.FileWritePacketsWithDependencies
     ::AudioFileCountUserData: Audio.FileCountUserData
     ::AudioFileGetUserDataSize: Audio.FileGetUserDataSize
     ::AudioFileGetUserDataSize64: Audio.FileGetUserDataSize64
@@ -582,6 +588,8 @@ Functions:
     ::AudioServicesPlaySystemSound: Audio.ServicesPlaySystemSound
     ::AudioServicesAddSystemSoundCompletion: Audio.ServicesAddSystemSoundCompletion
     ::AudioServicesRemoveSystemSoundCompletion: Audio.ServicesRemoveSystemSoundCompletion
+    ::AudioServicesPlaySystemSoundWithDetails: Audio.ServicesPlaySystemSoundWithDetails
+    ::AudioServicesPlayAlertSoundWithDetails: Audio.ServicesPlayAlertSoundWithDetails
     ::AUListenerCreateWithDispatchQueue: Audio.AUListenerCreateWithDispatchQueue
     ::AUListenerCreate: Audio.AUListenerCreate
     ::AUListenerDispose: Audio.AUListenerDispose
@@ -688,6 +696,7 @@ Functions:
 ExternVars:
     ::kAudioComponentRegistrationsChangedNotification: Audio.kComponentRegistrationsChangedNotification
     ::kAudioComponentInstanceInvalidationNotification: Audio.kComponentInstanceInvalidationNotification
+    ::kAudioServicesDetailIntendedSpatialExperience: Audio.kServicesDetailIntendedSpatialExperience
     ::kAudioSession_RouteChangeKey_Reason: Audio.kSession_RouteChangeKey_Reason
     ::kAudioSession_AudioRouteChangeKey_PreviousRouteDescription: Audio.kSession_AudioRouteChangeKey_PreviousRouteDescription
     ::kAudioSession_AudioRouteChangeKey_CurrentRouteDescription: Audio.kSession_AudioRouteChangeKey_CurrentRouteDescription
@@ -716,6 +725,7 @@ ExternVars:
 ExternTypes:
     ::kAudioComponentRegistrationsChangedNotification: CF.StringRef
     ::kAudioComponentInstanceInvalidationNotification: CF.StringRef
+    ::kAudioServicesDetailIntendedSpatialExperience: CF.StringRef
     ::kAudioSession_RouteChangeKey_Reason: CF.StringRef
     ::kAudioSession_AudioRouteChangeKey_PreviousRouteDescription: CF.StringRef
     ::kAudioSession_AudioRouteChangeKey_CurrentRouteDescription: CF.StringRef
@@ -796,6 +806,9 @@ ConstVars:
     ::kAudioCodecPropertyAdjustTargetLevelConstant: Audio.kCodecPropertyAdjustTargetLevelConstant
     ::kAudioCodecPropertyProgramTargetLevel: Audio.kCodecPropertyProgramTargetLevel
     ::kAudioCodecPropertyAdjustTargetLevel: Audio.kCodecPropertyAdjustTargetLevel
+    ::kAudioCodecPropertyDynamicRangeControlConfiguration: Audio.kCodecPropertyDynamicRangeControlConfiguration
+    ::kAudioCodecPropertyContentSource: Audio.kCodecPropertyContentSource
+    ::kAudioCodecPropertyASPFrequency: Audio.kCodecPropertyASPFrequency
     ::kAudioCodecQuality_Max: Audio.kCodecQuality_Max
     ::kAudioCodecQuality_High: Audio.kCodecQuality_High
     ::kAudioCodecQuality_Medium: Audio.kCodecQuality_Medium
@@ -811,6 +824,33 @@ ConstVars:
     ::kAudioCodecDelayMode_Compatibility: Audio.kCodecDelayMode_Compatibility
     ::kAudioCodecDelayMode_Minimum: Audio.kCodecDelayMode_Minimum
     ::kAudioCodecDelayMode_Optimal: Audio.kCodecDelayMode_Optimal
+    ::kAudioCodecDynamicRangeControlConfiguration_None: Audio.kCodecDynamicRangeControlConfiguration_None
+    ::kAudioCodecDynamicRangeControlConfiguration_Music: Audio.kCodecDynamicRangeControlConfiguration_Music
+    ::kAudioCodecDynamicRangeControlConfiguration_Speech: Audio.kCodecDynamicRangeControlConfiguration_Speech
+    ::kAudioCodecDynamicRangeControlConfiguration_Movie: Audio.kCodecDynamicRangeControlConfiguration_Movie
+    ::kAudioCodecDynamicRangeControlConfiguration_Capture: Audio.kCodecDynamicRangeControlConfiguration_Capture
+    ::kAudioCodecContentSource_Unspecified: Audio.kCodecContentSource_Unspecified
+    ::kAudioCodecContentSource_Reserved: Audio.kCodecContentSource_Reserved
+    ::kAudioCodecContentSource_AppleCapture_Traditional: Audio.kCodecContentSource_AppleCapture_Traditional
+    ::kAudioCodecContentSource_AppleCapture_Spatial: Audio.kCodecContentSource_AppleCapture_Spatial
+    ::kAudioCodecContentSource_AppleCapture_Spatial_Enhanced: Audio.kCodecContentSource_AppleCapture_Spatial_Enhanced
+    ::kAudioCodecContentSource_AppleMusic_Traditional: Audio.kCodecContentSource_AppleMusic_Traditional
+    ::kAudioCodecContentSource_AppleMusic_Spatial: Audio.kCodecContentSource_AppleMusic_Spatial
+    ::kAudioCodecContentSource_AppleAV_Traditional_Offline: Audio.kCodecContentSource_AppleAV_Traditional_Offline
+    ::kAudioCodecContentSource_AppleAV_Spatial_Offline: Audio.kCodecContentSource_AppleAV_Spatial_Offline
+    ::kAudioCodecContentSource_AppleAV_Traditional_Live: Audio.kCodecContentSource_AppleAV_Traditional_Live
+    ::kAudioCodecContentSource_AppleAV_Spatial_Live: Audio.kCodecContentSource_AppleAV_Spatial_Live
+    ::kAudioCodecContentSource_ApplePassthrough: Audio.kCodecContentSource_ApplePassthrough
+    ::kAudioCodecContentSource_Capture_Traditional: Audio.kCodecContentSource_Capture_Traditional
+    ::kAudioCodecContentSource_Capture_Spatial: Audio.kCodecContentSource_Capture_Spatial
+    ::kAudioCodecContentSource_Capture_Spatial_Enhanced: Audio.kCodecContentSource_Capture_Spatial_Enhanced
+    ::kAudioCodecContentSource_Music_Traditional: Audio.kCodecContentSource_Music_Traditional
+    ::kAudioCodecContentSource_Music_Spatial: Audio.kCodecContentSource_Music_Spatial
+    ::kAudioCodecContentSource_AV_Traditional_Offline: Audio.kCodecContentSource_AV_Traditional_Offline
+    ::kAudioCodecContentSource_AV_Spatial_Offline: Audio.kCodecContentSource_AV_Spatial_Offline
+    ::kAudioCodecContentSource_AV_Traditional_Live: Audio.kCodecContentSource_AV_Traditional_Live
+    ::kAudioCodecContentSource_AV_Spatial_Live: Audio.kCodecContentSource_AV_Spatial_Live
+    ::kAudioCodecContentSource_Passthrough: Audio.kCodecContentSource_Passthrough
     ::kAudioCodecProduceOutputPacketFailure: Audio.kCodecProduceOutputPacketFailure
     ::kAudioCodecProduceOutputPacketSuccess: Audio.kCodecProduceOutputPacketSuccess
     ::kAudioCodecProduceOutputPacketSuccessHasMore: Audio.kCodecProduceOutputPacketSuccessHasMore
@@ -893,6 +933,7 @@ ConstVars:
     ::kAudioUnitSubType_NewTimePitch: Audio.kUnitSubType_NewTimePitch
     ::kAudioUnitSubType_AUiPodTimeOther: Audio.kUnitSubType_AUiPodTimeOther
     ::kAudioUnitSubType_RoundTripAAC: Audio.kUnitSubType_RoundTripAAC
+    ::kAudioUnitSubType_AUAudioMix: Audio.kUnitSubType_AUAudioMix
     ::kAudioUnitSubType_TimePitch: Audio.kUnitSubType_TimePitch
     ::kAudioUnitSubType_PeakLimiter: Audio.kUnitSubType_PeakLimiter
     ::kAudioUnitSubType_DynamicsProcessor: Audio.kUnitSubType_DynamicsProcessor
@@ -1077,6 +1118,7 @@ ConstVars:
     ::kAudioOutputUnitProperty_HasIO: Audio.kOutputUnitProperty_HasIO
     ::kAudioOutputUnitProperty_StartTimestampsAtZero: Audio.kOutputUnitProperty_StartTimestampsAtZero
     ::kAudioOutputUnitProperty_OSWorkgroup: Audio.kOutputUnitProperty_OSWorkgroup
+    ::kAudioOutputUnitProperty_IntendedSpatialExperience: Audio.kOutputUnitProperty_IntendedSpatialExperience
     ::kAudioOutputUnitProperty_MIDICallbacks: Audio.kOutputUnitProperty_MIDICallbacks
     ::kAudioOutputUnitProperty_HostReceivesRemoteControlEvents: Audio.kOutputUnitProperty_HostReceivesRemoteControlEvents
     ::kAudioOutputUnitProperty_RemoteControlToHost: Audio.kOutputUnitProperty_RemoteControlToHost
@@ -1109,6 +1151,8 @@ ConstVars:
     ::kAudioUnitProperty_SpatialMixerEnableHeadTracking: Audio.kUnitProperty_SpatialMixerEnableHeadTracking
     ::kAudioUnitProperty_SpatialMixerPersonalizedHRTFMode: Audio.kUnitProperty_SpatialMixerPersonalizedHRTFMode
     ::kAudioUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF: Audio.kUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF
+    ::kAUAudioMixProperty_SpatialAudioMixMetadata: Audio.kAUAudioMixProperty_SpatialAudioMixMetadata
+    ::kAUAudioMixProperty_EnableSpatialization: Audio.kAUAudioMixProperty_EnableSpatialization
     ::kAudioUnitProperty_3DMixerDistanceParams: Audio.kUnitProperty_3DMixerDistanceParams
     ::kAudioUnitProperty_3DMixerAttenuationCurve: Audio.kUnitProperty_3DMixerAttenuationCurve
     ::kAudioUnitProperty_DopplerShift: Audio.kUnitProperty_DopplerShift
@@ -1240,6 +1284,8 @@ ConstVars:
     ::kAUSoundIsolationParam_SoundToIsolate: Audio.kAUSoundIsolationParam_SoundToIsolate
     ::kAUSoundIsolationSoundType_HighQualityVoice: Audio.kAUSoundIsolationSoundType_HighQualityVoice
     ::kAUSoundIsolationSoundType_Voice: Audio.kAUSoundIsolationSoundType_Voice
+    ::kAUAudioMixParameter_Style: Audio.kAUAudioMixParameter_Style
+    ::kAUAudioMixParameter_RemixAmount: Audio.kAUAudioMixParameter_RemixAmount
     ::kAUNetReceiveParam_Status: Audio.kAUNetReceiveParam_Status
     ::kAUNetReceiveParam_NumParameters: Audio.kAUNetReceiveParam_NumParameters
     ::kAUNetSendParam_Status: Audio.kAUNetSendParam_Status
@@ -1288,6 +1334,8 @@ ConstVars:
     ::kAudioConverterPropertySettings: Audio.kConverterPropertySettings
     ::kAudioConverterPropertyBitDepthHint: Audio.kConverterPropertyBitDepthHint
     ::kAudioConverterPropertyFormatList: Audio.kConverterPropertyFormatList
+    ::kAudioConverterPropertyPerformDownmix: Audio.kConverterPropertyPerformDownmix
+    ::kAudioConverterPropertyChannelMixMap: Audio.kConverterPropertyChannelMixMap
     ::kAudioConverterPropertyDithering: Audio.kConverterPropertyDithering
     ::kAudioConverterPropertyDitherBitDepth: Audio.kConverterPropertyDitherBitDepth
     ::kAudioConverterQuality_Max: Audio.kConverterQuality_Max
@@ -1532,6 +1580,7 @@ ConstVars:
     ::kAudioQueueProperty_EnableTimePitch: Audio.kQueueProperty_EnableTimePitch
     ::kAudioQueueProperty_TimePitchAlgorithm: Audio.kQueueProperty_TimePitchAlgorithm
     ::kAudioQueueProperty_TimePitchBypass: Audio.kQueueProperty_TimePitchBypass
+    ::kAudioQueueProperty_IntendedSpatialExperience: Audio.kQueueProperty_IntendedSpatialExperience
     ::kAudioQueueTimePitchAlgorithm_Spectral: Audio.kQueueTimePitchAlgorithm_Spectral
     ::kAudioQueueTimePitchAlgorithm_TimeDomain: Audio.kQueueTimePitchAlgorithm_TimeDomain
     ::kAudioQueueTimePitchAlgorithm_Varispeed: Audio.kQueueTimePitchAlgorithm_Varispeed
@@ -2337,6 +2386,8 @@ ConstVars:
     ::kAudioDevicePropertySubMute: Audio.kDevicePropertySubMute
     ::kAudioDevicePropertyVoiceActivityDetectionEnable: Audio.kDevicePropertyVoiceActivityDetectionEnable
     ::kAudioDevicePropertyVoiceActivityDetectionState: Audio.kDevicePropertyVoiceActivityDetectionState
+    ::kAudioDevicePropertyWantsControlsRestored: Audio.kDevicePropertyWantsControlsRestored
+    ::kAudioDevicePropertyWantsStreamFormatsRestored: Audio.kDevicePropertyWantsStreamFormatsRestored
     ::kAudioAggregateDeviceClassID: Audio.kAggregateDeviceClassID
     ::kAudioAggregateDevicePropertyFullSubDeviceList: Audio.kAggregateDevicePropertyFullSubDeviceList
     ::kAudioAggregateDevicePropertyActiveSubDeviceList: Audio.kAggregateDevicePropertyActiveSubDeviceList

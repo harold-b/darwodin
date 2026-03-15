@@ -48,6 +48,8 @@ VTable :: struct {
     preferredResultOptions: proc(self: ^AK.WritingToolsCoordinator) -> AK.WritingToolsResultOptions,
     setPreferredResultOptions: proc(self: ^AK.WritingToolsCoordinator, preferredResultOptions: AK.WritingToolsResultOptions),
     resultOptions: proc(self: ^AK.WritingToolsCoordinator) -> AK.WritingToolsResultOptions,
+    includesTextListMarkers: proc(self: ^AK.WritingToolsCoordinator) -> bool,
+    setIncludesTextListMarkers: proc(self: ^AK.WritingToolsCoordinator, includesTextListMarkers: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -236,6 +238,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("resultOptions"), auto_cast resultOptions, "L@:") do panic("Failed to register objC method.")
+    }
+    if vt.includesTextListMarkers != nil {
+        includesTextListMarkers :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).includesTextListMarkers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("includesTextListMarkers"), auto_cast includesTextListMarkers, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setIncludesTextListMarkers != nil {
+        setIncludesTextListMarkers :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, includesTextListMarkers: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setIncludesTextListMarkers(self, includesTextListMarkers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIncludesTextListMarkers:"), auto_cast setIncludesTextListMarkers, "v@:B") do panic("Failed to register objC method.")
     }
 }
 

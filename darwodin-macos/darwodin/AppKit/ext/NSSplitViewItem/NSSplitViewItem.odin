@@ -34,6 +34,12 @@ VTable :: struct {
     sidebarWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
     contentListWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
     inspectorWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
+    addTopAlignedAccessoryViewController: proc(self: ^AK.SplitViewItem, childViewController: ^AK.SplitViewItemAccessoryViewController),
+    insertTopAlignedAccessoryViewController: proc(self: ^AK.SplitViewItem, childViewController: ^AK.SplitViewItemAccessoryViewController, index: NS.Integer),
+    removeTopAlignedAccessoryViewControllerAtIndex: proc(self: ^AK.SplitViewItem, index: NS.Integer),
+    addBottomAlignedAccessoryViewController: proc(self: ^AK.SplitViewItem, childViewController: ^AK.SplitViewItemAccessoryViewController),
+    insertBottomAlignedAccessoryViewController: proc(self: ^AK.SplitViewItem, childViewController: ^AK.SplitViewItemAccessoryViewController, index: NS.Integer),
+    removeBottomAlignedAccessoryViewControllerAtIndex: proc(self: ^AK.SplitViewItem, index: NS.Integer),
     behavior: proc(self: ^AK.SplitViewItem) -> AK.SplitViewItemBehavior,
     viewController: proc(self: ^AK.SplitViewItem) -> ^AK.ViewController,
     setViewController: proc(self: ^AK.SplitViewItem, viewController: ^AK.ViewController),
@@ -61,6 +67,12 @@ VTable :: struct {
     setAllowsFullHeightLayout: proc(self: ^AK.SplitViewItem, allowsFullHeightLayout: bool),
     titlebarSeparatorStyle: proc(self: ^AK.SplitViewItem) -> AK.TitlebarSeparatorStyle,
     setTitlebarSeparatorStyle: proc(self: ^AK.SplitViewItem, titlebarSeparatorStyle: AK.TitlebarSeparatorStyle),
+    automaticallyAdjustsSafeAreaInsets: proc(self: ^AK.SplitViewItem) -> bool,
+    setAutomaticallyAdjustsSafeAreaInsets: proc(self: ^AK.SplitViewItem, automaticallyAdjustsSafeAreaInsets: bool),
+    topAlignedAccessoryViewControllers: proc(self: ^AK.SplitViewItem) -> ^NS.Array,
+    setTopAlignedAccessoryViewControllers: proc(self: ^AK.SplitViewItem, topAlignedAccessoryViewControllers: ^NS.Array),
+    bottomAlignedAccessoryViewControllers: proc(self: ^AK.SplitViewItem) -> ^NS.Array,
+    setBottomAlignedAccessoryViewControllers: proc(self: ^AK.SplitViewItem, bottomAlignedAccessoryViewControllers: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -109,6 +121,66 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("inspectorWithViewController:"), auto_cast inspectorWithViewController, "@#:@") do panic("Failed to register objC method.")
+    }
+    if vt.addTopAlignedAccessoryViewController != nil {
+        addTopAlignedAccessoryViewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL, childViewController: ^AK.SplitViewItemAccessoryViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).addTopAlignedAccessoryViewController(self, childViewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addTopAlignedAccessoryViewController:"), auto_cast addTopAlignedAccessoryViewController, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.insertTopAlignedAccessoryViewController != nil {
+        insertTopAlignedAccessoryViewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL, childViewController: ^AK.SplitViewItemAccessoryViewController, index: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).insertTopAlignedAccessoryViewController(self, childViewController, index)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertTopAlignedAccessoryViewController:atIndex:"), auto_cast insertTopAlignedAccessoryViewController, "v@:@l") do panic("Failed to register objC method.")
+    }
+    if vt.removeTopAlignedAccessoryViewControllerAtIndex != nil {
+        removeTopAlignedAccessoryViewControllerAtIndex :: proc "c" (self: ^AK.SplitViewItem, _: SEL, index: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).removeTopAlignedAccessoryViewControllerAtIndex(self, index)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeTopAlignedAccessoryViewControllerAtIndex:"), auto_cast removeTopAlignedAccessoryViewControllerAtIndex, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.addBottomAlignedAccessoryViewController != nil {
+        addBottomAlignedAccessoryViewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL, childViewController: ^AK.SplitViewItemAccessoryViewController) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).addBottomAlignedAccessoryViewController(self, childViewController)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("addBottomAlignedAccessoryViewController:"), auto_cast addBottomAlignedAccessoryViewController, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.insertBottomAlignedAccessoryViewController != nil {
+        insertBottomAlignedAccessoryViewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL, childViewController: ^AK.SplitViewItemAccessoryViewController, index: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).insertBottomAlignedAccessoryViewController(self, childViewController, index)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("insertBottomAlignedAccessoryViewController:atIndex:"), auto_cast insertBottomAlignedAccessoryViewController, "v@:@l") do panic("Failed to register objC method.")
+    }
+    if vt.removeBottomAlignedAccessoryViewControllerAtIndex != nil {
+        removeBottomAlignedAccessoryViewControllerAtIndex :: proc "c" (self: ^AK.SplitViewItem, _: SEL, index: NS.Integer) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).removeBottomAlignedAccessoryViewControllerAtIndex(self, index)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("removeBottomAlignedAccessoryViewControllerAtIndex:"), auto_cast removeBottomAlignedAccessoryViewControllerAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.behavior != nil {
         behavior :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> AK.SplitViewItemBehavior {
@@ -379,6 +451,66 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitlebarSeparatorStyle:"), auto_cast setTitlebarSeparatorStyle, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.automaticallyAdjustsSafeAreaInsets != nil {
+        automaticallyAdjustsSafeAreaInsets :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).automaticallyAdjustsSafeAreaInsets(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyAdjustsSafeAreaInsets"), auto_cast automaticallyAdjustsSafeAreaInsets, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAutomaticallyAdjustsSafeAreaInsets != nil {
+        setAutomaticallyAdjustsSafeAreaInsets :: proc "c" (self: ^AK.SplitViewItem, _: SEL, automaticallyAdjustsSafeAreaInsets: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAutomaticallyAdjustsSafeAreaInsets(self, automaticallyAdjustsSafeAreaInsets)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyAdjustsSafeAreaInsets:"), auto_cast setAutomaticallyAdjustsSafeAreaInsets, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.topAlignedAccessoryViewControllers != nil {
+        topAlignedAccessoryViewControllers :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).topAlignedAccessoryViewControllers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("topAlignedAccessoryViewControllers"), auto_cast topAlignedAccessoryViewControllers, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTopAlignedAccessoryViewControllers != nil {
+        setTopAlignedAccessoryViewControllers :: proc "c" (self: ^AK.SplitViewItem, _: SEL, topAlignedAccessoryViewControllers: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setTopAlignedAccessoryViewControllers(self, topAlignedAccessoryViewControllers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTopAlignedAccessoryViewControllers:"), auto_cast setTopAlignedAccessoryViewControllers, "v@:^void") do panic("Failed to register objC method.")
+    }
+    if vt.bottomAlignedAccessoryViewControllers != nil {
+        bottomAlignedAccessoryViewControllers :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> ^NS.Array {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).bottomAlignedAccessoryViewControllers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("bottomAlignedAccessoryViewControllers"), auto_cast bottomAlignedAccessoryViewControllers, "^void@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBottomAlignedAccessoryViewControllers != nil {
+        setBottomAlignedAccessoryViewControllers :: proc "c" (self: ^AK.SplitViewItem, _: SEL, bottomAlignedAccessoryViewControllers: ^NS.Array) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBottomAlignedAccessoryViewControllers(self, bottomAlignedAccessoryViewControllers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBottomAlignedAccessoryViewControllers:"), auto_cast setBottomAlignedAccessoryViewControllers, "v@:^void") do panic("Failed to register objC method.")
     }
 }
 

@@ -26,11 +26,17 @@ foreign lib {
     @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:didUpdateCoordinateSpace:interfaceOrientation:traitCollection:", objc_name="windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection")
     WindowSceneDelegateProtocol_windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, previousCoordinateSpace: ^CoordinateSpace, previousInterfaceOrientation: InterfaceOrientation, previousTraitCollection: ^TraitCollection) ---
 
+    @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:didUpdateEffectiveGeometry:", objc_name="windowScene_didUpdateEffectiveGeometry")
+    WindowSceneDelegateProtocol_windowScene_didUpdateEffectiveGeometry :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, previousEffectiveGeometry: ^WindowSceneGeometry) ---
+
     @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:performActionForShortcutItem:completionHandler:", objc_name="windowScene_performActionForShortcutItem_completionHandler")
     WindowSceneDelegateProtocol_windowScene_performActionForShortcutItem_completionHandler :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))) ---
 
     @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:userDidAcceptCloudKitShareWithMetadata:", objc_name="windowScene_userDidAcceptCloudKitShareWithMetadata")
     WindowSceneDelegateProtocol_windowScene_userDidAcceptCloudKitShareWithMetadata :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, cloudKitShareMetadata: ^CKShareMetadata) ---
+
+    @(objc_type=WindowSceneDelegateProtocol, objc_selector="preferredWindowingControlStyleForScene:", objc_name="preferredWindowingControlStyleForScene")
+    WindowSceneDelegateProtocol_preferredWindowingControlStyleForScene :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene) -> ^SceneWindowingControlStyle ---
 
     @(objc_type=WindowSceneDelegateProtocol, objc_selector="window", objc_name="window")
     WindowSceneDelegateProtocol_window :: proc(self: ^WindowSceneDelegateProtocol) -> ^Window ---
@@ -42,6 +48,7 @@ foreign lib {
 @(objc_type=WindowSceneDelegateProtocol, objc_name="windowScene")
 WindowSceneDelegateProtocol_windowScene :: proc {
     WindowSceneDelegateProtocol_windowScene_didUpdateCoordinateSpace_interfaceOrientation_traitCollection,
+    WindowSceneDelegateProtocol_windowScene_didUpdateEffectiveGeometry,
     WindowSceneDelegateProtocol_windowScene_performActionForShortcutItem_completionHandler,
     WindowSceneDelegateProtocol_windowScene_userDidAcceptCloudKitShareWithMetadata,
 }

@@ -32,8 +32,14 @@ foreign lib {
     @(objc_type=WindowSceneGeometry, objc_selector="systemFrame", objc_name="systemFrame")
     WindowSceneGeometry_systemFrame :: proc(self: ^WindowSceneGeometry) -> CG.Rect ---
 
+    @(objc_type=WindowSceneGeometry, objc_selector="coordinateSpace", objc_name="coordinateSpace")
+    WindowSceneGeometry_coordinateSpace :: proc(self: ^WindowSceneGeometry) -> ^CoordinateSpace ---
+
     @(objc_type=WindowSceneGeometry, objc_selector="interfaceOrientation", objc_name="interfaceOrientation")
     WindowSceneGeometry_interfaceOrientation :: proc(self: ^WindowSceneGeometry) -> InterfaceOrientation ---
+
+    @(objc_type=WindowSceneGeometry, objc_selector="isInterfaceOrientationLocked", objc_name="isInterfaceOrientationLocked")
+    WindowSceneGeometry_isInterfaceOrientationLocked :: proc(self: ^WindowSceneGeometry) -> bool ---
 
     @(objc_type=WindowSceneGeometry, objc_selector="minimumSize", objc_name="minimumSize")
     WindowSceneGeometry_minimumSize :: proc(self: ^WindowSceneGeometry) -> CG.Size ---
@@ -43,4 +49,7 @@ foreign lib {
 
     @(objc_type=WindowSceneGeometry, objc_selector="resizingRestrictions", objc_name="resizingRestrictions")
     WindowSceneGeometry_resizingRestrictions :: proc(self: ^WindowSceneGeometry) -> WindowSceneResizingRestrictions ---
+
+    @(objc_type=WindowSceneGeometry, objc_selector="isInteractivelyResizing", objc_name="isInteractivelyResizing")
+    WindowSceneGeometry_isInteractivelyResizing :: proc(self: ^WindowSceneGeometry) -> bool ---
 }

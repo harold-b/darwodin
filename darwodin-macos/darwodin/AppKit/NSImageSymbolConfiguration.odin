@@ -56,6 +56,12 @@ foreign lib {
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationPreferringMulticolor", objc_name="configurationPreferringMulticolor", objc_is_class_method=true)
     ImageSymbolConfiguration_configurationPreferringMulticolor :: proc() -> instancetype ---
 
+    @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithVariableValueMode:", objc_name="configurationWithVariableValueMode", objc_is_class_method=true)
+    ImageSymbolConfiguration_configurationWithVariableValueMode :: proc(variableValueMode: ImageSymbolVariableValueMode) -> instancetype ---
+
+    @(objc_type=ImageSymbolConfiguration, objc_selector="configurationWithColorRenderingMode:", objc_name="configurationWithColorRenderingMode", objc_is_class_method=true)
+    ImageSymbolConfiguration_configurationWithColorRenderingMode :: proc(mode: ImageSymbolColorRenderingMode) -> instancetype ---
+
     @(objc_type=ImageSymbolConfiguration, objc_selector="configurationByApplyingConfiguration:", objc_name="configurationByApplyingConfiguration")
     ImageSymbolConfiguration_configurationByApplyingConfiguration :: proc(self: ^ImageSymbolConfiguration, configuration: ^ImageSymbolConfiguration) -> instancetype ---
 }

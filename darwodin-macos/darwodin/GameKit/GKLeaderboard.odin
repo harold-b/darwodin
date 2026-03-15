@@ -57,6 +57,21 @@ foreign lib {
     @(objc_type=Leaderboard, objc_selector="duration", objc_name="duration")
     Leaderboard_duration :: proc(self: ^Leaderboard) -> NS.TimeInterval ---
 
+    @(objc_type=Leaderboard, objc_selector="leaderboardDescription", objc_name="leaderboardDescription")
+    Leaderboard_leaderboardDescription :: proc(self: ^Leaderboard) -> ^NS.String ---
+
+    @(objc_type=Leaderboard, objc_selector="releaseState", objc_name="releaseState")
+    Leaderboard_releaseState :: proc(self: ^Leaderboard) -> ReleaseState ---
+
+    @(objc_type=Leaderboard, objc_selector="activityIdentifier", objc_name="activityIdentifier")
+    Leaderboard_activityIdentifier :: proc(self: ^Leaderboard) -> ^NS.String ---
+
+    @(objc_type=Leaderboard, objc_selector="activityProperties", objc_name="activityProperties")
+    Leaderboard_activityProperties :: proc(self: ^Leaderboard) -> ^NS.Dictionary ---
+
+    @(objc_type=Leaderboard, objc_selector="isHidden", objc_name="isHidden")
+    Leaderboard_isHidden :: proc(self: ^Leaderboard) -> bool ---
+
     @(objc_type=Leaderboard, objc_selector="initWithPlayerIDs:", objc_name="initWithPlayerIDs")
     Leaderboard_initWithPlayerIDs :: proc(self: ^Leaderboard, playerIDs: ^NS.Array) -> instancetype ---
 

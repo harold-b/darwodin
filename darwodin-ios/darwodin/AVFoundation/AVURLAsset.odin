@@ -43,6 +43,9 @@ foreign lib {
     @(objc_type=URLAsset, objc_selector="initWithURL:options:", objc_name="initWithURL")
     URLAsset_initWithURL :: proc(self: ^URLAsset, _URL: ^NS.URL, options: ^NS.Dictionary) -> instancetype ---
 
+    @(objc_type=URLAsset, objc_selector="audiovisualContentTypes", objc_name="audiovisualContentTypes", objc_is_class_method=true)
+    URLAsset_audiovisualContentTypes :: proc() -> ^NS.Array ---
+
     @(objc_type=URLAsset, objc_selector="URL", objc_name="URL")
     URLAsset_URL :: proc(self: ^URLAsset) -> ^NS.URL ---
 
@@ -66,6 +69,9 @@ foreign lib {
 
     @(objc_type=URLAsset, objc_selector="mediaExtensionProperties", objc_name="mediaExtensionProperties")
     URLAsset_mediaExtensionProperties :: proc(self: ^URLAsset) -> ^MediaExtensionProperties ---
+
+    @(objc_type=URLAsset, objc_selector="sidecarURL", objc_name="sidecarURL")
+    URLAsset_sidecarURL :: proc(self: ^URLAsset) -> ^NS.URL ---
 
     @(objc_type=URLAsset, objc_selector="mayRequireContentKeysForMediaDataProcessing", objc_name="mayRequireContentKeysForMediaDataProcessing")
     URLAsset_mayRequireContentKeysForMediaDataProcessing :: proc(self: ^URLAsset) -> bool ---

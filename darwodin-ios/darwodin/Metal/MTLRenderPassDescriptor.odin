@@ -109,4 +109,16 @@ foreign lib {
 
     @(objc_type=RenderPassDescriptor, objc_selector="sampleBufferAttachments", objc_name="sampleBufferAttachments")
     RenderPassDescriptor_sampleBufferAttachments :: proc(self: ^RenderPassDescriptor) -> ^RenderPassSampleBufferAttachmentDescriptorArray ---
+
+    @(objc_type=RenderPassDescriptor, objc_selector="visibilityResultType", objc_name="visibilityResultType")
+    RenderPassDescriptor_visibilityResultType :: proc(self: ^RenderPassDescriptor) -> VisibilityResultType ---
+
+    @(objc_type=RenderPassDescriptor, objc_selector="setVisibilityResultType:", objc_name="setVisibilityResultType")
+    RenderPassDescriptor_setVisibilityResultType :: proc(self: ^RenderPassDescriptor, visibilityResultType: VisibilityResultType) ---
+
+    @(objc_type=RenderPassDescriptor, objc_selector="supportColorAttachmentMapping", objc_name="supportColorAttachmentMapping")
+    RenderPassDescriptor_supportColorAttachmentMapping :: proc(self: ^RenderPassDescriptor) -> bool ---
+
+    @(objc_type=RenderPassDescriptor, objc_selector="setSupportColorAttachmentMapping:", objc_name="setSupportColorAttachmentMapping")
+    RenderPassDescriptor_setSupportColorAttachmentMapping :: proc(self: ^RenderPassDescriptor, supportColorAttachmentMapping: bool) ---
 }

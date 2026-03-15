@@ -171,4 +171,40 @@ foreign lib {
 
     @(objc_type=CaptureDeviceFormat, objc_selector="videoFrameRateRangeForBackgroundReplacement", objc_name="videoFrameRateRangeForBackgroundReplacement")
     CaptureDeviceFormat_videoFrameRateRangeForBackgroundReplacement :: proc(self: ^CaptureDeviceFormat) -> ^FrameRateRange ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="isEdgeLightSupported", objc_name="isEdgeLightSupported")
+    CaptureDeviceFormat_isEdgeLightSupported :: proc(self: ^CaptureDeviceFormat) -> bool ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="isCinematicVideoCaptureSupported", objc_name="isCinematicVideoCaptureSupported")
+    CaptureDeviceFormat_isCinematicVideoCaptureSupported :: proc(self: ^CaptureDeviceFormat) -> bool ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="defaultSimulatedAperture", objc_name="defaultSimulatedAperture")
+    CaptureDeviceFormat_defaultSimulatedAperture :: proc(self: ^CaptureDeviceFormat) -> cffi.float ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="minSimulatedAperture", objc_name="minSimulatedAperture")
+    CaptureDeviceFormat_minSimulatedAperture :: proc(self: ^CaptureDeviceFormat) -> cffi.float ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="maxSimulatedAperture", objc_name="maxSimulatedAperture")
+    CaptureDeviceFormat_maxSimulatedAperture :: proc(self: ^CaptureDeviceFormat) -> cffi.float ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="videoMinZoomFactorForCinematicVideo", objc_name="videoMinZoomFactorForCinematicVideo")
+    CaptureDeviceFormat_videoMinZoomFactorForCinematicVideo :: proc(self: ^CaptureDeviceFormat) -> CG.Float ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="videoMaxZoomFactorForCinematicVideo", objc_name="videoMaxZoomFactorForCinematicVideo")
+    CaptureDeviceFormat_videoMaxZoomFactorForCinematicVideo :: proc(self: ^CaptureDeviceFormat) -> CG.Float ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="videoFrameRateRangeForCinematicVideo", objc_name="videoFrameRateRangeForCinematicVideo")
+    CaptureDeviceFormat_videoFrameRateRangeForCinematicVideo :: proc(self: ^CaptureDeviceFormat) -> ^FrameRateRange ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="videoFieldOfViewForAspectRatio:geometricDistortionCorrected:", objc_name="videoFieldOfViewForAspectRatio")
+    CaptureDeviceFormat_videoFieldOfViewForAspectRatio :: proc(self: ^CaptureDeviceFormat, aspectRatio: ^NS.String, geometricDistortionCorrected: bool) -> cffi.float ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="supportedDynamicAspectRatios", objc_name="supportedDynamicAspectRatios")
+    CaptureDeviceFormat_supportedDynamicAspectRatios :: proc(self: ^CaptureDeviceFormat) -> ^NS.Array ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="isSmartFramingSupported", objc_name="isSmartFramingSupported")
+    CaptureDeviceFormat_isSmartFramingSupported :: proc(self: ^CaptureDeviceFormat) -> bool ---
+
+    @(objc_type=CaptureDeviceFormat, objc_selector="isCameraLensSmudgeDetectionSupported", objc_name="isCameraLensSmudgeDetectionSupported")
+    CaptureDeviceFormat_isCameraLensSmudgeDetectionSupported :: proc(self: ^CaptureDeviceFormat) -> bool ---
 }

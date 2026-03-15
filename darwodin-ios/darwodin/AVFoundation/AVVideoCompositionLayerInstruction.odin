@@ -26,6 +26,9 @@ VideoCompositionLayerInstruction :: struct { using _: NS.Object,
 
 @(default_calling_convention="c")
 foreign lib {
+    @(objc_type=VideoCompositionLayerInstruction, objc_selector="videoCompositionLayerInstructionWithLayerInstruction:", objc_name="videoCompositionLayerInstructionWithLayerInstruction", objc_is_class_method=true)
+    VideoCompositionLayerInstruction_videoCompositionLayerInstructionWithLayerInstruction :: proc(instruction: ^VideoCompositionLayerInstruction) -> ^VideoCompositionLayerInstruction ---
+
     @(objc_type=VideoCompositionLayerInstruction, objc_selector="getTransformRampForTime:startTransform:endTransform:timeRange:", objc_name="getTransformRampForTime")
     VideoCompositionLayerInstruction_getTransformRampForTime :: proc(self: ^VideoCompositionLayerInstruction, time: CM.Time, startTransform: ^CG.AffineTransform, endTransform: ^CG.AffineTransform, timeRange: ^CM.TimeRange) -> bool ---
 

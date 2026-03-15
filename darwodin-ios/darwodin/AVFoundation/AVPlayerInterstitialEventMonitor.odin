@@ -39,4 +39,10 @@ foreign lib {
 
     @(objc_type=PlayerInterstitialEventMonitor, objc_selector="currentEvent", objc_name="currentEvent")
     PlayerInterstitialEventMonitor_currentEvent :: proc(self: ^PlayerInterstitialEventMonitor) -> ^PlayerInterstitialEvent ---
+
+    @(objc_type=PlayerInterstitialEventMonitor, objc_selector="currentEventSkippableState", objc_name="currentEventSkippableState")
+    PlayerInterstitialEventMonitor_currentEventSkippableState :: proc(self: ^PlayerInterstitialEventMonitor) -> PlayerInterstitialEventSkippableEventState ---
+
+    @(objc_type=PlayerInterstitialEventMonitor, objc_selector="currentEventSkipControlLabel", objc_name="currentEventSkipControlLabel")
+    PlayerInterstitialEventMonitor_currentEventSkipControlLabel :: proc(self: ^PlayerInterstitialEventMonitor) -> ^NS.String ---
 }

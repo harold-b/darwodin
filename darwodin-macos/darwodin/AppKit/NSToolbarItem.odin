@@ -109,6 +109,18 @@ foreign lib {
     @(objc_type=ToolbarItem, objc_selector="setBordered:", objc_name="setBordered")
     ToolbarItem_setBordered :: proc(self: ^ToolbarItem, bordered: bool) ---
 
+    @(objc_type=ToolbarItem, objc_selector="backgroundTintColor", objc_name="backgroundTintColor")
+    ToolbarItem_backgroundTintColor :: proc(self: ^ToolbarItem) -> ^Color ---
+
+    @(objc_type=ToolbarItem, objc_selector="setBackgroundTintColor:", objc_name="setBackgroundTintColor")
+    ToolbarItem_setBackgroundTintColor :: proc(self: ^ToolbarItem, backgroundTintColor: ^Color) ---
+
+    @(objc_type=ToolbarItem, objc_selector="style", objc_name="style")
+    ToolbarItem_style :: proc(self: ^ToolbarItem) -> ToolbarItemStyle ---
+
+    @(objc_type=ToolbarItem, objc_selector="setStyle:", objc_name="setStyle")
+    ToolbarItem_setStyle :: proc(self: ^ToolbarItem, style: ToolbarItemStyle) ---
+
     @(objc_type=ToolbarItem, objc_selector="isNavigational", objc_name="isNavigational")
     ToolbarItem_isNavigational :: proc(self: ^ToolbarItem) -> bool ---
 
@@ -147,6 +159,12 @@ foreign lib {
 
     @(objc_type=ToolbarItem, objc_selector="setVisibilityPriority:", objc_name="setVisibilityPriority")
     ToolbarItem_setVisibilityPriority :: proc(self: ^ToolbarItem, visibilityPriority: ToolbarItemVisibilityPriority) ---
+
+    @(objc_type=ToolbarItem, objc_selector="badge", objc_name="badge")
+    ToolbarItem_badge :: proc(self: ^ToolbarItem) -> ^ItemBadge ---
+
+    @(objc_type=ToolbarItem, objc_selector="setBadge:", objc_name="setBadge")
+    ToolbarItem_setBadge :: proc(self: ^ToolbarItem, badge: ^ItemBadge) ---
 
     @(objc_type=ToolbarItem, objc_selector="autovalidates", objc_name="autovalidates")
     ToolbarItem_autovalidates :: proc(self: ^ToolbarItem) -> bool ---

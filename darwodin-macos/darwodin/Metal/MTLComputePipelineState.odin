@@ -18,11 +18,21 @@ import CA "../QuartzCore"
 ///
 @(objc_class="MTLComputePipelineState")
 ComputePipelineState :: struct { using _: intrinsics.objc_object, 
+    using _: Allocation,
     using _: NS.ObjectProtocol,
 }
 
 @(default_calling_convention="c")
 foreign lib {
+    @(objc_type=ComputePipelineState, objc_selector="functionHandleWithName:", objc_name="functionHandleWithName")
+    ComputePipelineState_functionHandleWithName :: proc(self: ^ComputePipelineState, name: ^NS.String) -> ^FunctionHandle ---
+
+    @(objc_type=ComputePipelineState, objc_selector="functionHandleWithBinaryFunction:", objc_name="functionHandleWithBinaryFunction")
+    ComputePipelineState_functionHandleWithBinaryFunction :: proc(self: ^ComputePipelineState, function: ^MTL4BinaryFunctionProtocol) -> ^FunctionHandle ---
+
+    @(objc_type=ComputePipelineState, objc_selector="newComputePipelineStateWithBinaryFunctions:error:", objc_name="newComputePipelineStateWithBinaryFunctions")
+    ComputePipelineState_newComputePipelineStateWithBinaryFunctions :: proc(self: ^ComputePipelineState, additionalBinaryFunctions: ^NS.Array, error: ^^NS.Error) -> ^ComputePipelineState ---
+
     @(objc_type=ComputePipelineState, objc_selector="imageblockMemoryLengthForDimensions:", objc_name="imageblockMemoryLengthForDimensions")
     ComputePipelineState_imageblockMemoryLengthForDimensions :: proc(self: ^ComputePipelineState, imageblockDimensions: Size) -> NS.UInteger ---
 
@@ -40,6 +50,9 @@ foreign lib {
 
     @(objc_type=ComputePipelineState, objc_selector="label", objc_name="label")
     ComputePipelineState_label :: proc(self: ^ComputePipelineState) -> ^NS.String ---
+
+    @(objc_type=ComputePipelineState, objc_selector="reflection", objc_name="reflection")
+    ComputePipelineState_reflection :: proc(self: ^ComputePipelineState) -> ^ComputePipelineReflection ---
 
     @(objc_type=ComputePipelineState, objc_selector="device", objc_name="device")
     ComputePipelineState_device :: proc(self: ^ComputePipelineState) -> ^Device ---
@@ -61,4 +74,7 @@ foreign lib {
 
     @(objc_type=ComputePipelineState, objc_selector="shaderValidation", objc_name="shaderValidation")
     ComputePipelineState_shaderValidation :: proc(self: ^ComputePipelineState) -> ShaderValidation ---
+
+    @(objc_type=ComputePipelineState, objc_selector="requiredThreadsPerThreadgroup", objc_name="requiredThreadsPerThreadgroup")
+    ComputePipelineState_requiredThreadsPerThreadgroup :: proc(self: ^ComputePipelineState) -> Size ---
 }

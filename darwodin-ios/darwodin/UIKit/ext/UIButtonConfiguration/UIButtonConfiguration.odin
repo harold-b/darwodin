@@ -36,6 +36,10 @@ VTable :: struct {
     borderedButtonConfiguration: proc() -> instancetype,
     borderedTintedButtonConfiguration: proc() -> instancetype,
     borderedProminentButtonConfiguration: proc() -> instancetype,
+    glassButtonConfiguration: proc() -> instancetype,
+    prominentGlassButtonConfiguration: proc() -> instancetype,
+    clearGlassButtonConfiguration: proc() -> instancetype,
+    prominentClearGlassButtonConfiguration: proc() -> instancetype,
     new: proc() -> ^UI.ButtonConfiguration,
     init: proc(self: ^UI.ButtonConfiguration) -> instancetype,
     updatedConfigurationForButton: proc(self: ^UI.ButtonConfiguration, button: ^UI.Button) -> instancetype,
@@ -58,6 +62,8 @@ VTable :: struct {
     setImageColorTransformer: proc(self: ^UI.ButtonConfiguration, imageColorTransformer: UI.ConfigurationColorTransformer),
     preferredSymbolConfigurationForImage: proc(self: ^UI.ButtonConfiguration) -> ^UI.ImageSymbolConfiguration,
     setPreferredSymbolConfigurationForImage: proc(self: ^UI.ButtonConfiguration, preferredSymbolConfigurationForImage: ^UI.ImageSymbolConfiguration),
+    symbolContentTransition: proc(self: ^UI.ButtonConfiguration) -> ^UI.SymbolContentTransition,
+    setSymbolContentTransition: proc(self: ^UI.ButtonConfiguration, symbolContentTransition: ^UI.SymbolContentTransition),
     showsActivityIndicator: proc(self: ^UI.ButtonConfiguration) -> bool,
     setShowsActivityIndicator: proc(self: ^UI.ButtonConfiguration, showsActivityIndicator: bool),
     activityIndicatorColorTransformer: proc(self: ^UI.ButtonConfiguration) -> UI.ConfigurationColorTransformer,
@@ -182,6 +188,46 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("borderedProminentButtonConfiguration"), auto_cast borderedProminentButtonConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.glassButtonConfiguration != nil {
+        glassButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).glassButtonConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("glassButtonConfiguration"), auto_cast glassButtonConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.prominentGlassButtonConfiguration != nil {
+        prominentGlassButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).prominentGlassButtonConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("prominentGlassButtonConfiguration"), auto_cast prominentGlassButtonConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.clearGlassButtonConfiguration != nil {
+        clearGlassButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).clearGlassButtonConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("clearGlassButtonConfiguration"), auto_cast clearGlassButtonConfiguration, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.prominentClearGlassButtonConfiguration != nil {
+        prominentClearGlassButtonConfiguration :: proc "c" (self: Class, _: SEL) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).prominentClearGlassButtonConfiguration()
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("prominentClearGlassButtonConfiguration"), auto_cast prominentClearGlassButtonConfiguration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
         new :: proc "c" (self: Class, _: SEL) -> ^UI.ButtonConfiguration {
@@ -402,6 +448,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredSymbolConfigurationForImage:"), auto_cast setPreferredSymbolConfigurationForImage, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.symbolContentTransition != nil {
+        symbolContentTransition :: proc "c" (self: ^UI.ButtonConfiguration, _: SEL) -> ^UI.SymbolContentTransition {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).symbolContentTransition(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("symbolContentTransition"), auto_cast symbolContentTransition, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSymbolContentTransition != nil {
+        setSymbolContentTransition :: proc "c" (self: ^UI.ButtonConfiguration, _: SEL, symbolContentTransition: ^UI.SymbolContentTransition) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSymbolContentTransition(self, symbolContentTransition)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSymbolContentTransition:"), auto_cast setSymbolContentTransition, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.showsActivityIndicator != nil {
         showsActivityIndicator :: proc "c" (self: ^UI.ButtonConfiguration, _: SEL) -> bool {

@@ -38,6 +38,12 @@ foreign lib {
     @(objc_type=ApplicationDelegate, objc_selector="applicationWillResignActive:", objc_name="applicationWillResignActive")
     ApplicationDelegate_applicationWillResignActive :: proc(self: ^ApplicationDelegate, application: ^Application) ---
 
+    @(objc_type=ApplicationDelegate, objc_selector="applicationDidEnterBackground:", objc_name="applicationDidEnterBackground")
+    ApplicationDelegate_applicationDidEnterBackground :: proc(self: ^ApplicationDelegate, application: ^Application) ---
+
+    @(objc_type=ApplicationDelegate, objc_selector="applicationWillEnterForeground:", objc_name="applicationWillEnterForeground")
+    ApplicationDelegate_applicationWillEnterForeground :: proc(self: ^ApplicationDelegate, application: ^Application) ---
+
     @(objc_type=ApplicationDelegate, objc_selector="application:handleOpenURL:", objc_name="application_handleOpenURL")
     ApplicationDelegate_application_handleOpenURL :: proc(self: ^ApplicationDelegate, application: ^Application, url: ^NS.URL) -> bool ---
 
@@ -118,12 +124,6 @@ foreign lib {
 
     @(objc_type=ApplicationDelegate, objc_selector="application:handleIntent:completionHandler:", objc_name="application_handleIntent_completionHandler")
     ApplicationDelegate_application_handleIntent_completionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, intent: ^INIntent, completionHandler: ^Objc_Block(proc "c" (intentResponse: ^INIntentResponse))) ---
-
-    @(objc_type=ApplicationDelegate, objc_selector="applicationDidEnterBackground:", objc_name="applicationDidEnterBackground")
-    ApplicationDelegate_applicationDidEnterBackground :: proc(self: ^ApplicationDelegate, application: ^Application) ---
-
-    @(objc_type=ApplicationDelegate, objc_selector="applicationWillEnterForeground:", objc_name="applicationWillEnterForeground")
-    ApplicationDelegate_applicationWillEnterForeground :: proc(self: ^ApplicationDelegate, application: ^Application) ---
 
     @(objc_type=ApplicationDelegate, objc_selector="applicationProtectedDataWillBecomeUnavailable:", objc_name="applicationProtectedDataWillBecomeUnavailable")
     ApplicationDelegate_applicationProtectedDataWillBecomeUnavailable :: proc(self: ^ApplicationDelegate, application: ^Application) ---

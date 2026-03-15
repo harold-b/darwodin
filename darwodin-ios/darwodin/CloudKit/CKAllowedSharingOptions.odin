@@ -35,6 +35,18 @@ foreign lib {
     @(objc_type=AllowedSharingOptions, objc_selector="setAllowedParticipantAccessOptions:", objc_name="setAllowedParticipantAccessOptions")
     AllowedSharingOptions_setAllowedParticipantAccessOptions :: proc(self: ^AllowedSharingOptions, allowedParticipantAccessOptions: SharingParticipantAccessOptions) ---
 
+    @(objc_type=AllowedSharingOptions, objc_selector="allowsParticipantsToInviteOthers", objc_name="allowsParticipantsToInviteOthers")
+    AllowedSharingOptions_allowsParticipantsToInviteOthers :: proc(self: ^AllowedSharingOptions) -> bool ---
+
+    @(objc_type=AllowedSharingOptions, objc_selector="setAllowsParticipantsToInviteOthers:", objc_name="setAllowsParticipantsToInviteOthers")
+    AllowedSharingOptions_setAllowsParticipantsToInviteOthers :: proc(self: ^AllowedSharingOptions, allowsParticipantsToInviteOthers: bool) ---
+
     @(objc_type=AllowedSharingOptions, objc_selector="standardOptions", objc_name="standardOptions", objc_is_class_method=true)
     AllowedSharingOptions_standardOptions :: proc() -> ^AllowedSharingOptions ---
+
+    @(objc_type=AllowedSharingOptions, objc_selector="allowsAccessRequests", objc_name="allowsAccessRequests")
+    AllowedSharingOptions_allowsAccessRequests :: proc(self: ^AllowedSharingOptions) -> bool ---
+
+    @(objc_type=AllowedSharingOptions, objc_selector="setAllowsAccessRequests:", objc_name="setAllowsAccessRequests")
+    AllowedSharingOptions_setAllowsAccessRequests :: proc(self: ^AllowedSharingOptions, allowsAccessRequests: bool) ---
 }

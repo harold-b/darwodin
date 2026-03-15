@@ -49,6 +49,7 @@ VTable :: struct {
     safeAreaInsets: proc(self: ^AK.Screen) -> NS.EdgeInsets,
     auxiliaryTopLeftArea: proc(self: ^AK.Screen) -> NS.Rect,
     auxiliaryTopRightArea: proc(self: ^AK.Screen) -> NS.Rect,
+    _CGDirectDisplayID: proc(self: ^AK.Screen) -> CG.DirectDisplayID,
     maximumExtendedDynamicRangeColorComponentValue: proc(self: ^AK.Screen) -> CG.Float,
     maximumPotentialExtendedDynamicRangeColorComponentValue: proc(self: ^AK.Screen) -> CG.Float,
     maximumReferenceExtendedDynamicRangeColorComponentValue: proc(self: ^AK.Screen) -> CG.Float,
@@ -257,6 +258,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("auxiliaryTopRightArea"), auto_cast auxiliaryTopRightArea, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
+    }
+    if vt._CGDirectDisplayID != nil {
+        _CGDirectDisplayID :: proc "c" (self: ^AK.Screen, _: SEL) -> CG.DirectDisplayID {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt)._CGDirectDisplayID(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("CGDirectDisplayID"), auto_cast _CGDirectDisplayID, "I@:") do panic("Failed to register objC method.")
     }
     if vt.maximumExtendedDynamicRangeColorComponentValue != nil {
         maximumExtendedDynamicRangeColorComponentValue :: proc "c" (self: ^AK.Screen, _: SEL) -> CG.Float {

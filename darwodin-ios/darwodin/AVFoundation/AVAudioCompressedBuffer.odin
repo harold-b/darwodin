@@ -54,6 +54,9 @@ foreign lib {
 
     @(objc_type=AudioCompressedBuffer, objc_selector="packetDescriptions", objc_name="packetDescriptions")
     AudioCompressedBuffer_packetDescriptions :: proc(self: ^AudioCompressedBuffer) -> ^Audio.StreamPacketDescription ---
+
+    @(objc_type=AudioCompressedBuffer, objc_selector="packetDependencies", objc_name="packetDependencies")
+    AudioCompressedBuffer_packetDependencies :: proc(self: ^AudioCompressedBuffer) -> ^Audio.StreamPacketDependencyDescription ---
 }
 
 @(objc_type=AudioCompressedBuffer, objc_name="initWithFormat")

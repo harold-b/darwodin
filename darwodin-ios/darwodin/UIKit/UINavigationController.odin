@@ -96,6 +96,9 @@ foreign lib {
     @(objc_type=NavigationController, objc_selector="interactivePopGestureRecognizer", objc_name="interactivePopGestureRecognizer")
     NavigationController_interactivePopGestureRecognizer :: proc(self: ^NavigationController) -> ^GestureRecognizer ---
 
+    @(objc_type=NavigationController, objc_selector="interactiveContentPopGestureRecognizer", objc_name="interactiveContentPopGestureRecognizer")
+    NavigationController_interactiveContentPopGestureRecognizer :: proc(self: ^NavigationController) -> ^GestureRecognizer ---
+
     @(objc_type=NavigationController, objc_selector="hidesBarsWhenKeyboardAppears", objc_name="hidesBarsWhenKeyboardAppears")
     NavigationController_hidesBarsWhenKeyboardAppears :: proc(self: ^NavigationController) -> bool ---
 

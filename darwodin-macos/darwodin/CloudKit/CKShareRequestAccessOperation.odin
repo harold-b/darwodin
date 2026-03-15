@@ -1,0 +1,43 @@
+package darwodin_CloudKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import CF "../CoreFoundation"
+import NS "../Foundation"
+
+
+
+///
+/// CKShareRequestAccessOperation
+///
+@(objc_class="CKShareRequestAccessOperation", objc_superclass=Operation)
+ShareRequestAccessOperation :: struct { using _: Operation, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ShareRequestAccessOperation, objc_selector="init", objc_name="init")
+    ShareRequestAccessOperation_init :: proc(self: ^ShareRequestAccessOperation) -> instancetype ---
+
+    @(objc_type=ShareRequestAccessOperation, objc_selector="initWithShareURLs:", objc_name="initWithShareURLs")
+    ShareRequestAccessOperation_initWithShareURLs :: proc(self: ^ShareRequestAccessOperation, shareURLs: ^NS.Array) -> instancetype ---
+
+    @(objc_type=ShareRequestAccessOperation, objc_selector="shareURLs", objc_name="shareURLs")
+    ShareRequestAccessOperation_shareURLs :: proc(self: ^ShareRequestAccessOperation) -> ^NS.Array ---
+
+    @(objc_type=ShareRequestAccessOperation, objc_selector="setShareURLs:", objc_name="setShareURLs")
+    ShareRequestAccessOperation_setShareURLs :: proc(self: ^ShareRequestAccessOperation, shareURLs: ^NS.Array) ---
+
+    @(objc_type=ShareRequestAccessOperation, objc_selector="perShareAccessRequestCompletionBlock", objc_name="perShareAccessRequestCompletionBlock")
+    ShareRequestAccessOperation_perShareAccessRequestCompletionBlock :: proc(self: ^ShareRequestAccessOperation) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=ShareRequestAccessOperation, objc_selector="setPerShareAccessRequestCompletionBlock:", objc_name="setPerShareAccessRequestCompletionBlock")
+    ShareRequestAccessOperation_setPerShareAccessRequestCompletionBlock :: proc(self: ^ShareRequestAccessOperation, perShareAccessRequestCompletionBlock: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=ShareRequestAccessOperation, objc_selector="shareRequestAccessCompletionBlock", objc_name="shareRequestAccessCompletionBlock")
+    ShareRequestAccessOperation_shareRequestAccessCompletionBlock :: proc(self: ^ShareRequestAccessOperation) -> ^Objc_Block(proc "c" ()) ---
+
+    @(objc_type=ShareRequestAccessOperation, objc_selector="setShareRequestAccessCompletionBlock:", objc_name="setShareRequestAccessCompletionBlock")
+    ShareRequestAccessOperation_setShareRequestAccessCompletionBlock :: proc(self: ^ShareRequestAccessOperation, shareRequestAccessCompletionBlock: ^Objc_Block(proc "c" ())) ---
+}

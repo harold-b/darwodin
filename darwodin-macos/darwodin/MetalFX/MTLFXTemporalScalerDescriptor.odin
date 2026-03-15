@@ -22,8 +22,11 @@ TemporalScalerDescriptor :: struct { using _: NS.Object,
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=TemporalScalerDescriptor, objc_selector="newTemporalScalerWithDevice:", objc_name="newTemporalScalerWithDevice")
-    TemporalScalerDescriptor_newTemporalScalerWithDevice :: proc(self: ^TemporalScalerDescriptor, device: ^MTL.Device) -> ^TemporalScaler ---
+    @(objc_type=TemporalScalerDescriptor, objc_selector="newTemporalScalerWithDevice:", objc_name="newTemporalScalerWithDevice_")
+    TemporalScalerDescriptor_newTemporalScalerWithDevice_ :: proc(self: ^TemporalScalerDescriptor, device: ^MTL.Device) -> ^TemporalScaler ---
+
+    @(objc_type=TemporalScalerDescriptor, objc_selector="newTemporalScalerWithDevice:compiler:", objc_name="newTemporalScalerWithDevice_compiler")
+    TemporalScalerDescriptor_newTemporalScalerWithDevice_compiler :: proc(self: ^TemporalScalerDescriptor, device: ^MTL.Device, compiler: ^MTL.4Compiler) -> ^MTL4FXTemporalScaler ---
 
     @(objc_type=TemporalScalerDescriptor, objc_selector="supportedInputContentMinScaleForDevice:", objc_name="supportedInputContentMinScaleForDevice", objc_is_class_method=true)
     TemporalScalerDescriptor_supportedInputContentMinScaleForDevice :: proc(device: ^MTL.Device) -> cffi.float ---
@@ -33,6 +36,9 @@ foreign lib {
 
     @(objc_type=TemporalScalerDescriptor, objc_selector="supportsDevice:", objc_name="supportsDevice", objc_is_class_method=true)
     TemporalScalerDescriptor_supportsDevice :: proc(device: ^MTL.Device) -> bool ---
+
+    @(objc_type=TemporalScalerDescriptor, objc_selector="supportsMetal4FX:", objc_name="supportsMetal4FX", objc_is_class_method=true)
+    TemporalScalerDescriptor_supportsMetal4FX :: proc(device: ^MTL.Device) -> bool ---
 
     @(objc_type=TemporalScalerDescriptor, objc_selector="colorTextureFormat", objc_name="colorTextureFormat")
     TemporalScalerDescriptor_colorTextureFormat :: proc(self: ^TemporalScalerDescriptor) -> MTL.PixelFormat ---
@@ -124,3 +130,10 @@ foreign lib {
     @(objc_type=TemporalScalerDescriptor, objc_selector="setReactiveMaskTextureFormat:", objc_name="setReactiveMaskTextureFormat")
     TemporalScalerDescriptor_setReactiveMaskTextureFormat :: proc(self: ^TemporalScalerDescriptor, reactiveMaskTextureFormat: MTL.PixelFormat) ---
 }
+
+@(objc_type=TemporalScalerDescriptor, objc_name="newTemporalScalerWithDevice")
+TemporalScalerDescriptor_newTemporalScalerWithDevice :: proc {
+    TemporalScalerDescriptor_newTemporalScalerWithDevice_,
+    TemporalScalerDescriptor_newTemporalScalerWithDevice_compiler,
+}
+

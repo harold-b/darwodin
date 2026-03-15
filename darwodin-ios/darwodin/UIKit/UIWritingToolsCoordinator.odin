@@ -71,6 +71,12 @@ foreign lib {
     @(objc_type=WritingToolsCoordinator, objc_selector="setPreferredResultOptions:", objc_name="setPreferredResultOptions")
     WritingToolsCoordinator_setPreferredResultOptions :: proc(self: ^WritingToolsCoordinator, preferredResultOptions: WritingToolsResultOptions) ---
 
+    @(objc_type=WritingToolsCoordinator, objc_selector="includesTextListMarkers", objc_name="includesTextListMarkers")
+    WritingToolsCoordinator_includesTextListMarkers :: proc(self: ^WritingToolsCoordinator) -> bool ---
+
+    @(objc_type=WritingToolsCoordinator, objc_selector="setIncludesTextListMarkers:", objc_name="setIncludesTextListMarkers")
+    WritingToolsCoordinator_setIncludesTextListMarkers :: proc(self: ^WritingToolsCoordinator, includesTextListMarkers: bool) ---
+
     @(objc_type=WritingToolsCoordinator, objc_selector="resultOptions", objc_name="resultOptions")
     WritingToolsCoordinator_resultOptions :: proc(self: ^WritingToolsCoordinator) -> WritingToolsResultOptions ---
 }

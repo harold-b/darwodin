@@ -124,8 +124,9 @@ Odin:
           Source: s
     - Type: Mask$
       Transforms:
-        - Kind  : AppendSuffix
-          Source: Flag
+        - Kind  : ReplaceSuffix
+          Source: Mask
+          Target: Flag
 
   ProcTransforms:
     - Type: ^(_*UI).+

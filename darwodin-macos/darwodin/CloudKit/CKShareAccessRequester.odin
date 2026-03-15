@@ -1,0 +1,37 @@
+package darwodin_CloudKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import ObjC "../ObjectiveC"
+import CF "../CoreFoundation"
+import NS "../Foundation"
+
+
+
+///
+/// CKShareAccessRequester
+///
+@(objc_class="CKShareAccessRequester", objc_superclass=NS.Object)
+ShareAccessRequester :: struct { using _: NS.Object, 
+    using _: NS.SecureCoding,
+    using _: NS.Copying,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ShareAccessRequester, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    ShareAccessRequester_new :: proc() -> ^ShareAccessRequester ---
+
+    @(objc_type=ShareAccessRequester, objc_selector="init", objc_name="init")
+    ShareAccessRequester_init :: proc(self: ^ShareAccessRequester) -> instancetype ---
+
+    @(objc_type=ShareAccessRequester, objc_selector="userIdentity", objc_name="userIdentity")
+    ShareAccessRequester_userIdentity :: proc(self: ^ShareAccessRequester) -> ^UserIdentity ---
+
+    @(objc_type=ShareAccessRequester, objc_selector="participantLookupInfo", objc_name="participantLookupInfo")
+    ShareAccessRequester_participantLookupInfo :: proc(self: ^ShareAccessRequester) -> ^UserIdentityLookupInfo ---
+
+    @(objc_type=ShareAccessRequester, objc_selector="contact", objc_name="contact")
+    ShareAccessRequester_contact :: proc(self: ^ShareAccessRequester) -> ^CNContact ---
+}

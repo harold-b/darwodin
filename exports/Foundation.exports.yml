@@ -21,6 +21,7 @@ Structs:
     _xpc_bool_s: NS._xpc_bool_s
     _xpc_rich_error_s: NS._xpc_rich_error_s
     _xpc_activity_s: NS._xpc_activity_s
+    xpc_peer_requirement_s: NS.xpc_peer_requirement_s
     _xpc_dictionary_s: NS._xpc_dictionary_s
     xpc_session_s: NS.xpc_session_s
     xpc_listener_s: NS.xpc_listener_s
@@ -105,6 +106,7 @@ Typedefs:
     xpc_activity_t: NS.xpc_activity_t
     xpc_activity_handler_t: NS.xpc_activity_handler_t
     xpc_activity_state_t: NS.xpc_activity_state_t
+    xpc_peer_requirement_t: NS.xpc_peer_requirement_t
     xpc_finalizer_t: NS.xpc_finalizer_t
     xpc_session_t: NS.xpc_session_t
     xpc_session_cancel_handler_t: NS.xpc_session_cancel_handler_t
@@ -221,6 +223,9 @@ Enums:
     NSFileManagerItemReplacementOptions: NS.FileManagerItemReplacementOptions
     NSURLRelationship: NS.URLRelationship
     NSFileManagerUnmountOptions: NS.FileManagerUnmountOptions
+    NSFileManagerSupportedSyncControls: NS.FileManagerSupportedSyncControls
+    NSFileManagerResumeSyncBehavior: NS.FileManagerResumeSyncBehavior
+    NSFileManagerUploadLocalVersionConflictPolicy: NS.FileManagerUploadLocalVersionConflictPolicy
     NSPointerFunctionsOptions: NS.PointerFunctionsOptions
     NSHTTPCookieAcceptPolicy: NS.HTTPCookieAcceptPolicy
     NSJSONReadingOptions: NS.JSONReadingOptions
@@ -417,6 +422,7 @@ ObjCClasses:
     NSFileSecurity: NS.FileSecurity
     NSDirectoryEnumerator: NS.DirectoryEnumerator
     NSFileProviderService: NS.FileProviderService
+    NSFileVersion: NS.FileVersion
     NSFileManager: NS.FileManager
     NSPointerFunctions: NS.PointerFunctions
     NSHashTable: NS.HashTable
@@ -509,7 +515,6 @@ ObjCClasses:
     NSExtensionItem: NS.ExtensionItem
     NSFileAccessIntent: NS.FileAccessIntent
     NSFileCoordinator: NS.FileCoordinator
-    NSFileVersion: NS.FileVersion
     NSFileWrapper: NS.FileWrapper
     NSLinguisticTagger: NS.LinguisticTagger
     NSMetadataItem: NS.MetadataItem
@@ -837,6 +842,17 @@ ExternVars:
     ::NSCalendarIdentifierRepublicOfChina: NS.CalendarIdentifierRepublicOfChina
     ::NSCalendarIdentifierIslamicTabular: NS.CalendarIdentifierIslamicTabular
     ::NSCalendarIdentifierIslamicUmmAlQura: NS.CalendarIdentifierIslamicUmmAlQura
+    ::NSCalendarIdentifierBangla: NS.CalendarIdentifierBangla
+    ::NSCalendarIdentifierGujarati: NS.CalendarIdentifierGujarati
+    ::NSCalendarIdentifierKannada: NS.CalendarIdentifierKannada
+    ::NSCalendarIdentifierMalayalam: NS.CalendarIdentifierMalayalam
+    ::NSCalendarIdentifierMarathi: NS.CalendarIdentifierMarathi
+    ::NSCalendarIdentifierOdia: NS.CalendarIdentifierOdia
+    ::NSCalendarIdentifierTamil: NS.CalendarIdentifierTamil
+    ::NSCalendarIdentifierTelugu: NS.CalendarIdentifierTelugu
+    ::NSCalendarIdentifierVikram: NS.CalendarIdentifierVikram
+    ::NSCalendarIdentifierDangi: NS.CalendarIdentifierDangi
+    ::NSCalendarIdentifierVietnamese: NS.CalendarIdentifierVietnamese
     ::NSCalendarDayChangedNotification: NS.CalendarDayChangedNotification
     ::NSInflectionConceptsKey: NS.InflectionConceptsKey
     ::NSInlinePresentationIntentAttributeName: NS.InlinePresentationIntentAttributeName
@@ -852,6 +868,7 @@ ExternVars:
     ::NSInflectionReferentConceptAttributeName: NS.InflectionReferentConceptAttributeName
     ::NSInflectionAlternativeAttributeName: NS.InflectionAlternativeAttributeName
     ::NSLocalizedNumberFormatAttributeName: NS.LocalizedNumberFormatAttributeName
+    ::NSListItemDelimiterAttributeName: NS.ListItemDelimiterAttributeName
     ::NSPresentationIntentAttributeName: NS.PresentationIntentAttributeName
     ::NSCurrentLocaleDidChangeNotification: NS.CurrentLocaleDidChangeNotification
     ::NSLocaleIdentifier: NS.LocaleIdentifier
@@ -1097,6 +1114,8 @@ ExternVars:
     ::NSURLUbiquitousSharedItemRoleParticipant: NS.URLUbiquitousSharedItemRoleParticipant
     ::NSURLUbiquitousSharedItemPermissionsReadOnly: NS.URLUbiquitousSharedItemPermissionsReadOnly
     ::NSURLUbiquitousSharedItemPermissionsReadWrite: NS.URLUbiquitousSharedItemPermissionsReadWrite
+    ::NSURLUbiquitousItemSupportedSyncControlsKey: NS.URLUbiquitousItemSupportedSyncControlsKey
+    ::NSURLUbiquitousItemIsSyncPausedKey: NS.URLUbiquitousItemIsSyncPausedKey
     ::NSFileManagerUnmountDissentingProcessIdentifierErrorKey: NS.FileManagerUnmountDissentingProcessIdentifierErrorKey
     ::NSUbiquityIdentityDidChangeNotification: NS.UbiquityIdentityDidChangeNotification
     ::NSFileType: NS.FileType
@@ -1661,6 +1680,17 @@ ExternTypes:
     ::NSCalendarIdentifierRepublicOfChina: ^String
     ::NSCalendarIdentifierIslamicTabular: ^String
     ::NSCalendarIdentifierIslamicUmmAlQura: ^String
+    ::NSCalendarIdentifierBangla: ^String
+    ::NSCalendarIdentifierGujarati: ^String
+    ::NSCalendarIdentifierKannada: ^String
+    ::NSCalendarIdentifierMalayalam: ^String
+    ::NSCalendarIdentifierMarathi: ^String
+    ::NSCalendarIdentifierOdia: ^String
+    ::NSCalendarIdentifierTamil: ^String
+    ::NSCalendarIdentifierTelugu: ^String
+    ::NSCalendarIdentifierVikram: ^String
+    ::NSCalendarIdentifierDangi: ^String
+    ::NSCalendarIdentifierVietnamese: ^String
     ::NSCalendarDayChangedNotification: ^String
     ::NSInflectionConceptsKey: ^String
     ::NSInlinePresentationIntentAttributeName: ^String
@@ -1676,6 +1706,7 @@ ExternTypes:
     ::NSInflectionReferentConceptAttributeName: ^String
     ::NSInflectionAlternativeAttributeName: ^String
     ::NSLocalizedNumberFormatAttributeName: ^String
+    ::NSListItemDelimiterAttributeName: ^String
     ::NSPresentationIntentAttributeName: ^String
     ::NSCurrentLocaleDidChangeNotification: ^String
     ::NSLocaleIdentifier: ^String
@@ -1921,6 +1952,8 @@ ExternTypes:
     ::NSURLUbiquitousSharedItemRoleParticipant: ^String
     ::NSURLUbiquitousSharedItemPermissionsReadOnly: ^String
     ::NSURLUbiquitousSharedItemPermissionsReadWrite: ^String
+    ::NSURLUbiquitousItemSupportedSyncControlsKey: ^String
+    ::NSURLUbiquitousItemIsSyncPausedKey: ^String
     ::NSFileManagerUnmountDissentingProcessIdentifierErrorKey: ^String
     ::NSUbiquityIdentityDidChangeNotification: ^String
     ::NSFileType: ^String

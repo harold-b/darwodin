@@ -59,6 +59,7 @@ VTable :: struct {
     isLowPowerModeEnabled: proc(self: ^NS.ProcessInfo) -> bool,
     isMacCatalystApp: proc(self: ^NS.ProcessInfo) -> bool,
     isiOSAppOnMac: proc(self: ^NS.ProcessInfo) -> bool,
+    isiOSAppOnVision: proc(self: ^NS.ProcessInfo) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -397,6 +398,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isiOSAppOnMac"), auto_cast isiOSAppOnMac, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.isiOSAppOnVision != nil {
+        isiOSAppOnVision :: proc "c" (self: ^NS.ProcessInfo, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).isiOSAppOnVision(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("isiOSAppOnVision"), auto_cast isiOSAppOnVision, "B@:") do panic("Failed to register objC method.")
     }
 }
 

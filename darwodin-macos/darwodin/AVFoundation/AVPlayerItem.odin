@@ -279,6 +279,27 @@ foreign lib {
     @(objc_type=PlayerItem, objc_selector="currentMediaSelection", objc_name="currentMediaSelection")
     PlayerItem_currentMediaSelection :: proc(self: ^PlayerItem) -> ^MediaSelection ---
 
+    @(objc_type=PlayerItem, objc_selector="selectMediaPresentationLanguage:forMediaSelectionGroup:", objc_name="selectMediaPresentationLanguage")
+    PlayerItem_selectMediaPresentationLanguage :: proc(self: ^PlayerItem, language: ^NS.String, mediaSelectionGroup: ^MediaSelectionGroup) ---
+
+    @(objc_type=PlayerItem, objc_selector="selectedMediaPresentationLanguageForMediaSelectionGroup:", objc_name="selectedMediaPresentationLanguageForMediaSelectionGroup")
+    PlayerItem_selectedMediaPresentationLanguageForMediaSelectionGroup :: proc(self: ^PlayerItem, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.String ---
+
+    @(objc_type=PlayerItem, objc_selector="selectMediaPresentationSetting:forMediaSelectionGroup:", objc_name="selectMediaPresentationSetting")
+    PlayerItem_selectMediaPresentationSetting :: proc(self: ^PlayerItem, mediaPresentationSetting: ^MediaPresentationSetting, mediaSelectionGroup: ^MediaSelectionGroup) ---
+
+    @(objc_type=PlayerItem, objc_selector="selectedMediaPresentationSettingsForMediaSelectionGroup:", objc_name="selectedMediaPresentationSettingsForMediaSelectionGroup")
+    PlayerItem_selectedMediaPresentationSettingsForMediaSelectionGroup :: proc(self: ^PlayerItem, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Dictionary ---
+
+    @(objc_type=PlayerItem, objc_selector="effectiveMediaPresentationSettingsForMediaSelectionGroup:", objc_name="effectiveMediaPresentationSettingsForMediaSelectionGroup")
+    PlayerItem_effectiveMediaPresentationSettingsForMediaSelectionGroup :: proc(self: ^PlayerItem, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Dictionary ---
+
+    @(objc_type=PlayerItem, objc_selector="preferredCustomMediaSelectionSchemes", objc_name="preferredCustomMediaSelectionSchemes")
+    PlayerItem_preferredCustomMediaSelectionSchemes :: proc(self: ^PlayerItem) -> ^NS.Array ---
+
+    @(objc_type=PlayerItem, objc_selector="setPreferredCustomMediaSelectionSchemes:", objc_name="setPreferredCustomMediaSelectionSchemes")
+    PlayerItem_setPreferredCustomMediaSelectionSchemes :: proc(self: ^PlayerItem, preferredCustomMediaSelectionSchemes: ^NS.Array) ---
+
     @(objc_type=PlayerItem, objc_selector="accessLog", objc_name="accessLog")
     PlayerItem_accessLog :: proc(self: ^PlayerItem) -> ^PlayerItemAccessLog ---
 

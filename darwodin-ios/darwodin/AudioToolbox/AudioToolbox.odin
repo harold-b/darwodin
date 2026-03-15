@@ -122,6 +122,9 @@ kCodecPropertyProgramTargetLevelConstant                  :: 1886678115
 kCodecPropertyAdjustTargetLevelConstant                   :: 1584688227
 kCodecPropertyProgramTargetLevel                          :: 1886418028
 kCodecPropertyAdjustTargetLevel                           :: 1584428140
+kCodecPropertyDynamicRangeControlConfiguration            :: 1667527267
+kCodecPropertyContentSource                               :: 1668510307
+kCodecPropertyASPFrequency                                :: 1634955366
 kCodecQuality_Max                                         :: 127
 kCodecQuality_High                                        :: 96
 kCodecQuality_Medium                                      :: 64
@@ -137,6 +140,33 @@ kCodecBitRateControlMode_Variable                         :: 3
 kCodecDelayMode_Compatibility                             :: 0
 kCodecDelayMode_Minimum                                   :: 1
 kCodecDelayMode_Optimal                                   :: 2
+kCodecDynamicRangeControlConfiguration_None               :: 0
+kCodecDynamicRangeControlConfiguration_Music              :: 1
+kCodecDynamicRangeControlConfiguration_Speech             :: 2
+kCodecDynamicRangeControlConfiguration_Movie              :: 3
+kCodecDynamicRangeControlConfiguration_Capture            :: 4
+kCodecContentSource_Unspecified                           :: -1
+kCodecContentSource_Reserved                              :: 0
+kCodecContentSource_AppleCapture_Traditional              :: 1
+kCodecContentSource_AppleCapture_Spatial                  :: 2
+kCodecContentSource_AppleCapture_Spatial_Enhanced         :: 3
+kCodecContentSource_AppleMusic_Traditional                :: 4
+kCodecContentSource_AppleMusic_Spatial                    :: 5
+kCodecContentSource_AppleAV_Traditional_Offline           :: 6
+kCodecContentSource_AppleAV_Spatial_Offline               :: 7
+kCodecContentSource_AppleAV_Traditional_Live              :: 8
+kCodecContentSource_AppleAV_Spatial_Live                  :: 9
+kCodecContentSource_ApplePassthrough                      :: 10
+kCodecContentSource_Capture_Traditional                   :: 33
+kCodecContentSource_Capture_Spatial                       :: 34
+kCodecContentSource_Capture_Spatial_Enhanced              :: 35
+kCodecContentSource_Music_Traditional                     :: 36
+kCodecContentSource_Music_Spatial                         :: 37
+kCodecContentSource_AV_Traditional_Offline                :: 38
+kCodecContentSource_AV_Spatial_Offline                    :: 39
+kCodecContentSource_AV_Traditional_Live                   :: 40
+kCodecContentSource_AV_Spatial_Live                       :: 41
+kCodecContentSource_Passthrough                           :: 42
 kCodecProduceOutputPacketFailure                          :: 1
 kCodecProduceOutputPacketSuccess                          :: 2
 kCodecProduceOutputPacketSuccessHasMore                   :: 3
@@ -216,6 +246,7 @@ kUnitSubType_Merger                                       :: 1835364967
 kUnitSubType_NewTimePitch                                 :: 1853191280
 kUnitSubType_AUiPodTimeOther                              :: 1768977519
 kUnitSubType_RoundTripAAC                                 :: 1918984547
+kUnitSubType_AUAudioMix                                   :: 1634560376
 kUnitSubType_TimePitch                                    :: 1953329268
 kUnitSubType_AUiPodTime                                   :: 1768977517
 kUnitSubType_PeakLimiter                                  :: 1819112562
@@ -371,6 +402,7 @@ kOutputUnitProperty_SetInputCallback                      :: 2005
 kOutputUnitProperty_HasIO                                 :: 2006
 kOutputUnitProperty_StartTimestampsAtZero                 :: 2007
 kOutputUnitProperty_OSWorkgroup                           :: 2015
+kOutputUnitProperty_IntendedSpatialExperience             :: 2016
 kOutputUnitProperty_MIDICallbacks                         :: 2010
 kOutputUnitProperty_HostReceivesRemoteControlEvents       :: 2011
 kOutputUnitProperty_RemoteControlToHost                   :: 2012
@@ -403,6 +435,8 @@ kUnitProperty_SpatialMixerPointSourceInHeadMode           :: 3103
 kUnitProperty_SpatialMixerEnableHeadTracking              :: 3111
 kUnitProperty_SpatialMixerPersonalizedHRTFMode            :: 3113
 kUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF :: 3116
+kAUAudioMixProperty_SpatialAudioMixMetadata               :: 5000
+kAUAudioMixProperty_EnableSpatialization                  :: 5001
 kUnitProperty_3DMixerDistanceParams                       :: 3010
 kUnitProperty_3DMixerAttenuationCurve                     :: 3013
 kUnitProperty_DopplerShift                                :: 3002
@@ -481,6 +515,8 @@ kAUSoundIsolationParam_WetDryMixPercent                   :: 0
 kAUSoundIsolationParam_SoundToIsolate                     :: 1
 kAUSoundIsolationSoundType_HighQualityVoice               :: 0
 kAUSoundIsolationSoundType_Voice                          :: 1
+kAUAudioMixParameter_Style                                :: 0
+kAUAudioMixParameter_RemixAmount                          :: 1
 kAUGraphErr_NodeNotFound                                  :: -10860
 kAUGraphErr_InvalidConnection                             :: -10861
 kAUGraphErr_OutputNodeErr                                 :: -10862
@@ -519,6 +555,8 @@ kConverterCurrentInputStreamDescription                   :: 1633904996
 kConverterPropertySettings                                :: 1633906803
 kConverterPropertyBitDepthHint                            :: 1633903204
 kConverterPropertyFormatList                              :: 1718383476
+kConverterPropertyPerformDownmix                          :: 1684892024
+kConverterPropertyChannelMixMap                           :: 1835884912
 kConverterQuality_Max                                     :: 127
 kConverterQuality_High                                    :: 96
 kConverterQuality_Medium                                  :: 64
@@ -767,6 +805,7 @@ kQueueProperty_ConverterError                             :: 1902343781
 kQueueProperty_EnableTimePitch                            :: 1902081136
 kQueueProperty_TimePitchAlgorithm                         :: 1903456353
 kQueueProperty_TimePitchBypass                            :: 1903456354
+kQueueProperty_IntendedSpatialExperience                  :: 1769170287
 kQueueTimePitchAlgorithm_Spectral                         :: 1936745827
 kQueueTimePitchAlgorithm_TimeDomain                       :: 1953064047
 kQueueTimePitchAlgorithm_Varispeed                        :: 1987276900
@@ -900,6 +939,7 @@ foreign lib {
     @(link_name="kAudioSession_InputSourceKey_Description") kSession_InputSourceKey_Description: CF.StringRef
     @(link_name="kAudioSession_OutputDestinationKey_ID") kSession_OutputDestinationKey_ID: CF.StringRef
     @(link_name="kAudioSession_OutputDestinationKey_Description") kSession_OutputDestinationKey_Description: CF.StringRef
+    @(link_name="kAudioServicesDetailIntendedSpatialExperience") kServicesDetailIntendedSpatialExperience: CF.StringRef
 }
 
 @(default_calling_convention="c")
@@ -1165,6 +1205,12 @@ foreign lib {
     @(link_name="AudioConverterFillComplexBuffer")
     ConverterFillComplexBuffer :: proc(inAudioConverter: ConverterRef, inInputDataProc: ConverterComplexInputDataProc, inInputDataProcUserData: rawptr, ioOutputDataPacketSize: ^CF.UInt32, outOutputData: ^CA.BufferList, outPacketDescription: ^CA.StreamPacketDescription) -> CF.OSStatus ---
 
+    @(link_name="AudioConverterFillComplexBufferRealtimeSafe")
+    ConverterFillComplexBufferRealtimeSafe :: proc(inAudioConverter: ConverterRef, inInputDataProc: ConverterComplexInputDataProcRealtimeSafe, inInputDataProcUserData: rawptr, ioOutputDataPacketSize: ^CF.UInt32, outOutputData: ^CA.BufferList, outPacketDescription: ^CA.StreamPacketDescription) -> CF.OSStatus ---
+
+    @(link_name="AudioConverterFillComplexBufferWithPacketDependencies")
+    ConverterFillComplexBufferWithPacketDependencies :: proc(inAudioConverter: ConverterRef, inInputDataProc: ConverterComplexInputDataProc, inInputDataProcUserData: rawptr, ioOutputDataPacketSize: ^CF.UInt32, outOutputData: ^CA.BufferList, outPacketDescriptions: ^CA.StreamPacketDescription, outPacketDependencies: ^StreamPacketDependencyDescription) -> CF.OSStatus ---
+
     @(link_name="AudioConverterConvertComplexBuffer")
     ConverterConvertComplexBuffer :: proc(inAudioConverter: ConverterRef, inNumberPCMFrames: CF.UInt32, inInputData: ^CA.BufferList, outOutputData: ^CA.BufferList) -> CF.OSStatus ---
 
@@ -1200,6 +1246,9 @@ foreign lib {
 
     @(link_name="AudioFileWritePackets")
     FileWritePackets :: proc(inAudioFile: FileID, inUseCache: CF.Boolean, inNumBytes: CF.UInt32, inPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, inBuffer: rawptr) -> CF.OSStatus ---
+
+    @(link_name="AudioFileWritePacketsWithDependencies")
+    FileWritePacketsWithDependencies :: proc(inAudioFile: FileID, inUseCache: CF.Boolean, inNumBytes: CF.UInt32, inPacketDescriptions: ^CA.StreamPacketDescription, inPacketDependencies: ^StreamPacketDependencyDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, inBuffer: rawptr) -> CF.OSStatus ---
 
     @(link_name="AudioFileCountUserData")
     FileCountUserData :: proc(inAudioFile: FileID, inUserDataID: CF.UInt32, outNumberItems: ^CF.UInt32) -> CF.OSStatus ---
@@ -1428,6 +1477,12 @@ foreign lib {
 
     @(link_name="AudioServicesRemoveSystemSoundCompletion")
     ServicesRemoveSystemSoundCompletion :: proc(inSystemSoundID: SystemSoundID) ---
+
+    @(link_name="AudioServicesPlaySystemSoundWithDetails")
+    ServicesPlaySystemSoundWithDetails :: proc(inSystemSoundID: SystemSoundID, inDetails: CF.DictionaryRef, inCompletionBlock: ^Objc_Block(proc "c" ())) ---
+
+    @(link_name="AudioServicesPlayAlertSoundWithDetails")
+    ServicesPlayAlertSoundWithDetails :: proc(inSystemSoundID: SystemSoundID, inDetails: CF.DictionaryRef, inCompletionBlock: ^Objc_Block(proc "c" ())) ---
 
     @(link_name="AUListenerCreateWithDispatchQueue")
     AUListenerCreateWithDispatchQueue :: proc(outListener: ^AUParameterListenerRef, inNotificationInterval: cffi.float, inDispatchQueue: CF.dispatch_queue_t, inBlock: AUParameterListenerBlock) -> CF.OSStatus ---
@@ -1775,6 +1830,9 @@ ConverterPropertyID :: CF.UInt32
 
 /// AudioConverterComplexInputDataProc
 ConverterComplexInputDataProc :: proc "c" (inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^CA.BufferList, outDataPacketDescription: ^^CA.StreamPacketDescription, inUserData: rawptr) -> CF.OSStatus
+
+/// AudioConverterComplexInputDataProcRealtimeSafe
+ConverterComplexInputDataProcRealtimeSafe :: proc "c" (inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^CA.BufferList, outDataPacketDescription: ^^CA.StreamPacketDescription, inUserData: rawptr) -> CF.OSStatus
 
 /// AudioConverterInputDataProc
 ConverterInputDataProc :: proc "c" (inAudioConverter: ConverterRef, ioDataSize: ^CF.UInt32, outData: ^rawptr, inUserData: rawptr) -> CF.OSStatus
@@ -2200,6 +2258,20 @@ AURenderEventType :: enum cffi.uchar {
     MIDIEventList = 10,
 }
 
+/// AUAudioMixRenderingStyle
+AUAudioMixRenderingStyle :: enum cffi.uint {
+    kAudioMixRenderingStyle_Cinematic = 0,
+    kAudioMixRenderingStyle_Studio   = 1,
+    kAudioMixRenderingStyle_InFrame  = 2,
+    kAudioMixRenderingStyle_CinematicBackgroundStem = 3,
+    kAudioMixRenderingStyle_CinematicForegroundStem = 4,
+    kAudioMixRenderingStyle_StudioForegroundStem = 5,
+    kAudioMixRenderingStyle_InFrameForegroundStem = 6,
+    kAudioMixRenderingStyle_Standard = 7,
+    kAudioMixRenderingStyle_StudioBackgroundStem = 8,
+    kAudioMixRenderingStyle_InFrameBackgroundStem = 9,
+}
+
 /// AudioConverterOptions
 ConverterOption :: enum cffi.uint {
     kAudioConverterOption_Unbuffered = 16,
@@ -2282,6 +2354,15 @@ UnitEventType :: enum cffi.uint {
     kAudioUnitEvent_EndParameterChangeGesture = 2,
     kAudioUnitEvent_PropertyChange   = 3,
 }
+
+/// AudioStreamPacketDependencyDescription
+StreamPacketDependencyDescription :: struct #align (4) {
+    mIsIndependentlyDecodable: CF.UInt32,
+    mPreRollCount:             CF.UInt32,
+    mFlags:                    CF.UInt32,
+    mReserved:                 CF.UInt32,
+}
+#assert(size_of(StreamPacketDependencyDescription) == 16)
 
 /// AudioComponentDescription
 ComponentDescription :: struct #align (4) {

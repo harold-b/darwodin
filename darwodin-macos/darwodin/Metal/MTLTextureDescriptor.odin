@@ -127,4 +127,10 @@ foreign lib {
 
     @(objc_type=TextureDescriptor, objc_selector="setSwizzle:", objc_name="setSwizzle")
     TextureDescriptor_setSwizzle :: proc(self: ^TextureDescriptor, swizzle: TextureSwizzleChannels) ---
+
+    @(objc_type=TextureDescriptor, objc_selector="placementSparsePageSize", objc_name="placementSparsePageSize")
+    TextureDescriptor_placementSparsePageSize :: proc(self: ^TextureDescriptor) -> SparsePageSize ---
+
+    @(objc_type=TextureDescriptor, objc_selector="setPlacementSparsePageSize:", objc_name="setPlacementSparsePageSize")
+    TextureDescriptor_setPlacementSparsePageSize :: proc(self: ^TextureDescriptor, placementSparsePageSize: SparsePageSize) ---
 }

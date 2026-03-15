@@ -8,6 +8,7 @@ Structs:
     AudioBufferList: CA.BufferList
     AudioStreamBasicDescription: CA.StreamBasicDescription
     AudioStreamPacketDescription: CA.StreamPacketDescription
+    AudioStreamPacketDependencyDescription: CA.StreamPacketDependencyDescription
     SMPTETime: CA.SMPTETime
     AudioTimeStamp: CA.TimeStamp
     AudioClassDescription: CA.ClassDescription
@@ -776,6 +777,8 @@ ConstVars:
     ::kAudioDevicePropertySubMute: CA.kDevicePropertySubMute
     ::kAudioDevicePropertyVoiceActivityDetectionEnable: CA.kDevicePropertyVoiceActivityDetectionEnable
     ::kAudioDevicePropertyVoiceActivityDetectionState: CA.kDevicePropertyVoiceActivityDetectionState
+    ::kAudioDevicePropertyWantsControlsRestored: CA.kDevicePropertyWantsControlsRestored
+    ::kAudioDevicePropertyWantsStreamFormatsRestored: CA.kDevicePropertyWantsStreamFormatsRestored
     ::kAudioAggregateDeviceClassID: CA.kAggregateDeviceClassID
     ::kAudioAggregateDevicePropertyFullSubDeviceList: CA.kAggregateDevicePropertyFullSubDeviceList
     ::kAudioAggregateDevicePropertyActiveSubDeviceList: CA.kAggregateDevicePropertyActiveSubDeviceList

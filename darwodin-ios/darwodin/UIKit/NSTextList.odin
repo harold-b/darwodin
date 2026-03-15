@@ -50,6 +50,9 @@ foreign lib {
 
     @(objc_type=NSTextList, objc_selector="isOrdered", objc_name="isOrdered")
     NSTextList_isOrdered :: proc(self: ^NSTextList) -> bool ---
+
+    @(objc_type=NSTextList, objc_selector="includesTextListMarkers", objc_name="includesTextListMarkers", objc_is_class_method=true)
+    NSTextList_includesTextListMarkers :: proc() -> bool ---
 }
 
 @(objc_type=NSTextList, objc_name="initWithMarkerFormat")

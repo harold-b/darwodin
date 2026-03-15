@@ -31,6 +31,7 @@ VTable :: struct {
     searchBarTextDidEndEditing: proc(self: ^UI.SearchBarDelegate, searchBar: ^UI.SearchBar),
     searchBar_textDidChange: proc(self: ^UI.SearchBarDelegate, searchBar: ^UI.SearchBar, searchText: ^NS.String),
     searchBar_shouldChangeTextInRange_replacementText: proc(self: ^UI.SearchBarDelegate, searchBar: ^UI.SearchBar, range: NS._NSRange, text: ^NS.String) -> bool,
+    searchBar_shouldChangeTextInRanges_replacementText: proc(self: ^UI.SearchBarDelegate, searchBar: ^UI.SearchBar, ranges: ^NS.Array, replacementText: ^NS.String) -> bool,
     searchBarSearchButtonClicked: proc(self: ^UI.SearchBarDelegate, searchBar: ^UI.SearchBar),
     searchBarBookmarkButtonClicked: proc(self: ^UI.SearchBarDelegate, searchBar: ^UI.SearchBar),
     searchBarCancelButtonClicked: proc(self: ^UI.SearchBarDelegate, searchBar: ^UI.SearchBar),
@@ -101,6 +102,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchBar:shouldChangeTextInRange:replacementText:"), auto_cast searchBar_shouldChangeTextInRange_replacementText, "B@:@{_NSRange=LL}@") do panic("Failed to register objC method.")
+    }
+    if vt.searchBar_shouldChangeTextInRanges_replacementText != nil {
+        searchBar_shouldChangeTextInRanges_replacementText :: proc "c" (self: ^UI.SearchBarDelegate, _: SEL, searchBar: ^UI.SearchBar, ranges: ^NS.Array, replacementText: ^NS.String) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).searchBar_shouldChangeTextInRanges_replacementText(self, searchBar, ranges, replacementText)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("searchBar:shouldChangeTextInRanges:replacementText:"), auto_cast searchBar_shouldChangeTextInRanges_replacementText, "B@:@^void@") do panic("Failed to register objC method.")
     }
     if vt.searchBarSearchButtonClicked != nil {
         searchBarSearchButtonClicked :: proc "c" (self: ^UI.SearchBarDelegate, _: SEL, searchBar: ^UI.SearchBar) {

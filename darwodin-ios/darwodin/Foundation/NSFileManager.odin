@@ -190,6 +190,18 @@ foreign lib {
     @(objc_type=FileManager, objc_selector="URLForPublishingUbiquitousItemAtURL:expirationDate:error:", objc_name="URLForPublishingUbiquitousItemAtURL")
     FileManager_URLForPublishingUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, outDate: ^^Date, error: ^^Error) -> ^URL ---
 
+    @(objc_type=FileManager, objc_selector="pauseSyncForUbiquitousItemAtURL:completionHandler:", objc_name="pauseSyncForUbiquitousItemAtURL")
+    FileManager_pauseSyncForUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) ---
+
+    @(objc_type=FileManager, objc_selector="resumeSyncForUbiquitousItemAtURL:withBehavior:completionHandler:", objc_name="resumeSyncForUbiquitousItemAtURL")
+    FileManager_resumeSyncForUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, behavior: FileManagerResumeSyncBehavior, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) ---
+
+    @(objc_type=FileManager, objc_selector="fetchLatestRemoteVersionOfItemAtURL:completionHandler:", objc_name="fetchLatestRemoteVersionOfItemAtURL")
+    FileManager_fetchLatestRemoteVersionOfItemAtURL :: proc(self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" (latestRemoteVersion: ^FileVersion, error: ^Error))) ---
+
+    @(objc_type=FileManager, objc_selector="uploadLocalVersionOfUbiquitousItemAtURL:withConflictResolutionPolicy:completionHandler:", objc_name="uploadLocalVersionOfUbiquitousItemAtURL")
+    FileManager_uploadLocalVersionOfUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, conflictResolutionPolicy: FileManagerUploadLocalVersionConflictPolicy, completionHandler: ^Objc_Block(proc "c" (uploadedVersion: ^FileVersion, error: ^Error))) ---
+
     @(objc_type=FileManager, objc_selector="getFileProviderServicesForItemAtURL:completionHandler:", objc_name="getFileProviderServicesForItemAtURL")
     FileManager_getFileProviderServicesForItemAtURL :: proc(self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" (services: ^Dictionary, error: ^Error))) ---
 

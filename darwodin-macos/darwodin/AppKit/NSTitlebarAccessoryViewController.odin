@@ -58,4 +58,10 @@ foreign lib {
 
     @(objc_type=TitlebarAccessoryViewController, objc_selector="setAutomaticallyAdjustsSize:", objc_name="setAutomaticallyAdjustsSize")
     TitlebarAccessoryViewController_setAutomaticallyAdjustsSize :: proc(self: ^TitlebarAccessoryViewController, automaticallyAdjustsSize: bool) ---
+
+    @(objc_type=TitlebarAccessoryViewController, objc_selector="preferredScrollEdgeEffectStyle", objc_name="preferredScrollEdgeEffectStyle")
+    TitlebarAccessoryViewController_preferredScrollEdgeEffectStyle :: proc(self: ^TitlebarAccessoryViewController) -> ^ScrollEdgeEffectStyle ---
+
+    @(objc_type=TitlebarAccessoryViewController, objc_selector="setPreferredScrollEdgeEffectStyle:", objc_name="setPreferredScrollEdgeEffectStyle")
+    TitlebarAccessoryViewController_setPreferredScrollEdgeEffectStyle :: proc(self: ^TitlebarAccessoryViewController, preferredScrollEdgeEffectStyle: ^ScrollEdgeEffectStyle) ---
 }

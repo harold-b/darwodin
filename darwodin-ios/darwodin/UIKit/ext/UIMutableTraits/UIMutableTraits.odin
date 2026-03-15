@@ -67,6 +67,12 @@ VTable :: struct {
     setTypesettingLanguage: proc(self: ^UI.MutableTraits, typesettingLanguage: ^NS.String),
     listEnvironment: proc(self: ^UI.MutableTraits) -> UI.ListEnvironment,
     setListEnvironment: proc(self: ^UI.MutableTraits, listEnvironment: UI.ListEnvironment),
+    tabAccessoryEnvironment: proc(self: ^UI.MutableTraits) -> UI.TabAccessoryEnvironment,
+    setTabAccessoryEnvironment: proc(self: ^UI.MutableTraits, tabAccessoryEnvironment: UI.TabAccessoryEnvironment),
+    splitViewControllerLayoutEnvironment: proc(self: ^UI.MutableTraits) -> UI.SplitViewControllerLayoutEnvironment,
+    setSplitViewControllerLayoutEnvironment: proc(self: ^UI.MutableTraits, splitViewControllerLayoutEnvironment: UI.SplitViewControllerLayoutEnvironment),
+    resolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^UI.MutableTraits) -> bool,
+    setResolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^UI.MutableTraits, resolvesNaturalAlignmentWithBaseWritingDirection: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -492,6 +498,66 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setListEnvironment:"), auto_cast setListEnvironment, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.tabAccessoryEnvironment != nil {
+        tabAccessoryEnvironment :: proc "c" (self: ^UI.MutableTraits, _: SEL) -> UI.TabAccessoryEnvironment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).tabAccessoryEnvironment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tabAccessoryEnvironment"), auto_cast tabAccessoryEnvironment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTabAccessoryEnvironment != nil {
+        setTabAccessoryEnvironment :: proc "c" (self: ^UI.MutableTraits, _: SEL, tabAccessoryEnvironment: UI.TabAccessoryEnvironment) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setTabAccessoryEnvironment(self, tabAccessoryEnvironment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTabAccessoryEnvironment:"), auto_cast setTabAccessoryEnvironment, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.splitViewControllerLayoutEnvironment != nil {
+        splitViewControllerLayoutEnvironment :: proc "c" (self: ^UI.MutableTraits, _: SEL) -> UI.SplitViewControllerLayoutEnvironment {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).splitViewControllerLayoutEnvironment(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("splitViewControllerLayoutEnvironment"), auto_cast splitViewControllerLayoutEnvironment, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSplitViewControllerLayoutEnvironment != nil {
+        setSplitViewControllerLayoutEnvironment :: proc "c" (self: ^UI.MutableTraits, _: SEL, splitViewControllerLayoutEnvironment: UI.SplitViewControllerLayoutEnvironment) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setSplitViewControllerLayoutEnvironment(self, splitViewControllerLayoutEnvironment)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSplitViewControllerLayoutEnvironment:"), auto_cast setSplitViewControllerLayoutEnvironment, "v@:l") do panic("Failed to register objC method.")
+    }
+    if vt.resolvesNaturalAlignmentWithBaseWritingDirection != nil {
+        resolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^UI.MutableTraits, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).resolvesNaturalAlignmentWithBaseWritingDirection(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resolvesNaturalAlignmentWithBaseWritingDirection"), auto_cast resolvesNaturalAlignmentWithBaseWritingDirection, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setResolvesNaturalAlignmentWithBaseWritingDirection != nil {
+        setResolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^UI.MutableTraits, _: SEL, resolvesNaturalAlignmentWithBaseWritingDirection: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.protocol_vt).setResolvesNaturalAlignmentWithBaseWritingDirection(self, resolvesNaturalAlignmentWithBaseWritingDirection)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setResolvesNaturalAlignmentWithBaseWritingDirection:"), auto_cast setResolvesNaturalAlignmentWithBaseWritingDirection, "v@:B") do panic("Failed to register objC method.")
     }
 }
 

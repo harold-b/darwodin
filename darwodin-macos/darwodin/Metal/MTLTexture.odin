@@ -44,6 +44,9 @@ foreign lib {
     @(objc_type=Texture, objc_selector="newSharedTextureHandle", objc_name="newSharedTextureHandle")
     Texture_newSharedTextureHandle :: proc(self: ^Texture) -> ^SharedTextureHandle ---
 
+    @(objc_type=Texture, objc_selector="newTextureViewWithDescriptor:", objc_name="newTextureViewWithDescriptor")
+    Texture_newTextureViewWithDescriptor :: proc(self: ^Texture, descriptor: ^TextureViewDescriptor) -> ^Texture ---
+
     @(objc_type=Texture, objc_selector="newRemoteTextureViewForDevice:", objc_name="newRemoteTextureViewForDevice")
     Texture_newRemoteTextureViewForDevice :: proc(self: ^Texture, device: ^Device) -> ^Texture ---
 
@@ -133,6 +136,9 @@ foreign lib {
 
     @(objc_type=Texture, objc_selector="swizzle", objc_name="swizzle")
     Texture_swizzle :: proc(self: ^Texture) -> TextureSwizzleChannels ---
+
+    @(objc_type=Texture, objc_selector="sparseTextureTier", objc_name="sparseTextureTier")
+    Texture_sparseTextureTier :: proc(self: ^Texture) -> TextureSparseTier ---
 }
 
 @(objc_type=Texture, objc_name="getBytes")

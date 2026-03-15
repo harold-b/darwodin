@@ -744,6 +744,12 @@ foreign lib {
     @(objc_type=View, objc_selector="layoutMarginsGuide", objc_name="layoutMarginsGuide")
     View_layoutMarginsGuide :: proc(self: ^View) -> ^LayoutGuide ---
 
+    @(objc_type=View, objc_selector="prefersCompactControlSizeMetrics", objc_name="prefersCompactControlSizeMetrics")
+    View_prefersCompactControlSizeMetrics :: proc(self: ^View) -> bool ---
+
+    @(objc_type=View, objc_selector="setPrefersCompactControlSizeMetrics:", objc_name="setPrefersCompactControlSizeMetrics")
+    View_setPrefersCompactControlSizeMetrics :: proc(self: ^View, prefersCompactControlSizeMetrics: bool) ---
+
     @(objc_type=View, objc_selector="addTrackingArea:", objc_name="addTrackingArea")
     View_addTrackingArea :: proc(self: ^View, trackingArea: ^TrackingArea) ---
 
@@ -983,6 +989,15 @@ foreign lib {
 
     @(objc_type=View, objc_selector="layoutGuides", objc_name="layoutGuides")
     View_layoutGuides :: proc(self: ^View) -> ^NS.Array ---
+
+    @(objc_type=View, objc_selector="layoutGuideForLayoutRegion:", objc_name="layoutGuideForLayoutRegion")
+    View_layoutGuideForLayoutRegion :: proc(self: ^View, layoutRegion: ^ViewLayoutRegion) -> ^LayoutGuide ---
+
+    @(objc_type=View, objc_selector="edgeInsetsForLayoutRegion:", objc_name="edgeInsetsForLayoutRegion")
+    View_edgeInsetsForLayoutRegion :: proc(self: ^View, layoutRegion: ^ViewLayoutRegion) -> NS.EdgeInsets ---
+
+    @(objc_type=View, objc_selector="rectForLayoutRegion:", objc_name="rectForLayoutRegion")
+    View_rectForLayoutRegion :: proc(self: ^View, layoutRegion: ^ViewLayoutRegion) -> NS.Rect ---
 
     @(objc_type=View, objc_selector="rulerView:shouldMoveMarker:", objc_name="rulerView_shouldMoveMarker")
     View_rulerView_shouldMoveMarker :: proc(self: ^View, ruler: ^RulerView, marker: ^RulerMarker) -> bool ---

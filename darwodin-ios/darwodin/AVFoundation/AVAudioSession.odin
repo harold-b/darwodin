@@ -58,6 +58,9 @@ foreign lib {
     @(objc_type=AudioSession, objc_selector="setPrefersEchoCancelledInput:error:", objc_name="setPrefersEchoCancelledInput")
     AudioSession_setPrefersEchoCancelledInput :: proc(self: ^AudioSession, value: bool, error: ^^NS.Error) -> bool ---
 
+    @(objc_type=AudioSession, objc_selector="setOutputMuted:error:", objc_name="setOutputMuted")
+    AudioSession_setOutputMuted :: proc(self: ^AudioSession, muted: bool, outError: ^^NS.Error) -> bool ---
+
     @(objc_type=AudioSession, objc_selector="availableCategories", objc_name="availableCategories")
     AudioSession_availableCategories :: proc(self: ^AudioSession) -> ^NS.Array ---
 
@@ -99,6 +102,9 @@ foreign lib {
 
     @(objc_type=AudioSession, objc_selector="isEchoCancelledInputAvailable", objc_name="isEchoCancelledInputAvailable")
     AudioSession_isEchoCancelledInputAvailable :: proc(self: ^AudioSession) -> bool ---
+
+    @(objc_type=AudioSession, objc_selector="isOutputMuted", objc_name="isOutputMuted")
+    AudioSession_isOutputMuted :: proc(self: ^AudioSession) -> bool ---
 
     @(objc_type=AudioSession, objc_selector="setActive:error:", objc_name="setActive_error")
     AudioSession_setActive_error :: proc(self: ^AudioSession, active: bool, outError: ^^NS.Error) -> bool ---

@@ -12,21 +12,22 @@ import NS "../Foundation"
 
 
 /// Structs
-ValueRange                :: CA.ValueRange
-ValueTranslation          :: CA.ValueTranslation
-Buffer                    :: CA.Buffer
-BufferList                :: CA.BufferList
-StreamBasicDescription    :: CA.StreamBasicDescription
-StreamPacketDescription   :: CA.StreamPacketDescription
-SMPTETime                 :: CA.SMPTETime
-TimeStamp                 :: CA.TimeStamp
-ClassDescription          :: CA.ClassDescription
-ChannelDescription        :: CA.ChannelDescription
-ChannelLayout             :: CA.ChannelLayout
-FormatListItem            :: CA.FormatListItem
-ObjectPropertyAddress     :: CA.ObjectPropertyAddress
-StreamRangedDescription   :: CA.StreamRangedDescription
-HardwareIOProcStreamUsage :: CA.HardwareIOProcStreamUsage
+ValueRange                        :: CA.ValueRange
+ValueTranslation                  :: CA.ValueTranslation
+Buffer                            :: CA.Buffer
+BufferList                        :: CA.BufferList
+StreamBasicDescription            :: CA.StreamBasicDescription
+StreamPacketDescription           :: CA.StreamPacketDescription
+StreamPacketDependencyDescription :: CA.StreamPacketDependencyDescription
+SMPTETime                         :: CA.SMPTETime
+TimeStamp                         :: CA.TimeStamp
+ClassDescription                  :: CA.ClassDescription
+ChannelDescription                :: CA.ChannelDescription
+ChannelLayout                     :: CA.ChannelLayout
+FormatListItem                    :: CA.FormatListItem
+ObjectPropertyAddress             :: CA.ObjectPropertyAddress
+StreamRangedDescription           :: CA.StreamRangedDescription
+HardwareIOProcStreamUsage         :: CA.HardwareIOProcStreamUsage
 
 /// Typedefs
 SampleType                   :: CA.SampleType
@@ -777,6 +778,8 @@ kDevicePropertySubVolumeDecibelsToScalar                         :: CA.kDevicePr
 kDevicePropertySubMute                                           :: CA.kDevicePropertySubMute
 kDevicePropertyVoiceActivityDetectionEnable                      :: CA.kDevicePropertyVoiceActivityDetectionEnable
 kDevicePropertyVoiceActivityDetectionState                       :: CA.kDevicePropertyVoiceActivityDetectionState
+kDevicePropertyWantsControlsRestored                             :: CA.kDevicePropertyWantsControlsRestored
+kDevicePropertyWantsStreamFormatsRestored                        :: CA.kDevicePropertyWantsStreamFormatsRestored
 kAggregateDeviceClassID                                          :: CA.kAggregateDeviceClassID
 kAggregateDevicePropertyFullSubDeviceList                        :: CA.kAggregateDevicePropertyFullSubDeviceList
 kAggregateDevicePropertyActiveSubDeviceList                      :: CA.kAggregateDevicePropertyActiveSubDeviceList

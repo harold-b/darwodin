@@ -33,4 +33,10 @@ foreign lib {
 
     @(objc_type=AssetCache, objc_selector="isPlayableOffline", objc_name="isPlayableOffline")
     AssetCache_isPlayableOffline :: proc(self: ^AssetCache) -> bool ---
+
+    @(objc_type=AssetCache, objc_selector="mediaPresentationSettingsForMediaSelectionGroup:", objc_name="mediaPresentationSettingsForMediaSelectionGroup")
+    AssetCache_mediaPresentationSettingsForMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Dictionary ---
+
+    @(objc_type=AssetCache, objc_selector="mediaPresentationLanguagesForMediaSelectionGroup:", objc_name="mediaPresentationLanguagesForMediaSelectionGroup")
+    AssetCache_mediaPresentationLanguagesForMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Array ---
 }

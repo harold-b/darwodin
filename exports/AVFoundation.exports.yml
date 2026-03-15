@@ -23,6 +23,7 @@ Structs:
     AVCaptureWhiteBalanceGains: AV.CaptureWhiteBalanceGains
     AVCaptureWhiteBalanceChromaticityValues: AV.CaptureWhiteBalanceChromaticityValues
     AVCaptureWhiteBalanceTemperatureAndTintValues: AV.CaptureWhiteBalanceTemperatureAndTintValues
+    AVCaptureTimecode: AV.CaptureTimecode
 
 Typedefs:
     AVLayerVideoGravity: AV.LayerVideoGravity
@@ -96,6 +97,8 @@ Typedefs:
     AVCaptureDeviceType: AV.CaptureDeviceType
     AVCaptureDeviceTransportControlsSpeed: AV.CaptureDeviceTransportControlsSpeed
     AVSpatialCaptureDiscomfortReason: AV.SpatialCaptureDiscomfortReason
+    AVCaptureSceneMonitoringStatus: AV.CaptureSceneMonitoringStatus
+    AVCaptureAspectRatio: AV.CaptureAspectRatio
     AVMetadataObjectType: AV.MetadataObjectType
     AVSemanticSegmentationMatteType: AV.SemanticSegmentationMatteType
     AVCaptureSystemPressureLevel: AV.CaptureSystemPressureLevel
@@ -133,6 +136,7 @@ Enums:
     AVPlayerActionAtItemEnd: AV.PlayerActionAtItemEnd
     AVPlayerHDRMode: AV.PlayerHDRMode
     AVPlayerAudiovisualBackgroundPlaybackPolicy: AV.PlayerAudiovisualBackgroundPlaybackPolicy
+    AVPlayerNetworkResourcePriority: AV.PlayerNetworkResourcePriority
     AVDelegatingPlaybackCoordinatorRateChangeOptions: AV.DelegatingPlaybackCoordinatorRateChangeOptions
     AVDelegatingPlaybackCoordinatorSeekOptions: AV.DelegatingPlaybackCoordinatorSeekOptions
     AVPlayerItemStatus: AV.PlayerItemStatus
@@ -143,12 +147,15 @@ Enums:
     AVPlayerInterstitialEventRestrictions: AV.PlayerInterstitialEventRestrictions
     AVPlayerInterstitialEventTimelineOccupancy: AV.PlayerInterstitialEventTimelineOccupancy
     AVPlayerInterstitialEventAssetListResponseStatus: AV.PlayerInterstitialEventAssetListResponseStatus
+    AVPlayerInterstitialEventSkippableEventState: AV.PlayerInterstitialEventSkippableEventState
     AVPlayerItemSegmentType: AV.PlayerItemSegmentType
     AVQueuedSampleBufferRenderingStatus: AV.QueuedSampleBufferRenderingStatus
     AVSampleBufferRequestDirection: AV.SampleBufferRequestDirection
     AVSampleBufferRequestMode: AV.SampleBufferRequestMode
     AVAudioCommonFormat: AV.AudioCommonFormat
     AVAudioQuality: AV.AudioQuality
+    AVAudioDynamicRangeControlConfiguration: AV.AudioDynamicRangeControlConfiguration
+    AVAudioContentSource: AV.AudioContentSource
     AVAudioConverterPrimeMethod: AV.AudioConverterPrimeMethod
     AVAudioConverterInputStatus: AV.AudioConverterInputStatus
     AVAudioConverterOutputStatus: AV.AudioConverterOutputStatus
@@ -203,6 +210,7 @@ Enums:
     AVCaptureTorchMode: AV.CaptureTorchMode
     AVCaptureFocusMode: AV.CaptureFocusMode
     AVCaptureAutoFocusRangeRestriction: AV.CaptureAutoFocusRangeRestriction
+    AVCaptureCinematicVideoFocusMode: AV.CaptureCinematicVideoFocusMode
     AVCaptureExposureMode: AV.CaptureExposureMode
     AVCaptureWhiteBalanceMode: AV.CaptureWhiteBalanceMode
     AVAuthorizationStatus: AV.AuthorizationStatus
@@ -213,6 +221,7 @@ Enums:
     AVCaptureSystemUserInterface: AV.CaptureSystemUserInterface
     AVCaptureVideoStabilizationMode: AV.CaptureVideoStabilizationMode
     AVCaptureAutoFocusSystem: AV.CaptureAutoFocusSystem
+    AVCaptureCameraLensSmudgeDetectionStatus: AV.CaptureCameraLensSmudgeDetectionStatus
     AVCaptureSessionInterruptionReason: AV.CaptureSessionInterruptionReason
     AVCaptureVideoOrientation: AV.CaptureVideoOrientation
     AVVideoFieldMode: AV.VideoFieldMode
@@ -220,8 +229,11 @@ Enums:
     AVCapturePhotoQualityPrioritization: AV.CapturePhotoQualityPrioritization
     AVCapturePhotoOutputCaptureReadiness: AV.CapturePhotoOutputCaptureReadiness
     AVCaptureLensStabilizationStatus: AV.CaptureLensStabilizationStatus
+    AVExternalSyncDeviceStatus: AV.ExternalSyncDeviceStatus
     AVCaptureMultichannelAudioMode: AV.CaptureMultichannelAudioMode
     AVCaptureSystemPressureFactors: AV.CaptureSystemPressureFactors
+    AVCaptureTimecodeSourceType: AV.CaptureTimecodeSourceType
+    AVCaptureTimecodeGeneratorSynchronizationStatus: AV.CaptureTimecodeGeneratorSynchronizationStatus
     AVDepthDataQuality: AV.DepthDataQuality
     AVDepthDataAccuracy: AV.DepthDataAccuracy
 
@@ -263,6 +275,8 @@ ObjCClasses:
     AVFragmentedAsset: AV.FragmentedAsset
     AVFragmentedAssetMinderInternal: AV.FragmentedAssetMinderInternal
     AVFragmentedAssetMinder: AV.FragmentedAssetMinder
+    AVMediaPresentationSelector: AV.MediaPresentationSelector
+    AVMediaPresentationSetting: AV.MediaPresentationSetting
     AVAssetExportSessionInternal: AV.AssetExportSessionInternal
     AVAudioMix: AV.AudioMix
     AVVideoComposition: AV.VideoComposition
@@ -279,6 +293,7 @@ ObjCClasses:
     AVMutableTimedMetadataGroup: AV.MutableTimedMetadataGroup
     AVDateRangeMetadataGroup: AV.DateRangeMetadataGroup
     AVMutableDateRangeMetadataGroup: AV.MutableDateRangeMetadataGroup
+    AVSpatialVideoConfiguration: AV.SpatialVideoConfiguration
     AVAsynchronousVideoCompositionRequest: AV.AsynchronousVideoCompositionRequest
     AVVideoCompositionRenderContextInternal: AV.VideoCompositionRenderContextInternal
     AVVideoCompositionRenderContext: AV.VideoCompositionRenderContext
@@ -332,6 +347,7 @@ ObjCClasses:
     AVFragmentedAssetTrackInternal: AV.FragmentedAssetTrackInternal
     AVAssetTrackGroupInternal: AV.AssetTrackGroupInternal
     AVMediaSelectionGroupInternal: AV.MediaSelectionGroupInternal
+    AVCustomMediaSelectionScheme: AV.CustomMediaSelectionScheme
     AVMediaSelectionOptionInternal: AV.MediaSelectionOptionInternal
     AVAssetSegmentTrackReport: AV.AssetSegmentTrackReport
     AVAssetSegmentReportSampleInformation: AV.AssetSegmentReportSampleInformation
@@ -363,6 +379,24 @@ ObjCClasses:
     AVMediaSelectionInternal: AV.MediaSelectionInternal
     AVMutableMediaSelectionInternal: AV.MutableMediaSelectionInternal
     AVMutableMediaSelection: AV.MutableMediaSelection
+    AVMetricEvent: AV.MetricEvent
+    AVMetricEventStream: AV.MetricEventStream
+    AVMetricErrorEvent: AV.MetricErrorEvent
+    AVMetricMediaResourceRequestEvent: AV.MetricMediaResourceRequestEvent
+    AVMetricHLSPlaylistRequestEvent: AV.MetricHLSPlaylistRequestEvent
+    AVMetricHLSMediaSegmentRequestEvent: AV.MetricHLSMediaSegmentRequestEvent
+    AVMetricContentKeyRequestEvent: AV.MetricContentKeyRequestEvent
+    AVMetricPlayerItemLikelyToKeepUpEvent: AV.MetricPlayerItemLikelyToKeepUpEvent
+    AVMetricPlayerItemInitialLikelyToKeepUpEvent: AV.MetricPlayerItemInitialLikelyToKeepUpEvent
+    AVMetricPlayerItemRateChangeEvent: AV.MetricPlayerItemRateChangeEvent
+    AVMetricPlayerItemStallEvent: AV.MetricPlayerItemStallEvent
+    AVMetricPlayerItemSeekEvent: AV.MetricPlayerItemSeekEvent
+    AVMetricPlayerItemSeekDidCompleteEvent: AV.MetricPlayerItemSeekDidCompleteEvent
+    AVMetricMediaRendition: AV.MetricMediaRendition
+    AVMetricPlayerItemVariantSwitchEvent: AV.MetricPlayerItemVariantSwitchEvent
+    AVMetricPlayerItemVariantSwitchStartEvent: AV.MetricPlayerItemVariantSwitchStartEvent
+    AVMetricPlayerItemPlaybackSummaryEvent: AV.MetricPlayerItemPlaybackSummaryEvent
+    AVMetricDownloadSummaryEvent: AV.MetricDownloadSummaryEvent
     AVPlayerMediaSelectionCriteria: AV.PlayerMediaSelectionCriteria
     AVAssetDownloadContentConfiguration: AV.AssetDownloadContentConfiguration
     AVAssetDownloadTask: AV.AssetDownloadTask
@@ -430,6 +464,7 @@ ObjCClasses:
     AVPlayer: AV.Player
     AVQueuePlayerInternal: AV.QueuePlayerInternal
     AVQueuePlayer: AV.QueuePlayer
+    AVPlaybackCoordinationMedium: AV.PlaybackCoordinationMedium
     AVPlaybackCoordinator: AV.PlaybackCoordinator
     AVCoordinatedPlaybackParticipant: AV.CoordinatedPlaybackParticipant
     AVCoordinatedPlaybackSuspension: AV.CoordinatedPlaybackSuspension
@@ -441,22 +476,6 @@ ObjCClasses:
     AVDelegatingPlaybackCoordinatorPlaybackControlCommand: AV.DelegatingPlaybackCoordinatorPlaybackControlCommand
     AVVideoOutputSpecification: AV.VideoOutputSpecification
     AVPlayerVideoOutputConfiguration: AV.PlayerVideoOutputConfiguration
-    AVMetricEvent: AV.MetricEvent
-    AVMetricEventStream: AV.MetricEventStream
-    AVMetricErrorEvent: AV.MetricErrorEvent
-    AVMetricMediaResourceRequestEvent: AV.MetricMediaResourceRequestEvent
-    AVMetricHLSPlaylistRequestEvent: AV.MetricHLSPlaylistRequestEvent
-    AVMetricHLSMediaSegmentRequestEvent: AV.MetricHLSMediaSegmentRequestEvent
-    AVMetricContentKeyRequestEvent: AV.MetricContentKeyRequestEvent
-    AVMetricPlayerItemLikelyToKeepUpEvent: AV.MetricPlayerItemLikelyToKeepUpEvent
-    AVMetricPlayerItemInitialLikelyToKeepUpEvent: AV.MetricPlayerItemInitialLikelyToKeepUpEvent
-    AVMetricPlayerItemRateChangeEvent: AV.MetricPlayerItemRateChangeEvent
-    AVMetricPlayerItemStallEvent: AV.MetricPlayerItemStallEvent
-    AVMetricPlayerItemSeekEvent: AV.MetricPlayerItemSeekEvent
-    AVMetricPlayerItemSeekDidCompleteEvent: AV.MetricPlayerItemSeekDidCompleteEvent
-    AVMetricPlayerItemVariantSwitchEvent: AV.MetricPlayerItemVariantSwitchEvent
-    AVMetricPlayerItemVariantSwitchStartEvent: AV.MetricPlayerItemVariantSwitchStartEvent
-    AVMetricPlayerItemPlaybackSummaryEvent: AV.MetricPlayerItemPlaybackSummaryEvent
     AVPlayerItemInternal: AV.PlayerItemInternal
     AVPlayerItemAccessLog: AV.PlayerItemAccessLog
     AVPlayerItemErrorLog: AV.PlayerItemErrorLog
@@ -536,6 +555,8 @@ ObjCClasses:
     AVAudioFile: AV.AudioFile
     AVAudioSessionChannelDescription: AV.AudioSessionChannelDescription
     AVAudioSessionDataSourceDescription: AV.AudioSessionDataSourceDescription
+    AVAudioSessionCapability: AV.AudioSessionCapability
+    AVAudioSessionPortExtensionBluetoothMicrophone: AV.AudioSessionPortExtensionBluetoothMicrophone
     AVAudioSessionPortDescription: AV.AudioSessionPortDescription
     AVAudioSessionRouteDescription: AV.AudioSessionRouteDescription
     AVAudioPlayer: AV.AudioPlayer
@@ -580,6 +601,8 @@ ObjCClasses:
     AVSpeechSynthesisProviderVoice: AV.SpeechSynthesisProviderVoice
     AVSpeechSynthesisProviderAudioUnit: AV.SpeechSynthesisProviderAudioUnit
     AVAudioApplication: AV.AudioApplication
+    AVCameraCalibrationDataInternal: AV.CameraCalibrationDataInternal
+    AVCameraCalibrationData: AV.CameraCalibrationData
     AVCaptureReactionEffectState: AV.CaptureReactionEffectState
     AVCaptureDeviceFormat: AV.CaptureDeviceFormat
     AVCaptureDeviceInputSource: AV.CaptureDeviceInputSource
@@ -587,6 +610,8 @@ ObjCClasses:
     AVCaptureDeviceInternal: AV.CaptureDeviceInternal
     AVZoomRange: AV.ZoomRange
     AVCaptureDevice: AV.CaptureDevice
+    AVCaptureSmartFramingMonitor: AV.CaptureSmartFramingMonitor
+    AVCaptureFraming: AV.CaptureFraming
     AVCaptureDeviceDiscoverySession: AV.CaptureDeviceDiscoverySession
     AVCaptureDeviceRotationCoordinator: AV.CaptureDeviceRotationCoordinator
     AVExposureBiasRange: AV.ExposureBiasRange
@@ -624,7 +649,9 @@ ObjCClasses:
     AVMetadataBodyObject: AV.MetadataBodyObject
     AVMetadataHumanBodyObject: AV.MetadataHumanBodyObject
     AVMetadataHumanFullBodyObject: AV.MetadataHumanFullBodyObject
+    AVMetadataCatHeadObject: AV.MetadataCatHeadObject
     AVMetadataCatBodyObject: AV.MetadataCatBodyObject
+    AVMetadataDogHeadObject: AV.MetadataDogHeadObject
     AVMetadataDogBodyObject: AV.MetadataDogBodyObject
     AVMetadataSalientObject: AV.MetadataSalientObject
     AVMetadataFaceObjectInternal: AV.MetadataFaceObjectInternal
@@ -645,7 +672,6 @@ ObjCClasses:
     AVCapturePhotoBracketSettingsInternal: AV.CapturePhotoBracketSettingsInternal
     AVCaptureResolvedPhotoSettingsInternal: AV.CaptureResolvedPhotoSettingsInternal
     AVCapturePhotoInternal: AV.CapturePhotoInternal
-    AVCameraCalibrationData: AV.CameraCalibrationData
     AVCaptureStillImageOutputInternal: AV.CaptureStillImageOutputInternal
     AVCaptureStillImageOutput: AV.CaptureStillImageOutput
     AVCaptureManualExposureBracketedStillImageSettings: AV.CaptureManualExposureBracketedStillImageSettings
@@ -666,6 +692,11 @@ ObjCClasses:
     AVCaptureSynchronizedDepthData: AV.CaptureSynchronizedDepthData
     AVCaptureDeskViewApplicationLaunchConfiguration: AV.CaptureDeskViewApplicationLaunchConfiguration
     AVCaptureDeskViewApplication: AV.CaptureDeskViewApplication
+    AVCaptureExternalDisplayConfiguration: AV.CaptureExternalDisplayConfiguration
+    AVCaptureExternalDisplayConfigurator: AV.CaptureExternalDisplayConfigurator
+    AVCaptureIndexPicker: AV.CaptureIndexPicker
+    AVExternalSyncDevice: AV.ExternalSyncDevice
+    AVExternalSyncDeviceDiscoverySession: AV.ExternalSyncDeviceDiscoverySession
     AVCaptureInputInternal: AV.CaptureInputInternal
     AVCaptureInputPortInternal: AV.CaptureInputPortInternal
     AVCaptureDeviceInputInternal: AV.CaptureDeviceInputInternal
@@ -674,18 +705,19 @@ ObjCClasses:
     AVCaptureScreenInput: AV.CaptureScreenInput
     AVCaptureMetadataInputInternal: AV.CaptureMetadataInputInternal
     AVCaptureMetadataInput: AV.CaptureMetadataInput
+    AVCaptureSlider: AV.CaptureSlider
+    AVCaptureSystemExposureBiasSlider: AV.CaptureSystemExposureBiasSlider
     AVCaptureSystemPressureStateInternal: AV.CaptureSystemPressureStateInternal
+    AVCaptureSystemZoomSlider: AV.CaptureSystemZoomSlider
+    AVCaptureTimecodeSource: AV.CaptureTimecodeSource
+    AVCaptureTimecodeGenerator: AV.CaptureTimecodeGenerator
     AVCaptureVideoPreviewLayerInternal: AV.CaptureVideoPreviewLayerInternal
     AVContinuityDevice: AV.ContinuityDevice
-    AVCameraCalibrationDataInternal: AV.CameraCalibrationDataInternal
     AVDepthDataInternal: AV.DepthDataInternal
     AVExternalStorageDevice: AV.ExternalStorageDevice
     AVExternalStorageDeviceDiscoverySession: AV.ExternalStorageDeviceDiscoverySession
     AVPortraitEffectsMatteInternal: AV.PortraitEffectsMatteInternal
-    AVCaptureSlider: AV.CaptureSlider
-    AVCaptureIndexPicker: AV.CaptureIndexPicker
-    AVCaptureSystemZoomSlider: AV.CaptureSystemZoomSlider
-    AVCaptureSystemExposureBiasSlider: AV.CaptureSystemExposureBiasSlider
+    AVCaptureSpatialAudioMetadataSampleGenerator: AV.CaptureSpatialAudioMetadataSampleGenerator
 
 ObjCProtocols:
     AVAsynchronousKeyValueLoading: AV.AsynchronousKeyValueLoading
@@ -698,11 +730,11 @@ ObjCProtocols:
     AVAssetReaderCaptionValidationHandling: AV.AssetReaderCaptionValidationHandling
     AVAssetResourceLoaderDelegate: AV.AssetResourceLoaderDelegate
     AVAssetWriterDelegate: AV.AssetWriterDelegate
+    AVMetricEventStreamPublisher: AV.MetricEventStreamPublisher
+    AVMetricEventStreamSubscriber: AV.MetricEventStreamSubscriber
     AVAssetDownloadDelegate: AV.AssetDownloadDelegate
     AVPlayerPlaybackCoordinatorDelegate: AV.PlayerPlaybackCoordinatorDelegate
     AVPlaybackCoordinatorPlaybackControlDelegate: AV.PlaybackCoordinatorPlaybackControlDelegate
-    AVMetricEventStreamPublisher: AV.MetricEventStreamPublisher
-    AVMetricEventStreamSubscriber: AV.MetricEventStreamSubscriber
     AVPlayerItemMetadataCollectorPushDelegate: AV.PlayerItemMetadataCollectorPushDelegate
     AVPlayerItemOutputPullDelegate: AV.PlayerItemOutputPullDelegate
     AVPlayerItemLegibleOutputPushDelegate: AV.PlayerItemLegibleOutputPushDelegate
@@ -719,6 +751,7 @@ ObjCProtocols:
     AVAudioRecorderDelegate: AV.AudioRecorderDelegate
     AVSpeechSynthesizerDelegate: AV.SpeechSynthesizerDelegate
     AVCaptureSessionControlsDelegate: AV.CaptureSessionControlsDelegate
+    AVCaptureSessionDeferredStartDelegate: AV.CaptureSessionDeferredStartDelegate
     AVCaptureAudioDataOutputSampleBufferDelegate: AV.CaptureAudioDataOutputSampleBufferDelegate
     AVCaptureDepthDataOutputDelegate: AV.CaptureDepthDataOutputDelegate
     AVCaptureFileOutputDelegate: AV.CaptureFileOutputDelegate
@@ -729,6 +762,8 @@ ObjCProtocols:
     AVCapturePhotoFileDataRepresentationCustomizer: AV.CapturePhotoFileDataRepresentationCustomizer
     AVCaptureVideoDataOutputSampleBufferDelegate: AV.CaptureVideoDataOutputSampleBufferDelegate
     AVCaptureDataOutputSynchronizerDelegate: AV.CaptureDataOutputSynchronizerDelegate
+    AVExternalSyncDeviceDelegate: AV.ExternalSyncDeviceDelegate
+    AVCaptureTimecodeGeneratorDelegate: AV.CaptureTimecodeGeneratorDelegate
 
 
 Functions:
@@ -738,6 +773,9 @@ Functions:
     ::AVCaptionSizeMake: AV.CaptionSizeMake
     ::AVMakeRectWithAspectRatioInsideRect: AV.MakeRectWithAspectRatioInsideRect
     ::AVCaptureReactionSystemImageNameForType: AV.CaptureReactionSystemImageNameForType
+    ::AVCaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp: AV.CaptureTimecodeCreateMetadataSampleBufferAssociatedWithPresentationTimeStamp
+    ::AVCaptureTimecodeCreateMetadataSampleBufferForDuration: AV.CaptureTimecodeCreateMetadataSampleBufferForDuration
+    ::AVCaptureTimecodeAdvancedByFrames: AV.CaptureTimecodeAdvancedByFrames
 
 ExternVars:
     ::AVCoreAnimationBeginTimeAtZero: AV.CoreAnimationBeginTimeAtZero
@@ -754,6 +792,8 @@ ExternVars:
     ::AVContentKeyRequestRetryReasonReceivedObsoleteContentKey: AV.ContentKeyRequestRetryReasonReceivedObsoleteContentKey
     ::AVContentKeyRequestRequiresValidationDataInSecureTokenKey: AV.ContentKeyRequestRequiresValidationDataInSecureTokenKey
     ::AVContentKeyRequestProtocolVersionsKey: AV.ContentKeyRequestProtocolVersionsKey
+    ::AVContentKeyRequestShouldRandomizeDeviceIdentifierKey: AV.ContentKeyRequestShouldRandomizeDeviceIdentifierKey
+    ::AVContentKeyRequestRandomDeviceIdentifierSeedKey: AV.ContentKeyRequestRandomDeviceIdentifierSeedKey
     ::AVMediaTypeVideo: AV.MediaTypeVideo
     ::AVMediaTypeAudio: AV.MediaTypeAudio
     ::AVMediaTypeText: AV.MediaTypeText
@@ -792,7 +832,10 @@ ExternVars:
     ::AVMediaCharacteristicContainsStereoMultiviewVideo: AV.MediaCharacteristicContainsStereoMultiviewVideo
     ::AVMediaCharacteristicCarriesVideoStereoMetadata: AV.MediaCharacteristicCarriesVideoStereoMetadata
     ::AVMediaCharacteristicIndicatesHorizontalFieldOfView: AV.MediaCharacteristicIndicatesHorizontalFieldOfView
+    ::AVMediaCharacteristicIndicatesNonRectilinearProjection: AV.MediaCharacteristicIndicatesNonRectilinearProjection
+    ::AVMediaCharacteristicMachineGenerated: AV.MediaCharacteristicMachineGenerated
     ::AVFileTypeQuickTimeMovie: AV.FileTypeQuickTimeMovie
+    ::AVFileTypeQuickTimeAudio: AV.FileTypeQuickTimeAudio
     ::AVFileTypeMPEG4: AV.FileTypeMPEG4
     ::AVFileTypeAppleM4V: AV.FileTypeAppleM4V
     ::AVFileTypeAppleM4A: AV.FileTypeAppleM4A
@@ -816,6 +859,7 @@ ExternVars:
     ::AVFileTypeAppleiTT: AV.FileTypeAppleiTT
     ::AVFileTypeSCC: AV.FileTypeSCC
     ::AVFileTypeAHAP: AV.FileTypeAHAP
+    ::AVFileTypeDICOM: AV.FileTypeDICOM
     ::AVStreamingKeyDeliveryContentKeyType: AV.StreamingKeyDeliveryContentKeyType
     ::AVStreamingKeyDeliveryPersistentContentKeyType: AV.StreamingKeyDeliveryPersistentContentKeyType
     ::AVFileTypeProfileMPEG4AppleHLS: AV.FileTypeProfileMPEG4AppleHLS
@@ -953,6 +997,16 @@ ExternVars:
     ::AVMetadataQuickTimeMetadataKeyAccessibilityDescription: AV.MetadataQuickTimeMetadataKeyAccessibilityDescription
     ::AVMetadataQuickTimeMetadataKeyIsMontage: AV.MetadataQuickTimeMetadataKeyIsMontage
     ::AVMetadataQuickTimeMetadataKeyFullFrameRatePlaybackIntent: AV.MetadataQuickTimeMetadataKeyFullFrameRatePlaybackIntent
+    ::AVMetadataQuickTimeMetadataKeyCinematicVideoIntent: AV.MetadataQuickTimeMetadataKeyCinematicVideoIntent
+    ::AVMetadataQuickTimeMetadataKeyCameraISOSensitivity: AV.MetadataQuickTimeMetadataKeyCameraISOSensitivity
+    ::AVMetadataQuickTimeMetadataKeyCameraWhiteBalance: AV.MetadataQuickTimeMetadataKeyCameraWhiteBalance
+    ::AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors: AV.MetadataQuickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors
+    ::AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTColorMatrices: AV.MetadataQuickTimeMetadataKeyWhiteBalanceByCCTColorMatrices
+    ::AVMetadataQuickTimeMetadataKeyCameraShutterSpeedAngle: AV.MetadataQuickTimeMetadataKeyCameraShutterSpeedAngle
+    ::AVMetadataQuickTimeMetadataKeyCameraShutterSpeedTime: AV.MetadataQuickTimeMetadataKeyCameraShutterSpeedTime
+    ::AVMetadataQuickTimeMetadataKeyCameraLensIrisFNumber: AV.MetadataQuickTimeMetadataKeyCameraLensIrisFNumber
+    ::AVMetadataQuickTimeMetadataKeyCameraLensModel: AV.MetadataQuickTimeMetadataKeyCameraLensModel
+    ::AVMetadataQuickTimeMetadataKeyCameraFocalLength35mmEquivalent: AV.MetadataQuickTimeMetadataKeyCameraFocalLength35mmEquivalent
     ::AVMetadataFormatiTunesMetadata: AV.MetadataFormatiTunesMetadata
     ::AVMetadataKeySpaceiTunes: AV.MetadataKeySpaceiTunes
     ::AVMetadataiTunesMetadataKeyAlbum: AV.MetadataiTunesMetadataKeyAlbum
@@ -1119,6 +1173,8 @@ ExternVars:
     ::AVVideoCodecTypeAppleProRes422HQ: AV.VideoCodecTypeAppleProRes422HQ
     ::AVVideoCodecTypeAppleProRes422LT: AV.VideoCodecTypeAppleProRes422LT
     ::AVVideoCodecTypeAppleProRes422Proxy: AV.VideoCodecTypeAppleProRes422Proxy
+    ::AVVideoCodecTypeAppleProResRAW: AV.VideoCodecTypeAppleProResRAW
+    ::AVVideoCodecTypeAppleProResRAWHQ: AV.VideoCodecTypeAppleProResRAWHQ
     ::AVVideoCodecTypeHEVCWithAlpha: AV.VideoCodecTypeHEVCWithAlpha
     ::AVVideoCodecHEVC: AV.VideoCodecHEVC
     ::AVVideoCodecH264: AV.VideoCodecH264
@@ -1201,6 +1257,7 @@ ExternVars:
     ::AVURLAssetURLRequestAttributionKey: AV.URLAssetURLRequestAttributionKey
     ::AVURLAssetHTTPUserAgentKey: AV.URLAssetHTTPUserAgentKey
     ::AVURLAssetPrimarySessionIdentifierKey: AV.URLAssetPrimarySessionIdentifierKey
+    ::AVURLAssetShouldParseExternalSphericalTagsKey: AV.URLAssetShouldParseExternalSphericalTagsKey
     ::AVAssetDurationDidChangeNotification: AV.AssetDurationDidChangeNotification
     ::AVAssetContainsFragmentsDidChangeNotification: AV.AssetContainsFragmentsDidChangeNotification
     ::AVAssetWasDefragmentedNotification: AV.AssetWasDefragmentedNotification
@@ -1224,9 +1281,12 @@ ExternVars:
     ::AVAssetExportPresetHEVC1920x1080WithAlpha: AV.AssetExportPresetHEVC1920x1080WithAlpha
     ::AVAssetExportPresetHEVC3840x2160: AV.AssetExportPresetHEVC3840x2160
     ::AVAssetExportPresetHEVC3840x2160WithAlpha: AV.AssetExportPresetHEVC3840x2160WithAlpha
+    ::AVAssetExportPresetHEVC4320x2160: AV.AssetExportPresetHEVC4320x2160
     ::AVAssetExportPresetHEVC7680x4320: AV.AssetExportPresetHEVC7680x4320
     ::AVAssetExportPresetMVHEVC960x960: AV.AssetExportPresetMVHEVC960x960
     ::AVAssetExportPresetMVHEVC1440x1440: AV.AssetExportPresetMVHEVC1440x1440
+    ::AVAssetExportPresetMVHEVC4320x4320: AV.AssetExportPresetMVHEVC4320x4320
+    ::AVAssetExportPresetMVHEVC7680x7680: AV.AssetExportPresetMVHEVC7680x7680
     ::AVAssetExportPresetAppleM4A: AV.AssetExportPresetAppleM4A
     ::AVAssetExportPresetPassthrough: AV.AssetExportPresetPassthrough
     ::AVAssetExportPresetAppleProRes422LPCM: AV.AssetExportPresetAppleProRes422LPCM
@@ -1252,14 +1312,18 @@ ExternVars:
     ::AVTrackAssociationTypeSelectionFollower: AV.TrackAssociationTypeSelectionFollower
     ::AVTrackAssociationTypeTimecode: AV.TrackAssociationTypeTimecode
     ::AVTrackAssociationTypeMetadataReferent: AV.TrackAssociationTypeMetadataReferent
+    ::AVTrackAssociationTypeRenderMetadataSource: AV.TrackAssociationTypeRenderMetadataSource
     ::AVAssetTrackTimeRangeDidChangeNotification: AV.AssetTrackTimeRangeDidChangeNotification
     ::AVAssetTrackSegmentsDidChangeNotification: AV.AssetTrackSegmentsDidChangeNotification
     ::AVAssetTrackTrackAssociationsDidChangeNotification: AV.AssetTrackTrackAssociationsDidChangeNotification
     ::AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData: AV.AssetWriterInputMediaDataLocationInterleavedWithMainMediaData
     ::AVAssetWriterInputMediaDataLocationBeforeMainMediaDataNotInterleaved: AV.AssetWriterInputMediaDataLocationBeforeMainMediaDataNotInterleaved
+    ::AVAssetWriterInputMediaDataLocationSparselyInterleavedWithMainMediaData: AV.AssetWriterInputMediaDataLocationSparselyInterleavedWithMainMediaData
     ::AVAssetPlaybackConfigurationOptionStereoVideo: AV.AssetPlaybackConfigurationOptionStereoVideo
     ::AVAssetPlaybackConfigurationOptionStereoMultiviewVideo: AV.AssetPlaybackConfigurationOptionStereoMultiviewVideo
     ::AVAssetPlaybackConfigurationOptionSpatialVideo: AV.AssetPlaybackConfigurationOptionSpatialVideo
+    ::AVAssetPlaybackConfigurationOptionNonRectilinearProjection: AV.AssetPlaybackConfigurationOptionNonRectilinearProjection
+    ::AVAssetPlaybackConfigurationOptionAppleImmersiveVideo: AV.AssetPlaybackConfigurationOptionAppleImmersiveVideo
     ::AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: AV.AssetDownloadTaskMinimumRequiredMediaBitrateKey
     ::AVAssetDownloadTaskMinimumRequiredPresentationSizeKey: AV.AssetDownloadTaskMinimumRequiredPresentationSizeKey
     ::AVAssetDownloadTaskMediaSelectionKey: AV.AssetDownloadTaskMediaSelectionKey
@@ -1419,12 +1483,24 @@ ExternVars:
     ::AVMetadataIdentifierQuickTimeMetadataAccessibilityDescription: AV.MetadataIdentifierQuickTimeMetadataAccessibilityDescription
     ::AVMetadataIdentifierQuickTimeMetadataIsMontage: AV.MetadataIdentifierQuickTimeMetadataIsMontage
     ::AVMetadataIdentifierQuickTimeMetadataFullFrameRatePlaybackIntent: AV.MetadataIdentifierQuickTimeMetadataFullFrameRatePlaybackIntent
+    ::AVMetadataIdentifierQuickTimeMetadataCinematicVideoIntent: AV.MetadataIdentifierQuickTimeMetadataCinematicVideoIntent
+    ::AVMetadataIdentifierQuickTimeMetadataCameraISOSensitivity: AV.MetadataIdentifierQuickTimeMetadataCameraISOSensitivity
+    ::AVMetadataIdentifierQuickTimeMetadataCameraWhiteBalance: AV.MetadataIdentifierQuickTimeMetadataCameraWhiteBalance
+    ::AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors: AV.MetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors
+    ::AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTColorMatrices: AV.MetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTColorMatrices
+    ::AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedAngle: AV.MetadataIdentifierQuickTimeMetadataCameraShutterSpeedAngle
+    ::AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedTime: AV.MetadataIdentifierQuickTimeMetadataCameraShutterSpeedTime
+    ::AVMetadataIdentifierQuickTimeMetadataCameraLensIrisFNumber: AV.MetadataIdentifierQuickTimeMetadataCameraLensIrisFNumber
+    ::AVMetadataIdentifierQuickTimeMetadataCameraLensModel: AV.MetadataIdentifierQuickTimeMetadataCameraLensModel
+    ::AVMetadataIdentifierQuickTimeMetadataCameraFocalLength35mmEquivalent: AV.MetadataIdentifierQuickTimeMetadataCameraFocalLength35mmEquivalent
     ::AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto: AV.MetadataIdentifierQuickTimeMetadataAutoLivePhoto
     ::AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore: AV.MetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore
     ::AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion: AV.MetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion
     ::AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScore: AV.MetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScore
     ::AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScoringVersion: AV.MetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScoringVersion
     ::AVMetadataIdentifierQuickTimeMetadataLocationHorizontalAccuracyInMeters: AV.MetadataIdentifierQuickTimeMetadataLocationHorizontalAccuracyInMeters
+    ::AVMetadataIdentifierQuickTimeMetadataAIMEData: AV.MetadataIdentifierQuickTimeMetadataAIMEData
+    ::AVMetadataIdentifierQuickTimeMetadataPresentationImmersiveMedia: AV.MetadataIdentifierQuickTimeMetadataPresentationImmersiveMedia
     ::AVMetadataIdentifieriTunesMetadataAlbum: AV.MetadataIdentifieriTunesMetadataAlbum
     ::AVMetadataIdentifieriTunesMetadataArtist: AV.MetadataIdentifieriTunesMetadataArtist
     ::AVMetadataIdentifieriTunesMetadataUserComment: AV.MetadataIdentifieriTunesMetadataUserComment
@@ -1585,9 +1661,12 @@ ExternVars:
     ::AVOutputSettingsPresetHEVC1920x1080WithAlpha: AV.OutputSettingsPresetHEVC1920x1080WithAlpha
     ::AVOutputSettingsPresetHEVC3840x2160: AV.OutputSettingsPresetHEVC3840x2160
     ::AVOutputSettingsPresetHEVC3840x2160WithAlpha: AV.OutputSettingsPresetHEVC3840x2160WithAlpha
+    ::AVOutputSettingsPresetHEVC4320x2160: AV.OutputSettingsPresetHEVC4320x2160
     ::AVOutputSettingsPresetHEVC7680x4320: AV.OutputSettingsPresetHEVC7680x4320
     ::AVOutputSettingsPresetMVHEVC960x960: AV.OutputSettingsPresetMVHEVC960x960
     ::AVOutputSettingsPresetMVHEVC1440x1440: AV.OutputSettingsPresetMVHEVC1440x1440
+    ::AVOutputSettingsPresetMVHEVC4320x4320: AV.OutputSettingsPresetMVHEVC4320x4320
+    ::AVOutputSettingsPresetMVHEVC7680x7680: AV.OutputSettingsPresetMVHEVC7680x7680
     ::AVPlayerRateDidChangeNotification: AV.PlayerRateDidChangeNotification
     ::AVPlayerRateDidChangeReasonKey: AV.PlayerRateDidChangeReasonKey
     ::AVPlayerRateDidChangeOriginatingParticipantKey: AV.PlayerRateDidChangeOriginatingParticipantKey
@@ -1631,6 +1710,19 @@ ExternVars:
     ::AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeEventKey: AV.PlayerInterstitialEventMonitorAssetListResponseStatusDidChangeEventKey
     ::AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeStatusKey: AV.PlayerInterstitialEventMonitorAssetListResponseStatusDidChangeStatusKey
     ::AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeErrorKey: AV.PlayerInterstitialEventMonitorAssetListResponseStatusDidChangeErrorKey
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification: AV.PlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeEventKey: AV.PlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeEventKey
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeStateKey: AV.PlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeStateKey
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeSkipControlLabelKey: AV.PlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeSkipControlLabelKey
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippedNotification: AV.PlayerInterstitialEventMonitorCurrentEventSkippedNotification
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippedEventKey: AV.PlayerInterstitialEventMonitorCurrentEventSkippedEventKey
+    ::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification: AV.PlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification
+    ::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey: AV.PlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey
+    ::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledErrorKey: AV.PlayerInterstitialEventMonitorInterstitialEventWasUnscheduledErrorKey
+    ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification: AV.PlayerInterstitialEventMonitorInterstitialEventDidFinishNotification
+    ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey: AV.PlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey
+    ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey: AV.PlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey
+    ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey: AV.PlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey
     ::AVPlayerWaitingDuringInterstitialEventReason: AV.PlayerWaitingDuringInterstitialEventReason
     ::AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification: AV.PlayerIntegratedTimelineSnapshotsOutOfSyncNotification
     ::AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey: AV.PlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey
@@ -1664,6 +1756,9 @@ ExternVars:
     ::AVEncoderBitRatePerChannelKey: AV.EncoderBitRatePerChannelKey
     ::AVEncoderBitRateStrategyKey: AV.EncoderBitRateStrategyKey
     ::AVEncoderBitDepthHintKey: AV.EncoderBitDepthHintKey
+    ::AVEncoderDynamicRangeControlConfigurationKey: AV.EncoderDynamicRangeControlConfigurationKey
+    ::AVEncoderContentSourceKey: AV.EncoderContentSourceKey
+    ::AVEncoderASPFrequencyKey: AV.EncoderASPFrequencyKey
     ::AVSampleRateConverterAlgorithmKey: AV.SampleRateConverterAlgorithmKey
     ::AVSampleRateConverterAudioQualityKey: AV.SampleRateConverterAudioQualityKey
     ::AVChannelLayoutKey: AV.ChannelLayoutKey
@@ -1712,6 +1807,31 @@ ExternVars:
     ::AVAudioSessionModeVideoChat: AV.AudioSessionModeVideoChat
     ::AVAudioSessionModeSpokenAudio: AV.AudioSessionModeSpokenAudio
     ::AVAudioSessionModeVoicePrompt: AV.AudioSessionModeVoicePrompt
+    ::AVAudioSessionModeShortFormVideo: AV.AudioSessionModeShortFormVideo
+    ::AVAudioSessionModeDualRoute: AV.AudioSessionModeDualRoute
+    ::AVAudioSessionInterruptionNotification: AV.AudioSessionInterruptionNotification
+    ::AVAudioSessionRouteChangeNotification: AV.AudioSessionRouteChangeNotification
+    ::AVAudioSessionMediaServicesWereLostNotification: AV.AudioSessionMediaServicesWereLostNotification
+    ::AVAudioSessionMediaServicesWereResetNotification: AV.AudioSessionMediaServicesWereResetNotification
+    ::AVAudioSessionSilenceSecondaryAudioHintNotification: AV.AudioSessionSilenceSecondaryAudioHintNotification
+    ::AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification: AV.AudioSessionSpatialPlaybackCapabilitiesChangedNotification
+    ::AVAudioSessionRenderingModeChangeNotification: AV.AudioSessionRenderingModeChangeNotification
+    ::AVAudioSessionRenderingCapabilitiesChangeNotification: AV.AudioSessionRenderingCapabilitiesChangeNotification
+    ::AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification: AV.AudioSessionMicrophoneInjectionCapabilitiesChangeNotification
+    ::AVAudioSessionOutputMuteStateChangeNotification: AV.AudioSessionOutputMuteStateChangeNotification
+    ::AVAudioSessionMuteStateKey: AV.AudioSessionMuteStateKey
+    ::AVAudioSessionUserIntentToUnmuteOutputNotification: AV.AudioSessionUserIntentToUnmuteOutputNotification
+    ::AVAudioSessionSpatialAudioEnabledKey: AV.AudioSessionSpatialAudioEnabledKey
+    ::AVAudioSessionInterruptionTypeKey: AV.AudioSessionInterruptionTypeKey
+    ::AVAudioSessionInterruptionOptionKey: AV.AudioSessionInterruptionOptionKey
+    ::AVAudioSessionInterruptionReasonKey: AV.AudioSessionInterruptionReasonKey
+    ::AVAudioSessionInterruptionWasSuspendedKey: AV.AudioSessionInterruptionWasSuspendedKey
+    ::AVAudioSessionRouteChangeReasonKey: AV.AudioSessionRouteChangeReasonKey
+    ::AVAudioSessionRouteChangePreviousRouteKey: AV.AudioSessionRouteChangePreviousRouteKey
+    ::AVAudioSessionSilenceSecondaryAudioHintTypeKey: AV.AudioSessionSilenceSecondaryAudioHintTypeKey
+    ::AVAudioSessionRenderingModeNewRenderingModeKey: AV.AudioSessionRenderingModeNewRenderingModeKey
+    ::AVAudioSessionMicrophoneInjectionIsAvailableKey: AV.AudioSessionMicrophoneInjectionIsAvailableKey
+    ::AVAudioSessionAvailableInputsChangeNotification: AV.AudioSessionAvailableInputsChangeNotification
     ::AVAudioSessionLocationUpper: AV.AudioSessionLocationUpper
     ::AVAudioSessionLocationLower: AV.AudioSessionLocationLower
     ::AVAudioSessionOrientationTop: AV.AudioSessionOrientationTop
@@ -1724,25 +1844,6 @@ ExternVars:
     ::AVAudioSessionPolarPatternCardioid: AV.AudioSessionPolarPatternCardioid
     ::AVAudioSessionPolarPatternSubcardioid: AV.AudioSessionPolarPatternSubcardioid
     ::AVAudioSessionPolarPatternStereo: AV.AudioSessionPolarPatternStereo
-    ::AVAudioSessionInterruptionNotification: AV.AudioSessionInterruptionNotification
-    ::AVAudioSessionRouteChangeNotification: AV.AudioSessionRouteChangeNotification
-    ::AVAudioSessionMediaServicesWereLostNotification: AV.AudioSessionMediaServicesWereLostNotification
-    ::AVAudioSessionMediaServicesWereResetNotification: AV.AudioSessionMediaServicesWereResetNotification
-    ::AVAudioSessionSilenceSecondaryAudioHintNotification: AV.AudioSessionSilenceSecondaryAudioHintNotification
-    ::AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification: AV.AudioSessionSpatialPlaybackCapabilitiesChangedNotification
-    ::AVAudioSessionRenderingModeChangeNotification: AV.AudioSessionRenderingModeChangeNotification
-    ::AVAudioSessionRenderingCapabilitiesChangeNotification: AV.AudioSessionRenderingCapabilitiesChangeNotification
-    ::AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification: AV.AudioSessionMicrophoneInjectionCapabilitiesChangeNotification
-    ::AVAudioSessionSpatialAudioEnabledKey: AV.AudioSessionSpatialAudioEnabledKey
-    ::AVAudioSessionInterruptionTypeKey: AV.AudioSessionInterruptionTypeKey
-    ::AVAudioSessionInterruptionOptionKey: AV.AudioSessionInterruptionOptionKey
-    ::AVAudioSessionInterruptionReasonKey: AV.AudioSessionInterruptionReasonKey
-    ::AVAudioSessionInterruptionWasSuspendedKey: AV.AudioSessionInterruptionWasSuspendedKey
-    ::AVAudioSessionRouteChangeReasonKey: AV.AudioSessionRouteChangeReasonKey
-    ::AVAudioSessionRouteChangePreviousRouteKey: AV.AudioSessionRouteChangePreviousRouteKey
-    ::AVAudioSessionSilenceSecondaryAudioHintTypeKey: AV.AudioSessionSilenceSecondaryAudioHintTypeKey
-    ::AVAudioSessionRenderingModeNewRenderingModeKey: AV.AudioSessionRenderingModeNewRenderingModeKey
-    ::AVAudioSessionMicrophoneInjectionIsAvailableKey: AV.AudioSessionMicrophoneInjectionIsAvailableKey
     ::AVAudioSequencerInfoDictionaryKeyAlbum: AV.AudioSequencerInfoDictionaryKeyAlbum
     ::AVAudioSequencerInfoDictionaryKeyApproximateDurationInSeconds: AV.AudioSequencerInfoDictionaryKeyApproximateDurationInSeconds
     ::AVAudioSequencerInfoDictionaryKeyArtist: AV.AudioSequencerInfoDictionaryKeyArtist
@@ -1832,9 +1933,20 @@ ExternVars:
     ::AVCaptureExposureDurationCurrent: AV.CaptureExposureDurationCurrent
     ::AVCaptureISOCurrent: AV.CaptureISOCurrent
     ::AVCaptureExposureTargetBiasCurrent: AV.CaptureExposureTargetBiasCurrent
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesTungsten: AV.CaptureWhiteBalanceTemperatureAndTintValuesTungsten
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesFluorescent: AV.CaptureWhiteBalanceTemperatureAndTintValuesFluorescent
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesDaylight: AV.CaptureWhiteBalanceTemperatureAndTintValuesDaylight
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesCloudy: AV.CaptureWhiteBalanceTemperatureAndTintValuesCloudy
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesShadow: AV.CaptureWhiteBalanceTemperatureAndTintValuesShadow
     ::AVCaptureWhiteBalanceGainsCurrent: AV.CaptureWhiteBalanceGainsCurrent
     ::AVSpatialCaptureDiscomfortReasonNotEnoughLight: AV.SpatialCaptureDiscomfortReasonNotEnoughLight
     ::AVSpatialCaptureDiscomfortReasonSubjectTooClose: AV.SpatialCaptureDiscomfortReasonSubjectTooClose
+    ::AVCaptureSceneMonitoringStatusNotEnoughLight: AV.CaptureSceneMonitoringStatusNotEnoughLight
+    ::AVCaptureAspectRatio1x1: AV.CaptureAspectRatio1x1
+    ::AVCaptureAspectRatio16x9: AV.CaptureAspectRatio16x9
+    ::AVCaptureAspectRatio9x16: AV.CaptureAspectRatio9x16
+    ::AVCaptureAspectRatio4x3: AV.CaptureAspectRatio4x3
+    ::AVCaptureAspectRatio3x4: AV.CaptureAspectRatio3x4
     ::AVCaptureSessionRuntimeErrorNotification: AV.CaptureSessionRuntimeErrorNotification
     ::AVCaptureSessionErrorKey: AV.CaptureSessionErrorKey
     ::AVCaptureSessionDidStartRunningNotification: AV.CaptureSessionDidStartRunningNotification
@@ -1845,7 +1957,9 @@ ExternVars:
     ::AVCaptureSessionInterruptionEndedNotification: AV.CaptureSessionInterruptionEndedNotification
     ::AVMetadataObjectTypeHumanBody: AV.MetadataObjectTypeHumanBody
     ::AVMetadataObjectTypeHumanFullBody: AV.MetadataObjectTypeHumanFullBody
+    ::AVMetadataObjectTypeCatHead: AV.MetadataObjectTypeCatHead
     ::AVMetadataObjectTypeCatBody: AV.MetadataObjectTypeCatBody
+    ::AVMetadataObjectTypeDogHead: AV.MetadataObjectTypeDogHead
     ::AVMetadataObjectTypeDogBody: AV.MetadataObjectTypeDogBody
     ::AVMetadataObjectTypeSalientObject: AV.MetadataObjectTypeSalientObject
     ::AVMetadataObjectTypeFace: AV.MetadataObjectTypeFace
@@ -1894,6 +2008,8 @@ ExternTypes:
     ::AVContentKeyRequestRetryReasonReceivedObsoleteContentKey: ^NS.String
     ::AVContentKeyRequestRequiresValidationDataInSecureTokenKey: ^NS.String
     ::AVContentKeyRequestProtocolVersionsKey: ^NS.String
+    ::AVContentKeyRequestShouldRandomizeDeviceIdentifierKey: ^NS.String
+    ::AVContentKeyRequestRandomDeviceIdentifierSeedKey: ^NS.String
     ::AVMediaTypeVideo: ^NS.String
     ::AVMediaTypeAudio: ^NS.String
     ::AVMediaTypeText: ^NS.String
@@ -1932,7 +2048,10 @@ ExternTypes:
     ::AVMediaCharacteristicContainsStereoMultiviewVideo: ^NS.String
     ::AVMediaCharacteristicCarriesVideoStereoMetadata: ^NS.String
     ::AVMediaCharacteristicIndicatesHorizontalFieldOfView: ^NS.String
+    ::AVMediaCharacteristicIndicatesNonRectilinearProjection: ^NS.String
+    ::AVMediaCharacteristicMachineGenerated: ^NS.String
     ::AVFileTypeQuickTimeMovie: ^NS.String
+    ::AVFileTypeQuickTimeAudio: ^NS.String
     ::AVFileTypeMPEG4: ^NS.String
     ::AVFileTypeAppleM4V: ^NS.String
     ::AVFileTypeAppleM4A: ^NS.String
@@ -1956,6 +2075,7 @@ ExternTypes:
     ::AVFileTypeAppleiTT: ^NS.String
     ::AVFileTypeSCC: ^NS.String
     ::AVFileTypeAHAP: ^NS.String
+    ::AVFileTypeDICOM: ^NS.String
     ::AVStreamingKeyDeliveryContentKeyType: ^NS.String
     ::AVStreamingKeyDeliveryPersistentContentKeyType: ^NS.String
     ::AVFileTypeProfileMPEG4AppleHLS: ^NS.String
@@ -2093,6 +2213,16 @@ ExternTypes:
     ::AVMetadataQuickTimeMetadataKeyAccessibilityDescription: ^NS.String
     ::AVMetadataQuickTimeMetadataKeyIsMontage: ^NS.String
     ::AVMetadataQuickTimeMetadataKeyFullFrameRatePlaybackIntent: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyCinematicVideoIntent: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyCameraISOSensitivity: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyCameraWhiteBalance: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyWhiteBalanceByCCTColorMatrices: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyCameraShutterSpeedAngle: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyCameraShutterSpeedTime: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyCameraLensIrisFNumber: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyCameraLensModel: ^NS.String
+    ::AVMetadataQuickTimeMetadataKeyCameraFocalLength35mmEquivalent: ^NS.String
     ::AVMetadataFormatiTunesMetadata: ^NS.String
     ::AVMetadataKeySpaceiTunes: ^NS.String
     ::AVMetadataiTunesMetadataKeyAlbum: ^NS.String
@@ -2259,6 +2389,8 @@ ExternTypes:
     ::AVVideoCodecTypeAppleProRes422HQ: ^NS.String
     ::AVVideoCodecTypeAppleProRes422LT: ^NS.String
     ::AVVideoCodecTypeAppleProRes422Proxy: ^NS.String
+    ::AVVideoCodecTypeAppleProResRAW: ^NS.String
+    ::AVVideoCodecTypeAppleProResRAWHQ: ^NS.String
     ::AVVideoCodecTypeHEVCWithAlpha: ^NS.String
     ::AVVideoCodecHEVC: ^NS.String
     ::AVVideoCodecH264: ^NS.String
@@ -2341,6 +2473,7 @@ ExternTypes:
     ::AVURLAssetURLRequestAttributionKey: ^NS.String
     ::AVURLAssetHTTPUserAgentKey: ^NS.String
     ::AVURLAssetPrimarySessionIdentifierKey: ^NS.String
+    ::AVURLAssetShouldParseExternalSphericalTagsKey: ^NS.String
     ::AVAssetDurationDidChangeNotification: ^NS.String
     ::AVAssetContainsFragmentsDidChangeNotification: ^NS.String
     ::AVAssetWasDefragmentedNotification: ^NS.String
@@ -2364,9 +2497,12 @@ ExternTypes:
     ::AVAssetExportPresetHEVC1920x1080WithAlpha: ^NS.String
     ::AVAssetExportPresetHEVC3840x2160: ^NS.String
     ::AVAssetExportPresetHEVC3840x2160WithAlpha: ^NS.String
+    ::AVAssetExportPresetHEVC4320x2160: ^NS.String
     ::AVAssetExportPresetHEVC7680x4320: ^NS.String
     ::AVAssetExportPresetMVHEVC960x960: ^NS.String
     ::AVAssetExportPresetMVHEVC1440x1440: ^NS.String
+    ::AVAssetExportPresetMVHEVC4320x4320: ^NS.String
+    ::AVAssetExportPresetMVHEVC7680x7680: ^NS.String
     ::AVAssetExportPresetAppleM4A: ^NS.String
     ::AVAssetExportPresetPassthrough: ^NS.String
     ::AVAssetExportPresetAppleProRes422LPCM: ^NS.String
@@ -2392,14 +2528,18 @@ ExternTypes:
     ::AVTrackAssociationTypeSelectionFollower: ^NS.String
     ::AVTrackAssociationTypeTimecode: ^NS.String
     ::AVTrackAssociationTypeMetadataReferent: ^NS.String
+    ::AVTrackAssociationTypeRenderMetadataSource: ^NS.String
     ::AVAssetTrackTimeRangeDidChangeNotification: ^NS.String
     ::AVAssetTrackSegmentsDidChangeNotification: ^NS.String
     ::AVAssetTrackTrackAssociationsDidChangeNotification: ^NS.String
     ::AVAssetWriterInputMediaDataLocationInterleavedWithMainMediaData: ^NS.String
     ::AVAssetWriterInputMediaDataLocationBeforeMainMediaDataNotInterleaved: ^NS.String
+    ::AVAssetWriterInputMediaDataLocationSparselyInterleavedWithMainMediaData: ^NS.String
     ::AVAssetPlaybackConfigurationOptionStereoVideo: ^NS.String
     ::AVAssetPlaybackConfigurationOptionStereoMultiviewVideo: ^NS.String
     ::AVAssetPlaybackConfigurationOptionSpatialVideo: ^NS.String
+    ::AVAssetPlaybackConfigurationOptionNonRectilinearProjection: ^NS.String
+    ::AVAssetPlaybackConfigurationOptionAppleImmersiveVideo: ^NS.String
     ::AVAssetDownloadTaskMinimumRequiredMediaBitrateKey: ^NS.String
     ::AVAssetDownloadTaskMinimumRequiredPresentationSizeKey: ^NS.String
     ::AVAssetDownloadTaskMediaSelectionKey: ^NS.String
@@ -2559,12 +2699,24 @@ ExternTypes:
     ::AVMetadataIdentifierQuickTimeMetadataAccessibilityDescription: ^NS.String
     ::AVMetadataIdentifierQuickTimeMetadataIsMontage: ^NS.String
     ::AVMetadataIdentifierQuickTimeMetadataFullFrameRatePlaybackIntent: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataCinematicVideoIntent: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataCameraISOSensitivity: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataCameraWhiteBalance: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataWhiteBalanceByCCTColorMatrices: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedAngle: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataCameraShutterSpeedTime: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataCameraLensIrisFNumber: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataCameraLensModel: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataCameraFocalLength35mmEquivalent: ^NS.String
     ::AVMetadataIdentifierQuickTimeMetadataAutoLivePhoto: ^NS.String
     ::AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScore: ^NS.String
     ::AVMetadataIdentifierQuickTimeMetadataLivePhotoVitalityScoringVersion: ^NS.String
     ::AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScore: ^NS.String
     ::AVMetadataIdentifierQuickTimeMetadataSpatialOverCaptureQualityScoringVersion: ^NS.String
     ::AVMetadataIdentifierQuickTimeMetadataLocationHorizontalAccuracyInMeters: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataAIMEData: ^NS.String
+    ::AVMetadataIdentifierQuickTimeMetadataPresentationImmersiveMedia: ^NS.String
     ::AVMetadataIdentifieriTunesMetadataAlbum: ^NS.String
     ::AVMetadataIdentifieriTunesMetadataArtist: ^NS.String
     ::AVMetadataIdentifieriTunesMetadataUserComment: ^NS.String
@@ -2725,9 +2877,12 @@ ExternTypes:
     ::AVOutputSettingsPresetHEVC1920x1080WithAlpha: ^NS.String
     ::AVOutputSettingsPresetHEVC3840x2160: ^NS.String
     ::AVOutputSettingsPresetHEVC3840x2160WithAlpha: ^NS.String
+    ::AVOutputSettingsPresetHEVC4320x2160: ^NS.String
     ::AVOutputSettingsPresetHEVC7680x4320: ^NS.String
     ::AVOutputSettingsPresetMVHEVC960x960: ^NS.String
     ::AVOutputSettingsPresetMVHEVC1440x1440: ^NS.String
+    ::AVOutputSettingsPresetMVHEVC4320x4320: ^NS.String
+    ::AVOutputSettingsPresetMVHEVC7680x7680: ^NS.String
     ::AVPlayerRateDidChangeNotification: ^NS.String
     ::AVPlayerRateDidChangeReasonKey: ^NS.String
     ::AVPlayerRateDidChangeOriginatingParticipantKey: ^NS.String
@@ -2771,6 +2926,19 @@ ExternTypes:
     ::AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeEventKey: ^NS.String
     ::AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeStatusKey: ^NS.String
     ::AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChangeErrorKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeNotification: ^NS.String
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeEventKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeStateKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippableStateDidChangeSkipControlLabelKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippedNotification: ^NS.String
+    ::AVPlayerInterstitialEventMonitorCurrentEventSkippedEventKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledNotification: ^NS.String
+    ::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledEventKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorInterstitialEventWasUnscheduledErrorKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishNotification: ^NS.String
+    ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey: ^NS.String
     ::AVPlayerWaitingDuringInterstitialEventReason: ^NS.String
     ::AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification: ^NS.String
     ::AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey: ^NS.String
@@ -2804,6 +2972,9 @@ ExternTypes:
     ::AVEncoderBitRatePerChannelKey: ^NS.String
     ::AVEncoderBitRateStrategyKey: ^NS.String
     ::AVEncoderBitDepthHintKey: ^NS.String
+    ::AVEncoderDynamicRangeControlConfigurationKey: ^NS.String
+    ::AVEncoderContentSourceKey: ^NS.String
+    ::AVEncoderASPFrequencyKey: ^NS.String
     ::AVSampleRateConverterAlgorithmKey: ^NS.String
     ::AVSampleRateConverterAudioQualityKey: ^NS.String
     ::AVChannelLayoutKey: ^NS.String
@@ -2852,6 +3023,31 @@ ExternTypes:
     ::AVAudioSessionModeVideoChat: ^NS.String
     ::AVAudioSessionModeSpokenAudio: ^NS.String
     ::AVAudioSessionModeVoicePrompt: ^NS.String
+    ::AVAudioSessionModeShortFormVideo: ^NS.String
+    ::AVAudioSessionModeDualRoute: ^NS.String
+    ::AVAudioSessionInterruptionNotification: ^NS.String
+    ::AVAudioSessionRouteChangeNotification: ^NS.String
+    ::AVAudioSessionMediaServicesWereLostNotification: ^NS.String
+    ::AVAudioSessionMediaServicesWereResetNotification: ^NS.String
+    ::AVAudioSessionSilenceSecondaryAudioHintNotification: ^NS.String
+    ::AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification: ^NS.String
+    ::AVAudioSessionRenderingModeChangeNotification: ^NS.String
+    ::AVAudioSessionRenderingCapabilitiesChangeNotification: ^NS.String
+    ::AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification: ^NS.String
+    ::AVAudioSessionOutputMuteStateChangeNotification: ^NS.String
+    ::AVAudioSessionMuteStateKey: ^NS.String
+    ::AVAudioSessionUserIntentToUnmuteOutputNotification: ^NS.String
+    ::AVAudioSessionSpatialAudioEnabledKey: ^NS.String
+    ::AVAudioSessionInterruptionTypeKey: ^NS.String
+    ::AVAudioSessionInterruptionOptionKey: ^NS.String
+    ::AVAudioSessionInterruptionReasonKey: ^NS.String
+    ::AVAudioSessionInterruptionWasSuspendedKey: ^NS.String
+    ::AVAudioSessionRouteChangeReasonKey: ^NS.String
+    ::AVAudioSessionRouteChangePreviousRouteKey: ^NS.String
+    ::AVAudioSessionSilenceSecondaryAudioHintTypeKey: ^NS.String
+    ::AVAudioSessionRenderingModeNewRenderingModeKey: ^NS.String
+    ::AVAudioSessionMicrophoneInjectionIsAvailableKey: ^NS.String
+    ::AVAudioSessionAvailableInputsChangeNotification: ^NS.String
     ::AVAudioSessionLocationUpper: ^NS.String
     ::AVAudioSessionLocationLower: ^NS.String
     ::AVAudioSessionOrientationTop: ^NS.String
@@ -2864,25 +3060,6 @@ ExternTypes:
     ::AVAudioSessionPolarPatternCardioid: ^NS.String
     ::AVAudioSessionPolarPatternSubcardioid: ^NS.String
     ::AVAudioSessionPolarPatternStereo: ^NS.String
-    ::AVAudioSessionInterruptionNotification: ^NS.String
-    ::AVAudioSessionRouteChangeNotification: ^NS.String
-    ::AVAudioSessionMediaServicesWereLostNotification: ^NS.String
-    ::AVAudioSessionMediaServicesWereResetNotification: ^NS.String
-    ::AVAudioSessionSilenceSecondaryAudioHintNotification: ^NS.String
-    ::AVAudioSessionSpatialPlaybackCapabilitiesChangedNotification: ^NS.String
-    ::AVAudioSessionRenderingModeChangeNotification: ^NS.String
-    ::AVAudioSessionRenderingCapabilitiesChangeNotification: ^NS.String
-    ::AVAudioSessionMicrophoneInjectionCapabilitiesChangeNotification: ^NS.String
-    ::AVAudioSessionSpatialAudioEnabledKey: ^NS.String
-    ::AVAudioSessionInterruptionTypeKey: ^NS.String
-    ::AVAudioSessionInterruptionOptionKey: ^NS.String
-    ::AVAudioSessionInterruptionReasonKey: ^NS.String
-    ::AVAudioSessionInterruptionWasSuspendedKey: ^NS.String
-    ::AVAudioSessionRouteChangeReasonKey: ^NS.String
-    ::AVAudioSessionRouteChangePreviousRouteKey: ^NS.String
-    ::AVAudioSessionSilenceSecondaryAudioHintTypeKey: ^NS.String
-    ::AVAudioSessionRenderingModeNewRenderingModeKey: ^NS.String
-    ::AVAudioSessionMicrophoneInjectionIsAvailableKey: ^NS.String
     ::AVAudioSequencerInfoDictionaryKeyAlbum: ^NS.String
     ::AVAudioSequencerInfoDictionaryKeyApproximateDurationInSeconds: ^NS.String
     ::AVAudioSequencerInfoDictionaryKeyArtist: ^NS.String
@@ -2972,9 +3149,20 @@ ExternTypes:
     ::AVCaptureExposureDurationCurrent: CM.Time
     ::AVCaptureISOCurrent: cffi.float
     ::AVCaptureExposureTargetBiasCurrent: cffi.float
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesTungsten: CaptureWhiteBalanceTemperatureAndTintValues
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesFluorescent: CaptureWhiteBalanceTemperatureAndTintValues
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesDaylight: CaptureWhiteBalanceTemperatureAndTintValues
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesCloudy: CaptureWhiteBalanceTemperatureAndTintValues
+    ::AVCaptureWhiteBalanceTemperatureAndTintValuesShadow: CaptureWhiteBalanceTemperatureAndTintValues
     ::AVCaptureWhiteBalanceGainsCurrent: CaptureWhiteBalanceGains
     ::AVSpatialCaptureDiscomfortReasonNotEnoughLight: ^NS.String
     ::AVSpatialCaptureDiscomfortReasonSubjectTooClose: ^NS.String
+    ::AVCaptureSceneMonitoringStatusNotEnoughLight: ^NS.String
+    ::AVCaptureAspectRatio1x1: ^NS.String
+    ::AVCaptureAspectRatio16x9: ^NS.String
+    ::AVCaptureAspectRatio9x16: ^NS.String
+    ::AVCaptureAspectRatio4x3: ^NS.String
+    ::AVCaptureAspectRatio3x4: ^NS.String
     ::AVCaptureSessionRuntimeErrorNotification: ^NS.String
     ::AVCaptureSessionErrorKey: ^NS.String
     ::AVCaptureSessionDidStartRunningNotification: ^NS.String
@@ -2985,7 +3173,9 @@ ExternTypes:
     ::AVCaptureSessionInterruptionEndedNotification: ^NS.String
     ::AVMetadataObjectTypeHumanBody: ^NS.String
     ::AVMetadataObjectTypeHumanFullBody: ^NS.String
+    ::AVMetadataObjectTypeCatHead: ^NS.String
     ::AVMetadataObjectTypeCatBody: ^NS.String
+    ::AVMetadataObjectTypeDogHead: ^NS.String
     ::AVMetadataObjectTypeDogBody: ^NS.String
     ::AVMetadataObjectTypeSalientObject: ^NS.String
     ::AVMetadataObjectTypeFace: ^NS.String

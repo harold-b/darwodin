@@ -47,6 +47,7 @@ VTable :: struct {
     imageRectForBounds: proc(self: ^AK.Cell, rect: NS.Rect) -> NS.Rect,
     titleRectForBounds: proc(self: ^AK.Cell, rect: NS.Rect) -> NS.Rect,
     drawingRectForBounds: proc(self: ^AK.Cell, rect: NS.Rect) -> NS.Rect,
+    _bulletStringForString: proc(string: ^NS.String, bulletChar: NS.unichar) -> ^NS.String,
     cellSizeForBounds: proc(self: ^AK.Cell, rect: NS.Rect) -> NS.Size,
     highlightColorWithFrame: proc(self: ^AK.Cell, cellFrame: NS.Rect, controlView: ^AK.View) -> ^AK.Color,
     calcDrawInfo: proc(self: ^AK.Cell, rect: NS.Rect),
@@ -361,6 +362,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawingRectForBounds:"), auto_cast drawingRectForBounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
+    }
+    if vt._bulletStringForString != nil {
+        _bulletStringForString :: proc "c" (self: Class, _: SEL, string: ^NS.String, bulletChar: NS.unichar) -> ^NS.String {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt)._bulletStringForString( string, bulletChar)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("_bulletStringForString:bulletCharacter:"), auto_cast _bulletStringForString, "@#:@S") do panic("Failed to register objC method.")
     }
     if vt.cellSizeForBounds != nil {
         cellSizeForBounds :: proc "c" (self: ^AK.Cell, _: SEL, rect: NS.Rect) -> NS.Size {

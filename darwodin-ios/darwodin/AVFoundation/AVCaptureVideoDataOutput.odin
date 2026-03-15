@@ -43,6 +43,9 @@ foreign lib {
     @(objc_type=CaptureVideoDataOutput, objc_selector="recommendedVideoSettingsForVideoCodecType:assetWriterOutputFileType:outputFileURL:", objc_name="recommendedVideoSettingsForVideoCodecType_assetWriterOutputFileType_outputFileURL")
     CaptureVideoDataOutput_recommendedVideoSettingsForVideoCodecType_assetWriterOutputFileType_outputFileURL :: proc(self: ^CaptureVideoDataOutput, videoCodecType: ^NS.String, outputFileType: ^NS.String, outputFileURL: ^NS.URL) -> ^NS.Dictionary ---
 
+    @(objc_type=CaptureVideoDataOutput, objc_selector="recommendedMovieMetadataForVideoCodecType:assetWriterOutputFileType:", objc_name="recommendedMovieMetadataForVideoCodecType")
+    CaptureVideoDataOutput_recommendedMovieMetadataForVideoCodecType :: proc(self: ^CaptureVideoDataOutput, videoCodecType: ^NS.String, outputFileType: ^NS.String) -> ^NS.Array ---
+
     @(objc_type=CaptureVideoDataOutput, objc_selector="sampleBufferDelegate", objc_name="sampleBufferDelegate")
     CaptureVideoDataOutput_sampleBufferDelegate :: proc(self: ^CaptureVideoDataOutput) -> ^CaptureVideoDataOutputSampleBufferDelegate ---
 
@@ -54,6 +57,9 @@ foreign lib {
 
     @(objc_type=CaptureVideoDataOutput, objc_selector="setVideoSettings:", objc_name="setVideoSettings")
     CaptureVideoDataOutput_setVideoSettings :: proc(self: ^CaptureVideoDataOutput, videoSettings: ^NS.Dictionary) ---
+
+    @(objc_type=CaptureVideoDataOutput, objc_selector="recommendedMediaTimeScaleForAssetWriter", objc_name="recommendedMediaTimeScaleForAssetWriter")
+    CaptureVideoDataOutput_recommendedMediaTimeScaleForAssetWriter :: proc(self: ^CaptureVideoDataOutput) -> CM.TimeScale ---
 
     @(objc_type=CaptureVideoDataOutput, objc_selector="availableVideoCVPixelFormatTypes", objc_name="availableVideoCVPixelFormatTypes")
     CaptureVideoDataOutput_availableVideoCVPixelFormatTypes :: proc(self: ^CaptureVideoDataOutput) -> ^NS.Array ---
@@ -84,6 +90,18 @@ foreign lib {
 
     @(objc_type=CaptureVideoDataOutput, objc_selector="setDeliversPreviewSizedOutputBuffers:", objc_name="setDeliversPreviewSizedOutputBuffers")
     CaptureVideoDataOutput_setDeliversPreviewSizedOutputBuffers :: proc(self: ^CaptureVideoDataOutput, deliversPreviewSizedOutputBuffers: bool) ---
+
+    @(objc_type=CaptureVideoDataOutput, objc_selector="preparesCellularRadioForNetworkConnection", objc_name="preparesCellularRadioForNetworkConnection")
+    CaptureVideoDataOutput_preparesCellularRadioForNetworkConnection :: proc(self: ^CaptureVideoDataOutput) -> bool ---
+
+    @(objc_type=CaptureVideoDataOutput, objc_selector="setPreparesCellularRadioForNetworkConnection:", objc_name="setPreparesCellularRadioForNetworkConnection")
+    CaptureVideoDataOutput_setPreparesCellularRadioForNetworkConnection :: proc(self: ^CaptureVideoDataOutput, preparesCellularRadioForNetworkConnection: bool) ---
+
+    @(objc_type=CaptureVideoDataOutput, objc_selector="preservesDynamicHDRMetadata", objc_name="preservesDynamicHDRMetadata")
+    CaptureVideoDataOutput_preservesDynamicHDRMetadata :: proc(self: ^CaptureVideoDataOutput) -> bool ---
+
+    @(objc_type=CaptureVideoDataOutput, objc_selector="setPreservesDynamicHDRMetadata:", objc_name="setPreservesDynamicHDRMetadata")
+    CaptureVideoDataOutput_setPreservesDynamicHDRMetadata :: proc(self: ^CaptureVideoDataOutput, preservesDynamicHDRMetadata: bool) ---
 }
 
 @(objc_type=CaptureVideoDataOutput, objc_name="recommendedVideoSettingsForVideoCodecType")

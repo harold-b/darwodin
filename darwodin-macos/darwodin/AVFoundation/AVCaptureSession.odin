@@ -82,6 +82,12 @@ foreign lib {
     @(objc_type=CaptureSession, objc_selector="stopRunning", objc_name="stopRunning")
     CaptureSession_stopRunning :: proc(self: ^CaptureSession) ---
 
+    @(objc_type=CaptureSession, objc_selector="runDeferredStartWhenNeeded", objc_name="runDeferredStartWhenNeeded")
+    CaptureSession_runDeferredStartWhenNeeded :: proc(self: ^CaptureSession) ---
+
+    @(objc_type=CaptureSession, objc_selector="setDeferredStartDelegate:deferredStartDelegateCallbackQueue:", objc_name="setDeferredStartDelegate")
+    CaptureSession_setDeferredStartDelegate :: proc(self: ^CaptureSession, deferredStartDelegate: ^CaptureSessionDeferredStartDelegate, deferredStartDelegateCallbackQueue: CF.dispatch_queue_t) ---
+
     @(objc_type=CaptureSession, objc_selector="sessionPreset", objc_name="sessionPreset")
     CaptureSession_sessionPreset :: proc(self: ^CaptureSession) -> ^NS.String ---
 
@@ -145,6 +151,12 @@ foreign lib {
     @(objc_type=CaptureSession, objc_selector="setConfiguresApplicationAudioSessionToMixWithOthers:", objc_name="setConfiguresApplicationAudioSessionToMixWithOthers")
     CaptureSession_setConfiguresApplicationAudioSessionToMixWithOthers :: proc(self: ^CaptureSession, configuresApplicationAudioSessionToMixWithOthers: bool) ---
 
+    @(objc_type=CaptureSession, objc_selector="configuresApplicationAudioSessionForBluetoothHighQualityRecording", objc_name="configuresApplicationAudioSessionForBluetoothHighQualityRecording")
+    CaptureSession_configuresApplicationAudioSessionForBluetoothHighQualityRecording :: proc(self: ^CaptureSession) -> bool ---
+
+    @(objc_type=CaptureSession, objc_selector="setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording:", objc_name="setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording")
+    CaptureSession_setConfiguresApplicationAudioSessionForBluetoothHighQualityRecording :: proc(self: ^CaptureSession, configuresApplicationAudioSessionForBluetoothHighQualityRecording: bool) ---
+
     @(objc_type=CaptureSession, objc_selector="automaticallyConfiguresCaptureDeviceForWideColor", objc_name="automaticallyConfiguresCaptureDeviceForWideColor")
     CaptureSession_automaticallyConfiguresCaptureDeviceForWideColor :: proc(self: ^CaptureSession) -> bool ---
 
@@ -159,4 +171,19 @@ foreign lib {
 
     @(objc_type=CaptureSession, objc_selector="hardwareCost", objc_name="hardwareCost")
     CaptureSession_hardwareCost :: proc(self: ^CaptureSession) -> cffi.float ---
+
+    @(objc_type=CaptureSession, objc_selector="isManualDeferredStartSupported", objc_name="isManualDeferredStartSupported")
+    CaptureSession_isManualDeferredStartSupported :: proc(self: ^CaptureSession) -> bool ---
+
+    @(objc_type=CaptureSession, objc_selector="automaticallyRunsDeferredStart", objc_name="automaticallyRunsDeferredStart")
+    CaptureSession_automaticallyRunsDeferredStart :: proc(self: ^CaptureSession) -> bool ---
+
+    @(objc_type=CaptureSession, objc_selector="setAutomaticallyRunsDeferredStart:", objc_name="setAutomaticallyRunsDeferredStart")
+    CaptureSession_setAutomaticallyRunsDeferredStart :: proc(self: ^CaptureSession, automaticallyRunsDeferredStart: bool) ---
+
+    @(objc_type=CaptureSession, objc_selector="deferredStartDelegate", objc_name="deferredStartDelegate")
+    CaptureSession_deferredStartDelegate :: proc(self: ^CaptureSession) -> ^CaptureSessionDeferredStartDelegate ---
+
+    @(objc_type=CaptureSession, objc_selector="deferredStartDelegateCallbackQueue", objc_name="deferredStartDelegateCallbackQueue")
+    CaptureSession_deferredStartDelegateCallbackQueue :: proc(self: ^CaptureSession) -> CF.dispatch_queue_t ---
 }

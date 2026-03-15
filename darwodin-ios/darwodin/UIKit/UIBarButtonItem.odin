@@ -74,6 +74,9 @@ foreign lib {
     @(objc_type=BarButtonItem, objc_selector="flexibleSpaceItem", objc_name="flexibleSpaceItem", objc_is_class_method=true)
     BarButtonItem_flexibleSpaceItem :: proc() -> instancetype ---
 
+    @(objc_type=BarButtonItem, objc_selector="fixedSpaceItem", objc_name="fixedSpaceItem", objc_is_class_method=true)
+    BarButtonItem_fixedSpaceItem :: proc() -> instancetype ---
+
     @(objc_type=BarButtonItem, objc_selector="creatingFixedGroup", objc_name="creatingFixedGroup")
     BarButtonItem_creatingFixedGroup :: proc(self: ^BarButtonItem) -> ^BarButtonItemGroup ---
 
@@ -209,6 +212,24 @@ foreign lib {
     @(objc_type=BarButtonItem, objc_selector="setMenuRepresentation:", objc_name="setMenuRepresentation")
     BarButtonItem_setMenuRepresentation :: proc(self: ^BarButtonItem, menuRepresentation: ^MenuElement) ---
 
+    @(objc_type=BarButtonItem, objc_selector="hidesSharedBackground", objc_name="hidesSharedBackground")
+    BarButtonItem_hidesSharedBackground :: proc(self: ^BarButtonItem) -> bool ---
+
+    @(objc_type=BarButtonItem, objc_selector="setHidesSharedBackground:", objc_name="setHidesSharedBackground")
+    BarButtonItem_setHidesSharedBackground :: proc(self: ^BarButtonItem, hidesSharedBackground: bool) ---
+
+    @(objc_type=BarButtonItem, objc_selector="sharesBackground", objc_name="sharesBackground")
+    BarButtonItem_sharesBackground :: proc(self: ^BarButtonItem) -> bool ---
+
+    @(objc_type=BarButtonItem, objc_selector="setSharesBackground:", objc_name="setSharesBackground")
+    BarButtonItem_setSharesBackground :: proc(self: ^BarButtonItem, sharesBackground: bool) ---
+
+    @(objc_type=BarButtonItem, objc_selector="identifier", objc_name="identifier")
+    BarButtonItem_identifier :: proc(self: ^BarButtonItem) -> ^NS.String ---
+
+    @(objc_type=BarButtonItem, objc_selector="setIdentifier:", objc_name="setIdentifier")
+    BarButtonItem_setIdentifier :: proc(self: ^BarButtonItem, identifier: ^NS.String) ---
+
     @(objc_type=BarButtonItem, objc_selector="tintColor", objc_name="tintColor")
     BarButtonItem_tintColor :: proc(self: ^BarButtonItem) -> ^Color ---
 
@@ -250,6 +271,12 @@ foreign lib {
 
     @(objc_type=BarButtonItem, objc_selector="buttonGroup", objc_name="buttonGroup")
     BarButtonItem_buttonGroup :: proc(self: ^BarButtonItem) -> ^BarButtonItemGroup ---
+
+    @(objc_type=BarButtonItem, objc_selector="badge", objc_name="badge")
+    BarButtonItem_badge :: proc(self: ^BarButtonItem) -> ^BarButtonItemBadge ---
+
+    @(objc_type=BarButtonItem, objc_selector="setBadge:", objc_name="setBadge")
+    BarButtonItem_setBadge :: proc(self: ^BarButtonItem, badge: ^BarButtonItemBadge) ---
 }
 
 @(objc_type=BarButtonItem, objc_name="initWithImage")

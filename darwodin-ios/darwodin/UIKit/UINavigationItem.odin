@@ -50,11 +50,59 @@ foreign lib {
     @(objc_type=NavigationItem, objc_selector="setTitle:", objc_name="setTitle")
     NavigationItem_setTitle :: proc(self: ^NavigationItem, title: ^NS.String) ---
 
+    @(objc_type=NavigationItem, objc_selector="attributedTitle", objc_name="attributedTitle")
+    NavigationItem_attributedTitle :: proc(self: ^NavigationItem) -> ^NS.AttributedString ---
+
+    @(objc_type=NavigationItem, objc_selector="setAttributedTitle:", objc_name="setAttributedTitle")
+    NavigationItem_setAttributedTitle :: proc(self: ^NavigationItem, attributedTitle: ^NS.AttributedString) ---
+
     @(objc_type=NavigationItem, objc_selector="titleView", objc_name="titleView")
     NavigationItem_titleView :: proc(self: ^NavigationItem) -> ^View ---
 
     @(objc_type=NavigationItem, objc_selector="setTitleView:", objc_name="setTitleView")
     NavigationItem_setTitleView :: proc(self: ^NavigationItem, titleView: ^View) ---
+
+    @(objc_type=NavigationItem, objc_selector="subtitle", objc_name="subtitle")
+    NavigationItem_subtitle :: proc(self: ^NavigationItem) -> ^NS.String ---
+
+    @(objc_type=NavigationItem, objc_selector="setSubtitle:", objc_name="setSubtitle")
+    NavigationItem_setSubtitle :: proc(self: ^NavigationItem, subtitle: ^NS.String) ---
+
+    @(objc_type=NavigationItem, objc_selector="attributedSubtitle", objc_name="attributedSubtitle")
+    NavigationItem_attributedSubtitle :: proc(self: ^NavigationItem) -> ^NS.AttributedString ---
+
+    @(objc_type=NavigationItem, objc_selector="setAttributedSubtitle:", objc_name="setAttributedSubtitle")
+    NavigationItem_setAttributedSubtitle :: proc(self: ^NavigationItem, attributedSubtitle: ^NS.AttributedString) ---
+
+    @(objc_type=NavigationItem, objc_selector="subtitleView", objc_name="subtitleView")
+    NavigationItem_subtitleView :: proc(self: ^NavigationItem) -> ^View ---
+
+    @(objc_type=NavigationItem, objc_selector="setSubtitleView:", objc_name="setSubtitleView")
+    NavigationItem_setSubtitleView :: proc(self: ^NavigationItem, subtitleView: ^View) ---
+
+    @(objc_type=NavigationItem, objc_selector="largeTitle", objc_name="largeTitle")
+    NavigationItem_largeTitle :: proc(self: ^NavigationItem) -> ^NS.String ---
+
+    @(objc_type=NavigationItem, objc_selector="setLargeTitle:", objc_name="setLargeTitle")
+    NavigationItem_setLargeTitle :: proc(self: ^NavigationItem, largeTitle: ^NS.String) ---
+
+    @(objc_type=NavigationItem, objc_selector="largeSubtitle", objc_name="largeSubtitle")
+    NavigationItem_largeSubtitle :: proc(self: ^NavigationItem) -> ^NS.String ---
+
+    @(objc_type=NavigationItem, objc_selector="setLargeSubtitle:", objc_name="setLargeSubtitle")
+    NavigationItem_setLargeSubtitle :: proc(self: ^NavigationItem, largeSubtitle: ^NS.String) ---
+
+    @(objc_type=NavigationItem, objc_selector="largeAttributedSubtitle", objc_name="largeAttributedSubtitle")
+    NavigationItem_largeAttributedSubtitle :: proc(self: ^NavigationItem) -> ^NS.AttributedString ---
+
+    @(objc_type=NavigationItem, objc_selector="setLargeAttributedSubtitle:", objc_name="setLargeAttributedSubtitle")
+    NavigationItem_setLargeAttributedSubtitle :: proc(self: ^NavigationItem, largeAttributedSubtitle: ^NS.AttributedString) ---
+
+    @(objc_type=NavigationItem, objc_selector="largeSubtitleView", objc_name="largeSubtitleView")
+    NavigationItem_largeSubtitleView :: proc(self: ^NavigationItem) -> ^View ---
+
+    @(objc_type=NavigationItem, objc_selector="setLargeSubtitleView:", objc_name="setLargeSubtitleView")
+    NavigationItem_setLargeSubtitleView :: proc(self: ^NavigationItem, largeSubtitleView: ^View) ---
 
     @(objc_type=NavigationItem, objc_selector="prompt", objc_name="prompt")
     NavigationItem_prompt :: proc(self: ^NavigationItem) -> ^NS.String ---
@@ -211,6 +259,21 @@ foreign lib {
 
     @(objc_type=NavigationItem, objc_selector="searchBarPlacement", objc_name="searchBarPlacement")
     NavigationItem_searchBarPlacement :: proc(self: ^NavigationItem) -> NavigationItemSearchBarPlacement ---
+
+    @(objc_type=NavigationItem, objc_selector="searchBarPlacementBarButtonItem", objc_name="searchBarPlacementBarButtonItem")
+    NavigationItem_searchBarPlacementBarButtonItem :: proc(self: ^NavigationItem) -> ^BarButtonItem ---
+
+    @(objc_type=NavigationItem, objc_selector="searchBarPlacementAllowsToolbarIntegration", objc_name="searchBarPlacementAllowsToolbarIntegration")
+    NavigationItem_searchBarPlacementAllowsToolbarIntegration :: proc(self: ^NavigationItem) -> bool ---
+
+    @(objc_type=NavigationItem, objc_selector="setSearchBarPlacementAllowsToolbarIntegration:", objc_name="setSearchBarPlacementAllowsToolbarIntegration")
+    NavigationItem_setSearchBarPlacementAllowsToolbarIntegration :: proc(self: ^NavigationItem, searchBarPlacementAllowsToolbarIntegration: bool) ---
+
+    @(objc_type=NavigationItem, objc_selector="searchBarPlacementAllowsExternalIntegration", objc_name="searchBarPlacementAllowsExternalIntegration")
+    NavigationItem_searchBarPlacementAllowsExternalIntegration :: proc(self: ^NavigationItem) -> bool ---
+
+    @(objc_type=NavigationItem, objc_selector="setSearchBarPlacementAllowsExternalIntegration:", objc_name="setSearchBarPlacementAllowsExternalIntegration")
+    NavigationItem_setSearchBarPlacementAllowsExternalIntegration :: proc(self: ^NavigationItem, searchBarPlacementAllowsExternalIntegration: bool) ---
 
     @(objc_type=NavigationItem, objc_selector="standardAppearance", objc_name="standardAppearance")
     NavigationItem_standardAppearance :: proc(self: ^NavigationItem) -> ^NavigationBarAppearance ---

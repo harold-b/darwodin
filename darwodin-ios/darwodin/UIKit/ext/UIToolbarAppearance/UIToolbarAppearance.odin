@@ -30,6 +30,8 @@ VTable :: struct {
     super: UIBarAppearance.VTable,
     buttonAppearance: proc(self: ^UI.ToolbarAppearance) -> ^UI.BarButtonItemAppearance,
     setButtonAppearance: proc(self: ^UI.ToolbarAppearance, buttonAppearance: ^UI.BarButtonItemAppearance),
+    prominentButtonAppearance: proc(self: ^UI.ToolbarAppearance) -> ^UI.BarButtonItemAppearance,
+    setProminentButtonAppearance: proc(self: ^UI.ToolbarAppearance, prominentButtonAppearance: ^UI.BarButtonItemAppearance),
     doneButtonAppearance: proc(self: ^UI.ToolbarAppearance) -> ^UI.BarButtonItemAppearance,
     setDoneButtonAppearance: proc(self: ^UI.ToolbarAppearance, doneButtonAppearance: ^UI.BarButtonItemAppearance),
 }
@@ -60,6 +62,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setButtonAppearance:"), auto_cast setButtonAppearance, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.prominentButtonAppearance != nil {
+        prominentButtonAppearance :: proc "c" (self: ^UI.ToolbarAppearance, _: SEL) -> ^UI.BarButtonItemAppearance {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).prominentButtonAppearance(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("prominentButtonAppearance"), auto_cast prominentButtonAppearance, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setProminentButtonAppearance != nil {
+        setProminentButtonAppearance :: proc "c" (self: ^UI.ToolbarAppearance, _: SEL, prominentButtonAppearance: ^UI.BarButtonItemAppearance) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setProminentButtonAppearance(self, prominentButtonAppearance)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setProminentButtonAppearance:"), auto_cast setProminentButtonAppearance, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.doneButtonAppearance != nil {
         doneButtonAppearance :: proc "c" (self: ^UI.ToolbarAppearance, _: SEL) -> ^UI.BarButtonItemAppearance {

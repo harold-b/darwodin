@@ -18,11 +18,24 @@ import CA "../QuartzCore"
 ///
 @(objc_class="MTLRenderPipelineState")
 RenderPipelineState :: struct { using _: intrinsics.objc_object, 
+    using _: Allocation,
     using _: NS.ObjectProtocol,
 }
 
 @(default_calling_convention="c")
 foreign lib {
+    @(objc_type=RenderPipelineState, objc_selector="functionHandleWithName:stage:", objc_name="functionHandleWithName")
+    RenderPipelineState_functionHandleWithName :: proc(self: ^RenderPipelineState, name: ^NS.String, stage: RenderStages) -> ^FunctionHandle ---
+
+    @(objc_type=RenderPipelineState, objc_selector="functionHandleWithBinaryFunction:stage:", objc_name="functionHandleWithBinaryFunction")
+    RenderPipelineState_functionHandleWithBinaryFunction :: proc(self: ^RenderPipelineState, function: ^MTL4BinaryFunctionProtocol, stage: RenderStages) -> ^FunctionHandle ---
+
+    @(objc_type=RenderPipelineState, objc_selector="newRenderPipelineStateWithBinaryFunctions:error:", objc_name="newRenderPipelineStateWithBinaryFunctions")
+    RenderPipelineState_newRenderPipelineStateWithBinaryFunctions :: proc(self: ^RenderPipelineState, binaryFunctionsDescriptor: ^MTL4RenderPipelineBinaryFunctionsDescriptor, error: ^^NS.Error) -> ^RenderPipelineState ---
+
+    @(objc_type=RenderPipelineState, objc_selector="newRenderPipelineDescriptorForSpecialization", objc_name="newRenderPipelineDescriptorForSpecialization")
+    RenderPipelineState_newRenderPipelineDescriptorForSpecialization :: proc(self: ^RenderPipelineState) -> ^MTL4PipelineDescriptor ---
+
     @(objc_type=RenderPipelineState, objc_selector="imageblockMemoryLengthForDimensions:", objc_name="imageblockMemoryLengthForDimensions")
     RenderPipelineState_imageblockMemoryLengthForDimensions :: proc(self: ^RenderPipelineState, imageblockDimensions: Size) -> NS.UInteger ---
 
@@ -43,6 +56,9 @@ foreign lib {
 
     @(objc_type=RenderPipelineState, objc_selector="device", objc_name="device")
     RenderPipelineState_device :: proc(self: ^RenderPipelineState) -> ^Device ---
+
+    @(objc_type=RenderPipelineState, objc_selector="reflection", objc_name="reflection")
+    RenderPipelineState_reflection :: proc(self: ^RenderPipelineState) -> ^RenderPipelineReflection ---
 
     @(objc_type=RenderPipelineState, objc_selector="maxTotalThreadsPerThreadgroup", objc_name="maxTotalThreadsPerThreadgroup")
     RenderPipelineState_maxTotalThreadsPerThreadgroup :: proc(self: ^RenderPipelineState) -> NS.UInteger ---
@@ -76,4 +92,13 @@ foreign lib {
 
     @(objc_type=RenderPipelineState, objc_selector="shaderValidation", objc_name="shaderValidation")
     RenderPipelineState_shaderValidation :: proc(self: ^RenderPipelineState) -> ShaderValidation ---
+
+    @(objc_type=RenderPipelineState, objc_selector="requiredThreadsPerTileThreadgroup", objc_name="requiredThreadsPerTileThreadgroup")
+    RenderPipelineState_requiredThreadsPerTileThreadgroup :: proc(self: ^RenderPipelineState) -> Size ---
+
+    @(objc_type=RenderPipelineState, objc_selector="requiredThreadsPerObjectThreadgroup", objc_name="requiredThreadsPerObjectThreadgroup")
+    RenderPipelineState_requiredThreadsPerObjectThreadgroup :: proc(self: ^RenderPipelineState) -> Size ---
+
+    @(objc_type=RenderPipelineState, objc_selector="requiredThreadsPerMeshThreadgroup", objc_name="requiredThreadsPerMeshThreadgroup")
+    RenderPipelineState_requiredThreadsPerMeshThreadgroup :: proc(self: ^RenderPipelineState) -> Size ---
 }

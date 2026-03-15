@@ -127,6 +127,9 @@ foreign lib {
     @(objc_type=View, objc_selector="currentRenderPassDescriptor", objc_name="currentRenderPassDescriptor")
     View_currentRenderPassDescriptor :: proc(self: ^View) -> ^MTL.RenderPassDescriptor ---
 
+    @(objc_type=View, objc_selector="currentMTL4RenderPassDescriptor", objc_name="currentMTL4RenderPassDescriptor")
+    View_currentMTL4RenderPassDescriptor :: proc(self: ^View) -> ^MTL.4RenderPassDescriptor ---
+
     @(objc_type=View, objc_selector="preferredFramesPerSecond", objc_name="preferredFramesPerSecond")
     View_preferredFramesPerSecond :: proc(self: ^View) -> NS.Integer ---
 

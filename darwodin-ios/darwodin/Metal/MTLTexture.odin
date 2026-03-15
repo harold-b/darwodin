@@ -44,6 +44,9 @@ foreign lib {
     @(objc_type=Texture, objc_selector="newSharedTextureHandle", objc_name="newSharedTextureHandle")
     Texture_newSharedTextureHandle :: proc(self: ^Texture) -> ^SharedTextureHandle ---
 
+    @(objc_type=Texture, objc_selector="newTextureViewWithDescriptor:", objc_name="newTextureViewWithDescriptor")
+    Texture_newTextureViewWithDescriptor :: proc(self: ^Texture, descriptor: ^TextureViewDescriptor) -> ^Texture ---
+
     @(objc_type=Texture, objc_selector="newTextureViewWithPixelFormat:textureType:levels:slices:swizzle:", objc_name="newTextureViewWithPixelFormat_textureType_levels_slices_swizzle")
     Texture_newTextureViewWithPixelFormat_textureType_levels_slices_swizzle :: proc(self: ^Texture, pixelFormat: PixelFormat, textureType: TextureType, levelRange: NS._NSRange, sliceRange: NS._NSRange, swizzle: TextureSwizzleChannels) -> ^Texture ---
 
@@ -127,6 +130,9 @@ foreign lib {
 
     @(objc_type=Texture, objc_selector="swizzle", objc_name="swizzle")
     Texture_swizzle :: proc(self: ^Texture) -> TextureSwizzleChannels ---
+
+    @(objc_type=Texture, objc_selector="sparseTextureTier", objc_name="sparseTextureTier")
+    Texture_sparseTextureTier :: proc(self: ^Texture) -> TextureSparseTier ---
 }
 
 @(objc_type=Texture, objc_name="getBytes")

@@ -31,4 +31,7 @@ foreign lib {
 
     @(objc_type=FunctionHandle, objc_selector="device", objc_name="device")
     FunctionHandle_device :: proc(self: ^FunctionHandle) -> ^Device ---
+
+    @(objc_type=FunctionHandle, objc_selector="gpuResourceID", objc_name="gpuResourceID")
+    FunctionHandle_gpuResourceID :: proc(self: ^FunctionHandle) -> ResourceID ---
 }

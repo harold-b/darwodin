@@ -37,6 +37,15 @@ foreign lib {
     @(objc_type=MetricPlayerItemVariantSwitchEvent, objc_selector="loadedTimeRanges", objc_name="loadedTimeRanges")
     MetricPlayerItemVariantSwitchEvent_loadedTimeRanges :: proc(self: ^MetricPlayerItemVariantSwitchEvent) -> ^NS.Array ---
 
+    @(objc_type=MetricPlayerItemVariantSwitchEvent, objc_selector="videoRendition", objc_name="videoRendition")
+    MetricPlayerItemVariantSwitchEvent_videoRendition :: proc(self: ^MetricPlayerItemVariantSwitchEvent) -> ^MetricMediaRendition ---
+
+    @(objc_type=MetricPlayerItemVariantSwitchEvent, objc_selector="audioRendition", objc_name="audioRendition")
+    MetricPlayerItemVariantSwitchEvent_audioRendition :: proc(self: ^MetricPlayerItemVariantSwitchEvent) -> ^MetricMediaRendition ---
+
+    @(objc_type=MetricPlayerItemVariantSwitchEvent, objc_selector="subtitleRendition", objc_name="subtitleRendition")
+    MetricPlayerItemVariantSwitchEvent_subtitleRendition :: proc(self: ^MetricPlayerItemVariantSwitchEvent) -> ^MetricMediaRendition ---
+
     @(objc_type=MetricPlayerItemVariantSwitchEvent, objc_selector="didSucceed", objc_name="didSucceed")
     MetricPlayerItemVariantSwitchEvent_didSucceed :: proc(self: ^MetricPlayerItemVariantSwitchEvent) -> bool ---
 }

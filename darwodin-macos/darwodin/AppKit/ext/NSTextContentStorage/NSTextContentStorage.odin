@@ -37,6 +37,8 @@ VTable :: struct {
     adjustedRangeFromRange: proc(self: ^AK.TextContentStorage, textRange: ^AK.TextRange, forEditingTextSelection: bool) -> ^AK.TextRange,
     delegate: proc(self: ^AK.TextContentStorage) -> ^AK.TextContentStorageDelegate,
     setDelegate: proc(self: ^AK.TextContentStorage, delegate: ^AK.TextContentStorageDelegate),
+    includesTextListMarkers: proc(self: ^AK.TextContentStorage) -> bool,
+    setIncludesTextListMarkers: proc(self: ^AK.TextContentStorage, includesTextListMarkers: bool),
     attributedString: proc(self: ^AK.TextContentStorage) -> ^NS.AttributedString,
     setAttributedString: proc(self: ^AK.TextContentStorage, attributedString: ^NS.AttributedString),
 }
@@ -117,6 +119,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.includesTextListMarkers != nil {
+        includesTextListMarkers :: proc "c" (self: ^AK.TextContentStorage, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).includesTextListMarkers(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("includesTextListMarkers"), auto_cast includesTextListMarkers, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setIncludesTextListMarkers != nil {
+        setIncludesTextListMarkers :: proc "c" (self: ^AK.TextContentStorage, _: SEL, includesTextListMarkers: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setIncludesTextListMarkers(self, includesTextListMarkers)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setIncludesTextListMarkers:"), auto_cast setIncludesTextListMarkers, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.attributedString != nil {
         attributedString :: proc "c" (self: ^AK.TextContentStorage, _: SEL) -> ^NS.AttributedString {

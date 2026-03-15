@@ -36,6 +36,27 @@ foreign lib {
     @(objc_type=AccessPoint, objc_selector="triggerAccessPointWithPlayer:handler:", objc_name="triggerAccessPointWithPlayer")
     AccessPoint_triggerAccessPointWithPlayer :: proc(self: ^AccessPoint, player: ^Player, handler: ^Objc_Block(proc "c" ())) ---
 
+    @(objc_type=AccessPoint, objc_selector="triggerAccessPointForPlayTogetherWithHandler:", objc_name="triggerAccessPointForPlayTogetherWithHandler")
+    AccessPoint_triggerAccessPointForPlayTogetherWithHandler :: proc(self: ^AccessPoint, handler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=AccessPoint, objc_selector="triggerAccessPointForChallengesWithHandler:", objc_name="triggerAccessPointForChallengesWithHandler")
+    AccessPoint_triggerAccessPointForChallengesWithHandler :: proc(self: ^AccessPoint, handler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=AccessPoint, objc_selector="triggerAccessPointWithChallengeDefinitionID:handler:", objc_name="triggerAccessPointWithChallengeDefinitionID")
+    AccessPoint_triggerAccessPointWithChallengeDefinitionID :: proc(self: ^AccessPoint, challengeDefinitionID: ^NS.String, handler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=AccessPoint, objc_selector="triggerAccessPointWithGameActivityDefinitionID:handler:", objc_name="triggerAccessPointWithGameActivityDefinitionID")
+    AccessPoint_triggerAccessPointWithGameActivityDefinitionID :: proc(self: ^AccessPoint, gameActivityDefinitionID: ^NS.String, handler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=AccessPoint, objc_selector="triggerAccessPointWithGameActivity:handler:", objc_name="triggerAccessPointWithGameActivity")
+    AccessPoint_triggerAccessPointWithGameActivity :: proc(self: ^AccessPoint, gameActivity: ^GameActivity, handler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=AccessPoint, objc_selector="triggerAccessPointForFriendingWithHandler:", objc_name="triggerAccessPointForFriendingWithHandler")
+    AccessPoint_triggerAccessPointForFriendingWithHandler :: proc(self: ^AccessPoint, handler: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=AccessPoint, objc_selector="triggerAccessPointForArcadeWithHandler:", objc_name="triggerAccessPointForArcadeWithHandler")
+    AccessPoint_triggerAccessPointForArcadeWithHandler :: proc(self: ^AccessPoint, handler: ^Objc_Block(proc "c" ())) ---
+
     @(objc_type=AccessPoint, objc_selector="shared", objc_name="shared", objc_is_class_method=true)
     AccessPoint_shared :: proc() -> ^AccessPoint ---
 

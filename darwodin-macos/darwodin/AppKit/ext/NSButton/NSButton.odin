@@ -71,6 +71,8 @@ VTable :: struct {
     setBezelColor: proc(self: ^AK.Button, bezelColor: ^AK.Color),
     contentTintColor: proc(self: ^AK.Button) -> ^AK.Color,
     setContentTintColor: proc(self: ^AK.Button, contentTintColor: ^AK.Color),
+    tintProminence: proc(self: ^AK.Button) -> AK.TintProminence,
+    setTintProminence: proc(self: ^AK.Button, tintProminence: AK.TintProminence),
     image: proc(self: ^AK.Button) -> ^NS.Image,
     setImage: proc(self: ^AK.Button, image: ^NS.Image),
     alternateImage: proc(self: ^AK.Button) -> ^NS.Image,
@@ -92,6 +94,8 @@ VTable :: struct {
     keyEquivalentModifierMask: proc(self: ^AK.Button) -> AK.EventModifierFlags,
     setKeyEquivalentModifierMask: proc(self: ^AK.Button, keyEquivalentModifierMask: AK.EventModifierFlags),
     activeCompressionOptions: proc(self: ^AK.Button) -> ^AK.UserInterfaceCompressionOptions,
+    borderShape: proc(self: ^AK.Button) -> AK.ControlBorderShape,
+    setBorderShape: proc(self: ^AK.Button, borderShape: AK.ControlBorderShape),
     setTitleWithMnemonic: proc(self: ^AK.Button, stringWithAmpersand: ^NS.String),
 }
 
@@ -512,6 +516,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentTintColor:"), auto_cast setContentTintColor, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.tintProminence != nil {
+        tintProminence :: proc "c" (self: ^AK.Button, _: SEL) -> AK.TintProminence {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).tintProminence(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("tintProminence"), auto_cast tintProminence, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setTintProminence != nil {
+        setTintProminence :: proc "c" (self: ^AK.Button, _: SEL, tintProminence: AK.TintProminence) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setTintProminence(self, tintProminence)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setTintProminence:"), auto_cast setTintProminence, "v@:l") do panic("Failed to register objC method.")
+    }
     if vt.image != nil {
         image :: proc "c" (self: ^AK.Button, _: SEL) -> ^NS.Image {
 
@@ -721,6 +745,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("activeCompressionOptions"), auto_cast activeCompressionOptions, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.borderShape != nil {
+        borderShape :: proc "c" (self: ^AK.Button, _: SEL) -> AK.ControlBorderShape {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).borderShape(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("borderShape"), auto_cast borderShape, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.setBorderShape != nil {
+        setBorderShape :: proc "c" (self: ^AK.Button, _: SEL, borderShape: AK.ControlBorderShape) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setBorderShape(self, borderShape)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderShape:"), auto_cast setBorderShape, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.setTitleWithMnemonic != nil {
         setTitleWithMnemonic :: proc "c" (self: ^AK.Button, _: SEL, stringWithAmpersand: ^NS.String) {

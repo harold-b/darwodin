@@ -27,6 +27,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
+    rendererWithCGLContext: proc(ctx: rawptr, dict: ^NS.Dictionary) -> ^CA.Renderer,
     rendererWithMTLTexture: proc(tex: ^CA.MTLTexture, dict: ^NS.Dictionary) -> ^CA.Renderer,
     beginFrameAtTime: proc(self: ^CA.Renderer, t: CF.TimeInterval, ts: ^CA.CVTimeStamp),
     updateBounds: proc(self: ^CA.Renderer) -> CG.Rect,
@@ -48,6 +49,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
     
     NSObject.extend(cls, &vt.super)
 
+    if vt.rendererWithCGLContext != nil {
+        rendererWithCGLContext :: proc "c" (self: Class, _: SEL, ctx: rawptr, dict: ^NS.Dictionary) -> ^CA.Renderer {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).rendererWithCGLContext( ctx, dict)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("rendererWithCGLContext:options:"), auto_cast rendererWithCGLContext, "@#:^void@") do panic("Failed to register objC method.")
+    }
     if vt.rendererWithMTLTexture != nil {
         rendererWithMTLTexture :: proc "c" (self: Class, _: SEL, tex: ^CA.MTLTexture, dict: ^NS.Dictionary) -> ^CA.Renderer {
 

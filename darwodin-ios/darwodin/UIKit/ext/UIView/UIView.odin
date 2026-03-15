@@ -30,6 +30,7 @@ VTable :: struct {
     super: UIResponder.VTable,
     initWithFrame: proc(self: ^UI.View, frame: CG.Rect) -> instancetype,
     initWithCoder: proc(self: ^UI.View, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^UI.View) -> instancetype,
     userInterfaceLayoutDirectionForSemanticContentAttribute_: proc(attribute: UI.SemanticContentAttribute) -> UI.UserInterfaceLayoutDirection,
     userInterfaceLayoutDirectionForSemanticContentAttribute_relativeToLayoutDirection: proc(semanticContentAttribute: UI.SemanticContentAttribute, layoutDirection: UI.UserInterfaceLayoutDirection) -> UI.UserInterfaceLayoutDirection,
     layerClass: proc() -> Class,
@@ -95,6 +96,9 @@ VTable :: struct {
     didMoveToWindow: proc(self: ^UI.View),
     isDescendantOfView: proc(self: ^UI.View, view: ^UI.View) -> bool,
     viewWithTag: proc(self: ^UI.View, tag: NS.Integer) -> ^UI.View,
+    setNeedsUpdateProperties: proc(self: ^UI.View),
+    updateProperties: proc(self: ^UI.View),
+    updatePropertiesIfNeeded: proc(self: ^UI.View),
     setNeedsLayout: proc(self: ^UI.View),
     layoutIfNeeded: proc(self: ^UI.View),
     layoutSubviews: proc(self: ^UI.View),
@@ -239,6 +243,12 @@ VTable :: struct {
     appliedContentSizeCategoryLimitsDescription: proc(self: ^UI.View) -> ^NS.String,
     traitOverrides: proc(self: ^UI.View) -> ^UI.TraitOverrides,
     updateTraitsIfNeeded: proc(self: ^UI.View),
+    layoutGuideForLayoutRegion: proc(self: ^UI.View, layoutRegion: ^UI.ViewLayoutRegion) -> ^UI.LayoutGuide,
+    edgeInsetsForLayoutRegion: proc(self: ^UI.View, layoutRegion: ^UI.ViewLayoutRegion) -> UI.EdgeInsets,
+    directionalEdgeInsetsForLayoutRegion: proc(self: ^UI.View, layoutRegion: ^UI.ViewLayoutRegion) -> UI.NSDirectionalEdgeInsets,
+    effectiveRadiusForCorner: proc(self: ^UI.View, corner: UI.RectCorner) -> CG.Float,
+    cornerConfiguration: proc(self: ^UI.View) -> ^UI.CornerConfiguration,
+    setCornerConfiguration: proc(self: ^UI.View, cornerConfiguration: ^UI.CornerConfiguration),
     addInteraction: proc(self: ^UI.View, interaction: ^UI.Interaction),
     removeInteraction: proc(self: ^UI.View, interaction: ^UI.Interaction),
     interactions: proc(self: ^UI.View) -> ^NS.Array,
@@ -288,6 +298,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.init != nil {
+        init :: proc "c" (self: ^UI.View, _: SEL) -> instancetype {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).init(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.userInterfaceLayoutDirectionForSemanticContentAttribute_ != nil {
         userInterfaceLayoutDirectionForSemanticContentAttribute_ :: proc "c" (self: Class, _: SEL, attribute: UI.SemanticContentAttribute) -> UI.UserInterfaceLayoutDirection {
@@ -938,6 +958,36 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewWithTag:"), auto_cast viewWithTag, "@@:l") do panic("Failed to register objC method.")
+    }
+    if vt.setNeedsUpdateProperties != nil {
+        setNeedsUpdateProperties :: proc "c" (self: ^UI.View, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setNeedsUpdateProperties(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setNeedsUpdateProperties"), auto_cast setNeedsUpdateProperties, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.updateProperties != nil {
+        updateProperties :: proc "c" (self: ^UI.View, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).updateProperties(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updateProperties"), auto_cast updateProperties, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.updatePropertiesIfNeeded != nil {
+        updatePropertiesIfNeeded :: proc "c" (self: ^UI.View, _: SEL) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).updatePropertiesIfNeeded(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("updatePropertiesIfNeeded"), auto_cast updatePropertiesIfNeeded, "v@:") do panic("Failed to register objC method.")
     }
     if vt.setNeedsLayout != nil {
         setNeedsLayout :: proc "c" (self: ^UI.View, _: SEL) {
@@ -2378,6 +2428,66 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateTraitsIfNeeded"), auto_cast updateTraitsIfNeeded, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.layoutGuideForLayoutRegion != nil {
+        layoutGuideForLayoutRegion :: proc "c" (self: ^UI.View, _: SEL, layoutRegion: ^UI.ViewLayoutRegion) -> ^UI.LayoutGuide {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).layoutGuideForLayoutRegion(self, layoutRegion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("layoutGuideForLayoutRegion:"), auto_cast layoutGuideForLayoutRegion, "@@:@") do panic("Failed to register objC method.")
+    }
+    if vt.edgeInsetsForLayoutRegion != nil {
+        edgeInsetsForLayoutRegion :: proc "c" (self: ^UI.View, _: SEL, layoutRegion: ^UI.ViewLayoutRegion) -> UI.EdgeInsets {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).edgeInsetsForLayoutRegion(self, layoutRegion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("edgeInsetsForLayoutRegion:"), auto_cast edgeInsetsForLayoutRegion, "{UIEdgeInsets=dddd}@:@") do panic("Failed to register objC method.")
+    }
+    if vt.directionalEdgeInsetsForLayoutRegion != nil {
+        directionalEdgeInsetsForLayoutRegion :: proc "c" (self: ^UI.View, _: SEL, layoutRegion: ^UI.ViewLayoutRegion) -> UI.NSDirectionalEdgeInsets {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).directionalEdgeInsetsForLayoutRegion(self, layoutRegion)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("directionalEdgeInsetsForLayoutRegion:"), auto_cast directionalEdgeInsetsForLayoutRegion, "{NSDirectionalEdgeInsets=dddd}@:@") do panic("Failed to register objC method.")
+    }
+    if vt.effectiveRadiusForCorner != nil {
+        effectiveRadiusForCorner :: proc "c" (self: ^UI.View, _: SEL, corner: UI.RectCorner) -> CG.Float {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).effectiveRadiusForCorner(self, corner)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("effectiveRadiusForCorner:"), auto_cast effectiveRadiusForCorner, "d@:L") do panic("Failed to register objC method.")
+    }
+    if vt.cornerConfiguration != nil {
+        cornerConfiguration :: proc "c" (self: ^UI.View, _: SEL) -> ^UI.CornerConfiguration {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).cornerConfiguration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("cornerConfiguration"), auto_cast cornerConfiguration, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setCornerConfiguration != nil {
+        setCornerConfiguration :: proc "c" (self: ^UI.View, _: SEL, cornerConfiguration: ^UI.CornerConfiguration) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setCornerConfiguration(self, cornerConfiguration)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setCornerConfiguration:"), auto_cast setCornerConfiguration, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.addInteraction != nil {
         addInteraction :: proc "c" (self: ^UI.View, _: SEL, interaction: ^UI.Interaction) {

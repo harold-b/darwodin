@@ -213,6 +213,18 @@ foreign lib {
     @(objc_type=ScrollView, objc_selector="setIndexDisplayMode:", objc_name="setIndexDisplayMode")
     ScrollView_setIndexDisplayMode :: proc(self: ^ScrollView, indexDisplayMode: ScrollViewIndexDisplayMode) ---
 
+    @(objc_type=ScrollView, objc_selector="topEdgeEffect", objc_name="topEdgeEffect")
+    ScrollView_topEdgeEffect :: proc(self: ^ScrollView) -> ^ScrollEdgeEffect ---
+
+    @(objc_type=ScrollView, objc_selector="leftEdgeEffect", objc_name="leftEdgeEffect")
+    ScrollView_leftEdgeEffect :: proc(self: ^ScrollView) -> ^ScrollEdgeEffect ---
+
+    @(objc_type=ScrollView, objc_selector="bottomEdgeEffect", objc_name="bottomEdgeEffect")
+    ScrollView_bottomEdgeEffect :: proc(self: ^ScrollView) -> ^ScrollEdgeEffect ---
+
+    @(objc_type=ScrollView, objc_selector="rightEdgeEffect", objc_name="rightEdgeEffect")
+    ScrollView_rightEdgeEffect :: proc(self: ^ScrollView) -> ^ScrollEdgeEffect ---
+
     @(objc_type=ScrollView, objc_selector="isTracking", objc_name="isTracking")
     ScrollView_isTracking :: proc(self: ^ScrollView) -> bool ---
 
@@ -302,6 +314,12 @@ foreign lib {
 
     @(objc_type=ScrollView, objc_selector="setAllowsKeyboardScrolling:", objc_name="setAllowsKeyboardScrolling")
     ScrollView_setAllowsKeyboardScrolling :: proc(self: ^ScrollView, allowsKeyboardScrolling: bool) ---
+
+    @(objc_type=ScrollView, objc_selector="lookToScrollAxes", objc_name="lookToScrollAxes")
+    ScrollView_lookToScrollAxes :: proc(self: ^ScrollView) -> Axis ---
+
+    @(objc_type=ScrollView, objc_selector="setLookToScrollAxes:", objc_name="setLookToScrollAxes")
+    ScrollView_setLookToScrollAxes :: proc(self: ^ScrollView, lookToScrollAxes: Axis) ---
 }
 
 @(objc_type=ScrollView, objc_name="setContentOffset")

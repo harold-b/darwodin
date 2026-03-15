@@ -151,6 +151,12 @@ foreign lib {
     @(objc_type=SegmentedControl, objc_selector="activeCompressionOptions", objc_name="activeCompressionOptions")
     SegmentedControl_activeCompressionOptions :: proc(self: ^SegmentedControl) -> ^UserInterfaceCompressionOptions ---
 
+    @(objc_type=SegmentedControl, objc_selector="borderShape", objc_name="borderShape")
+    SegmentedControl_borderShape :: proc(self: ^SegmentedControl) -> ControlBorderShape ---
+
+    @(objc_type=SegmentedControl, objc_selector="setBorderShape:", objc_name="setBorderShape")
+    SegmentedControl_setBorderShape :: proc(self: ^SegmentedControl, borderShape: ControlBorderShape) ---
+
     @(objc_type=SegmentedControl, objc_selector="segmentedControlWithLabels:trackingMode:target:action:", objc_name="segmentedControlWithLabels", objc_is_class_method=true)
     SegmentedControl_segmentedControlWithLabels :: proc(labels: ^NS.Array, trackingMode: SegmentSwitchTracking, target: id, action: SEL) -> instancetype ---
 

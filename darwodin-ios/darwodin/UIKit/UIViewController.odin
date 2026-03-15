@@ -93,6 +93,15 @@ foreign lib {
     @(objc_type=ViewController, objc_selector="viewDidDisappear:", objc_name="viewDidDisappear")
     ViewController_viewDidDisappear :: proc(self: ^ViewController, animated: bool) ---
 
+    @(objc_type=ViewController, objc_selector="setNeedsUpdateProperties", objc_name="setNeedsUpdateProperties")
+    ViewController_setNeedsUpdateProperties :: proc(self: ^ViewController) ---
+
+    @(objc_type=ViewController, objc_selector="updateProperties", objc_name="updateProperties")
+    ViewController_updateProperties :: proc(self: ^ViewController) ---
+
+    @(objc_type=ViewController, objc_selector="updatePropertiesIfNeeded", objc_name="updatePropertiesIfNeeded")
+    ViewController_updatePropertiesIfNeeded :: proc(self: ^ViewController) ---
+
     @(objc_type=ViewController, objc_selector="viewWillLayoutSubviews", objc_name="viewWillLayoutSubviews")
     ViewController_viewWillLayoutSubviews :: proc(self: ^ViewController) ---
 
@@ -533,6 +542,15 @@ foreign lib {
 
     @(objc_type=ViewController, objc_selector="updateContentUnavailableConfigurationUsingState:", objc_name="updateContentUnavailableConfigurationUsingState")
     ViewController_updateContentUnavailableConfigurationUsingState :: proc(self: ^ViewController, state: ^ContentUnavailableConfigurationState) ---
+
+    @(objc_type=ViewController, objc_selector="childViewControllerForInterfaceOrientationLock", objc_name="childViewControllerForInterfaceOrientationLock")
+    ViewController_childViewControllerForInterfaceOrientationLock :: proc(self: ^ViewController) -> ^ViewController ---
+
+    @(objc_type=ViewController, objc_selector="prefersInterfaceOrientationLocked", objc_name="prefersInterfaceOrientationLocked")
+    ViewController_prefersInterfaceOrientationLocked :: proc(self: ^ViewController) -> bool ---
+
+    @(objc_type=ViewController, objc_selector="setNeedsUpdateOfPrefersInterfaceOrientationLocked", objc_name="setNeedsUpdateOfPrefersInterfaceOrientationLocked")
+    ViewController_setNeedsUpdateOfPrefersInterfaceOrientationLocked :: proc(self: ^ViewController) ---
 
     @(objc_type=ViewController, objc_selector="previewActionItems", objc_name="previewActionItems")
     ViewController_previewActionItems :: proc(self: ^ViewController) -> ^NS.Array ---

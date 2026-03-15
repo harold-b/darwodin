@@ -106,4 +106,10 @@ foreign lib {
 
     @(objc_type=ComputePipelineDescriptor, objc_selector="setShaderValidation:", objc_name="setShaderValidation")
     ComputePipelineDescriptor_setShaderValidation :: proc(self: ^ComputePipelineDescriptor, shaderValidation: ShaderValidation) ---
+
+    @(objc_type=ComputePipelineDescriptor, objc_selector="requiredThreadsPerThreadgroup", objc_name="requiredThreadsPerThreadgroup")
+    ComputePipelineDescriptor_requiredThreadsPerThreadgroup :: proc(self: ^ComputePipelineDescriptor) -> Size ---
+
+    @(objc_type=ComputePipelineDescriptor, objc_selector="setRequiredThreadsPerThreadgroup:", objc_name="setRequiredThreadsPerThreadgroup")
+    ComputePipelineDescriptor_setRequiredThreadsPerThreadgroup :: proc(self: ^ComputePipelineDescriptor, requiredThreadsPerThreadgroup: Size) ---
 }

@@ -685,6 +685,8 @@ kDevicePropertySubVolumeDecibelsToScalar                        :: 1935946358
 kDevicePropertySubMute                                          :: 1936553332
 kDevicePropertyVoiceActivityDetectionEnable                     :: 1983996971
 kDevicePropertyVoiceActivityDetectionState                      :: 1983997011
+kDevicePropertyWantsControlsRestored                            :: 1919251299
+kDevicePropertyWantsStreamFormatsRestored                       :: 1919251302
 kAggregateDeviceClassID                                         :: 1633773415
 kAggregateDevicePropertyFullSubDeviceList                       :: 1735554416
 kAggregateDevicePropertyActiveSubDeviceList                     :: 1634169456
@@ -1235,6 +1237,15 @@ StreamPacketDescription :: struct #align (8) {
     mDataByteSize:           CF.UInt32,
 }
 #assert(size_of(StreamPacketDescription) == 16)
+
+/// AudioStreamPacketDependencyDescription
+StreamPacketDependencyDescription :: struct #align (4) {
+    mIsIndependentlyDecodable: CF.UInt32,
+    mPreRollCount:             CF.UInt32,
+    mFlags:                    CF.UInt32,
+    mReserved:                 CF.UInt32,
+}
+#assert(size_of(StreamPacketDependencyDescription) == 16)
 
 /// SMPTETime
 SMPTETime :: struct #align (4) {

@@ -44,8 +44,8 @@ foreign lib {
     @(objc_type=Device, objc_selector="newHeapWithDescriptor:", objc_name="newHeapWithDescriptor")
     Device_newHeapWithDescriptor :: proc(self: ^Device, descriptor: ^HeapDescriptor) -> ^Heap ---
 
-    @(objc_type=Device, objc_selector="newBufferWithLength:options:", objc_name="newBufferWithLength")
-    Device_newBufferWithLength :: proc(self: ^Device, length: NS.UInteger, options: ResourceOptions) -> ^Buffer ---
+    @(objc_type=Device, objc_selector="newBufferWithLength:options:", objc_name="newBufferWithLength_options")
+    Device_newBufferWithLength_options :: proc(self: ^Device, length: NS.UInteger, options: ResourceOptions) -> ^Buffer ---
 
     @(objc_type=Device, objc_selector="newBufferWithBytes:length:options:", objc_name="newBufferWithBytes")
     Device_newBufferWithBytes :: proc(self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions) -> ^Buffer ---
@@ -228,10 +228,10 @@ foreign lib {
     Device_supportsVertexAmplificationCount :: proc(self: ^Device, count: NS.UInteger) -> bool ---
 
     @(objc_type=Device, objc_selector="newDynamicLibrary:error:", objc_name="newDynamicLibrary")
-    Device_newDynamicLibrary :: proc(self: ^Device, library: ^Library, error: ^^NS.Error) -> ^DynamicLibrary ---
+    Device_newDynamicLibrary :: proc(self: ^Device, library: ^Library, error: ^^NS.Error) -> ^DynamicLibraryProtocol ---
 
     @(objc_type=Device, objc_selector="newDynamicLibraryWithURL:error:", objc_name="newDynamicLibraryWithURL")
-    Device_newDynamicLibraryWithURL :: proc(self: ^Device, url: ^NS.URL, error: ^^NS.Error) -> ^DynamicLibrary ---
+    Device_newDynamicLibraryWithURL :: proc(self: ^Device, url: ^NS.URL, error: ^^NS.Error) -> ^DynamicLibraryProtocol ---
 
     @(objc_type=Device, objc_selector="newBinaryArchiveWithDescriptor:error:", objc_name="newBinaryArchiveWithDescriptor")
     Device_newBinaryArchiveWithDescriptor :: proc(self: ^Device, descriptor: ^BinaryArchiveDescriptor, error: ^^NS.Error) -> ^BinaryArchive ---
@@ -253,6 +253,60 @@ foreign lib {
 
     @(objc_type=Device, objc_selector="newResidencySetWithDescriptor:error:", objc_name="newResidencySetWithDescriptor")
     Device_newResidencySetWithDescriptor :: proc(self: ^Device, desc: ^ResidencySetDescriptor, error: ^^NS.Error) -> ^ResidencySet ---
+
+    @(objc_type=Device, objc_selector="tensorSizeAndAlignWithDescriptor:", objc_name="tensorSizeAndAlignWithDescriptor")
+    Device_tensorSizeAndAlignWithDescriptor :: proc(self: ^Device, descriptor: ^TensorDescriptor) -> SizeAndAlign ---
+
+    @(objc_type=Device, objc_selector="newTensorWithDescriptor:error:", objc_name="newTensorWithDescriptor")
+    Device_newTensorWithDescriptor :: proc(self: ^Device, descriptor: ^TensorDescriptor, error: ^^NS.Error) -> ^Tensor ---
+
+    @(objc_type=Device, objc_selector="functionHandleWithFunction:", objc_name="functionHandleWithFunction")
+    Device_functionHandleWithFunction :: proc(self: ^Device, function: ^Function) -> ^FunctionHandle ---
+
+    @(objc_type=Device, objc_selector="newCommandAllocator", objc_name="newCommandAllocator")
+    Device_newCommandAllocator :: proc(self: ^Device) -> ^MTL4CommandAllocator ---
+
+    @(objc_type=Device, objc_selector="newCommandAllocatorWithDescriptor:error:", objc_name="newCommandAllocatorWithDescriptor")
+    Device_newCommandAllocatorWithDescriptor :: proc(self: ^Device, descriptor: ^MTL4CommandAllocatorDescriptor, error: ^^NS.Error) -> ^MTL4CommandAllocator ---
+
+    @(objc_type=Device, objc_selector="newMTL4CommandQueue", objc_name="newMTL4CommandQueue")
+    Device_newMTL4CommandQueue :: proc(self: ^Device) -> ^MTL4CommandQueue ---
+
+    @(objc_type=Device, objc_selector="newMTL4CommandQueueWithDescriptor:error:", objc_name="newMTL4CommandQueueWithDescriptor")
+    Device_newMTL4CommandQueueWithDescriptor :: proc(self: ^Device, descriptor: ^MTL4CommandQueueDescriptor, error: ^^NS.Error) -> ^MTL4CommandQueue ---
+
+    @(objc_type=Device, objc_selector="newCommandBuffer", objc_name="newCommandBuffer")
+    Device_newCommandBuffer :: proc(self: ^Device) -> ^MTL4CommandBuffer ---
+
+    @(objc_type=Device, objc_selector="newArgumentTableWithDescriptor:error:", objc_name="newArgumentTableWithDescriptor")
+    Device_newArgumentTableWithDescriptor :: proc(self: ^Device, descriptor: ^MTL4ArgumentTableDescriptor, error: ^^NS.Error) -> ^MTL4ArgumentTable ---
+
+    @(objc_type=Device, objc_selector="newTextureViewPoolWithDescriptor:error:", objc_name="newTextureViewPoolWithDescriptor")
+    Device_newTextureViewPoolWithDescriptor :: proc(self: ^Device, descriptor: ^ResourceViewPoolDescriptor, error: ^^NS.Error) -> ^TextureViewPool ---
+
+    @(objc_type=Device, objc_selector="newCompilerWithDescriptor:error:", objc_name="newCompilerWithDescriptor")
+    Device_newCompilerWithDescriptor :: proc(self: ^Device, descriptor: ^MTL4CompilerDescriptor, error: ^^NS.Error) -> ^MTL4Compiler ---
+
+    @(objc_type=Device, objc_selector="newArchiveWithURL:error:", objc_name="newArchiveWithURL")
+    Device_newArchiveWithURL :: proc(self: ^Device, url: ^NS.URL, error: ^^NS.Error) -> ^MTL4Archive ---
+
+    @(objc_type=Device, objc_selector="newPipelineDataSetSerializerWithDescriptor:", objc_name="newPipelineDataSetSerializerWithDescriptor")
+    Device_newPipelineDataSetSerializerWithDescriptor :: proc(self: ^Device, descriptor: ^MTL4PipelineDataSetSerializerDescriptor) -> ^MTL4PipelineDataSetSerializer ---
+
+    @(objc_type=Device, objc_selector="newBufferWithLength:options:placementSparsePageSize:", objc_name="newBufferWithLength_options_placementSparsePageSize")
+    Device_newBufferWithLength_options_placementSparsePageSize :: proc(self: ^Device, length: NS.UInteger, options: ResourceOptions, placementSparsePageSize: SparsePageSize) -> ^Buffer ---
+
+    @(objc_type=Device, objc_selector="newCounterHeapWithDescriptor:error:", objc_name="newCounterHeapWithDescriptor")
+    Device_newCounterHeapWithDescriptor :: proc(self: ^Device, descriptor: ^MTL4CounterHeapDescriptor, error: ^^NS.Error) -> ^MTL4CounterHeap ---
+
+    @(objc_type=Device, objc_selector="sizeOfCounterHeapEntry:", objc_name="sizeOfCounterHeapEntry")
+    Device_sizeOfCounterHeapEntry :: proc(self: ^Device, type: MTL4CounterHeapType) -> NS.UInteger ---
+
+    @(objc_type=Device, objc_selector="queryTimestampFrequency", objc_name="queryTimestampFrequency")
+    Device_queryTimestampFrequency :: proc(self: ^Device) -> cffi.uint64_t ---
+
+    @(objc_type=Device, objc_selector="functionHandleWithBinaryFunction:", objc_name="functionHandleWithBinaryFunction")
+    Device_functionHandleWithBinaryFunction :: proc(self: ^Device, function: ^MTL4BinaryFunctionProtocol) -> ^FunctionHandle ---
 
     @(objc_type=Device, objc_selector="name", objc_name="name")
     Device_name :: proc(self: ^Device) -> ^NS.String ---
@@ -452,5 +506,11 @@ Device_newIOFileHandleWithURL :: proc {
 Device_sparseTileSizeWithTextureType :: proc {
     Device_sparseTileSizeWithTextureType_pixelFormat_sampleCount,
     Device_sparseTileSizeWithTextureType_pixelFormat_sampleCount_sparsePageSize,
+}
+
+@(objc_type=Device, objc_name="newBufferWithLength")
+Device_newBufferWithLength :: proc {
+    Device_newBufferWithLength_options,
+    Device_newBufferWithLength_options_placementSparsePageSize,
 }
 

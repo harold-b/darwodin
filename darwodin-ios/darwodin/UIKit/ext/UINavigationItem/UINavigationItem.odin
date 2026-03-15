@@ -37,8 +37,24 @@ VTable :: struct {
     setRightBarButtonItem_animated: proc(self: ^UI.NavigationItem, item: ^UI.BarButtonItem, animated: bool),
     title: proc(self: ^UI.NavigationItem) -> ^NS.String,
     setTitle: proc(self: ^UI.NavigationItem, title: ^NS.String),
+    attributedTitle: proc(self: ^UI.NavigationItem) -> ^NS.AttributedString,
+    setAttributedTitle: proc(self: ^UI.NavigationItem, attributedTitle: ^NS.AttributedString),
     titleView: proc(self: ^UI.NavigationItem) -> ^UI.View,
     setTitleView: proc(self: ^UI.NavigationItem, titleView: ^UI.View),
+    subtitle: proc(self: ^UI.NavigationItem) -> ^NS.String,
+    setSubtitle: proc(self: ^UI.NavigationItem, subtitle: ^NS.String),
+    attributedSubtitle: proc(self: ^UI.NavigationItem) -> ^NS.AttributedString,
+    setAttributedSubtitle: proc(self: ^UI.NavigationItem, attributedSubtitle: ^NS.AttributedString),
+    subtitleView: proc(self: ^UI.NavigationItem) -> ^UI.View,
+    setSubtitleView: proc(self: ^UI.NavigationItem, subtitleView: ^UI.View),
+    largeTitle: proc(self: ^UI.NavigationItem) -> ^NS.String,
+    setLargeTitle: proc(self: ^UI.NavigationItem, largeTitle: ^NS.String),
+    largeSubtitle: proc(self: ^UI.NavigationItem) -> ^NS.String,
+    setLargeSubtitle: proc(self: ^UI.NavigationItem, largeSubtitle: ^NS.String),
+    largeAttributedSubtitle: proc(self: ^UI.NavigationItem) -> ^NS.AttributedString,
+    setLargeAttributedSubtitle: proc(self: ^UI.NavigationItem, largeAttributedSubtitle: ^NS.AttributedString),
+    largeSubtitleView: proc(self: ^UI.NavigationItem) -> ^UI.View,
+    setLargeSubtitleView: proc(self: ^UI.NavigationItem, largeSubtitleView: ^UI.View),
     prompt: proc(self: ^UI.NavigationItem) -> ^NS.String,
     setPrompt: proc(self: ^UI.NavigationItem, prompt: ^NS.String),
     backBarButtonItem: proc(self: ^UI.NavigationItem) -> ^UI.BarButtonItem,
@@ -91,6 +107,11 @@ VTable :: struct {
     preferredSearchBarPlacement: proc(self: ^UI.NavigationItem) -> UI.NavigationItemSearchBarPlacement,
     setPreferredSearchBarPlacement: proc(self: ^UI.NavigationItem, preferredSearchBarPlacement: UI.NavigationItemSearchBarPlacement),
     searchBarPlacement: proc(self: ^UI.NavigationItem) -> UI.NavigationItemSearchBarPlacement,
+    searchBarPlacementBarButtonItem: proc(self: ^UI.NavigationItem) -> ^UI.BarButtonItem,
+    searchBarPlacementAllowsToolbarIntegration: proc(self: ^UI.NavigationItem) -> bool,
+    setSearchBarPlacementAllowsToolbarIntegration: proc(self: ^UI.NavigationItem, searchBarPlacementAllowsToolbarIntegration: bool),
+    searchBarPlacementAllowsExternalIntegration: proc(self: ^UI.NavigationItem) -> bool,
+    setSearchBarPlacementAllowsExternalIntegration: proc(self: ^UI.NavigationItem, searchBarPlacementAllowsExternalIntegration: bool),
     standardAppearance: proc(self: ^UI.NavigationItem) -> ^UI.NavigationBarAppearance,
     setStandardAppearance: proc(self: ^UI.NavigationItem, standardAppearance: ^UI.NavigationBarAppearance),
     compactAppearance: proc(self: ^UI.NavigationItem) -> ^UI.NavigationBarAppearance,
@@ -198,6 +219,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
+    if vt.attributedTitle != nil {
+        attributedTitle :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^NS.AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).attributedTitle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributedTitle"), auto_cast attributedTitle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAttributedTitle != nil {
+        setAttributedTitle :: proc "c" (self: ^UI.NavigationItem, _: SEL, attributedTitle: ^NS.AttributedString) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAttributedTitle(self, attributedTitle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedTitle:"), auto_cast setAttributedTitle, "v@:@") do panic("Failed to register objC method.")
+    }
     if vt.titleView != nil {
         titleView :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^UI.View {
 
@@ -217,6 +258,146 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleView:"), auto_cast setTitleView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.subtitle != nil {
+        subtitle :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).subtitle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subtitle"), auto_cast subtitle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSubtitle != nil {
+        setSubtitle :: proc "c" (self: ^UI.NavigationItem, _: SEL, subtitle: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSubtitle(self, subtitle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSubtitle:"), auto_cast setSubtitle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.attributedSubtitle != nil {
+        attributedSubtitle :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^NS.AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).attributedSubtitle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("attributedSubtitle"), auto_cast attributedSubtitle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setAttributedSubtitle != nil {
+        setAttributedSubtitle :: proc "c" (self: ^UI.NavigationItem, _: SEL, attributedSubtitle: ^NS.AttributedString) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setAttributedSubtitle(self, attributedSubtitle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedSubtitle:"), auto_cast setAttributedSubtitle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.subtitleView != nil {
+        subtitleView :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^UI.View {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).subtitleView(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("subtitleView"), auto_cast subtitleView, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSubtitleView != nil {
+        setSubtitleView :: proc "c" (self: ^UI.NavigationItem, _: SEL, subtitleView: ^UI.View) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSubtitleView(self, subtitleView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSubtitleView:"), auto_cast setSubtitleView, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.largeTitle != nil {
+        largeTitle :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).largeTitle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("largeTitle"), auto_cast largeTitle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLargeTitle != nil {
+        setLargeTitle :: proc "c" (self: ^UI.NavigationItem, _: SEL, largeTitle: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setLargeTitle(self, largeTitle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLargeTitle:"), auto_cast setLargeTitle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.largeSubtitle != nil {
+        largeSubtitle :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^NS.String {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).largeSubtitle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("largeSubtitle"), auto_cast largeSubtitle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLargeSubtitle != nil {
+        setLargeSubtitle :: proc "c" (self: ^UI.NavigationItem, _: SEL, largeSubtitle: ^NS.String) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setLargeSubtitle(self, largeSubtitle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLargeSubtitle:"), auto_cast setLargeSubtitle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.largeAttributedSubtitle != nil {
+        largeAttributedSubtitle :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^NS.AttributedString {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).largeAttributedSubtitle(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("largeAttributedSubtitle"), auto_cast largeAttributedSubtitle, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLargeAttributedSubtitle != nil {
+        setLargeAttributedSubtitle :: proc "c" (self: ^UI.NavigationItem, _: SEL, largeAttributedSubtitle: ^NS.AttributedString) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setLargeAttributedSubtitle(self, largeAttributedSubtitle)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLargeAttributedSubtitle:"), auto_cast setLargeAttributedSubtitle, "v@:@") do panic("Failed to register objC method.")
+    }
+    if vt.largeSubtitleView != nil {
+        largeSubtitleView :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^UI.View {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).largeSubtitleView(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("largeSubtitleView"), auto_cast largeSubtitleView, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.setLargeSubtitleView != nil {
+        setLargeSubtitleView :: proc "c" (self: ^UI.NavigationItem, _: SEL, largeSubtitleView: ^UI.View) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setLargeSubtitleView(self, largeSubtitleView)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setLargeSubtitleView:"), auto_cast setLargeSubtitleView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.prompt != nil {
         prompt :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^NS.String {
@@ -737,6 +918,56 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchBarPlacement"), auto_cast searchBarPlacement, "l@:") do panic("Failed to register objC method.")
+    }
+    if vt.searchBarPlacementBarButtonItem != nil {
+        searchBarPlacementBarButtonItem :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^UI.BarButtonItem {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).searchBarPlacementBarButtonItem(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("searchBarPlacementBarButtonItem"), auto_cast searchBarPlacementBarButtonItem, "@@:") do panic("Failed to register objC method.")
+    }
+    if vt.searchBarPlacementAllowsToolbarIntegration != nil {
+        searchBarPlacementAllowsToolbarIntegration :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).searchBarPlacementAllowsToolbarIntegration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("searchBarPlacementAllowsToolbarIntegration"), auto_cast searchBarPlacementAllowsToolbarIntegration, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSearchBarPlacementAllowsToolbarIntegration != nil {
+        setSearchBarPlacementAllowsToolbarIntegration :: proc "c" (self: ^UI.NavigationItem, _: SEL, searchBarPlacementAllowsToolbarIntegration: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSearchBarPlacementAllowsToolbarIntegration(self, searchBarPlacementAllowsToolbarIntegration)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSearchBarPlacementAllowsToolbarIntegration:"), auto_cast setSearchBarPlacementAllowsToolbarIntegration, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.searchBarPlacementAllowsExternalIntegration != nil {
+        searchBarPlacementAllowsExternalIntegration :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).searchBarPlacementAllowsExternalIntegration(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("searchBarPlacementAllowsExternalIntegration"), auto_cast searchBarPlacementAllowsExternalIntegration, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setSearchBarPlacementAllowsExternalIntegration != nil {
+        setSearchBarPlacementAllowsExternalIntegration :: proc "c" (self: ^UI.NavigationItem, _: SEL, searchBarPlacementAllowsExternalIntegration: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setSearchBarPlacementAllowsExternalIntegration(self, searchBarPlacementAllowsExternalIntegration)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setSearchBarPlacementAllowsExternalIntegration:"), auto_cast setSearchBarPlacementAllowsExternalIntegration, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.standardAppearance != nil {
         standardAppearance :: proc "c" (self: ^UI.NavigationItem, _: SEL) -> ^UI.NavigationBarAppearance {

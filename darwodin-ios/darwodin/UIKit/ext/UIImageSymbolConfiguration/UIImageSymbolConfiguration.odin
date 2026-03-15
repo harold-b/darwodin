@@ -41,6 +41,8 @@ VTable :: struct {
     configurationWithPaletteColors: proc(paletteColors: ^NS.Array) -> instancetype,
     configurationPreferringMulticolor: proc() -> instancetype,
     configurationPreferringMonochrome: proc() -> instancetype,
+    configurationWithVariableValueMode: proc(variableValueMode: UI.ImageSymbolVariableValueMode) -> instancetype,
+    configurationWithColorRenderingMode: proc(mode: UI.ImageSymbolColorRenderingMode) -> instancetype,
     configurationWithoutTextStyle: proc(self: ^UI.ImageSymbolConfiguration) -> instancetype,
     configurationWithoutScale: proc(self: ^UI.ImageSymbolConfiguration) -> instancetype,
     configurationWithoutWeight: proc(self: ^UI.ImageSymbolConfiguration) -> instancetype,
@@ -185,6 +187,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationPreferringMonochrome"), auto_cast configurationPreferringMonochrome, "@#:") do panic("Failed to register objC method.")
+    }
+    if vt.configurationWithVariableValueMode != nil {
+        configurationWithVariableValueMode :: proc "c" (self: Class, _: SEL, variableValueMode: UI.ImageSymbolVariableValueMode) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).configurationWithVariableValueMode( variableValueMode)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithVariableValueMode:"), auto_cast configurationWithVariableValueMode, "@#:l") do panic("Failed to register objC method.")
+    }
+    if vt.configurationWithColorRenderingMode != nil {
+        configurationWithColorRenderingMode :: proc "c" (self: Class, _: SEL, mode: UI.ImageSymbolColorRenderingMode) -> instancetype {
+
+            vt_ctx := ObjC.class_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).configurationWithColorRenderingMode( mode)
+        }
+
+        if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithColorRenderingMode:"), auto_cast configurationWithColorRenderingMode, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.configurationWithoutTextStyle != nil {
         configurationWithoutTextStyle :: proc "c" (self: ^UI.ImageSymbolConfiguration, _: SEL) -> instancetype {

@@ -101,6 +101,12 @@ foreign lib {
     @(objc_type=CompileOptions, objc_selector="setMaxTotalThreadsPerThreadgroup:", objc_name="setMaxTotalThreadsPerThreadgroup")
     CompileOptions_setMaxTotalThreadsPerThreadgroup :: proc(self: ^CompileOptions, maxTotalThreadsPerThreadgroup: NS.UInteger) ---
 
+    @(objc_type=CompileOptions, objc_selector="requiredThreadsPerThreadgroup", objc_name="requiredThreadsPerThreadgroup")
+    CompileOptions_requiredThreadsPerThreadgroup :: proc(self: ^CompileOptions) -> Size ---
+
+    @(objc_type=CompileOptions, objc_selector="setRequiredThreadsPerThreadgroup:", objc_name="setRequiredThreadsPerThreadgroup")
+    CompileOptions_setRequiredThreadsPerThreadgroup :: proc(self: ^CompileOptions, requiredThreadsPerThreadgroup: Size) ---
+
     @(objc_type=CompileOptions, objc_selector="enableLogging", objc_name="enableLogging")
     CompileOptions_enableLogging :: proc(self: ^CompileOptions) -> bool ---
 

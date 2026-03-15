@@ -81,6 +81,12 @@ foreign lib {
     @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:willHideColumn:", objc_name="splitViewController_willHideColumn")
     SplitViewControllerDelegate_splitViewController_willHideColumn :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, column: SplitViewControllerColumn) ---
 
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:didShowColumn:", objc_name="splitViewController_didShowColumn")
+    SplitViewControllerDelegate_splitViewController_didShowColumn :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, column: SplitViewControllerColumn) ---
+
+    @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewController:didHideColumn:", objc_name="splitViewController_didHideColumn")
+    SplitViewControllerDelegate_splitViewController_didHideColumn :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController, column: SplitViewControllerColumn) ---
+
     @(objc_type=SplitViewControllerDelegate, objc_selector="splitViewControllerInteractivePresentationGestureWillBegin:", objc_name="splitViewControllerInteractivePresentationGestureWillBegin")
     SplitViewControllerDelegate_splitViewControllerInteractivePresentationGestureWillBegin :: proc(self: ^SplitViewControllerDelegate, svc: ^SplitViewController) ---
 

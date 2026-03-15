@@ -54,6 +54,8 @@ VTable :: struct {
     setLimitsLayoutForSuspiciousContents: proc(self: ^UI.NSTextLayoutManager, limitsLayoutForSuspiciousContents: bool),
     usesHyphenation: proc(self: ^UI.NSTextLayoutManager) -> bool,
     setUsesHyphenation: proc(self: ^UI.NSTextLayoutManager, usesHyphenation: bool),
+    resolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^UI.NSTextLayoutManager) -> bool,
+    setResolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^UI.NSTextLayoutManager, resolvesNaturalAlignmentWithBaseWritingDirection: bool),
     textContentManager: proc(self: ^UI.NSTextLayoutManager) -> ^UI.NSTextContentManager,
     textContainer: proc(self: ^UI.NSTextLayoutManager) -> ^UI.NSTextContainer,
     setTextContainer: proc(self: ^UI.NSTextLayoutManager, textContainer: ^UI.NSTextContainer),
@@ -336,6 +338,26 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesHyphenation:"), auto_cast setUsesHyphenation, "v@:B") do panic("Failed to register objC method.")
+    }
+    if vt.resolvesNaturalAlignmentWithBaseWritingDirection != nil {
+        resolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^UI.NSTextLayoutManager, _: SEL) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).resolvesNaturalAlignmentWithBaseWritingDirection(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("resolvesNaturalAlignmentWithBaseWritingDirection"), auto_cast resolvesNaturalAlignmentWithBaseWritingDirection, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.setResolvesNaturalAlignmentWithBaseWritingDirection != nil {
+        setResolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^UI.NSTextLayoutManager, _: SEL, resolvesNaturalAlignmentWithBaseWritingDirection: bool) {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            (cast(^VTable)vt_ctx.super_vt).setResolvesNaturalAlignmentWithBaseWritingDirection(self, resolvesNaturalAlignmentWithBaseWritingDirection)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("setResolvesNaturalAlignmentWithBaseWritingDirection:"), auto_cast setResolvesNaturalAlignmentWithBaseWritingDirection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.textContentManager != nil {
         textContentManager :: proc "c" (self: ^UI.NSTextLayoutManager, _: SEL) -> ^UI.NSTextContentManager {
