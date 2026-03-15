@@ -30,7 +30,7 @@ fi
 CGEN=${CGEN:-cgen}
 
 sysroot_macos="$(xcrun --sdk macosx --show-sdk-path)"
-xcode_root="/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain"
+xcode_root="$(xcode-select -p)/Toolchains/XcodeDefault.xctoolchain"
 XCODE_CLANG_VERSION=$("${xcode_root}/usr/bin/clang"  --version | head -n 1 | cut -f4  -d' ' | cut -f1 -d.)
 xcode_toolchain_include="${xcode_root}/usr/lib/clang/${XCODE_CLANG_VERSION}/include"
 
@@ -83,9 +83,12 @@ fi
   # "-isystem${sysroot}/usr/include" \
   # -DOS_OBJECT_USE_OBJC=1 \
 
+mkdir -p "${out_dir}"
+
 echo " > ${out_dir}/${out_file}"
 ${CGEN} -ObjC --no-sysroot --sysroot "${sysroot}" \
   ${defs[@]} \
   "-isystem${xcode_toolchain_include}" \
   "-F${frameworks_path}/" \
+  "-F${sysroot}/System/Library/SubFrameworks/" \
   -target ${target} ${header} ${out_dir}/${out_file}
