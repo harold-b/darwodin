@@ -29,7 +29,9 @@ Cpp:
   ExportVars:
     - ^::k?NS.+
 
-  IgnoreTypes  : []
+  IgnoreTypes:
+    - ^NSImage$
+
   IgnoreMethods: []
 
 Odin:
