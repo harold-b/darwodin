@@ -34,9 +34,9 @@ def main():
     # diff_package('CoreText')
     # diff_package('CoreMedia')
     # diff_package('Metal')
-    # diff_package('MetalKit')
+    diff_package('MetalKit')
     # diff_package('MetalFX')
-    # diff_package('ModelIO')
+    diff_package('ModelIO')
     # diff_package('Security')
     # diff_package('LocalAuthentication')
 
@@ -71,14 +71,14 @@ def diff_package(package_name):
 
     # Emit macOS-only file
     for fname in macos_files:
-        print(f'macOS: {out_base}/{fname}')
+        print(f'🖥  macOS:  {out_base}/{fname}')
         with open(f'{macos_base}/{fname}', 'rt') as ifile, open(f'{out_base}/{fname}', 'wt') as ofile:
             ofile.write('#+build darwin:default\n')
             ofile.write(ifile.read())
 
     # Emit iOS-only files
     for fname in ios_files:
-        print(f'iOS: {out_base}/{fname}')
+        print(f'📱 iOS:    {out_base}/{fname}')
         with open(f'{ios_base}/{fname}', 'rt') as ifile, open(f'{out_base}/{fname}', 'wt') as ofile:
             ofile.write('#+build darwin:ios\n')
             ofile.write(ifile.read())
@@ -89,7 +89,7 @@ def diff_package(package_name):
     uikit_imports  = set()
 
     for fname in shared_files:
-        print(f'Shared: {out_base}/{fname}')
+        print(f'🧬 Shared: {out_base}/{fname}')
         merged = diff_file(f'{macos_base}/{fname}', f'{ios_base}/{fname}', appkit_imports, uikit_imports)
 
         with open(f'{out_base}/{fname}', 'wt') as ofile:
