@@ -13,12 +13,15 @@ Cpp:
   
   ExportTypes:
     - ^_*MTLFX.+
+    - ^MTL4FX.+
 
   ExportMethods:
     - ^::MTLFX.+
+    - ^::MTL4FX.+
 
   ExportVars:
     - ^::k?MTLFX.+
+    - ^::k?MTL4FX.+
 
   IgnoreTypes  : []
   IgnoreMethods: []

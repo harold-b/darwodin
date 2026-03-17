@@ -7,10 +7,10 @@ darwodin_base_frameworks=(
   CoreGraphics
   CoreText
   CoreAudio
+  Security
   CoreMedia
   IOKit
   DiskArbitration
-  Security
   FSEvents
   Foundation
   QuartzCore
@@ -33,8 +33,8 @@ darwodin_macos_frameworks=(
   AppKit
   FSEvents
   DiskArbitration
-  CoreAudio
 )
+  # CoreAudio
 
 darwodin_ios_frameworks=(
   UIKit

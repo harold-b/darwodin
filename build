@@ -55,7 +55,19 @@ while true; do
       # Compile to object file
       extra_args+=(-build-mode:obj)
       is_lib=1
-    ;;
+      ;;
+
+    -test)
+      # Check packages
+      echo "Checking macOS"
+      odin test test -all-packages -target:darwin_arm64
+
+      echo "Checking iOS"
+      # odin test test -all-packages -target:darwin_arm64 -subtarget:iphoneos
+
+      exit 0
+      ;;
+
   esac
   shift || break
 done

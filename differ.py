@@ -4,6 +4,7 @@ import os
 import difflib
 import glob
 import re
+import shutil
 
 RE_APPKIT_IMPORT = re.compile(r"^\s*import AK \"..\/AppKit\"")
 RE_UIKIT_IMPORT  = re.compile(r"^\s*import UI \"..\/UIKit\"")
@@ -12,17 +13,29 @@ RE_UIKIT_REF     = re.compile(r"(UI\.(\w+))")
 RE_ENUM_FIELD    = re.compile(r"\w+\s.+=\s+\-?\d+,$")
 RE_ENUM_DECL     = re.compile(r"^\w+\s+::\s+enum\s+.+\{$")
 
+macos_only_set = (
+    'AppKit',
+    'FSEvents',
+    'DiskArbitration',
+    'CoreAudio',
+)
+ios_only_set = (
+    'UIKit',
+)
+
 def main():
-    packages_macos = [ p for p in os.listdir('darwodin-macos/darwodin') if p != 'mach' and p != 'libc']
-    # packages_ios   = [ p for p in os.listdir('darwodin-ios/darwodin') if p != 'mach' and p != 'libc']
+    packages_macos = [ p for p in os.listdir('darwodin-macos/darwodin') if p != 'mach' and p != 'libc' and p != 'ObjectiveC']
 
     # for p in packages_macos:
     #     print(f'========== Checking {p} ==========')
     #     diff_package(p)
     #     print('')
 
+    # file_dir = os.path.dirname(__name__)
+    # shutil.copytree(os.path.join(file_dir, 'libc'), os.path.join(file_dir, 'darwinkit', 'libc'))
+    # shutil.copytree(os.path.join(file_dir, 'mach'), os.path.join(file_dir, 'darwinkit', 'mach'))
 
-    # diff_package('Foundation')
+    diff_package('Foundation')
     # diff_package('CoreFoundation')
     # diff_package('CoreGraphics')
     # diff_package('QuartzCore')
@@ -40,13 +53,13 @@ def main():
     # diff_package('ModelIO')
     # diff_package('Security')
     # diff_package('LocalAuthentication')
+    # diff_package('AVFoundation')
 
-    diff_package('AVFoundation')
-
-    # diff_file('darwodin-macos/darwodin/Foundation/NSArray.odin',
-    #           'darwodin-ios/darwodin/Foundation/NSArray.odin')
 
 def diff_package(package_name):
+
+    global macos_only_set
+    global ios_only_set
 
     macos_base = f'darwodin-macos/darwodin/{package_name}'
     ios_base   = f'darwodin-ios/darwodin/{package_name}'
@@ -71,6 +84,19 @@ def diff_package(package_name):
         if f not in macos_set:
             ios_files.append(f)
 
+    if package_name in macos_only_set:
+        macos_files  = []
+        shared_files = []
+        ios_files    = []
+        for f in macos_set:
+            macos_files.append(f)
+
+    elif package_name in ios_only_set:
+        macos_files  = []
+        shared_files = []
+        ios_files    = []
+        for f in ios_set:
+            ios_files.append(f)
 
     # Emit macOS-only file
     for fname in macos_files:
@@ -88,40 +114,41 @@ def diff_package(package_name):
 
 
     # Merge shared files
-    appkit_imports = set()
-    uikit_imports  = set()
+    if package_name not in macos_only_set and package_name not in ios_only_set:
+        appkit_imports = set()
+        uikit_imports  = set()
 
-    for fname in shared_files:
-        print(f'🧬 Shared: {out_base}/{fname}')
-        merged = diff_file(f'{macos_base}/{fname}', f'{ios_base}/{fname}', appkit_imports, uikit_imports)
+        for fname in shared_files:
+            print(f'🧬 Shared: {out_base}/{fname}')
+            merged = diff_file(f'{macos_base}/{fname}', f'{ios_base}/{fname}', appkit_imports, uikit_imports)
 
-        with open(f'{out_base}/{fname}', 'wt') as ofile:
-            ofile.write('#+build darwin\n')
-            ofile.write(merged)
+            with open(f'{out_base}/{fname}', 'wt') as ofile:
+                ofile.write('#+build darwin\n')
+                ofile.write(merged)
 
-    if len(appkit_imports) > 0:
-        macos_only = \
-            '#+build darwin:default\n' + \
-            '#+private package\n' + \
-            f'package darwodin_{package_name}\n\n' + \
-            'import AK "../AppKit"\n\n'
+        if len(appkit_imports) > 0:
+            macos_only = \
+                '#+build darwin:default\n' + \
+                '#+private package\n' + \
+                f'package darwodin_{package_name}\n\n' + \
+                'import AK "../AppKit"\n\n'
 
-        macos_only += "\n".join([f'AK{i} :: AK.{i}' for i in appkit_imports])
+            macos_only += "\n".join([f'AK{i} :: AK.{i}' for i in appkit_imports])
 
-        with open(f'{out_base}/{package_name}_macos.odin', 'wt') as ofile:
-            ofile.write(macos_only)
+            with open(f'{out_base}/{package_name}_macos.odin', 'wt') as ofile:
+                ofile.write(macos_only)
 
-    if len(uikit_imports) > 0:
-        ios_only = \
-            '#+build darwin:ios\n' + \
-            '#+private package\n' + \
-            f'package darwodin_{package_name}\n\n' + \
-            'import UI "../UIKit"\n\n'
+        if len(uikit_imports) > 0:
+            ios_only = \
+                '#+build darwin:ios\n' + \
+                '#+private package\n' + \
+                f'package darwodin_{package_name}\n\n' + \
+                'import UI "../UIKit"\n\n'
 
-        ios_only += "\n".join([f'AK{i} :: UI.{i}' for i in uikit_imports])
+            ios_only += "\n".join([f'AK{i} :: UI.{i}' for i in uikit_imports])
 
-        with open(f'{out_base}/{package_name}_ios.odin', 'wt') as ofile:
-            ofile.write(ios_only)
+            with open(f'{out_base}/{package_name}_ios.odin', 'wt') as ofile:
+                ofile.write(ios_only)
 
 
 
@@ -137,10 +164,7 @@ def diff_file(a, b, appkit_imports, uikit_imports):
     with open(b, "rt") as f:
         blines = f.readlines()
 
-    # if alines == blines:
-    #     print('Same!')
-    # else:
-    # diff = difflib.context_diff(alines, blines, "macOS", "iOS")
+
     diff_count = 0
     out = []
 
@@ -158,9 +182,8 @@ def diff_file(a, b, appkit_imports, uikit_imports):
         mac_range = alines[a0:a1]
         ios_range = blines[b0:b1]
 
-        if last_is_enum_sync:
-            last_is_enum_sync = False
-            continue
+        was_enum_sync = last_is_enum_sync
+        last_is_enum_sync = False
 
         if last_diff_emitted_end_end_curly:
             assert(tag == 'equal')
@@ -169,7 +192,16 @@ def diff_file(a, b, appkit_imports, uikit_imports):
             last_diff_emitted_end_end_curly = False
 
         if tag == 'equal':
+            if was_enum_sync:
+                # need to find where the enum ends and not add that
+                for i in range(len(mac_range)):
+                    if mac_range[i] == '}\n':
+                        mac_range = mac_range[i+1:]
+                        break
+
             out += mac_range
+
+
 
         elif tag == 'delete':
             if mac_range[0] == '}\n':
@@ -185,6 +217,7 @@ def diff_file(a, b, appkit_imports, uikit_imports):
 
             # Special case check for differences in enum fields (happens in Foundation).
             if is_enum_field(mac_range[0]):
+                print(f'Will Sync Enum: ({a0} - {a1}) : ({b0} - {b1})')
                 out = synchronize_enums(alines, a0, blines, b0, out)
                 last_is_enum_sync = True
 
@@ -241,11 +274,10 @@ def diff_file(a, b, appkit_imports, uikit_imports):
             diff_count += 1
 
         elif tag == 'replace':
-            indent = find_indent(mac_range[0])
-
             if check_appkit_import_diff(mac_range, ios_range):
                 has_appkit_import_diffs = True
             else:
+
                 # Special case: We get errors as some of these differences
                 # split immediately after an @ attribute. Therefore we need to mere
                 # it into both cases to avoid this error
@@ -253,6 +285,17 @@ def diff_file(a, b, appkit_imports, uikit_imports):
                 if len(out) > 0 and out[-1].strip().startswith('@'):
                     attribute = out[-1]
                     out.pop()
+
+                
+                # Special case where the '}' is shared, so it emits 2... (bad differ?)
+                shared_end_curly = False
+                if len(mac_range) > 0 and mac_range[-1] == '}\n' and \
+                   len(ios_range) > 0 and ios_range[0] == '}\n':
+
+                    mac_range = mac_range[:-1]
+                    ios_range = ios_range[1:]
+
+                    shared_end_curly = True
 
                 # filtering
                 if mac_range[0] == '\n':
@@ -283,27 +326,39 @@ def diff_file(a, b, appkit_imports, uikit_imports):
                         ios_range = ios_range[min_range:]
 
 
+
                 # macOS portion
                 if len(mac_range) > 0:
+                    indent = find_indent(mac_range[0])
                     out.append(indent + 'when !ODIN_PLATFORM_SUBTARGET_IOS {\n')
                     if attribute != None:
                         out.append(indent + attribute)
 
                     out.extend(indent_range(mac_range))
-                    out.append(indent + '}\n')
+                    out.append(indent + '} // End when\n')
+
+                    if shared_end_curly:
+                        # Another hack, end of block confusion,
+                        # need to emit it after the foreign block ends
+                        out.append('}\n')
+
 
                 # iOS portion
                 if len(ios_range) > 0:
-                    if len(mac_range) > 0:
-                        out.append(indent + 'else {\n')
-                    else:
-                        out.append(indent + 'when ODIN_PLATFORM_SUBTARGET_IOS {\n')
+                    # NOTE: Removed this because sometimes
+                    #       diffs happen at the boundary of the end of a foreign block,
+                    #       where the 'else' can't cross.
+                    # if len(mac_range) > 0:
+                    #     out.append(indent + 'else {\n')
+                    # else:
+                    indent = find_indent(ios_range[0])
+                    out.append(indent + 'when ODIN_PLATFORM_SUBTARGET_IOS {\n')
 
                     if attribute != None:
                         out.append(indent + attribute)
 
                     out.extend(indent_range(ios_range))
-                    out.append(indent + '}\n')
+                    out.append(indent + '} // End else\n')
 
                 diff_count += 1
 
@@ -318,6 +373,7 @@ def is_enum_field(line: str):
     return match != None
 
 def synchronize_enums(a, a_start, b, b_start, out):
+    print('Snyc Enum')
     # search up until we find the enum start line in both sides
     out_enum_line = None
     a_enum_range  = None
@@ -325,8 +381,10 @@ def synchronize_enums(a, a_start, b, b_start, out):
 
     i = len(out) - 1
     while i >= 0:
+        print(f'Checking: {out[i]}')
         if RE_ENUM_DECL.match(out[i]):
             out_enum_line = i
+            print(f'Out Enum Line: {out[i]}')
             break
         i-=1
 
@@ -336,7 +394,7 @@ def synchronize_enums(a, a_start, b, b_start, out):
             start = i
             for i in range(i, len(a)):
                 if a[i] == '}\n':
-                    # print(f'Enun A: {start} - {i+1}')
+                    print(f'Enun A: {start} - {i+1}')
                     a_enum_range = a[start:i+1]
                     break
 
@@ -352,7 +410,7 @@ def synchronize_enums(a, a_start, b, b_start, out):
             start = i
             for i in range(i, len(b)):
                 if b[i] == '}\n':
-                    # print(f'Enun B: {start} - {i+1}')
+                    print(f'Enun B: {start} - {i+1}')
                     b_enum_range = b[start:i+1] 
                     break
 
