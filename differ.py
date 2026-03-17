@@ -9,7 +9,8 @@ RE_APPKIT_IMPORT = re.compile(r"^\s*import AK \"..\/AppKit\"")
 RE_UIKIT_IMPORT  = re.compile(r"^\s*import UI \"..\/UIKit\"")
 RE_APPKIT_REF    = re.compile(r"(AK\.(\w+))")
 RE_UIKIT_REF     = re.compile(r"(UI\.(\w+))")
-
+RE_ENUM_FIELD    = re.compile(r"\w+\s.+=\s+\d+,$")
+RE_ENUM_DECL     = re.compile(r"^\w+\s+::\s+enum\s+.+\{$")
 
 def main():
     packages_macos = [ p for p in os.listdir('darwodin-macos/darwodin') if p != 'mach' and p != 'libc']
@@ -21,22 +22,22 @@ def main():
 
     #     print(f'Checking {p}')
     #     diff_package(p)
-    # diff_package('Foundation')
+    diff_package('Foundation')
     # diff_package('CoreFoundation')
     # diff_package('CoreGraphics')
     # diff_package('QuartzCore')
     # diff_package('CloudKit')
     # diff_package('AVFoundation')
     # diff_package('AudioToolbox')
-    diff_package('GameKit')
+    # diff_package('GameKit')
     # diff_package('GameController')
     # diff_package('CoreHaptics')
     # diff_package('CoreText')
     # diff_package('CoreMedia')
     # diff_package('Metal')
-    diff_package('MetalKit')
+    # diff_package('MetalKit')
     # diff_package('MetalFX')
-    diff_package('ModelIO')
+    # diff_package('ModelIO')
     # diff_package('Security')
     # diff_package('LocalAuthentication')
 
@@ -147,11 +148,17 @@ def diff_file(a, b, appkit_imports, uikit_imports):
     # Workaround for when the package depends on AppKit/UIKit
     has_appkit_import_diffs = False
 
+    last_is_enum_sync = False
+
     matcher = difflib.SequenceMatcher(None, alines, blines)
     for tag, a0, a1, b0, b1 in matcher.get_opcodes():
         # print(f'Tag: {tag} | A: {a0}-{a1} B: {b0}-{b1}')
         mac_range = alines[a0:a1]
         ios_range = blines[b0:b1]
+
+        if last_is_enum_sync:
+            last_is_enum_sync = False
+            continue
 
         if last_diff_emitted_end_end_curly:
             assert(tag == 'equal')
@@ -176,23 +183,28 @@ def diff_file(a, b, appkit_imports, uikit_imports):
                 out.append('\n')
                 mac_range = mac_range[1:]
 
+            # Special case check for differences in enum fields (happens in Foundation).
+            if is_enum_field(mac_range[0]):
+                out = synchronize_enums(alines, a0, blines, b0, out)
+                last_is_enum_sync = True
 
-            new_line = False
-            if mac_range[-1] == '\n':
-                new_line = True
-                mac_range = mac_range[:-1]
-                
+            else:
+                new_line = False
+                if mac_range[-1] == '\n':
+                    new_line = True
+                    mac_range = mac_range[:-1]
+                    
 
-            out.append(indent + 'when !ODIN_PLATFORM_SUBTARGET_IOS {\n')
-            out.extend(indent_range(mac_range))
+                out.append(indent + 'when !ODIN_PLATFORM_SUBTARGET_IOS {\n')
+                out.extend(indent_range(mac_range))
 
-            if last_diff_emitted_end_end_curly:
-                out.append(indent + '   }\n')
+                if last_diff_emitted_end_end_curly:
+                    out.append(indent + '   }\n')
 
-            out.append(indent + '}\n')
+                out.append(indent + '}\n')
 
-            if new_line:
-                out.append('\n')
+                if new_line:
+                    out.append('\n')
 
             diff_count += 1
 
@@ -210,7 +222,7 @@ def diff_file(a, b, appkit_imports, uikit_imports):
 
             out.append(indent + 'when ODIN_PLATFORM_SUBTARGET_IOS {\n')
             out.extend(indent_range(ios_range))
-            out.append(indent + '} //\n')
+            out.append(indent + '}\n')
 
             if new_line:
                 out.append('\n')
@@ -289,6 +301,72 @@ def diff_file(a, b, appkit_imports, uikit_imports):
         print(f'   {diff_count} differences')
 
     return "".join(out)
+
+def is_enum_field(line: str):
+    match = RE_ENUM_FIELD.search(line)
+    return match != None
+
+def synchronize_enums(a, a_start, b, b_start, out):
+    # search up until we find the enum start line in both sides
+    out_enum_line = None
+    a_enum_range  = None
+    b_enum_range  = None
+
+    print('Checking for ENUMS...')
+    i = len(out) - 1
+    while i >= 0:
+        if RE_ENUM_DECL.match(out[i]):
+            out_enum_line = i
+            break
+        i-=1
+
+    i = a_start
+    while i >= 0:
+        if RE_ENUM_DECL.search(a[i]):
+            start = i
+            for i in range(i, len(a)):
+                if a[i] == '}\n':
+                    print(f'Enun A: {start} - {i+1}')
+                    a_enum_range = a[start:i+1]
+                    break
+
+            if not a_enum_range:
+                raise('Failed to find enum end for A')
+
+            break
+        i-=1
+
+    i = b_start
+    while i >= 0:
+        if RE_ENUM_DECL.search(b[i]):
+            start = i
+            for i in range(i, len(b)):
+                if b[i] == '}\n':
+                    print(f'Enun B: {start} - {i+1}')
+                    b_enum_range = b[start:i+1] 
+                    break
+
+            if not b_enum_range:
+                raise('Failed to find enum end for B')
+            
+            break
+        i-=1
+
+    if not out_enum_line or not a_enum_range or not b_enum_range:
+        raise('Failed to find enum start/end ranges for inner-enum diff.')
+
+    out = out[:out_enum_line]
+    out.append('when !ODIN_PLATFORM_SUBTARGET_IOS {\n')
+    out.extend(indent_range(a_enum_range))
+    out.append('}\n')
+    out.append('else {\n')
+    out.extend(indent_range(b_enum_range))
+    out.append('}\n\n')
+
+    return out
+
+
+
 
 def check_appkit_import_diff(a, b):
     global RE_APPKIT_IMPORT
