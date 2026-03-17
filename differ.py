@@ -9,20 +9,20 @@ RE_APPKIT_IMPORT = re.compile(r"^\s*import AK \"..\/AppKit\"")
 RE_UIKIT_IMPORT  = re.compile(r"^\s*import UI \"..\/UIKit\"")
 RE_APPKIT_REF    = re.compile(r"(AK\.(\w+))")
 RE_UIKIT_REF     = re.compile(r"(UI\.(\w+))")
-RE_ENUM_FIELD    = re.compile(r"\w+\s.+=\s+\d+,$")
+RE_ENUM_FIELD    = re.compile(r"\w+\s.+=\s+\-?\d+,$")
 RE_ENUM_DECL     = re.compile(r"^\w+\s+::\s+enum\s+.+\{$")
 
 def main():
     packages_macos = [ p for p in os.listdir('darwodin-macos/darwodin') if p != 'mach' and p != 'libc']
-    packages_ios   = [ p for p in os.listdir('darwodin-ios/darwodin') if p != 'mach' and p != 'libc']
+    # packages_ios   = [ p for p in os.listdir('darwodin-ios/darwodin') if p != 'mach' and p != 'libc']
 
     # for p in packages_macos:
-    #     if p == 'mach' or p == 'libc':
-    #         continue
-
-    #     print(f'Checking {p}')
+    #     print(f'========== Checking {p} ==========')
     #     diff_package(p)
-    diff_package('Foundation')
+    #     print('')
+
+
+    # diff_package('Foundation')
     # diff_package('CoreFoundation')
     # diff_package('CoreGraphics')
     # diff_package('QuartzCore')
@@ -40,6 +40,8 @@ def main():
     # diff_package('ModelIO')
     # diff_package('Security')
     # diff_package('LocalAuthentication')
+
+    diff_package('AVFoundation')
 
     # diff_file('darwodin-macos/darwodin/Foundation/NSArray.odin',
     #           'darwodin-ios/darwodin/Foundation/NSArray.odin')
@@ -170,8 +172,6 @@ def diff_file(a, b, appkit_imports, uikit_imports):
             out += mac_range
 
         elif tag == 'delete':
-            indent = find_indent(mac_range[0])
-
             if mac_range[0] == '}\n':
                 # Special case: When the range starts with a `}`,
                 # try and add the `when` block after that.
@@ -193,7 +193,9 @@ def diff_file(a, b, appkit_imports, uikit_imports):
                 if mac_range[-1] == '\n':
                     new_line = True
                     mac_range = mac_range[:-1]
-                    
+
+
+                indent = find_indent(mac_range[0])
 
                 out.append(indent + 'when !ODIN_PLATFORM_SUBTARGET_IOS {\n')
                 out.extend(indent_range(mac_range))
@@ -213,19 +215,28 @@ def diff_file(a, b, appkit_imports, uikit_imports):
                 out.append('\n')
                 ios_range = ios_range[1:]
 
-            indent = find_indent(ios_range[0])
+            if len(ios_range) < 1:
+                continue
 
-            new_line = False
-            if ios_range[-1] == '\n':
-                new_line = True
-                ios_range = ios_range[:-1]
+            # Special case check for differences in enum fields (happens in Foundation).
+            if is_enum_field(ios_range[0]):
+                out = synchronize_enums(alines, a0, blines, b0, out)
+                last_is_enum_sync = True
+            else:
+                new_line = False
+                if ios_range[-1] == '\n':
+                    new_line = True
+                    ios_range = ios_range[:-1]
 
-            out.append(indent + 'when ODIN_PLATFORM_SUBTARGET_IOS {\n')
-            out.extend(indent_range(ios_range))
-            out.append(indent + '}\n')
 
-            if new_line:
-                out.append('\n')
+                indent = find_indent(ios_range[0])
+
+                out.append(indent + 'when ODIN_PLATFORM_SUBTARGET_IOS {\n')
+                out.extend(indent_range(ios_range))
+                out.append(indent + '}\n')
+
+                if new_line:
+                    out.append('\n')
 
             diff_count += 1
 
@@ -312,7 +323,6 @@ def synchronize_enums(a, a_start, b, b_start, out):
     a_enum_range  = None
     b_enum_range  = None
 
-    print('Checking for ENUMS...')
     i = len(out) - 1
     while i >= 0:
         if RE_ENUM_DECL.match(out[i]):
@@ -326,7 +336,7 @@ def synchronize_enums(a, a_start, b, b_start, out):
             start = i
             for i in range(i, len(a)):
                 if a[i] == '}\n':
-                    print(f'Enun A: {start} - {i+1}')
+                    # print(f'Enun A: {start} - {i+1}')
                     a_enum_range = a[start:i+1]
                     break
 
@@ -342,7 +352,7 @@ def synchronize_enums(a, a_start, b, b_start, out):
             start = i
             for i in range(i, len(b)):
                 if b[i] == '}\n':
-                    print(f'Enun B: {start} - {i+1}')
+                    # print(f'Enun B: {start} - {i+1}')
                     b_enum_range = b[start:i+1] 
                     break
 
