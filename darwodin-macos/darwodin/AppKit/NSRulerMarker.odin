@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -27,7 +27,7 @@ RulerMarker :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=RulerMarker, objc_selector="initWithRulerView:markerLocation:image:imageOrigin:", objc_name="initWithRulerView")
-    RulerMarker_initWithRulerView :: proc(self: ^RulerMarker, ruler: ^RulerView, location: CG.Float, image: ^NS.Image, imageOrigin: CG.Point) -> instancetype ---
+    RulerMarker_initWithRulerView :: proc(self: ^RulerMarker, ruler: ^RulerView, location: CG.Float, image: ^Image, imageOrigin: CG.Point) -> instancetype ---
 
     @(objc_type=RulerMarker, objc_selector="initWithCoder:", objc_name="initWithCoder")
     RulerMarker_initWithCoder :: proc(self: ^RulerMarker, coder: ^NS.Coder) -> instancetype ---
@@ -51,10 +51,10 @@ foreign lib {
     RulerMarker_setMarkerLocation :: proc(self: ^RulerMarker, markerLocation: CG.Float) ---
 
     @(objc_type=RulerMarker, objc_selector="image", objc_name="image")
-    RulerMarker_image :: proc(self: ^RulerMarker) -> ^NS.Image ---
+    RulerMarker_image :: proc(self: ^RulerMarker) -> ^Image ---
 
     @(objc_type=RulerMarker, objc_selector="setImage:", objc_name="setImage")
-    RulerMarker_setImage :: proc(self: ^RulerMarker, image: ^NS.Image) ---
+    RulerMarker_setImage :: proc(self: ^RulerMarker, image: ^Image) ---
 
     @(objc_type=RulerMarker, objc_selector="imageOrigin", objc_name="imageOrigin")
     RulerMarker_imageOrigin :: proc(self: ^RulerMarker) -> CG.Point ---

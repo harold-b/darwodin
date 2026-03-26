@@ -3,19 +3,15 @@ package darwodin_NSButtonCell_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -31,7 +27,7 @@ import "../NSActionCell"
 VTable :: struct {
     super: NSActionCell.VTable,
     initTextCell: proc(self: ^AK.ButtonCell, string: ^NS.String) -> instancetype,
-    initImageCell: proc(self: ^AK.ButtonCell, image: ^NS.Image) -> instancetype,
+    initImageCell: proc(self: ^AK.ButtonCell, image: ^AK.Image) -> instancetype,
     initWithCoder: proc(self: ^AK.ButtonCell, coder: ^NS.Coder) -> instancetype,
     setButtonType: proc(self: ^AK.ButtonCell, type: AK.ButtonType),
     setPeriodicDelay: proc(self: ^AK.ButtonCell, delay: cffi.float, interval: cffi.float),
@@ -40,7 +36,7 @@ VTable :: struct {
     mouseEntered: proc(self: ^AK.ButtonCell, event: ^AK.Event),
     mouseExited: proc(self: ^AK.ButtonCell, event: ^AK.Event),
     drawBezelWithFrame: proc(self: ^AK.ButtonCell, frame: NS.Rect, controlView: ^AK.View),
-    drawImage: proc(self: ^AK.ButtonCell, image: ^NS.Image, frame: NS.Rect, controlView: ^AK.View),
+    drawImage: proc(self: ^AK.ButtonCell, image: ^AK.Image, frame: NS.Rect, controlView: ^AK.View),
     drawTitle: proc(self: ^AK.ButtonCell, title: ^NS.AttributedString, frame: NS.Rect, controlView: ^AK.View) -> NS.Rect,
     bezelStyle: proc(self: ^AK.ButtonCell) -> AK.BezelStyle,
     setBezelStyle: proc(self: ^AK.ButtonCell, bezelStyle: AK.BezelStyle),
@@ -56,8 +52,8 @@ VTable :: struct {
     setAlternateTitle: proc(self: ^AK.ButtonCell, alternateTitle: ^NS.String),
     attributedAlternateTitle: proc(self: ^AK.ButtonCell) -> ^NS.AttributedString,
     setAttributedAlternateTitle: proc(self: ^AK.ButtonCell, attributedAlternateTitle: ^NS.AttributedString),
-    alternateImage: proc(self: ^AK.ButtonCell) -> ^NS.Image,
-    setAlternateImage: proc(self: ^AK.ButtonCell, alternateImage: ^NS.Image),
+    alternateImage: proc(self: ^AK.ButtonCell) -> ^AK.Image,
+    setAlternateImage: proc(self: ^AK.ButtonCell, alternateImage: ^AK.Image),
     imagePosition: proc(self: ^AK.ButtonCell) -> AK.CellImagePosition,
     setImagePosition: proc(self: ^AK.ButtonCell, imagePosition: AK.CellImagePosition),
     imageScaling: proc(self: ^AK.ButtonCell) -> AK.ImageScaling,
@@ -107,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.ButtonCell, _: SEL, image: ^NS.Image) -> instancetype {
+        initImageCell :: proc "c" (self: ^AK.ButtonCell, _: SEL, image: ^AK.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -197,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawBezelWithFrame:inView:"), auto_cast drawBezelWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.drawImage != nil {
-        drawImage :: proc "c" (self: ^AK.ButtonCell, _: SEL, image: ^NS.Image, frame: NS.Rect, controlView: ^AK.View) {
+        drawImage :: proc "c" (self: ^AK.ButtonCell, _: SEL, image: ^AK.Image, frame: NS.Rect, controlView: ^AK.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -357,7 +353,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedAlternateTitle:"), auto_cast setAttributedAlternateTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.alternateImage != nil {
-        alternateImage :: proc "c" (self: ^AK.ButtonCell, _: SEL) -> ^NS.Image {
+        alternateImage :: proc "c" (self: ^AK.ButtonCell, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -367,7 +363,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alternateImage"), auto_cast alternateImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAlternateImage != nil {
-        setAlternateImage :: proc "c" (self: ^AK.ButtonCell, _: SEL, alternateImage: ^NS.Image) {
+        setAlternateImage :: proc "c" (self: ^AK.ButtonCell, _: SEL, alternateImage: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -3,19 +3,15 @@ package darwodin_NSSharingServiceDelegate_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -31,7 +27,7 @@ VTable :: struct {
     sharingService_didFailToShareItems_error: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, items: ^NS.Array, error: ^NS.Error),
     sharingService_didShareItems: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, items: ^NS.Array),
     sharingService_sourceFrameOnScreenForShareItem: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, item: id) -> NS.Rect,
-    sharingService_transitionImageForShareItem_contentRect: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, item: id, contentRect: ^NS.Rect) -> ^NS.Image,
+    sharingService_transitionImageForShareItem_contentRect: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, item: id, contentRect: ^NS.Rect) -> ^AK.Image,
     sharingService_sourceWindowForShareItems_sharingContentScope: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, items: ^NS.Array, sharingContentScope: ^AK.SharingContentScope) -> ^AK.Window,
     anchoringViewForSharingService: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, positioningRect: ^NS.Rect, preferredEdge: ^NS.RectEdge) -> ^AK.View,
 }
@@ -81,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingService:sourceFrameOnScreenForShareItem:"), auto_cast sharingService_sourceFrameOnScreenForShareItem, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@@") do panic("Failed to register objC method.")
     }
     if vt.sharingService_transitionImageForShareItem_contentRect != nil {
-        sharingService_transitionImageForShareItem_contentRect :: proc "c" (self: ^AK.SharingServiceDelegate, _: SEL, sharingService: ^AK.SharingService, item: id, contentRect: ^NS.Rect) -> ^NS.Image {
+        sharingService_transitionImageForShareItem_contentRect :: proc "c" (self: ^AK.SharingServiceDelegate, _: SEL, sharingService: ^AK.SharingService, item: id, contentRect: ^NS.Rect) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

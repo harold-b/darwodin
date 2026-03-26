@@ -3,19 +3,15 @@ package darwodin_NSTableViewRowAction_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -36,8 +32,8 @@ VTable :: struct {
     setTitle: proc(self: ^AK.TableViewRowAction, title: ^NS.String),
     backgroundColor: proc(self: ^AK.TableViewRowAction) -> ^AK.Color,
     setBackgroundColor: proc(self: ^AK.TableViewRowAction, backgroundColor: ^AK.Color),
-    image: proc(self: ^AK.TableViewRowAction) -> ^NS.Image,
-    setImage: proc(self: ^AK.TableViewRowAction, image: ^NS.Image),
+    image: proc(self: ^AK.TableViewRowAction) -> ^AK.Image,
+    setImage: proc(self: ^AK.TableViewRowAction, image: ^AK.Image),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -108,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundColor:"), auto_cast setBackgroundColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.TableViewRowAction, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.TableViewRowAction, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.TableViewRowAction, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.TableViewRowAction, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

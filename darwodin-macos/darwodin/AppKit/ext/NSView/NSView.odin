@@ -3,19 +3,15 @@ package darwodin_NSView_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -281,7 +277,7 @@ VTable :: struct {
     removeTrackingRect: proc(self: ^AK.View, tag: AK.TrackingRectTag),
     trackingAreas: proc(self: ^AK.View) -> ^NS.Array,
     displayLinkWithTarget: proc(self: ^AK.View, target: id, selector: SEL) -> ^CA.DisplayLink,
-    dragImage: proc(self: ^AK.View, image: ^NS.Image, viewLocation: CG.Point, initialOffset: NS.Size, event: ^AK.Event, pboard: ^AK.Pasteboard, sourceObj: id, slideFlag: bool),
+    dragImage: proc(self: ^AK.View, image: ^AK.Image, viewLocation: CG.Point, initialOffset: NS.Size, event: ^AK.Event, pboard: ^AK.Pasteboard, sourceObj: id, slideFlag: bool),
     dragFile: proc(self: ^AK.View, filename: ^NS.String, rect: NS.Rect, flag: bool, event: ^AK.Event) -> bool,
     dragPromisedFilesOfTypes: proc(self: ^AK.View, typeArray: ^NS.Array, rect: NS.Rect, sourceObject: id, flag: bool, event: ^AK.Event) -> bool,
     convertPointToBase: proc(self: ^AK.View, point: CG.Point) -> CG.Point,
@@ -2891,7 +2887,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("displayLinkWithTarget:selector:"), auto_cast displayLinkWithTarget, "@@:@:") do panic("Failed to register objC method.")
     }
     if vt.dragImage != nil {
-        dragImage :: proc "c" (self: ^AK.View, _: SEL, image: ^NS.Image, viewLocation: CG.Point, initialOffset: NS.Size, event: ^AK.Event, pboard: ^AK.Pasteboard, sourceObj: id, slideFlag: bool) {
+        dragImage :: proc "c" (self: ^AK.View, _: SEL, image: ^AK.Image, viewLocation: CG.Point, initialOffset: NS.Size, event: ^AK.Event, pboard: ^AK.Pasteboard, sourceObj: id, slideFlag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

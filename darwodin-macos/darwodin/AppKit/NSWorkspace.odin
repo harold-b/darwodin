@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -51,16 +51,16 @@ foreign lib {
     Workspace_isFilePackageAtPath :: proc(self: ^Workspace, fullPath: ^NS.String) -> bool ---
 
     @(objc_type=Workspace, objc_selector="iconForFile:", objc_name="iconForFile")
-    Workspace_iconForFile :: proc(self: ^Workspace, fullPath: ^NS.String) -> ^NS.Image ---
+    Workspace_iconForFile :: proc(self: ^Workspace, fullPath: ^NS.String) -> ^Image ---
 
     @(objc_type=Workspace, objc_selector="iconForFiles:", objc_name="iconForFiles")
-    Workspace_iconForFiles :: proc(self: ^Workspace, fullPaths: ^NS.Array) -> ^NS.Image ---
+    Workspace_iconForFiles :: proc(self: ^Workspace, fullPaths: ^NS.Array) -> ^Image ---
 
     @(objc_type=Workspace, objc_selector="iconForContentType:", objc_name="iconForContentType")
-    Workspace_iconForContentType :: proc(self: ^Workspace, contentType: ^UTType) -> ^NS.Image ---
+    Workspace_iconForContentType :: proc(self: ^Workspace, contentType: ^UTType) -> ^Image ---
 
     @(objc_type=Workspace, objc_selector="setIcon:forFile:options:", objc_name="setIcon")
-    Workspace_setIcon :: proc(self: ^Workspace, image: ^NS.Image, fullPath: ^NS.String, options: WorkspaceIconCreationOptions) -> bool ---
+    Workspace_setIcon :: proc(self: ^Workspace, image: ^Image, fullPath: ^NS.String, options: WorkspaceIconCreationOptions) -> bool ---
 
     @(objc_type=Workspace, objc_selector="recycleURLs:completionHandler:", objc_name="recycleURLs")
     Workspace_recycleURLs :: proc(self: ^Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))) ---
@@ -189,7 +189,7 @@ foreign lib {
     Workspace_noteUserDefaultsChanged :: proc(self: ^Workspace) ---
 
     @(objc_type=Workspace, objc_selector="slideImage:from:to:", objc_name="slideImage")
-    Workspace_slideImage :: proc(self: ^Workspace, image: ^NS.Image, fromPoint: CG.Point, toPoint: CG.Point) ---
+    Workspace_slideImage :: proc(self: ^Workspace, image: ^Image, fromPoint: CG.Point, toPoint: CG.Point) ---
 
     @(objc_type=Workspace, objc_selector="checkForRemovableMedia", objc_name="checkForRemovableMedia")
     Workspace_checkForRemovableMedia :: proc(self: ^Workspace) ---
@@ -219,7 +219,7 @@ foreign lib {
     Workspace_launchedApplications :: proc(self: ^Workspace) -> ^NS.Array ---
 
     @(objc_type=Workspace, objc_selector="openFile:fromImage:at:inView:", objc_name="openFile_fromImage_at_inView")
-    Workspace_openFile_fromImage_at_inView :: proc(self: ^Workspace, fullPath: ^NS.String, image: ^NS.Image, point: CG.Point, view: ^View) -> bool ---
+    Workspace_openFile_fromImage_at_inView :: proc(self: ^Workspace, fullPath: ^NS.String, image: ^Image, point: CG.Point, view: ^View) -> bool ---
 
     @(objc_type=Workspace, objc_selector="performFileOperation:source:destination:files:tag:", objc_name="performFileOperation")
     Workspace_performFileOperation :: proc(self: ^Workspace, operation: ^NS.String, source: ^NS.String, destination: ^NS.String, files: ^NS.Array, tag: ^NS.Integer) -> bool ---
@@ -228,7 +228,7 @@ foreign lib {
     Workspace_getInfoForFile :: proc(self: ^Workspace, fullPath: ^NS.String, appName: ^^NS.String, type: ^^NS.String) -> bool ---
 
     @(objc_type=Workspace, objc_selector="iconForFileType:", objc_name="iconForFileType")
-    Workspace_iconForFileType :: proc(self: ^Workspace, fileType: ^NS.String) -> ^NS.Image ---
+    Workspace_iconForFileType :: proc(self: ^Workspace, fileType: ^NS.String) -> ^Image ---
 
     @(objc_type=Workspace, objc_selector="typeOfFile:error:", objc_name="typeOfFile")
     Workspace_typeOfFile :: proc(self: ^Workspace, absoluteFilePath: ^NS.String, outError: ^^NS.Error) -> ^NS.String ---

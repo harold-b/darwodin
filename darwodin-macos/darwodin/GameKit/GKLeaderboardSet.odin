@@ -3,7 +3,6 @@ package darwodin_GameKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 import AK "../AppKit"
@@ -43,5 +42,5 @@ foreign lib {
     LeaderboardSet_loadLeaderboardsWithCompletionHandler :: proc(self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) ---
 
     @(objc_type=LeaderboardSet, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    LeaderboardSet_loadImageWithCompletionHandler :: proc(self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" (image: ^NS.Image, error: ^NS.Error))) ---
+    LeaderboardSet_loadImageWithCompletionHandler :: proc(self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" (image: ^AK.Image, error: ^NS.Error))) ---
 }

@@ -1,0 +1,44 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UIViewImplicitlyAnimating
+///
+@(objc_class="UIViewImplicitlyAnimating")
+ViewImplicitlyAnimating :: struct { using _: intrinsics.objc_object, 
+    using _: ViewAnimating,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ViewImplicitlyAnimating, objc_selector="addAnimations:delayFactor:", objc_name="addAnimations_delayFactor")
+    ViewImplicitlyAnimating_addAnimations_delayFactor :: proc(self: ^ViewImplicitlyAnimating, animation: ^Objc_Block(proc "c" ()), delayFactor: CG.Float) ---
+
+    @(objc_type=ViewImplicitlyAnimating, objc_selector="addAnimations:", objc_name="addAnimations_")
+    ViewImplicitlyAnimating_addAnimations_ :: proc(self: ^ViewImplicitlyAnimating, animation: ^Objc_Block(proc "c" ())) ---
+
+    @(objc_type=ViewImplicitlyAnimating, objc_selector="addCompletion:", objc_name="addCompletion")
+    ViewImplicitlyAnimating_addCompletion :: proc(self: ^ViewImplicitlyAnimating, completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) ---
+
+    @(objc_type=ViewImplicitlyAnimating, objc_selector="continueAnimationWithTimingParameters:durationFactor:", objc_name="continueAnimationWithTimingParameters")
+    ViewImplicitlyAnimating_continueAnimationWithTimingParameters :: proc(self: ^ViewImplicitlyAnimating, parameters: ^TimingCurveProvider, durationFactor: CG.Float) ---
+}
+
+@(objc_type=ViewImplicitlyAnimating, objc_name="addAnimations")
+ViewImplicitlyAnimating_addAnimations :: proc {
+    ViewImplicitlyAnimating_addAnimations_delayFactor,
+    ViewImplicitlyAnimating_addAnimations_,
+}
+

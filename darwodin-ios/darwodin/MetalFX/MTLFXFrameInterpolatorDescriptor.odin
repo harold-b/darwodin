@@ -3,7 +3,6 @@ package darwodin_MetalFX
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
@@ -26,7 +25,7 @@ foreign lib {
     FrameInterpolatorDescriptor_newFrameInterpolatorWithDevice_ :: proc(self: ^FrameInterpolatorDescriptor, device: ^MTL.Device) -> ^FrameInterpolator ---
 
     @(objc_type=FrameInterpolatorDescriptor, objc_selector="newFrameInterpolatorWithDevice:compiler:", objc_name="newFrameInterpolatorWithDevice_compiler")
-    FrameInterpolatorDescriptor_newFrameInterpolatorWithDevice_compiler :: proc(self: ^FrameInterpolatorDescriptor, device: ^MTL.Device, compiler: ^MTL.4Compiler) -> ^MTL4FXFrameInterpolator ---
+    FrameInterpolatorDescriptor_newFrameInterpolatorWithDevice_compiler :: proc(self: ^FrameInterpolatorDescriptor, device: ^MTL.Device, compiler: ^MTL.MTL4Compiler) -> ^MTL4FXFrameInterpolator ---
 
     @(objc_type=FrameInterpolatorDescriptor, objc_selector="supportsMetal4FX:", objc_name="supportsMetal4FX", objc_is_class_method=true)
     FrameInterpolatorDescriptor_supportsMetal4FX :: proc(device: ^MTL.Device) -> bool ---

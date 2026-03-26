@@ -3,19 +3,15 @@ package darwodin_NSImageView_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -30,9 +26,9 @@ import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    imageViewWithImage: proc(image: ^NS.Image) -> instancetype,
-    image: proc(self: ^AK.ImageView) -> ^NS.Image,
-    setImage: proc(self: ^AK.ImageView, image: ^NS.Image),
+    imageViewWithImage: proc(image: ^AK.Image) -> instancetype,
+    image: proc(self: ^AK.ImageView) -> ^AK.Image,
+    setImage: proc(self: ^AK.ImageView, image: ^AK.Image),
     isEditable: proc(self: ^AK.ImageView) -> bool,
     setEditable: proc(self: ^AK.ImageView, editable: bool),
     imageAlignment: proc(self: ^AK.ImageView) -> AK.ImageAlignment,
@@ -63,8 +59,8 @@ VTable :: struct {
     removeAllSymbolEffects: proc(self: ^AK.ImageView),
     removeAllSymbolEffectsWithOptions_: proc(self: ^AK.ImageView, options: ^AK.SymbolEffectOptions),
     removeAllSymbolEffectsWithOptions_animated: proc(self: ^AK.ImageView, options: ^AK.SymbolEffectOptions, animated: bool),
-    setSymbolImage_withContentTransition: proc(self: ^AK.ImageView, symbolImage: ^NS.Image, transition: ^AK.SymbolContentTransition),
-    setSymbolImage_withContentTransition_options: proc(self: ^AK.ImageView, symbolImage: ^NS.Image, transition: ^AK.SymbolContentTransition, options: ^AK.SymbolEffectOptions),
+    setSymbolImage_withContentTransition: proc(self: ^AK.ImageView, symbolImage: ^AK.Image, transition: ^AK.SymbolContentTransition),
+    setSymbolImage_withContentTransition_options: proc(self: ^AK.ImageView, symbolImage: ^AK.Image, transition: ^AK.SymbolContentTransition, options: ^AK.SymbolEffectOptions),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -75,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.imageViewWithImage != nil {
-        imageViewWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image) -> instancetype {
+        imageViewWithImage :: proc "c" (self: Class, _: SEL, image: ^AK.Image) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageViewWithImage:"), auto_cast imageViewWithImage, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.ImageView, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.ImageView, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.ImageView, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.ImageView, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -405,7 +401,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeAllSymbolEffectsWithOptions:animated:"), auto_cast removeAllSymbolEffectsWithOptions_animated, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.setSymbolImage_withContentTransition != nil {
-        setSymbolImage_withContentTransition :: proc "c" (self: ^AK.ImageView, _: SEL, symbolImage: ^NS.Image, transition: ^AK.SymbolContentTransition) {
+        setSymbolImage_withContentTransition :: proc "c" (self: ^AK.ImageView, _: SEL, symbolImage: ^AK.Image, transition: ^AK.SymbolContentTransition) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -415,7 +411,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSymbolImage:withContentTransition:"), auto_cast setSymbolImage_withContentTransition, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.setSymbolImage_withContentTransition_options != nil {
-        setSymbolImage_withContentTransition_options :: proc "c" (self: ^AK.ImageView, _: SEL, symbolImage: ^NS.Image, transition: ^AK.SymbolContentTransition, options: ^AK.SymbolEffectOptions) {
+        setSymbolImage_withContentTransition_options :: proc "c" (self: ^AK.ImageView, _: SEL, symbolImage: ^AK.Image, transition: ^AK.SymbolContentTransition, options: ^AK.SymbolEffectOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

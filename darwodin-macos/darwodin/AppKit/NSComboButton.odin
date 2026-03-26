@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -27,10 +27,10 @@ foreign lib {
     ComboButton_comboButtonWithTitle_menu_target_action :: proc(title: ^NS.String, menu: ^Menu, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ComboButton, objc_selector="comboButtonWithImage:menu:target:action:", objc_name="comboButtonWithImage", objc_is_class_method=true)
-    ComboButton_comboButtonWithImage :: proc(image: ^NS.Image, menu: ^Menu, target: id, action: SEL) -> instancetype ---
+    ComboButton_comboButtonWithImage :: proc(image: ^Image, menu: ^Menu, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ComboButton, objc_selector="comboButtonWithTitle:image:menu:target:action:", objc_name="comboButtonWithTitle_image_menu_target_action", objc_is_class_method=true)
-    ComboButton_comboButtonWithTitle_image_menu_target_action :: proc(title: ^NS.String, image: ^NS.Image, menu: ^Menu, target: id, action: SEL) -> instancetype ---
+    ComboButton_comboButtonWithTitle_image_menu_target_action :: proc(title: ^NS.String, image: ^Image, menu: ^Menu, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ComboButton, objc_selector="title", objc_name="title")
     ComboButton_title :: proc(self: ^ComboButton) -> ^NS.String ---
@@ -39,10 +39,10 @@ foreign lib {
     ComboButton_setTitle :: proc(self: ^ComboButton, title: ^NS.String) ---
 
     @(objc_type=ComboButton, objc_selector="image", objc_name="image")
-    ComboButton_image :: proc(self: ^ComboButton) -> ^NS.Image ---
+    ComboButton_image :: proc(self: ^ComboButton) -> ^Image ---
 
     @(objc_type=ComboButton, objc_selector="setImage:", objc_name="setImage")
-    ComboButton_setImage :: proc(self: ^ComboButton, image: ^NS.Image) ---
+    ComboButton_setImage :: proc(self: ^ComboButton, image: ^Image) ---
 
     @(objc_type=ComboButton, objc_selector="imageScaling", objc_name="imageScaling")
     ComboButton_imageScaling :: proc(self: ^ComboButton) -> ImageScaling ---

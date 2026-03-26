@@ -1,0 +1,55 @@
+#+build darwin:default
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSTokenField
+///
+@(objc_class="NSTokenField", objc_superclass=TextField)
+TokenField :: struct { using _: TextField, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TokenField, objc_selector="delegate", objc_name="delegate")
+    TokenField_delegate :: proc(self: ^TokenField) -> ^TokenFieldDelegate ---
+
+    @(objc_type=TokenField, objc_selector="setDelegate:", objc_name="setDelegate")
+    TokenField_setDelegate :: proc(self: ^TokenField, delegate: ^TokenFieldDelegate) ---
+
+    @(objc_type=TokenField, objc_selector="tokenStyle", objc_name="tokenStyle")
+    TokenField_tokenStyle :: proc(self: ^TokenField) -> TokenStyle ---
+
+    @(objc_type=TokenField, objc_selector="setTokenStyle:", objc_name="setTokenStyle")
+    TokenField_setTokenStyle :: proc(self: ^TokenField, tokenStyle: TokenStyle) ---
+
+    @(objc_type=TokenField, objc_selector="completionDelay", objc_name="completionDelay")
+    TokenField_completionDelay :: proc(self: ^TokenField) -> NS.TimeInterval ---
+
+    @(objc_type=TokenField, objc_selector="setCompletionDelay:", objc_name="setCompletionDelay")
+    TokenField_setCompletionDelay :: proc(self: ^TokenField, completionDelay: NS.TimeInterval) ---
+
+    @(objc_type=TokenField, objc_selector="defaultCompletionDelay", objc_name="defaultCompletionDelay", objc_is_class_method=true)
+    TokenField_defaultCompletionDelay :: proc() -> NS.TimeInterval ---
+
+    @(objc_type=TokenField, objc_selector="tokenizingCharacterSet", objc_name="tokenizingCharacterSet")
+    TokenField_tokenizingCharacterSet :: proc(self: ^TokenField) -> ^NS.CharacterSet ---
+
+    @(objc_type=TokenField, objc_selector="setTokenizingCharacterSet:", objc_name="setTokenizingCharacterSet")
+    TokenField_setTokenizingCharacterSet :: proc(self: ^TokenField, tokenizingCharacterSet: ^NS.CharacterSet) ---
+
+    @(objc_type=TokenField, objc_selector="defaultTokenizingCharacterSet", objc_name="defaultTokenizingCharacterSet", objc_is_class_method=true)
+    TokenField_defaultTokenizingCharacterSet :: proc() -> ^NS.CharacterSet ---
+}

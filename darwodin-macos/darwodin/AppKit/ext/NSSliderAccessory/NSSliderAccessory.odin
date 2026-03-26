@@ -3,19 +3,15 @@ package darwodin_NSSliderAccessory_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -30,7 +26,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    accessoryWithImage: proc(image: ^NS.Image) -> ^AK.SliderAccessory,
+    accessoryWithImage: proc(image: ^AK.Image) -> ^AK.SliderAccessory,
     behavior: proc(self: ^AK.SliderAccessory) -> ^AK.SliderAccessoryBehavior,
     setBehavior: proc(self: ^AK.SliderAccessory, behavior: ^AK.SliderAccessoryBehavior),
     isEnabled: proc(self: ^AK.SliderAccessory) -> bool,
@@ -45,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.accessoryWithImage != nil {
-        accessoryWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image) -> ^AK.SliderAccessory {
+        accessoryWithImage :: proc "c" (self: Class, _: SEL, image: ^AK.Image) -> ^AK.SliderAccessory {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

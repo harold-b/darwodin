@@ -3,19 +3,15 @@ package darwodin_NSCell_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -32,7 +28,7 @@ VTable :: struct {
     super: NSObject.VTable,
     init: proc(self: ^AK.Cell) -> instancetype,
     initTextCell: proc(self: ^AK.Cell, string: ^NS.String) -> instancetype,
-    initImageCell: proc(self: ^AK.Cell, image: ^NS.Image) -> instancetype,
+    initImageCell: proc(self: ^AK.Cell, image: ^AK.Image) -> instancetype,
     initWithCoder: proc(self: ^AK.Cell, coder: ^NS.Coder) -> instancetype,
     sendActionOn: proc(self: ^AK.Cell, mask: AK.EventMask) -> NS.Integer,
     compare: proc(self: ^AK.Cell, otherCell: id) -> NS.ComparisonResult,
@@ -121,8 +117,8 @@ VTable :: struct {
     setDoubleValue: proc(self: ^AK.Cell, doubleValue: cffi.double),
     integerValue: proc(self: ^AK.Cell) -> NS.Integer,
     setIntegerValue: proc(self: ^AK.Cell, integerValue: NS.Integer),
-    image: proc(self: ^AK.Cell) -> ^NS.Image,
-    setImage: proc(self: ^AK.Cell, image: ^NS.Image),
+    image: proc(self: ^AK.Cell) -> ^AK.Image,
+    setImage: proc(self: ^AK.Cell, image: ^AK.Image),
     controlSize: proc(self: ^AK.Cell) -> AK.ControlSize,
     setControlSize: proc(self: ^AK.Cell, controlSize: AK.ControlSize),
     representedObject: proc(self: ^AK.Cell) -> id,
@@ -214,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.Cell, _: SEL, image: ^NS.Image) -> instancetype {
+        initImageCell :: proc "c" (self: ^AK.Cell, _: SEL, image: ^AK.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1104,7 +1100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIntegerValue:"), auto_cast setIntegerValue, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.Cell, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.Cell, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1114,7 +1110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.Cell, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.Cell, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

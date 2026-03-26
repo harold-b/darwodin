@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -26,7 +26,7 @@ PreviewRepresentingActivityItem :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=PreviewRepresentingActivityItem, objc_selector="initWithItem:title:image:icon:", objc_name="initWithItem_title_image_icon")
-    PreviewRepresentingActivityItem_initWithItem_title_image_icon :: proc(self: ^PreviewRepresentingActivityItem, item: id, title: ^NS.String, image: ^NS.Image, icon: ^NS.Image) -> instancetype ---
+    PreviewRepresentingActivityItem_initWithItem_title_image_icon :: proc(self: ^PreviewRepresentingActivityItem, item: id, title: ^NS.String, image: ^Image, icon: ^Image) -> instancetype ---
 
     @(objc_type=PreviewRepresentingActivityItem, objc_selector="initWithItem:title:imageProvider:iconProvider:", objc_name="initWithItem_title_imageProvider_iconProvider")
     PreviewRepresentingActivityItem_initWithItem_title_imageProvider_iconProvider :: proc(self: ^PreviewRepresentingActivityItem, item: id, title: ^NS.String, imageProvider: ^NS.ItemProvider, iconProvider: ^NS.ItemProvider) -> instancetype ---

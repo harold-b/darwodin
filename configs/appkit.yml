@@ -38,6 +38,7 @@ Odin:
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
     - ../exports/CoreText.exports.yml
+    - ../exports/CoreMedia.exports.yml  # TODO: This is fore IconRef. Remove it once we had LaunchServices.framework
     - ../exports/Security.exports.yml
     - ../exports/Foundation.exports.yml
     - ../exports/QuartzCore.exports.yml
@@ -59,22 +60,21 @@ Odin:
       Imports:
         - |
           OpaqueSecTransformImplementation :: struct {}
-          OpaqueSecIdentitySearchRef :: struct {}
-          OpaquePolicySearchRef :: struct {}
-          OpaqueIconRef :: struct {}
-          CVTimeStamp :: struct {}
+          OpaqueSecIdentitySearchRef       :: struct {}
+          OpaquePolicySearchRef            :: struct {}
+          CVTimeStamp                      :: struct {}
 
           CIBarcodeDescriptor :: NS.Object
-          CKShare :: NS.Object
-          CKContainer :: NS.Object
-          CIImage :: NS.Object
-          INIntent :: NS.Object
-          CIColor :: NS.Object
-          CIFilter  :: NS.Object
-          CIContext :: NS.Object
-          CKShareMetadata :: NS.Object
-          QTMovie :: NS.Object
-          UTType :: NS.Object
+          CKShare             :: NS.Object
+          CKContainer         :: NS.Object
+          CIImage             :: NS.Object
+          INIntent            :: NS.Object
+          CIColor             :: NS.Object
+          CIFilter            :: NS.Object
+          CIContext           :: NS.Object
+          CKShareMetadata     :: NS.Object
+          QTMovie             :: NS.Object
+          UTType              :: NS.Object
 
           GCGamepadSnapShotDataV100         :: struct {}
           GCExtendedGamepadSnapshotData     :: struct {}
@@ -103,8 +103,9 @@ Odin:
               }
 
               val      = auto_cast it.array->objectAtIndex(auto_cast it.index)
-              it.index += 1
+              idx      = it.index
               cond     = true
+              it.index += 1
               return
           }
 
@@ -211,7 +212,10 @@ Odin:
       Transforms:
         - Kind  : AppendSuffix
           Source: Flag
-
+    - Type: Options$
+      Transforms:
+        - Kind  : RemoveSuffix
+          Source: s
   ProcTransforms:
   - Type: ^(_*NS).+
     Transforms:

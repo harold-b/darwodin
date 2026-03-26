@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -114,14 +114,14 @@ foreign lib {
     LevelIndicator_setPlaceholderVisibility :: proc(self: ^LevelIndicator, placeholderVisibility: LevelIndicatorPlaceholderVisibility) ---
 
     @(objc_type=LevelIndicator, objc_selector="ratingImage", objc_name="ratingImage")
-    LevelIndicator_ratingImage :: proc(self: ^LevelIndicator) -> ^NS.Image ---
+    LevelIndicator_ratingImage :: proc(self: ^LevelIndicator) -> ^Image ---
 
     @(objc_type=LevelIndicator, objc_selector="setRatingImage:", objc_name="setRatingImage")
-    LevelIndicator_setRatingImage :: proc(self: ^LevelIndicator, ratingImage: ^NS.Image) ---
+    LevelIndicator_setRatingImage :: proc(self: ^LevelIndicator, ratingImage: ^Image) ---
 
     @(objc_type=LevelIndicator, objc_selector="ratingPlaceholderImage", objc_name="ratingPlaceholderImage")
-    LevelIndicator_ratingPlaceholderImage :: proc(self: ^LevelIndicator) -> ^NS.Image ---
+    LevelIndicator_ratingPlaceholderImage :: proc(self: ^LevelIndicator) -> ^Image ---
 
     @(objc_type=LevelIndicator, objc_selector="setRatingPlaceholderImage:", objc_name="setRatingPlaceholderImage")
-    LevelIndicator_setRatingPlaceholderImage :: proc(self: ^LevelIndicator, ratingPlaceholderImage: ^NS.Image) ---
+    LevelIndicator_setRatingPlaceholderImage :: proc(self: ^LevelIndicator, ratingPlaceholderImage: ^Image) ---
 }

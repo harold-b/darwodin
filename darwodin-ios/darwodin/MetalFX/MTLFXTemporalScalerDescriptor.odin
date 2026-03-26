@@ -3,7 +3,6 @@ package darwodin_MetalFX
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
@@ -26,7 +25,7 @@ foreign lib {
     TemporalScalerDescriptor_newTemporalScalerWithDevice_ :: proc(self: ^TemporalScalerDescriptor, device: ^MTL.Device) -> ^TemporalScaler ---
 
     @(objc_type=TemporalScalerDescriptor, objc_selector="newTemporalScalerWithDevice:compiler:", objc_name="newTemporalScalerWithDevice_compiler")
-    TemporalScalerDescriptor_newTemporalScalerWithDevice_compiler :: proc(self: ^TemporalScalerDescriptor, device: ^MTL.Device, compiler: ^MTL.4Compiler) -> ^MTL4FXTemporalScaler ---
+    TemporalScalerDescriptor_newTemporalScalerWithDevice_compiler :: proc(self: ^TemporalScalerDescriptor, device: ^MTL.Device, compiler: ^MTL.MTL4Compiler) -> ^MTL4FXTemporalScaler ---
 
     @(objc_type=TemporalScalerDescriptor, objc_selector="supportedInputContentMinScaleForDevice:", objc_name="supportedInputContentMinScaleForDevice", objc_is_class_method=true)
     TemporalScalerDescriptor_supportedInputContentMinScaleForDevice :: proc(device: ^MTL.Device) -> cffi.float ---

@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -35,10 +35,10 @@ foreign lib {
     SegmentedControl_widthForSegment :: proc(self: ^SegmentedControl, segment: NS.Integer) -> CG.Float ---
 
     @(objc_type=SegmentedControl, objc_selector="setImage:forSegment:", objc_name="setImage")
-    SegmentedControl_setImage :: proc(self: ^SegmentedControl, image: ^NS.Image, segment: NS.Integer) ---
+    SegmentedControl_setImage :: proc(self: ^SegmentedControl, image: ^Image, segment: NS.Integer) ---
 
     @(objc_type=SegmentedControl, objc_selector="imageForSegment:", objc_name="imageForSegment")
-    SegmentedControl_imageForSegment :: proc(self: ^SegmentedControl, segment: NS.Integer) -> ^NS.Image ---
+    SegmentedControl_imageForSegment :: proc(self: ^SegmentedControl, segment: NS.Integer) -> ^Image ---
 
     @(objc_type=SegmentedControl, objc_selector="setImageScaling:forSegment:", objc_name="setImageScaling")
     SegmentedControl_setImageScaling :: proc(self: ^SegmentedControl, scaling: ImageScaling, segment: NS.Integer) ---

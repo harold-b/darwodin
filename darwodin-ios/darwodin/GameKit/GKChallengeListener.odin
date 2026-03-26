@@ -3,7 +3,6 @@ package darwodin_GameKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 import UI "../UIKit"

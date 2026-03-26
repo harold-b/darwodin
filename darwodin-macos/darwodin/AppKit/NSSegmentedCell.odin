@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -39,10 +39,10 @@ foreign lib {
     SegmentedCell_widthForSegment :: proc(self: ^SegmentedCell, segment: NS.Integer) -> CG.Float ---
 
     @(objc_type=SegmentedCell, objc_selector="setImage:forSegment:", objc_name="setImage")
-    SegmentedCell_setImage :: proc(self: ^SegmentedCell, image: ^NS.Image, segment: NS.Integer) ---
+    SegmentedCell_setImage :: proc(self: ^SegmentedCell, image: ^Image, segment: NS.Integer) ---
 
     @(objc_type=SegmentedCell, objc_selector="imageForSegment:", objc_name="imageForSegment")
-    SegmentedCell_imageForSegment :: proc(self: ^SegmentedCell, segment: NS.Integer) -> ^NS.Image ---
+    SegmentedCell_imageForSegment :: proc(self: ^SegmentedCell, segment: NS.Integer) -> ^Image ---
 
     @(objc_type=SegmentedCell, objc_selector="setImageScaling:forSegment:", objc_name="setImageScaling")
     SegmentedCell_setImageScaling :: proc(self: ^SegmentedCell, scaling: ImageScaling, segment: NS.Integer) ---

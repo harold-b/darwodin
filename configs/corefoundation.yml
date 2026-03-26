@@ -38,8 +38,6 @@ Cpp:
     - ^OSTypePtr
     - ^ResTypePtr
     - ^SRefCon
-    - ^IconRef
-    - ^OpaqueIconRef
     - ^AppleEvent
     - ^Handle
     - ^Size

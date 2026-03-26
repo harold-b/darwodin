@@ -3,19 +3,15 @@ package darwodin_NSPathComponentCell_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -30,8 +26,8 @@ import "../NSTextFieldCell"
 
 VTable :: struct {
     super: NSTextFieldCell.VTable,
-    image: proc(self: ^AK.PathComponentCell) -> ^NS.Image,
-    setImage: proc(self: ^AK.PathComponentCell, image: ^NS.Image),
+    image: proc(self: ^AK.PathComponentCell) -> ^AK.Image,
+    setImage: proc(self: ^AK.PathComponentCell, image: ^AK.Image),
     _URL: proc(self: ^AK.PathComponentCell) -> ^NS.URL,
     setURL: proc(self: ^AK.PathComponentCell, _URL: ^NS.URL),
 }
@@ -44,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextFieldCell.extend(cls, &vt.super)
 
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.PathComponentCell, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.PathComponentCell, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.PathComponentCell, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.PathComponentCell, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

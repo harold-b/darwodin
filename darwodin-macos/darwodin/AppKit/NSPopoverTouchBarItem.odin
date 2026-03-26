@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -51,10 +51,10 @@ foreign lib {
     PopoverTouchBarItem_setCollapsedRepresentation :: proc(self: ^PopoverTouchBarItem, collapsedRepresentation: ^View) ---
 
     @(objc_type=PopoverTouchBarItem, objc_selector="collapsedRepresentationImage", objc_name="collapsedRepresentationImage")
-    PopoverTouchBarItem_collapsedRepresentationImage :: proc(self: ^PopoverTouchBarItem) -> ^NS.Image ---
+    PopoverTouchBarItem_collapsedRepresentationImage :: proc(self: ^PopoverTouchBarItem) -> ^Image ---
 
     @(objc_type=PopoverTouchBarItem, objc_selector="setCollapsedRepresentationImage:", objc_name="setCollapsedRepresentationImage")
-    PopoverTouchBarItem_setCollapsedRepresentationImage :: proc(self: ^PopoverTouchBarItem, collapsedRepresentationImage: ^NS.Image) ---
+    PopoverTouchBarItem_setCollapsedRepresentationImage :: proc(self: ^PopoverTouchBarItem, collapsedRepresentationImage: ^Image) ---
 
     @(objc_type=PopoverTouchBarItem, objc_selector="collapsedRepresentationLabel", objc_name="collapsedRepresentationLabel")
     PopoverTouchBarItem_collapsedRepresentationLabel :: proc(self: ^PopoverTouchBarItem) -> ^NS.String ---

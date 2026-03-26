@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -27,13 +27,13 @@ ImageView :: struct { using _: Control,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ImageView, objc_selector="imageViewWithImage:", objc_name="imageViewWithImage", objc_is_class_method=true)
-    ImageView_imageViewWithImage :: proc(image: ^NS.Image) -> instancetype ---
+    ImageView_imageViewWithImage :: proc(image: ^Image) -> instancetype ---
 
     @(objc_type=ImageView, objc_selector="image", objc_name="image")
-    ImageView_image :: proc(self: ^ImageView) -> ^NS.Image ---
+    ImageView_image :: proc(self: ^ImageView) -> ^Image ---
 
     @(objc_type=ImageView, objc_selector="setImage:", objc_name="setImage")
-    ImageView_setImage :: proc(self: ^ImageView, image: ^NS.Image) ---
+    ImageView_setImage :: proc(self: ^ImageView, image: ^Image) ---
 
     @(objc_type=ImageView, objc_selector="isEditable", objc_name="isEditable")
     ImageView_isEditable :: proc(self: ^ImageView) -> bool ---
@@ -126,10 +126,10 @@ foreign lib {
     ImageView_removeAllSymbolEffectsWithOptions_animated :: proc(self: ^ImageView, options: ^SymbolEffectOptions, animated: bool) ---
 
     @(objc_type=ImageView, objc_selector="setSymbolImage:withContentTransition:", objc_name="setSymbolImage_withContentTransition")
-    ImageView_setSymbolImage_withContentTransition :: proc(self: ^ImageView, symbolImage: ^NS.Image, transition: ^SymbolContentTransition) ---
+    ImageView_setSymbolImage_withContentTransition :: proc(self: ^ImageView, symbolImage: ^Image, transition: ^SymbolContentTransition) ---
 
     @(objc_type=ImageView, objc_selector="setSymbolImage:withContentTransition:options:", objc_name="setSymbolImage_withContentTransition_options")
-    ImageView_setSymbolImage_withContentTransition_options :: proc(self: ^ImageView, symbolImage: ^NS.Image, transition: ^SymbolContentTransition, options: ^SymbolEffectOptions) ---
+    ImageView_setSymbolImage_withContentTransition_options :: proc(self: ^ImageView, symbolImage: ^Image, transition: ^SymbolContentTransition, options: ^SymbolEffectOptions) ---
 }
 
 @(objc_type=ImageView, objc_name="addSymbolEffect")

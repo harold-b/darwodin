@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -30,10 +30,10 @@ foreign lib {
     PickerTouchBarItem_pickerTouchBarItemWithIdentifier_images_selectionMode_target_action :: proc(identifier: ^NS.String, images: ^NS.Array, selectionMode: PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=PickerTouchBarItem, objc_selector="setImage:atIndex:", objc_name="setImage")
-    PickerTouchBarItem_setImage :: proc(self: ^PickerTouchBarItem, image: ^NS.Image, index: NS.Integer) ---
+    PickerTouchBarItem_setImage :: proc(self: ^PickerTouchBarItem, image: ^Image, index: NS.Integer) ---
 
     @(objc_type=PickerTouchBarItem, objc_selector="imageAtIndex:", objc_name="imageAtIndex")
-    PickerTouchBarItem_imageAtIndex :: proc(self: ^PickerTouchBarItem, index: NS.Integer) -> ^NS.Image ---
+    PickerTouchBarItem_imageAtIndex :: proc(self: ^PickerTouchBarItem, index: NS.Integer) -> ^Image ---
 
     @(objc_type=PickerTouchBarItem, objc_selector="setLabel:atIndex:", objc_name="setLabel")
     PickerTouchBarItem_setLabel :: proc(self: ^PickerTouchBarItem, label: ^NS.String, index: NS.Integer) ---
@@ -60,10 +60,10 @@ foreign lib {
     PickerTouchBarItem_setCollapsedRepresentationLabel :: proc(self: ^PickerTouchBarItem, collapsedRepresentationLabel: ^NS.String) ---
 
     @(objc_type=PickerTouchBarItem, objc_selector="collapsedRepresentationImage", objc_name="collapsedRepresentationImage")
-    PickerTouchBarItem_collapsedRepresentationImage :: proc(self: ^PickerTouchBarItem) -> ^NS.Image ---
+    PickerTouchBarItem_collapsedRepresentationImage :: proc(self: ^PickerTouchBarItem) -> ^Image ---
 
     @(objc_type=PickerTouchBarItem, objc_selector="setCollapsedRepresentationImage:", objc_name="setCollapsedRepresentationImage")
-    PickerTouchBarItem_setCollapsedRepresentationImage :: proc(self: ^PickerTouchBarItem, collapsedRepresentationImage: ^NS.Image) ---
+    PickerTouchBarItem_setCollapsedRepresentationImage :: proc(self: ^PickerTouchBarItem, collapsedRepresentationImage: ^Image) ---
 
     @(objc_type=PickerTouchBarItem, objc_selector="selectedIndex", objc_name="selectedIndex")
     PickerTouchBarItem_selectedIndex :: proc(self: ^PickerTouchBarItem) -> NS.Integer ---

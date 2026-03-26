@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -44,8 +44,8 @@ foreign lib {
     TableViewRowAction_setBackgroundColor :: proc(self: ^TableViewRowAction, backgroundColor: ^Color) ---
 
     @(objc_type=TableViewRowAction, objc_selector="image", objc_name="image")
-    TableViewRowAction_image :: proc(self: ^TableViewRowAction) -> ^NS.Image ---
+    TableViewRowAction_image :: proc(self: ^TableViewRowAction) -> ^Image ---
 
     @(objc_type=TableViewRowAction, objc_selector="setImage:", objc_name="setImage")
-    TableViewRowAction_setImage :: proc(self: ^TableViewRowAction, image: ^NS.Image) ---
+    TableViewRowAction_setImage :: proc(self: ^TableViewRowAction, image: ^Image) ---
 }

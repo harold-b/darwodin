@@ -3,19 +3,15 @@ package darwodin_NSBrowserDelegate_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -51,7 +47,7 @@ VTable :: struct {
     browser_writeRowsWithIndexes_inColumn_toPasteboard: proc(self: ^AK.BrowserDelegate, browser: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, pasteboard: ^AK.Pasteboard) -> bool,
     browser_namesOfPromisedFilesDroppedAtDestination_forDraggedRowsWithIndexes_inColumn: proc(self: ^AK.BrowserDelegate, browser: ^AK.Browser, dropDestination: ^NS.URL, rowIndexes: ^NS.IndexSet, column: NS.Integer) -> ^NS.Array,
     browser_canDragRowsWithIndexes_inColumn_withEvent: proc(self: ^AK.BrowserDelegate, browser: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event) -> bool,
-    browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset: proc(self: ^AK.BrowserDelegate, browser: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image,
+    browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset: proc(self: ^AK.BrowserDelegate, browser: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image,
     browser_validateDrop_proposedRow_column_dropOperation: proc(self: ^AK.BrowserDelegate, browser: ^AK.Browser, info: ^AK.DraggingInfo, row: ^NS.Integer, column: ^NS.Integer, dropOperation: ^AK.BrowserDropOperation) -> AK.DragOperation,
     browser_acceptDrop_atRow_column_dropOperation: proc(self: ^AK.BrowserDelegate, browser: ^AK.Browser, info: ^AK.DraggingInfo, row: NS.Integer, column: NS.Integer, dropOperation: AK.BrowserDropOperation) -> bool,
     browser_typeSelectStringForRow_inColumn: proc(self: ^AK.BrowserDelegate, browser: ^AK.Browser, row: NS.Integer, column: NS.Integer) -> ^NS.String,
@@ -308,7 +304,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("browser:canDragRowsWithIndexes:inColumn:withEvent:"), auto_cast browser_canDragRowsWithIndexes_inColumn_withEvent, "B@:@@l@") do panic("Failed to register objC method.")
     }
     if vt.browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset != nil {
-        browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset :: proc "c" (self: ^AK.BrowserDelegate, _: SEL, browser: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
+        browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset :: proc "c" (self: ^AK.BrowserDelegate, _: SEL, browser: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

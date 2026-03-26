@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -30,10 +30,10 @@ foreign lib {
     PopUpButton_pullDownButtonWithTitle_menu :: proc(title: ^NS.String, menu: ^Menu) -> instancetype ---
 
     @(objc_type=PopUpButton, objc_selector="pullDownButtonWithImage:menu:", objc_name="pullDownButtonWithImage", objc_is_class_method=true)
-    PopUpButton_pullDownButtonWithImage :: proc(image: ^NS.Image, menu: ^Menu) -> instancetype ---
+    PopUpButton_pullDownButtonWithImage :: proc(image: ^Image, menu: ^Menu) -> instancetype ---
 
     @(objc_type=PopUpButton, objc_selector="pullDownButtonWithTitle:image:menu:", objc_name="pullDownButtonWithTitle_image_menu", objc_is_class_method=true)
-    PopUpButton_pullDownButtonWithTitle_image_menu :: proc(title: ^NS.String, image: ^NS.Image, menu: ^Menu) -> instancetype ---
+    PopUpButton_pullDownButtonWithTitle_image_menu :: proc(title: ^NS.String, image: ^Image, menu: ^Menu) -> instancetype ---
 
     @(objc_type=PopUpButton, objc_selector="initWithFrame:pullsDown:", objc_name="initWithFrame")
     PopUpButton_initWithFrame :: proc(self: ^PopUpButton, buttonFrame: NS.Rect, flag: bool) -> instancetype ---

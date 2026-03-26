@@ -3,7 +3,6 @@ package darwodin_AVFoundation
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
@@ -77,7 +76,7 @@ foreign lib {
     AudioUnitComponent_iconURL :: proc(self: ^AudioUnitComponent) -> ^NS.URL ---
 
     @(objc_type=AudioUnitComponent, objc_selector="icon", objc_name="icon")
-    AudioUnitComponent_icon :: proc(self: ^AudioUnitComponent) -> ^NS.Image ---
+    AudioUnitComponent_icon :: proc(self: ^AudioUnitComponent) -> ^NSImage ---
 
     @(objc_type=AudioUnitComponent, objc_selector="passesAUVal", objc_name="passesAUVal")
     AudioUnitComponent_passesAUVal :: proc(self: ^AudioUnitComponent) -> bool ---

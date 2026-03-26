@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -179,10 +179,10 @@ foreign lib {
     Application_setHelpMenu :: proc(self: ^Application, helpMenu: ^Menu) ---
 
     @(objc_type=Application, objc_selector="applicationIconImage", objc_name="applicationIconImage")
-    Application_applicationIconImage :: proc(self: ^Application) -> ^NS.Image ---
+    Application_applicationIconImage :: proc(self: ^Application) -> ^Image ---
 
     @(objc_type=Application, objc_selector="setApplicationIconImage:", objc_name="setApplicationIconImage")
-    Application_setApplicationIconImage :: proc(self: ^Application, applicationIconImage: ^NS.Image) ---
+    Application_setApplicationIconImage :: proc(self: ^Application, applicationIconImage: ^Image) ---
 
     @(objc_type=Application, objc_selector="dockTile", objc_name="dockTile")
     Application_dockTile :: proc(self: ^Application) -> ^DockTile ---

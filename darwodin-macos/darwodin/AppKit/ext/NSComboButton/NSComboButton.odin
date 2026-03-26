@@ -3,19 +3,15 @@ package darwodin_NSComboButton_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -31,12 +27,12 @@ import "../NSControl"
 VTable :: struct {
     super: NSControl.VTable,
     comboButtonWithTitle_menu_target_action: proc(title: ^NS.String, menu: ^AK.Menu, target: id, action: SEL) -> instancetype,
-    comboButtonWithImage: proc(image: ^NS.Image, menu: ^AK.Menu, target: id, action: SEL) -> instancetype,
-    comboButtonWithTitle_image_menu_target_action: proc(title: ^NS.String, image: ^NS.Image, menu: ^AK.Menu, target: id, action: SEL) -> instancetype,
+    comboButtonWithImage: proc(image: ^AK.Image, menu: ^AK.Menu, target: id, action: SEL) -> instancetype,
+    comboButtonWithTitle_image_menu_target_action: proc(title: ^NS.String, image: ^AK.Image, menu: ^AK.Menu, target: id, action: SEL) -> instancetype,
     title: proc(self: ^AK.ComboButton) -> ^NS.String,
     setTitle: proc(self: ^AK.ComboButton, title: ^NS.String),
-    image: proc(self: ^AK.ComboButton) -> ^NS.Image,
-    setImage: proc(self: ^AK.ComboButton, image: ^NS.Image),
+    image: proc(self: ^AK.ComboButton) -> ^AK.Image,
+    setImage: proc(self: ^AK.ComboButton, image: ^AK.Image),
     imageScaling: proc(self: ^AK.ComboButton) -> AK.ImageScaling,
     setImageScaling: proc(self: ^AK.ComboButton, imageScaling: AK.ImageScaling),
     menu: proc(self: ^AK.ComboButton) -> ^AK.Menu,
@@ -63,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("comboButtonWithTitle:menu:target:action:"), auto_cast comboButtonWithTitle_menu_target_action, "@#:@@@:") do panic("Failed to register objC method.")
     }
     if vt.comboButtonWithImage != nil {
-        comboButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image, menu: ^AK.Menu, target: id, action: SEL) -> instancetype {
+        comboButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^AK.Image, menu: ^AK.Menu, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("comboButtonWithImage:menu:target:action:"), auto_cast comboButtonWithImage, "@#:@@@:") do panic("Failed to register objC method.")
     }
     if vt.comboButtonWithTitle_image_menu_target_action != nil {
-        comboButtonWithTitle_image_menu_target_action :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^NS.Image, menu: ^AK.Menu, target: id, action: SEL) -> instancetype {
+        comboButtonWithTitle_image_menu_target_action :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^AK.Image, menu: ^AK.Menu, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.ComboButton, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.ComboButton, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.ComboButton, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.ComboButton, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

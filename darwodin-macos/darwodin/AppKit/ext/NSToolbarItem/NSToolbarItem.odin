@@ -3,19 +3,15 @@ package darwodin_NSToolbarItem_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -52,8 +48,8 @@ VTable :: struct {
     setAction: proc(self: ^AK.ToolbarItem, action: SEL),
     isEnabled: proc(self: ^AK.ToolbarItem) -> bool,
     setEnabled: proc(self: ^AK.ToolbarItem, enabled: bool),
-    image: proc(self: ^AK.ToolbarItem) -> ^NS.Image,
-    setImage: proc(self: ^AK.ToolbarItem, image: ^NS.Image),
+    image: proc(self: ^AK.ToolbarItem) -> ^AK.Image,
+    setImage: proc(self: ^AK.ToolbarItem, image: ^AK.Image),
     title: proc(self: ^AK.ToolbarItem) -> ^NS.String,
     setTitle: proc(self: ^AK.ToolbarItem, title: ^NS.String),
     isBordered: proc(self: ^AK.ToolbarItem) -> bool,
@@ -310,7 +306,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEnabled:"), auto_cast setEnabled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -320,7 +316,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.ToolbarItem, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.ToolbarItem, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

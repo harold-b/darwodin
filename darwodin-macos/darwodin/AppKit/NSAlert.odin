@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -51,10 +51,10 @@ foreign lib {
     Alert_setInformativeText :: proc(self: ^Alert, informativeText: ^NS.String) ---
 
     @(objc_type=Alert, objc_selector="icon", objc_name="icon")
-    Alert_icon :: proc(self: ^Alert) -> ^NS.Image ---
+    Alert_icon :: proc(self: ^Alert) -> ^Image ---
 
     @(objc_type=Alert, objc_selector="setIcon:", objc_name="setIcon")
-    Alert_setIcon :: proc(self: ^Alert, icon: ^NS.Image) ---
+    Alert_setIcon :: proc(self: ^Alert, icon: ^Image) ---
 
     @(objc_type=Alert, objc_selector="buttons", objc_name="buttons")
     Alert_buttons :: proc(self: ^Alert) -> ^NS.Array ---

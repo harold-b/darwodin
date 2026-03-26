@@ -3,19 +3,15 @@ package darwodin_NSTextFieldCell_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -32,7 +28,7 @@ VTable :: struct {
     super: NSActionCell.VTable,
     initTextCell: proc(self: ^AK.TextFieldCell, string: ^NS.String) -> instancetype,
     initWithCoder: proc(self: ^AK.TextFieldCell, coder: ^NS.Coder) -> instancetype,
-    initImageCell: proc(self: ^AK.TextFieldCell, image: ^NS.Image) -> instancetype,
+    initImageCell: proc(self: ^AK.TextFieldCell, image: ^AK.Image) -> instancetype,
     setUpFieldEditorAttributes: proc(self: ^AK.TextFieldCell, textObj: ^AK.Text) -> ^AK.Text,
     setWantsNotificationForMarkedText: proc(self: ^AK.TextFieldCell, flag: bool),
     backgroundColor: proc(self: ^AK.TextFieldCell) -> ^AK.Color,
@@ -79,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.TextFieldCell, _: SEL, image: ^NS.Image) -> instancetype {
+        initImageCell :: proc "c" (self: ^AK.TextFieldCell, _: SEL, image: ^AK.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

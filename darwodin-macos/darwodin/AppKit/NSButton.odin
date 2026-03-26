@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -28,13 +28,13 @@ Button :: struct { using _: Control,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Button, objc_selector="buttonWithTitle:image:target:action:", objc_name="buttonWithTitle_image_target_action", objc_is_class_method=true)
-    Button_buttonWithTitle_image_target_action :: proc(title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype ---
+    Button_buttonWithTitle_image_target_action :: proc(title: ^NS.String, image: ^Image, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Button, objc_selector="buttonWithTitle:target:action:", objc_name="buttonWithTitle_target_action", objc_is_class_method=true)
     Button_buttonWithTitle_target_action :: proc(title: ^NS.String, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Button, objc_selector="buttonWithImage:target:action:", objc_name="buttonWithImage", objc_is_class_method=true)
-    Button_buttonWithImage :: proc(image: ^NS.Image, target: id, action: SEL) -> instancetype ---
+    Button_buttonWithImage :: proc(image: ^Image, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=Button, objc_selector="checkboxWithTitle:target:action:", objc_name="checkboxWithTitle", objc_is_class_method=true)
     Button_checkboxWithTitle :: proc(title: ^NS.String, target: id, action: SEL) -> instancetype ---
@@ -157,16 +157,16 @@ foreign lib {
     Button_setTintProminence :: proc(self: ^Button, tintProminence: TintProminence) ---
 
     @(objc_type=Button, objc_selector="image", objc_name="image")
-    Button_image :: proc(self: ^Button) -> ^NS.Image ---
+    Button_image :: proc(self: ^Button) -> ^Image ---
 
     @(objc_type=Button, objc_selector="setImage:", objc_name="setImage")
-    Button_setImage :: proc(self: ^Button, image: ^NS.Image) ---
+    Button_setImage :: proc(self: ^Button, image: ^Image) ---
 
     @(objc_type=Button, objc_selector="alternateImage", objc_name="alternateImage")
-    Button_alternateImage :: proc(self: ^Button) -> ^NS.Image ---
+    Button_alternateImage :: proc(self: ^Button) -> ^Image ---
 
     @(objc_type=Button, objc_selector="setAlternateImage:", objc_name="setAlternateImage")
-    Button_setAlternateImage :: proc(self: ^Button, alternateImage: ^NS.Image) ---
+    Button_setAlternateImage :: proc(self: ^Button, alternateImage: ^Image) ---
 
     @(objc_type=Button, objc_selector="imagePosition", objc_name="imagePosition")
     Button_imagePosition :: proc(self: ^Button) -> CellImagePosition ---

@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -127,10 +127,10 @@ foreign lib {
     MenuItem_setAllowsAutomaticKeyEquivalentMirroring :: proc(self: ^MenuItem, allowsAutomaticKeyEquivalentMirroring: bool) ---
 
     @(objc_type=MenuItem, objc_selector="image", objc_name="image")
-    MenuItem_image :: proc(self: ^MenuItem) -> ^NS.Image ---
+    MenuItem_image :: proc(self: ^MenuItem) -> ^Image ---
 
     @(objc_type=MenuItem, objc_selector="setImage:", objc_name="setImage")
-    MenuItem_setImage :: proc(self: ^MenuItem, image: ^NS.Image) ---
+    MenuItem_setImage :: proc(self: ^MenuItem, image: ^Image) ---
 
     @(objc_type=MenuItem, objc_selector="state", objc_name="state")
     MenuItem_state :: proc(self: ^MenuItem) -> ControlStateValue ---
@@ -139,22 +139,22 @@ foreign lib {
     MenuItem_setState :: proc(self: ^MenuItem, state: ControlStateValue) ---
 
     @(objc_type=MenuItem, objc_selector="onStateImage", objc_name="onStateImage")
-    MenuItem_onStateImage :: proc(self: ^MenuItem) -> ^NS.Image ---
+    MenuItem_onStateImage :: proc(self: ^MenuItem) -> ^Image ---
 
     @(objc_type=MenuItem, objc_selector="setOnStateImage:", objc_name="setOnStateImage")
-    MenuItem_setOnStateImage :: proc(self: ^MenuItem, onStateImage: ^NS.Image) ---
+    MenuItem_setOnStateImage :: proc(self: ^MenuItem, onStateImage: ^Image) ---
 
     @(objc_type=MenuItem, objc_selector="offStateImage", objc_name="offStateImage")
-    MenuItem_offStateImage :: proc(self: ^MenuItem) -> ^NS.Image ---
+    MenuItem_offStateImage :: proc(self: ^MenuItem) -> ^Image ---
 
     @(objc_type=MenuItem, objc_selector="setOffStateImage:", objc_name="setOffStateImage")
-    MenuItem_setOffStateImage :: proc(self: ^MenuItem, offStateImage: ^NS.Image) ---
+    MenuItem_setOffStateImage :: proc(self: ^MenuItem, offStateImage: ^Image) ---
 
     @(objc_type=MenuItem, objc_selector="mixedStateImage", objc_name="mixedStateImage")
-    MenuItem_mixedStateImage :: proc(self: ^MenuItem) -> ^NS.Image ---
+    MenuItem_mixedStateImage :: proc(self: ^MenuItem) -> ^Image ---
 
     @(objc_type=MenuItem, objc_selector="setMixedStateImage:", objc_name="setMixedStateImage")
-    MenuItem_setMixedStateImage :: proc(self: ^MenuItem, mixedStateImage: ^NS.Image) ---
+    MenuItem_setMixedStateImage :: proc(self: ^MenuItem, mixedStateImage: ^Image) ---
 
     @(objc_type=MenuItem, objc_selector="isEnabled", objc_name="isEnabled")
     MenuItem_isEnabled :: proc(self: ^MenuItem) -> bool ---

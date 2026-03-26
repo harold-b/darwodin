@@ -3,19 +3,15 @@ package darwodin_NSWorkspace_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -39,10 +35,10 @@ VTable :: struct {
     showSearchResultsForQueryString: proc(self: ^AK.Workspace, queryString: ^NS.String) -> bool,
     noteFileSystemChanged_path: proc(self: ^AK.Workspace, path: ^NS.String),
     isFilePackageAtPath: proc(self: ^AK.Workspace, fullPath: ^NS.String) -> bool,
-    iconForFile: proc(self: ^AK.Workspace, fullPath: ^NS.String) -> ^NS.Image,
-    iconForFiles: proc(self: ^AK.Workspace, fullPaths: ^NS.Array) -> ^NS.Image,
-    iconForContentType: proc(self: ^AK.Workspace, contentType: ^AK.UTType) -> ^NS.Image,
-    setIcon: proc(self: ^AK.Workspace, image: ^NS.Image, fullPath: ^NS.String, options: AK.WorkspaceIconCreationOptions) -> bool,
+    iconForFile: proc(self: ^AK.Workspace, fullPath: ^NS.String) -> ^AK.Image,
+    iconForFiles: proc(self: ^AK.Workspace, fullPaths: ^NS.Array) -> ^AK.Image,
+    iconForContentType: proc(self: ^AK.Workspace, contentType: ^AK.UTType) -> ^AK.Image,
+    setIcon: proc(self: ^AK.Workspace, image: ^AK.Image, fullPath: ^NS.String, options: AK.WorkspaceIconCreationOptions) -> bool,
     recycleURLs: proc(self: ^AK.Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))),
     duplicateURLs: proc(self: ^AK.Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))),
     getFileSystemInfoForPath: proc(self: ^AK.Workspace, fullPath: ^NS.String, removableFlag: ^bool, writableFlag: ^bool, unmountableFlag: ^bool, description: ^^NS.String, fileSystemType: ^^NS.String) -> bool,
@@ -85,7 +81,7 @@ VTable :: struct {
     openTempFile: proc(self: ^AK.Workspace, fullPath: ^NS.String) -> bool,
     findApplications: proc(self: ^AK.Workspace),
     noteUserDefaultsChanged: proc(self: ^AK.Workspace),
-    slideImage: proc(self: ^AK.Workspace, image: ^NS.Image, fromPoint: CG.Point, toPoint: CG.Point),
+    slideImage: proc(self: ^AK.Workspace, image: ^AK.Image, fromPoint: CG.Point, toPoint: CG.Point),
     checkForRemovableMedia: proc(self: ^AK.Workspace),
     noteFileSystemChanged_: proc(self: ^AK.Workspace),
     fileSystemChanged: proc(self: ^AK.Workspace) -> bool,
@@ -95,10 +91,10 @@ VTable :: struct {
     mountedLocalVolumePaths: proc(self: ^AK.Workspace) -> ^NS.Array,
     mountedRemovableMedia: proc(self: ^AK.Workspace) -> ^NS.Array,
     launchedApplications: proc(self: ^AK.Workspace) -> ^NS.Array,
-    openFile_fromImage_at_inView: proc(self: ^AK.Workspace, fullPath: ^NS.String, image: ^NS.Image, point: CG.Point, view: ^AK.View) -> bool,
+    openFile_fromImage_at_inView: proc(self: ^AK.Workspace, fullPath: ^NS.String, image: ^AK.Image, point: CG.Point, view: ^AK.View) -> bool,
     performFileOperation: proc(self: ^AK.Workspace, operation: ^NS.String, source: ^NS.String, destination: ^NS.String, files: ^NS.Array, tag: ^NS.Integer) -> bool,
     getInfoForFile: proc(self: ^AK.Workspace, fullPath: ^NS.String, appName: ^^NS.String, type: ^^NS.String) -> bool,
-    iconForFileType: proc(self: ^AK.Workspace, fileType: ^NS.String) -> ^NS.Image,
+    iconForFileType: proc(self: ^AK.Workspace, fileType: ^NS.String) -> ^AK.Image,
     typeOfFile: proc(self: ^AK.Workspace, absoluteFilePath: ^NS.String, outError: ^^NS.Error) -> ^NS.String,
     localizedDescriptionForType: proc(self: ^AK.Workspace, typeName: ^NS.String) -> ^NS.String,
     preferredFilenameExtensionForType: proc(self: ^AK.Workspace, typeName: ^NS.String) -> ^NS.String,
@@ -212,7 +208,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFilePackageAtPath:"), auto_cast isFilePackageAtPath, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.iconForFile != nil {
-        iconForFile :: proc "c" (self: ^AK.Workspace, _: SEL, fullPath: ^NS.String) -> ^NS.Image {
+        iconForFile :: proc "c" (self: ^AK.Workspace, _: SEL, fullPath: ^NS.String) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -222,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("iconForFile:"), auto_cast iconForFile, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.iconForFiles != nil {
-        iconForFiles :: proc "c" (self: ^AK.Workspace, _: SEL, fullPaths: ^NS.Array) -> ^NS.Image {
+        iconForFiles :: proc "c" (self: ^AK.Workspace, _: SEL, fullPaths: ^NS.Array) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -232,7 +228,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("iconForFiles:"), auto_cast iconForFiles, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.iconForContentType != nil {
-        iconForContentType :: proc "c" (self: ^AK.Workspace, _: SEL, contentType: ^AK.UTType) -> ^NS.Image {
+        iconForContentType :: proc "c" (self: ^AK.Workspace, _: SEL, contentType: ^AK.UTType) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -242,7 +238,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("iconForContentType:"), auto_cast iconForContentType, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.setIcon != nil {
-        setIcon :: proc "c" (self: ^AK.Workspace, _: SEL, image: ^NS.Image, fullPath: ^NS.String, options: AK.WorkspaceIconCreationOptions) -> bool {
+        setIcon :: proc "c" (self: ^AK.Workspace, _: SEL, image: ^AK.Image, fullPath: ^NS.String, options: AK.WorkspaceIconCreationOptions) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -672,7 +668,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("noteUserDefaultsChanged"), auto_cast noteUserDefaultsChanged, "v@:") do panic("Failed to register objC method.")
     }
     if vt.slideImage != nil {
-        slideImage :: proc "c" (self: ^AK.Workspace, _: SEL, image: ^NS.Image, fromPoint: CG.Point, toPoint: CG.Point) {
+        slideImage :: proc "c" (self: ^AK.Workspace, _: SEL, image: ^AK.Image, fromPoint: CG.Point, toPoint: CG.Point) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -772,7 +768,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("launchedApplications"), auto_cast launchedApplications, "@@:") do panic("Failed to register objC method.")
     }
     if vt.openFile_fromImage_at_inView != nil {
-        openFile_fromImage_at_inView :: proc "c" (self: ^AK.Workspace, _: SEL, fullPath: ^NS.String, image: ^NS.Image, point: CG.Point, view: ^AK.View) -> bool {
+        openFile_fromImage_at_inView :: proc "c" (self: ^AK.Workspace, _: SEL, fullPath: ^NS.String, image: ^AK.Image, point: CG.Point, view: ^AK.View) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -802,7 +798,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getInfoForFile:application:type:"), auto_cast getInfoForFile, "B@:@^void^void") do panic("Failed to register objC method.")
     }
     if vt.iconForFileType != nil {
-        iconForFileType :: proc "c" (self: ^AK.Workspace, _: SEL, fileType: ^NS.String) -> ^NS.Image {
+        iconForFileType :: proc "c" (self: ^AK.Workspace, _: SEL, fileType: ^NS.String) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -1,0 +1,51 @@
+#+build darwin:default
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSTableViewRowAction
+///
+@(objc_class="NSTableViewRowAction", objc_superclass=NS.Object)
+TableViewRowAction :: struct { using _: NS.Object, 
+    using _: NS.Copying,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TableViewRowAction, objc_selector="rowActionWithStyle:title:handler:", objc_name="rowActionWithStyle", objc_is_class_method=true)
+    TableViewRowAction_rowActionWithStyle :: proc(style: TableViewRowActionStyle, title: ^NS.String, handler: ^Objc_Block(proc "c" (action: ^TableViewRowAction, row: NS.Integer))) -> instancetype ---
+
+    @(objc_type=TableViewRowAction, objc_selector="style", objc_name="style")
+    TableViewRowAction_style :: proc(self: ^TableViewRowAction) -> TableViewRowActionStyle ---
+
+    @(objc_type=TableViewRowAction, objc_selector="title", objc_name="title")
+    TableViewRowAction_title :: proc(self: ^TableViewRowAction) -> ^NS.String ---
+
+    @(objc_type=TableViewRowAction, objc_selector="setTitle:", objc_name="setTitle")
+    TableViewRowAction_setTitle :: proc(self: ^TableViewRowAction, title: ^NS.String) ---
+
+    @(objc_type=TableViewRowAction, objc_selector="backgroundColor", objc_name="backgroundColor")
+    TableViewRowAction_backgroundColor :: proc(self: ^TableViewRowAction) -> ^Color ---
+
+    @(objc_type=TableViewRowAction, objc_selector="setBackgroundColor:", objc_name="setBackgroundColor")
+    TableViewRowAction_setBackgroundColor :: proc(self: ^TableViewRowAction, backgroundColor: ^Color) ---
+
+    @(objc_type=TableViewRowAction, objc_selector="image", objc_name="image")
+    TableViewRowAction_image :: proc(self: ^TableViewRowAction) -> ^Image ---
+
+    @(objc_type=TableViewRowAction, objc_selector="setImage:", objc_name="setImage")
+    TableViewRowAction_setImage :: proc(self: ^TableViewRowAction, image: ^Image) ---
+}

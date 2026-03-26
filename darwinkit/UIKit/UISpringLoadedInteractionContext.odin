@@ -1,0 +1,43 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UISpringLoadedInteractionContext
+///
+@(objc_class="UISpringLoadedInteractionContext")
+SpringLoadedInteractionContext :: struct { using _: intrinsics.objc_object, 
+    using _: NS.ObjectProtocol,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="locationInView:", objc_name="locationInView")
+    SpringLoadedInteractionContext_locationInView :: proc(self: ^SpringLoadedInteractionContext, view: ^View) -> CG.Point ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="state", objc_name="state")
+    SpringLoadedInteractionContext_state :: proc(self: ^SpringLoadedInteractionContext) -> SpringLoadedInteractionEffectState ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="targetView", objc_name="targetView")
+    SpringLoadedInteractionContext_targetView :: proc(self: ^SpringLoadedInteractionContext) -> ^View ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="setTargetView:", objc_name="setTargetView")
+    SpringLoadedInteractionContext_setTargetView :: proc(self: ^SpringLoadedInteractionContext, targetView: ^View) ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="targetItem", objc_name="targetItem")
+    SpringLoadedInteractionContext_targetItem :: proc(self: ^SpringLoadedInteractionContext) -> id ---
+
+    @(objc_type=SpringLoadedInteractionContext, objc_selector="setTargetItem:", objc_name="setTargetItem")
+    SpringLoadedInteractionContext_setTargetItem :: proc(self: ^SpringLoadedInteractionContext, targetItem: id) ---
+}

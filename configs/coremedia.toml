@@ -13,6 +13,8 @@ ExportTypes = [
   '^OpaqueCM.+',
   '^opaqueCM.+',
   '^ColorSync.+',
+  '^OpaqueIconRef$',  # These are from LaunchServices.framework, exporting from here for now.
+  '^IconRef$',
 ]
 
 ExportMethods = [

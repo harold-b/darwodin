@@ -1,0 +1,66 @@
+#+build darwin:default
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSAccessibilityTable
+///
+@(objc_class="NSAccessibilityTable")
+AccessibilityTable :: struct { using _: intrinsics.objc_object, 
+    using _: AccessibilityGroup,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityTable, objc_selector="accessibilityLabel", objc_name="accessibilityLabel")
+    AccessibilityTable_accessibilityLabel :: proc(self: ^AccessibilityTable) -> ^NS.String ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilityRows", objc_name="accessibilityRows")
+    AccessibilityTable_accessibilityRows :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilitySelectedRows", objc_name="accessibilitySelectedRows")
+    AccessibilityTable_accessibilitySelectedRows :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityTable, objc_selector="setAccessibilitySelectedRows:", objc_name="setAccessibilitySelectedRows")
+    AccessibilityTable_setAccessibilitySelectedRows :: proc(self: ^AccessibilityTable, selectedRows: ^NS.Array) ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilityVisibleRows", objc_name="accessibilityVisibleRows")
+    AccessibilityTable_accessibilityVisibleRows :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilityColumns", objc_name="accessibilityColumns")
+    AccessibilityTable_accessibilityColumns :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilityVisibleColumns", objc_name="accessibilityVisibleColumns")
+    AccessibilityTable_accessibilityVisibleColumns :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilitySelectedColumns", objc_name="accessibilitySelectedColumns")
+    AccessibilityTable_accessibilitySelectedColumns :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilityHeaderGroup", objc_name="accessibilityHeaderGroup")
+    AccessibilityTable_accessibilityHeaderGroup :: proc(self: ^AccessibilityTable) -> ^NS.String ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilitySelectedCells", objc_name="accessibilitySelectedCells")
+    AccessibilityTable_accessibilitySelectedCells :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilityVisibleCells", objc_name="accessibilityVisibleCells")
+    AccessibilityTable_accessibilityVisibleCells :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilityRowHeaderUIElements", objc_name="accessibilityRowHeaderUIElements")
+    AccessibilityTable_accessibilityRowHeaderUIElements :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+
+    @(objc_type=AccessibilityTable, objc_selector="accessibilityColumnHeaderUIElements", objc_name="accessibilityColumnHeaderUIElements")
+    AccessibilityTable_accessibilityColumnHeaderUIElements :: proc(self: ^AccessibilityTable) -> ^NS.Array ---
+}

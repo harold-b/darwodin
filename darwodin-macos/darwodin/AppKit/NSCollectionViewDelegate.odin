@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -44,10 +44,10 @@ foreign lib {
     CollectionViewDelegate_collectionView_namesOfPromisedFilesDroppedAtDestination_forDraggedItemsAtIndexes :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, dropURL: ^NS.URL, indexes: ^NS.IndexSet) -> ^NS.Array ---
 
     @(objc_type=CollectionViewDelegate, objc_selector="collectionView:draggingImageForItemsAtIndexPaths:withEvent:offset:", objc_name="collectionView_draggingImageForItemsAtIndexPaths_withEvent_offset")
-    CollectionViewDelegate_collectionView_draggingImageForItemsAtIndexPaths_withEvent_offset :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPaths: ^NS.Set, event: ^Event, dragImageOffset: ^CG.Point) -> ^NS.Image ---
+    CollectionViewDelegate_collectionView_draggingImageForItemsAtIndexPaths_withEvent_offset :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexPaths: ^NS.Set, event: ^Event, dragImageOffset: ^CG.Point) -> ^Image ---
 
     @(objc_type=CollectionViewDelegate, objc_selector="collectionView:draggingImageForItemsAtIndexes:withEvent:offset:", objc_name="collectionView_draggingImageForItemsAtIndexes_withEvent_offset")
-    CollectionViewDelegate_collectionView_draggingImageForItemsAtIndexes_withEvent_offset :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexes: ^NS.IndexSet, event: ^Event, dragImageOffset: ^CG.Point) -> ^NS.Image ---
+    CollectionViewDelegate_collectionView_draggingImageForItemsAtIndexes_withEvent_offset :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, indexes: ^NS.IndexSet, event: ^Event, dragImageOffset: ^CG.Point) -> ^Image ---
 
     @(objc_type=CollectionViewDelegate, objc_selector="collectionView:validateDrop:proposedIndexPath:dropOperation:", objc_name="collectionView_validateDrop_proposedIndexPath_dropOperation")
     CollectionViewDelegate_collectionView_validateDrop_proposedIndexPath_dropOperation :: proc(self: ^CollectionViewDelegate, collectionView: ^CollectionView, draggingInfo: ^DraggingInfo, proposedDropIndexPath: ^^NS.IndexPath, proposedDropOperation: ^CollectionViewDropOperation) -> DragOperation ---

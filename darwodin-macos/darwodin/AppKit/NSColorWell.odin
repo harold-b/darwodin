@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -60,10 +60,10 @@ foreign lib {
     ColorWell_setColorWellStyle :: proc(self: ^ColorWell, colorWellStyle: ColorWellStyle) ---
 
     @(objc_type=ColorWell, objc_selector="image", objc_name="image")
-    ColorWell_image :: proc(self: ^ColorWell) -> ^NS.Image ---
+    ColorWell_image :: proc(self: ^ColorWell) -> ^Image ---
 
     @(objc_type=ColorWell, objc_selector="setImage:", objc_name="setImage")
-    ColorWell_setImage :: proc(self: ^ColorWell, image: ^NS.Image) ---
+    ColorWell_setImage :: proc(self: ^ColorWell, image: ^Image) ---
 
     @(objc_type=ColorWell, objc_selector="pulldownTarget", objc_name="pulldownTarget")
     ColorWell_pulldownTarget :: proc(self: ^ColorWell) -> id ---

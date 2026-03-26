@@ -3,19 +3,15 @@ package darwodin_NSTableView_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -46,10 +42,10 @@ VTable :: struct {
     reloadData: proc(self: ^AK.TableView),
     noteNumberOfRowsChanged: proc(self: ^AK.TableView),
     reloadDataForRowIndexes: proc(self: ^AK.TableView, rowIndexes: ^NS.IndexSet, columnIndexes: ^NS.IndexSet),
-    setIndicatorImage: proc(self: ^AK.TableView, image: ^NS.Image, tableColumn: ^AK.TableColumn),
-    indicatorImageInTableColumn: proc(self: ^AK.TableView, tableColumn: ^AK.TableColumn) -> ^NS.Image,
+    setIndicatorImage: proc(self: ^AK.TableView, image: ^AK.Image, tableColumn: ^AK.TableColumn),
+    indicatorImageInTableColumn: proc(self: ^AK.TableView, tableColumn: ^AK.TableColumn) -> ^AK.Image,
     canDragRowsWithIndexes: proc(self: ^AK.TableView, rowIndexes: ^NS.IndexSet, mouseDownPoint: CG.Point) -> bool,
-    dragImageForRowsWithIndexes: proc(self: ^AK.TableView, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image,
+    dragImageForRowsWithIndexes: proc(self: ^AK.TableView, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image,
     setDraggingSourceOperationMask: proc(self: ^AK.TableView, mask: AK.DragOperation, isLocal: bool),
     setDropRow: proc(self: ^AK.TableView, row: NS.Integer, dropOperation: AK.TableViewDropOperation),
     selectAll: proc(self: ^AK.TableView, sender: id),
@@ -175,7 +171,7 @@ VTable :: struct {
     selectRow: proc(self: ^AK.TableView, row: NS.Integer, extend: bool),
     selectedColumnEnumerator: proc(self: ^AK.TableView) -> ^NS.Enumerator,
     selectedRowEnumerator: proc(self: ^AK.TableView) -> ^NS.Enumerator,
-    dragImageForRows: proc(self: ^AK.TableView, dragRows: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image,
+    dragImageForRows: proc(self: ^AK.TableView, dragRows: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image,
     setAutoresizesAllColumnsToFit: proc(self: ^AK.TableView, flag: bool),
     autoresizesAllColumnsToFit: proc(self: ^AK.TableView) -> bool,
     columnsInRect: proc(self: ^AK.TableView, rect: NS.Rect) -> NS._NSRange,
@@ -359,7 +355,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reloadDataForRowIndexes:columnIndexes:"), auto_cast reloadDataForRowIndexes, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.setIndicatorImage != nil {
-        setIndicatorImage :: proc "c" (self: ^AK.TableView, _: SEL, image: ^NS.Image, tableColumn: ^AK.TableColumn) {
+        setIndicatorImage :: proc "c" (self: ^AK.TableView, _: SEL, image: ^AK.Image, tableColumn: ^AK.TableColumn) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -369,7 +365,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIndicatorImage:inTableColumn:"), auto_cast setIndicatorImage, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.indicatorImageInTableColumn != nil {
-        indicatorImageInTableColumn :: proc "c" (self: ^AK.TableView, _: SEL, tableColumn: ^AK.TableColumn) -> ^NS.Image {
+        indicatorImageInTableColumn :: proc "c" (self: ^AK.TableView, _: SEL, tableColumn: ^AK.TableColumn) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -389,7 +385,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canDragRowsWithIndexes:atPoint:"), auto_cast canDragRowsWithIndexes, "B@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.dragImageForRowsWithIndexes != nil {
-        dragImageForRowsWithIndexes :: proc "c" (self: ^AK.TableView, _: SEL, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
+        dragImageForRowsWithIndexes :: proc "c" (self: ^AK.TableView, _: SEL, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1649,7 +1645,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRowEnumerator"), auto_cast selectedRowEnumerator, "@@:") do panic("Failed to register objC method.")
     }
     if vt.dragImageForRows != nil {
-        dragImageForRows :: proc "c" (self: ^AK.TableView, _: SEL, dragRows: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
+        dragImageForRows :: proc "c" (self: ^AK.TableView, _: SEL, dragRows: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

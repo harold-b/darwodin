@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -30,7 +30,7 @@ foreign lib {
     SharingService_sharingServiceNamed :: proc(serviceName: ^NS.String) -> ^SharingService ---
 
     @(objc_type=SharingService, objc_selector="initWithTitle:image:alternateImage:handler:", objc_name="initWithTitle")
-    SharingService_initWithTitle :: proc(self: ^SharingService, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> instancetype ---
+    SharingService_initWithTitle :: proc(self: ^SharingService, title: ^NS.String, image: ^Image, alternateImage: ^Image, block: ^Objc_Block(proc "c" ())) -> instancetype ---
 
     @(objc_type=SharingService, objc_selector="init", objc_name="init")
     SharingService_init :: proc(self: ^SharingService) -> instancetype ---
@@ -51,10 +51,10 @@ foreign lib {
     SharingService_title :: proc(self: ^SharingService) -> ^NS.String ---
 
     @(objc_type=SharingService, objc_selector="image", objc_name="image")
-    SharingService_image :: proc(self: ^SharingService) -> ^NS.Image ---
+    SharingService_image :: proc(self: ^SharingService) -> ^Image ---
 
     @(objc_type=SharingService, objc_selector="alternateImage", objc_name="alternateImage")
-    SharingService_alternateImage :: proc(self: ^SharingService) -> ^NS.Image ---
+    SharingService_alternateImage :: proc(self: ^SharingService) -> ^Image ---
 
     @(objc_type=SharingService, objc_selector="menuItemTitle", objc_name="menuItemTitle")
     SharingService_menuItemTitle :: proc(self: ^SharingService) -> ^NS.String ---

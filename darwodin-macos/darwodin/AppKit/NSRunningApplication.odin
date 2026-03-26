@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -87,7 +87,7 @@ foreign lib {
     RunningApplication_launchDate :: proc(self: ^RunningApplication) -> ^NS.Date ---
 
     @(objc_type=RunningApplication, objc_selector="icon", objc_name="icon")
-    RunningApplication_icon :: proc(self: ^RunningApplication) -> ^NS.Image ---
+    RunningApplication_icon :: proc(self: ^RunningApplication) -> ^Image ---
 
     @(objc_type=RunningApplication, objc_selector="executableArchitecture", objc_name="executableArchitecture")
     RunningApplication_executableArchitecture :: proc(self: ^RunningApplication) -> NS.Integer ---

@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -77,16 +77,16 @@ foreign lib {
     TableView_reloadDataForRowIndexes :: proc(self: ^TableView, rowIndexes: ^NS.IndexSet, columnIndexes: ^NS.IndexSet) ---
 
     @(objc_type=TableView, objc_selector="setIndicatorImage:inTableColumn:", objc_name="setIndicatorImage")
-    TableView_setIndicatorImage :: proc(self: ^TableView, image: ^NS.Image, tableColumn: ^TableColumn) ---
+    TableView_setIndicatorImage :: proc(self: ^TableView, image: ^Image, tableColumn: ^TableColumn) ---
 
     @(objc_type=TableView, objc_selector="indicatorImageInTableColumn:", objc_name="indicatorImageInTableColumn")
-    TableView_indicatorImageInTableColumn :: proc(self: ^TableView, tableColumn: ^TableColumn) -> ^NS.Image ---
+    TableView_indicatorImageInTableColumn :: proc(self: ^TableView, tableColumn: ^TableColumn) -> ^Image ---
 
     @(objc_type=TableView, objc_selector="canDragRowsWithIndexes:atPoint:", objc_name="canDragRowsWithIndexes")
     TableView_canDragRowsWithIndexes :: proc(self: ^TableView, rowIndexes: ^NS.IndexSet, mouseDownPoint: CG.Point) -> bool ---
 
     @(objc_type=TableView, objc_selector="dragImageForRowsWithIndexes:tableColumns:event:offset:", objc_name="dragImageForRowsWithIndexes")
-    TableView_dragImageForRowsWithIndexes :: proc(self: ^TableView, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^Event, dragImageOffset: ^CG.Point) -> ^NS.Image ---
+    TableView_dragImageForRowsWithIndexes :: proc(self: ^TableView, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^Event, dragImageOffset: ^CG.Point) -> ^Image ---
 
     @(objc_type=TableView, objc_selector="setDraggingSourceOperationMask:forLocal:", objc_name="setDraggingSourceOperationMask")
     TableView_setDraggingSourceOperationMask :: proc(self: ^TableView, mask: DragOperation, isLocal: bool) ---
@@ -464,7 +464,7 @@ foreign lib {
     TableView_selectedRowEnumerator :: proc(self: ^TableView) -> ^NS.Enumerator ---
 
     @(objc_type=TableView, objc_selector="dragImageForRows:event:dragImageOffset:", objc_name="dragImageForRows")
-    TableView_dragImageForRows :: proc(self: ^TableView, dragRows: ^NS.Array, dragEvent: ^Event, dragImageOffset: ^CG.Point) -> ^NS.Image ---
+    TableView_dragImageForRows :: proc(self: ^TableView, dragRows: ^NS.Array, dragEvent: ^Event, dragImageOffset: ^CG.Point) -> ^Image ---
 
     @(objc_type=TableView, objc_selector="setAutoresizesAllColumnsToFit:", objc_name="setAutoresizesAllColumnsToFit")
     TableView_setAutoresizesAllColumnsToFit :: proc(self: ^TableView, flag: bool) ---

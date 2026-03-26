@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -162,7 +162,7 @@ foreign lib {
     Browser_canDragRowsWithIndexes :: proc(self: ^Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^Event) -> bool ---
 
     @(objc_type=Browser, objc_selector="draggingImageForRowsWithIndexes:inColumn:withEvent:offset:", objc_name="draggingImageForRowsWithIndexes")
-    Browser_draggingImageForRowsWithIndexes :: proc(self: ^Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^Event, dragImageOffset: ^CG.Point) -> ^NS.Image ---
+    Browser_draggingImageForRowsWithIndexes :: proc(self: ^Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^Event, dragImageOffset: ^CG.Point) -> ^Image ---
 
     @(objc_type=Browser, objc_selector="setDraggingSourceOperationMask:forLocal:", objc_name="setDraggingSourceOperationMask")
     Browser_setDraggingSourceOperationMask :: proc(self: ^Browser, mask: DragOperation, isLocal: bool) ---

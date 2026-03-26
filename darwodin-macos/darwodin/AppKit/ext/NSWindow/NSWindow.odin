@@ -3,19 +3,15 @@ package darwodin_NSWindow_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -134,7 +130,7 @@ VTable :: struct {
     addTabbedWindow: proc(self: ^AK.Window, window: ^AK.Window, ordered: AK.WindowOrderingMode),
     transferWindowSharingToWindow: proc(self: ^AK.Window, window: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     requestSharingOfWindow: proc(self: ^AK.Window, window: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
-    requestSharingOfWindowUsingPreview: proc(self: ^AK.Window, image: ^NS.Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    requestSharingOfWindowUsingPreview: proc(self: ^AK.Window, image: ^AK.Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
     defaultDepthLimit: proc() -> AK.WindowDepth,
     title: proc(self: ^AK.Window) -> ^NS.String,
     setTitle: proc(self: ^AK.Window, title: ^NS.String),
@@ -194,8 +190,8 @@ VTable :: struct {
     setHidesOnDeactivate: proc(self: ^AK.Window, hidesOnDeactivate: bool),
     canHide: proc(self: ^AK.Window) -> bool,
     setCanHide: proc(self: ^AK.Window, canHide: bool),
-    miniwindowImage: proc(self: ^AK.Window) -> ^NS.Image,
-    setMiniwindowImage: proc(self: ^AK.Window, miniwindowImage: ^NS.Image),
+    miniwindowImage: proc(self: ^AK.Window) -> ^AK.Image,
+    setMiniwindowImage: proc(self: ^AK.Window, miniwindowImage: ^AK.Image),
     miniwindowTitle: proc(self: ^AK.Window) -> ^NS.String,
     setMiniwindowTitle: proc(self: ^AK.Window, miniwindowTitle: ^NS.String),
     dockTile: proc(self: ^AK.Window) -> ^AK.DockTile,
@@ -315,7 +311,7 @@ VTable :: struct {
     resetCursorRects: proc(self: ^AK.Window),
     areCursorRectsEnabled: proc(self: ^AK.Window) -> bool,
     beginDraggingSessionWithItems: proc(self: ^AK.Window, items: ^NS.Array, event: ^AK.Event, source: ^AK.DraggingSource) -> ^AK.DraggingSession,
-    dragImage: proc(self: ^AK.Window, image: ^NS.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^AK.Event, pboard: ^AK.Pasteboard, sourceObj: id, slideFlag: bool),
+    dragImage: proc(self: ^AK.Window, image: ^AK.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^AK.Event, pboard: ^AK.Pasteboard, sourceObj: id, slideFlag: bool),
     registerForDraggedTypes: proc(self: ^AK.Window, newTypes: ^NS.Array),
     unregisterDraggedTypes: proc(self: ^AK.Window),
     displayLinkWithTarget: proc(self: ^AK.Window, target: id, selector: SEL) -> ^CA.DisplayLink,
@@ -1424,7 +1420,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("requestSharingOfWindow:completionHandler:"), auto_cast requestSharingOfWindow, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.requestSharingOfWindowUsingPreview != nil {
-        requestSharingOfWindowUsingPreview :: proc "c" (self: ^AK.Window, _: SEL, image: ^NS.Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        requestSharingOfWindowUsingPreview :: proc "c" (self: ^AK.Window, _: SEL, image: ^AK.Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -2024,7 +2020,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCanHide:"), auto_cast setCanHide, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.miniwindowImage != nil {
-        miniwindowImage :: proc "c" (self: ^AK.Window, _: SEL) -> ^NS.Image {
+        miniwindowImage :: proc "c" (self: ^AK.Window, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -2034,7 +2030,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("miniwindowImage"), auto_cast miniwindowImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setMiniwindowImage != nil {
-        setMiniwindowImage :: proc "c" (self: ^AK.Window, _: SEL, miniwindowImage: ^NS.Image) {
+        setMiniwindowImage :: proc "c" (self: ^AK.Window, _: SEL, miniwindowImage: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -3234,7 +3230,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginDraggingSessionWithItems:event:source:"), auto_cast beginDraggingSessionWithItems, "@@:^void@@") do panic("Failed to register objC method.")
     }
     if vt.dragImage != nil {
-        dragImage :: proc "c" (self: ^AK.Window, _: SEL, image: ^NS.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^AK.Event, pboard: ^AK.Pasteboard, sourceObj: id, slideFlag: bool) {
+        dragImage :: proc "c" (self: ^AK.Window, _: SEL, image: ^AK.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^AK.Event, pboard: ^AK.Pasteboard, sourceObj: id, slideFlag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

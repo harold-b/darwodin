@@ -1,0 +1,39 @@
+#+build darwin:default
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSAccessibilityElement
+///
+@(objc_class="NSAccessibilityElement", objc_superclass=NS.Object)
+AccessibilityElement :: struct { using _: NS.Object, 
+    using _: Accessibility,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=AccessibilityElement, objc_selector="accessibilityElementWithRole:frame:label:parent:", objc_name="accessibilityElementWithRole", objc_is_class_method=true)
+    AccessibilityElement_accessibilityElementWithRole :: proc(role: ^NS.String, frame: NS.Rect, label: ^NS.String, parent: id) -> id ---
+
+    @(objc_type=AccessibilityElement, objc_selector="accessibilityAddChildElement:", objc_name="accessibilityAddChildElement")
+    AccessibilityElement_accessibilityAddChildElement :: proc(self: ^AccessibilityElement, childElement: ^AccessibilityElement) ---
+
+    @(objc_type=AccessibilityElement, objc_selector="accessibilityFrameInParentSpace", objc_name="accessibilityFrameInParentSpace")
+    AccessibilityElement_accessibilityFrameInParentSpace :: proc(self: ^AccessibilityElement) -> NS.Rect ---
+
+    @(objc_type=AccessibilityElement, objc_selector="setAccessibilityFrameInParentSpace:", objc_name="setAccessibilityFrameInParentSpace")
+    AccessibilityElement_setAccessibilityFrameInParentSpace :: proc(self: ^AccessibilityElement, accessibilityFrameInParentSpace: NS.Rect) ---
+}

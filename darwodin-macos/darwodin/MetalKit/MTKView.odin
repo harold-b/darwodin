@@ -3,7 +3,6 @@ package darwodin_MetalKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
@@ -128,7 +127,7 @@ foreign lib {
     View_currentRenderPassDescriptor :: proc(self: ^View) -> ^MTL.RenderPassDescriptor ---
 
     @(objc_type=View, objc_selector="currentMTL4RenderPassDescriptor", objc_name="currentMTL4RenderPassDescriptor")
-    View_currentMTL4RenderPassDescriptor :: proc(self: ^View) -> ^MTL.4RenderPassDescriptor ---
+    View_currentMTL4RenderPassDescriptor :: proc(self: ^View) -> ^MTL.MTL4RenderPassDescriptor ---
 
     @(objc_type=View, objc_selector="preferredFramesPerSecond", objc_name="preferredFramesPerSecond")
     View_preferredFramesPerSecond :: proc(self: ^View) -> NS.Integer ---

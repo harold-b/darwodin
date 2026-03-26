@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -36,7 +36,7 @@ foreign lib {
     Cell_initTextCell :: proc(self: ^Cell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=Cell, objc_selector="initImageCell:", objc_name="initImageCell")
-    Cell_initImageCell :: proc(self: ^Cell, image: ^NS.Image) -> instancetype ---
+    Cell_initImageCell :: proc(self: ^Cell, image: ^Image) -> instancetype ---
 
     @(objc_type=Cell, objc_selector="initWithCoder:", objc_name="initWithCoder")
     Cell_initWithCoder :: proc(self: ^Cell, coder: ^NS.Coder) -> instancetype ---
@@ -303,10 +303,10 @@ foreign lib {
     Cell_setIntegerValue :: proc(self: ^Cell, integerValue: NS.Integer) ---
 
     @(objc_type=Cell, objc_selector="image", objc_name="image")
-    Cell_image :: proc(self: ^Cell) -> ^NS.Image ---
+    Cell_image :: proc(self: ^Cell) -> ^Image ---
 
     @(objc_type=Cell, objc_selector="setImage:", objc_name="setImage")
-    Cell_setImage :: proc(self: ^Cell, image: ^NS.Image) ---
+    Cell_setImage :: proc(self: ^Cell, image: ^Image) ---
 
     @(objc_type=Cell, objc_selector="controlSize", objc_name="controlSize")
     Cell_controlSize :: proc(self: ^Cell) -> ControlSize ---

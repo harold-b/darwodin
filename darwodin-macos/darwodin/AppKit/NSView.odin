@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -784,7 +784,7 @@ foreign lib {
     View_displayLinkWithTarget :: proc(self: ^View, target: id, selector: SEL) -> ^CA.DisplayLink ---
 
     @(objc_type=View, objc_selector="dragImage:at:offset:event:pasteboard:source:slideBack:", objc_name="dragImage")
-    View_dragImage :: proc(self: ^View, image: ^NS.Image, viewLocation: CG.Point, initialOffset: NS.Size, event: ^Event, pboard: ^Pasteboard, sourceObj: id, slideFlag: bool) ---
+    View_dragImage :: proc(self: ^View, image: ^Image, viewLocation: CG.Point, initialOffset: NS.Size, event: ^Event, pboard: ^Pasteboard, sourceObj: id, slideFlag: bool) ---
 
     @(objc_type=View, objc_selector="dragFile:fromRect:slideBack:event:", objc_name="dragFile")
     View_dragFile :: proc(self: ^View, filename: ^NS.String, rect: NS.Rect, flag: bool, event: ^Event) -> bool ---

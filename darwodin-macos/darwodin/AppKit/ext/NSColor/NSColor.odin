@@ -3,19 +3,15 @@ package darwodin_NSColor_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -51,7 +47,7 @@ VTable :: struct {
     colorWithCalibratedWhite: proc(white: CG.Float, alpha: CG.Float) -> ^AK.Color,
     colorWithCalibratedRed: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float) -> ^AK.Color,
     colorWithCalibratedHue: proc(hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^AK.Color,
-    colorWithPatternImage: proc(image: ^NS.Image) -> ^AK.Color,
+    colorWithPatternImage: proc(image: ^AK.Image) -> ^AK.Color,
     colorUsingType: proc(self: ^AK.Color, type: AK.ColorType) -> ^AK.Color,
     colorUsingColorSpace: proc(self: ^AK.Color, space: ^AK.ColorSpace) -> ^AK.Color,
     colorWithRed_green_blue_alpha_exposure: proc(red: CG.Float, green: CG.Float, blue: CG.Float, alpha: CG.Float, exposure: CG.Float) -> ^AK.Color,
@@ -165,7 +161,7 @@ VTable :: struct {
     blackComponent: proc(self: ^AK.Color) -> CG.Float,
     colorSpace: proc(self: ^AK.Color) -> ^AK.ColorSpace,
     numberOfComponents: proc(self: ^AK.Color) -> NS.Integer,
-    patternImage: proc(self: ^AK.Color) -> ^NS.Image,
+    patternImage: proc(self: ^AK.Color) -> ^AK.Image,
     alphaComponent: proc(self: ^AK.Color) -> CG.Float,
     linearExposure: proc(self: ^AK.Color) -> CG.Float,
     _CGColor: proc(self: ^AK.Color) -> CG.ColorRef,
@@ -408,7 +404,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("colorWithCalibratedHue:saturation:brightness:alpha:"), auto_cast colorWithCalibratedHue, "@#:dddd") do panic("Failed to register objC method.")
     }
     if vt.colorWithPatternImage != nil {
-        colorWithPatternImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image) -> ^AK.Color {
+        colorWithPatternImage :: proc "c" (self: Class, _: SEL, image: ^AK.Image) -> ^AK.Color {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -1548,7 +1544,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfComponents"), auto_cast numberOfComponents, "l@:") do panic("Failed to register objC method.")
     }
     if vt.patternImage != nil {
-        patternImage :: proc "c" (self: ^AK.Color, _: SEL) -> ^NS.Image {
+        patternImage :: proc "c" (self: ^AK.Color, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

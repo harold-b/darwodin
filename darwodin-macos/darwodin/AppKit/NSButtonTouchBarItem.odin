@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -27,10 +27,10 @@ foreign lib {
     ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_title_target_action :: proc(identifier: ^NS.String, title: ^NS.String, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ButtonTouchBarItem, objc_selector="buttonTouchBarItemWithIdentifier:image:target:action:", objc_name="buttonTouchBarItemWithIdentifier_image_target_action", objc_is_class_method=true)
-    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_image_target_action :: proc(identifier: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype ---
+    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_image_target_action :: proc(identifier: ^NS.String, image: ^Image, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ButtonTouchBarItem, objc_selector="buttonTouchBarItemWithIdentifier:title:image:target:action:", objc_name="buttonTouchBarItemWithIdentifier_title_image_target_action", objc_is_class_method=true)
-    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_title_image_target_action :: proc(identifier: ^NS.String, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype ---
+    ButtonTouchBarItem_buttonTouchBarItemWithIdentifier_title_image_target_action :: proc(identifier: ^NS.String, title: ^NS.String, image: ^Image, target: id, action: SEL) -> instancetype ---
 
     @(objc_type=ButtonTouchBarItem, objc_selector="title", objc_name="title")
     ButtonTouchBarItem_title :: proc(self: ^ButtonTouchBarItem) -> ^NS.String ---
@@ -39,10 +39,10 @@ foreign lib {
     ButtonTouchBarItem_setTitle :: proc(self: ^ButtonTouchBarItem, title: ^NS.String) ---
 
     @(objc_type=ButtonTouchBarItem, objc_selector="image", objc_name="image")
-    ButtonTouchBarItem_image :: proc(self: ^ButtonTouchBarItem) -> ^NS.Image ---
+    ButtonTouchBarItem_image :: proc(self: ^ButtonTouchBarItem) -> ^Image ---
 
     @(objc_type=ButtonTouchBarItem, objc_selector="setImage:", objc_name="setImage")
-    ButtonTouchBarItem_setImage :: proc(self: ^ButtonTouchBarItem, image: ^NS.Image) ---
+    ButtonTouchBarItem_setImage :: proc(self: ^ButtonTouchBarItem, image: ^Image) ---
 
     @(objc_type=ButtonTouchBarItem, objc_selector="bezelColor", objc_name="bezelColor")
     ButtonTouchBarItem_bezelColor :: proc(self: ^ButtonTouchBarItem) -> ^Color ---

@@ -3,19 +3,15 @@ package darwodin_NSSharingServicePickerTouchBarItem_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -36,8 +32,8 @@ VTable :: struct {
     setEnabled: proc(self: ^AK.SharingServicePickerTouchBarItem, enabled: bool),
     buttonTitle: proc(self: ^AK.SharingServicePickerTouchBarItem) -> ^NS.String,
     setButtonTitle: proc(self: ^AK.SharingServicePickerTouchBarItem, buttonTitle: ^NS.String),
-    buttonImage: proc(self: ^AK.SharingServicePickerTouchBarItem) -> ^NS.Image,
-    setButtonImage: proc(self: ^AK.SharingServicePickerTouchBarItem, buttonImage: ^NS.Image),
+    buttonImage: proc(self: ^AK.SharingServicePickerTouchBarItem) -> ^AK.Image,
+    setButtonImage: proc(self: ^AK.SharingServicePickerTouchBarItem, buttonImage: ^AK.Image),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -108,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setButtonTitle:"), auto_cast setButtonTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.buttonImage != nil {
-        buttonImage :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL) -> ^NS.Image {
+        buttonImage :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("buttonImage"), auto_cast buttonImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setButtonImage != nil {
-        setButtonImage :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL, buttonImage: ^NS.Image) {
+        setButtonImage :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL, buttonImage: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

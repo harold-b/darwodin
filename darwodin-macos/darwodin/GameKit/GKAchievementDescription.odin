@@ -3,7 +3,6 @@ package darwodin_GameKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 import AK "../AppKit"
@@ -61,14 +60,14 @@ foreign lib {
     AchievementDescription_activityProperties :: proc(self: ^AchievementDescription) -> ^NS.Dictionary ---
 
     @(objc_type=AchievementDescription, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    AchievementDescription_loadImageWithCompletionHandler :: proc(self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" (image: ^NS.Image, error: ^NS.Error))) ---
+    AchievementDescription_loadImageWithCompletionHandler :: proc(self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" (image: ^AK.Image, error: ^NS.Error))) ---
 
     @(objc_type=AchievementDescription, objc_selector="incompleteAchievementImage", objc_name="incompleteAchievementImage", objc_is_class_method=true)
-    AchievementDescription_incompleteAchievementImage :: proc() -> ^NS.Image ---
+    AchievementDescription_incompleteAchievementImage :: proc() -> ^AK.Image ---
 
     @(objc_type=AchievementDescription, objc_selector="placeholderCompletedAchievementImage", objc_name="placeholderCompletedAchievementImage", objc_is_class_method=true)
-    AchievementDescription_placeholderCompletedAchievementImage :: proc() -> ^NS.Image ---
+    AchievementDescription_placeholderCompletedAchievementImage :: proc() -> ^AK.Image ---
 
     @(objc_type=AchievementDescription, objc_selector="image", objc_name="image")
-    AchievementDescription_image :: proc(self: ^AchievementDescription) -> ^NS.Image ---
+    AchievementDescription_image :: proc(self: ^AchievementDescription) -> ^AK.Image ---
 }

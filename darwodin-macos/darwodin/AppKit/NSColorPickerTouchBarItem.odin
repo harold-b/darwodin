@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -33,7 +33,7 @@ foreign lib {
     ColorPickerTouchBarItem_strokeColorPickerWithIdentifier :: proc(identifier: ^NS.String) -> instancetype ---
 
     @(objc_type=ColorPickerTouchBarItem, objc_selector="colorPickerWithIdentifier:buttonImage:", objc_name="colorPickerWithIdentifier_buttonImage", objc_is_class_method=true)
-    ColorPickerTouchBarItem_colorPickerWithIdentifier_buttonImage :: proc(identifier: ^NS.String, image: ^NS.Image) -> instancetype ---
+    ColorPickerTouchBarItem_colorPickerWithIdentifier_buttonImage :: proc(identifier: ^NS.String, image: ^Image) -> instancetype ---
 
     @(objc_type=ColorPickerTouchBarItem, objc_selector="color", objc_name="color")
     ColorPickerTouchBarItem_color :: proc(self: ^ColorPickerTouchBarItem) -> ^Color ---

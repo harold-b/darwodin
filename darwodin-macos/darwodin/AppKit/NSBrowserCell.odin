@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -27,7 +27,7 @@ foreign lib {
     BrowserCell_initTextCell :: proc(self: ^BrowserCell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=BrowserCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    BrowserCell_initImageCell :: proc(self: ^BrowserCell, image: ^NS.Image) -> instancetype ---
+    BrowserCell_initImageCell :: proc(self: ^BrowserCell, image: ^Image) -> instancetype ---
 
     @(objc_type=BrowserCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
     BrowserCell_initWithCoder :: proc(self: ^BrowserCell, coder: ^NS.Coder) -> instancetype ---
@@ -42,10 +42,10 @@ foreign lib {
     BrowserCell_set :: proc(self: ^BrowserCell) ---
 
     @(objc_type=BrowserCell, objc_selector="branchImage", objc_name="branchImage", objc_is_class_method=true)
-    BrowserCell_branchImage :: proc() -> ^NS.Image ---
+    BrowserCell_branchImage :: proc() -> ^Image ---
 
     @(objc_type=BrowserCell, objc_selector="highlightedBranchImage", objc_name="highlightedBranchImage", objc_is_class_method=true)
-    BrowserCell_highlightedBranchImage :: proc() -> ^NS.Image ---
+    BrowserCell_highlightedBranchImage :: proc() -> ^Image ---
 
     @(objc_type=BrowserCell, objc_selector="isLeaf", objc_name="isLeaf")
     BrowserCell_isLeaf :: proc(self: ^BrowserCell) -> bool ---
@@ -60,14 +60,14 @@ foreign lib {
     BrowserCell_setLoaded :: proc(self: ^BrowserCell, loaded: bool) ---
 
     @(objc_type=BrowserCell, objc_selector="image", objc_name="image")
-    BrowserCell_image :: proc(self: ^BrowserCell) -> ^NS.Image ---
+    BrowserCell_image :: proc(self: ^BrowserCell) -> ^Image ---
 
     @(objc_type=BrowserCell, objc_selector="setImage:", objc_name="setImage")
-    BrowserCell_setImage :: proc(self: ^BrowserCell, image: ^NS.Image) ---
+    BrowserCell_setImage :: proc(self: ^BrowserCell, image: ^Image) ---
 
     @(objc_type=BrowserCell, objc_selector="alternateImage", objc_name="alternateImage")
-    BrowserCell_alternateImage :: proc(self: ^BrowserCell) -> ^NS.Image ---
+    BrowserCell_alternateImage :: proc(self: ^BrowserCell) -> ^Image ---
 
     @(objc_type=BrowserCell, objc_selector="setAlternateImage:", objc_name="setAlternateImage")
-    BrowserCell_setAlternateImage :: proc(self: ^BrowserCell, alternateImage: ^NS.Image) ---
+    BrowserCell_setAlternateImage :: proc(self: ^BrowserCell, alternateImage: ^Image) ---
 }

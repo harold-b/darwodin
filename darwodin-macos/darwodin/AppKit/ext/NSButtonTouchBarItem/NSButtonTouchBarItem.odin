@@ -3,19 +3,15 @@ package darwodin_NSButtonTouchBarItem_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -31,12 +27,12 @@ import "../NSTouchBarItem"
 VTable :: struct {
     super: NSTouchBarItem.VTable,
     buttonTouchBarItemWithIdentifier_title_target_action: proc(identifier: ^NS.String, title: ^NS.String, target: id, action: SEL) -> instancetype,
-    buttonTouchBarItemWithIdentifier_image_target_action: proc(identifier: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype,
-    buttonTouchBarItemWithIdentifier_title_image_target_action: proc(identifier: ^NS.String, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype,
+    buttonTouchBarItemWithIdentifier_image_target_action: proc(identifier: ^NS.String, image: ^AK.Image, target: id, action: SEL) -> instancetype,
+    buttonTouchBarItemWithIdentifier_title_image_target_action: proc(identifier: ^NS.String, title: ^NS.String, image: ^AK.Image, target: id, action: SEL) -> instancetype,
     title: proc(self: ^AK.ButtonTouchBarItem) -> ^NS.String,
     setTitle: proc(self: ^AK.ButtonTouchBarItem, title: ^NS.String),
-    image: proc(self: ^AK.ButtonTouchBarItem) -> ^NS.Image,
-    setImage: proc(self: ^AK.ButtonTouchBarItem, image: ^NS.Image),
+    image: proc(self: ^AK.ButtonTouchBarItem) -> ^AK.Image,
+    setImage: proc(self: ^AK.ButtonTouchBarItem, image: ^AK.Image),
     bezelColor: proc(self: ^AK.ButtonTouchBarItem) -> ^AK.Color,
     setBezelColor: proc(self: ^AK.ButtonTouchBarItem, bezelColor: ^AK.Color),
     target: proc(self: ^AK.ButtonTouchBarItem) -> id,
@@ -67,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonTouchBarItemWithIdentifier:title:target:action:"), auto_cast buttonTouchBarItemWithIdentifier_title_target_action, "@#:@@@:") do panic("Failed to register objC method.")
     }
     if vt.buttonTouchBarItemWithIdentifier_image_target_action != nil {
-        buttonTouchBarItemWithIdentifier_image_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype {
+        buttonTouchBarItemWithIdentifier_image_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, image: ^AK.Image, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonTouchBarItemWithIdentifier:image:target:action:"), auto_cast buttonTouchBarItemWithIdentifier_image_target_action, "@#:@@@:") do panic("Failed to register objC method.")
     }
     if vt.buttonTouchBarItemWithIdentifier_title_image_target_action != nil {
-        buttonTouchBarItemWithIdentifier_title_image_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype {
+        buttonTouchBarItemWithIdentifier_title_image_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, title: ^NS.String, image: ^AK.Image, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.ButtonTouchBarItem, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.ButtonTouchBarItem, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.ButtonTouchBarItem, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.ButtonTouchBarItem, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

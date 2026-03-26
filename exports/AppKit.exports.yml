@@ -763,6 +763,7 @@ Enums:
     NSUserNotificationActivationType: AK.UserNotificationActivationType
 
 ObjCClasses:
+    NSImage: AK.Image
     NSColor: AK.Color
     NSView: AK.View
     NSWindow: AK.Window
@@ -1388,7 +1389,6 @@ ObjCClasses:
     NSSpecifierTest: AK.SpecifierTest
     NSLogicalTest: AK.LogicalTest
     NSSpellServer: AK.SpellServer
-    NSImage: AK.Image
     NSUserNotificationAction: AK.UserNotificationAction
     NSUserNotification: AK.UserNotification
     NSUserNotificationCenter: AK.UserNotificationCenter

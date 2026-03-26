@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -92,10 +92,10 @@ foreign lib {
     ToolbarItem_setEnabled :: proc(self: ^ToolbarItem, enabled: bool) ---
 
     @(objc_type=ToolbarItem, objc_selector="image", objc_name="image")
-    ToolbarItem_image :: proc(self: ^ToolbarItem) -> ^NS.Image ---
+    ToolbarItem_image :: proc(self: ^ToolbarItem) -> ^Image ---
 
     @(objc_type=ToolbarItem, objc_selector="setImage:", objc_name="setImage")
-    ToolbarItem_setImage :: proc(self: ^ToolbarItem, image: ^NS.Image) ---
+    ToolbarItem_setImage :: proc(self: ^ToolbarItem, image: ^Image) ---
 
     @(objc_type=ToolbarItem, objc_selector="title", objc_name="title")
     ToolbarItem_title :: proc(self: ^ToolbarItem) -> ^NS.String ---

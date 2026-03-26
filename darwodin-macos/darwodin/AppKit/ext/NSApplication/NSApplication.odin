@@ -3,19 +3,15 @@ package darwodin_NSApplication_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -80,8 +76,8 @@ VTable :: struct {
     setMainMenu: proc(self: ^AK.Application, mainMenu: ^AK.Menu),
     helpMenu: proc(self: ^AK.Application) -> ^AK.Menu,
     setHelpMenu: proc(self: ^AK.Application, helpMenu: ^AK.Menu),
-    applicationIconImage: proc(self: ^AK.Application) -> ^NS.Image,
-    setApplicationIconImage: proc(self: ^AK.Application, applicationIconImage: ^NS.Image),
+    applicationIconImage: proc(self: ^AK.Application) -> ^AK.Image,
+    setApplicationIconImage: proc(self: ^AK.Application, applicationIconImage: ^AK.Image),
     dockTile: proc(self: ^AK.Application) -> ^AK.DockTile,
     presentationOptions: proc(self: ^AK.Application) -> AK.ApplicationPresentationOptions,
     setPresentationOptions: proc(self: ^AK.Application, presentationOptions: AK.ApplicationPresentationOptions),
@@ -658,7 +654,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHelpMenu:"), auto_cast setHelpMenu, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.applicationIconImage != nil {
-        applicationIconImage :: proc "c" (self: ^AK.Application, _: SEL) -> ^NS.Image {
+        applicationIconImage :: proc "c" (self: ^AK.Application, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -668,7 +664,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applicationIconImage"), auto_cast applicationIconImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setApplicationIconImage != nil {
-        setApplicationIconImage :: proc "c" (self: ^AK.Application, _: SEL, applicationIconImage: ^NS.Image) {
+        setApplicationIconImage :: proc "c" (self: ^AK.Application, _: SEL, applicationIconImage: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

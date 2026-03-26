@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -143,8 +143,8 @@ foreign lib {
     Slider_setKnobThickness :: proc(self: ^Slider, thickness: CG.Float) ---
 
     @(objc_type=Slider, objc_selector="setImage:", objc_name="setImage")
-    Slider_setImage :: proc(self: ^Slider, backgroundImage: ^NS.Image) ---
+    Slider_setImage :: proc(self: ^Slider, backgroundImage: ^Image) ---
 
     @(objc_type=Slider, objc_selector="image", objc_name="image")
-    Slider_image :: proc(self: ^Slider) -> ^NS.Image ---
+    Slider_image :: proc(self: ^Slider) -> ^Image ---
 }

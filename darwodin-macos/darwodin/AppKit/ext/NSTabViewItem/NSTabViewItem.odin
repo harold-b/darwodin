@@ -3,19 +3,15 @@ package darwodin_NSTabViewItem_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -40,8 +36,8 @@ VTable :: struct {
     setColor: proc(self: ^AK.TabViewItem, color: ^AK.Color),
     label: proc(self: ^AK.TabViewItem) -> ^NS.String,
     setLabel: proc(self: ^AK.TabViewItem, label: ^NS.String),
-    image: proc(self: ^AK.TabViewItem) -> ^NS.Image,
-    setImage: proc(self: ^AK.TabViewItem, image: ^NS.Image),
+    image: proc(self: ^AK.TabViewItem) -> ^AK.Image,
+    setImage: proc(self: ^AK.TabViewItem, image: ^AK.Image),
     view: proc(self: ^AK.TabViewItem) -> ^AK.View,
     setView: proc(self: ^AK.TabViewItem, view: ^AK.View),
     viewController: proc(self: ^AK.TabViewItem) -> ^AK.ViewController,
@@ -162,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLabel:"), auto_cast setLabel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.TabViewItem, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.TabViewItem, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.TabViewItem, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.TabViewItem, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

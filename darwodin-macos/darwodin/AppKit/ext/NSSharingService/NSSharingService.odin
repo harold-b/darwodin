@@ -3,19 +3,15 @@ package darwodin_NSSharingService_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -32,15 +28,15 @@ VTable :: struct {
     super: NSObject.VTable,
     sharingServicesForItems: proc(items: ^NS.Array) -> ^NS.Array,
     sharingServiceNamed: proc(serviceName: ^NS.String) -> ^AK.SharingService,
-    initWithTitle: proc(self: ^AK.SharingService, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> instancetype,
+    initWithTitle: proc(self: ^AK.SharingService, title: ^NS.String, image: ^AK.Image, alternateImage: ^AK.Image, block: ^Objc_Block(proc "c" ())) -> instancetype,
     init: proc(self: ^AK.SharingService) -> instancetype,
     canPerformWithItems: proc(self: ^AK.SharingService, items: ^NS.Array) -> bool,
     performWithItems: proc(self: ^AK.SharingService, items: ^NS.Array),
     delegate: proc(self: ^AK.SharingService) -> ^AK.SharingServiceDelegate,
     setDelegate: proc(self: ^AK.SharingService, delegate: ^AK.SharingServiceDelegate),
     title: proc(self: ^AK.SharingService) -> ^NS.String,
-    image: proc(self: ^AK.SharingService) -> ^NS.Image,
-    alternateImage: proc(self: ^AK.SharingService) -> ^NS.Image,
+    image: proc(self: ^AK.SharingService) -> ^AK.Image,
+    alternateImage: proc(self: ^AK.SharingService) -> ^AK.Image,
     menuItemTitle: proc(self: ^AK.SharingService) -> ^NS.String,
     setMenuItemTitle: proc(self: ^AK.SharingService, menuItemTitle: ^NS.String),
     recipients: proc(self: ^AK.SharingService) -> ^NS.Array,
@@ -81,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sharingServiceNamed:"), auto_cast sharingServiceNamed, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^AK.SharingService, _: SEL, title: ^NS.String, image: ^NS.Image, alternateImage: ^NS.Image, block: ^Objc_Block(proc "c" ())) -> instancetype {
+        initWithTitle :: proc "c" (self: ^AK.SharingService, _: SEL, title: ^NS.String, image: ^AK.Image, alternateImage: ^AK.Image, block: ^Objc_Block(proc "c" ())) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.SharingService, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.SharingService, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -161,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.alternateImage != nil {
-        alternateImage :: proc "c" (self: ^AK.SharingService, _: SEL) -> ^NS.Image {
+        alternateImage :: proc "c" (self: ^AK.SharingService, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -56,10 +56,10 @@ foreign lib {
     TabViewItem_setLabel :: proc(self: ^TabViewItem, label: ^NS.String) ---
 
     @(objc_type=TabViewItem, objc_selector="image", objc_name="image")
-    TabViewItem_image :: proc(self: ^TabViewItem) -> ^NS.Image ---
+    TabViewItem_image :: proc(self: ^TabViewItem) -> ^Image ---
 
     @(objc_type=TabViewItem, objc_selector="setImage:", objc_name="setImage")
-    TabViewItem_setImage :: proc(self: ^TabViewItem, image: ^NS.Image) ---
+    TabViewItem_setImage :: proc(self: ^TabViewItem, image: ^Image) ---
 
     @(objc_type=TabViewItem, objc_selector="view", objc_name="view")
     TabViewItem_view :: proc(self: ^TabViewItem) -> ^View ---

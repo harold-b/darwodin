@@ -3,15 +3,10 @@ package darwodin_Foundation
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -25,6 +20,7 @@ instancetype  :: intrinsics.objc_instancetype
 OpaqueSecTransformImplementation :: struct {}
 OpaqueSecIdentitySearchRef       :: struct {}
 OpaquePolicySearchRef            :: struct {}
+Image                            :: Object
 
 to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^String {
     return String.alloc()->initWithBytes(raw_data(str), UInteger(len(str)), UTF8StringEncoding)
@@ -67,8 +63,9 @@ array_next :: proc( it: ^Array_Iterator($T) ) -> (val: ^T, idx: int, cond: bool)
     }
 
     val      = auto_cast it.array->objectAtIndex(auto_cast it.index)
-    it.index += 1
+    idx      = it.index
     cond     = true
+    it.index += 1
     return
 }
 

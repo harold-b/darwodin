@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -99,16 +99,16 @@ foreign lib {
     StatusItem_setAttributedTitle :: proc(self: ^StatusItem, attributedTitle: ^NS.AttributedString) ---
 
     @(objc_type=StatusItem, objc_selector="image", objc_name="image")
-    StatusItem_image :: proc(self: ^StatusItem) -> ^NS.Image ---
+    StatusItem_image :: proc(self: ^StatusItem) -> ^Image ---
 
     @(objc_type=StatusItem, objc_selector="setImage:", objc_name="setImage")
-    StatusItem_setImage :: proc(self: ^StatusItem, image: ^NS.Image) ---
+    StatusItem_setImage :: proc(self: ^StatusItem, image: ^Image) ---
 
     @(objc_type=StatusItem, objc_selector="alternateImage", objc_name="alternateImage")
-    StatusItem_alternateImage :: proc(self: ^StatusItem) -> ^NS.Image ---
+    StatusItem_alternateImage :: proc(self: ^StatusItem) -> ^Image ---
 
     @(objc_type=StatusItem, objc_selector="setAlternateImage:", objc_name="setAlternateImage")
-    StatusItem_setAlternateImage :: proc(self: ^StatusItem, alternateImage: ^NS.Image) ---
+    StatusItem_setAlternateImage :: proc(self: ^StatusItem, alternateImage: ^Image) ---
 
     @(objc_type=StatusItem, objc_selector="isEnabled", objc_name="isEnabled")
     StatusItem_isEnabled :: proc(self: ^StatusItem) -> bool ---

@@ -3,19 +3,15 @@ package darwodin_NSPopoverTouchBarItem_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -39,8 +35,8 @@ VTable :: struct {
     setCustomizationLabel: proc(self: ^AK.PopoverTouchBarItem, customizationLabel: ^NS.String),
     collapsedRepresentation: proc(self: ^AK.PopoverTouchBarItem) -> ^AK.View,
     setCollapsedRepresentation: proc(self: ^AK.PopoverTouchBarItem, collapsedRepresentation: ^AK.View),
-    collapsedRepresentationImage: proc(self: ^AK.PopoverTouchBarItem) -> ^NS.Image,
-    setCollapsedRepresentationImage: proc(self: ^AK.PopoverTouchBarItem, collapsedRepresentationImage: ^NS.Image),
+    collapsedRepresentationImage: proc(self: ^AK.PopoverTouchBarItem) -> ^AK.Image,
+    setCollapsedRepresentationImage: proc(self: ^AK.PopoverTouchBarItem, collapsedRepresentationImage: ^AK.Image),
     collapsedRepresentationLabel: proc(self: ^AK.PopoverTouchBarItem) -> ^NS.String,
     setCollapsedRepresentationLabel: proc(self: ^AK.PopoverTouchBarItem, collapsedRepresentationLabel: ^NS.String),
     pressAndHoldTouchBar: proc(self: ^AK.PopoverTouchBarItem) -> ^AK.TouchBar,
@@ -147,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCollapsedRepresentation:"), auto_cast setCollapsedRepresentation, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.collapsedRepresentationImage != nil {
-        collapsedRepresentationImage :: proc "c" (self: ^AK.PopoverTouchBarItem, _: SEL) -> ^NS.Image {
+        collapsedRepresentationImage :: proc "c" (self: ^AK.PopoverTouchBarItem, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collapsedRepresentationImage"), auto_cast collapsedRepresentationImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCollapsedRepresentationImage != nil {
-        setCollapsedRepresentationImage :: proc "c" (self: ^AK.PopoverTouchBarItem, _: SEL, collapsedRepresentationImage: ^NS.Image) {
+        setCollapsedRepresentationImage :: proc "c" (self: ^AK.PopoverTouchBarItem, _: SEL, collapsedRepresentationImage: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -344,7 +344,7 @@ foreign lib {
     Window_requestSharingOfWindow :: proc(self: ^Window, window: ^Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
 
     @(objc_type=Window, objc_selector="requestSharingOfWindowUsingPreview:title:completionHandler:", objc_name="requestSharingOfWindowUsingPreview")
-    Window_requestSharingOfWindowUsingPreview :: proc(self: ^Window, image: ^NS.Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Window_requestSharingOfWindowUsingPreview :: proc(self: ^Window, image: ^Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
 
     @(objc_type=Window, objc_selector="defaultDepthLimit", objc_name="defaultDepthLimit", objc_is_class_method=true)
     Window_defaultDepthLimit :: proc() -> WindowDepth ---
@@ -524,10 +524,10 @@ foreign lib {
     Window_setCanHide :: proc(self: ^Window, canHide: bool) ---
 
     @(objc_type=Window, objc_selector="miniwindowImage", objc_name="miniwindowImage")
-    Window_miniwindowImage :: proc(self: ^Window) -> ^NS.Image ---
+    Window_miniwindowImage :: proc(self: ^Window) -> ^Image ---
 
     @(objc_type=Window, objc_selector="setMiniwindowImage:", objc_name="setMiniwindowImage")
-    Window_setMiniwindowImage :: proc(self: ^Window, miniwindowImage: ^NS.Image) ---
+    Window_setMiniwindowImage :: proc(self: ^Window, miniwindowImage: ^Image) ---
 
     @(objc_type=Window, objc_selector="miniwindowTitle", objc_name="miniwindowTitle")
     Window_miniwindowTitle :: proc(self: ^Window) -> ^NS.String ---
@@ -887,7 +887,7 @@ foreign lib {
     Window_beginDraggingSessionWithItems :: proc(self: ^Window, items: ^NS.Array, event: ^Event, source: ^DraggingSource) -> ^DraggingSession ---
 
     @(objc_type=Window, objc_selector="dragImage:at:offset:event:pasteboard:source:slideBack:", objc_name="dragImage")
-    Window_dragImage :: proc(self: ^Window, image: ^NS.Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^Event, pboard: ^Pasteboard, sourceObj: id, slideFlag: bool) ---
+    Window_dragImage :: proc(self: ^Window, image: ^Image, baseLocation: CG.Point, initialOffset: NS.Size, event: ^Event, pboard: ^Pasteboard, sourceObj: id, slideFlag: bool) ---
 
     @(objc_type=Window, objc_selector="registerForDraggedTypes:", objc_name="registerForDraggedTypes")
     Window_registerForDraggedTypes :: proc(self: ^Window, newTypes: ^NS.Array) ---

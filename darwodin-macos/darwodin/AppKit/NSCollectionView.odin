@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -138,10 +138,10 @@ foreign lib {
     CollectionView_setDraggingSourceOperationMask :: proc(self: ^CollectionView, dragOperationMask: DragOperation, localDestination: bool) ---
 
     @(objc_type=CollectionView, objc_selector="draggingImageForItemsAtIndexPaths:withEvent:offset:", objc_name="draggingImageForItemsAtIndexPaths")
-    CollectionView_draggingImageForItemsAtIndexPaths :: proc(self: ^CollectionView, indexPaths: ^NS.Set, event: ^Event, dragImageOffset: ^CG.Point) -> ^NS.Image ---
+    CollectionView_draggingImageForItemsAtIndexPaths :: proc(self: ^CollectionView, indexPaths: ^NS.Set, event: ^Event, dragImageOffset: ^CG.Point) -> ^Image ---
 
     @(objc_type=CollectionView, objc_selector="draggingImageForItemsAtIndexes:withEvent:offset:", objc_name="draggingImageForItemsAtIndexes")
-    CollectionView_draggingImageForItemsAtIndexes :: proc(self: ^CollectionView, indexes: ^NS.IndexSet, event: ^Event, dragImageOffset: ^CG.Point) -> ^NS.Image ---
+    CollectionView_draggingImageForItemsAtIndexes :: proc(self: ^CollectionView, indexes: ^NS.IndexSet, event: ^Event, dragImageOffset: ^CG.Point) -> ^Image ---
 
     @(objc_type=CollectionView, objc_selector="dataSource", objc_name="dataSource")
     CollectionView_dataSource :: proc(self: ^CollectionView) -> ^CollectionViewDataSource ---

@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -51,10 +51,10 @@ foreign lib {
     TextAttachment_setFileType :: proc(self: ^TextAttachment, fileType: ^NS.String) ---
 
     @(objc_type=TextAttachment, objc_selector="image", objc_name="image")
-    TextAttachment_image :: proc(self: ^TextAttachment) -> ^NS.Image ---
+    TextAttachment_image :: proc(self: ^TextAttachment) -> ^Image ---
 
     @(objc_type=TextAttachment, objc_selector="setImage:", objc_name="setImage")
-    TextAttachment_setImage :: proc(self: ^TextAttachment, image: ^NS.Image) ---
+    TextAttachment_setImage :: proc(self: ^TextAttachment, image: ^Image) ---
 
     @(objc_type=TextAttachment, objc_selector="bounds", objc_name="bounds")
     TextAttachment_bounds :: proc(self: ^TextAttachment) -> CG.Rect ---

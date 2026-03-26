@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -202,7 +202,7 @@ foreign lib {
     Menu_paletteMenuWithColors_titles_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="paletteMenuWithColors:titles:templateImage:selectionHandler:", objc_name="paletteMenuWithColors_titles_templateImage_selectionHandler", objc_is_class_method=true)
-    Menu_paletteMenuWithColors_titles_templateImage_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> instancetype ---
+    Menu_paletteMenuWithColors_titles_templateImage_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="presentationStyle", objc_name="presentationStyle")
     Menu_presentationStyle :: proc(self: ^Menu) -> MenuPresentationStyle ---

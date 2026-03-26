@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -92,7 +92,7 @@ foreign lib {
     Color_colorWithCalibratedHue :: proc(hue: CG.Float, saturation: CG.Float, brightness: CG.Float, alpha: CG.Float) -> ^Color ---
 
     @(objc_type=Color, objc_selector="colorWithPatternImage:", objc_name="colorWithPatternImage", objc_is_class_method=true)
-    Color_colorWithPatternImage :: proc(image: ^NS.Image) -> ^Color ---
+    Color_colorWithPatternImage :: proc(image: ^Image) -> ^Color ---
 
     @(objc_type=Color, objc_selector="colorUsingType:", objc_name="colorUsingType")
     Color_colorUsingType :: proc(self: ^Color, type: ColorType) -> ^Color ---
@@ -434,7 +434,7 @@ foreign lib {
     Color_numberOfComponents :: proc(self: ^Color) -> NS.Integer ---
 
     @(objc_type=Color, objc_selector="patternImage", objc_name="patternImage")
-    Color_patternImage :: proc(self: ^Color) -> ^NS.Image ---
+    Color_patternImage :: proc(self: ^Color) -> ^Image ---
 
     @(objc_type=Color, objc_selector="alphaComponent", objc_name="alphaComponent")
     Color_alphaComponent :: proc(self: ^Color) -> CG.Float ---

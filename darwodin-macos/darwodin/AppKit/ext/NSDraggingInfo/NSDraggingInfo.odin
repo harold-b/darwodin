@@ -3,19 +3,15 @@ package darwodin_NSDraggingInfo_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -35,7 +31,7 @@ VTable :: struct {
     draggingSourceOperationMask: proc(self: ^AK.DraggingInfo) -> AK.DragOperation,
     draggingLocation: proc(self: ^AK.DraggingInfo) -> CG.Point,
     draggedImageLocation: proc(self: ^AK.DraggingInfo) -> CG.Point,
-    draggedImage: proc(self: ^AK.DraggingInfo) -> ^NS.Image,
+    draggedImage: proc(self: ^AK.DraggingInfo) -> ^AK.Image,
     draggingPasteboard: proc(self: ^AK.DraggingInfo) -> ^AK.Pasteboard,
     draggingSource: proc(self: ^AK.DraggingInfo) -> id,
     draggingSequenceNumber: proc(self: ^AK.DraggingInfo) -> NS.Integer,
@@ -133,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggedImageLocation"), auto_cast draggedImageLocation, "{CGPoint=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.draggedImage != nil {
-        draggedImage :: proc "c" (self: ^AK.DraggingInfo, _: SEL) -> ^NS.Image {
+        draggedImage :: proc "c" (self: ^AK.DraggingInfo, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

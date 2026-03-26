@@ -3,19 +3,15 @@ package darwodin_NSCollectionView_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -67,8 +63,8 @@ VTable :: struct {
     toggleSectionCollapse: proc(self: ^AK.CollectionView, sender: id),
     scrollToItemsAtIndexPaths: proc(self: ^AK.CollectionView, indexPaths: ^NS.Set, scrollPosition: AK.CollectionViewScrollPosition),
     setDraggingSourceOperationMask: proc(self: ^AK.CollectionView, dragOperationMask: AK.DragOperation, localDestination: bool),
-    draggingImageForItemsAtIndexPaths: proc(self: ^AK.CollectionView, indexPaths: ^NS.Set, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image,
-    draggingImageForItemsAtIndexes: proc(self: ^AK.CollectionView, indexes: ^NS.IndexSet, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image,
+    draggingImageForItemsAtIndexPaths: proc(self: ^AK.CollectionView, indexPaths: ^NS.Set, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image,
+    draggingImageForItemsAtIndexes: proc(self: ^AK.CollectionView, indexes: ^NS.IndexSet, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image,
     dataSource: proc(self: ^AK.CollectionView) -> ^AK.CollectionViewDataSource,
     setDataSource: proc(self: ^AK.CollectionView, dataSource: ^AK.CollectionViewDataSource),
     prefetchDataSource: proc(self: ^AK.CollectionView) -> ^AK.CollectionViewPrefetching,
@@ -488,7 +484,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDraggingSourceOperationMask:forLocal:"), auto_cast setDraggingSourceOperationMask, "v@:LB") do panic("Failed to register objC method.")
     }
     if vt.draggingImageForItemsAtIndexPaths != nil {
-        draggingImageForItemsAtIndexPaths :: proc "c" (self: ^AK.CollectionView, _: SEL, indexPaths: ^NS.Set, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
+        draggingImageForItemsAtIndexPaths :: proc "c" (self: ^AK.CollectionView, _: SEL, indexPaths: ^NS.Set, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -498,7 +494,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingImageForItemsAtIndexPaths:withEvent:offset:"), auto_cast draggingImageForItemsAtIndexPaths, "@@:^void@^void") do panic("Failed to register objC method.")
     }
     if vt.draggingImageForItemsAtIndexes != nil {
-        draggingImageForItemsAtIndexes :: proc "c" (self: ^AK.CollectionView, _: SEL, indexes: ^NS.IndexSet, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
+        draggingImageForItemsAtIndexes :: proc "c" (self: ^AK.CollectionView, _: SEL, indexes: ^NS.IndexSet, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

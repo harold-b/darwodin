@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -53,7 +53,7 @@ foreign lib {
     InputManager_language :: proc(self: ^InputManager) -> ^NS.String ---
 
     @(objc_type=InputManager, objc_selector="image", objc_name="image")
-    InputManager_image :: proc(self: ^InputManager) -> ^NS.Image ---
+    InputManager_image :: proc(self: ^InputManager) -> ^Image ---
 
     @(objc_type=InputManager, objc_selector="server", objc_name="server")
     InputManager_server :: proc(self: ^InputManager) -> ^InputServer ---

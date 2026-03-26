@@ -3,19 +3,15 @@ package darwodin_NSLevelIndicator_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -60,10 +56,10 @@ VTable :: struct {
     setDrawsTieredCapacityLevels: proc(self: ^AK.LevelIndicator, drawsTieredCapacityLevels: bool),
     placeholderVisibility: proc(self: ^AK.LevelIndicator) -> AK.LevelIndicatorPlaceholderVisibility,
     setPlaceholderVisibility: proc(self: ^AK.LevelIndicator, placeholderVisibility: AK.LevelIndicatorPlaceholderVisibility),
-    ratingImage: proc(self: ^AK.LevelIndicator) -> ^NS.Image,
-    setRatingImage: proc(self: ^AK.LevelIndicator, ratingImage: ^NS.Image),
-    ratingPlaceholderImage: proc(self: ^AK.LevelIndicator) -> ^NS.Image,
-    setRatingPlaceholderImage: proc(self: ^AK.LevelIndicator, ratingPlaceholderImage: ^NS.Image),
+    ratingImage: proc(self: ^AK.LevelIndicator) -> ^AK.Image,
+    setRatingImage: proc(self: ^AK.LevelIndicator, ratingImage: ^AK.Image),
+    ratingPlaceholderImage: proc(self: ^AK.LevelIndicator) -> ^AK.Image,
+    setRatingPlaceholderImage: proc(self: ^AK.LevelIndicator, ratingPlaceholderImage: ^AK.Image),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -374,7 +370,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPlaceholderVisibility:"), auto_cast setPlaceholderVisibility, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.ratingImage != nil {
-        ratingImage :: proc "c" (self: ^AK.LevelIndicator, _: SEL) -> ^NS.Image {
+        ratingImage :: proc "c" (self: ^AK.LevelIndicator, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -384,7 +380,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("ratingImage"), auto_cast ratingImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setRatingImage != nil {
-        setRatingImage :: proc "c" (self: ^AK.LevelIndicator, _: SEL, ratingImage: ^NS.Image) {
+        setRatingImage :: proc "c" (self: ^AK.LevelIndicator, _: SEL, ratingImage: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -394,7 +390,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRatingImage:"), auto_cast setRatingImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.ratingPlaceholderImage != nil {
-        ratingPlaceholderImage :: proc "c" (self: ^AK.LevelIndicator, _: SEL) -> ^NS.Image {
+        ratingPlaceholderImage :: proc "c" (self: ^AK.LevelIndicator, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -404,7 +400,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("ratingPlaceholderImage"), auto_cast ratingPlaceholderImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setRatingPlaceholderImage != nil {
-        setRatingPlaceholderImage :: proc "c" (self: ^AK.LevelIndicator, _: SEL, ratingPlaceholderImage: ^NS.Image) {
+        setRatingPlaceholderImage :: proc "c" (self: ^AK.LevelIndicator, _: SEL, ratingPlaceholderImage: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

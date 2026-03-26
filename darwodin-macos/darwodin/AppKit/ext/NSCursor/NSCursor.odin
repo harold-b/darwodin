@@ -3,19 +3,15 @@ package darwodin_NSCursor_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -30,7 +26,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithImage_hotSpot: proc(self: ^AK.Cursor, newImage: ^NS.Image, point: CG.Point) -> instancetype,
+    initWithImage_hotSpot: proc(self: ^AK.Cursor, newImage: ^AK.Image, point: CG.Point) -> instancetype,
     initWithCoder: proc(self: ^AK.Cursor, coder: ^NS.Coder) -> instancetype,
     hide: proc(),
     unhide: proc(),
@@ -42,7 +38,7 @@ VTable :: struct {
     columnResizeCursorInDirections: proc(directions: AK.HorizontalDirections) -> ^AK.Cursor,
     rowResizeCursorInDirections: proc(directions: AK.VerticalDirections) -> ^AK.Cursor,
     frameResizeCursorFromPosition: proc(position: AK.CursorFrameResizePosition, directions: AK.CursorFrameResizeDirections) -> ^AK.Cursor,
-    image: proc(self: ^AK.Cursor) -> ^NS.Image,
+    image: proc(self: ^AK.Cursor) -> ^AK.Image,
     hotSpot: proc(self: ^AK.Cursor) -> CG.Point,
     currentCursor: proc() -> ^AK.Cursor,
     arrowCursor: proc() -> ^AK.Cursor,
@@ -68,7 +64,7 @@ VTable :: struct {
     resizeUpCursor: proc() -> ^AK.Cursor,
     resizeDownCursor: proc() -> ^AK.Cursor,
     resizeUpDownCursor: proc() -> ^AK.Cursor,
-    initWithImage_foregroundColorHint_backgroundColorHint_hotSpot: proc(self: ^AK.Cursor, newImage: ^NS.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> instancetype,
+    initWithImage_foregroundColorHint_backgroundColorHint_hotSpot: proc(self: ^AK.Cursor, newImage: ^AK.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> instancetype,
     setOnMouseExited: proc(self: ^AK.Cursor, flag: bool),
     setOnMouseEntered: proc(self: ^AK.Cursor, flag: bool),
     mouseEntered: proc(self: ^AK.Cursor, event: ^AK.Event),
@@ -85,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithImage_hotSpot != nil {
-        initWithImage_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^NS.Image, point: CG.Point) -> instancetype {
+        initWithImage_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^AK.Image, point: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -205,7 +201,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("frameResizeCursorFromPosition:inDirections:"), auto_cast frameResizeCursorFromPosition, "@#:LL") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.Cursor, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.Cursor, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -465,7 +461,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("resizeUpDownCursor"), auto_cast resizeUpDownCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithImage_foregroundColorHint_backgroundColorHint_hotSpot != nil {
-        initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^NS.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> instancetype {
+        initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^AK.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

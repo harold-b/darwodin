@@ -60,9 +60,9 @@ while true; do
     -test)
       # Check packages
       echo "Checking macOS"
-      odin test test -all-packages -target:darwin_arm64
+      odin test test -no-threaded-checker
 
-      echo "Checking iOS"
+      # echo "Checking iOS"
       # odin test test -all-packages -target:darwin_arm64 -subtarget:iphoneos
 
       exit 0

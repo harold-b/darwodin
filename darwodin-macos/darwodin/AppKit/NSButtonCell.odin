@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -27,7 +27,7 @@ foreign lib {
     ButtonCell_initTextCell :: proc(self: ^ButtonCell, string: ^NS.String) -> instancetype ---
 
     @(objc_type=ButtonCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    ButtonCell_initImageCell :: proc(self: ^ButtonCell, image: ^NS.Image) -> instancetype ---
+    ButtonCell_initImageCell :: proc(self: ^ButtonCell, image: ^Image) -> instancetype ---
 
     @(objc_type=ButtonCell, objc_selector="initWithCoder:", objc_name="initWithCoder")
     ButtonCell_initWithCoder :: proc(self: ^ButtonCell, coder: ^NS.Coder) -> instancetype ---
@@ -54,7 +54,7 @@ foreign lib {
     ButtonCell_drawBezelWithFrame :: proc(self: ^ButtonCell, frame: NS.Rect, controlView: ^View) ---
 
     @(objc_type=ButtonCell, objc_selector="drawImage:withFrame:inView:", objc_name="drawImage")
-    ButtonCell_drawImage :: proc(self: ^ButtonCell, image: ^NS.Image, frame: NS.Rect, controlView: ^View) ---
+    ButtonCell_drawImage :: proc(self: ^ButtonCell, image: ^Image, frame: NS.Rect, controlView: ^View) ---
 
     @(objc_type=ButtonCell, objc_selector="drawTitle:withFrame:inView:", objc_name="drawTitle")
     ButtonCell_drawTitle :: proc(self: ^ButtonCell, title: ^NS.AttributedString, frame: NS.Rect, controlView: ^View) -> NS.Rect ---
@@ -102,10 +102,10 @@ foreign lib {
     ButtonCell_setAttributedAlternateTitle :: proc(self: ^ButtonCell, attributedAlternateTitle: ^NS.AttributedString) ---
 
     @(objc_type=ButtonCell, objc_selector="alternateImage", objc_name="alternateImage")
-    ButtonCell_alternateImage :: proc(self: ^ButtonCell) -> ^NS.Image ---
+    ButtonCell_alternateImage :: proc(self: ^ButtonCell) -> ^Image ---
 
     @(objc_type=ButtonCell, objc_selector="setAlternateImage:", objc_name="setAlternateImage")
-    ButtonCell_setAlternateImage :: proc(self: ^ButtonCell, alternateImage: ^NS.Image) ---
+    ButtonCell_setAlternateImage :: proc(self: ^ButtonCell, alternateImage: ^Image) ---
 
     @(objc_type=ButtonCell, objc_selector="imagePosition", objc_name="imagePosition")
     ButtonCell_imagePosition :: proc(self: ^ButtonCell) -> CellImagePosition ---

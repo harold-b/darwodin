@@ -3,19 +3,15 @@ package darwodin_NSColorWell_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -42,8 +38,8 @@ VTable :: struct {
     setColor: proc(self: ^AK.ColorWell, color: ^AK.Color),
     colorWellStyle: proc(self: ^AK.ColorWell) -> AK.ColorWellStyle,
     setColorWellStyle: proc(self: ^AK.ColorWell, colorWellStyle: AK.ColorWellStyle),
-    image: proc(self: ^AK.ColorWell) -> ^NS.Image,
-    setImage: proc(self: ^AK.ColorWell, image: ^NS.Image),
+    image: proc(self: ^AK.ColorWell) -> ^AK.Image,
+    setImage: proc(self: ^AK.ColorWell, image: ^AK.Image),
     pulldownTarget: proc(self: ^AK.ColorWell) -> id,
     setPulldownTarget: proc(self: ^AK.ColorWell, pulldownTarget: id),
     pulldownAction: proc(self: ^AK.ColorWell) -> SEL,
@@ -182,7 +178,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setColorWellStyle:"), auto_cast setColorWellStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.ColorWell, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.ColorWell, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -192,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.ColorWell, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.ColorWell, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

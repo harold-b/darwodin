@@ -70,11 +70,15 @@ Odin:
       RequiredLink: true
       Filter: .*
 
+      TypeMap:
+        NSImage: Image
+
       Imports:
         - |
           OpaqueSecTransformImplementation :: struct {}
           OpaqueSecIdentitySearchRef       :: struct {}
           OpaquePolicySearchRef            :: struct {}
+          Image                            :: Object
 
           to_ns_string :: #force_inline proc "contextless" ( str: string ) -> ^String {
               return String.alloc()->initWithBytes(raw_data(str), UInteger(len(str)), UTF8StringEncoding)
@@ -117,8 +121,9 @@ Odin:
               }
 
               val      = auto_cast it.array->objectAtIndex(auto_cast it.index)
-              it.index += 1
+              idx      = it.index
               cond     = true
+              it.index += 1
               return
           }
 
@@ -134,10 +139,10 @@ Odin:
   EnumTransforms:
   - Type: .*
     Transforms:
-    - Kind  : RemoveTypeWordsFromElements
-    - Kind  : RemovePartialTypeNamePrefix
-    - Kind  : RemoveUnderscorePrefix
-    - Kind  : UnderscoreNumbers
+    - Kind: RemoveTypeWordsFromElements
+    - Kind: RemovePartialTypeNamePrefix
+    - Kind: RemoveUnderscorePrefix
+    - Kind: UnderscoreNumbers
     
   - Type: ^CE_GeneralNameType$
     Transforms:

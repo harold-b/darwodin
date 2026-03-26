@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -42,8 +42,8 @@ foreign lib {
     SharingServicePickerTouchBarItem_setButtonTitle :: proc(self: ^SharingServicePickerTouchBarItem, buttonTitle: ^NS.String) ---
 
     @(objc_type=SharingServicePickerTouchBarItem, objc_selector="buttonImage", objc_name="buttonImage")
-    SharingServicePickerTouchBarItem_buttonImage :: proc(self: ^SharingServicePickerTouchBarItem) -> ^NS.Image ---
+    SharingServicePickerTouchBarItem_buttonImage :: proc(self: ^SharingServicePickerTouchBarItem) -> ^Image ---
 
     @(objc_type=SharingServicePickerTouchBarItem, objc_selector="setButtonImage:", objc_name="setButtonImage")
-    SharingServicePickerTouchBarItem_setButtonImage :: proc(self: ^SharingServicePickerTouchBarItem, buttonImage: ^NS.Image) ---
+    SharingServicePickerTouchBarItem_setButtonImage :: proc(self: ^SharingServicePickerTouchBarItem, buttonImage: ^Image) ---
 }

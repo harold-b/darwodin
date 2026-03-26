@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -30,7 +30,7 @@ foreign lib {
     DatePickerCell_initWithCoder :: proc(self: ^DatePickerCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=DatePickerCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    DatePickerCell_initImageCell :: proc(self: ^DatePickerCell, image: ^NS.Image) -> instancetype ---
+    DatePickerCell_initImageCell :: proc(self: ^DatePickerCell, image: ^Image) -> instancetype ---
 
     @(objc_type=DatePickerCell, objc_selector="datePickerStyle", objc_name="datePickerStyle")
     DatePickerCell_datePickerStyle :: proc(self: ^DatePickerCell) -> DatePickerStyle ---

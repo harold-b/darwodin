@@ -3,7 +3,6 @@ package darwodin_GameKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 import AK "../AppKit"
@@ -136,7 +135,7 @@ foreign lib {
     Leaderboard_isLoading :: proc(self: ^Leaderboard) -> bool ---
 
     @(objc_type=Leaderboard, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    Leaderboard_loadImageWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" (image: ^NS.Image, error: ^NS.Error))) ---
+    Leaderboard_loadImageWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" (image: ^AK.Image, error: ^NS.Error))) ---
 }
 
 @(objc_type=Leaderboard, objc_name="submitScore")

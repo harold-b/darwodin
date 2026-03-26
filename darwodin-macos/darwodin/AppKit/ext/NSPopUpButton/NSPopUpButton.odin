@@ -3,19 +3,15 @@ package darwodin_NSPopUpButton_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -32,8 +28,8 @@ VTable :: struct {
     super: NSButton.VTable,
     popUpButtonWithMenu: proc(menu: ^AK.Menu, target: id, action: SEL) -> instancetype,
     pullDownButtonWithTitle_menu: proc(title: ^NS.String, menu: ^AK.Menu) -> instancetype,
-    pullDownButtonWithImage: proc(image: ^NS.Image, menu: ^AK.Menu) -> instancetype,
-    pullDownButtonWithTitle_image_menu: proc(title: ^NS.String, image: ^NS.Image, menu: ^AK.Menu) -> instancetype,
+    pullDownButtonWithImage: proc(image: ^AK.Image, menu: ^AK.Menu) -> instancetype,
+    pullDownButtonWithTitle_image_menu: proc(title: ^NS.String, image: ^AK.Image, menu: ^AK.Menu) -> instancetype,
     initWithFrame: proc(self: ^AK.PopUpButton, buttonFrame: NS.Rect, flag: bool) -> instancetype,
     addItemWithTitle: proc(self: ^AK.PopUpButton, title: ^NS.String),
     addItemsWithTitles: proc(self: ^AK.PopUpButton, itemTitles: ^NS.Array),
@@ -105,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithTitle:menu:"), auto_cast pullDownButtonWithTitle_menu, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.pullDownButtonWithImage != nil {
-        pullDownButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image, menu: ^AK.Menu) -> instancetype {
+        pullDownButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^AK.Image, menu: ^AK.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithImage:menu:"), auto_cast pullDownButtonWithImage, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.pullDownButtonWithTitle_image_menu != nil {
-        pullDownButtonWithTitle_image_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^NS.Image, menu: ^AK.Menu) -> instancetype {
+        pullDownButtonWithTitle_image_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^AK.Image, menu: ^AK.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

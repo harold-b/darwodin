@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -29,7 +29,7 @@ foreign lib {
     ColorPicker_initWithPickerMask :: proc(self: ^ColorPicker, mask: NS.UInteger, owningColorPanel: ^ColorPanel) -> instancetype ---
 
     @(objc_type=ColorPicker, objc_selector="insertNewButtonImage:in:", objc_name="insertNewButtonImage")
-    ColorPicker_insertNewButtonImage :: proc(self: ^ColorPicker, newButtonImage: ^NS.Image, buttonCell: ^ButtonCell) ---
+    ColorPicker_insertNewButtonImage :: proc(self: ^ColorPicker, newButtonImage: ^Image, buttonCell: ^ButtonCell) ---
 
     @(objc_type=ColorPicker, objc_selector="viewSizeChanged:", objc_name="viewSizeChanged")
     ColorPicker_viewSizeChanged :: proc(self: ^ColorPicker, sender: id) ---
@@ -47,7 +47,7 @@ foreign lib {
     ColorPicker_colorPanel :: proc(self: ^ColorPicker) -> ^ColorPanel ---
 
     @(objc_type=ColorPicker, objc_selector="provideNewButtonImage", objc_name="provideNewButtonImage")
-    ColorPicker_provideNewButtonImage :: proc(self: ^ColorPicker) -> ^NS.Image ---
+    ColorPicker_provideNewButtonImage :: proc(self: ^ColorPicker) -> ^Image ---
 
     @(objc_type=ColorPicker, objc_selector="buttonToolTip", objc_name="buttonToolTip")
     ColorPicker_buttonToolTip :: proc(self: ^ColorPicker) -> ^NS.String ---

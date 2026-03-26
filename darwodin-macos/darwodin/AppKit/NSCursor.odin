@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -26,7 +26,7 @@ Cursor :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Cursor, objc_selector="initWithImage:hotSpot:", objc_name="initWithImage_hotSpot")
-    Cursor_initWithImage_hotSpot :: proc(self: ^Cursor, newImage: ^NS.Image, point: CG.Point) -> instancetype ---
+    Cursor_initWithImage_hotSpot :: proc(self: ^Cursor, newImage: ^Image, point: CG.Point) -> instancetype ---
 
     @(objc_type=Cursor, objc_selector="initWithCoder:", objc_name="initWithCoder")
     Cursor_initWithCoder :: proc(self: ^Cursor, coder: ^NS.Coder) -> instancetype ---
@@ -62,7 +62,7 @@ foreign lib {
     Cursor_frameResizeCursorFromPosition :: proc(position: CursorFrameResizePosition, directions: CursorFrameResizeDirections) -> ^Cursor ---
 
     @(objc_type=Cursor, objc_selector="image", objc_name="image")
-    Cursor_image :: proc(self: ^Cursor) -> ^NS.Image ---
+    Cursor_image :: proc(self: ^Cursor) -> ^Image ---
 
     @(objc_type=Cursor, objc_selector="hotSpot", objc_name="hotSpot")
     Cursor_hotSpot :: proc(self: ^Cursor) -> CG.Point ---
@@ -140,7 +140,7 @@ foreign lib {
     Cursor_resizeUpDownCursor :: proc() -> ^Cursor ---
 
     @(objc_type=Cursor, objc_selector="initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:", objc_name="initWithImage_foregroundColorHint_backgroundColorHint_hotSpot")
-    Cursor_initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc(self: ^Cursor, newImage: ^NS.Image, fg: ^Color, bg: ^Color, hotSpot: CG.Point) -> instancetype ---
+    Cursor_initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc(self: ^Cursor, newImage: ^Image, fg: ^Color, bg: ^Color, hotSpot: CG.Point) -> instancetype ---
 
     @(objc_type=Cursor, objc_selector="setOnMouseExited:", objc_name="setOnMouseExited")
     Cursor_setOnMouseExited :: proc(self: ^Cursor, flag: bool) ---

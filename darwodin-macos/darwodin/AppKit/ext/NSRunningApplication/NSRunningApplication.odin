@@ -3,19 +3,15 @@ package darwodin_NSRunningApplication_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -51,7 +47,7 @@ VTable :: struct {
     executableURL: proc(self: ^AK.RunningApplication) -> ^NS.URL,
     processIdentifier: proc(self: ^AK.RunningApplication) -> libc.pid_t,
     launchDate: proc(self: ^AK.RunningApplication) -> ^NS.Date,
-    icon: proc(self: ^AK.RunningApplication) -> ^NS.Image,
+    icon: proc(self: ^AK.RunningApplication) -> ^AK.Image,
     executableArchitecture: proc(self: ^AK.RunningApplication) -> NS.Integer,
     currentApplication: proc() -> ^AK.RunningApplication,
 }
@@ -274,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("launchDate"), auto_cast launchDate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.icon != nil {
-        icon :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> ^NS.Image {
+        icon :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

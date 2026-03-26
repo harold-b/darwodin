@@ -3,7 +3,6 @@ package darwodin_MetalFX
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
@@ -26,7 +25,7 @@ foreign lib {
     SpatialScalerDescriptor_newSpatialScalerWithDevice_ :: proc(self: ^SpatialScalerDescriptor, device: ^MTL.Device) -> ^SpatialScaler ---
 
     @(objc_type=SpatialScalerDescriptor, objc_selector="newSpatialScalerWithDevice:compiler:", objc_name="newSpatialScalerWithDevice_compiler")
-    SpatialScalerDescriptor_newSpatialScalerWithDevice_compiler :: proc(self: ^SpatialScalerDescriptor, device: ^MTL.Device, compiler: ^MTL.4Compiler) -> ^MTL4FXSpatialScaler ---
+    SpatialScalerDescriptor_newSpatialScalerWithDevice_compiler :: proc(self: ^SpatialScalerDescriptor, device: ^MTL.Device, compiler: ^MTL.MTL4Compiler) -> ^MTL4FXSpatialScaler ---
 
     @(objc_type=SpatialScalerDescriptor, objc_selector="supportsMetal4FX:", objc_name="supportsMetal4FX", objc_is_class_method=true)
     SpatialScalerDescriptor_supportsMetal4FX :: proc(device: ^MTL.Device) -> bool ---

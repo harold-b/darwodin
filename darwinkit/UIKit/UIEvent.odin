@@ -1,0 +1,56 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UIEvent
+///
+@(objc_class="UIEvent", objc_superclass=NS.Object)
+Event :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Event, objc_selector="touchesForWindow:", objc_name="touchesForWindow")
+    Event_touchesForWindow :: proc(self: ^Event, window: ^Window) -> ^NS.Set ---
+
+    @(objc_type=Event, objc_selector="touchesForView:", objc_name="touchesForView")
+    Event_touchesForView :: proc(self: ^Event, view: ^View) -> ^NS.Set ---
+
+    @(objc_type=Event, objc_selector="touchesForGestureRecognizer:", objc_name="touchesForGestureRecognizer")
+    Event_touchesForGestureRecognizer :: proc(self: ^Event, gesture: ^GestureRecognizer) -> ^NS.Set ---
+
+    @(objc_type=Event, objc_selector="coalescedTouchesForTouch:", objc_name="coalescedTouchesForTouch")
+    Event_coalescedTouchesForTouch :: proc(self: ^Event, touch: ^Touch) -> ^NS.Array ---
+
+    @(objc_type=Event, objc_selector="predictedTouchesForTouch:", objc_name="predictedTouchesForTouch")
+    Event_predictedTouchesForTouch :: proc(self: ^Event, touch: ^Touch) -> ^NS.Array ---
+
+    @(objc_type=Event, objc_selector="type", objc_name="type")
+    Event_type :: proc(self: ^Event) -> EventType ---
+
+    @(objc_type=Event, objc_selector="subtype", objc_name="subtype")
+    Event_subtype :: proc(self: ^Event) -> EventSubtype ---
+
+    @(objc_type=Event, objc_selector="timestamp", objc_name="timestamp")
+    Event_timestamp :: proc(self: ^Event) -> NS.TimeInterval ---
+
+    @(objc_type=Event, objc_selector="modifierFlags", objc_name="modifierFlags")
+    Event_modifierFlags :: proc(self: ^Event) -> KeyModifierFlags ---
+
+    @(objc_type=Event, objc_selector="buttonMask", objc_name="buttonMask")
+    Event_buttonMask :: proc(self: ^Event) -> EventButtonMask ---
+
+    @(objc_type=Event, objc_selector="allTouches", objc_name="allTouches")
+    Event_allTouches :: proc(self: ^Event) -> ^NS.Set ---
+}

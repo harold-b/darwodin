@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -26,7 +26,7 @@ SliderAccessory :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SliderAccessory, objc_selector="accessoryWithImage:", objc_name="accessoryWithImage", objc_is_class_method=true)
-    SliderAccessory_accessoryWithImage :: proc(image: ^NS.Image) -> ^SliderAccessory ---
+    SliderAccessory_accessoryWithImage :: proc(image: ^Image) -> ^SliderAccessory ---
 
     @(objc_type=SliderAccessory, objc_selector="behavior", objc_name="behavior")
     SliderAccessory_behavior :: proc(self: ^SliderAccessory) -> ^SliderAccessoryBehavior ---

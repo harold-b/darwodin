@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -27,10 +27,10 @@ foreign lib {
     ColorPickingDefault_initWithPickerMask :: proc(self: ^ColorPickingDefault, mask: NS.UInteger, owningColorPanel: ^ColorPanel) -> instancetype ---
 
     @(objc_type=ColorPickingDefault, objc_selector="provideNewButtonImage", objc_name="provideNewButtonImage")
-    ColorPickingDefault_provideNewButtonImage :: proc(self: ^ColorPickingDefault) -> ^NS.Image ---
+    ColorPickingDefault_provideNewButtonImage :: proc(self: ^ColorPickingDefault) -> ^Image ---
 
     @(objc_type=ColorPickingDefault, objc_selector="insertNewButtonImage:in:", objc_name="insertNewButtonImage")
-    ColorPickingDefault_insertNewButtonImage :: proc(self: ^ColorPickingDefault, newButtonImage: ^NS.Image, buttonCell: ^ButtonCell) ---
+    ColorPickingDefault_insertNewButtonImage :: proc(self: ^ColorPickingDefault, newButtonImage: ^Image, buttonCell: ^ButtonCell) ---
 
     @(objc_type=ColorPickingDefault, objc_selector="viewSizeChanged:", objc_name="viewSizeChanged")
     ColorPickingDefault_viewSizeChanged :: proc(self: ^ColorPickingDefault, sender: id) ---

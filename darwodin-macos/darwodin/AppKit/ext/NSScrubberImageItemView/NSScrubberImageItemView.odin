@@ -3,19 +3,15 @@ package darwodin_NSScrubberImageItemView_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -31,8 +27,8 @@ import "../NSScrubberItemView"
 VTable :: struct {
     super: NSScrubberItemView.VTable,
     imageView: proc(self: ^AK.ScrubberImageItemView) -> ^AK.ImageView,
-    image: proc(self: ^AK.ScrubberImageItemView) -> ^NS.Image,
-    setImage: proc(self: ^AK.ScrubberImageItemView, image: ^NS.Image),
+    image: proc(self: ^AK.ScrubberImageItemView) -> ^AK.Image,
+    setImage: proc(self: ^AK.ScrubberImageItemView, image: ^AK.Image),
     imageAlignment: proc(self: ^AK.ScrubberImageItemView) -> AK.ImageAlignment,
     setImageAlignment: proc(self: ^AK.ScrubberImageItemView, imageAlignment: AK.ImageAlignment),
 }
@@ -55,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageView"), auto_cast imageView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.ScrubberImageItemView, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.ScrubberImageItemView, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.ScrubberImageItemView, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.ScrubberImageItemView, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

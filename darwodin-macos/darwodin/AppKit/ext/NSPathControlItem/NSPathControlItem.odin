@@ -3,19 +3,15 @@ package darwodin_NSPathControlItem_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -34,8 +30,8 @@ VTable :: struct {
     setTitle: proc(self: ^AK.PathControlItem, title: ^NS.String),
     attributedTitle: proc(self: ^AK.PathControlItem) -> ^NS.AttributedString,
     setAttributedTitle: proc(self: ^AK.PathControlItem, attributedTitle: ^NS.AttributedString),
-    image: proc(self: ^AK.PathControlItem) -> ^NS.Image,
-    setImage: proc(self: ^AK.PathControlItem, image: ^NS.Image),
+    image: proc(self: ^AK.PathControlItem) -> ^AK.Image,
+    setImage: proc(self: ^AK.PathControlItem, image: ^AK.Image),
     _URL: proc(self: ^AK.PathControlItem) -> ^NS.URL,
 }
 
@@ -87,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedTitle:"), auto_cast setAttributedTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.PathControlItem, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.PathControlItem, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.PathControlItem, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.PathControlItem, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

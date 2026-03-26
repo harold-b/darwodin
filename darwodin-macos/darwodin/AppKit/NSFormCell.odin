@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -30,7 +30,7 @@ foreign lib {
     FormCell_initWithCoder :: proc(self: ^FormCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=FormCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    FormCell_initImageCell :: proc(self: ^FormCell, image: ^NS.Image) -> instancetype ---
+    FormCell_initImageCell :: proc(self: ^FormCell, image: ^Image) -> instancetype ---
 
     @(objc_type=FormCell, objc_selector="titleWidth:", objc_name="titleWidth_size")
     FormCell_titleWidth_size :: proc(self: ^FormCell, size: NS.Size) -> CG.Float ---

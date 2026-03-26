@@ -3,19 +3,15 @@ package darwodin_NSTextView_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -113,7 +109,7 @@ VTable :: struct {
     writablePasteboardTypes: proc(self: ^AK.TextView) -> ^NS.Array,
     readablePasteboardTypes: proc(self: ^AK.TextView) -> ^NS.Array,
     dragSelectionWithEvent: proc(self: ^AK.TextView, event: ^AK.Event, mouseOffset: NS.Size, slideBack: bool) -> bool,
-    dragImageForSelectionWithEvent: proc(self: ^AK.TextView, event: ^AK.Event, origin: ^CG.Point) -> ^NS.Image,
+    dragImageForSelectionWithEvent: proc(self: ^AK.TextView, event: ^AK.Event, origin: ^CG.Point) -> ^AK.Image,
     dragOperationForDraggingInfo: proc(self: ^AK.TextView, dragInfo: ^AK.DraggingInfo, type: ^NS.String) -> AK.DragOperation,
     cleanUpAfterDragOperation: proc(self: ^AK.TextView),
     acceptableDragTypes: proc(self: ^AK.TextView) -> ^NS.Array,
@@ -1105,7 +1101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dragSelectionWithEvent:offset:slideBack:"), auto_cast dragSelectionWithEvent, "B@:@{CGSize=dd}B") do panic("Failed to register objC method.")
     }
     if vt.dragImageForSelectionWithEvent != nil {
-        dragImageForSelectionWithEvent :: proc "c" (self: ^AK.TextView, _: SEL, event: ^AK.Event, origin: ^CG.Point) -> ^NS.Image {
+        dragImageForSelectionWithEvent :: proc "c" (self: ^AK.TextView, _: SEL, event: ^AK.Event, origin: ^CG.Point) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

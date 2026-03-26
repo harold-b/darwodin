@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -30,7 +30,7 @@ foreign lib {
     SearchFieldCell_initWithCoder :: proc(self: ^SearchFieldCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=SearchFieldCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    SearchFieldCell_initImageCell :: proc(self: ^SearchFieldCell, image: ^NS.Image) -> instancetype ---
+    SearchFieldCell_initImageCell :: proc(self: ^SearchFieldCell, image: ^Image) -> instancetype ---
 
     @(objc_type=SearchFieldCell, objc_selector="resetSearchButtonCell", objc_name="resetSearchButtonCell")
     SearchFieldCell_resetSearchButtonCell :: proc(self: ^SearchFieldCell) ---

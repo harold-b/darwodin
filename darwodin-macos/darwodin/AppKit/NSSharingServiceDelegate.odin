@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -38,7 +38,7 @@ foreign lib {
     SharingServiceDelegate_sharingService_sourceFrameOnScreenForShareItem :: proc(self: ^SharingServiceDelegate, sharingService: ^SharingService, item: id) -> NS.Rect ---
 
     @(objc_type=SharingServiceDelegate, objc_selector="sharingService:transitionImageForShareItem:contentRect:", objc_name="sharingService_transitionImageForShareItem_contentRect")
-    SharingServiceDelegate_sharingService_transitionImageForShareItem_contentRect :: proc(self: ^SharingServiceDelegate, sharingService: ^SharingService, item: id, contentRect: ^NS.Rect) -> ^NS.Image ---
+    SharingServiceDelegate_sharingService_transitionImageForShareItem_contentRect :: proc(self: ^SharingServiceDelegate, sharingService: ^SharingService, item: id, contentRect: ^NS.Rect) -> ^Image ---
 
     @(objc_type=SharingServiceDelegate, objc_selector="sharingService:sourceWindowForShareItems:sharingContentScope:", objc_name="sharingService_sourceWindowForShareItems_sharingContentScope")
     SharingServiceDelegate_sharingService_sourceWindowForShareItems_sharingContentScope :: proc(self: ^SharingServiceDelegate, sharingService: ^SharingService, items: ^NS.Array, sharingContentScope: ^SharingContentScope) -> ^Window ---

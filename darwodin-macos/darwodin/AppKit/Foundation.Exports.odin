@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -297,7 +297,6 @@ ScriptSuiteRegistry                    :: NS.ScriptSuiteRegistry
 SpecifierTest                          :: NS.SpecifierTest
 LogicalTest                            :: NS.LogicalTest
 SpellServer                            :: NS.SpellServer
-Image                                  :: NS.Image
 UserNotificationAction                 :: NS.UserNotificationAction
 UserNotification                       :: NS.UserNotification
 UserNotificationCenter                 :: NS.UserNotificationCenter

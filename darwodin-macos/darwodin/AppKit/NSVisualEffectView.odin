@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -51,10 +51,10 @@ foreign lib {
     VisualEffectView_setState :: proc(self: ^VisualEffectView, state: VisualEffectState) ---
 
     @(objc_type=VisualEffectView, objc_selector="maskImage", objc_name="maskImage")
-    VisualEffectView_maskImage :: proc(self: ^VisualEffectView) -> ^NS.Image ---
+    VisualEffectView_maskImage :: proc(self: ^VisualEffectView) -> ^Image ---
 
     @(objc_type=VisualEffectView, objc_selector="setMaskImage:", objc_name="setMaskImage")
-    VisualEffectView_setMaskImage :: proc(self: ^VisualEffectView, maskImage: ^NS.Image) ---
+    VisualEffectView_setMaskImage :: proc(self: ^VisualEffectView, maskImage: ^Image) ---
 
     @(objc_type=VisualEffectView, objc_selector="isEmphasized", objc_name="isEmphasized")
     VisualEffectView_isEmphasized :: proc(self: ^VisualEffectView) -> bool ---

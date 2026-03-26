@@ -3,19 +3,15 @@ package darwodin_NSStatusItem_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -55,10 +51,10 @@ VTable :: struct {
     setTitle: proc(self: ^AK.StatusItem, title: ^NS.String),
     attributedTitle: proc(self: ^AK.StatusItem) -> ^NS.AttributedString,
     setAttributedTitle: proc(self: ^AK.StatusItem, attributedTitle: ^NS.AttributedString),
-    image: proc(self: ^AK.StatusItem) -> ^NS.Image,
-    setImage: proc(self: ^AK.StatusItem, image: ^NS.Image),
-    alternateImage: proc(self: ^AK.StatusItem) -> ^NS.Image,
-    setAlternateImage: proc(self: ^AK.StatusItem, alternateImage: ^NS.Image),
+    image: proc(self: ^AK.StatusItem) -> ^AK.Image,
+    setImage: proc(self: ^AK.StatusItem, image: ^AK.Image),
+    alternateImage: proc(self: ^AK.StatusItem) -> ^AK.Image,
+    setAlternateImage: proc(self: ^AK.StatusItem, alternateImage: ^AK.Image),
     isEnabled: proc(self: ^AK.StatusItem) -> bool,
     setEnabled: proc(self: ^AK.StatusItem, enabled: bool),
     highlightMode: proc(self: ^AK.StatusItem) -> bool,
@@ -327,7 +323,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedTitle:"), auto_cast setAttributedTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.StatusItem, _: SEL) -> ^NS.Image {
+        image :: proc "c" (self: ^AK.StatusItem, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -337,7 +333,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.StatusItem, _: SEL, image: ^NS.Image) {
+        setImage :: proc "c" (self: ^AK.StatusItem, _: SEL, image: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -347,7 +343,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.alternateImage != nil {
-        alternateImage :: proc "c" (self: ^AK.StatusItem, _: SEL) -> ^NS.Image {
+        alternateImage :: proc "c" (self: ^AK.StatusItem, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -357,7 +353,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alternateImage"), auto_cast alternateImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAlternateImage != nil {
-        setAlternateImage :: proc "c" (self: ^AK.StatusItem, _: SEL, alternateImage: ^NS.Image) {
+        setAlternateImage :: proc "c" (self: ^AK.StatusItem, _: SEL, alternateImage: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

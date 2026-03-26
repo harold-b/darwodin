@@ -3,19 +3,15 @@ package darwodin_NSAlert_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -39,8 +35,8 @@ VTable :: struct {
     setMessageText: proc(self: ^AK.Alert, messageText: ^NS.String),
     informativeText: proc(self: ^AK.Alert) -> ^NS.String,
     setInformativeText: proc(self: ^AK.Alert, informativeText: ^NS.String),
-    icon: proc(self: ^AK.Alert) -> ^NS.Image,
-    setIcon: proc(self: ^AK.Alert, icon: ^NS.Image),
+    icon: proc(self: ^AK.Alert) -> ^AK.Image,
+    setIcon: proc(self: ^AK.Alert, icon: ^AK.Image),
     buttons: proc(self: ^AK.Alert) -> ^NS.Array,
     alertStyle: proc(self: ^AK.Alert) -> AK.AlertStyle,
     setAlertStyle: proc(self: ^AK.Alert, alertStyle: AK.AlertStyle),
@@ -158,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setInformativeText:"), auto_cast setInformativeText, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.icon != nil {
-        icon :: proc "c" (self: ^AK.Alert, _: SEL) -> ^NS.Image {
+        icon :: proc "c" (self: ^AK.Alert, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -168,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("icon"), auto_cast icon, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setIcon != nil {
-        setIcon :: proc "c" (self: ^AK.Alert, _: SEL, icon: ^NS.Image) {
+        setIcon :: proc "c" (self: ^AK.Alert, _: SEL, icon: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

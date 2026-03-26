@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -284,7 +284,7 @@ foreign lib {
     TextView_dragSelectionWithEvent :: proc(self: ^TextView, event: ^Event, mouseOffset: NS.Size, slideBack: bool) -> bool ---
 
     @(objc_type=TextView, objc_selector="dragImageForSelectionWithEvent:origin:", objc_name="dragImageForSelectionWithEvent")
-    TextView_dragImageForSelectionWithEvent :: proc(self: ^TextView, event: ^Event, origin: ^CG.Point) -> ^NS.Image ---
+    TextView_dragImageForSelectionWithEvent :: proc(self: ^TextView, event: ^Event, origin: ^CG.Point) -> ^Image ---
 
     @(objc_type=TextView, objc_selector="dragOperationForDraggingInfo:type:", objc_name="dragOperationForDraggingInfo")
     TextView_dragOperationForDraggingInfo :: proc(self: ^TextView, dragInfo: ^DraggingInfo, type: ^NS.String) -> DragOperation ---

@@ -3,7 +3,6 @@ package darwodin_GameKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 import AK "../AppKit"
@@ -19,7 +18,7 @@ ChallengeDefinition :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ChallengeDefinition, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    ChallengeDefinition_loadImageWithCompletionHandler :: proc(self: ^ChallengeDefinition, completionHandler: ^Objc_Block(proc "c" (image: ^NS.Image, error: ^NS.Error))) ---
+    ChallengeDefinition_loadImageWithCompletionHandler :: proc(self: ^ChallengeDefinition, completionHandler: ^Objc_Block(proc "c" (image: ^AK.Image, error: ^NS.Error))) ---
 
     @(objc_type=ChallengeDefinition, objc_selector="identifier", objc_name="identifier")
     ChallengeDefinition_identifier :: proc(self: ^ChallengeDefinition) -> ^NS.String ---

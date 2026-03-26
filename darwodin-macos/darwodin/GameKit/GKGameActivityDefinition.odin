@@ -3,7 +3,6 @@ package darwodin_GameKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 import AK "../AppKit"
@@ -28,7 +27,7 @@ foreign lib {
     GameActivityDefinition_loadLeaderboardsWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) ---
 
     @(objc_type=GameActivityDefinition, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    GameActivityDefinition_loadImageWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" (image: ^NS.Image, error: ^NS.Error))) ---
+    GameActivityDefinition_loadImageWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" (image: ^AK.Image, error: ^NS.Error))) ---
 
     @(objc_type=GameActivityDefinition, objc_selector="identifier", objc_name="identifier")
     GameActivityDefinition_identifier :: proc(self: ^GameActivityDefinition) -> ^NS.String ---

@@ -3,19 +3,15 @@ package darwodin_NSVisualEffectView_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -39,8 +35,8 @@ VTable :: struct {
     setBlendingMode: proc(self: ^AK.VisualEffectView, blendingMode: AK.VisualEffectBlendingMode),
     state: proc(self: ^AK.VisualEffectView) -> AK.VisualEffectState,
     setState: proc(self: ^AK.VisualEffectView, state: AK.VisualEffectState),
-    maskImage: proc(self: ^AK.VisualEffectView) -> ^NS.Image,
-    setMaskImage: proc(self: ^AK.VisualEffectView, maskImage: ^NS.Image),
+    maskImage: proc(self: ^AK.VisualEffectView) -> ^AK.Image,
+    setMaskImage: proc(self: ^AK.VisualEffectView, maskImage: ^AK.Image),
     isEmphasized: proc(self: ^AK.VisualEffectView) -> bool,
     setEmphasized: proc(self: ^AK.VisualEffectView, emphasized: bool),
 }
@@ -143,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setState:"), auto_cast setState, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.maskImage != nil {
-        maskImage :: proc "c" (self: ^AK.VisualEffectView, _: SEL) -> ^NS.Image {
+        maskImage :: proc "c" (self: ^AK.VisualEffectView, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maskImage"), auto_cast maskImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setMaskImage != nil {
-        setMaskImage :: proc "c" (self: ^AK.VisualEffectView, _: SEL, maskImage: ^NS.Image) {
+        setMaskImage :: proc "c" (self: ^AK.VisualEffectView, _: SEL, maskImage: ^AK.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

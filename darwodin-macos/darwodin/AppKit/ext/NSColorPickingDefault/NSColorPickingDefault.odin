@@ -3,19 +3,15 @@ package darwodin_NSColorPickingDefault_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -28,8 +24,8 @@ import AK "../../"
 
 VTable :: struct {
     initWithPickerMask: proc(self: ^AK.ColorPickingDefault, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> instancetype,
-    provideNewButtonImage: proc(self: ^AK.ColorPickingDefault) -> ^NS.Image,
-    insertNewButtonImage: proc(self: ^AK.ColorPickingDefault, newButtonImage: ^NS.Image, buttonCell: ^AK.ButtonCell),
+    provideNewButtonImage: proc(self: ^AK.ColorPickingDefault) -> ^AK.Image,
+    insertNewButtonImage: proc(self: ^AK.ColorPickingDefault, newButtonImage: ^AK.Image, buttonCell: ^AK.ButtonCell),
     viewSizeChanged: proc(self: ^AK.ColorPickingDefault, sender: id),
     alphaControlAddedOrRemoved: proc(self: ^AK.ColorPickingDefault, sender: id),
     attachColorList: proc(self: ^AK.ColorPickingDefault, colorList: ^AK.ColorList),
@@ -54,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPickerMask:colorPanel:"), auto_cast initWithPickerMask, "@@:L@") do panic("Failed to register objC method.")
     }
     if vt.provideNewButtonImage != nil {
-        provideNewButtonImage :: proc "c" (self: ^AK.ColorPickingDefault, _: SEL) -> ^NS.Image {
+        provideNewButtonImage :: proc "c" (self: ^AK.ColorPickingDefault, _: SEL) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("provideNewButtonImage"), auto_cast provideNewButtonImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.insertNewButtonImage != nil {
-        insertNewButtonImage :: proc "c" (self: ^AK.ColorPickingDefault, _: SEL, newButtonImage: ^NS.Image, buttonCell: ^AK.ButtonCell) {
+        insertNewButtonImage :: proc "c" (self: ^AK.ColorPickingDefault, _: SEL, newButtonImage: ^AK.Image, buttonCell: ^AK.ButtonCell) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

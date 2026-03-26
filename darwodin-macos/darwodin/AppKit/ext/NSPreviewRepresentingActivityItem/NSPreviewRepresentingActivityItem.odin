@@ -3,19 +3,15 @@ package darwodin_NSPreviewRepresentingActivityItem_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -30,7 +26,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithItem_title_image_icon: proc(self: ^AK.PreviewRepresentingActivityItem, item: id, title: ^NS.String, image: ^NS.Image, icon: ^NS.Image) -> instancetype,
+    initWithItem_title_image_icon: proc(self: ^AK.PreviewRepresentingActivityItem, item: id, title: ^NS.String, image: ^AK.Image, icon: ^AK.Image) -> instancetype,
     initWithItem_title_imageProvider_iconProvider: proc(self: ^AK.PreviewRepresentingActivityItem, item: id, title: ^NS.String, imageProvider: ^NS.ItemProvider, iconProvider: ^NS.ItemProvider) -> instancetype,
     init: proc(self: ^AK.PreviewRepresentingActivityItem) -> instancetype,
     new: proc() -> ^AK.PreviewRepresentingActivityItem,
@@ -44,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithItem_title_image_icon != nil {
-        initWithItem_title_image_icon :: proc "c" (self: ^AK.PreviewRepresentingActivityItem, _: SEL, item: id, title: ^NS.String, image: ^NS.Image, icon: ^NS.Image) -> instancetype {
+        initWithItem_title_image_icon :: proc "c" (self: ^AK.PreviewRepresentingActivityItem, _: SEL, item: id, title: ^NS.String, image: ^AK.Image, icon: ^AK.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

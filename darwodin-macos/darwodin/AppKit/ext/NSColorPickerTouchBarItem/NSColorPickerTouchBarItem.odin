@@ -3,19 +3,15 @@ package darwodin_NSColorPickerTouchBarItem_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -33,7 +29,7 @@ VTable :: struct {
     colorPickerWithIdentifier_: proc(identifier: ^NS.String) -> instancetype,
     textColorPickerWithIdentifier: proc(identifier: ^NS.String) -> instancetype,
     strokeColorPickerWithIdentifier: proc(identifier: ^NS.String) -> instancetype,
-    colorPickerWithIdentifier_buttonImage: proc(identifier: ^NS.String, image: ^NS.Image) -> instancetype,
+    colorPickerWithIdentifier_buttonImage: proc(identifier: ^NS.String, image: ^AK.Image) -> instancetype,
     color: proc(self: ^AK.ColorPickerTouchBarItem) -> ^AK.Color,
     setColor: proc(self: ^AK.ColorPickerTouchBarItem, color: ^AK.Color),
     showsAlpha: proc(self: ^AK.ColorPickerTouchBarItem) -> bool,
@@ -90,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("strokeColorPickerWithIdentifier:"), auto_cast strokeColorPickerWithIdentifier, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.colorPickerWithIdentifier_buttonImage != nil {
-        colorPickerWithIdentifier_buttonImage :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, image: ^NS.Image) -> instancetype {
+        colorPickerWithIdentifier_buttonImage :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, image: ^AK.Image) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

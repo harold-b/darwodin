@@ -3,7 +3,6 @@ package darwodin_GameKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 import AK "../AppKit"
@@ -43,7 +42,7 @@ foreign lib {
     Player_isInvitable :: proc(self: ^Player) -> bool ---
 
     @(objc_type=Player, objc_selector="loadPhotoForSize:withCompletionHandler:", objc_name="loadPhotoForSize")
-    Player_loadPhotoForSize :: proc(self: ^Player, size: PhotoSize, completionHandler: ^Objc_Block(proc "c" (photo: ^NS.Image, error: ^NS.Error))) ---
+    Player_loadPhotoForSize :: proc(self: ^Player, size: PhotoSize, completionHandler: ^Objc_Block(proc "c" (photo: ^AK.Image, error: ^NS.Error))) ---
 
     @(objc_type=Player, objc_selector="loadPlayersForIdentifiers:withCompletionHandler:", objc_name="loadPlayersForIdentifiers", objc_is_class_method=true)
     Player_loadPlayersForIdentifiers :: proc(identifiers: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (players: ^NS.Array, error: ^NS.Error))) ---

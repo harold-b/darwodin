@@ -3,19 +3,15 @@ package darwodin_NSSegmentedCell_Ext
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../../../ObjectiveC"
 import mach "../../../mach"
 import libc "../libc"
 import CF "../../../CoreFoundation"
 import CG "../../../CoreGraphics"
 import CT "../../../CoreText"
+import CM "../../../CoreMedia"
 import Sec "../../../Security"
 import NS "../../../Foundation"
 import CA "../../../QuartzCore"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -35,8 +31,8 @@ VTable :: struct {
     makePreviousSegmentKey: proc(self: ^AK.SegmentedCell),
     setWidth: proc(self: ^AK.SegmentedCell, width: CG.Float, segment: NS.Integer),
     widthForSegment: proc(self: ^AK.SegmentedCell, segment: NS.Integer) -> CG.Float,
-    setImage: proc(self: ^AK.SegmentedCell, image: ^NS.Image, segment: NS.Integer),
-    imageForSegment: proc(self: ^AK.SegmentedCell, segment: NS.Integer) -> ^NS.Image,
+    setImage: proc(self: ^AK.SegmentedCell, image: ^AK.Image, segment: NS.Integer),
+    imageForSegment: proc(self: ^AK.SegmentedCell, segment: NS.Integer) -> ^AK.Image,
     setImageScaling: proc(self: ^AK.SegmentedCell, scaling: AK.ImageScaling, segment: NS.Integer),
     imageScalingForSegment: proc(self: ^AK.SegmentedCell, segment: NS.Integer) -> AK.ImageScaling,
     setLabel: proc(self: ^AK.SegmentedCell, label: ^NS.String, segment: NS.Integer),
@@ -121,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("widthForSegment:"), auto_cast widthForSegment, "d@:l") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.SegmentedCell, _: SEL, image: ^NS.Image, segment: NS.Integer) {
+        setImage :: proc "c" (self: ^AK.SegmentedCell, _: SEL, image: ^AK.Image, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -131,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:forSegment:"), auto_cast setImage, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.imageForSegment != nil {
-        imageForSegment :: proc "c" (self: ^AK.SegmentedCell, _: SEL, segment: NS.Integer) -> ^NS.Image {
+        imageForSegment :: proc "c" (self: ^AK.SegmentedCell, _: SEL, segment: NS.Integer) -> ^AK.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -3,7 +3,6 @@ package darwodin_AVFoundation
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
@@ -11,10 +10,6 @@ import CM "../CoreMedia"
 import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector

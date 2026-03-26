@@ -1,0 +1,23 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UIDragPreviewParameters
+///
+@(objc_class="UIDragPreviewParameters", objc_superclass=PreviewParameters)
+DragPreviewParameters :: struct { using _: PreviewParameters, }
+
+@(default_calling_convention="c")
+foreign lib {}

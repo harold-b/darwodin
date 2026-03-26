@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -36,10 +36,10 @@ foreign lib {
     PathControlItem_setAttributedTitle :: proc(self: ^PathControlItem, attributedTitle: ^NS.AttributedString) ---
 
     @(objc_type=PathControlItem, objc_selector="image", objc_name="image")
-    PathControlItem_image :: proc(self: ^PathControlItem) -> ^NS.Image ---
+    PathControlItem_image :: proc(self: ^PathControlItem) -> ^Image ---
 
     @(objc_type=PathControlItem, objc_selector="setImage:", objc_name="setImage")
-    PathControlItem_setImage :: proc(self: ^PathControlItem, image: ^NS.Image) ---
+    PathControlItem_setImage :: proc(self: ^PathControlItem, image: ^Image) ---
 
     @(objc_type=PathControlItem, objc_selector="URL", objc_name="URL")
     PathControlItem_URL :: proc(self: ^PathControlItem) -> ^NS.URL ---

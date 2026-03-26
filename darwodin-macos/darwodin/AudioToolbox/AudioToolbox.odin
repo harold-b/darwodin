@@ -3,16 +3,11 @@ package darwodin_AudioToolbox
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import CF "../CoreFoundation"
 import CA "../CoreAudio"
 import CM "../CoreMedia"
 import NS "../Foundation"
-
-object_getIndexedIvars :: ObjC.object_getIndexedIvars
-class_addMethod        :: ObjC.class_addMethod
-msgSend                :: intrinsics.objc_send
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -1092,7 +1087,7 @@ foreign lib {
     ComponentGetVersion :: proc(inComponent: Component, outVersion: ^CF.UInt32) -> CF.OSStatus ---
 
     @(link_name="AudioComponentGetIcon")
-    ComponentGetIcon :: proc(comp: Component) -> ^NS.Image ---
+    ComponentGetIcon :: proc(comp: Component) -> ^NSImage ---
 
     @(link_name="AudioComponentInstanceNew")
     ComponentInstanceNew :: proc(inComponent: Component, outInstance: ^ComponentInstance) -> CF.OSStatus ---
@@ -1206,7 +1201,7 @@ foreign lib {
     ComponentGetLastActiveTime :: proc(comp: Component) -> CF.CFAbsoluteTime ---
 
     @(link_name="AudioComponentCopyIcon")
-    ComponentCopyIcon :: proc(comp: Component) -> ^NS.Image ---
+    ComponentCopyIcon :: proc(comp: Component) -> ^NSImage ---
 
     @(link_name="AudioUnitExtensionSetComponentList")
     UnitExtensionSetComponentList :: proc(extensionIdentifier: CF.StringRef, audioComponentInfo: CF.ArrayRef) -> CF.OSStatus ---

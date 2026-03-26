@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -98,7 +98,7 @@ foreign lib {
     BrowserDelegate_browser_canDragRowsWithIndexes_inColumn_withEvent :: proc(self: ^BrowserDelegate, browser: ^Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^Event) -> bool ---
 
     @(objc_type=BrowserDelegate, objc_selector="browser:draggingImageForRowsWithIndexes:inColumn:withEvent:offset:", objc_name="browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset")
-    BrowserDelegate_browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset :: proc(self: ^BrowserDelegate, browser: ^Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^Event, dragImageOffset: ^CG.Point) -> ^NS.Image ---
+    BrowserDelegate_browser_draggingImageForRowsWithIndexes_inColumn_withEvent_offset :: proc(self: ^BrowserDelegate, browser: ^Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^Event, dragImageOffset: ^CG.Point) -> ^Image ---
 
     @(objc_type=BrowserDelegate, objc_selector="browser:validateDrop:proposedRow:column:dropOperation:", objc_name="browser_validateDrop_proposedRow_column_dropOperation")
     BrowserDelegate_browser_validateDrop_proposedRow_column_dropOperation :: proc(self: ^BrowserDelegate, browser: ^Browser, info: ^DraggingInfo, row: ^NS.Integer, column: ^NS.Integer, dropOperation: ^BrowserDropOperation) -> DragOperation ---

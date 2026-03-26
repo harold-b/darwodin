@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -30,7 +30,7 @@ foreign lib {
     TextFieldCell_initWithCoder :: proc(self: ^TextFieldCell, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=TextFieldCell, objc_selector="initImageCell:", objc_name="initImageCell")
-    TextFieldCell_initImageCell :: proc(self: ^TextFieldCell, image: ^NS.Image) -> instancetype ---
+    TextFieldCell_initImageCell :: proc(self: ^TextFieldCell, image: ^Image) -> instancetype ---
 
     @(objc_type=TextFieldCell, objc_selector="setUpFieldEditorAttributes:", objc_name="setUpFieldEditorAttributes")
     TextFieldCell_setUpFieldEditorAttributes :: proc(self: ^TextFieldCell, textObj: ^Text) -> ^Text ---

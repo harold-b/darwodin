@@ -3,12 +3,12 @@ package darwodin_AppKit
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
-import ObjC "../ObjectiveC"
 import mach "../mach"
 import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -50,7 +50,7 @@ foreign lib {
     DraggingInfo_draggedImageLocation :: proc(self: ^DraggingInfo) -> CG.Point ---
 
     @(objc_type=DraggingInfo, objc_selector="draggedImage", objc_name="draggedImage")
-    DraggingInfo_draggedImage :: proc(self: ^DraggingInfo) -> ^NS.Image ---
+    DraggingInfo_draggedImage :: proc(self: ^DraggingInfo) -> ^Image ---
 
     @(objc_type=DraggingInfo, objc_selector="draggingPasteboard", objc_name="draggingPasteboard")
     DraggingInfo_draggingPasteboard :: proc(self: ^DraggingInfo) -> ^Pasteboard ---
