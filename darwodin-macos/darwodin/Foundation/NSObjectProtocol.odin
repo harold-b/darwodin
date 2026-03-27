@@ -16,6 +16,15 @@ import Sec "../Security"
 @(objc_class="NSObject")
 ObjectProtocol :: struct { using _: intrinsics.objc_object, }
 
+@(objc_type=ObjectProtocol, objc_name="safeRelease")
+safeRelease :: #force_inline proc "c" (self: ^ObjectProtocol) -> instancetype {
+    if self != nil {
+        self->release()
+    }
+
+    return nil
+}
+
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ObjectProtocol, objc_selector="isEqual:", objc_name="isEqual")

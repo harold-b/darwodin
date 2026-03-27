@@ -63,6 +63,19 @@ Odin:
   ResolvedTypedefs:
     - '[su]?int.*'
 
+  FileIncludes:
+    - Name: NSObjectProtocol
+      Head: |
+        @(objc_type=ObjectProtocol, objc_name="safeRelease")
+        safeRelease :: #force_inline proc "c" (self: ^ObjectProtocol) -> instancetype {
+            if self != nil {
+                self->release()
+            }
+
+            return nil
+        }
+
+
   Packages:
     - Name  : Foundation
       Export: NS
@@ -130,7 +143,6 @@ Odin:
           STR :: #force_inline proc "contextless" ( #const s: cstring ) -> ^String {
               return auto_cast CF.STR(s)
           }
-
 
       # TypeMap:
 
