@@ -1,0 +1,48 @@
+#+build darwin
+package darwodin_Foundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import Sec "../Security"
+
+
+
+///
+/// NSURLProtocolClient
+///
+@(objc_class="NSURLProtocolClient")
+URLProtocolClient :: struct { using _: intrinsics.objc_object, 
+    using _: ObjectProtocol,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=URLProtocolClient, objc_selector="URLProtocol:wasRedirectedToRequest:redirectResponse:", objc_name="URLProtocol_wasRedirectedToRequest_redirectResponse")
+    URLProtocolClient_URLProtocol_wasRedirectedToRequest_redirectResponse :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol, request: ^URLRequest, redirectResponse: ^URLResponse) ---
+
+    @(objc_type=URLProtocolClient, objc_selector="URLProtocol:cachedResponseIsValid:", objc_name="URLProtocol_cachedResponseIsValid")
+    URLProtocolClient_URLProtocol_cachedResponseIsValid :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol, cachedResponse: ^CachedURLResponse) ---
+
+    @(objc_type=URLProtocolClient, objc_selector="URLProtocol:didReceiveResponse:cacheStoragePolicy:", objc_name="URLProtocol_didReceiveResponse_cacheStoragePolicy")
+    URLProtocolClient_URLProtocol_didReceiveResponse_cacheStoragePolicy :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol, response: ^URLResponse, policy: URLCacheStoragePolicy) ---
+
+    @(objc_type=URLProtocolClient, objc_selector="URLProtocol:didLoadData:", objc_name="URLProtocol_didLoadData")
+    URLProtocolClient_URLProtocol_didLoadData :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol, data: ^Data) ---
+
+    @(objc_type=URLProtocolClient, objc_selector="URLProtocolDidFinishLoading:", objc_name="URLProtocolDidFinishLoading")
+    URLProtocolClient_URLProtocolDidFinishLoading :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol) ---
+
+    @(objc_type=URLProtocolClient, objc_selector="URLProtocol:didFailWithError:", objc_name="URLProtocol_didFailWithError")
+    URLProtocolClient_URLProtocol_didFailWithError :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol, error: ^Error) ---
+
+    @(objc_type=URLProtocolClient, objc_selector="URLProtocol:didReceiveAuthenticationChallenge:", objc_name="URLProtocol_didReceiveAuthenticationChallenge")
+    URLProtocolClient_URLProtocol_didReceiveAuthenticationChallenge :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol, challenge: ^URLAuthenticationChallenge) ---
+
+    @(objc_type=URLProtocolClient, objc_selector="URLProtocol:didCancelAuthenticationChallenge:", objc_name="URLProtocol_didCancelAuthenticationChallenge")
+    URLProtocolClient_URLProtocol_didCancelAuthenticationChallenge :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol, challenge: ^URLAuthenticationChallenge) ---
+}
+

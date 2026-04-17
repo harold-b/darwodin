@@ -120,6 +120,7 @@ Enums:
     MTLArgumentBuffersTier: MTL.ArgumentBuffersTier
     MTLSparseTextureRegionAlignmentMode: MTL.SparseTextureRegionAlignmentMode
     MTLCounterSamplingPoint: MTL.CounterSamplingPoint
+    MTLDeviceError: MTL.DeviceError
     MTLSparseTextureMappingMode: MTL.SparseTextureMappingMode
     MTLLoadAction: MTL.LoadAction
     MTLStoreAction: MTL.StoreAction
@@ -466,6 +467,7 @@ ExternVars:
     ::MTLCommonCounterSetStageUtilization: MTL.CommonCounterSetStageUtilization
     ::MTLCommonCounterSetStatistic: MTL.CommonCounterSetStatistic
     ::MTLCounterErrorDomain: MTL.CounterErrorDomain
+    ::MTLDeviceErrorDomain: MTL.DeviceErrorDomain
     ::MTLCommandBufferErrorDomain: MTL.CommandBufferErrorDomain
     ::MTLCommandBufferEncoderInfoErrorKey: MTL.CommandBufferEncoderInfoErrorKey
     ::MTL4CommandQueueErrorDomain: MTL.MTL4CommandQueueErrorDomain
@@ -497,6 +499,7 @@ ExternTypes:
     ::MTLCommonCounterSetStageUtilization: ^NS.String
     ::MTLCommonCounterSetStatistic: ^NS.String
     ::MTLCounterErrorDomain: ^NS.String
+    ::MTLDeviceErrorDomain: ^NS.String
     ::MTLCommandBufferErrorDomain: ^NS.String
     ::MTLCommandBufferEncoderInfoErrorKey: ^NS.String
     ::MTL4CommandQueueErrorDomain: ^NS.String

@@ -37,7 +37,6 @@ ObjCClasses:
 
 ObjCProtocols:
     LAEnvironmentObserver: LA.EnvironmentObserver
-    LARightDelegate: LA.RightDelegate
 
 
 Functions:

@@ -9,13 +9,6 @@ import CG "../CoreGraphics"
 import Sec "../Security"
 
 
-
-///
-/// NSObject
-///
-@(objc_class="NSObject")
-ObjectProtocol :: struct { using _: intrinsics.objc_object, }
-
 @(objc_type=ObjectProtocol, objc_name="safeRelease")
 safeRelease :: #force_inline proc "c" (self: ^ObjectProtocol) -> instancetype {
     if self != nil {
@@ -24,6 +17,14 @@ safeRelease :: #force_inline proc "c" (self: ^ObjectProtocol) -> instancetype {
 
     return nil
 }
+
+
+
+///
+/// NSObject
+///
+@(objc_class="NSObject")
+ObjectProtocol :: struct { using _: intrinsics.objc_object, }
 
 @(default_calling_convention="c")
 foreign lib {

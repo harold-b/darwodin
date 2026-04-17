@@ -210,6 +210,9 @@ foreign lib {
 
     @(objc_type=TextInput, objc_selector="isEditable", objc_name="isEditable")
     TextInput_isEditable :: proc(self: ^TextInput) -> bool ---
+
+    @(objc_type=TextInput, objc_selector="unobscuredContentRect", objc_name="unobscuredContentRect")
+    TextInput_unobscuredContentRect :: proc(self: ^TextInput) -> CG.Rect ---
 }
 
 @(objc_type=TextInput, objc_name="positionFromPosition")

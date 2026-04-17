@@ -31,6 +31,7 @@ VTable :: struct {
     evaluateWithObject_: proc(self: ^NS.Predicate, object: id) -> bool,
     evaluateWithObject_substitutionVariables: proc(self: ^NS.Predicate, object: id, bindings: ^NS.Dictionary) -> bool,
     allowEvaluation: proc(self: ^NS.Predicate),
+    allowEvaluationWithValidator: proc(self: ^NS.Predicate, validator: ^NS.PredicateValidating, error: ^^NS.Error) -> bool,
     predicateFormat: proc(self: ^NS.Predicate) -> ^NS.String,
 }
 
@@ -140,6 +141,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowEvaluation"), auto_cast allowEvaluation, "v@:") do panic("Failed to register objC method.")
+    }
+    if vt.allowEvaluationWithValidator != nil {
+        allowEvaluationWithValidator :: proc "c" (self: ^NS.Predicate, _: SEL, validator: ^NS.PredicateValidating, error: ^^NS.Error) -> bool {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.super_vt).allowEvaluationWithValidator(self, validator, error)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("allowEvaluationWithValidator:error:"), auto_cast allowEvaluationWithValidator, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.predicateFormat != nil {
         predicateFormat :: proc "c" (self: ^NS.Predicate, _: SEL) -> ^NS.String {

@@ -9,6 +9,7 @@ import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -334,6 +335,7 @@ XMLParserDelegate                :: NS.XMLParserDelegate
 XPCListenerDelegate              :: NS.XPCListenerDelegate
 XPCProxyCreating                 :: NS.XPCProxyCreating
 CacheDelegate                    :: NS.CacheDelegate
+PredicateValidating              :: NS.PredicateValidating
 ExtensionRequestHandling         :: NS.ExtensionRequestHandling
 FilePresenter                    :: NS.FilePresenter
 MetadataQueryDelegate            :: NS.MetadataQueryDelegate

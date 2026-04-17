@@ -136,6 +136,7 @@ foreign lib {
     @(link_name="kCTFontDownloadableAttribute") kFontDownloadableAttribute: CF.StringRef
     @(link_name="kCTFontDownloadedAttribute") kFontDownloadedAttribute: CF.StringRef
     @(link_name="kCTFontOpticalSizeAttribute") kFontOpticalSizeAttribute: CF.StringRef
+    @(link_name="kCTFontDescriptorLanguageAttribute") kFontDescriptorLanguageAttribute: CF.StringRef
     @(link_name="kCTFontDescriptorMatchingSourceDescriptor") kFontDescriptorMatchingSourceDescriptor: CF.StringRef
     @(link_name="kCTFontDescriptorMatchingDescriptors") kFontDescriptorMatchingDescriptors: CF.StringRef
     @(link_name="kCTFontDescriptorMatchingResult") kFontDescriptorMatchingResult: CF.StringRef
@@ -298,6 +299,9 @@ foreign lib {
 
     @(link_name="CTFontCreateUIFontForLanguage")
     FontCreateUIFontForLanguage :: proc(uiType: FontUIFontType, size: CG.Float, language: CF.StringRef) -> FontRef ---
+
+    @(link_name="CTFontGetUIFontType")
+    FontGetUIFontType :: proc(font: FontRef) -> FontUIFontType ---
 
     @(link_name="CTFontCreateCopyWithAttributes")
     FontCreateCopyWithAttributes :: proc(font: FontRef, size: CG.Float, _matrix: ^CG.AffineTransform, attributes: FontDescriptorRef) -> FontRef ---

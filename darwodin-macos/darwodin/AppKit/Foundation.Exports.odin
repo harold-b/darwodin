@@ -334,6 +334,7 @@ XMLParserDelegate                :: NS.XMLParserDelegate
 XPCListenerDelegate              :: NS.XPCListenerDelegate
 XPCProxyCreating                 :: NS.XPCProxyCreating
 CacheDelegate                    :: NS.CacheDelegate
+PredicateValidating              :: NS.PredicateValidating
 ExtensionRequestHandling         :: NS.ExtensionRequestHandling
 FilePresenter                    :: NS.FilePresenter
 MetadataQueryDelegate            :: NS.MetadataQueryDelegate

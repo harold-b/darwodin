@@ -9,6 +9,7 @@ import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -243,7 +244,7 @@ foreign lib {
     Image_imagePasteboardTypes :: proc() -> ^NS.Array ---
 
     @(objc_type=Image, objc_selector="initWithIconRef:", objc_name="initWithIconRef")
-    Image_initWithIconRef :: proc(self: ^Image, iconRef: IconRef) -> instancetype ---
+    Image_initWithIconRef :: proc(self: ^Image, iconRef: CM.IconRef) -> instancetype ---
 
     @(objc_type=Image, objc_selector="bestRepresentationForDevice:", objc_name="bestRepresentationForDevice")
     Image_bestRepresentationForDevice :: proc(self: ^Image, deviceDescription: ^NS.Dictionary) -> ^ImageRep ---

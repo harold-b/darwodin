@@ -11,6 +11,7 @@ ExportForwardDeclarations = true
 ExportTypes = [
   '^Audio.+',
   '^AU.+',
+  '^CA.+',
   '^OpaqueAudio.+',
   '^OpaqueAU.+',
   '^ComponentInstanceRecord$',

@@ -168,6 +168,8 @@ ExternVars:
     ::GCInputTrigger: GC.InputTrigger
     ::GCInputLeftTrigger: GC.InputLeftTrigger
     ::GCInputRightTrigger: GC.InputRightTrigger
+    ::GCInputLeftSideButton: GC.InputLeftSideButton
+    ::GCInputRightSideButton: GC.InputRightSideButton
     ::GCInputButtonHome: GC.InputButtonHome
     ::GCInputButtonMenu: GC.InputButtonMenu
     ::GCInputButtonOptions: GC.InputButtonOptions
@@ -528,6 +530,8 @@ ExternTypes:
     ::GCInputTrigger: ^NS.String
     ::GCInputLeftTrigger: ^NS.String
     ::GCInputRightTrigger: ^NS.String
+    ::GCInputLeftSideButton: ^NS.String
+    ::GCInputRightSideButton: ^NS.String
     ::GCInputButtonHome: ^NS.String
     ::GCInputButtonMenu: ^NS.String
     ::GCInputButtonOptions: ^NS.String

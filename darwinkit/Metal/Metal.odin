@@ -52,6 +52,7 @@ foreign lib {
         @(link_name="MTLDeviceRemovalRequestedNotification") DeviceRemovalRequestedNotification: ^NS.String
         @(link_name="MTLDeviceWasRemovedNotification") DeviceWasRemovedNotification: ^NS.String
     }
+    @(link_name="MTLDeviceErrorDomain") DeviceErrorDomain: ^NS.String
     @(link_name="MTLCommandBufferErrorDomain") CommandBufferErrorDomain: ^NS.String
     @(link_name="MTLCommandBufferEncoderInfoErrorKey") CommandBufferEncoderInfoErrorKey: ^NS.String
     @(link_name="MTL4CommandQueueErrorDomain") MTL4CommandQueueErrorDomain: ^NS.String
@@ -526,6 +527,8 @@ TensorDataType :: enum cffi.long {
     UInt16   = 41,
     Int32    = 29,
     UInt32   = 33,
+    Int4     = 143,
+    UInt4    = 144,
 }
 
 /// MTLTensorError
@@ -854,6 +857,12 @@ CounterSamplingPoint :: enum cffi.ulong {
     AtDispatchBoundary     = 2,
     AtTileDispatchBoundary = 3,
     AtBlitBoundary         = 4,
+}
+
+/// MTLDeviceError
+DeviceError :: enum cffi.long {
+    None         = 0,
+    NotSupported = 1,
 }
 
 /// MTLSparseTextureMappingMode

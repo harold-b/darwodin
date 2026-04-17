@@ -417,6 +417,9 @@ foreign lib {
     @(objc_type=Device, objc_selector="supportsRenderDynamicLibraries", objc_name="supportsRenderDynamicLibraries")
     Device_supportsRenderDynamicLibraries :: proc(self: ^Device) -> bool ---
 
+    @(objc_type=Device, objc_selector="supportsPlacementSparse", objc_name="supportsPlacementSparse")
+    Device_supportsPlacementSparse :: proc(self: ^Device) -> bool ---
+
     @(objc_type=Device, objc_selector="supportsRaytracing", objc_name="supportsRaytracing")
     Device_supportsRaytracing :: proc(self: ^Device) -> bool ---
 

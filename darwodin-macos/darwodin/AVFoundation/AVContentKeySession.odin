@@ -66,6 +66,12 @@ foreign lib {
     @(objc_type=ContentKeySession, objc_selector="keySystem", objc_name="keySystem")
     ContentKeySession_keySystem :: proc(self: ^ContentKeySession) -> ^NS.String ---
 
+    @(objc_type=ContentKeySession, objc_selector="supportsAdvisoryKeys", objc_name="supportsAdvisoryKeys")
+    ContentKeySession_supportsAdvisoryKeys :: proc(self: ^ContentKeySession) -> bool ---
+
+    @(objc_type=ContentKeySession, objc_selector="setSupportsAdvisoryKeys:", objc_name="setSupportsAdvisoryKeys")
+    ContentKeySession_setSupportsAdvisoryKeys :: proc(self: ^ContentKeySession, supportsAdvisoryKeys: bool) ---
+
     @(objc_type=ContentKeySession, objc_selector="contentProtectionSessionIdentifier", objc_name="contentProtectionSessionIdentifier")
     ContentKeySession_contentProtectionSessionIdentifier :: proc(self: ^ContentKeySession) -> ^NS.Data ---
 

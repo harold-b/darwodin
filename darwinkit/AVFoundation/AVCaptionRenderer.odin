@@ -22,6 +22,9 @@ CaptionRenderer :: struct { using _: NS.Object, }
 
 @(default_calling_convention="c")
 foreign lib {
+    @(objc_type=CaptionRenderer, objc_selector="init", objc_name="init")
+    CaptionRenderer_init :: proc(self: ^CaptionRenderer) -> instancetype ---
+
     @(objc_type=CaptionRenderer, objc_selector="captionSceneChangesInRange:", objc_name="captionSceneChangesInRange")
     CaptionRenderer_captionSceneChangesInRange :: proc(self: ^CaptionRenderer, consideredTimeRange: CM.TimeRange) -> ^NS.Array ---
 
@@ -39,4 +42,7 @@ foreign lib {
 
     @(objc_type=CaptionRenderer, objc_selector="setBounds:", objc_name="setBounds")
     CaptionRenderer_setBounds :: proc(self: ^CaptionRenderer, bounds: CG.Rect) ---
+
+    @(objc_type=CaptionRenderer, objc_selector="captionPreviewForProfileID:extendedLanguageTag:renderSize:", objc_name="captionPreviewForProfileID", objc_is_class_method=true)
+    CaptionRenderer_captionPreviewForProfileID :: proc(profileID: ^NS.String, extendedLanguageTag: ^NS.String, renderSize: CG.Size) -> ^NS.AttributedString ---
 }

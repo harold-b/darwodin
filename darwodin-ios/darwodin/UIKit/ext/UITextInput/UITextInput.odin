@@ -83,6 +83,7 @@ VTable :: struct {
     supportsAdaptiveImageGlyph: proc(self: ^UI.TextInput) -> bool,
     setSupportsAdaptiveImageGlyph: proc(self: ^UI.TextInput, supportsAdaptiveImageGlyph: bool),
     isEditable: proc(self: ^UI.TextInput) -> bool,
+    unobscuredContentRect: proc(self: ^UI.TextInput) -> CG.Rect,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -718,6 +719,16 @@ extend :: proc(cls: Class, vt: ^VTable) {
         }
 
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEditable"), auto_cast isEditable, "B@:") do panic("Failed to register objC method.")
+    }
+    if vt.unobscuredContentRect != nil {
+        unobscuredContentRect :: proc "c" (self: ^UI.TextInput, _: SEL) -> CG.Rect {
+
+            vt_ctx := ObjC.object_get_vtable_info(self)
+            context = vt_ctx._context
+            return (cast(^VTable)vt_ctx.protocol_vt).unobscuredContentRect(self)
+        }
+
+        if !class_addMethod(cls, intrinsics.objc_find_selector("unobscuredContentRect"), auto_cast unobscuredContentRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
 }
 

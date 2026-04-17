@@ -1668,6 +1668,8 @@ ExternVars:
     ::AVPlayerRateDidChangeReasonSetRateFailed: AV.PlayerRateDidChangeReasonSetRateFailed
     ::AVPlayerRateDidChangeReasonAudioSessionInterrupted: AV.PlayerRateDidChangeReasonAudioSessionInterrupted
     ::AVPlayerRateDidChangeReasonAppBackgrounded: AV.PlayerRateDidChangeReasonAppBackgrounded
+    ::AVPlayerRateDidChangeReasonPlayheadReachedLiveEdge: AV.PlayerRateDidChangeReasonPlayheadReachedLiveEdge
+    ::AVPlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange: AV.PlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange
     ::AVPlayerWaitingToMinimizeStallsReason: AV.PlayerWaitingToMinimizeStallsReason
     ::AVPlayerWaitingWhileEvaluatingBufferingRateReason: AV.PlayerWaitingWhileEvaluatingBufferingRateReason
     ::AVPlayerWaitingWithNoItemToPlayReason: AV.PlayerWaitingWithNoItemToPlayReason
@@ -1716,6 +1718,10 @@ ExternVars:
     ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey: AV.PlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey
     ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey: AV.PlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey
     ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey: AV.PlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey
+    ::AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification: AV.PlayerInterstitialEventMonitorScheduleRequestCompletedNotification
+    ::AVPlayerInterstitialEventMonitorScheduleRequestIdentifierKey: AV.PlayerInterstitialEventMonitorScheduleRequestIdentifierKey
+    ::AVPlayerInterstitialEventMonitorScheduleRequestResponseKey: AV.PlayerInterstitialEventMonitorScheduleRequestResponseKey
+    ::AVPlayerInterstitialEventMonitorScheduleRequestErrorKey: AV.PlayerInterstitialEventMonitorScheduleRequestErrorKey
     ::AVPlayerWaitingDuringInterstitialEventReason: AV.PlayerWaitingDuringInterstitialEventReason
     ::AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification: AV.PlayerIntegratedTimelineSnapshotsOutOfSyncNotification
     ::AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey: AV.PlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey
@@ -2875,6 +2881,8 @@ ExternTypes:
     ::AVPlayerRateDidChangeReasonSetRateFailed: ^NS.String
     ::AVPlayerRateDidChangeReasonAudioSessionInterrupted: ^NS.String
     ::AVPlayerRateDidChangeReasonAppBackgrounded: ^NS.String
+    ::AVPlayerRateDidChangeReasonPlayheadReachedLiveEdge: ^NS.String
+    ::AVPlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange: ^NS.String
     ::AVPlayerWaitingToMinimizeStallsReason: ^NS.String
     ::AVPlayerWaitingWhileEvaluatingBufferingRateReason: ^NS.String
     ::AVPlayerWaitingWithNoItemToPlayReason: ^NS.String
@@ -2923,6 +2931,10 @@ ExternTypes:
     ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey: ^NS.String
     ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey: ^NS.String
     ::AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification: ^NS.String
+    ::AVPlayerInterstitialEventMonitorScheduleRequestIdentifierKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorScheduleRequestResponseKey: ^NS.String
+    ::AVPlayerInterstitialEventMonitorScheduleRequestErrorKey: ^NS.String
     ::AVPlayerWaitingDuringInterstitialEventReason: ^NS.String
     ::AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification: ^NS.String
     ::AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey: ^NS.String

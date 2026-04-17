@@ -99,6 +99,7 @@ Functions:
     ::CTFontCreateWithNameAndOptions: CT.FontCreateWithNameAndOptions
     ::CTFontCreateWithFontDescriptorAndOptions: CT.FontCreateWithFontDescriptorAndOptions
     ::CTFontCreateUIFontForLanguage: CT.FontCreateUIFontForLanguage
+    ::CTFontGetUIFontType: CT.FontGetUIFontType
     ::CTFontCreateCopyWithAttributes: CT.FontCreateCopyWithAttributes
     ::CTFontCreateCopyWithSymbolicTraits: CT.FontCreateCopyWithSymbolicTraits
     ::CTFontCreateCopyWithFamily: CT.FontCreateCopyWithFamily
@@ -314,6 +315,7 @@ ExternVars:
     ::kCTFontDownloadableAttribute: CT.kFontDownloadableAttribute
     ::kCTFontDownloadedAttribute: CT.kFontDownloadedAttribute
     ::kCTFontOpticalSizeAttribute: CT.kFontOpticalSizeAttribute
+    ::kCTFontDescriptorLanguageAttribute: CT.kFontDescriptorLanguageAttribute
     ::kCTFontDescriptorMatchingSourceDescriptor: CT.kFontDescriptorMatchingSourceDescriptor
     ::kCTFontDescriptorMatchingDescriptors: CT.kFontDescriptorMatchingDescriptors
     ::kCTFontDescriptorMatchingResult: CT.kFontDescriptorMatchingResult
@@ -445,6 +447,7 @@ ExternTypes:
     ::kCTFontDownloadableAttribute: CF.StringRef
     ::kCTFontDownloadedAttribute: CF.StringRef
     ::kCTFontOpticalSizeAttribute: CF.StringRef
+    ::kCTFontDescriptorLanguageAttribute: CF.StringRef
     ::kCTFontDescriptorMatchingSourceDescriptor: CF.StringRef
     ::kCTFontDescriptorMatchingDescriptors: CF.StringRef
     ::kCTFontDescriptorMatchingResult: CF.StringRef

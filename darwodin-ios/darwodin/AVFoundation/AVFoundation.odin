@@ -938,6 +938,8 @@ foreign lib {
     @(link_name="AVPlayerRateDidChangeReasonSetRateFailed") PlayerRateDidChangeReasonSetRateFailed: ^NS.String
     @(link_name="AVPlayerRateDidChangeReasonAudioSessionInterrupted") PlayerRateDidChangeReasonAudioSessionInterrupted: ^NS.String
     @(link_name="AVPlayerRateDidChangeReasonAppBackgrounded") PlayerRateDidChangeReasonAppBackgrounded: ^NS.String
+    @(link_name="AVPlayerRateDidChangeReasonPlayheadReachedLiveEdge") PlayerRateDidChangeReasonPlayheadReachedLiveEdge: ^NS.String
+    @(link_name="AVPlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange") PlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange: ^NS.String
     @(link_name="AVPlayerWaitingToMinimizeStallsReason") PlayerWaitingToMinimizeStallsReason: ^NS.String
     @(link_name="AVPlayerWaitingWhileEvaluatingBufferingRateReason") PlayerWaitingWhileEvaluatingBufferingRateReason: ^NS.String
     @(link_name="AVPlayerWaitingWithNoItemToPlayReason") PlayerWaitingWithNoItemToPlayReason: ^NS.String
@@ -986,6 +988,10 @@ foreign lib {
     @(link_name="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey") PlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey: ^NS.String
     @(link_name="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey") PlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey: ^NS.String
     @(link_name="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey") PlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey: ^NS.String
+    @(link_name="AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification") PlayerInterstitialEventMonitorScheduleRequestCompletedNotification: ^NS.String
+    @(link_name="AVPlayerInterstitialEventMonitorScheduleRequestIdentifierKey") PlayerInterstitialEventMonitorScheduleRequestIdentifierKey: ^NS.String
+    @(link_name="AVPlayerInterstitialEventMonitorScheduleRequestResponseKey") PlayerInterstitialEventMonitorScheduleRequestResponseKey: ^NS.String
+    @(link_name="AVPlayerInterstitialEventMonitorScheduleRequestErrorKey") PlayerInterstitialEventMonitorScheduleRequestErrorKey: ^NS.String
     @(link_name="AVPlayerWaitingDuringInterstitialEventReason") PlayerWaitingDuringInterstitialEventReason: ^NS.String
     @(link_name="AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification") PlayerIntegratedTimelineSnapshotsOutOfSyncNotification: ^NS.String
     @(link_name="AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey") PlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey: ^NS.String

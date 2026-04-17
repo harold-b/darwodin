@@ -59,6 +59,8 @@ Odin:
     - ^unichar$
     - ^Integer$
     - ^UInteger$
+    - ^NSSize$
+    - ^NSRect$
 
   ResolvedTypedefs:
     - '[su]?int.*'

@@ -35,7 +35,7 @@ foreign lib {
 
     when !ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=TextureLoader, objc_selector="newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:", objc_name="newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler")
-        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, displayGamut: AK.DisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderCallback) ---
+        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, displayGamut: AKDisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderCallback) ---
     }
 
     @(objc_type=TextureLoader, objc_selector="newTexturesWithContentsOfURLs:options:completionHandler:", objc_name="newTexturesWithContentsOfURLs_options_completionHandler")
@@ -82,7 +82,7 @@ foreign lib {
 
     when !ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=TextureLoader, objc_selector="newTextureWithName:scaleFactor:displayGamut:bundle:options:error:", objc_name="newTextureWithName_scaleFactor_displayGamut_bundle_options_error")
-        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_error :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, displayGamut: AK.DisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, error: ^^NS.Error) -> ^MTL.Texture ---
+        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_error :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, displayGamut: AKDisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, error: ^^NS.Error) -> ^MTL.Texture ---
     }
 
     @(objc_type=TextureLoader, objc_selector="device", objc_name="device")

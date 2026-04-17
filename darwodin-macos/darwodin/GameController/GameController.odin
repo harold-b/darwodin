@@ -61,6 +61,8 @@ foreign lib {
     @(link_name="GCInputTrigger") InputTrigger: ^NS.String
     @(link_name="GCInputLeftTrigger") InputLeftTrigger: ^NS.String
     @(link_name="GCInputRightTrigger") InputRightTrigger: ^NS.String
+    @(link_name="GCInputLeftSideButton") InputLeftSideButton: ^NS.String
+    @(link_name="GCInputRightSideButton") InputRightSideButton: ^NS.String
     @(link_name="GCInputButtonHome") InputButtonHome: ^NS.String
     @(link_name="GCInputButtonMenu") InputButtonMenu: ^NS.String
     @(link_name="GCInputButtonOptions") InputButtonOptions: ^NS.String

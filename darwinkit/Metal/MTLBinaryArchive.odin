@@ -23,7 +23,7 @@ BinaryArchive :: struct { using _: intrinsics.objc_object,
 
 @(default_calling_convention="c")
 foreign lib {
-    @(objc_type=BinaryArchive, objc_selector="addComputePipelineFunctionsWithDescriptor:error:", objc_name="addComputePipelineFunctionsWithDescriptor", macos_available="24.4.3", ios_available="24.3")
+    @(objc_type=BinaryArchive, objc_selector="addComputePipelineFunctionsWithDescriptor:error:", objc_name="addComputePipelineFunctionsWithDescriptor")
     BinaryArchive_addComputePipelineFunctionsWithDescriptor :: proc(self: ^BinaryArchive, descriptor: ^ComputePipelineDescriptor, error: ^^NS.Error) -> bool ---
 
     @(objc_type=BinaryArchive, objc_selector="addRenderPipelineFunctionsWithDescriptor:error:", objc_name="addRenderPipelineFunctionsWithDescriptor")

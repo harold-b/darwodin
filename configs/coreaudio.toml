@@ -9,7 +9,7 @@ DontWrapCFunctions        = true
 ExportForwardDeclarations = true
 KeepAnonymousEnums        = true
 
-ExportTypes =[
+ExportTypes = [
   '^Audio.+',
   '^AU.+',
   '^OpaqueAudio.+',

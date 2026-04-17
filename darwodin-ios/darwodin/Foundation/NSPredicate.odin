@@ -51,6 +51,9 @@ foreign lib {
     @(objc_type=Predicate, objc_selector="allowEvaluation", objc_name="allowEvaluation")
     Predicate_allowEvaluation :: proc(self: ^Predicate) ---
 
+    @(objc_type=Predicate, objc_selector="allowEvaluationWithValidator:error:", objc_name="allowEvaluationWithValidator")
+    Predicate_allowEvaluationWithValidator :: proc(self: ^Predicate, validator: ^PredicateValidating, error: ^^Error) -> bool ---
+
     @(objc_type=Predicate, objc_selector="predicateFormat", objc_name="predicateFormat")
     Predicate_predicateFormat :: proc(self: ^Predicate) -> ^String ---
 }

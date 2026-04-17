@@ -83,6 +83,9 @@ foreign lib {
     @(objc_type=PlayerInterstitialEvent, objc_selector="assetListResponse", objc_name="assetListResponse")
     PlayerInterstitialEvent_assetListResponse :: proc(self: ^PlayerInterstitialEvent) -> ^NS.Dictionary ---
 
+    @(objc_type=PlayerInterstitialEvent, objc_selector="scheduleIdentifier", objc_name="scheduleIdentifier")
+    PlayerInterstitialEvent_scheduleIdentifier :: proc(self: ^PlayerInterstitialEvent) -> ^NS.String ---
+
     @(objc_type=PlayerInterstitialEvent, objc_selector="timelineOccupancy", objc_name="timelineOccupancy")
     PlayerInterstitialEvent_timelineOccupancy :: proc(self: ^PlayerInterstitialEvent) -> PlayerInterstitialEventTimelineOccupancy ---
 

@@ -261,6 +261,12 @@ foreign lib {
     @(objc_type=Player, objc_selector="setObservationEnabled:", objc_name="setObservationEnabled", objc_is_class_method=true)
     Player_setObservationEnabled :: proc(observationEnabled: bool) ---
 
+    @(objc_type=Player, objc_selector="allowsCaptureOfClearKeyVideo", objc_name="allowsCaptureOfClearKeyVideo")
+    Player_allowsCaptureOfClearKeyVideo :: proc(self: ^Player) -> bool ---
+
+    @(objc_type=Player, objc_selector="setAllowsCaptureOfClearKeyVideo:", objc_name="setAllowsCaptureOfClearKeyVideo")
+    Player_setAllowsCaptureOfClearKeyVideo :: proc(self: ^Player, allowsCaptureOfClearKeyVideo: bool) ---
+
     @(objc_type=Player, objc_selector="isClosedCaptionDisplayEnabled", objc_name="isClosedCaptionDisplayEnabled")
     Player_isClosedCaptionDisplayEnabled :: proc(self: ^Player) -> bool ---
 

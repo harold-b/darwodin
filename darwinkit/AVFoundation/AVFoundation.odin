@@ -19,6 +19,9 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
+CASpatialAudioExperience :: id
+CaptionConversionValidatorStatus :: id
+NSImage :: id
 @export foreign import lib "system:AVFoundation.framework"
 
 
@@ -951,6 +954,8 @@ foreign lib {
     @(link_name="AVPlayerRateDidChangeReasonSetRateFailed") PlayerRateDidChangeReasonSetRateFailed: ^NS.String
     @(link_name="AVPlayerRateDidChangeReasonAudioSessionInterrupted") PlayerRateDidChangeReasonAudioSessionInterrupted: ^NS.String
     @(link_name="AVPlayerRateDidChangeReasonAppBackgrounded") PlayerRateDidChangeReasonAppBackgrounded: ^NS.String
+    @(link_name="AVPlayerRateDidChangeReasonPlayheadReachedLiveEdge") PlayerRateDidChangeReasonPlayheadReachedLiveEdge: ^NS.String
+    @(link_name="AVPlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange") PlayerRateDidChangeReasonReversePlaybackReachedStartOfSeekableRange: ^NS.String
     @(link_name="AVPlayerWaitingToMinimizeStallsReason") PlayerWaitingToMinimizeStallsReason: ^NS.String
     @(link_name="AVPlayerWaitingWhileEvaluatingBufferingRateReason") PlayerWaitingWhileEvaluatingBufferingRateReason: ^NS.String
     @(link_name="AVPlayerWaitingWithNoItemToPlayReason") PlayerWaitingWithNoItemToPlayReason: ^NS.String
@@ -1002,6 +1007,10 @@ foreign lib {
     @(link_name="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey") PlayerInterstitialEventMonitorInterstitialEventDidFinishEventKey: ^NS.String
     @(link_name="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey") PlayerInterstitialEventMonitorInterstitialEventDidFinishPlayoutTimeKey: ^NS.String
     @(link_name="AVPlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey") PlayerInterstitialEventMonitorInterstitialEventDidFinishDidPlayEntireEventKey: ^NS.String
+    @(link_name="AVPlayerInterstitialEventMonitorScheduleRequestCompletedNotification") PlayerInterstitialEventMonitorScheduleRequestCompletedNotification: ^NS.String
+    @(link_name="AVPlayerInterstitialEventMonitorScheduleRequestIdentifierKey") PlayerInterstitialEventMonitorScheduleRequestIdentifierKey: ^NS.String
+    @(link_name="AVPlayerInterstitialEventMonitorScheduleRequestResponseKey") PlayerInterstitialEventMonitorScheduleRequestResponseKey: ^NS.String
+    @(link_name="AVPlayerInterstitialEventMonitorScheduleRequestErrorKey") PlayerInterstitialEventMonitorScheduleRequestErrorKey: ^NS.String
     @(link_name="AVPlayerWaitingDuringInterstitialEventReason") PlayerWaitingDuringInterstitialEventReason: ^NS.String
     @(link_name="AVPlayerIntegratedTimelineSnapshotsOutOfSyncNotification") PlayerIntegratedTimelineSnapshotsOutOfSyncNotification: ^NS.String
     @(link_name="AVPlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey") PlayerIntegratedTimelineSnapshotsOutOfSyncReasonKey: ^NS.String
@@ -1913,6 +1922,80 @@ else {
         AutoWhiteBalanceNotLocked        = -11891,
         FollowExternalSyncDeviceTimedOut = -11892,
     }
+}
+
+
+/// AVMovieWritingOptions
+MovieWritingOption :: enum cffi.ulong {
+    TruncateDestinationToMovieHeaderOnly = 0,
+}
+MovieWritingOptions :: bit_set[MovieWritingOption; cffi.ulong]
+
+/// AVPlayerStatus
+PlayerStatus :: enum cffi.long {
+    Unknown     = 0,
+    ReadyToPlay = 1,
+    Failed      = 2,
+}
+
+/// AVPlayerTimeControlStatus
+PlayerTimeControlStatus :: enum cffi.long {
+    Paused                       = 0,
+    WaitingToPlayAtSpecifiedRate = 1,
+    Playing                      = 2,
+}
+
+/// AVPlayerActionAtItemEnd
+PlayerActionAtItemEnd :: enum cffi.long {
+    Advance = 0,
+    Pause   = 1,
+    None    = 2,
+}
+
+/// AVPlayerHDRMode
+PlayerHDRMode :: enum cffi.long {
+    HLG         = 1,
+    HDR10       = 2,
+    DolbyVision = 4,
+}
+
+/// AVPlayerAudiovisualBackgroundPlaybackPolicy
+PlayerAudiovisualBackgroundPlaybackPolicy :: enum cffi.long {
+    Automatic           = 1,
+    Pauses              = 2,
+    ContinuesIfPossible = 3,
+}
+
+/// AVPlayerNetworkResourcePriority
+PlayerNetworkResourcePriority :: enum cffi.long {
+    Default = 0,
+    Low     = 1,
+    High    = 2,
+}
+
+/// AVDelegatingPlaybackCoordinatorRateChangeOptions
+DelegatingPlaybackCoordinatorRateChangeOption :: enum cffi.ulong {
+    OptionPlayImmediately = 0,
+}
+DelegatingPlaybackCoordinatorRateChangeOptions :: bit_set[DelegatingPlaybackCoordinatorRateChangeOption; cffi.ulong]
+
+/// AVDelegatingPlaybackCoordinatorSeekOptions
+DelegatingPlaybackCoordinatorSeekOption :: enum cffi.ulong {
+    OptionResumeImmediately = 0,
+}
+DelegatingPlaybackCoordinatorSeekOptions :: bit_set[DelegatingPlaybackCoordinatorSeekOption; cffi.ulong]
+
+/// AVPlayerItemStatus
+PlayerItemStatus :: enum cffi.long {
+    Unknown     = 0,
+    ReadyToPlay = 1,
+    Failed      = 2,
+}
+
+/// AVVariantPreferences
+VariantPreferences :: enum cffi.ulong {
+    PreferenceNone            = 0,
+    calabilityToLosslessAudio = 1,
 }
 
 when !ODIN_PLATFORM_SUBTARGET_IOS {

@@ -19,7 +19,7 @@ instancetype  :: intrinsics.objc_instancetype
 
 @export foreign import lib "system:MetalFX.framework"
 
-
+simd_float4x4 :: matrix[4,4]f32
 
 /// MTLFXSpatialScalerColorProcessingMode
 SpatialScalerColorProcessingMode :: enum cffi.long {

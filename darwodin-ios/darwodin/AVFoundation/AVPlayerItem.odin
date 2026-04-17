@@ -344,6 +344,9 @@ foreign lib {
     @(objc_type=PlayerItem, objc_selector="templatePlayerItem", objc_name="templatePlayerItem")
     PlayerItem_templatePlayerItem :: proc(self: ^PlayerItem) -> ^PlayerItem ---
 
+    @(objc_type=PlayerItem, objc_selector="interstitialEventIdentifier", objc_name="interstitialEventIdentifier")
+    PlayerItem_interstitialEventIdentifier :: proc(self: ^PlayerItem) -> ^NS.String ---
+
     @(objc_type=PlayerItem, objc_selector="integratedTimeline", objc_name="integratedTimeline")
     PlayerItem_integratedTimeline :: proc(self: ^PlayerItem) -> ^PlayerItemIntegratedTimeline ---
 }

@@ -170,4 +170,7 @@ foreign lib {
 
     @(objc_type=View, objc_selector="setColorspace:", objc_name="setColorspace")
     View_setColorspace :: proc(self: ^View, colorspace: CG.ColorSpaceRef) ---
+
+    @(objc_type=View, objc_selector="residencySet", objc_name="residencySet")
+    View_residencySet :: proc(self: ^View) -> ^MTL.ResidencySet ---
 }

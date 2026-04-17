@@ -9,6 +9,7 @@ import libc "../libc"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import CT "../CoreText"
+import CM "../CoreMedia"
 import Sec "../Security"
 import NS "../Foundation"
 import CA "../QuartzCore"
@@ -23,22 +24,21 @@ instancetype  :: intrinsics.objc_instancetype
 @(require, export) foreign import lib "system:AppKit.framework"
 
 OpaqueSecTransformImplementation :: struct {}
-OpaqueSecIdentitySearchRef :: struct {}
-OpaquePolicySearchRef :: struct {}
-OpaqueIconRef :: struct {}
-CVTimeStamp :: struct {}
+OpaqueSecIdentitySearchRef       :: struct {}
+OpaquePolicySearchRef            :: struct {}
+CVTimeStamp                      :: struct {}
 
 CIBarcodeDescriptor :: NS.Object
-CKShare :: NS.Object
-CKContainer :: NS.Object
-CIImage :: NS.Object
-INIntent :: NS.Object
-CIColor :: NS.Object
-CIFilter  :: NS.Object
-CIContext :: NS.Object
-CKShareMetadata :: NS.Object
-QTMovie :: NS.Object
-UTType :: NS.Object
+CKShare             :: NS.Object
+CKContainer         :: NS.Object
+CIImage             :: NS.Object
+INIntent            :: NS.Object
+CIColor             :: NS.Object
+CIFilter            :: NS.Object
+CIContext           :: NS.Object
+CKShareMetadata     :: NS.Object
+QTMovie             :: NS.Object
+UTType              :: NS.Object
 
 GCGamepadSnapShotDataV100         :: struct {}
 GCExtendedGamepadSnapshotData     :: struct {}
@@ -67,8 +67,9 @@ array_next :: proc( it: ^Array_Iterator($T) ) -> (val: ^T, idx: int, cond: bool)
     }
 
     val      = auto_cast it.array->objectAtIndex(auto_cast it.index)
-    it.index += 1
+    idx      = it.index
     cond     = true
+    it.index += 1
     return
 }
 
@@ -3105,10 +3106,11 @@ AccessibilityCustomRotorType :: enum cffi.long {
 }
 
 /// NSWorkspaceIconCreationOptions
-WorkspaceIconCreationOptions :: enum cffi.ulong {
-    ExcludeQuickDrawElementsIconCreationOption = 2,
-    Exclude10_4ElementsIconCreationOption = 4,
+WorkspaceIconCreationOption :: enum cffi.ulong {
+    ExcludeQuickDrawElementsIconCreationOption = 1,
+    Exclude10_4ElementsIconCreationOption = 2,
 }
+WorkspaceIconCreationOptions :: bit_set[WorkspaceIconCreationOption; cffi.ulong]
 
 /// NSWorkspaceAuthorizationType
 WorkspaceAuthorizationType :: enum cffi.long {
@@ -3118,20 +3120,21 @@ WorkspaceAuthorizationType :: enum cffi.long {
 }
 
 /// NSWorkspaceLaunchOptions
-WorkspaceLaunchOptions :: enum cffi.ulong {
-    AndPrint                 = 2,
-    WithErrorPresentation    = 64,
-    InhibitingBackgroundOnly = 128,
-    WithoutAddingToRecents   = 256,
-    WithoutActivation        = 512,
-    Async                    = 65536,
-    NewInstance              = 524288,
-    AndHide                  = 1048576,
-    AndHideOthers            = 2097152,
-    Default                  = 65536,
-    AllowingClassicStartup   = 131072,
-    PreferringClassic        = 262144,
+WorkspaceLaunchOption :: enum cffi.ulong {
+    AndPrint                 = 1,
+    WithErrorPresentation    = 6,
+    InhibitingBackgroundOnly = 7,
+    WithoutAddingToRecents   = 8,
+    WithoutActivation        = 9,
+    Async                    = 16,
+    NewInstance              = 19,
+    AndHide                  = 20,
+    AndHideOthers            = 21,
+    Default                  = 16,
+    AllowingClassicStartup   = 17,
+    PreferringClassic        = 18,
 }
+WorkspaceLaunchOptions :: bit_set[WorkspaceLaunchOption; cffi.ulong]
 
 /// NSTouchPhase
 TouchPhase :: enum cffi.ulong {
@@ -3283,10 +3286,11 @@ EventGestureAxis :: enum cffi.long {
 }
 
 /// NSEventSwipeTrackingOptions
-EventSwipeTrackingOptions :: enum cffi.ulong {
-    LockDirection      = 1,
-    ClampGestureAmount = 2,
+EventSwipeTrackingOption :: enum cffi.ulong {
+    LockDirection      = 0,
+    ClampGestureAmount = 1,
 }
+EventSwipeTrackingOptions :: bit_set[EventSwipeTrackingOption; cffi.ulong]
 
 /// NSEventSubtype
 EventSubtype :: enum cffi.short {
@@ -3322,28 +3326,31 @@ PasteboardAccessBehavior :: enum cffi.long {
 }
 
 /// NSPasteboardContentsOptions
-PasteboardContentsOptions :: enum cffi.ulong {
-    CurrentHostOnly = 1,
+PasteboardContentsOption :: enum cffi.ulong {
+    CurrentHostOnly = 0,
 }
+PasteboardContentsOptions :: bit_set[PasteboardContentsOption; cffi.ulong]
 
 /// NSPasteboardWritingOptions
-PasteboardWritingOptions :: enum cffi.ulong {
-    Promised = 512,
+PasteboardWritingOption :: enum cffi.ulong {
+    Promised = 9,
 }
+PasteboardWritingOptions :: bit_set[PasteboardWritingOption; cffi.ulong]
 
 /// NSPasteboardReadingOptions
-PasteboardReadingOptions :: enum cffi.ulong {
-    AsData         = 0,
-    AsString       = 1,
-    AsPropertyList = 2,
-    AsKeyedArchive = 4,
+PasteboardReadingOption :: enum cffi.ulong {
+    AsString       = 0,
+    AsPropertyList = 1,
+    AsKeyedArchive = 2,
 }
+PasteboardReadingOptions :: bit_set[PasteboardReadingOption; cffi.ulong]
 
 /// NSApplicationActivationOptions
-ApplicationActivationOptions :: enum cffi.ulong {
-    ActivateAllWindows        = 1,
-    ActivateIgnoringOtherApps = 2,
+ApplicationActivationOption :: enum cffi.ulong {
+    ActivateAllWindows        = 0,
+    ActivateIgnoringOtherApps = 1,
 }
+ApplicationActivationOptions :: bit_set[ApplicationActivationOption; cffi.ulong]
 
 /// NSApplicationActivationPolicy
 ApplicationActivationPolicy :: enum cffi.long {
@@ -3397,10 +3404,11 @@ DraggingContext :: enum cffi.long {
 }
 
 /// NSDraggingItemEnumerationOptions
-DraggingItemEnumerationOptions :: enum cffi.ulong {
-    Concurrent               = 1,
-    ClearNonenumeratedImages = 65536,
+DraggingItemEnumerationOption :: enum cffi.ulong {
+    Concurrent               = 0,
+    ClearNonenumeratedImages = 16,
 }
+DraggingItemEnumerationOptions :: bit_set[DraggingItemEnumerationOption; cffi.ulong]
 
 /// NSSpringLoadingHighlight
 SpringLoadingHighlight :: enum cffi.long {
@@ -3410,12 +3418,12 @@ SpringLoadingHighlight :: enum cffi.long {
 }
 
 /// NSSpringLoadingOptions
-SpringLoadingOptions :: enum cffi.ulong {
-    Disabled             = 0,
-    Enabled              = 1,
-    ContinuousActivation = 2,
-    NoHover              = 8,
+SpringLoadingOption :: enum cffi.ulong {
+    Enabled              = 0,
+    ContinuousActivation = 1,
+    NoHover              = 3,
 }
+SpringLoadingOptions :: bit_set[SpringLoadingOption; cffi.ulong]
 
 /// NSUserInterfaceLayoutDirection
 UserInterfaceLayoutDirection :: enum cffi.long {
@@ -3430,15 +3438,15 @@ UserInterfaceLayoutOrientation :: enum cffi.long {
 }
 
 /// NSAutoresizingMaskOptions
-AutoresizingMaskOptions :: enum cffi.ulong {
-    ViewNotSizable    = 0,
-    ViewMinXMargin    = 1,
-    ViewWidthSizable  = 2,
-    ViewMaxXMargin    = 4,
-    ViewMinYMargin    = 8,
-    ViewHeightSizable = 16,
-    ViewMaxYMargin    = 32,
+AutoresizingMaskOption :: enum cffi.ulong {
+    ViewMinXMargin    = 0,
+    ViewWidthSizable  = 1,
+    ViewMaxXMargin    = 2,
+    ViewMinYMargin    = 3,
+    ViewHeightSizable = 4,
+    ViewMaxYMargin    = 5,
 }
+AutoresizingMaskOptions :: bit_set[AutoresizingMaskOption; cffi.ulong]
 
 /// NSBorderType
 BorderType :: enum cffi.ulong {
@@ -3701,22 +3709,22 @@ SaveOperationType :: enum cffi.ulong {
 }
 
 /// NSApplicationPresentationOptions
-ApplicationPresentationOptions :: enum cffi.ulong {
-    Default                         = 0,
-    AutoHideDock                    = 1,
-    HideDock                        = 2,
-    AutoHideMenuBar                 = 4,
-    HideMenuBar                     = 8,
-    DisableAppleMenu                = 16,
-    DisableProcessSwitching         = 32,
-    DisableForceQuit                = 64,
-    DisableSessionTermination       = 128,
-    DisableHideApplication          = 256,
-    DisableMenuBarTransparency      = 512,
-    FullScreen                      = 1024,
-    AutoHideToolbar                 = 2048,
-    DisableCursorLocationAssistance = 4096,
+ApplicationPresentationOption :: enum cffi.ulong {
+    AutoHideDock                    = 0,
+    HideDock                        = 1,
+    AutoHideMenuBar                 = 2,
+    HideMenuBar                     = 3,
+    DisableAppleMenu                = 4,
+    DisableProcessSwitching         = 5,
+    DisableForceQuit                = 6,
+    DisableSessionTermination       = 7,
+    DisableHideApplication          = 8,
+    DisableMenuBarTransparency      = 9,
+    FullScreen                      = 10,
+    AutoHideToolbar                 = 11,
+    DisableCursorLocationAssistance = 12,
 }
+ApplicationPresentationOptions :: bit_set[ApplicationPresentationOption; cffi.ulong]
 
 /// NSApplicationOcclusionState
 ApplicationOcclusionState :: enum cffi.ulong {
@@ -3724,9 +3732,10 @@ ApplicationOcclusionState :: enum cffi.ulong {
 }
 
 /// NSWindowListOptions
-WindowListOptions :: enum cffi.long {
-    OrderedFrontToBack = 1,
+WindowListOption :: enum cffi.long {
+    OrderedFrontToBack = 0,
 }
+WindowListOptions :: bit_set[WindowListOption; cffi.long]
 
 /// NSRequestUserAttentionType
 RequestUserAttentionType :: enum cffi.ulong {
@@ -3884,17 +3893,15 @@ PopoverBehavior :: enum cffi.long {
 }
 
 /// NSViewControllerTransitionOptions
-ViewControllerTransitionOptions :: enum cffi.ulong {
-    None                 = 0,
-    Crossfade            = 1,
-    SlideUp              = 16,
-    SlideDown            = 32,
-    SlideLeft            = 64,
-    SlideRight           = 128,
-    SlideForward         = 320,
-    SlideBackward        = 384,
-    AllowUserInteraction = 4096,
+ViewControllerTransitionOption :: enum cffi.ulong {
+    Crossfade            = 0,
+    SlideUp              = 4,
+    SlideDown            = 5,
+    SlideLeft            = 6,
+    SlideRight           = 7,
+    AllowUserInteraction = 12,
 }
+ViewControllerTransitionOptions :: bit_set[ViewControllerTransitionOption; cffi.ulong]
 
 /// NSCollectionViewDropOperation
 CollectionViewDropOperation :: enum cffi.long {
@@ -4035,9 +4042,10 @@ MultibyteGlyphPacking :: enum cffi.ulong {
 }
 
 /// NSFontAssetRequestOptions
-FontAssetRequestOptions :: enum cffi.ulong {
-    UsesStandardUI = 1,
+FontAssetRequestOption :: enum cffi.ulong {
+    UsesStandardUI = 0,
 }
+FontAssetRequestOptions :: bit_set[FontAssetRequestOption; cffi.ulong]
 
 /// NSFontCollectionVisibility
 FontCollectionVisibility :: enum cffi.ulong {
@@ -4064,9 +4072,10 @@ FontTraitMaskFlag :: enum cffi.ulong {
 FontTraitMask :: bit_set[FontTraitMaskFlag; cffi.ulong]
 
 /// NSFontCollectionOptions
-FontCollectionOptions :: enum cffi.ulong {
-    ApplicationOnlyMask = 1,
+FontCollectionOption :: enum cffi.ulong {
+    ApplicationOnlyMask = 0,
 }
+FontCollectionOptions :: bit_set[FontCollectionOption; cffi.ulong]
 
 /// NSFontAction
 FontAction :: enum cffi.ulong {
@@ -4133,10 +4142,11 @@ WindowAnimationBehavior :: enum cffi.long {
 }
 
 /// NSWindowNumberListOptions
-WindowNumberListOptions :: enum cffi.ulong {
-    AllApplications = 1,
-    AllSpaces       = 16,
+WindowNumberListOption :: enum cffi.ulong {
+    AllApplications = 0,
+    AllSpaces       = 4,
 }
+WindowNumberListOptions :: bit_set[WindowNumberListOption; cffi.ulong]
 
 /// NSWindowOcclusionState
 WindowOcclusionState :: enum cffi.ulong {
@@ -4328,17 +4338,17 @@ ColorPanelMode :: enum cffi.long {
 }
 
 /// NSColorPanelOptions
-ColorPanelOptions :: enum cffi.ulong {
-    GrayModeMask          = 1,
-    RGBModeMask           = 2,
-    CMYKModeMask          = 4,
-    HSBModeMask           = 8,
-    CustomPaletteModeMask = 16,
-    ColorListModeMask     = 32,
-    WheelModeMask         = 64,
-    CrayonModeMask        = 128,
-    AllModesMask          = 65535,
+ColorPanelOption :: enum cffi.ulong {
+    GrayModeMask          = 0,
+    RGBModeMask           = 1,
+    CMYKModeMask          = 2,
+    HSBModeMask           = 3,
+    CustomPaletteModeMask = 4,
+    ColorListModeMask     = 5,
+    WheelModeMask         = 6,
+    CrayonModeMask        = 7,
 }
+ColorPanelOptions :: bit_set[ColorPanelOption; cffi.ulong]
 
 /// NSColorWellStyle
 ColorWellStyle :: enum cffi.long {
@@ -4367,10 +4377,11 @@ CursorFrameResizeDirections :: enum cffi.ulong {
 }
 
 /// NSGradientDrawingOptions
-GradientDrawingOptions :: enum cffi.ulong {
-    DrawsBeforeStartingLocation = 1,
-    DrawsAfterEndingLocation    = 2,
+GradientDrawingOption :: enum cffi.ulong {
+    DrawsBeforeStartingLocation = 0,
+    DrawsAfterEndingLocation    = 1,
 }
+GradientDrawingOptions :: bit_set[GradientDrawingOption; cffi.ulong]
 
 /// NSGestureRecognizerState
 GestureRecognizerState :: enum cffi.long {
@@ -4415,24 +4426,24 @@ LayoutAttribute :: enum cffi.long {
 }
 
 /// NSLayoutFormatOptions
-LayoutFormatOptions :: enum cffi.ulong {
-    AlignAllLeft               = 2,
-    AlignAllRight              = 4,
-    AlignAllTop                = 8,
-    AlignAllBottom             = 16,
-    AlignAllLeading            = 32,
-    AlignAllTrailing           = 64,
-    AlignAllCenterX            = 512,
-    AlignAllCenterY            = 1024,
-    AlignAllLastBaseline       = 2048,
-    AlignAllFirstBaseline      = 4096,
-    AlignAllBaseline           = 2048,
-    AlignmentMask              = 65535,
-    DirectionLeadingToTrailing = 0,
-    DirectionLeftToRight       = 65536,
-    DirectionRightToLeft       = 131072,
-    DirectionMask              = 196608,
+LayoutFormatOption :: enum cffi.ulong {
+    AlignAllLeft          = 1,
+    AlignAllRight         = 2,
+    AlignAllTop           = 3,
+    AlignAllBottom        = 4,
+    AlignAllLeading       = 5,
+    AlignAllTrailing      = 6,
+    AlignAllCenterX       = 9,
+    AlignAllCenterY       = 10,
+    AlignAllLastBaseline  = 11,
+    AlignAllFirstBaseline = 12,
+    AlignAllBaseline      = 11,
+    DirectionLeftToRight  = 16,
+    DirectionRightToLeft  = 17,
 }
+LayoutFormatOptions :: bit_set[LayoutFormatOption; cffi.ulong]
+
+LayoutFormatOptions_DirectionMask :: LayoutFormatOptions { .DirectionLeftToRight, .DirectionRightToLeft, }
 
 /// NSImageLoadStatus
 ImageLoadStatus :: enum cffi.ulong {
@@ -4530,13 +4541,13 @@ SharingContentScope :: enum cffi.long {
 }
 
 /// NSCloudKitSharingServiceOptions
-CloudKitSharingServiceOptions :: enum cffi.ulong {
-    Standard       = 0,
-    AllowPublic    = 1,
-    AllowPrivate   = 2,
-    AllowReadOnly  = 16,
-    AllowReadWrite = 32,
+CloudKitSharingServiceOption :: enum cffi.ulong {
+    AllowPublic    = 0,
+    AllowPrivate   = 1,
+    AllowReadOnly  = 4,
+    AllowReadWrite = 5,
 }
+CloudKitSharingServiceOptions :: bit_set[CloudKitSharingServiceOption; cffi.ulong]
 
 /// NSSpeechBoundary
 SpeechBoundary :: enum cffi.ulong {
@@ -4619,23 +4630,25 @@ PrintPanelResult :: enum cffi.long {
 }
 
 /// NSPrintPanelOptions
-PrintPanelOptions :: enum cffi.ulong {
-    ShowsCopies             = 1,
-    ShowsPageRange          = 2,
-    ShowsPaperSize          = 4,
-    ShowsOrientation        = 8,
-    ShowsScaling            = 16,
-    ShowsPrintSelection     = 32,
-    ShowsPageSetupAccessory = 256,
-    ShowsPreview            = 131072,
+PrintPanelOption :: enum cffi.ulong {
+    ShowsCopies             = 0,
+    ShowsPageRange          = 1,
+    ShowsPaperSize          = 2,
+    ShowsOrientation        = 3,
+    ShowsScaling            = 4,
+    ShowsPrintSelection     = 5,
+    ShowsPageSetupAccessory = 8,
+    ShowsPreview            = 17,
 }
+PrintPanelOptions :: bit_set[PrintPanelOption; cffi.ulong]
 
 /// NSPDFPanelOptions
-PDFPanelOptions :: enum cffi.long {
-    ShowsPaperSize          = 4,
-    ShowsOrientation        = 8,
-    RequestsParentDirectory = 16777216,
+PDFPanelOption :: enum cffi.long {
+    ShowsPaperSize          = 2,
+    ShowsOrientation        = 3,
+    RequestsParentDirectory = 24,
 }
+PDFPanelOptions :: bit_set[PDFPanelOption; cffi.long]
 
 /// NSMediaLibrary
 MediaLibrary :: enum cffi.ulong {
@@ -4844,14 +4857,14 @@ WritingToolsBehavior :: enum cffi.long {
 }
 
 /// NSWritingToolsResultOptions
-WritingToolsResultOptions :: enum cffi.ulong {
-    Default            = 0,
-    PlainText          = 1,
-    RichText           = 2,
-    List               = 4,
-    Table              = 8,
-    PresentationIntent = 16,
+WritingToolsResultOption :: enum cffi.ulong {
+    PlainText          = 0,
+    RichText           = 1,
+    List               = 2,
+    Table              = 3,
+    PresentationIntent = 4,
 }
+WritingToolsResultOptions :: bit_set[WritingToolsResultOption; cffi.ulong]
 
 /// NSTextFieldBezelStyle
 TextFieldBezelStyle :: enum cffi.ulong {
@@ -4867,10 +4880,11 @@ TextInsertionIndicatorDisplayMode :: enum cffi.long {
 }
 
 /// NSTextInsertionIndicatorAutomaticModeOptions
-TextInsertionIndicatorAutomaticModeOptions :: enum cffi.long {
-    ShowEffectsView   = 1,
-    ShowWhileTracking = 2,
+TextInsertionIndicatorAutomaticModeOption :: enum cffi.long {
+    ShowEffectsView   = 0,
+    ShowWhileTracking = 1,
 }
+TextInsertionIndicatorAutomaticModeOptions :: bit_set[TextInsertionIndicatorAutomaticModeOption; cffi.long]
 
 /// NSUnderlineStyle
 UnderlineStyle :: enum cffi.long {
@@ -4980,18 +4994,19 @@ TokenStyle :: enum cffi.ulong {
 }
 
 /// NSTrackingAreaOptions
-TrackingAreaOptions :: enum cffi.ulong {
-    MouseEnteredAndExited    = 1,
-    MouseMoved               = 2,
-    CursorUpdate             = 4,
-    ActiveWhenFirstResponder = 16,
-    ActiveInKeyWindow        = 32,
-    ActiveInActiveApp        = 64,
-    ActiveAlways             = 128,
-    AssumeInside             = 256,
-    InVisibleRect            = 512,
-    EnabledDuringMouseDrag   = 1024,
+TrackingAreaOption :: enum cffi.ulong {
+    MouseEnteredAndExited    = 0,
+    MouseMoved               = 1,
+    CursorUpdate             = 2,
+    ActiveWhenFirstResponder = 4,
+    ActiveInKeyWindow        = 5,
+    ActiveInActiveApp        = 6,
+    ActiveAlways             = 7,
+    AssumeInside             = 8,
+    InVisibleRect            = 9,
+    EnabledDuringMouseDrag   = 10,
 }
+TrackingAreaOptions :: bit_set[TrackingAreaOption; cffi.ulong]
 
 /// NSToolbarDisplayMode
 ToolbarDisplayMode :: enum cffi.ulong {
@@ -5126,22 +5141,23 @@ TableRowActionEdge :: enum cffi.long {
 }
 
 /// NSTableViewAnimationOptions
-TableViewAnimationOptions :: enum cffi.ulong {
-    EffectNone = 0,
-    EffectFade = 1,
-    EffectGap  = 2,
-    SlideUp    = 16,
-    SlideDown  = 32,
-    SlideLeft  = 48,
-    SlideRight = 64,
+TableViewAnimationOption :: enum cffi.ulong {
+    EffectFade = 0,
+    EffectGap  = 1,
+    SlideUp    = 4,
+    SlideDown  = 5,
+    SlideRight = 6,
 }
+TableViewAnimationOptions :: bit_set[TableViewAnimationOption; cffi.ulong]
+
+TableViewAnimationOptions_SlideLeft :: TableViewAnimationOptions { .SlideUp, .SlideDown, }
 
 /// NSTableColumnResizingOptions
-TableColumnResizingOptions :: enum cffi.ulong {
-    NoResizing       = 0,
-    AutoresizingMask = 1,
-    UserResizingMask = 2,
+TableColumnResizingOption :: enum cffi.ulong {
+    AutoresizingMask = 0,
+    UserResizingMask = 1,
 }
+TableColumnResizingOptions :: bit_set[TableColumnResizingOption; cffi.ulong]
 
 /// NSTableViewRowActionStyle
 TableViewRowActionStyle :: enum cffi.long {
@@ -5150,15 +5166,16 @@ TableViewRowActionStyle :: enum cffi.long {
 }
 
 /// NSStringDrawingOptions
-StringDrawingOptions :: enum cffi.long {
-    UsesLineFragmentOrigin           = 1,
-    UsesFontLeading                  = 2,
-    UsesDeviceMetrics                = 8,
-    TruncatesLastVisibleLine         = 32,
-    ResolvesNaturalAlignmentWithBaseWritingDirection = 512,
-    DisableScreenFontSubstitution    = 4,
-    OneShot                          = 16,
+StringDrawingOption :: enum cffi.long {
+    UsesLineFragmentOrigin           = 0,
+    UsesFontLeading                  = 1,
+    UsesDeviceMetrics                = 3,
+    TruncatesLastVisibleLine         = 5,
+    ResolvesNaturalAlignmentWithBaseWritingDirection = 9,
+    DisableScreenFontSubstitution    = 2,
+    OneShot                          = 4,
 }
+StringDrawingOptions :: bit_set[StringDrawingOption; cffi.long]
 
 /// NSRulerOrientation
 RulerOrientation :: enum cffi.ulong {
@@ -5329,9 +5346,10 @@ TypesetterControlCharacterAction :: enum cffi.ulong {
 }
 
 /// NSTextListOptions
-TextListOptions :: enum cffi.ulong {
-    PrependEnclosingMarker = 1,
+TextListOption :: enum cffi.ulong {
+    PrependEnclosingMarker = 0,
 }
+TextListOptions :: bit_set[TextListOption; cffi.ulong]
 
 /// NSTextBlockValueType
 TextBlockValueType :: enum cffi.ulong {
@@ -5573,19 +5591,19 @@ TextSelectionNavigationLayoutOrientation :: enum cffi.long {
 }
 
 /// NSTextContentManagerEnumerationOptions
-TextContentManagerEnumerationOptions :: enum cffi.ulong {
-    None    = 0,
-    Reverse = 1,
+TextContentManagerEnumerationOption :: enum cffi.ulong {
+    Reverse = 0,
 }
+TextContentManagerEnumerationOptions :: bit_set[TextContentManagerEnumerationOption; cffi.ulong]
 
 /// NSTextLayoutFragmentEnumerationOptions
-TextLayoutFragmentEnumerationOptions :: enum cffi.ulong {
-    None                     = 0,
-    Reverse                  = 1,
-    EstimatesSize            = 2,
-    EnsuresLayout            = 4,
-    EnsuresExtraLineFragment = 8,
+TextLayoutFragmentEnumerationOption :: enum cffi.ulong {
+    Reverse                  = 0,
+    EstimatesSize            = 1,
+    EnsuresLayout            = 2,
+    EnsuresExtraLineFragment = 3,
 }
+TextLayoutFragmentEnumerationOptions :: bit_set[TextLayoutFragmentEnumerationOption; cffi.ulong]
 
 /// NSTextLayoutFragmentState
 TextLayoutFragmentState :: enum cffi.ulong {
@@ -5603,14 +5621,14 @@ TextLayoutManagerSegmentType :: enum cffi.long {
 }
 
 /// NSTextLayoutManagerSegmentOptions
-TextLayoutManagerSegmentOptions :: enum cffi.ulong {
-    None                    = 0,
-    RangeNotRequired        = 1,
-    MiddleFragmentsExcluded = 2,
-    HeadSegmentExtended     = 4,
-    TailSegmentExtended     = 8,
-    UpstreamAffinity        = 16,
+TextLayoutManagerSegmentOption :: enum cffi.ulong {
+    RangeNotRequired        = 0,
+    MiddleFragmentsExcluded = 1,
+    HeadSegmentExtended     = 2,
+    TailSegmentExtended     = 3,
+    UpstreamAffinity        = 4,
 }
+TextLayoutManagerSegmentOptions :: bit_set[TextLayoutManagerSegmentOption; cffi.ulong]
 
 /// NSWritingToolsCoordinatorTextUpdateReason
 WritingToolsCoordinatorTextUpdateReason :: enum cffi.long {

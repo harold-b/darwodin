@@ -1712,13 +1712,13 @@ PropertyListReadOptions :: distinct PropertyListMutabilityOptions
 PropertyListWriteOptions :: distinct UInteger
 
 /// NSSize
-Size :: distinct CG.Size
+Size :: CG.Size
 
 /// NSSizeArray
 SizeArray :: distinct ^Size
 
 /// NSRect
-Rect :: distinct CG.Rect
+Rect :: CG.Rect
 
 /// NSRectArray
 RectArray :: distinct ^Rect

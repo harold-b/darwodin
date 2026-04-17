@@ -87,6 +87,15 @@ foreign lib {
     @(objc_type=CaptureDeviceInput, objc_selector="setWindNoiseRemovalEnabled:", objc_name="setWindNoiseRemovalEnabled")
     CaptureDeviceInput_setWindNoiseRemovalEnabled :: proc(self: ^CaptureDeviceInput, windNoiseRemovalEnabled: bool) ---
 
+    @(objc_type=CaptureDeviceInput, objc_selector="isAudioZoomSupported", objc_name="isAudioZoomSupported")
+    CaptureDeviceInput_isAudioZoomSupported :: proc(self: ^CaptureDeviceInput) -> bool ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="isAudioZoomEnabled", objc_name="isAudioZoomEnabled")
+    CaptureDeviceInput_isAudioZoomEnabled :: proc(self: ^CaptureDeviceInput) -> bool ---
+
+    @(objc_type=CaptureDeviceInput, objc_selector="setAudioZoomEnabled:", objc_name="setAudioZoomEnabled")
+    CaptureDeviceInput_setAudioZoomEnabled :: proc(self: ^CaptureDeviceInput, audioZoomEnabled: bool) ---
+
     @(objc_type=CaptureDeviceInput, objc_selector="isCinematicVideoCaptureSupported", objc_name="isCinematicVideoCaptureSupported")
     CaptureDeviceInput_isCinematicVideoCaptureSupported :: proc(self: ^CaptureDeviceInput) -> bool ---
 

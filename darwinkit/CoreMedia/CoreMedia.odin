@@ -1934,6 +1934,9 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
     /// CMSEncoderRef
     SEncoderRef :: ^_CMSEncoder
 
+    /// IconRef
+    IconRef :: ^OpaqueIconRef
+
     /// ColorSyncMutableProfileRef
     ColorSyncMutableProfileRef :: ^CG.ColorSyncProfile
 
@@ -2456,6 +2459,9 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
 
     /// _CMSEncoder
     _CMSEncoder :: struct {}
+
+    /// OpaqueIconRef
+    OpaqueIconRef :: struct {}
 
     /// ColorSyncMD5
     ColorSyncMD5 :: struct #align (1) {

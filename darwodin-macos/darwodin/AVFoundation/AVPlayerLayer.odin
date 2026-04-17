@@ -27,6 +27,12 @@ foreign lib {
     @(objc_type=PlayerLayer, objc_selector="copyDisplayedPixelBuffer", objc_name="copyDisplayedPixelBuffer")
     PlayerLayer_copyDisplayedPixelBuffer :: proc(self: ^PlayerLayer) -> CVPixelBufferRef ---
 
+    @(objc_type=PlayerLayer, objc_selector="setCaptionPreviewProfileID:position:text:", objc_name="setCaptionPreviewProfileID")
+    PlayerLayer_setCaptionPreviewProfileID :: proc(self: ^PlayerLayer, profileID: ^NS.String, position: CG.Point, text: ^NS.String) ---
+
+    @(objc_type=PlayerLayer, objc_selector="stopShowingCaptionPreview", objc_name="stopShowingCaptionPreview")
+    PlayerLayer_stopShowingCaptionPreview :: proc(self: ^PlayerLayer) ---
+
     @(objc_type=PlayerLayer, objc_selector="player", objc_name="player")
     PlayerLayer_player :: proc(self: ^PlayerLayer) -> ^Player ---
 

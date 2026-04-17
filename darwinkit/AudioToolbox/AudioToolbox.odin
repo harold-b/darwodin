@@ -23,7 +23,8 @@ instancetype  :: intrinsics.objc_instancetype
 AVAudioFormat     :: struct {}
 OpaqueAudioFileID :: struct {}
 FSRef             :: struct {}
-
+NSImage           :: id
+CASpatialAudioExperience :: id
 
 AUDIO_TOOLBOX_VERSION        :: 1060
 AUTH_OPEN_NOAUTHFD           :: 1
