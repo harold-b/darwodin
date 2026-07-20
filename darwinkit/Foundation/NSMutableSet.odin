@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableSet
-///
 @(objc_class="NSMutableSet", objc_superclass=Set)
 MutableSet :: struct { using _: Set, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableSet, objc_selector="addObject:", objc_name="addObject")
     MutableSet_addObject :: proc(self: ^MutableSet, object: id) ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=MutableSet, objc_selector="filterUsingPredicate:", objc_name="filterUsingPredicate")
     MutableSet_filterUsingPredicate :: proc(self: ^MutableSet, predicate: ^Predicate) ---
 }
+
+
+

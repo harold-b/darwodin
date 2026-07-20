@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricPlayerItemPlaybackSummaryEvent
-///
 @(objc_class="AVMetricPlayerItemPlaybackSummaryEvent", objc_superclass=MetricEvent)
 MetricPlayerItemPlaybackSummaryEvent :: struct { using _: MetricEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemPlaybackSummaryEvent, objc_selector="init", objc_name="init")
     MetricPlayerItemPlaybackSummaryEvent_init :: proc(self: ^MetricPlayerItemPlaybackSummaryEvent) -> instancetype ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=MetricPlayerItemPlaybackSummaryEvent, objc_selector="timeWeightedPeakBitrate", objc_name="timeWeightedPeakBitrate")
     MetricPlayerItemPlaybackSummaryEvent_timeWeightedPeakBitrate :: proc(self: ^MetricPlayerItemPlaybackSummaryEvent) -> NS.Integer ---
 }
+
+
+

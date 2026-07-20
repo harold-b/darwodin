@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLTensorDescriptor
-///
 @(objc_class="MTLTensorDescriptor", objc_superclass=NS.Object)
 TensorDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TensorDescriptor, objc_selector="dimensions", objc_name="dimensions")
     TensorDescriptor_dimensions :: proc(self: ^TensorDescriptor) -> ^TensorExtents ---
@@ -71,3 +65,6 @@ foreign lib {
     @(objc_type=TensorDescriptor, objc_selector="setHazardTrackingMode:", objc_name="setHazardTrackingMode")
     TensorDescriptor_setHazardTrackingMode :: proc(self: ^TensorDescriptor, hazardTrackingMode: HazardTrackingMode) ---
 }
+
+
+

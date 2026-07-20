@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    receivePromisedFilesAtDestination: proc(self: ^AK.FilePromiseReceiver, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: ^Objc_Block(proc "c" (fileURL: ^NS.URL, errorOrNil: ^NS.Error))),
+    receivePromisedFilesAtDestination: proc(self: ^NS.FilePromiseReceiver, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: ^Objc_Block(proc "c" ( fileURL: ^NS.URL, errorOrNil: ^NS.Error ))),
     readableDraggedTypes: proc() -> ^NS.Array,
-    fileTypes: proc(self: ^AK.FilePromiseReceiver) -> ^NS.Array,
-    fileNames: proc(self: ^AK.FilePromiseReceiver) -> ^NS.Array,
+    fileTypes: proc(self: ^NS.FilePromiseReceiver) -> ^NS.Array,
+    fileNames: proc(self: ^NS.FilePromiseReceiver) -> ^NS.Array,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.receivePromisedFilesAtDestination != nil {
-        receivePromisedFilesAtDestination :: proc "c" (self: ^AK.FilePromiseReceiver, _: SEL, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: ^Objc_Block(proc "c" (fileURL: ^NS.URL, errorOrNil: ^NS.Error))) {
+        receivePromisedFilesAtDestination :: proc "c" (self: ^NS.FilePromiseReceiver, _: SEL, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: ^Objc_Block(proc "c" ( fileURL: ^NS.URL, errorOrNil: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("readableDraggedTypes"), auto_cast readableDraggedTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.fileTypes != nil {
-        fileTypes :: proc "c" (self: ^AK.FilePromiseReceiver, _: SEL) -> ^NS.Array {
+        fileTypes :: proc "c" (self: ^NS.FilePromiseReceiver, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fileTypes"), auto_cast fileTypes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.fileNames != nil {
-        fileNames :: proc "c" (self: ^AK.FilePromiseReceiver, _: SEL) -> ^NS.Array {
+        fileNames :: proc "c" (self: ^NS.FilePromiseReceiver, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

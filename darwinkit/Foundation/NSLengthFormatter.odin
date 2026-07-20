@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSLengthFormatter
-///
 @(objc_class="NSLengthFormatter", objc_superclass=Formatter)
 LengthFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LengthFormatter, objc_selector="stringFromValue:unit:", objc_name="stringFromValue")
     LengthFormatter_stringFromValue :: proc(self: ^LengthFormatter, value: cffi.double, unit: LengthFormatterUnit) -> ^String ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=LengthFormatter, objc_selector="setForPersonHeightUse:", objc_name="setForPersonHeightUse")
     LengthFormatter_setForPersonHeightUse :: proc(self: ^LengthFormatter, forPersonHeightUse: bool) ---
 }
+
+
+

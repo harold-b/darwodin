@@ -12,13 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerImageProvider
-///
 @(objc_class="AVPlayerImageProvider")
 PlayerImageProvider :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

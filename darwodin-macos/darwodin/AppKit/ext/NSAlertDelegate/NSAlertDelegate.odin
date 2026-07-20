@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    alertShowHelp: proc(self: ^AK.AlertDelegate, alert: ^AK.Alert) -> bool,
+    alertShowHelp: proc(self: ^NS.AlertDelegate, alert: ^NS.Alert) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.alertShowHelp != nil {
-        alertShowHelp :: proc "c" (self: ^AK.AlertDelegate, _: SEL, alert: ^AK.Alert) -> bool {
+        alertShowHelp :: proc "c" (self: ^NS.AlertDelegate, _: SEL, alert: ^NS.Alert) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLAccelerationStructureBoundingBoxGeometryDescriptor
-///
 @(objc_class="MTLAccelerationStructureBoundingBoxGeometryDescriptor", objc_superclass=AccelerationStructureGeometryDescriptor)
 AccelerationStructureBoundingBoxGeometryDescriptor :: struct { using _: AccelerationStructureGeometryDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccelerationStructureBoundingBoxGeometryDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
     AccelerationStructureBoundingBoxGeometryDescriptor_descriptor :: proc() -> instancetype ---
@@ -48,3 +42,6 @@ foreign lib {
     @(objc_type=AccelerationStructureBoundingBoxGeometryDescriptor, objc_selector="setBoundingBoxCount:", objc_name="setBoundingBoxCount")
     AccelerationStructureBoundingBoxGeometryDescriptor_setBoundingBoxCount :: proc(self: ^AccelerationStructureBoundingBoxGeometryDescriptor, boundingBoxCount: NS.UInteger) ---
 }
+
+
+

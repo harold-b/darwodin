@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    scrollDirection: proc(self: ^AK.CollectionViewCompositionalLayoutConfiguration) -> AK.CollectionViewScrollDirection,
-    setScrollDirection: proc(self: ^AK.CollectionViewCompositionalLayoutConfiguration, scrollDirection: AK.CollectionViewScrollDirection),
-    interSectionSpacing: proc(self: ^AK.CollectionViewCompositionalLayoutConfiguration) -> CG.Float,
-    setInterSectionSpacing: proc(self: ^AK.CollectionViewCompositionalLayoutConfiguration, interSectionSpacing: CG.Float),
-    boundarySupplementaryItems: proc(self: ^AK.CollectionViewCompositionalLayoutConfiguration) -> ^NS.Array,
-    setBoundarySupplementaryItems: proc(self: ^AK.CollectionViewCompositionalLayoutConfiguration, boundarySupplementaryItems: ^NS.Array),
+    scrollDirection: proc(self: ^NS.CollectionViewCompositionalLayoutConfiguration) -> NS.CollectionViewScrollDirection,
+    setScrollDirection: proc(self: ^NS.CollectionViewCompositionalLayoutConfiguration, scrollDirection: NS.CollectionViewScrollDirection),
+    interSectionSpacing: proc(self: ^NS.CollectionViewCompositionalLayoutConfiguration) -> CG.Float,
+    setInterSectionSpacing: proc(self: ^NS.CollectionViewCompositionalLayoutConfiguration, interSectionSpacing: CG.Float),
+    boundarySupplementaryItems: proc(self: ^NS.CollectionViewCompositionalLayoutConfiguration) -> ^NS.Array,
+    setBoundarySupplementaryItems: proc(self: ^NS.CollectionViewCompositionalLayoutConfiguration, boundarySupplementaryItems: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.scrollDirection != nil {
-        scrollDirection :: proc "c" (self: ^AK.CollectionViewCompositionalLayoutConfiguration, _: SEL) -> AK.CollectionViewScrollDirection {
+        scrollDirection :: proc "c" (self: ^NS.CollectionViewCompositionalLayoutConfiguration, _: SEL) -> NS.CollectionViewScrollDirection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollDirection"), auto_cast scrollDirection, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setScrollDirection != nil {
-        setScrollDirection :: proc "c" (self: ^AK.CollectionViewCompositionalLayoutConfiguration, _: SEL, scrollDirection: AK.CollectionViewScrollDirection) {
+        setScrollDirection :: proc "c" (self: ^NS.CollectionViewCompositionalLayoutConfiguration, _: SEL, scrollDirection: NS.CollectionViewScrollDirection) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScrollDirection:"), auto_cast setScrollDirection, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.interSectionSpacing != nil {
-        interSectionSpacing :: proc "c" (self: ^AK.CollectionViewCompositionalLayoutConfiguration, _: SEL) -> CG.Float {
+        interSectionSpacing :: proc "c" (self: ^NS.CollectionViewCompositionalLayoutConfiguration, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("interSectionSpacing"), auto_cast interSectionSpacing, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setInterSectionSpacing != nil {
-        setInterSectionSpacing :: proc "c" (self: ^AK.CollectionViewCompositionalLayoutConfiguration, _: SEL, interSectionSpacing: CG.Float) {
+        setInterSectionSpacing :: proc "c" (self: ^NS.CollectionViewCompositionalLayoutConfiguration, _: SEL, interSectionSpacing: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setInterSectionSpacing:"), auto_cast setInterSectionSpacing, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.boundarySupplementaryItems != nil {
-        boundarySupplementaryItems :: proc "c" (self: ^AK.CollectionViewCompositionalLayoutConfiguration, _: SEL) -> ^NS.Array {
+        boundarySupplementaryItems :: proc "c" (self: ^NS.CollectionViewCompositionalLayoutConfiguration, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("boundarySupplementaryItems"), auto_cast boundarySupplementaryItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setBoundarySupplementaryItems != nil {
-        setBoundarySupplementaryItems :: proc "c" (self: ^AK.CollectionViewCompositionalLayoutConfiguration, _: SEL, boundarySupplementaryItems: ^NS.Array) {
+        setBoundarySupplementaryItems :: proc "c" (self: ^NS.CollectionViewCompositionalLayoutConfiguration, _: SEL, boundarySupplementaryItems: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

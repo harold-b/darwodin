@@ -20,36 +20,36 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    defaultWritingDirectionForLanguage: proc(languageName: ^NS.String) -> AK.WritingDirection,
-    defaultParagraphStyle: proc() -> ^AK.ParagraphStyle,
-    lineSpacing: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    paragraphSpacing: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    headIndent: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    tailIndent: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    firstLineHeadIndent: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    minimumLineHeight: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    maximumLineHeight: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    lineBreakMode: proc(self: ^AK.ParagraphStyle) -> AK.LineBreakMode,
-    baseWritingDirection: proc(self: ^AK.ParagraphStyle) -> AK.WritingDirection,
-    lineHeightMultiple: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    paragraphSpacingBefore: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    hyphenationFactor: proc(self: ^AK.ParagraphStyle) -> cffi.float,
-    usesDefaultHyphenation: proc(self: ^AK.ParagraphStyle) -> bool,
-    tabStops: proc(self: ^AK.ParagraphStyle) -> ^NS.Array,
-    defaultTabInterval: proc(self: ^AK.ParagraphStyle) -> CG.Float,
-    textLists: proc(self: ^AK.ParagraphStyle) -> ^NS.Array,
-    allowsDefaultTighteningForTruncation: proc(self: ^AK.ParagraphStyle) -> bool,
-    lineBreakStrategy: proc(self: ^AK.ParagraphStyle) -> AK.LineBreakStrategy,
-    alignment: proc(self: ^AK.ParagraphStyle) -> AK.TextAlignment,
-    tighteningFactorForTruncation: proc(self: ^AK.ParagraphStyle) -> cffi.float,
-    textBlocks: proc(self: ^AK.ParagraphStyle) -> ^NS.Array,
-    headerLevel: proc(self: ^AK.ParagraphStyle) -> NS.Integer,
+    defaultWritingDirectionForLanguage: proc(languageName: ^NS.String) -> NS.WritingDirection,
+    defaultParagraphStyle: proc() -> ^NS.ParagraphStyle,
+    lineSpacing: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    paragraphSpacing: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    headIndent: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    tailIndent: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    firstLineHeadIndent: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    minimumLineHeight: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    maximumLineHeight: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    lineBreakMode: proc(self: ^NS.ParagraphStyle) -> NS.LineBreakMode,
+    baseWritingDirection: proc(self: ^NS.ParagraphStyle) -> NS.WritingDirection,
+    lineHeightMultiple: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    paragraphSpacingBefore: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    hyphenationFactor: proc(self: ^NS.ParagraphStyle) -> cffi.float,
+    usesDefaultHyphenation: proc(self: ^NS.ParagraphStyle) -> bool,
+    tabStops: proc(self: ^NS.ParagraphStyle) -> ^NS.Array,
+    defaultTabInterval: proc(self: ^NS.ParagraphStyle) -> CG.Float,
+    textLists: proc(self: ^NS.ParagraphStyle) -> ^NS.Array,
+    allowsDefaultTighteningForTruncation: proc(self: ^NS.ParagraphStyle) -> bool,
+    lineBreakStrategy: proc(self: ^NS.ParagraphStyle) -> NS.LineBreakStrategy,
+    alignment: proc(self: ^NS.ParagraphStyle) -> NS.TextAlignment,
+    tighteningFactorForTruncation: proc(self: ^NS.ParagraphStyle) -> cffi.float,
+    textBlocks: proc(self: ^NS.ParagraphStyle) -> ^NS.Array,
+    headerLevel: proc(self: ^NS.ParagraphStyle) -> NS.Integer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.defaultWritingDirectionForLanguage != nil {
-        defaultWritingDirectionForLanguage :: proc "c" (self: Class, _: SEL, languageName: ^NS.String) -> AK.WritingDirection {
+        defaultWritingDirectionForLanguage :: proc "c" (self: Class, _: SEL, languageName: ^NS.String) -> NS.WritingDirection {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultWritingDirectionForLanguage:"), auto_cast defaultWritingDirectionForLanguage, "l#:@") do panic("Failed to register objC method.")
     }
     if vt.defaultParagraphStyle != nil {
-        defaultParagraphStyle :: proc "c" (self: Class, _: SEL) -> ^AK.ParagraphStyle {
+        defaultParagraphStyle :: proc "c" (self: Class, _: SEL) -> ^NS.ParagraphStyle {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultParagraphStyle"), auto_cast defaultParagraphStyle, "@#:") do panic("Failed to register objC method.")
     }
     if vt.lineSpacing != nil {
-        lineSpacing :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        lineSpacing :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineSpacing"), auto_cast lineSpacing, "d@:") do panic("Failed to register objC method.")
     }
     if vt.paragraphSpacing != nil {
-        paragraphSpacing :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        paragraphSpacing :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphSpacing"), auto_cast paragraphSpacing, "d@:") do panic("Failed to register objC method.")
     }
     if vt.headIndent != nil {
-        headIndent :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        headIndent :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("headIndent"), auto_cast headIndent, "d@:") do panic("Failed to register objC method.")
     }
     if vt.tailIndent != nil {
-        tailIndent :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        tailIndent :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tailIndent"), auto_cast tailIndent, "d@:") do panic("Failed to register objC method.")
     }
     if vt.firstLineHeadIndent != nil {
-        firstLineHeadIndent :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        firstLineHeadIndent :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("firstLineHeadIndent"), auto_cast firstLineHeadIndent, "d@:") do panic("Failed to register objC method.")
     }
     if vt.minimumLineHeight != nil {
-        minimumLineHeight :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        minimumLineHeight :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumLineHeight"), auto_cast minimumLineHeight, "d@:") do panic("Failed to register objC method.")
     }
     if vt.maximumLineHeight != nil {
-        maximumLineHeight :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        maximumLineHeight :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumLineHeight"), auto_cast maximumLineHeight, "d@:") do panic("Failed to register objC method.")
     }
     if vt.lineBreakMode != nil {
-        lineBreakMode :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> AK.LineBreakMode {
+        lineBreakMode :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> NS.LineBreakMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakMode"), auto_cast lineBreakMode, "L@:") do panic("Failed to register objC method.")
     }
     if vt.baseWritingDirection != nil {
-        baseWritingDirection :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> AK.WritingDirection {
+        baseWritingDirection :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> NS.WritingDirection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -170,7 +170,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("baseWritingDirection"), auto_cast baseWritingDirection, "l@:") do panic("Failed to register objC method.")
     }
     if vt.lineHeightMultiple != nil {
-        lineHeightMultiple :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        lineHeightMultiple :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineHeightMultiple"), auto_cast lineHeightMultiple, "d@:") do panic("Failed to register objC method.")
     }
     if vt.paragraphSpacingBefore != nil {
-        paragraphSpacingBefore :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        paragraphSpacingBefore :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -190,7 +190,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphSpacingBefore"), auto_cast paragraphSpacingBefore, "d@:") do panic("Failed to register objC method.")
     }
     if vt.hyphenationFactor != nil {
-        hyphenationFactor :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> cffi.float {
+        hyphenationFactor :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> cffi.float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hyphenationFactor"), auto_cast hyphenationFactor, "f@:") do panic("Failed to register objC method.")
     }
     if vt.usesDefaultHyphenation != nil {
-        usesDefaultHyphenation :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> bool {
+        usesDefaultHyphenation :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("usesDefaultHyphenation"), auto_cast usesDefaultHyphenation, "B@:") do panic("Failed to register objC method.")
     }
     if vt.tabStops != nil {
-        tabStops :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> ^NS.Array {
+        tabStops :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tabStops"), auto_cast tabStops, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.defaultTabInterval != nil {
-        defaultTabInterval :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> CG.Float {
+        defaultTabInterval :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -230,7 +230,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultTabInterval"), auto_cast defaultTabInterval, "d@:") do panic("Failed to register objC method.")
     }
     if vt.textLists != nil {
-        textLists :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> ^NS.Array {
+        textLists :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -240,7 +240,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLists"), auto_cast textLists, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.allowsDefaultTighteningForTruncation != nil {
-        allowsDefaultTighteningForTruncation :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> bool {
+        allowsDefaultTighteningForTruncation :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -250,7 +250,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsDefaultTighteningForTruncation"), auto_cast allowsDefaultTighteningForTruncation, "B@:") do panic("Failed to register objC method.")
     }
     if vt.lineBreakStrategy != nil {
-        lineBreakStrategy :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> AK.LineBreakStrategy {
+        lineBreakStrategy :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> NS.LineBreakStrategy {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -260,7 +260,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakStrategy"), auto_cast lineBreakStrategy, "L@:") do panic("Failed to register objC method.")
     }
     if vt.alignment != nil {
-        alignment :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> AK.TextAlignment {
+        alignment :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> NS.TextAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.tighteningFactorForTruncation != nil {
-        tighteningFactorForTruncation :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> cffi.float {
+        tighteningFactorForTruncation :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> cffi.float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -280,7 +280,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tighteningFactorForTruncation"), auto_cast tighteningFactorForTruncation, "f@:") do panic("Failed to register objC method.")
     }
     if vt.textBlocks != nil {
-        textBlocks :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> ^NS.Array {
+        textBlocks :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textBlocks"), auto_cast textBlocks, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.headerLevel != nil {
-        headerLevel :: proc "c" (self: ^AK.ParagraphStyle, _: SEL) -> NS.Integer {
+        headerLevel :: proc "c" (self: ^NS.ParagraphStyle, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

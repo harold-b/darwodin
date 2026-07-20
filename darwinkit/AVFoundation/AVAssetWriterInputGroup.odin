@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetWriterInputGroup
-///
 @(objc_class="AVAssetWriterInputGroup", objc_superclass=MediaSelectionGroup)
 AssetWriterInputGroup :: struct { using _: MediaSelectionGroup, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriterInputGroup, objc_selector="init", objc_name="init")
     AssetWriterInputGroup_init :: proc(self: ^AssetWriterInputGroup) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=AssetWriterInputGroup, objc_selector="defaultInput", objc_name="defaultInput")
     AssetWriterInputGroup_defaultInput :: proc(self: ^AssetWriterInputGroup) -> ^AssetWriterInput ---
 }
+
+
+

@@ -12,13 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetReaderOutputCaptionAdaptorInternal
-///
 @(objc_class="AVAssetReaderOutputCaptionAdaptorInternal")
 AssetReaderOutputCaptionAdaptorInternal :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

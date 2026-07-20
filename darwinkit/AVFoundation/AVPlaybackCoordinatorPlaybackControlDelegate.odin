@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlaybackCoordinatorPlaybackControlDelegate
-///
 @(objc_class="AVPlaybackCoordinatorPlaybackControlDelegate")
 PlaybackCoordinatorPlaybackControlDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlaybackCoordinatorPlaybackControlDelegate, objc_selector="playbackCoordinator:didIssuePlayCommand:completionHandler:", objc_name="playbackCoordinator_didIssuePlayCommand_completionHandler")
     PlaybackCoordinatorPlaybackControlDelegate_playbackCoordinator_didIssuePlayCommand_completionHandler :: proc(self: ^PlaybackCoordinatorPlaybackControlDelegate, coordinator: ^DelegatingPlaybackCoordinator, playCommand: ^DelegatingPlaybackCoordinatorPlayCommand, completionHandler: ^Objc_Block(proc "c" ())) ---
@@ -36,6 +30,8 @@ foreign lib {
     @(objc_type=PlaybackCoordinatorPlaybackControlDelegate, objc_selector="playbackCoordinator:didIssueBufferingCommand:completionHandler:", objc_name="playbackCoordinator_didIssueBufferingCommand_completionHandler")
     PlaybackCoordinatorPlaybackControlDelegate_playbackCoordinator_didIssueBufferingCommand_completionHandler :: proc(self: ^PlaybackCoordinatorPlaybackControlDelegate, coordinator: ^DelegatingPlaybackCoordinator, bufferingCommand: ^DelegatingPlaybackCoordinatorBufferingCommand, completionHandler: ^Objc_Block(proc "c" ())) ---
 }
+
+
 
 @(objc_type=PlaybackCoordinatorPlaybackControlDelegate, objc_name="playbackCoordinator")
 PlaybackCoordinatorPlaybackControlDelegate_playbackCoordinator :: proc {

@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    compare: proc(self: ^AK.TextLocation, location: ^AK.TextLocation) -> NS.ComparisonResult,
+    compare: proc(self: ^NS.TextLocation, location: ^NS.TextLocation) -> NS.ComparisonResult,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.compare != nil {
-        compare :: proc "c" (self: ^AK.TextLocation, _: SEL, location: ^AK.TextLocation) -> NS.ComparisonResult {
+        compare :: proc "c" (self: ^NS.TextLocation, _: SEL, location: ^NS.TextLocation) -> NS.ComparisonResult {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

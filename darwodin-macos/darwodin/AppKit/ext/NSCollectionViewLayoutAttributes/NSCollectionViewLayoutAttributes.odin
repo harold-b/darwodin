@@ -20,7 +20,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
@@ -30,20 +30,20 @@ VTable :: struct {
     layoutAttributesForInterItemGapBeforeIndexPath: proc(indexPath: ^NS.IndexPath) -> instancetype,
     layoutAttributesForSupplementaryViewOfKind: proc(elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> instancetype,
     layoutAttributesForDecorationViewOfKind: proc(decorationViewKind: ^NS.String, indexPath: ^NS.IndexPath) -> instancetype,
-    frame: proc(self: ^AK.CollectionViewLayoutAttributes) -> NS.Rect,
-    setFrame: proc(self: ^AK.CollectionViewLayoutAttributes, frame: NS.Rect),
-    size: proc(self: ^AK.CollectionViewLayoutAttributes) -> NS.Size,
-    setSize: proc(self: ^AK.CollectionViewLayoutAttributes, size: NS.Size),
-    alpha: proc(self: ^AK.CollectionViewLayoutAttributes) -> CG.Float,
-    setAlpha: proc(self: ^AK.CollectionViewLayoutAttributes, alpha: CG.Float),
-    zIndex: proc(self: ^AK.CollectionViewLayoutAttributes) -> NS.Integer,
-    setZIndex: proc(self: ^AK.CollectionViewLayoutAttributes, zIndex: NS.Integer),
-    isHidden: proc(self: ^AK.CollectionViewLayoutAttributes) -> bool,
-    setHidden: proc(self: ^AK.CollectionViewLayoutAttributes, hidden: bool),
-    indexPath: proc(self: ^AK.CollectionViewLayoutAttributes) -> ^NS.IndexPath,
-    setIndexPath: proc(self: ^AK.CollectionViewLayoutAttributes, indexPath: ^NS.IndexPath),
-    representedElementCategory: proc(self: ^AK.CollectionViewLayoutAttributes) -> AK.CollectionElementCategory,
-    representedElementKind: proc(self: ^AK.CollectionViewLayoutAttributes) -> ^NS.String,
+    frame: proc(self: ^NS.CollectionViewLayoutAttributes) -> NS.Rect,
+    setFrame: proc(self: ^NS.CollectionViewLayoutAttributes, frame: NS.Rect),
+    size: proc(self: ^NS.CollectionViewLayoutAttributes) -> NS.Size,
+    setSize: proc(self: ^NS.CollectionViewLayoutAttributes, size: NS.Size),
+    alpha: proc(self: ^NS.CollectionViewLayoutAttributes) -> CG.Float,
+    setAlpha: proc(self: ^NS.CollectionViewLayoutAttributes, alpha: CG.Float),
+    zIndex: proc(self: ^NS.CollectionViewLayoutAttributes) -> NS.Integer,
+    setZIndex: proc(self: ^NS.CollectionViewLayoutAttributes, zIndex: NS.Integer),
+    isHidden: proc(self: ^NS.CollectionViewLayoutAttributes) -> bool,
+    setHidden: proc(self: ^NS.CollectionViewLayoutAttributes, hidden: bool),
+    indexPath: proc(self: ^NS.CollectionViewLayoutAttributes) -> ^NS.IndexPath,
+    setIndexPath: proc(self: ^NS.CollectionViewLayoutAttributes, indexPath: ^NS.IndexPath),
+    representedElementCategory: proc(self: ^NS.CollectionViewLayoutAttributes) -> NS.CollectionElementCategory,
+    representedElementKind: proc(self: ^NS.CollectionViewLayoutAttributes) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("layoutAttributesForDecorationViewOfKind:withIndexPath:"), auto_cast layoutAttributesForDecorationViewOfKind, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.frame != nil {
-        frame :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL) -> NS.Rect {
+        frame :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("frame"), auto_cast frame, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.setFrame != nil {
-        setFrame :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL, frame: NS.Rect) {
+        setFrame :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL, frame: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFrame:"), auto_cast setFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.size != nil {
-        size :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL) -> NS.Size {
+        size :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("size"), auto_cast size, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setSize != nil {
-        setSize :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL, size: NS.Size) {
+        setSize :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL, size: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -134,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSize:"), auto_cast setSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.alpha != nil {
-        alpha :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL) -> CG.Float {
+        alpha :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -144,7 +144,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alpha"), auto_cast alpha, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setAlpha != nil {
-        setAlpha :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL, alpha: CG.Float) {
+        setAlpha :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL, alpha: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -154,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAlpha:"), auto_cast setAlpha, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.zIndex != nil {
-        zIndex :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL) -> NS.Integer {
+        zIndex :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("zIndex"), auto_cast zIndex, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setZIndex != nil {
-        setZIndex :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL, zIndex: NS.Integer) {
+        setZIndex :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL, zIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setZIndex:"), auto_cast setZIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.isHidden != nil {
-        isHidden :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL) -> bool {
+        isHidden :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -184,7 +184,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isHidden"), auto_cast isHidden, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHidden != nil {
-        setHidden :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL, hidden: bool) {
+        setHidden :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL, hidden: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -194,7 +194,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHidden:"), auto_cast setHidden, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.indexPath != nil {
-        indexPath :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL) -> ^NS.IndexPath {
+        indexPath :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL) -> ^NS.IndexPath {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -204,7 +204,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexPath"), auto_cast indexPath, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setIndexPath != nil {
-        setIndexPath :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL, indexPath: ^NS.IndexPath) {
+        setIndexPath :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL, indexPath: ^NS.IndexPath) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -214,7 +214,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIndexPath:"), auto_cast setIndexPath, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.representedElementCategory != nil {
-        representedElementCategory :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL) -> AK.CollectionElementCategory {
+        representedElementCategory :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL) -> NS.CollectionElementCategory {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -224,7 +224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("representedElementCategory"), auto_cast representedElementCategory, "l@:") do panic("Failed to register objC method.")
     }
     if vt.representedElementKind != nil {
-        representedElementKind :: proc "c" (self: ^AK.CollectionViewLayoutAttributes, _: SEL) -> ^NS.String {
+        representedElementKind :: proc "c" (self: ^NS.CollectionViewLayoutAttributes, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

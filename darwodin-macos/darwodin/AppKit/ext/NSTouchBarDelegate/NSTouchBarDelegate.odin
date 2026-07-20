@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    touchBar: proc(self: ^AK.TouchBarDelegate, touchBar: ^AK.TouchBar, identifier: ^NS.String) -> ^AK.TouchBarItem,
+    touchBar: proc(self: ^NS.TouchBarDelegate, touchBar: ^NS.TouchBar, identifier: ^NS.String) -> ^NS.TouchBarItem,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.touchBar != nil {
-        touchBar :: proc "c" (self: ^AK.TouchBarDelegate, _: SEL, touchBar: ^AK.TouchBar, identifier: ^NS.String) -> ^AK.TouchBarItem {
+        touchBar :: proc "c" (self: ^NS.TouchBarDelegate, _: SEL, touchBar: ^NS.TouchBar, identifier: ^NS.String) -> ^NS.TouchBarItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

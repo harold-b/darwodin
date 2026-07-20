@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVExtendedNoteOnEvent
-///
 @(objc_class="AVExtendedNoteOnEvent", objc_superclass=MusicEvent)
 ExtendedNoteOnEvent :: struct { using _: MusicEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExtendedNoteOnEvent, objc_selector="initWithMIDINote:velocity:groupID:duration:", objc_name="initWithMIDINote_velocity_groupID_duration")
     ExtendedNoteOnEvent_initWithMIDINote_velocity_groupID_duration :: proc(self: ^ExtendedNoteOnEvent, midiNote: cffi.float, velocity: cffi.float, groupID: CF.UInt32, duration: MusicTimeStamp) -> instancetype ---
@@ -58,6 +52,8 @@ foreign lib {
     @(objc_type=ExtendedNoteOnEvent, objc_selector="setDuration:", objc_name="setDuration")
     ExtendedNoteOnEvent_setDuration :: proc(self: ^ExtendedNoteOnEvent, duration: MusicTimeStamp) ---
 }
+
+
 
 @(objc_type=ExtendedNoteOnEvent, objc_name="initWithMIDINote")
 ExtendedNoteOnEvent_initWithMIDINote :: proc {

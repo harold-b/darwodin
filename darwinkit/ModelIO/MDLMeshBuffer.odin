@@ -10,18 +10,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLMeshBuffer
-///
 @(objc_class="MDLMeshBuffer")
 MeshBuffer :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeshBuffer, objc_selector="fillData:offset:", objc_name="fillData")
     MeshBuffer_fillData :: proc(self: ^MeshBuffer, data: ^NS.Data, offset: NS.UInteger) ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=MeshBuffer, objc_selector="type", objc_name="type")
     MeshBuffer_type :: proc(self: ^MeshBuffer) -> MeshBufferType ---
 }
+
+
+

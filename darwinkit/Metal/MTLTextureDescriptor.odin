@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLTextureDescriptor
-///
 @(objc_class="MTLTextureDescriptor", objc_superclass=NS.Object)
 TextureDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextureDescriptor, objc_selector="texture2DDescriptorWithPixelFormat:width:height:mipmapped:", objc_name="texture2DDescriptorWithPixelFormat", objc_is_class_method=true)
     TextureDescriptor_texture2DDescriptorWithPixelFormat :: proc(pixelFormat: PixelFormat, width: NS.UInteger, height: NS.UInteger, mipmapped: bool) -> ^TextureDescriptor ---
@@ -134,3 +128,6 @@ foreign lib {
     @(objc_type=TextureDescriptor, objc_selector="setPlacementSparsePageSize:", objc_name="setPlacementSparsePageSize")
     TextureDescriptor_setPlacementSparsePageSize :: proc(self: ^TextureDescriptor, placementSparsePageSize: SparsePageSize) ---
 }
+
+
+

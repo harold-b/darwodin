@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKVoiceChatClient
-///
 @(objc_class="GKVoiceChatClient")
 VoiceChatClient :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VoiceChatClient, objc_selector="voiceChatService:sendData:toParticipantID:", objc_name="voiceChatService_sendData_toParticipantID")
     VoiceChatClient_voiceChatService_sendData_toParticipantID :: proc(self: ^VoiceChatClient, voiceChatService: ^VoiceChatService, data: ^NS.Data, participantID: ^NS.String) ---
@@ -40,4 +34,6 @@ foreign lib {
     @(objc_type=VoiceChatClient, objc_selector="voiceChatService:didReceiveInvitationFromParticipantID:callID:", objc_name="voiceChatService_didReceiveInvitationFromParticipantID_callID")
     VoiceChatClient_voiceChatService_didReceiveInvitationFromParticipantID_callID :: proc(self: ^VoiceChatClient, voiceChatService: ^VoiceChatService, participantID: ^NS.String, callID: NS.Integer) ---
 }
+
+
 

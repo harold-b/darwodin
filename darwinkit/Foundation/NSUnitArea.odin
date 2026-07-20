@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitArea
-///
 @(objc_class="NSUnitArea", objc_superclass=Dimension)
 UnitArea :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitArea, objc_selector="squareMegameters", objc_name="squareMegameters", objc_is_class_method=true)
     UnitArea_squareMegameters :: proc() -> ^UnitArea ---
@@ -63,3 +57,6 @@ foreign lib {
     @(objc_type=UnitArea, objc_selector="hectares", objc_name="hectares", objc_is_class_method=true)
     UnitArea_hectares :: proc() -> ^UnitArea ---
 }
+
+
+

@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSPersonNameComponents
-///
 @(objc_class="NSPersonNameComponents", objc_superclass=Object)
 PersonNameComponents :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PersonNameComponents, objc_selector="namePrefix", objc_name="namePrefix")
     PersonNameComponents_namePrefix :: proc(self: ^PersonNameComponents) -> ^String ---
@@ -64,3 +58,6 @@ foreign lib {
     @(objc_type=PersonNameComponents, objc_selector="setPhoneticRepresentation:", objc_name="setPhoneticRepresentation")
     PersonNameComponents_setPhoneticRepresentation :: proc(self: ^PersonNameComponents, phoneticRepresentation: ^PersonNameComponents) ---
 }
+
+
+

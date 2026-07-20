@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4AccelerationStructureMotionTriangleGeometryDescriptor
-///
 @(objc_class="MTL4AccelerationStructureMotionTriangleGeometryDescriptor", objc_superclass=MTL4AccelerationStructureGeometryDescriptor)
 MTL4AccelerationStructureMotionTriangleGeometryDescriptor :: struct { using _: MTL4AccelerationStructureGeometryDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4AccelerationStructureMotionTriangleGeometryDescriptor, objc_selector="vertexBuffers", objc_name="vertexBuffers")
     MTL4AccelerationStructureMotionTriangleGeometryDescriptor_vertexBuffers :: proc(self: ^MTL4AccelerationStructureMotionTriangleGeometryDescriptor) -> MTL4BufferRange ---
@@ -69,3 +63,6 @@ foreign lib {
     @(objc_type=MTL4AccelerationStructureMotionTriangleGeometryDescriptor, objc_selector="setTransformationMatrixLayout:", objc_name="setTransformationMatrixLayout")
     MTL4AccelerationStructureMotionTriangleGeometryDescriptor_setTransformationMatrixLayout :: proc(self: ^MTL4AccelerationStructureMotionTriangleGeometryDescriptor, transformationMatrixLayout: MatrixLayout) ---
 }
+
+
+

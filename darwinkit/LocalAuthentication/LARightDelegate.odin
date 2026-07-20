@@ -8,13 +8,6 @@ import CF "../CoreFoundation"
 import NS "../Foundation"
 import Sec "../Security"
 
-
-
-///
-/// LARightDelegate
-///
 @(objc_class="LARightDelegate")
 RightDelegate :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

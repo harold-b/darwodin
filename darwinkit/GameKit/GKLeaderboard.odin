@@ -7,33 +7,27 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKLeaderboard
-///
 @(objc_class="GKLeaderboard", objc_superclass=NS.Object)
 Leaderboard :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Leaderboard, objc_selector="loadLeaderboardsWithIDs:completionHandler:", objc_name="loadLeaderboardsWithIDs", objc_is_class_method=true)
-    Leaderboard_loadLeaderboardsWithIDs :: proc(leaderboardIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) ---
+    Leaderboard_loadLeaderboardsWithIDs :: proc(leaderboardIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( leaderboards: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="loadPreviousOccurrenceWithCompletionHandler:", objc_name="loadPreviousOccurrenceWithCompletionHandler")
-    Leaderboard_loadPreviousOccurrenceWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" (leaderboard: ^Leaderboard, error: ^NS.Error))) ---
+    Leaderboard_loadPreviousOccurrenceWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" ( leaderboard: ^Leaderboard, error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="submitScore:context:player:leaderboardIDs:completionHandler:", objc_name="submitScore_context_player_leaderboardIDs_completionHandler", objc_is_class_method=true)
-    Leaderboard_submitScore_context_player_leaderboardIDs_completionHandler :: proc(score: NS.Integer, _context: NS.UInteger, player: ^Player, leaderboardIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Leaderboard_submitScore_context_player_leaderboardIDs_completionHandler :: proc(score: NS.Integer, _context: NS.UInteger, player: ^Player, leaderboardIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="submitScore:context:player:completionHandler:", objc_name="submitScore_context_player_completionHandler")
-    Leaderboard_submitScore_context_player_completionHandler :: proc(self: ^Leaderboard, score: NS.Integer, _context: NS.UInteger, player: ^Player, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Leaderboard_submitScore_context_player_completionHandler :: proc(self: ^Leaderboard, score: NS.Integer, _context: NS.UInteger, player: ^Player, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="loadEntriesForPlayerScope:timeScope:range:completionHandler:", objc_name="loadEntriesForPlayerScope")
-    Leaderboard_loadEntriesForPlayerScope :: proc(self: ^Leaderboard, playerScope: LeaderboardPlayerScope, timeScope: LeaderboardTimeScope, range: NS._NSRange, completionHandler: ^Objc_Block(proc "c" (localPlayerEntry: ^LeaderboardEntry, entries: ^NS.Array, totalPlayerCount: NS.Integer, error: ^NS.Error))) ---
+    Leaderboard_loadEntriesForPlayerScope :: proc(self: ^Leaderboard, playerScope: LeaderboardPlayerScope, timeScope: LeaderboardTimeScope, range: NS._NSRange, completionHandler: ^Objc_Block(proc "c" ( localPlayerEntry: ^LeaderboardEntry, entries: ^NS.Array, totalPlayerCount: NS.Integer, error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="loadEntriesForPlayers:timeScope:completionHandler:", objc_name="loadEntriesForPlayers")
-    Leaderboard_loadEntriesForPlayers :: proc(self: ^Leaderboard, players: ^NS.Array, timeScope: LeaderboardTimeScope, completionHandler: ^Objc_Block(proc "c" (localPlayerEntry: ^LeaderboardEntry, entries: ^NS.Array, error: ^NS.Error))) ---
+    Leaderboard_loadEntriesForPlayers :: proc(self: ^Leaderboard, players: ^NS.Array, timeScope: LeaderboardTimeScope, completionHandler: ^Objc_Block(proc "c" ( localPlayerEntry: ^LeaderboardEntry, entries: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="title", objc_name="title")
     Leaderboard_title :: proc(self: ^Leaderboard) -> ^NS.String ---
@@ -75,10 +69,10 @@ foreign lib {
     Leaderboard_initWithPlayerIDs :: proc(self: ^Leaderboard, playerIDs: ^NS.Array) -> instancetype ---
 
     @(objc_type=Leaderboard, objc_selector="loadCategoriesWithCompletionHandler:", objc_name="loadCategoriesWithCompletionHandler", objc_is_class_method=true)
-    Leaderboard_loadCategoriesWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (categories: ^NS.Array, titles: ^NS.Array, error: ^NS.Error))) ---
+    Leaderboard_loadCategoriesWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( categories: ^NS.Array, titles: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="setDefaultLeaderboard:withCompletionHandler:", objc_name="setDefaultLeaderboard", objc_is_class_method=true)
-    Leaderboard_setDefaultLeaderboard :: proc(leaderboardIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Leaderboard_setDefaultLeaderboard :: proc(leaderboardIdentifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="init", objc_name="init")
     Leaderboard_init :: proc(self: ^Leaderboard) -> instancetype ---
@@ -87,10 +81,10 @@ foreign lib {
     Leaderboard_initWithPlayers :: proc(self: ^Leaderboard, players: ^NS.Array) -> instancetype ---
 
     @(objc_type=Leaderboard, objc_selector="loadScoresWithCompletionHandler:", objc_name="loadScoresWithCompletionHandler")
-    Leaderboard_loadScoresWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" (scores: ^NS.Array, error: ^NS.Error))) ---
+    Leaderboard_loadScoresWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" ( scores: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="loadLeaderboardsWithCompletionHandler:", objc_name="loadLeaderboardsWithCompletionHandler", objc_is_class_method=true)
-    Leaderboard_loadLeaderboardsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) ---
+    Leaderboard_loadLeaderboardsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( leaderboards: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Leaderboard, objc_selector="category", objc_name="category")
     Leaderboard_category :: proc(self: ^Leaderboard) -> ^NS.String ---
@@ -134,9 +128,16 @@ foreign lib {
     @(objc_type=Leaderboard, objc_selector="isLoading", objc_name="isLoading")
     Leaderboard_isLoading :: proc(self: ^Leaderboard) -> bool ---
 
-    @(objc_type=Leaderboard, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    Leaderboard_loadImageWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" (image: ^AKImage, error: ^NS.Error))) ---
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(objc_type=Leaderboard, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
+        Leaderboard_loadImageWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" ( image: ^AK.Image, error: ^NS.Error ))) ---
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=Leaderboard, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
+        Leaderboard_loadImageWithCompletionHandler :: proc(self: ^Leaderboard, completionHandler: ^Objc_Block(proc "c" ( image: ^UI.Image, error: ^NS.Error ))) ---
+    }
 }
+
+
 
 @(objc_type=Leaderboard, objc_name="submitScore")
 Leaderboard_submitScore :: proc {

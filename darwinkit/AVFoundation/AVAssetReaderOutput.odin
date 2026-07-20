@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetReaderOutput
-///
 @(objc_class="AVAssetReaderOutput", objc_superclass=NS.Object)
 AssetReaderOutput :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderOutput, objc_selector="copyNextSampleBuffer", objc_name="copyNextSampleBuffer")
     AssetReaderOutput_copyNextSampleBuffer :: proc(self: ^AssetReaderOutput) -> CM.SampleBufferRef ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=AssetReaderOutput, objc_selector="setSupportsRandomAccess:", objc_name="setSupportsRandomAccess")
     AssetReaderOutput_setSupportsRandomAccess :: proc(self: ^AssetReaderOutput, supportsRandomAccess: bool) ---
 }
+
+
+

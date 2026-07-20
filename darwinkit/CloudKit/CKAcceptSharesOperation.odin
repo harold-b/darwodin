@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKAcceptSharesOperation
-///
 @(objc_class="CKAcceptSharesOperation", objc_superclass=Operation)
 AcceptSharesOperation :: struct { using _: Operation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AcceptSharesOperation, objc_selector="init", objc_name="init")
     AcceptSharesOperation_init :: proc(self: ^AcceptSharesOperation) -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=AcceptSharesOperation, objc_selector="setAcceptSharesCompletionBlock:", objc_name="setAcceptSharesCompletionBlock")
     AcceptSharesOperation_setAcceptSharesCompletionBlock :: proc(self: ^AcceptSharesOperation, acceptSharesCompletionBlock: ^Objc_Block(proc "c" ())) ---
 }
+
+
+

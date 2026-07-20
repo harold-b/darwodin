@@ -28,22 +28,22 @@ foreign lib {
     FileCoordinator_initWithFilePresenter :: proc(self: ^FileCoordinator, filePresenterOrNil: ^FilePresenter) -> instancetype ---
 
     @(objc_type=FileCoordinator, objc_selector="coordinateAccessWithIntents:queue:byAccessor:", objc_name="coordinateAccessWithIntents")
-    FileCoordinator_coordinateAccessWithIntents :: proc(self: ^FileCoordinator, intents: ^Array, queue: ^OperationQueue, accessor: ^Objc_Block(proc "c" (error: ^Error))) ---
+    FileCoordinator_coordinateAccessWithIntents :: proc(self: ^FileCoordinator, intents: ^Array, queue: ^OperationQueue, accessor: ^Objc_Block(proc "c" ( error: ^Error ))) ---
 
     @(objc_type=FileCoordinator, objc_selector="coordinateReadingItemAtURL:options:error:byAccessor:", objc_name="coordinateReadingItemAtURL_options_error_byAccessor")
-    FileCoordinator_coordinateReadingItemAtURL_options_error_byAccessor :: proc(self: ^FileCoordinator, url: ^URL, options: FileCoordinatorReadingOptions, outError: ^^Error, reader: ^Objc_Block(proc "c" (newURL: ^URL))) ---
+    FileCoordinator_coordinateReadingItemAtURL_options_error_byAccessor :: proc(self: ^FileCoordinator, url: ^URL, options: FileCoordinatorReadingOptions, outError: ^^Error, reader: ^Objc_Block(proc "c" ( newURL: ^URL ))) ---
 
     @(objc_type=FileCoordinator, objc_selector="coordinateWritingItemAtURL:options:error:byAccessor:", objc_name="coordinateWritingItemAtURL_options_error_byAccessor")
-    FileCoordinator_coordinateWritingItemAtURL_options_error_byAccessor :: proc(self: ^FileCoordinator, url: ^URL, options: FileCoordinatorWritingOptions, outError: ^^Error, writer: ^Objc_Block(proc "c" (newURL: ^URL))) ---
+    FileCoordinator_coordinateWritingItemAtURL_options_error_byAccessor :: proc(self: ^FileCoordinator, url: ^URL, options: FileCoordinatorWritingOptions, outError: ^^Error, writer: ^Objc_Block(proc "c" ( newURL: ^URL ))) ---
 
     @(objc_type=FileCoordinator, objc_selector="coordinateReadingItemAtURL:options:writingItemAtURL:options:error:byAccessor:", objc_name="coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor")
-    FileCoordinator_coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: proc(self: ^FileCoordinator, readingURL: ^URL, readingOptions: FileCoordinatorReadingOptions, writingURL: ^URL, writingOptions: FileCoordinatorWritingOptions, outError: ^^Error, readerWriter: ^Objc_Block(proc "c" (newReadingURL: ^URL, newWritingURL: ^URL))) ---
+    FileCoordinator_coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: proc(self: ^FileCoordinator, readingURL: ^URL, readingOptions: FileCoordinatorReadingOptions, writingURL: ^URL, writingOptions: FileCoordinatorWritingOptions, outError: ^^Error, readerWriter: ^Objc_Block(proc "c" ( newReadingURL: ^URL, newWritingURL: ^URL ))) ---
 
     @(objc_type=FileCoordinator, objc_selector="coordinateWritingItemAtURL:options:writingItemAtURL:options:error:byAccessor:", objc_name="coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor")
-    FileCoordinator_coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: proc(self: ^FileCoordinator, url1: ^URL, options1: FileCoordinatorWritingOptions, url2: ^URL, options2: FileCoordinatorWritingOptions, outError: ^^Error, writer: ^Objc_Block(proc "c" (newURL1: ^URL, newURL2: ^URL))) ---
+    FileCoordinator_coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: proc(self: ^FileCoordinator, url1: ^URL, options1: FileCoordinatorWritingOptions, url2: ^URL, options2: FileCoordinatorWritingOptions, outError: ^^Error, writer: ^Objc_Block(proc "c" ( newURL1: ^URL, newURL2: ^URL ))) ---
 
     @(objc_type=FileCoordinator, objc_selector="prepareForReadingItemsAtURLs:options:writingItemsAtURLs:options:error:byAccessor:", objc_name="prepareForReadingItemsAtURLs")
-    FileCoordinator_prepareForReadingItemsAtURLs :: proc(self: ^FileCoordinator, readingURLs: ^Array, readingOptions: FileCoordinatorReadingOptions, writingURLs: ^Array, writingOptions: FileCoordinatorWritingOptions, outError: ^^Error, batchAccessor: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" ())))) ---
+    FileCoordinator_prepareForReadingItemsAtURLs :: proc(self: ^FileCoordinator, readingURLs: ^Array, readingOptions: FileCoordinatorReadingOptions, writingURLs: ^Array, writingOptions: FileCoordinatorWritingOptions, outError: ^^Error, batchAccessor: ^Objc_Block(proc "c" ( completionHandler: ^Objc_Block(proc "c" ()) ))) ---
 
     @(objc_type=FileCoordinator, objc_selector="itemAtURL:willMoveToURL:", objc_name="itemAtURL_willMoveToURL")
     FileCoordinator_itemAtURL_willMoveToURL :: proc(self: ^FileCoordinator, oldURL: ^URL, newURL: ^URL) ---

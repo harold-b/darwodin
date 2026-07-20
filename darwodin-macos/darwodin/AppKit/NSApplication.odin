@@ -101,7 +101,7 @@ foreign lib {
     Application_cancelUserAttentionRequest :: proc(self: ^Application, request: NS.Integer) ---
 
     @(objc_type=Application, objc_selector="enumerateWindowsWithOptions:usingBlock:", objc_name="enumerateWindowsWithOptions")
-    Application_enumerateWindowsWithOptions :: proc(self: ^Application, options: WindowListOptions, block: ^Objc_Block(proc "c" (window: ^Window, stop: ^bool))) ---
+    Application_enumerateWindowsWithOptions :: proc(self: ^Application, options: WindowListOptions, block: ^Objc_Block(proc "c" ( window: ^Window, stop: ^bool ))) ---
 
     @(objc_type=Application, objc_selector="preventWindowOrdering", objc_name="preventWindowOrdering")
     Application_preventWindowOrdering :: proc(self: ^Application) ---
@@ -374,7 +374,7 @@ foreign lib {
     Application_searchString :: proc(self: ^Application, searchString: ^NS.String, stringToSearch: ^NS.String, searchRange: NS._NSRange, foundRange: ^NS._NSRange) -> bool ---
 
     @(objc_type=Application, objc_selector="restoreWindowWithIdentifier:state:completionHandler:", objc_name="restoreWindowWithIdentifier")
-    Application_restoreWindowWithIdentifier :: proc(self: ^Application, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^Window, _1: ^NS.Error))) -> bool ---
+    Application_restoreWindowWithIdentifier :: proc(self: ^Application, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" ( _0: ^Window, _1: ^NS.Error ))) -> bool ---
 
     @(objc_type=Application, objc_selector="extendStateRestoration", objc_name="extendStateRestoration")
     Application_extendStateRestoration :: proc(self: ^Application) ---

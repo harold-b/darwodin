@@ -7,78 +7,72 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKTurnBasedMatch
-///
 @(objc_class="GKTurnBasedMatch", objc_superclass=NS.Object)
 TurnBasedMatch :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TurnBasedMatch, objc_selector="setLocalizableMessageWithKey:arguments:", objc_name="setLocalizableMessageWithKey")
     TurnBasedMatch_setLocalizableMessageWithKey :: proc(self: ^TurnBasedMatch, key: ^NS.String, arguments: ^NS.Array) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="findMatchForRequest:withCompletionHandler:", objc_name="findMatchForRequest", objc_is_class_method=true)
-    TurnBasedMatch_findMatchForRequest :: proc(request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (match: ^TurnBasedMatch, error: ^NS.Error))) ---
+    TurnBasedMatch_findMatchForRequest :: proc(request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" ( match: ^TurnBasedMatch, error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="loadMatchesWithCompletionHandler:", objc_name="loadMatchesWithCompletionHandler", objc_is_class_method=true)
-    TurnBasedMatch_loadMatchesWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (matches: ^NS.Array, error: ^NS.Error))) ---
+    TurnBasedMatch_loadMatchesWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( matches: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="loadMatchWithID:withCompletionHandler:", objc_name="loadMatchWithID", objc_is_class_method=true)
-    TurnBasedMatch_loadMatchWithID :: proc(matchID: ^NS.String, completionHandler: ^Objc_Block(proc "c" (match: ^TurnBasedMatch, error: ^NS.Error))) ---
+    TurnBasedMatch_loadMatchWithID :: proc(matchID: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( match: ^TurnBasedMatch, error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="rematchWithCompletionHandler:", objc_name="rematchWithCompletionHandler")
-    TurnBasedMatch_rematchWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (match: ^TurnBasedMatch, error: ^NS.Error))) ---
+    TurnBasedMatch_rematchWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" ( match: ^TurnBasedMatch, error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="acceptInviteWithCompletionHandler:", objc_name="acceptInviteWithCompletionHandler")
-    TurnBasedMatch_acceptInviteWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (match: ^TurnBasedMatch, error: ^NS.Error))) ---
+    TurnBasedMatch_acceptInviteWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" ( match: ^TurnBasedMatch, error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="declineInviteWithCompletionHandler:", objc_name="declineInviteWithCompletionHandler")
-    TurnBasedMatch_declineInviteWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_declineInviteWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="removeWithCompletionHandler:", objc_name="removeWithCompletionHandler")
-    TurnBasedMatch_removeWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_removeWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="loadMatchDataWithCompletionHandler:", objc_name="loadMatchDataWithCompletionHandler")
-    TurnBasedMatch_loadMatchDataWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" (matchData: ^NS.Data, error: ^NS.Error))) ---
+    TurnBasedMatch_loadMatchDataWithCompletionHandler :: proc(self: ^TurnBasedMatch, completionHandler: ^Objc_Block(proc "c" ( matchData: ^NS.Data, error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="endTurnWithNextParticipants:turnTimeout:matchData:completionHandler:", objc_name="endTurnWithNextParticipants")
-    TurnBasedMatch_endTurnWithNextParticipants :: proc(self: ^TurnBasedMatch, nextParticipants: ^NS.Array, timeout: NS.TimeInterval, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_endTurnWithNextParticipants :: proc(self: ^TurnBasedMatch, nextParticipants: ^NS.Array, timeout: NS.TimeInterval, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="participantQuitInTurnWithOutcome:nextParticipants:turnTimeout:matchData:completionHandler:", objc_name="participantQuitInTurnWithOutcome_nextParticipants_turnTimeout_matchData_completionHandler")
-    TurnBasedMatch_participantQuitInTurnWithOutcome_nextParticipants_turnTimeout_matchData_completionHandler :: proc(self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, nextParticipants: ^NS.Array, timeout: NS.TimeInterval, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_participantQuitInTurnWithOutcome_nextParticipants_turnTimeout_matchData_completionHandler :: proc(self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, nextParticipants: ^NS.Array, timeout: NS.TimeInterval, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="participantQuitOutOfTurnWithOutcome:withCompletionHandler:", objc_name="participantQuitOutOfTurnWithOutcome")
-    TurnBasedMatch_participantQuitOutOfTurnWithOutcome :: proc(self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_participantQuitOutOfTurnWithOutcome :: proc(self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="endMatchInTurnWithMatchData:completionHandler:", objc_name="endMatchInTurnWithMatchData_completionHandler")
-    TurnBasedMatch_endMatchInTurnWithMatchData_completionHandler :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_endMatchInTurnWithMatchData_completionHandler :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="endMatchInTurnWithMatchData:scores:achievements:completionHandler:", objc_name="endMatchInTurnWithMatchData_scores_achievements_completionHandler")
-    TurnBasedMatch_endMatchInTurnWithMatchData_scores_achievements_completionHandler :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, scores: ^NS.Array, achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_endMatchInTurnWithMatchData_scores_achievements_completionHandler :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, scores: ^NS.Array, achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="endMatchInTurnWithMatchData:leaderboardScores:achievements:completionHandler:", objc_name="endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler")
-    TurnBasedMatch_endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, scores: ^NS.Array, achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_endMatchInTurnWithMatchData_leaderboardScores_achievements_completionHandler :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, scores: ^NS.Array, achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="saveCurrentTurnWithMatchData:completionHandler:", objc_name="saveCurrentTurnWithMatchData")
-    TurnBasedMatch_saveCurrentTurnWithMatchData :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_saveCurrentTurnWithMatchData :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="saveMergedMatchData:withResolvedExchanges:completionHandler:", objc_name="saveMergedMatchData")
-    TurnBasedMatch_saveMergedMatchData :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, exchanges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_saveMergedMatchData :: proc(self: ^TurnBasedMatch, matchData: ^NS.Data, exchanges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="sendExchangeToParticipants:data:localizableMessageKey:arguments:timeout:completionHandler:", objc_name="sendExchangeToParticipants")
-    TurnBasedMatch_sendExchangeToParticipants :: proc(self: ^TurnBasedMatch, participants: ^NS.Array, data: ^NS.Data, key: ^NS.String, arguments: ^NS.Array, timeout: NS.TimeInterval, completionHandler: ^Objc_Block(proc "c" (exchange: ^TurnBasedExchange, error: ^NS.Error))) ---
+    TurnBasedMatch_sendExchangeToParticipants :: proc(self: ^TurnBasedMatch, participants: ^NS.Array, data: ^NS.Data, key: ^NS.String, arguments: ^NS.Array, timeout: NS.TimeInterval, completionHandler: ^Objc_Block(proc "c" ( exchange: ^TurnBasedExchange, error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="sendReminderToParticipants:localizableMessageKey:arguments:completionHandler:", objc_name="sendReminderToParticipants")
-    TurnBasedMatch_sendReminderToParticipants :: proc(self: ^TurnBasedMatch, participants: ^NS.Array, key: ^NS.String, arguments: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_sendReminderToParticipants :: proc(self: ^TurnBasedMatch, participants: ^NS.Array, key: ^NS.String, arguments: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="endTurnWithNextParticipant:matchData:completionHandler:", objc_name="endTurnWithNextParticipant")
-    TurnBasedMatch_endTurnWithNextParticipant :: proc(self: ^TurnBasedMatch, nextParticipant: ^TurnBasedParticipant, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_endTurnWithNextParticipant :: proc(self: ^TurnBasedMatch, nextParticipant: ^TurnBasedParticipant, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="participantQuitInTurnWithOutcome:nextParticipant:matchData:completionHandler:", objc_name="participantQuitInTurnWithOutcome_nextParticipant_matchData_completionHandler")
-    TurnBasedMatch_participantQuitInTurnWithOutcome_nextParticipant_matchData_completionHandler :: proc(self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, nextParticipant: ^TurnBasedParticipant, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedMatch_participantQuitInTurnWithOutcome_nextParticipant_matchData_completionHandler :: proc(self: ^TurnBasedMatch, matchOutcome: TurnBasedMatchOutcome, nextParticipant: ^TurnBasedParticipant, matchData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedMatch, objc_selector="matchID", objc_name="matchID")
     TurnBasedMatch_matchID :: proc(self: ^TurnBasedMatch) -> ^NS.String ---
@@ -122,6 +116,8 @@ foreign lib {
     @(objc_type=TurnBasedMatch, objc_selector="exchangeMaxInitiatedExchangesPerPlayer", objc_name="exchangeMaxInitiatedExchangesPerPlayer")
     TurnBasedMatch_exchangeMaxInitiatedExchangesPerPlayer :: proc(self: ^TurnBasedMatch) -> NS.UInteger ---
 }
+
+
 
 @(objc_type=TurnBasedMatch, objc_name="participantQuitInTurnWithOutcome")
 TurnBasedMatch_participantQuitInTurnWithOutcome :: proc {

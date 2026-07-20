@@ -33,7 +33,7 @@ foreign lib {
     InputViewController_handleInputModeListFromView :: proc(self: ^InputViewController, view: ^View, event: ^Event) ---
 
     @(objc_type=InputViewController, objc_selector="requestSupplementaryLexiconWithCompletion:", objc_name="requestSupplementaryLexiconWithCompletion")
-    InputViewController_requestSupplementaryLexiconWithCompletion :: proc(self: ^InputViewController, completionHandler: ^Objc_Block(proc "c" (_: ^Lexicon))) ---
+    InputViewController_requestSupplementaryLexiconWithCompletion :: proc(self: ^InputViewController, completionHandler: ^Objc_Block(proc "c" ( _0: ^Lexicon ))) ---
 
     @(objc_type=InputViewController, objc_selector="inputView", objc_name="inputView")
     InputViewController_inputView :: proc(self: ^InputViewController) -> ^InputView ---

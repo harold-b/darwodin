@@ -30,7 +30,7 @@ foreign lib {
     WindowSceneDelegateProtocol_windowScene_didUpdateEffectiveGeometry :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, previousEffectiveGeometry: ^WindowSceneGeometry) ---
 
     @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:performActionForShortcutItem:completionHandler:", objc_name="windowScene_performActionForShortcutItem_completionHandler")
-    WindowSceneDelegateProtocol_windowScene_performActionForShortcutItem_completionHandler :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))) ---
+    WindowSceneDelegateProtocol_windowScene_performActionForShortcutItem_completionHandler :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" ( succeeded: bool ))) ---
 
     @(objc_type=WindowSceneDelegateProtocol, objc_selector="windowScene:userDidAcceptCloudKitShareWithMetadata:", objc_name="windowScene_userDidAcceptCloudKitShareWithMetadata")
     WindowSceneDelegateProtocol_windowScene_userDidAcceptCloudKitShareWithMetadata :: proc(self: ^WindowSceneDelegateProtocol, windowScene: ^WindowScene, cloudKitShareMetadata: ^CKShareMetadata) ---

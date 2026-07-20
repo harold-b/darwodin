@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemMetadataCollector
-///
 @(objc_class="AVPlayerItemMetadataCollector", objc_superclass=PlayerItemMediaDataCollector)
 PlayerItemMetadataCollector :: struct { using _: PlayerItemMediaDataCollector, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemMetadataCollector, objc_selector="initWithIdentifiers:classifyingLabels:", objc_name="initWithIdentifiers")
     PlayerItemMetadataCollector_initWithIdentifiers :: proc(self: ^PlayerItemMetadataCollector, identifiers: ^NS.Array, classifyingLabels: ^NS.Array) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=PlayerItemMetadataCollector, objc_selector="delegateQueue", objc_name="delegateQueue")
     PlayerItemMetadataCollector_delegateQueue :: proc(self: ^PlayerItemMetadataCollector) -> CF.dispatch_queue_t ---
 }
+
+
+

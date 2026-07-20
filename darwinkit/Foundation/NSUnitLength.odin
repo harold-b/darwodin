@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitLength
-///
 @(objc_class="NSUnitLength", objc_superclass=Dimension)
 UnitLength :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitLength, objc_selector="megameters", objc_name="megameters", objc_is_class_method=true)
     UnitLength_megameters :: proc() -> ^UnitLength ---
@@ -87,3 +81,6 @@ foreign lib {
     @(objc_type=UnitLength, objc_selector="parsecs", objc_name="parsecs", objc_is_class_method=true)
     UnitLength_parsecs :: proc() -> ^UnitLength ---
 }
+
+
+

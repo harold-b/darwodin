@@ -23,7 +23,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTitle: proc(self: ^UI.Tab, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> instancetype,
+    initWithTitle: proc(self: ^UI.Tab, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" ( _0: ^UI.Tab ) -> ^UI.ViewController)) -> instancetype,
     init: proc(self: ^UI.Tab) -> instancetype,
     new: proc() -> ^UI.Tab,
     identifier: proc(self: ^UI.Tab) -> ^NS.String,
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^UI.Tab, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" (_: ^UI.Tab) -> ^UI.ViewController)) -> instancetype {
+        initWithTitle :: proc "c" (self: ^UI.Tab, _: SEL, title: ^NS.String, image: ^UI.Image, identifier: ^NS.String, viewControllerProvider: ^Objc_Block(proc "c" ( _0: ^UI.Tab ) -> ^UI.ViewController)) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

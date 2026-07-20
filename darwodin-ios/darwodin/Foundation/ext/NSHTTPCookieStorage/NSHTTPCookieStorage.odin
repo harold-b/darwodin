@@ -33,7 +33,7 @@ VTable :: struct {
     cookieAcceptPolicy: proc(self: ^NS.HTTPCookieStorage) -> NS.HTTPCookieAcceptPolicy,
     setCookieAcceptPolicy: proc(self: ^NS.HTTPCookieStorage, cookieAcceptPolicy: NS.HTTPCookieAcceptPolicy),
     storeCookies: proc(self: ^NS.HTTPCookieStorage, cookies: ^NS.Array, task: ^NS.URLSessionTask),
-    getCookiesForTask: proc(self: ^NS.HTTPCookieStorage, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (cookies: ^NS.Array))),
+    getCookiesForTask: proc(self: ^NS.HTTPCookieStorage, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" ( cookies: ^NS.Array ))),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("storeCookies:forTask:"), auto_cast storeCookies, "v@:^void@") do panic("Failed to register objC method.")
     }
     if vt.getCookiesForTask != nil {
-        getCookiesForTask :: proc "c" (self: ^NS.HTTPCookieStorage, _: SEL, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (cookies: ^NS.Array))) {
+        getCookiesForTask :: proc "c" (self: ^NS.HTTPCookieStorage, _: SEL, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" ( cookies: ^NS.Array ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

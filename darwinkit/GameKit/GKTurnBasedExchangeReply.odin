@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKTurnBasedExchangeReply
-///
 @(objc_class="GKTurnBasedExchangeReply", objc_superclass=NS.Object)
 TurnBasedExchangeReply :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TurnBasedExchangeReply, objc_selector="recipient", objc_name="recipient")
     TurnBasedExchangeReply_recipient :: proc(self: ^TurnBasedExchangeReply) -> ^TurnBasedParticipant ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=TurnBasedExchangeReply, objc_selector="replyDate", objc_name="replyDate")
     TurnBasedExchangeReply_replyDate :: proc(self: ^TurnBasedExchangeReply) -> ^NS.Date ---
 }
+
+
+

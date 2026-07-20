@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    draggingEntered: proc(self: ^AK.DraggingDestination, sender: ^AK.DraggingInfo) -> AK.DragOperation,
-    draggingUpdated: proc(self: ^AK.DraggingDestination, sender: ^AK.DraggingInfo) -> AK.DragOperation,
-    draggingExited: proc(self: ^AK.DraggingDestination, sender: ^AK.DraggingInfo),
-    prepareForDragOperation: proc(self: ^AK.DraggingDestination, sender: ^AK.DraggingInfo) -> bool,
-    performDragOperation: proc(self: ^AK.DraggingDestination, sender: ^AK.DraggingInfo) -> bool,
-    concludeDragOperation: proc(self: ^AK.DraggingDestination, sender: ^AK.DraggingInfo),
-    draggingEnded: proc(self: ^AK.DraggingDestination, sender: ^AK.DraggingInfo),
-    wantsPeriodicDraggingUpdates: proc(self: ^AK.DraggingDestination) -> bool,
-    updateDraggingItemsForDrag: proc(self: ^AK.DraggingDestination, sender: ^AK.DraggingInfo),
+    draggingEntered: proc(self: ^NS.DraggingDestination, sender: ^NS.DraggingInfo) -> NS.DragOperation,
+    draggingUpdated: proc(self: ^NS.DraggingDestination, sender: ^NS.DraggingInfo) -> NS.DragOperation,
+    draggingExited: proc(self: ^NS.DraggingDestination, sender: ^NS.DraggingInfo),
+    prepareForDragOperation: proc(self: ^NS.DraggingDestination, sender: ^NS.DraggingInfo) -> bool,
+    performDragOperation: proc(self: ^NS.DraggingDestination, sender: ^NS.DraggingInfo) -> bool,
+    concludeDragOperation: proc(self: ^NS.DraggingDestination, sender: ^NS.DraggingInfo),
+    draggingEnded: proc(self: ^NS.DraggingDestination, sender: ^NS.DraggingInfo),
+    wantsPeriodicDraggingUpdates: proc(self: ^NS.DraggingDestination) -> bool,
+    updateDraggingItemsForDrag: proc(self: ^NS.DraggingDestination, sender: ^NS.DraggingInfo),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.draggingEntered != nil {
-        draggingEntered :: proc "c" (self: ^AK.DraggingDestination, _: SEL, sender: ^AK.DraggingInfo) -> AK.DragOperation {
+        draggingEntered :: proc "c" (self: ^NS.DraggingDestination, _: SEL, sender: ^NS.DraggingInfo) -> NS.DragOperation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingEntered:"), auto_cast draggingEntered, "L@:@") do panic("Failed to register objC method.")
     }
     if vt.draggingUpdated != nil {
-        draggingUpdated :: proc "c" (self: ^AK.DraggingDestination, _: SEL, sender: ^AK.DraggingInfo) -> AK.DragOperation {
+        draggingUpdated :: proc "c" (self: ^NS.DraggingDestination, _: SEL, sender: ^NS.DraggingInfo) -> NS.DragOperation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingUpdated:"), auto_cast draggingUpdated, "L@:@") do panic("Failed to register objC method.")
     }
     if vt.draggingExited != nil {
-        draggingExited :: proc "c" (self: ^AK.DraggingDestination, _: SEL, sender: ^AK.DraggingInfo) {
+        draggingExited :: proc "c" (self: ^NS.DraggingDestination, _: SEL, sender: ^NS.DraggingInfo) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingExited:"), auto_cast draggingExited, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.prepareForDragOperation != nil {
-        prepareForDragOperation :: proc "c" (self: ^AK.DraggingDestination, _: SEL, sender: ^AK.DraggingInfo) -> bool {
+        prepareForDragOperation :: proc "c" (self: ^NS.DraggingDestination, _: SEL, sender: ^NS.DraggingInfo) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("prepareForDragOperation:"), auto_cast prepareForDragOperation, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.performDragOperation != nil {
-        performDragOperation :: proc "c" (self: ^AK.DraggingDestination, _: SEL, sender: ^AK.DraggingInfo) -> bool {
+        performDragOperation :: proc "c" (self: ^NS.DraggingDestination, _: SEL, sender: ^NS.DraggingInfo) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performDragOperation:"), auto_cast performDragOperation, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.concludeDragOperation != nil {
-        concludeDragOperation :: proc "c" (self: ^AK.DraggingDestination, _: SEL, sender: ^AK.DraggingInfo) {
+        concludeDragOperation :: proc "c" (self: ^NS.DraggingDestination, _: SEL, sender: ^NS.DraggingInfo) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("concludeDragOperation:"), auto_cast concludeDragOperation, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.draggingEnded != nil {
-        draggingEnded :: proc "c" (self: ^AK.DraggingDestination, _: SEL, sender: ^AK.DraggingInfo) {
+        draggingEnded :: proc "c" (self: ^NS.DraggingDestination, _: SEL, sender: ^NS.DraggingInfo) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingEnded:"), auto_cast draggingEnded, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.wantsPeriodicDraggingUpdates != nil {
-        wantsPeriodicDraggingUpdates :: proc "c" (self: ^AK.DraggingDestination, _: SEL) -> bool {
+        wantsPeriodicDraggingUpdates :: proc "c" (self: ^NS.DraggingDestination, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("wantsPeriodicDraggingUpdates"), auto_cast wantsPeriodicDraggingUpdates, "B@:") do panic("Failed to register objC method.")
     }
     if vt.updateDraggingItemsForDrag != nil {
-        updateDraggingItemsForDrag :: proc "c" (self: ^AK.DraggingDestination, _: SEL, sender: ^AK.DraggingInfo) {
+        updateDraggingItemsForDrag :: proc "c" (self: ^NS.DraggingDestination, _: SEL, sender: ^NS.DraggingInfo) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -25,7 +25,7 @@ foreign lib {
     AudioPCMBuffer_initWithPCMFormat_frameCapacity :: proc(self: ^AudioPCMBuffer, format: ^AudioFormat, frameCapacity: AudioFrameCount) -> instancetype ---
 
     @(objc_type=AudioPCMBuffer, objc_selector="initWithPCMFormat:bufferListNoCopy:deallocator:", objc_name="initWithPCMFormat_bufferListNoCopy_deallocator")
-    AudioPCMBuffer_initWithPCMFormat_bufferListNoCopy_deallocator :: proc(self: ^AudioPCMBuffer, format: ^AudioFormat, bufferList: ^Audio.BufferList, deallocator: ^Objc_Block(proc "c" (_: ^Audio.BufferList))) -> instancetype ---
+    AudioPCMBuffer_initWithPCMFormat_bufferListNoCopy_deallocator :: proc(self: ^AudioPCMBuffer, format: ^AudioFormat, bufferList: ^Audio.BufferList, deallocator: ^Objc_Block(proc "c" ( _0: ^Audio.BufferList ))) -> instancetype ---
 
     @(objc_type=AudioPCMBuffer, objc_selector="frameCapacity", objc_name="frameCapacity")
     AudioPCMBuffer_frameCapacity :: proc(self: ^AudioPCMBuffer) -> AudioFrameCount ---

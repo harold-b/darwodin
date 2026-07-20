@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    defaultPerformer: proc() -> ^AK.HapticFeedbackPerformer,
+    defaultPerformer: proc() -> ^NS.HapticFeedbackPerformer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.defaultPerformer != nil {
-        defaultPerformer :: proc "c" (self: Class, _: SEL) -> ^AK.HapticFeedbackPerformer {
+        defaultPerformer :: proc "c" (self: Class, _: SEL) -> ^NS.HapticFeedbackPerformer {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

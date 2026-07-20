@@ -93,7 +93,7 @@ foreign lib {
     ApplicationDelegate_application_willContinueUserActivityWithType :: proc(self: ^ApplicationDelegate, application: ^Application, userActivityType: ^NS.String) -> bool ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:continueUserActivity:restorationHandler:", objc_name="application_continueUserActivity_restorationHandler")
-    ApplicationDelegate_application_continueUserActivity_restorationHandler :: proc(self: ^ApplicationDelegate, application: ^Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" (restorableObjects: ^NS.Array))) -> bool ---
+    ApplicationDelegate_application_continueUserActivity_restorationHandler :: proc(self: ^ApplicationDelegate, application: ^Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" ( restorableObjects: ^NS.Array ))) -> bool ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:didFailToContinueUserActivityWithType:error:", objc_name="application_didFailToContinueUserActivityWithType_error")
     ApplicationDelegate_application_didFailToContinueUserActivityWithType_error :: proc(self: ^ApplicationDelegate, application: ^Application, userActivityType: ^NS.String, error: ^NS.Error) ---

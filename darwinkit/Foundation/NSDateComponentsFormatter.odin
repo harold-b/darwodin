@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSDateComponentsFormatter
-///
 @(objc_class="NSDateComponentsFormatter", objc_superclass=Formatter)
 DateComponentsFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DateComponentsFormatter, objc_selector="stringForObjectValue:", objc_name="stringForObjectValue")
     DateComponentsFormatter_stringForObjectValue :: proc(self: ^DateComponentsFormatter, obj: id) -> ^String ---
@@ -103,3 +97,6 @@ foreign lib {
     @(objc_type=DateComponentsFormatter, objc_selector="setFormattingContext:", objc_name="setFormattingContext")
     DateComponentsFormatter_setFormattingContext :: proc(self: ^DateComponentsFormatter, formattingContext: FormattingContext) ---
 }
+
+
+

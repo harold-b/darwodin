@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPipelineFunctionsDescriptor
-///
 @(objc_class="MTLRenderPipelineFunctionsDescriptor", objc_superclass=NS.Object)
 RenderPipelineFunctionsDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPipelineFunctionsDescriptor, objc_selector="vertexAdditionalBinaryFunctions", objc_name="vertexAdditionalBinaryFunctions")
     RenderPipelineFunctionsDescriptor_vertexAdditionalBinaryFunctions :: proc(self: ^RenderPipelineFunctionsDescriptor) -> ^NS.Array ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=RenderPipelineFunctionsDescriptor, objc_selector="setTileAdditionalBinaryFunctions:", objc_name="setTileAdditionalBinaryFunctions")
     RenderPipelineFunctionsDescriptor_setTileAdditionalBinaryFunctions :: proc(self: ^RenderPipelineFunctionsDescriptor, tileAdditionalBinaryFunctions: ^NS.Array) ---
 }
+
+
+

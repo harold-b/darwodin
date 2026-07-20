@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLLightProbe
-///
 @(objc_class="MDLLightProbe", objc_superclass=Light)
 LightProbe :: struct { using _: Light, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LightProbe, objc_selector="initWithReflectiveTexture:irradianceTexture:", objc_name="initWithReflectiveTexture")
     LightProbe_initWithReflectiveTexture :: proc(self: ^LightProbe, reflectiveTexture: ^Texture, irradianceTexture: ^Texture) -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=LightProbe, objc_selector="lightProbeWithTextureSize:forLocation:lightsToConsider:objectsToConsider:reflectiveCubemap:irradianceCubemap:", objc_name="lightProbeWithTextureSize", objc_is_class_method=true)
     LightProbe_lightProbeWithTextureSize :: proc(textureSize: NS.Integer, transform: ^Transform, lightsToConsider: ^NS.Array, objectsToConsider: ^NS.Array, reflectiveCubemap: ^Texture, irradianceCubemap: ^Texture) -> ^LightProbe ---
 }
+
+
+

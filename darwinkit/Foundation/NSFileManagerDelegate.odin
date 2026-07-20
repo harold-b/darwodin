@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSFileManagerDelegate
-///
 @(objc_class="NSFileManagerDelegate")
 FileManagerDelegate :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FileManagerDelegate, objc_selector="fileManager:shouldCopyItemAtPath:toPath:", objc_name="fileManager_shouldCopyItemAtPath_toPath")
     FileManagerDelegate_fileManager_shouldCopyItemAtPath_toPath :: proc(self: ^FileManagerDelegate, fileManager: ^FileManager, srcPath: ^String, dstPath: ^String) -> bool ---
@@ -69,4 +63,6 @@ foreign lib {
     @(objc_type=FileManagerDelegate, objc_selector="fileManager:shouldProceedAfterError:removingItemAtURL:", objc_name="fileManager_shouldProceedAfterError_removingItemAtURL")
     FileManagerDelegate_fileManager_shouldProceedAfterError_removingItemAtURL :: proc(self: ^FileManagerDelegate, fileManager: ^FileManager, error: ^Error, _URL: ^URL) -> bool ---
 }
+
+
 

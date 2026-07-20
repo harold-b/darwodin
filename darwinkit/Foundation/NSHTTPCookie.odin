@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSHTTPCookie
-///
 @(objc_class="NSHTTPCookie", objc_superclass=Object)
 HTTPCookie :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HTTPCookie, objc_selector="initWithProperties:", objc_name="initWithProperties")
     HTTPCookie_initWithProperties :: proc(self: ^HTTPCookie, properties: ^Dictionary) -> instancetype ---
@@ -73,3 +67,6 @@ foreign lib {
     @(objc_type=HTTPCookie, objc_selector="sameSitePolicy", objc_name="sameSitePolicy")
     HTTPCookie_sameSitePolicy :: proc(self: ^HTTPCookie) -> ^String ---
 }
+
+
+

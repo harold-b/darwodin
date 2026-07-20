@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUUID
-///
 @(objc_class="NSUUID", objc_superclass=Object)
 UUID :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UUID, objc_selector="UUID", objc_name="UUID", objc_is_class_method=true)
     UUID_UUID :: proc() -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=UUID, objc_selector="UUIDString", objc_name="UUIDString")
     UUID_UUIDString :: proc(self: ^UUID) -> ^String ---
 }
+
+
+

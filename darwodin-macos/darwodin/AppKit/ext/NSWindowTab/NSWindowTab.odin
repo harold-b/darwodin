@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    title: proc(self: ^AK.WindowTab) -> ^NS.String,
-    setTitle: proc(self: ^AK.WindowTab, title: ^NS.String),
-    attributedTitle: proc(self: ^AK.WindowTab) -> ^NS.AttributedString,
-    setAttributedTitle: proc(self: ^AK.WindowTab, attributedTitle: ^NS.AttributedString),
-    toolTip: proc(self: ^AK.WindowTab) -> ^NS.String,
-    setToolTip: proc(self: ^AK.WindowTab, toolTip: ^NS.String),
-    accessoryView: proc(self: ^AK.WindowTab) -> ^AK.View,
-    setAccessoryView: proc(self: ^AK.WindowTab, accessoryView: ^AK.View),
+    title: proc(self: ^NS.WindowTab) -> ^NS.String,
+    setTitle: proc(self: ^NS.WindowTab, title: ^NS.String),
+    attributedTitle: proc(self: ^NS.WindowTab) -> ^NS.AttributedString,
+    setAttributedTitle: proc(self: ^NS.WindowTab, attributedTitle: ^NS.AttributedString),
+    toolTip: proc(self: ^NS.WindowTab) -> ^NS.String,
+    setToolTip: proc(self: ^NS.WindowTab, toolTip: ^NS.String),
+    accessoryView: proc(self: ^NS.WindowTab) -> ^NS.View,
+    setAccessoryView: proc(self: ^NS.WindowTab, accessoryView: ^NS.View),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.title != nil {
-        title :: proc "c" (self: ^AK.WindowTab, _: SEL) -> ^NS.String {
+        title :: proc "c" (self: ^NS.WindowTab, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.WindowTab, _: SEL, title: ^NS.String) {
+        setTitle :: proc "c" (self: ^NS.WindowTab, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.attributedTitle != nil {
-        attributedTitle :: proc "c" (self: ^AK.WindowTab, _: SEL) -> ^NS.AttributedString {
+        attributedTitle :: proc "c" (self: ^NS.WindowTab, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedTitle"), auto_cast attributedTitle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributedTitle != nil {
-        setAttributedTitle :: proc "c" (self: ^AK.WindowTab, _: SEL, attributedTitle: ^NS.AttributedString) {
+        setAttributedTitle :: proc "c" (self: ^NS.WindowTab, _: SEL, attributedTitle: ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedTitle:"), auto_cast setAttributedTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.toolTip != nil {
-        toolTip :: proc "c" (self: ^AK.WindowTab, _: SEL) -> ^NS.String {
+        toolTip :: proc "c" (self: ^NS.WindowTab, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("toolTip"), auto_cast toolTip, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setToolTip != nil {
-        setToolTip :: proc "c" (self: ^AK.WindowTab, _: SEL, toolTip: ^NS.String) {
+        setToolTip :: proc "c" (self: ^NS.WindowTab, _: SEL, toolTip: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setToolTip:"), auto_cast setToolTip, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.accessoryView != nil {
-        accessoryView :: proc "c" (self: ^AK.WindowTab, _: SEL) -> ^AK.View {
+        accessoryView :: proc "c" (self: ^NS.WindowTab, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessoryView"), auto_cast accessoryView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessoryView != nil {
-        setAccessoryView :: proc "c" (self: ^AK.WindowTab, _: SEL, accessoryView: ^AK.View) {
+        setAccessoryView :: proc "c" (self: ^NS.WindowTab, _: SEL, accessoryView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetResourceLoadingRequestor
-///
 @(objc_class="AVAssetResourceLoadingRequestor", objc_superclass=NS.Object)
 AssetResourceLoadingRequestor :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetResourceLoadingRequestor, objc_selector="init", objc_name="init")
     AssetResourceLoadingRequestor_init :: proc(self: ^AssetResourceLoadingRequestor) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=AssetResourceLoadingRequestor, objc_selector="providesExpiredSessionReports", objc_name="providesExpiredSessionReports")
     AssetResourceLoadingRequestor_providesExpiredSessionReports :: proc(self: ^AssetResourceLoadingRequestor) -> bool ---
 }
+
+
+

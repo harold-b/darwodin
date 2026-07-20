@@ -10,18 +10,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLObjectContainerComponent
-///
 @(objc_class="MDLObjectContainerComponent")
 ObjectContainerComponent :: struct { using _: intrinsics.objc_object, 
     using _: Component,
     using _: NS.FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ObjectContainerComponent, objc_selector="addObject:", objc_name="addObject")
     ObjectContainerComponent_addObject :: proc(self: ^ObjectContainerComponent, object: ^Object) ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=ObjectContainerComponent, objc_selector="objects", objc_name="objects")
     ObjectContainerComponent_objects :: proc(self: ^ObjectContainerComponent) -> ^NS.Array ---
 }
+
+
+

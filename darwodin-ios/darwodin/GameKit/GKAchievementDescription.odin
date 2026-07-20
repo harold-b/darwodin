@@ -21,7 +21,7 @@ AchievementDescription :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AchievementDescription, objc_selector="loadAchievementDescriptionsWithCompletionHandler:", objc_name="loadAchievementDescriptionsWithCompletionHandler", objc_is_class_method=true)
-    AchievementDescription_loadAchievementDescriptionsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (descriptions: ^NS.Array, error: ^NS.Error))) ---
+    AchievementDescription_loadAchievementDescriptionsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( descriptions: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=AchievementDescription, objc_selector="identifier", objc_name="identifier")
     AchievementDescription_identifier :: proc(self: ^AchievementDescription) -> ^NS.String ---
@@ -60,7 +60,7 @@ foreign lib {
     AchievementDescription_activityProperties :: proc(self: ^AchievementDescription) -> ^NS.Dictionary ---
 
     @(objc_type=AchievementDescription, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    AchievementDescription_loadImageWithCompletionHandler :: proc(self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" (image: ^UI.Image, error: ^NS.Error))) ---
+    AchievementDescription_loadImageWithCompletionHandler :: proc(self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" ( image: ^UI.Image, error: ^NS.Error ))) ---
 
     @(objc_type=AchievementDescription, objc_selector="incompleteAchievementImage", objc_name="incompleteAchievementImage", objc_is_class_method=true)
     AchievementDescription_incompleteAchievementImage :: proc() -> ^UI.Image ---

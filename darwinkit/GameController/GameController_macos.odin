@@ -2,6 +2,6 @@
 #+private package
 package darwodin_GameController
 
-import AK "../AppKit"
+import _AK "../AppKit"
+AK ::_AK
 
-AKViewController :: AK.ViewController

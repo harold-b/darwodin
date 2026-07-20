@@ -53,10 +53,10 @@ foreign lib {
     AttributedString_initWithAttributedString :: proc(self: ^AttributedString, attrStr: ^AttributedString) -> instancetype ---
 
     @(objc_type=AttributedString, objc_selector="enumerateAttributesInRange:options:usingBlock:", objc_name="enumerateAttributesInRange")
-    AttributedString_enumerateAttributesInRange :: proc(self: ^AttributedString, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (attrs: ^Dictionary, range: _NSRange, stop: ^bool))) ---
+    AttributedString_enumerateAttributesInRange :: proc(self: ^AttributedString, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" ( attrs: ^Dictionary, range: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=AttributedString, objc_selector="enumerateAttribute:inRange:options:usingBlock:", objc_name="enumerateAttribute")
-    AttributedString_enumerateAttribute :: proc(self: ^AttributedString, attrName: ^String, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" (value: id, range: _NSRange, stop: ^bool))) ---
+    AttributedString_enumerateAttribute :: proc(self: ^AttributedString, attrName: ^String, enumerationRange: _NSRange, opts: AttributedStringEnumerationOptions, block: ^Objc_Block(proc "c" ( value: id, range: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=AttributedString, objc_selector="length", objc_name="length")
     AttributedString_length :: proc(self: ^AttributedString) -> UInteger ---

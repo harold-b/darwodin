@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPassDepthAttachmentDescriptor
-///
 @(objc_class="MTLRenderPassDepthAttachmentDescriptor", objc_superclass=RenderPassAttachmentDescriptor)
 RenderPassDepthAttachmentDescriptor :: struct { using _: RenderPassAttachmentDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPassDepthAttachmentDescriptor, objc_selector="clearDepth", objc_name="clearDepth")
     RenderPassDepthAttachmentDescriptor_clearDepth :: proc(self: ^RenderPassDepthAttachmentDescriptor) -> cffi.double ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=RenderPassDepthAttachmentDescriptor, objc_selector="setDepthResolveFilter:", objc_name="setDepthResolveFilter")
     RenderPassDepthAttachmentDescriptor_setDepthResolveFilter :: proc(self: ^RenderPassDepthAttachmentDescriptor, depthResolveFilter: MultisampleDepthResolveFilter) ---
 }
+
+
+

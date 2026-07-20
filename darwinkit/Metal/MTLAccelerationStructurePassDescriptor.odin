@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLAccelerationStructurePassDescriptor
-///
 @(objc_class="MTLAccelerationStructurePassDescriptor", objc_superclass=NS.Object)
 AccelerationStructurePassDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccelerationStructurePassDescriptor, objc_selector="accelerationStructurePassDescriptor", objc_name="accelerationStructurePassDescriptor", objc_is_class_method=true)
     AccelerationStructurePassDescriptor_accelerationStructurePassDescriptor :: proc() -> ^AccelerationStructurePassDescriptor ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=AccelerationStructurePassDescriptor, objc_selector="sampleBufferAttachments", objc_name="sampleBufferAttachments")
     AccelerationStructurePassDescriptor_sampleBufferAttachments :: proc(self: ^AccelerationStructurePassDescriptor) -> ^AccelerationStructurePassSampleBufferAttachmentDescriptorArray ---
 }
+
+
+

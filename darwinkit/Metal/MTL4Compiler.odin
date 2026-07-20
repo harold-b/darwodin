@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4Compiler
-///
 @(objc_class="MTL4Compiler")
 MTL4Compiler :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4Compiler, objc_selector="newLibraryWithDescriptor:error:", objc_name="newLibraryWithDescriptor_error")
     MTL4Compiler_newLibraryWithDescriptor_error :: proc(self: ^MTL4Compiler, descriptor: ^MTL4LibraryDescriptor, error: ^^NS.Error) -> ^Library ---
@@ -92,6 +86,8 @@ foreign lib {
     @(objc_type=MTL4Compiler, objc_selector="pipelineDataSetSerializer", objc_name="pipelineDataSetSerializer")
     MTL4Compiler_pipelineDataSetSerializer :: proc(self: ^MTL4Compiler) -> ^MTL4PipelineDataSetSerializer ---
 }
+
+
 
 @(objc_type=MTL4Compiler, objc_name="newComputePipelineStateWithDescriptor")
 MTL4Compiler_newComputePipelineStateWithDescriptor :: proc {

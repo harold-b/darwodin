@@ -31,7 +31,7 @@ foreign lib {
     CaptureSlider_initWithLocalizedTitle_symbolName_values :: proc(self: ^CaptureSlider, localizedTitle: ^NS.String, symbolName: ^NS.String, values: ^NS.Array) -> instancetype ---
 
     @(objc_type=CaptureSlider, objc_selector="setActionQueue:action:", objc_name="setActionQueue")
-    CaptureSlider_setActionQueue :: proc(self: ^CaptureSlider, actionQueue: CF.dispatch_queue_t, action: ^Objc_Block(proc "c" (newValue: cffi.float))) ---
+    CaptureSlider_setActionQueue :: proc(self: ^CaptureSlider, actionQueue: CF.dispatch_queue_t, action: ^Objc_Block(proc "c" ( newValue: cffi.float ))) ---
 
     @(objc_type=CaptureSlider, objc_selector="value", objc_name="value")
     CaptureSlider_value :: proc(self: ^CaptureSlider) -> cffi.float ---

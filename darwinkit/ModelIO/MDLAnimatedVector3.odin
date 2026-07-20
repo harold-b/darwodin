@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAnimatedVector3
-///
 @(objc_class="MDLAnimatedVector3", objc_superclass=AnimatedValue)
 AnimatedVector3 :: struct { using _: AnimatedValue, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimatedVector3, objc_selector="setFloat3:atTime:", objc_name="setFloat3")
     AnimatedVector3_setFloat3 :: proc(self: ^AnimatedVector3, value: ^vector_float3, time: NS.TimeInterval) ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=AnimatedVector3, objc_selector="getDouble3Array:maxCount:", objc_name="getDouble3Array")
     AnimatedVector3_getDouble3Array :: proc(self: ^AnimatedVector3, valuesArray: ^^vector_double3, maxCount: NS.UInteger) -> NS.UInteger ---
 }
+
+
+

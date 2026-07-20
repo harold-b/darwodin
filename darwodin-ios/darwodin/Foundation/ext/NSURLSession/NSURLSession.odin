@@ -27,8 +27,8 @@ VTable :: struct {
     invalidateAndCancel: proc(self: ^NS.URLSession),
     resetWithCompletionHandler: proc(self: ^NS.URLSession, completionHandler: ^Objc_Block(proc "c" ())),
     flushWithCompletionHandler: proc(self: ^NS.URLSession, completionHandler: ^Objc_Block(proc "c" ())),
-    getTasksWithCompletionHandler: proc(self: ^NS.URLSession, completionHandler: ^Objc_Block(proc "c" (dataTasks: ^NS.Array, uploadTasks: ^NS.Array, downloadTasks: ^NS.Array))),
-    getAllTasksWithCompletionHandler: proc(self: ^NS.URLSession, completionHandler: ^Objc_Block(proc "c" (tasks: ^NS.Array))),
+    getTasksWithCompletionHandler: proc(self: ^NS.URLSession, completionHandler: ^Objc_Block(proc "c" ( dataTasks: ^NS.Array, uploadTasks: ^NS.Array, downloadTasks: ^NS.Array ))),
+    getAllTasksWithCompletionHandler: proc(self: ^NS.URLSession, completionHandler: ^Objc_Block(proc "c" ( tasks: ^NS.Array ))),
     dataTaskWithRequest_: proc(self: ^NS.URLSession, request: ^NS.URLRequest) -> ^NS.URLSessionDataTask,
     dataTaskWithURL_: proc(self: ^NS.URLSession, url: ^NS.URL) -> ^NS.URLSessionDataTask,
     uploadTaskWithRequest_fromFile: proc(self: ^NS.URLSession, request: ^NS.URLRequest, fileURL: ^NS.URL) -> ^NS.URLSessionUploadTask,
@@ -51,14 +51,14 @@ VTable :: struct {
     configuration: proc(self: ^NS.URLSession) -> ^NS.URLSessionConfiguration,
     sessionDescription: proc(self: ^NS.URLSession) -> ^NS.String,
     setSessionDescription: proc(self: ^NS.URLSession, sessionDescription: ^NS.String),
-    dataTaskWithRequest_completionHandler: proc(self: ^NS.URLSession, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDataTask,
-    dataTaskWithURL_completionHandler: proc(self: ^NS.URLSession, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDataTask,
-    uploadTaskWithRequest_fromFile_completionHandler: proc(self: ^NS.URLSession, request: ^NS.URLRequest, fileURL: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionUploadTask,
-    uploadTaskWithRequest_fromData_completionHandler: proc(self: ^NS.URLSession, request: ^NS.URLRequest, bodyData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionUploadTask,
-    uploadTaskWithResumeData_completionHandler: proc(self: ^NS.URLSession, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionUploadTask,
-    downloadTaskWithRequest_completionHandler: proc(self: ^NS.URLSession, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDownloadTask,
-    downloadTaskWithURL_completionHandler: proc(self: ^NS.URLSession, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDownloadTask,
-    downloadTaskWithResumeData_completionHandler: proc(self: ^NS.URLSession, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDownloadTask,
+    dataTaskWithRequest_completionHandler: proc(self: ^NS.URLSession, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDataTask,
+    dataTaskWithURL_completionHandler: proc(self: ^NS.URLSession, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDataTask,
+    uploadTaskWithRequest_fromFile_completionHandler: proc(self: ^NS.URLSession, request: ^NS.URLRequest, fileURL: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionUploadTask,
+    uploadTaskWithRequest_fromData_completionHandler: proc(self: ^NS.URLSession, request: ^NS.URLRequest, bodyData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionUploadTask,
+    uploadTaskWithResumeData_completionHandler: proc(self: ^NS.URLSession, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionUploadTask,
+    downloadTaskWithRequest_completionHandler: proc(self: ^NS.URLSession, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDownloadTask,
+    downloadTaskWithURL_completionHandler: proc(self: ^NS.URLSession, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDownloadTask,
+    downloadTaskWithResumeData_completionHandler: proc(self: ^NS.URLSession, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDownloadTask,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("flushWithCompletionHandler:"), auto_cast flushWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.getTasksWithCompletionHandler != nil {
-        getTasksWithCompletionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, completionHandler: ^Objc_Block(proc "c" (dataTasks: ^NS.Array, uploadTasks: ^NS.Array, downloadTasks: ^NS.Array))) {
+        getTasksWithCompletionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, completionHandler: ^Objc_Block(proc "c" ( dataTasks: ^NS.Array, uploadTasks: ^NS.Array, downloadTasks: ^NS.Array ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getTasksWithCompletionHandler:"), auto_cast getTasksWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.getAllTasksWithCompletionHandler != nil {
-        getAllTasksWithCompletionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, completionHandler: ^Objc_Block(proc "c" (tasks: ^NS.Array))) {
+        getAllTasksWithCompletionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, completionHandler: ^Objc_Block(proc "c" ( tasks: ^NS.Array ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -369,7 +369,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSessionDescription:"), auto_cast setSessionDescription, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.dataTaskWithRequest_completionHandler != nil {
-        dataTaskWithRequest_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDataTask {
+        dataTaskWithRequest_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDataTask {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -379,7 +379,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dataTaskWithRequest:completionHandler:"), auto_cast dataTaskWithRequest_completionHandler, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.dataTaskWithURL_completionHandler != nil {
-        dataTaskWithURL_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDataTask {
+        dataTaskWithURL_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDataTask {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -389,7 +389,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dataTaskWithURL:completionHandler:"), auto_cast dataTaskWithURL_completionHandler, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.uploadTaskWithRequest_fromFile_completionHandler != nil {
-        uploadTaskWithRequest_fromFile_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, request: ^NS.URLRequest, fileURL: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionUploadTask {
+        uploadTaskWithRequest_fromFile_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, request: ^NS.URLRequest, fileURL: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionUploadTask {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -399,7 +399,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("uploadTaskWithRequest:fromFile:completionHandler:"), auto_cast uploadTaskWithRequest_fromFile_completionHandler, "@@:@@?") do panic("Failed to register objC method.")
     }
     if vt.uploadTaskWithRequest_fromData_completionHandler != nil {
-        uploadTaskWithRequest_fromData_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, request: ^NS.URLRequest, bodyData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionUploadTask {
+        uploadTaskWithRequest_fromData_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, request: ^NS.URLRequest, bodyData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionUploadTask {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -409,7 +409,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("uploadTaskWithRequest:fromData:completionHandler:"), auto_cast uploadTaskWithRequest_fromData_completionHandler, "@@:@@?") do panic("Failed to register objC method.")
     }
     if vt.uploadTaskWithResumeData_completionHandler != nil {
-        uploadTaskWithResumeData_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionUploadTask {
+        uploadTaskWithResumeData_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionUploadTask {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -419,7 +419,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("uploadTaskWithResumeData:completionHandler:"), auto_cast uploadTaskWithResumeData_completionHandler, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.downloadTaskWithRequest_completionHandler != nil {
-        downloadTaskWithRequest_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDownloadTask {
+        downloadTaskWithRequest_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDownloadTask {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -429,7 +429,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("downloadTaskWithRequest:completionHandler:"), auto_cast downloadTaskWithRequest_completionHandler, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.downloadTaskWithURL_completionHandler != nil {
-        downloadTaskWithURL_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDownloadTask {
+        downloadTaskWithURL_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDownloadTask {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -439,7 +439,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("downloadTaskWithURL:completionHandler:"), auto_cast downloadTaskWithURL_completionHandler, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.downloadTaskWithResumeData_completionHandler != nil {
-        downloadTaskWithResumeData_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDownloadTask {
+        downloadTaskWithResumeData_completionHandler :: proc "c" (self: ^NS.URLSession, _: SEL, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDownloadTask {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

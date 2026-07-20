@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioChannelLayout
-///
 @(objc_class="AVAudioChannelLayout", objc_superclass=NS.Object)
 AudioChannelLayout :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioChannelLayout, objc_selector="init", objc_name="init")
     AudioChannelLayout_init :: proc(self: ^AudioChannelLayout) -> instancetype ---
@@ -51,3 +45,6 @@ foreign lib {
     @(objc_type=AudioChannelLayout, objc_selector="channelCount", objc_name="channelCount")
     AudioChannelLayout_channelCount :: proc(self: ^AudioChannelLayout) -> AudioChannelCount ---
 }
+
+
+

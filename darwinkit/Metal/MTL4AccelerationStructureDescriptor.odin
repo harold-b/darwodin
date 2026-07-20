@@ -11,13 +11,6 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4AccelerationStructureDescriptor
-///
 @(objc_class="MTL4AccelerationStructureDescriptor", objc_superclass=AccelerationStructureDescriptor)
 MTL4AccelerationStructureDescriptor :: struct { using _: AccelerationStructureDescriptor, }
 
-@(default_calling_convention="c")
-foreign lib {}

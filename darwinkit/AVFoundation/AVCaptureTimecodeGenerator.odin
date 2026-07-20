@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureTimecodeGenerator
-///
 @(objc_class="AVCaptureTimecodeGenerator", objc_superclass=NS.Object)
 CaptureTimecodeGenerator :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureTimecodeGenerator, objc_selector="setDelegate:queue:", objc_name="setDelegate")
     CaptureTimecodeGenerator_setDelegate :: proc(self: ^CaptureTimecodeGenerator, delegate: ^CaptureTimecodeGeneratorDelegate, callbackQueue: CF.dispatch_queue_t) ---
@@ -67,3 +61,6 @@ foreign lib {
     @(objc_type=CaptureTimecodeGenerator, objc_selector="realTimeClockSource", objc_name="realTimeClockSource", objc_is_class_method=true)
     CaptureTimecodeGenerator_realTimeClockSource :: proc() -> ^CaptureTimecodeSource ---
 }
+
+
+

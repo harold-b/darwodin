@@ -20,12 +20,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityPerformShowAlternateUI: proc(self: ^AK.AccessibilityContainsTransientUI) -> bool,
-    accessibilityPerformShowDefaultUI: proc(self: ^AK.AccessibilityContainsTransientUI) -> bool,
-    isAccessibilityAlternateUIVisible: proc(self: ^AK.AccessibilityContainsTransientUI) -> bool,
+    accessibilityPerformShowAlternateUI: proc(self: ^NS.AccessibilityContainsTransientUI) -> bool,
+    accessibilityPerformShowDefaultUI: proc(self: ^NS.AccessibilityContainsTransientUI) -> bool,
+    isAccessibilityAlternateUIVisible: proc(self: ^NS.AccessibilityContainsTransientUI) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityPerformShowAlternateUI != nil {
-        accessibilityPerformShowAlternateUI :: proc "c" (self: ^AK.AccessibilityContainsTransientUI, _: SEL) -> bool {
+        accessibilityPerformShowAlternateUI :: proc "c" (self: ^NS.AccessibilityContainsTransientUI, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityPerformShowAlternateUI"), auto_cast accessibilityPerformShowAlternateUI, "B@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityPerformShowDefaultUI != nil {
-        accessibilityPerformShowDefaultUI :: proc "c" (self: ^AK.AccessibilityContainsTransientUI, _: SEL) -> bool {
+        accessibilityPerformShowDefaultUI :: proc "c" (self: ^NS.AccessibilityContainsTransientUI, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityPerformShowDefaultUI"), auto_cast accessibilityPerformShowDefaultUI, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isAccessibilityAlternateUIVisible != nil {
-        isAccessibilityAlternateUIVisible :: proc "c" (self: ^AK.AccessibilityContainsTransientUI, _: SEL) -> bool {
+        isAccessibilityAlternateUIVisible :: proc "c" (self: ^NS.AccessibilityContainsTransientUI, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

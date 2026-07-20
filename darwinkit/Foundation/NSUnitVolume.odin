@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitVolume
-///
 @(objc_class="NSUnitVolume", objc_superclass=Dimension)
 UnitVolume :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitVolume, objc_selector="megaliters", objc_name="megaliters", objc_is_class_method=true)
     UnitVolume_megaliters :: proc() -> ^UnitVolume ---
@@ -114,3 +108,6 @@ foreign lib {
     @(objc_type=UnitVolume, objc_selector="metricCups", objc_name="metricCups", objc_is_class_method=true)
     UnitVolume_metricCups :: proc() -> ^UnitVolume ---
 }
+
+
+

@@ -24,5 +24,5 @@ ScreenshotServiceDelegate :: struct { using _: intrinsics.objc_object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScreenshotServiceDelegate, objc_selector="screenshotService:generatePDFRepresentationWithCompletion:", objc_name="screenshotService")
-    ScreenshotServiceDelegate_screenshotService :: proc(self: ^ScreenshotServiceDelegate, screenshotService: ^ScreenshotService, completionHandler: ^Objc_Block(proc "c" (PDFData: ^NS.Data, indexOfCurrentPage: NS.Integer, rectInCurrentPage: CG.Rect))) ---
+    ScreenshotServiceDelegate_screenshotService :: proc(self: ^ScreenshotServiceDelegate, screenshotService: ^ScreenshotService, completionHandler: ^Objc_Block(proc "c" ( PDFData: ^NS.Data, indexOfCurrentPage: NS.Integer, rectInCurrentPage: CG.Rect ))) ---
 }

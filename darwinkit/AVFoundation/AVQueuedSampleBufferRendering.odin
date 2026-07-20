@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVQueuedSampleBufferRendering
-///
 @(objc_class="AVQueuedSampleBufferRendering")
 QueuedSampleBufferRendering :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=QueuedSampleBufferRendering, objc_selector="enqueueSampleBuffer:", objc_name="enqueueSampleBuffer")
     QueuedSampleBufferRendering_enqueueSampleBuffer :: proc(self: ^QueuedSampleBufferRendering, sampleBuffer: CM.SampleBufferRef) ---
@@ -45,3 +39,6 @@ foreign lib {
     @(objc_type=QueuedSampleBufferRendering, objc_selector="hasSufficientMediaDataForReliablePlaybackStart", objc_name="hasSufficientMediaDataForReliablePlaybackStart")
     QueuedSampleBufferRendering_hasSufficientMediaDataForReliablePlaybackStart :: proc(self: ^QueuedSampleBufferRendering) -> bool ---
 }
+
+
+

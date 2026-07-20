@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSXPCListener
-///
 @(objc_class="NSXPCListener", objc_superclass=Object)
 XPCListener :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=XPCListener, objc_selector="serviceListener", objc_name="serviceListener", objc_is_class_method=true)
     XPCListener_serviceListener :: proc() -> ^XPCListener ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=XPCListener, objc_selector="endpoint", objc_name="endpoint")
     XPCListener_endpoint :: proc(self: ^XPCListener) -> ^XPCListenerEndpoint ---
 }
+
+
+

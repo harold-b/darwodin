@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetPlaybackAssistant
-///
 @(objc_class="AVAssetPlaybackAssistant", objc_superclass=NS.Object)
 AssetPlaybackAssistant :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetPlaybackAssistant, objc_selector="init", objc_name="init")
     AssetPlaybackAssistant_init :: proc(self: ^AssetPlaybackAssistant) -> instancetype ---
@@ -32,5 +26,8 @@ foreign lib {
     AssetPlaybackAssistant_assetPlaybackAssistantWithAsset :: proc(asset: ^Asset) -> instancetype ---
 
     @(objc_type=AssetPlaybackAssistant, objc_selector="loadPlaybackConfigurationOptionsWithCompletionHandler:", objc_name="loadPlaybackConfigurationOptionsWithCompletionHandler")
-    AssetPlaybackAssistant_loadPlaybackConfigurationOptionsWithCompletionHandler :: proc(self: ^AssetPlaybackAssistant, completionHandler: ^Objc_Block(proc "c" (playbackConfigurationOptions: ^NS.Array))) ---
+    AssetPlaybackAssistant_loadPlaybackConfigurationOptionsWithCompletionHandler :: proc(self: ^AssetPlaybackAssistant, completionHandler: ^Objc_Block(proc "c" ( playbackConfigurationOptions: ^NS.Array ))) ---
 }
+
+
+

@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLAttribute
-///
 @(objc_class="MTLAttribute", objc_superclass=NS.Object)
 Attribute :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Attribute, objc_selector="name", objc_name="name")
     Attribute_name :: proc(self: ^Attribute) -> ^NS.String ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=Attribute, objc_selector="isPatchControlPointData", objc_name="isPatchControlPointData")
     Attribute_isPatchControlPointData :: proc(self: ^Attribute) -> bool ---
 }
+
+
+

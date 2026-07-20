@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioPlayer
-///
 @(objc_class="AVAudioPlayer", objc_superclass=NS.Object)
 AudioPlayer :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioPlayer, objc_selector="initWithContentsOfURL:error:", objc_name="initWithContentsOfURL_error")
     AudioPlayer_initWithContentsOfURL_error :: proc(self: ^AudioPlayer, url: ^NS.URL, outError: ^^NS.Error) -> instancetype ---
@@ -146,11 +140,13 @@ foreign lib {
     AudioPlayer_setChannelAssignments :: proc(self: ^AudioPlayer, channelAssignments: ^NS.Array) ---
 
     @(objc_type=AudioPlayer, objc_selector="intendedSpatialExperience", objc_name="intendedSpatialExperience")
-    AudioPlayer_intendedSpatialExperience :: proc(self: ^AudioPlayer) -> ^CASpatialAudioExperience ---
+    AudioPlayer_intendedSpatialExperience :: proc(self: ^AudioPlayer) -> ^Audio.CASpatialAudioExperience ---
 
     @(objc_type=AudioPlayer, objc_selector="setIntendedSpatialExperience:", objc_name="setIntendedSpatialExperience")
-    AudioPlayer_setIntendedSpatialExperience :: proc(self: ^AudioPlayer, intendedSpatialExperience: ^CASpatialAudioExperience) ---
+    AudioPlayer_setIntendedSpatialExperience :: proc(self: ^AudioPlayer, intendedSpatialExperience: ^Audio.CASpatialAudioExperience) ---
 }
+
+
 
 @(objc_type=AudioPlayer, objc_name="initWithContentsOfURL")
 AudioPlayer_initWithContentsOfURL :: proc {

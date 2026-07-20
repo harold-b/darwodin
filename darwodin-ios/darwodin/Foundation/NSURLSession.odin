@@ -37,10 +37,10 @@ foreign lib {
     URLSession_flushWithCompletionHandler :: proc(self: ^URLSession, completionHandler: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=URLSession, objc_selector="getTasksWithCompletionHandler:", objc_name="getTasksWithCompletionHandler")
-    URLSession_getTasksWithCompletionHandler :: proc(self: ^URLSession, completionHandler: ^Objc_Block(proc "c" (dataTasks: ^Array, uploadTasks: ^Array, downloadTasks: ^Array))) ---
+    URLSession_getTasksWithCompletionHandler :: proc(self: ^URLSession, completionHandler: ^Objc_Block(proc "c" ( dataTasks: ^Array, uploadTasks: ^Array, downloadTasks: ^Array ))) ---
 
     @(objc_type=URLSession, objc_selector="getAllTasksWithCompletionHandler:", objc_name="getAllTasksWithCompletionHandler")
-    URLSession_getAllTasksWithCompletionHandler :: proc(self: ^URLSession, completionHandler: ^Objc_Block(proc "c" (tasks: ^Array))) ---
+    URLSession_getAllTasksWithCompletionHandler :: proc(self: ^URLSession, completionHandler: ^Objc_Block(proc "c" ( tasks: ^Array ))) ---
 
     @(objc_type=URLSession, objc_selector="dataTaskWithRequest:", objc_name="dataTaskWithRequest_")
     URLSession_dataTaskWithRequest_ :: proc(self: ^URLSession, request: ^URLRequest) -> ^URLSessionDataTask ---
@@ -109,28 +109,28 @@ foreign lib {
     URLSession_setSessionDescription :: proc(self: ^URLSession, sessionDescription: ^String) ---
 
     @(objc_type=URLSession, objc_selector="dataTaskWithRequest:completionHandler:", objc_name="dataTaskWithRequest_completionHandler")
-    URLSession_dataTaskWithRequest_completionHandler :: proc(self: ^URLSession, request: ^URLRequest, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionDataTask ---
+    URLSession_dataTaskWithRequest_completionHandler :: proc(self: ^URLSession, request: ^URLRequest, completionHandler: ^Objc_Block(proc "c" ( data: ^Data, response: ^URLResponse, error: ^Error ))) -> ^URLSessionDataTask ---
 
     @(objc_type=URLSession, objc_selector="dataTaskWithURL:completionHandler:", objc_name="dataTaskWithURL_completionHandler")
-    URLSession_dataTaskWithURL_completionHandler :: proc(self: ^URLSession, url: ^URL, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionDataTask ---
+    URLSession_dataTaskWithURL_completionHandler :: proc(self: ^URLSession, url: ^URL, completionHandler: ^Objc_Block(proc "c" ( data: ^Data, response: ^URLResponse, error: ^Error ))) -> ^URLSessionDataTask ---
 
     @(objc_type=URLSession, objc_selector="uploadTaskWithRequest:fromFile:completionHandler:", objc_name="uploadTaskWithRequest_fromFile_completionHandler")
-    URLSession_uploadTaskWithRequest_fromFile_completionHandler :: proc(self: ^URLSession, request: ^URLRequest, fileURL: ^URL, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionUploadTask ---
+    URLSession_uploadTaskWithRequest_fromFile_completionHandler :: proc(self: ^URLSession, request: ^URLRequest, fileURL: ^URL, completionHandler: ^Objc_Block(proc "c" ( data: ^Data, response: ^URLResponse, error: ^Error ))) -> ^URLSessionUploadTask ---
 
     @(objc_type=URLSession, objc_selector="uploadTaskWithRequest:fromData:completionHandler:", objc_name="uploadTaskWithRequest_fromData_completionHandler")
-    URLSession_uploadTaskWithRequest_fromData_completionHandler :: proc(self: ^URLSession, request: ^URLRequest, bodyData: ^Data, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionUploadTask ---
+    URLSession_uploadTaskWithRequest_fromData_completionHandler :: proc(self: ^URLSession, request: ^URLRequest, bodyData: ^Data, completionHandler: ^Objc_Block(proc "c" ( data: ^Data, response: ^URLResponse, error: ^Error ))) -> ^URLSessionUploadTask ---
 
     @(objc_type=URLSession, objc_selector="uploadTaskWithResumeData:completionHandler:", objc_name="uploadTaskWithResumeData_completionHandler")
-    URLSession_uploadTaskWithResumeData_completionHandler :: proc(self: ^URLSession, resumeData: ^Data, completionHandler: ^Objc_Block(proc "c" (data: ^Data, response: ^URLResponse, error: ^Error))) -> ^URLSessionUploadTask ---
+    URLSession_uploadTaskWithResumeData_completionHandler :: proc(self: ^URLSession, resumeData: ^Data, completionHandler: ^Objc_Block(proc "c" ( data: ^Data, response: ^URLResponse, error: ^Error ))) -> ^URLSessionUploadTask ---
 
     @(objc_type=URLSession, objc_selector="downloadTaskWithRequest:completionHandler:", objc_name="downloadTaskWithRequest_completionHandler")
-    URLSession_downloadTaskWithRequest_completionHandler :: proc(self: ^URLSession, request: ^URLRequest, completionHandler: ^Objc_Block(proc "c" (location: ^URL, response: ^URLResponse, error: ^Error))) -> ^URLSessionDownloadTask ---
+    URLSession_downloadTaskWithRequest_completionHandler :: proc(self: ^URLSession, request: ^URLRequest, completionHandler: ^Objc_Block(proc "c" ( location: ^URL, response: ^URLResponse, error: ^Error ))) -> ^URLSessionDownloadTask ---
 
     @(objc_type=URLSession, objc_selector="downloadTaskWithURL:completionHandler:", objc_name="downloadTaskWithURL_completionHandler")
-    URLSession_downloadTaskWithURL_completionHandler :: proc(self: ^URLSession, url: ^URL, completionHandler: ^Objc_Block(proc "c" (location: ^URL, response: ^URLResponse, error: ^Error))) -> ^URLSessionDownloadTask ---
+    URLSession_downloadTaskWithURL_completionHandler :: proc(self: ^URLSession, url: ^URL, completionHandler: ^Objc_Block(proc "c" ( location: ^URL, response: ^URLResponse, error: ^Error ))) -> ^URLSessionDownloadTask ---
 
     @(objc_type=URLSession, objc_selector="downloadTaskWithResumeData:completionHandler:", objc_name="downloadTaskWithResumeData_completionHandler")
-    URLSession_downloadTaskWithResumeData_completionHandler :: proc(self: ^URLSession, resumeData: ^Data, completionHandler: ^Objc_Block(proc "c" (location: ^URL, response: ^URLResponse, error: ^Error))) -> ^URLSessionDownloadTask ---
+    URLSession_downloadTaskWithResumeData_completionHandler :: proc(self: ^URLSession, resumeData: ^Data, completionHandler: ^Objc_Block(proc "c" ( location: ^URL, response: ^URLResponse, error: ^Error ))) -> ^URLSessionDownloadTask ---
 }
 
 @(objc_type=URLSession, objc_name="sessionWithConfiguration")

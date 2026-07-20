@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKMatchRequest
-///
 @(objc_class="GKMatchRequest", objc_superclass=NS.Object)
 MatchRequest :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MatchRequest, objc_selector="maxPlayersAllowedForMatchOfType:", objc_name="maxPlayersAllowedForMatchOfType", objc_is_class_method=true)
     MatchRequest_maxPlayersAllowedForMatchOfType :: proc(matchType: MatchType) -> NS.UInteger ---
@@ -104,3 +98,6 @@ foreign lib {
     @(objc_type=MatchRequest, objc_selector="setRecipientProperties:", objc_name="setRecipientProperties")
     MatchRequest_setRecipientProperties :: proc(self: ^MatchRequest, recipientProperties: ^NS.Dictionary) ---
 }
+
+
+

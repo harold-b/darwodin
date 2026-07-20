@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAsynchronousCIImageFilteringRequest
-///
 @(objc_class="AVAsynchronousCIImageFilteringRequest", objc_superclass=NS.Object)
 AsynchronousCIImageFilteringRequest :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AsynchronousCIImageFilteringRequest, objc_selector="finishWithImage:context:", objc_name="finishWithImage")
     AsynchronousCIImageFilteringRequest_finishWithImage :: proc(self: ^AsynchronousCIImageFilteringRequest, filteredImage: ^CIImage, _context: ^CIContext) ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=AsynchronousCIImageFilteringRequest, objc_selector="sourceImage", objc_name="sourceImage")
     AsynchronousCIImageFilteringRequest_sourceImage :: proc(self: ^AsynchronousCIImageFilteringRequest) -> ^CIImage ---
 }
+
+
+

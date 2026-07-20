@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSDateComponents
-///
 @(objc_class="NSDateComponents", objc_superclass=Object)
 DateComponents :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DateComponents, objc_selector="week", objc_name="week")
     DateComponents_week :: proc(self: ^DateComponents) -> Integer ---
@@ -157,3 +151,6 @@ foreign lib {
     @(objc_type=DateComponents, objc_selector="isValidDate", objc_name="isValidDate")
     DateComponents_isValidDate :: proc(self: ^DateComponents) -> bool ---
 }
+
+
+

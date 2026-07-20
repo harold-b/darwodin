@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKInviteEventListener
-///
 @(objc_class="GKInviteEventListener")
 InviteEventListener :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=InviteEventListener, objc_selector="player:didAcceptInvite:", objc_name="player_didAcceptInvite")
     InviteEventListener_player_didAcceptInvite :: proc(self: ^InviteEventListener, player: ^Player, invite: ^Invite) ---
@@ -26,4 +20,6 @@ foreign lib {
     @(objc_type=InviteEventListener, objc_selector="player:didRequestMatchWithPlayers:", objc_name="player_didRequestMatchWithPlayers")
     InviteEventListener_player_didRequestMatchWithPlayers :: proc(self: ^InviteEventListener, player: ^Player, playerIDsToInvite: ^NS.Array) ---
 }
+
+
 

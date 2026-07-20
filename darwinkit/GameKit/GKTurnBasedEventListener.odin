@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKTurnBasedEventListener
-///
 @(objc_class="GKTurnBasedEventListener")
 TurnBasedEventListener :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TurnBasedEventListener, objc_selector="player:didRequestMatchWithOtherPlayers:", objc_name="player_didRequestMatchWithOtherPlayers")
     TurnBasedEventListener_player_didRequestMatchWithOtherPlayers :: proc(self: ^TurnBasedEventListener, player: ^Player, playersToInvite: ^NS.Array) ---
@@ -41,4 +35,6 @@ foreign lib {
     @(objc_type=TurnBasedEventListener, objc_selector="player:didRequestMatchWithPlayers:", objc_name="player_didRequestMatchWithPlayers")
     TurnBasedEventListener_player_didRequestMatchWithPlayers :: proc(self: ^TurnBasedEventListener, player: ^Player, playerIDsToInvite: ^NS.Array) ---
 }
+
+
 

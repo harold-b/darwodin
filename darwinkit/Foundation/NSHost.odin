@@ -9,23 +9,16 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSHost
-///
-when !ODIN_PLATFORM_SUBTARGET_IOS {
+when ODIN_PLATFORM_SUBTARGET == .Default {
     @(objc_class="NSHost", objc_superclass=Object)
     Host :: struct { using _: Object, }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
     @(objc_class="NSHost")
     Host :: struct { using _: intrinsics.objc_object, }
-} // End else
+}
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-@(default_calling_convention="c")
-    foreign lib {
+foreign lib {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Host, objc_selector="currentHost", objc_name="currentHost", objc_is_class_method=true)
         Host_currentHost :: proc() -> instancetype ---
 
@@ -62,8 +55,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=Host, objc_selector="localizedName", objc_name="localizedName")
         Host_localizedName :: proc(self: ^Host) -> ^String ---
     }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-@(default_calling_convention="c")
-    foreign lib {}
-} // End else
+}
+
+
+

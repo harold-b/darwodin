@@ -10,17 +10,11 @@ import CA "../CoreAudio"
 import CM "../CoreMedia"
 import NS "../Foundation"
 
-
-
-///
-/// AUParameterTree
-///
 @(objc_class="AUParameterTree", objc_superclass=AUParameterGroup)
 AUParameterTree :: struct { using _: AUParameterGroup, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUParameterTree, objc_selector="parameterWithAddress:", objc_name="parameterWithAddress")
     AUParameterTree_parameterWithAddress :: proc(self: ^AUParameterTree, address: AUParameterAddress) -> ^AUParameter ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=AUParameterTree, objc_selector="createTreeWithChildren:", objc_name="createTreeWithChildren", objc_is_class_method=true)
     AUParameterTree_createTreeWithChildren :: proc(children: ^NS.Array) -> ^AUParameterTree ---
 }
+
+
+

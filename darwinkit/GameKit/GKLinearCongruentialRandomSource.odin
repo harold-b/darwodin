@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKLinearCongruentialRandomSource
-///
 @(objc_class="GKLinearCongruentialRandomSource", objc_superclass=RandomSource)
 LinearCongruentialRandomSource :: struct { using _: RandomSource, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LinearCongruentialRandomSource, objc_selector="init", objc_name="init")
     LinearCongruentialRandomSource_init :: proc(self: ^LinearCongruentialRandomSource) -> instancetype ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=LinearCongruentialRandomSource, objc_selector="setSeed:", objc_name="setSeed")
     LinearCongruentialRandomSource_setSeed :: proc(self: ^LinearCongruentialRandomSource, seed: cffi.uint64_t) ---
 }
+
+
+

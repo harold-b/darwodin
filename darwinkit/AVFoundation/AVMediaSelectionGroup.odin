@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMediaSelectionGroup
-///
 @(objc_class="AVMediaSelectionGroup", objc_superclass=NS.Object)
 MediaSelectionGroup :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MediaSelectionGroup, objc_selector="mediaSelectionOptionWithPropertyList:", objc_name="mediaSelectionOptionWithPropertyList")
     MediaSelectionGroup_mediaSelectionOptionWithPropertyList :: proc(self: ^MediaSelectionGroup, plist: id) -> ^MediaSelectionOptions ---
@@ -54,4 +48,6 @@ foreign lib {
     @(objc_type=MediaSelectionGroup, objc_selector="customMediaSelectionScheme", objc_name="customMediaSelectionScheme")
     MediaSelectionGroup_customMediaSelectionScheme :: proc(self: ^MediaSelectionGroup) -> ^CustomMediaSelectionScheme ---
 }
+
+
 

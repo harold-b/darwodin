@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    textShouldBeginEditing: proc(self: ^AK.TextDelegate, textObject: ^AK.Text) -> bool,
-    textShouldEndEditing: proc(self: ^AK.TextDelegate, textObject: ^AK.Text) -> bool,
-    textDidBeginEditing: proc(self: ^AK.TextDelegate, notification: ^NS.Notification),
-    textDidEndEditing: proc(self: ^AK.TextDelegate, notification: ^NS.Notification),
-    textDidChange: proc(self: ^AK.TextDelegate, notification: ^NS.Notification),
+    textShouldBeginEditing: proc(self: ^NS.TextDelegate, textObject: ^NS.Text) -> bool,
+    textShouldEndEditing: proc(self: ^NS.TextDelegate, textObject: ^NS.Text) -> bool,
+    textDidBeginEditing: proc(self: ^NS.TextDelegate, notification: ^NS.Notification),
+    textDidEndEditing: proc(self: ^NS.TextDelegate, notification: ^NS.Notification),
+    textDidChange: proc(self: ^NS.TextDelegate, notification: ^NS.Notification),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -35,7 +35,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.textShouldBeginEditing != nil {
-        textShouldBeginEditing :: proc "c" (self: ^AK.TextDelegate, _: SEL, textObject: ^AK.Text) -> bool {
+        textShouldBeginEditing :: proc "c" (self: ^NS.TextDelegate, _: SEL, textObject: ^NS.Text) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textShouldBeginEditing:"), auto_cast textShouldBeginEditing, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.textShouldEndEditing != nil {
-        textShouldEndEditing :: proc "c" (self: ^AK.TextDelegate, _: SEL, textObject: ^AK.Text) -> bool {
+        textShouldEndEditing :: proc "c" (self: ^NS.TextDelegate, _: SEL, textObject: ^NS.Text) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textShouldEndEditing:"), auto_cast textShouldEndEditing, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.textDidBeginEditing != nil {
-        textDidBeginEditing :: proc "c" (self: ^AK.TextDelegate, _: SEL, notification: ^NS.Notification) {
+        textDidBeginEditing :: proc "c" (self: ^NS.TextDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textDidBeginEditing:"), auto_cast textDidBeginEditing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.textDidEndEditing != nil {
-        textDidEndEditing :: proc "c" (self: ^AK.TextDelegate, _: SEL, notification: ^NS.Notification) {
+        textDidEndEditing :: proc "c" (self: ^NS.TextDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textDidEndEditing:"), auto_cast textDidEndEditing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.textDidChange != nil {
-        textDidChange :: proc "c" (self: ^AK.TextDelegate, _: SEL, notification: ^NS.Notification) {
+        textDidChange :: proc "c" (self: ^NS.TextDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAReplicatorLayer
-///
 @(objc_class="CAReplicatorLayer", objc_superclass=Layer)
 ReplicatorLayer :: struct { using _: Layer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ReplicatorLayer, objc_selector="instanceCount", objc_name="instanceCount")
     ReplicatorLayer_instanceCount :: proc(self: ^ReplicatorLayer) -> NS.Integer ---
@@ -74,3 +68,6 @@ foreign lib {
     @(objc_type=ReplicatorLayer, objc_selector="setInstanceAlphaOffset:", objc_name="setInstanceAlphaOffset")
     ReplicatorLayer_setInstanceAlphaOffset :: proc(self: ^ReplicatorLayer, instanceAlphaOffset: cffi.float) ---
 }
+
+
+

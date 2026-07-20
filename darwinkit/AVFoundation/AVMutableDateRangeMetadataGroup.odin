@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableDateRangeMetadataGroup
-///
 @(objc_class="AVMutableDateRangeMetadataGroup", objc_superclass=DateRangeMetadataGroup)
 MutableDateRangeMetadataGroup :: struct { using _: DateRangeMetadataGroup, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableDateRangeMetadataGroup, objc_selector="startDate", objc_name="startDate")
     MutableDateRangeMetadataGroup_startDate :: proc(self: ^MutableDateRangeMetadataGroup) -> ^NS.Date ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=MutableDateRangeMetadataGroup, objc_selector="setItems:", objc_name="setItems")
     MutableDateRangeMetadataGroup_setItems :: proc(self: ^MutableDateRangeMetadataGroup, items: ^NS.Array) ---
 }
+
+
+

@@ -12,13 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSampleCursorInternal
-///
 @(objc_class="AVSampleCursorInternal")
 SampleCursorInternal :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

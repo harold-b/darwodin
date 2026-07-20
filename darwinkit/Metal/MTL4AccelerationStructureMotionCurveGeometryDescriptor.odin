@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4AccelerationStructureMotionCurveGeometryDescriptor
-///
 @(objc_class="MTL4AccelerationStructureMotionCurveGeometryDescriptor", objc_superclass=MTL4AccelerationStructureGeometryDescriptor)
 MTL4AccelerationStructureMotionCurveGeometryDescriptor :: struct { using _: MTL4AccelerationStructureGeometryDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4AccelerationStructureMotionCurveGeometryDescriptor, objc_selector="controlPointBuffers", objc_name="controlPointBuffers")
     MTL4AccelerationStructureMotionCurveGeometryDescriptor_controlPointBuffers :: proc(self: ^MTL4AccelerationStructureMotionCurveGeometryDescriptor) -> MTL4BufferRange ---
@@ -105,3 +99,6 @@ foreign lib {
     @(objc_type=MTL4AccelerationStructureMotionCurveGeometryDescriptor, objc_selector="setCurveEndCaps:", objc_name="setCurveEndCaps")
     MTL4AccelerationStructureMotionCurveGeometryDescriptor_setCurveEndCaps :: proc(self: ^MTL4AccelerationStructureMotionCurveGeometryDescriptor, curveEndCaps: CurveEndCaps) ---
 }
+
+
+

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CHHapticPattern
-///
 @(objc_class="CHHapticPattern", objc_superclass=NS.Object)
 HapticPattern :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticPattern, objc_selector="init", objc_name="init")
     HapticPattern_init :: proc(self: ^HapticPattern) -> instancetype ---
@@ -38,4 +32,6 @@ foreign lib {
     @(objc_type=HapticPattern, objc_selector="duration", objc_name="duration")
     HapticPattern_duration :: proc(self: ^HapticPattern) -> NS.TimeInterval ---
 }
+
+
 

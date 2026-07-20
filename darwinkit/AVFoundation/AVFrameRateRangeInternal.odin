@@ -12,13 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVFrameRateRangeInternal
-///
 @(objc_class="AVFrameRateRangeInternal")
 FrameRateRangeInternal :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

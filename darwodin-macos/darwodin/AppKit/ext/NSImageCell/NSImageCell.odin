@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSCell"
 
 VTable :: struct {
     super: NSCell.VTable,
-    imageAlignment: proc(self: ^AK.ImageCell) -> AK.ImageAlignment,
-    setImageAlignment: proc(self: ^AK.ImageCell, imageAlignment: AK.ImageAlignment),
-    imageScaling: proc(self: ^AK.ImageCell) -> AK.ImageScaling,
-    setImageScaling: proc(self: ^AK.ImageCell, imageScaling: AK.ImageScaling),
-    imageFrameStyle: proc(self: ^AK.ImageCell) -> AK.ImageFrameStyle,
-    setImageFrameStyle: proc(self: ^AK.ImageCell, imageFrameStyle: AK.ImageFrameStyle),
+    imageAlignment: proc(self: ^NS.ImageCell) -> NS.ImageAlignment,
+    setImageAlignment: proc(self: ^NS.ImageCell, imageAlignment: NS.ImageAlignment),
+    imageScaling: proc(self: ^NS.ImageCell) -> NS.ImageScaling,
+    setImageScaling: proc(self: ^NS.ImageCell, imageScaling: NS.ImageScaling),
+    imageFrameStyle: proc(self: ^NS.ImageCell) -> NS.ImageFrameStyle,
+    setImageFrameStyle: proc(self: ^NS.ImageCell, imageFrameStyle: NS.ImageFrameStyle),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCell.extend(cls, &vt.super)
 
     if vt.imageAlignment != nil {
-        imageAlignment :: proc "c" (self: ^AK.ImageCell, _: SEL) -> AK.ImageAlignment {
+        imageAlignment :: proc "c" (self: ^NS.ImageCell, _: SEL) -> NS.ImageAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageAlignment"), auto_cast imageAlignment, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setImageAlignment != nil {
-        setImageAlignment :: proc "c" (self: ^AK.ImageCell, _: SEL, imageAlignment: AK.ImageAlignment) {
+        setImageAlignment :: proc "c" (self: ^NS.ImageCell, _: SEL, imageAlignment: NS.ImageAlignment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImageAlignment:"), auto_cast setImageAlignment, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.imageScaling != nil {
-        imageScaling :: proc "c" (self: ^AK.ImageCell, _: SEL) -> AK.ImageScaling {
+        imageScaling :: proc "c" (self: ^NS.ImageCell, _: SEL) -> NS.ImageScaling {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageScaling"), auto_cast imageScaling, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setImageScaling != nil {
-        setImageScaling :: proc "c" (self: ^AK.ImageCell, _: SEL, imageScaling: AK.ImageScaling) {
+        setImageScaling :: proc "c" (self: ^NS.ImageCell, _: SEL, imageScaling: NS.ImageScaling) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImageScaling:"), auto_cast setImageScaling, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.imageFrameStyle != nil {
-        imageFrameStyle :: proc "c" (self: ^AK.ImageCell, _: SEL) -> AK.ImageFrameStyle {
+        imageFrameStyle :: proc "c" (self: ^NS.ImageCell, _: SEL) -> NS.ImageFrameStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageFrameStyle"), auto_cast imageFrameStyle, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setImageFrameStyle != nil {
-        setImageFrameStyle :: proc "c" (self: ^AK.ImageCell, _: SEL, imageFrameStyle: AK.ImageFrameStyle) {
+        setImageFrameStyle :: proc "c" (self: ^NS.ImageCell, _: SEL, imageFrameStyle: NS.ImageFrameStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

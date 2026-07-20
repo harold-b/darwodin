@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAMediaTiming
-///
 @(objc_class="CAMediaTiming")
 MediaTiming :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MediaTiming, objc_selector="beginTime", objc_name="beginTime")
     MediaTiming_beginTime :: proc(self: ^MediaTiming) -> CF.TimeInterval ---
@@ -68,3 +62,6 @@ foreign lib {
     @(objc_type=MediaTiming, objc_selector="setFillMode:", objc_name="setFillMode")
     MediaTiming_setFillMode :: proc(self: ^MediaTiming, fillMode: ^NS.String) ---
 }
+
+
+

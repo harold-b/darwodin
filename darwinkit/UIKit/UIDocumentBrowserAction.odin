@@ -25,7 +25,7 @@ foreign lib {
     DocumentBrowserAction_init :: proc(self: ^DocumentBrowserAction) -> instancetype ---
 
     @(objc_type=DocumentBrowserAction, objc_selector="initWithIdentifier:localizedTitle:availability:handler:", objc_name="initWithIdentifier")
-    DocumentBrowserAction_initWithIdentifier :: proc(self: ^DocumentBrowserAction, identifier: ^NS.String, localizedTitle: ^NS.String, availability: DocumentBrowserActionAvailability, handler: ^Objc_Block(proc "c" (_: ^NS.Array))) -> instancetype ---
+    DocumentBrowserAction_initWithIdentifier :: proc(self: ^DocumentBrowserAction, identifier: ^NS.String, localizedTitle: ^NS.String, availability: DocumentBrowserActionAvailability, handler: ^Objc_Block(proc "c" ( _0: ^NS.Array ))) -> instancetype ---
 
     @(objc_type=DocumentBrowserAction, objc_selector="identifier", objc_name="identifier")
     DocumentBrowserAction_identifier :: proc(self: ^DocumentBrowserAction) -> ^NS.String ---

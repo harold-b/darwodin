@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    changeFont: proc(self: ^AK.FontChanging, sender: ^AK.FontManager),
-    validModesForFontPanel: proc(self: ^AK.FontChanging, fontPanel: ^AK.FontPanel) -> AK.FontPanelModeMask,
+    changeFont: proc(self: ^NS.FontChanging, sender: ^NS.FontManager),
+    validModesForFontPanel: proc(self: ^NS.FontChanging, fontPanel: ^NS.FontPanel) -> NS.FontPanelModeMask,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.changeFont != nil {
-        changeFont :: proc "c" (self: ^AK.FontChanging, _: SEL, sender: ^AK.FontManager) {
+        changeFont :: proc "c" (self: ^NS.FontChanging, _: SEL, sender: ^NS.FontManager) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("changeFont:"), auto_cast changeFont, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.validModesForFontPanel != nil {
-        validModesForFontPanel :: proc "c" (self: ^AK.FontChanging, _: SEL, fontPanel: ^AK.FontPanel) -> AK.FontPanelModeMask {
+        validModesForFontPanel :: proc "c" (self: ^NS.FontChanging, _: SEL, fontPanel: ^NS.FontPanel) -> NS.FontPanelModeMask {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

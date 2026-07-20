@@ -20,28 +20,28 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTableView: proc(self: ^AK.TableViewDiffableDataSource, tableView: ^AK.TableView, cellProvider: AK.TableViewDiffableDataSourceCellProvider) -> instancetype,
-    init: proc(self: ^AK.TableViewDiffableDataSource) -> instancetype,
-    new: proc() -> ^AK.TableViewDiffableDataSource,
-    snapshot: proc(self: ^AK.TableViewDiffableDataSource) -> ^AK.DiffableDataSourceSnapshot,
-    applySnapshot_animatingDifferences: proc(self: ^AK.TableViewDiffableDataSource, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool),
-    applySnapshot_animatingDifferences_completion: proc(self: ^AK.TableViewDiffableDataSource, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())),
-    itemIdentifierForRow: proc(self: ^AK.TableViewDiffableDataSource, row: NS.Integer) -> id,
-    rowForItemIdentifier: proc(self: ^AK.TableViewDiffableDataSource, identifier: id) -> NS.Integer,
-    sectionIdentifierForRow: proc(self: ^AK.TableViewDiffableDataSource, row: NS.Integer) -> id,
-    rowForSectionIdentifier: proc(self: ^AK.TableViewDiffableDataSource, identifier: id) -> NS.Integer,
-    rowViewProvider: proc(self: ^AK.TableViewDiffableDataSource) -> AK.TableViewDiffableDataSourceRowProvider,
-    setRowViewProvider: proc(self: ^AK.TableViewDiffableDataSource, rowViewProvider: AK.TableViewDiffableDataSourceRowProvider),
-    sectionHeaderViewProvider: proc(self: ^AK.TableViewDiffableDataSource) -> AK.TableViewDiffableDataSourceSectionHeaderViewProvider,
-    setSectionHeaderViewProvider: proc(self: ^AK.TableViewDiffableDataSource, sectionHeaderViewProvider: AK.TableViewDiffableDataSourceSectionHeaderViewProvider),
-    defaultRowAnimation: proc(self: ^AK.TableViewDiffableDataSource) -> AK.TableViewAnimationOptions,
-    setDefaultRowAnimation: proc(self: ^AK.TableViewDiffableDataSource, defaultRowAnimation: AK.TableViewAnimationOptions),
+    initWithTableView: proc(self: ^NS.TableViewDiffableDataSource, tableView: ^NS.TableView, cellProvider: NS.TableViewDiffableDataSourceCellProvider) -> instancetype,
+    init: proc(self: ^NS.TableViewDiffableDataSource) -> instancetype,
+    new: proc() -> ^NS.TableViewDiffableDataSource,
+    snapshot: proc(self: ^NS.TableViewDiffableDataSource) -> ^NS.DiffableDataSourceSnapshot,
+    applySnapshot_animatingDifferences: proc(self: ^NS.TableViewDiffableDataSource, snapshot: ^NS.DiffableDataSourceSnapshot, animatingDifferences: bool),
+    applySnapshot_animatingDifferences_completion: proc(self: ^NS.TableViewDiffableDataSource, snapshot: ^NS.DiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())),
+    itemIdentifierForRow: proc(self: ^NS.TableViewDiffableDataSource, row: NS.Integer) -> id,
+    rowForItemIdentifier: proc(self: ^NS.TableViewDiffableDataSource, identifier: id) -> NS.Integer,
+    sectionIdentifierForRow: proc(self: ^NS.TableViewDiffableDataSource, row: NS.Integer) -> id,
+    rowForSectionIdentifier: proc(self: ^NS.TableViewDiffableDataSource, identifier: id) -> NS.Integer,
+    rowViewProvider: proc(self: ^NS.TableViewDiffableDataSource) -> NS.TableViewDiffableDataSourceRowProvider,
+    setRowViewProvider: proc(self: ^NS.TableViewDiffableDataSource, rowViewProvider: NS.TableViewDiffableDataSourceRowProvider),
+    sectionHeaderViewProvider: proc(self: ^NS.TableViewDiffableDataSource) -> NS.TableViewDiffableDataSourceSectionHeaderViewProvider,
+    setSectionHeaderViewProvider: proc(self: ^NS.TableViewDiffableDataSource, sectionHeaderViewProvider: NS.TableViewDiffableDataSourceSectionHeaderViewProvider),
+    defaultRowAnimation: proc(self: ^NS.TableViewDiffableDataSource) -> NS.TableViewAnimationOptions,
+    setDefaultRowAnimation: proc(self: ^NS.TableViewDiffableDataSource, defaultRowAnimation: NS.TableViewAnimationOptions),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTableView != nil {
-        initWithTableView :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, tableView: ^AK.TableView, cellProvider: AK.TableViewDiffableDataSourceCellProvider) -> instancetype {
+        initWithTableView :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, tableView: ^NS.TableView, cellProvider: NS.TableViewDiffableDataSourceCellProvider) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTableView:cellProvider:"), auto_cast initWithTableView, "^void@:@?") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.TableViewDiffableDataSource {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.TableViewDiffableDataSource {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.snapshot != nil {
-        snapshot :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL) -> ^AK.DiffableDataSourceSnapshot {
+        snapshot :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL) -> ^NS.DiffableDataSourceSnapshot {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("snapshot"), auto_cast snapshot, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.applySnapshot_animatingDifferences != nil {
-        applySnapshot_animatingDifferences :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool) {
+        applySnapshot_animatingDifferences :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, snapshot: ^NS.DiffableDataSourceSnapshot, animatingDifferences: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:"), auto_cast applySnapshot_animatingDifferences, "v@:^voidB") do panic("Failed to register objC method.")
     }
     if vt.applySnapshot_animatingDifferences_completion != nil {
-        applySnapshot_animatingDifferences_completion :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, snapshot: ^AK.DiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
+        applySnapshot_animatingDifferences_completion :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, snapshot: ^NS.DiffableDataSourceSnapshot, animatingDifferences: bool, completion: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applySnapshot:animatingDifferences:completion:"), auto_cast applySnapshot_animatingDifferences_completion, "v@:^voidB?") do panic("Failed to register objC method.")
     }
     if vt.itemIdentifierForRow != nil {
-        itemIdentifierForRow :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, row: NS.Integer) -> id {
+        itemIdentifierForRow :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, row: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifierForRow:"), auto_cast itemIdentifierForRow, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.rowForItemIdentifier != nil {
-        rowForItemIdentifier :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, identifier: id) -> NS.Integer {
+        rowForItemIdentifier :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, identifier: id) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowForItemIdentifier:"), auto_cast rowForItemIdentifier, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.sectionIdentifierForRow != nil {
-        sectionIdentifierForRow :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, row: NS.Integer) -> id {
+        sectionIdentifierForRow :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, row: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sectionIdentifierForRow:"), auto_cast sectionIdentifierForRow, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.rowForSectionIdentifier != nil {
-        rowForSectionIdentifier :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, identifier: id) -> NS.Integer {
+        rowForSectionIdentifier :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, identifier: id) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowForSectionIdentifier:"), auto_cast rowForSectionIdentifier, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.rowViewProvider != nil {
-        rowViewProvider :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL) -> AK.TableViewDiffableDataSourceRowProvider {
+        rowViewProvider :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL) -> NS.TableViewDiffableDataSourceRowProvider {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowViewProvider"), auto_cast rowViewProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setRowViewProvider != nil {
-        setRowViewProvider :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, rowViewProvider: AK.TableViewDiffableDataSourceRowProvider) {
+        setRowViewProvider :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, rowViewProvider: NS.TableViewDiffableDataSourceRowProvider) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRowViewProvider:"), auto_cast setRowViewProvider, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.sectionHeaderViewProvider != nil {
-        sectionHeaderViewProvider :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL) -> AK.TableViewDiffableDataSourceSectionHeaderViewProvider {
+        sectionHeaderViewProvider :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL) -> NS.TableViewDiffableDataSourceSectionHeaderViewProvider {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -182,7 +182,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sectionHeaderViewProvider"), auto_cast sectionHeaderViewProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setSectionHeaderViewProvider != nil {
-        setSectionHeaderViewProvider :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, sectionHeaderViewProvider: AK.TableViewDiffableDataSourceSectionHeaderViewProvider) {
+        setSectionHeaderViewProvider :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, sectionHeaderViewProvider: NS.TableViewDiffableDataSourceSectionHeaderViewProvider) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -192,7 +192,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSectionHeaderViewProvider:"), auto_cast setSectionHeaderViewProvider, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.defaultRowAnimation != nil {
-        defaultRowAnimation :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL) -> AK.TableViewAnimationOptions {
+        defaultRowAnimation :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL) -> NS.TableViewAnimationOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultRowAnimation"), auto_cast defaultRowAnimation, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setDefaultRowAnimation != nil {
-        setDefaultRowAnimation :: proc "c" (self: ^AK.TableViewDiffableDataSource, _: SEL, defaultRowAnimation: AK.TableViewAnimationOptions) {
+        setDefaultRowAnimation :: proc "c" (self: ^NS.TableViewDiffableDataSource, _: SEL, defaultRowAnimation: NS.TableViewAnimationOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

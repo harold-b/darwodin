@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLArrayType
-///
 @(objc_class="MTLArrayType", objc_superclass=Type)
 ArrayType :: struct { using _: Type, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ArrayType, objc_selector="elementStructType", objc_name="elementStructType")
     ArrayType_elementStructType :: proc(self: ^ArrayType) -> ^StructType ---
@@ -48,3 +42,6 @@ foreign lib {
     @(objc_type=ArrayType, objc_selector="argumentIndexStride", objc_name="argumentIndexStride")
     ArrayType_argumentIndexStride :: proc(self: ^ArrayType) -> NS.UInteger ---
 }
+
+
+

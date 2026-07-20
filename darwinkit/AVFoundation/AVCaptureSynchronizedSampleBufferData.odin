@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureSynchronizedSampleBufferData
-///
 @(objc_class="AVCaptureSynchronizedSampleBufferData", objc_superclass=CaptureSynchronizedData)
 CaptureSynchronizedSampleBufferData :: struct { using _: CaptureSynchronizedData, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSynchronizedSampleBufferData, objc_selector="sampleBuffer", objc_name="sampleBuffer")
     CaptureSynchronizedSampleBufferData_sampleBuffer :: proc(self: ^CaptureSynchronizedSampleBufferData) -> CM.SampleBufferRef ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=CaptureSynchronizedSampleBufferData, objc_selector="droppedReason", objc_name="droppedReason")
     CaptureSynchronizedSampleBufferData_droppedReason :: proc(self: ^CaptureSynchronizedSampleBufferData) -> CaptureOutputDataDroppedReason ---
 }
+
+
+

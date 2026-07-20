@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptionConversionTimeRangeAdjustment
-///
 @(objc_class="AVCaptionConversionTimeRangeAdjustment", objc_superclass=CaptionConversionAdjustment)
 CaptionConversionTimeRangeAdjustment :: struct { using _: CaptionConversionAdjustment, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionConversionTimeRangeAdjustment, objc_selector="init", objc_name="init")
     CaptionConversionTimeRangeAdjustment_init :: proc(self: ^CaptionConversionTimeRangeAdjustment) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=CaptionConversionTimeRangeAdjustment, objc_selector="durationOffset", objc_name="durationOffset")
     CaptionConversionTimeRangeAdjustment_durationOffset :: proc(self: ^CaptionConversionTimeRangeAdjustment) -> CM.Time ---
 }
+
+
+

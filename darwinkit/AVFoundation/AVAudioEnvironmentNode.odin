@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioEnvironmentNode
-///
 @(objc_class="AVAudioEnvironmentNode", objc_superclass=AudioNode)
 AudioEnvironmentNode :: struct { using _: AudioNode, 
     using _: AudioMixing,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioEnvironmentNode, objc_selector="init", objc_name="init")
     AudioEnvironmentNode_init :: proc(self: ^AudioEnvironmentNode) -> instancetype ---
@@ -75,3 +69,6 @@ foreign lib {
     @(objc_type=AudioEnvironmentNode, objc_selector="setListenerHeadTrackingEnabled:", objc_name="setListenerHeadTrackingEnabled")
     AudioEnvironmentNode_setListenerHeadTrackingEnabled :: proc(self: ^AudioEnvironmentNode, listenerHeadTrackingEnabled: bool) ---
 }
+
+
+

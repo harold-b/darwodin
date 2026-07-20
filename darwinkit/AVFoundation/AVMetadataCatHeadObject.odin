@@ -12,15 +12,8 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetadataCatHeadObject
-///
 @(objc_class="AVMetadataCatHeadObject", objc_superclass=MetadataObject)
 MetadataCatHeadObject :: struct { using _: MetadataObject, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
-foreign lib {}

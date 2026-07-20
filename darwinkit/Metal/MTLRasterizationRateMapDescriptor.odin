@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRasterizationRateMapDescriptor
-///
 @(objc_class="MTLRasterizationRateMapDescriptor", objc_superclass=NS.Object)
 RasterizationRateMapDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RasterizationRateMapDescriptor, objc_selector="rasterizationRateMapDescriptorWithScreenSize:", objc_name="rasterizationRateMapDescriptorWithScreenSize_", objc_is_class_method=true)
     RasterizationRateMapDescriptor_rasterizationRateMapDescriptorWithScreenSize_ :: proc(screenSize: Size) -> ^RasterizationRateMapDescriptor ---
@@ -56,6 +50,8 @@ foreign lib {
     @(objc_type=RasterizationRateMapDescriptor, objc_selector="layerCount", objc_name="layerCount")
     RasterizationRateMapDescriptor_layerCount :: proc(self: ^RasterizationRateMapDescriptor) -> NS.UInteger ---
 }
+
+
 
 @(objc_type=RasterizationRateMapDescriptor, objc_name="rasterizationRateMapDescriptorWithScreenSize")
 RasterizationRateMapDescriptor_rasterizationRateMapDescriptorWithScreenSize :: proc {

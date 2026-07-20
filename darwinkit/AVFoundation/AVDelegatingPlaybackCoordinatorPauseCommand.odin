@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVDelegatingPlaybackCoordinatorPauseCommand
-///
 @(objc_class="AVDelegatingPlaybackCoordinatorPauseCommand", objc_superclass=DelegatingPlaybackCoordinatorPlaybackControlCommand)
 DelegatingPlaybackCoordinatorPauseCommand :: struct { using _: DelegatingPlaybackCoordinatorPlaybackControlCommand, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="init", objc_name="init")
     DelegatingPlaybackCoordinatorPauseCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=DelegatingPlaybackCoordinatorPauseCommand, objc_selector="anticipatedPlaybackRate", objc_name="anticipatedPlaybackRate")
     DelegatingPlaybackCoordinatorPauseCommand_anticipatedPlaybackRate :: proc(self: ^DelegatingPlaybackCoordinatorPauseCommand) -> cffi.float ---
 }
+
+
+

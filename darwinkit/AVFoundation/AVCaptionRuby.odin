@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptionRuby
-///
 @(objc_class="AVCaptionRuby", objc_superclass=NS.Object)
 CaptionRuby :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionRuby, objc_selector="init", objc_name="init")
     CaptionRuby_init :: proc(self: ^CaptionRuby) -> instancetype ---
@@ -46,6 +40,8 @@ foreign lib {
     @(objc_type=CaptionRuby, objc_selector="alignment", objc_name="alignment")
     CaptionRuby_alignment :: proc(self: ^CaptionRuby) -> CaptionRubyAlignment ---
 }
+
+
 
 @(objc_type=CaptionRuby, objc_name="initWithText")
 CaptionRuby_initWithText :: proc {

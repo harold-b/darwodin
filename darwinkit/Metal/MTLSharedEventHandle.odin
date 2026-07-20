@@ -11,18 +11,15 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLSharedEventHandle
-///
 @(objc_class="MTLSharedEventHandle", objc_superclass=NS.Object)
 SharedEventHandle :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SharedEventHandle, objc_selector="label", objc_name="label")
     SharedEventHandle_label :: proc(self: ^SharedEventHandle) -> ^NS.String ---
 }
+
+
+

@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMeasurementFormatter
-///
 @(objc_class="NSMeasurementFormatter", objc_superclass=Formatter)
 MeasurementFormatter :: struct { using _: Formatter, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeasurementFormatter, objc_selector="stringFromMeasurement:", objc_name="stringFromMeasurement")
     MeasurementFormatter_stringFromMeasurement :: proc(self: ^MeasurementFormatter, measurement: ^Measurement) -> ^String ---
@@ -51,3 +45,6 @@ foreign lib {
     @(objc_type=MeasurementFormatter, objc_selector="setNumberFormatter:", objc_name="setNumberFormatter")
     MeasurementFormatter_setNumberFormatter :: proc(self: ^MeasurementFormatter, numberFormatter: ^NumberFormatter) ---
 }
+
+
+

@@ -14,8 +14,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:CoreGraphics.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:CoreGraphics.framework",
+    }
+}
+
+
+// +user-text-begin
 NSObject  :: intrinsics.objc_object
 MTLDevice :: intrinsics.objc_object
 cl_device_id :: struct {}
@@ -28,6 +40,7 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
     }
 }
 
+// -user-text-end
 
 
 FontIndexMax          :: 65534
@@ -1494,7 +1507,7 @@ foreign lib {
     ContextDrawPDFDocument :: proc(c: ContextRef, rect: Rect, document: PDFDocumentRef, page: cffi.int) ---
 
     @(link_name="CGRenderingBufferProviderCreate")
-    RenderingBufferProviderCreate :: proc(info: rawptr, size: cffi.size_t, lockPointer: ^Objc_Block(proc "c" (info: rawptr) -> rawptr), unlockPointer: ^Objc_Block(proc "c" (info: rawptr, pointer: rawptr)), releaseInfo: ^Objc_Block(proc "c" (info: rawptr))) -> RenderingBufferProviderRef ---
+    RenderingBufferProviderCreate :: proc(info: rawptr, size: cffi.size_t, lockPointer: ^Objc_Block(proc "c" ( info: rawptr ) -> rawptr), unlockPointer: ^Objc_Block(proc "c" ( info: rawptr, pointer: rawptr )), releaseInfo: ^Objc_Block(proc "c" ( info: rawptr ))) -> RenderingBufferProviderRef ---
 
     @(link_name="CGRenderingBufferProviderCreateWithCFData")
     RenderingBufferProviderCreateWithCFData :: proc(data: CF.MutableDataRef) -> RenderingBufferProviderRef ---
@@ -1518,7 +1531,7 @@ foreign lib {
     BitmapContextCreate :: proc(data: rawptr, width: cffi.size_t, height: cffi.size_t, bitsPerComponent: cffi.size_t, bytesPerRow: cffi.size_t, space: ColorSpaceRef, bitmapInfo: BitmapInfo) -> ContextRef ---
 
     @(link_name="CGBitmapContextCreateAdaptive")
-    BitmapContextCreateAdaptive :: proc(width: cffi.size_t, height: cffi.size_t, auxiliaryInfo: CF.DictionaryRef, onResolve: ^Objc_Block(proc "c" (_: ^ContentInfo, _1: ^BitmapParameters) -> cffi.bool), onAllocate: ^Objc_Block(proc "c" (_: ^ContentInfo, _1: ^BitmapParameters) -> RenderingBufferProviderRef), onFree: ^Objc_Block(proc "c" (_: RenderingBufferProviderRef, _1: ^ContentInfo, _2: ^BitmapParameters)), onError: ^Objc_Block(proc "c" (_: CF.ErrorRef, _1: ^ContentInfo, _2: ^BitmapParameters))) -> ContextRef ---
+    BitmapContextCreateAdaptive :: proc(width: cffi.size_t, height: cffi.size_t, auxiliaryInfo: CF.DictionaryRef, onResolve: ^Objc_Block(proc "c" ( _0: ^ContentInfo, _1: ^BitmapParameters ) -> cffi.bool), onAllocate: ^Objc_Block(proc "c" ( _0: ^ContentInfo, _1: ^BitmapParameters ) -> RenderingBufferProviderRef), onFree: ^Objc_Block(proc "c" ( _0: RenderingBufferProviderRef, _1: ^ContentInfo, _2: ^BitmapParameters )), onError: ^Objc_Block(proc "c" ( _0: CF.ErrorRef, _1: ^ContentInfo, _2: ^BitmapParameters ))) -> ContextRef ---
 
     @(link_name="CGBitmapContextGetData")
     BitmapContextGetData :: proc(_context: ContextRef) -> rawptr ---
@@ -1763,22 +1776,22 @@ ColorSpaceRef :: distinct ^ColorSpace
 DataProviderRef :: distinct ^DataProvider
 
 /// CGDataProviderGetBytesCallback
-DataProviderGetBytesCallback :: proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
+DataProviderGetBytesCallback :: proc "c" ( info: rawptr, buffer: rawptr, count: cffi.size_t ) -> cffi.size_t
 
 /// CGDataProviderSkipForwardCallback
-DataProviderSkipForwardCallback :: proc "c" (info: rawptr, count: libc.off_t) -> libc.off_t
+DataProviderSkipForwardCallback :: proc "c" ( info: rawptr, count: libc.off_t ) -> libc.off_t
 
 /// CGDataProviderRewindCallback
-DataProviderRewindCallback :: proc "c" (info: rawptr)
+DataProviderRewindCallback :: proc "c" ( info: rawptr )
 
 /// CGDataProviderReleaseInfoCallback
-DataProviderReleaseInfoCallback :: proc "c" (info: rawptr)
+DataProviderReleaseInfoCallback :: proc "c" ( info: rawptr )
 
 /// CGDataProviderGetBytesAtPositionCallback
-DataProviderGetBytesAtPositionCallback :: proc "c" (info: rawptr, buffer: rawptr, pos: libc.off_t, cnt: cffi.size_t) -> cffi.size_t
+DataProviderGetBytesAtPositionCallback :: proc "c" ( info: rawptr, buffer: rawptr, pos: libc.off_t, cnt: cffi.size_t ) -> cffi.size_t
 
 /// CGDataProviderReleaseDataCallback
-DataProviderReleaseDataCallback :: proc "c" (info: rawptr, data: rawptr, size: cffi.size_t)
+DataProviderReleaseDataCallback :: proc "c" ( info: rawptr, data: rawptr, size: cffi.size_t )
 
 /// ColorSyncProfileRef
 ColorSyncProfileRef :: distinct ^ColorSyncProfile
@@ -1787,10 +1800,10 @@ ColorSyncProfileRef :: distinct ^ColorSyncProfile
 PatternRef :: distinct ^Pattern
 
 /// CGPatternDrawPatternCallback
-PatternDrawPatternCallback :: proc "c" (info: rawptr, _context: ContextRef)
+PatternDrawPatternCallback :: proc "c" ( info: rawptr, _context: ContextRef )
 
 /// CGPatternReleaseInfoCallback
-PatternReleaseInfoCallback :: proc "c" (info: rawptr)
+PatternReleaseInfoCallback :: proc "c" ( info: rawptr )
 
 /// CGFontRef
 FontRef :: distinct ^Font
@@ -1814,10 +1827,10 @@ MutablePathRef :: distinct ^Path
 PathRef :: distinct ^Path
 
 /// CGPathApplierFunction
-PathApplierFunction :: proc "c" (info: rawptr, element: ^PathElement)
+PathApplierFunction :: proc "c" ( info: rawptr, element: ^PathElement )
 
 /// CGPathApplyBlock
-PathApplyBlock :: ^Objc_Block(proc "c" (element: ^PathElement))
+PathApplyBlock :: ^Objc_Block(proc "c" ( element: ^PathElement ))
 
 /// CGPDFDocumentRef
 PDFDocumentRef :: distinct ^PDFDocument
@@ -1850,13 +1863,13 @@ PDFStreamRef :: distinct ^PDFStream
 PDFStringRef :: distinct ^PDFString
 
 /// CGPDFArrayApplierBlock
-PDFArrayApplierBlock :: ^Objc_Block(proc "c" (index: cffi.size_t, value: PDFObjectRef, info: rawptr) -> cffi.bool)
+PDFArrayApplierBlock :: ^Objc_Block(proc "c" ( index: cffi.size_t, value: PDFObjectRef, info: rawptr ) -> cffi.bool)
 
 /// CGPDFDictionaryApplierFunction
-PDFDictionaryApplierFunction :: proc "c" (key: cstring, value: PDFObjectRef, info: rawptr)
+PDFDictionaryApplierFunction :: proc "c" ( key: cstring, value: PDFObjectRef, info: rawptr )
 
 /// CGPDFDictionaryApplierBlock
-PDFDictionaryApplierBlock :: ^Objc_Block(proc "c" (key: cstring, value: PDFObjectRef, info: rawptr) -> cffi.bool)
+PDFDictionaryApplierBlock :: ^Objc_Block(proc "c" ( key: cstring, value: PDFObjectRef, info: rawptr ) -> cffi.bool)
 
 /// CGShadingRef
 ShadingRef :: distinct ^Shading
@@ -1865,16 +1878,16 @@ ShadingRef :: distinct ^Shading
 FunctionRef :: distinct ^Function
 
 /// CGFunctionEvaluateCallback
-FunctionEvaluateCallback :: proc "c" (info: rawptr, _in: ^Float, out: ^Float)
+FunctionEvaluateCallback :: proc "c" ( info: rawptr, _in: ^Float, out: ^Float )
 
 /// CGFunctionReleaseInfoCallback
-FunctionReleaseInfoCallback :: proc "c" (info: rawptr)
+FunctionReleaseInfoCallback :: proc "c" ( info: rawptr )
 
 /// CGRenderingBufferProviderRef
 RenderingBufferProviderRef :: distinct ^RenderingBufferProvider
 
 /// CGBitmapContextReleaseDataCallback
-BitmapContextReleaseDataCallback :: proc "c" (releaseInfo: rawptr, data: rawptr)
+BitmapContextReleaseDataCallback :: proc "c" ( releaseInfo: rawptr, data: rawptr )
 
 /// CGColorConversionInfoRef
 ColorConversionInfoRef :: distinct ^ColorConversionInfo
@@ -1883,10 +1896,10 @@ ColorConversionInfoRef :: distinct ^ColorConversionInfo
 DataConsumerRef :: distinct ^DataConsumer
 
 /// CGDataConsumerPutBytesCallback
-DataConsumerPutBytesCallback :: proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
+DataConsumerPutBytesCallback :: proc "c" ( info: rawptr, buffer: rawptr, count: cffi.size_t ) -> cffi.size_t
 
 /// CGDataConsumerReleaseInfoCallback
-DataConsumerReleaseInfoCallback :: proc "c" (info: rawptr)
+DataConsumerReleaseInfoCallback :: proc "c" ( info: rawptr )
 
 /// CGErrorCallback
 ErrorCallback :: proc "c" ()
@@ -1907,7 +1920,7 @@ PDFOperatorTableRef :: distinct ^PDFOperatorTable
 PDFScannerRef :: distinct ^PDFScanner
 
 /// CGPDFOperatorCallback
-PDFOperatorCallback :: proc "c" (scanner: PDFScannerRef, info: rawptr)
+PDFOperatorCallback :: proc "c" ( scanner: PDFScannerRef, info: rawptr )
 
 /// CGRectEdge
 RectEdge :: enum cffi.uint {
@@ -2352,8 +2365,8 @@ DataProviderSequentialCallbacks :: struct #align (8) {
 /// CGDataProviderDirectCallbacks
 DataProviderDirectCallbacks :: struct #align (8) {
     version:            cffi.uint,
-    getBytePointer:     proc "c" (info: rawptr) -> rawptr,
-    releaseBytePointer: proc "c" (info: rawptr, pointer: rawptr),
+    getBytePointer:     proc "c" ( info: rawptr ) -> rawptr,
+    releaseBytePointer: proc "c" ( info: rawptr, pointer: rawptr ),
     getBytesAtPosition: DataProviderGetBytesAtPositionCallback,
     releaseInfo:        DataProviderReleaseInfoCallback,
 }

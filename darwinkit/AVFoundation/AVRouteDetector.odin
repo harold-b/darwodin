@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVRouteDetector
-///
 @(objc_class="AVRouteDetector", objc_superclass=NS.Object)
 RouteDetector :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RouteDetector, objc_selector="isRouteDetectionEnabled", objc_name="isRouteDetectionEnabled")
     RouteDetector_isRouteDetectionEnabled :: proc(self: ^RouteDetector) -> bool ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=RouteDetector, objc_selector="setDetectsCustomRoutes:", objc_name="setDetectsCustomRoutes")
     RouteDetector_setDetectsCustomRoutes :: proc(self: ^RouteDetector, detectsCustomRoutes: bool) ---
 }
+
+
+

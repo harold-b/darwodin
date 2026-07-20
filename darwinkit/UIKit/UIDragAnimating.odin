@@ -27,5 +27,5 @@ foreign lib {
     DragAnimating_addAnimations :: proc(self: ^DragAnimating, animations: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=DragAnimating, objc_selector="addCompletion:", objc_name="addCompletion")
-    DragAnimating_addCompletion :: proc(self: ^DragAnimating, completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) ---
+    DragAnimating_addCompletion :: proc(self: ^DragAnimating, completion: ^Objc_Block(proc "c" ( finalPosition: ViewAnimatingPosition ))) ---
 }

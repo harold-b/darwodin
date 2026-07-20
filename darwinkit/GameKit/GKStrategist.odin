@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKStrategist
-///
 @(objc_class="GKStrategist")
 Strategist :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Strategist, objc_selector="bestMoveForActivePlayer", objc_name="bestMoveForActivePlayer")
     Strategist_bestMoveForActivePlayer :: proc(self: ^Strategist) -> ^GameModelUpdate ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=Strategist, objc_selector="setRandomSource:", objc_name="setRandomSource")
     Strategist_setRandomSource :: proc(self: ^Strategist, randomSource: ^Random) ---
 }
+
+
+

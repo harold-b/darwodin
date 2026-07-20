@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVExternalStorageDeviceDiscoverySession
-///
 @(objc_class="AVExternalStorageDeviceDiscoverySession", objc_superclass=NS.Object)
 ExternalStorageDeviceDiscoverySession :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExternalStorageDeviceDiscoverySession, objc_selector="init", objc_name="init")
     ExternalStorageDeviceDiscoverySession_init :: proc(self: ^ExternalStorageDeviceDiscoverySession) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=ExternalStorageDeviceDiscoverySession, objc_selector="isSupported", objc_name="isSupported", objc_is_class_method=true)
     ExternalStorageDeviceDiscoverySession_isSupported :: proc() -> bool ---
 }
+
+
+

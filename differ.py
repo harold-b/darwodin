@@ -26,16 +26,16 @@ ios_only_set = (
 def main():
     packages_macos = [ p for p in os.listdir('darwodin-macos/darwodin') if p != 'mach' and p != 'libc' and p != 'ObjectiveC']
 
-    for p in packages_macos:
-        print(f'========== Checking {p} ==========')
-        diff_package(p)
-        print('')
+    # for p in packages_macos:
+    #     print(f'========== Checking {p} ==========')
+    #     diff_package(p)
+    #     print('')
 
     # file_dir = os.path.dirname(__name__)
     # shutil.copytree(os.path.join(file_dir, 'libc'), os.path.join(file_dir, 'darwinkit', 'libc'))
     # shutil.copytree(os.path.join(file_dir, 'mach'), os.path.join(file_dir, 'darwinkit', 'mach'))
 
-    # diff_package('Foundation')
+    diff_package('Foundation')
     # diff_package('CoreFoundation')
     # diff_package('CoreGraphics')
     # diff_package('QuartzCore')
@@ -200,8 +200,6 @@ def diff_file(a, b, appkit_imports, uikit_imports):
                         break
 
             out += mac_range
-
-
 
         elif tag == 'delete':
             if mac_range[0] == '}\n':

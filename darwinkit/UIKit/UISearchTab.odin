@@ -22,7 +22,7 @@ SearchTab :: struct { using _: Tab, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=SearchTab, objc_selector="initWithViewControllerProvider:", objc_name="initWithViewControllerProvider")
-    SearchTab_initWithViewControllerProvider :: proc(self: ^SearchTab, viewControllerProvider: ^Objc_Block(proc "c" (_: ^Tab) -> ^ViewController)) -> instancetype ---
+    SearchTab_initWithViewControllerProvider :: proc(self: ^SearchTab, viewControllerProvider: ^Objc_Block(proc "c" ( _0: ^Tab ) -> ^ViewController)) -> instancetype ---
 
     @(objc_type=SearchTab, objc_selector="automaticallyActivatesSearch", objc_name="automaticallyActivatesSearch")
     SearchTab_automaticallyActivatesSearch :: proc(self: ^SearchTab) -> bool ---

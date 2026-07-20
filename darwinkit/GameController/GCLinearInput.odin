@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCLinearInput
-///
 @(objc_class="GCLinearInput")
 LinearInput :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LinearInput, objc_selector="valueDidChangeHandler", objc_name="valueDidChangeHandler")
     LinearInput_valueDidChangeHandler :: proc(self: ^LinearInput) -> ^Objc_Block(proc "c" ()) ---
@@ -47,3 +41,6 @@ foreign lib {
     @(objc_type=LinearInput, objc_selector="sources", objc_name="sources")
     LinearInput_sources :: proc(self: ^LinearInput) -> ^NS.Set ---
 }
+
+
+

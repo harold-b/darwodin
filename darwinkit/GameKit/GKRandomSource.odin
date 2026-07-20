@@ -7,11 +7,6 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKRandomSource
-///
 @(objc_class="GKRandomSource", objc_superclass=NS.Object)
 RandomSource :: struct { using _: NS.Object, 
     using _: Random,
@@ -19,7 +14,6 @@ RandomSource :: struct { using _: NS.Object,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RandomSource, objc_selector="init", objc_name="init")
     RandomSource_init :: proc(self: ^RandomSource) -> instancetype ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=RandomSource, objc_selector="arrayByShufflingObjectsInArray:", objc_name="arrayByShufflingObjectsInArray")
     RandomSource_arrayByShufflingObjectsInArray :: proc(self: ^RandomSource, array: ^NS.Array) -> ^NS.Array ---
 }
+
+
+

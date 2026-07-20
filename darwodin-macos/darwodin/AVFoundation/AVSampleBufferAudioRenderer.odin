@@ -60,5 +60,5 @@ foreign lib {
     SampleBufferAudioRenderer_setMuted :: proc(self: ^SampleBufferAudioRenderer, muted: bool) ---
 
     @(objc_type=SampleBufferAudioRenderer, objc_selector="flushFromSourceTime:completionHandler:", objc_name="flushFromSourceTime")
-    SampleBufferAudioRenderer_flushFromSourceTime :: proc(self: ^SampleBufferAudioRenderer, time: CM.Time, completionHandler: ^Objc_Block(proc "c" (flushSucceeded: bool))) ---
+    SampleBufferAudioRenderer_flushFromSourceTime :: proc(self: ^SampleBufferAudioRenderer, time: CM.Time, completionHandler: ^Objc_Block(proc "c" ( flushSucceeded: bool ))) ---
 }

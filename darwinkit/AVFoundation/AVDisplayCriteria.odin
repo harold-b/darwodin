@@ -12,29 +12,18 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVDisplayCriteria
-///
-when !ODIN_PLATFORM_SUBTARGET_IOS {
+when ODIN_PLATFORM_SUBTARGET == .Default {
     @(objc_class="AVDisplayCriteria")
     DisplayCriteria :: struct { using _: intrinsics.objc_object, }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
     @(objc_class="AVDisplayCriteria", objc_superclass=NS.Object)
     DisplayCriteria :: struct { using _: NS.Object, 
         using _: NS.Copying,
     }
-} // End else
+}
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-@(default_calling_convention="c")
-    foreign lib {}
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-@(default_calling_convention="c")
-    foreign lib {
+foreign lib {
+    when ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=DisplayCriteria, objc_selector="init", objc_name="init")
         DisplayCriteria_init :: proc(self: ^DisplayCriteria) -> instancetype ---
 
@@ -44,4 +33,7 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=DisplayCriteria, objc_selector="initWithRefreshRate:formatDescription:", objc_name="initWithRefreshRate")
         DisplayCriteria_initWithRefreshRate :: proc(self: ^DisplayCriteria, refreshRate: cffi.float, formatDescription: CM.FormatDescriptionRef) -> instancetype ---
     }
-} // End else
+}
+
+
+

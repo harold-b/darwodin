@@ -20,21 +20,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithMarkerFormat_options_startingItemNumber: proc(self: ^AK.TextList, markerFormat: ^NS.String, options: AK.TextListOptions, startingItemNumber: NS.Integer) -> instancetype,
-    initWithMarkerFormat_options: proc(self: ^AK.TextList, markerFormat: ^NS.String, options: NS.UInteger) -> instancetype,
-    initWithCoder: proc(self: ^AK.TextList, coder: ^NS.Coder) -> instancetype,
-    markerForItemNumber: proc(self: ^AK.TextList, itemNumber: NS.Integer) -> ^NS.String,
-    markerFormat: proc(self: ^AK.TextList) -> ^NS.String,
-    listOptions: proc(self: ^AK.TextList) -> AK.TextListOptions,
-    startingItemNumber: proc(self: ^AK.TextList) -> NS.Integer,
-    setStartingItemNumber: proc(self: ^AK.TextList, startingItemNumber: NS.Integer),
-    isOrdered: proc(self: ^AK.TextList) -> bool,
+    initWithMarkerFormat_options_startingItemNumber: proc(self: ^NS.TextList, markerFormat: ^NS.String, options: NS.TextListOptions, startingItemNumber: NS.Integer) -> instancetype,
+    initWithMarkerFormat_options: proc(self: ^NS.TextList, markerFormat: ^NS.String, options: NS.UInteger) -> instancetype,
+    initWithCoder: proc(self: ^NS.TextList, coder: ^NS.Coder) -> instancetype,
+    markerForItemNumber: proc(self: ^NS.TextList, itemNumber: NS.Integer) -> ^NS.String,
+    markerFormat: proc(self: ^NS.TextList) -> ^NS.String,
+    listOptions: proc(self: ^NS.TextList) -> NS.TextListOptions,
+    startingItemNumber: proc(self: ^NS.TextList) -> NS.Integer,
+    setStartingItemNumber: proc(self: ^NS.TextList, startingItemNumber: NS.Integer),
+    isOrdered: proc(self: ^NS.TextList) -> bool,
     includesTextListMarkers: proc() -> bool,
 }
 
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithMarkerFormat_options_startingItemNumber != nil {
-        initWithMarkerFormat_options_startingItemNumber :: proc "c" (self: ^AK.TextList, _: SEL, markerFormat: ^NS.String, options: AK.TextListOptions, startingItemNumber: NS.Integer) -> instancetype {
+        initWithMarkerFormat_options_startingItemNumber :: proc "c" (self: ^NS.TextList, _: SEL, markerFormat: ^NS.String, options: NS.TextListOptions, startingItemNumber: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMarkerFormat:options:startingItemNumber:"), auto_cast initWithMarkerFormat_options_startingItemNumber, "@@:@Ll") do panic("Failed to register objC method.")
     }
     if vt.initWithMarkerFormat_options != nil {
-        initWithMarkerFormat_options :: proc "c" (self: ^AK.TextList, _: SEL, markerFormat: ^NS.String, options: NS.UInteger) -> instancetype {
+        initWithMarkerFormat_options :: proc "c" (self: ^NS.TextList, _: SEL, markerFormat: ^NS.String, options: NS.UInteger) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMarkerFormat:options:"), auto_cast initWithMarkerFormat_options, "@@:@L") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextList, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.TextList, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.markerForItemNumber != nil {
-        markerForItemNumber :: proc "c" (self: ^AK.TextList, _: SEL, itemNumber: NS.Integer) -> ^NS.String {
+        markerForItemNumber :: proc "c" (self: ^NS.TextList, _: SEL, itemNumber: NS.Integer) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("markerForItemNumber:"), auto_cast markerForItemNumber, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.markerFormat != nil {
-        markerFormat :: proc "c" (self: ^AK.TextList, _: SEL) -> ^NS.String {
+        markerFormat :: proc "c" (self: ^NS.TextList, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("markerFormat"), auto_cast markerFormat, "@@:") do panic("Failed to register objC method.")
     }
     if vt.listOptions != nil {
-        listOptions :: proc "c" (self: ^AK.TextList, _: SEL) -> AK.TextListOptions {
+        listOptions :: proc "c" (self: ^NS.TextList, _: SEL) -> NS.TextListOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("listOptions"), auto_cast listOptions, "L@:") do panic("Failed to register objC method.")
     }
     if vt.startingItemNumber != nil {
-        startingItemNumber :: proc "c" (self: ^AK.TextList, _: SEL) -> NS.Integer {
+        startingItemNumber :: proc "c" (self: ^NS.TextList, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("startingItemNumber"), auto_cast startingItemNumber, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setStartingItemNumber != nil {
-        setStartingItemNumber :: proc "c" (self: ^AK.TextList, _: SEL, startingItemNumber: NS.Integer) {
+        setStartingItemNumber :: proc "c" (self: ^NS.TextList, _: SEL, startingItemNumber: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setStartingItemNumber:"), auto_cast setStartingItemNumber, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.isOrdered != nil {
-        isOrdered :: proc "c" (self: ^AK.TextList, _: SEL) -> bool {
+        isOrdered :: proc "c" (self: ^NS.TextList, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableVideoComposition
-///
 @(objc_class="AVMutableVideoComposition", objc_superclass=VideoComposition)
 MutableVideoComposition :: struct { using _: VideoComposition, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableVideoComposition, objc_selector="videoComposition", objc_name="videoComposition", objc_is_class_method=true)
     MutableVideoComposition_videoComposition :: proc() -> ^MutableVideoComposition ---
@@ -29,13 +23,13 @@ foreign lib {
     MutableVideoComposition_videoCompositionWithPropertiesOfAsset_ :: proc(asset: ^Asset) -> ^MutableVideoComposition ---
 
     @(objc_type=MutableVideoComposition, objc_selector="videoCompositionWithPropertiesOfAsset:completionHandler:", objc_name="videoCompositionWithPropertiesOfAsset_completionHandler", objc_is_class_method=true)
-    MutableVideoComposition_videoCompositionWithPropertiesOfAsset_completionHandler :: proc(asset: ^Asset, completionHandler: ^Objc_Block(proc "c" (videoComposition: ^MutableVideoComposition, error: ^NS.Error))) ---
+    MutableVideoComposition_videoCompositionWithPropertiesOfAsset_completionHandler :: proc(asset: ^Asset, completionHandler: ^Objc_Block(proc "c" ( videoComposition: ^MutableVideoComposition, error: ^NS.Error ))) ---
 
     @(objc_type=MutableVideoComposition, objc_selector="videoCompositionWithPropertiesOfAsset:prototypeInstruction:", objc_name="videoCompositionWithPropertiesOfAsset_prototypeInstruction", objc_is_class_method=true)
     MutableVideoComposition_videoCompositionWithPropertiesOfAsset_prototypeInstruction :: proc(asset: ^Asset, prototypeInstruction: ^VideoCompositionInstruction) -> ^MutableVideoComposition ---
 
     @(objc_type=MutableVideoComposition, objc_selector="videoCompositionWithPropertiesOfAsset:prototypeInstruction:completionHandler:", objc_name="videoCompositionWithPropertiesOfAsset_prototypeInstruction_completionHandler", objc_is_class_method=true)
-    MutableVideoComposition_videoCompositionWithPropertiesOfAsset_prototypeInstruction_completionHandler :: proc(asset: ^Asset, prototypeInstruction: ^VideoCompositionInstruction, completionHandler: ^Objc_Block(proc "c" (videoComposition: ^MutableVideoComposition, error: ^NS.Error))) ---
+    MutableVideoComposition_videoCompositionWithPropertiesOfAsset_prototypeInstruction_completionHandler :: proc(asset: ^Asset, prototypeInstruction: ^VideoCompositionInstruction, completionHandler: ^Objc_Block(proc "c" ( videoComposition: ^MutableVideoComposition, error: ^NS.Error ))) ---
 
     @(objc_type=MutableVideoComposition, objc_selector="customVideoCompositorClass", objc_name="customVideoCompositorClass")
     MutableVideoComposition_customVideoCompositorClass :: proc(self: ^MutableVideoComposition) -> ^Class ---
@@ -116,11 +110,13 @@ foreign lib {
     MutableVideoComposition_setPerFrameHDRDisplayMetadataPolicy :: proc(self: ^MutableVideoComposition, perFrameHDRDisplayMetadataPolicy: ^NS.String) ---
 
     @(objc_type=MutableVideoComposition, objc_selector="videoCompositionWithAsset:applyingCIFiltersWithHandler:", objc_name="videoCompositionWithAsset_applyingCIFiltersWithHandler", objc_is_class_method=true)
-    MutableVideoComposition_videoCompositionWithAsset_applyingCIFiltersWithHandler :: proc(asset: ^Asset, applier: ^Objc_Block(proc "c" (request: ^AsynchronousCIImageFilteringRequest))) -> ^MutableVideoComposition ---
+    MutableVideoComposition_videoCompositionWithAsset_applyingCIFiltersWithHandler :: proc(asset: ^Asset, applier: ^Objc_Block(proc "c" ( request: ^AsynchronousCIImageFilteringRequest ))) -> ^MutableVideoComposition ---
 
     @(objc_type=MutableVideoComposition, objc_selector="videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:", objc_name="videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler", objc_is_class_method=true)
-    MutableVideoComposition_videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler :: proc(asset: ^Asset, applier: ^Objc_Block(proc "c" (request: ^AsynchronousCIImageFilteringRequest)), completionHandler: ^Objc_Block(proc "c" (videoComposition: ^MutableVideoComposition, error: ^NS.Error))) ---
+    MutableVideoComposition_videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler :: proc(asset: ^Asset, applier: ^Objc_Block(proc "c" ( request: ^AsynchronousCIImageFilteringRequest )), completionHandler: ^Objc_Block(proc "c" ( videoComposition: ^MutableVideoComposition, error: ^NS.Error ))) ---
 }
+
+
 
 @(objc_type=MutableVideoComposition, objc_name="videoCompositionWithPropertiesOfAsset")
 MutableVideoComposition_videoCompositionWithPropertiesOfAsset :: proc {

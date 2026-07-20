@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableAudioMixInputParameters
-///
 @(objc_class="AVMutableAudioMixInputParameters", objc_superclass=AudioMixInputParameters)
 MutableAudioMixInputParameters :: struct { using _: AudioMixInputParameters, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableAudioMixInputParameters, objc_selector="audioMixInputParametersWithTrack:", objc_name="audioMixInputParametersWithTrack", objc_is_class_method=true)
     MutableAudioMixInputParameters_audioMixInputParametersWithTrack :: proc(track: ^AssetTrack) -> instancetype ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=MutableAudioMixInputParameters, objc_selector="setAudioTapProcessor:", objc_name="setAudioTapProcessor")
     MutableAudioMixInputParameters_setAudioTapProcessor :: proc(self: ^MutableAudioMixInputParameters, audioTapProcessor: MTAudioProcessingTapRef) ---
 }
+
+
+

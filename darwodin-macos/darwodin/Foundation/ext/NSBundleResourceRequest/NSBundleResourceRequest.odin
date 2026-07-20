@@ -24,8 +24,8 @@ VTable :: struct {
     init: proc(self: ^NS.BundleResourceRequest) -> instancetype,
     initWithTags_: proc(self: ^NS.BundleResourceRequest, tags: ^NS.Set) -> instancetype,
     initWithTags_bundle: proc(self: ^NS.BundleResourceRequest, tags: ^NS.Set, bundle: ^NS.Bundle) -> instancetype,
-    beginAccessingResourcesWithCompletionHandler: proc(self: ^NS.BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
-    conditionallyBeginAccessingResourcesWithCompletionHandler: proc(self: ^NS.BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (resourcesAvailable: bool))),
+    beginAccessingResourcesWithCompletionHandler: proc(self: ^NS.BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
+    conditionallyBeginAccessingResourcesWithCompletionHandler: proc(self: ^NS.BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" ( resourcesAvailable: bool ))),
     endAccessingResources: proc(self: ^NS.BundleResourceRequest),
     loadingPriority: proc(self: ^NS.BundleResourceRequest) -> cffi.double,
     setLoadingPriority: proc(self: ^NS.BundleResourceRequest, loadingPriority: cffi.double),
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTags:bundle:"), auto_cast initWithTags_bundle, "@@:^void@") do panic("Failed to register objC method.")
     }
     if vt.beginAccessingResourcesWithCompletionHandler != nil {
-        beginAccessingResourcesWithCompletionHandler :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        beginAccessingResourcesWithCompletionHandler :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginAccessingResourcesWithCompletionHandler:"), auto_cast beginAccessingResourcesWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.conditionallyBeginAccessingResourcesWithCompletionHandler != nil {
-        conditionallyBeginAccessingResourcesWithCompletionHandler :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL, completionHandler: ^Objc_Block(proc "c" (resourcesAvailable: bool))) {
+        conditionallyBeginAccessingResourcesWithCompletionHandler :: proc "c" (self: ^NS.BundleResourceRequest, _: SEL, completionHandler: ^Objc_Block(proc "c" ( resourcesAvailable: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -16,12 +16,26 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:AudioToolbox.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:AudioToolbox.framework",
+    }
+}
+
 
 
 AVAudioFormat     :: struct {}
 OpaqueAudioFileID :: struct {}
 FSRef             :: struct {}
+NSImage           :: struct {}
+UIImage           :: struct {}
+OpaqueCAClock     :: struct {}
 
 
 AUDIO_TOOLBOX_VERSION        :: 1060
@@ -1093,7 +1107,7 @@ foreign lib {
     ComponentInstanceNew :: proc(inComponent: Component, outInstance: ^ComponentInstance) -> CF.OSStatus ---
 
     @(link_name="AudioComponentInstantiate")
-    ComponentInstantiate :: proc(inComponent: Component, inOptions: ComponentInstantiationOptions, inCompletionHandler: ^Objc_Block(proc "c" (_: ComponentInstance, _1: CF.OSStatus))) ---
+    ComponentInstantiate :: proc(inComponent: Component, inOptions: ComponentInstantiationOptions, inCompletionHandler: ^Objc_Block(proc "c" ( _0: ComponentInstance, _1: CF.OSStatus ))) ---
 
     @(link_name="AudioComponentInstanceDispose")
     ComponentInstanceDispose :: proc(inInstance: ComponentInstance) -> CF.OSStatus ---
@@ -1114,7 +1128,7 @@ foreign lib {
     ComponentValidate :: proc(inComponent: Component, inValidationParameters: CF.DictionaryRef, outValidationResult: ^ComponentValidationResult) -> CF.OSStatus ---
 
     @(link_name="AudioComponentValidateWithResults")
-    ComponentValidateWithResults :: proc(inComponent: Component, inValidationParameters: CF.DictionaryRef, inCompletionHandler: ^Objc_Block(proc "c" (_: ComponentValidationResult, _1: CF.DictionaryRef))) -> CF.OSStatus ---
+    ComponentValidateWithResults :: proc(inComponent: Component, inValidationParameters: CF.DictionaryRef, inCompletionHandler: ^Objc_Block(proc "c" ( _0: ComponentValidationResult, _1: CF.DictionaryRef ))) -> CF.OSStatus ---
 
     @(link_name="AudioCodecGetPropertyInfo")
     CodecGetPropertyInfo :: proc(inCodec: Codec, inPropertyID: CodecPropertyID, outSize: ^CF.UInt32, outWritable: ^CF.Boolean) -> CF.OSStatus ---
@@ -1324,7 +1338,7 @@ foreign lib {
     AUGraphGetNodeConnections :: proc(inGraph: AUGraph, inNode: AUNode, outConnections: ^UnitNodeConnection, ioNumConnections: ^CF.UInt32) -> CF.OSStatus ---
 
     @(link_name="AudioConverterPrepare")
-    ConverterPrepare :: proc(inFlags: CF.UInt32, ioReserved: rawptr, inCompletionBlock: ^Objc_Block(proc "c" (_: CF.OSStatus))) ---
+    ConverterPrepare :: proc(inFlags: CF.UInt32, ioReserved: rawptr, inCompletionBlock: ^Objc_Block(proc "c" ( _0: CF.OSStatus ))) ---
 
     @(link_name="AudioConverterNew")
     ConverterNew :: proc(inSourceFormat: ^CA.StreamBasicDescription, inDestinationFormat: ^CA.StreamBasicDescription, outAudioConverter: ^ConverterRef) -> CF.OSStatus ---
@@ -1815,10 +1829,10 @@ Component :: ^OpaqueAudioComponent
 ComponentInstance :: ^ComponentInstanceRecord
 
 /// AudioComponentMethod
-ComponentMethod :: proc "c" (self: rawptr) -> CF.OSStatus
+ComponentMethod :: proc "c" ( self: rawptr ) -> CF.OSStatus
 
 /// AudioComponentFactoryFunction
-ComponentFactoryFunction :: proc "c" (inDesc: ^ComponentDescription) -> ^ComponentPlugInInterface
+ComponentFactoryFunction :: proc "c" ( inDesc: ^ComponentDescription ) -> ^ComponentPlugInInterface
 
 /// AudioCodec
 Codec :: ComponentInstance
@@ -1827,34 +1841,34 @@ Codec :: ComponentInstance
 CodecPropertyID :: CF.UInt32
 
 /// AudioCodecGetPropertyInfoProc
-CodecGetPropertyInfoProc :: proc "c" (self: rawptr, inPropertyID: CodecPropertyID, outSize: ^CF.UInt32, outWritable: ^CF.Boolean) -> CF.OSStatus
+CodecGetPropertyInfoProc :: proc "c" ( self: rawptr, inPropertyID: CodecPropertyID, outSize: ^CF.UInt32, outWritable: ^CF.Boolean ) -> CF.OSStatus
 
 /// AudioCodecGetPropertyProc
-CodecGetPropertyProc :: proc "c" (self: rawptr, inPropertyID: CodecPropertyID, ioPropertyDataSize: ^CF.UInt32, outPropertyData: rawptr) -> CF.OSStatus
+CodecGetPropertyProc :: proc "c" ( self: rawptr, inPropertyID: CodecPropertyID, ioPropertyDataSize: ^CF.UInt32, outPropertyData: rawptr ) -> CF.OSStatus
 
 /// AudioCodecSetPropertyProc
-CodecSetPropertyProc :: proc "c" (self: rawptr, inPropertyID: CodecPropertyID, inPropertyDataSize: CF.UInt32, inPropertyData: rawptr) -> CF.OSStatus
+CodecSetPropertyProc :: proc "c" ( self: rawptr, inPropertyID: CodecPropertyID, inPropertyDataSize: CF.UInt32, inPropertyData: rawptr ) -> CF.OSStatus
 
 /// AudioCodecInitializeProc
-CodecInitializeProc :: proc "c" (self: rawptr, inInputFormat: ^CA.StreamBasicDescription, inOutputFormat: ^CA.StreamBasicDescription, inMagicCookie: rawptr, inMagicCookieByteSize: CF.UInt32) -> CF.OSStatus
+CodecInitializeProc :: proc "c" ( self: rawptr, inInputFormat: ^CA.StreamBasicDescription, inOutputFormat: ^CA.StreamBasicDescription, inMagicCookie: rawptr, inMagicCookieByteSize: CF.UInt32 ) -> CF.OSStatus
 
 /// AudioCodecUninitializeProc
-CodecUninitializeProc :: proc "c" (self: rawptr) -> CF.OSStatus
+CodecUninitializeProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
 
 /// AudioCodecAppendInputDataProc
-CodecAppendInputDataProc :: proc "c" (self: rawptr, inInputData: rawptr, ioInputDataByteSize: ^CF.UInt32, ioNumberPackets: ^CF.UInt32, inPacketDescription: ^CA.StreamPacketDescription) -> CF.OSStatus
+CodecAppendInputDataProc :: proc "c" ( self: rawptr, inInputData: rawptr, ioInputDataByteSize: ^CF.UInt32, ioNumberPackets: ^CF.UInt32, inPacketDescription: ^CA.StreamPacketDescription ) -> CF.OSStatus
 
 /// AudioCodecProduceOutputPacketsProc
-CodecProduceOutputPacketsProc :: proc "c" (self: rawptr, outOutputData: rawptr, ioOutputDataByteSize: ^CF.UInt32, ioNumberPackets: ^CF.UInt32, outPacketDescription: ^CA.StreamPacketDescription, outStatus: ^CF.UInt32) -> CF.OSStatus
+CodecProduceOutputPacketsProc :: proc "c" ( self: rawptr, outOutputData: rawptr, ioOutputDataByteSize: ^CF.UInt32, ioNumberPackets: ^CF.UInt32, outPacketDescription: ^CA.StreamPacketDescription, outStatus: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioCodecResetProc
-CodecResetProc :: proc "c" (self: rawptr) -> CF.OSStatus
+CodecResetProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
 
 /// AudioCodecAppendInputBufferListProc
-CodecAppendInputBufferListProc :: proc "c" (self: rawptr, ioBufferList: ^CA.BufferList, inNumberPackets: ^CF.UInt32, inPacketDescription: ^CA.StreamPacketDescription, outBytesConsumed: ^CF.UInt32) -> CF.OSStatus
+CodecAppendInputBufferListProc :: proc "c" ( self: rawptr, ioBufferList: ^CA.BufferList, inNumberPackets: ^CF.UInt32, inPacketDescription: ^CA.StreamPacketDescription, outBytesConsumed: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioCodecProduceOutputBufferListProc
-CodecProduceOutputBufferListProc :: proc "c" (self: rawptr, ioBufferList: ^CA.BufferList, ioNumberPackets: ^CF.UInt32, outPacketDescription: ^CA.StreamPacketDescription, outStatus: ^CF.UInt32) -> CF.OSStatus
+CodecProduceOutputBufferListProc :: proc "c" ( self: rawptr, ioBufferList: ^CA.BufferList, ioNumberPackets: ^CF.UInt32, outPacketDescription: ^CA.StreamPacketDescription, outStatus: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioUnit
 Unit :: ComponentInstance
@@ -1875,88 +1889,88 @@ UnitParameterID :: CF.UInt32
 UnitParameterValue :: cffi.float
 
 /// AURenderCallback
-AURenderCallback :: proc "c" (inRefCon: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inBusNumber: CF.UInt32, inNumberFrames: CF.UInt32, ioData: ^CA.BufferList) -> CF.OSStatus
+AURenderCallback :: proc "c" ( inRefCon: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inBusNumber: CF.UInt32, inNumberFrames: CF.UInt32, ioData: ^CA.BufferList ) -> CF.OSStatus
 
 /// AudioUnitPropertyListenerProc
-UnitPropertyListenerProc :: proc "c" (inRefCon: rawptr, inUnit: Unit, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement)
+UnitPropertyListenerProc :: proc "c" ( inRefCon: rawptr, inUnit: Unit, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement )
 
 /// AUInputSamplesInOutputCallback
-AUInputSamplesInOutputCallback :: proc "c" (inRefCon: rawptr, inOutputTimeStamp: ^CA.TimeStamp, inInputSample: cffi.double, inNumberInputSamples: cffi.double)
+AUInputSamplesInOutputCallback :: proc "c" ( inRefCon: rawptr, inOutputTimeStamp: ^CA.TimeStamp, inInputSample: cffi.double, inNumberInputSamples: cffi.double )
 
 /// AudioUnitInitializeProc
-UnitInitializeProc :: proc "c" (self: rawptr) -> CF.OSStatus
+UnitInitializeProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
 
 /// AudioUnitUninitializeProc
-UnitUninitializeProc :: proc "c" (self: rawptr) -> CF.OSStatus
+UnitUninitializeProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
 
 /// AudioUnitGetPropertyInfoProc
-UnitGetPropertyInfoProc :: proc "c" (self: rawptr, prop: UnitPropertyID, scope: UnitScope, elem: UnitElement, outDataSize: ^CF.UInt32, outWritable: ^CF.Boolean) -> CF.OSStatus
+UnitGetPropertyInfoProc :: proc "c" ( self: rawptr, prop: UnitPropertyID, scope: UnitScope, elem: UnitElement, outDataSize: ^CF.UInt32, outWritable: ^CF.Boolean ) -> CF.OSStatus
 
 /// AudioUnitGetPropertyProc
-UnitGetPropertyProc :: proc "c" (self: rawptr, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement, outData: rawptr, ioDataSize: ^CF.UInt32) -> CF.OSStatus
+UnitGetPropertyProc :: proc "c" ( self: rawptr, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement, outData: rawptr, ioDataSize: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioUnitSetPropertyProc
-UnitSetPropertyProc :: proc "c" (self: rawptr, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement, inData: rawptr, inDataSize: CF.UInt32) -> CF.OSStatus
+UnitSetPropertyProc :: proc "c" ( self: rawptr, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement, inData: rawptr, inDataSize: CF.UInt32 ) -> CF.OSStatus
 
 /// AudioUnitAddPropertyListenerProc
-UnitAddPropertyListenerProc :: proc "c" (self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc, userData: rawptr) -> CF.OSStatus
+UnitAddPropertyListenerProc :: proc "c" ( self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc, userData: rawptr ) -> CF.OSStatus
 
 /// AudioUnitRemovePropertyListenerProc
-UnitRemovePropertyListenerProc :: proc "c" (self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc) -> CF.OSStatus
+UnitRemovePropertyListenerProc :: proc "c" ( self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc ) -> CF.OSStatus
 
 /// AudioUnitRemovePropertyListenerWithUserDataProc
-UnitRemovePropertyListenerWithUserDataProc :: proc "c" (self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc, userData: rawptr) -> CF.OSStatus
+UnitRemovePropertyListenerWithUserDataProc :: proc "c" ( self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc, userData: rawptr ) -> CF.OSStatus
 
 /// AudioUnitAddRenderNotifyProc
-UnitAddRenderNotifyProc :: proc "c" (self: rawptr, _proc: AURenderCallback, userData: rawptr) -> CF.OSStatus
+UnitAddRenderNotifyProc :: proc "c" ( self: rawptr, _proc: AURenderCallback, userData: rawptr ) -> CF.OSStatus
 
 /// AudioUnitRemoveRenderNotifyProc
-UnitRemoveRenderNotifyProc :: proc "c" (self: rawptr, _proc: AURenderCallback, userData: rawptr) -> CF.OSStatus
+UnitRemoveRenderNotifyProc :: proc "c" ( self: rawptr, _proc: AURenderCallback, userData: rawptr ) -> CF.OSStatus
 
 /// AudioUnitScheduleParametersProc
-UnitScheduleParametersProc :: proc "c" (self: rawptr, events: ^UnitParameterEvent, numEvents: CF.UInt32) -> CF.OSStatus
+UnitScheduleParametersProc :: proc "c" ( self: rawptr, events: ^UnitParameterEvent, numEvents: CF.UInt32 ) -> CF.OSStatus
 
 /// AudioUnitResetProc
-UnitResetProc :: proc "c" (self: rawptr, inScope: UnitScope, inElement: UnitElement) -> CF.OSStatus
+UnitResetProc :: proc "c" ( self: rawptr, inScope: UnitScope, inElement: UnitElement ) -> CF.OSStatus
 
 /// AudioUnitComplexRenderProc
-UnitComplexRenderProc :: proc "c" (self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inOutputBusNumber: CF.UInt32, inNumberOfPackets: CF.UInt32, outNumberOfPackets: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, ioData: ^CA.BufferList, outMetadata: rawptr, outMetadataByteSize: ^CF.UInt32) -> CF.OSStatus
+UnitComplexRenderProc :: proc "c" ( self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inOutputBusNumber: CF.UInt32, inNumberOfPackets: CF.UInt32, outNumberOfPackets: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, ioData: ^CA.BufferList, outMetadata: rawptr, outMetadataByteSize: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioUnitProcessProc
-UnitProcessProc :: proc "c" (self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inNumberFrames: CF.UInt32, ioData: ^CA.BufferList) -> CF.OSStatus
+UnitProcessProc :: proc "c" ( self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inNumberFrames: CF.UInt32, ioData: ^CA.BufferList ) -> CF.OSStatus
 
 /// AudioUnitProcessMultipleProc
-UnitProcessMultipleProc :: proc "c" (self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inNumberFrames: CF.UInt32, inNumberInputBufferLists: CF.UInt32, inInputBufferLists: ^^CA.BufferList, inNumberOutputBufferLists: CF.UInt32, ioOutputBufferLists: ^^CA.BufferList) -> CF.OSStatus
+UnitProcessMultipleProc :: proc "c" ( self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inNumberFrames: CF.UInt32, inNumberInputBufferLists: CF.UInt32, inInputBufferLists: ^^CA.BufferList, inNumberOutputBufferLists: CF.UInt32, ioOutputBufferLists: ^^CA.BufferList ) -> CF.OSStatus
 
 /// AudioUnitGetParameterProc
-UnitGetParameterProc :: proc "c" (inComponentStorage: rawptr, inID: UnitParameterID, inScope: UnitScope, inElement: UnitElement, outValue: ^UnitParameterValue) -> CF.OSStatus
+UnitGetParameterProc :: proc "c" ( inComponentStorage: rawptr, inID: UnitParameterID, inScope: UnitScope, inElement: UnitElement, outValue: ^UnitParameterValue ) -> CF.OSStatus
 
 /// AudioUnitSetParameterProc
-UnitSetParameterProc :: proc "c" (inComponentStorage: rawptr, inID: UnitParameterID, inScope: UnitScope, inElement: UnitElement, inValue: UnitParameterValue, inBufferOffsetInFrames: CF.UInt32) -> CF.OSStatus
+UnitSetParameterProc :: proc "c" ( inComponentStorage: rawptr, inID: UnitParameterID, inScope: UnitScope, inElement: UnitElement, inValue: UnitParameterValue, inBufferOffsetInFrames: CF.UInt32 ) -> CF.OSStatus
 
 /// AudioUnitRenderProc
-UnitRenderProc :: proc "c" (inComponentStorage: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inOutputBusNumber: CF.UInt32, inNumberFrames: CF.UInt32, ioData: ^CA.BufferList) -> CF.OSStatus
+UnitRenderProc :: proc "c" ( inComponentStorage: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^CA.TimeStamp, inOutputBusNumber: CF.UInt32, inNumberFrames: CF.UInt32, ioData: ^CA.BufferList ) -> CF.OSStatus
 
 /// AUMIDIOutputCallback
-AUMIDIOutputCallback :: proc "c" (userData: rawptr, timeStamp: ^CA.TimeStamp, midiOutNum: CF.UInt32, pktlist: ^MIDIPacketList) -> CF.OSStatus
+AUMIDIOutputCallback :: proc "c" ( userData: rawptr, timeStamp: ^CA.TimeStamp, midiOutNum: CF.UInt32, pktlist: ^MIDIPacketList ) -> CF.OSStatus
 
 /// AURenderContextObserver
-AURenderContextObserver :: ^Objc_Block(proc "c" (_context: ^UnitRenderContext))
+AURenderContextObserver :: ^Objc_Block(proc "c" ( _context: ^UnitRenderContext ))
 
 /// AUEventSampleTime
 AUEventSampleTime :: cffi.int64_t
 
 /// AUMIDIEventListBlock
-AUMIDIEventListBlock :: ^Objc_Block(proc "c" (eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, eventList: ^MIDIEventList) -> CF.OSStatus)
+AUMIDIEventListBlock :: ^Objc_Block(proc "c" ( eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, eventList: ^MIDIEventList ) -> CF.OSStatus)
 
 /// AudioUnitParameterIDName
 UnitParameterIDName :: UnitParameterNameInfo
 
 /// AudioUnitRemoteControlEventListener
-UnitRemoteControlEventListener :: ^Objc_Block(proc "c" (event: UnitRemoteControlEvent))
+UnitRemoteControlEventListener :: ^Objc_Block(proc "c" ( event: UnitRemoteControlEvent ))
 
 /// AUVoiceIOMutedSpeechActivityEventListener
-AUVoiceIOMutedSpeechActivityEventListener :: ^Objc_Block(proc "c" (event: AUVoiceIOSpeechActivityEvent))
+AUVoiceIOMutedSpeechActivityEventListener :: ^Objc_Block(proc "c" ( event: AUVoiceIOSpeechActivityEvent ))
 
 /// MIDIDataChunkPtr
 MIDIDataChunkPtr :: ^MIDIDataChunk
@@ -1971,13 +1985,13 @@ AUValue :: cffi.float
 AUParameterAddress :: cffi.uint64_t
 
 /// AUParameterObserver
-AUParameterObserver :: ^Objc_Block(proc "c" (address: AUParameterAddress, value: AUValue))
+AUParameterObserver :: ^Objc_Block(proc "c" ( address: AUParameterAddress, value: AUValue ))
 
 /// AUParameterRecordingObserver
-AUParameterRecordingObserver :: ^Objc_Block(proc "c" (numberEvents: NS.Integer, events: ^AURecordedParameterEvent))
+AUParameterRecordingObserver :: ^Objc_Block(proc "c" ( numberEvents: NS.Integer, events: ^AURecordedParameterEvent ))
 
 /// AUParameterAutomationObserver
-AUParameterAutomationObserver :: ^Objc_Block(proc "c" (numberEvents: NS.Integer, events: ^AUParameterAutomationEvent))
+AUParameterAutomationObserver :: ^Objc_Block(proc "c" ( numberEvents: NS.Integer, events: ^AUParameterAutomationEvent ))
 
 /// AUParameterObserverToken
 AUParameterObserverToken :: rawptr
@@ -2004,25 +2018,25 @@ MIDITimeStamp :: CF.UInt64
 MIDIUniqueID :: CF.SInt32
 
 /// MIDINotifyProc
-MIDINotifyProc :: proc "c" (message: ^MIDINotification, refCon: rawptr)
+MIDINotifyProc :: proc "c" ( message: ^MIDINotification, refCon: rawptr )
 
 /// MIDINotifyBlock
-MIDINotifyBlock :: ^Objc_Block(proc "c" (message: ^MIDINotification))
+MIDINotifyBlock :: ^Objc_Block(proc "c" ( message: ^MIDINotification ))
 
 /// MIDIReceiveBlock
-MIDIReceiveBlock :: ^Objc_Block(proc "c" (evtlist: ^MIDIEventList, srcConnRefCon: rawptr))
+MIDIReceiveBlock :: ^Objc_Block(proc "c" ( evtlist: ^MIDIEventList, srcConnRefCon: rawptr ))
 
 /// MIDIReadProc
-MIDIReadProc :: proc "c" (pktlist: ^MIDIPacketList, readProcRefCon: rawptr, srcConnRefCon: rawptr)
+MIDIReadProc :: proc "c" ( pktlist: ^MIDIPacketList, readProcRefCon: rawptr, srcConnRefCon: rawptr )
 
 /// MIDIReadBlock
-MIDIReadBlock :: ^Objc_Block(proc "c" (pktlist: ^MIDIPacketList, srcConnRefCon: rawptr))
+MIDIReadBlock :: ^Objc_Block(proc "c" ( pktlist: ^MIDIPacketList, srcConnRefCon: rawptr ))
 
 /// MIDICompletionProc
-MIDICompletionProc :: proc "c" (request: ^MIDISysexSendRequest)
+MIDICompletionProc :: proc "c" ( request: ^MIDISysexSendRequest )
 
 /// MIDICompletionProcUMP
-MIDICompletionProcUMP :: proc "c" (request: ^MIDISysexSendRequestUMP)
+MIDICompletionProcUMP :: proc "c" ( request: ^MIDISysexSendRequestUMP )
 
 /// AUAudioObjectID
 AUAudioObjectID :: CF.UInt32
@@ -2040,61 +2054,61 @@ AUAudioFrameCount :: cffi.uint32_t
 AUAudioChannelCount :: cffi.uint32_t
 
 /// AURenderPullInputBlock
-AURenderPullInputBlock :: ^Objc_Block(proc "c" (actionFlags: ^UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, inputBusNumber: NS.Integer, inputData: ^CA.BufferList) -> AUAudioUnitStatus)
+AURenderPullInputBlock :: ^Objc_Block(proc "c" ( actionFlags: ^UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, inputBusNumber: NS.Integer, inputData: ^CA.BufferList ) -> AUAudioUnitStatus)
 
 /// AURenderBlock
-AURenderBlock :: ^Objc_Block(proc "c" (actionFlags: ^UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NS.Integer, outputData: ^CA.BufferList, pullInputBlock: AURenderPullInputBlock) -> AUAudioUnitStatus)
+AURenderBlock :: ^Objc_Block(proc "c" ( actionFlags: ^UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NS.Integer, outputData: ^CA.BufferList, pullInputBlock: AURenderPullInputBlock ) -> AUAudioUnitStatus)
 
 /// AURenderObserver
-AURenderObserver :: ^Objc_Block(proc "c" (actionFlags: UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NS.Integer))
+AURenderObserver :: ^Objc_Block(proc "c" ( actionFlags: UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NS.Integer ))
 
 /// AUScheduleParameterBlock
-AUScheduleParameterBlock :: ^Objc_Block(proc "c" (eventSampleTime: AUEventSampleTime, rampDurationSampleFrames: AUAudioFrameCount, parameterAddress: AUParameterAddress, value: AUValue))
+AUScheduleParameterBlock :: ^Objc_Block(proc "c" ( eventSampleTime: AUEventSampleTime, rampDurationSampleFrames: AUAudioFrameCount, parameterAddress: AUParameterAddress, value: AUValue ))
 
 /// AUScheduleMIDIEventBlock
-AUScheduleMIDIEventBlock :: ^Objc_Block(proc "c" (eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, length: NS.Integer, midiBytes: ^cffi.uint8_t))
+AUScheduleMIDIEventBlock :: ^Objc_Block(proc "c" ( eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, length: NS.Integer, midiBytes: ^cffi.uint8_t ))
 
 /// AUMIDIOutputEventBlock
-AUMIDIOutputEventBlock :: ^Objc_Block(proc "c" (eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, length: NS.Integer, midiBytes: ^cffi.uint8_t) -> CF.OSStatus)
+AUMIDIOutputEventBlock :: ^Objc_Block(proc "c" ( eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, length: NS.Integer, midiBytes: ^cffi.uint8_t ) -> CF.OSStatus)
 
 /// AUHostMusicalContextBlock
-AUHostMusicalContextBlock :: ^Objc_Block(proc "c" (currentTempo: ^cffi.double, timeSignatureNumerator: ^cffi.double, timeSignatureDenominator: ^NS.Integer, currentBeatPosition: ^cffi.double, sampleOffsetToNextBeat: ^NS.Integer, currentMeasureDownbeatPosition: ^cffi.double) -> bool)
+AUHostMusicalContextBlock :: ^Objc_Block(proc "c" ( currentTempo: ^cffi.double, timeSignatureNumerator: ^cffi.double, timeSignatureDenominator: ^NS.Integer, currentBeatPosition: ^cffi.double, sampleOffsetToNextBeat: ^NS.Integer, currentMeasureDownbeatPosition: ^cffi.double ) -> bool)
 
 /// AUMIDICIProfileChangedBlock
-AUMIDICIProfileChangedBlock :: ^Objc_Block(proc "c" (cable: cffi.uint8_t, channel: MIDIChannelNumber, profile: ^MIDICIProfile, enabled: bool))
+AUMIDICIProfileChangedBlock :: ^Objc_Block(proc "c" ( cable: cffi.uint8_t, channel: MIDIChannelNumber, profile: ^MIDICIProfile, enabled: bool ))
 
 /// AUHostTransportStateBlock
-AUHostTransportStateBlock :: ^Objc_Block(proc "c" (transportStateFlags: ^AUHostTransportStateFlags, currentSamplePosition: ^cffi.double, cycleStartBeatPosition: ^cffi.double, cycleEndBeatPosition: ^cffi.double) -> bool)
+AUHostTransportStateBlock :: ^Objc_Block(proc "c" ( transportStateFlags: ^AUHostTransportStateFlags, currentSamplePosition: ^cffi.double, cycleStartBeatPosition: ^cffi.double, cycleEndBeatPosition: ^cffi.double ) -> bool)
 
 /// AUInputHandler
-AUInputHandler :: ^Objc_Block(proc "c" (actionFlags: ^UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, inputBusNumber: NS.Integer))
+AUInputHandler :: ^Objc_Block(proc "c" ( actionFlags: ^UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, inputBusNumber: NS.Integer ))
 
 /// CallHostBlock
-CallHostBlock :: ^Objc_Block(proc "c" (message: ^NS.Dictionary) -> ^NS.Dictionary)
+CallHostBlock :: ^Objc_Block(proc "c" ( message: ^NS.Dictionary ) -> ^NS.Dictionary)
 
 /// AUInternalRenderBlock
-AUInternalRenderBlock :: ^Objc_Block(proc "c" (actionFlags: ^UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NS.Integer, outputData: ^CA.BufferList, realtimeEventListHead: ^AURenderEvent, pullInputBlock: AURenderPullInputBlock) -> AUAudioUnitStatus)
+AUInternalRenderBlock :: ^Objc_Block(proc "c" ( actionFlags: ^UnitRenderActionFlags, timestamp: ^CA.TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NS.Integer, outputData: ^CA.BufferList, realtimeEventListHead: ^AURenderEvent, pullInputBlock: AURenderPullInputBlock ) -> AUAudioUnitStatus)
 
 /// AUImplementorValueObserver
-AUImplementorValueObserver :: ^Objc_Block(proc "c" (param: ^AUParameter, value: AUValue))
+AUImplementorValueObserver :: ^Objc_Block(proc "c" ( param: ^AUParameter, value: AUValue ))
 
 /// AUImplementorValueProvider
-AUImplementorValueProvider :: ^Objc_Block(proc "c" (param: ^AUParameter) -> AUValue)
+AUImplementorValueProvider :: ^Objc_Block(proc "c" ( param: ^AUParameter ) -> AUValue)
 
 /// AUImplementorStringFromValueCallback
-AUImplementorStringFromValueCallback :: ^Objc_Block(proc "c" (param: ^AUParameter, value: ^AUValue) -> ^NS.String)
+AUImplementorStringFromValueCallback :: ^Objc_Block(proc "c" ( param: ^AUParameter, value: ^AUValue ) -> ^NS.String)
 
 /// AUImplementorValueFromStringCallback
-AUImplementorValueFromStringCallback :: ^Objc_Block(proc "c" (param: ^AUParameter, string: ^NS.String) -> AUValue)
+AUImplementorValueFromStringCallback :: ^Objc_Block(proc "c" ( param: ^AUParameter, string: ^NS.String ) -> AUValue)
 
 /// AUImplementorDisplayNameWithLengthCallback
-AUImplementorDisplayNameWithLengthCallback :: ^Objc_Block(proc "c" (node: ^AUParameterNode, desiredLength: NS.Integer) -> ^NS.String)
+AUImplementorDisplayNameWithLengthCallback :: ^Objc_Block(proc "c" ( node: ^AUParameterNode, desiredLength: NS.Integer ) -> ^NS.String)
 
 /// AudioOutputUnitStartProc
-OutputUnitStartProc :: proc "c" (self: rawptr) -> CF.OSStatus
+OutputUnitStartProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
 
 /// AudioOutputUnitStopProc
-OutputUnitStopProc :: proc "c" (self: rawptr) -> CF.OSStatus
+OutputUnitStopProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
 
 /// AUGraph
 AUGraph :: ^OpaqueAUGraph
@@ -2112,13 +2126,13 @@ ConverterRef :: ^OpaqueAudioConverter
 ConverterPropertyID :: CF.UInt32
 
 /// AudioConverterComplexInputDataProc
-ConverterComplexInputDataProc :: proc "c" (inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^CA.BufferList, outDataPacketDescription: ^^CA.StreamPacketDescription, inUserData: rawptr) -> CF.OSStatus
+ConverterComplexInputDataProc :: proc "c" ( inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^CA.BufferList, outDataPacketDescription: ^^CA.StreamPacketDescription, inUserData: rawptr ) -> CF.OSStatus
 
 /// AudioConverterComplexInputDataProcRealtimeSafe
-ConverterComplexInputDataProcRealtimeSafe :: proc "c" (inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^CA.BufferList, outDataPacketDescription: ^^CA.StreamPacketDescription, inUserData: rawptr) -> CF.OSStatus
+ConverterComplexInputDataProcRealtimeSafe :: proc "c" ( inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^CA.BufferList, outDataPacketDescription: ^^CA.StreamPacketDescription, inUserData: rawptr ) -> CF.OSStatus
 
 /// AudioConverterInputDataProc
-ConverterInputDataProc :: proc "c" (inAudioConverter: ConverterRef, ioDataSize: ^CF.UInt32, outData: ^rawptr, inUserData: rawptr) -> CF.OSStatus
+ConverterInputDataProc :: proc "c" ( inAudioConverter: ConverterRef, ioDataSize: ^CF.UInt32, outData: ^rawptr, inUserData: rawptr ) -> CF.OSStatus
 
 /// AudioFileTypeID
 FileTypeID :: CF.UInt32
@@ -2130,16 +2144,16 @@ FileID :: ^OpaqueAudioFileID
 FilePropertyID :: CF.UInt32
 
 /// AudioFile_ReadProc
-File_ReadProc :: proc "c" (inClientData: rawptr, inPosition: CF.SInt64, requestCount: CF.UInt32, buffer: rawptr, actualCount: ^CF.UInt32) -> CF.OSStatus
+File_ReadProc :: proc "c" ( inClientData: rawptr, inPosition: CF.SInt64, requestCount: CF.UInt32, buffer: rawptr, actualCount: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFile_WriteProc
-File_WriteProc :: proc "c" (inClientData: rawptr, inPosition: CF.SInt64, requestCount: CF.UInt32, buffer: rawptr, actualCount: ^CF.UInt32) -> CF.OSStatus
+File_WriteProc :: proc "c" ( inClientData: rawptr, inPosition: CF.SInt64, requestCount: CF.UInt32, buffer: rawptr, actualCount: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFile_GetSizeProc
-File_GetSizeProc :: proc "c" (inClientData: rawptr) -> CF.SInt64
+File_GetSizeProc :: proc "c" ( inClientData: rawptr ) -> CF.SInt64
 
 /// AudioFile_SetSizeProc
-File_SetSizeProc :: proc "c" (inClientData: rawptr, inSize: CF.SInt64) -> CF.OSStatus
+File_SetSizeProc :: proc "c" ( inClientData: rawptr, inSize: CF.SInt64 ) -> CF.OSStatus
 
 /// AudioFileStreamPropertyID
 FileStreamPropertyID :: CF.UInt32
@@ -2148,10 +2162,10 @@ FileStreamPropertyID :: CF.UInt32
 FileStreamID :: ^OpaqueAudioFileStreamID
 
 /// AudioFileStream_PropertyListenerProc
-FileStream_PropertyListenerProc :: proc "c" (inClientData: rawptr, inAudioFileStream: FileStreamID, inPropertyID: FileStreamPropertyID, ioFlags: ^FileStreamPropertyFlags)
+FileStream_PropertyListenerProc :: proc "c" ( inClientData: rawptr, inAudioFileStream: FileStreamID, inPropertyID: FileStreamPropertyID, ioFlags: ^FileStreamPropertyFlags )
 
 /// AudioFileStream_PacketsProc
-FileStream_PacketsProc :: proc "c" (inClientData: rawptr, inNumberBytes: CF.UInt32, inNumberPackets: CF.UInt32, inInputData: rawptr, inPacketDescriptions: ^CA.StreamPacketDescription)
+FileStream_PacketsProc :: proc "c" ( inClientData: rawptr, inNumberBytes: CF.UInt32, inNumberPackets: CF.UInt32, inInputData: rawptr, inPacketDescriptions: ^CA.StreamPacketDescription )
 
 /// AudioFormatPropertyID
 FormatPropertyID :: CF.UInt32
@@ -2178,22 +2192,22 @@ QueueBufferRef :: ^QueueBuffer
 QueueProcessingTapRef :: ^OpaqueAudioQueueProcessingTap
 
 /// AudioQueueOutputCallbackBlock
-QueueOutputCallbackBlock :: ^Objc_Block(proc "c" (inAQ: QueueRef, inBuffer: QueueBufferRef))
+QueueOutputCallbackBlock :: ^Objc_Block(proc "c" ( inAQ: QueueRef, inBuffer: QueueBufferRef ))
 
 /// AudioQueueInputCallbackBlock
-QueueInputCallbackBlock :: ^Objc_Block(proc "c" (inAQ: QueueRef, inBuffer: QueueBufferRef, inStartTime: ^CA.TimeStamp, inNumberPacketDescriptions: CF.UInt32, inPacketDescs: ^CA.StreamPacketDescription))
+QueueInputCallbackBlock :: ^Objc_Block(proc "c" ( inAQ: QueueRef, inBuffer: QueueBufferRef, inStartTime: ^CA.TimeStamp, inNumberPacketDescriptions: CF.UInt32, inPacketDescs: ^CA.StreamPacketDescription ))
 
 /// AudioQueueOutputCallback
-QueueOutputCallback :: proc "c" (inUserData: rawptr, inAQ: QueueRef, inBuffer: QueueBufferRef)
+QueueOutputCallback :: proc "c" ( inUserData: rawptr, inAQ: QueueRef, inBuffer: QueueBufferRef )
 
 /// AudioQueueInputCallback
-QueueInputCallback :: proc "c" (inUserData: rawptr, inAQ: QueueRef, inBuffer: QueueBufferRef, inStartTime: ^CA.TimeStamp, inNumberPacketDescriptions: CF.UInt32, inPacketDescs: ^CA.StreamPacketDescription)
+QueueInputCallback :: proc "c" ( inUserData: rawptr, inAQ: QueueRef, inBuffer: QueueBufferRef, inStartTime: ^CA.TimeStamp, inNumberPacketDescriptions: CF.UInt32, inPacketDescs: ^CA.StreamPacketDescription )
 
 /// AudioQueuePropertyListenerProc
-QueuePropertyListenerProc :: proc "c" (inUserData: rawptr, inAQ: QueueRef, inID: QueuePropertyID)
+QueuePropertyListenerProc :: proc "c" ( inUserData: rawptr, inAQ: QueueRef, inID: QueuePropertyID )
 
 /// AudioQueueProcessingTapCallback
-QueueProcessingTapCallback :: proc "c" (inClientData: rawptr, inAQTap: QueueProcessingTapRef, inNumberFrames: CF.UInt32, ioTimeStamp: ^CA.TimeStamp, ioFlags: ^QueueProcessingTapFlags, outNumberFrames: ^CF.UInt32, ioData: ^CA.BufferList)
+QueueProcessingTapCallback :: proc "c" ( inClientData: rawptr, inAQTap: QueueProcessingTapRef, inNumberFrames: CF.UInt32, ioTimeStamp: ^CA.TimeStamp, ioFlags: ^QueueProcessingTapFlags, outNumberFrames: ^CF.UInt32, ioData: ^CA.BufferList )
 
 /// SystemSoundID
 SystemSoundID :: CF.UInt32
@@ -2202,7 +2216,7 @@ SystemSoundID :: CF.UInt32
 ServicesPropertyID :: CF.UInt32
 
 /// AudioServicesSystemSoundCompletionProc
-ServicesSystemSoundCompletionProc :: proc "c" (ssID: SystemSoundID, clientData: rawptr)
+ServicesSystemSoundCompletionProc :: proc "c" ( ssID: SystemSoundID, clientData: rawptr )
 
 /// AUParameterListenerRef
 AUParameterListenerRef :: ^AUListenerBase
@@ -2211,16 +2225,16 @@ AUParameterListenerRef :: ^AUListenerBase
 AUEventListenerRef :: AUParameterListenerRef
 
 /// AUParameterListenerBlock
-AUParameterListenerBlock :: ^Objc_Block(proc "c" (inObject: rawptr, inParameter: ^UnitParameter, inValue: UnitParameterValue))
+AUParameterListenerBlock :: ^Objc_Block(proc "c" ( inObject: rawptr, inParameter: ^UnitParameter, inValue: UnitParameterValue ))
 
 /// AUEventListenerBlock
-AUEventListenerBlock :: ^Objc_Block(proc "c" (inObject: rawptr, inEvent: ^UnitEvent, inEventHostTime: CF.UInt64, inParameterValue: UnitParameterValue))
+AUEventListenerBlock :: ^Objc_Block(proc "c" ( inObject: rawptr, inEvent: ^UnitEvent, inEventHostTime: CF.UInt64, inParameterValue: UnitParameterValue ))
 
 /// AUParameterListenerProc
-AUParameterListenerProc :: proc "c" (inUserData: rawptr, inObject: rawptr, inParameter: ^UnitParameter, inValue: UnitParameterValue)
+AUParameterListenerProc :: proc "c" ( inUserData: rawptr, inObject: rawptr, inParameter: ^UnitParameter, inValue: UnitParameterValue )
 
 /// AUEventListenerProc
-AUEventListenerProc :: proc "c" (inUserData: rawptr, inObject: rawptr, inEvent: ^UnitEvent, inEventHostTime: CF.UInt64, inParameterValue: UnitParameterValue)
+AUEventListenerProc :: proc "c" ( inUserData: rawptr, inObject: rawptr, inEvent: ^UnitEvent, inEventHostTime: CF.UInt64, inParameterValue: UnitParameterValue )
 
 /// MusicSequence
 MusicSequence :: ^OpaqueMusicSequence
@@ -2232,115 +2246,136 @@ FileComponent :: ComponentInstance
 FileComponentPropertyID :: CF.UInt32
 
 /// ReadBytesFDF
-ReadBytesFDF :: proc "c" (inComponentStorage: rawptr, inUseCache: CF.Boolean, inStartingByte: CF.SInt64, ioNumBytes: ^CF.UInt32, outBuffer: rawptr) -> CF.OSStatus
+ReadBytesFDF :: proc "c" ( inComponentStorage: rawptr, inUseCache: CF.Boolean, inStartingByte: CF.SInt64, ioNumBytes: ^CF.UInt32, outBuffer: rawptr ) -> CF.OSStatus
 
 /// WriteBytesFDF
-WriteBytesFDF :: proc "c" (inComponentStorage: rawptr, inUseCache: CF.Boolean, inStartingByte: CF.SInt64, ioNumBytes: ^CF.UInt32, inBuffer: rawptr) -> CF.OSStatus
+WriteBytesFDF :: proc "c" ( inComponentStorage: rawptr, inUseCache: CF.Boolean, inStartingByte: CF.SInt64, ioNumBytes: ^CF.UInt32, inBuffer: rawptr ) -> CF.OSStatus
 
 /// ReadPacketsFDF
-ReadPacketsFDF :: proc "c" (inComponentStorage: rawptr, inUseCache: CF.Boolean, outNumBytes: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, outBuffer: rawptr) -> CF.OSStatus
+ReadPacketsFDF :: proc "c" ( inComponentStorage: rawptr, inUseCache: CF.Boolean, outNumBytes: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, outBuffer: rawptr ) -> CF.OSStatus
 
 /// ReadPacketDataFDF
-ReadPacketDataFDF :: proc "c" (inComponentStorage: rawptr, inUseCache: CF.Boolean, ioNumBytes: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, outBuffer: rawptr) -> CF.OSStatus
+ReadPacketDataFDF :: proc "c" ( inComponentStorage: rawptr, inUseCache: CF.Boolean, ioNumBytes: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, outBuffer: rawptr ) -> CF.OSStatus
 
 /// WritePacketsFDF
-WritePacketsFDF :: proc "c" (inComponentStorage: rawptr, inUseCache: CF.Boolean, inNumBytes: CF.UInt32, inPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, inBuffer: rawptr) -> CF.OSStatus
+WritePacketsFDF :: proc "c" ( inComponentStorage: rawptr, inUseCache: CF.Boolean, inNumBytes: CF.UInt32, inPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, inBuffer: rawptr ) -> CF.OSStatus
 
 /// GetPropertyInfoFDF
-GetPropertyInfoFDF :: proc "c" (inComponentStorage: rawptr, inPropertyID: FilePropertyID, outDataSize: ^CF.UInt32, isWritable: ^CF.UInt32) -> CF.OSStatus
+GetPropertyInfoFDF :: proc "c" ( inComponentStorage: rawptr, inPropertyID: FilePropertyID, outDataSize: ^CF.UInt32, isWritable: ^CF.UInt32 ) -> CF.OSStatus
 
 /// GetPropertyFDF
-GetPropertyFDF :: proc "c" (inComponentStorage: rawptr, inPropertyID: FilePropertyID, ioDataSize: ^CF.UInt32, ioPropertyData: rawptr) -> CF.OSStatus
+GetPropertyFDF :: proc "c" ( inComponentStorage: rawptr, inPropertyID: FilePropertyID, ioDataSize: ^CF.UInt32, ioPropertyData: rawptr ) -> CF.OSStatus
 
 /// SetPropertyFDF
-SetPropertyFDF :: proc "c" (inComponentStorage: rawptr, inPropertyID: FilePropertyID, inDataSize: CF.UInt32, inPropertyData: rawptr) -> CF.OSStatus
+SetPropertyFDF :: proc "c" ( inComponentStorage: rawptr, inPropertyID: FilePropertyID, inDataSize: CF.UInt32, inPropertyData: rawptr ) -> CF.OSStatus
 
 /// CountUserDataFDF
-CountUserDataFDF :: proc "c" (inComponentStorage: rawptr, inUserDataID: CF.UInt32, outNumberItems: ^CF.UInt32) -> CF.OSStatus
+CountUserDataFDF :: proc "c" ( inComponentStorage: rawptr, inUserDataID: CF.UInt32, outNumberItems: ^CF.UInt32 ) -> CF.OSStatus
 
 /// GetUserDataSizeFDF
-GetUserDataSizeFDF :: proc "c" (inComponentStorage: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, outDataSize: ^CF.UInt32) -> CF.OSStatus
+GetUserDataSizeFDF :: proc "c" ( inComponentStorage: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, outDataSize: ^CF.UInt32 ) -> CF.OSStatus
 
 /// GetUserDataFDF
-GetUserDataFDF :: proc "c" (inComponentStorage: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, ioUserDataSize: ^CF.UInt32, outUserData: rawptr) -> CF.OSStatus
+GetUserDataFDF :: proc "c" ( inComponentStorage: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, ioUserDataSize: ^CF.UInt32, outUserData: rawptr ) -> CF.OSStatus
 
 /// SetUserDataFDF
-SetUserDataFDF :: proc "c" (inComponentStorage: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, inUserDataSize: CF.UInt32, inUserData: rawptr) -> CF.OSStatus
+SetUserDataFDF :: proc "c" ( inComponentStorage: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, inUserDataSize: CF.UInt32, inUserData: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentCreateURLProc
-FileComponentCreateURLProc :: proc "c" (self: rawptr, inFileRef: CF.URLRef, inFormat: ^CA.StreamBasicDescription, inFlags: CF.UInt32) -> CF.OSStatus
+FileComponentCreateURLProc :: proc "c" ( self: rawptr, inFileRef: CF.URLRef, inFormat: ^CA.StreamBasicDescription, inFlags: CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFileComponentOpenURLProc
-FileComponentOpenURLProc :: proc "c" (self: rawptr, inFileRef: CF.URLRef, inPermissions: CF.SInt8, inFileDescriptor: cffi.int) -> CF.OSStatus
+FileComponentOpenURLProc :: proc "c" ( self: rawptr, inFileRef: CF.URLRef, inPermissions: CF.SInt8, inFileDescriptor: cffi.int ) -> CF.OSStatus
 
 /// AudioFileComponentOpenWithCallbacksProc
-FileComponentOpenWithCallbacksProc :: proc "c" (self: rawptr, inClientData: rawptr, inReadFunc: File_ReadProc, inWriteFunc: File_WriteProc, inGetSizeFunc: File_GetSizeProc, inSetSizeFunc: File_SetSizeProc) -> CF.OSStatus
+FileComponentOpenWithCallbacksProc :: proc "c" ( self: rawptr, inClientData: rawptr, inReadFunc: File_ReadProc, inWriteFunc: File_WriteProc, inGetSizeFunc: File_GetSizeProc, inSetSizeFunc: File_SetSizeProc ) -> CF.OSStatus
 
 /// AudioFileComponentInitializeWithCallbacksProc
-FileComponentInitializeWithCallbacksProc :: proc "c" (self: rawptr, inClientData: rawptr, inReadFunc: File_ReadProc, inWriteFunc: File_WriteProc, inGetSizeFunc: File_GetSizeProc, inSetSizeFunc: File_SetSizeProc, inFileType: CF.UInt32, inFormat: ^CA.StreamBasicDescription, inFlags: CF.UInt32) -> CF.OSStatus
+FileComponentInitializeWithCallbacksProc :: proc "c" ( self: rawptr, inClientData: rawptr, inReadFunc: File_ReadProc, inWriteFunc: File_WriteProc, inGetSizeFunc: File_GetSizeProc, inSetSizeFunc: File_SetSizeProc, inFileType: CF.UInt32, inFormat: ^CA.StreamBasicDescription, inFlags: CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFileComponentCloseProc
-FileComponentCloseProc :: proc "c" (self: rawptr) -> CF.OSStatus
+FileComponentCloseProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentOptimizeProc
-FileComponentOptimizeProc :: proc "c" (self: rawptr) -> CF.OSStatus
+FileComponentOptimizeProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentReadBytesProc
-FileComponentReadBytesProc :: proc "c" (self: rawptr, inUseCache: CF.Boolean, inStartingByte: CF.SInt64, ioNumBytes: ^CF.UInt32, outBuffer: rawptr) -> CF.OSStatus
+FileComponentReadBytesProc :: proc "c" ( self: rawptr, inUseCache: CF.Boolean, inStartingByte: CF.SInt64, ioNumBytes: ^CF.UInt32, outBuffer: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentWriteBytesProc
-FileComponentWriteBytesProc :: proc "c" (self: rawptr, inUseCache: CF.Boolean, inStartingByte: CF.SInt64, ioNumBytes: ^CF.UInt32, inBuffer: rawptr) -> CF.OSStatus
+FileComponentWriteBytesProc :: proc "c" ( self: rawptr, inUseCache: CF.Boolean, inStartingByte: CF.SInt64, ioNumBytes: ^CF.UInt32, inBuffer: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentReadPacketsProc
-FileComponentReadPacketsProc :: proc "c" (self: rawptr, inUseCache: CF.Boolean, outNumBytes: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, outBuffer: rawptr) -> CF.OSStatus
+FileComponentReadPacketsProc :: proc "c" ( self: rawptr, inUseCache: CF.Boolean, outNumBytes: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, outBuffer: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentReadPacketDataProc
-FileComponentReadPacketDataProc :: proc "c" (self: rawptr, inUseCache: CF.Boolean, ioNumBytes: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, outBuffer: rawptr) -> CF.OSStatus
+FileComponentReadPacketDataProc :: proc "c" ( self: rawptr, inUseCache: CF.Boolean, ioNumBytes: ^CF.UInt32, outPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, outBuffer: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentWritePacketsProc
-FileComponentWritePacketsProc :: proc "c" (self: rawptr, inUseCache: CF.Boolean, inNumBytes: CF.UInt32, inPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, inBuffer: rawptr) -> CF.OSStatus
+FileComponentWritePacketsProc :: proc "c" ( self: rawptr, inUseCache: CF.Boolean, inNumBytes: CF.UInt32, inPacketDescriptions: ^CA.StreamPacketDescription, inStartingPacket: CF.SInt64, ioNumPackets: ^CF.UInt32, inBuffer: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentGetPropertyInfoProc
-FileComponentGetPropertyInfoProc :: proc "c" (self: rawptr, inPropertyID: FileComponentPropertyID, outPropertySize: ^CF.UInt32, outWritable: ^CF.UInt32) -> CF.OSStatus
+FileComponentGetPropertyInfoProc :: proc "c" ( self: rawptr, inPropertyID: FileComponentPropertyID, outPropertySize: ^CF.UInt32, outWritable: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFileComponentGetPropertyProc
-FileComponentGetPropertyProc :: proc "c" (self: rawptr, inPropertyID: FileComponentPropertyID, ioPropertyDataSize: ^CF.UInt32, outPropertyData: rawptr) -> CF.OSStatus
+FileComponentGetPropertyProc :: proc "c" ( self: rawptr, inPropertyID: FileComponentPropertyID, ioPropertyDataSize: ^CF.UInt32, outPropertyData: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentSetPropertyProc
-FileComponentSetPropertyProc :: proc "c" (self: rawptr, inPropertyID: FileComponentPropertyID, inPropertyDataSize: CF.UInt32, inPropertyData: rawptr) -> CF.OSStatus
+FileComponentSetPropertyProc :: proc "c" ( self: rawptr, inPropertyID: FileComponentPropertyID, inPropertyDataSize: CF.UInt32, inPropertyData: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentCountUserDataProc
-FileComponentCountUserDataProc :: proc "c" (self: rawptr, inUserDataID: CF.UInt32, outNumberItems: ^CF.UInt32) -> CF.OSStatus
+FileComponentCountUserDataProc :: proc "c" ( self: rawptr, inUserDataID: CF.UInt32, outNumberItems: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFileComponentGetUserDataSizeProc
-FileComponentGetUserDataSizeProc :: proc "c" (self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, outUserDataSize: ^CF.UInt32) -> CF.OSStatus
+FileComponentGetUserDataSizeProc :: proc "c" ( self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, outUserDataSize: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFileComponentGetUserDataSize64Proc
-FileComponentGetUserDataSize64Proc :: proc "c" (self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, outUserDataSize: ^CF.UInt64) -> CF.OSStatus
+FileComponentGetUserDataSize64Proc :: proc "c" ( self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, outUserDataSize: ^CF.UInt64 ) -> CF.OSStatus
 
 /// AudioFileComponentGetUserDataProc
-FileComponentGetUserDataProc :: proc "c" (self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, ioUserDataSize: ^CF.UInt32, outUserData: rawptr) -> CF.OSStatus
+FileComponentGetUserDataProc :: proc "c" ( self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, ioUserDataSize: ^CF.UInt32, outUserData: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentGetUserDataAtOffsetProc
-FileComponentGetUserDataAtOffsetProc :: proc "c" (self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, inOffset: CF.SInt64, ioUserDataSize: ^CF.UInt32, outUserData: rawptr) -> CF.OSStatus
+FileComponentGetUserDataAtOffsetProc :: proc "c" ( self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, inOffset: CF.SInt64, ioUserDataSize: ^CF.UInt32, outUserData: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentSetUserDataProc
-FileComponentSetUserDataProc :: proc "c" (self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, inUserDataSize: CF.UInt32, inUserData: rawptr) -> CF.OSStatus
+FileComponentSetUserDataProc :: proc "c" ( self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32, inUserDataSize: CF.UInt32, inUserData: rawptr ) -> CF.OSStatus
 
 /// AudioFileComponentRemoveUserDataProc
-FileComponentRemoveUserDataProc :: proc "c" (self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32) -> CF.OSStatus
+FileComponentRemoveUserDataProc :: proc "c" ( self: rawptr, inUserDataID: CF.UInt32, inIndex: CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFileComponentExtensionIsThisFormatProc
-FileComponentExtensionIsThisFormatProc :: proc "c" (self: rawptr, inExtension: CF.StringRef, outResult: ^CF.UInt32) -> CF.OSStatus
+FileComponentExtensionIsThisFormatProc :: proc "c" ( self: rawptr, inExtension: CF.StringRef, outResult: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFileComponentFileDataIsThisFormatProc
-FileComponentFileDataIsThisFormatProc :: proc "c" (self: rawptr, inDataByteSize: CF.UInt32, inData: rawptr, outResult: ^CF.UInt32) -> CF.OSStatus
+FileComponentFileDataIsThisFormatProc :: proc "c" ( self: rawptr, inDataByteSize: CF.UInt32, inData: rawptr, outResult: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFileComponentGetGlobalInfoSizeProc
-FileComponentGetGlobalInfoSizeProc :: proc "c" (self: rawptr, inPropertyID: FileComponentPropertyID, inSpecifierSize: CF.UInt32, inSpecifier: rawptr, outPropertySize: ^CF.UInt32) -> CF.OSStatus
+FileComponentGetGlobalInfoSizeProc :: proc "c" ( self: rawptr, inPropertyID: FileComponentPropertyID, inSpecifierSize: CF.UInt32, inSpecifier: rawptr, outPropertySize: ^CF.UInt32 ) -> CF.OSStatus
 
 /// AudioFileComponentGetGlobalInfoProc
-FileComponentGetGlobalInfoProc :: proc "c" (self: rawptr, inPropertyID: FileComponentPropertyID, inSpecifierSize: CF.UInt32, inSpecifier: rawptr, ioPropertyDataSize: ^CF.UInt32, outPropertyData: rawptr) -> CF.OSStatus
+FileComponentGetGlobalInfoProc :: proc "c" ( self: rawptr, inPropertyID: FileComponentPropertyID, inSpecifierSize: CF.UInt32, inSpecifier: rawptr, ioPropertyDataSize: ^CF.UInt32, outPropertyData: rawptr ) -> CF.OSStatus
+
+/// CAClockSMPTEFormat
+CAClockSMPTEFormat :: CA.SMPTETimeType
+
+/// CAClockRef
+CAClockRef :: ^OpaqueCAClock
+
+/// CAClockBeats
+CAClockBeats :: cffi.double
+
+/// CAClockTempo
+CAClockTempo :: cffi.double
+
+/// CAClockSamples
+CAClockSamples :: cffi.double
+
+/// CAClockSeconds
+CAClockSeconds :: cffi.double
+
+/// CAClockListenerProc
+CAClockListenerProc :: proc "c" ( userData: rawptr, message: CAClockMessage, param: rawptr )
 
 /// AudioSessionPropertyID
 SessionPropertyID :: CF.UInt32
@@ -2349,10 +2384,10 @@ SessionPropertyID :: CF.UInt32
 SessionInterruptionType :: CF.UInt32
 
 /// AudioSessionInterruptionListener
-SessionInterruptionListener :: proc "c" (inClientData: rawptr, inInterruptionState: CF.UInt32)
+SessionInterruptionListener :: proc "c" ( inClientData: rawptr, inInterruptionState: CF.UInt32 )
 
 /// AudioSessionPropertyListener
-SessionPropertyListener :: proc "c" (inClientData: rawptr, inID: SessionPropertyID, inDataSize: CF.UInt32, inData: rawptr)
+SessionPropertyListener :: proc "c" ( inClientData: rawptr, inID: SessionPropertyID, inDataSize: CF.UInt32, inData: rawptr )
 
 /// AudioComponentFlags
 ComponentFlag :: enum cffi.uint {
@@ -2766,6 +2801,74 @@ UnitEventType :: enum cffi.uint {
     kAudioUnitEvent_PropertyChange   = 3,
 }
 
+/// CAFFormatFlags
+CAFFormatFlag :: enum cffi.uint {
+    kCAFLinearPCMFormatFlagIsFloat   = 0,
+    kCAFLinearPCMFormatFlagIsLittleEndian = 1,
+}
+CAFFormatFlags :: bit_set[CAFFormatFlag; cffi.uint]
+
+/// CAFRegionFlags
+CAFRegionFlag :: enum cffi.uint {
+    kCAFRegionFlag_LoopEnable   = 0,
+    kCAFRegionFlag_PlayForward  = 1,
+    kCAFRegionFlag_PlayBackward = 2,
+}
+CAFRegionFlags :: bit_set[CAFRegionFlag; cffi.uint]
+
+/// CAClockPropertyID
+CAClockPropertyID :: enum cffi.uint {
+    kCAClockProperty_InternalTimebase = 1768846434,
+    kCAClockProperty_TimebaseSource  = 1769235059,
+    kCAClockProperty_SyncMode        = 1937337965,
+    kCAClockProperty_SyncSource      = 1937337971,
+    kCAClockProperty_SMPTEFormat     = 1936552038,
+    kCAClockProperty_SMPTEOffset     = 1936552047,
+    kCAClockProperty_MIDIClockDestinations = 1835164516,
+    kCAClockProperty_MTCDestinations = 1836344164,
+    kCAClockProperty_MTCFreewheelTime = 1836344951,
+    kCAClockProperty_TempoMap        = 1953329263,
+    kCAClockProperty_MeterTrack      = 1835365490,
+    kCAClockProperty_Name            = 1851878757,
+    kCAClockProperty_SendMIDISPP     = 1836281968,
+}
+
+/// CAClockTimebase
+CAClockTimebase :: enum cffi.uint {
+    kCAClockTimebase_HostTime        = 1752134516,
+    kCAClockTimebase_AudioDevice     = 1635083369,
+    kCAClockTimebase_AudioOutputUnit = 1635086197,
+}
+
+/// CAClockSyncMode
+CAClockSyncMode :: enum cffi.uint {
+    kCAClockSyncMode_Internal        = 1768846450,
+    kCAClockSyncMode_MIDIClockTransport = 1835232363,
+    kCAClockSyncMode_MTCTransport    = 1835889763,
+}
+
+/// CAClockMessage
+CAClockMessage :: enum cffi.uint {
+    kCAClockMessage_StartTimeSet     = 1937009005,
+    kCAClockMessage_Started          = 1937011316,
+    kCAClockMessage_Stopped          = 1937010544,
+    kCAClockMessage_Armed            = 1634889060,
+    kCAClockMessage_Disarmed         = 1684107885,
+    kCAClockMessage_PropertyChanged  = 1885562983,
+    kCAClockMessage_WrongSMPTEFormat = 1064529264,
+}
+
+/// CAClockTimeFormat
+CAClockTimeFormat :: enum cffi.uint {
+    kCAClockTimeFormat_HostTime      = 1752134516,
+    kCAClockTimeFormat_Samples       = 1935764848,
+    kCAClockTimeFormat_Beats         = 1650811252,
+    kCAClockTimeFormat_Seconds       = 1936024435,
+    kCAClockTimeFormat_SMPTESeconds  = 1936552051,
+    kCAClockTimeFormat_SMPTETime     = 1936552052,
+    kCAClockTimeFormat_AbsoluteSeconds = 1634952547,
+}
+
 /// AudioComponentDescription
 ComponentDescription :: struct #align (4) {
     componentType:         CF.OSType,
@@ -2787,9 +2890,9 @@ ComponentInstanceRecord :: struct #align (2) {
 
 /// AudioComponentPlugInInterface
 ComponentPlugInInterface :: struct #align (8) {
-    Open:     proc "c" (self: rawptr, mInstance: ComponentInstance) -> CF.OSStatus,
-    Close:    proc "c" (self: rawptr) -> CF.OSStatus,
-    Lookup:   proc "c" (selector: CF.SInt16) -> ComponentMethod,
+    Open:     proc "c" ( self: rawptr, mInstance: ComponentInstance ) -> CF.OSStatus,
+    Close:    proc "c" ( self: rawptr ) -> CF.OSStatus,
+    Lookup:   proc "c" ( selector: CF.SInt16 ) -> ComponentMethod,
     reserved: rawptr,
 }
 #assert(size_of(ComponentPlugInInterface) == 32)
@@ -3048,8 +3151,8 @@ UnitPresetMAS_Settings :: struct #align (4) {
 /// AudioOutputUnitMIDICallbacks
 OutputUnitMIDICallbacks :: struct #align (8) {
     userData:      rawptr,
-    MIDIEventProc: proc "c" (userData: rawptr, inStatus: CF.UInt32, inData1: CF.UInt32, inData2: CF.UInt32, inOffsetSampleFrame: CF.UInt32),
-    MIDISysExProc: proc "c" (userData: rawptr, inData: ^CF.UInt8, inLength: CF.UInt32),
+    MIDIEventProc: proc "c" ( userData: rawptr, inStatus: CF.UInt32, inData1: CF.UInt32, inData2: CF.UInt32, inOffsetSampleFrame: CF.UInt32 ),
+    MIDISysExProc: proc "c" ( userData: rawptr, inData: ^CF.UInt8, inLength: CF.UInt32 ),
 }
 #assert(size_of(OutputUnitMIDICallbacks) == 24)
 
@@ -3518,6 +3621,179 @@ UnitEvent :: struct #align (8) {
 }
 #assert(size_of(UnitEvent) == 32)
 
+/// CAFFileHeader
+CAFFileHeader :: struct #align (1) {
+    mFileType:    CF.UInt32,
+    mFileVersion: CF.UInt16,
+    mFileFlags:   CF.UInt16,
+}
+#assert(size_of(CAFFileHeader) == 8)
+
+/// CAFChunkHeader
+CAFChunkHeader :: struct #align (1) #max_field_align(1) {
+    mChunkType: CF.UInt32,
+    mChunkSize: CF.SInt64,
+}
+#assert(size_of(CAFChunkHeader) == 12)
+
+/// CAF_UUID_ChunkHeader
+CAF_UUID_ChunkHeader :: struct #align (1) {
+    mHeader: CAFChunkHeader,
+    mUUID:   [16]CF.UInt8,
+}
+#assert(size_of(CAF_UUID_ChunkHeader) == 28)
+
+/// CAFAudioDescription
+CAFAudioDescription :: struct #align (1) {
+    mSampleRate:       cffi.double,
+    mFormatID:         CF.UInt32,
+    mFormatFlags:      CAFFormatFlags,
+    mBytesPerPacket:   CF.UInt32,
+    mFramesPerPacket:  CF.UInt32,
+    mChannelsPerFrame: CF.UInt32,
+    mBitsPerChannel:   CF.UInt32,
+}
+#assert(size_of(CAFAudioDescription) == 32)
+
+/// CAFAudioFormatListItem
+CAFAudioFormatListItem :: struct #align (1) {
+    mFormat:           CAFAudioDescription,
+    mChannelLayoutTag: CF.UInt32,
+}
+#assert(size_of(CAFAudioFormatListItem) == 36)
+
+/// CAFPacketTableHeader
+CAFPacketTableHeader :: struct #align (1) {
+    mNumberPackets:      CF.SInt64,
+    mNumberValidFrames:  CF.SInt64,
+    mPrimingFrames:      CF.SInt32,
+    mRemainderFrames:    CF.SInt32,
+    mPacketDescriptions: [1]CF.UInt8,
+}
+#assert(size_of(CAFPacketTableHeader) == 25)
+
+/// CAFDataChunk
+CAFDataChunk :: struct #align (1) {
+    mEditCount: CF.UInt32,
+    mData:      [1]CF.UInt8,
+}
+#assert(size_of(CAFDataChunk) == 5)
+
+/// CAF_SMPTE_Time
+CAF_SMPTE_Time :: struct #align (1) {
+    mHours:                CF.SInt8,
+    mMinutes:              CF.SInt8,
+    mSeconds:              CF.SInt8,
+    mFrames:               CF.SInt8,
+    mSubFrameSampleOffset: CF.UInt32,
+}
+#assert(size_of(CAF_SMPTE_Time) == 8)
+
+/// CAFMarker
+CAFMarker :: struct #align (1) #max_field_align(1) {
+    mType:          CF.UInt32,
+    mFramePosition: cffi.double,
+    mMarkerID:      CF.UInt32,
+    mSMPTETime:     CAF_SMPTE_Time,
+    mChannel:       CF.UInt32,
+}
+#assert(size_of(CAFMarker) == 28)
+
+/// CAFMarkerChunk
+CAFMarkerChunk :: struct #align (1) {
+    mSMPTE_TimeType: CF.UInt32,
+    mNumberMarkers:  CF.UInt32,
+    mMarkers:        [1]CAFMarker,
+}
+#assert(size_of(CAFMarkerChunk) == 36)
+
+/// CAFRegion
+CAFRegion :: struct #align (1) {
+    mRegionID:      CF.UInt32,
+    mFlags:         CAFRegionFlags,
+    mNumberMarkers: CF.UInt32,
+    mMarkers:       [1]CAFMarker,
+}
+#assert(size_of(CAFRegion) == 40)
+
+/// CAFRegionChunk
+CAFRegionChunk :: struct #align (1) {
+    mSMPTE_TimeType: CF.UInt32,
+    mNumberRegions:  CF.UInt32,
+    mRegions:        [1]CAFRegion,
+}
+#assert(size_of(CAFRegionChunk) == 48)
+
+/// CAFInstrumentChunk
+CAFInstrumentChunk :: struct #align (1) {
+    mBaseNote:         cffi.float,
+    mMIDILowNote:      CF.UInt8,
+    mMIDIHighNote:     CF.UInt8,
+    mMIDILowVelocity:  CF.UInt8,
+    mMIDIHighVelocity: CF.UInt8,
+    mdBGain:           cffi.float,
+    mStartRegionID:    CF.UInt32,
+    mSustainRegionID:  CF.UInt32,
+    mReleaseRegionID:  CF.UInt32,
+    mInstrumentID:     CF.UInt32,
+}
+#assert(size_of(CAFInstrumentChunk) == 28)
+
+/// CAFStringID
+CAFStringID :: struct #align (1) #max_field_align(1) {
+    mStringID:              CF.UInt32,
+    mStringStartByteOffset: CF.SInt64,
+}
+#assert(size_of(CAFStringID) == 12)
+
+/// CAFStrings
+CAFStrings :: struct #align (1) {
+    mNumEntries: CF.UInt32,
+    mStringsIDs: [1]CAFStringID,
+}
+#assert(size_of(CAFStrings) == 16)
+
+/// CAFInfoStrings
+CAFInfoStrings :: struct #align (1) {
+    mNumEntries: CF.UInt32,
+}
+#assert(size_of(CAFInfoStrings) == 4)
+
+/// CAFPositionPeak
+CAFPositionPeak :: struct #align (1) #max_field_align(1) {
+    mValue:       cffi.float,
+    mFrameNumber: CF.UInt64,
+}
+#assert(size_of(CAFPositionPeak) == 12)
+
+/// CAFPeakChunk
+CAFPeakChunk :: struct #align (1) {
+    mEditCount: CF.UInt32,
+    mPeaks:     [1]CAFPositionPeak,
+}
+#assert(size_of(CAFPeakChunk) == 16)
+
+/// CAFOverviewSample
+CAFOverviewSample :: struct #align (1) {
+    mMinValue: CF.SInt16,
+    mMaxValue: CF.SInt16,
+}
+#assert(size_of(CAFOverviewSample) == 4)
+
+/// CAFOverviewChunk
+CAFOverviewChunk :: struct #align (1) {
+    mEditCount:             CF.UInt32,
+    mNumFramesPerOVWSample: CF.UInt32,
+    mData:                  [1]CAFOverviewSample,
+}
+#assert(size_of(CAFOverviewChunk) == 12)
+
+/// CAFUMIDChunk
+CAFUMIDChunk :: struct #align (1) {
+    mBytes: [64]CF.UInt8,
+}
+#assert(size_of(CAFUMIDChunk) == 64)
+
 /// MIDINoteMessage
 MIDINoteMessage :: struct #align (4) {
     channel:         CF.UInt8,
@@ -3563,6 +3839,16 @@ AUPresetEvent :: struct #align (8) {
 }
 #assert(size_of(AUPresetEvent) == 16)
 
+/// CABarBeatTime
+CABarBeatTime :: struct #align (4) {
+    bar:            CF.SInt32,
+    beat:           CF.UInt16,
+    subbeat:        CF.UInt16,
+    subbeatDivisor: CF.UInt16,
+    reserved:       CF.UInt16,
+}
+#assert(size_of(CABarBeatTime) == 12)
+
 /// OpaqueMusicSequence
 OpaqueMusicSequence :: struct {}
 
@@ -3600,6 +3886,35 @@ FileFDFTableExtended :: struct #align (8) {
     mReadPacketDataFDF:  ReadPacketDataFDF,
 }
 #assert(size_of(FileFDFTableExtended) == 104)
+
+/// CAClockTime
+CAClockTime :: struct #align (8) {
+    format:   CAClockTimeFormat,
+    reserved: CF.UInt32,
+    time : struct #raw_union  {
+        hostTime: CF.UInt64,
+        samples:  CAClockSamples,
+        beats:    CAClockBeats,
+        seconds:  CAClockSeconds,
+        smpte:    CA.SMPTETime,
+    },
+}
+#assert(size_of(CAClockTime) == 32)
+
+/// CATempoMapEntry
+CATempoMapEntry :: struct #align (8) {
+    beats:    CAClockBeats,
+    tempoBPM: CAClockTempo,
+}
+#assert(size_of(CATempoMapEntry) == 16)
+
+/// CAMeterTrackEntry
+CAMeterTrackEntry :: struct #align (8) {
+    beats:      CAClockBeats,
+    meterNumer: CF.UInt16,
+    meterDenom: CF.UInt16,
+}
+#assert(size_of(CAMeterTrackEntry) == 16)
 
 /// AURenderEvent
 AURenderEvent :: struct #raw_union #align (4) {

@@ -25,7 +25,7 @@ foreign lib {
     CaptureSystemExposureBiasSlider_initWithDevice_ :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice) -> instancetype ---
 
     @(objc_type=CaptureSystemExposureBiasSlider, objc_selector="initWithDevice:action:", objc_name="initWithDevice_action")
-    CaptureSystemExposureBiasSlider_initWithDevice_action :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice, action: ^Objc_Block(proc "c" (exposureTargetBias: cffi.float))) -> instancetype ---
+    CaptureSystemExposureBiasSlider_initWithDevice_action :: proc(self: ^CaptureSystemExposureBiasSlider, device: ^CaptureDevice, action: ^Objc_Block(proc "c" ( exposureTargetBias: cffi.float ))) -> instancetype ---
 }
 
 @(objc_type=CaptureSystemExposureBiasSlider, objc_name="initWithDevice")

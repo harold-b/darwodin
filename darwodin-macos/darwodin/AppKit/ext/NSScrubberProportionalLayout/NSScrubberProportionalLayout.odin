@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSScrubberLayout"
 
 VTable :: struct {
     super: NSScrubberLayout.VTable,
-    initWithNumberOfVisibleItems: proc(self: ^AK.ScrubberProportionalLayout, numberOfVisibleItems: NS.Integer) -> instancetype,
-    initWithCoder: proc(self: ^AK.ScrubberProportionalLayout, coder: ^NS.Coder) -> instancetype,
-    numberOfVisibleItems: proc(self: ^AK.ScrubberProportionalLayout) -> NS.Integer,
-    setNumberOfVisibleItems: proc(self: ^AK.ScrubberProportionalLayout, numberOfVisibleItems: NS.Integer),
+    initWithNumberOfVisibleItems: proc(self: ^NS.ScrubberProportionalLayout, numberOfVisibleItems: NS.Integer) -> instancetype,
+    initWithCoder: proc(self: ^NS.ScrubberProportionalLayout, coder: ^NS.Coder) -> instancetype,
+    numberOfVisibleItems: proc(self: ^NS.ScrubberProportionalLayout) -> NS.Integer,
+    setNumberOfVisibleItems: proc(self: ^NS.ScrubberProportionalLayout, numberOfVisibleItems: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScrubberLayout.extend(cls, &vt.super)
 
     if vt.initWithNumberOfVisibleItems != nil {
-        initWithNumberOfVisibleItems :: proc "c" (self: ^AK.ScrubberProportionalLayout, _: SEL, numberOfVisibleItems: NS.Integer) -> instancetype {
+        initWithNumberOfVisibleItems :: proc "c" (self: ^NS.ScrubberProportionalLayout, _: SEL, numberOfVisibleItems: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNumberOfVisibleItems:"), auto_cast initWithNumberOfVisibleItems, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ScrubberProportionalLayout, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.ScrubberProportionalLayout, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.numberOfVisibleItems != nil {
-        numberOfVisibleItems :: proc "c" (self: ^AK.ScrubberProportionalLayout, _: SEL) -> NS.Integer {
+        numberOfVisibleItems :: proc "c" (self: ^NS.ScrubberProportionalLayout, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfVisibleItems"), auto_cast numberOfVisibleItems, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setNumberOfVisibleItems != nil {
-        setNumberOfVisibleItems :: proc "c" (self: ^AK.ScrubberProportionalLayout, _: SEL, numberOfVisibleItems: NS.Integer) {
+        setNumberOfVisibleItems :: proc "c" (self: ^NS.ScrubberProportionalLayout, _: SEL, numberOfVisibleItems: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

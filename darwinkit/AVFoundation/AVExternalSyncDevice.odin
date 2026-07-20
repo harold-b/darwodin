@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVExternalSyncDevice
-///
 @(objc_class="AVExternalSyncDevice", objc_superclass=NS.Object)
 ExternalSyncDevice :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExternalSyncDevice, objc_selector="init", objc_name="init")
     ExternalSyncDevice_init :: proc(self: ^ExternalSyncDevice) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=ExternalSyncDevice, objc_selector="productID", objc_name="productID")
     ExternalSyncDevice_productID :: proc(self: ^ExternalSyncDevice) -> CF.UInt32 ---
 }
+
+
+

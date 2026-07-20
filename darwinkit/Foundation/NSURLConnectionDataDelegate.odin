@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLConnectionDataDelegate
-///
 @(objc_class="NSURLConnectionDataDelegate")
 URLConnectionDataDelegate :: struct { using _: intrinsics.objc_object, 
     using _: URLConnectionDelegate,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLConnectionDataDelegate, objc_selector="connection:willSendRequest:redirectResponse:", objc_name="connection_willSendRequest_redirectResponse")
     URLConnectionDataDelegate_connection_willSendRequest_redirectResponse :: proc(self: ^URLConnectionDataDelegate, connection: ^URLConnection, request: ^URLRequest, response: ^URLResponse) -> ^URLRequest ---
@@ -42,6 +36,8 @@ foreign lib {
     @(objc_type=URLConnectionDataDelegate, objc_selector="connectionDidFinishLoading:", objc_name="connectionDidFinishLoading")
     URLConnectionDataDelegate_connectionDidFinishLoading :: proc(self: ^URLConnectionDataDelegate, connection: ^URLConnection) ---
 }
+
+
 
 @(objc_type=URLConnectionDataDelegate, objc_name="connection")
 URLConnectionDataDelegate_connection :: proc {

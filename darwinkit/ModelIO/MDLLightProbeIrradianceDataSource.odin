@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLLightProbeIrradianceDataSource
-///
 @(objc_class="MDLLightProbeIrradianceDataSource")
 LightProbeIrradianceDataSource :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LightProbeIrradianceDataSource, objc_selector="sphericalHarmonicsCoefficientsAtPosition:", objc_name="sphericalHarmonicsCoefficientsAtPosition")
     LightProbeIrradianceDataSource_sphericalHarmonicsCoefficientsAtPosition :: proc(self: ^LightProbeIrradianceDataSource, position: ^vector_float3) -> ^NS.Data ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=LightProbeIrradianceDataSource, objc_selector="setSphericalHarmonicsLevel:", objc_name="setSphericalHarmonicsLevel")
     LightProbeIrradianceDataSource_setSphericalHarmonicsLevel :: proc(self: ^LightProbeIrradianceDataSource, sphericalHarmonicsLevel: NS.UInteger) ---
 }
+
+
+

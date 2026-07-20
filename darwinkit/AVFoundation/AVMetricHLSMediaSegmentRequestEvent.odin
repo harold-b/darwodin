@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricHLSMediaSegmentRequestEvent
-///
 @(objc_class="AVMetricHLSMediaSegmentRequestEvent", objc_superclass=MetricEvent)
 MetricHLSMediaSegmentRequestEvent :: struct { using _: MetricEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricHLSMediaSegmentRequestEvent, objc_selector="init", objc_name="init")
     MetricHLSMediaSegmentRequestEvent_init :: proc(self: ^MetricHLSMediaSegmentRequestEvent) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=MetricHLSMediaSegmentRequestEvent, objc_selector="mediaResourceRequestEvent", objc_name="mediaResourceRequestEvent")
     MetricHLSMediaSegmentRequestEvent_mediaResourceRequestEvent :: proc(self: ^MetricHLSMediaSegmentRequestEvent) -> ^MetricMediaResourceRequestEvent ---
 }
+
+
+

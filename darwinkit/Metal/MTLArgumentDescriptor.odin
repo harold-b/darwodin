@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLArgumentDescriptor
-///
 @(objc_class="MTLArgumentDescriptor", objc_superclass=NS.Object)
 ArgumentDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ArgumentDescriptor, objc_selector="argumentDescriptor", objc_name="argumentDescriptor", objc_is_class_method=true)
     ArgumentDescriptor_argumentDescriptor :: proc() -> ^ArgumentDescriptor ---
@@ -62,3 +56,6 @@ foreign lib {
     @(objc_type=ArgumentDescriptor, objc_selector="setConstantBlockAlignment:", objc_name="setConstantBlockAlignment")
     ArgumentDescriptor_setConstantBlockAlignment :: proc(self: ^ArgumentDescriptor, constantBlockAlignment: NS.UInteger) ---
 }
+
+
+

@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSByteCountFormatter
-///
 @(objc_class="NSByteCountFormatter", objc_superclass=Formatter)
 ByteCountFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ByteCountFormatter, objc_selector="stringFromByteCount:countStyle:", objc_name="stringFromByteCount_countStyle", objc_is_class_method=true)
     ByteCountFormatter_stringFromByteCount_countStyle :: proc(byteCount: cffi.longlong, countStyle: ByteCountFormatterCountStyle) -> ^String ---
@@ -88,6 +82,8 @@ foreign lib {
     @(objc_type=ByteCountFormatter, objc_selector="setFormattingContext:", objc_name="setFormattingContext")
     ByteCountFormatter_setFormattingContext :: proc(self: ^ByteCountFormatter, formattingContext: FormattingContext) ---
 }
+
+
 
 @(objc_type=ByteCountFormatter, objc_name="stringFromByteCount")
 ByteCountFormatter_stringFromByteCount :: proc {

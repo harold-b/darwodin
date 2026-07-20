@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricErrorEvent
-///
 @(objc_class="AVMetricErrorEvent", objc_superclass=MetricEvent)
 MetricErrorEvent :: struct { using _: MetricEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricErrorEvent, objc_selector="init", objc_name="init")
     MetricErrorEvent_init :: proc(self: ^MetricErrorEvent) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=MetricErrorEvent, objc_selector="error", objc_name="error")
     MetricErrorEvent_error :: proc(self: ^MetricErrorEvent) -> ^NS.Error ---
 }
+
+
+

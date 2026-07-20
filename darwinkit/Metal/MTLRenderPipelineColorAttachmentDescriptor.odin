@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPipelineColorAttachmentDescriptor
-///
 @(objc_class="MTLRenderPipelineColorAttachmentDescriptor", objc_superclass=NS.Object)
 RenderPipelineColorAttachmentDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPipelineColorAttachmentDescriptor, objc_selector="pixelFormat", objc_name="pixelFormat")
     RenderPipelineColorAttachmentDescriptor_pixelFormat :: proc(self: ^RenderPipelineColorAttachmentDescriptor) -> PixelFormat ---
@@ -77,3 +71,6 @@ foreign lib {
     @(objc_type=RenderPipelineColorAttachmentDescriptor, objc_selector="setWriteMask:", objc_name="setWriteMask")
     RenderPipelineColorAttachmentDescriptor_setWriteMask :: proc(self: ^RenderPipelineColorAttachmentDescriptor, writeMask: ColorWriteMasks) ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlaybackCoordinator
-///
 @(objc_class="AVPlaybackCoordinator", objc_superclass=NS.Object)
 PlaybackCoordinator :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlaybackCoordinator, objc_selector="init", objc_name="init")
     PlaybackCoordinator_init :: proc(self: ^PlaybackCoordinator) -> instancetype ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=PlaybackCoordinator, objc_selector="setPauseSnapsToMediaTimeOfOriginator:", objc_name="setPauseSnapsToMediaTimeOfOriginator")
     PlaybackCoordinator_setPauseSnapsToMediaTimeOfOriginator :: proc(self: ^PlaybackCoordinator, pauseSnapsToMediaTimeOfOriginator: bool) ---
 }
+
+
+

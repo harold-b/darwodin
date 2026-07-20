@@ -64,19 +64,19 @@ foreign lib {
     DocumentController_runModalOpenPanel :: proc(self: ^DocumentController, openPanel: ^OpenPanel, types: ^NS.Array) -> NS.Integer ---
 
     @(objc_type=DocumentController, objc_selector="beginOpenPanelWithCompletionHandler:", objc_name="beginOpenPanelWithCompletionHandler")
-    DocumentController_beginOpenPanelWithCompletionHandler :: proc(self: ^DocumentController, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array))) ---
+    DocumentController_beginOpenPanelWithCompletionHandler :: proc(self: ^DocumentController, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array ))) ---
 
     @(objc_type=DocumentController, objc_selector="beginOpenPanel:forTypes:completionHandler:", objc_name="beginOpenPanel")
-    DocumentController_beginOpenPanel :: proc(self: ^DocumentController, openPanel: ^OpenPanel, inTypes: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (result: NS.Integer))) ---
+    DocumentController_beginOpenPanel :: proc(self: ^DocumentController, openPanel: ^OpenPanel, inTypes: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( result: NS.Integer ))) ---
 
     @(objc_type=DocumentController, objc_selector="openDocumentWithContentsOfURL:display:completionHandler:", objc_name="openDocumentWithContentsOfURL_display_completionHandler")
-    DocumentController_openDocumentWithContentsOfURL_display_completionHandler :: proc(self: ^DocumentController, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^Document, documentWasAlreadyOpen: bool, error: ^NS.Error))) ---
+    DocumentController_openDocumentWithContentsOfURL_display_completionHandler :: proc(self: ^DocumentController, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" ( document: ^Document, documentWasAlreadyOpen: bool, error: ^NS.Error ))) ---
 
     @(objc_type=DocumentController, objc_selector="makeDocumentWithContentsOfURL:ofType:error:", objc_name="makeDocumentWithContentsOfURL_ofType_error")
     DocumentController_makeDocumentWithContentsOfURL_ofType_error :: proc(self: ^DocumentController, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^Document ---
 
     @(objc_type=DocumentController, objc_selector="reopenDocumentForURL:withContentsOfURL:display:completionHandler:", objc_name="reopenDocumentForURL_withContentsOfURL_display_completionHandler")
-    DocumentController_reopenDocumentForURL_withContentsOfURL_display_completionHandler :: proc(self: ^DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^Document, documentWasAlreadyOpen: bool, error: ^NS.Error))) ---
+    DocumentController_reopenDocumentForURL_withContentsOfURL_display_completionHandler :: proc(self: ^DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" ( document: ^Document, documentWasAlreadyOpen: bool, error: ^NS.Error ))) ---
 
     @(objc_type=DocumentController, objc_selector="makeDocumentForURL:withContentsOfURL:ofType:error:", objc_name="makeDocumentForURL")
     DocumentController_makeDocumentForURL :: proc(self: ^DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^Document ---

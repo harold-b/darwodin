@@ -18,5 +18,5 @@ CloudPlayer :: struct { using _: BasePlayer, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CloudPlayer, objc_selector="getCurrentSignedInPlayerForContainer:completionHandler:", objc_name="getCurrentSignedInPlayerForContainer", objc_is_class_method=true)
-    CloudPlayer_getCurrentSignedInPlayerForContainer :: proc(containerName: ^NS.String, handler: ^Objc_Block(proc "c" (player: ^CloudPlayer, error: ^NS.Error))) ---
+    CloudPlayer_getCurrentSignedInPlayerForContainer :: proc(containerName: ^NS.String, handler: ^Objc_Block(proc "c" ( player: ^CloudPlayer, error: ^NS.Error ))) ---
 }

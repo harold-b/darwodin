@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSKeyedArchiver
-///
 @(objc_class="NSKeyedArchiver", objc_superclass=Coder)
 KeyedArchiver :: struct { using _: Coder, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=KeyedArchiver, objc_selector="initRequiringSecureCoding:", objc_name="initRequiringSecureCoding")
     KeyedArchiver_initRequiringSecureCoding :: proc(self: ^KeyedArchiver, requiresSecureCoding: bool) -> instancetype ---
@@ -100,6 +94,8 @@ foreign lib {
     @(objc_type=KeyedArchiver, objc_selector="setRequiresSecureCoding:", objc_name="setRequiresSecureCoding")
     KeyedArchiver_setRequiresSecureCoding :: proc(self: ^KeyedArchiver, requiresSecureCoding: bool) ---
 }
+
+
 
 @(objc_type=KeyedArchiver, objc_name="archivedDataWithRootObject")
 KeyedArchiver_archivedDataWithRootObject :: proc {

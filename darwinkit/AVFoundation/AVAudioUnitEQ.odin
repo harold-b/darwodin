@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitEQ
-///
 @(objc_class="AVAudioUnitEQ", objc_superclass=AudioUnitEffect)
 AudioUnitEQ :: struct { using _: AudioUnitEffect, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitEQ, objc_selector="initWithNumberOfBands:", objc_name="initWithNumberOfBands")
     AudioUnitEQ_initWithNumberOfBands :: proc(self: ^AudioUnitEQ, numberOfBands: NS.UInteger) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=AudioUnitEQ, objc_selector="setGlobalGain:", objc_name="setGlobalGain")
     AudioUnitEQ_setGlobalGain :: proc(self: ^AudioUnitEQ, globalGain: cffi.float) ---
 }
+
+
+

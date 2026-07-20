@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKRTree
-///
 @(objc_class="GKRTree", objc_superclass=NS.Object)
 RTree :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RTree, objc_selector="treeWithMaxNumberOfChildren:", objc_name="treeWithMaxNumberOfChildren", objc_is_class_method=true)
     RTree_treeWithMaxNumberOfChildren :: proc(maxNumberOfChildren: NS.UInteger) -> instancetype ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=RTree, objc_selector="setQueryReserve:", objc_name="setQueryReserve")
     RTree_setQueryReserve :: proc(self: ^RTree, queryReserve: NS.UInteger) ---
 }
+
+
+

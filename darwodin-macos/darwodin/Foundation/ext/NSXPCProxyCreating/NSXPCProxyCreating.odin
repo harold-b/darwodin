@@ -19,8 +19,8 @@ import NS "../../"
 
 VTable :: struct {
     remoteObjectProxy: proc(self: ^NS.XPCProxyCreating) -> id,
-    remoteObjectProxyWithErrorHandler: proc(self: ^NS.XPCProxyCreating, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) -> id,
-    synchronousRemoteObjectProxyWithErrorHandler: proc(self: ^NS.XPCProxyCreating, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) -> id,
+    remoteObjectProxyWithErrorHandler: proc(self: ^NS.XPCProxyCreating, handler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) -> id,
+    synchronousRemoteObjectProxyWithErrorHandler: proc(self: ^NS.XPCProxyCreating, handler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) -> id,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("remoteObjectProxy"), auto_cast remoteObjectProxy, "@@:") do panic("Failed to register objC method.")
     }
     if vt.remoteObjectProxyWithErrorHandler != nil {
-        remoteObjectProxyWithErrorHandler :: proc "c" (self: ^NS.XPCProxyCreating, _: SEL, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) -> id {
+        remoteObjectProxyWithErrorHandler :: proc "c" (self: ^NS.XPCProxyCreating, _: SEL, handler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("remoteObjectProxyWithErrorHandler:"), auto_cast remoteObjectProxyWithErrorHandler, "@@:?") do panic("Failed to register objC method.")
     }
     if vt.synchronousRemoteObjectProxyWithErrorHandler != nil {
-        synchronousRemoteObjectProxyWithErrorHandler :: proc "c" (self: ^NS.XPCProxyCreating, _: SEL, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) -> id {
+        synchronousRemoteObjectProxyWithErrorHandler :: proc "c" (self: ^NS.XPCProxyCreating, _: SEL, handler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

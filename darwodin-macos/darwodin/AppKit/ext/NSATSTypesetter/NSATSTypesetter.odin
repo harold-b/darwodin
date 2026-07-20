@@ -20,46 +20,46 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTypesetter"
 
 VTable :: struct {
     super: NSTypesetter.VTable,
-    sharedTypesetter: proc() -> ^AK.ATSTypesetter,
-    lineFragmentRectForProposedRect: proc(self: ^AK.ATSTypesetter, proposedRect: NS.Rect, remainingRect: ^NS.Rect) -> NS.Rect,
-    substituteFontForFont: proc(self: ^AK.ATSTypesetter, originalFont: ^AK.Font) -> ^AK.Font,
-    textTabForGlyphLocation: proc(self: ^AK.ATSTypesetter, glyphLocation: CG.Float, direction: AK.WritingDirection, maxLocation: CG.Float) -> ^AK.TextTab,
-    setParagraphGlyphRange: proc(self: ^AK.ATSTypesetter, paragraphRange: NS._NSRange, paragraphSeparatorRange: NS._NSRange),
-    layoutParagraphAtPoint: proc(self: ^AK.ATSTypesetter, lineFragmentOrigin: ^CG.Point) -> NS.UInteger,
-    lineSpacingAfterGlyphAtIndex: proc(self: ^AK.ATSTypesetter, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
-    paragraphSpacingBeforeGlyphAtIndex: proc(self: ^AK.ATSTypesetter, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
-    paragraphSpacingAfterGlyphAtIndex: proc(self: ^AK.ATSTypesetter, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
-    setHardInvalidation: proc(self: ^AK.ATSTypesetter, flag: bool, glyphRange: NS._NSRange),
-    getLineFragmentRect: proc(self: ^AK.ATSTypesetter, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, paragraphSeparatorGlyphRange: NS._NSRange, lineOrigin: CG.Point),
-    usesFontLeading: proc(self: ^AK.ATSTypesetter) -> bool,
-    setUsesFontLeading: proc(self: ^AK.ATSTypesetter, usesFontLeading: bool),
-    typesetterBehavior: proc(self: ^AK.ATSTypesetter) -> AK.TypesetterBehavior,
-    setTypesetterBehavior: proc(self: ^AK.ATSTypesetter, typesetterBehavior: AK.TypesetterBehavior),
-    hyphenationFactor: proc(self: ^AK.ATSTypesetter) -> cffi.float,
-    setHyphenationFactor: proc(self: ^AK.ATSTypesetter, hyphenationFactor: cffi.float),
-    lineFragmentPadding: proc(self: ^AK.ATSTypesetter) -> CG.Float,
-    setLineFragmentPadding: proc(self: ^AK.ATSTypesetter, lineFragmentPadding: CG.Float),
-    bidiProcessingEnabled: proc(self: ^AK.ATSTypesetter) -> bool,
-    setBidiProcessingEnabled: proc(self: ^AK.ATSTypesetter, bidiProcessingEnabled: bool),
-    attributedString: proc(self: ^AK.ATSTypesetter) -> ^NS.AttributedString,
-    setAttributedString: proc(self: ^AK.ATSTypesetter, attributedString: ^NS.AttributedString),
-    paragraphGlyphRange: proc(self: ^AK.ATSTypesetter) -> NS._NSRange,
-    paragraphSeparatorGlyphRange: proc(self: ^AK.ATSTypesetter) -> NS._NSRange,
-    layoutManager: proc(self: ^AK.ATSTypesetter) -> ^AK.LayoutManager,
-    currentTextContainer: proc(self: ^AK.ATSTypesetter) -> ^AK.TextContainer,
-    willSetLineFragmentRect: proc(self: ^AK.ATSTypesetter, lineRect: ^NS.Rect, glyphRange: NS._NSRange, usedRect: ^NS.Rect, baselineOffset: ^CG.Float),
-    shouldBreakLineByWordBeforeCharacterAtIndex: proc(self: ^AK.ATSTypesetter, charIndex: NS.UInteger) -> bool,
-    shouldBreakLineByHyphenatingBeforeCharacterAtIndex: proc(self: ^AK.ATSTypesetter, charIndex: NS.UInteger) -> bool,
-    hyphenationFactorForGlyphAtIndex: proc(self: ^AK.ATSTypesetter, glyphIndex: NS.UInteger) -> cffi.float,
-    hyphenCharacterForGlyphAtIndex: proc(self: ^AK.ATSTypesetter, glyphIndex: NS.UInteger) -> CF.UTF32Char,
-    boundingBoxForControlGlyphAtIndex: proc(self: ^AK.ATSTypesetter, glyphIndex: NS.UInteger, textContainer: ^AK.TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect,
-    getGlyphsInRange: proc(self: ^AK.ATSTypesetter, glyphsRange: NS._NSRange, glyphBuffer: ^AK.Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^AK.GlyphInscription, elasticBuffer: ^bool) -> NS.UInteger,
+    sharedTypesetter: proc() -> ^NS.ATSTypesetter,
+    lineFragmentRectForProposedRect: proc(self: ^NS.ATSTypesetter, proposedRect: NS.Rect, remainingRect: ^NS.Rect) -> NS.Rect,
+    substituteFontForFont: proc(self: ^NS.ATSTypesetter, originalFont: ^NS.Font) -> ^NS.Font,
+    textTabForGlyphLocation: proc(self: ^NS.ATSTypesetter, glyphLocation: CG.Float, direction: NS.WritingDirection, maxLocation: CG.Float) -> ^NS.TextTab,
+    setParagraphGlyphRange: proc(self: ^NS.ATSTypesetter, paragraphRange: NS._NSRange, paragraphSeparatorRange: NS._NSRange),
+    layoutParagraphAtPoint: proc(self: ^NS.ATSTypesetter, lineFragmentOrigin: ^CG.Point) -> NS.UInteger,
+    lineSpacingAfterGlyphAtIndex: proc(self: ^NS.ATSTypesetter, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
+    paragraphSpacingBeforeGlyphAtIndex: proc(self: ^NS.ATSTypesetter, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
+    paragraphSpacingAfterGlyphAtIndex: proc(self: ^NS.ATSTypesetter, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
+    setHardInvalidation: proc(self: ^NS.ATSTypesetter, flag: bool, glyphRange: NS._NSRange),
+    getLineFragmentRect: proc(self: ^NS.ATSTypesetter, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, paragraphSeparatorGlyphRange: NS._NSRange, lineOrigin: CG.Point),
+    usesFontLeading: proc(self: ^NS.ATSTypesetter) -> bool,
+    setUsesFontLeading: proc(self: ^NS.ATSTypesetter, usesFontLeading: bool),
+    typesetterBehavior: proc(self: ^NS.ATSTypesetter) -> NS.TypesetterBehavior,
+    setTypesetterBehavior: proc(self: ^NS.ATSTypesetter, typesetterBehavior: NS.TypesetterBehavior),
+    hyphenationFactor: proc(self: ^NS.ATSTypesetter) -> cffi.float,
+    setHyphenationFactor: proc(self: ^NS.ATSTypesetter, hyphenationFactor: cffi.float),
+    lineFragmentPadding: proc(self: ^NS.ATSTypesetter) -> CG.Float,
+    setLineFragmentPadding: proc(self: ^NS.ATSTypesetter, lineFragmentPadding: CG.Float),
+    bidiProcessingEnabled: proc(self: ^NS.ATSTypesetter) -> bool,
+    setBidiProcessingEnabled: proc(self: ^NS.ATSTypesetter, bidiProcessingEnabled: bool),
+    attributedString: proc(self: ^NS.ATSTypesetter) -> ^NS.AttributedString,
+    setAttributedString: proc(self: ^NS.ATSTypesetter, attributedString: ^NS.AttributedString),
+    paragraphGlyphRange: proc(self: ^NS.ATSTypesetter) -> NS._NSRange,
+    paragraphSeparatorGlyphRange: proc(self: ^NS.ATSTypesetter) -> NS._NSRange,
+    layoutManager: proc(self: ^NS.ATSTypesetter) -> ^NS.LayoutManager,
+    currentTextContainer: proc(self: ^NS.ATSTypesetter) -> ^NS.TextContainer,
+    willSetLineFragmentRect: proc(self: ^NS.ATSTypesetter, lineRect: ^NS.Rect, glyphRange: NS._NSRange, usedRect: ^NS.Rect, baselineOffset: ^CG.Float),
+    shouldBreakLineByWordBeforeCharacterAtIndex: proc(self: ^NS.ATSTypesetter, charIndex: NS.UInteger) -> bool,
+    shouldBreakLineByHyphenatingBeforeCharacterAtIndex: proc(self: ^NS.ATSTypesetter, charIndex: NS.UInteger) -> bool,
+    hyphenationFactorForGlyphAtIndex: proc(self: ^NS.ATSTypesetter, glyphIndex: NS.UInteger) -> cffi.float,
+    hyphenCharacterForGlyphAtIndex: proc(self: ^NS.ATSTypesetter, glyphIndex: NS.UInteger) -> CF.UTF32Char,
+    boundingBoxForControlGlyphAtIndex: proc(self: ^NS.ATSTypesetter, glyphIndex: NS.UInteger, textContainer: ^NS.TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect,
+    getGlyphsInRange: proc(self: ^NS.ATSTypesetter, glyphsRange: NS._NSRange, glyphBuffer: ^NS.Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^NS.GlyphInscription, elasticBuffer: ^bool) -> NS.UInteger,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTypesetter.extend(cls, &vt.super)
 
     if vt.sharedTypesetter != nil {
-        sharedTypesetter :: proc "c" (self: Class, _: SEL) -> ^AK.ATSTypesetter {
+        sharedTypesetter :: proc "c" (self: Class, _: SEL) -> ^NS.ATSTypesetter {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sharedTypesetter"), auto_cast sharedTypesetter, "@#:") do panic("Failed to register objC method.")
     }
     if vt.lineFragmentRectForProposedRect != nil {
-        lineFragmentRectForProposedRect :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, proposedRect: NS.Rect, remainingRect: ^NS.Rect) -> NS.Rect {
+        lineFragmentRectForProposedRect :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, proposedRect: NS.Rect, remainingRect: ^NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineFragmentRectForProposedRect:remainingRect:"), auto_cast lineFragmentRectForProposedRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}^void") do panic("Failed to register objC method.")
     }
     if vt.substituteFontForFont != nil {
-        substituteFontForFont :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, originalFont: ^AK.Font) -> ^AK.Font {
+        substituteFontForFont :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, originalFont: ^NS.Font) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("substituteFontForFont:"), auto_cast substituteFontForFont, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.textTabForGlyphLocation != nil {
-        textTabForGlyphLocation :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, glyphLocation: CG.Float, direction: AK.WritingDirection, maxLocation: CG.Float) -> ^AK.TextTab {
+        textTabForGlyphLocation :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, glyphLocation: CG.Float, direction: NS.WritingDirection, maxLocation: CG.Float) -> ^NS.TextTab {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textTabForGlyphLocation:writingDirection:maxLocation:"), auto_cast textTabForGlyphLocation, "@@:dld") do panic("Failed to register objC method.")
     }
     if vt.setParagraphGlyphRange != nil {
-        setParagraphGlyphRange :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, paragraphRange: NS._NSRange, paragraphSeparatorRange: NS._NSRange) {
+        setParagraphGlyphRange :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, paragraphRange: NS._NSRange, paragraphSeparatorRange: NS._NSRange) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setParagraphGlyphRange:separatorGlyphRange:"), auto_cast setParagraphGlyphRange, "v@:{_NSRange=LL}{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.layoutParagraphAtPoint != nil {
-        layoutParagraphAtPoint :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, lineFragmentOrigin: ^CG.Point) -> NS.UInteger {
+        layoutParagraphAtPoint :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, lineFragmentOrigin: ^CG.Point) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutParagraphAtPoint:"), auto_cast layoutParagraphAtPoint, "L@:^void") do panic("Failed to register objC method.")
     }
     if vt.lineSpacingAfterGlyphAtIndex != nil {
-        lineSpacingAfterGlyphAtIndex :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
+        lineSpacingAfterGlyphAtIndex :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:"), auto_cast lineSpacingAfterGlyphAtIndex, "d@:L{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.paragraphSpacingBeforeGlyphAtIndex != nil {
-        paragraphSpacingBeforeGlyphAtIndex :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
+        paragraphSpacingBeforeGlyphAtIndex :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:"), auto_cast paragraphSpacingBeforeGlyphAtIndex, "d@:L{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.paragraphSpacingAfterGlyphAtIndex != nil {
-        paragraphSpacingAfterGlyphAtIndex :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
+        paragraphSpacingAfterGlyphAtIndex :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:"), auto_cast paragraphSpacingAfterGlyphAtIndex, "d@:L{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.setHardInvalidation != nil {
-        setHardInvalidation :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, flag: bool, glyphRange: NS._NSRange) {
+        setHardInvalidation :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, flag: bool, glyphRange: NS._NSRange) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -170,7 +170,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHardInvalidation:forGlyphRange:"), auto_cast setHardInvalidation, "v@:B{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.getLineFragmentRect != nil {
-        getLineFragmentRect :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, paragraphSeparatorGlyphRange: NS._NSRange, lineOrigin: CG.Point) {
+        getLineFragmentRect :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, paragraphSeparatorGlyphRange: NS._NSRange, lineOrigin: CG.Point) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getLineFragmentRect:usedRect:forParagraphSeparatorGlyphRange:atProposedOrigin:"), auto_cast getLineFragmentRect, "v@:^void^void{_NSRange=LL}{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.usesFontLeading != nil {
-        usesFontLeading :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> bool {
+        usesFontLeading :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -190,7 +190,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("usesFontLeading"), auto_cast usesFontLeading, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setUsesFontLeading != nil {
-        setUsesFontLeading :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, usesFontLeading: bool) {
+        setUsesFontLeading :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, usesFontLeading: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesFontLeading:"), auto_cast setUsesFontLeading, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.typesetterBehavior != nil {
-        typesetterBehavior :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> AK.TypesetterBehavior {
+        typesetterBehavior :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> NS.TypesetterBehavior {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("typesetterBehavior"), auto_cast typesetterBehavior, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setTypesetterBehavior != nil {
-        setTypesetterBehavior :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, typesetterBehavior: AK.TypesetterBehavior) {
+        setTypesetterBehavior :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, typesetterBehavior: NS.TypesetterBehavior) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTypesetterBehavior:"), auto_cast setTypesetterBehavior, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.hyphenationFactor != nil {
-        hyphenationFactor :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> cffi.float {
+        hyphenationFactor :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> cffi.float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -230,7 +230,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hyphenationFactor"), auto_cast hyphenationFactor, "f@:") do panic("Failed to register objC method.")
     }
     if vt.setHyphenationFactor != nil {
-        setHyphenationFactor :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, hyphenationFactor: cffi.float) {
+        setHyphenationFactor :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, hyphenationFactor: cffi.float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -240,7 +240,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHyphenationFactor:"), auto_cast setHyphenationFactor, "v@:f") do panic("Failed to register objC method.")
     }
     if vt.lineFragmentPadding != nil {
-        lineFragmentPadding :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> CG.Float {
+        lineFragmentPadding :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -250,7 +250,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineFragmentPadding"), auto_cast lineFragmentPadding, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setLineFragmentPadding != nil {
-        setLineFragmentPadding :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, lineFragmentPadding: CG.Float) {
+        setLineFragmentPadding :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, lineFragmentPadding: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -260,7 +260,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLineFragmentPadding:"), auto_cast setLineFragmentPadding, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.bidiProcessingEnabled != nil {
-        bidiProcessingEnabled :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> bool {
+        bidiProcessingEnabled :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bidiProcessingEnabled"), auto_cast bidiProcessingEnabled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setBidiProcessingEnabled != nil {
-        setBidiProcessingEnabled :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, bidiProcessingEnabled: bool) {
+        setBidiProcessingEnabled :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, bidiProcessingEnabled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -280,7 +280,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBidiProcessingEnabled:"), auto_cast setBidiProcessingEnabled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.attributedString != nil {
-        attributedString :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> ^NS.AttributedString {
+        attributedString :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedString"), auto_cast attributedString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributedString != nil {
-        setAttributedString :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, attributedString: ^NS.AttributedString) {
+        setAttributedString :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, attributedString: ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -300,7 +300,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedString:"), auto_cast setAttributedString, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.paragraphGlyphRange != nil {
-        paragraphGlyphRange :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> NS._NSRange {
+        paragraphGlyphRange :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -310,7 +310,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphGlyphRange"), auto_cast paragraphGlyphRange, "{_NSRange=LL}@:") do panic("Failed to register objC method.")
     }
     if vt.paragraphSeparatorGlyphRange != nil {
-        paragraphSeparatorGlyphRange :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> NS._NSRange {
+        paragraphSeparatorGlyphRange :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -320,7 +320,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphSeparatorGlyphRange"), auto_cast paragraphSeparatorGlyphRange, "{_NSRange=LL}@:") do panic("Failed to register objC method.")
     }
     if vt.layoutManager != nil {
-        layoutManager :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> ^AK.LayoutManager {
+        layoutManager :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> ^NS.LayoutManager {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -330,7 +330,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager"), auto_cast layoutManager, "@@:") do panic("Failed to register objC method.")
     }
     if vt.currentTextContainer != nil {
-        currentTextContainer :: proc "c" (self: ^AK.ATSTypesetter, _: SEL) -> ^AK.TextContainer {
+        currentTextContainer :: proc "c" (self: ^NS.ATSTypesetter, _: SEL) -> ^NS.TextContainer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -340,7 +340,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentTextContainer"), auto_cast currentTextContainer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.willSetLineFragmentRect != nil {
-        willSetLineFragmentRect :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, lineRect: ^NS.Rect, glyphRange: NS._NSRange, usedRect: ^NS.Rect, baselineOffset: ^CG.Float) {
+        willSetLineFragmentRect :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, lineRect: ^NS.Rect, glyphRange: NS._NSRange, usedRect: ^NS.Rect, baselineOffset: ^CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -350,7 +350,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:"), auto_cast willSetLineFragmentRect, "v@:^void{_NSRange=LL}^void^void") do panic("Failed to register objC method.")
     }
     if vt.shouldBreakLineByWordBeforeCharacterAtIndex != nil {
-        shouldBreakLineByWordBeforeCharacterAtIndex :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, charIndex: NS.UInteger) -> bool {
+        shouldBreakLineByWordBeforeCharacterAtIndex :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, charIndex: NS.UInteger) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -360,7 +360,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shouldBreakLineByWordBeforeCharacterAtIndex:"), auto_cast shouldBreakLineByWordBeforeCharacterAtIndex, "B@:L") do panic("Failed to register objC method.")
     }
     if vt.shouldBreakLineByHyphenatingBeforeCharacterAtIndex != nil {
-        shouldBreakLineByHyphenatingBeforeCharacterAtIndex :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, charIndex: NS.UInteger) -> bool {
+        shouldBreakLineByHyphenatingBeforeCharacterAtIndex :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, charIndex: NS.UInteger) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -370,7 +370,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shouldBreakLineByHyphenatingBeforeCharacterAtIndex:"), auto_cast shouldBreakLineByHyphenatingBeforeCharacterAtIndex, "B@:L") do panic("Failed to register objC method.")
     }
     if vt.hyphenationFactorForGlyphAtIndex != nil {
-        hyphenationFactorForGlyphAtIndex :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger) -> cffi.float {
+        hyphenationFactorForGlyphAtIndex :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger) -> cffi.float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -380,7 +380,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hyphenationFactorForGlyphAtIndex:"), auto_cast hyphenationFactorForGlyphAtIndex, "f@:L") do panic("Failed to register objC method.")
     }
     if vt.hyphenCharacterForGlyphAtIndex != nil {
-        hyphenCharacterForGlyphAtIndex :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger) -> CF.UTF32Char {
+        hyphenCharacterForGlyphAtIndex :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger) -> CF.UTF32Char {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -390,7 +390,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hyphenCharacterForGlyphAtIndex:"), auto_cast hyphenCharacterForGlyphAtIndex, "I@:L") do panic("Failed to register objC method.")
     }
     if vt.boundingBoxForControlGlyphAtIndex != nil {
-        boundingBoxForControlGlyphAtIndex :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger, textContainer: ^AK.TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect {
+        boundingBoxForControlGlyphAtIndex :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, glyphIndex: NS.UInteger, textContainer: ^NS.TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -400,7 +400,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:"), auto_cast boundingBoxForControlGlyphAtIndex, "{CGRect={CGPoint=dd}{CGSize=dd}}@:L@{CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}L") do panic("Failed to register objC method.")
     }
     if vt.getGlyphsInRange != nil {
-        getGlyphsInRange :: proc "c" (self: ^AK.ATSTypesetter, _: SEL, glyphsRange: NS._NSRange, glyphBuffer: ^AK.Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^AK.GlyphInscription, elasticBuffer: ^bool) -> NS.UInteger {
+        getGlyphsInRange :: proc "c" (self: ^NS.ATSTypesetter, _: SEL, glyphsRange: NS._NSRange, glyphBuffer: ^NS.Glyph, charIndexBuffer: ^NS.UInteger, inscribeBuffer: ^NS.GlyphInscription, elasticBuffer: ^bool) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

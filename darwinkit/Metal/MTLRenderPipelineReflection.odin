@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPipelineReflection
-///
 @(objc_class="MTLRenderPipelineReflection", objc_superclass=NS.Object)
 RenderPipelineReflection :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPipelineReflection, objc_selector="vertexBindings", objc_name="vertexBindings")
     RenderPipelineReflection_vertexBindings :: proc(self: ^RenderPipelineReflection) -> ^NS.Array ---
@@ -45,3 +39,6 @@ foreign lib {
     @(objc_type=RenderPipelineReflection, objc_selector="tileArguments", objc_name="tileArguments")
     RenderPipelineReflection_tileArguments :: proc(self: ^RenderPipelineReflection) -> ^NS.Array ---
 }
+
+
+

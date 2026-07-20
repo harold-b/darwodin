@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import NS "../Foundation"
 import Sec "../Security"
 
-
-
-///
-/// LAEnvironmentMechanism
-///
 @(objc_class="LAEnvironmentMechanism", objc_superclass=NS.Object)
 EnvironmentMechanism :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=EnvironmentMechanism, objc_selector="new", objc_name="new", objc_is_class_method=true)
     EnvironmentMechanism_new :: proc() -> ^EnvironmentMechanism ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=EnvironmentMechanism, objc_selector="iconSystemName", objc_name="iconSystemName")
     EnvironmentMechanism_iconSystemName :: proc(self: ^EnvironmentMechanism) -> ^NS.String ---
 }
+
+
+

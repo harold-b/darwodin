@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLCredential
-///
 @(objc_class="NSURLCredential", objc_superclass=Object)
 URLCredential :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLCredential, objc_selector="persistence", objc_name="persistence")
     URLCredential_persistence :: proc(self: ^URLCredential) -> URLCredentialPersistence ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=URLCredential, objc_selector="credentialForTrust:", objc_name="credentialForTrust", objc_is_class_method=true)
     URLCredential_credentialForTrust :: proc(trust: Sec.SecTrustRef) -> ^URLCredential ---
 }
+
+
+

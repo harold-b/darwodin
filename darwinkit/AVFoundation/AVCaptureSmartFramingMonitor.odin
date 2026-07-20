@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureSmartFramingMonitor
-///
 @(objc_class="AVCaptureSmartFramingMonitor", objc_superclass=NS.Object)
 CaptureSmartFramingMonitor :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSmartFramingMonitor, objc_selector="init", objc_name="init")
     CaptureSmartFramingMonitor_init :: proc(self: ^CaptureSmartFramingMonitor) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=CaptureSmartFramingMonitor, objc_selector="isMonitoring", objc_name="isMonitoring")
     CaptureSmartFramingMonitor_isMonitoring :: proc(self: ^CaptureSmartFramingMonitor) -> bool ---
 }
+
+
+

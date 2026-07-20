@@ -50,7 +50,7 @@ foreign lib {
     Device_newBufferWithBytes :: proc(self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions) -> ^Buffer ---
 
     @(objc_type=Device, objc_selector="newBufferWithBytesNoCopy:length:options:deallocator:", objc_name="newBufferWithBytesNoCopy")
-    Device_newBufferWithBytesNoCopy :: proc(self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions, deallocator: ^Objc_Block(proc "c" (pointer: rawptr, length: NS.UInteger))) -> ^Buffer ---
+    Device_newBufferWithBytesNoCopy :: proc(self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions, deallocator: ^Objc_Block(proc "c" ( pointer: rawptr, length: NS.UInteger ))) -> ^Buffer ---
 
     @(objc_type=Device, objc_selector="newDepthStencilStateWithDescriptor:", objc_name="newDepthStencilStateWithDescriptor")
     Device_newDepthStencilStateWithDescriptor :: proc(self: ^Device, descriptor: ^DepthStencilDescriptor) -> ^DepthStencilState ---

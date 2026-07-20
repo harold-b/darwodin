@@ -43,7 +43,7 @@ foreign lib {
     URLCredentialStorage_allCredentials :: proc(self: ^URLCredentialStorage) -> ^Dictionary ---
 
     @(objc_type=URLCredentialStorage, objc_selector="getCredentialsForProtectionSpace:task:completionHandler:", objc_name="getCredentialsForProtectionSpace")
-    URLCredentialStorage_getCredentialsForProtectionSpace :: proc(self: ^URLCredentialStorage, protectionSpace: ^URLProtectionSpace, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credentials: ^Dictionary))) ---
+    URLCredentialStorage_getCredentialsForProtectionSpace :: proc(self: ^URLCredentialStorage, protectionSpace: ^URLProtectionSpace, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" ( credentials: ^Dictionary ))) ---
 
     @(objc_type=URLCredentialStorage, objc_selector="setCredential:forProtectionSpace:task:", objc_name="setCredential_forProtectionSpace_task")
     URLCredentialStorage_setCredential_forProtectionSpace_task :: proc(self: ^URLCredentialStorage, credential: ^URLCredential, protectionSpace: ^URLProtectionSpace, task: ^URLSessionTask) ---
@@ -52,7 +52,7 @@ foreign lib {
     URLCredentialStorage_removeCredential_forProtectionSpace_options_task :: proc(self: ^URLCredentialStorage, credential: ^URLCredential, protectionSpace: ^URLProtectionSpace, options: ^Dictionary, task: ^URLSessionTask) ---
 
     @(objc_type=URLCredentialStorage, objc_selector="getDefaultCredentialForProtectionSpace:task:completionHandler:", objc_name="getDefaultCredentialForProtectionSpace")
-    URLCredentialStorage_getDefaultCredentialForProtectionSpace :: proc(self: ^URLCredentialStorage, space: ^URLProtectionSpace, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" (credential: ^URLCredential))) ---
+    URLCredentialStorage_getDefaultCredentialForProtectionSpace :: proc(self: ^URLCredentialStorage, space: ^URLProtectionSpace, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" ( credential: ^URLCredential ))) ---
 
     @(objc_type=URLCredentialStorage, objc_selector="setDefaultCredential:forProtectionSpace:task:", objc_name="setDefaultCredential_forProtectionSpace_task")
     URLCredentialStorage_setDefaultCredential_forProtectionSpace_task :: proc(self: ^URLCredentialStorage, credential: ^URLCredential, protectionSpace: ^URLProtectionSpace, task: ^URLSessionTask) ---

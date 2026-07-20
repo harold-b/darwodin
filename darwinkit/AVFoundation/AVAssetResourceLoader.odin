@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetResourceLoader
-///
 @(objc_class="AVAssetResourceLoader", objc_superclass=NS.Object)
 AssetResourceLoader :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetResourceLoader, objc_selector="init", objc_name="init")
     AssetResourceLoader_init :: proc(self: ^AssetResourceLoader) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=AssetResourceLoader, objc_selector="setSendsCommonMediaClientDataAsHTTPHeaders:", objc_name="setSendsCommonMediaClientDataAsHTTPHeaders")
     AssetResourceLoader_setSendsCommonMediaClientDataAsHTTPHeaders :: proc(self: ^AssetResourceLoader, sendsCommonMediaClientDataAsHTTPHeaders: bool) ---
 }
+
+
+

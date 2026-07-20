@@ -20,15 +20,15 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSScrubberItemView"
 
 VTable :: struct {
     super: NSScrubberItemView.VTable,
-    textField: proc(self: ^AK.ScrubberTextItemView) -> ^AK.TextField,
-    title: proc(self: ^AK.ScrubberTextItemView) -> ^NS.String,
-    setTitle: proc(self: ^AK.ScrubberTextItemView, title: ^NS.String),
+    textField: proc(self: ^NS.ScrubberTextItemView) -> ^NS.TextField,
+    title: proc(self: ^NS.ScrubberTextItemView) -> ^NS.String,
+    setTitle: proc(self: ^NS.ScrubberTextItemView, title: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScrubberItemView.extend(cls, &vt.super)
 
     if vt.textField != nil {
-        textField :: proc "c" (self: ^AK.ScrubberTextItemView, _: SEL) -> ^AK.TextField {
+        textField :: proc "c" (self: ^NS.ScrubberTextItemView, _: SEL) -> ^NS.TextField {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textField"), auto_cast textField, "@@:") do panic("Failed to register objC method.")
     }
     if vt.title != nil {
-        title :: proc "c" (self: ^AK.ScrubberTextItemView, _: SEL) -> ^NS.String {
+        title :: proc "c" (self: ^NS.ScrubberTextItemView, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.ScrubberTextItemView, _: SEL, title: ^NS.String) {
+        setTitle :: proc "c" (self: ^NS.ScrubberTextItemView, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

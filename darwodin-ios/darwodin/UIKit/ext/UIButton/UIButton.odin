@@ -62,8 +62,8 @@ VTable :: struct {
     setRole: proc(self: ^UI.Button, role: UI.ButtonRole),
     isPointerInteractionEnabled: proc(self: ^UI.Button) -> bool,
     setPointerInteractionEnabled: proc(self: ^UI.Button, pointerInteractionEnabled: bool),
-    pointerStyleProvider: proc(self: ^UI.Button) -> ^Objc_Block(proc "c" (button: ^UI.Button, proposedEffect: ^UI.PointerEffect, proposedShape: ^UI.PointerShape) -> ^UI.PointerStyle),
-    setPointerStyleProvider: proc(self: ^UI.Button, pointerStyleProvider: ^Objc_Block(proc "c" (button: ^UI.Button, proposedEffect: ^UI.PointerEffect, proposedShape: ^UI.PointerShape) -> ^UI.PointerStyle)),
+    pointerStyleProvider: proc(self: ^UI.Button) -> ^Objc_Block(proc "c" ( button: ^UI.Button, proposedEffect: ^UI.PointerEffect, proposedShape: ^UI.PointerShape ) -> ^UI.PointerStyle),
+    setPointerStyleProvider: proc(self: ^UI.Button, pointerStyleProvider: ^Objc_Block(proc "c" ( button: ^UI.Button, proposedEffect: ^UI.PointerEffect, proposedShape: ^UI.PointerShape ) -> ^UI.PointerStyle)),
     menu: proc(self: ^UI.Button) -> ^UI.Menu,
     setMenu: proc(self: ^UI.Button, menu: ^UI.Menu),
     preferredMenuElementOrder: proc(self: ^UI.Button) -> UI.ContextMenuConfigurationElementOrder,
@@ -507,7 +507,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPointerInteractionEnabled:"), auto_cast setPointerInteractionEnabled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.pointerStyleProvider != nil {
-        pointerStyleProvider :: proc "c" (self: ^UI.Button, _: SEL) -> ^Objc_Block(proc "c" (button: ^UI.Button, proposedEffect: ^UI.PointerEffect, proposedShape: ^UI.PointerShape) -> ^UI.PointerStyle) {
+        pointerStyleProvider :: proc "c" (self: ^UI.Button, _: SEL) -> ^Objc_Block(proc "c" ( button: ^UI.Button, proposedEffect: ^UI.PointerEffect, proposedShape: ^UI.PointerShape ) -> ^UI.PointerStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -517,7 +517,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pointerStyleProvider"), auto_cast pointerStyleProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setPointerStyleProvider != nil {
-        setPointerStyleProvider :: proc "c" (self: ^UI.Button, _: SEL, pointerStyleProvider: ^Objc_Block(proc "c" (button: ^UI.Button, proposedEffect: ^UI.PointerEffect, proposedShape: ^UI.PointerShape) -> ^UI.PointerStyle)) {
+        setPointerStyleProvider :: proc "c" (self: ^UI.Button, _: SEL, pointerStyleProvider: ^Objc_Block(proc "c" ( button: ^UI.Button, proposedEffect: ^UI.PointerEffect, proposedShape: ^UI.PointerShape ) -> ^UI.PointerStyle)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

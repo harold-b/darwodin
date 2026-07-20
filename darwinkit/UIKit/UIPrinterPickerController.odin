@@ -25,13 +25,13 @@ foreign lib {
     PrinterPickerController_printerPickerControllerWithInitiallySelectedPrinter :: proc(printer: ^Printer) -> ^PrinterPickerController ---
 
     @(objc_type=PrinterPickerController, objc_selector="presentAnimated:completionHandler:", objc_name="presentAnimated")
-    PrinterPickerController_presentAnimated :: proc(self: ^PrinterPickerController, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool ---
+    PrinterPickerController_presentAnimated :: proc(self: ^PrinterPickerController, animated: bool, completion: ^Objc_Block(proc "c" ( printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error ))) -> bool ---
 
     @(objc_type=PrinterPickerController, objc_selector="presentFromRect:inView:animated:completionHandler:", objc_name="presentFromRect")
-    PrinterPickerController_presentFromRect :: proc(self: ^PrinterPickerController, rect: CG.Rect, view: ^View, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool ---
+    PrinterPickerController_presentFromRect :: proc(self: ^PrinterPickerController, rect: CG.Rect, view: ^View, animated: bool, completion: ^Objc_Block(proc "c" ( printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error ))) -> bool ---
 
     @(objc_type=PrinterPickerController, objc_selector="presentFromBarButtonItem:animated:completionHandler:", objc_name="presentFromBarButtonItem")
-    PrinterPickerController_presentFromBarButtonItem :: proc(self: ^PrinterPickerController, item: ^BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" (printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error))) -> bool ---
+    PrinterPickerController_presentFromBarButtonItem :: proc(self: ^PrinterPickerController, item: ^BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" ( printerPickerController: ^PrinterPickerController, userDidSelect: bool, error: ^NS.Error ))) -> bool ---
 
     @(objc_type=PrinterPickerController, objc_selector="dismissAnimated:", objc_name="dismissAnimated")
     PrinterPickerController_dismissAnimated :: proc(self: ^PrinterPickerController, animated: bool) ---

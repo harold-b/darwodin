@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithAttributedString: proc(self: ^AK.WritingToolsCoordinatorContext, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype,
-    init: proc(self: ^AK.WritingToolsCoordinatorContext) -> instancetype,
-    attributedString: proc(self: ^AK.WritingToolsCoordinatorContext) -> ^NS.AttributedString,
-    range: proc(self: ^AK.WritingToolsCoordinatorContext) -> NS._NSRange,
-    identifier: proc(self: ^AK.WritingToolsCoordinatorContext) -> ^NS.UUID,
-    resolvedRange: proc(self: ^AK.WritingToolsCoordinatorContext) -> NS._NSRange,
+    initWithAttributedString: proc(self: ^NS.WritingToolsCoordinatorContext, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype,
+    init: proc(self: ^NS.WritingToolsCoordinatorContext) -> instancetype,
+    attributedString: proc(self: ^NS.WritingToolsCoordinatorContext) -> ^NS.AttributedString,
+    range: proc(self: ^NS.WritingToolsCoordinatorContext) -> NS._NSRange,
+    identifier: proc(self: ^NS.WritingToolsCoordinatorContext) -> ^NS.UUID,
+    resolvedRange: proc(self: ^NS.WritingToolsCoordinatorContext) -> NS._NSRange,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithAttributedString != nil {
-        initWithAttributedString :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype {
+        initWithAttributedString :: proc "c" (self: ^NS.WritingToolsCoordinatorContext, _: SEL, attributedString: ^NS.AttributedString, range: NS._NSRange) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedString:range:"), auto_cast initWithAttributedString, "@@:@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.WritingToolsCoordinatorContext, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.attributedString != nil {
-        attributedString :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL) -> ^NS.AttributedString {
+        attributedString :: proc "c" (self: ^NS.WritingToolsCoordinatorContext, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedString"), auto_cast attributedString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.range != nil {
-        range :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL) -> NS._NSRange {
+        range :: proc "c" (self: ^NS.WritingToolsCoordinatorContext, _: SEL) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("range"), auto_cast range, "{_NSRange=LL}@:") do panic("Failed to register objC method.")
     }
     if vt.identifier != nil {
-        identifier :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL) -> ^NS.UUID {
+        identifier :: proc "c" (self: ^NS.WritingToolsCoordinatorContext, _: SEL) -> ^NS.UUID {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("identifier"), auto_cast identifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.resolvedRange != nil {
-        resolvedRange :: proc "c" (self: ^AK.WritingToolsCoordinatorContext, _: SEL) -> NS._NSRange {
+        resolvedRange :: proc "c" (self: ^NS.WritingToolsCoordinatorContext, _: SEL) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

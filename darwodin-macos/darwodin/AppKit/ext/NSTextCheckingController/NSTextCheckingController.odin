@@ -20,33 +20,33 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithClient: proc(self: ^AK.TextCheckingController, client: ^AK.TextCheckingClient) -> instancetype,
-    init: proc(self: ^AK.TextCheckingController) -> instancetype,
-    invalidate: proc(self: ^AK.TextCheckingController),
-    didChangeTextInRange: proc(self: ^AK.TextCheckingController, range: NS._NSRange),
-    insertedTextInRange: proc(self: ^AK.TextCheckingController, range: NS._NSRange),
-    didChangeSelectedRange: proc(self: ^AK.TextCheckingController),
-    considerTextCheckingForRange: proc(self: ^AK.TextCheckingController, range: NS._NSRange),
-    checkTextInRange: proc(self: ^AK.TextCheckingController, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary),
-    checkTextInSelection: proc(self: ^AK.TextCheckingController, sender: id),
-    checkTextInDocument: proc(self: ^AK.TextCheckingController, sender: id),
-    orderFrontSubstitutionsPanel: proc(self: ^AK.TextCheckingController, sender: id),
-    checkSpelling: proc(self: ^AK.TextCheckingController, sender: id),
-    showGuessPanel: proc(self: ^AK.TextCheckingController, sender: id),
-    changeSpelling: proc(self: ^AK.TextCheckingController, sender: id),
-    ignoreSpelling: proc(self: ^AK.TextCheckingController, sender: id),
-    updateCandidates: proc(self: ^AK.TextCheckingController),
-    validAnnotations: proc(self: ^AK.TextCheckingController) -> ^NS.Array,
-    menuAtIndex: proc(self: ^AK.TextCheckingController, location: NS.UInteger, clickedOnSelection: bool, effectiveRange: ^NS._NSRange) -> ^AK.Menu,
-    client: proc(self: ^AK.TextCheckingController) -> ^AK.TextCheckingClient,
-    spellCheckerDocumentTag: proc(self: ^AK.TextCheckingController) -> NS.Integer,
-    setSpellCheckerDocumentTag: proc(self: ^AK.TextCheckingController, spellCheckerDocumentTag: NS.Integer),
+    initWithClient: proc(self: ^NS.TextCheckingController, client: ^NS.TextCheckingClient) -> instancetype,
+    init: proc(self: ^NS.TextCheckingController) -> instancetype,
+    invalidate: proc(self: ^NS.TextCheckingController),
+    didChangeTextInRange: proc(self: ^NS.TextCheckingController, range: NS._NSRange),
+    insertedTextInRange: proc(self: ^NS.TextCheckingController, range: NS._NSRange),
+    didChangeSelectedRange: proc(self: ^NS.TextCheckingController),
+    considerTextCheckingForRange: proc(self: ^NS.TextCheckingController, range: NS._NSRange),
+    checkTextInRange: proc(self: ^NS.TextCheckingController, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary),
+    checkTextInSelection: proc(self: ^NS.TextCheckingController, sender: id),
+    checkTextInDocument: proc(self: ^NS.TextCheckingController, sender: id),
+    orderFrontSubstitutionsPanel: proc(self: ^NS.TextCheckingController, sender: id),
+    checkSpelling: proc(self: ^NS.TextCheckingController, sender: id),
+    showGuessPanel: proc(self: ^NS.TextCheckingController, sender: id),
+    changeSpelling: proc(self: ^NS.TextCheckingController, sender: id),
+    ignoreSpelling: proc(self: ^NS.TextCheckingController, sender: id),
+    updateCandidates: proc(self: ^NS.TextCheckingController),
+    validAnnotations: proc(self: ^NS.TextCheckingController) -> ^NS.Array,
+    menuAtIndex: proc(self: ^NS.TextCheckingController, location: NS.UInteger, clickedOnSelection: bool, effectiveRange: ^NS._NSRange) -> ^NS.Menu,
+    client: proc(self: ^NS.TextCheckingController) -> ^NS.TextCheckingClient,
+    spellCheckerDocumentTag: proc(self: ^NS.TextCheckingController) -> NS.Integer,
+    setSpellCheckerDocumentTag: proc(self: ^NS.TextCheckingController, spellCheckerDocumentTag: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithClient != nil {
-        initWithClient :: proc "c" (self: ^AK.TextCheckingController, _: SEL, client: ^AK.TextCheckingClient) -> instancetype {
+        initWithClient :: proc "c" (self: ^NS.TextCheckingController, _: SEL, client: ^NS.TextCheckingClient) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithClient:"), auto_cast initWithClient, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextCheckingController, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.TextCheckingController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.invalidate != nil {
-        invalidate :: proc "c" (self: ^AK.TextCheckingController, _: SEL) {
+        invalidate :: proc "c" (self: ^NS.TextCheckingController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("invalidate"), auto_cast invalidate, "v@:") do panic("Failed to register objC method.")
     }
     if vt.didChangeTextInRange != nil {
-        didChangeTextInRange :: proc "c" (self: ^AK.TextCheckingController, _: SEL, range: NS._NSRange) {
+        didChangeTextInRange :: proc "c" (self: ^NS.TextCheckingController, _: SEL, range: NS._NSRange) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didChangeTextInRange:"), auto_cast didChangeTextInRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.insertedTextInRange != nil {
-        insertedTextInRange :: proc "c" (self: ^AK.TextCheckingController, _: SEL, range: NS._NSRange) {
+        insertedTextInRange :: proc "c" (self: ^NS.TextCheckingController, _: SEL, range: NS._NSRange) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertedTextInRange:"), auto_cast insertedTextInRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.didChangeSelectedRange != nil {
-        didChangeSelectedRange :: proc "c" (self: ^AK.TextCheckingController, _: SEL) {
+        didChangeSelectedRange :: proc "c" (self: ^NS.TextCheckingController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didChangeSelectedRange"), auto_cast didChangeSelectedRange, "v@:") do panic("Failed to register objC method.")
     }
     if vt.considerTextCheckingForRange != nil {
-        considerTextCheckingForRange :: proc "c" (self: ^AK.TextCheckingController, _: SEL, range: NS._NSRange) {
+        considerTextCheckingForRange :: proc "c" (self: ^NS.TextCheckingController, _: SEL, range: NS._NSRange) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("considerTextCheckingForRange:"), auto_cast considerTextCheckingForRange, "v@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.checkTextInRange != nil {
-        checkTextInRange :: proc "c" (self: ^AK.TextCheckingController, _: SEL, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary) {
+        checkTextInRange :: proc "c" (self: ^NS.TextCheckingController, _: SEL, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkTextInRange:types:options:"), auto_cast checkTextInRange, "v@:{_NSRange=LL}Q^void") do panic("Failed to register objC method.")
     }
     if vt.checkTextInSelection != nil {
-        checkTextInSelection :: proc "c" (self: ^AK.TextCheckingController, _: SEL, sender: id) {
+        checkTextInSelection :: proc "c" (self: ^NS.TextCheckingController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkTextInSelection:"), auto_cast checkTextInSelection, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.checkTextInDocument != nil {
-        checkTextInDocument :: proc "c" (self: ^AK.TextCheckingController, _: SEL, sender: id) {
+        checkTextInDocument :: proc "c" (self: ^NS.TextCheckingController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkTextInDocument:"), auto_cast checkTextInDocument, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.orderFrontSubstitutionsPanel != nil {
-        orderFrontSubstitutionsPanel :: proc "c" (self: ^AK.TextCheckingController, _: SEL, sender: id) {
+        orderFrontSubstitutionsPanel :: proc "c" (self: ^NS.TextCheckingController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -167,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("orderFrontSubstitutionsPanel:"), auto_cast orderFrontSubstitutionsPanel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.checkSpelling != nil {
-        checkSpelling :: proc "c" (self: ^AK.TextCheckingController, _: SEL, sender: id) {
+        checkSpelling :: proc "c" (self: ^NS.TextCheckingController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -177,7 +177,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkSpelling:"), auto_cast checkSpelling, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.showGuessPanel != nil {
-        showGuessPanel :: proc "c" (self: ^AK.TextCheckingController, _: SEL, sender: id) {
+        showGuessPanel :: proc "c" (self: ^NS.TextCheckingController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -187,7 +187,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showGuessPanel:"), auto_cast showGuessPanel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.changeSpelling != nil {
-        changeSpelling :: proc "c" (self: ^AK.TextCheckingController, _: SEL, sender: id) {
+        changeSpelling :: proc "c" (self: ^NS.TextCheckingController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -197,7 +197,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("changeSpelling:"), auto_cast changeSpelling, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.ignoreSpelling != nil {
-        ignoreSpelling :: proc "c" (self: ^AK.TextCheckingController, _: SEL, sender: id) {
+        ignoreSpelling :: proc "c" (self: ^NS.TextCheckingController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -207,7 +207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("ignoreSpelling:"), auto_cast ignoreSpelling, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.updateCandidates != nil {
-        updateCandidates :: proc "c" (self: ^AK.TextCheckingController, _: SEL) {
+        updateCandidates :: proc "c" (self: ^NS.TextCheckingController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -217,7 +217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateCandidates"), auto_cast updateCandidates, "v@:") do panic("Failed to register objC method.")
     }
     if vt.validAnnotations != nil {
-        validAnnotations :: proc "c" (self: ^AK.TextCheckingController, _: SEL) -> ^NS.Array {
+        validAnnotations :: proc "c" (self: ^NS.TextCheckingController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -227,7 +227,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("validAnnotations"), auto_cast validAnnotations, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.menuAtIndex != nil {
-        menuAtIndex :: proc "c" (self: ^AK.TextCheckingController, _: SEL, location: NS.UInteger, clickedOnSelection: bool, effectiveRange: ^NS._NSRange) -> ^AK.Menu {
+        menuAtIndex :: proc "c" (self: ^NS.TextCheckingController, _: SEL, location: NS.UInteger, clickedOnSelection: bool, effectiveRange: ^NS._NSRange) -> ^NS.Menu {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -237,7 +237,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menuAtIndex:clickedOnSelection:effectiveRange:"), auto_cast menuAtIndex, "@@:LB^void") do panic("Failed to register objC method.")
     }
     if vt.client != nil {
-        client :: proc "c" (self: ^AK.TextCheckingController, _: SEL) -> ^AK.TextCheckingClient {
+        client :: proc "c" (self: ^NS.TextCheckingController, _: SEL) -> ^NS.TextCheckingClient {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -247,7 +247,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("client"), auto_cast client, "@@:") do panic("Failed to register objC method.")
     }
     if vt.spellCheckerDocumentTag != nil {
-        spellCheckerDocumentTag :: proc "c" (self: ^AK.TextCheckingController, _: SEL) -> NS.Integer {
+        spellCheckerDocumentTag :: proc "c" (self: ^NS.TextCheckingController, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -257,7 +257,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("spellCheckerDocumentTag"), auto_cast spellCheckerDocumentTag, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSpellCheckerDocumentTag != nil {
-        setSpellCheckerDocumentTag :: proc "c" (self: ^AK.TextCheckingController, _: SEL, spellCheckerDocumentTag: NS.Integer) {
+        setSpellCheckerDocumentTag :: proc "c" (self: ^NS.TextCheckingController, _: SEL, spellCheckerDocumentTag: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

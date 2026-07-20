@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLSessionDownloadDelegate
-///
 @(objc_class="NSURLSessionDownloadDelegate")
 URLSessionDownloadDelegate :: struct { using _: intrinsics.objc_object, 
     using _: URLSessionTaskDelegate,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionDownloadDelegate, objc_selector="URLSession:downloadTask:didFinishDownloadingToURL:", objc_name="URLSession_downloadTask_didFinishDownloadingToURL")
     URLSessionDownloadDelegate_URLSession_downloadTask_didFinishDownloadingToURL :: proc(self: ^URLSessionDownloadDelegate, session: ^URLSession, downloadTask: ^URLSessionDownloadTask, location: ^URL) ---
@@ -30,6 +24,8 @@ foreign lib {
     @(objc_type=URLSessionDownloadDelegate, objc_selector="URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:", objc_name="URLSession_downloadTask_didResumeAtOffset_expectedTotalBytes")
     URLSessionDownloadDelegate_URLSession_downloadTask_didResumeAtOffset_expectedTotalBytes :: proc(self: ^URLSessionDownloadDelegate, session: ^URLSession, downloadTask: ^URLSessionDownloadTask, fileOffset: cffi.int64_t, expectedTotalBytes: cffi.int64_t) ---
 }
+
+
 
 @(objc_type=URLSessionDownloadDelegate, objc_name="URLSession")
 URLSessionDownloadDelegate_URLSession :: proc {

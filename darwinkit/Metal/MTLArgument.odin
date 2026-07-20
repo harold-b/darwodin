@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLArgument
-///
 @(objc_class="MTLArgument", objc_superclass=NS.Object)
 Argument :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Argument, objc_selector="name", objc_name="name")
     Argument_name :: proc(self: ^Argument) -> ^NS.String ---
@@ -69,3 +63,6 @@ foreign lib {
     @(objc_type=Argument, objc_selector="arrayLength", objc_name="arrayLength")
     Argument_arrayLength :: proc(self: ^Argument) -> NS.UInteger ---
 }
+
+
+

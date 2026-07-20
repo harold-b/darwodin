@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVContentKeySession
-///
 @(objc_class="AVContentKeySession", objc_superclass=NS.Object)
 ContentKeySession :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentKeySession, objc_selector="init", objc_name="init")
     ContentKeySession_init :: proc(self: ^ContentKeySession) -> instancetype ---
@@ -47,13 +41,13 @@ foreign lib {
     ContentKeySession_renewExpiringResponseDataForContentKeyRequest :: proc(self: ^ContentKeySession, contentKeyRequest: ^ContentKeyRequest) ---
 
     @(objc_type=ContentKeySession, objc_selector="makeSecureTokenForExpirationDateOfPersistableContentKey:completionHandler:", objc_name="makeSecureTokenForExpirationDateOfPersistableContentKey")
-    ContentKeySession_makeSecureTokenForExpirationDateOfPersistableContentKey :: proc(self: ^ContentKeySession, persistableContentKeyData: ^NS.Data, handler: ^Objc_Block(proc "c" (secureTokenData: ^NS.Data, error: ^NS.Error))) ---
+    ContentKeySession_makeSecureTokenForExpirationDateOfPersistableContentKey :: proc(self: ^ContentKeySession, persistableContentKeyData: ^NS.Data, handler: ^Objc_Block(proc "c" ( secureTokenData: ^NS.Data, error: ^NS.Error ))) ---
 
     @(objc_type=ContentKeySession, objc_selector="invalidatePersistableContentKey:options:completionHandler:", objc_name="invalidatePersistableContentKey")
-    ContentKeySession_invalidatePersistableContentKey :: proc(self: ^ContentKeySession, persistableContentKeyData: ^NS.Data, options: ^NS.Dictionary, handler: ^Objc_Block(proc "c" (secureTokenData: ^NS.Data, error: ^NS.Error))) ---
+    ContentKeySession_invalidatePersistableContentKey :: proc(self: ^ContentKeySession, persistableContentKeyData: ^NS.Data, options: ^NS.Dictionary, handler: ^Objc_Block(proc "c" ( secureTokenData: ^NS.Data, error: ^NS.Error ))) ---
 
     @(objc_type=ContentKeySession, objc_selector="invalidateAllPersistableContentKeysForApp:options:completionHandler:", objc_name="invalidateAllPersistableContentKeysForApp")
-    ContentKeySession_invalidateAllPersistableContentKeysForApp :: proc(self: ^ContentKeySession, appIdentifier: ^NS.Data, options: ^NS.Dictionary, handler: ^Objc_Block(proc "c" (secureTokenData: ^NS.Data, error: ^NS.Error))) ---
+    ContentKeySession_invalidateAllPersistableContentKeysForApp :: proc(self: ^ContentKeySession, appIdentifier: ^NS.Data, options: ^NS.Dictionary, handler: ^Objc_Block(proc "c" ( secureTokenData: ^NS.Data, error: ^NS.Error ))) ---
 
     @(objc_type=ContentKeySession, objc_selector="delegate", objc_name="delegate")
     ContentKeySession_delegate :: proc(self: ^ContentKeySession) -> ^ContentKeySessionDelegate ---
@@ -91,6 +85,8 @@ foreign lib {
     @(objc_type=ContentKeySession, objc_selector="removePendingExpiredSessionReports:withAppIdentifier:storageDirectoryAtURL:", objc_name="removePendingExpiredSessionReports", objc_is_class_method=true)
     ContentKeySession_removePendingExpiredSessionReports :: proc(expiredSessionReports: ^NS.Array, appIdentifier: ^NS.Data, storageURL: ^NS.URL) ---
 }
+
+
 
 @(objc_type=ContentKeySession, objc_name="contentKeySessionWithKeySystem")
 ContentKeySession_contentKeySessionWithKeySystem :: proc {

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4CommandQueue
-///
 @(objc_class="MTL4CommandQueue")
 MTL4CommandQueue :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4CommandQueue, objc_selector="commit:count:", objc_name="commit_count")
     MTL4CommandQueue_commit_count :: proc(self: ^MTL4CommandQueue, commandBuffers: ^^MTL4CommandBuffer, count: NS.UInteger) ---
@@ -71,6 +65,8 @@ foreign lib {
     @(objc_type=MTL4CommandQueue, objc_selector="label", objc_name="label")
     MTL4CommandQueue_label :: proc(self: ^MTL4CommandQueue) -> ^NS.String ---
 }
+
+
 
 @(objc_type=MTL4CommandQueue, objc_name="commit")
 MTL4CommandQueue_commit :: proc {

@@ -9,13 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSHTTPCookieStorageInternal
-///
 @(objc_class="NSHTTPCookieStorageInternal")
 HTTPCookieStorageInternal :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

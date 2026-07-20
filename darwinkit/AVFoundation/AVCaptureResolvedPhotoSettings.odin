@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureResolvedPhotoSettings
-///
 @(objc_class="AVCaptureResolvedPhotoSettings", objc_superclass=NS.Object)
 CaptureResolvedPhotoSettings :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureResolvedPhotoSettings, objc_selector="init", objc_name="init")
     CaptureResolvedPhotoSettings_init :: proc(self: ^CaptureResolvedPhotoSettings) -> instancetype ---
@@ -85,3 +79,6 @@ foreign lib {
     @(objc_type=CaptureResolvedPhotoSettings, objc_selector="isFastCapturePrioritizationEnabled", objc_name="isFastCapturePrioritizationEnabled")
     CaptureResolvedPhotoSettings_isFastCapturePrioritizationEnabled :: proc(self: ^CaptureResolvedPhotoSettings) -> bool ---
 }
+
+
+

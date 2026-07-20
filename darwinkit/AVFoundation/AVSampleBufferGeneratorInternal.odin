@@ -12,13 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSampleBufferGeneratorInternal
-///
 @(objc_class="AVSampleBufferGeneratorInternal")
 SampleBufferGeneratorInternal :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

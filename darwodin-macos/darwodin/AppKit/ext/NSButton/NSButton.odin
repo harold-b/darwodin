@@ -20,79 +20,79 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    buttonWithTitle_image_target_action: proc(title: ^NS.String, image: ^AK.Image, target: id, action: SEL) -> instancetype,
+    buttonWithTitle_image_target_action: proc(title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype,
     buttonWithTitle_target_action: proc(title: ^NS.String, target: id, action: SEL) -> instancetype,
-    buttonWithImage: proc(image: ^AK.Image, target: id, action: SEL) -> instancetype,
+    buttonWithImage: proc(image: ^NS.Image, target: id, action: SEL) -> instancetype,
     checkboxWithTitle: proc(title: ^NS.String, target: id, action: SEL) -> instancetype,
     radioButtonWithTitle: proc(title: ^NS.String, target: id, action: SEL) -> instancetype,
-    setButtonType: proc(self: ^AK.Button, type: AK.ButtonType),
-    setPeriodicDelay: proc(self: ^AK.Button, delay: cffi.float, interval: cffi.float),
-    getPeriodicDelay: proc(self: ^AK.Button, delay: ^cffi.float, interval: ^cffi.float),
-    setNextState: proc(self: ^AK.Button),
-    highlight: proc(self: ^AK.Button, flag: bool),
-    performKeyEquivalent: proc(self: ^AK.Button, key: ^AK.Event) -> bool,
-    compressWithPrioritizedCompressionOptions: proc(self: ^AK.Button, prioritizedOptions: ^NS.Array),
-    minimumSizeWithPrioritizedCompressionOptions: proc(self: ^AK.Button, prioritizedOptions: ^NS.Array) -> NS.Size,
-    title: proc(self: ^AK.Button) -> ^NS.String,
-    setTitle: proc(self: ^AK.Button, title: ^NS.String),
-    attributedTitle: proc(self: ^AK.Button) -> ^NS.AttributedString,
-    setAttributedTitle: proc(self: ^AK.Button, attributedTitle: ^NS.AttributedString),
-    alternateTitle: proc(self: ^AK.Button) -> ^NS.String,
-    setAlternateTitle: proc(self: ^AK.Button, alternateTitle: ^NS.String),
-    attributedAlternateTitle: proc(self: ^AK.Button) -> ^NS.AttributedString,
-    setAttributedAlternateTitle: proc(self: ^AK.Button, attributedAlternateTitle: ^NS.AttributedString),
-    hasDestructiveAction: proc(self: ^AK.Button) -> bool,
-    setHasDestructiveAction: proc(self: ^AK.Button, hasDestructiveAction: bool),
-    sound: proc(self: ^AK.Button) -> ^AK.Sound,
-    setSound: proc(self: ^AK.Button, sound: ^AK.Sound),
-    isSpringLoaded: proc(self: ^AK.Button) -> bool,
-    setSpringLoaded: proc(self: ^AK.Button, springLoaded: bool),
-    maxAcceleratorLevel: proc(self: ^AK.Button) -> NS.Integer,
-    setMaxAcceleratorLevel: proc(self: ^AK.Button, maxAcceleratorLevel: NS.Integer),
-    bezelStyle: proc(self: ^AK.Button) -> AK.BezelStyle,
-    setBezelStyle: proc(self: ^AK.Button, bezelStyle: AK.BezelStyle),
-    isBordered: proc(self: ^AK.Button) -> bool,
-    setBordered: proc(self: ^AK.Button, bordered: bool),
-    isTransparent: proc(self: ^AK.Button) -> bool,
-    setTransparent: proc(self: ^AK.Button, transparent: bool),
-    showsBorderOnlyWhileMouseInside: proc(self: ^AK.Button) -> bool,
-    setShowsBorderOnlyWhileMouseInside: proc(self: ^AK.Button, showsBorderOnlyWhileMouseInside: bool),
-    bezelColor: proc(self: ^AK.Button) -> ^AK.Color,
-    setBezelColor: proc(self: ^AK.Button, bezelColor: ^AK.Color),
-    contentTintColor: proc(self: ^AK.Button) -> ^AK.Color,
-    setContentTintColor: proc(self: ^AK.Button, contentTintColor: ^AK.Color),
-    tintProminence: proc(self: ^AK.Button) -> AK.TintProminence,
-    setTintProminence: proc(self: ^AK.Button, tintProminence: AK.TintProminence),
-    image: proc(self: ^AK.Button) -> ^AK.Image,
-    setImage: proc(self: ^AK.Button, image: ^AK.Image),
-    alternateImage: proc(self: ^AK.Button) -> ^AK.Image,
-    setAlternateImage: proc(self: ^AK.Button, alternateImage: ^AK.Image),
-    imagePosition: proc(self: ^AK.Button) -> AK.CellImagePosition,
-    setImagePosition: proc(self: ^AK.Button, imagePosition: AK.CellImagePosition),
-    imageScaling: proc(self: ^AK.Button) -> AK.ImageScaling,
-    setImageScaling: proc(self: ^AK.Button, imageScaling: AK.ImageScaling),
-    imageHugsTitle: proc(self: ^AK.Button) -> bool,
-    setImageHugsTitle: proc(self: ^AK.Button, imageHugsTitle: bool),
-    symbolConfiguration: proc(self: ^AK.Button) -> ^AK.ImageSymbolConfiguration,
-    setSymbolConfiguration: proc(self: ^AK.Button, symbolConfiguration: ^AK.ImageSymbolConfiguration),
-    state: proc(self: ^AK.Button) -> AK.ControlStateValue,
-    setState: proc(self: ^AK.Button, state: AK.ControlStateValue),
-    allowsMixedState: proc(self: ^AK.Button) -> bool,
-    setAllowsMixedState: proc(self: ^AK.Button, allowsMixedState: bool),
-    keyEquivalent: proc(self: ^AK.Button) -> ^NS.String,
-    setKeyEquivalent: proc(self: ^AK.Button, keyEquivalent: ^NS.String),
-    keyEquivalentModifierMask: proc(self: ^AK.Button) -> AK.EventModifierFlags,
-    setKeyEquivalentModifierMask: proc(self: ^AK.Button, keyEquivalentModifierMask: AK.EventModifierFlags),
-    activeCompressionOptions: proc(self: ^AK.Button) -> ^AK.UserInterfaceCompressionOptions,
-    borderShape: proc(self: ^AK.Button) -> AK.ControlBorderShape,
-    setBorderShape: proc(self: ^AK.Button, borderShape: AK.ControlBorderShape),
-    setTitleWithMnemonic: proc(self: ^AK.Button, stringWithAmpersand: ^NS.String),
+    setButtonType: proc(self: ^NS.Button, type: NS.ButtonType),
+    setPeriodicDelay: proc(self: ^NS.Button, delay: cffi.float, interval: cffi.float),
+    getPeriodicDelay: proc(self: ^NS.Button, delay: ^cffi.float, interval: ^cffi.float),
+    setNextState: proc(self: ^NS.Button),
+    highlight: proc(self: ^NS.Button, flag: bool),
+    performKeyEquivalent: proc(self: ^NS.Button, key: ^NS.Event) -> bool,
+    compressWithPrioritizedCompressionOptions: proc(self: ^NS.Button, prioritizedOptions: ^NS.Array),
+    minimumSizeWithPrioritizedCompressionOptions: proc(self: ^NS.Button, prioritizedOptions: ^NS.Array) -> NS.Size,
+    title: proc(self: ^NS.Button) -> ^NS.String,
+    setTitle: proc(self: ^NS.Button, title: ^NS.String),
+    attributedTitle: proc(self: ^NS.Button) -> ^NS.AttributedString,
+    setAttributedTitle: proc(self: ^NS.Button, attributedTitle: ^NS.AttributedString),
+    alternateTitle: proc(self: ^NS.Button) -> ^NS.String,
+    setAlternateTitle: proc(self: ^NS.Button, alternateTitle: ^NS.String),
+    attributedAlternateTitle: proc(self: ^NS.Button) -> ^NS.AttributedString,
+    setAttributedAlternateTitle: proc(self: ^NS.Button, attributedAlternateTitle: ^NS.AttributedString),
+    hasDestructiveAction: proc(self: ^NS.Button) -> bool,
+    setHasDestructiveAction: proc(self: ^NS.Button, hasDestructiveAction: bool),
+    sound: proc(self: ^NS.Button) -> ^NS.Sound,
+    setSound: proc(self: ^NS.Button, sound: ^NS.Sound),
+    isSpringLoaded: proc(self: ^NS.Button) -> bool,
+    setSpringLoaded: proc(self: ^NS.Button, springLoaded: bool),
+    maxAcceleratorLevel: proc(self: ^NS.Button) -> NS.Integer,
+    setMaxAcceleratorLevel: proc(self: ^NS.Button, maxAcceleratorLevel: NS.Integer),
+    bezelStyle: proc(self: ^NS.Button) -> NS.BezelStyle,
+    setBezelStyle: proc(self: ^NS.Button, bezelStyle: NS.BezelStyle),
+    isBordered: proc(self: ^NS.Button) -> bool,
+    setBordered: proc(self: ^NS.Button, bordered: bool),
+    isTransparent: proc(self: ^NS.Button) -> bool,
+    setTransparent: proc(self: ^NS.Button, transparent: bool),
+    showsBorderOnlyWhileMouseInside: proc(self: ^NS.Button) -> bool,
+    setShowsBorderOnlyWhileMouseInside: proc(self: ^NS.Button, showsBorderOnlyWhileMouseInside: bool),
+    bezelColor: proc(self: ^NS.Button) -> ^NS.Color,
+    setBezelColor: proc(self: ^NS.Button, bezelColor: ^NS.Color),
+    contentTintColor: proc(self: ^NS.Button) -> ^NS.Color,
+    setContentTintColor: proc(self: ^NS.Button, contentTintColor: ^NS.Color),
+    tintProminence: proc(self: ^NS.Button) -> NS.TintProminence,
+    setTintProminence: proc(self: ^NS.Button, tintProminence: NS.TintProminence),
+    image: proc(self: ^NS.Button) -> ^NS.Image,
+    setImage: proc(self: ^NS.Button, image: ^NS.Image),
+    alternateImage: proc(self: ^NS.Button) -> ^NS.Image,
+    setAlternateImage: proc(self: ^NS.Button, alternateImage: ^NS.Image),
+    imagePosition: proc(self: ^NS.Button) -> NS.CellImagePosition,
+    setImagePosition: proc(self: ^NS.Button, imagePosition: NS.CellImagePosition),
+    imageScaling: proc(self: ^NS.Button) -> NS.ImageScaling,
+    setImageScaling: proc(self: ^NS.Button, imageScaling: NS.ImageScaling),
+    imageHugsTitle: proc(self: ^NS.Button) -> bool,
+    setImageHugsTitle: proc(self: ^NS.Button, imageHugsTitle: bool),
+    symbolConfiguration: proc(self: ^NS.Button) -> ^NS.ImageSymbolConfiguration,
+    setSymbolConfiguration: proc(self: ^NS.Button, symbolConfiguration: ^NS.ImageSymbolConfiguration),
+    state: proc(self: ^NS.Button) -> NS.ControlStateValue,
+    setState: proc(self: ^NS.Button, state: NS.ControlStateValue),
+    allowsMixedState: proc(self: ^NS.Button) -> bool,
+    setAllowsMixedState: proc(self: ^NS.Button, allowsMixedState: bool),
+    keyEquivalent: proc(self: ^NS.Button) -> ^NS.String,
+    setKeyEquivalent: proc(self: ^NS.Button, keyEquivalent: ^NS.String),
+    keyEquivalentModifierMask: proc(self: ^NS.Button) -> NS.EventModifierFlags,
+    setKeyEquivalentModifierMask: proc(self: ^NS.Button, keyEquivalentModifierMask: NS.EventModifierFlags),
+    activeCompressionOptions: proc(self: ^NS.Button) -> ^NS.UserInterfaceCompressionOptions,
+    borderShape: proc(self: ^NS.Button) -> NS.ControlBorderShape,
+    setBorderShape: proc(self: ^NS.Button, borderShape: NS.ControlBorderShape),
+    setTitleWithMnemonic: proc(self: ^NS.Button, stringWithAmpersand: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.buttonWithTitle_image_target_action != nil {
-        buttonWithTitle_image_target_action :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^AK.Image, target: id, action: SEL) -> instancetype {
+        buttonWithTitle_image_target_action :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^NS.Image, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("buttonWithTitle:target:action:"), auto_cast buttonWithTitle_target_action, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.buttonWithImage != nil {
-        buttonWithImage :: proc "c" (self: Class, _: SEL, image: ^AK.Image, target: id, action: SEL) -> instancetype {
+        buttonWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("radioButtonWithTitle:target:action:"), auto_cast radioButtonWithTitle, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.setButtonType != nil {
-        setButtonType :: proc "c" (self: ^AK.Button, _: SEL, type: AK.ButtonType) {
+        setButtonType :: proc "c" (self: ^NS.Button, _: SEL, type: NS.ButtonType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setButtonType:"), auto_cast setButtonType, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.setPeriodicDelay != nil {
-        setPeriodicDelay :: proc "c" (self: ^AK.Button, _: SEL, delay: cffi.float, interval: cffi.float) {
+        setPeriodicDelay :: proc "c" (self: ^NS.Button, _: SEL, delay: cffi.float, interval: cffi.float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPeriodicDelay:interval:"), auto_cast setPeriodicDelay, "v@:ff") do panic("Failed to register objC method.")
     }
     if vt.getPeriodicDelay != nil {
-        getPeriodicDelay :: proc "c" (self: ^AK.Button, _: SEL, delay: ^cffi.float, interval: ^cffi.float) {
+        getPeriodicDelay :: proc "c" (self: ^NS.Button, _: SEL, delay: ^cffi.float, interval: ^cffi.float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getPeriodicDelay:interval:"), auto_cast getPeriodicDelay, "v@:^void^void") do panic("Failed to register objC method.")
     }
     if vt.setNextState != nil {
-        setNextState :: proc "c" (self: ^AK.Button, _: SEL) {
+        setNextState :: proc "c" (self: ^NS.Button, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNextState"), auto_cast setNextState, "v@:") do panic("Failed to register objC method.")
     }
     if vt.highlight != nil {
-        highlight :: proc "c" (self: ^AK.Button, _: SEL, flag: bool) {
+        highlight :: proc "c" (self: ^NS.Button, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -203,7 +203,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("highlight:"), auto_cast highlight, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.performKeyEquivalent != nil {
-        performKeyEquivalent :: proc "c" (self: ^AK.Button, _: SEL, key: ^AK.Event) -> bool {
+        performKeyEquivalent :: proc "c" (self: ^NS.Button, _: SEL, key: ^NS.Event) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performKeyEquivalent:"), auto_cast performKeyEquivalent, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.compressWithPrioritizedCompressionOptions != nil {
-        compressWithPrioritizedCompressionOptions :: proc "c" (self: ^AK.Button, _: SEL, prioritizedOptions: ^NS.Array) {
+        compressWithPrioritizedCompressionOptions :: proc "c" (self: ^NS.Button, _: SEL, prioritizedOptions: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("compressWithPrioritizedCompressionOptions:"), auto_cast compressWithPrioritizedCompressionOptions, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.minimumSizeWithPrioritizedCompressionOptions != nil {
-        minimumSizeWithPrioritizedCompressionOptions :: proc "c" (self: ^AK.Button, _: SEL, prioritizedOptions: ^NS.Array) -> NS.Size {
+        minimumSizeWithPrioritizedCompressionOptions :: proc "c" (self: ^NS.Button, _: SEL, prioritizedOptions: ^NS.Array) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumSizeWithPrioritizedCompressionOptions:"), auto_cast minimumSizeWithPrioritizedCompressionOptions, "{CGSize=dd}@:^void") do panic("Failed to register objC method.")
     }
     if vt.title != nil {
-        title :: proc "c" (self: ^AK.Button, _: SEL) -> ^NS.String {
+        title :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.Button, _: SEL, title: ^NS.String) {
+        setTitle :: proc "c" (self: ^NS.Button, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.attributedTitle != nil {
-        attributedTitle :: proc "c" (self: ^AK.Button, _: SEL) -> ^NS.AttributedString {
+        attributedTitle :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -263,7 +263,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedTitle"), auto_cast attributedTitle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributedTitle != nil {
-        setAttributedTitle :: proc "c" (self: ^AK.Button, _: SEL, attributedTitle: ^NS.AttributedString) {
+        setAttributedTitle :: proc "c" (self: ^NS.Button, _: SEL, attributedTitle: ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -273,7 +273,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedTitle:"), auto_cast setAttributedTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.alternateTitle != nil {
-        alternateTitle :: proc "c" (self: ^AK.Button, _: SEL) -> ^NS.String {
+        alternateTitle :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -283,7 +283,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alternateTitle"), auto_cast alternateTitle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAlternateTitle != nil {
-        setAlternateTitle :: proc "c" (self: ^AK.Button, _: SEL, alternateTitle: ^NS.String) {
+        setAlternateTitle :: proc "c" (self: ^NS.Button, _: SEL, alternateTitle: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -293,7 +293,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAlternateTitle:"), auto_cast setAlternateTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.attributedAlternateTitle != nil {
-        attributedAlternateTitle :: proc "c" (self: ^AK.Button, _: SEL) -> ^NS.AttributedString {
+        attributedAlternateTitle :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -303,7 +303,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedAlternateTitle"), auto_cast attributedAlternateTitle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributedAlternateTitle != nil {
-        setAttributedAlternateTitle :: proc "c" (self: ^AK.Button, _: SEL, attributedAlternateTitle: ^NS.AttributedString) {
+        setAttributedAlternateTitle :: proc "c" (self: ^NS.Button, _: SEL, attributedAlternateTitle: ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -313,7 +313,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedAlternateTitle:"), auto_cast setAttributedAlternateTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.hasDestructiveAction != nil {
-        hasDestructiveAction :: proc "c" (self: ^AK.Button, _: SEL) -> bool {
+        hasDestructiveAction :: proc "c" (self: ^NS.Button, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -323,7 +323,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasDestructiveAction"), auto_cast hasDestructiveAction, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHasDestructiveAction != nil {
-        setHasDestructiveAction :: proc "c" (self: ^AK.Button, _: SEL, hasDestructiveAction: bool) {
+        setHasDestructiveAction :: proc "c" (self: ^NS.Button, _: SEL, hasDestructiveAction: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -333,7 +333,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHasDestructiveAction:"), auto_cast setHasDestructiveAction, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.sound != nil {
-        sound :: proc "c" (self: ^AK.Button, _: SEL) -> ^AK.Sound {
+        sound :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.Sound {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -343,7 +343,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sound"), auto_cast sound, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSound != nil {
-        setSound :: proc "c" (self: ^AK.Button, _: SEL, sound: ^AK.Sound) {
+        setSound :: proc "c" (self: ^NS.Button, _: SEL, sound: ^NS.Sound) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -353,7 +353,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSound:"), auto_cast setSound, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isSpringLoaded != nil {
-        isSpringLoaded :: proc "c" (self: ^AK.Button, _: SEL) -> bool {
+        isSpringLoaded :: proc "c" (self: ^NS.Button, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -363,7 +363,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isSpringLoaded"), auto_cast isSpringLoaded, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSpringLoaded != nil {
-        setSpringLoaded :: proc "c" (self: ^AK.Button, _: SEL, springLoaded: bool) {
+        setSpringLoaded :: proc "c" (self: ^NS.Button, _: SEL, springLoaded: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -373,7 +373,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSpringLoaded:"), auto_cast setSpringLoaded, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.maxAcceleratorLevel != nil {
-        maxAcceleratorLevel :: proc "c" (self: ^AK.Button, _: SEL) -> NS.Integer {
+        maxAcceleratorLevel :: proc "c" (self: ^NS.Button, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -383,7 +383,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maxAcceleratorLevel"), auto_cast maxAcceleratorLevel, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setMaxAcceleratorLevel != nil {
-        setMaxAcceleratorLevel :: proc "c" (self: ^AK.Button, _: SEL, maxAcceleratorLevel: NS.Integer) {
+        setMaxAcceleratorLevel :: proc "c" (self: ^NS.Button, _: SEL, maxAcceleratorLevel: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -393,7 +393,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaxAcceleratorLevel:"), auto_cast setMaxAcceleratorLevel, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.bezelStyle != nil {
-        bezelStyle :: proc "c" (self: ^AK.Button, _: SEL) -> AK.BezelStyle {
+        bezelStyle :: proc "c" (self: ^NS.Button, _: SEL) -> NS.BezelStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -403,7 +403,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bezelStyle"), auto_cast bezelStyle, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setBezelStyle != nil {
-        setBezelStyle :: proc "c" (self: ^AK.Button, _: SEL, bezelStyle: AK.BezelStyle) {
+        setBezelStyle :: proc "c" (self: ^NS.Button, _: SEL, bezelStyle: NS.BezelStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -413,7 +413,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBezelStyle:"), auto_cast setBezelStyle, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.isBordered != nil {
-        isBordered :: proc "c" (self: ^AK.Button, _: SEL) -> bool {
+        isBordered :: proc "c" (self: ^NS.Button, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -423,7 +423,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isBordered"), auto_cast isBordered, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setBordered != nil {
-        setBordered :: proc "c" (self: ^AK.Button, _: SEL, bordered: bool) {
+        setBordered :: proc "c" (self: ^NS.Button, _: SEL, bordered: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -433,7 +433,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBordered:"), auto_cast setBordered, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isTransparent != nil {
-        isTransparent :: proc "c" (self: ^AK.Button, _: SEL) -> bool {
+        isTransparent :: proc "c" (self: ^NS.Button, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -443,7 +443,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isTransparent"), auto_cast isTransparent, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setTransparent != nil {
-        setTransparent :: proc "c" (self: ^AK.Button, _: SEL, transparent: bool) {
+        setTransparent :: proc "c" (self: ^NS.Button, _: SEL, transparent: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -453,7 +453,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTransparent:"), auto_cast setTransparent, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.showsBorderOnlyWhileMouseInside != nil {
-        showsBorderOnlyWhileMouseInside :: proc "c" (self: ^AK.Button, _: SEL) -> bool {
+        showsBorderOnlyWhileMouseInside :: proc "c" (self: ^NS.Button, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -463,7 +463,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showsBorderOnlyWhileMouseInside"), auto_cast showsBorderOnlyWhileMouseInside, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setShowsBorderOnlyWhileMouseInside != nil {
-        setShowsBorderOnlyWhileMouseInside :: proc "c" (self: ^AK.Button, _: SEL, showsBorderOnlyWhileMouseInside: bool) {
+        setShowsBorderOnlyWhileMouseInside :: proc "c" (self: ^NS.Button, _: SEL, showsBorderOnlyWhileMouseInside: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -473,7 +473,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsBorderOnlyWhileMouseInside:"), auto_cast setShowsBorderOnlyWhileMouseInside, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.bezelColor != nil {
-        bezelColor :: proc "c" (self: ^AK.Button, _: SEL) -> ^AK.Color {
+        bezelColor :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -483,7 +483,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bezelColor"), auto_cast bezelColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBezelColor != nil {
-        setBezelColor :: proc "c" (self: ^AK.Button, _: SEL, bezelColor: ^AK.Color) {
+        setBezelColor :: proc "c" (self: ^NS.Button, _: SEL, bezelColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -493,7 +493,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBezelColor:"), auto_cast setBezelColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.contentTintColor != nil {
-        contentTintColor :: proc "c" (self: ^AK.Button, _: SEL) -> ^AK.Color {
+        contentTintColor :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -503,7 +503,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentTintColor"), auto_cast contentTintColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContentTintColor != nil {
-        setContentTintColor :: proc "c" (self: ^AK.Button, _: SEL, contentTintColor: ^AK.Color) {
+        setContentTintColor :: proc "c" (self: ^NS.Button, _: SEL, contentTintColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -513,7 +513,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentTintColor:"), auto_cast setContentTintColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.tintProminence != nil {
-        tintProminence :: proc "c" (self: ^AK.Button, _: SEL) -> AK.TintProminence {
+        tintProminence :: proc "c" (self: ^NS.Button, _: SEL) -> NS.TintProminence {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -523,7 +523,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tintProminence"), auto_cast tintProminence, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setTintProminence != nil {
-        setTintProminence :: proc "c" (self: ^AK.Button, _: SEL, tintProminence: AK.TintProminence) {
+        setTintProminence :: proc "c" (self: ^NS.Button, _: SEL, tintProminence: NS.TintProminence) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -533,7 +533,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTintProminence:"), auto_cast setTintProminence, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.Button, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -543,7 +543,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.Button, _: SEL, image: ^AK.Image) {
+        setImage :: proc "c" (self: ^NS.Button, _: SEL, image: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -553,7 +553,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.alternateImage != nil {
-        alternateImage :: proc "c" (self: ^AK.Button, _: SEL) -> ^AK.Image {
+        alternateImage :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -563,7 +563,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alternateImage"), auto_cast alternateImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAlternateImage != nil {
-        setAlternateImage :: proc "c" (self: ^AK.Button, _: SEL, alternateImage: ^AK.Image) {
+        setAlternateImage :: proc "c" (self: ^NS.Button, _: SEL, alternateImage: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -573,7 +573,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAlternateImage:"), auto_cast setAlternateImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.imagePosition != nil {
-        imagePosition :: proc "c" (self: ^AK.Button, _: SEL) -> AK.CellImagePosition {
+        imagePosition :: proc "c" (self: ^NS.Button, _: SEL) -> NS.CellImagePosition {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -583,7 +583,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imagePosition"), auto_cast imagePosition, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setImagePosition != nil {
-        setImagePosition :: proc "c" (self: ^AK.Button, _: SEL, imagePosition: AK.CellImagePosition) {
+        setImagePosition :: proc "c" (self: ^NS.Button, _: SEL, imagePosition: NS.CellImagePosition) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -593,7 +593,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImagePosition:"), auto_cast setImagePosition, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.imageScaling != nil {
-        imageScaling :: proc "c" (self: ^AK.Button, _: SEL) -> AK.ImageScaling {
+        imageScaling :: proc "c" (self: ^NS.Button, _: SEL) -> NS.ImageScaling {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -603,7 +603,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageScaling"), auto_cast imageScaling, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setImageScaling != nil {
-        setImageScaling :: proc "c" (self: ^AK.Button, _: SEL, imageScaling: AK.ImageScaling) {
+        setImageScaling :: proc "c" (self: ^NS.Button, _: SEL, imageScaling: NS.ImageScaling) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -613,7 +613,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImageScaling:"), auto_cast setImageScaling, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.imageHugsTitle != nil {
-        imageHugsTitle :: proc "c" (self: ^AK.Button, _: SEL) -> bool {
+        imageHugsTitle :: proc "c" (self: ^NS.Button, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -623,7 +623,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageHugsTitle"), auto_cast imageHugsTitle, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setImageHugsTitle != nil {
-        setImageHugsTitle :: proc "c" (self: ^AK.Button, _: SEL, imageHugsTitle: bool) {
+        setImageHugsTitle :: proc "c" (self: ^NS.Button, _: SEL, imageHugsTitle: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -633,7 +633,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImageHugsTitle:"), auto_cast setImageHugsTitle, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.symbolConfiguration != nil {
-        symbolConfiguration :: proc "c" (self: ^AK.Button, _: SEL) -> ^AK.ImageSymbolConfiguration {
+        symbolConfiguration :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.ImageSymbolConfiguration {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -643,7 +643,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("symbolConfiguration"), auto_cast symbolConfiguration, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSymbolConfiguration != nil {
-        setSymbolConfiguration :: proc "c" (self: ^AK.Button, _: SEL, symbolConfiguration: ^AK.ImageSymbolConfiguration) {
+        setSymbolConfiguration :: proc "c" (self: ^NS.Button, _: SEL, symbolConfiguration: ^NS.ImageSymbolConfiguration) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -653,7 +653,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSymbolConfiguration:"), auto_cast setSymbolConfiguration, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.state != nil {
-        state :: proc "c" (self: ^AK.Button, _: SEL) -> AK.ControlStateValue {
+        state :: proc "c" (self: ^NS.Button, _: SEL) -> NS.ControlStateValue {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -663,7 +663,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("state"), auto_cast state, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setState != nil {
-        setState :: proc "c" (self: ^AK.Button, _: SEL, state: AK.ControlStateValue) {
+        setState :: proc "c" (self: ^NS.Button, _: SEL, state: NS.ControlStateValue) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -673,7 +673,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setState:"), auto_cast setState, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.allowsMixedState != nil {
-        allowsMixedState :: proc "c" (self: ^AK.Button, _: SEL) -> bool {
+        allowsMixedState :: proc "c" (self: ^NS.Button, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -683,7 +683,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsMixedState"), auto_cast allowsMixedState, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsMixedState != nil {
-        setAllowsMixedState :: proc "c" (self: ^AK.Button, _: SEL, allowsMixedState: bool) {
+        setAllowsMixedState :: proc "c" (self: ^NS.Button, _: SEL, allowsMixedState: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -693,7 +693,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsMixedState:"), auto_cast setAllowsMixedState, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.keyEquivalent != nil {
-        keyEquivalent :: proc "c" (self: ^AK.Button, _: SEL) -> ^NS.String {
+        keyEquivalent :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -703,7 +703,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("keyEquivalent"), auto_cast keyEquivalent, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setKeyEquivalent != nil {
-        setKeyEquivalent :: proc "c" (self: ^AK.Button, _: SEL, keyEquivalent: ^NS.String) {
+        setKeyEquivalent :: proc "c" (self: ^NS.Button, _: SEL, keyEquivalent: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -713,7 +713,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setKeyEquivalent:"), auto_cast setKeyEquivalent, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.keyEquivalentModifierMask != nil {
-        keyEquivalentModifierMask :: proc "c" (self: ^AK.Button, _: SEL) -> AK.EventModifierFlags {
+        keyEquivalentModifierMask :: proc "c" (self: ^NS.Button, _: SEL) -> NS.EventModifierFlags {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -723,7 +723,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("keyEquivalentModifierMask"), auto_cast keyEquivalentModifierMask, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setKeyEquivalentModifierMask != nil {
-        setKeyEquivalentModifierMask :: proc "c" (self: ^AK.Button, _: SEL, keyEquivalentModifierMask: AK.EventModifierFlags) {
+        setKeyEquivalentModifierMask :: proc "c" (self: ^NS.Button, _: SEL, keyEquivalentModifierMask: NS.EventModifierFlags) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -733,7 +733,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setKeyEquivalentModifierMask:"), auto_cast setKeyEquivalentModifierMask, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.activeCompressionOptions != nil {
-        activeCompressionOptions :: proc "c" (self: ^AK.Button, _: SEL) -> ^AK.UserInterfaceCompressionOptions {
+        activeCompressionOptions :: proc "c" (self: ^NS.Button, _: SEL) -> ^NS.UserInterfaceCompressionOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -743,7 +743,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activeCompressionOptions"), auto_cast activeCompressionOptions, "@@:") do panic("Failed to register objC method.")
     }
     if vt.borderShape != nil {
-        borderShape :: proc "c" (self: ^AK.Button, _: SEL) -> AK.ControlBorderShape {
+        borderShape :: proc "c" (self: ^NS.Button, _: SEL) -> NS.ControlBorderShape {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -753,7 +753,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("borderShape"), auto_cast borderShape, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setBorderShape != nil {
-        setBorderShape :: proc "c" (self: ^AK.Button, _: SEL, borderShape: AK.ControlBorderShape) {
+        setBorderShape :: proc "c" (self: ^NS.Button, _: SEL, borderShape: NS.ControlBorderShape) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -763,7 +763,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderShape:"), auto_cast setBorderShape, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.setTitleWithMnemonic != nil {
-        setTitleWithMnemonic :: proc "c" (self: ^AK.Button, _: SEL, stringWithAmpersand: ^NS.String) {
+        setTitleWithMnemonic :: proc "c" (self: ^NS.Button, _: SEL, stringWithAmpersand: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

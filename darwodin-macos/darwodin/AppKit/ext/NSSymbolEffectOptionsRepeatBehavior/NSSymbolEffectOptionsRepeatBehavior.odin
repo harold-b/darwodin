@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    new: proc() -> ^AK.SymbolEffectOptionsRepeatBehavior,
-    init: proc(self: ^AK.SymbolEffectOptionsRepeatBehavior) -> instancetype,
+    new: proc() -> ^NS.SymbolEffectOptionsRepeatBehavior,
+    init: proc(self: ^NS.SymbolEffectOptionsRepeatBehavior) -> instancetype,
     behaviorPeriodic: proc() -> instancetype,
     behaviorPeriodicWithCount_: proc(count: NS.Integer) -> instancetype,
     behaviorPeriodicWithDelay: proc(delay: cffi.double) -> instancetype,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolEffectOptionsRepeatBehavior {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.SymbolEffectOptionsRepeatBehavior {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.SymbolEffectOptionsRepeatBehavior, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.SymbolEffectOptionsRepeatBehavior, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetWriterInputPassDescription
-///
 @(objc_class="AVAssetWriterInputPassDescription", objc_superclass=NS.Object)
 AssetWriterInputPassDescription :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriterInputPassDescription, objc_selector="init", objc_name="init")
     AssetWriterInputPassDescription_init :: proc(self: ^AssetWriterInputPassDescription) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=AssetWriterInputPassDescription, objc_selector="sourceTimeRanges", objc_name="sourceTimeRanges")
     AssetWriterInputPassDescription_sourceTimeRanges :: proc(self: ^AssetWriterInputPassDescription) -> ^NS.Array ---
 }
+
+
+

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKRandom
-///
 @(objc_class="GKRandom")
 Random :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Random, objc_selector="nextInt", objc_name="nextInt")
     Random_nextInt :: proc(self: ^Random) -> NS.Integer ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=Random, objc_selector="nextBool", objc_name="nextBool")
     Random_nextBool :: proc(self: ^Random) -> bool ---
 }
+
+
+

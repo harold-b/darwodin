@@ -37,7 +37,7 @@ foreign lib {
     Alert_runModal :: proc(self: ^Alert) -> ModalResponse ---
 
     @(objc_type=Alert, objc_selector="beginSheetModalForWindow:completionHandler:", objc_name="beginSheetModalForWindow_completionHandler")
-    Alert_beginSheetModalForWindow_completionHandler :: proc(self: ^Alert, sheetWindow: ^Window, handler: ^Objc_Block(proc "c" (returnCode: ModalResponse))) ---
+    Alert_beginSheetModalForWindow_completionHandler :: proc(self: ^Alert, sheetWindow: ^Window, handler: ^Objc_Block(proc "c" ( returnCode: ModalResponse ))) ---
 
     @(objc_type=Alert, objc_selector="messageText", objc_name="messageText")
     Alert_messageText :: proc(self: ^Alert) -> ^NS.String ---

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVExtendedTempoEvent
-///
 @(objc_class="AVExtendedTempoEvent", objc_superclass=MusicEvent)
 ExtendedTempoEvent :: struct { using _: MusicEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExtendedTempoEvent, objc_selector="initWithTempo:", objc_name="initWithTempo")
     ExtendedTempoEvent_initWithTempo :: proc(self: ^ExtendedTempoEvent, tempo: cffi.double) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=ExtendedTempoEvent, objc_selector="setTempo:", objc_name="setTempo")
     ExtendedTempoEvent_setTempo :: proc(self: ^ExtendedTempoEvent, tempo: cffi.double) ---
 }
+
+
+

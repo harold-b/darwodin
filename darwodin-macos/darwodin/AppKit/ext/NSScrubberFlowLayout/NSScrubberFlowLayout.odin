@@ -20,17 +20,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSScrubberLayout"
 
 VTable :: struct {
     super: NSScrubberLayout.VTable,
-    invalidateLayoutForItemsAtIndexes: proc(self: ^AK.ScrubberFlowLayout, invalidItemIndexes: ^NS.IndexSet),
-    itemSpacing: proc(self: ^AK.ScrubberFlowLayout) -> CG.Float,
-    setItemSpacing: proc(self: ^AK.ScrubberFlowLayout, itemSpacing: CG.Float),
-    itemSize: proc(self: ^AK.ScrubberFlowLayout) -> NS.Size,
-    setItemSize: proc(self: ^AK.ScrubberFlowLayout, itemSize: NS.Size),
+    invalidateLayoutForItemsAtIndexes: proc(self: ^NS.ScrubberFlowLayout, invalidItemIndexes: ^NS.IndexSet),
+    itemSpacing: proc(self: ^NS.ScrubberFlowLayout) -> CG.Float,
+    setItemSpacing: proc(self: ^NS.ScrubberFlowLayout, itemSpacing: CG.Float),
+    itemSize: proc(self: ^NS.ScrubberFlowLayout) -> NS.Size,
+    setItemSize: proc(self: ^NS.ScrubberFlowLayout, itemSize: NS.Size),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScrubberLayout.extend(cls, &vt.super)
 
     if vt.invalidateLayoutForItemsAtIndexes != nil {
-        invalidateLayoutForItemsAtIndexes :: proc "c" (self: ^AK.ScrubberFlowLayout, _: SEL, invalidItemIndexes: ^NS.IndexSet) {
+        invalidateLayoutForItemsAtIndexes :: proc "c" (self: ^NS.ScrubberFlowLayout, _: SEL, invalidItemIndexes: ^NS.IndexSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateLayoutForItemsAtIndexes:"), auto_cast invalidateLayoutForItemsAtIndexes, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.itemSpacing != nil {
-        itemSpacing :: proc "c" (self: ^AK.ScrubberFlowLayout, _: SEL) -> CG.Float {
+        itemSpacing :: proc "c" (self: ^NS.ScrubberFlowLayout, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemSpacing"), auto_cast itemSpacing, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setItemSpacing != nil {
-        setItemSpacing :: proc "c" (self: ^AK.ScrubberFlowLayout, _: SEL, itemSpacing: CG.Float) {
+        setItemSpacing :: proc "c" (self: ^NS.ScrubberFlowLayout, _: SEL, itemSpacing: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setItemSpacing:"), auto_cast setItemSpacing, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.itemSize != nil {
-        itemSize :: proc "c" (self: ^AK.ScrubberFlowLayout, _: SEL) -> NS.Size {
+        itemSize :: proc "c" (self: ^NS.ScrubberFlowLayout, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemSize"), auto_cast itemSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setItemSize != nil {
-        setItemSize :: proc "c" (self: ^AK.ScrubberFlowLayout, _: SEL, itemSize: NS.Size) {
+        setItemSize :: proc "c" (self: ^NS.ScrubberFlowLayout, _: SEL, itemSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -72,6 +72,9 @@ CVPixelBufferRef     :: struct {}
 CIContext            :: struct {}
 CIImage              :: struct {}
 UTType               :: struct {}
+NSImage              :: struct {}
+UIImage              :: struct {}
+OpaqueCAClock        :: struct {}
 
 MTAudioProcessingTapRef :: struct {} // From MediaToolbox
 

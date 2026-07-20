@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureSynchronizedDataCollection
-///
 @(objc_class="AVCaptureSynchronizedDataCollection", objc_superclass=NS.Object)
 CaptureSynchronizedDataCollection :: struct { using _: NS.Object, 
     using _: NS.FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSynchronizedDataCollection, objc_selector="init", objc_name="init")
     CaptureSynchronizedDataCollection_init :: proc(self: ^CaptureSynchronizedDataCollection) -> instancetype ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=CaptureSynchronizedDataCollection, objc_selector="count", objc_name="count")
     CaptureSynchronizedDataCollection_count :: proc(self: ^CaptureSynchronizedDataCollection) -> NS.UInteger ---
 }
+
+
+

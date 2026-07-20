@@ -11,18 +11,12 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPipelineState
-///
 @(objc_class="MTLRenderPipelineState")
 RenderPipelineState :: struct { using _: intrinsics.objc_object, 
     using _: Allocation,
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPipelineState, objc_selector="functionHandleWithName:stage:", objc_name="functionHandleWithName")
     RenderPipelineState_functionHandleWithName :: proc(self: ^RenderPipelineState, name: ^NS.String, stage: RenderStages) -> ^FunctionHandle ---
@@ -102,3 +96,6 @@ foreign lib {
     @(objc_type=RenderPipelineState, objc_selector="requiredThreadsPerMeshThreadgroup", objc_name="requiredThreadsPerMeshThreadgroup")
     RenderPipelineState_requiredThreadsPerMeshThreadgroup :: proc(self: ^RenderPipelineState) -> Size ---
 }
+
+
+

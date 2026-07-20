@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUndoManager
-///
 @(objc_class="NSUndoManager", objc_superclass=Object)
 UndoManager :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UndoManager, objc_selector="beginUndoGrouping", objc_name="beginUndoGrouping")
     UndoManager_beginUndoGrouping :: proc(self: ^UndoManager) ---
@@ -53,7 +47,7 @@ foreign lib {
     UndoManager_prepareWithInvocationTarget :: proc(self: ^UndoManager, target: id) -> id ---
 
     @(objc_type=UndoManager, objc_selector="registerUndoWithTarget:handler:", objc_name="registerUndoWithTarget_handler")
-    UndoManager_registerUndoWithTarget_handler :: proc(self: ^UndoManager, target: id, undoHandler: ^Objc_Block(proc "c" (target: id))) ---
+    UndoManager_registerUndoWithTarget_handler :: proc(self: ^UndoManager, target: id, undoHandler: ^Objc_Block(proc "c" ( target: id ))) ---
 
     @(objc_type=UndoManager, objc_selector="setActionIsDiscardable:", objc_name="setActionIsDiscardable")
     UndoManager_setActionIsDiscardable :: proc(self: ^UndoManager, discardable: bool) ---
@@ -136,6 +130,8 @@ foreign lib {
     @(objc_type=UndoManager, objc_selector="redoMenuItemTitle", objc_name="redoMenuItemTitle")
     UndoManager_redoMenuItemTitle :: proc(self: ^UndoManager) -> ^String ---
 }
+
+
 
 @(objc_type=UndoManager, objc_name="registerUndoWithTarget")
 UndoManager_registerUndoWithTarget :: proc {

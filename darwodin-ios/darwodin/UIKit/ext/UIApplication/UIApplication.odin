@@ -27,7 +27,7 @@ VTable :: struct {
     endIgnoringInteractionEvents: proc(self: ^UI.Application),
     openURL_: proc(self: ^UI.Application, url: ^NS.URL) -> bool,
     canOpenURL: proc(self: ^UI.Application, url: ^NS.URL) -> bool,
-    openURL_options_completionHandler: proc(self: ^UI.Application, url: ^NS.URL, options: ^NS.Dictionary, completion: ^Objc_Block(proc "c" (success: bool))),
+    openURL_options_completionHandler: proc(self: ^UI.Application, url: ^NS.URL, options: ^NS.Dictionary, completion: ^Objc_Block(proc "c" ( success: bool ))),
     sendEvent: proc(self: ^UI.Application, event: ^UI.Event),
     sendAction: proc(self: ^UI.Application, action: SEL, target: id, sender: id, event: ^UI.Event) -> bool,
     supportedInterfaceOrientationsForWindow: proc(self: ^UI.Application, window: ^UI.Window) -> UI.InterfaceOrientationMask,
@@ -35,9 +35,9 @@ VTable :: struct {
     beginBackgroundTaskWithName: proc(self: ^UI.Application, taskName: ^NS.String, handler: ^Objc_Block(proc "c" ())) -> UI.BackgroundTaskIdentifier,
     endBackgroundTask: proc(self: ^UI.Application, identifier: UI.BackgroundTaskIdentifier),
     setMinimumBackgroundFetchInterval: proc(self: ^UI.Application, minimumBackgroundFetchInterval: NS.TimeInterval),
-    activateSceneSessionForRequest: proc(self: ^UI.Application, request: ^UI.SceneSessionActivationRequest, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
-    requestSceneSessionActivation: proc(self: ^UI.Application, sceneSession: ^UI.SceneSession, userActivity: ^NS.UserActivity, options: ^UI.SceneActivationRequestOptions, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
-    requestSceneSessionDestruction: proc(self: ^UI.Application, sceneSession: ^UI.SceneSession, options: ^UI.SceneDestructionRequestOptions, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    activateSceneSessionForRequest: proc(self: ^UI.Application, request: ^UI.SceneSessionActivationRequest, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
+    requestSceneSessionActivation: proc(self: ^UI.Application, sceneSession: ^UI.SceneSession, userActivity: ^NS.UserActivity, options: ^UI.SceneActivationRequestOptions, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
+    requestSceneSessionDestruction: proc(self: ^UI.Application, sceneSession: ^UI.SceneSession, options: ^UI.SceneDestructionRequestOptions, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
     requestSceneSessionRefresh: proc(self: ^UI.Application, sceneSession: ^UI.SceneSession),
     sharedApplication: proc() -> ^UI.Application,
     delegate: proc(self: ^UI.Application) -> ^UI.ApplicationDelegate,
@@ -85,7 +85,7 @@ VTable :: struct {
     setNewsstandIconImage: proc(self: ^UI.Application, image: ^UI.Image),
     shortcutItems: proc(self: ^UI.Application) -> ^NS.Array,
     setShortcutItems: proc(self: ^UI.Application, shortcutItems: ^NS.Array),
-    setAlternateIconName: proc(self: ^UI.Application, alternateIconName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    setAlternateIconName: proc(self: ^UI.Application, alternateIconName: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
     supportsAlternateIcons: proc(self: ^UI.Application) -> bool,
     alternateIconName: proc(self: ^UI.Application) -> ^NS.String,
     extendStateRestoration: proc(self: ^UI.Application),
@@ -154,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canOpenURL:"), auto_cast canOpenURL, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.openURL_options_completionHandler != nil {
-        openURL_options_completionHandler :: proc "c" (self: ^UI.Application, _: SEL, url: ^NS.URL, options: ^NS.Dictionary, completion: ^Objc_Block(proc "c" (success: bool))) {
+        openURL_options_completionHandler :: proc "c" (self: ^UI.Application, _: SEL, url: ^NS.URL, options: ^NS.Dictionary, completion: ^Objc_Block(proc "c" ( success: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -234,7 +234,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumBackgroundFetchInterval:"), auto_cast setMinimumBackgroundFetchInterval, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.activateSceneSessionForRequest != nil {
-        activateSceneSessionForRequest :: proc "c" (self: ^UI.Application, _: SEL, request: ^UI.SceneSessionActivationRequest, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        activateSceneSessionForRequest :: proc "c" (self: ^UI.Application, _: SEL, request: ^UI.SceneSessionActivationRequest, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -244,7 +244,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activateSceneSessionForRequest:errorHandler:"), auto_cast activateSceneSessionForRequest, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.requestSceneSessionActivation != nil {
-        requestSceneSessionActivation :: proc "c" (self: ^UI.Application, _: SEL, sceneSession: ^UI.SceneSession, userActivity: ^NS.UserActivity, options: ^UI.SceneActivationRequestOptions, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        requestSceneSessionActivation :: proc "c" (self: ^UI.Application, _: SEL, sceneSession: ^UI.SceneSession, userActivity: ^NS.UserActivity, options: ^UI.SceneActivationRequestOptions, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -254,7 +254,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("requestSceneSessionActivation:userActivity:options:errorHandler:"), auto_cast requestSceneSessionActivation, "v@:@@@?") do panic("Failed to register objC method.")
     }
     if vt.requestSceneSessionDestruction != nil {
-        requestSceneSessionDestruction :: proc "c" (self: ^UI.Application, _: SEL, sceneSession: ^UI.SceneSession, options: ^UI.SceneDestructionRequestOptions, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        requestSceneSessionDestruction :: proc "c" (self: ^UI.Application, _: SEL, sceneSession: ^UI.SceneSession, options: ^UI.SceneDestructionRequestOptions, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -734,7 +734,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShortcutItems:"), auto_cast setShortcutItems, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.setAlternateIconName != nil {
-        setAlternateIconName :: proc "c" (self: ^UI.Application, _: SEL, alternateIconName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        setAlternateIconName :: proc "c" (self: ^UI.Application, _: SEL, alternateIconName: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

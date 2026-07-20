@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSComparisonPredicate
-///
 @(objc_class="NSComparisonPredicate", objc_superclass=Predicate)
 ComparisonPredicate :: struct { using _: Predicate, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ComparisonPredicate, objc_selector="predicateWithLeftExpression:rightExpression:modifier:type:options:", objc_name="predicateWithLeftExpression_rightExpression_modifier_type_options", objc_is_class_method=true)
     ComparisonPredicate_predicateWithLeftExpression_rightExpression_modifier_type_options :: proc(lhs: ^Expression, rhs: ^Expression, modifier: ComparisonPredicateModifier, type: PredicateOperatorType, options: ComparisonPredicateOptions) -> ^ComparisonPredicate ---
@@ -52,6 +46,8 @@ foreign lib {
     @(objc_type=ComparisonPredicate, objc_selector="options", objc_name="options")
     ComparisonPredicate_options :: proc(self: ^ComparisonPredicate) -> ComparisonPredicateOptions ---
 }
+
+
 
 @(objc_type=ComparisonPredicate, objc_name="predicateWithLeftExpression")
 ComparisonPredicate_predicateWithLeftExpression :: proc {

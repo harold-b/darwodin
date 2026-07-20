@@ -9,11 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMapTable
-///
 @(objc_class="NSMapTable", objc_superclass=Object)
 MapTable :: struct { using _: Object, 
     using _: Copying,
@@ -21,7 +16,6 @@ MapTable :: struct { using _: Object,
     using _: FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MapTable, objc_selector="initWithKeyOptions:valueOptions:capacity:", objc_name="initWithKeyOptions")
     MapTable_initWithKeyOptions :: proc(self: ^MapTable, keyOptions: PointerFunctionsOptions, valueOptions: PointerFunctionsOptions, initialCapacity: UInteger) -> instancetype ---
@@ -86,3 +80,6 @@ foreign lib {
     @(objc_type=MapTable, objc_selector="count", objc_name="count")
     MapTable_count :: proc(self: ^MapTable) -> UInteger ---
 }
+
+
+

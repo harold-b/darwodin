@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLComponents
-///
 @(objc_class="NSURLComponents", objc_superclass=Object)
 URLComponents :: struct { using _: Object, 
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLComponents, objc_selector="init", objc_name="init")
     URLComponents_init :: proc(self: ^URLComponents) -> instancetype ---
@@ -177,6 +171,8 @@ foreign lib {
     @(objc_type=URLComponents, objc_selector="setPercentEncodedQueryItems:", objc_name="setPercentEncodedQueryItems")
     URLComponents_setPercentEncodedQueryItems :: proc(self: ^URLComponents, percentEncodedQueryItems: ^Array) ---
 }
+
+
 
 @(objc_type=URLComponents, objc_name="initWithString")
 URLComponents_initWithString :: proc {

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLDepthStencilState
-///
 @(objc_class="MTLDepthStencilState")
 DepthStencilState :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DepthStencilState, objc_selector="label", objc_name="label")
     DepthStencilState_label :: proc(self: ^DepthStencilState) -> ^NS.String ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=DepthStencilState, objc_selector="gpuResourceID", objc_name="gpuResourceID")
     DepthStencilState_gpuResourceID :: proc(self: ^DepthStencilState) -> ResourceID ---
 }
+
+
+

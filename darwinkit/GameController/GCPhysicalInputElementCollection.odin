@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCPhysicalInputElementCollection
-///
 @(objc_class="GCPhysicalInputElementCollection", objc_superclass=NS.Object)
 PhysicalInputElementCollection :: struct { using _: NS.Object, 
     using _: NS.FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PhysicalInputElementCollection, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PhysicalInputElementCollection_new :: proc() -> ^PhysicalInputElementCollection ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=PhysicalInputElementCollection, objc_selector="count", objc_name="count")
     PhysicalInputElementCollection_count :: proc(self: ^PhysicalInputElementCollection) -> NS.UInteger ---
 }
+
+
+

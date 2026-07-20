@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSOperationQueue
-///
 @(objc_class="NSOperationQueue", objc_superclass=Object)
 OperationQueue :: struct { using _: Object, 
     using _: ProgressReporting,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=OperationQueue, objc_selector="addOperation:", objc_name="addOperation")
     OperationQueue_addOperation :: proc(self: ^OperationQueue, op: ^Operation) ---
@@ -84,3 +78,6 @@ foreign lib {
     @(objc_type=OperationQueue, objc_selector="operationCount", objc_name="operationCount")
     OperationQueue_operationCount :: proc(self: ^OperationQueue) -> UInteger ---
 }
+
+
+

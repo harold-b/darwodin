@@ -37,7 +37,7 @@ foreign lib {
     UserActivity_invalidate :: proc(self: ^UserActivity) ---
 
     @(objc_type=UserActivity, objc_selector="getContinuationStreamsWithCompletionHandler:", objc_name="getContinuationStreamsWithCompletionHandler")
-    UserActivity_getContinuationStreamsWithCompletionHandler :: proc(self: ^UserActivity, completionHandler: ^Objc_Block(proc "c" (inputStream: ^InputStream, outputStream: ^OutputStream, error: ^Error))) ---
+    UserActivity_getContinuationStreamsWithCompletionHandler :: proc(self: ^UserActivity, completionHandler: ^Objc_Block(proc "c" ( inputStream: ^InputStream, outputStream: ^OutputStream, error: ^Error ))) ---
 
     @(objc_type=UserActivity, objc_selector="deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:", objc_name="deleteSavedUserActivitiesWithPersistentIdentifiers", objc_is_class_method=true)
     UserActivity_deleteSavedUserActivitiesWithPersistentIdentifiers :: proc(persistentIdentifiers: ^Array, handler: ^Objc_Block(proc "c" ())) ---

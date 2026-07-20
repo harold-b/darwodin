@@ -12,11 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetadataItem
-///
 @(objc_class="AVMetadataItem", objc_superclass=NS.Object)
 MetadataItem :: struct { using _: NS.Object, 
     using _: AsynchronousKeyValueLoading,
@@ -24,7 +19,6 @@ MetadataItem :: struct { using _: NS.Object,
     using _: NS.MutableCopying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetadataItem, objc_selector="identifier", objc_name="identifier")
     MetadataItem_identifier :: proc(self: ^MetadataItem) -> ^NS.String ---
@@ -99,7 +93,7 @@ foreign lib {
     MetadataItem_keySpace :: proc(self: ^MetadataItem) -> ^NS.String ---
 
     @(objc_type=MetadataItem, objc_selector="metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:", objc_name="metadataItemWithPropertiesOfMetadataItem", objc_is_class_method=true)
-    MetadataItem_metadataItemWithPropertiesOfMetadataItem :: proc(metadataItem: ^MetadataItem, handler: ^Objc_Block(proc "c" (valueRequest: ^MetadataItemValueRequest))) -> ^MetadataItem ---
+    MetadataItem_metadataItemWithPropertiesOfMetadataItem :: proc(metadataItem: ^MetadataItem, handler: ^Objc_Block(proc "c" ( valueRequest: ^MetadataItemValueRequest ))) -> ^MetadataItem ---
 
     @(objc_type=MetadataItem, objc_selector="metadataItemsFromArray:withLocale:", objc_name="metadataItemsFromArray_withLocale", objc_is_class_method=true)
     MetadataItem_metadataItemsFromArray_withLocale :: proc(metadataItems: ^NS.Array, locale: ^NS.Locale) -> ^NS.Array ---
@@ -107,6 +101,8 @@ foreign lib {
     @(objc_type=MetadataItem, objc_selector="metadataItemsFromArray:withKey:keySpace:", objc_name="metadataItemsFromArray_withKey_keySpace", objc_is_class_method=true)
     MetadataItem_metadataItemsFromArray_withKey_keySpace :: proc(metadataItems: ^NS.Array, key: id, keySpace: ^NS.String) -> ^NS.Array ---
 }
+
+
 
 @(objc_type=MetadataItem, objc_name="metadataItemsFromArray")
 MetadataItem_metadataItemsFromArray :: proc {

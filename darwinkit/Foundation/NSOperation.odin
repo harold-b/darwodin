@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSOperation
-///
 @(objc_class="NSOperation", objc_superclass=Object)
 Operation :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Operation, objc_selector="start", objc_name="start")
     Operation_start :: proc(self: ^Operation) ---
@@ -88,3 +82,6 @@ foreign lib {
     @(objc_type=Operation, objc_selector="setName:", objc_name="setName")
     Operation_setName :: proc(self: ^Operation, name: ^String) ---
 }
+
+
+

@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSOrderedCollectionChange
-///
 @(objc_class="NSOrderedCollectionChange", objc_superclass=Object)
 OrderedCollectionChange :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=OrderedCollectionChange, objc_selector="changeWithObject:type:index:", objc_name="changeWithObject_type_index", objc_is_class_method=true)
     OrderedCollectionChange_changeWithObject_type_index :: proc(anObject: id, type: CollectionChangeType, index: UInteger) -> ^OrderedCollectionChange ---
@@ -46,6 +40,8 @@ foreign lib {
     @(objc_type=OrderedCollectionChange, objc_selector="associatedIndex", objc_name="associatedIndex")
     OrderedCollectionChange_associatedIndex :: proc(self: ^OrderedCollectionChange) -> UInteger ---
 }
+
+
 
 @(objc_type=OrderedCollectionChange, objc_name="changeWithObject")
 OrderedCollectionChange_changeWithObject :: proc {

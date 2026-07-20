@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLFunctionDescriptor
-///
 @(objc_class="MTLFunctionDescriptor", objc_superclass=NS.Object)
 FunctionDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FunctionDescriptor, objc_selector="functionDescriptor", objc_name="functionDescriptor", objc_is_class_method=true)
     FunctionDescriptor_functionDescriptor :: proc() -> ^FunctionDescriptor ---
@@ -56,3 +50,6 @@ foreign lib {
     @(objc_type=FunctionDescriptor, objc_selector="setBinaryArchives:", objc_name="setBinaryArchives")
     FunctionDescriptor_setBinaryArchives :: proc(self: ^FunctionDescriptor, binaryArchives: ^NS.Array) ---
 }
+
+
+

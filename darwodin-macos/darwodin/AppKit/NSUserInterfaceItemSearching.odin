@@ -26,7 +26,7 @@ UserInterfaceItemSearching :: struct { using _: intrinsics.objc_object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserInterfaceItemSearching, objc_selector="searchForItemsWithSearchString:resultLimit:matchedItemHandler:", objc_name="searchForItemsWithSearchString")
-    UserInterfaceItemSearching_searchForItemsWithSearchString :: proc(self: ^UserInterfaceItemSearching, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: ^Objc_Block(proc "c" (items: ^NS.Array))) ---
+    UserInterfaceItemSearching_searchForItemsWithSearchString :: proc(self: ^UserInterfaceItemSearching, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: ^Objc_Block(proc "c" ( items: ^NS.Array ))) ---
 
     @(objc_type=UserInterfaceItemSearching, objc_selector="localizedTitlesForItem:", objc_name="localizedTitlesForItem")
     UserInterfaceItemSearching_localizedTitlesForItem :: proc(self: ^UserInterfaceItemSearching, item: id) -> ^NS.Array ---

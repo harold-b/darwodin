@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureAudioDataOutput
-///
 @(objc_class="AVCaptureAudioDataOutput", objc_superclass=CaptureOutput)
 CaptureAudioDataOutput :: struct { using _: CaptureOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureAudioDataOutput, objc_selector="init", objc_name="init")
     CaptureAudioDataOutput_init :: proc(self: ^CaptureAudioDataOutput) -> instancetype ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=CaptureAudioDataOutput, objc_selector="setSpatialAudioChannelLayoutTag:", objc_name="setSpatialAudioChannelLayoutTag")
     CaptureAudioDataOutput_setSpatialAudioChannelLayoutTag :: proc(self: ^CaptureAudioDataOutput, spatialAudioChannelLayoutTag: Audio.ChannelLayoutTag) ---
 }
+
+
+

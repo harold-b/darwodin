@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKMonteCarloStrategist
-///
 @(objc_class="GKMonteCarloStrategist", objc_superclass=NS.Object)
 MonteCarloStrategist :: struct { using _: NS.Object, 
     using _: Strategist,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MonteCarloStrategist, objc_selector="budget", objc_name="budget")
     MonteCarloStrategist_budget :: proc(self: ^MonteCarloStrategist) -> NS.UInteger ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=MonteCarloStrategist, objc_selector="setExplorationParameter:", objc_name="setExplorationParameter")
     MonteCarloStrategist_setExplorationParameter :: proc(self: ^MonteCarloStrategist, explorationParameter: NS.UInteger) ---
 }
+
+
+

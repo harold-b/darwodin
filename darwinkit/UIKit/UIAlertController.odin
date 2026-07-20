@@ -28,7 +28,7 @@ foreign lib {
     AlertController_addAction :: proc(self: ^AlertController, action: ^AlertAction) ---
 
     @(objc_type=AlertController, objc_selector="addTextFieldWithConfigurationHandler:", objc_name="addTextFieldWithConfigurationHandler")
-    AlertController_addTextFieldWithConfigurationHandler :: proc(self: ^AlertController, configurationHandler: ^Objc_Block(proc "c" (textField: ^TextField))) ---
+    AlertController_addTextFieldWithConfigurationHandler :: proc(self: ^AlertController, configurationHandler: ^Objc_Block(proc "c" ( textField: ^TextField ))) ---
 
     @(objc_type=AlertController, objc_selector="actions", objc_name="actions")
     AlertController_actions :: proc(self: ^AlertController) -> ^NS.Array ---

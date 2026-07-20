@@ -74,40 +74,40 @@ foreign lib {
     IndexSet_intersectsIndexesInRange :: proc(self: ^IndexSet, range: _NSRange) -> bool ---
 
     @(objc_type=IndexSet, objc_selector="enumerateIndexesUsingBlock:", objc_name="enumerateIndexesUsingBlock")
-    IndexSet_enumerateIndexesUsingBlock :: proc(self: ^IndexSet, block: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool))) ---
+    IndexSet_enumerateIndexesUsingBlock :: proc(self: ^IndexSet, block: ^Objc_Block(proc "c" ( idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=IndexSet, objc_selector="enumerateIndexesWithOptions:usingBlock:", objc_name="enumerateIndexesWithOptions")
-    IndexSet_enumerateIndexesWithOptions :: proc(self: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool))) ---
+    IndexSet_enumerateIndexesWithOptions :: proc(self: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=IndexSet, objc_selector="enumerateIndexesInRange:options:usingBlock:", objc_name="enumerateIndexesInRange")
-    IndexSet_enumerateIndexesInRange :: proc(self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool))) ---
+    IndexSet_enumerateIndexesInRange :: proc(self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=IndexSet, objc_selector="indexPassingTest:", objc_name="indexPassingTest")
-    IndexSet_indexPassingTest :: proc(self: ^IndexSet, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+    IndexSet_indexPassingTest :: proc(self: ^IndexSet, predicate: ^Objc_Block(proc "c" ( idx: UInteger, stop: ^bool ) -> bool)) -> UInteger ---
 
     @(objc_type=IndexSet, objc_selector="indexWithOptions:passingTest:", objc_name="indexWithOptions")
-    IndexSet_indexWithOptions :: proc(self: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+    IndexSet_indexWithOptions :: proc(self: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: UInteger, stop: ^bool ) -> bool)) -> UInteger ---
 
     @(objc_type=IndexSet, objc_selector="indexInRange:options:passingTest:", objc_name="indexInRange")
-    IndexSet_indexInRange :: proc(self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+    IndexSet_indexInRange :: proc(self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: UInteger, stop: ^bool ) -> bool)) -> UInteger ---
 
     @(objc_type=IndexSet, objc_selector="indexesPassingTest:", objc_name="indexesPassingTest")
-    IndexSet_indexesPassingTest :: proc(self: ^IndexSet, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+    IndexSet_indexesPassingTest :: proc(self: ^IndexSet, predicate: ^Objc_Block(proc "c" ( idx: UInteger, stop: ^bool ) -> bool)) -> ^IndexSet ---
 
     @(objc_type=IndexSet, objc_selector="indexesWithOptions:passingTest:", objc_name="indexesWithOptions")
-    IndexSet_indexesWithOptions :: proc(self: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+    IndexSet_indexesWithOptions :: proc(self: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: UInteger, stop: ^bool ) -> bool)) -> ^IndexSet ---
 
     @(objc_type=IndexSet, objc_selector="indexesInRange:options:passingTest:", objc_name="indexesInRange")
-    IndexSet_indexesInRange :: proc(self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+    IndexSet_indexesInRange :: proc(self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: UInteger, stop: ^bool ) -> bool)) -> ^IndexSet ---
 
     @(objc_type=IndexSet, objc_selector="enumerateRangesUsingBlock:", objc_name="enumerateRangesUsingBlock")
-    IndexSet_enumerateRangesUsingBlock :: proc(self: ^IndexSet, block: ^Objc_Block(proc "c" (range: _NSRange, stop: ^bool))) ---
+    IndexSet_enumerateRangesUsingBlock :: proc(self: ^IndexSet, block: ^Objc_Block(proc "c" ( range: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=IndexSet, objc_selector="enumerateRangesWithOptions:usingBlock:", objc_name="enumerateRangesWithOptions")
-    IndexSet_enumerateRangesWithOptions :: proc(self: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (range: _NSRange, stop: ^bool))) ---
+    IndexSet_enumerateRangesWithOptions :: proc(self: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( range: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=IndexSet, objc_selector="enumerateRangesInRange:options:usingBlock:", objc_name="enumerateRangesInRange")
-    IndexSet_enumerateRangesInRange :: proc(self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (range: _NSRange, stop: ^bool))) ---
+    IndexSet_enumerateRangesInRange :: proc(self: ^IndexSet, range: _NSRange, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( range: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=IndexSet, objc_selector="count", objc_name="count")
     IndexSet_count :: proc(self: ^IndexSet) -> UInteger ---

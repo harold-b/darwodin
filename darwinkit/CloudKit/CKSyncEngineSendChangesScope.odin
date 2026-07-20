@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineSendChangesScope
-///
 @(objc_class="CKSyncEngineSendChangesScope", objc_superclass=NS.Object)
 SyncEngineSendChangesScope :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineSendChangesScope, objc_selector="initWithZoneIDs:", objc_name="initWithZoneIDs")
     SyncEngineSendChangesScope_initWithZoneIDs :: proc(self: ^SyncEngineSendChangesScope, zoneIDs: ^NS.Set) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=SyncEngineSendChangesScope, objc_selector="recordIDs", objc_name="recordIDs")
     SyncEngineSendChangesScope_recordIDs :: proc(self: ^SyncEngineSendChangesScope) -> ^NS.Set ---
 }
+
+
+

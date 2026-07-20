@@ -20,7 +20,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSSymbolContentTransition"
 
@@ -30,9 +30,9 @@ VTable :: struct {
     replaceDownUpTransition: proc() -> instancetype,
     replaceUpUpTransition: proc() -> instancetype,
     replaceOffUpTransition: proc() -> instancetype,
-    transitionWithByLayer: proc(self: ^AK.SymbolReplaceContentTransition) -> instancetype,
-    transitionWithWholeSymbol: proc(self: ^AK.SymbolReplaceContentTransition) -> instancetype,
-    magicTransitionWithFallback: proc(fallback: ^AK.SymbolReplaceContentTransition) -> ^AK.SymbolMagicReplaceContentTransition,
+    transitionWithByLayer: proc(self: ^NS.SymbolReplaceContentTransition) -> instancetype,
+    transitionWithWholeSymbol: proc(self: ^NS.SymbolReplaceContentTransition) -> instancetype,
+    magicTransitionWithFallback: proc(fallback: ^NS.SymbolReplaceContentTransition) -> ^NS.SymbolMagicReplaceContentTransition,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("replaceOffUpTransition"), auto_cast replaceOffUpTransition, "@#:") do panic("Failed to register objC method.")
     }
     if vt.transitionWithByLayer != nil {
-        transitionWithByLayer :: proc "c" (self: ^AK.SymbolReplaceContentTransition, _: SEL) -> instancetype {
+        transitionWithByLayer :: proc "c" (self: ^NS.SymbolReplaceContentTransition, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("transitionWithByLayer"), auto_cast transitionWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.transitionWithWholeSymbol != nil {
-        transitionWithWholeSymbol :: proc "c" (self: ^AK.SymbolReplaceContentTransition, _: SEL) -> instancetype {
+        transitionWithWholeSymbol :: proc "c" (self: ^NS.SymbolReplaceContentTransition, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("transitionWithWholeSymbol"), auto_cast transitionWithWholeSymbol, "@@:") do panic("Failed to register objC method.")
     }
     if vt.magicTransitionWithFallback != nil {
-        magicTransitionWithFallback :: proc "c" (self: Class, _: SEL, fallback: ^AK.SymbolReplaceContentTransition) -> ^AK.SymbolMagicReplaceContentTransition {
+        magicTransitionWithFallback :: proc "c" (self: Class, _: SEL, fallback: ^NS.SymbolReplaceContentTransition) -> ^NS.SymbolMagicReplaceContentTransition {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

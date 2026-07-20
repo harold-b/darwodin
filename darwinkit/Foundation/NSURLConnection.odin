@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLConnection
-///
 @(objc_class="NSURLConnection", objc_superclass=Object)
 URLConnection :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLConnection, objc_selector="initWithRequest:delegate:startImmediately:", objc_name="initWithRequest_delegate_startImmediately")
     URLConnection_initWithRequest_delegate_startImmediately :: proc(self: ^URLConnection, request: ^URLRequest, delegate: id, startImmediately: bool) -> instancetype ---
@@ -56,8 +50,10 @@ foreign lib {
     URLConnection_sendSynchronousRequest :: proc(request: ^URLRequest, response: ^^URLResponse, error: ^^Error) -> ^Data ---
 
     @(objc_type=URLConnection, objc_selector="sendAsynchronousRequest:queue:completionHandler:", objc_name="sendAsynchronousRequest", objc_is_class_method=true)
-    URLConnection_sendAsynchronousRequest :: proc(request: ^URLRequest, queue: ^OperationQueue, handler: ^Objc_Block(proc "c" (response: ^URLResponse, data: ^Data, connectionError: ^Error))) ---
+    URLConnection_sendAsynchronousRequest :: proc(request: ^URLRequest, queue: ^OperationQueue, handler: ^Objc_Block(proc "c" ( response: ^URLResponse, data: ^Data, connectionError: ^Error ))) ---
 }
+
+
 
 @(objc_type=URLConnection, objc_name="initWithRequest")
 URLConnection_initWithRequest :: proc {

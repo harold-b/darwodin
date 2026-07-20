@@ -2,8 +2,6 @@
 #+private package
 package darwodin_GameKit
 
-import AK "../AppKit"
+import _AK "../AppKit"
+AK :: _AK
 
-AKWindow :: AK.Window
-AKImage :: AK.Image
-AKViewController :: AK.ViewController

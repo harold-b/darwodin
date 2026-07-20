@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemErrorLogEvent
-///
 @(objc_class="AVPlayerItemErrorLogEvent", objc_superclass=NS.Object)
 PlayerItemErrorLogEvent :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemErrorLogEvent, objc_selector="init", objc_name="init")
     PlayerItemErrorLogEvent_init :: proc(self: ^PlayerItemErrorLogEvent) -> instancetype ---
@@ -54,3 +48,6 @@ foreign lib {
     @(objc_type=PlayerItemErrorLogEvent, objc_selector="allHTTPResponseHeaderFields", objc_name="allHTTPResponseHeaderFields")
     PlayerItemErrorLogEvent_allHTTPResponseHeaderFields :: proc(self: ^PlayerItemErrorLogEvent) -> ^NS.Dictionary ---
 }
+
+
+

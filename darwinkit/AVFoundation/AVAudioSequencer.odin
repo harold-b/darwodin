@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioSequencer
-///
 @(objc_class="AVAudioSequencer", objc_superclass=NS.Object)
 AudioSequencer :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioSequencer, objc_selector="init", objc_name="init")
     AudioSequencer_init :: proc(self: ^AudioSequencer) -> instancetype ---
@@ -103,3 +97,6 @@ foreign lib {
     @(objc_type=AudioSequencer, objc_selector="setRate:", objc_name="setRate")
     AudioSequencer_setRate :: proc(self: ^AudioSequencer, rate: cffi.float) ---
 }
+
+
+

@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    enumerateTextElementsFromLocation: proc(self: ^AK.TextElementProvider, textLocation: ^AK.TextLocation, options: AK.TextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^AK.TextElement) -> bool)) -> ^AK.TextLocation,
-    replaceContentsInRange: proc(self: ^AK.TextElementProvider, range: ^AK.TextRange, textElements: ^NS.Array),
-    synchronizeToBackingStore: proc(self: ^AK.TextElementProvider, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
-    locationFromLocation: proc(self: ^AK.TextElementProvider, location: ^AK.TextLocation, offset: NS.Integer) -> ^AK.TextLocation,
-    offsetFromLocation: proc(self: ^AK.TextElementProvider, from: ^AK.TextLocation, to: ^AK.TextLocation) -> NS.Integer,
-    adjustedRangeFromRange: proc(self: ^AK.TextElementProvider, textRange: ^AK.TextRange, forEditingTextSelection: bool) -> ^AK.TextRange,
-    documentRange: proc(self: ^AK.TextElementProvider) -> ^AK.TextRange,
+    enumerateTextElementsFromLocation: proc(self: ^NS.TextElementProvider, textLocation: ^NS.TextLocation, options: NS.TextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" ( element: ^NS.TextElement ) -> bool)) -> ^NS.TextLocation,
+    replaceContentsInRange: proc(self: ^NS.TextElementProvider, range: ^NS.TextRange, textElements: ^NS.Array),
+    synchronizeToBackingStore: proc(self: ^NS.TextElementProvider, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
+    locationFromLocation: proc(self: ^NS.TextElementProvider, location: ^NS.TextLocation, offset: NS.Integer) -> ^NS.TextLocation,
+    offsetFromLocation: proc(self: ^NS.TextElementProvider, from: ^NS.TextLocation, to: ^NS.TextLocation) -> NS.Integer,
+    adjustedRangeFromRange: proc(self: ^NS.TextElementProvider, textRange: ^NS.TextRange, forEditingTextSelection: bool) -> ^NS.TextRange,
+    documentRange: proc(self: ^NS.TextElementProvider) -> ^NS.TextRange,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.enumerateTextElementsFromLocation != nil {
-        enumerateTextElementsFromLocation :: proc "c" (self: ^AK.TextElementProvider, _: SEL, textLocation: ^AK.TextLocation, options: AK.TextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^AK.TextElement) -> bool)) -> ^AK.TextLocation {
+        enumerateTextElementsFromLocation :: proc "c" (self: ^NS.TextElementProvider, _: SEL, textLocation: ^NS.TextLocation, options: NS.TextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" ( element: ^NS.TextElement ) -> bool)) -> ^NS.TextLocation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateTextElementsFromLocation:options:usingBlock:"), auto_cast enumerateTextElementsFromLocation, "@@:@L?") do panic("Failed to register objC method.")
     }
     if vt.replaceContentsInRange != nil {
-        replaceContentsInRange :: proc "c" (self: ^AK.TextElementProvider, _: SEL, range: ^AK.TextRange, textElements: ^NS.Array) {
+        replaceContentsInRange :: proc "c" (self: ^NS.TextElementProvider, _: SEL, range: ^NS.TextRange, textElements: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("replaceContentsInRange:withTextElements:"), auto_cast replaceContentsInRange, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.synchronizeToBackingStore != nil {
-        synchronizeToBackingStore :: proc "c" (self: ^AK.TextElementProvider, _: SEL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        synchronizeToBackingStore :: proc "c" (self: ^NS.TextElementProvider, _: SEL, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("synchronizeToBackingStore:"), auto_cast synchronizeToBackingStore, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.locationFromLocation != nil {
-        locationFromLocation :: proc "c" (self: ^AK.TextElementProvider, _: SEL, location: ^AK.TextLocation, offset: NS.Integer) -> ^AK.TextLocation {
+        locationFromLocation :: proc "c" (self: ^NS.TextElementProvider, _: SEL, location: ^NS.TextLocation, offset: NS.Integer) -> ^NS.TextLocation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("locationFromLocation:withOffset:"), auto_cast locationFromLocation, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.offsetFromLocation != nil {
-        offsetFromLocation :: proc "c" (self: ^AK.TextElementProvider, _: SEL, from: ^AK.TextLocation, to: ^AK.TextLocation) -> NS.Integer {
+        offsetFromLocation :: proc "c" (self: ^NS.TextElementProvider, _: SEL, from: ^NS.TextLocation, to: ^NS.TextLocation) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("offsetFromLocation:toLocation:"), auto_cast offsetFromLocation, "l@:@@") do panic("Failed to register objC method.")
     }
     if vt.adjustedRangeFromRange != nil {
-        adjustedRangeFromRange :: proc "c" (self: ^AK.TextElementProvider, _: SEL, textRange: ^AK.TextRange, forEditingTextSelection: bool) -> ^AK.TextRange {
+        adjustedRangeFromRange :: proc "c" (self: ^NS.TextElementProvider, _: SEL, textRange: ^NS.TextRange, forEditingTextSelection: bool) -> ^NS.TextRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("adjustedRangeFromRange:forEditingTextSelection:"), auto_cast adjustedRangeFromRange, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.documentRange != nil {
-        documentRange :: proc "c" (self: ^AK.TextElementProvider, _: SEL) -> ^AK.TextRange {
+        documentRange :: proc "c" (self: ^NS.TextElementProvider, _: SEL) -> ^NS.TextRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

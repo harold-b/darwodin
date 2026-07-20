@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKBehavior
-///
 @(objc_class="GKBehavior", objc_superclass=NS.Object)
 Behavior :: struct { using _: NS.Object, 
     using _: NS.FastEnumeration,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Behavior, objc_selector="behaviorWithGoal:weight:", objc_name="behaviorWithGoal", objc_is_class_method=true)
     Behavior_behaviorWithGoal :: proc(goal: ^Goal, weight: cffi.float) -> instancetype ---
@@ -56,6 +50,8 @@ foreign lib {
     @(objc_type=Behavior, objc_selector="goalCount", objc_name="goalCount")
     Behavior_goalCount :: proc(self: ^Behavior) -> NS.Integer ---
 }
+
+
 
 @(objc_type=Behavior, objc_name="behaviorWithGoals")
 Behavior_behaviorWithGoals :: proc {

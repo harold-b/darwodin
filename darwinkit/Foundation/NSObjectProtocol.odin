@@ -9,15 +9,18 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
+@(objc_type=ObjectProtocol, objc_name="safeRelease")
+safeRelease :: #force_inline proc "c" (self: ^ObjectProtocol) -> instancetype {
+    if self != nil {
+        self->release()
+    }
 
+    return nil
+}
 
-///
-/// NSObject
-///
 @(objc_class="NSObject")
 ObjectProtocol :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ObjectProtocol, objc_selector="isEqual:", objc_name="isEqual")
     ObjectProtocol_isEqual :: proc(self: ^ObjectProtocol, object: id) -> bool ---
@@ -79,6 +82,8 @@ foreign lib {
     @(objc_type=ObjectProtocol, objc_selector="debugDescription", objc_name="debugDescription")
     ObjectProtocol_debugDescription :: proc(self: ^ObjectProtocol) -> ^String ---
 }
+
+
 
 @(objc_type=ObjectProtocol, objc_name="performSelector")
 ObjectProtocol_performSelector :: proc {

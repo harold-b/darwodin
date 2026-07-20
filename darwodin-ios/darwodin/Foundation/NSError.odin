@@ -28,10 +28,10 @@ foreign lib {
     Error_errorWithDomain :: proc(domain: ^String, code: Integer, dict: ^Dictionary) -> instancetype ---
 
     @(objc_type=Error, objc_selector="setUserInfoValueProviderForDomain:provider:", objc_name="setUserInfoValueProviderForDomain", objc_is_class_method=true)
-    Error_setUserInfoValueProviderForDomain :: proc(errorDomain: ^String, provider: ^Objc_Block(proc "c" (err: ^Error, userInfoKey: ^String) -> id)) ---
+    Error_setUserInfoValueProviderForDomain :: proc(errorDomain: ^String, provider: ^Objc_Block(proc "c" ( err: ^Error, userInfoKey: ^String ) -> id)) ---
 
     @(objc_type=Error, objc_selector="userInfoValueProviderForDomain:", objc_name="userInfoValueProviderForDomain", objc_is_class_method=true)
-    Error_userInfoValueProviderForDomain :: proc(err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> ^Objc_Block(proc "c" (err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> id) ---
+    Error_userInfoValueProviderForDomain :: proc(err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> ^Objc_Block(proc "c" ( err: ^Error, userInfoKey: ^String, errorDomain: ^String ) -> id) ---
 
     @(objc_type=Error, objc_selector="domain", objc_name="domain")
     Error_domain :: proc(self: ^Error) -> ^String ---

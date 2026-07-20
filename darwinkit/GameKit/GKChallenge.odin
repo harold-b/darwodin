@@ -7,21 +7,15 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKChallenge
-///
 @(objc_class="GKChallenge", objc_superclass=NS.Object)
 Challenge :: struct { using _: NS.Object, 
     using _: NS.Coding,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Challenge, objc_selector="loadReceivedChallengesWithCompletionHandler:", objc_name="loadReceivedChallengesWithCompletionHandler", objc_is_class_method=true)
-    Challenge_loadReceivedChallengesWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (challenges: ^NS.Array, error: ^NS.Error))) ---
+    Challenge_loadReceivedChallengesWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( challenges: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Challenge, objc_selector="decline", objc_name="decline")
     Challenge_decline :: proc(self: ^Challenge) ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=Challenge, objc_selector="receivingPlayerID", objc_name="receivingPlayerID")
     Challenge_receivingPlayerID :: proc(self: ^Challenge) -> ^NS.String ---
 }
+
+
+

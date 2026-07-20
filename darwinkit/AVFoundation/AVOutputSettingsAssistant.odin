@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVOutputSettingsAssistant
-///
 @(objc_class="AVOutputSettingsAssistant", objc_superclass=NS.Object)
 OutputSettingsAssistant :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=OutputSettingsAssistant, objc_selector="init", objc_name="init")
     OutputSettingsAssistant_init :: proc(self: ^OutputSettingsAssistant) -> instancetype ---
@@ -67,3 +61,6 @@ foreign lib {
     @(objc_type=OutputSettingsAssistant, objc_selector="setSourceVideoMinFrameDuration:", objc_name="setSourceVideoMinFrameDuration")
     OutputSettingsAssistant_setSourceVideoMinFrameDuration :: proc(self: ^OutputSettingsAssistant, sourceVideoMinFrameDuration: CM.Time) ---
 }
+
+
+

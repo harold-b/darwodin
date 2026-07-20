@@ -20,32 +20,32 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^AK.WritingToolsCoordinator, delegate: ^AK.WritingToolsCoordinatorDelegate) -> instancetype,
-    stopWritingTools: proc(self: ^AK.WritingToolsCoordinator),
-    updateRange: proc(self: ^AK.WritingToolsCoordinator, range: NS._NSRange, replacementText: ^NS.AttributedString, reason: AK.WritingToolsCoordinatorTextUpdateReason, contextID: ^NS.UUID),
-    updateForReflowedTextInContextWithIdentifier: proc(self: ^AK.WritingToolsCoordinator, contextID: ^NS.UUID),
+    initWithDelegate: proc(self: ^NS.WritingToolsCoordinator, delegate: ^NS.WritingToolsCoordinatorDelegate) -> instancetype,
+    stopWritingTools: proc(self: ^NS.WritingToolsCoordinator),
+    updateRange: proc(self: ^NS.WritingToolsCoordinator, range: NS._NSRange, replacementText: ^NS.AttributedString, reason: NS.WritingToolsCoordinatorTextUpdateReason, contextID: ^NS.UUID),
+    updateForReflowedTextInContextWithIdentifier: proc(self: ^NS.WritingToolsCoordinator, contextID: ^NS.UUID),
     isWritingToolsAvailable: proc() -> bool,
-    delegate: proc(self: ^AK.WritingToolsCoordinator) -> ^AK.WritingToolsCoordinatorDelegate,
-    view: proc(self: ^AK.WritingToolsCoordinator) -> ^AK.View,
-    effectContainerView: proc(self: ^AK.WritingToolsCoordinator) -> ^AK.View,
-    setEffectContainerView: proc(self: ^AK.WritingToolsCoordinator, effectContainerView: ^AK.View),
-    decorationContainerView: proc(self: ^AK.WritingToolsCoordinator) -> ^AK.View,
-    setDecorationContainerView: proc(self: ^AK.WritingToolsCoordinator, decorationContainerView: ^AK.View),
-    state: proc(self: ^AK.WritingToolsCoordinator) -> AK.WritingToolsCoordinatorState,
-    preferredBehavior: proc(self: ^AK.WritingToolsCoordinator) -> AK.WritingToolsBehavior,
-    setPreferredBehavior: proc(self: ^AK.WritingToolsCoordinator, preferredBehavior: AK.WritingToolsBehavior),
-    behavior: proc(self: ^AK.WritingToolsCoordinator) -> AK.WritingToolsBehavior,
-    preferredResultOptions: proc(self: ^AK.WritingToolsCoordinator) -> AK.WritingToolsResultOptions,
-    setPreferredResultOptions: proc(self: ^AK.WritingToolsCoordinator, preferredResultOptions: AK.WritingToolsResultOptions),
-    resultOptions: proc(self: ^AK.WritingToolsCoordinator) -> AK.WritingToolsResultOptions,
-    includesTextListMarkers: proc(self: ^AK.WritingToolsCoordinator) -> bool,
-    setIncludesTextListMarkers: proc(self: ^AK.WritingToolsCoordinator, includesTextListMarkers: bool),
+    delegate: proc(self: ^NS.WritingToolsCoordinator) -> ^NS.WritingToolsCoordinatorDelegate,
+    view: proc(self: ^NS.WritingToolsCoordinator) -> ^NS.View,
+    effectContainerView: proc(self: ^NS.WritingToolsCoordinator) -> ^NS.View,
+    setEffectContainerView: proc(self: ^NS.WritingToolsCoordinator, effectContainerView: ^NS.View),
+    decorationContainerView: proc(self: ^NS.WritingToolsCoordinator) -> ^NS.View,
+    setDecorationContainerView: proc(self: ^NS.WritingToolsCoordinator, decorationContainerView: ^NS.View),
+    state: proc(self: ^NS.WritingToolsCoordinator) -> NS.WritingToolsCoordinatorState,
+    preferredBehavior: proc(self: ^NS.WritingToolsCoordinator) -> NS.WritingToolsBehavior,
+    setPreferredBehavior: proc(self: ^NS.WritingToolsCoordinator, preferredBehavior: NS.WritingToolsBehavior),
+    behavior: proc(self: ^NS.WritingToolsCoordinator) -> NS.WritingToolsBehavior,
+    preferredResultOptions: proc(self: ^NS.WritingToolsCoordinator) -> NS.WritingToolsResultOptions,
+    setPreferredResultOptions: proc(self: ^NS.WritingToolsCoordinator, preferredResultOptions: NS.WritingToolsResultOptions),
+    resultOptions: proc(self: ^NS.WritingToolsCoordinator) -> NS.WritingToolsResultOptions,
+    includesTextListMarkers: proc(self: ^NS.WritingToolsCoordinator) -> bool,
+    setIncludesTextListMarkers: proc(self: ^NS.WritingToolsCoordinator, includesTextListMarkers: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, delegate: ^AK.WritingToolsCoordinatorDelegate) -> instancetype {
+        initWithDelegate :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, delegate: ^NS.WritingToolsCoordinatorDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDelegate:"), auto_cast initWithDelegate, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.stopWritingTools != nil {
-        stopWritingTools :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) {
+        stopWritingTools :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("stopWritingTools"), auto_cast stopWritingTools, "v@:") do panic("Failed to register objC method.")
     }
     if vt.updateRange != nil {
-        updateRange :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, range: NS._NSRange, replacementText: ^NS.AttributedString, reason: AK.WritingToolsCoordinatorTextUpdateReason, contextID: ^NS.UUID) {
+        updateRange :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, range: NS._NSRange, replacementText: ^NS.AttributedString, reason: NS.WritingToolsCoordinatorTextUpdateReason, contextID: ^NS.UUID) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateRange:withText:reason:forContextWithIdentifier:"), auto_cast updateRange, "v@:{_NSRange=LL}@l@") do panic("Failed to register objC method.")
     }
     if vt.updateForReflowedTextInContextWithIdentifier != nil {
-        updateForReflowedTextInContextWithIdentifier :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, contextID: ^NS.UUID) {
+        updateForReflowedTextInContextWithIdentifier :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, contextID: ^NS.UUID) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("isWritingToolsAvailable"), auto_cast isWritingToolsAvailable, "B#:") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> ^AK.WritingToolsCoordinatorDelegate {
+        delegate :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> ^NS.WritingToolsCoordinatorDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.view != nil {
-        view :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> ^AK.View {
+        view :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("view"), auto_cast view, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectContainerView != nil {
-        effectContainerView :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> ^AK.View {
+        effectContainerView :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectContainerView"), auto_cast effectContainerView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setEffectContainerView != nil {
-        setEffectContainerView :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, effectContainerView: ^AK.View) {
+        setEffectContainerView :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, effectContainerView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEffectContainerView:"), auto_cast setEffectContainerView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.decorationContainerView != nil {
-        decorationContainerView :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> ^AK.View {
+        decorationContainerView :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("decorationContainerView"), auto_cast decorationContainerView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDecorationContainerView != nil {
-        setDecorationContainerView :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, decorationContainerView: ^AK.View) {
+        setDecorationContainerView :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, decorationContainerView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDecorationContainerView:"), auto_cast setDecorationContainerView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.state != nil {
-        state :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> AK.WritingToolsCoordinatorState {
+        state :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> NS.WritingToolsCoordinatorState {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -176,7 +176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("state"), auto_cast state, "l@:") do panic("Failed to register objC method.")
     }
     if vt.preferredBehavior != nil {
-        preferredBehavior :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> AK.WritingToolsBehavior {
+        preferredBehavior :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> NS.WritingToolsBehavior {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -186,7 +186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredBehavior"), auto_cast preferredBehavior, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setPreferredBehavior != nil {
-        setPreferredBehavior :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, preferredBehavior: AK.WritingToolsBehavior) {
+        setPreferredBehavior :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, preferredBehavior: NS.WritingToolsBehavior) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -196,7 +196,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredBehavior:"), auto_cast setPreferredBehavior, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.behavior != nil {
-        behavior :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> AK.WritingToolsBehavior {
+        behavior :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> NS.WritingToolsBehavior {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -206,7 +206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("behavior"), auto_cast behavior, "l@:") do panic("Failed to register objC method.")
     }
     if vt.preferredResultOptions != nil {
-        preferredResultOptions :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> AK.WritingToolsResultOptions {
+        preferredResultOptions :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> NS.WritingToolsResultOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -216,7 +216,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredResultOptions"), auto_cast preferredResultOptions, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setPreferredResultOptions != nil {
-        setPreferredResultOptions :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, preferredResultOptions: AK.WritingToolsResultOptions) {
+        setPreferredResultOptions :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, preferredResultOptions: NS.WritingToolsResultOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -226,7 +226,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredResultOptions:"), auto_cast setPreferredResultOptions, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.resultOptions != nil {
-        resultOptions :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> AK.WritingToolsResultOptions {
+        resultOptions :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> NS.WritingToolsResultOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -236,7 +236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resultOptions"), auto_cast resultOptions, "L@:") do panic("Failed to register objC method.")
     }
     if vt.includesTextListMarkers != nil {
-        includesTextListMarkers :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL) -> bool {
+        includesTextListMarkers :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -246,7 +246,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("includesTextListMarkers"), auto_cast includesTextListMarkers, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setIncludesTextListMarkers != nil {
-        setIncludesTextListMarkers :: proc "c" (self: ^AK.WritingToolsCoordinator, _: SEL, includesTextListMarkers: bool) {
+        setIncludesTextListMarkers :: proc "c" (self: ^NS.WritingToolsCoordinator, _: SEL, includesTextListMarkers: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSCompoundPredicate
-///
 @(objc_class="NSCompoundPredicate", objc_superclass=Predicate)
 CompoundPredicate :: struct { using _: Predicate, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CompoundPredicate, objc_selector="initWithType:subpredicates:", objc_name="initWithType")
     CompoundPredicate_initWithType :: proc(self: ^CompoundPredicate, type: CompoundPredicateType, subpredicates: ^Array) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=CompoundPredicate, objc_selector="subpredicates", objc_name="subpredicates")
     CompoundPredicate_subpredicates :: proc(self: ^CompoundPredicate) -> ^Array ---
 }
+
+
+

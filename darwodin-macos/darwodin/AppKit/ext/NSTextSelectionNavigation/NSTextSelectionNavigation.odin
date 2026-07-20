@@ -20,27 +20,27 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDataSource: proc(self: ^AK.TextSelectionNavigation, dataSource: ^AK.TextSelectionDataSource) -> instancetype,
-    new: proc() -> ^AK.TextSelectionNavigation,
-    init: proc(self: ^AK.TextSelectionNavigation) -> instancetype,
-    flushLayoutCache: proc(self: ^AK.TextSelectionNavigation),
-    destinationSelectionForTextSelection: proc(self: ^AK.TextSelectionNavigation, textSelection: ^AK.TextSelection, direction: AK.TextSelectionNavigationDirection, destination: AK.TextSelectionNavigationDestination, extending: bool, confined: bool) -> ^AK.TextSelection,
-    textSelectionsInteractingAtPoint: proc(self: ^AK.TextSelectionNavigation, point: CG.Point, containerLocation: ^AK.TextLocation, anchors: ^NS.Array, modifiers: AK.TextSelectionNavigationModifier, selecting: bool, bounds: CG.Rect) -> ^NS.Array,
-    textSelectionForSelectionGranularity_enclosingTextSelection: proc(self: ^AK.TextSelectionNavigation, selectionGranularity: AK.TextSelectionGranularity, textSelection: ^AK.TextSelection) -> ^AK.TextSelection,
-    textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation: proc(self: ^AK.TextSelectionNavigation, selectionGranularity: AK.TextSelectionGranularity, point: CG.Point, location: ^AK.TextLocation) -> ^AK.TextSelection,
-    resolvedInsertionLocationForTextSelection: proc(self: ^AK.TextSelectionNavigation, textSelection: ^AK.TextSelection, writingDirection: AK.TextSelectionNavigationWritingDirection) -> ^AK.TextLocation,
-    deletionRangesForTextSelection: proc(self: ^AK.TextSelectionNavigation, textSelection: ^AK.TextSelection, direction: AK.TextSelectionNavigationDirection, destination: AK.TextSelectionNavigationDestination, allowsDecomposition: bool) -> ^NS.Array,
-    textSelectionDataSource: proc(self: ^AK.TextSelectionNavigation) -> ^AK.TextSelectionDataSource,
-    allowsNonContiguousRanges: proc(self: ^AK.TextSelectionNavigation) -> bool,
-    setAllowsNonContiguousRanges: proc(self: ^AK.TextSelectionNavigation, allowsNonContiguousRanges: bool),
-    rotatesCoordinateSystemForLayoutOrientation: proc(self: ^AK.TextSelectionNavigation) -> bool,
-    setRotatesCoordinateSystemForLayoutOrientation: proc(self: ^AK.TextSelectionNavigation, rotatesCoordinateSystemForLayoutOrientation: bool),
+    initWithDataSource: proc(self: ^NS.TextSelectionNavigation, dataSource: ^NS.TextSelectionDataSource) -> instancetype,
+    new: proc() -> ^NS.TextSelectionNavigation,
+    init: proc(self: ^NS.TextSelectionNavigation) -> instancetype,
+    flushLayoutCache: proc(self: ^NS.TextSelectionNavigation),
+    destinationSelectionForTextSelection: proc(self: ^NS.TextSelectionNavigation, textSelection: ^NS.TextSelection, direction: NS.TextSelectionNavigationDirection, destination: NS.TextSelectionNavigationDestination, extending: bool, confined: bool) -> ^NS.TextSelection,
+    textSelectionsInteractingAtPoint: proc(self: ^NS.TextSelectionNavigation, point: CG.Point, containerLocation: ^NS.TextLocation, anchors: ^NS.Array, modifiers: NS.TextSelectionNavigationModifier, selecting: bool, bounds: CG.Rect) -> ^NS.Array,
+    textSelectionForSelectionGranularity_enclosingTextSelection: proc(self: ^NS.TextSelectionNavigation, selectionGranularity: NS.TextSelectionGranularity, textSelection: ^NS.TextSelection) -> ^NS.TextSelection,
+    textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation: proc(self: ^NS.TextSelectionNavigation, selectionGranularity: NS.TextSelectionGranularity, point: CG.Point, location: ^NS.TextLocation) -> ^NS.TextSelection,
+    resolvedInsertionLocationForTextSelection: proc(self: ^NS.TextSelectionNavigation, textSelection: ^NS.TextSelection, writingDirection: NS.TextSelectionNavigationWritingDirection) -> ^NS.TextLocation,
+    deletionRangesForTextSelection: proc(self: ^NS.TextSelectionNavigation, textSelection: ^NS.TextSelection, direction: NS.TextSelectionNavigationDirection, destination: NS.TextSelectionNavigationDestination, allowsDecomposition: bool) -> ^NS.Array,
+    textSelectionDataSource: proc(self: ^NS.TextSelectionNavigation) -> ^NS.TextSelectionDataSource,
+    allowsNonContiguousRanges: proc(self: ^NS.TextSelectionNavigation) -> bool,
+    setAllowsNonContiguousRanges: proc(self: ^NS.TextSelectionNavigation, allowsNonContiguousRanges: bool),
+    rotatesCoordinateSystemForLayoutOrientation: proc(self: ^NS.TextSelectionNavigation) -> bool,
+    setRotatesCoordinateSystemForLayoutOrientation: proc(self: ^NS.TextSelectionNavigation, rotatesCoordinateSystemForLayoutOrientation: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDataSource != nil {
-        initWithDataSource :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, dataSource: ^AK.TextSelectionDataSource) -> instancetype {
+        initWithDataSource :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL, dataSource: ^NS.TextSelectionDataSource) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDataSource:"), auto_cast initWithDataSource, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.TextSelectionNavigation {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.TextSelectionNavigation {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.flushLayoutCache != nil {
-        flushLayoutCache :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL) {
+        flushLayoutCache :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("flushLayoutCache"), auto_cast flushLayoutCache, "v@:") do panic("Failed to register objC method.")
     }
     if vt.destinationSelectionForTextSelection != nil {
-        destinationSelectionForTextSelection :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, textSelection: ^AK.TextSelection, direction: AK.TextSelectionNavigationDirection, destination: AK.TextSelectionNavigationDestination, extending: bool, confined: bool) -> ^AK.TextSelection {
+        destinationSelectionForTextSelection :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL, textSelection: ^NS.TextSelection, direction: NS.TextSelectionNavigationDirection, destination: NS.TextSelectionNavigationDestination, extending: bool, confined: bool) -> ^NS.TextSelection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("destinationSelectionForTextSelection:direction:destination:extending:confined:"), auto_cast destinationSelectionForTextSelection, "@@:@llBB") do panic("Failed to register objC method.")
     }
     if vt.textSelectionsInteractingAtPoint != nil {
-        textSelectionsInteractingAtPoint :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, point: CG.Point, containerLocation: ^AK.TextLocation, anchors: ^NS.Array, modifiers: AK.TextSelectionNavigationModifier, selecting: bool, bounds: CG.Rect) -> ^NS.Array {
+        textSelectionsInteractingAtPoint :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL, point: CG.Point, containerLocation: ^NS.TextLocation, anchors: ^NS.Array, modifiers: NS.TextSelectionNavigationModifier, selecting: bool, bounds: CG.Rect) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textSelectionsInteractingAtPoint:inContainerAtLocation:anchors:modifiers:selecting:bounds:"), auto_cast textSelectionsInteractingAtPoint, "^void@:{CGPoint=dd}@^voidLB{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.textSelectionForSelectionGranularity_enclosingTextSelection != nil {
-        textSelectionForSelectionGranularity_enclosingTextSelection :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, selectionGranularity: AK.TextSelectionGranularity, textSelection: ^AK.TextSelection) -> ^AK.TextSelection {
+        textSelectionForSelectionGranularity_enclosingTextSelection :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL, selectionGranularity: NS.TextSelectionGranularity, textSelection: ^NS.TextSelection) -> ^NS.TextSelection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textSelectionForSelectionGranularity:enclosingTextSelection:"), auto_cast textSelectionForSelectionGranularity_enclosingTextSelection, "@@:l@") do panic("Failed to register objC method.")
     }
     if vt.textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation != nil {
-        textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, selectionGranularity: AK.TextSelectionGranularity, point: CG.Point, location: ^AK.TextLocation) -> ^AK.TextSelection {
+        textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL, selectionGranularity: NS.TextSelectionGranularity, point: CG.Point, location: ^NS.TextLocation) -> ^NS.TextSelection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textSelectionForSelectionGranularity:enclosingPoint:inContainerAtLocation:"), auto_cast textSelectionForSelectionGranularity_enclosingPoint_inContainerAtLocation, "@@:l{CGPoint=dd}@") do panic("Failed to register objC method.")
     }
     if vt.resolvedInsertionLocationForTextSelection != nil {
-        resolvedInsertionLocationForTextSelection :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, textSelection: ^AK.TextSelection, writingDirection: AK.TextSelectionNavigationWritingDirection) -> ^AK.TextLocation {
+        resolvedInsertionLocationForTextSelection :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL, textSelection: ^NS.TextSelection, writingDirection: NS.TextSelectionNavigationWritingDirection) -> ^NS.TextLocation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resolvedInsertionLocationForTextSelection:writingDirection:"), auto_cast resolvedInsertionLocationForTextSelection, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.deletionRangesForTextSelection != nil {
-        deletionRangesForTextSelection :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, textSelection: ^AK.TextSelection, direction: AK.TextSelectionNavigationDirection, destination: AK.TextSelectionNavigationDestination, allowsDecomposition: bool) -> ^NS.Array {
+        deletionRangesForTextSelection :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL, textSelection: ^NS.TextSelection, direction: NS.TextSelectionNavigationDirection, destination: NS.TextSelectionNavigationDestination, allowsDecomposition: bool) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("deletionRangesForTextSelection:direction:destination:allowsDecomposition:"), auto_cast deletionRangesForTextSelection, "^void@:@llB") do panic("Failed to register objC method.")
     }
     if vt.textSelectionDataSource != nil {
-        textSelectionDataSource :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL) -> ^AK.TextSelectionDataSource {
+        textSelectionDataSource :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL) -> ^NS.TextSelectionDataSource {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -161,7 +161,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textSelectionDataSource"), auto_cast textSelectionDataSource, "@@:") do panic("Failed to register objC method.")
     }
     if vt.allowsNonContiguousRanges != nil {
-        allowsNonContiguousRanges :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL) -> bool {
+        allowsNonContiguousRanges :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -171,7 +171,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsNonContiguousRanges"), auto_cast allowsNonContiguousRanges, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsNonContiguousRanges != nil {
-        setAllowsNonContiguousRanges :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, allowsNonContiguousRanges: bool) {
+        setAllowsNonContiguousRanges :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL, allowsNonContiguousRanges: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -181,7 +181,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsNonContiguousRanges:"), auto_cast setAllowsNonContiguousRanges, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.rotatesCoordinateSystemForLayoutOrientation != nil {
-        rotatesCoordinateSystemForLayoutOrientation :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL) -> bool {
+        rotatesCoordinateSystemForLayoutOrientation :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rotatesCoordinateSystemForLayoutOrientation"), auto_cast rotatesCoordinateSystemForLayoutOrientation, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setRotatesCoordinateSystemForLayoutOrientation != nil {
-        setRotatesCoordinateSystemForLayoutOrientation :: proc "c" (self: ^AK.TextSelectionNavigation, _: SEL, rotatesCoordinateSystemForLayoutOrientation: bool) {
+        setRotatesCoordinateSystemForLayoutOrientation :: proc "c" (self: ^NS.TextSelectionNavigation, _: SEL, rotatesCoordinateSystemForLayoutOrientation: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

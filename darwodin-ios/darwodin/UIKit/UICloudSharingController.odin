@@ -27,7 +27,7 @@ foreign lib {
     CloudSharingController_initWithCoder :: proc(self: ^CloudSharingController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=CloudSharingController, objc_selector="initWithPreparationHandler:", objc_name="initWithPreparationHandler")
-    CloudSharingController_initWithPreparationHandler :: proc(self: ^CloudSharingController, preparationHandler: ^Objc_Block(proc "c" (controller: ^CloudSharingController, preparationCompletionHandler: ^Objc_Block(proc "c" (_: ^CKShare, _1: ^CKContainer, _2: ^NS.Error))))) -> instancetype ---
+    CloudSharingController_initWithPreparationHandler :: proc(self: ^CloudSharingController, preparationHandler: ^Objc_Block(proc "c" ( controller: ^CloudSharingController, preparationCompletionHandler: ^Objc_Block(proc "c" ( _0: ^CKShare, _1: ^CKContainer, _2: ^NS.Error )) ))) -> instancetype ---
 
     @(objc_type=CloudSharingController, objc_selector="initWithShare:container:", objc_name="initWithShare")
     CloudSharingController_initWithShare :: proc(self: ^CloudSharingController, share: ^CKShare, container: ^CKContainer) -> instancetype ---

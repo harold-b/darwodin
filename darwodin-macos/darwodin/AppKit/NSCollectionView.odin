@@ -126,7 +126,7 @@ foreign lib {
     CollectionView_moveItemAtIndexPath :: proc(self: ^CollectionView, indexPath: ^NS.IndexPath, newIndexPath: ^NS.IndexPath) ---
 
     @(objc_type=CollectionView, objc_selector="performBatchUpdates:completionHandler:", objc_name="performBatchUpdates")
-    CollectionView_performBatchUpdates :: proc(self: ^CollectionView, updates: ^Objc_Block(proc "c" ()), completionHandler: ^Objc_Block(proc "c" (finished: bool))) ---
+    CollectionView_performBatchUpdates :: proc(self: ^CollectionView, updates: ^Objc_Block(proc "c" ()), completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=CollectionView, objc_selector="toggleSectionCollapse:", objc_name="toggleSectionCollapse")
     CollectionView_toggleSectionCollapse :: proc(self: ^CollectionView, sender: id) ---

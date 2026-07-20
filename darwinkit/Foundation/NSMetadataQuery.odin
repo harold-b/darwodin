@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMetadataQuery
-///
 @(objc_class="NSMetadataQuery", objc_superclass=Object)
 MetadataQuery :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetadataQuery, objc_selector="startQuery", objc_name="startQuery")
     MetadataQuery_startQuery :: proc(self: ^MetadataQuery) -> bool ---
@@ -35,10 +29,10 @@ foreign lib {
     MetadataQuery_resultAtIndex :: proc(self: ^MetadataQuery, idx: UInteger) -> id ---
 
     @(objc_type=MetadataQuery, objc_selector="enumerateResultsUsingBlock:", objc_name="enumerateResultsUsingBlock")
-    MetadataQuery_enumerateResultsUsingBlock :: proc(self: ^MetadataQuery, block: ^Objc_Block(proc "c" (result: id, idx: UInteger, stop: ^bool))) ---
+    MetadataQuery_enumerateResultsUsingBlock :: proc(self: ^MetadataQuery, block: ^Objc_Block(proc "c" ( result: id, idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=MetadataQuery, objc_selector="enumerateResultsWithOptions:usingBlock:", objc_name="enumerateResultsWithOptions")
-    MetadataQuery_enumerateResultsWithOptions :: proc(self: ^MetadataQuery, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (result: id, idx: UInteger, stop: ^bool))) ---
+    MetadataQuery_enumerateResultsWithOptions :: proc(self: ^MetadataQuery, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( result: id, idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=MetadataQuery, objc_selector="indexOfResult:", objc_name="indexOfResult")
     MetadataQuery_indexOfResult :: proc(self: ^MetadataQuery, result: id) -> UInteger ---
@@ -121,3 +115,6 @@ foreign lib {
     @(objc_type=MetadataQuery, objc_selector="groupedResults", objc_name="groupedResults")
     MetadataQuery_groupedResults :: proc(self: ^MetadataQuery) -> ^Array ---
 }
+
+
+

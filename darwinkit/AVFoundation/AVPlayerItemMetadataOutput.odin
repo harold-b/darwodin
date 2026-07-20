@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemMetadataOutput
-///
 @(objc_class="AVPlayerItemMetadataOutput", objc_superclass=PlayerItemOutput)
 PlayerItemMetadataOutput :: struct { using _: PlayerItemOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemMetadataOutput, objc_selector="initWithIdentifiers:", objc_name="initWithIdentifiers")
     PlayerItemMetadataOutput_initWithIdentifiers :: proc(self: ^PlayerItemMetadataOutput, identifiers: ^NS.Array) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=PlayerItemMetadataOutput, objc_selector="setAdvanceIntervalForDelegateInvocation:", objc_name="setAdvanceIntervalForDelegateInvocation")
     PlayerItemMetadataOutput_setAdvanceIntervalForDelegateInvocation :: proc(self: ^PlayerItemMetadataOutput, advanceIntervalForDelegateInvocation: NS.TimeInterval) ---
 }
+
+
+

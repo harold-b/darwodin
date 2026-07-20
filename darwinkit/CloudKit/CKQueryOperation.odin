@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKQueryOperation
-///
 @(objc_class="CKQueryOperation", objc_superclass=DatabaseOperation)
 QueryOperation :: struct { using _: DatabaseOperation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=QueryOperation, objc_selector="init", objc_name="init")
     QueryOperation_init :: proc(self: ^QueryOperation) -> instancetype ---
@@ -74,3 +68,6 @@ foreign lib {
     @(objc_type=QueryOperation, objc_selector="setQueryCompletionBlock:", objc_name="setQueryCompletionBlock")
     QueryOperation_setQueryCompletionBlock :: proc(self: ^QueryOperation, queryCompletionBlock: ^Objc_Block(proc "c" ())) ---
 }
+
+
+

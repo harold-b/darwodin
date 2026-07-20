@@ -11,18 +11,12 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4MachineLearningPipelineState
-///
 @(objc_class="MTL4MachineLearningPipelineState")
 MTL4MachineLearningPipelineState :: struct { using _: intrinsics.objc_object, 
     using _: Allocation,
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4MachineLearningPipelineState, objc_selector="label", objc_name="label")
     MTL4MachineLearningPipelineState_label :: proc(self: ^MTL4MachineLearningPipelineState) -> ^NS.String ---
@@ -36,3 +30,6 @@ foreign lib {
     @(objc_type=MTL4MachineLearningPipelineState, objc_selector="intermediatesHeapSize", objc_name="intermediatesHeapSize")
     MTL4MachineLearningPipelineState_intermediatesHeapSize :: proc(self: ^MTL4MachineLearningPipelineState) -> NS.UInteger ---
 }
+
+
+

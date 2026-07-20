@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureFileOutput
-///
 @(objc_class="AVCaptureFileOutput", objc_superclass=CaptureOutput)
 CaptureFileOutput :: struct { using _: CaptureOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureFileOutput, objc_selector="startRecordingToOutputFileURL:recordingDelegate:", objc_name="startRecordingToOutputFileURL")
     CaptureFileOutput_startRecordingToOutputFileURL :: proc(self: ^CaptureFileOutput, outputFileURL: ^NS.URL, delegate: ^CaptureFileOutputRecordingDelegate) ---
@@ -73,3 +67,6 @@ foreign lib {
     @(objc_type=CaptureFileOutput, objc_selector="setMinFreeDiskSpaceLimit:", objc_name="setMinFreeDiskSpaceLimit")
     CaptureFileOutput_setMinFreeDiskSpaceLimit :: proc(self: ^CaptureFileOutput, minFreeDiskSpaceLimit: cffi.int64_t) ---
 }
+
+
+

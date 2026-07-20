@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitInformationStorage
-///
 @(objc_class="NSUnitInformationStorage", objc_superclass=Dimension)
 UnitInformationStorage :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitInformationStorage, objc_selector="bytes", objc_name="bytes", objc_is_class_method=true)
     UnitInformationStorage_bytes :: proc() -> ^UnitInformationStorage ---
@@ -126,3 +120,6 @@ foreign lib {
     @(objc_type=UnitInformationStorage, objc_selector="kibibits", objc_name="kibibits", objc_is_class_method=true)
     UnitInformationStorage_kibibits :: proc() -> ^UnitInformationStorage ---
 }
+
+
+

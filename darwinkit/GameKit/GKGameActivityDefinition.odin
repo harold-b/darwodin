@@ -7,27 +7,26 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKGameActivityDefinition
-///
 @(objc_class="GKGameActivityDefinition", objc_superclass=NS.Object)
 GameActivityDefinition :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=GameActivityDefinition, objc_selector="init", objc_name="init")
     GameActivityDefinition_init :: proc(self: ^GameActivityDefinition) -> instancetype ---
 
     @(objc_type=GameActivityDefinition, objc_selector="loadAchievementDescriptionsWithCompletionHandler:", objc_name="loadAchievementDescriptionsWithCompletionHandler")
-    GameActivityDefinition_loadAchievementDescriptionsWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" (achievementDescriptions: ^NS.Array, error: ^NS.Error))) ---
+    GameActivityDefinition_loadAchievementDescriptionsWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" ( achievementDescriptions: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=GameActivityDefinition, objc_selector="loadLeaderboardsWithCompletionHandler:", objc_name="loadLeaderboardsWithCompletionHandler")
-    GameActivityDefinition_loadLeaderboardsWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) ---
+    GameActivityDefinition_loadLeaderboardsWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" ( leaderboards: ^NS.Array, error: ^NS.Error ))) ---
 
-    @(objc_type=GameActivityDefinition, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    GameActivityDefinition_loadImageWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" (image: ^AKImage, error: ^NS.Error))) ---
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(objc_type=GameActivityDefinition, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
+        GameActivityDefinition_loadImageWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" ( image: ^AK.Image, error: ^NS.Error ))) ---
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=GameActivityDefinition, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
+        GameActivityDefinition_loadImageWithCompletionHandler :: proc(self: ^GameActivityDefinition, completionHandler: ^Objc_Block(proc "c" ( image: ^UI.Image, error: ^NS.Error ))) ---
+    }
 
     @(objc_type=GameActivityDefinition, objc_selector="identifier", objc_name="identifier")
     GameActivityDefinition_identifier :: proc(self: ^GameActivityDefinition) -> ^NS.String ---
@@ -66,8 +65,11 @@ foreign lib {
     GameActivityDefinition_releaseState :: proc(self: ^GameActivityDefinition) -> ReleaseState ---
 
     @(objc_type=GameActivityDefinition, objc_selector="loadGameActivityDefinitionsWithCompletionHandler:", objc_name="loadGameActivityDefinitionsWithCompletionHandler", objc_is_class_method=true)
-    GameActivityDefinition_loadGameActivityDefinitionsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (activityDefinitions: ^NS.Array, error: ^NS.Error))) ---
+    GameActivityDefinition_loadGameActivityDefinitionsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( activityDefinitions: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=GameActivityDefinition, objc_selector="loadGameActivityDefinitionsWithIDs:completionHandler:", objc_name="loadGameActivityDefinitionsWithIDs", objc_is_class_method=true)
-    GameActivityDefinition_loadGameActivityDefinitionsWithIDs :: proc(activityDefinitionIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (activityDefinitions: ^NS.Array, error: ^NS.Error))) ---
+    GameActivityDefinition_loadGameActivityDefinitionsWithIDs :: proc(activityDefinitionIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( activityDefinitions: ^NS.Array, error: ^NS.Error ))) ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMIDINoteEvent
-///
 @(objc_class="AVMIDINoteEvent", objc_superclass=MusicEvent)
 MIDINoteEvent :: struct { using _: MusicEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDINoteEvent, objc_selector="initWithChannel:key:velocity:duration:", objc_name="initWithChannel")
     MIDINoteEvent_initWithChannel :: proc(self: ^MIDINoteEvent, channel: CF.UInt32, keyNum: CF.UInt32, velocity: CF.UInt32, duration: MusicTimeStamp) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=MIDINoteEvent, objc_selector="setDuration:", objc_name="setDuration")
     MIDINoteEvent_setDuration :: proc(self: ^MIDINoteEvent, duration: MusicTimeStamp) ---
 }
+
+
+

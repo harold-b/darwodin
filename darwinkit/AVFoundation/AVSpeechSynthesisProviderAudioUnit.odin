@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSpeechSynthesisProviderAudioUnit
-///
 @(objc_class="AVSpeechSynthesisProviderAudioUnit", objc_superclass=Audio.AUAudioUnit)
 SpeechSynthesisProviderAudioUnit :: struct { using _: Audio.AUAudioUnit, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesisProviderAudioUnit, objc_selector="synthesizeSpeechRequest:", objc_name="synthesizeSpeechRequest")
     SpeechSynthesisProviderAudioUnit_synthesizeSpeechRequest :: proc(self: ^SpeechSynthesisProviderAudioUnit, speechRequest: ^SpeechSynthesisProviderRequest) ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=SpeechSynthesisProviderAudioUnit, objc_selector="setSpeechSynthesisOutputMetadataBlock:", objc_name="setSpeechSynthesisOutputMetadataBlock")
     SpeechSynthesisProviderAudioUnit_setSpeechSynthesisOutputMetadataBlock :: proc(self: ^SpeechSynthesisProviderAudioUnit, speechSynthesisOutputMetadataBlock: SpeechSynthesisProviderOutputBlock) ---
 }
+
+
+

@@ -20,34 +20,34 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    viewFrameChanged: proc(self: ^AK.ClipView, notification: ^NS.Notification),
-    viewBoundsChanged: proc(self: ^AK.ClipView, notification: ^NS.Notification),
-    autoscroll: proc(self: ^AK.ClipView, event: ^AK.Event) -> bool,
-    scrollToPoint: proc(self: ^AK.ClipView, newOrigin: CG.Point),
-    constrainBoundsRect: proc(self: ^AK.ClipView, proposedBounds: NS.Rect) -> NS.Rect,
-    backgroundColor: proc(self: ^AK.ClipView) -> ^AK.Color,
-    setBackgroundColor: proc(self: ^AK.ClipView, backgroundColor: ^AK.Color),
-    drawsBackground: proc(self: ^AK.ClipView) -> bool,
-    setDrawsBackground: proc(self: ^AK.ClipView, drawsBackground: bool),
-    documentView: proc(self: ^AK.ClipView) -> ^AK.View,
-    setDocumentView: proc(self: ^AK.ClipView, documentView: ^AK.View),
-    documentRect: proc(self: ^AK.ClipView) -> NS.Rect,
-    documentCursor: proc(self: ^AK.ClipView) -> ^AK.Cursor,
-    setDocumentCursor: proc(self: ^AK.ClipView, documentCursor: ^AK.Cursor),
-    documentVisibleRect: proc(self: ^AK.ClipView) -> NS.Rect,
-    contentInsets: proc(self: ^AK.ClipView) -> NS.EdgeInsets,
-    setContentInsets: proc(self: ^AK.ClipView, contentInsets: NS.EdgeInsets),
-    automaticallyAdjustsContentInsets: proc(self: ^AK.ClipView) -> bool,
-    setAutomaticallyAdjustsContentInsets: proc(self: ^AK.ClipView, automaticallyAdjustsContentInsets: bool),
-    constrainScrollPoint: proc(self: ^AK.ClipView, newOrigin: CG.Point) -> CG.Point,
-    copiesOnScroll: proc(self: ^AK.ClipView) -> bool,
-    setCopiesOnScroll: proc(self: ^AK.ClipView, copiesOnScroll: bool),
+    viewFrameChanged: proc(self: ^NS.ClipView, notification: ^NS.Notification),
+    viewBoundsChanged: proc(self: ^NS.ClipView, notification: ^NS.Notification),
+    autoscroll: proc(self: ^NS.ClipView, event: ^NS.Event) -> bool,
+    scrollToPoint: proc(self: ^NS.ClipView, newOrigin: CG.Point),
+    constrainBoundsRect: proc(self: ^NS.ClipView, proposedBounds: NS.Rect) -> NS.Rect,
+    backgroundColor: proc(self: ^NS.ClipView) -> ^NS.Color,
+    setBackgroundColor: proc(self: ^NS.ClipView, backgroundColor: ^NS.Color),
+    drawsBackground: proc(self: ^NS.ClipView) -> bool,
+    setDrawsBackground: proc(self: ^NS.ClipView, drawsBackground: bool),
+    documentView: proc(self: ^NS.ClipView) -> ^NS.View,
+    setDocumentView: proc(self: ^NS.ClipView, documentView: ^NS.View),
+    documentRect: proc(self: ^NS.ClipView) -> NS.Rect,
+    documentCursor: proc(self: ^NS.ClipView) -> ^NS.Cursor,
+    setDocumentCursor: proc(self: ^NS.ClipView, documentCursor: ^NS.Cursor),
+    documentVisibleRect: proc(self: ^NS.ClipView) -> NS.Rect,
+    contentInsets: proc(self: ^NS.ClipView) -> NS.EdgeInsets,
+    setContentInsets: proc(self: ^NS.ClipView, contentInsets: NS.EdgeInsets),
+    automaticallyAdjustsContentInsets: proc(self: ^NS.ClipView) -> bool,
+    setAutomaticallyAdjustsContentInsets: proc(self: ^NS.ClipView, automaticallyAdjustsContentInsets: bool),
+    constrainScrollPoint: proc(self: ^NS.ClipView, newOrigin: CG.Point) -> CG.Point,
+    copiesOnScroll: proc(self: ^NS.ClipView) -> bool,
+    setCopiesOnScroll: proc(self: ^NS.ClipView, copiesOnScroll: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.viewFrameChanged != nil {
-        viewFrameChanged :: proc "c" (self: ^AK.ClipView, _: SEL, notification: ^NS.Notification) {
+        viewFrameChanged :: proc "c" (self: ^NS.ClipView, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewFrameChanged:"), auto_cast viewFrameChanged, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.viewBoundsChanged != nil {
-        viewBoundsChanged :: proc "c" (self: ^AK.ClipView, _: SEL, notification: ^NS.Notification) {
+        viewBoundsChanged :: proc "c" (self: ^NS.ClipView, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewBoundsChanged:"), auto_cast viewBoundsChanged, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.autoscroll != nil {
-        autoscroll :: proc "c" (self: ^AK.ClipView, _: SEL, event: ^AK.Event) -> bool {
+        autoscroll :: proc "c" (self: ^NS.ClipView, _: SEL, event: ^NS.Event) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autoscroll:"), auto_cast autoscroll, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.scrollToPoint != nil {
-        scrollToPoint :: proc "c" (self: ^AK.ClipView, _: SEL, newOrigin: CG.Point) {
+        scrollToPoint :: proc "c" (self: ^NS.ClipView, _: SEL, newOrigin: CG.Point) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollToPoint:"), auto_cast scrollToPoint, "v@:{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.constrainBoundsRect != nil {
-        constrainBoundsRect :: proc "c" (self: ^AK.ClipView, _: SEL, proposedBounds: NS.Rect) -> NS.Rect {
+        constrainBoundsRect :: proc "c" (self: ^NS.ClipView, _: SEL, proposedBounds: NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("constrainBoundsRect:"), auto_cast constrainBoundsRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.backgroundColor != nil {
-        backgroundColor :: proc "c" (self: ^AK.ClipView, _: SEL) -> ^AK.Color {
+        backgroundColor :: proc "c" (self: ^NS.ClipView, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundColor"), auto_cast backgroundColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundColor != nil {
-        setBackgroundColor :: proc "c" (self: ^AK.ClipView, _: SEL, backgroundColor: ^AK.Color) {
+        setBackgroundColor :: proc "c" (self: ^NS.ClipView, _: SEL, backgroundColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundColor:"), auto_cast setBackgroundColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.drawsBackground != nil {
-        drawsBackground :: proc "c" (self: ^AK.ClipView, _: SEL) -> bool {
+        drawsBackground :: proc "c" (self: ^NS.ClipView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -138,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawsBackground"), auto_cast drawsBackground, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setDrawsBackground != nil {
-        setDrawsBackground :: proc "c" (self: ^AK.ClipView, _: SEL, drawsBackground: bool) {
+        setDrawsBackground :: proc "c" (self: ^NS.ClipView, _: SEL, drawsBackground: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDrawsBackground:"), auto_cast setDrawsBackground, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.documentView != nil {
-        documentView :: proc "c" (self: ^AK.ClipView, _: SEL) -> ^AK.View {
+        documentView :: proc "c" (self: ^NS.ClipView, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -158,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentView"), auto_cast documentView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDocumentView != nil {
-        setDocumentView :: proc "c" (self: ^AK.ClipView, _: SEL, documentView: ^AK.View) {
+        setDocumentView :: proc "c" (self: ^NS.ClipView, _: SEL, documentView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -168,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDocumentView:"), auto_cast setDocumentView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.documentRect != nil {
-        documentRect :: proc "c" (self: ^AK.ClipView, _: SEL) -> NS.Rect {
+        documentRect :: proc "c" (self: ^NS.ClipView, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -178,7 +178,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentRect"), auto_cast documentRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.documentCursor != nil {
-        documentCursor :: proc "c" (self: ^AK.ClipView, _: SEL) -> ^AK.Cursor {
+        documentCursor :: proc "c" (self: ^NS.ClipView, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -188,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentCursor"), auto_cast documentCursor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDocumentCursor != nil {
-        setDocumentCursor :: proc "c" (self: ^AK.ClipView, _: SEL, documentCursor: ^AK.Cursor) {
+        setDocumentCursor :: proc "c" (self: ^NS.ClipView, _: SEL, documentCursor: ^NS.Cursor) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -198,7 +198,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDocumentCursor:"), auto_cast setDocumentCursor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.documentVisibleRect != nil {
-        documentVisibleRect :: proc "c" (self: ^AK.ClipView, _: SEL) -> NS.Rect {
+        documentVisibleRect :: proc "c" (self: ^NS.ClipView, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -208,7 +208,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentVisibleRect"), auto_cast documentVisibleRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.contentInsets != nil {
-        contentInsets :: proc "c" (self: ^AK.ClipView, _: SEL) -> NS.EdgeInsets {
+        contentInsets :: proc "c" (self: ^NS.ClipView, _: SEL) -> NS.EdgeInsets {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -218,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentInsets"), auto_cast contentInsets, "{NSEdgeInsets=dddd}@:") do panic("Failed to register objC method.")
     }
     if vt.setContentInsets != nil {
-        setContentInsets :: proc "c" (self: ^AK.ClipView, _: SEL, contentInsets: NS.EdgeInsets) {
+        setContentInsets :: proc "c" (self: ^NS.ClipView, _: SEL, contentInsets: NS.EdgeInsets) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -228,7 +228,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentInsets:"), auto_cast setContentInsets, "v@:{NSEdgeInsets=dddd}") do panic("Failed to register objC method.")
     }
     if vt.automaticallyAdjustsContentInsets != nil {
-        automaticallyAdjustsContentInsets :: proc "c" (self: ^AK.ClipView, _: SEL) -> bool {
+        automaticallyAdjustsContentInsets :: proc "c" (self: ^NS.ClipView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -238,7 +238,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyAdjustsContentInsets"), auto_cast automaticallyAdjustsContentInsets, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyAdjustsContentInsets != nil {
-        setAutomaticallyAdjustsContentInsets :: proc "c" (self: ^AK.ClipView, _: SEL, automaticallyAdjustsContentInsets: bool) {
+        setAutomaticallyAdjustsContentInsets :: proc "c" (self: ^NS.ClipView, _: SEL, automaticallyAdjustsContentInsets: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -248,7 +248,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyAdjustsContentInsets:"), auto_cast setAutomaticallyAdjustsContentInsets, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.constrainScrollPoint != nil {
-        constrainScrollPoint :: proc "c" (self: ^AK.ClipView, _: SEL, newOrigin: CG.Point) -> CG.Point {
+        constrainScrollPoint :: proc "c" (self: ^NS.ClipView, _: SEL, newOrigin: CG.Point) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -258,7 +258,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("constrainScrollPoint:"), auto_cast constrainScrollPoint, "{CGPoint=dd}@:{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.copiesOnScroll != nil {
-        copiesOnScroll :: proc "c" (self: ^AK.ClipView, _: SEL) -> bool {
+        copiesOnScroll :: proc "c" (self: ^NS.ClipView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -268,7 +268,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("copiesOnScroll"), auto_cast copiesOnScroll, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setCopiesOnScroll != nil {
-        setCopiesOnScroll :: proc "c" (self: ^AK.ClipView, _: SEL, copiesOnScroll: bool) {
+        setCopiesOnScroll :: proc "c" (self: ^NS.ClipView, _: SEL, copiesOnScroll: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

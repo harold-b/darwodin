@@ -26,7 +26,7 @@ FilePromiseReceiver :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FilePromiseReceiver, objc_selector="receivePromisedFilesAtDestination:options:operationQueue:reader:", objc_name="receivePromisedFilesAtDestination")
-    FilePromiseReceiver_receivePromisedFilesAtDestination :: proc(self: ^FilePromiseReceiver, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: ^Objc_Block(proc "c" (fileURL: ^NS.URL, errorOrNil: ^NS.Error))) ---
+    FilePromiseReceiver_receivePromisedFilesAtDestination :: proc(self: ^FilePromiseReceiver, destinationDir: ^NS.URL, options: ^NS.Dictionary, operationQueue: ^NS.OperationQueue, reader: ^Objc_Block(proc "c" ( fileURL: ^NS.URL, errorOrNil: ^NS.Error ))) ---
 
     @(objc_type=FilePromiseReceiver, objc_selector="readableDraggedTypes", objc_name="readableDraggedTypes", objc_is_class_method=true)
     FilePromiseReceiver_readableDraggedTypes :: proc() -> ^NS.Array ---

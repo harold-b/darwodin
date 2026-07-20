@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLLogStateDescriptor
-///
 @(objc_class="MTLLogStateDescriptor", objc_superclass=NS.Object)
 LogStateDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LogStateDescriptor, objc_selector="level", objc_name="level")
     LogStateDescriptor_level :: proc(self: ^LogStateDescriptor) -> LogLevel ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=LogStateDescriptor, objc_selector="setBufferSize:", objc_name="setBufferSize")
     LogStateDescriptor_setBufferSize :: proc(self: ^LogStateDescriptor, bufferSize: NS.Integer) ---
 }
+
+
+

@@ -60,7 +60,7 @@ foreign lib {
     FieldBehavior_magneticField :: proc() -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="fieldWithEvaluationBlock:", objc_name="fieldWithEvaluationBlock", objc_is_class_method=true)
-    FieldBehavior_fieldWithEvaluationBlock :: proc(block: ^Objc_Block(proc "c" (field: ^FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval) -> CG.Vector)) -> instancetype ---
+    FieldBehavior_fieldWithEvaluationBlock :: proc(block: ^Objc_Block(proc "c" ( field: ^FieldBehavior, position: CG.Point, velocity: CG.Vector, mass: CG.Float, charge: CG.Float, deltaTime: NS.TimeInterval ) -> CG.Vector)) -> instancetype ---
 
     @(objc_type=FieldBehavior, objc_selector="items", objc_name="items")
     FieldBehavior_items :: proc(self: ^FieldBehavior) -> ^NS.Array ---

@@ -21,19 +21,19 @@ foreign lib {
     Matchmaker_sharedMatchmaker :: proc() -> ^Matchmaker ---
 
     @(objc_type=Matchmaker, objc_selector="matchForInvite:completionHandler:", objc_name="matchForInvite")
-    Matchmaker_matchForInvite :: proc(self: ^Matchmaker, invite: ^Invite, completionHandler: ^Objc_Block(proc "c" (match: ^Match, error: ^NS.Error))) ---
+    Matchmaker_matchForInvite :: proc(self: ^Matchmaker, invite: ^Invite, completionHandler: ^Objc_Block(proc "c" ( match: ^Match, error: ^NS.Error ))) ---
 
     @(objc_type=Matchmaker, objc_selector="findMatchForRequest:withCompletionHandler:", objc_name="findMatchForRequest")
-    Matchmaker_findMatchForRequest :: proc(self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (match: ^Match, error: ^NS.Error))) ---
+    Matchmaker_findMatchForRequest :: proc(self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" ( match: ^Match, error: ^NS.Error ))) ---
 
     @(objc_type=Matchmaker, objc_selector="findPlayersForHostedRequest:withCompletionHandler:", objc_name="findPlayersForHostedRequest")
-    Matchmaker_findPlayersForHostedRequest :: proc(self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (players: ^NS.Array, error: ^NS.Error))) ---
+    Matchmaker_findPlayersForHostedRequest :: proc(self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" ( players: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Matchmaker, objc_selector="findMatchedPlayers:withCompletionHandler:", objc_name="findMatchedPlayers")
-    Matchmaker_findMatchedPlayers :: proc(self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (matchedPlayers: ^MatchedPlayers, error: ^NS.Error))) ---
+    Matchmaker_findMatchedPlayers :: proc(self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" ( matchedPlayers: ^MatchedPlayers, error: ^NS.Error ))) ---
 
     @(objc_type=Matchmaker, objc_selector="addPlayersToMatch:matchRequest:completionHandler:", objc_name="addPlayersToMatch")
-    Matchmaker_addPlayersToMatch :: proc(self: ^Matchmaker, match: ^Match, matchRequest: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Matchmaker_addPlayersToMatch :: proc(self: ^Matchmaker, match: ^Match, matchRequest: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Matchmaker, objc_selector="cancel", objc_name="cancel")
     Matchmaker_cancel :: proc(self: ^Matchmaker) ---
@@ -45,22 +45,22 @@ foreign lib {
     Matchmaker_finishMatchmakingForMatch :: proc(self: ^Matchmaker, match: ^Match) ---
 
     @(objc_type=Matchmaker, objc_selector="queryPlayerGroupActivity:withCompletionHandler:", objc_name="queryPlayerGroupActivity")
-    Matchmaker_queryPlayerGroupActivity :: proc(self: ^Matchmaker, playerGroup: NS.UInteger, completionHandler: ^Objc_Block(proc "c" (activity: NS.Integer, error: ^NS.Error))) ---
+    Matchmaker_queryPlayerGroupActivity :: proc(self: ^Matchmaker, playerGroup: NS.UInteger, completionHandler: ^Objc_Block(proc "c" ( activity: NS.Integer, error: ^NS.Error ))) ---
 
     @(objc_type=Matchmaker, objc_selector="queryActivityWithCompletionHandler:", objc_name="queryActivityWithCompletionHandler")
-    Matchmaker_queryActivityWithCompletionHandler :: proc(self: ^Matchmaker, completionHandler: ^Objc_Block(proc "c" (activity: NS.Integer, error: ^NS.Error))) ---
+    Matchmaker_queryActivityWithCompletionHandler :: proc(self: ^Matchmaker, completionHandler: ^Objc_Block(proc "c" ( activity: NS.Integer, error: ^NS.Error ))) ---
 
     @(objc_type=Matchmaker, objc_selector="queryQueueActivity:withCompletionHandler:", objc_name="queryQueueActivity")
-    Matchmaker_queryQueueActivity :: proc(self: ^Matchmaker, queueName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (activity: NS.Integer, error: ^NS.Error))) ---
+    Matchmaker_queryQueueActivity :: proc(self: ^Matchmaker, queueName: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( activity: NS.Integer, error: ^NS.Error ))) ---
 
     @(objc_type=Matchmaker, objc_selector="startBrowsingForNearbyPlayersWithHandler:", objc_name="startBrowsingForNearbyPlayersWithHandler")
-    Matchmaker_startBrowsingForNearbyPlayersWithHandler :: proc(self: ^Matchmaker, reachableHandler: ^Objc_Block(proc "c" (player: ^Player, reachable: bool))) ---
+    Matchmaker_startBrowsingForNearbyPlayersWithHandler :: proc(self: ^Matchmaker, reachableHandler: ^Objc_Block(proc "c" ( player: ^Player, reachable: bool ))) ---
 
     @(objc_type=Matchmaker, objc_selector="stopBrowsingForNearbyPlayers", objc_name="stopBrowsingForNearbyPlayers")
     Matchmaker_stopBrowsingForNearbyPlayers :: proc(self: ^Matchmaker) ---
 
     @(objc_type=Matchmaker, objc_selector="startGroupActivityWithPlayerHandler:", objc_name="startGroupActivityWithPlayerHandler")
-    Matchmaker_startGroupActivityWithPlayerHandler :: proc(self: ^Matchmaker, handler: ^Objc_Block(proc "c" (player: ^Player))) ---
+    Matchmaker_startGroupActivityWithPlayerHandler :: proc(self: ^Matchmaker, handler: ^Objc_Block(proc "c" ( player: ^Player ))) ---
 
     @(objc_type=Matchmaker, objc_selector="stopGroupActivity", objc_name="stopGroupActivity")
     Matchmaker_stopGroupActivity :: proc(self: ^Matchmaker) ---
@@ -72,11 +72,11 @@ foreign lib {
     Matchmaker_setInviteHandler :: proc(self: ^Matchmaker, inviteHandler: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=Matchmaker, objc_selector="startBrowsingForNearbyPlayersWithReachableHandler:", objc_name="startBrowsingForNearbyPlayersWithReachableHandler")
-    Matchmaker_startBrowsingForNearbyPlayersWithReachableHandler :: proc(self: ^Matchmaker, reachableHandler: ^Objc_Block(proc "c" (playerID: ^NS.String, reachable: bool))) ---
+    Matchmaker_startBrowsingForNearbyPlayersWithReachableHandler :: proc(self: ^Matchmaker, reachableHandler: ^Objc_Block(proc "c" ( playerID: ^NS.String, reachable: bool ))) ---
 
     @(objc_type=Matchmaker, objc_selector="cancelInviteToPlayer:", objc_name="cancelInviteToPlayer")
     Matchmaker_cancelInviteToPlayer :: proc(self: ^Matchmaker, playerID: ^NS.String) ---
 
     @(objc_type=Matchmaker, objc_selector="findPlayersForHostedMatchRequest:withCompletionHandler:", objc_name="findPlayersForHostedMatchRequest")
-    Matchmaker_findPlayersForHostedMatchRequest :: proc(self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" (playerIDs: ^NS.Array, error: ^NS.Error))) ---
+    Matchmaker_findPlayersForHostedMatchRequest :: proc(self: ^Matchmaker, request: ^MatchRequest, completionHandler: ^Objc_Block(proc "c" ( playerIDs: ^NS.Array, error: ^NS.Error ))) ---
 }

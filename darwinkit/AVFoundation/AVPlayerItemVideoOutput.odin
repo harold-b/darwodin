@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemVideoOutput
-///
 @(objc_class="AVPlayerItemVideoOutput", objc_superclass=PlayerItemOutput)
 PlayerItemVideoOutput :: struct { using _: PlayerItemOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemVideoOutput, objc_selector="initWithPixelBufferAttributes:", objc_name="initWithPixelBufferAttributes")
     PlayerItemVideoOutput_initWithPixelBufferAttributes :: proc(self: ^PlayerItemVideoOutput, pixelBufferAttributes: ^NS.Dictionary) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=PlayerItemVideoOutput, objc_selector="delegateQueue", objc_name="delegateQueue")
     PlayerItemVideoOutput_delegateQueue :: proc(self: ^PlayerItemVideoOutput) -> CF.dispatch_queue_t ---
 }
+
+
+

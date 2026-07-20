@@ -1,0 +1,38 @@
+package darwodin_MapKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../AppKit"
+import CL "../CoreLocation"
+
+
+
+///
+/// MKLookAroundSnapshotter
+///
+@(objc_class="MKLookAroundSnapshotter", objc_superclass=NS.Object)
+LookAroundSnapshotter :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LookAroundSnapshotter, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    LookAroundSnapshotter_new :: proc() -> ^LookAroundSnapshotter ---
+
+    @(objc_type=LookAroundSnapshotter, objc_selector="init", objc_name="init")
+    LookAroundSnapshotter_init :: proc(self: ^LookAroundSnapshotter) -> instancetype ---
+
+    @(objc_type=LookAroundSnapshotter, objc_selector="initWithScene:options:", objc_name="initWithScene")
+    LookAroundSnapshotter_initWithScene :: proc(self: ^LookAroundSnapshotter, scene: ^LookAroundScene, options: ^LookAroundSnapshotOptions) -> instancetype ---
+
+    @(objc_type=LookAroundSnapshotter, objc_selector="getSnapshotWithCompletionHandler:", objc_name="getSnapshotWithCompletionHandler")
+    LookAroundSnapshotter_getSnapshotWithCompletionHandler :: proc(self: ^LookAroundSnapshotter, completionHandler: ^Objc_Block(proc "c" ( snapshot: ^LookAroundSnapshot, error: ^NS.Error ))) ---
+
+    @(objc_type=LookAroundSnapshotter, objc_selector="cancel", objc_name="cancel")
+    LookAroundSnapshotter_cancel :: proc(self: ^LookAroundSnapshotter) ---
+
+    @(objc_type=LookAroundSnapshotter, objc_selector="isLoading", objc_name="isLoading")
+    LookAroundSnapshotter_isLoading :: proc(self: ^LookAroundSnapshotter) -> bool ---
+}

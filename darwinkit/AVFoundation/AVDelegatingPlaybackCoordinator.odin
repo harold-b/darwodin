@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVDelegatingPlaybackCoordinator
-///
 @(objc_class="AVDelegatingPlaybackCoordinator", objc_superclass=PlaybackCoordinator)
 DelegatingPlaybackCoordinator :: struct { using _: PlaybackCoordinator, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DelegatingPlaybackCoordinator, objc_selector="initWithPlaybackControlDelegate:", objc_name="initWithPlaybackControlDelegate")
     DelegatingPlaybackCoordinator_initWithPlaybackControlDelegate :: proc(self: ^DelegatingPlaybackCoordinator, playbackControlDelegate: ^PlaybackCoordinatorPlaybackControlDelegate) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=DelegatingPlaybackCoordinator, objc_selector="currentItemIdentifier", objc_name="currentItemIdentifier")
     DelegatingPlaybackCoordinator_currentItemIdentifier :: proc(self: ^DelegatingPlaybackCoordinator) -> ^NS.String ---
 }
+
+
+

@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSValue
-///
 @(objc_class="NSValue", objc_superclass=Object)
 Value :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Value, objc_selector="getValue:size:", objc_name="getValue_size")
     Value_getValue_size :: proc(self: ^Value, value: rawptr, size: UInteger) ---
@@ -64,7 +58,7 @@ foreign lib {
     @(objc_type=Value, objc_selector="rangeValue", objc_name="rangeValue")
     Value_rangeValue :: proc(self: ^Value) -> _NSRange ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Value, objc_selector="valueWithPoint:", objc_name="valueWithPoint", objc_is_class_method=true)
         Value_valueWithPoint :: proc(point: CG.Point) -> ^Value ---
 
@@ -90,6 +84,8 @@ foreign lib {
         Value_edgeInsetsValue :: proc(self: ^Value) -> EdgeInsets ---
     }
 }
+
+
 
 @(objc_type=Value, objc_name="getValue")
 Value_getValue :: proc {

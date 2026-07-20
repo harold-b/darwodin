@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    contentView: proc(self: ^AK.BackgroundExtensionView) -> ^AK.View,
-    setContentView: proc(self: ^AK.BackgroundExtensionView, contentView: ^AK.View),
-    automaticallyPlacesContentView: proc(self: ^AK.BackgroundExtensionView) -> bool,
-    setAutomaticallyPlacesContentView: proc(self: ^AK.BackgroundExtensionView, automaticallyPlacesContentView: bool),
+    contentView: proc(self: ^NS.BackgroundExtensionView) -> ^NS.View,
+    setContentView: proc(self: ^NS.BackgroundExtensionView, contentView: ^NS.View),
+    automaticallyPlacesContentView: proc(self: ^NS.BackgroundExtensionView) -> bool,
+    setAutomaticallyPlacesContentView: proc(self: ^NS.BackgroundExtensionView, automaticallyPlacesContentView: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.contentView != nil {
-        contentView :: proc "c" (self: ^AK.BackgroundExtensionView, _: SEL) -> ^AK.View {
+        contentView :: proc "c" (self: ^NS.BackgroundExtensionView, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentView"), auto_cast contentView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContentView != nil {
-        setContentView :: proc "c" (self: ^AK.BackgroundExtensionView, _: SEL, contentView: ^AK.View) {
+        setContentView :: proc "c" (self: ^NS.BackgroundExtensionView, _: SEL, contentView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentView:"), auto_cast setContentView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyPlacesContentView != nil {
-        automaticallyPlacesContentView :: proc "c" (self: ^AK.BackgroundExtensionView, _: SEL) -> bool {
+        automaticallyPlacesContentView :: proc "c" (self: ^NS.BackgroundExtensionView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyPlacesContentView"), auto_cast automaticallyPlacesContentView, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyPlacesContentView != nil {
-        setAutomaticallyPlacesContentView :: proc "c" (self: ^AK.BackgroundExtensionView, _: SEL, automaticallyPlacesContentView: bool) {
+        setAutomaticallyPlacesContentView :: proc "c" (self: ^NS.BackgroundExtensionView, _: SEL, automaticallyPlacesContentView: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

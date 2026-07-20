@@ -28,7 +28,7 @@ foreign lib {
     AudioRoutingArbiter_new :: proc() -> ^AudioRoutingArbiter ---
 
     @(objc_type=AudioRoutingArbiter, objc_selector="beginArbitrationWithCategory:completionHandler:", objc_name="beginArbitrationWithCategory")
-    AudioRoutingArbiter_beginArbitrationWithCategory :: proc(self: ^AudioRoutingArbiter, category: AudioRoutingArbitrationCategory, handler: ^Objc_Block(proc "c" (defaultDeviceChanged: bool, error: ^NS.Error))) ---
+    AudioRoutingArbiter_beginArbitrationWithCategory :: proc(self: ^AudioRoutingArbiter, category: AudioRoutingArbitrationCategory, handler: ^Objc_Block(proc "c" ( defaultDeviceChanged: bool, error: ^NS.Error ))) ---
 
     @(objc_type=AudioRoutingArbiter, objc_selector="leaveArbitration", objc_name="leaveArbitration")
     AudioRoutingArbiter_leaveArbitration :: proc(self: ^AudioRoutingArbiter) ---

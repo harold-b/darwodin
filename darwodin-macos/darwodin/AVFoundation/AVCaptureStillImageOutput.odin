@@ -28,7 +28,7 @@ foreign lib {
     CaptureStillImageOutput_new :: proc() -> ^CaptureStillImageOutput ---
 
     @(objc_type=CaptureStillImageOutput, objc_selector="captureStillImageAsynchronouslyFromConnection:completionHandler:", objc_name="captureStillImageAsynchronouslyFromConnection")
-    CaptureStillImageOutput_captureStillImageAsynchronouslyFromConnection :: proc(self: ^CaptureStillImageOutput, connection: ^CaptureConnection, handler: ^Objc_Block(proc "c" (imageDataSampleBuffer: CM.SampleBufferRef, error: ^NS.Error))) ---
+    CaptureStillImageOutput_captureStillImageAsynchronouslyFromConnection :: proc(self: ^CaptureStillImageOutput, connection: ^CaptureConnection, handler: ^Objc_Block(proc "c" ( imageDataSampleBuffer: CM.SampleBufferRef, error: ^NS.Error ))) ---
 
     @(objc_type=CaptureStillImageOutput, objc_selector="jpegStillImageNSDataRepresentation:", objc_name="jpegStillImageNSDataRepresentation", objc_is_class_method=true)
     CaptureStillImageOutput_jpegStillImageNSDataRepresentation :: proc(jpegSampleBuffer: CM.SampleBufferRef) -> ^NS.Data ---
@@ -76,10 +76,10 @@ foreign lib {
     CaptureStillImageOutput_isCapturingStillImage :: proc(self: ^CaptureStillImageOutput) -> bool ---
 
     @(objc_type=CaptureStillImageOutput, objc_selector="prepareToCaptureStillImageBracketFromConnection:withSettingsArray:completionHandler:", objc_name="prepareToCaptureStillImageBracketFromConnection")
-    CaptureStillImageOutput_prepareToCaptureStillImageBracketFromConnection :: proc(self: ^CaptureStillImageOutput, connection: ^CaptureConnection, settings: ^NS.Array, handler: ^Objc_Block(proc "c" (prepared: bool, error: ^NS.Error))) ---
+    CaptureStillImageOutput_prepareToCaptureStillImageBracketFromConnection :: proc(self: ^CaptureStillImageOutput, connection: ^CaptureConnection, settings: ^NS.Array, handler: ^Objc_Block(proc "c" ( prepared: bool, error: ^NS.Error ))) ---
 
     @(objc_type=CaptureStillImageOutput, objc_selector="captureStillImageBracketAsynchronouslyFromConnection:withSettingsArray:completionHandler:", objc_name="captureStillImageBracketAsynchronouslyFromConnection")
-    CaptureStillImageOutput_captureStillImageBracketAsynchronouslyFromConnection :: proc(self: ^CaptureStillImageOutput, connection: ^CaptureConnection, settings: ^NS.Array, handler: ^Objc_Block(proc "c" (sampleBuffer: CM.SampleBufferRef, stillImageSettings: ^CaptureBracketedStillImageSettings, error: ^NS.Error))) ---
+    CaptureStillImageOutput_captureStillImageBracketAsynchronouslyFromConnection :: proc(self: ^CaptureStillImageOutput, connection: ^CaptureConnection, settings: ^NS.Array, handler: ^Objc_Block(proc "c" ( sampleBuffer: CM.SampleBufferRef, stillImageSettings: ^CaptureBracketedStillImageSettings, error: ^NS.Error ))) ---
 
     @(objc_type=CaptureStillImageOutput, objc_selector="maxBracketedCaptureStillImageCount", objc_name="maxBracketedCaptureStillImageCount")
     CaptureStillImageOutput_maxBracketedCaptureStillImageCount :: proc(self: ^CaptureStillImageOutput) -> NS.UInteger ---

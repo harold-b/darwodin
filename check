@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+cd "${_dir}"
+
+# Usage check [<targets>]
+
+source ./config
+
+targets=()
+
+while true; do
+  case $1 in
+
+    -ios|--ios|-i)
+      is_ios=true
+      ;;
+
+    *)
+      targets+=($1)
+      ;;
+  esac
+
+  shift || break
+done
+
+# Set default target framework
+if [[ ${#targets[@]} -eq 0 ]]; then
+  targets=("${darwodin_base_frameworks[@]}")
+fi
+
+
+frameworks_path="darwodin-macos/darwodin"
+if [[ ${is_ios} ]]; then
+  frameworks_path="darwodin-ios/darwodin"
+fi
+
+for t in ${targets[@]}; do
+  echo "${t}"
+  odin check "${frameworks_path}/${t}" -no-entry-point
+done

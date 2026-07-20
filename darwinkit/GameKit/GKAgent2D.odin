@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKAgent2D
-///
 @(objc_class="GKAgent2D", objc_superclass=Agent)
 Agent2D :: struct { using _: Agent, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Agent2D, objc_selector="updateWithDeltaTime:", objc_name="updateWithDeltaTime")
     Agent2D_updateWithDeltaTime :: proc(self: ^Agent2D, seconds: NS.TimeInterval) ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=Agent2D, objc_selector="setRotation:", objc_name="setRotation")
     Agent2D_setRotation :: proc(self: ^Agent2D, rotation: cffi.float) ---
 }
+
+
+

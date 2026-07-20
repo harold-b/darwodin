@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCRacingWheelInputState
-///
 @(objc_class="GCRacingWheelInputState", objc_superclass=NS.Object)
 RacingWheelInputState :: struct { using _: NS.Object, 
     using _: DevicePhysicalInputState,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RacingWheelInputState, objc_selector="wheel", objc_name="wheel")
     RacingWheelInputState_wheel :: proc(self: ^RacingWheelInputState) -> ^SteeringWheelElement ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=RacingWheelInputState, objc_selector="shifter", objc_name="shifter")
     RacingWheelInputState_shifter :: proc(self: ^RacingWheelInputState) -> ^GearShifterElement ---
 }
+
+
+

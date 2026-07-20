@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricDownloadSummaryEvent
-///
 @(objc_class="AVMetricDownloadSummaryEvent", objc_superclass=MetricEvent)
 MetricDownloadSummaryEvent :: struct { using _: MetricEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricDownloadSummaryEvent, objc_selector="init", objc_name="init")
     MetricDownloadSummaryEvent_init :: proc(self: ^MetricDownloadSummaryEvent) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=MetricDownloadSummaryEvent, objc_selector="variants", objc_name="variants")
     MetricDownloadSummaryEvent_variants :: proc(self: ^MetricDownloadSummaryEvent) -> ^NS.Array ---
 }
+
+
+

@@ -34,11 +34,10 @@ Odin:
   ExternalTypes:
     - ../exports/CoreFoundation.exports.yml
     - ../exports/CoreGraphics.exports.yml
-    - ../exports/Foundation.exports.yml
     - ../exports/QuartzCore.exports.yml
+    # - ../exports/AppKit.exports.yml
     - ../exports/Metal.exports.yml
     - ../exports/ModelIO.exports.yml
-    # - ../exports/AppKit.exports.yml
 
   ResolvedTypedefs:
     - '[su]?int.*'

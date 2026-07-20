@@ -117,10 +117,10 @@ foreign lib {
     PlayerItem_currentTime :: proc(self: ^PlayerItem) -> CM.Time ---
 
     @(objc_type=PlayerItem, objc_selector="seekToTime:completionHandler:", objc_name="seekToTime_completionHandler")
-    PlayerItem_seekToTime_completionHandler :: proc(self: ^PlayerItem, time: CM.Time, completionHandler: ^Objc_Block(proc "c" (finished: bool))) ---
+    PlayerItem_seekToTime_completionHandler :: proc(self: ^PlayerItem, time: CM.Time, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=PlayerItem, objc_selector="seekToTime:toleranceBefore:toleranceAfter:completionHandler:", objc_name="seekToTime_toleranceBefore_toleranceAfter_completionHandler")
-    PlayerItem_seekToTime_toleranceBefore_toleranceAfter_completionHandler :: proc(self: ^PlayerItem, time: CM.Time, toleranceBefore: CM.Time, toleranceAfter: CM.Time, completionHandler: ^Objc_Block(proc "c" (finished: bool))) ---
+    PlayerItem_seekToTime_toleranceBefore_toleranceAfter_completionHandler :: proc(self: ^PlayerItem, time: CM.Time, toleranceBefore: CM.Time, toleranceAfter: CM.Time, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=PlayerItem, objc_selector="cancelPendingSeeks", objc_name="cancelPendingSeeks")
     PlayerItem_cancelPendingSeeks :: proc(self: ^PlayerItem) ---
@@ -129,7 +129,7 @@ foreign lib {
     PlayerItem_currentDate :: proc(self: ^PlayerItem) -> ^NS.Date ---
 
     @(objc_type=PlayerItem, objc_selector="seekToDate:completionHandler:", objc_name="seekToDate_completionHandler")
-    PlayerItem_seekToDate_completionHandler :: proc(self: ^PlayerItem, date: ^NS.Date, completionHandler: ^Objc_Block(proc "c" (finished: bool))) -> bool ---
+    PlayerItem_seekToDate_completionHandler :: proc(self: ^PlayerItem, date: ^NS.Date, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) -> bool ---
 
     @(objc_type=PlayerItem, objc_selector="stepByCount:", objc_name="stepByCount")
     PlayerItem_stepByCount :: proc(self: ^PlayerItem, stepCount: NS.Integer) ---

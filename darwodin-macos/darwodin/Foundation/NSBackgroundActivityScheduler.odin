@@ -22,7 +22,7 @@ foreign lib {
     BackgroundActivityScheduler_initWithIdentifier :: proc(self: ^BackgroundActivityScheduler, identifier: ^String) -> instancetype ---
 
     @(objc_type=BackgroundActivityScheduler, objc_selector="scheduleWithBlock:", objc_name="scheduleWithBlock")
-    BackgroundActivityScheduler_scheduleWithBlock :: proc(self: ^BackgroundActivityScheduler, block: ^Objc_Block(proc "c" (completionHandler: BackgroundActivityCompletionHandler))) ---
+    BackgroundActivityScheduler_scheduleWithBlock :: proc(self: ^BackgroundActivityScheduler, block: ^Objc_Block(proc "c" ( completionHandler: BackgroundActivityCompletionHandler ))) ---
 
     @(objc_type=BackgroundActivityScheduler, objc_selector="invalidate", objc_name="invalidate")
     BackgroundActivityScheduler_invalidate :: proc(self: ^BackgroundActivityScheduler) ---

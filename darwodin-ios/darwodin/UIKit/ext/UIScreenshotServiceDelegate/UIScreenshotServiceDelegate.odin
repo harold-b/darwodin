@@ -20,7 +20,7 @@ instancetype  :: intrinsics.objc_instancetype
 import UI "../../"
 
 VTable :: struct {
-    screenshotService: proc(self: ^UI.ScreenshotServiceDelegate, screenshotService: ^UI.ScreenshotService, completionHandler: ^Objc_Block(proc "c" (PDFData: ^NS.Data, indexOfCurrentPage: NS.Integer, rectInCurrentPage: CG.Rect))),
+    screenshotService: proc(self: ^UI.ScreenshotServiceDelegate, screenshotService: ^UI.ScreenshotService, completionHandler: ^Objc_Block(proc "c" ( PDFData: ^NS.Data, indexOfCurrentPage: NS.Integer, rectInCurrentPage: CG.Rect ))),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -28,7 +28,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.screenshotService != nil {
-        screenshotService :: proc "c" (self: ^UI.ScreenshotServiceDelegate, _: SEL, screenshotService: ^UI.ScreenshotService, completionHandler: ^Objc_Block(proc "c" (PDFData: ^NS.Data, indexOfCurrentPage: NS.Integer, rectInCurrentPage: CG.Rect))) {
+        screenshotService :: proc "c" (self: ^UI.ScreenshotServiceDelegate, _: SEL, screenshotService: ^UI.ScreenshotService, completionHandler: ^Objc_Block(proc "c" ( PDFData: ^NS.Data, indexOfCurrentPage: NS.Integer, rectInCurrentPage: CG.Rect ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

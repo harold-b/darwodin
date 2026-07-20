@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithItem_title_image_icon: proc(self: ^AK.PreviewRepresentingActivityItem, item: id, title: ^NS.String, image: ^AK.Image, icon: ^AK.Image) -> instancetype,
-    initWithItem_title_imageProvider_iconProvider: proc(self: ^AK.PreviewRepresentingActivityItem, item: id, title: ^NS.String, imageProvider: ^NS.ItemProvider, iconProvider: ^NS.ItemProvider) -> instancetype,
-    init: proc(self: ^AK.PreviewRepresentingActivityItem) -> instancetype,
-    new: proc() -> ^AK.PreviewRepresentingActivityItem,
+    initWithItem_title_image_icon: proc(self: ^NS.PreviewRepresentingActivityItem, item: id, title: ^NS.String, image: ^NS.Image, icon: ^NS.Image) -> instancetype,
+    initWithItem_title_imageProvider_iconProvider: proc(self: ^NS.PreviewRepresentingActivityItem, item: id, title: ^NS.String, imageProvider: ^NS.ItemProvider, iconProvider: ^NS.ItemProvider) -> instancetype,
+    init: proc(self: ^NS.PreviewRepresentingActivityItem) -> instancetype,
+    new: proc() -> ^NS.PreviewRepresentingActivityItem,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithItem_title_image_icon != nil {
-        initWithItem_title_image_icon :: proc "c" (self: ^AK.PreviewRepresentingActivityItem, _: SEL, item: id, title: ^NS.String, image: ^AK.Image, icon: ^AK.Image) -> instancetype {
+        initWithItem_title_image_icon :: proc "c" (self: ^NS.PreviewRepresentingActivityItem, _: SEL, item: id, title: ^NS.String, image: ^NS.Image, icon: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItem:title:image:icon:"), auto_cast initWithItem_title_image_icon, "@@:@@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithItem_title_imageProvider_iconProvider != nil {
-        initWithItem_title_imageProvider_iconProvider :: proc "c" (self: ^AK.PreviewRepresentingActivityItem, _: SEL, item: id, title: ^NS.String, imageProvider: ^NS.ItemProvider, iconProvider: ^NS.ItemProvider) -> instancetype {
+        initWithItem_title_imageProvider_iconProvider :: proc "c" (self: ^NS.PreviewRepresentingActivityItem, _: SEL, item: id, title: ^NS.String, imageProvider: ^NS.ItemProvider, iconProvider: ^NS.ItemProvider) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItem:title:imageProvider:iconProvider:"), auto_cast initWithItem_title_imageProvider_iconProvider, "@@:@@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.PreviewRepresentingActivityItem, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.PreviewRepresentingActivityItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.PreviewRepresentingActivityItem {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.PreviewRepresentingActivityItem {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

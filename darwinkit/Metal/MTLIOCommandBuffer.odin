@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIOCommandBuffer
-///
 @(objc_class="MTLIOCommandBuffer")
 IOCommandBuffer :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IOCommandBuffer, objc_selector="addCompletedHandler:", objc_name="addCompletedHandler")
     IOCommandBuffer_addCompletedHandler :: proc(self: ^IOCommandBuffer, block: IOCommandBufferHandler) ---
@@ -77,3 +71,6 @@ foreign lib {
     @(objc_type=IOCommandBuffer, objc_selector="error", objc_name="error")
     IOCommandBuffer_error :: proc(self: ^IOCommandBuffer) -> ^NS.Error ---
 }
+
+
+

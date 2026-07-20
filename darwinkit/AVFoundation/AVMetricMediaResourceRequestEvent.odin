@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricMediaResourceRequestEvent
-///
 @(objc_class="AVMetricMediaResourceRequestEvent", objc_superclass=MetricEvent)
 MetricMediaResourceRequestEvent :: struct { using _: MetricEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricMediaResourceRequestEvent, objc_selector="init", objc_name="init")
     MetricMediaResourceRequestEvent_init :: proc(self: ^MetricMediaResourceRequestEvent) -> instancetype ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=MetricMediaResourceRequestEvent, objc_selector="networkTransactionMetrics", objc_name="networkTransactionMetrics")
     MetricMediaResourceRequestEvent_networkTransactionMetrics :: proc(self: ^MetricMediaResourceRequestEvent) -> ^NS.URLSessionTaskMetrics ---
 }
+
+
+

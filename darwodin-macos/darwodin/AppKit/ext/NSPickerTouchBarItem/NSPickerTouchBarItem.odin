@@ -20,42 +20,42 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTouchBarItem"
 
 VTable :: struct {
     super: NSTouchBarItem.VTable,
-    pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action: proc(identifier: ^NS.String, labels: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype,
-    pickerTouchBarItemWithIdentifier_images_selectionMode_target_action: proc(identifier: ^NS.String, images: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype,
-    setImage: proc(self: ^AK.PickerTouchBarItem, image: ^AK.Image, index: NS.Integer),
-    imageAtIndex: proc(self: ^AK.PickerTouchBarItem, index: NS.Integer) -> ^AK.Image,
-    setLabel: proc(self: ^AK.PickerTouchBarItem, label: ^NS.String, index: NS.Integer),
-    labelAtIndex: proc(self: ^AK.PickerTouchBarItem, index: NS.Integer) -> ^NS.String,
-    setEnabled_atIndex: proc(self: ^AK.PickerTouchBarItem, enabled: bool, index: NS.Integer),
-    isEnabledAtIndex: proc(self: ^AK.PickerTouchBarItem, index: NS.Integer) -> bool,
-    controlRepresentation: proc(self: ^AK.PickerTouchBarItem) -> AK.PickerTouchBarItemControlRepresentation,
-    setControlRepresentation: proc(self: ^AK.PickerTouchBarItem, controlRepresentation: AK.PickerTouchBarItemControlRepresentation),
-    collapsedRepresentationLabel: proc(self: ^AK.PickerTouchBarItem) -> ^NS.String,
-    setCollapsedRepresentationLabel: proc(self: ^AK.PickerTouchBarItem, collapsedRepresentationLabel: ^NS.String),
-    collapsedRepresentationImage: proc(self: ^AK.PickerTouchBarItem) -> ^AK.Image,
-    setCollapsedRepresentationImage: proc(self: ^AK.PickerTouchBarItem, collapsedRepresentationImage: ^AK.Image),
-    selectedIndex: proc(self: ^AK.PickerTouchBarItem) -> NS.Integer,
-    setSelectedIndex: proc(self: ^AK.PickerTouchBarItem, selectedIndex: NS.Integer),
-    selectionColor: proc(self: ^AK.PickerTouchBarItem) -> ^AK.Color,
-    setSelectionColor: proc(self: ^AK.PickerTouchBarItem, selectionColor: ^AK.Color),
-    selectionMode: proc(self: ^AK.PickerTouchBarItem) -> AK.PickerTouchBarItemSelectionMode,
-    setSelectionMode: proc(self: ^AK.PickerTouchBarItem, selectionMode: AK.PickerTouchBarItemSelectionMode),
-    numberOfOptions: proc(self: ^AK.PickerTouchBarItem) -> NS.Integer,
-    setNumberOfOptions: proc(self: ^AK.PickerTouchBarItem, numberOfOptions: NS.Integer),
-    target: proc(self: ^AK.PickerTouchBarItem) -> id,
-    setTarget: proc(self: ^AK.PickerTouchBarItem, target: id),
-    action: proc(self: ^AK.PickerTouchBarItem) -> SEL,
-    setAction: proc(self: ^AK.PickerTouchBarItem, action: SEL),
-    isEnabled: proc(self: ^AK.PickerTouchBarItem) -> bool,
-    setEnabled_: proc(self: ^AK.PickerTouchBarItem, enabled: bool),
-    customizationLabel: proc(self: ^AK.PickerTouchBarItem) -> ^NS.String,
-    setCustomizationLabel: proc(self: ^AK.PickerTouchBarItem, customizationLabel: ^NS.String),
+    pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action: proc(identifier: ^NS.String, labels: ^NS.Array, selectionMode: NS.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype,
+    pickerTouchBarItemWithIdentifier_images_selectionMode_target_action: proc(identifier: ^NS.String, images: ^NS.Array, selectionMode: NS.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype,
+    setImage: proc(self: ^NS.PickerTouchBarItem, image: ^NS.Image, index: NS.Integer),
+    imageAtIndex: proc(self: ^NS.PickerTouchBarItem, index: NS.Integer) -> ^NS.Image,
+    setLabel: proc(self: ^NS.PickerTouchBarItem, label: ^NS.String, index: NS.Integer),
+    labelAtIndex: proc(self: ^NS.PickerTouchBarItem, index: NS.Integer) -> ^NS.String,
+    setEnabled_atIndex: proc(self: ^NS.PickerTouchBarItem, enabled: bool, index: NS.Integer),
+    isEnabledAtIndex: proc(self: ^NS.PickerTouchBarItem, index: NS.Integer) -> bool,
+    controlRepresentation: proc(self: ^NS.PickerTouchBarItem) -> NS.PickerTouchBarItemControlRepresentation,
+    setControlRepresentation: proc(self: ^NS.PickerTouchBarItem, controlRepresentation: NS.PickerTouchBarItemControlRepresentation),
+    collapsedRepresentationLabel: proc(self: ^NS.PickerTouchBarItem) -> ^NS.String,
+    setCollapsedRepresentationLabel: proc(self: ^NS.PickerTouchBarItem, collapsedRepresentationLabel: ^NS.String),
+    collapsedRepresentationImage: proc(self: ^NS.PickerTouchBarItem) -> ^NS.Image,
+    setCollapsedRepresentationImage: proc(self: ^NS.PickerTouchBarItem, collapsedRepresentationImage: ^NS.Image),
+    selectedIndex: proc(self: ^NS.PickerTouchBarItem) -> NS.Integer,
+    setSelectedIndex: proc(self: ^NS.PickerTouchBarItem, selectedIndex: NS.Integer),
+    selectionColor: proc(self: ^NS.PickerTouchBarItem) -> ^NS.Color,
+    setSelectionColor: proc(self: ^NS.PickerTouchBarItem, selectionColor: ^NS.Color),
+    selectionMode: proc(self: ^NS.PickerTouchBarItem) -> NS.PickerTouchBarItemSelectionMode,
+    setSelectionMode: proc(self: ^NS.PickerTouchBarItem, selectionMode: NS.PickerTouchBarItemSelectionMode),
+    numberOfOptions: proc(self: ^NS.PickerTouchBarItem) -> NS.Integer,
+    setNumberOfOptions: proc(self: ^NS.PickerTouchBarItem, numberOfOptions: NS.Integer),
+    target: proc(self: ^NS.PickerTouchBarItem) -> id,
+    setTarget: proc(self: ^NS.PickerTouchBarItem, target: id),
+    action: proc(self: ^NS.PickerTouchBarItem) -> SEL,
+    setAction: proc(self: ^NS.PickerTouchBarItem, action: SEL),
+    isEnabled: proc(self: ^NS.PickerTouchBarItem) -> bool,
+    setEnabled_: proc(self: ^NS.PickerTouchBarItem, enabled: bool),
+    customizationLabel: proc(self: ^NS.PickerTouchBarItem) -> ^NS.String,
+    setCustomizationLabel: proc(self: ^NS.PickerTouchBarItem, customizationLabel: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTouchBarItem.extend(cls, &vt.super)
 
     if vt.pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action != nil {
-        pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, labels: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype {
+        pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, labels: ^NS.Array, selectionMode: NS.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pickerTouchBarItemWithIdentifier:labels:selectionMode:target:action:"), auto_cast pickerTouchBarItemWithIdentifier_labels_selectionMode_target_action, "@#:@^voidl@:") do panic("Failed to register objC method.")
     }
     if vt.pickerTouchBarItemWithIdentifier_images_selectionMode_target_action != nil {
-        pickerTouchBarItemWithIdentifier_images_selectionMode_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, images: ^NS.Array, selectionMode: AK.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype {
+        pickerTouchBarItemWithIdentifier_images_selectionMode_target_action :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, images: ^NS.Array, selectionMode: NS.PickerTouchBarItemSelectionMode, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pickerTouchBarItemWithIdentifier:images:selectionMode:target:action:"), auto_cast pickerTouchBarItemWithIdentifier_images_selectionMode_target_action, "@#:@^voidl@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, image: ^AK.Image, index: NS.Integer) {
+        setImage :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, image: ^NS.Image, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:atIndex:"), auto_cast setImage, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.imageAtIndex != nil {
-        imageAtIndex :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, index: NS.Integer) -> ^AK.Image {
+        imageAtIndex :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, index: NS.Integer) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageAtIndex:"), auto_cast imageAtIndex, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.setLabel != nil {
-        setLabel :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, label: ^NS.String, index: NS.Integer) {
+        setLabel :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, label: ^NS.String, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLabel:atIndex:"), auto_cast setLabel, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.labelAtIndex != nil {
-        labelAtIndex :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, index: NS.Integer) -> ^NS.String {
+        labelAtIndex :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, index: NS.Integer) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("labelAtIndex:"), auto_cast labelAtIndex, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.setEnabled_atIndex != nil {
-        setEnabled_atIndex :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, enabled: bool, index: NS.Integer) {
+        setEnabled_atIndex :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, enabled: bool, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEnabled:atIndex:"), auto_cast setEnabled_atIndex, "v@:Bl") do panic("Failed to register objC method.")
     }
     if vt.isEnabledAtIndex != nil {
-        isEnabledAtIndex :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, index: NS.Integer) -> bool {
+        isEnabledAtIndex :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, index: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEnabledAtIndex:"), auto_cast isEnabledAtIndex, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.controlRepresentation != nil {
-        controlRepresentation :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> AK.PickerTouchBarItemControlRepresentation {
+        controlRepresentation :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> NS.PickerTouchBarItemControlRepresentation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("controlRepresentation"), auto_cast controlRepresentation, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setControlRepresentation != nil {
-        setControlRepresentation :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, controlRepresentation: AK.PickerTouchBarItemControlRepresentation) {
+        setControlRepresentation :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, controlRepresentation: NS.PickerTouchBarItemControlRepresentation) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setControlRepresentation:"), auto_cast setControlRepresentation, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.collapsedRepresentationLabel != nil {
-        collapsedRepresentationLabel :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> ^NS.String {
+        collapsedRepresentationLabel :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -176,7 +176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collapsedRepresentationLabel"), auto_cast collapsedRepresentationLabel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCollapsedRepresentationLabel != nil {
-        setCollapsedRepresentationLabel :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, collapsedRepresentationLabel: ^NS.String) {
+        setCollapsedRepresentationLabel :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, collapsedRepresentationLabel: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -186,7 +186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCollapsedRepresentationLabel:"), auto_cast setCollapsedRepresentationLabel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.collapsedRepresentationImage != nil {
-        collapsedRepresentationImage :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> ^AK.Image {
+        collapsedRepresentationImage :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -196,7 +196,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collapsedRepresentationImage"), auto_cast collapsedRepresentationImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCollapsedRepresentationImage != nil {
-        setCollapsedRepresentationImage :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, collapsedRepresentationImage: ^AK.Image) {
+        setCollapsedRepresentationImage :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, collapsedRepresentationImage: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -206,7 +206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCollapsedRepresentationImage:"), auto_cast setCollapsedRepresentationImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectedIndex != nil {
-        selectedIndex :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> NS.Integer {
+        selectedIndex :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -216,7 +216,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedIndex"), auto_cast selectedIndex, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedIndex != nil {
-        setSelectedIndex :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, selectedIndex: NS.Integer) {
+        setSelectedIndex :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, selectedIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -226,7 +226,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedIndex:"), auto_cast setSelectedIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.selectionColor != nil {
-        selectionColor :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> ^AK.Color {
+        selectionColor :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -236,7 +236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionColor"), auto_cast selectionColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionColor != nil {
-        setSelectionColor :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, selectionColor: ^AK.Color) {
+        setSelectionColor :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, selectionColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -246,7 +246,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionColor:"), auto_cast setSelectionColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectionMode != nil {
-        selectionMode :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> AK.PickerTouchBarItemSelectionMode {
+        selectionMode :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> NS.PickerTouchBarItemSelectionMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -256,7 +256,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionMode"), auto_cast selectionMode, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionMode != nil {
-        setSelectionMode :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, selectionMode: AK.PickerTouchBarItemSelectionMode) {
+        setSelectionMode :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, selectionMode: NS.PickerTouchBarItemSelectionMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -266,7 +266,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionMode:"), auto_cast setSelectionMode, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.numberOfOptions != nil {
-        numberOfOptions :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> NS.Integer {
+        numberOfOptions :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -276,7 +276,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfOptions"), auto_cast numberOfOptions, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setNumberOfOptions != nil {
-        setNumberOfOptions :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, numberOfOptions: NS.Integer) {
+        setNumberOfOptions :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, numberOfOptions: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -286,7 +286,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNumberOfOptions:"), auto_cast setNumberOfOptions, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.target != nil {
-        target :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> id {
+        target :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -296,7 +296,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("target"), auto_cast target, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTarget != nil {
-        setTarget :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, target: id) {
+        setTarget :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, target: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -306,7 +306,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTarget:"), auto_cast setTarget, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.action != nil {
-        action :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> SEL {
+        action :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> SEL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -316,7 +316,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("action"), auto_cast action, ":@:") do panic("Failed to register objC method.")
     }
     if vt.setAction != nil {
-        setAction :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, action: SEL) {
+        setAction :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, action: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -326,7 +326,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAction:"), auto_cast setAction, "v@::") do panic("Failed to register objC method.")
     }
     if vt.isEnabled != nil {
-        isEnabled :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> bool {
+        isEnabled :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -336,7 +336,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEnabled"), auto_cast isEnabled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setEnabled_ != nil {
-        setEnabled_ :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, enabled: bool) {
+        setEnabled_ :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, enabled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -346,7 +346,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEnabled:"), auto_cast setEnabled_, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.customizationLabel != nil {
-        customizationLabel :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL) -> ^NS.String {
+        customizationLabel :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -356,7 +356,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("customizationLabel"), auto_cast customizationLabel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCustomizationLabel != nil {
-        setCustomizationLabel :: proc "c" (self: ^AK.PickerTouchBarItem, _: SEL, customizationLabel: ^NS.String) {
+        setCustomizationLabel :: proc "c" (self: ^NS.PickerTouchBarItem, _: SEL, customizationLabel: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CATransition
-///
 @(objc_class="CATransition", objc_superclass=Animation)
 Transition :: struct { using _: Animation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Transition, objc_selector="type", objc_name="type")
     Transition_type :: proc(self: ^Transition) -> ^NS.String ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=Transition, objc_selector="setFilter:", objc_name="setFilter")
     Transition_setFilter :: proc(self: ^Transition, filter: id) ---
 }
+
+
+

@@ -9,11 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLRequest
-///
 @(objc_class="NSURLRequest", objc_superclass=Object)
 URLRequest :: struct { using _: Object, 
     using _: SecureCoding,
@@ -21,7 +16,6 @@ URLRequest :: struct { using _: Object,
     using _: MutableCopying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLRequest, objc_selector="requestWithURL:", objc_name="requestWithURL_", objc_is_class_method=true)
     URLRequest_requestWithURL_ :: proc(_URL: ^URL) -> instancetype ---
@@ -101,6 +95,8 @@ foreign lib {
     @(objc_type=URLRequest, objc_selector="HTTPShouldUsePipelining", objc_name="HTTPShouldUsePipelining")
     URLRequest_HTTPShouldUsePipelining :: proc(self: ^URLRequest) -> bool ---
 }
+
+
 
 @(objc_type=URLRequest, objc_name="requestWithURL")
 URLRequest_requestWithURL :: proc {

@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCDualSenseAdaptiveTrigger
-///
 @(objc_class="GCDualSenseAdaptiveTrigger", objc_superclass=ControllerButtonInput)
 DualSenseAdaptiveTrigger :: struct { using _: ControllerButtonInput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DualSenseAdaptiveTrigger, objc_selector="setModeSlopeFeedbackWithStartPosition:endPosition:startStrength:endStrength:", objc_name="setModeSlopeFeedbackWithStartPosition")
     DualSenseAdaptiveTrigger_setModeSlopeFeedbackWithStartPosition :: proc(self: ^DualSenseAdaptiveTrigger, startPosition: cffi.float, endPosition: cffi.float, startStrength: cffi.float, endStrength: cffi.float) ---
@@ -48,3 +42,6 @@ foreign lib {
     @(objc_type=DualSenseAdaptiveTrigger, objc_selector="armPosition", objc_name="armPosition")
     DualSenseAdaptiveTrigger_armPosition :: proc(self: ^DualSenseAdaptiveTrigger) -> cffi.float ---
 }
+
+
+

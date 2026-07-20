@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemOutputPullDelegate
-///
 @(objc_class="AVPlayerItemOutputPullDelegate")
 PlayerItemOutputPullDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemOutputPullDelegate, objc_selector="outputMediaDataWillChange:", objc_name="outputMediaDataWillChange")
     PlayerItemOutputPullDelegate_outputMediaDataWillChange :: proc(self: ^PlayerItemOutputPullDelegate, sender: ^PlayerItemOutput) ---
@@ -30,3 +24,6 @@ foreign lib {
     @(objc_type=PlayerItemOutputPullDelegate, objc_selector="outputSequenceWasFlushed:", objc_name="outputSequenceWasFlushed")
     PlayerItemOutputPullDelegate_outputSequenceWasFlushed :: proc(self: ^PlayerItemOutputPullDelegate, output: ^PlayerItemOutput) ---
 }
+
+
+

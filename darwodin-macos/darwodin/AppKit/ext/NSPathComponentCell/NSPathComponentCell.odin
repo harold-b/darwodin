@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTextFieldCell"
 
 VTable :: struct {
     super: NSTextFieldCell.VTable,
-    image: proc(self: ^AK.PathComponentCell) -> ^AK.Image,
-    setImage: proc(self: ^AK.PathComponentCell, image: ^AK.Image),
-    _URL: proc(self: ^AK.PathComponentCell) -> ^NS.URL,
-    setURL: proc(self: ^AK.PathComponentCell, _URL: ^NS.URL),
+    image: proc(self: ^NS.PathComponentCell) -> ^NS.Image,
+    setImage: proc(self: ^NS.PathComponentCell, image: ^NS.Image),
+    _URL: proc(self: ^NS.PathComponentCell) -> ^NS.URL,
+    setURL: proc(self: ^NS.PathComponentCell, _URL: ^NS.URL),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextFieldCell.extend(cls, &vt.super)
 
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.PathComponentCell, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.PathComponentCell, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.PathComponentCell, _: SEL, image: ^AK.Image) {
+        setImage :: proc "c" (self: ^NS.PathComponentCell, _: SEL, image: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt._URL != nil {
-        _URL :: proc "c" (self: ^AK.PathComponentCell, _: SEL) -> ^NS.URL {
+        _URL :: proc "c" (self: ^NS.PathComponentCell, _: SEL) -> ^NS.URL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URL"), auto_cast _URL, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setURL != nil {
-        setURL :: proc "c" (self: ^AK.PathComponentCell, _: SEL, _URL: ^NS.URL) {
+        setURL :: proc "c" (self: ^NS.PathComponentCell, _: SEL, _URL: ^NS.URL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    panel: proc() -> ^AK.PDFPanel,
-    beginSheetWithPDFInfo: proc(self: ^AK.PDFPanel, pdfInfo: ^AK.PDFInfo, docWindow: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (_: NS.Integer))),
-    accessoryController: proc(self: ^AK.PDFPanel) -> ^AK.ViewController,
-    setAccessoryController: proc(self: ^AK.PDFPanel, accessoryController: ^AK.ViewController),
-    options: proc(self: ^AK.PDFPanel) -> AK.PDFPanelOptions,
-    setOptions: proc(self: ^AK.PDFPanel, options: AK.PDFPanelOptions),
-    defaultFileName: proc(self: ^AK.PDFPanel) -> ^NS.String,
-    setDefaultFileName: proc(self: ^AK.PDFPanel, defaultFileName: ^NS.String),
+    panel: proc() -> ^NS.PDFPanel,
+    beginSheetWithPDFInfo: proc(self: ^NS.PDFPanel, pdfInfo: ^NS.PDFInfo, docWindow: ^NS.Window, completionHandler: ^Objc_Block(proc "c" ( _0: NS.Integer ))),
+    accessoryController: proc(self: ^NS.PDFPanel) -> ^NS.ViewController,
+    setAccessoryController: proc(self: ^NS.PDFPanel, accessoryController: ^NS.ViewController),
+    options: proc(self: ^NS.PDFPanel) -> NS.PDFPanelOptions,
+    setOptions: proc(self: ^NS.PDFPanel, options: NS.PDFPanelOptions),
+    defaultFileName: proc(self: ^NS.PDFPanel) -> ^NS.String,
+    setDefaultFileName: proc(self: ^NS.PDFPanel, defaultFileName: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.panel != nil {
-        panel :: proc "c" (self: Class, _: SEL) -> ^AK.PDFPanel {
+        panel :: proc "c" (self: Class, _: SEL) -> ^NS.PDFPanel {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("panel"), auto_cast panel, "@#:") do panic("Failed to register objC method.")
     }
     if vt.beginSheetWithPDFInfo != nil {
-        beginSheetWithPDFInfo :: proc "c" (self: ^AK.PDFPanel, _: SEL, pdfInfo: ^AK.PDFInfo, docWindow: ^AK.Window, completionHandler: ^Objc_Block(proc "c" (_: NS.Integer))) {
+        beginSheetWithPDFInfo :: proc "c" (self: ^NS.PDFPanel, _: SEL, pdfInfo: ^NS.PDFInfo, docWindow: ^NS.Window, completionHandler: ^Objc_Block(proc "c" ( _0: NS.Integer ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginSheetWithPDFInfo:modalForWindow:completionHandler:"), auto_cast beginSheetWithPDFInfo, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.accessoryController != nil {
-        accessoryController :: proc "c" (self: ^AK.PDFPanel, _: SEL) -> ^AK.ViewController {
+        accessoryController :: proc "c" (self: ^NS.PDFPanel, _: SEL) -> ^NS.ViewController {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessoryController"), auto_cast accessoryController, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessoryController != nil {
-        setAccessoryController :: proc "c" (self: ^AK.PDFPanel, _: SEL, accessoryController: ^AK.ViewController) {
+        setAccessoryController :: proc "c" (self: ^NS.PDFPanel, _: SEL, accessoryController: ^NS.ViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessoryController:"), auto_cast setAccessoryController, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.options != nil {
-        options :: proc "c" (self: ^AK.PDFPanel, _: SEL) -> AK.PDFPanelOptions {
+        options :: proc "c" (self: ^NS.PDFPanel, _: SEL) -> NS.PDFPanelOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("options"), auto_cast options, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setOptions != nil {
-        setOptions :: proc "c" (self: ^AK.PDFPanel, _: SEL, options: AK.PDFPanelOptions) {
+        setOptions :: proc "c" (self: ^NS.PDFPanel, _: SEL, options: NS.PDFPanelOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setOptions:"), auto_cast setOptions, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.defaultFileName != nil {
-        defaultFileName :: proc "c" (self: ^AK.PDFPanel, _: SEL) -> ^NS.String {
+        defaultFileName :: proc "c" (self: ^NS.PDFPanel, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultFileName"), auto_cast defaultFileName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDefaultFileName != nil {
-        setDefaultFileName :: proc "c" (self: ^AK.PDFPanel, _: SEL, defaultFileName: ^NS.String) {
+        setDefaultFileName :: proc "c" (self: ^NS.PDFPanel, _: SEL, defaultFileName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

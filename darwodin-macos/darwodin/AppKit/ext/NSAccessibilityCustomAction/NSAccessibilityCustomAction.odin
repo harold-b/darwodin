@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithName_handler: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> instancetype,
-    initWithName_target_selector: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> instancetype,
-    name: proc(self: ^AK.AccessibilityCustomAction) -> ^NS.String,
-    setName: proc(self: ^AK.AccessibilityCustomAction, name: ^NS.String),
-    handler: proc(self: ^AK.AccessibilityCustomAction) -> ^Objc_Block(proc "c" () -> bool),
-    setHandler: proc(self: ^AK.AccessibilityCustomAction, handler: ^Objc_Block(proc "c" () -> bool)),
-    target: proc(self: ^AK.AccessibilityCustomAction) -> ^NS.ObjectProtocol,
-    setTarget: proc(self: ^AK.AccessibilityCustomAction, target: ^NS.ObjectProtocol),
-    selector: proc(self: ^AK.AccessibilityCustomAction) -> SEL,
-    setSelector: proc(self: ^AK.AccessibilityCustomAction, selector: SEL),
+    initWithName_handler: proc(self: ^NS.AccessibilityCustomAction, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> instancetype,
+    initWithName_target_selector: proc(self: ^NS.AccessibilityCustomAction, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> instancetype,
+    name: proc(self: ^NS.AccessibilityCustomAction) -> ^NS.String,
+    setName: proc(self: ^NS.AccessibilityCustomAction, name: ^NS.String),
+    handler: proc(self: ^NS.AccessibilityCustomAction) -> ^Objc_Block(proc "c" () -> bool),
+    setHandler: proc(self: ^NS.AccessibilityCustomAction, handler: ^Objc_Block(proc "c" () -> bool)),
+    target: proc(self: ^NS.AccessibilityCustomAction) -> ^NS.ObjectProtocol,
+    setTarget: proc(self: ^NS.AccessibilityCustomAction, target: ^NS.ObjectProtocol),
+    selector: proc(self: ^NS.AccessibilityCustomAction) -> SEL,
+    setSelector: proc(self: ^NS.AccessibilityCustomAction, selector: SEL),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithName_handler != nil {
-        initWithName_handler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> instancetype {
+        initWithName_handler :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL, name: ^NS.String, handler: ^Objc_Block(proc "c" () -> bool)) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:handler:"), auto_cast initWithName_handler, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.initWithName_target_selector != nil {
-        initWithName_target_selector :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> instancetype {
+        initWithName_target_selector :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL, name: ^NS.String, target: ^NS.ObjectProtocol, selector: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:target:selector:"), auto_cast initWithName_target_selector, "@@:@@:") do panic("Failed to register objC method.")
     }
     if vt.name != nil {
-        name :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL) -> ^NS.String {
+        name :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("name"), auto_cast name, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setName != nil {
-        setName :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, name: ^NS.String) {
+        setName :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL, name: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setName:"), auto_cast setName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.handler != nil {
-        handler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL) -> ^Objc_Block(proc "c" () -> bool) {
+        handler :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL) -> ^Objc_Block(proc "c" () -> bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("handler"), auto_cast handler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setHandler != nil {
-        setHandler :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, handler: ^Objc_Block(proc "c" () -> bool)) {
+        setHandler :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL, handler: ^Objc_Block(proc "c" () -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHandler:"), auto_cast setHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.target != nil {
-        target :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL) -> ^NS.ObjectProtocol {
+        target :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL) -> ^NS.ObjectProtocol {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("target"), auto_cast target, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTarget != nil {
-        setTarget :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, target: ^NS.ObjectProtocol) {
+        setTarget :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL, target: ^NS.ObjectProtocol) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTarget:"), auto_cast setTarget, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selector != nil {
-        selector :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL) -> SEL {
+        selector :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL) -> SEL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selector"), auto_cast selector, ":@:") do panic("Failed to register objC method.")
     }
     if vt.setSelector != nil {
-        setSelector :: proc "c" (self: ^AK.AccessibilityCustomAction, _: SEL, selector: SEL) {
+        setSelector :: proc "c" (self: ^NS.AccessibilityCustomAction, _: SEL, selector: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

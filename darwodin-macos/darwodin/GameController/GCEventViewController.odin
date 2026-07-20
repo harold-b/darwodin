@@ -5,16 +5,15 @@ import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
 ///
 /// GCEventViewController
 ///
-@(objc_class="GCEventViewController", objc_superclass=AK.ViewController)
-EventViewController :: struct { using _: AK.ViewController, }
+@(objc_class="GCEventViewController", objc_superclass=NS.ViewController)
+EventViewController :: struct { using _: NS.ViewController, }
 
 @(default_calling_convention="c")
 foreign lib {

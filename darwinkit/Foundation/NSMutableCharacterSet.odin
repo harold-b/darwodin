@@ -9,11 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableCharacterSet
-///
 @(objc_class="NSMutableCharacterSet", objc_superclass=CharacterSet)
 MutableCharacterSet :: struct { using _: CharacterSet, 
     using _: Copying,
@@ -21,7 +16,6 @@ MutableCharacterSet :: struct { using _: CharacterSet,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableCharacterSet, objc_selector="addCharactersInRange:", objc_name="addCharactersInRange")
     MutableCharacterSet_addCharactersInRange :: proc(self: ^MutableCharacterSet, aRange: _NSRange) ---
@@ -101,3 +95,6 @@ foreign lib {
     @(objc_type=MutableCharacterSet, objc_selector="characterSetWithContentsOfFile:", objc_name="characterSetWithContentsOfFile", objc_is_class_method=true)
     MutableCharacterSet_characterSetWithContentsOfFile :: proc(fName: ^String) -> ^MutableCharacterSet ---
 }
+
+
+

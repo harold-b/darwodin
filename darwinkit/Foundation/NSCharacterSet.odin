@@ -9,11 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSCharacterSet
-///
 @(objc_class="NSCharacterSet", objc_superclass=Object)
 CharacterSet :: struct { using _: Object, 
     using _: Copying,
@@ -21,7 +16,6 @@ CharacterSet :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CharacterSet, objc_selector="characterSetWithRange:", objc_name="characterSetWithRange", objc_is_class_method=true)
     CharacterSet_characterSetWithRange :: proc(aRange: _NSRange) -> ^CharacterSet ---
@@ -119,3 +113,6 @@ foreign lib {
     @(objc_type=CharacterSet, objc_selector="URLFragmentAllowedCharacterSet", objc_name="URLFragmentAllowedCharacterSet", objc_is_class_method=true)
     CharacterSet_URLFragmentAllowedCharacterSet :: proc() -> ^CharacterSet ---
 }
+
+
+

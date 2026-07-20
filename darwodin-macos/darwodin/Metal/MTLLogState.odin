@@ -23,5 +23,5 @@ LogState :: struct { using _: intrinsics.objc_object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=LogState, objc_selector="addLogHandler:", objc_name="addLogHandler")
-    LogState_addLogHandler :: proc(self: ^LogState, block: ^Objc_Block(proc "c" (subSystem: ^NS.String, category: ^NS.String, logLevel: LogLevel, message: ^NS.String))) ---
+    LogState_addLogHandler :: proc(self: ^LogState, block: ^Objc_Block(proc "c" ( subSystem: ^NS.String, category: ^NS.String, logLevel: LogLevel, message: ^NS.String ))) ---
 }

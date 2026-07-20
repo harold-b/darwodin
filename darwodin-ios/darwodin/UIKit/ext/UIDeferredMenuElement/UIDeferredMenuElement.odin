@@ -23,8 +23,8 @@ import "../UIMenuElement"
 
 VTable :: struct {
     super: UIMenuElement.VTable,
-    elementWithProvider: proc(elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> instancetype,
-    elementWithUncachedProvider: proc(elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> instancetype,
+    elementWithProvider: proc(elementProvider: ^Objc_Block(proc "c" ( completion: ^Objc_Block(proc "c" ( elements: ^NS.Array )) ))) -> instancetype,
+    elementWithUncachedProvider: proc(elementProvider: ^Objc_Block(proc "c" ( completion: ^Objc_Block(proc "c" ( elements: ^NS.Array )) ))) -> instancetype,
     elementUsingFocusWithIdentifier: proc(identifier: ^NS.String, shouldCacheItems: bool) -> instancetype,
     identifier: proc(self: ^UI.DeferredMenuElement) -> ^NS.String,
 }
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIMenuElement.extend(cls, &vt.super)
 
     if vt.elementWithProvider != nil {
-        elementWithProvider :: proc "c" (self: Class, _: SEL, elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> instancetype {
+        elementWithProvider :: proc "c" (self: Class, _: SEL, elementProvider: ^Objc_Block(proc "c" ( completion: ^Objc_Block(proc "c" ( elements: ^NS.Array )) ))) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("elementWithProvider:"), auto_cast elementWithProvider, "@#:?") do panic("Failed to register objC method.")
     }
     if vt.elementWithUncachedProvider != nil {
-        elementWithUncachedProvider :: proc "c" (self: Class, _: SEL, elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> instancetype {
+        elementWithUncachedProvider :: proc "c" (self: Class, _: SEL, elementProvider: ^Objc_Block(proc "c" ( completion: ^Objc_Block(proc "c" ( elements: ^NS.Array )) ))) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

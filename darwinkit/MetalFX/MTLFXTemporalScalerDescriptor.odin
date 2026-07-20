@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MTLFXTemporalScalerDescriptor
-///
 @(objc_class="MTLFXTemporalScalerDescriptor", objc_superclass=NS.Object)
 TemporalScalerDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TemporalScalerDescriptor, objc_selector="newTemporalScalerWithDevice:", objc_name="newTemporalScalerWithDevice_")
     TemporalScalerDescriptor_newTemporalScalerWithDevice_ :: proc(self: ^TemporalScalerDescriptor, device: ^MTL.Device) -> ^TemporalScaler ---
@@ -130,6 +124,8 @@ foreign lib {
     @(objc_type=TemporalScalerDescriptor, objc_selector="setReactiveMaskTextureFormat:", objc_name="setReactiveMaskTextureFormat")
     TemporalScalerDescriptor_setReactiveMaskTextureFormat :: proc(self: ^TemporalScalerDescriptor, reactiveMaskTextureFormat: MTL.PixelFormat) ---
 }
+
+
 
 @(objc_type=TemporalScalerDescriptor, objc_name="newTemporalScalerWithDevice")
 TemporalScalerDescriptor_newTemporalScalerWithDevice :: proc {

@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCControllerTouchpad
-///
 @(objc_class="GCControllerTouchpad", objc_superclass=ControllerElement)
 ControllerTouchpad :: struct { using _: ControllerElement, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ControllerTouchpad, objc_selector="setValueForXAxis:yAxis:touchDown:buttonValue:", objc_name="setValueForXAxis")
     ControllerTouchpad_setValueForXAxis :: proc(self: ^ControllerTouchpad, xAxis: cffi.float, yAxis: cffi.float, touchDown: bool, buttonValue: cffi.float) ---
@@ -54,3 +48,6 @@ foreign lib {
     @(objc_type=ControllerTouchpad, objc_selector="setReportsAbsoluteTouchSurfaceValues:", objc_name="setReportsAbsoluteTouchSurfaceValues")
     ControllerTouchpad_setReportsAbsoluteTouchSurfaceValues :: proc(self: ^ControllerTouchpad, reportsAbsoluteTouchSurfaceValues: bool) ---
 }
+
+
+

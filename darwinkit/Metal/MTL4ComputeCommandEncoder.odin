@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4ComputeCommandEncoder
-///
 @(objc_class="MTL4ComputeCommandEncoder")
 MTL4ComputeCommandEncoder :: struct { using _: intrinsics.objc_object, 
     using _: MTL4CommandEncoder,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4ComputeCommandEncoder, objc_selector="stages", objc_name="stages")
     MTL4ComputeCommandEncoder_stages :: proc(self: ^MTL4ComputeCommandEncoder) -> Stages ---
@@ -131,6 +125,8 @@ foreign lib {
     @(objc_type=MTL4ComputeCommandEncoder, objc_selector="writeTimestampWithGranularity:intoHeap:atIndex:", objc_name="writeTimestampWithGranularity")
     MTL4ComputeCommandEncoder_writeTimestampWithGranularity :: proc(self: ^MTL4ComputeCommandEncoder, granularity: MTL4TimestampGranularity, counterHeap: ^MTL4CounterHeap, index: NS.UInteger) ---
 }
+
+
 
 @(objc_type=MTL4ComputeCommandEncoder, objc_name="executeCommandsInBuffer")
 MTL4ComputeCommandEncoder_executeCommandsInBuffer :: proc {

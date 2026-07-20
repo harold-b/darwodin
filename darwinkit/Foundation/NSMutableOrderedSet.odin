@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableOrderedSet
-///
 @(objc_class="NSMutableOrderedSet", objc_superclass=OrderedSet)
 MutableOrderedSet :: struct { using _: OrderedSet, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableOrderedSet, objc_selector="insertObject:atIndex:", objc_name="insertObject")
     MutableOrderedSet_insertObject :: proc(self: ^MutableOrderedSet, object: id, idx: UInteger) ---
@@ -121,4 +115,6 @@ foreign lib {
     @(objc_type=MutableOrderedSet, objc_selector="filterUsingPredicate:", objc_name="filterUsingPredicate")
     MutableOrderedSet_filterUsingPredicate :: proc(self: ^MutableOrderedSet, p: ^Predicate) ---
 }
+
+
 

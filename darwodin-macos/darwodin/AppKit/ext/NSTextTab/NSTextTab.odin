@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
     columnTerminatorsForLocale: proc(aLocale: ^NS.Locale) -> ^NS.CharacterSet,
-    location: proc(self: ^AK.TextTab) -> CG.Float,
-    options: proc(self: ^AK.TextTab) -> ^NS.Dictionary,
-    initWithTextAlignment: proc(self: ^AK.TextTab, alignment: AK.TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype,
-    alignment: proc(self: ^AK.TextTab) -> AK.TextAlignment,
-    initWithType: proc(self: ^AK.TextTab, type: AK.TextTabType, loc: CG.Float) -> instancetype,
-    tabStopType: proc(self: ^AK.TextTab) -> AK.TextTabType,
+    location: proc(self: ^NS.TextTab) -> CG.Float,
+    options: proc(self: ^NS.TextTab) -> ^NS.Dictionary,
+    initWithTextAlignment: proc(self: ^NS.TextTab, alignment: NS.TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype,
+    alignment: proc(self: ^NS.TextTab) -> NS.TextAlignment,
+    initWithType: proc(self: ^NS.TextTab, type: NS.TextTabType, loc: CG.Float) -> instancetype,
+    tabStopType: proc(self: ^NS.TextTab) -> NS.TextTabType,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("columnTerminatorsForLocale:"), auto_cast columnTerminatorsForLocale, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.location != nil {
-        location :: proc "c" (self: ^AK.TextTab, _: SEL) -> CG.Float {
+        location :: proc "c" (self: ^NS.TextTab, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("location"), auto_cast location, "d@:") do panic("Failed to register objC method.")
     }
     if vt.options != nil {
-        options :: proc "c" (self: ^AK.TextTab, _: SEL) -> ^NS.Dictionary {
+        options :: proc "c" (self: ^NS.TextTab, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("options"), auto_cast options, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.initWithTextAlignment != nil {
-        initWithTextAlignment :: proc "c" (self: ^AK.TextTab, _: SEL, alignment: AK.TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype {
+        initWithTextAlignment :: proc "c" (self: ^NS.TextTab, _: SEL, alignment: NS.TextAlignment, loc: CG.Float, options: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTextAlignment:location:options:"), auto_cast initWithTextAlignment, "@@:ld^void") do panic("Failed to register objC method.")
     }
     if vt.alignment != nil {
-        alignment :: proc "c" (self: ^AK.TextTab, _: SEL) -> AK.TextAlignment {
+        alignment :: proc "c" (self: ^NS.TextTab, _: SEL) -> NS.TextAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.initWithType != nil {
-        initWithType :: proc "c" (self: ^AK.TextTab, _: SEL, type: AK.TextTabType, loc: CG.Float) -> instancetype {
+        initWithType :: proc "c" (self: ^NS.TextTab, _: SEL, type: NS.TextTabType, loc: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithType:location:"), auto_cast initWithType, "@@:Ld") do panic("Failed to register objC method.")
     }
     if vt.tabStopType != nil {
-        tabStopType :: proc "c" (self: ^AK.TextTab, _: SEL) -> AK.TextTabType {
+        tabStopType :: proc "c" (self: ^NS.TextTab, _: SEL) -> NS.TextTabType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

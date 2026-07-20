@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKShareBlockedIdentity
-///
 @(objc_class="CKShareBlockedIdentity", objc_superclass=NS.Object)
 ShareBlockedIdentity :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ShareBlockedIdentity, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ShareBlockedIdentity_new :: proc() -> ^ShareBlockedIdentity ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=ShareBlockedIdentity, objc_selector="contact", objc_name="contact")
     ShareBlockedIdentity_contact :: proc(self: ^ShareBlockedIdentity) -> ^CNContact ---
 }
+
+
+

@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSLocalizedNumberFormatRule
-///
 @(objc_class="NSLocalizedNumberFormatRule", objc_superclass=Object)
 LocalizedNumberFormatRule :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LocalizedNumberFormatRule, objc_selector="new", objc_name="new", objc_is_class_method=true)
     LocalizedNumberFormatRule_new :: proc() -> ^LocalizedNumberFormatRule ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=LocalizedNumberFormatRule, objc_selector="automatic", objc_name="automatic", objc_is_class_method=true)
     LocalizedNumberFormatRule_automatic :: proc() -> ^LocalizedNumberFormatRule ---
 }
+
+
+

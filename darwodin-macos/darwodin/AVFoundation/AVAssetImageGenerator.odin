@@ -40,7 +40,7 @@ foreign lib {
     AssetImageGenerator_generateCGImagesAsynchronouslyForTimes :: proc(self: ^AssetImageGenerator, requestedTimes: ^NS.Array, handler: AssetImageGeneratorCompletionHandler) ---
 
     @(objc_type=AssetImageGenerator, objc_selector="generateCGImageAsynchronouslyForTime:completionHandler:", objc_name="generateCGImageAsynchronouslyForTime")
-    AssetImageGenerator_generateCGImageAsynchronouslyForTime :: proc(self: ^AssetImageGenerator, requestedTime: CM.Time, handler: ^Objc_Block(proc "c" (image: CG.ImageRef, actualTime: CM.Time, error: ^NS.Error))) ---
+    AssetImageGenerator_generateCGImageAsynchronouslyForTime :: proc(self: ^AssetImageGenerator, requestedTime: CM.Time, handler: ^Objc_Block(proc "c" ( image: CG.ImageRef, actualTime: CM.Time, error: ^NS.Error ))) ---
 
     @(objc_type=AssetImageGenerator, objc_selector="cancelAllCGImageGeneration", objc_name="cancelAllCGImageGeneration")
     AssetImageGenerator_cancelAllCGImageGeneration :: proc(self: ^AssetImageGenerator) ---

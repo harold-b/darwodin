@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLFunction
-///
 @(objc_class="MTLFunction")
 Function :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Function, objc_selector="newArgumentEncoderWithBufferIndex:", objc_name="newArgumentEncoderWithBufferIndex_")
     Function_newArgumentEncoderWithBufferIndex_ :: proc(self: ^Function, bufferIndex: NS.UInteger) -> ^ArgumentEncoder ---
@@ -62,6 +56,8 @@ foreign lib {
     @(objc_type=Function, objc_selector="options", objc_name="options")
     Function_options :: proc(self: ^Function) -> FunctionOptions ---
 }
+
+
 
 @(objc_type=Function, objc_name="newArgumentEncoderWithBufferIndex")
 Function_newArgumentEncoderWithBufferIndex :: proc {

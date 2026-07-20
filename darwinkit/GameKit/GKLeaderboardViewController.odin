@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKLeaderboardViewController
-///
 @(objc_class="GKLeaderboardViewController", objc_superclass=GameCenterViewController)
-LeaderboardViewController :: struct { using _: GameCenterViewController, }
+LeaderboardViewController :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LeaderboardViewController, objc_selector="timeScope", objc_name="timeScope")
     LeaderboardViewController_timeScope :: proc(self: ^LeaderboardViewController) -> LeaderboardTimeScope ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=LeaderboardViewController, objc_selector="setLeaderboardDelegate:", objc_name="setLeaderboardDelegate")
     LeaderboardViewController_setLeaderboardDelegate :: proc(self: ^LeaderboardViewController, leaderboardDelegate: ^LeaderboardViewControllerDelegate) ---
 }
+
+
+

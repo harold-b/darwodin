@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAnimatedQuaternion
-///
 @(objc_class="MDLAnimatedQuaternion", objc_superclass=AnimatedValue)
 AnimatedQuaternion :: struct { using _: AnimatedValue, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimatedQuaternion, objc_selector="setFloatQuaternion:atTime:", objc_name="setFloatQuaternion")
     AnimatedQuaternion_setFloatQuaternion :: proc(self: ^AnimatedQuaternion, value: quaternion128, time: NS.TimeInterval) ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=AnimatedQuaternion, objc_selector="getDoubleQuaternionArray:maxCount:", objc_name="getDoubleQuaternionArray")
     AnimatedQuaternion_getDoubleQuaternionArray :: proc(self: ^AnimatedQuaternion, valuesArray: ^quaternion256, maxCount: NS.UInteger) -> NS.UInteger ---
 }
+
+
+

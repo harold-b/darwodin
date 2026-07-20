@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_CoreAudio
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -14,2069 +16,107 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:CoreAudio.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
-
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    AUTH_OPEN_NOAUTHFD :: 1
-
-    k_NoError                                                       :: 0
-    k_UnimplementedError                                            :: -4
-    k_FileNotFoundError                                             :: -43
-    k_FilePermissionError                                           :: -54
-    k_TooManyFilesOpenError                                         :: -42
-    k_BadFilePathError                                              :: 561017960
-    k_ParamError                                                    :: -50
-    k_MemFullError                                                  :: -108
-    kFormatLinearPCM                                                :: 1819304813
-    kFormatAC3                                                      :: 1633889587
-    kFormat60958AC3                                                 :: 1667326771
-    kFormatAppleIMA4                                                :: 1768775988
-    kFormatMPEG4AAC                                                 :: 1633772320
-    kFormatMPEG4CELP                                                :: 1667591280
-    kFormatMPEG4HVXC                                                :: 1752594531
-    kFormatMPEG4TwinVQ                                              :: 1953986161
-    kFormatMACE3                                                    :: 1296122675
-    kFormatMACE6                                                    :: 1296122678
-    kFormatULaw                                                     :: 1970037111
-    kFormatALaw                                                     :: 1634492791
-    kFormatQDesign                                                  :: 1363430723
-    kFormatQDesign2                                                 :: 1363430706
-    kFormatQUALCOMM                                                 :: 1365470320
-    kFormatMPEGLayer1                                               :: 778924081
-    kFormatMPEGLayer2                                               :: 778924082
-    kFormatMPEGLayer3                                               :: 778924083
-    kFormatTimeCode                                                 :: 1953066341
-    kFormatMIDIStream                                               :: 1835623529
-    kFormatParameterValueStream                                     :: 1634760307
-    kFormatAppleLossless                                            :: 1634492771
-    kFormatMPEG4AAC_HE                                              :: 1633772392
-    kFormatMPEG4AAC_LD                                              :: 1633772396
-    kFormatMPEG4AAC_ELD                                             :: 1633772389
-    kFormatMPEG4AAC_ELD_SBR                                         :: 1633772390
-    kFormatMPEG4AAC_ELD_V2                                          :: 1633772391
-    kFormatMPEG4AAC_HE_V2                                           :: 1633772400
-    kFormatMPEG4AAC_Spatial                                         :: 1633772403
-    kFormatMPEGD_USAC                                               :: 1970495843
-    kFormatAMR                                                      :: 1935764850
-    kFormatAMR_WB                                                   :: 1935767394
-    kFormatAudible                                                  :: 1096107074
-    kFormatiLBC                                                     :: 1768710755
-    kFormatDVIIntelIMA                                              :: 1836253201
-    kFormatMicrosoftGSM                                             :: 1836253233
-    kFormatAES3                                                     :: 1634038579
-    kFormatEnhancedAC3                                              :: 1700998451
-    kFormatFLAC                                                     :: 1718378851
-    kFormatOpus                                                     :: 1869641075
-    kFormatAPAC                                                     :: 1634754915
-    kFormatFlagIsFloat                                              :: 1
-    kFormatFlagIsBigEndian                                          :: 2
-    kFormatFlagIsSignedInteger                                      :: 4
-    kFormatFlagIsPacked                                             :: 8
-    kFormatFlagIsAlignedHigh                                        :: 16
-    kFormatFlagIsNonInterleaved                                     :: 32
-    kFormatFlagIsNonMixable                                         :: 64
-    kFormatFlagsAreAllClear                                         :: 2147483648
-    kFormatFlagsNativeEndian                                        :: 0
-    kFormatFlagsCanonical                                           :: 9
-    kFormatFlagsAudioUnitCanonical                                  :: 41
-    kFormatFlagsNativeFloatPacked                                   :: 9
-    kChannelLabel_Unknown                                           :: 4294967295
-    kChannelLabel_Unused                                            :: 0
-    kChannelLabel_UseCoordinates                                    :: 100
-    kChannelLabel_Left                                              :: 1
-    kChannelLabel_Right                                             :: 2
-    kChannelLabel_Center                                            :: 3
-    kChannelLabel_LFEScreen                                         :: 4
-    kChannelLabel_LeftSurround                                      :: 5
-    kChannelLabel_RightSurround                                     :: 6
-    kChannelLabel_LeftCenter                                        :: 7
-    kChannelLabel_RightCenter                                       :: 8
-    kChannelLabel_CenterSurround                                    :: 9
-    kChannelLabel_LeftSurroundDirect                                :: 10
-    kChannelLabel_RightSurroundDirect                               :: 11
-    kChannelLabel_TopCenterSurround                                 :: 12
-    kChannelLabel_VerticalHeightLeft                                :: 13
-    kChannelLabel_VerticalHeightCenter                              :: 14
-    kChannelLabel_VerticalHeightRight                               :: 15
-    kChannelLabel_TopBackLeft                                       :: 16
-    kChannelLabel_TopBackCenter                                     :: 17
-    kChannelLabel_TopBackRight                                      :: 18
-    kChannelLabel_RearSurroundLeft                                  :: 33
-    kChannelLabel_RearSurroundRight                                 :: 34
-    kChannelLabel_LeftWide                                          :: 35
-    kChannelLabel_RightWide                                         :: 36
-    kChannelLabel_LFE2                                              :: 37
-    kChannelLabel_LeftTotal                                         :: 38
-    kChannelLabel_RightTotal                                        :: 39
-    kChannelLabel_HearingImpaired                                   :: 40
-    kChannelLabel_Narration                                         :: 41
-    kChannelLabel_Mono                                              :: 42
-    kChannelLabel_DialogCentricMix                                  :: 43
-    kChannelLabel_CenterSurroundDirect                              :: 44
-    kChannelLabel_Haptic                                            :: 45
-    kChannelLabel_LeftTopFront                                      :: 13
-    kChannelLabel_CenterTopFront                                    :: 14
-    kChannelLabel_RightTopFront                                     :: 15
-    kChannelLabel_LeftTopMiddle                                     :: 49
-    kChannelLabel_CenterTopMiddle                                   :: 12
-    kChannelLabel_RightTopMiddle                                    :: 51
-    kChannelLabel_LeftTopRear                                       :: 52
-    kChannelLabel_CenterTopRear                                     :: 53
-    kChannelLabel_RightTopRear                                      :: 54
-    kChannelLabel_LeftSideSurround                                  :: 55
-    kChannelLabel_RightSideSurround                                 :: 56
-    kChannelLabel_LeftBottom                                        :: 57
-    kChannelLabel_RightBottom                                       :: 58
-    kChannelLabel_CenterBottom                                      :: 59
-    kChannelLabel_LeftTopSurround                                   :: 60
-    kChannelLabel_RightTopSurround                                  :: 61
-    kChannelLabel_LFE3                                              :: 62
-    kChannelLabel_LeftBackSurround                                  :: 63
-    kChannelLabel_RightBackSurround                                 :: 64
-    kChannelLabel_LeftEdgeOfScreen                                  :: 65
-    kChannelLabel_RightEdgeOfScreen                                 :: 66
-    kChannelLabel_Ambisonic_W                                       :: 200
-    kChannelLabel_Ambisonic_X                                       :: 201
-    kChannelLabel_Ambisonic_Y                                       :: 202
-    kChannelLabel_Ambisonic_Z                                       :: 203
-    kChannelLabel_MS_Mid                                            :: 204
-    kChannelLabel_MS_Side                                           :: 205
-    kChannelLabel_XY_X                                              :: 206
-    kChannelLabel_XY_Y                                              :: 207
-    kChannelLabel_BinauralLeft                                      :: 208
-    kChannelLabel_BinauralRight                                     :: 209
-    kChannelLabel_HeadphonesLeft                                    :: 301
-    kChannelLabel_HeadphonesRight                                   :: 302
-    kChannelLabel_ClickTrack                                        :: 304
-    kChannelLabel_ForeignLanguage                                   :: 305
-    kChannelLabel_Discrete                                          :: 400
-    kChannelLabel_Discrete_0                                        :: 65536
-    kChannelLabel_Discrete_1                                        :: 65537
-    kChannelLabel_Discrete_2                                        :: 65538
-    kChannelLabel_Discrete_3                                        :: 65539
-    kChannelLabel_Discrete_4                                        :: 65540
-    kChannelLabel_Discrete_5                                        :: 65541
-    kChannelLabel_Discrete_6                                        :: 65542
-    kChannelLabel_Discrete_7                                        :: 65543
-    kChannelLabel_Discrete_8                                        :: 65544
-    kChannelLabel_Discrete_9                                        :: 65545
-    kChannelLabel_Discrete_10                                       :: 65546
-    kChannelLabel_Discrete_11                                       :: 65547
-    kChannelLabel_Discrete_12                                       :: 65548
-    kChannelLabel_Discrete_13                                       :: 65549
-    kChannelLabel_Discrete_14                                       :: 65550
-    kChannelLabel_Discrete_15                                       :: 65551
-    kChannelLabel_Discrete_65535                                    :: 131071
-    kChannelLabel_HOA_ACN                                           :: 500
-    kChannelLabel_HOA_ACN_0                                         :: 131072
-    kChannelLabel_HOA_ACN_1                                         :: 131073
-    kChannelLabel_HOA_ACN_2                                         :: 131074
-    kChannelLabel_HOA_ACN_3                                         :: 131075
-    kChannelLabel_HOA_ACN_4                                         :: 131076
-    kChannelLabel_HOA_ACN_5                                         :: 131077
-    kChannelLabel_HOA_ACN_6                                         :: 131078
-    kChannelLabel_HOA_ACN_7                                         :: 131079
-    kChannelLabel_HOA_ACN_8                                         :: 131080
-    kChannelLabel_HOA_ACN_9                                         :: 131081
-    kChannelLabel_HOA_ACN_10                                        :: 131082
-    kChannelLabel_HOA_ACN_11                                        :: 131083
-    kChannelLabel_HOA_ACN_12                                        :: 131084
-    kChannelLabel_HOA_ACN_13                                        :: 131085
-    kChannelLabel_HOA_ACN_14                                        :: 131086
-    kChannelLabel_HOA_ACN_15                                        :: 131087
-    kChannelLabel_HOA_ACN_65024                                     :: 196096
-    kChannelLabel_HOA_SN3D                                          :: 131072
-    kChannelLabel_HOA_N3D                                           :: 196608
-    kChannelLabel_Object                                            :: 262144
-    kChannelLabel_BeginReserved                                     :: 4026531840
-    kChannelLabel_EndReserved                                       :: 4294967294
-    kChannelLayoutTag_UseChannelDescriptions                        :: 0
-    kChannelLayoutTag_UseChannelBitmap                              :: 65536
-    kChannelLayoutTag_Mono                                          :: 6553601
-    kChannelLayoutTag_Stereo                                        :: 6619138
-    kChannelLayoutTag_StereoHeadphones                              :: 6684674
-    kChannelLayoutTag_MatrixStereo                                  :: 6750210
-    kChannelLayoutTag_MidSide                                       :: 6815746
-    kChannelLayoutTag_XY                                            :: 6881282
-    kChannelLayoutTag_Binaural                                      :: 6946818
-    kChannelLayoutTag_Ambisonic_B_Format                            :: 7012356
-    kChannelLayoutTag_Quadraphonic                                  :: 7077892
-    kChannelLayoutTag_Pentagonal                                    :: 7143429
-    kChannelLayoutTag_Hexagonal                                     :: 7208966
-    kChannelLayoutTag_Octagonal                                     :: 7274504
-    kChannelLayoutTag_Cube                                          :: 7340040
-    kChannelLayoutTag_MPEG_1_0                                      :: 6553601
-    kChannelLayoutTag_MPEG_2_0                                      :: 6619138
-    kChannelLayoutTag_MPEG_3_0_A                                    :: 7405571
-    kChannelLayoutTag_MPEG_3_0_B                                    :: 7471107
-    kChannelLayoutTag_MPEG_4_0_A                                    :: 7536644
-    kChannelLayoutTag_MPEG_4_0_B                                    :: 7602180
-    kChannelLayoutTag_MPEG_5_0_A                                    :: 7667717
-    kChannelLayoutTag_MPEG_5_0_B                                    :: 7733253
-    kChannelLayoutTag_MPEG_5_0_C                                    :: 7798789
-    kChannelLayoutTag_MPEG_5_0_D                                    :: 7864325
-    kChannelLayoutTag_MPEG_5_1_A                                    :: 7929862
-    kChannelLayoutTag_MPEG_5_1_B                                    :: 7995398
-    kChannelLayoutTag_MPEG_5_1_C                                    :: 8060934
-    kChannelLayoutTag_MPEG_5_1_D                                    :: 8126470
-    kChannelLayoutTag_MPEG_6_1_A                                    :: 8192007
-    kChannelLayoutTag_MPEG_7_1_A                                    :: 8257544
-    kChannelLayoutTag_MPEG_7_1_B                                    :: 8323080
-    kChannelLayoutTag_MPEG_7_1_C                                    :: 8388616
-    kChannelLayoutTag_Emagic_Default_7_1                            :: 8454152
-    kChannelLayoutTag_SMPTE_DTV                                     :: 8519688
-    kChannelLayoutTag_ITU_1_0                                       :: 6553601
-    kChannelLayoutTag_ITU_2_0                                       :: 6619138
-    kChannelLayoutTag_ITU_2_1                                       :: 8585219
-    kChannelLayoutTag_ITU_2_2                                       :: 8650756
-    kChannelLayoutTag_ITU_3_0                                       :: 7405571
-    kChannelLayoutTag_ITU_3_1                                       :: 7536644
-    kChannelLayoutTag_ITU_3_2                                       :: 7667717
-    kChannelLayoutTag_ITU_3_2_1                                     :: 7929862
-    kChannelLayoutTag_ITU_3_4_1                                     :: 8388616
-    kChannelLayoutTag_DVD_0                                         :: 6553601
-    kChannelLayoutTag_DVD_1                                         :: 6619138
-    kChannelLayoutTag_DVD_2                                         :: 8585219
-    kChannelLayoutTag_DVD_3                                         :: 8650756
-    kChannelLayoutTag_DVD_4                                         :: 8716291
-    kChannelLayoutTag_DVD_5                                         :: 8781828
-    kChannelLayoutTag_DVD_6                                         :: 8847365
-    kChannelLayoutTag_DVD_7                                         :: 7405571
-    kChannelLayoutTag_DVD_8                                         :: 7536644
-    kChannelLayoutTag_DVD_9                                         :: 7667717
-    kChannelLayoutTag_DVD_10                                        :: 8912900
-    kChannelLayoutTag_DVD_11                                        :: 8978437
-    kChannelLayoutTag_DVD_12                                        :: 7929862
-    kChannelLayoutTag_DVD_13                                        :: 7536644
-    kChannelLayoutTag_DVD_14                                        :: 7667717
-    kChannelLayoutTag_DVD_15                                        :: 8912900
-    kChannelLayoutTag_DVD_16                                        :: 8978437
-    kChannelLayoutTag_DVD_17                                        :: 7929862
-    kChannelLayoutTag_DVD_18                                        :: 9043973
-    kChannelLayoutTag_DVD_19                                        :: 7733253
-    kChannelLayoutTag_DVD_20                                        :: 7995398
-    kChannelLayoutTag_AudioUnit_4                                   :: 7077892
-    kChannelLayoutTag_AudioUnit_5                                   :: 7143429
-    kChannelLayoutTag_AudioUnit_6                                   :: 7208966
-    kChannelLayoutTag_AudioUnit_8                                   :: 7274504
-    kChannelLayoutTag_AudioUnit_5_0                                 :: 7733253
-    kChannelLayoutTag_AudioUnit_6_0                                 :: 9109510
-    kChannelLayoutTag_AudioUnit_7_0                                 :: 9175047
-    kChannelLayoutTag_AudioUnit_7_0_Front                           :: 9699335
-    kChannelLayoutTag_AudioUnit_5_1                                 :: 7929862
-    kChannelLayoutTag_AudioUnit_6_1                                 :: 8192007
-    kChannelLayoutTag_AudioUnit_7_1                                 :: 8388616
-    kChannelLayoutTag_AudioUnit_7_1_Front                           :: 8257544
-    kChannelLayoutTag_AAC_3_0                                       :: 7471107
-    kChannelLayoutTag_AAC_Quadraphonic                              :: 7077892
-    kChannelLayoutTag_AAC_4_0                                       :: 7602180
-    kChannelLayoutTag_AAC_5_0                                       :: 7864325
-    kChannelLayoutTag_AAC_5_1                                       :: 8126470
-    kChannelLayoutTag_AAC_6_0                                       :: 9240582
-    kChannelLayoutTag_AAC_6_1                                       :: 9306119
-    kChannelLayoutTag_AAC_7_0                                       :: 9371655
-    kChannelLayoutTag_AAC_7_1                                       :: 8323080
-    kChannelLayoutTag_AAC_7_1_B                                     :: 11993096
-    kChannelLayoutTag_AAC_7_1_C                                     :: 12058632
-    kChannelLayoutTag_AAC_Octagonal                                 :: 9437192
-    kChannelLayoutTag_TMH_10_2_std                                  :: 9502736
-    kChannelLayoutTag_TMH_10_2_full                                 :: 9568277
-    kChannelLayoutTag_AC3_1_0_1                                     :: 9764866
-    kChannelLayoutTag_AC3_3_0                                       :: 9830403
-    kChannelLayoutTag_AC3_3_1                                       :: 9895940
-    kChannelLayoutTag_AC3_3_0_1                                     :: 9961476
-    kChannelLayoutTag_AC3_2_1_1                                     :: 10027012
-    kChannelLayoutTag_AC3_3_1_1                                     :: 10092549
-    kChannelLayoutTag_EAC_6_0_A                                     :: 10158086
-    kChannelLayoutTag_EAC_7_0_A                                     :: 10223623
-    kChannelLayoutTag_EAC3_6_1_A                                    :: 10289159
-    kChannelLayoutTag_EAC3_6_1_B                                    :: 10354695
-    kChannelLayoutTag_EAC3_6_1_C                                    :: 10420231
-    kChannelLayoutTag_EAC3_7_1_A                                    :: 10485768
-    kChannelLayoutTag_EAC3_7_1_B                                    :: 10551304
-    kChannelLayoutTag_EAC3_7_1_C                                    :: 10616840
-    kChannelLayoutTag_EAC3_7_1_D                                    :: 10682376
-    kChannelLayoutTag_EAC3_7_1_E                                    :: 10747912
-    kChannelLayoutTag_EAC3_7_1_F                                    :: 10813448
-    kChannelLayoutTag_EAC3_7_1_G                                    :: 10878984
-    kChannelLayoutTag_EAC3_7_1_H                                    :: 10944520
-    kChannelLayoutTag_DTS_3_1                                       :: 11010052
-    kChannelLayoutTag_DTS_4_1                                       :: 11075589
-    kChannelLayoutTag_DTS_6_0_A                                     :: 11141126
-    kChannelLayoutTag_DTS_6_0_B                                     :: 11206662
-    kChannelLayoutTag_DTS_6_0_C                                     :: 11272198
-    kChannelLayoutTag_DTS_6_1_A                                     :: 11337735
-    kChannelLayoutTag_DTS_6_1_B                                     :: 11403271
-    kChannelLayoutTag_DTS_6_1_C                                     :: 11468807
-    kChannelLayoutTag_DTS_7_0                                       :: 11534343
-    kChannelLayoutTag_DTS_7_1                                       :: 11599880
-    kChannelLayoutTag_DTS_8_0_A                                     :: 11665416
-    kChannelLayoutTag_DTS_8_0_B                                     :: 11730952
-    kChannelLayoutTag_DTS_8_1_A                                     :: 11796489
-    kChannelLayoutTag_DTS_8_1_B                                     :: 11862025
-    kChannelLayoutTag_DTS_6_1_D                                     :: 11927559
-    kChannelLayoutTag_WAVE_2_1                                      :: 8716291
-    kChannelLayoutTag_WAVE_3_0                                      :: 7405571
-    kChannelLayoutTag_WAVE_4_0_A                                    :: 8650756
-    kChannelLayoutTag_WAVE_4_0_B                                    :: 12124164
-    kChannelLayoutTag_WAVE_5_0_A                                    :: 7667717
-    kChannelLayoutTag_WAVE_5_0_B                                    :: 12189701
-    kChannelLayoutTag_WAVE_5_1_A                                    :: 7929862
-    kChannelLayoutTag_WAVE_5_1_B                                    :: 12255238
-    kChannelLayoutTag_WAVE_6_1                                      :: 12320775
-    kChannelLayoutTag_WAVE_7_1                                      :: 12386312
-    kChannelLayoutTag_HOA_ACN_SN3D                                  :: 12451840
-    kChannelLayoutTag_HOA_ACN_N3D                                   :: 12517376
-    kChannelLayoutTag_Atmos_5_1_2                                   :: 12713992
-    kChannelLayoutTag_Atmos_5_1_4                                   :: 12779530
-    kChannelLayoutTag_Atmos_7_1_2                                   :: 12845066
-    kChannelLayoutTag_Atmos_7_1_4                                   :: 12582924
-    kChannelLayoutTag_Atmos_9_1_6                                   :: 12648464
-    kChannelLayoutTag_Logic_Mono                                    :: 6553601
-    kChannelLayoutTag_Logic_Stereo                                  :: 6619138
-    kChannelLayoutTag_Logic_Quadraphonic                            :: 7077892
-    kChannelLayoutTag_Logic_4_0_A                                   :: 7536644
-    kChannelLayoutTag_Logic_4_0_B                                   :: 7602180
-    kChannelLayoutTag_Logic_4_0_C                                   :: 12910596
-    kChannelLayoutTag_Logic_5_0_A                                   :: 7667717
-    kChannelLayoutTag_Logic_5_0_B                                   :: 7733253
-    kChannelLayoutTag_Logic_5_0_C                                   :: 7798789
-    kChannelLayoutTag_Logic_5_0_D                                   :: 7864325
-    kChannelLayoutTag_Logic_5_1_A                                   :: 7929862
-    kChannelLayoutTag_Logic_5_1_B                                   :: 7995398
-    kChannelLayoutTag_Logic_5_1_C                                   :: 8060934
-    kChannelLayoutTag_Logic_5_1_D                                   :: 8126470
-    kChannelLayoutTag_Logic_6_0_A                                   :: 9240582
-    kChannelLayoutTag_Logic_6_0_B                                   :: 12976134
-    kChannelLayoutTag_Logic_6_0_C                                   :: 9109510
-    kChannelLayoutTag_Logic_6_1_A                                   :: 9306119
-    kChannelLayoutTag_Logic_6_1_B                                   :: 13041671
-    kChannelLayoutTag_Logic_6_1_C                                   :: 8192007
-    kChannelLayoutTag_Logic_6_1_D                                   :: 13107207
-    kChannelLayoutTag_Logic_7_1_A                                   :: 8388616
-    kChannelLayoutTag_Logic_7_1_B                                   :: 13172744
-    kChannelLayoutTag_Logic_7_1_C                                   :: 8388616
-    kChannelLayoutTag_Logic_7_1_SDDS_A                              :: 8257544
-    kChannelLayoutTag_Logic_7_1_SDDS_B                              :: 8323080
-    kChannelLayoutTag_Logic_7_1_SDDS_C                              :: 8454152
-    kChannelLayoutTag_Logic_Atmos_5_1_2                             :: 12713992
-    kChannelLayoutTag_Logic_Atmos_5_1_4                             :: 12779530
-    kChannelLayoutTag_Logic_Atmos_7_1_2                             :: 12845066
-    kChannelLayoutTag_Logic_Atmos_7_1_4_A                           :: 12582924
-    kChannelLayoutTag_Logic_Atmos_7_1_4_B                           :: 13238284
-    kChannelLayoutTag_Logic_Atmos_7_1_6                             :: 13303822
-    kChannelLayoutTag_DiscreteInOrder                               :: 9633792
-    kChannelLayoutTag_CICP_1                                        :: 6553601
-    kChannelLayoutTag_CICP_2                                        :: 6619138
-    kChannelLayoutTag_CICP_3                                        :: 7405571
-    kChannelLayoutTag_CICP_4                                        :: 7536644
-    kChannelLayoutTag_CICP_5                                        :: 7667717
-    kChannelLayoutTag_CICP_6                                        :: 7929862
-    kChannelLayoutTag_CICP_7                                        :: 8323080
-    kChannelLayoutTag_CICP_9                                        :: 8585219
-    kChannelLayoutTag_CICP_10                                       :: 8650756
-    kChannelLayoutTag_CICP_11                                       :: 8192007
-    kChannelLayoutTag_CICP_12                                       :: 8388616
-    kChannelLayoutTag_CICP_13                                       :: 13369368
-    kChannelLayoutTag_CICP_14                                       :: 13434888
-    kChannelLayoutTag_CICP_15                                       :: 13500428
-    kChannelLayoutTag_CICP_16                                       :: 13565962
-    kChannelLayoutTag_CICP_17                                       :: 13631500
-    kChannelLayoutTag_CICP_18                                       :: 13697038
-    kChannelLayoutTag_CICP_19                                       :: 13762572
-    kChannelLayoutTag_CICP_20                                       :: 13828110
-    kChannelLayoutTag_Ogg_3_0                                       :: 9830403
-    kChannelLayoutTag_Ogg_4_0                                       :: 12124164
-    kChannelLayoutTag_Ogg_5_0                                       :: 13893637
-    kChannelLayoutTag_Ogg_5_1                                       :: 13959174
-    kChannelLayoutTag_Ogg_6_1                                       :: 14024711
-    kChannelLayoutTag_Ogg_7_1                                       :: 14090248
-    kChannelLayoutTag_MPEG_5_0_E                                    :: 14155781
-    kChannelLayoutTag_MPEG_5_1_E                                    :: 14221318
-    kChannelLayoutTag_MPEG_6_1_B                                    :: 14286855
-    kChannelLayoutTag_MPEG_7_1_D                                    :: 14352392
-    kChannelLayoutTag_BeginReserved                                 :: 4026531840
-    kChannelLayoutTag_EndReserved                                   :: 4294901759
-    kChannelLayoutTag_Unknown                                       :: 4294901760
-    kHardwareNoError                                                :: 0
-    kHardwareNotRunningError                                        :: 1937010544
-    kHardwareUnspecifiedError                                       :: 2003329396
-    kHardwareUnknownPropertyError                                   :: 2003332927
-    kHardwareBadPropertySizeError                                   :: 561211770
-    kHardwareIllegalOperationError                                  :: 1852797029
-    kHardwareBadObjectError                                         :: 560947818
-    kHardwareBadDeviceError                                         :: 560227702
-    kHardwareBadStreamError                                         :: 561214578
-    kHardwareUnsupportedOperationError                              :: 1970171760
-    kHardwareNotReadyError                                          :: 1852990585
-    kDeviceUnsupportedFormatError                                   :: 560226676
-    kDevicePermissionsError                                         :: 560492391
-    kObjectUnknown                                                  :: 0
-    kObjectPropertyScopeGlobal                                      :: 1735159650
-    kObjectPropertyScopeInput                                       :: 1768845428
-    kObjectPropertyScopeOutput                                      :: 1869968496
-    kObjectPropertyScopePlayThrough                                 :: 1886679669
-    kObjectPropertyElementMain                                      :: 0
-    kObjectPropertyElementMaster                                    :: 0
-    kObjectPropertySelectorWildcard                                 :: 707406378
-    kObjectPropertyScopeWildcard                                    :: 707406378
-    kObjectPropertyElementWildcard                                  :: 4294967295
-    kObjectClassIDWildcard                                          :: 707406378
-    kObjectClassID                                                  :: 1634689642
-    kObjectPropertyBaseClass                                        :: 1650682995
-    kObjectPropertyClass                                            :: 1668047219
-    kObjectPropertyOwner                                            :: 1937007734
-    kObjectPropertyName                                             :: 1819173229
-    kObjectPropertyModelName                                        :: 1819111268
-    kObjectPropertyManufacturer                                     :: 1819107691
-    kObjectPropertyElementName                                      :: 1818454126
-    kObjectPropertyElementCategoryName                              :: 1818452846
-    kObjectPropertyElementNumberName                                :: 1818455662
-    kObjectPropertyOwnedObjects                                     :: 1870098020
-    kObjectPropertyIdentify                                         :: 1768187246
-    kObjectPropertySerialNumber                                     :: 1936618861
-    kObjectPropertyFirmwareVersion                                  :: 1719105134
-    kPlugInClassID                                                  :: 1634757735
-    kPlugInPropertyBundleID                                         :: 1885956452
-    kPlugInPropertyDeviceList                                       :: 1684370979
-    kPlugInPropertyTranslateUIDToDevice                             :: 1969841252
-    kPlugInPropertyBoxList                                          :: 1651472419
-    kPlugInPropertyTranslateUIDToBox                                :: 1969841250
-    kPlugInPropertyClockDeviceList                                  :: 1668049699
-    kPlugInPropertyTranslateUIDToClockDevice                        :: 1969841251
-    kTransportManagerClassID                                        :: 1953656941
-    kTransportManagerPropertyEndPointList                           :: 1701733411
-    kTransportManagerPropertyTranslateUIDToEndPoint                 :: 1969841253
-    kTransportManagerPropertyTransportType                          :: 1953653102
-    kBoxClassID                                                     :: 1633841016
-    kBoxPropertyBoxUID                                              :: 1651861860
-    kBoxPropertyTransportType                                       :: 1953653102
-    kBoxPropertyHasAudio                                            :: 1651007861
-    kBoxPropertyHasVideo                                            :: 1651013225
-    kBoxPropertyHasMIDI                                             :: 1651010921
-    kBoxPropertyIsProtected                                         :: 1651536495
-    kBoxPropertyAcquired                                            :: 1652060014
-    kBoxPropertyAcquisitionFailed                                   :: 1652060006
-    kBoxPropertyDeviceList                                          :: 1650751011
-    kBoxPropertyClockDeviceList                                     :: 1650682915
-    kDeviceClassID                                                  :: 1633969526
-    kDeviceTransportTypeUnknown                                     :: 0
-    kDeviceTransportTypeBuiltIn                                     :: 1651274862
-    kDeviceTransportTypeAggregate                                   :: 1735554416
-    kDeviceTransportTypeVirtual                                     :: 1986622068
-    kDeviceTransportTypePCI                                         :: 1885563168
-    kDeviceTransportTypeUSB                                         :: 1970496032
-    kDeviceTransportTypeFireWire                                    :: 825440564
-    kDeviceTransportTypeBluetooth                                   :: 1651275109
-    kDeviceTransportTypeBluetoothLE                                 :: 1651271009
-    kDeviceTransportTypeHDMI                                        :: 1751412073
-    kDeviceTransportTypeDisplayPort                                 :: 1685090932
-    kDeviceTransportTypeAirPlay                                     :: 1634300528
-    kDeviceTransportTypeAVB                                         :: 1700886114
-    kDeviceTransportTypeThunderbolt                                 :: 1953002862
-    kDeviceTransportTypeContinuityCaptureWired                      :: 1667463012
-    kDeviceTransportTypeContinuityCaptureWireless                   :: 1667463020
-    kDeviceTransportTypeContinuityCapture                           :: 1667457392
-    kDevicePropertyConfigurationApplication                         :: 1667330160
-    kDevicePropertyDeviceUID                                        :: 1969841184
-    kDevicePropertyModelUID                                         :: 1836411236
-    kDevicePropertyTransportType                                    :: 1953653102
-    kDevicePropertyRelatedDevices                                   :: 1634429294
-    kDevicePropertyClockDomain                                      :: 1668049764
-    kDevicePropertyDeviceIsAlive                                    :: 1818850926
-    kDevicePropertyDeviceIsRunning                                  :: 1735354734
-    kDevicePropertyDeviceCanBeDefaultDevice                         :: 1684434036
-    kDevicePropertyDeviceCanBeDefaultSystemDevice                   :: 1936092276
-    kDevicePropertyLatency                                          :: 1819569763
-    kDevicePropertyStreams                                          :: 1937009955
-    kObjectPropertyControlList                                      :: 1668575852
-    kDevicePropertySafetyOffset                                     :: 1935763060
-    kDevicePropertyNominalSampleRate                                :: 1853059700
-    kDevicePropertyAvailableNominalSampleRates                      :: 1853059619
-    kDevicePropertyIcon                                             :: 1768124270
-    kDevicePropertyIsHidden                                         :: 1751737454
-    kDevicePropertyPreferredChannelsForStereo                       :: 1684236338
-    kDevicePropertyPreferredChannelLayout                           :: 1936879204
-    kClockDeviceClassID                                             :: 1633905771
-    kClockDevicePropertyDeviceUID                                   :: 1668639076
-    kClockDevicePropertyTransportType                               :: 1953653102
-    kClockDevicePropertyClockDomain                                 :: 1668049764
-    kClockDevicePropertyDeviceIsAlive                               :: 1818850926
-    kClockDevicePropertyDeviceIsRunning                             :: 1735354734
-    kClockDevicePropertyLatency                                     :: 1819569763
-    kClockDevicePropertyControlList                                 :: 1668575852
-    kClockDevicePropertyNominalSampleRate                           :: 1853059700
-    kClockDevicePropertyAvailableNominalSampleRates                 :: 1853059619
-    kEndPointDeviceClassID                                          :: 1701078390
-    kEndPointDevicePropertyComposition                              :: 1633906541
-    kEndPointDevicePropertyEndPointList                             :: 1634169456
-    kEndPointDevicePropertyIsPrivate                                :: 1886546294
-    kEndPointClassID                                                :: 1701733488
-    kStreamClassID                                                  :: 1634956402
-    kStreamTerminalTypeUnknown                                      :: 0
-    kStreamTerminalTypeLine                                         :: 1818848869
-    kStreamTerminalTypeDigitalAudioInterface                        :: 1936745574
-    kStreamTerminalTypeSpeaker                                      :: 1936747378
-    kStreamTerminalTypeHeadphones                                   :: 1751412840
-    kStreamTerminalTypeLFESpeaker                                   :: 1818649971
-    kStreamTerminalTypeReceiverSpeaker                              :: 1920168043
-    kStreamTerminalTypeMicrophone                                   :: 1835623282
-    kStreamTerminalTypeHeadsetMicrophone                            :: 1752000867
-    kStreamTerminalTypeReceiverMicrophone                           :: 1919773027
-    kStreamTerminalTypeTTY                                          :: 1953790303
-    kStreamTerminalTypeHDMI                                         :: 1751412073
-    kStreamTerminalTypeDisplayPort                                  :: 1685090932
-    kStreamPropertyIsActive                                         :: 1935762292
-    kStreamPropertyDirection                                        :: 1935960434
-    kStreamPropertyTerminalType                                     :: 1952805485
-    kStreamPropertyStartingChannel                                  :: 1935894638
-    kStreamPropertyLatency                                          :: 1819569763
-    kStreamPropertyVirtualFormat                                    :: 1936092532
-    kStreamPropertyAvailableVirtualFormats                          :: 1936092513
-    kStreamPropertyPhysicalFormat                                   :: 1885762592
-    kStreamPropertyAvailablePhysicalFormats                         :: 1885762657
-    kControlClassID                                                 :: 1633907820
-    kControlPropertyScope                                           :: 1668506480
-    kControlPropertyElement                                         :: 1667591277
-    kSliderControlClassID                                           :: 1936483442
-    kSliderControlPropertyValue                                     :: 1935962742
-    kSliderControlPropertyRange                                     :: 1935962738
-    kLevelControlClassID                                            :: 1818588780
-    kVolumeControlClassID                                           :: 1986817381
-    kLFEVolumeControlClassID                                        :: 1937072758
-    kLevelControlPropertyScalarValue                                :: 1818456950
-    kLevelControlPropertyDecibelValue                               :: 1818453110
-    kLevelControlPropertyDecibelRange                               :: 1818453106
-    kLevelControlPropertyConvertScalarToDecibels                    :: 1818456932
-    kLevelControlPropertyConvertDecibelsToScalar                    :: 1818453107
-    kBooleanControlClassID                                          :: 1953458028
-    kMuteControlClassID                                             :: 1836414053
-    kSoloControlClassID                                             :: 1936682095
-    kJackControlClassID                                             :: 1784767339
-    kLFEMuteControlClassID                                          :: 1937072749
-    kPhantomPowerControlClassID                                     :: 1885888878
-    kPhaseInvertControlClassID                                      :: 1885893481
-    kClipLightControlClassID                                        :: 1668049264
-    kTalkbackControlClassID                                         :: 1952541794
-    kListenbackControlClassID                                       :: 1819504226
-    kBooleanControlPropertyValue                                    :: 1650685548
-    kSelectorControlClassID                                         :: 1936483188
-    kDataSourceControlClassID                                       :: 1685287523
-    kDataDestinationControlClassID                                  :: 1684370292
-    kClockSourceControlClassID                                      :: 1668047723
-    kLineLevelControlClassID                                        :: 1852601964
-    kHighPassFilterControlClassID                                   :: 1751740518
-    kSelectorControlPropertyCurrentItem                             :: 1935893353
-    kSelectorControlPropertyAvailableItems                          :: 1935892841
-    kSelectorControlPropertyItemName                                :: 1935894894
-    kSelectorControlPropertyItemKind                                :: 1668049771
-    kSelectorControlItemKindSpacer                                  :: 1936745330
-    kClockSourceItemKindInternal                                    :: 1768846368
-    kStereoPanControlClassID                                        :: 1936744814
-    kStereoPanControlPropertyValue                                  :: 1936745334
-    kStereoPanControlPropertyPanningChannels                        :: 1936745315
-    kObjectSystemObject                                             :: 1
-    kObjectPropertyCreator                                          :: 1869638759
-    kObjectPropertyListenerAdded                                    :: 1818850145
-    kObjectPropertyListenerRemoved                                  :: 1818850162
-    kSystemObjectClassID                                            :: 1634957683
-    kHardwarePropertyDevices                                        :: 1684370979
-    kHardwarePropertyDefaultInputDevice                             :: 1682533920
-    kHardwarePropertyDefaultOutputDevice                            :: 1682929012
-    kHardwarePropertyDefaultSystemOutputDevice                      :: 1934587252
-    kHardwarePropertyTranslateUIDToDevice                           :: 1969841252
-    kHardwarePropertyMixStereoToMono                                :: 1937010031
-    kHardwarePropertyPlugInList                                     :: 1886152483
-    kHardwarePropertyTranslateBundleIDToPlugIn                      :: 1651074160
-    kHardwarePropertyTransportManagerList                           :: 1953326883
-    kHardwarePropertyTranslateBundleIDToTransportManager            :: 1953325673
-    kHardwarePropertyBoxList                                        :: 1651472419
-    kHardwarePropertyTranslateUIDToBox                              :: 1969841250
-    kHardwarePropertyClockDeviceList                                :: 1668049699
-    kHardwarePropertyTranslateUIDToClockDevice                      :: 1969841251
-    kHardwarePropertyProcessIsMain                                  :: 1835100526
-    kHardwarePropertyIsInitingOrExiting                             :: 1768845172
-    kHardwarePropertyUserIDChanged                                  :: 1702193508
-    kHardwarePropertyProcessInputMute                               :: 1886218606
-    kHardwarePropertyProcessIsAudible                               :: 1886221684
-    kHardwarePropertySleepingIsAllowed                              :: 1936483696
-    kHardwarePropertyUnloadingIsAllowed                             :: 1970170980
-    kHardwarePropertyHogModeIsAllowed                               :: 1752131442
-    kHardwarePropertyUserSessionIsActiveOrHeadless                  :: 1970496882
-    kHardwarePropertyServiceRestarted                               :: 1936880500
-    kHardwarePropertyPowerHint                                      :: 1886353256
-    kHardwarePropertyProcessObjectList                              :: 1886548771
-    kHardwarePropertyTranslatePIDToProcessObject                    :: 1768174192
-    kHardwarePropertyTapList                                        :: 1953526563
-    kHardwarePropertyTranslateUIDToTap                              :: 1969841268
-    kPlugInCreateAggregateDevice                                    :: 1667327847
-    kPlugInDestroyAggregateDevice                                   :: 1684105063
-    kTransportManagerCreateEndPointDevice                           :: 1667523958
-    kTransportManagerDestroyEndPointDevice                          :: 1684301174
-    kDeviceStartTimeIsInputFlag                                     :: 1
-    kDeviceStartTimeDontConsultDeviceFlag                           :: 2
-    kDeviceStartTimeDontConsultHALFlag                              :: 4
-    kDevicePropertyPlugIn                                           :: 1886156135
-    kDevicePropertyDeviceHasChanged                                 :: 1684629094
-    kDevicePropertyDeviceIsRunningSomewhere                         :: 1735356005
-    kDeviceProcessorOverload                                        :: 1870030194
-    kDevicePropertyIOStoppedAbnormally                              :: 1937010788
-    kDevicePropertyHogMode                                          :: 1869180523
-    kDevicePropertyBufferFrameSize                                  :: 1718839674
-    kDevicePropertyBufferFrameSizeRange                             :: 1718843939
-    kDevicePropertyUsesVariableBufferFrameSizes                     :: 1986425722
-    kDevicePropertyIOCycleUsage                                     :: 1852012899
-    kDevicePropertyStreamConfiguration                              :: 1936482681
-    kDevicePropertyIOProcStreamUsage                                :: 1937077093
-    kDevicePropertyActualSampleRate                                 :: 1634955892
-    kDevicePropertyClockDevice                                      :: 1634755428
-    kDevicePropertyIOThreadOSWorkgroup                              :: 1869838183
-    kDevicePropertyProcessMute                                      :: 1634758765
-    kDevicePropertyJackIsConnected                                  :: 1784767339
-    kDevicePropertyVolumeScalar                                     :: 1987013741
-    kDevicePropertyVolumeDecibels                                   :: 1987013732
-    kDevicePropertyVolumeRangeDecibels                              :: 1986290211
-    kDevicePropertyVolumeScalarToDecibels                           :: 1983013986
-    kDevicePropertyVolumeDecibelsToScalar                           :: 1684157046
-    kDevicePropertyStereoPan                                        :: 1936744814
-    kDevicePropertyStereoPanChannels                                :: 1936748067
-    kDevicePropertyMute                                             :: 1836414053
-    kDevicePropertySolo                                             :: 1936682095
-    kDevicePropertyPhantomPower                                     :: 1885888878
-    kDevicePropertyPhaseInvert                                      :: 1885893481
-    kDevicePropertyClipLight                                        :: 1668049264
-    kDevicePropertyTalkback                                         :: 1952541794
-    kDevicePropertyListenback                                       :: 1819504226
-    kDevicePropertyDataSource                                       :: 1936945763
-    kDevicePropertyDataSources                                      :: 1936941859
-    kDevicePropertyDataSourceNameForIDCFString                      :: 1819501422
-    kDevicePropertyDataSourceKindForID                              :: 1936941931
-    kDevicePropertyClockSource                                      :: 1668510307
-    kDevicePropertyClockSources                                     :: 1668506403
-    kDevicePropertyClockSourceNameForIDCFString                     :: 1818456942
-    kDevicePropertyClockSourceKindForID                             :: 1668506475
-    kDevicePropertyPlayThru                                         :: 1953002101
-    kDevicePropertyPlayThruSolo                                     :: 1953002099
-    kDevicePropertyPlayThruVolumeScalar                             :: 1836479331
-    kDevicePropertyPlayThruVolumeDecibels                           :: 1836475490
-    kDevicePropertyPlayThruVolumeRangeDecibels                      :: 1836475427
-    kDevicePropertyPlayThruVolumeScalarToDecibels                   :: 1836462692
-    kDevicePropertyPlayThruVolumeDecibelsToScalar                   :: 1836462707
-    kDevicePropertyPlayThruStereoPan                                :: 1836281966
-    kDevicePropertyPlayThruStereoPanChannels                        :: 1836281891
-    kDevicePropertyPlayThruDestination                              :: 1835295859
-    kDevicePropertyPlayThruDestinations                             :: 1835295779
-    kDevicePropertyPlayThruDestinationNameForIDCFString             :: 1835295843
-    kDevicePropertyChannelNominalLineLevel                          :: 1852601964
-    kDevicePropertyChannelNominalLineLevels                         :: 1852601891
-    kDevicePropertyChannelNominalLineLevelNameForIDCFString         :: 1818455660
-    kDevicePropertyHighPassFilterSetting                            :: 1751740518
-    kDevicePropertyHighPassFilterSettings                           :: 1751740451
-    kDevicePropertyHighPassFilterSettingNameForIDCFString           :: 1751740524
-    kDevicePropertySubVolumeScalar                                  :: 1937140845
-    kDevicePropertySubVolumeDecibels                                :: 1937140836
-    kDevicePropertySubVolumeRangeDecibels                           :: 1937138723
-    kDevicePropertySubVolumeScalarToDecibels                        :: 1937125988
-    kDevicePropertySubVolumeDecibelsToScalar                        :: 1935946358
-    kDevicePropertySubMute                                          :: 1936553332
-    kDevicePropertyVoiceActivityDetectionEnable                     :: 1983996971
-    kDevicePropertyVoiceActivityDetectionState                      :: 1983997011
-    kDevicePropertyWantsControlsRestored                            :: 1919251299
-    kDevicePropertyWantsStreamFormatsRestored                       :: 1919251302
-    kAggregateDeviceClassID                                         :: 1633773415
-    kAggregateDevicePropertyFullSubDeviceList                       :: 1735554416
-    kAggregateDevicePropertyActiveSubDeviceList                     :: 1634169456
-    kAggregateDevicePropertyComposition                             :: 1633906541
-    kAggregateDevicePropertyMainSubDevice                           :: 1634562932
-    kAggregateDevicePropertyClockDevice                             :: 1634755428
-    kAggregateDevicePropertyTapList                                 :: 1952542755
-    kAggregateDevicePropertySubTapList                              :: 1635017072
-    kAggregateDriftCompensationMinQuality                           :: 0
-    kAggregateDriftCompensationLowQuality                           :: 32
-    kAggregateDriftCompensationMediumQuality                        :: 64
-    kAggregateDriftCompensationHighQuality                          :: 96
-    kAggregateDriftCompensationMaxQuality                           :: 127
-    kSubDeviceClassID                                               :: 1634956642
-    kSubDeviceDriftCompensationMinQuality                           :: 0
-    kSubDeviceDriftCompensationLowQuality                           :: 32
-    kSubDeviceDriftCompensationMediumQuality                        :: 64
-    kSubDeviceDriftCompensationHighQuality                          :: 96
-    kSubDeviceDriftCompensationMaxQuality                           :: 127
-    kSubDevicePropertyExtraLatency                                  :: 2020373603
-    kSubDevicePropertyDriftCompensation                             :: 1685218932
-    kSubDevicePropertyDriftCompensationQuality                      :: 1685218929
-    kSubTapClassID                                                  :: 1937006960
-    kSubTapPropertyExtraLatency                                     :: 2020373603
-    kSubTapPropertyDriftCompensation                                :: 1685218932
-    kSubTapPropertyDriftCompensationQuality                         :: 1685218929
-    kProcessClassID                                                 :: 1668050548
-    kProcessPropertyPID                                             :: 1886415204
-    kProcessPropertyBundleID                                        :: 1885497700
-    kProcessPropertyDevices                                         :: 1885632035
-    kProcessPropertyIsRunning                                       :: 1885958719
-    kProcessPropertyIsRunningInput                                  :: 1885958761
-    kProcessPropertyIsRunningOutput                                 :: 1885958767
-    kTapClassID                                                     :: 1952672883
-    kTapPropertyUID                                                 :: 1953851748
-    kTapPropertyDescription                                         :: 1952740195
-    kTapPropertyFormat                                              :: 1952869748
-    kDevicePropertyScopeInput                                       :: 1768845428
-    kDevicePropertyScopeOutput                                      :: 1869968496
-    kDevicePropertyScopePlayThrough                                 :: 1886679669
-    kPropertyWildcardPropertyID                                     :: 707406378
-    kPropertyWildcardSection                                        :: 255
-    kPropertyWildcardChannel                                        :: 4294967295
-    kISubOwnerControlClassID                                        :: 1635017576
-    kLevelControlPropertyDecibelsToScalarTransferFunction           :: 1818457190
-    kHardwarePropertyRunLoop                                        :: 1919839344
-    kHardwarePropertyDeviceForUID                                   :: 1685416292
-    kHardwarePropertyPlugInForBundleID                              :: 1885954665
-    kHardwarePropertyProcessIsMaster                                :: 1835103092
-    kHardwarePropertyBootChimeVolumeScalar                          :: 1650620019
-    kHardwarePropertyBootChimeVolumeDecibels                        :: 1650620004
-    kHardwarePropertyBootChimeVolumeRangeDecibels                   :: 1650615331
-    kHardwarePropertyBootChimeVolumeScalarToDecibels                :: 1651913316
-    kHardwarePropertyBootChimeVolumeDecibelsToScalar                :: 1650733686
-    kHardwarePropertyBootChimeVolumeDecibelsToScalarTransferFunction:: 1651930214
-    kDeviceUnknown                                                  :: 0
-    kDeviceTransportTypeAutoAggregate                               :: 1718055536
-    kDevicePropertyVolumeDecibelsToScalarTransferFunction           :: 1986229350
-    kDevicePropertyPlayThruVolumeDecibelsToScalarTransferFunction   :: 1836479590
-    kDevicePropertyDriverShouldOwniSub                              :: 1769174370
-    kDevicePropertySubVolumeDecibelsToScalarTransferFunction        :: 1937142886
-    kDevicePropertyDeviceName                                       :: 1851878757
-    kDevicePropertyDeviceNameCFString                               :: 1819173229
-    kDevicePropertyDeviceManufacturer                               :: 1835101042
-    kDevicePropertyDeviceManufacturerCFString                       :: 1819107691
-    kDevicePropertyRegisterBufferList                               :: 1919055206
-    kDevicePropertyBufferSize                                       :: 1651730810
-    kDevicePropertyBufferSizeRange                                  :: 1651735075
-    kDevicePropertyChannelName                                      :: 1667788397
-    kDevicePropertyChannelNameCFString                              :: 1818454126
-    kDevicePropertyChannelCategoryName                              :: 1667460717
-    kDevicePropertyChannelCategoryNameCFString                      :: 1818452846
-    kDevicePropertyChannelNumberName                                :: 1668181613
-    kDevicePropertyChannelNumberNameCFString                        :: 1818455662
-    kDevicePropertySupportsMixing                                   :: 1835628607
-    kDevicePropertyStreamFormat                                     :: 1936092532
-    kDevicePropertyStreamFormats                                    :: 1936092451
-    kDevicePropertyStreamFormatSupported                            :: 1936092479
-    kDevicePropertyStreamFormatMatch                                :: 1936092525
-    kDevicePropertyDataSourceNameForID                              :: 1936941934
-    kDevicePropertyClockSourceNameForID                             :: 1668506478
-    kDevicePropertyPlayThruDestinationNameForID                     :: 1835295854
-    kDevicePropertyChannelNominalLineLevelNameForID                 :: 1668181110
-    kDevicePropertyHighPassFilterSettingNameForID                   :: 1667787120
-    kAggregateDevicePropertyMasterSubDevice                         :: 1634562932
-    kStreamUnknown                                                  :: 0
-    kStreamPropertyOwningDevice                                     :: 1937007734
-    kStreamPropertyPhysicalFormats                                  :: 1885762595
-    kStreamPropertyPhysicalFormatSupported                          :: 1885762623
-    kStreamPropertyPhysicalFormatMatch                              :: 1885762669
-    kBootChimeVolumeControlClassID                                  :: 1886544237
-    kControlPropertyVariant                                         :: 1668702578
-    kClockSourceControlPropertyItemKind                             :: 1668049771
-    kStreamAnyRate                                                  :: 0.000000
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-    AUDIO_TOOLBOX_VERSION        :: 1060
-    AUTH_OPEN_NOAUTHFD           :: 1
-    AU_SUPPORT_INTERAPP_AUDIO    :: 1
-    AUDIT_RECORD_MAGIC           :: 2190085915
-    AUDIT_HARD_LIMIT_FREE_BLOCKS :: 4
-    AUDIT_TRIGGER_MIN            :: 1
-    AUDIT_TRIGGER_LOW_SPACE      :: 1
-    AUDIT_TRIGGER_ROTATE_KERNEL  :: 2
-    AUDIT_TRIGGER_READ_FILE      :: 3
-    AUDIT_TRIGGER_CLOSE_AND_DIE  :: 4
-    AUDIT_TRIGGER_NO_SPACE       :: 5
-    AUDIT_TRIGGER_ROTATE_USER    :: 6
-    AUDIT_TRIGGER_INITIALIZE     :: 7
-    AUDIT_TRIGGER_EXPIRE_TRAILS  :: 8
-    AUDIT_TRIGGER_MAX            :: 8
-    AUDITDEV_FILENAME            :: "audit"
-    AU_DEFAUDITSID               :: 0
-    AU_ASSIGN_ASID               :: 1
-    AUC_UNSET                    :: 0
-    AUC_AUDITING                 :: 1
-    AUC_NOAUDIT                  :: 2
-    AUC_DISABLED                 :: 1
-    AUDIT_CNT                    :: 1
-    AUDIT_AHLT                   :: 2
-    AUDIT_ARGV                   :: 4
-    AUDIT_ARGE                   :: 8
-    AUDIT_SEQ                    :: 16
-    AUDIT_WINDATA                :: 32
-    AUDIT_USER                   :: 64
-    AUDIT_GROUP                  :: 128
-    AUDIT_TRAIL                  :: 256
-    AUDIT_PATH                   :: 512
-    AUDIT_SCNT                   :: 1024
-    AUDIT_PUBLIC                 :: 2048
-    AUDIT_ZONENAME               :: 4096
-    AUDIT_PERZONE                :: 8192
-    AU_FS_MINFREE                :: 20
-    AU_IPv4                      :: 4
-    AU_IPv6                      :: 16
-    AU_CLASS_MASK_RESERVED       :: 268435456
-    AUDIO_UNIT_VERSION           :: 1070
-
-    k_NoError                                                 :: 0
-    k_UnimplementedError                                      :: -4
-    k_FileNotFoundError                                       :: -43
-    k_FilePermissionError                                     :: -54
-    k_TooManyFilesOpenError                                   :: -42
-    k_BadFilePathError                                        :: 561017960
-    k_ParamError                                              :: -50
-    k_MemFullError                                            :: -108
-    kFormatLinearPCM                                          :: 1819304813
-    kFormatAC3                                                :: 1633889587
-    kFormat60958AC3                                           :: 1667326771
-    kFormatAppleIMA4                                          :: 1768775988
-    kFormatMPEG4AAC                                           :: 1633772320
-    kFormatMPEG4CELP                                          :: 1667591280
-    kFormatMPEG4HVXC                                          :: 1752594531
-    kFormatMPEG4TwinVQ                                        :: 1953986161
-    kFormatMACE3                                              :: 1296122675
-    kFormatMACE6                                              :: 1296122678
-    kFormatULaw                                               :: 1970037111
-    kFormatALaw                                               :: 1634492791
-    kFormatQDesign                                            :: 1363430723
-    kFormatQDesign2                                           :: 1363430706
-    kFormatQUALCOMM                                           :: 1365470320
-    kFormatMPEGLayer1                                         :: 778924081
-    kFormatMPEGLayer2                                         :: 778924082
-    kFormatMPEGLayer3                                         :: 778924083
-    kFormatTimeCode                                           :: 1953066341
-    kFormatMIDIStream                                         :: 1835623529
-    kFormatParameterValueStream                               :: 1634760307
-    kFormatAppleLossless                                      :: 1634492771
-    kFormatMPEG4AAC_HE                                        :: 1633772392
-    kFormatMPEG4AAC_LD                                        :: 1633772396
-    kFormatMPEG4AAC_ELD                                       :: 1633772389
-    kFormatMPEG4AAC_ELD_SBR                                   :: 1633772390
-    kFormatMPEG4AAC_ELD_V2                                    :: 1633772391
-    kFormatMPEG4AAC_HE_V2                                     :: 1633772400
-    kFormatMPEG4AAC_Spatial                                   :: 1633772403
-    kFormatMPEGD_USAC                                         :: 1970495843
-    kFormatAMR                                                :: 1935764850
-    kFormatAMR_WB                                             :: 1935767394
-    kFormatAudible                                            :: 1096107074
-    kFormatiLBC                                               :: 1768710755
-    kFormatDVIIntelIMA                                        :: 1836253201
-    kFormatMicrosoftGSM                                       :: 1836253233
-    kFormatAES3                                               :: 1634038579
-    kFormatEnhancedAC3                                        :: 1700998451
-    kFormatFLAC                                               :: 1718378851
-    kFormatOpus                                               :: 1869641075
-    kFormatAPAC                                               :: 1634754915
-    kFormatFlagIsFloat                                        :: 1
-    kFormatFlagIsBigEndian                                    :: 2
-    kFormatFlagIsSignedInteger                                :: 4
-    kFormatFlagIsPacked                                       :: 8
-    kFormatFlagIsAlignedHigh                                  :: 16
-    kFormatFlagIsNonInterleaved                               :: 32
-    kFormatFlagIsNonMixable                                   :: 64
-    kFormatFlagsAreAllClear                                   :: 2147483648
-    kFormatFlagsNativeEndian                                  :: 0
-    kFormatFlagsCanonical                                     :: 12
-    kFormatFlagsAudioUnitCanonical                            :: 3116
-    kFormatFlagsNativeFloatPacked                             :: 9
-    kChannelLabel_Unknown                                     :: 4294967295
-    kChannelLabel_Unused                                      :: 0
-    kChannelLabel_UseCoordinates                              :: 100
-    kChannelLabel_Left                                        :: 1
-    kChannelLabel_Right                                       :: 2
-    kChannelLabel_Center                                      :: 3
-    kChannelLabel_LFEScreen                                   :: 4
-    kChannelLabel_LeftSurround                                :: 5
-    kChannelLabel_RightSurround                               :: 6
-    kChannelLabel_LeftCenter                                  :: 7
-    kChannelLabel_RightCenter                                 :: 8
-    kChannelLabel_CenterSurround                              :: 9
-    kChannelLabel_LeftSurroundDirect                          :: 10
-    kChannelLabel_RightSurroundDirect                         :: 11
-    kChannelLabel_TopCenterSurround                           :: 12
-    kChannelLabel_VerticalHeightLeft                          :: 13
-    kChannelLabel_VerticalHeightCenter                        :: 14
-    kChannelLabel_VerticalHeightRight                         :: 15
-    kChannelLabel_TopBackLeft                                 :: 16
-    kChannelLabel_TopBackCenter                               :: 17
-    kChannelLabel_TopBackRight                                :: 18
-    kChannelLabel_RearSurroundLeft                            :: 33
-    kChannelLabel_RearSurroundRight                           :: 34
-    kChannelLabel_LeftWide                                    :: 35
-    kChannelLabel_RightWide                                   :: 36
-    kChannelLabel_LFE2                                        :: 37
-    kChannelLabel_LeftTotal                                   :: 38
-    kChannelLabel_RightTotal                                  :: 39
-    kChannelLabel_HearingImpaired                             :: 40
-    kChannelLabel_Narration                                   :: 41
-    kChannelLabel_Mono                                        :: 42
-    kChannelLabel_DialogCentricMix                            :: 43
-    kChannelLabel_CenterSurroundDirect                        :: 44
-    kChannelLabel_Haptic                                      :: 45
-    kChannelLabel_LeftTopFront                                :: 13
-    kChannelLabel_CenterTopFront                              :: 14
-    kChannelLabel_RightTopFront                               :: 15
-    kChannelLabel_LeftTopMiddle                               :: 49
-    kChannelLabel_CenterTopMiddle                             :: 12
-    kChannelLabel_RightTopMiddle                              :: 51
-    kChannelLabel_LeftTopRear                                 :: 52
-    kChannelLabel_CenterTopRear                               :: 53
-    kChannelLabel_RightTopRear                                :: 54
-    kChannelLabel_LeftSideSurround                            :: 55
-    kChannelLabel_RightSideSurround                           :: 56
-    kChannelLabel_LeftBottom                                  :: 57
-    kChannelLabel_RightBottom                                 :: 58
-    kChannelLabel_CenterBottom                                :: 59
-    kChannelLabel_LeftTopSurround                             :: 60
-    kChannelLabel_RightTopSurround                            :: 61
-    kChannelLabel_LFE3                                        :: 62
-    kChannelLabel_LeftBackSurround                            :: 63
-    kChannelLabel_RightBackSurround                           :: 64
-    kChannelLabel_LeftEdgeOfScreen                            :: 65
-    kChannelLabel_RightEdgeOfScreen                           :: 66
-    kChannelLabel_Ambisonic_W                                 :: 200
-    kChannelLabel_Ambisonic_X                                 :: 201
-    kChannelLabel_Ambisonic_Y                                 :: 202
-    kChannelLabel_Ambisonic_Z                                 :: 203
-    kChannelLabel_MS_Mid                                      :: 204
-    kChannelLabel_MS_Side                                     :: 205
-    kChannelLabel_XY_X                                        :: 206
-    kChannelLabel_XY_Y                                        :: 207
-    kChannelLabel_BinauralLeft                                :: 208
-    kChannelLabel_BinauralRight                               :: 209
-    kChannelLabel_HeadphonesLeft                              :: 301
-    kChannelLabel_HeadphonesRight                             :: 302
-    kChannelLabel_ClickTrack                                  :: 304
-    kChannelLabel_ForeignLanguage                             :: 305
-    kChannelLabel_Discrete                                    :: 400
-    kChannelLabel_Discrete_0                                  :: 65536
-    kChannelLabel_Discrete_1                                  :: 65537
-    kChannelLabel_Discrete_2                                  :: 65538
-    kChannelLabel_Discrete_3                                  :: 65539
-    kChannelLabel_Discrete_4                                  :: 65540
-    kChannelLabel_Discrete_5                                  :: 65541
-    kChannelLabel_Discrete_6                                  :: 65542
-    kChannelLabel_Discrete_7                                  :: 65543
-    kChannelLabel_Discrete_8                                  :: 65544
-    kChannelLabel_Discrete_9                                  :: 65545
-    kChannelLabel_Discrete_10                                 :: 65546
-    kChannelLabel_Discrete_11                                 :: 65547
-    kChannelLabel_Discrete_12                                 :: 65548
-    kChannelLabel_Discrete_13                                 :: 65549
-    kChannelLabel_Discrete_14                                 :: 65550
-    kChannelLabel_Discrete_15                                 :: 65551
-    kChannelLabel_Discrete_65535                              :: 131071
-    kChannelLabel_HOA_ACN                                     :: 500
-    kChannelLabel_HOA_ACN_0                                   :: 131072
-    kChannelLabel_HOA_ACN_1                                   :: 131073
-    kChannelLabel_HOA_ACN_2                                   :: 131074
-    kChannelLabel_HOA_ACN_3                                   :: 131075
-    kChannelLabel_HOA_ACN_4                                   :: 131076
-    kChannelLabel_HOA_ACN_5                                   :: 131077
-    kChannelLabel_HOA_ACN_6                                   :: 131078
-    kChannelLabel_HOA_ACN_7                                   :: 131079
-    kChannelLabel_HOA_ACN_8                                   :: 131080
-    kChannelLabel_HOA_ACN_9                                   :: 131081
-    kChannelLabel_HOA_ACN_10                                  :: 131082
-    kChannelLabel_HOA_ACN_11                                  :: 131083
-    kChannelLabel_HOA_ACN_12                                  :: 131084
-    kChannelLabel_HOA_ACN_13                                  :: 131085
-    kChannelLabel_HOA_ACN_14                                  :: 131086
-    kChannelLabel_HOA_ACN_15                                  :: 131087
-    kChannelLabel_HOA_ACN_65024                               :: 196096
-    kChannelLabel_HOA_SN3D                                    :: 131072
-    kChannelLabel_HOA_N3D                                     :: 196608
-    kChannelLabel_Object                                      :: 262144
-    kChannelLabel_BeginReserved                               :: 4026531840
-    kChannelLabel_EndReserved                                 :: 4294967294
-    kChannelLayoutTag_UseChannelDescriptions                  :: 0
-    kChannelLayoutTag_UseChannelBitmap                        :: 65536
-    kChannelLayoutTag_Mono                                    :: 6553601
-    kChannelLayoutTag_Stereo                                  :: 6619138
-    kChannelLayoutTag_StereoHeadphones                        :: 6684674
-    kChannelLayoutTag_MatrixStereo                            :: 6750210
-    kChannelLayoutTag_MidSide                                 :: 6815746
-    kChannelLayoutTag_XY                                      :: 6881282
-    kChannelLayoutTag_Binaural                                :: 6946818
-    kChannelLayoutTag_Ambisonic_B_Format                      :: 7012356
-    kChannelLayoutTag_Quadraphonic                            :: 7077892
-    kChannelLayoutTag_Pentagonal                              :: 7143429
-    kChannelLayoutTag_Hexagonal                               :: 7208966
-    kChannelLayoutTag_Octagonal                               :: 7274504
-    kChannelLayoutTag_Cube                                    :: 7340040
-    kChannelLayoutTag_MPEG_1_0                                :: 6553601
-    kChannelLayoutTag_MPEG_2_0                                :: 6619138
-    kChannelLayoutTag_MPEG_3_0_A                              :: 7405571
-    kChannelLayoutTag_MPEG_3_0_B                              :: 7471107
-    kChannelLayoutTag_MPEG_4_0_A                              :: 7536644
-    kChannelLayoutTag_MPEG_4_0_B                              :: 7602180
-    kChannelLayoutTag_MPEG_5_0_A                              :: 7667717
-    kChannelLayoutTag_MPEG_5_0_B                              :: 7733253
-    kChannelLayoutTag_MPEG_5_0_C                              :: 7798789
-    kChannelLayoutTag_MPEG_5_0_D                              :: 7864325
-    kChannelLayoutTag_MPEG_5_1_A                              :: 7929862
-    kChannelLayoutTag_MPEG_5_1_B                              :: 7995398
-    kChannelLayoutTag_MPEG_5_1_C                              :: 8060934
-    kChannelLayoutTag_MPEG_5_1_D                              :: 8126470
-    kChannelLayoutTag_MPEG_6_1_A                              :: 8192007
-    kChannelLayoutTag_MPEG_7_1_A                              :: 8257544
-    kChannelLayoutTag_MPEG_7_1_B                              :: 8323080
-    kChannelLayoutTag_MPEG_7_1_C                              :: 8388616
-    kChannelLayoutTag_Emagic_Default_7_1                      :: 8454152
-    kChannelLayoutTag_SMPTE_DTV                               :: 8519688
-    kChannelLayoutTag_ITU_1_0                                 :: 6553601
-    kChannelLayoutTag_ITU_2_0                                 :: 6619138
-    kChannelLayoutTag_ITU_2_1                                 :: 8585219
-    kChannelLayoutTag_ITU_2_2                                 :: 8650756
-    kChannelLayoutTag_ITU_3_0                                 :: 7405571
-    kChannelLayoutTag_ITU_3_1                                 :: 7536644
-    kChannelLayoutTag_ITU_3_2                                 :: 7667717
-    kChannelLayoutTag_ITU_3_2_1                               :: 7929862
-    kChannelLayoutTag_ITU_3_4_1                               :: 8388616
-    kChannelLayoutTag_DVD_0                                   :: 6553601
-    kChannelLayoutTag_DVD_1                                   :: 6619138
-    kChannelLayoutTag_DVD_2                                   :: 8585219
-    kChannelLayoutTag_DVD_3                                   :: 8650756
-    kChannelLayoutTag_DVD_4                                   :: 8716291
-    kChannelLayoutTag_DVD_5                                   :: 8781828
-    kChannelLayoutTag_DVD_6                                   :: 8847365
-    kChannelLayoutTag_DVD_7                                   :: 7405571
-    kChannelLayoutTag_DVD_8                                   :: 7536644
-    kChannelLayoutTag_DVD_9                                   :: 7667717
-    kChannelLayoutTag_DVD_10                                  :: 8912900
-    kChannelLayoutTag_DVD_11                                  :: 8978437
-    kChannelLayoutTag_DVD_12                                  :: 7929862
-    kChannelLayoutTag_DVD_13                                  :: 7536644
-    kChannelLayoutTag_DVD_14                                  :: 7667717
-    kChannelLayoutTag_DVD_15                                  :: 8912900
-    kChannelLayoutTag_DVD_16                                  :: 8978437
-    kChannelLayoutTag_DVD_17                                  :: 7929862
-    kChannelLayoutTag_DVD_18                                  :: 9043973
-    kChannelLayoutTag_DVD_19                                  :: 7733253
-    kChannelLayoutTag_DVD_20                                  :: 7995398
-    kChannelLayoutTag_AudioUnit_4                             :: 7077892
-    kChannelLayoutTag_AudioUnit_5                             :: 7143429
-    kChannelLayoutTag_AudioUnit_6                             :: 7208966
-    kChannelLayoutTag_AudioUnit_8                             :: 7274504
-    kChannelLayoutTag_AudioUnit_5_0                           :: 7733253
-    kChannelLayoutTag_AudioUnit_6_0                           :: 9109510
-    kChannelLayoutTag_AudioUnit_7_0                           :: 9175047
-    kChannelLayoutTag_AudioUnit_7_0_Front                     :: 9699335
-    kChannelLayoutTag_AudioUnit_5_1                           :: 7929862
-    kChannelLayoutTag_AudioUnit_6_1                           :: 8192007
-    kChannelLayoutTag_AudioUnit_7_1                           :: 8388616
-    kChannelLayoutTag_AudioUnit_7_1_Front                     :: 8257544
-    kChannelLayoutTag_AAC_3_0                                 :: 7471107
-    kChannelLayoutTag_AAC_Quadraphonic                        :: 7077892
-    kChannelLayoutTag_AAC_4_0                                 :: 7602180
-    kChannelLayoutTag_AAC_5_0                                 :: 7864325
-    kChannelLayoutTag_AAC_5_1                                 :: 8126470
-    kChannelLayoutTag_AAC_6_0                                 :: 9240582
-    kChannelLayoutTag_AAC_6_1                                 :: 9306119
-    kChannelLayoutTag_AAC_7_0                                 :: 9371655
-    kChannelLayoutTag_AAC_7_1                                 :: 8323080
-    kChannelLayoutTag_AAC_7_1_B                               :: 11993096
-    kChannelLayoutTag_AAC_7_1_C                               :: 12058632
-    kChannelLayoutTag_AAC_Octagonal                           :: 9437192
-    kChannelLayoutTag_TMH_10_2_std                            :: 9502736
-    kChannelLayoutTag_TMH_10_2_full                           :: 9568277
-    kChannelLayoutTag_AC3_1_0_1                               :: 9764866
-    kChannelLayoutTag_AC3_3_0                                 :: 9830403
-    kChannelLayoutTag_AC3_3_1                                 :: 9895940
-    kChannelLayoutTag_AC3_3_0_1                               :: 9961476
-    kChannelLayoutTag_AC3_2_1_1                               :: 10027012
-    kChannelLayoutTag_AC3_3_1_1                               :: 10092549
-    kChannelLayoutTag_EAC_6_0_A                               :: 10158086
-    kChannelLayoutTag_EAC_7_0_A                               :: 10223623
-    kChannelLayoutTag_EAC3_6_1_A                              :: 10289159
-    kChannelLayoutTag_EAC3_6_1_B                              :: 10354695
-    kChannelLayoutTag_EAC3_6_1_C                              :: 10420231
-    kChannelLayoutTag_EAC3_7_1_A                              :: 10485768
-    kChannelLayoutTag_EAC3_7_1_B                              :: 10551304
-    kChannelLayoutTag_EAC3_7_1_C                              :: 10616840
-    kChannelLayoutTag_EAC3_7_1_D                              :: 10682376
-    kChannelLayoutTag_EAC3_7_1_E                              :: 10747912
-    kChannelLayoutTag_EAC3_7_1_F                              :: 10813448
-    kChannelLayoutTag_EAC3_7_1_G                              :: 10878984
-    kChannelLayoutTag_EAC3_7_1_H                              :: 10944520
-    kChannelLayoutTag_DTS_3_1                                 :: 11010052
-    kChannelLayoutTag_DTS_4_1                                 :: 11075589
-    kChannelLayoutTag_DTS_6_0_A                               :: 11141126
-    kChannelLayoutTag_DTS_6_0_B                               :: 11206662
-    kChannelLayoutTag_DTS_6_0_C                               :: 11272198
-    kChannelLayoutTag_DTS_6_1_A                               :: 11337735
-    kChannelLayoutTag_DTS_6_1_B                               :: 11403271
-    kChannelLayoutTag_DTS_6_1_C                               :: 11468807
-    kChannelLayoutTag_DTS_7_0                                 :: 11534343
-    kChannelLayoutTag_DTS_7_1                                 :: 11599880
-    kChannelLayoutTag_DTS_8_0_A                               :: 11665416
-    kChannelLayoutTag_DTS_8_0_B                               :: 11730952
-    kChannelLayoutTag_DTS_8_1_A                               :: 11796489
-    kChannelLayoutTag_DTS_8_1_B                               :: 11862025
-    kChannelLayoutTag_DTS_6_1_D                               :: 11927559
-    kChannelLayoutTag_WAVE_2_1                                :: 8716291
-    kChannelLayoutTag_WAVE_3_0                                :: 7405571
-    kChannelLayoutTag_WAVE_4_0_A                              :: 8650756
-    kChannelLayoutTag_WAVE_4_0_B                              :: 12124164
-    kChannelLayoutTag_WAVE_5_0_A                              :: 7667717
-    kChannelLayoutTag_WAVE_5_0_B                              :: 12189701
-    kChannelLayoutTag_WAVE_5_1_A                              :: 7929862
-    kChannelLayoutTag_WAVE_5_1_B                              :: 12255238
-    kChannelLayoutTag_WAVE_6_1                                :: 12320775
-    kChannelLayoutTag_WAVE_7_1                                :: 12386312
-    kChannelLayoutTag_HOA_ACN_SN3D                            :: 12451840
-    kChannelLayoutTag_HOA_ACN_N3D                             :: 12517376
-    kChannelLayoutTag_Atmos_5_1_2                             :: 12713992
-    kChannelLayoutTag_Atmos_5_1_4                             :: 12779530
-    kChannelLayoutTag_Atmos_7_1_2                             :: 12845066
-    kChannelLayoutTag_Atmos_7_1_4                             :: 12582924
-    kChannelLayoutTag_Atmos_9_1_6                             :: 12648464
-    kChannelLayoutTag_Logic_Mono                              :: 6553601
-    kChannelLayoutTag_Logic_Stereo                            :: 6619138
-    kChannelLayoutTag_Logic_Quadraphonic                      :: 7077892
-    kChannelLayoutTag_Logic_4_0_A                             :: 7536644
-    kChannelLayoutTag_Logic_4_0_B                             :: 7602180
-    kChannelLayoutTag_Logic_4_0_C                             :: 12910596
-    kChannelLayoutTag_Logic_5_0_A                             :: 7667717
-    kChannelLayoutTag_Logic_5_0_B                             :: 7733253
-    kChannelLayoutTag_Logic_5_0_C                             :: 7798789
-    kChannelLayoutTag_Logic_5_0_D                             :: 7864325
-    kChannelLayoutTag_Logic_5_1_A                             :: 7929862
-    kChannelLayoutTag_Logic_5_1_B                             :: 7995398
-    kChannelLayoutTag_Logic_5_1_C                             :: 8060934
-    kChannelLayoutTag_Logic_5_1_D                             :: 8126470
-    kChannelLayoutTag_Logic_6_0_A                             :: 9240582
-    kChannelLayoutTag_Logic_6_0_B                             :: 12976134
-    kChannelLayoutTag_Logic_6_0_C                             :: 9109510
-    kChannelLayoutTag_Logic_6_1_A                             :: 9306119
-    kChannelLayoutTag_Logic_6_1_B                             :: 13041671
-    kChannelLayoutTag_Logic_6_1_C                             :: 8192007
-    kChannelLayoutTag_Logic_6_1_D                             :: 13107207
-    kChannelLayoutTag_Logic_7_1_A                             :: 8388616
-    kChannelLayoutTag_Logic_7_1_B                             :: 13172744
-    kChannelLayoutTag_Logic_7_1_C                             :: 8388616
-    kChannelLayoutTag_Logic_7_1_SDDS_A                        :: 8257544
-    kChannelLayoutTag_Logic_7_1_SDDS_B                        :: 8323080
-    kChannelLayoutTag_Logic_7_1_SDDS_C                        :: 8454152
-    kChannelLayoutTag_Logic_Atmos_5_1_2                       :: 12713992
-    kChannelLayoutTag_Logic_Atmos_5_1_4                       :: 12779530
-    kChannelLayoutTag_Logic_Atmos_7_1_2                       :: 12845066
-    kChannelLayoutTag_Logic_Atmos_7_1_4_A                     :: 12582924
-    kChannelLayoutTag_Logic_Atmos_7_1_4_B                     :: 13238284
-    kChannelLayoutTag_Logic_Atmos_7_1_6                       :: 13303822
-    kChannelLayoutTag_DiscreteInOrder                         :: 9633792
-    kChannelLayoutTag_CICP_1                                  :: 6553601
-    kChannelLayoutTag_CICP_2                                  :: 6619138
-    kChannelLayoutTag_CICP_3                                  :: 7405571
-    kChannelLayoutTag_CICP_4                                  :: 7536644
-    kChannelLayoutTag_CICP_5                                  :: 7667717
-    kChannelLayoutTag_CICP_6                                  :: 7929862
-    kChannelLayoutTag_CICP_7                                  :: 8323080
-    kChannelLayoutTag_CICP_9                                  :: 8585219
-    kChannelLayoutTag_CICP_10                                 :: 8650756
-    kChannelLayoutTag_CICP_11                                 :: 8192007
-    kChannelLayoutTag_CICP_12                                 :: 8388616
-    kChannelLayoutTag_CICP_13                                 :: 13369368
-    kChannelLayoutTag_CICP_14                                 :: 13434888
-    kChannelLayoutTag_CICP_15                                 :: 13500428
-    kChannelLayoutTag_CICP_16                                 :: 13565962
-    kChannelLayoutTag_CICP_17                                 :: 13631500
-    kChannelLayoutTag_CICP_18                                 :: 13697038
-    kChannelLayoutTag_CICP_19                                 :: 13762572
-    kChannelLayoutTag_CICP_20                                 :: 13828110
-    kChannelLayoutTag_Ogg_3_0                                 :: 9830403
-    kChannelLayoutTag_Ogg_4_0                                 :: 12124164
-    kChannelLayoutTag_Ogg_5_0                                 :: 13893637
-    kChannelLayoutTag_Ogg_5_1                                 :: 13959174
-    kChannelLayoutTag_Ogg_6_1                                 :: 14024711
-    kChannelLayoutTag_Ogg_7_1                                 :: 14090248
-    kChannelLayoutTag_MPEG_5_0_E                              :: 14155781
-    kChannelLayoutTag_MPEG_5_1_E                              :: 14221318
-    kChannelLayoutTag_MPEG_6_1_B                              :: 14286855
-    kChannelLayoutTag_MPEG_7_1_D                              :: 14352392
-    kChannelLayoutTag_BeginReserved                           :: 4026531840
-    kChannelLayoutTag_EndReserved                             :: 4294901759
-    kChannelLayoutTag_Unknown                                 :: 4294901760
-    kCodecPropertySupportedInputFormats                       :: 1768320291
-    kCodecPropertySupportedOutputFormats                      :: 1868983587
-    kCodecPropertyAvailableInputSampleRates                   :: 1634300786
-    kCodecPropertyAvailableOutputSampleRates                  :: 1634694002
-    kCodecPropertyAvailableBitRateRange                       :: 1633841780
-    kCodecPropertyMinimumNumberInputPackets                   :: 1835952496
-    kCodecPropertyMinimumNumberOutputPackets                  :: 1835954032
-    kCodecPropertyAvailableNumberChannels                     :: 1668116067
-    kCodecPropertyDoesSampleRateConversion                    :: 1819112035
-    kCodecPropertyAvailableInputChannelLayoutTags             :: 1634296684
-    kCodecPropertyAvailableOutputChannelLayoutTags            :: 1634689900
-    kCodecPropertyInputFormatsForOutputFormat                 :: 1768305775
-    kCodecPropertyOutputFormatsForInputFormat                 :: 1868969065
-    kCodecPropertyFormatInfo                                  :: 1633904233
-    kCodecPropertyInputBufferSize                             :: 1952609638
-    kCodecPropertyPacketFrameSize                             :: 1885432678
-    kCodecPropertyHasVariablePacketByteSizes                  :: 1987078975
-    kCodecPropertyEmploysDependentPackets                     :: 1685089087
-    kCodecPropertyMaximumPacketByteSize                       :: 1885432674
-    kCodecPropertyPacketSizeLimitForVBR                       :: 1885432684
-    kCodecPropertyCurrentInputFormat                          :: 1768320372
-    kCodecPropertyCurrentOutputFormat                         :: 1868983668
-    kCodecPropertyMagicCookie                                 :: 1802857321
-    kCodecPropertyUsedInputBufferSize                         :: 1969386854
-    kCodecPropertyIsInitialized                               :: 1768843636
-    kCodecPropertyCurrentTargetBitRate                        :: 1651663220
-    kCodecPropertyCurrentInputSampleRate                      :: 1667855218
-    kCodecPropertyCurrentOutputSampleRate                     :: 1668248434
-    kCodecPropertyQualitySetting                              :: 1936876401
-    kCodecPropertyApplicableBitRateRange                      :: 1651668065
-    kCodecPropertyRecommendedBitRateRange                     :: 1651668082
-    kCodecPropertyApplicableInputSampleRates                  :: 1769173601
-    kCodecPropertyApplicableOutputSampleRates                 :: 1869836897
-    kCodecPropertyPaddedZeros                                 :: 1885430832
-    kCodecPropertyPrimeMethod                                 :: 1886547309
-    kCodecPropertyPrimeInfo                                   :: 1886546285
-    kCodecPropertyCurrentInputChannelLayout                   :: 1768123424
-    kCodecPropertyCurrentOutputChannelLayout                  :: 1868786720
-    kCodecPropertySettings                                    :: 1633907488
-    kCodecPropertyFormatList                                  :: 1633904236
-    kCodecPropertyBitRateControlMode                          :: 1633903206
-    kCodecPropertySoundQualityForVBR                          :: 1986163313
-    kCodecPropertyBitRateForVBR                               :: 1986163298
-    kCodecPropertyDelayMode                                   :: 1684893540
-    kCodecPropertyAdjustLocalQuality                          :: 1584488812
-    kCodecPropertyDynamicRangeControlMode                     :: 1835299427
-    kCodecPropertyAdjustCompressionProfile                    :: 1584427631
-    kCodecPropertyProgramTargetLevelConstant                  :: 1886678115
-    kCodecPropertyAdjustTargetLevelConstant                   :: 1584688227
-    kCodecPropertyProgramTargetLevel                          :: 1886418028
-    kCodecPropertyAdjustTargetLevel                           :: 1584428140
-    kCodecPropertyDynamicRangeControlConfiguration            :: 1667527267
-    kCodecPropertyContentSource                               :: 1668510307
-    kCodecPropertyASPFrequency                                :: 1634955366
-    kCodecQuality_Max                                         :: 127
-    kCodecQuality_High                                        :: 96
-    kCodecQuality_Medium                                      :: 64
-    kCodecQuality_Low                                         :: 32
-    kCodecQuality_Min                                         :: 0
-    kCodecPrimeMethod_Pre                                     :: 0
-    kCodecPrimeMethod_Normal                                  :: 1
-    kCodecPrimeMethod_None                                    :: 2
-    kCodecBitRateControlMode_Constant                         :: 0
-    kCodecBitRateControlMode_LongTermAverage                  :: 1
-    kCodecBitRateControlMode_VariableConstrained              :: 2
-    kCodecBitRateControlMode_Variable                         :: 3
-    kCodecDelayMode_Compatibility                             :: 0
-    kCodecDelayMode_Minimum                                   :: 1
-    kCodecDelayMode_Optimal                                   :: 2
-    kCodecDynamicRangeControlConfiguration_None               :: 0
-    kCodecDynamicRangeControlConfiguration_Music              :: 1
-    kCodecDynamicRangeControlConfiguration_Speech             :: 2
-    kCodecDynamicRangeControlConfiguration_Movie              :: 3
-    kCodecDynamicRangeControlConfiguration_Capture            :: 4
-    kCodecContentSource_Unspecified                           :: -1
-    kCodecContentSource_Reserved                              :: 0
-    kCodecContentSource_AppleCapture_Traditional              :: 1
-    kCodecContentSource_AppleCapture_Spatial                  :: 2
-    kCodecContentSource_AppleCapture_Spatial_Enhanced         :: 3
-    kCodecContentSource_AppleMusic_Traditional                :: 4
-    kCodecContentSource_AppleMusic_Spatial                    :: 5
-    kCodecContentSource_AppleAV_Traditional_Offline           :: 6
-    kCodecContentSource_AppleAV_Spatial_Offline               :: 7
-    kCodecContentSource_AppleAV_Traditional_Live              :: 8
-    kCodecContentSource_AppleAV_Spatial_Live                  :: 9
-    kCodecContentSource_ApplePassthrough                      :: 10
-    kCodecContentSource_Capture_Traditional                   :: 33
-    kCodecContentSource_Capture_Spatial                       :: 34
-    kCodecContentSource_Capture_Spatial_Enhanced              :: 35
-    kCodecContentSource_Music_Traditional                     :: 36
-    kCodecContentSource_Music_Spatial                         :: 37
-    kCodecContentSource_AV_Traditional_Offline                :: 38
-    kCodecContentSource_AV_Spatial_Offline                    :: 39
-    kCodecContentSource_AV_Traditional_Live                   :: 40
-    kCodecContentSource_AV_Spatial_Live                       :: 41
-    kCodecContentSource_Passthrough                           :: 42
-    kCodecProduceOutputPacketFailure                          :: 1
-    kCodecProduceOutputPacketSuccess                          :: 2
-    kCodecProduceOutputPacketSuccessHasMore                   :: 3
-    kCodecProduceOutputPacketNeedsMoreInputData               :: 4
-    kCodecProduceOutputPacketAtEOF                            :: 5
-    kCodecProduceOutputPacketSuccessConcealed                 :: 6
-    kCodecGetPropertyInfoSelect                               :: 1
-    kCodecGetPropertySelect                                   :: 2
-    kCodecSetPropertySelect                                   :: 3
-    kCodecInitializeSelect                                    :: 4
-    kCodecUninitializeSelect                                  :: 5
-    kCodecAppendInputDataSelect                               :: 6
-    kCodecProduceOutputDataSelect                             :: 7
-    kCodecResetSelect                                         :: 8
-    kCodecAppendInputBufferListSelect                         :: 9
-    kCodecProduceOutputBufferListSelect                       :: 10
-    kCodecNoError                                             :: 0
-    kCodecUnspecifiedError                                    :: 2003329396
-    kCodecUnknownPropertyError                                :: 2003332927
-    kCodecBadPropertySizeError                                :: 561211770
-    kCodecIllegalOperationError                               :: 1852797029
-    kCodecUnsupportedFormatError                              :: 560226676
-    kCodecStateError                                          :: 561214580
-    kCodecNotEnoughBufferSpaceError                           :: 560100710
-    kCodecBadDataError                                        :: 1650549857
-    kCodecPropertyMinimumDelayMode                            :: 1835296108
-    kCodecPropertyNameCFString                                :: 1819173229
-    kCodecPropertyManufacturerCFString                        :: 1819107691
-    kCodecPropertyFormatCFString                              :: 1818652530
-    kCodecPropertyRequiresPacketDescription                   :: 1885432676
-    kCodecPropertyAvailableBitRates                           :: 1651668003
-    kCodecExtendFrequencies                                   :: 1633903974
-    kCodecUseRecommendedSampleRate                            :: 1970434930
-    kCodecOutputPrecedence                                    :: 1869639794
-    kCodecBitRateFormat                                       :: 1633903206
-    kCodecDoesSampleRateConversion                            :: 1819112035
-    kCodecInputFormatsForOutputFormat                         :: 1768305775
-    kCodecOutputFormatsForInputFormat                         :: 1868969065
-    kCodecPropertyInputChannelLayout                          :: 1768123424
-    kCodecPropertyOutputChannelLayout                         :: 1868786720
-    kCodecPropertyAvailableInputChannelLayouts                :: 1634296684
-    kCodecPropertyAvailableOutputChannelLayouts               :: 1634689900
-    kCodecPropertyZeroFramesPadded                            :: 1885430832
-    kCodecBitRateFormat_CBR                                   :: 0
-    kCodecBitRateFormat_ABR                                   :: 1
-    kCodecBitRateFormat_VBR                                   :: 2
-    kCodecOutputPrecedenceNone                                :: 0
-    kCodecOutputPrecedenceBitRate                             :: 1
-    kCodecOutputPrecedenceSampleRate                          :: 2
-    kUnitType_Output                                          :: 1635086197
-    kUnitType_MusicDevice                                     :: 1635085685
-    kUnitType_MusicEffect                                     :: 1635085670
-    kUnitType_FormatConverter                                 :: 1635083875
-    kUnitType_Effect                                          :: 1635083896
-    kUnitType_Mixer                                           :: 1635085688
-    kUnitType_Panner                                          :: 1635086446
-    kUnitType_Generator                                       :: 1635084142
-    kUnitType_OfflineEffect                                   :: 1635086188
-    kUnitType_MIDIProcessor                                   :: 1635085673
-    kUnitType_SpeechSynthesizer                               :: 1635087216
-    kUnitType_RemoteEffect                                    :: 1635086968
-    kUnitType_RemoteGenerator                                 :: 1635086951
-    kUnitType_RemoteInstrument                                :: 1635086953
-    kUnitType_RemoteMusicEffect                               :: 1635086957
-    kUnitManufacturer_Apple                                   :: 1634758764
-    kUnitSubType_GenericOutput                                :: 1734700658
-    kUnitSubType_VoiceProcessingIO                            :: 1987078511
-    kUnitSubType_RemoteIO                                     :: 1919512419
-    kUnitSubType_Sampler                                      :: 1935764848
-    kUnitSubType_MIDISynth                                    :: 1836284270
-    kUnitSubType_AUConverter                                  :: 1668247158
-    kUnitSubType_Varispeed                                    :: 1986097769
-    kUnitSubType_DeferredRenderer                             :: 1684366962
-    kUnitSubType_Splitter                                     :: 1936747636
-    kUnitSubType_MultiSplitter                                :: 1836281964
-    kUnitSubType_Merger                                       :: 1835364967
-    kUnitSubType_NewTimePitch                                 :: 1853191280
-    kUnitSubType_AUiPodTimeOther                              :: 1768977519
-    kUnitSubType_RoundTripAAC                                 :: 1918984547
-    kUnitSubType_AUAudioMix                                   :: 1634560376
-    kUnitSubType_TimePitch                                    :: 1953329268
-    kUnitSubType_AUiPodTime                                   :: 1768977517
-    kUnitSubType_PeakLimiter                                  :: 1819112562
-    kUnitSubType_DynamicsProcessor                            :: 1684237680
-    kUnitSubType_LowPassFilter                                :: 1819304307
-    kUnitSubType_HighPassFilter                               :: 1752195443
-    kUnitSubType_BandPassFilter                               :: 1651532147
-    kUnitSubType_HighShelfFilter                              :: 1752393830
-    kUnitSubType_LowShelfFilter                               :: 1819502694
-    kUnitSubType_ParametricEQ                                 :: 1886217585
-    kUnitSubType_Distortion                                   :: 1684632436
-    kUnitSubType_Delay                                        :: 1684368505
-    kUnitSubType_SampleDelay                                  :: 1935961209
-    kUnitSubType_NBandEQ                                      :: 1851942257
-    kUnitSubType_Reverb2                                      :: 1920361010
-    kUnitSubType_AUSoundIsolation                             :: 1987012979
-    kUnitSubType_AUiPodEQ                                     :: 1768973681
-    kUnitSubType_MultiChannelMixer                            :: 1835232632
-    kUnitSubType_MatrixMixer                                  :: 1836608888
-    kUnitSubType_SpatialMixer                                 :: 862217581
-    kUnitSubType_AU3DMixerEmbedded                            :: 862217581
-    kUnitSubType_ScheduledSoundPlayer                         :: 1936945260
-    kUnitSubType_AudioFilePlayer                              :: 1634103404
-    kUnitErr_InvalidProperty                                  :: -10879
-    kUnitErr_InvalidParameter                                 :: -10878
-    kUnitErr_InvalidElement                                   :: -10877
-    kUnitErr_NoConnection                                     :: -10876
-    kUnitErr_FailedInitialization                             :: -10875
-    kUnitErr_TooManyFramesToProcess                           :: -10874
-    kUnitErr_InvalidFile                                      :: -10871
-    kUnitErr_UnknownFileType                                  :: -10870
-    kUnitErr_FileNotSpecified                                 :: -10869
-    kUnitErr_FormatNotSupported                               :: -10868
-    kUnitErr_Uninitialized                                    :: -10867
-    kUnitErr_InvalidScope                                     :: -10866
-    kUnitErr_PropertyNotWritable                              :: -10865
-    kUnitErr_CannotDoInCurrentContext                         :: -10863
-    kUnitErr_InvalidPropertyValue                             :: -10851
-    kUnitErr_PropertyNotInUse                                 :: -10850
-    kUnitErr_Initialized                                      :: -10849
-    kUnitErr_InvalidOfflineRender                             :: -10848
-    kUnitErr_Unauthorized                                     :: -10847
-    kUnitErr_MIDIOutputBufferFull                             :: -66753
-    kComponentErr_InstanceTimedOut                            :: -66754
-    kComponentErr_InstanceInvalidated                         :: -66749
-    kUnitErr_RenderTimeout                                    :: -66745
-    kUnitErr_ExtensionNotFound                                :: -66744
-    kUnitErr_InvalidParameterValue                            :: -66743
-    kUnitErr_InvalidFilePath                                  :: -66742
-    kUnitErr_MissingKey                                       :: -66741
-    kUnitErr_ComponentManagerNotSupported                     :: -66740
-    kUnitErr_MultipleVoiceProcessors                          :: -66635
-    kComponentErr_DuplicateDescription                        :: -66752
-    kComponentErr_UnsupportedType                             :: -66751
-    kComponentErr_TooManyInstances                            :: -66750
-    kComponentErr_NotPermitted                                :: -66748
-    kComponentErr_InitializationTimedOut                      :: -66747
-    kComponentErr_InvalidFormat                               :: -66746
-    kUnitRange                                                :: 0
-    kUnitInitializeSelect                                     :: 1
-    kUnitUninitializeSelect                                   :: 2
-    kUnitGetPropertyInfoSelect                                :: 3
-    kUnitGetPropertySelect                                    :: 4
-    kUnitSetPropertySelect                                    :: 5
-    kUnitAddPropertyListenerSelect                            :: 10
-    kUnitRemovePropertyListenerSelect                         :: 11
-    kUnitRemovePropertyListenerWithUserDataSelect             :: 18
-    kUnitAddRenderNotifySelect                                :: 15
-    kUnitRemoveRenderNotifySelect                             :: 16
-    kUnitGetParameterSelect                                   :: 6
-    kUnitSetParameterSelect                                   :: 7
-    kUnitScheduleParametersSelect                             :: 17
-    kUnitRenderSelect                                         :: 14
-    kUnitResetSelect                                          :: 9
-    kUnitComplexRenderSelect                                  :: 19
-    kUnitProcessSelect                                        :: 20
-    kUnitProcessMultipleSelect                                :: 21
-    kUnitErr_IllegalInstrument                                :: -10873
-    kUnitErr_InstrumentTypeNotFound                           :: -10872
-    kUnitScope_Global                                         :: 0
-    kUnitScope_Input                                          :: 1
-    kUnitScope_Output                                         :: 2
-    kUnitScope_Group                                          :: 3
-    kUnitScope_Part                                           :: 4
-    kUnitScope_Note                                           :: 5
-    kUnitScope_Layer                                          :: 6
-    kUnitScope_LayerItem                                      :: 7
-    kUnitProperty_ClassInfo                                   :: 0
-    kUnitProperty_MakeConnection                              :: 1
-    kUnitProperty_SampleRate                                  :: 2
-    kUnitProperty_ParameterList                               :: 3
-    kUnitProperty_ParameterInfo                               :: 4
-    kUnitProperty_CPULoad                                     :: 6
-    kUnitProperty_StreamFormat                                :: 8
-    kUnitProperty_ElementCount                                :: 11
-    kUnitProperty_Latency                                     :: 12
-    kUnitProperty_SupportedNumChannels                        :: 13
-    kUnitProperty_MaximumFramesPerSlice                       :: 14
-    kUnitProperty_ParameterValueStrings                       :: 16
-    kUnitProperty_AudioChannelLayout                          :: 19
-    kUnitProperty_TailTime                                    :: 20
-    kUnitProperty_BypassEffect                                :: 21
-    kUnitProperty_LastRenderError                             :: 22
-    kUnitProperty_SetRenderCallback                           :: 23
-    kUnitProperty_FactoryPresets                              :: 24
-    kUnitProperty_RenderQuality                               :: 26
-    kUnitProperty_HostCallbacks                               :: 27
-    kUnitProperty_InPlaceProcessing                           :: 29
-    kUnitProperty_ElementName                                 :: 30
-    kUnitProperty_SupportedChannelLayoutTags                  :: 32
-    kUnitProperty_PresentPreset                               :: 36
-    kUnitProperty_DependentParameters                         :: 45
-    kUnitProperty_InputSamplesInOutput                        :: 49
-    kUnitProperty_ShouldAllocateBuffer                        :: 51
-    kUnitProperty_FrequencyResponse                           :: 52
-    kUnitProperty_ParameterHistoryInfo                        :: 53
-    kUnitProperty_NickName                                    :: 54
-    kUnitProperty_OfflineRender                               :: 37
-    kUnitProperty_ParameterIDName                             :: 34
-    kUnitProperty_ParameterStringFromValue                    :: 33
-    kUnitProperty_ParameterClumpName                          :: 35
-    kUnitProperty_ParameterValueFromString                    :: 38
-    kUnitProperty_ContextName                                 :: 25
-    kUnitProperty_PresentationLatency                         :: 40
-    kUnitProperty_ClassInfoFromDocument                       :: 50
-    kUnitProperty_RequestViewController                       :: 56
-    kUnitProperty_ParametersForOverview                       :: 57
-    kUnitProperty_SupportsMPE                                 :: 58
-    kUnitProperty_RenderContextObserver                       :: 60
-    kUnitProperty_LastRenderSampleTime                        :: 61
-    kUnitProperty_LoadedOutOfProcess                          :: 62
-    kUnitProperty_MIDIOutputCallbackInfo                      :: 47
-    kUnitProperty_MIDIOutputCallback                          :: 48
-    kUnitProperty_MIDIOutputEventListCallback                 :: 63
-    kUnitProperty_AudioUnitMIDIProtocol                       :: 64
-    kUnitProperty_HostMIDIProtocol                            :: 65
-    kUnitProperty_MIDIOutputBufferSizeHint                    :: 66
-    kUnitProperty_RemoteControlEventListener                  :: 100
-    kUnitProperty_IsInterAppConnected                         :: 101
-    kUnitProperty_PeerURL                                     :: 102
-    kUnitClumpID_System                                       :: 0
-    kUnitParameterName_Full                                   :: -1
-    kUnitProperty_SampleRateConverterComplexity               :: 3014
-    kUnitSampleRateConverterComplexity_Linear                 :: 1818848869
-    kUnitSampleRateConverterComplexity_Normal                 :: 1852797549
-    kUnitSampleRateConverterComplexity_Mastering              :: 1650553971
-    kOutputUnitProperty_CurrentDevice                         :: 2000
-    kOutputUnitProperty_IsRunning                             :: 2001
-    kOutputUnitProperty_ChannelMap                            :: 2002
-    kOutputUnitProperty_EnableIO                              :: 2003
-    kOutputUnitProperty_StartTime                             :: 2004
-    kOutputUnitProperty_SetInputCallback                      :: 2005
-    kOutputUnitProperty_HasIO                                 :: 2006
-    kOutputUnitProperty_StartTimestampsAtZero                 :: 2007
-    kOutputUnitProperty_OSWorkgroup                           :: 2015
-    kOutputUnitProperty_IntendedSpatialExperience             :: 2016
-    kOutputUnitProperty_MIDICallbacks                         :: 2010
-    kOutputUnitProperty_HostReceivesRemoteControlEvents       :: 2011
-    kOutputUnitProperty_RemoteControlToHost                   :: 2012
-    kOutputUnitProperty_HostTransportState                    :: 2013
-    kOutputUnitProperty_NodeComponentDescription              :: 2014
-    kAUVoiceIOProperty_BypassVoiceProcessing                  :: 2100
-    kAUVoiceIOProperty_VoiceProcessingEnableAGC               :: 2101
-    kAUVoiceIOProperty_MuteOutput                             :: 2104
-    kAUVoiceIOProperty_MutedSpeechActivityEventListener       :: 2106
-    kAUVoiceIOProperty_OtherAudioDuckingConfiguration         :: 2108
-    kAUVoiceIOProperty_DuckNonVoiceAudio                      :: 2102
-    kAUVoiceIOProperty_VoiceProcessingQuality                 :: 2103
-    kAUNBandEQProperty_NumberOfBands                          :: 2200
-    kAUNBandEQProperty_MaxNumberOfBands                       :: 2201
-    kAUNBandEQProperty_BiquadCoefficients                     :: 2203
-    kUnitProperty_MeteringMode                                :: 3007
-    kUnitProperty_MatrixLevels                                :: 3006
-    kUnitProperty_MatrixDimensions                            :: 3009
-    kUnitProperty_MeterClipping                               :: 3011
-    kUnitProperty_InputAnchorTimeStamp                        :: 3016
-    kUnitProperty_ReverbRoomType                              :: 10
-    kUnitProperty_UsesInternalReverb                          :: 1005
-    kUnitProperty_SpatializationAlgorithm                     :: 3000
-    kUnitProperty_SpatialMixerRenderingFlags                  :: 3003
-    kUnitProperty_SpatialMixerSourceMode                      :: 3005
-    kUnitProperty_SpatialMixerDistanceParams                  :: 3010
-    kUnitProperty_SpatialMixerAttenuationCurve                :: 3013
-    kUnitProperty_SpatialMixerOutputType                      :: 3100
-    kUnitProperty_SpatialMixerPointSourceInHeadMode           :: 3103
-    kUnitProperty_SpatialMixerEnableHeadTracking              :: 3111
-    kUnitProperty_SpatialMixerPersonalizedHRTFMode            :: 3113
-    kUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF :: 3116
-    kAUAudioMixProperty_SpatialAudioMixMetadata               :: 5000
-    kAUAudioMixProperty_EnableSpatialization                  :: 5001
-    kUnitProperty_3DMixerDistanceParams                       :: 3010
-    kUnitProperty_3DMixerAttenuationCurve                     :: 3013
-    kUnitProperty_DopplerShift                                :: 3002
-    kUnitProperty_3DMixerRenderingFlags                       :: 3003
-    kUnitProperty_3DMixerDistanceAtten                        :: 3004
-    kUnitProperty_ReverbPreset                                :: 3012
-    kUnitProperty_ScheduleAudioSlice                          :: 3300
-    kUnitProperty_ScheduleStartTimeStamp                      :: 3301
-    kUnitProperty_CurrentPlayTime                             :: 3302
-    kUnitProperty_ScheduledFileIDs                            :: 3310
-    kUnitProperty_ScheduledFileRegion                         :: 3311
-    kUnitProperty_ScheduledFilePrime                          :: 3312
-    kUnitProperty_ScheduledFileBufferSizeFrames               :: 3313
-    kUnitProperty_ScheduledFileNumberBuffers                  :: 3314
-    kAUMIDISynthProperty_EnablePreload                        :: 4119
-    kAUSamplerProperty_LoadInstrument                         :: 4102
-    kAUSamplerProperty_LoadAudioFiles                         :: 4101
-    kAUSampler_DefaultPercussionBankMSB                       :: 120
-    kAUSampler_DefaultMelodicBankMSB                          :: 121
-    kAUSampler_DefaultBankLSB                                 :: 0
-    kUnitProperty_DeferredRendererPullSize                    :: 3320
-    kUnitProperty_DeferredRendererExtraLatency                :: 3321
-    kUnitProperty_DeferredRendererWaitFrames                  :: 3322
-    kAUSamplerProperty_LoadPresetFromBank                     :: 4100
-    kAUSamplerProperty_BankAndPreset                          :: 4100
-    AUEventSampleTimeImmediate                                :: -4294967296
-    kOutputUnitRange                                          :: 512
-    kOutputUnitStartSelect                                    :: 513
-    kOutputUnitStopSelect                                     :: 514
-    kAUGroupParameterID_Volume                                :: 7
-    kAUGroupParameterID_Sustain                               :: 64
-    kAUGroupParameterID_Sostenuto                             :: 66
-    kAUGroupParameterID_AllNotesOff                           :: 123
-    kAUGroupParameterID_ModWheel                              :: 1
-    kAUGroupParameterID_PitchBend                             :: 224
-    kAUGroupParameterID_AllSoundOff                           :: 120
-    kAUGroupParameterID_ResetAllControllers                   :: 121
-    kAUGroupParameterID_Pan                                   :: 10
-    kAUGroupParameterID_Foot                                  :: 4
-    kAUGroupParameterID_ChannelPressure                       :: 208
-    kAUGroupParameterID_KeyPressure                           :: 160
-    kAUGroupParameterID_Expression                            :: 11
-    kAUGroupParameterID_DataEntry                             :: 6
-    kAUGroupParameterID_Volume_LSB                            :: 39
-    kAUGroupParameterID_ModWheel_LSB                          :: 33
-    kAUGroupParameterID_Pan_LSB                               :: 42
-    kAUGroupParameterID_Foot_LSB                              :: 36
-    kAUGroupParameterID_Expression_LSB                        :: 43
-    kAUGroupParameterID_DataEntry_LSB                         :: 38
-    kAUGroupParameterID_KeyPressure_FirstKey                  :: 256
-    kAUGroupParameterID_KeyPressure_LastKey                   :: 383
-    kAUSamplerParam_Gain                                      :: 900
-    kAUSamplerParam_CoarseTuning                              :: 901
-    kAUSamplerParam_FineTuning                                :: 902
-    kAUSamplerParam_Pan                                       :: 903
-    kAULowShelfParam_CutoffFrequency                          :: 0
-    kAULowShelfParam_Gain                                     :: 1
-    kAUNBandEQParam_GlobalGain                                :: 0
-    kAUNBandEQParam_BypassBand                                :: 1000
-    kAUNBandEQParam_FilterType                                :: 2000
-    kAUNBandEQParam_Frequency                                 :: 3000
-    kAUNBandEQParam_Gain                                      :: 4000
-    kAUNBandEQParam_Bandwidth                                 :: 5000
-    kAUNBandEQFilterType_Parametric                           :: 0
-    kAUNBandEQFilterType_2ndOrderButterworthLowPass           :: 1
-    kAUNBandEQFilterType_2ndOrderButterworthHighPass          :: 2
-    kAUNBandEQFilterType_ResonantLowPass                      :: 3
-    kAUNBandEQFilterType_ResonantHighPass                     :: 4
-    kAUNBandEQFilterType_BandPass                             :: 5
-    kAUNBandEQFilterType_BandStop                             :: 6
-    kAUNBandEQFilterType_LowShelf                             :: 7
-    kAUNBandEQFilterType_HighShelf                            :: 8
-    kAUNBandEQFilterType_ResonantLowShelf                     :: 9
-    kAUNBandEQFilterType_ResonantHighShelf                    :: 10
-    kAUSoundIsolationParam_WetDryMixPercent                   :: 0
-    kAUSoundIsolationParam_SoundToIsolate                     :: 1
-    kAUSoundIsolationSoundType_HighQualityVoice               :: 0
-    kAUSoundIsolationSoundType_Voice                          :: 1
-    kAUAudioMixParameter_Style                                :: 0
-    kAUAudioMixParameter_RemixAmount                          :: 1
-    kAUGraphErr_NodeNotFound                                  :: -10860
-    kAUGraphErr_InvalidConnection                             :: -10861
-    kAUGraphErr_OutputNodeErr                                 :: -10862
-    kAUGraphErr_CannotDoInCurrentContext                      :: -10863
-    kAUGraphErr_InvalidAudioUnit                              :: -10864
-    kAUNodeInteraction_Connection                             :: 1
-    kAUNodeInteraction_InputCallback                          :: 2
-    kConverterPropertyMinimumInputBufferSize                  :: 1835623027
-    kConverterPropertyMinimumOutputBufferSize                 :: 1836016243
-    kConverterPropertyMaximumInputPacketSize                  :: 2020175987
-    kConverterPropertyMaximumOutputPacketSize                 :: 2020569203
-    kConverterPropertyCalculateInputBufferSize                :: 1667850867
-    kConverterPropertyCalculateOutputBufferSize               :: 1668244083
-    kConverterPropertyInputCodecParameters                    :: 1768121456
-    kConverterPropertyOutputCodecParameters                   :: 1868784752
-    kConverterSampleRateConverterComplexity                   :: 1936876385
-    kConverterSampleRateConverterQuality                      :: 1936876401
-    kConverterSampleRateConverterInitialPhase                 :: 1936876400
-    kConverterCodecQuality                                    :: 1667527029
-    kConverterPrimeMethod                                     :: 1886547309
-    kConverterPrimeInfo                                       :: 1886546285
-    kConverterChannelMap                                      :: 1667788144
-    kConverterDecompressionMagicCookie                        :: 1684891491
-    kConverterCompressionMagicCookie                          :: 1668114275
-    kConverterEncodeBitRate                                   :: 1651663220
-    kConverterEncodeAdjustableSampleRate                      :: 1634366322
-    kConverterInputChannelLayout                              :: 1768123424
-    kConverterOutputChannelLayout                             :: 1868786720
-    kConverterApplicableEncodeBitRates                        :: 1634034290
-    kConverterAvailableEncodeBitRates                         :: 1986355826
-    kConverterApplicableEncodeSampleRates                     :: 1634038642
-    kConverterAvailableEncodeSampleRates                      :: 1986360178
-    kConverterAvailableEncodeChannelLayoutTags                :: 1634034540
-    kConverterCurrentOutputStreamDescription                  :: 1633906532
-    kConverterCurrentInputStreamDescription                   :: 1633904996
-    kConverterPropertySettings                                :: 1633906803
-    kConverterPropertyBitDepthHint                            :: 1633903204
-    kConverterPropertyFormatList                              :: 1718383476
-    kConverterPropertyPerformDownmix                          :: 1684892024
-    kConverterPropertyChannelMixMap                           :: 1835884912
-    kConverterQuality_Max                                     :: 127
-    kConverterQuality_High                                    :: 96
-    kConverterQuality_Medium                                  :: 64
-    kConverterQuality_Low                                     :: 32
-    kConverterQuality_Min                                     :: 0
-    kConverterSampleRateConverterComplexity_Linear            :: 1818848869
-    kConverterSampleRateConverterComplexity_Normal            :: 1852797549
-    kConverterSampleRateConverterComplexity_Mastering         :: 1650553971
-    kConverterSampleRateConverterComplexity_MinimumPhase      :: 1835626096
-    kConverterErr_FormatNotSupported                          :: 1718449215
-    kConverterErr_OperationNotSupported                       :: 1869627199
-    kConverterErr_PropertyNotSupported                        :: 1886547824
-    kConverterErr_InvalidInputSize                            :: 1768846202
-    kConverterErr_InvalidOutputSize                           :: 1869902714
-    kConverterErr_UnspecifiedError                            :: 2003329396
-    kConverterErr_BadPropertySizeError                        :: 561211770
-    kConverterErr_RequiresPacketDescriptionsError             :: 561015652
-    kConverterErr_InputSampleRateOutOfRange                   :: 560558962
-    kConverterErr_OutputSampleRateOutOfRange                  :: 560952178
-    kConverterErr_HardwareInUse                               :: 1752656245
-    kConverterErr_NoHardwarePermission                        :: 1885696621
-    kConverterPropertyMaximumInputBufferSize                  :: 2020172403
-    kConverterSampleRateConverterAlgorithm                    :: 1936876393
-    kConverterPropertyCanResumeFromInterruption               :: 1668441705
-    kFileAIFFType                                             :: 1095321158
-    kFileAIFCType                                             :: 1095321155
-    kFileWAVEType                                             :: 1463899717
-    kFileRF64Type                                             :: 1380333108
-    kFileBW64Type                                             :: 1113011764
-    kFileWave64Type                                           :: 1463170150
-    kFileSoundDesigner2Type                                   :: 1399075430
-    kFileNextType                                             :: 1315264596
-    kFileMP3Type                                              :: 1297106739
-    kFileMP2Type                                              :: 1297106738
-    kFileMP1Type                                              :: 1297106737
-    kFileAC3Type                                              :: 1633889587
-    kFileAAC_ADTSType                                         :: 1633973363
-    kFileMPEG4Type                                            :: 1836069990
-    kFileM4AType                                              :: 1832149350
-    kFileM4BType                                              :: 1832149606
-    kFileCAFType                                              :: 1667327590
-    kFile3GPType                                              :: 862417008
-    kFile3GP2Type                                             :: 862416946
-    kFileAMRType                                              :: 1634562662
-    kFileFLACType                                             :: 1718378851
-    kFileLATMInLOASType                                       :: 1819238771
-    kFileUnspecifiedError                                     :: 2003334207
-    kFileUnsupportedFileTypeError                             :: 1954115647
-    kFileUnsupportedDataFormatError                           :: 1718449215
-    kFileUnsupportedPropertyError                             :: 1886681407
-    kFileBadPropertySizeError                                 :: 561211770
-    kFilePermissionsError                                     :: 1886547263
-    kFileNotOptimizedError                                    :: 1869640813
-    kFileInvalidChunkError                                    :: 1667787583
-    kFileDoesNotAllow64BitDataSizeError                       :: 1868981823
-    kFileInvalidPacketOffsetError                             :: 1885563711
-    kFileInvalidPacketDependencyError                         :: 1684369471
-    kFileInvalidFileError                                     :: 1685348671
-    kFileOperationNotSupportedError                           :: 1869627199
-    kFileNotOpenError                                         :: -38
-    kFileEndOfFileError                                       :: -39
-    kFilePositionError                                        :: -40
-    kFileFileNotFoundError                                    :: -43
-    kFileLoopDirection_NoLooping                              :: 0
-    kFileLoopDirection_Forward                                :: 1
-    kFileLoopDirection_ForwardAndBackward                     :: 2
-    kFileLoopDirection_Backward                               :: 3
-    kFileMarkerType_Generic                                   :: 0
-    kFilePropertyFileFormat                                   :: 1717988724
-    kFilePropertyDataFormat                                   :: 1684434292
-    kFilePropertyIsOptimized                                  :: 1869640813
-    kFilePropertyMagicCookieData                              :: 1835493731
-    kFilePropertyAudioDataByteCount                           :: 1650683508
-    kFilePropertyAudioDataPacketCount                         :: 1885564532
-    kFilePropertyMaximumPacketSize                            :: 1886616165
-    kFilePropertyDataOffset                                   :: 1685022310
-    kFilePropertyChannelLayout                                :: 1668112752
-    kFilePropertyDeferSizeUpdates                             :: 1685289589
-    kFilePropertyDataFormatName                               :: 1718512997
-    kFilePropertyMarkerList                                   :: 1835756659
-    kFilePropertyRegionList                                   :: 1919380595
-    kFilePropertyPacketToFrame                                :: 1886086770
-    kFilePropertyFrameToPacket                                :: 1718775915
-    kFilePropertyRestrictsRandomAccess                        :: 1920098672
-    kFilePropertyPacketToRollDistance                         :: 1886089836
-    kFilePropertyPreviousIndependentPacket                    :: 1885957732
-    kFilePropertyNextIndependentPacket                        :: 1852403300
-    kFilePropertyPacketToDependencyInfo                       :: 1886086256
-    kFilePropertyPacketToByte                                 :: 1886085753
-    kFilePropertyByteToPacket                                 :: 1652125803
-    kFilePropertyChunkIDs                                     :: 1667787108
-    kFilePropertyInfoDictionary                               :: 1768842863
-    kFilePropertyPacketTableInfo                              :: 1886283375
-    kFilePropertyFormatList                                   :: 1718383476
-    kFilePropertyPacketSizeUpperBound                         :: 1886090594
-    kFilePropertyPacketRangeByteCountUpperBound               :: 1886549346
-    kFilePropertyReserveDuration                              :: 1920168566
-    kFilePropertyEstimatedDuration                            :: 1701082482
-    kFilePropertyBitRate                                      :: 1651663220
-    kFilePropertyID3Tag                                       :: 1768174452
-    kFilePropertyID3TagOffset                                 :: 1768174447
-    kFilePropertySourceBitDepth                               :: 1935832164
-    kFilePropertyAlbumArtwork                                 :: 1633776244
-    kFilePropertyAudioTrackCount                              :: 1635017588
-    kFilePropertyUseAudioTrack                                :: 1969321067
-    kFileGlobalInfo_ReadableTypes                             :: 1634103910
-    kFileGlobalInfo_WritableTypes                             :: 1634105190
-    kFileGlobalInfo_FileTypeName                              :: 1718906477
-    kFileGlobalInfo_AvailableStreamDescriptionsForFormat      :: 1935960420
-    kFileGlobalInfo_AvailableFormatIDs                        :: 1718446436
-    kFileGlobalInfo_AllExtensions                             :: 1634498676
-    kFileGlobalInfo_AllHFSTypeCodes                           :: 1634231923
-    kFileGlobalInfo_AllUTIs                                   :: 1635087465
-    kFileGlobalInfo_AllMIMETypes                              :: 1634560365
-    kFileGlobalInfo_ExtensionsForType                         :: 1717926004
-    kFileGlobalInfo_HFSTypeCodesForType                       :: 1718118003
-    kFileGlobalInfo_UTIsForType                               :: 1718973545
-    kFileGlobalInfo_MIMETypesForType                          :: 1718446445
-    kFileGlobalInfo_TypesForMIMEType                          :: 1953327469
-    kFileGlobalInfo_TypesForUTI                               :: 1953854569
-    kFileGlobalInfo_TypesForHFSTypeCode                       :: 1952999027
-    kFileGlobalInfo_TypesForExtension                         :: 1952807028
-    kFileStreamError_UnsupportedFileType                      :: 1954115647
-    kFileStreamError_UnsupportedDataFormat                    :: 1718449215
-    kFileStreamError_UnsupportedProperty                      :: 1886681407
-    kFileStreamError_BadPropertySize                          :: 561211770
-    kFileStreamError_NotOptimized                             :: 1869640813
-    kFileStreamError_InvalidPacketOffset                      :: 1885563711
-    kFileStreamError_InvalidFile                              :: 1685348671
-    kFileStreamError_ValueUnknown                             :: 1970170687
-    kFileStreamError_DataUnavailable                          :: 1836020325
-    kFileStreamError_IllegalOperation                         :: 1852797029
-    kFileStreamError_UnspecifiedError                         :: 2003334207
-    kFileStreamError_DiscontinuityCantRecover                 :: 1685283617
-    kFileStreamProperty_ReadyToProducePackets                 :: 1919247481
-    kFileStreamProperty_FileFormat                            :: 1717988724
-    kFileStreamProperty_DataFormat                            :: 1684434292
-    kFileStreamProperty_FormatList                            :: 1718383476
-    kFileStreamProperty_MagicCookieData                       :: 1835493731
-    kFileStreamProperty_AudioDataByteCount                    :: 1650683508
-    kFileStreamProperty_AudioDataPacketCount                  :: 1885564532
-    kFileStreamProperty_MaximumPacketSize                     :: 1886616165
-    kFileStreamProperty_DataOffset                            :: 1685022310
-    kFileStreamProperty_ChannelLayout                         :: 1668112752
-    kFileStreamProperty_PacketToFrame                         :: 1886086770
-    kFileStreamProperty_FrameToPacket                         :: 1718775915
-    kFileStreamProperty_RestrictsRandomAccess                 :: 1920098672
-    kFileStreamProperty_PacketToRollDistance                  :: 1886089836
-    kFileStreamProperty_PreviousIndependentPacket             :: 1885957732
-    kFileStreamProperty_NextIndependentPacket                 :: 1852403300
-    kFileStreamProperty_PacketToDependencyInfo                :: 1886086256
-    kFileStreamProperty_PacketToByte                          :: 1886085753
-    kFileStreamProperty_ByteToPacket                          :: 1652125803
-    kFileStreamProperty_PacketTableInfo                       :: 1886283375
-    kFileStreamProperty_PacketSizeUpperBound                  :: 1886090594
-    kFileStreamProperty_AverageBytesPerPacket                 :: 1633841264
-    kFileStreamProperty_BitRate                               :: 1651663220
-    kFileStreamProperty_InfoDictionary                        :: 1768842863
-    kFormatProperty_FormatInfo                                :: 1718449257
-    kFormatProperty_FormatName                                :: 1718509933
-    kFormatProperty_EncodeFormatIDs                           :: 1633906534
-    kFormatProperty_DecodeFormatIDs                           :: 1633904998
-    kFormatProperty_FormatList                                :: 1718383476
-    kFormatProperty_ASBDFromESDS                              :: 1702064996
-    kFormatProperty_ChannelLayoutFromESDS                     :: 1702060908
-    kFormatProperty_OutputFormatList                          :: 1868983411
-    kFormatProperty_FirstPlayableFormatFromList               :: 1718642284
-    kFormatProperty_FormatIsVBR                               :: 1719034482
-    kFormatProperty_FormatIsExternallyFramed                  :: 1717925990
-    kFormatProperty_FormatEmploysDependentPackets             :: 1717855600
-    kFormatProperty_FormatIsEncrypted                         :: 1668446576
-    kFormatProperty_Encoders                                  :: 1635149166
-    kFormatProperty_Decoders                                  :: 1635148901
-    kFormatProperty_AvailableEncodeBitRates                   :: 1634034290
-    kFormatProperty_AvailableEncodeSampleRates                :: 1634038642
-    kFormatProperty_AvailableEncodeChannelLayoutTags          :: 1634034540
-    kFormatProperty_AvailableEncodeNumberChannels             :: 1635151459
-    kFormatProperty_AvailableDecodeNumberChannels             :: 1633971811
-    kFormatProperty_ASBDFromMPEGPacket                        :: 1633971568
-    kFormatProperty_BitmapForLayoutTag                        :: 1651340391
-    kFormatProperty_MatrixMixMap                              :: 1835884912
-    kFormatProperty_ChannelMap                                :: 1667788144
-    kFormatProperty_NumberOfChannelsForLayout                 :: 1852008557
-    kFormatProperty_AreChannelLayoutsEquivalent               :: 1667786097
-    kFormatProperty_ChannelLayoutHash                         :: 1667786849
-    kFormatProperty_ValidateChannelLayout                     :: 1986093932
-    kFormatProperty_ChannelLayoutForTag                       :: 1668116588
-    kFormatProperty_TagForChannelLayout                       :: 1668116596
-    kFormatProperty_ChannelLayoutName                         :: 1819242093
-    kFormatProperty_ChannelLayoutSimpleName                   :: 1819504237
-    kFormatProperty_ChannelLayoutForBitmap                    :: 1668116578
-    kFormatProperty_ChannelName                               :: 1668178285
-    kFormatProperty_ChannelShortName                          :: 1668509293
-    kFormatProperty_TagsForNumberOfChannels                   :: 1952540515
-    kFormatProperty_PanningMatrix                             :: 1885433453
-    kFormatProperty_BalanceFade                               :: 1650551910
-    kFormatProperty_ID3TagSize                                :: 1768174451
-    kFormatProperty_ID3TagToDictionary                        :: 1768174436
-    kFormatProperty_HardwareCodecCapabilities                 :: 1752654691
-    kDecoderComponentType                                     :: 1633969507
-    kEncoderComponentType                                     :: 1634037347
-    kFormatUnspecifiedError                                   :: 2003329396
-    kFormatUnsupportedPropertyError                           :: 1886547824
-    kFormatBadPropertySizeError                               :: 561211770
-    kFormatBadSpecifierSizeError                              :: 561213539
-    kFormatUnsupportedDataFormatError                         :: 1718449215
-    kFormatUnknownFormatError                                 :: 560360820
-    kQueueErr_InvalidBuffer                                   :: -66687
-    kQueueErr_BufferEmpty                                     :: -66686
-    kQueueErr_DisposalPending                                 :: -66685
-    kQueueErr_InvalidProperty                                 :: -66684
-    kQueueErr_InvalidPropertySize                             :: -66683
-    kQueueErr_InvalidParameter                                :: -66682
-    kQueueErr_CannotStart                                     :: -66681
-    kQueueErr_InvalidDevice                                   :: -66680
-    kQueueErr_BufferInQueue                                   :: -66679
-    kQueueErr_InvalidRunState                                 :: -66678
-    kQueueErr_InvalidQueueType                                :: -66677
-    kQueueErr_Permissions                                     :: -66676
-    kQueueErr_InvalidPropertyValue                            :: -66675
-    kQueueErr_PrimeTimedOut                                   :: -66674
-    kQueueErr_CodecNotFound                                   :: -66673
-    kQueueErr_InvalidCodecAccess                              :: -66672
-    kQueueErr_QueueInvalidated                                :: -66671
-    kQueueErr_TooManyTaps                                     :: -66670
-    kQueueErr_InvalidTapContext                               :: -66669
-    kQueueErr_RecordUnderrun                                  :: -66668
-    kQueueErr_InvalidTapType                                  :: -66667
-    kQueueErr_BufferEnqueuedTwice                             :: -66666
-    kQueueErr_CannotStartYet                                  :: -66665
-    kQueueErr_EnqueueDuringReset                              :: -66632
-    kQueueErr_InvalidOfflineMode                              :: -66626
-    kQueueProperty_IsRunning                                  :: 1634824814
-    kQueueDeviceProperty_SampleRate                           :: 1634825074
-    kQueueDeviceProperty_NumberChannels                       :: 1634821219
-    kQueueProperty_CurrentDevice                              :: 1634820964
-    kQueueProperty_MagicCookie                                :: 1634823523
-    kQueueProperty_MaximumOutputPacketSize                    :: 2020569203
-    kQueueProperty_StreamDescription                          :: 1634821748
-    kQueueProperty_ChannelLayout                              :: 1634820972
-    kQueueProperty_EnableLevelMetering                        :: 1634823525
-    kQueueProperty_CurrentLevelMeter                          :: 1634823542
-    kQueueProperty_CurrentLevelMeterDB                        :: 1634823524
-    kQueueProperty_DecodeBufferSizeFrames                     :: 1684234854
-    kQueueProperty_ConverterError                             :: 1902343781
-    kQueueProperty_EnableTimePitch                            :: 1902081136
-    kQueueProperty_TimePitchAlgorithm                         :: 1903456353
-    kQueueProperty_TimePitchBypass                            :: 1903456354
-    kQueueProperty_IntendedSpatialExperience                  :: 1769170287
-    kQueueTimePitchAlgorithm_Spectral                         :: 1936745827
-    kQueueTimePitchAlgorithm_TimeDomain                       :: 1953064047
-    kQueueTimePitchAlgorithm_Varispeed                        :: 1987276900
-    kQueueTimePitchAlgorithm_LowQualityZeroLatency            :: 1819376236
-    kQueueProperty_HardwareCodecPolicy                        :: 1634820976
-    kQueueHardwareCodecPolicy_Default                         :: 0
-    kQueueHardwareCodecPolicy_UseSoftwareOnly                 :: 1
-    kQueueHardwareCodecPolicy_UseHardwareOnly                 :: 2
-    kQueueHardwareCodecPolicy_PreferSoftware                  :: 3
-    kQueueHardwareCodecPolicy_PreferHardware                  :: 4
-    kQueueProperty_ChannelAssignments                         :: 1634820961
-    kQueueParam_Volume                                        :: 1
-    kQueueParam_PlayRate                                      :: 2
-    kQueueParam_Pitch                                         :: 3
-    kQueueParam_VolumeRampTime                                :: 4
-    kQueueParam_Pan                                           :: 13
-    kSessionNoError                                           :: 0
-    kSessionNotInitialized                                    :: 560557673
-    kSessionAlreadyInitialized                                :: 1768843636
-    kSessionInitializationError                               :: 1768843583
-    kSessionUnsupportedPropertyError                          :: 1886681407
-    kSessionBadPropertySizeError                              :: 561211770
-    kSessionNotActiveError                                    :: 560030580
-    kServicesNoHardwareError                                  :: 1852794999
-    kSessionNoCategorySet                                     :: 1063477620
-    kSessionIncompatibleCategory                              :: 560161140
-    kSessionUnspecifiedError                                  :: 2003329396
-    kSessionBeginInterruption                                 :: 1
-    kSessionEndInterruption                                   :: 0
-    kSessionCategory_AmbientSound                             :: 1634558569
-    kSessionCategory_SoloAmbientSound                         :: 1936682095
-    kSessionCategory_MediaPlayback                            :: 1835361385
-    kSessionCategory_RecordAudio                              :: 1919247201
-    kSessionCategory_PlayAndRecord                            :: 1886151026
-    kSessionCategory_AudioProcessing                          :: 1886547811
-    kSessionOverrideAudioRoute_None                           :: 0
-    kSessionOverrideAudioRoute_Speaker                        :: 1936747378
-    kSessionRouteChangeReason_Unknown                         :: 0
-    kSessionRouteChangeReason_NewDeviceAvailable              :: 1
-    kSessionRouteChangeReason_OldDeviceUnavailable            :: 2
-    kSessionRouteChangeReason_CategoryChange                  :: 3
-    kSessionRouteChangeReason_Override                        :: 4
-    kSessionRouteChangeReason_WakeFromSleep                   :: 6
-    kSessionRouteChangeReason_NoSuitableRouteForCategory      :: 7
-    kSessionRouteChangeReason_RouteConfigurationChange        :: 8
-    kSessionInterruptionType_ShouldResume                     :: 1769108333
-    kSessionInterruptionType_ShouldNotResume                  :: 561148781
-    kSessionMode_Default                                      :: 1684434036
-    kSessionMode_VoiceChat                                    :: 1986225012
-    kSessionMode_VideoRecording                               :: 1987208036
-    kSessionMode_Measurement                                  :: 1836281204
-    kSessionMode_GameChat                                     :: 1735222132
-    kSessionProperty_PreferredHardwareSampleRate              :: 1752658802
-    kSessionProperty_PreferredHardwareIOBufferDuration        :: 1768907364
-    kSessionProperty_AudioCategory                            :: 1633902964
-    kSessionProperty_AudioRouteChange                         :: 1919902568
-    kSessionProperty_CurrentHardwareSampleRate                :: 1667789682
-    kSessionProperty_CurrentHardwareInputNumberChannels       :: 1667787107
-    kSessionProperty_CurrentHardwareOutputNumberChannels      :: 1667788643
-    kSessionProperty_CurrentHardwareOutputVolume              :: 1667788662
-    kSessionProperty_CurrentHardwareInputLatency              :: 1667853428
-    kSessionProperty_CurrentHardwareOutputLatency             :: 1668246644
-    kSessionProperty_CurrentHardwareIOBufferDuration          :: 1667785316
-    kSessionProperty_OtherAudioIsPlaying                      :: 1869899890
-    kSessionProperty_OverrideAudioRoute                       :: 1870033508
-    kSessionProperty_AudioInputAvailable                      :: 1634296182
-    kSessionProperty_ServerDied                               :: 1684628836
-    kSessionProperty_OtherMixableAudioShouldDuck              :: 1685414763
-    kSessionProperty_OverrideCategoryMixWithOthers            :: 1668114808
-    kSessionProperty_OverrideCategoryDefaultToSpeaker         :: 1668509803
-    kSessionProperty_OverrideCategoryEnableBluetoothInput     :: 1667394677
-    kSessionProperty_InterruptionType                         :: 1954115685
-    kSessionProperty_Mode                                     :: 1836016741
-    kSessionProperty_InputSources                             :: 1936876403
-    kSessionProperty_OutputDestinations                       :: 1685288051
-    kSessionProperty_InputSource                              :: 1769173603
-    kSessionProperty_OutputDestination                        :: 1868854132
-    kSessionProperty_InputGainAvailable                       :: 1768382838
-    kSessionProperty_InputGainScalar                          :: 1768387427
-    kSessionProperty_AudioRouteDescription                    :: 1668440434
-    kSessionSetActiveFlag_NotifyOthersOnDeactivation          :: 1
-    kSessionCategory_UserInterfaceSoundEffects                :: 1969841784
-    kSessionCategory_LiveAudio                                :: 1818850917
-    kSessionProperty_AudioRoute                               :: 1919907188
-    kServicesNoError                                          :: 0
-    kServicesUnsupportedPropertyError                         :: 1886681407
-    kServicesBadPropertySizeError                             :: 561211770
-    kServicesBadSpecifierSizeError                            :: 561213539
-    kServicesSystemSoundUnspecifiedError                      :: -1500
-    kServicesSystemSoundClientTimedOutError                   :: -1501
-    kServicesSystemSoundExceededMaximumDurationError          :: -1502
-    kServicesPropertyIsUISound                                :: 1769174377
-    kServicesPropertyCompletePlaybackIfAppDies                :: 1768318057
-    kAUParameterListener_AnyParameter                         :: 4294967295
-    kToolboxErr_InvalidSequenceType                           :: -10846
-    kToolboxErr_TrackIndexError                               :: -10859
-    kToolboxErr_TrackNotFound                                 :: -10858
-    kToolboxErr_EndOfTrack                                    :: -10857
-    kToolboxErr_StartOfTrack                                  :: -10856
-    kToolboxErr_IllegalTrackDestination                       :: -10855
-    kToolboxErr_NoSequence                                    :: -10854
-    kToolboxErr_InvalidEventType                              :: -10853
-    kToolboxErr_InvalidPlayerState                            :: -10852
-    kToolboxErr_CannotDoInCurrentContext                      :: -10863
-    kToolboxError_NoTrackDestination                          :: -66720
-    kStreamAnyRate                                            :: 0.000000
-
-    foreign lib {
-        @(link_name="kAudioComponentRegistrationsChangedNotification") kComponentRegistrationsChangedNotification: CF.StringRef
-        @(link_name="kAudioComponentInstanceInvalidationNotification") kComponentInstanceInvalidationNotification: CF.StringRef
-        @(link_name="kAudioSession_RouteChangeKey_Reason") kSession_RouteChangeKey_Reason: CF.StringRef
-        @(link_name="kAudioSession_AudioRouteChangeKey_PreviousRouteDescription") kSession_AudioRouteChangeKey_PreviousRouteDescription: CF.StringRef
-        @(link_name="kAudioSession_AudioRouteChangeKey_CurrentRouteDescription") kSession_AudioRouteChangeKey_CurrentRouteDescription: CF.StringRef
-        @(link_name="kAudioSession_AudioRouteKey_Inputs") kSession_AudioRouteKey_Inputs: CF.StringRef
-        @(link_name="kAudioSession_AudioRouteKey_Outputs") kSession_AudioRouteKey_Outputs: CF.StringRef
-        @(link_name="kAudioSession_AudioRouteKey_Type") kSession_AudioRouteKey_Type: CF.StringRef
-        @(link_name="kAudioSessionInputRoute_LineIn") kSessionInputRoute_LineIn: CF.StringRef
-        @(link_name="kAudioSessionInputRoute_BuiltInMic") kSessionInputRoute_BuiltInMic: CF.StringRef
-        @(link_name="kAudioSessionInputRoute_HeadsetMic") kSessionInputRoute_HeadsetMic: CF.StringRef
-        @(link_name="kAudioSessionInputRoute_BluetoothHFP") kSessionInputRoute_BluetoothHFP: CF.StringRef
-        @(link_name="kAudioSessionInputRoute_USBAudio") kSessionInputRoute_USBAudio: CF.StringRef
-        @(link_name="kAudioSessionOutputRoute_LineOut") kSessionOutputRoute_LineOut: CF.StringRef
-        @(link_name="kAudioSessionOutputRoute_Headphones") kSessionOutputRoute_Headphones: CF.StringRef
-        @(link_name="kAudioSessionOutputRoute_BluetoothHFP") kSessionOutputRoute_BluetoothHFP: CF.StringRef
-        @(link_name="kAudioSessionOutputRoute_BluetoothA2DP") kSessionOutputRoute_BluetoothA2DP: CF.StringRef
-        @(link_name="kAudioSessionOutputRoute_BuiltInReceiver") kSessionOutputRoute_BuiltInReceiver: CF.StringRef
-        @(link_name="kAudioSessionOutputRoute_BuiltInSpeaker") kSessionOutputRoute_BuiltInSpeaker: CF.StringRef
-        @(link_name="kAudioSessionOutputRoute_USBAudio") kSessionOutputRoute_USBAudio: CF.StringRef
-        @(link_name="kAudioSessionOutputRoute_HDMI") kSessionOutputRoute_HDMI: CF.StringRef
-        @(link_name="kAudioSessionOutputRoute_AirPlay") kSessionOutputRoute_AirPlay: CF.StringRef
-        @(link_name="kAudioSession_InputSourceKey_ID") kSession_InputSourceKey_ID: CF.StringRef
-        @(link_name="kAudioSession_InputSourceKey_Description") kSession_InputSourceKey_Description: CF.StringRef
-        @(link_name="kAudioSession_OutputDestinationKey_ID") kSession_OutputDestinationKey_ID: CF.StringRef
-        @(link_name="kAudioSession_OutputDestinationKey_Description") kSession_OutputDestinationKey_Description: CF.StringRef
-        @(link_name="kAudioServicesDetailIntendedSpatialExperience") kServicesDetailIntendedSpatialExperience: CF.StringRef
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:CoreAudio.framework",
     }
-} // End else
+}
 
-@(default_calling_convention="c")
+
+// +user-text-begin
+
+
 foreign lib {
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(link_name="kAudioComponentRegistrationsChangedNotification")
+        kComponentRegistrationsChangedNotification: CF.StringRef
+
+        @(link_name="kAudioComponentInstanceInvalidationNotification")
+        kComponentInstanceInvalidationNotification: CF.StringRef
+
+        @(link_name="kAudioSession_RouteChangeKey_Reason")
+        kSession_RouteChangeKey_Reason: CF.StringRef
+
+        @(link_name="kAudioSession_AudioRouteChangeKey_PreviousRouteDescription")
+        kSession_AudioRouteChangeKey_PreviousRouteDescription: CF.StringRef
+
+        @(link_name="kAudioSession_AudioRouteChangeKey_CurrentRouteDescription")
+        kSession_AudioRouteChangeKey_CurrentRouteDescription: CF.StringRef
+
+        @(link_name="kAudioSession_AudioRouteKey_Inputs")
+        kSession_AudioRouteKey_Inputs: CF.StringRef
+
+        @(link_name="kAudioSession_AudioRouteKey_Outputs")
+        kSession_AudioRouteKey_Outputs: CF.StringRef
+
+        @(link_name="kAudioSession_AudioRouteKey_Type")
+        kSession_AudioRouteKey_Type: CF.StringRef
+
+        @(link_name="kAudioSessionInputRoute_LineIn")
+        kSessionInputRoute_LineIn: CF.StringRef
+
+        @(link_name="kAudioSessionInputRoute_BuiltInMic")
+        kSessionInputRoute_BuiltInMic: CF.StringRef
+
+        @(link_name="kAudioSessionInputRoute_HeadsetMic")
+        kSessionInputRoute_HeadsetMic: CF.StringRef
+
+        @(link_name="kAudioSessionInputRoute_BluetoothHFP")
+        kSessionInputRoute_BluetoothHFP: CF.StringRef
+
+        @(link_name="kAudioSessionInputRoute_USBAudio")
+        kSessionInputRoute_USBAudio: CF.StringRef
+
+        @(link_name="kAudioSessionOutputRoute_LineOut")
+        kSessionOutputRoute_LineOut: CF.StringRef
+
+        @(link_name="kAudioSessionOutputRoute_Headphones")
+        kSessionOutputRoute_Headphones: CF.StringRef
+
+        @(link_name="kAudioSessionOutputRoute_BluetoothHFP")
+        kSessionOutputRoute_BluetoothHFP: CF.StringRef
+
+        @(link_name="kAudioSessionOutputRoute_BluetoothA2DP")
+        kSessionOutputRoute_BluetoothA2DP: CF.StringRef
+
+        @(link_name="kAudioSessionOutputRoute_BuiltInReceiver")
+        kSessionOutputRoute_BuiltInReceiver: CF.StringRef
+
+        @(link_name="kAudioSessionOutputRoute_BuiltInSpeaker")
+        kSessionOutputRoute_BuiltInSpeaker: CF.StringRef
+
+        @(link_name="kAudioSessionOutputRoute_USBAudio")
+        kSessionOutputRoute_USBAudio: CF.StringRef
+
+        @(link_name="kAudioSessionOutputRoute_HDMI")
+        kSessionOutputRoute_HDMI: CF.StringRef
+
+        @(link_name="kAudioSessionOutputRoute_AirPlay")
+        kSessionOutputRoute_AirPlay: CF.StringRef
+
+        @(link_name="kAudioSession_InputSourceKey_ID")
+        kSession_InputSourceKey_ID: CF.StringRef
+
+        @(link_name="kAudioSession_InputSourceKey_Description")
+        kSession_InputSourceKey_Description: CF.StringRef
+
+        @(link_name="kAudioSession_OutputDestinationKey_ID")
+        kSession_OutputDestinationKey_ID: CF.StringRef
+
+        @(link_name="kAudioSession_OutputDestinationKey_Description")
+        kSession_OutputDestinationKey_Description: CF.StringRef
+
+        @(link_name="kAudioServicesDetailIntendedSpatialExperience")
+        kServicesDetailIntendedSpatialExperience: CF.StringRef
+    }
+
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(link_name="AudioObjectShow")
         ObjectShow :: proc(inObjectID: ObjectID) ---
 
@@ -2217,7 +257,8 @@ foreign lib {
 
         @(link_name="AudioConvertNanosToHostTime")
         ConvertNanosToHostTime :: proc(inNanos: CF.UInt64) -> CF.UInt64 ---
-    } // End when
+    }
+
     when ODIN_PLATFORM_SUBTARGET_IOS {
         @(link_name="AudioComponentFindNext")
         ComponentFindNext :: proc(inComponent: Component, inDesc: ^ComponentDescription) -> Component ---
@@ -2238,7 +279,7 @@ foreign lib {
         ComponentInstanceNew :: proc(inComponent: Component, outInstance: ^ComponentInstance) -> CF.OSStatus ---
 
         @(link_name="AudioComponentInstantiate")
-        ComponentInstantiate :: proc(inComponent: Component, inOptions: ComponentInstantiationOptions, inCompletionHandler: ^Objc_Block(proc "c" (_: ComponentInstance, _1: CF.OSStatus))) ---
+        ComponentInstantiate :: proc(inComponent: Component, inOptions: ComponentInstantiationOptions, inCompletionHandler: ^Objc_Block(proc "c" ( _0: ComponentInstance, _1: CF.OSStatus ))) ---
 
         @(link_name="AudioComponentInstanceDispose")
         ComponentInstanceDispose :: proc(inInstance: ComponentInstance) -> CF.OSStatus ---
@@ -2259,7 +300,7 @@ foreign lib {
         ComponentValidate :: proc(inComponent: Component, inValidationParameters: CF.DictionaryRef, outValidationResult: ^ComponentValidationResult) -> CF.OSStatus ---
 
         @(link_name="AudioComponentValidateWithResults")
-        ComponentValidateWithResults :: proc(inComponent: Component, inValidationParameters: CF.DictionaryRef, inCompletionHandler: ^Objc_Block(proc "c" (_: ComponentValidationResult, _1: CF.DictionaryRef))) -> CF.OSStatus ---
+        ComponentValidateWithResults :: proc(inComponent: Component, inValidationParameters: CF.DictionaryRef, inCompletionHandler: ^Objc_Block(proc "c" ( _0: ComponentValidationResult, _1: CF.DictionaryRef ))) -> CF.OSStatus ---
 
         @(link_name="AudioCodecGetPropertyInfo")
         CodecGetPropertyInfo :: proc(inCodec: Codec, inPropertyID: CodecPropertyID, outSize: ^CF.UInt32, outWritable: ^CF.Boolean) -> CF.OSStatus ---
@@ -2448,7 +489,7 @@ foreign lib {
         AUGraphRemoveRenderNotify :: proc(inGraph: AUGraph, inCallback: AURenderCallback, inRefCon: rawptr) -> CF.OSStatus ---
 
         @(link_name="AudioConverterPrepare")
-        ConverterPrepare :: proc(inFlags: CF.UInt32, ioReserved: rawptr, inCompletionBlock: ^Objc_Block(proc "c" (_: CF.OSStatus))) ---
+        ConverterPrepare :: proc(inFlags: CF.UInt32, ioReserved: rawptr, inCompletionBlock: ^Objc_Block(proc "c" ( _0: CF.OSStatus ))) ---
 
         @(link_name="AudioConverterNew")
         ConverterNew :: proc(inSourceFormat: ^StreamBasicDescription, inDestinationFormat: ^StreamBasicDescription, outAudioConverter: ^ConverterRef) -> CF.OSStatus ---
@@ -2806,501 +847,3957 @@ foreign lib {
 
         @(link_name="AudioWorkIntervalCreate")
         WorkIntervalCreate :: proc(name: cstring, clock: CF.os_clockid_t, attr: CF.os_workgroup_attr_t) -> ^CF.os_workgroup_s ---
-    } // End else
-
+    }
 }
 
-/// AudioSampleType
-when !ODIN_PLATFORM_SUBTARGET_IOS {
+
+
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    AUTH_OPEN_NOAUTHFD :: 1
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUTH_OPEN_NOAUTHFD           :: 1
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIO_TOOLBOX_VERSION        :: 1060
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    k_NoError                                                       :: 0
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    k_NoError                                                 :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AU_SUPPORT_INTERAPP_AUDIO    :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    k_UnimplementedError                                            :: -4
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    k_UnimplementedError                                      :: -4
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_RECORD_MAGIC           :: 2190085915
+    AUDIT_HARD_LIMIT_FREE_BLOCKS :: 4
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    k_FileNotFoundError                                             :: -43
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    k_FileNotFoundError                                       :: -43
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_TRIGGER_MIN            :: 1
+    AUDIT_TRIGGER_LOW_SPACE      :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    k_FilePermissionError                                           :: -54
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    k_FilePermissionError                                     :: -54
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_TRIGGER_ROTATE_KERNEL  :: 2
+    AUDIT_TRIGGER_READ_FILE      :: 3
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    k_TooManyFilesOpenError                                         :: -42
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    k_TooManyFilesOpenError                                   :: -42
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_TRIGGER_CLOSE_AND_DIE  :: 4
+    AUDIT_TRIGGER_NO_SPACE       :: 5
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    k_BadFilePathError                                              :: 561017960
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    k_BadFilePathError                                        :: 561017960
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_TRIGGER_ROTATE_USER    :: 6
+    AUDIT_TRIGGER_INITIALIZE     :: 7
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    k_ParamError                                                    :: -50
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    k_ParamError                                              :: -50
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_TRIGGER_EXPIRE_TRAILS  :: 8
+    AUDIT_TRIGGER_MAX            :: 8
+    AUDITDEV_FILENAME            :: "audit"
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    k_MemFullError                                                  :: -108
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    k_MemFullError                                            :: -108
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AU_DEFAUDITSID               :: 0
+    AU_ASSIGN_ASID               :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatLinearPCM                                                :: 1819304813
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatLinearPCM                                          :: 1819304813
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUC_UNSET                    :: 0
+    AUC_AUDITING                 :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatAC3                                                      :: 1633889587
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatAC3                                                :: 1633889587
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUC_NOAUDIT                  :: 2
+    AUC_DISABLED                 :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormat60958AC3                                                 :: 1667326771
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormat60958AC3                                           :: 1667326771
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_CNT                    :: 1
+    AUDIT_AHLT                   :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatAppleIMA4                                                :: 1768775988
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatAppleIMA4                                          :: 1768775988
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_ARGV                   :: 4
+    AUDIT_ARGE                   :: 8
+    AUDIT_SEQ                    :: 16
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatMPEG4AAC                                                 :: 1633772320
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatMPEG4AAC                                           :: 1633772320
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_WINDATA                :: 32
+    AUDIT_USER                   :: 64
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatMPEG4CELP                                                :: 1667591280
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatMPEG4CELP                                          :: 1667591280
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_GROUP                  :: 128
+    AUDIT_TRAIL                  :: 256
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatMPEG4HVXC                                                :: 1752594531
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatMPEG4HVXC                                          :: 1752594531
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_PATH                   :: 512
+    AUDIT_SCNT                   :: 1024
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatMPEG4TwinVQ                                              :: 1953986161
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatMPEG4TwinVQ                                        :: 1953986161
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_PUBLIC                 :: 2048
+    AUDIT_ZONENAME               :: 4096
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatMACE3                                                    :: 1296122675
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatMACE3                                              :: 1296122675
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIT_PERZONE                :: 8192
+    AU_FS_MINFREE                :: 20
+    AU_IPv4                      :: 4
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatMACE6                                                    :: 1296122678
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatMACE6                                              :: 1296122678
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AU_IPv6                      :: 16
+    AU_CLASS_MASK_RESERVED       :: 268435456
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatULaw                                                     :: 1970037111
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatULaw                                               :: 1970037111
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUDIO_UNIT_VERSION           :: 1070
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kFormatALaw                                                     :: 1634492791
+    kFormatQDesign                                                  :: 1363430723
+    kFormatQDesign2                                                 :: 1363430706
+    kFormatQUALCOMM                                                 :: 1365470320
+    kFormatMPEGLayer1                                               :: 778924081
+    kFormatMPEGLayer2                                               :: 778924082
+    kFormatMPEGLayer3                                               :: 778924083
+    kFormatTimeCode                                                 :: 1953066341
+    kFormatMIDIStream                                               :: 1835623529
+    kFormatParameterValueStream                                     :: 1634760307
+    kFormatAppleLossless                                            :: 1634492771
+    kFormatMPEG4AAC_HE                                              :: 1633772392
+    kFormatMPEG4AAC_LD                                              :: 1633772396
+    kFormatMPEG4AAC_ELD                                             :: 1633772389
+    kFormatMPEG4AAC_ELD_SBR                                         :: 1633772390
+    kFormatMPEG4AAC_ELD_V2                                          :: 1633772391
+    kFormatMPEG4AAC_HE_V2                                           :: 1633772400
+    kFormatMPEG4AAC_Spatial                                         :: 1633772403
+    kFormatMPEGD_USAC                                               :: 1970495843
+    kFormatAMR                                                      :: 1935764850
+    kFormatAMR_WB                                                   :: 1935767394
+    kFormatAudible                                                  :: 1096107074
+    kFormatiLBC                                                     :: 1768710755
+    kFormatDVIIntelIMA                                              :: 1836253201
+    kFormatMicrosoftGSM                                             :: 1836253233
+    kFormatAES3                                                     :: 1634038579
+    kFormatEnhancedAC3                                              :: 1700998451
+    kFormatFLAC                                                     :: 1718378851
+    kFormatOpus                                                     :: 1869641075
+    kFormatAPAC                                                     :: 1634754915
+    kFormatFlagIsFloat                                              :: 1
+    kFormatFlagIsBigEndian                                          :: 2
+    kFormatFlagIsSignedInteger                                      :: 4
+    kFormatFlagIsPacked                                             :: 8
+    kFormatFlagIsAlignedHigh                                        :: 16
+    kFormatFlagIsNonInterleaved                                     :: 32
+    kFormatFlagIsNonMixable                                         :: 64
+    kFormatFlagsAreAllClear                                         :: 2147483648
+    kFormatFlagsNativeEndian                                        :: 0
+    kFormatFlagsCanonical                                           :: 9
+    kFormatFlagsAudioUnitCanonical                                  :: 41
+    kFormatFlagsNativeFloatPacked                                   :: 9
+    kChannelLabel_Unknown                                           :: 4294967295
+    kChannelLabel_Unused                                            :: 0
+    kChannelLabel_UseCoordinates                                    :: 100
+    kChannelLabel_Left                                              :: 1
+    kChannelLabel_Right                                             :: 2
+    kChannelLabel_Center                                            :: 3
+    kChannelLabel_LFEScreen                                         :: 4
+    kChannelLabel_LeftSurround                                      :: 5
+    kChannelLabel_RightSurround                                     :: 6
+    kChannelLabel_LeftCenter                                        :: 7
+    kChannelLabel_RightCenter                                       :: 8
+    kChannelLabel_CenterSurround                                    :: 9
+    kChannelLabel_LeftSurroundDirect                                :: 10
+    kChannelLabel_RightSurroundDirect                               :: 11
+    kChannelLabel_TopCenterSurround                                 :: 12
+    kChannelLabel_VerticalHeightLeft                                :: 13
+    kChannelLabel_VerticalHeightCenter                              :: 14
+    kChannelLabel_VerticalHeightRight                               :: 15
+    kChannelLabel_TopBackLeft                                       :: 16
+    kChannelLabel_TopBackCenter                                     :: 17
+    kChannelLabel_TopBackRight                                      :: 18
+    kChannelLabel_RearSurroundLeft                                  :: 33
+    kChannelLabel_RearSurroundRight                                 :: 34
+    kChannelLabel_LeftWide                                          :: 35
+    kChannelLabel_RightWide                                         :: 36
+    kChannelLabel_LFE2                                              :: 37
+    kChannelLabel_LeftTotal                                         :: 38
+    kChannelLabel_RightTotal                                        :: 39
+    kChannelLabel_HearingImpaired                                   :: 40
+    kChannelLabel_Narration                                         :: 41
+    kChannelLabel_Mono                                              :: 42
+    kChannelLabel_DialogCentricMix                                  :: 43
+    kChannelLabel_CenterSurroundDirect                              :: 44
+    kChannelLabel_Haptic                                            :: 45
+    kChannelLabel_LeftTopFront                                      :: 13
+    kChannelLabel_CenterTopFront                                    :: 14
+    kChannelLabel_RightTopFront                                     :: 15
+    kChannelLabel_LeftTopMiddle                                     :: 49
+    kChannelLabel_CenterTopMiddle                                   :: 12
+    kChannelLabel_RightTopMiddle                                    :: 51
+    kChannelLabel_LeftTopRear                                       :: 52
+    kChannelLabel_CenterTopRear                                     :: 53
+    kChannelLabel_RightTopRear                                      :: 54
+    kChannelLabel_LeftSideSurround                                  :: 55
+    kChannelLabel_RightSideSurround                                 :: 56
+    kChannelLabel_LeftBottom                                        :: 57
+    kChannelLabel_RightBottom                                       :: 58
+    kChannelLabel_CenterBottom                                      :: 59
+    kChannelLabel_LeftTopSurround                                   :: 60
+    kChannelLabel_RightTopSurround                                  :: 61
+    kChannelLabel_LFE3                                              :: 62
+    kChannelLabel_LeftBackSurround                                  :: 63
+    kChannelLabel_RightBackSurround                                 :: 64
+    kChannelLabel_LeftEdgeOfScreen                                  :: 65
+    kChannelLabel_RightEdgeOfScreen                                 :: 66
+    kChannelLabel_Ambisonic_W                                       :: 200
+    kChannelLabel_Ambisonic_X                                       :: 201
+    kChannelLabel_Ambisonic_Y                                       :: 202
+    kChannelLabel_Ambisonic_Z                                       :: 203
+    kChannelLabel_MS_Mid                                            :: 204
+    kChannelLabel_MS_Side                                           :: 205
+    kChannelLabel_XY_X                                              :: 206
+    kChannelLabel_XY_Y                                              :: 207
+    kChannelLabel_BinauralLeft                                      :: 208
+    kChannelLabel_BinauralRight                                     :: 209
+    kChannelLabel_HeadphonesLeft                                    :: 301
+    kChannelLabel_HeadphonesRight                                   :: 302
+    kChannelLabel_ClickTrack                                        :: 304
+    kChannelLabel_ForeignLanguage                                   :: 305
+    kChannelLabel_Discrete                                          :: 400
+    kChannelLabel_Discrete_0                                        :: 65536
+    kChannelLabel_Discrete_1                                        :: 65537
+    kChannelLabel_Discrete_2                                        :: 65538
+    kChannelLabel_Discrete_3                                        :: 65539
+    kChannelLabel_Discrete_4                                        :: 65540
+    kChannelLabel_Discrete_5                                        :: 65541
+    kChannelLabel_Discrete_6                                        :: 65542
+    kChannelLabel_Discrete_7                                        :: 65543
+    kChannelLabel_Discrete_8                                        :: 65544
+    kChannelLabel_Discrete_9                                        :: 65545
+    kChannelLabel_Discrete_10                                       :: 65546
+    kChannelLabel_Discrete_11                                       :: 65547
+    kChannelLabel_Discrete_12                                       :: 65548
+    kChannelLabel_Discrete_13                                       :: 65549
+    kChannelLabel_Discrete_14                                       :: 65550
+    kChannelLabel_Discrete_15                                       :: 65551
+    kChannelLabel_Discrete_65535                                    :: 131071
+    kChannelLabel_HOA_ACN                                           :: 500
+    kChannelLabel_HOA_ACN_0                                         :: 131072
+    kChannelLabel_HOA_ACN_1                                         :: 131073
+    kChannelLabel_HOA_ACN_2                                         :: 131074
+    kChannelLabel_HOA_ACN_3                                         :: 131075
+    kChannelLabel_HOA_ACN_4                                         :: 131076
+    kChannelLabel_HOA_ACN_5                                         :: 131077
+    kChannelLabel_HOA_ACN_6                                         :: 131078
+    kChannelLabel_HOA_ACN_7                                         :: 131079
+    kChannelLabel_HOA_ACN_8                                         :: 131080
+    kChannelLabel_HOA_ACN_9                                         :: 131081
+    kChannelLabel_HOA_ACN_10                                        :: 131082
+    kChannelLabel_HOA_ACN_11                                        :: 131083
+    kChannelLabel_HOA_ACN_12                                        :: 131084
+    kChannelLabel_HOA_ACN_13                                        :: 131085
+    kChannelLabel_HOA_ACN_14                                        :: 131086
+    kChannelLabel_HOA_ACN_15                                        :: 131087
+    kChannelLabel_HOA_ACN_65024                                     :: 196096
+    kChannelLabel_HOA_SN3D                                          :: 131072
+    kChannelLabel_HOA_N3D                                           :: 196608
+    kChannelLabel_Object                                            :: 262144
+    kChannelLabel_BeginReserved                                     :: 4026531840
+    kChannelLabel_EndReserved                                       :: 4294967294
+    kChannelLayoutTag_UseChannelDescriptions                        :: 0
+    kChannelLayoutTag_UseChannelBitmap                              :: 65536
+    kChannelLayoutTag_Mono                                          :: 6553601
+    kChannelLayoutTag_Stereo                                        :: 6619138
+    kChannelLayoutTag_StereoHeadphones                              :: 6684674
+    kChannelLayoutTag_MatrixStereo                                  :: 6750210
+    kChannelLayoutTag_MidSide                                       :: 6815746
+    kChannelLayoutTag_XY                                            :: 6881282
+    kChannelLayoutTag_Binaural                                      :: 6946818
+    kChannelLayoutTag_Ambisonic_B_Format                            :: 7012356
+    kChannelLayoutTag_Quadraphonic                                  :: 7077892
+    kChannelLayoutTag_Pentagonal                                    :: 7143429
+    kChannelLayoutTag_Hexagonal                                     :: 7208966
+    kChannelLayoutTag_Octagonal                                     :: 7274504
+    kChannelLayoutTag_Cube                                          :: 7340040
+    kChannelLayoutTag_MPEG_1_0                                      :: 6553601
+    kChannelLayoutTag_MPEG_2_0                                      :: 6619138
+    kChannelLayoutTag_MPEG_3_0_A                                    :: 7405571
+    kChannelLayoutTag_MPEG_3_0_B                                    :: 7471107
+    kChannelLayoutTag_MPEG_4_0_A                                    :: 7536644
+    kChannelLayoutTag_MPEG_4_0_B                                    :: 7602180
+    kChannelLayoutTag_MPEG_5_0_A                                    :: 7667717
+    kChannelLayoutTag_MPEG_5_0_B                                    :: 7733253
+    kChannelLayoutTag_MPEG_5_0_C                                    :: 7798789
+    kChannelLayoutTag_MPEG_5_0_D                                    :: 7864325
+    kChannelLayoutTag_MPEG_5_1_A                                    :: 7929862
+    kChannelLayoutTag_MPEG_5_1_B                                    :: 7995398
+    kChannelLayoutTag_MPEG_5_1_C                                    :: 8060934
+    kChannelLayoutTag_MPEG_5_1_D                                    :: 8126470
+    kChannelLayoutTag_MPEG_6_1_A                                    :: 8192007
+    kChannelLayoutTag_MPEG_7_1_A                                    :: 8257544
+    kChannelLayoutTag_MPEG_7_1_B                                    :: 8323080
+    kChannelLayoutTag_MPEG_7_1_C                                    :: 8388616
+    kChannelLayoutTag_Emagic_Default_7_1                            :: 8454152
+    kChannelLayoutTag_SMPTE_DTV                                     :: 8519688
+    kChannelLayoutTag_ITU_1_0                                       :: 6553601
+    kChannelLayoutTag_ITU_2_0                                       :: 6619138
+    kChannelLayoutTag_ITU_2_1                                       :: 8585219
+    kChannelLayoutTag_ITU_2_2                                       :: 8650756
+    kChannelLayoutTag_ITU_3_0                                       :: 7405571
+    kChannelLayoutTag_ITU_3_1                                       :: 7536644
+    kChannelLayoutTag_ITU_3_2                                       :: 7667717
+    kChannelLayoutTag_ITU_3_2_1                                     :: 7929862
+    kChannelLayoutTag_ITU_3_4_1                                     :: 8388616
+    kChannelLayoutTag_DVD_0                                         :: 6553601
+    kChannelLayoutTag_DVD_1                                         :: 6619138
+    kChannelLayoutTag_DVD_2                                         :: 8585219
+    kChannelLayoutTag_DVD_3                                         :: 8650756
+    kChannelLayoutTag_DVD_4                                         :: 8716291
+    kChannelLayoutTag_DVD_5                                         :: 8781828
+    kChannelLayoutTag_DVD_6                                         :: 8847365
+    kChannelLayoutTag_DVD_7                                         :: 7405571
+    kChannelLayoutTag_DVD_8                                         :: 7536644
+    kChannelLayoutTag_DVD_9                                         :: 7667717
+    kChannelLayoutTag_DVD_10                                        :: 8912900
+    kChannelLayoutTag_DVD_11                                        :: 8978437
+    kChannelLayoutTag_DVD_12                                        :: 7929862
+    kChannelLayoutTag_DVD_13                                        :: 7536644
+    kChannelLayoutTag_DVD_14                                        :: 7667717
+    kChannelLayoutTag_DVD_15                                        :: 8912900
+    kChannelLayoutTag_DVD_16                                        :: 8978437
+    kChannelLayoutTag_DVD_17                                        :: 7929862
+    kChannelLayoutTag_DVD_18                                        :: 9043973
+    kChannelLayoutTag_DVD_19                                        :: 7733253
+    kChannelLayoutTag_DVD_20                                        :: 7995398
+    kChannelLayoutTag_AudioUnit_4                                   :: 7077892
+    kChannelLayoutTag_AudioUnit_5                                   :: 7143429
+    kChannelLayoutTag_AudioUnit_6                                   :: 7208966
+    kChannelLayoutTag_AudioUnit_8                                   :: 7274504
+    kChannelLayoutTag_AudioUnit_5_0                                 :: 7733253
+    kChannelLayoutTag_AudioUnit_6_0                                 :: 9109510
+    kChannelLayoutTag_AudioUnit_7_0                                 :: 9175047
+    kChannelLayoutTag_AudioUnit_7_0_Front                           :: 9699335
+    kChannelLayoutTag_AudioUnit_5_1                                 :: 7929862
+    kChannelLayoutTag_AudioUnit_6_1                                 :: 8192007
+    kChannelLayoutTag_AudioUnit_7_1                                 :: 8388616
+    kChannelLayoutTag_AudioUnit_7_1_Front                           :: 8257544
+    kChannelLayoutTag_AAC_3_0                                       :: 7471107
+    kChannelLayoutTag_AAC_Quadraphonic                              :: 7077892
+    kChannelLayoutTag_AAC_4_0                                       :: 7602180
+    kChannelLayoutTag_AAC_5_0                                       :: 7864325
+    kChannelLayoutTag_AAC_5_1                                       :: 8126470
+    kChannelLayoutTag_AAC_6_0                                       :: 9240582
+    kChannelLayoutTag_AAC_6_1                                       :: 9306119
+    kChannelLayoutTag_AAC_7_0                                       :: 9371655
+    kChannelLayoutTag_AAC_7_1                                       :: 8323080
+    kChannelLayoutTag_AAC_7_1_B                                     :: 11993096
+    kChannelLayoutTag_AAC_7_1_C                                     :: 12058632
+    kChannelLayoutTag_AAC_Octagonal                                 :: 9437192
+    kChannelLayoutTag_TMH_10_2_std                                  :: 9502736
+    kChannelLayoutTag_TMH_10_2_full                                 :: 9568277
+    kChannelLayoutTag_AC3_1_0_1                                     :: 9764866
+    kChannelLayoutTag_AC3_3_0                                       :: 9830403
+    kChannelLayoutTag_AC3_3_1                                       :: 9895940
+    kChannelLayoutTag_AC3_3_0_1                                     :: 9961476
+    kChannelLayoutTag_AC3_2_1_1                                     :: 10027012
+    kChannelLayoutTag_AC3_3_1_1                                     :: 10092549
+    kChannelLayoutTag_EAC_6_0_A                                     :: 10158086
+    kChannelLayoutTag_EAC_7_0_A                                     :: 10223623
+    kChannelLayoutTag_EAC3_6_1_A                                    :: 10289159
+    kChannelLayoutTag_EAC3_6_1_B                                    :: 10354695
+    kChannelLayoutTag_EAC3_6_1_C                                    :: 10420231
+    kChannelLayoutTag_EAC3_7_1_A                                    :: 10485768
+    kChannelLayoutTag_EAC3_7_1_B                                    :: 10551304
+    kChannelLayoutTag_EAC3_7_1_C                                    :: 10616840
+    kChannelLayoutTag_EAC3_7_1_D                                    :: 10682376
+    kChannelLayoutTag_EAC3_7_1_E                                    :: 10747912
+    kChannelLayoutTag_EAC3_7_1_F                                    :: 10813448
+    kChannelLayoutTag_EAC3_7_1_G                                    :: 10878984
+    kChannelLayoutTag_EAC3_7_1_H                                    :: 10944520
+    kChannelLayoutTag_DTS_3_1                                       :: 11010052
+    kChannelLayoutTag_DTS_4_1                                       :: 11075589
+    kChannelLayoutTag_DTS_6_0_A                                     :: 11141126
+    kChannelLayoutTag_DTS_6_0_B                                     :: 11206662
+    kChannelLayoutTag_DTS_6_0_C                                     :: 11272198
+    kChannelLayoutTag_DTS_6_1_A                                     :: 11337735
+    kChannelLayoutTag_DTS_6_1_B                                     :: 11403271
+    kChannelLayoutTag_DTS_6_1_C                                     :: 11468807
+    kChannelLayoutTag_DTS_7_0                                       :: 11534343
+    kChannelLayoutTag_DTS_7_1                                       :: 11599880
+    kChannelLayoutTag_DTS_8_0_A                                     :: 11665416
+    kChannelLayoutTag_DTS_8_0_B                                     :: 11730952
+    kChannelLayoutTag_DTS_8_1_A                                     :: 11796489
+    kChannelLayoutTag_DTS_8_1_B                                     :: 11862025
+    kChannelLayoutTag_DTS_6_1_D                                     :: 11927559
+    kChannelLayoutTag_WAVE_2_1                                      :: 8716291
+    kChannelLayoutTag_WAVE_3_0                                      :: 7405571
+    kChannelLayoutTag_WAVE_4_0_A                                    :: 8650756
+    kChannelLayoutTag_WAVE_4_0_B                                    :: 12124164
+    kChannelLayoutTag_WAVE_5_0_A                                    :: 7667717
+    kChannelLayoutTag_WAVE_5_0_B                                    :: 12189701
+    kChannelLayoutTag_WAVE_5_1_A                                    :: 7929862
+    kChannelLayoutTag_WAVE_5_1_B                                    :: 12255238
+    kChannelLayoutTag_WAVE_6_1                                      :: 12320775
+    kChannelLayoutTag_WAVE_7_1                                      :: 12386312
+    kChannelLayoutTag_HOA_ACN_SN3D                                  :: 12451840
+    kChannelLayoutTag_HOA_ACN_N3D                                   :: 12517376
+    kChannelLayoutTag_Atmos_5_1_2                                   :: 12713992
+    kChannelLayoutTag_Atmos_5_1_4                                   :: 12779530
+    kChannelLayoutTag_Atmos_7_1_2                                   :: 12845066
+    kChannelLayoutTag_Atmos_7_1_4                                   :: 12582924
+    kChannelLayoutTag_Atmos_9_1_6                                   :: 12648464
+    kChannelLayoutTag_Logic_Mono                                    :: 6553601
+    kChannelLayoutTag_Logic_Stereo                                  :: 6619138
+    kChannelLayoutTag_Logic_Quadraphonic                            :: 7077892
+    kChannelLayoutTag_Logic_4_0_A                                   :: 7536644
+    kChannelLayoutTag_Logic_4_0_B                                   :: 7602180
+    kChannelLayoutTag_Logic_4_0_C                                   :: 12910596
+    kChannelLayoutTag_Logic_5_0_A                                   :: 7667717
+    kChannelLayoutTag_Logic_5_0_B                                   :: 7733253
+    kChannelLayoutTag_Logic_5_0_C                                   :: 7798789
+    kChannelLayoutTag_Logic_5_0_D                                   :: 7864325
+    kChannelLayoutTag_Logic_5_1_A                                   :: 7929862
+    kChannelLayoutTag_Logic_5_1_B                                   :: 7995398
+    kChannelLayoutTag_Logic_5_1_C                                   :: 8060934
+    kChannelLayoutTag_Logic_5_1_D                                   :: 8126470
+    kChannelLayoutTag_Logic_6_0_A                                   :: 9240582
+    kChannelLayoutTag_Logic_6_0_B                                   :: 12976134
+    kChannelLayoutTag_Logic_6_0_C                                   :: 9109510
+    kChannelLayoutTag_Logic_6_1_A                                   :: 9306119
+    kChannelLayoutTag_Logic_6_1_B                                   :: 13041671
+    kChannelLayoutTag_Logic_6_1_C                                   :: 8192007
+    kChannelLayoutTag_Logic_6_1_D                                   :: 13107207
+    kChannelLayoutTag_Logic_7_1_A                                   :: 8388616
+    kChannelLayoutTag_Logic_7_1_B                                   :: 13172744
+    kChannelLayoutTag_Logic_7_1_C                                   :: 8388616
+    kChannelLayoutTag_Logic_7_1_SDDS_A                              :: 8257544
+    kChannelLayoutTag_Logic_7_1_SDDS_B                              :: 8323080
+    kChannelLayoutTag_Logic_7_1_SDDS_C                              :: 8454152
+    kChannelLayoutTag_Logic_Atmos_5_1_2                             :: 12713992
+    kChannelLayoutTag_Logic_Atmos_5_1_4                             :: 12779530
+    kChannelLayoutTag_Logic_Atmos_7_1_2                             :: 12845066
+    kChannelLayoutTag_Logic_Atmos_7_1_4_A                           :: 12582924
+    kChannelLayoutTag_Logic_Atmos_7_1_4_B                           :: 13238284
+    kChannelLayoutTag_Logic_Atmos_7_1_6                             :: 13303822
+    kChannelLayoutTag_DiscreteInOrder                               :: 9633792
+    kChannelLayoutTag_CICP_1                                        :: 6553601
+    kChannelLayoutTag_CICP_2                                        :: 6619138
+    kChannelLayoutTag_CICP_3                                        :: 7405571
+    kChannelLayoutTag_CICP_4                                        :: 7536644
+    kChannelLayoutTag_CICP_5                                        :: 7667717
+    kChannelLayoutTag_CICP_6                                        :: 7929862
+    kChannelLayoutTag_CICP_7                                        :: 8323080
+    kChannelLayoutTag_CICP_9                                        :: 8585219
+    kChannelLayoutTag_CICP_10                                       :: 8650756
+    kChannelLayoutTag_CICP_11                                       :: 8192007
+    kChannelLayoutTag_CICP_12                                       :: 8388616
+    kChannelLayoutTag_CICP_13                                       :: 13369368
+    kChannelLayoutTag_CICP_14                                       :: 13434888
+    kChannelLayoutTag_CICP_15                                       :: 13500428
+    kChannelLayoutTag_CICP_16                                       :: 13565962
+    kChannelLayoutTag_CICP_17                                       :: 13631500
+    kChannelLayoutTag_CICP_18                                       :: 13697038
+    kChannelLayoutTag_CICP_19                                       :: 13762572
+    kChannelLayoutTag_CICP_20                                       :: 13828110
+    kChannelLayoutTag_Ogg_3_0                                       :: 9830403
+    kChannelLayoutTag_Ogg_4_0                                       :: 12124164
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatALaw                                               :: 1634492791
+    kFormatQDesign                                            :: 1363430723
+    kFormatQDesign2                                           :: 1363430706
+    kFormatQUALCOMM                                           :: 1365470320
+    kFormatMPEGLayer1                                         :: 778924081
+    kFormatMPEGLayer2                                         :: 778924082
+    kFormatMPEGLayer3                                         :: 778924083
+    kFormatTimeCode                                           :: 1953066341
+    kFormatMIDIStream                                         :: 1835623529
+    kFormatParameterValueStream                               :: 1634760307
+    kFormatAppleLossless                                      :: 1634492771
+    kFormatMPEG4AAC_HE                                        :: 1633772392
+    kFormatMPEG4AAC_LD                                        :: 1633772396
+    kFormatMPEG4AAC_ELD                                       :: 1633772389
+    kFormatMPEG4AAC_ELD_SBR                                   :: 1633772390
+    kFormatMPEG4AAC_ELD_V2                                    :: 1633772391
+    kFormatMPEG4AAC_HE_V2                                     :: 1633772400
+    kFormatMPEG4AAC_Spatial                                   :: 1633772403
+    kFormatMPEGD_USAC                                         :: 1970495843
+    kFormatAMR                                                :: 1935764850
+    kFormatAMR_WB                                             :: 1935767394
+    kFormatAudible                                            :: 1096107074
+    kFormatiLBC                                               :: 1768710755
+    kFormatDVIIntelIMA                                        :: 1836253201
+    kFormatMicrosoftGSM                                       :: 1836253233
+    kFormatAES3                                               :: 1634038579
+    kFormatEnhancedAC3                                        :: 1700998451
+    kFormatFLAC                                               :: 1718378851
+    kFormatOpus                                               :: 1869641075
+    kFormatAPAC                                               :: 1634754915
+    kFormatFlagIsFloat                                        :: 1
+    kFormatFlagIsBigEndian                                    :: 2
+    kFormatFlagIsSignedInteger                                :: 4
+    kFormatFlagIsPacked                                       :: 8
+    kFormatFlagIsAlignedHigh                                  :: 16
+    kFormatFlagIsNonInterleaved                               :: 32
+    kFormatFlagIsNonMixable                                   :: 64
+    kFormatFlagsAreAllClear                                   :: 2147483648
+    kFormatFlagsNativeEndian                                  :: 0
+    kFormatFlagsCanonical                                     :: 12
+    kFormatFlagsAudioUnitCanonical                            :: 3116
+    kFormatFlagsNativeFloatPacked                             :: 9
+    kChannelLabel_Unknown                                     :: 4294967295
+    kChannelLabel_Unused                                      :: 0
+    kChannelLabel_UseCoordinates                              :: 100
+    kChannelLabel_Left                                        :: 1
+    kChannelLabel_Right                                       :: 2
+    kChannelLabel_Center                                      :: 3
+    kChannelLabel_LFEScreen                                   :: 4
+    kChannelLabel_LeftSurround                                :: 5
+    kChannelLabel_RightSurround                               :: 6
+    kChannelLabel_LeftCenter                                  :: 7
+    kChannelLabel_RightCenter                                 :: 8
+    kChannelLabel_CenterSurround                              :: 9
+    kChannelLabel_LeftSurroundDirect                          :: 10
+    kChannelLabel_RightSurroundDirect                         :: 11
+    kChannelLabel_TopCenterSurround                           :: 12
+    kChannelLabel_VerticalHeightLeft                          :: 13
+    kChannelLabel_VerticalHeightCenter                        :: 14
+    kChannelLabel_VerticalHeightRight                         :: 15
+    kChannelLabel_TopBackLeft                                 :: 16
+    kChannelLabel_TopBackCenter                               :: 17
+    kChannelLabel_TopBackRight                                :: 18
+    kChannelLabel_RearSurroundLeft                            :: 33
+    kChannelLabel_RearSurroundRight                           :: 34
+    kChannelLabel_LeftWide                                    :: 35
+    kChannelLabel_RightWide                                   :: 36
+    kChannelLabel_LFE2                                        :: 37
+    kChannelLabel_LeftTotal                                   :: 38
+    kChannelLabel_RightTotal                                  :: 39
+    kChannelLabel_HearingImpaired                             :: 40
+    kChannelLabel_Narration                                   :: 41
+    kChannelLabel_Mono                                        :: 42
+    kChannelLabel_DialogCentricMix                            :: 43
+    kChannelLabel_CenterSurroundDirect                        :: 44
+    kChannelLabel_Haptic                                      :: 45
+    kChannelLabel_LeftTopFront                                :: 13
+    kChannelLabel_CenterTopFront                              :: 14
+    kChannelLabel_RightTopFront                               :: 15
+    kChannelLabel_LeftTopMiddle                               :: 49
+    kChannelLabel_CenterTopMiddle                             :: 12
+    kChannelLabel_RightTopMiddle                              :: 51
+    kChannelLabel_LeftTopRear                                 :: 52
+    kChannelLabel_CenterTopRear                               :: 53
+    kChannelLabel_RightTopRear                                :: 54
+    kChannelLabel_LeftSideSurround                            :: 55
+    kChannelLabel_RightSideSurround                           :: 56
+    kChannelLabel_LeftBottom                                  :: 57
+    kChannelLabel_RightBottom                                 :: 58
+    kChannelLabel_CenterBottom                                :: 59
+    kChannelLabel_LeftTopSurround                             :: 60
+    kChannelLabel_RightTopSurround                            :: 61
+    kChannelLabel_LFE3                                        :: 62
+    kChannelLabel_LeftBackSurround                            :: 63
+    kChannelLabel_RightBackSurround                           :: 64
+    kChannelLabel_LeftEdgeOfScreen                            :: 65
+    kChannelLabel_RightEdgeOfScreen                           :: 66
+    kChannelLabel_Ambisonic_W                                 :: 200
+    kChannelLabel_Ambisonic_X                                 :: 201
+    kChannelLabel_Ambisonic_Y                                 :: 202
+    kChannelLabel_Ambisonic_Z                                 :: 203
+    kChannelLabel_MS_Mid                                      :: 204
+    kChannelLabel_MS_Side                                     :: 205
+    kChannelLabel_XY_X                                        :: 206
+    kChannelLabel_XY_Y                                        :: 207
+    kChannelLabel_BinauralLeft                                :: 208
+    kChannelLabel_BinauralRight                               :: 209
+    kChannelLabel_HeadphonesLeft                              :: 301
+    kChannelLabel_HeadphonesRight                             :: 302
+    kChannelLabel_ClickTrack                                  :: 304
+    kChannelLabel_ForeignLanguage                             :: 305
+    kChannelLabel_Discrete                                    :: 400
+    kChannelLabel_Discrete_0                                  :: 65536
+    kChannelLabel_Discrete_1                                  :: 65537
+    kChannelLabel_Discrete_2                                  :: 65538
+    kChannelLabel_Discrete_3                                  :: 65539
+    kChannelLabel_Discrete_4                                  :: 65540
+    kChannelLabel_Discrete_5                                  :: 65541
+    kChannelLabel_Discrete_6                                  :: 65542
+    kChannelLabel_Discrete_7                                  :: 65543
+    kChannelLabel_Discrete_8                                  :: 65544
+    kChannelLabel_Discrete_9                                  :: 65545
+    kChannelLabel_Discrete_10                                 :: 65546
+    kChannelLabel_Discrete_11                                 :: 65547
+    kChannelLabel_Discrete_12                                 :: 65548
+    kChannelLabel_Discrete_13                                 :: 65549
+    kChannelLabel_Discrete_14                                 :: 65550
+    kChannelLabel_Discrete_15                                 :: 65551
+    kChannelLabel_Discrete_65535                              :: 131071
+    kChannelLabel_HOA_ACN                                     :: 500
+    kChannelLabel_HOA_ACN_0                                   :: 131072
+    kChannelLabel_HOA_ACN_1                                   :: 131073
+    kChannelLabel_HOA_ACN_2                                   :: 131074
+    kChannelLabel_HOA_ACN_3                                   :: 131075
+    kChannelLabel_HOA_ACN_4                                   :: 131076
+    kChannelLabel_HOA_ACN_5                                   :: 131077
+    kChannelLabel_HOA_ACN_6                                   :: 131078
+    kChannelLabel_HOA_ACN_7                                   :: 131079
+    kChannelLabel_HOA_ACN_8                                   :: 131080
+    kChannelLabel_HOA_ACN_9                                   :: 131081
+    kChannelLabel_HOA_ACN_10                                  :: 131082
+    kChannelLabel_HOA_ACN_11                                  :: 131083
+    kChannelLabel_HOA_ACN_12                                  :: 131084
+    kChannelLabel_HOA_ACN_13                                  :: 131085
+    kChannelLabel_HOA_ACN_14                                  :: 131086
+    kChannelLabel_HOA_ACN_15                                  :: 131087
+    kChannelLabel_HOA_ACN_65024                               :: 196096
+    kChannelLabel_HOA_SN3D                                    :: 131072
+    kChannelLabel_HOA_N3D                                     :: 196608
+    kChannelLabel_Object                                      :: 262144
+    kChannelLabel_BeginReserved                               :: 4026531840
+    kChannelLabel_EndReserved                                 :: 4294967294
+    kChannelLayoutTag_UseChannelDescriptions                  :: 0
+    kChannelLayoutTag_UseChannelBitmap                        :: 65536
+    kChannelLayoutTag_Mono                                    :: 6553601
+    kChannelLayoutTag_Stereo                                  :: 6619138
+    kChannelLayoutTag_StereoHeadphones                        :: 6684674
+    kChannelLayoutTag_MatrixStereo                            :: 6750210
+    kChannelLayoutTag_MidSide                                 :: 6815746
+    kChannelLayoutTag_XY                                      :: 6881282
+    kChannelLayoutTag_Binaural                                :: 6946818
+    kChannelLayoutTag_Ambisonic_B_Format                      :: 7012356
+    kChannelLayoutTag_Quadraphonic                            :: 7077892
+    kChannelLayoutTag_Pentagonal                              :: 7143429
+    kChannelLayoutTag_Hexagonal                               :: 7208966
+    kChannelLayoutTag_Octagonal                               :: 7274504
+    kChannelLayoutTag_Cube                                    :: 7340040
+    kChannelLayoutTag_MPEG_1_0                                :: 6553601
+    kChannelLayoutTag_MPEG_2_0                                :: 6619138
+    kChannelLayoutTag_MPEG_3_0_A                              :: 7405571
+    kChannelLayoutTag_MPEG_3_0_B                              :: 7471107
+    kChannelLayoutTag_MPEG_4_0_A                              :: 7536644
+    kChannelLayoutTag_MPEG_4_0_B                              :: 7602180
+    kChannelLayoutTag_MPEG_5_0_A                              :: 7667717
+    kChannelLayoutTag_MPEG_5_0_B                              :: 7733253
+    kChannelLayoutTag_MPEG_5_0_C                              :: 7798789
+    kChannelLayoutTag_MPEG_5_0_D                              :: 7864325
+    kChannelLayoutTag_MPEG_5_1_A                              :: 7929862
+    kChannelLayoutTag_MPEG_5_1_B                              :: 7995398
+    kChannelLayoutTag_MPEG_5_1_C                              :: 8060934
+    kChannelLayoutTag_MPEG_5_1_D                              :: 8126470
+    kChannelLayoutTag_MPEG_6_1_A                              :: 8192007
+    kChannelLayoutTag_MPEG_7_1_A                              :: 8257544
+    kChannelLayoutTag_MPEG_7_1_B                              :: 8323080
+    kChannelLayoutTag_MPEG_7_1_C                              :: 8388616
+    kChannelLayoutTag_Emagic_Default_7_1                      :: 8454152
+    kChannelLayoutTag_SMPTE_DTV                               :: 8519688
+    kChannelLayoutTag_ITU_1_0                                 :: 6553601
+    kChannelLayoutTag_ITU_2_0                                 :: 6619138
+    kChannelLayoutTag_ITU_2_1                                 :: 8585219
+    kChannelLayoutTag_ITU_2_2                                 :: 8650756
+    kChannelLayoutTag_ITU_3_0                                 :: 7405571
+    kChannelLayoutTag_ITU_3_1                                 :: 7536644
+    kChannelLayoutTag_ITU_3_2                                 :: 7667717
+    kChannelLayoutTag_ITU_3_2_1                               :: 7929862
+    kChannelLayoutTag_ITU_3_4_1                               :: 8388616
+    kChannelLayoutTag_DVD_0                                   :: 6553601
+    kChannelLayoutTag_DVD_1                                   :: 6619138
+    kChannelLayoutTag_DVD_2                                   :: 8585219
+    kChannelLayoutTag_DVD_3                                   :: 8650756
+    kChannelLayoutTag_DVD_4                                   :: 8716291
+    kChannelLayoutTag_DVD_5                                   :: 8781828
+    kChannelLayoutTag_DVD_6                                   :: 8847365
+    kChannelLayoutTag_DVD_7                                   :: 7405571
+    kChannelLayoutTag_DVD_8                                   :: 7536644
+    kChannelLayoutTag_DVD_9                                   :: 7667717
+    kChannelLayoutTag_DVD_10                                  :: 8912900
+    kChannelLayoutTag_DVD_11                                  :: 8978437
+    kChannelLayoutTag_DVD_12                                  :: 7929862
+    kChannelLayoutTag_DVD_13                                  :: 7536644
+    kChannelLayoutTag_DVD_14                                  :: 7667717
+    kChannelLayoutTag_DVD_15                                  :: 8912900
+    kChannelLayoutTag_DVD_16                                  :: 8978437
+    kChannelLayoutTag_DVD_17                                  :: 7929862
+    kChannelLayoutTag_DVD_18                                  :: 9043973
+    kChannelLayoutTag_DVD_19                                  :: 7733253
+    kChannelLayoutTag_DVD_20                                  :: 7995398
+    kChannelLayoutTag_AudioUnit_4                             :: 7077892
+    kChannelLayoutTag_AudioUnit_5                             :: 7143429
+    kChannelLayoutTag_AudioUnit_6                             :: 7208966
+    kChannelLayoutTag_AudioUnit_8                             :: 7274504
+    kChannelLayoutTag_AudioUnit_5_0                           :: 7733253
+    kChannelLayoutTag_AudioUnit_6_0                           :: 9109510
+    kChannelLayoutTag_AudioUnit_7_0                           :: 9175047
+    kChannelLayoutTag_AudioUnit_7_0_Front                     :: 9699335
+    kChannelLayoutTag_AudioUnit_5_1                           :: 7929862
+    kChannelLayoutTag_AudioUnit_6_1                           :: 8192007
+    kChannelLayoutTag_AudioUnit_7_1                           :: 8388616
+    kChannelLayoutTag_AudioUnit_7_1_Front                     :: 8257544
+    kChannelLayoutTag_AAC_3_0                                 :: 7471107
+    kChannelLayoutTag_AAC_Quadraphonic                        :: 7077892
+    kChannelLayoutTag_AAC_4_0                                 :: 7602180
+    kChannelLayoutTag_AAC_5_0                                 :: 7864325
+    kChannelLayoutTag_AAC_5_1                                 :: 8126470
+    kChannelLayoutTag_AAC_6_0                                 :: 9240582
+    kChannelLayoutTag_AAC_6_1                                 :: 9306119
+    kChannelLayoutTag_AAC_7_0                                 :: 9371655
+    kChannelLayoutTag_AAC_7_1                                 :: 8323080
+    kChannelLayoutTag_AAC_7_1_B                               :: 11993096
+    kChannelLayoutTag_AAC_7_1_C                               :: 12058632
+    kChannelLayoutTag_AAC_Octagonal                           :: 9437192
+    kChannelLayoutTag_TMH_10_2_std                            :: 9502736
+    kChannelLayoutTag_TMH_10_2_full                           :: 9568277
+    kChannelLayoutTag_AC3_1_0_1                               :: 9764866
+    kChannelLayoutTag_AC3_3_0                                 :: 9830403
+    kChannelLayoutTag_AC3_3_1                                 :: 9895940
+    kChannelLayoutTag_AC3_3_0_1                               :: 9961476
+    kChannelLayoutTag_AC3_2_1_1                               :: 10027012
+    kChannelLayoutTag_AC3_3_1_1                               :: 10092549
+    kChannelLayoutTag_EAC_6_0_A                               :: 10158086
+    kChannelLayoutTag_EAC_7_0_A                               :: 10223623
+    kChannelLayoutTag_EAC3_6_1_A                              :: 10289159
+    kChannelLayoutTag_EAC3_6_1_B                              :: 10354695
+    kChannelLayoutTag_EAC3_6_1_C                              :: 10420231
+    kChannelLayoutTag_EAC3_7_1_A                              :: 10485768
+    kChannelLayoutTag_EAC3_7_1_B                              :: 10551304
+    kChannelLayoutTag_EAC3_7_1_C                              :: 10616840
+    kChannelLayoutTag_EAC3_7_1_D                              :: 10682376
+    kChannelLayoutTag_EAC3_7_1_E                              :: 10747912
+    kChannelLayoutTag_EAC3_7_1_F                              :: 10813448
+    kChannelLayoutTag_EAC3_7_1_G                              :: 10878984
+    kChannelLayoutTag_EAC3_7_1_H                              :: 10944520
+    kChannelLayoutTag_DTS_3_1                                 :: 11010052
+    kChannelLayoutTag_DTS_4_1                                 :: 11075589
+    kChannelLayoutTag_DTS_6_0_A                               :: 11141126
+    kChannelLayoutTag_DTS_6_0_B                               :: 11206662
+    kChannelLayoutTag_DTS_6_0_C                               :: 11272198
+    kChannelLayoutTag_DTS_6_1_A                               :: 11337735
+    kChannelLayoutTag_DTS_6_1_B                               :: 11403271
+    kChannelLayoutTag_DTS_6_1_C                               :: 11468807
+    kChannelLayoutTag_DTS_7_0                                 :: 11534343
+    kChannelLayoutTag_DTS_7_1                                 :: 11599880
+    kChannelLayoutTag_DTS_8_0_A                               :: 11665416
+    kChannelLayoutTag_DTS_8_0_B                               :: 11730952
+    kChannelLayoutTag_DTS_8_1_A                               :: 11796489
+    kChannelLayoutTag_DTS_8_1_B                               :: 11862025
+    kChannelLayoutTag_DTS_6_1_D                               :: 11927559
+    kChannelLayoutTag_WAVE_2_1                                :: 8716291
+    kChannelLayoutTag_WAVE_3_0                                :: 7405571
+    kChannelLayoutTag_WAVE_4_0_A                              :: 8650756
+    kChannelLayoutTag_WAVE_4_0_B                              :: 12124164
+    kChannelLayoutTag_WAVE_5_0_A                              :: 7667717
+    kChannelLayoutTag_WAVE_5_0_B                              :: 12189701
+    kChannelLayoutTag_WAVE_5_1_A                              :: 7929862
+    kChannelLayoutTag_WAVE_5_1_B                              :: 12255238
+    kChannelLayoutTag_WAVE_6_1                                :: 12320775
+    kChannelLayoutTag_WAVE_7_1                                :: 12386312
+    kChannelLayoutTag_HOA_ACN_SN3D                            :: 12451840
+    kChannelLayoutTag_HOA_ACN_N3D                             :: 12517376
+    kChannelLayoutTag_Atmos_5_1_2                             :: 12713992
+    kChannelLayoutTag_Atmos_5_1_4                             :: 12779530
+    kChannelLayoutTag_Atmos_7_1_2                             :: 12845066
+    kChannelLayoutTag_Atmos_7_1_4                             :: 12582924
+    kChannelLayoutTag_Atmos_9_1_6                             :: 12648464
+    kChannelLayoutTag_Logic_Mono                              :: 6553601
+    kChannelLayoutTag_Logic_Stereo                            :: 6619138
+    kChannelLayoutTag_Logic_Quadraphonic                      :: 7077892
+    kChannelLayoutTag_Logic_4_0_A                             :: 7536644
+    kChannelLayoutTag_Logic_4_0_B                             :: 7602180
+    kChannelLayoutTag_Logic_4_0_C                             :: 12910596
+    kChannelLayoutTag_Logic_5_0_A                             :: 7667717
+    kChannelLayoutTag_Logic_5_0_B                             :: 7733253
+    kChannelLayoutTag_Logic_5_0_C                             :: 7798789
+    kChannelLayoutTag_Logic_5_0_D                             :: 7864325
+    kChannelLayoutTag_Logic_5_1_A                             :: 7929862
+    kChannelLayoutTag_Logic_5_1_B                             :: 7995398
+    kChannelLayoutTag_Logic_5_1_C                             :: 8060934
+    kChannelLayoutTag_Logic_5_1_D                             :: 8126470
+    kChannelLayoutTag_Logic_6_0_A                             :: 9240582
+    kChannelLayoutTag_Logic_6_0_B                             :: 12976134
+    kChannelLayoutTag_Logic_6_0_C                             :: 9109510
+    kChannelLayoutTag_Logic_6_1_A                             :: 9306119
+    kChannelLayoutTag_Logic_6_1_B                             :: 13041671
+    kChannelLayoutTag_Logic_6_1_C                             :: 8192007
+    kChannelLayoutTag_Logic_6_1_D                             :: 13107207
+    kChannelLayoutTag_Logic_7_1_A                             :: 8388616
+    kChannelLayoutTag_Logic_7_1_B                             :: 13172744
+    kChannelLayoutTag_Logic_7_1_C                             :: 8388616
+    kChannelLayoutTag_Logic_7_1_SDDS_A                        :: 8257544
+    kChannelLayoutTag_Logic_7_1_SDDS_B                        :: 8323080
+    kChannelLayoutTag_Logic_7_1_SDDS_C                        :: 8454152
+    kChannelLayoutTag_Logic_Atmos_5_1_2                       :: 12713992
+    kChannelLayoutTag_Logic_Atmos_5_1_4                       :: 12779530
+    kChannelLayoutTag_Logic_Atmos_7_1_2                       :: 12845066
+    kChannelLayoutTag_Logic_Atmos_7_1_4_A                     :: 12582924
+    kChannelLayoutTag_Logic_Atmos_7_1_4_B                     :: 13238284
+    kChannelLayoutTag_Logic_Atmos_7_1_6                       :: 13303822
+    kChannelLayoutTag_DiscreteInOrder                         :: 9633792
+    kChannelLayoutTag_CICP_1                                  :: 6553601
+    kChannelLayoutTag_CICP_2                                  :: 6619138
+    kChannelLayoutTag_CICP_3                                  :: 7405571
+    kChannelLayoutTag_CICP_4                                  :: 7536644
+    kChannelLayoutTag_CICP_5                                  :: 7667717
+    kChannelLayoutTag_CICP_6                                  :: 7929862
+    kChannelLayoutTag_CICP_7                                  :: 8323080
+    kChannelLayoutTag_CICP_9                                  :: 8585219
+    kChannelLayoutTag_CICP_10                                 :: 8650756
+    kChannelLayoutTag_CICP_11                                 :: 8192007
+    kChannelLayoutTag_CICP_12                                 :: 8388616
+    kChannelLayoutTag_CICP_13                                 :: 13369368
+    kChannelLayoutTag_CICP_14                                 :: 13434888
+    kChannelLayoutTag_CICP_15                                 :: 13500428
+    kChannelLayoutTag_CICP_16                                 :: 13565962
+    kChannelLayoutTag_CICP_17                                 :: 13631500
+    kChannelLayoutTag_CICP_18                                 :: 13697038
+    kChannelLayoutTag_CICP_19                                 :: 13762572
+    kChannelLayoutTag_CICP_20                                 :: 13828110
+    kChannelLayoutTag_Ogg_3_0                                 :: 9830403
+    kChannelLayoutTag_Ogg_4_0                                 :: 12124164
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertySupportedInputFormats                       :: 1768320291
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_Ogg_5_0                                       :: 13893637
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_Ogg_5_0                                 :: 13893637
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertySupportedOutputFormats                      :: 1868983587
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_Ogg_5_1                                       :: 13959174
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_Ogg_5_1                                 :: 13959174
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAvailableInputSampleRates                   :: 1634300786
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_Ogg_6_1                                       :: 14024711
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_Ogg_6_1                                 :: 14024711
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAvailableOutputSampleRates                  :: 1634694002
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_Ogg_7_1                                       :: 14090248
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_Ogg_7_1                                 :: 14090248
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAvailableBitRateRange                       :: 1633841780
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_MPEG_5_0_E                                    :: 14155781
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_MPEG_5_0_E                              :: 14155781
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyMinimumNumberInputPackets                   :: 1835952496
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_MPEG_5_1_E                                    :: 14221318
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_MPEG_5_1_E                              :: 14221318
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyMinimumNumberOutputPackets                  :: 1835954032
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_MPEG_6_1_B                                    :: 14286855
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_MPEG_6_1_B                              :: 14286855
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAvailableNumberChannels                     :: 1668116067
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_MPEG_7_1_D                                    :: 14352392
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_MPEG_7_1_D                              :: 14352392
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyDoesSampleRateConversion                    :: 1819112035
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_BeginReserved                                 :: 4026531840
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_BeginReserved                           :: 4026531840
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAvailableInputChannelLayoutTags             :: 1634296684
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_EndReserved                                   :: 4294901759
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_EndReserved                             :: 4294901759
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAvailableOutputChannelLayoutTags            :: 1634689900
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kChannelLayoutTag_Unknown                                       :: 4294901760
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kChannelLayoutTag_Unknown                                 :: 4294901760
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyInputFormatsForOutputFormat                 :: 1768305775
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareNoError                                                :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyOutputFormatsForInputFormat                 :: 1868969065
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareNotRunningError                                        :: 1937010544
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyFormatInfo                                  :: 1633904233
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareUnspecifiedError                                       :: 2003329396
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyInputBufferSize                             :: 1952609638
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareUnknownPropertyError                                   :: 2003332927
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyPacketFrameSize                             :: 1885432678
+    kCodecPropertyHasVariablePacketByteSizes                  :: 1987078975
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareBadPropertySizeError                                   :: 561211770
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyEmploysDependentPackets                     :: 1685089087
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareIllegalOperationError                                  :: 1852797029
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyMaximumPacketByteSize                       :: 1885432674
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareBadObjectError                                         :: 560947818
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyPacketSizeLimitForVBR                       :: 1885432684
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareBadDeviceError                                         :: 560227702
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyCurrentInputFormat                          :: 1768320372
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareBadStreamError                                         :: 561214578
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyCurrentOutputFormat                         :: 1868983668
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareUnsupportedOperationError                              :: 1970171760
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyMagicCookie                                 :: 1802857321
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwareNotReadyError                                          :: 1852990585
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyUsedInputBufferSize                         :: 1969386854
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceUnsupportedFormatError                                   :: 560226676
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyIsInitialized                               :: 1768843636
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePermissionsError                                         :: 560492391
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyCurrentTargetBitRate                        :: 1651663220
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectUnknown                                                  :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyCurrentInputSampleRate                      :: 1667855218
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyScopeGlobal                                      :: 1735159650
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyCurrentOutputSampleRate                     :: 1668248434
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyScopeInput                                       :: 1768845428
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyQualitySetting                              :: 1936876401
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyScopeOutput                                      :: 1869968496
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyApplicableBitRateRange                      :: 1651668065
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyScopePlayThrough                                 :: 1886679669
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyRecommendedBitRateRange                     :: 1651668082
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyElementMain                                      :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyApplicableInputSampleRates                  :: 1769173601
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyElementMaster                                    :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyApplicableOutputSampleRates                 :: 1869836897
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertySelectorWildcard                                 :: 707406378
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyPaddedZeros                                 :: 1885430832
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyScopeWildcard                                    :: 707406378
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyPrimeMethod                                 :: 1886547309
+    kCodecPropertyPrimeInfo                                   :: 1886546285
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyElementWildcard                                  :: 4294967295
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyCurrentInputChannelLayout                   :: 1768123424
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectClassIDWildcard                                          :: 707406378
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyCurrentOutputChannelLayout                  :: 1868786720
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectClassID                                                  :: 1634689642
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertySettings                                    :: 1633907488
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyBaseClass                                        :: 1650682995
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyFormatList                                  :: 1633904236
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyClass                                            :: 1668047219
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyBitRateControlMode                          :: 1633903206
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyOwner                                            :: 1937007734
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertySoundQualityForVBR                          :: 1986163313
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyName                                             :: 1819173229
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyBitRateForVBR                               :: 1986163298
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyModelName                                        :: 1819111268
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyDelayMode                                   :: 1684893540
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyManufacturer                                     :: 1819107691
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAdjustLocalQuality                          :: 1584488812
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyElementName                                      :: 1818454126
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyDynamicRangeControlMode                     :: 1835299427
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyElementCategoryName                              :: 1818452846
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAdjustCompressionProfile                    :: 1584427631
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyElementNumberName                                :: 1818455662
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyProgramTargetLevelConstant                  :: 1886678115
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyOwnedObjects                                     :: 1870098020
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAdjustTargetLevelConstant                   :: 1584688227
+    kCodecPropertyProgramTargetLevel                          :: 1886418028
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyIdentify                                         :: 1768187246
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAdjustTargetLevel                           :: 1584428140
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertySerialNumber                                     :: 1936618861
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyDynamicRangeControlConfiguration            :: 1667527267
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyFirmwareVersion                                  :: 1719105134
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyContentSource                               :: 1668510307
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInClassID                                                  :: 1634757735
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyASPFrequency                                :: 1634955366
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInPropertyBundleID                                         :: 1885956452
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecQuality_Max                                         :: 127
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInPropertyDeviceList                                       :: 1684370979
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecQuality_High                                        :: 96
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInPropertyTranslateUIDToDevice                             :: 1969841252
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecQuality_Medium                                      :: 64
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInPropertyBoxList                                          :: 1651472419
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecQuality_Low                                         :: 32
+    kCodecQuality_Min                                         :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInPropertyTranslateUIDToBox                                :: 1969841250
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPrimeMethod_Pre                                     :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInPropertyClockDeviceList                                  :: 1668049699
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPrimeMethod_Normal                                  :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInPropertyTranslateUIDToClockDevice                        :: 1969841251
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPrimeMethod_None                                    :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTransportManagerClassID                                        :: 1953656941
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecBitRateControlMode_Constant                         :: 0
+    kCodecBitRateControlMode_LongTermAverage                  :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTransportManagerPropertyEndPointList                           :: 1701733411
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecBitRateControlMode_VariableConstrained              :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTransportManagerPropertyTranslateUIDToEndPoint                 :: 1969841253
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecBitRateControlMode_Variable                         :: 3
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTransportManagerPropertyTransportType                          :: 1953653102
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecDelayMode_Compatibility                             :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxClassID                                                     :: 1633841016
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecDelayMode_Minimum                                   :: 1
+    kCodecDelayMode_Optimal                                   :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyBoxUID                                              :: 1651861860
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecDynamicRangeControlConfiguration_None               :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyTransportType                                       :: 1953653102
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecDynamicRangeControlConfiguration_Music              :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyHasAudio                                            :: 1651007861
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecDynamicRangeControlConfiguration_Speech             :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyHasVideo                                            :: 1651013225
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecDynamicRangeControlConfiguration_Movie              :: 3
+    kCodecDynamicRangeControlConfiguration_Capture            :: 4
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyHasMIDI                                             :: 1651010921
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_Unspecified                           :: -1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyIsProtected                                         :: 1651536495
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_Reserved                              :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyAcquired                                            :: 1652060014
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AppleCapture_Traditional              :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyAcquisitionFailed                                   :: 1652060006
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AppleCapture_Spatial                  :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyDeviceList                                          :: 1650751011
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AppleCapture_Spatial_Enhanced         :: 3
+    kCodecContentSource_AppleMusic_Traditional                :: 4
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBoxPropertyClockDeviceList                                     :: 1650682915
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AppleMusic_Spatial                    :: 5
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceClassID                                                  :: 1633969526
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AppleAV_Traditional_Offline           :: 6
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeUnknown                                     :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AppleAV_Spatial_Offline               :: 7
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeBuiltIn                                     :: 1651274862
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AppleAV_Traditional_Live              :: 8
+    kCodecContentSource_AppleAV_Spatial_Live                  :: 9
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeAggregate                                   :: 1735554416
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_ApplePassthrough                      :: 10
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeVirtual                                     :: 1986622068
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_Capture_Traditional                   :: 33
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypePCI                                         :: 1885563168
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_Capture_Spatial                       :: 34
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeUSB                                         :: 1970496032
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_Capture_Spatial_Enhanced              :: 35
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeFireWire                                    :: 825440564
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_Music_Traditional                     :: 36
+    kCodecContentSource_Music_Spatial                         :: 37
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeBluetooth                                   :: 1651275109
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AV_Traditional_Offline                :: 38
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeBluetoothLE                                 :: 1651271009
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AV_Spatial_Offline                    :: 39
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeHDMI                                        :: 1751412073
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AV_Traditional_Live                   :: 40
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeDisplayPort                                 :: 1685090932
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecContentSource_AV_Spatial_Live                       :: 41
+    kCodecContentSource_Passthrough                           :: 42
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeAirPlay                                     :: 1634300528
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecProduceOutputPacketFailure                          :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeAVB                                         :: 1700886114
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecProduceOutputPacketSuccess                          :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeThunderbolt                                 :: 1953002862
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecProduceOutputPacketSuccessHasMore                   :: 3
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeContinuityCaptureWired                      :: 1667463012
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecProduceOutputPacketNeedsMoreInputData               :: 4
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeContinuityCaptureWireless                   :: 1667463020
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecProduceOutputPacketAtEOF                            :: 5
+    kCodecProduceOutputPacketSuccessConcealed                 :: 6
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeContinuityCapture                           :: 1667457392
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecGetPropertyInfoSelect                               :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyConfigurationApplication                         :: 1667330160
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecGetPropertySelect                                   :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceUID                                        :: 1969841184
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecSetPropertySelect                                   :: 3
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyModelUID                                         :: 1836411236
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecInitializeSelect                                    :: 4
+    kCodecUninitializeSelect                                  :: 5
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyTransportType                                    :: 1953653102
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecAppendInputDataSelect                               :: 6
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyRelatedDevices                                   :: 1634429294
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecProduceOutputDataSelect                             :: 7
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyClockDomain                                      :: 1668049764
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecResetSelect                                         :: 8
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceIsAlive                                    :: 1818850926
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecAppendInputBufferListSelect                         :: 9
+    kCodecProduceOutputBufferListSelect                       :: 10
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceIsRunning                                  :: 1735354734
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecNoError                                             :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceCanBeDefaultDevice                         :: 1684434036
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecUnspecifiedError                                    :: 2003329396
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceCanBeDefaultSystemDevice                   :: 1936092276
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecUnknownPropertyError                                :: 2003332927
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyLatency                                          :: 1819569763
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecBadPropertySizeError                                :: 561211770
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyStreams                                          :: 1937009955
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecIllegalOperationError                               :: 1852797029
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyControlList                                      :: 1668575852
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecUnsupportedFormatError                              :: 560226676
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySafetyOffset                                     :: 1935763060
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecStateError                                          :: 561214580
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyNominalSampleRate                                :: 1853059700
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecNotEnoughBufferSpaceError                           :: 560100710
+    kCodecBadDataError                                        :: 1650549857
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyAvailableNominalSampleRates                      :: 1853059619
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyMinimumDelayMode                            :: 1835296108
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyIcon                                             :: 1768124270
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyNameCFString                                :: 1819173229
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyIsHidden                                         :: 1751737454
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyManufacturerCFString                        :: 1819107691
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPreferredChannelsForStereo                       :: 1684236338
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyFormatCFString                              :: 1818652530
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPreferredChannelLayout                           :: 1936879204
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyRequiresPacketDescription                   :: 1885432676
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDeviceClassID                                             :: 1633905771
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAvailableBitRates                           :: 1651668003
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDevicePropertyDeviceUID                                   :: 1668639076
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecExtendFrequencies                                   :: 1633903974
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDevicePropertyTransportType                               :: 1953653102
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecUseRecommendedSampleRate                            :: 1970434930
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDevicePropertyClockDomain                                 :: 1668049764
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecOutputPrecedence                                    :: 1869639794
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDevicePropertyDeviceIsAlive                               :: 1818850926
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecBitRateFormat                                       :: 1633903206
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDevicePropertyDeviceIsRunning                             :: 1735354734
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecDoesSampleRateConversion                            :: 1819112035
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDevicePropertyLatency                                     :: 1819569763
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecInputFormatsForOutputFormat                         :: 1768305775
+    kCodecOutputFormatsForInputFormat                         :: 1868969065
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDevicePropertyControlList                                 :: 1668575852
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyInputChannelLayout                          :: 1768123424
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDevicePropertyNominalSampleRate                           :: 1853059700
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyOutputChannelLayout                         :: 1868786720
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockDevicePropertyAvailableNominalSampleRates                 :: 1853059619
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAvailableInputChannelLayouts                :: 1634296684
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kEndPointDeviceClassID                                          :: 1701078390
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyAvailableOutputChannelLayouts               :: 1634689900
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kEndPointDevicePropertyComposition                              :: 1633906541
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecPropertyZeroFramesPadded                            :: 1885430832
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kEndPointDevicePropertyEndPointList                             :: 1634169456
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecBitRateFormat_CBR                                   :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kEndPointDevicePropertyIsPrivate                                :: 1886546294
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecBitRateFormat_ABR                                   :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kEndPointClassID                                                :: 1701733488
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecBitRateFormat_VBR                                   :: 2
+    kCodecOutputPrecedenceNone                                :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamClassID                                                  :: 1634956402
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecOutputPrecedenceBitRate                             :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeUnknown                                      :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kCodecOutputPrecedenceSampleRate                          :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeLine                                         :: 1818848869
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_Output                                          :: 1635086197
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeDigitalAudioInterface                        :: 1936745574
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_MusicDevice                                     :: 1635085685
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeSpeaker                                      :: 1936747378
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_MusicEffect                                     :: 1635085670
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeHeadphones                                   :: 1751412840
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_FormatConverter                                 :: 1635083875
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeLFESpeaker                                   :: 1818649971
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_Effect                                          :: 1635083896
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeReceiverSpeaker                              :: 1920168043
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_Mixer                                           :: 1635085688
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeMicrophone                                   :: 1835623282
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_Panner                                          :: 1635086446
+    kUnitType_Generator                                       :: 1635084142
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeHeadsetMicrophone                            :: 1752000867
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_OfflineEffect                                   :: 1635086188
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeReceiverMicrophone                           :: 1919773027
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_MIDIProcessor                                   :: 1635085673
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeTTY                                          :: 1953790303
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_SpeechSynthesizer                               :: 1635087216
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeHDMI                                         :: 1751412073
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_RemoteEffect                                    :: 1635086968
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamTerminalTypeDisplayPort                                  :: 1685090932
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_RemoteGenerator                                 :: 1635086951
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyIsActive                                         :: 1935762292
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_RemoteInstrument                                :: 1635086953
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyDirection                                        :: 1935960434
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitType_RemoteMusicEffect                               :: 1635086957
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyTerminalType                                     :: 1952805485
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitManufacturer_Apple                                   :: 1634758764
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyStartingChannel                                  :: 1935894638
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_GenericOutput                                :: 1734700658
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyLatency                                          :: 1819569763
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_VoiceProcessingIO                            :: 1987078511
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyVirtualFormat                                    :: 1936092532
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_RemoteIO                                     :: 1919512419
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyAvailableVirtualFormats                          :: 1936092513
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_Sampler                                      :: 1935764848
+    kUnitSubType_MIDISynth                                    :: 1836284270
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyPhysicalFormat                                   :: 1885762592
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_AUConverter                                  :: 1668247158
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyAvailablePhysicalFormats                         :: 1885762657
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_Varispeed                                    :: 1986097769
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kControlClassID                                                 :: 1633907820
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_DeferredRenderer                             :: 1684366962
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kControlPropertyScope                                           :: 1668506480
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_Splitter                                     :: 1936747636
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kControlPropertyElement                                         :: 1667591277
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_MultiSplitter                                :: 1836281964
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSliderControlClassID                                           :: 1936483442
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_Merger                                       :: 1835364967
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSliderControlPropertyValue                                     :: 1935962742
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_NewTimePitch                                 :: 1853191280
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSliderControlPropertyRange                                     :: 1935962738
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_AUiPodTimeOther                              :: 1768977519
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLevelControlClassID                                            :: 1818588780
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_RoundTripAAC                                 :: 1918984547
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kVolumeControlClassID                                           :: 1986817381
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_AUAudioMix                                   :: 1634560376
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLFEVolumeControlClassID                                        :: 1937072758
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_TimePitch                                    :: 1953329268
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLevelControlPropertyScalarValue                                :: 1818456950
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_AUiPodTime                                   :: 1768977517
+    kUnitSubType_PeakLimiter                                  :: 1819112562
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLevelControlPropertyDecibelValue                               :: 1818453110
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_DynamicsProcessor                            :: 1684237680
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLevelControlPropertyDecibelRange                               :: 1818453106
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_LowPassFilter                                :: 1819304307
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLevelControlPropertyConvertScalarToDecibels                    :: 1818456932
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_HighPassFilter                               :: 1752195443
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLevelControlPropertyConvertDecibelsToScalar                    :: 1818453107
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_BandPassFilter                               :: 1651532147
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBooleanControlClassID                                          :: 1953458028
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_HighShelfFilter                              :: 1752393830
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kMuteControlClassID                                             :: 1836414053
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_LowShelfFilter                               :: 1819502694
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSoloControlClassID                                             :: 1936682095
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_ParametricEQ                                 :: 1886217585
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kJackControlClassID                                             :: 1784767339
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_Distortion                                   :: 1684632436
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLFEMuteControlClassID                                          :: 1937072749
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_Delay                                        :: 1684368505
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPhantomPowerControlClassID                                     :: 1885888878
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_SampleDelay                                  :: 1935961209
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPhaseInvertControlClassID                                      :: 1885893481
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_NBandEQ                                      :: 1851942257
+    kUnitSubType_Reverb2                                      :: 1920361010
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClipLightControlClassID                                        :: 1668049264
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_AUSoundIsolation                             :: 1987012979
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTalkbackControlClassID                                         :: 1952541794
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_AUiPodEQ                                     :: 1768973681
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kListenbackControlClassID                                       :: 1819504226
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_MultiChannelMixer                            :: 1835232632
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBooleanControlPropertyValue                                    :: 1650685548
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_MatrixMixer                                  :: 1836608888
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSelectorControlClassID                                         :: 1936483188
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_SpatialMixer                                 :: 862217581
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDataSourceControlClassID                                       :: 1685287523
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_AU3DMixerEmbedded                            :: 862217581
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDataDestinationControlClassID                                  :: 1684370292
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_ScheduledSoundPlayer                         :: 1936945260
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockSourceControlClassID                                      :: 1668047723
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSubType_AudioFilePlayer                              :: 1634103404
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLineLevelControlClassID                                        :: 1852601964
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InvalidProperty                                  :: -10879
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHighPassFilterControlClassID                                   :: 1751740518
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InvalidParameter                                 :: -10878
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSelectorControlPropertyCurrentItem                             :: 1935893353
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InvalidElement                                   :: -10877
+    kUnitErr_NoConnection                                     :: -10876
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSelectorControlPropertyAvailableItems                          :: 1935892841
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_FailedInitialization                             :: -10875
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSelectorControlPropertyItemName                                :: 1935894894
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_TooManyFramesToProcess                           :: -10874
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSelectorControlPropertyItemKind                                :: 1668049771
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InvalidFile                                      :: -10871
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSelectorControlItemKindSpacer                                  :: 1936745330
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_UnknownFileType                                  :: -10870
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockSourceItemKindInternal                                    :: 1768846368
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_FileNotSpecified                                 :: -10869
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStereoPanControlClassID                                        :: 1936744814
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_FormatNotSupported                               :: -10868
+    kUnitErr_Uninitialized                                    :: -10867
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStereoPanControlPropertyValue                                  :: 1936745334
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InvalidScope                                     :: -10866
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStereoPanControlPropertyPanningChannels                        :: 1936745315
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_PropertyNotWritable                              :: -10865
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectSystemObject                                             :: 1
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_CannotDoInCurrentContext                         :: -10863
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyCreator                                          :: 1869638759
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InvalidPropertyValue                             :: -10851
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyListenerAdded                                    :: 1818850145
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_PropertyNotInUse                                 :: -10850
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kObjectPropertyListenerRemoved                                  :: 1818850162
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_Initialized                                      :: -10849
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSystemObjectClassID                                            :: 1634957683
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InvalidOfflineRender                             :: -10848
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyDevices                                        :: 1684370979
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_Unauthorized                                     :: -10847
+    kUnitErr_MIDIOutputBufferFull                             :: -66753
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyDefaultInputDevice                             :: 1682533920
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kComponentErr_InstanceTimedOut                            :: -66754
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyDefaultOutputDevice                            :: 1682929012
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kComponentErr_InstanceInvalidated                         :: -66749
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyDefaultSystemOutputDevice                      :: 1934587252
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_RenderTimeout                                    :: -66745
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyTranslateUIDToDevice                           :: 1969841252
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_ExtensionNotFound                                :: -66744
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyMixStereoToMono                                :: 1937010031
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InvalidParameterValue                            :: -66743
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyPlugInList                                     :: 1886152483
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InvalidFilePath                                  :: -66742
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyTranslateBundleIDToPlugIn                      :: 1651074160
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_MissingKey                                       :: -66741
+    kUnitErr_ComponentManagerNotSupported                     :: -66740
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyTransportManagerList                           :: 1953326883
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_MultipleVoiceProcessors                          :: -66635
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyTranslateBundleIDToTransportManager            :: 1953325673
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kComponentErr_DuplicateDescription                        :: -66752
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyBoxList                                        :: 1651472419
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kComponentErr_UnsupportedType                             :: -66751
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyTranslateUIDToBox                              :: 1969841250
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kComponentErr_TooManyInstances                            :: -66750
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyClockDeviceList                                :: 1668049699
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kComponentErr_NotPermitted                                :: -66748
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyTranslateUIDToClockDevice                      :: 1969841251
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kComponentErr_InitializationTimedOut                      :: -66747
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyProcessIsMain                                  :: 1835100526
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kComponentErr_InvalidFormat                               :: -66746
+    kUnitRange                                                :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyIsInitingOrExiting                             :: 1768845172
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitInitializeSelect                                     :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyUserIDChanged                                  :: 1702193508
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitUninitializeSelect                                   :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyProcessInputMute                               :: 1886218606
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitGetPropertyInfoSelect                                :: 3
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyProcessIsAudible                               :: 1886221684
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitGetPropertySelect                                    :: 4
+    kUnitSetPropertySelect                                    :: 5
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertySleepingIsAllowed                              :: 1936483696
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitAddPropertyListenerSelect                            :: 10
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyUnloadingIsAllowed                             :: 1970170980
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitRemovePropertyListenerSelect                         :: 11
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyHogModeIsAllowed                               :: 1752131442
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitRemovePropertyListenerWithUserDataSelect             :: 18
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyUserSessionIsActiveOrHeadless                  :: 1970496882
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitAddRenderNotifySelect                                :: 15
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyServiceRestarted                               :: 1936880500
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitRemoveRenderNotifySelect                             :: 16
+    kUnitGetParameterSelect                                   :: 6
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyPowerHint                                      :: 1886353256
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSetParameterSelect                                   :: 7
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyProcessObjectList                              :: 1886548771
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitScheduleParametersSelect                             :: 17
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyTranslatePIDToProcessObject                    :: 1768174192
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitRenderSelect                                         :: 14
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyTapList                                        :: 1953526563
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitResetSelect                                          :: 9
+    kUnitComplexRenderSelect                                  :: 19
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyTranslateUIDToTap                              :: 1969841268
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProcessSelect                                        :: 20
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInCreateAggregateDevice                                    :: 1667327847
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProcessMultipleSelect                                :: 21
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPlugInDestroyAggregateDevice                                   :: 1684105063
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_IllegalInstrument                                :: -10873
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTransportManagerCreateEndPointDevice                           :: 1667523958
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitErr_InstrumentTypeNotFound                           :: -10872
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTransportManagerDestroyEndPointDevice                          :: 1684301174
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitScope_Global                                         :: 0
+    kUnitScope_Input                                          :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceStartTimeIsInputFlag                                     :: 1
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitScope_Output                                         :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceStartTimeDontConsultDeviceFlag                           :: 2
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitScope_Group                                          :: 3
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceStartTimeDontConsultHALFlag                              :: 4
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitScope_Part                                           :: 4
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlugIn                                           :: 1886156135
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitScope_Note                                           :: 5
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceHasChanged                                 :: 1684629094
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitScope_Layer                                          :: 6
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceIsRunningSomewhere                         :: 1735356005
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitScope_LayerItem                                      :: 7
+    kUnitProperty_ClassInfo                                   :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceProcessorOverload                                        :: 1870030194
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_MakeConnection                              :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyIOStoppedAbnormally                              :: 1937010788
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SampleRate                                  :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyHogMode                                          :: 1869180523
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ParameterList                               :: 3
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyBufferFrameSize                                  :: 1718839674
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ParameterInfo                               :: 4
+    kUnitProperty_CPULoad                                     :: 6
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyBufferFrameSizeRange                             :: 1718843939
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_StreamFormat                                :: 8
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyUsesVariableBufferFrameSizes                     :: 1986425722
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ElementCount                                :: 11
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyIOCycleUsage                                     :: 1852012899
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_Latency                                     :: 12
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyStreamConfiguration                              :: 1936482681
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SupportedNumChannels                        :: 13
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyIOProcStreamUsage                                :: 1937077093
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_MaximumFramesPerSlice                       :: 14
+    kUnitProperty_ParameterValueStrings                       :: 16
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyActualSampleRate                                 :: 1634955892
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_AudioChannelLayout                          :: 19
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyClockDevice                                      :: 1634755428
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_TailTime                                    :: 20
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyIOThreadOSWorkgroup                              :: 1869838183
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_BypassEffect                                :: 21
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyProcessMute                                      :: 1634758765
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_LastRenderError                             :: 22
+    kUnitProperty_SetRenderCallback                           :: 23
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyJackIsConnected                                  :: 1784767339
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_FactoryPresets                              :: 24
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyVolumeScalar                                     :: 1987013741
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_RenderQuality                               :: 26
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyVolumeDecibels                                   :: 1987013732
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_HostCallbacks                               :: 27
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyVolumeRangeDecibels                              :: 1986290211
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_InPlaceProcessing                           :: 29
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyVolumeScalarToDecibels                           :: 1983013986
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ElementName                                 :: 30
+    kUnitProperty_SupportedChannelLayoutTags                  :: 32
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyVolumeDecibelsToScalar                           :: 1684157046
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_PresentPreset                               :: 36
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyStereoPan                                        :: 1936744814
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_DependentParameters                         :: 45
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyStereoPanChannels                                :: 1936748067
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_InputSamplesInOutput                        :: 49
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyMute                                             :: 1836414053
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ShouldAllocateBuffer                        :: 51
+    kUnitProperty_FrequencyResponse                           :: 52
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySolo                                             :: 1936682095
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ParameterHistoryInfo                        :: 53
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPhantomPower                                     :: 1885888878
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_NickName                                    :: 54
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPhaseInvert                                      :: 1885893481
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_OfflineRender                               :: 37
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyClipLight                                        :: 1668049264
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ParameterIDName                             :: 34
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyTalkback                                         :: 1952541794
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ParameterStringFromValue                    :: 33
+    kUnitProperty_ParameterClumpName                          :: 35
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyListenback                                       :: 1819504226
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ParameterValueFromString                    :: 38
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDataSource                                       :: 1936945763
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ContextName                                 :: 25
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDataSources                                      :: 1936941859
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_PresentationLatency                         :: 40
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDataSourceNameForIDCFString                      :: 1819501422
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ClassInfoFromDocument                       :: 50
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDataSourceKindForID                              :: 1936941931
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_RequestViewController                       :: 56
+    kUnitProperty_ParametersForOverview                       :: 57
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyClockSource                                      :: 1668510307
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SupportsMPE                                 :: 58
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyClockSources                                     :: 1668506403
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_RenderContextObserver                       :: 60
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyClockSourceNameForIDCFString                     :: 1818456942
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_LastRenderSampleTime                        :: 61
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyClockSourceKindForID                             :: 1668506475
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_LoadedOutOfProcess                          :: 62
+    kUnitProperty_MIDIOutputCallbackInfo                      :: 47
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThru                                         :: 1953002101
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_MIDIOutputCallback                          :: 48
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruSolo                                     :: 1953002099
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_MIDIOutputEventListCallback                 :: 63
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruVolumeScalar                             :: 1836479331
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_AudioUnitMIDIProtocol                       :: 64
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruVolumeDecibels                           :: 1836475490
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_HostMIDIProtocol                            :: 65
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruVolumeRangeDecibels                      :: 1836475427
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_MIDIOutputBufferSizeHint                    :: 66
+    kUnitProperty_RemoteControlEventListener                  :: 100
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruVolumeScalarToDecibels                   :: 1836462692
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_IsInterAppConnected                         :: 101
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruVolumeDecibelsToScalar                   :: 1836462707
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_PeerURL                                     :: 102
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruStereoPan                                :: 1836281966
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitClumpID_System                                       :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruStereoPanChannels                        :: 1836281891
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitParameterName_Full                                   :: -1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruDestination                              :: 1835295859
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SampleRateConverterComplexity               :: 3014
+    kUnitSampleRateConverterComplexity_Linear                 :: 1818848869
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruDestinations                             :: 1835295779
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSampleRateConverterComplexity_Normal                 :: 1852797549
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruDestinationNameForIDCFString             :: 1835295843
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitSampleRateConverterComplexity_Mastering              :: 1650553971
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelNominalLineLevel                          :: 1852601964
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_CurrentDevice                         :: 2000
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelNominalLineLevels                         :: 1852601891
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_IsRunning                             :: 2001
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelNominalLineLevelNameForIDCFString         :: 1818455660
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_ChannelMap                            :: 2002
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyHighPassFilterSetting                            :: 1751740518
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_EnableIO                              :: 2003
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyHighPassFilterSettings                           :: 1751740451
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_StartTime                             :: 2004
+    kOutputUnitProperty_SetInputCallback                      :: 2005
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyHighPassFilterSettingNameForIDCFString           :: 1751740524
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_HasIO                                 :: 2006
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySubVolumeScalar                                  :: 1937140845
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_StartTimestampsAtZero                 :: 2007
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySubVolumeDecibels                                :: 1937140836
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_OSWorkgroup                           :: 2015
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySubVolumeRangeDecibels                           :: 1937138723
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_IntendedSpatialExperience             :: 2016
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySubVolumeScalarToDecibels                        :: 1937125988
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_MIDICallbacks                         :: 2010
+    kOutputUnitProperty_HostReceivesRemoteControlEvents       :: 2011
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySubVolumeDecibelsToScalar                        :: 1935946358
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_RemoteControlToHost                   :: 2012
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySubMute                                          :: 1936553332
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_HostTransportState                    :: 2013
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyVoiceActivityDetectionEnable                     :: 1983996971
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitProperty_NodeComponentDescription              :: 2014
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyVoiceActivityDetectionState                      :: 1983997011
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUVoiceIOProperty_BypassVoiceProcessing                  :: 2100
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyWantsControlsRestored                            :: 1919251299
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUVoiceIOProperty_VoiceProcessingEnableAGC               :: 2101
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyWantsStreamFormatsRestored                       :: 1919251302
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUVoiceIOProperty_MuteOutput                             :: 2104
+    kAUVoiceIOProperty_MutedSpeechActivityEventListener       :: 2106
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDeviceClassID                                         :: 1633773415
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUVoiceIOProperty_OtherAudioDuckingConfiguration         :: 2108
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDevicePropertyFullSubDeviceList                       :: 1735554416
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUVoiceIOProperty_DuckNonVoiceAudio                      :: 2102
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDevicePropertyActiveSubDeviceList                     :: 1634169456
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUVoiceIOProperty_VoiceProcessingQuality                 :: 2103
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDevicePropertyComposition                             :: 1633906541
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQProperty_NumberOfBands                          :: 2200
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDevicePropertyMainSubDevice                           :: 1634562932
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQProperty_MaxNumberOfBands                       :: 2201
+    kAUNBandEQProperty_BiquadCoefficients                     :: 2203
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDevicePropertyClockDevice                             :: 1634755428
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_MeteringMode                                :: 3007
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDevicePropertyTapList                                 :: 1952542755
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_MatrixLevels                                :: 3006
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDevicePropertySubTapList                              :: 1635017072
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_MatrixDimensions                            :: 3009
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDriftCompensationMinQuality                           :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_MeterClipping                               :: 3011
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDriftCompensationLowQuality                           :: 32
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_InputAnchorTimeStamp                        :: 3016
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDriftCompensationMediumQuality                        :: 64
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ReverbRoomType                              :: 10
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDriftCompensationHighQuality                          :: 96
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_UsesInternalReverb                          :: 1005
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDriftCompensationMaxQuality                           :: 127
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SpatializationAlgorithm                     :: 3000
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubDeviceClassID                                               :: 1634956642
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SpatialMixerRenderingFlags                  :: 3003
+    kUnitProperty_SpatialMixerSourceMode                      :: 3005
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubDeviceDriftCompensationMinQuality                           :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SpatialMixerDistanceParams                  :: 3010
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubDeviceDriftCompensationLowQuality                           :: 32
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SpatialMixerAttenuationCurve                :: 3013
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubDeviceDriftCompensationMediumQuality                        :: 64
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SpatialMixerOutputType                      :: 3100
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubDeviceDriftCompensationHighQuality                          :: 96
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SpatialMixerPointSourceInHeadMode           :: 3103
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubDeviceDriftCompensationMaxQuality                           :: 127
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SpatialMixerEnableHeadTracking              :: 3111
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubDevicePropertyExtraLatency                                  :: 2020373603
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SpatialMixerPersonalizedHRTFMode            :: 3113
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubDevicePropertyDriftCompensation                             :: 1685218932
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_SpatialMixerAnyInputIsUsingPersonalizedHRTF :: 3116
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubDevicePropertyDriftCompensationQuality                      :: 1685218929
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUAudioMixProperty_SpatialAudioMixMetadata               :: 5000
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubTapClassID                                                  :: 1937006960
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUAudioMixProperty_EnableSpatialization                  :: 5001
+    kUnitProperty_3DMixerDistanceParams                       :: 3010
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubTapPropertyExtraLatency                                     :: 2020373603
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_3DMixerAttenuationCurve                     :: 3013
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubTapPropertyDriftCompensation                                :: 1685218932
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_DopplerShift                                :: 3002
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kSubTapPropertyDriftCompensationQuality                         :: 1685218929
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_3DMixerRenderingFlags                       :: 3003
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kProcessClassID                                                 :: 1668050548
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_3DMixerDistanceAtten                        :: 3004
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kProcessPropertyPID                                             :: 1886415204
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ReverbPreset                                :: 3012
+    kUnitProperty_ScheduleAudioSlice                          :: 3300
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kProcessPropertyBundleID                                        :: 1885497700
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ScheduleStartTimeStamp                      :: 3301
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kProcessPropertyDevices                                         :: 1885632035
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_CurrentPlayTime                             :: 3302
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kProcessPropertyIsRunning                                       :: 1885958719
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ScheduledFileIDs                            :: 3310
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kProcessPropertyIsRunningInput                                  :: 1885958761
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ScheduledFileRegion                         :: 3311
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kProcessPropertyIsRunningOutput                                 :: 1885958767
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ScheduledFilePrime                          :: 3312
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTapClassID                                                     :: 1952672883
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_ScheduledFileBufferSizeFrames               :: 3313
+    kUnitProperty_ScheduledFileNumberBuffers                  :: 3314
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTapPropertyUID                                                 :: 1953851748
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUMIDISynthProperty_EnablePreload                        :: 4119
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTapPropertyDescription                                         :: 1952740195
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSamplerProperty_LoadInstrument                         :: 4102
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kTapPropertyFormat                                              :: 1952869748
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSamplerProperty_LoadAudioFiles                         :: 4101
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyScopeInput                                       :: 1768845428
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSampler_DefaultPercussionBankMSB                       :: 120
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyScopeOutput                                      :: 1869968496
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSampler_DefaultMelodicBankMSB                          :: 121
+    kAUSampler_DefaultBankLSB                                 :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyScopePlayThrough                                 :: 1886679669
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_DeferredRendererPullSize                    :: 3320
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPropertyWildcardPropertyID                                     :: 707406378
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_DeferredRendererExtraLatency                :: 3321
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPropertyWildcardSection                                        :: 255
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kUnitProperty_DeferredRendererWaitFrames                  :: 3322
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kPropertyWildcardChannel                                        :: 4294967295
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSamplerProperty_LoadPresetFromBank                     :: 4100
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kISubOwnerControlClassID                                        :: 1635017576
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSamplerProperty_BankAndPreset                          :: 4100
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kLevelControlPropertyDecibelsToScalarTransferFunction           :: 1818457190
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    AUEventSampleTimeImmediate                                :: -4294967296
+    kOutputUnitRange                                          :: 512
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyRunLoop                                        :: 1919839344
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitStartSelect                                    :: 513
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyDeviceForUID                                   :: 1685416292
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kOutputUnitStopSelect                                     :: 514
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyPlugInForBundleID                              :: 1885954665
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_Volume                                :: 7
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyProcessIsMaster                                :: 1835103092
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_Sustain                               :: 64
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyBootChimeVolumeScalar                          :: 1650620019
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_Sostenuto                             :: 66
+    kAUGroupParameterID_AllNotesOff                           :: 123
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyBootChimeVolumeDecibels                        :: 1650620004
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_ModWheel                              :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyBootChimeVolumeRangeDecibels                   :: 1650615331
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_PitchBend                             :: 224
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyBootChimeVolumeScalarToDecibels                :: 1651913316
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_AllSoundOff                           :: 120
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyBootChimeVolumeDecibelsToScalar                :: 1650733686
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_ResetAllControllers                   :: 121
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kHardwarePropertyBootChimeVolumeDecibelsToScalarTransferFunction:: 1651930214
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_Pan                                   :: 10
+    kAUGroupParameterID_Foot                                  :: 4
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceUnknown                                                  :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_ChannelPressure                       :: 208
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDeviceTransportTypeAutoAggregate                               :: 1718055536
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_KeyPressure                           :: 160
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyVolumeDecibelsToScalarTransferFunction           :: 1986229350
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_Expression                            :: 11
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruVolumeDecibelsToScalarTransferFunction   :: 1836479590
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_DataEntry                             :: 6
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDriverShouldOwniSub                              :: 1769174370
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_Volume_LSB                            :: 39
+    kAUGroupParameterID_ModWheel_LSB                          :: 33
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySubVolumeDecibelsToScalarTransferFunction        :: 1937142886
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_Pan_LSB                               :: 42
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceName                                       :: 1851878757
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_Foot_LSB                              :: 36
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceNameCFString                               :: 1819173229
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_Expression_LSB                        :: 43
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceManufacturer                               :: 1835101042
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_DataEntry_LSB                         :: 38
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDeviceManufacturerCFString                       :: 1819107691
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGroupParameterID_KeyPressure_FirstKey                  :: 256
+    kAUGroupParameterID_KeyPressure_LastKey                   :: 383
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyRegisterBufferList                               :: 1919055206
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSamplerParam_Gain                                      :: 900
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyBufferSize                                       :: 1651730810
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSamplerParam_CoarseTuning                              :: 901
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyBufferSizeRange                                  :: 1651735075
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSamplerParam_FineTuning                                :: 902
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelName                                      :: 1667788397
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSamplerParam_Pan                                       :: 903
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelNameCFString                              :: 1818454126
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAULowShelfParam_CutoffFrequency                          :: 0
+    kAULowShelfParam_Gain                                     :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelCategoryName                              :: 1667460717
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQParam_GlobalGain                                :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelCategoryNameCFString                      :: 1818452846
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQParam_BypassBand                                :: 1000
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelNumberName                                :: 1668181613
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQParam_FilterType                                :: 2000
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelNumberNameCFString                        :: 1818455662
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQParam_Frequency                                 :: 3000
+    kAUNBandEQParam_Gain                                      :: 4000
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertySupportsMixing                                   :: 1835628607
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQParam_Bandwidth                                 :: 5000
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyStreamFormat                                     :: 1936092532
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQFilterType_Parametric                           :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyStreamFormats                                    :: 1936092451
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQFilterType_2ndOrderButterworthLowPass           :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyStreamFormatSupported                            :: 1936092479
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQFilterType_2ndOrderButterworthHighPass          :: 2
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyStreamFormatMatch                                :: 1936092525
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQFilterType_ResonantLowPass                      :: 3
+    kAUNBandEQFilterType_ResonantHighPass                     :: 4
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyDataSourceNameForID                              :: 1936941934
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQFilterType_BandPass                             :: 5
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyClockSourceNameForID                             :: 1668506478
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQFilterType_BandStop                             :: 6
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyPlayThruDestinationNameForID                     :: 1835295854
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQFilterType_LowShelf                             :: 7
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyChannelNominalLineLevelNameForID                 :: 1668181110
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQFilterType_HighShelf                            :: 8
+    kAUNBandEQFilterType_ResonantLowShelf                     :: 9
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kDevicePropertyHighPassFilterSettingNameForID                   :: 1667787120
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUNBandEQFilterType_ResonantHighShelf                    :: 10
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kAggregateDevicePropertyMasterSubDevice                         :: 1634562932
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSoundIsolationParam_WetDryMixPercent                   :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamUnknown                                                  :: 0
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSoundIsolationParam_SoundToIsolate                     :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyOwningDevice                                     :: 1937007734
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSoundIsolationSoundType_HighQualityVoice               :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyPhysicalFormats                                  :: 1885762595
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUSoundIsolationSoundType_Voice                          :: 1
+    kAUAudioMixParameter_Style                                :: 0
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyPhysicalFormatSupported                          :: 1885762623
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUAudioMixParameter_RemixAmount                          :: 1
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamPropertyPhysicalFormatMatch                              :: 1885762669
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGraphErr_NodeNotFound                                  :: -10860
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kBootChimeVolumeControlClassID                                  :: 1886544237
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGraphErr_InvalidConnection                             :: -10861
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kControlPropertyVariant                                         :: 1668702578
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGraphErr_OutputNodeErr                                 :: -10862
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kClockSourceControlPropertyItemKind                             :: 1668049771
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGraphErr_CannotDoInCurrentContext                      :: -10863
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kStreamAnyRate                                                  :: 0.000000
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    kStreamAnyRate                                            :: 0.000000
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kAUGraphErr_InvalidAudioUnit                              :: -10864
+    kAUNodeInteraction_Connection                             :: 1
+    kAUNodeInteraction_InputCallback                          :: 2
+    kConverterPropertyMinimumInputBufferSize                  :: 1835623027
+    kConverterPropertyMinimumOutputBufferSize                 :: 1836016243
+    kConverterPropertyMaximumInputPacketSize                  :: 2020175987
+    kConverterPropertyMaximumOutputPacketSize                 :: 2020569203
+    kConverterPropertyCalculateInputBufferSize                :: 1667850867
+    kConverterPropertyCalculateOutputBufferSize               :: 1668244083
+    kConverterPropertyInputCodecParameters                    :: 1768121456
+    kConverterPropertyOutputCodecParameters                   :: 1868784752
+    kConverterSampleRateConverterComplexity                   :: 1936876385
+    kConverterSampleRateConverterQuality                      :: 1936876401
+    kConverterSampleRateConverterInitialPhase                 :: 1936876400
+    kConverterCodecQuality                                    :: 1667527029
+    kConverterPrimeMethod                                     :: 1886547309
+    kConverterPrimeInfo                                       :: 1886546285
+    kConverterChannelMap                                      :: 1667788144
+    kConverterDecompressionMagicCookie                        :: 1684891491
+    kConverterCompressionMagicCookie                          :: 1668114275
+    kConverterEncodeBitRate                                   :: 1651663220
+    kConverterEncodeAdjustableSampleRate                      :: 1634366322
+    kConverterInputChannelLayout                              :: 1768123424
+    kConverterOutputChannelLayout                             :: 1868786720
+    kConverterApplicableEncodeBitRates                        :: 1634034290
+    kConverterAvailableEncodeBitRates                         :: 1986355826
+    kConverterApplicableEncodeSampleRates                     :: 1634038642
+    kConverterAvailableEncodeSampleRates                      :: 1986360178
+    kConverterAvailableEncodeChannelLayoutTags                :: 1634034540
+    kConverterCurrentOutputStreamDescription                  :: 1633906532
+    kConverterCurrentInputStreamDescription                   :: 1633904996
+    kConverterPropertySettings                                :: 1633906803
+    kConverterPropertyBitDepthHint                            :: 1633903204
+    kConverterPropertyFormatList                              :: 1718383476
+    kConverterPropertyPerformDownmix                          :: 1684892024
+    kConverterPropertyChannelMixMap                           :: 1835884912
+    kConverterQuality_Max                                     :: 127
+    kConverterQuality_High                                    :: 96
+    kConverterQuality_Medium                                  :: 64
+    kConverterQuality_Low                                     :: 32
+    kConverterQuality_Min                                     :: 0
+    kConverterSampleRateConverterComplexity_Linear            :: 1818848869
+    kConverterSampleRateConverterComplexity_Normal            :: 1852797549
+    kConverterSampleRateConverterComplexity_Mastering         :: 1650553971
+    kConverterSampleRateConverterComplexity_MinimumPhase      :: 1835626096
+    kConverterErr_FormatNotSupported                          :: 1718449215
+    kConverterErr_OperationNotSupported                       :: 1869627199
+    kConverterErr_PropertyNotSupported                        :: 1886547824
+    kConverterErr_InvalidInputSize                            :: 1768846202
+    kConverterErr_InvalidOutputSize                           :: 1869902714
+    kConverterErr_UnspecifiedError                            :: 2003329396
+    kConverterErr_BadPropertySizeError                        :: 561211770
+    kConverterErr_RequiresPacketDescriptionsError             :: 561015652
+    kConverterErr_InputSampleRateOutOfRange                   :: 560558962
+    kConverterErr_OutputSampleRateOutOfRange                  :: 560952178
+    kConverterErr_HardwareInUse                               :: 1752656245
+    kConverterErr_NoHardwarePermission                        :: 1885696621
+    kConverterPropertyMaximumInputBufferSize                  :: 2020172403
+    kConverterSampleRateConverterAlgorithm                    :: 1936876393
+    kConverterPropertyCanResumeFromInterruption               :: 1668441705
+    kFileAIFFType                                             :: 1095321158
+    kFileAIFCType                                             :: 1095321155
+    kFileWAVEType                                             :: 1463899717
+    kFileRF64Type                                             :: 1380333108
+    kFileBW64Type                                             :: 1113011764
+    kFileWave64Type                                           :: 1463170150
+    kFileSoundDesigner2Type                                   :: 1399075430
+    kFileNextType                                             :: 1315264596
+    kFileMP3Type                                              :: 1297106739
+    kFileMP2Type                                              :: 1297106738
+    kFileMP1Type                                              :: 1297106737
+    kFileAC3Type                                              :: 1633889587
+    kFileAAC_ADTSType                                         :: 1633973363
+    kFileMPEG4Type                                            :: 1836069990
+    kFileM4AType                                              :: 1832149350
+    kFileM4BType                                              :: 1832149606
+    kFileCAFType                                              :: 1667327590
+    kFile3GPType                                              :: 862417008
+    kFile3GP2Type                                             :: 862416946
+    kFileAMRType                                              :: 1634562662
+    kFileFLACType                                             :: 1718378851
+    kFileLATMInLOASType                                       :: 1819238771
+    kFileUnspecifiedError                                     :: 2003334207
+    kFileUnsupportedFileTypeError                             :: 1954115647
+    kFileUnsupportedDataFormatError                           :: 1718449215
+    kFileUnsupportedPropertyError                             :: 1886681407
+    kFileBadPropertySizeError                                 :: 561211770
+    kFilePermissionsError                                     :: 1886547263
+    kFileNotOptimizedError                                    :: 1869640813
+    kFileInvalidChunkError                                    :: 1667787583
+    kFileDoesNotAllow64BitDataSizeError                       :: 1868981823
+    kFileInvalidPacketOffsetError                             :: 1885563711
+    kFileInvalidPacketDependencyError                         :: 1684369471
+    kFileInvalidFileError                                     :: 1685348671
+    kFileOperationNotSupportedError                           :: 1869627199
+    kFileNotOpenError                                         :: -38
+    kFileEndOfFileError                                       :: -39
+    kFilePositionError                                        :: -40
+    kFileFileNotFoundError                                    :: -43
+    kFileLoopDirection_NoLooping                              :: 0
+    kFileLoopDirection_Forward                                :: 1
+    kFileLoopDirection_ForwardAndBackward                     :: 2
+    kFileLoopDirection_Backward                               :: 3
+    kFileMarkerType_Generic                                   :: 0
+    kFilePropertyFileFormat                                   :: 1717988724
+    kFilePropertyDataFormat                                   :: 1684434292
+    kFilePropertyIsOptimized                                  :: 1869640813
+    kFilePropertyMagicCookieData                              :: 1835493731
+    kFilePropertyAudioDataByteCount                           :: 1650683508
+    kFilePropertyAudioDataPacketCount                         :: 1885564532
+    kFilePropertyMaximumPacketSize                            :: 1886616165
+    kFilePropertyDataOffset                                   :: 1685022310
+    kFilePropertyChannelLayout                                :: 1668112752
+    kFilePropertyDeferSizeUpdates                             :: 1685289589
+    kFilePropertyDataFormatName                               :: 1718512997
+    kFilePropertyMarkerList                                   :: 1835756659
+    kFilePropertyRegionList                                   :: 1919380595
+    kFilePropertyPacketToFrame                                :: 1886086770
+    kFilePropertyFrameToPacket                                :: 1718775915
+    kFilePropertyRestrictsRandomAccess                        :: 1920098672
+    kFilePropertyPacketToRollDistance                         :: 1886089836
+    kFilePropertyPreviousIndependentPacket                    :: 1885957732
+    kFilePropertyNextIndependentPacket                        :: 1852403300
+    kFilePropertyPacketToDependencyInfo                       :: 1886086256
+    kFilePropertyPacketToByte                                 :: 1886085753
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
     SampleType :: cffi.float
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
     SampleType :: CF.SInt16
-} // End else
-
-/// AudioUnitSampleType
-when !ODIN_PLATFORM_SUBTARGET_IOS {
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyByteToPacket                                 :: 1652125803
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
     UnitSampleType :: cffi.float
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
     UnitSampleType :: CF.SInt32
-} // End else
-
-/// AudioChannelLabel
+}
 ChannelLabel :: CF.UInt32
-
-/// AudioChannelLayoutTag
-ChannelLayoutTag :: CF.UInt32
-
-/// AudioSessionID
-SessionID :: cffi.uint32_t
-
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// AudioObjectID
-    ObjectID :: CF.UInt32
-
-    /// AudioClassID
-    ClassID :: CF.UInt32
-
-    /// AudioObjectPropertySelector
-    ObjectPropertySelector :: CF.UInt32
-
-    /// AudioObjectPropertyScope
-    ObjectPropertyScope :: CF.UInt32
-
-    /// AudioObjectPropertyElement
-    ObjectPropertyElement :: CF.UInt32
-
-    /// AudioObjectPropertyListenerProc
-    ObjectPropertyListenerProc :: proc "c" (inObjectID: ObjectID, inNumberAddresses: CF.UInt32, inAddresses: ^ObjectPropertyAddress, inClientData: rawptr) -> CF.OSStatus
-
-    /// AudioObjectPropertyListenerBlock
-    ObjectPropertyListenerBlock :: ^Objc_Block(proc "c" (inNumberAddresses: CF.UInt32, inAddresses: ^ObjectPropertyAddress))
-
-    /// AudioDeviceIOProc
-    DeviceIOProc :: proc "c" (inDevice: ObjectID, inNow: ^TimeStamp, inInputData: ^BufferList, inInputTime: ^TimeStamp, outOutputData: ^BufferList, inOutputTime: ^TimeStamp, inClientData: rawptr) -> CF.OSStatus
-
-    /// AudioDeviceIOBlock
-    DeviceIOBlock :: ^Objc_Block(proc "c" (inNow: ^TimeStamp, inInputData: ^BufferList, inInputTime: ^TimeStamp, outOutputData: ^BufferList, inOutputTime: ^TimeStamp))
-
-    /// AudioDeviceIOProcID
-    DeviceIOProcID :: DeviceIOProc
-
-    /// AudioHardwarePropertyID
-    HardwarePropertyID :: ObjectPropertySelector
-
-    /// AudioHardwarePropertyListenerProc
-    HardwarePropertyListenerProc :: proc "c" (inPropertyID: HardwarePropertyID, inClientData: rawptr) -> CF.OSStatus
-
-    /// AudioDeviceID
-    DeviceID :: ObjectID
-
-    /// AudioDevicePropertyID
-    DevicePropertyID :: ObjectPropertySelector
-
-    /// AudioDevicePropertyListenerProc
-    DevicePropertyListenerProc :: proc "c" (inDevice: DeviceID, inChannel: CF.UInt32, isInput: CF.Boolean, inPropertyID: DevicePropertyID, inClientData: rawptr) -> CF.OSStatus
-
-    /// AudioStreamID
-    StreamID :: ObjectID
-
-    /// AudioStreamPropertyListenerProc
-    StreamPropertyListenerProc :: proc "c" (inStream: StreamID, inChannel: CF.UInt32, inPropertyID: DevicePropertyID, inClientData: rawptr) -> CF.OSStatus
-} // End when
 when ODIN_PLATFORM_SUBTARGET_IOS {
-    /// AudioComponent
+    kFilePropertyChunkIDs                                     :: 1667787108
+}
+ChannelLayoutTag :: CF.UInt32
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyInfoDictionary                               :: 1768842863
+}
+SessionID :: cffi.uint32_t
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyPacketTableInfo                              :: 1886283375
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    ObjectID :: CF.UInt32
+    ClassID :: CF.UInt32
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyFormatList                                   :: 1718383476
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    ObjectPropertySelector :: CF.UInt32
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyPacketSizeUpperBound                         :: 1886090594
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    ObjectPropertyScope :: CF.UInt32
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyPacketRangeByteCountUpperBound               :: 1886549346
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    ObjectPropertyElement :: CF.UInt32
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyReserveDuration                              :: 1920168566
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    ObjectPropertyListenerProc :: proc "c" ( inObjectID: ObjectID, inNumberAddresses: CF.UInt32, inAddresses: ^ObjectPropertyAddress, inClientData: rawptr ) -> CF.OSStatus
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyEstimatedDuration                            :: 1701082482
+    kFilePropertyBitRate                                      :: 1651663220
+    kFilePropertyID3Tag                                       :: 1768174452
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    ObjectPropertyListenerBlock :: ^Objc_Block(proc "c" ( inNumberAddresses: CF.UInt32, inAddresses: ^ObjectPropertyAddress ))
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyID3TagOffset                                 :: 1768174447
+    kFilePropertySourceBitDepth                               :: 1935832164
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    DeviceIOProc :: proc "c" ( inDevice: ObjectID, inNow: ^TimeStamp, inInputData: ^BufferList, inInputTime: ^TimeStamp, outOutputData: ^BufferList, inOutputTime: ^TimeStamp, inClientData: rawptr ) -> CF.OSStatus
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFilePropertyAlbumArtwork                                 :: 1633776244
+    kFilePropertyAudioTrackCount                              :: 1635017588
+    kFilePropertyUseAudioTrack                                :: 1969321067
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    DeviceIOBlock :: ^Objc_Block(proc "c" ( inNow: ^TimeStamp, inInputData: ^BufferList, inInputTime: ^TimeStamp, outOutputData: ^BufferList, inOutputTime: ^TimeStamp ))
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileGlobalInfo_ReadableTypes                             :: 1634103910
+    kFileGlobalInfo_WritableTypes                             :: 1634105190
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    DeviceIOProcID :: DeviceIOProc
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileGlobalInfo_FileTypeName                              :: 1718906477
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    HardwarePropertyID :: ObjectPropertySelector
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileGlobalInfo_AvailableStreamDescriptionsForFormat      :: 1935960420
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    HardwarePropertyListenerProc :: proc "c" ( inPropertyID: HardwarePropertyID, inClientData: rawptr ) -> CF.OSStatus
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileGlobalInfo_AvailableFormatIDs                        :: 1718446436
+    kFileGlobalInfo_AllExtensions                             :: 1634498676
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    DeviceID :: ObjectID
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileGlobalInfo_AllHFSTypeCodes                           :: 1634231923
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    DevicePropertyID :: ObjectPropertySelector
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileGlobalInfo_AllUTIs                                   :: 1635087465
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    DevicePropertyListenerProc :: proc "c" ( inDevice: DeviceID, inChannel: CF.UInt32, isInput: CF.Boolean, inPropertyID: DevicePropertyID, inClientData: rawptr ) -> CF.OSStatus
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileGlobalInfo_AllMIMETypes                              :: 1634560365
+    kFileGlobalInfo_ExtensionsForType                         :: 1717926004
+    kFileGlobalInfo_HFSTypeCodesForType                       :: 1718118003
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    StreamID :: ObjectID
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileGlobalInfo_UTIsForType                               :: 1718973545
+}
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    StreamPropertyListenerProc :: proc "c" ( inStream: StreamID, inChannel: CF.UInt32, inPropertyID: DevicePropertyID, inClientData: rawptr ) -> CF.OSStatus
+}
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileGlobalInfo_MIMETypesForType                          :: 1718446445
+    kFileGlobalInfo_TypesForMIMEType                          :: 1953327469
+    kFileGlobalInfo_TypesForUTI                               :: 1953854569
+    kFileGlobalInfo_TypesForHFSTypeCode                       :: 1952999027
+    kFileGlobalInfo_TypesForExtension                         :: 1952807028
+    kFileStreamError_UnsupportedFileType                      :: 1954115647
+    kFileStreamError_UnsupportedDataFormat                    :: 1718449215
+    kFileStreamError_UnsupportedProperty                      :: 1886681407
+    kFileStreamError_BadPropertySize                          :: 561211770
+    kFileStreamError_NotOptimized                             :: 1869640813
+    kFileStreamError_InvalidPacketOffset                      :: 1885563711
+}
+TimeStampFlags_SampleHostTimeValid :: TimeStampFlags { .SampleTimeValid, .HostTimeValid, }
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFileStreamError_InvalidFile                              :: 1685348671
+    kFileStreamError_ValueUnknown                             :: 1970170687
+    kFileStreamError_DataUnavailable                          :: 1836020325
+    kFileStreamError_IllegalOperation                         :: 1852797029
+    kFileStreamError_UnspecifiedError                         :: 2003334207
+    kFileStreamError_DiscontinuityCantRecover                 :: 1685283617
+    kFileStreamProperty_ReadyToProducePackets                 :: 1919247481
+    kFileStreamProperty_FileFormat                            :: 1717988724
+    kFileStreamProperty_DataFormat                            :: 1684434292
+    kFileStreamProperty_FormatList                            :: 1718383476
+    kFileStreamProperty_MagicCookieData                       :: 1835493731
+    kFileStreamProperty_AudioDataByteCount                    :: 1650683508
+    kFileStreamProperty_AudioDataPacketCount                  :: 1885564532
+    kFileStreamProperty_MaximumPacketSize                     :: 1886616165
+    kFileStreamProperty_DataOffset                            :: 1685022310
+    kFileStreamProperty_ChannelLayout                         :: 1668112752
+    kFileStreamProperty_PacketToFrame                         :: 1886086770
+    kFileStreamProperty_FrameToPacket                         :: 1718775915
+    kFileStreamProperty_RestrictsRandomAccess                 :: 1920098672
+    kFileStreamProperty_PacketToRollDistance                  :: 1886089836
+    kFileStreamProperty_PreviousIndependentPacket             :: 1885957732
+    kFileStreamProperty_NextIndependentPacket                 :: 1852403300
+    kFileStreamProperty_PacketToDependencyInfo                :: 1886086256
+    kFileStreamProperty_PacketToByte                          :: 1886085753
+    kFileStreamProperty_ByteToPacket                          :: 1652125803
+    kFileStreamProperty_PacketTableInfo                       :: 1886283375
+    kFileStreamProperty_PacketSizeUpperBound                  :: 1886090594
+    kFileStreamProperty_AverageBytesPerPacket                 :: 1633841264
+    kFileStreamProperty_BitRate                               :: 1651663220
+    kFileStreamProperty_InfoDictionary                        :: 1768842863
+    kFormatProperty_FormatInfo                                :: 1718449257
+    kFormatProperty_FormatName                                :: 1718509933
+    kFormatProperty_EncodeFormatIDs                           :: 1633906534
+    kFormatProperty_DecodeFormatIDs                           :: 1633904998
+    kFormatProperty_FormatList                                :: 1718383476
+    kFormatProperty_ASBDFromESDS                              :: 1702064996
+    kFormatProperty_ChannelLayoutFromESDS                     :: 1702060908
+    kFormatProperty_OutputFormatList                          :: 1868983411
+    kFormatProperty_FirstPlayableFormatFromList               :: 1718642284
+    kFormatProperty_FormatIsVBR                               :: 1719034482
+    kFormatProperty_FormatIsExternallyFramed                  :: 1717925990
+    kFormatProperty_FormatEmploysDependentPackets             :: 1717855600
+    kFormatProperty_FormatIsEncrypted                         :: 1668446576
+    kFormatProperty_Encoders                                  :: 1635149166
+    kFormatProperty_Decoders                                  :: 1635148901
+    kFormatProperty_AvailableEncodeBitRates                   :: 1634034290
+    kFormatProperty_AvailableEncodeSampleRates                :: 1634038642
+    kFormatProperty_AvailableEncodeChannelLayoutTags          :: 1634034540
+    kFormatProperty_AvailableEncodeNumberChannels             :: 1635151459
+    kFormatProperty_AvailableDecodeNumberChannels             :: 1633971811
+    kFormatProperty_ASBDFromMPEGPacket                        :: 1633971568
+    kFormatProperty_BitmapForLayoutTag                        :: 1651340391
+    kFormatProperty_MatrixMixMap                              :: 1835884912
+    kFormatProperty_ChannelMap                                :: 1667788144
+    kFormatProperty_NumberOfChannelsForLayout                 :: 1852008557
+    kFormatProperty_AreChannelLayoutsEquivalent               :: 1667786097
+    kFormatProperty_ChannelLayoutHash                         :: 1667786849
+    kFormatProperty_ValidateChannelLayout                     :: 1986093932
+    kFormatProperty_ChannelLayoutForTag                       :: 1668116588
+    kFormatProperty_TagForChannelLayout                       :: 1668116596
+    kFormatProperty_ChannelLayoutName                         :: 1819242093
+    kFormatProperty_ChannelLayoutSimpleName                   :: 1819504237
+    kFormatProperty_ChannelLayoutForBitmap                    :: 1668116578
+    kFormatProperty_ChannelName                               :: 1668178285
+}
+FormatFlags_AppleLosslessFormatFlag_24BitSourceData :: FormatFlags { .AppleLosslessFormatFlag_16BitSourceData, .AppleLosslessFormatFlag_20BitSourceData, }
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    kFormatProperty_ChannelShortName                          :: 1668509293
+    kFormatProperty_TagsForNumberOfChannels                   :: 1952540515
+    kFormatProperty_PanningMatrix                             :: 1885433453
+    kFormatProperty_BalanceFade                               :: 1650551910
+    kFormatProperty_ID3TagSize                                :: 1768174451
+    kFormatProperty_ID3TagToDictionary                        :: 1768174436
+    kFormatProperty_HardwareCodecCapabilities                 :: 1752654691
+    kDecoderComponentType                                     :: 1633969507
+    kEncoderComponentType                                     :: 1634037347
+    kFormatUnspecifiedError                                   :: 2003329396
+    kFormatUnsupportedPropertyError                           :: 1886547824
+    kFormatBadPropertySizeError                               :: 561211770
+    kFormatBadSpecifierSizeError                              :: 561213539
+    kFormatUnsupportedDataFormatError                         :: 1718449215
+    kFormatUnknownFormatError                                 :: 560360820
+    kQueueErr_InvalidBuffer                                   :: -66687
+    kQueueErr_BufferEmpty                                     :: -66686
+    kQueueErr_DisposalPending                                 :: -66685
+    kQueueErr_InvalidProperty                                 :: -66684
+    kQueueErr_InvalidPropertySize                             :: -66683
+    kQueueErr_InvalidParameter                                :: -66682
+    kQueueErr_CannotStart                                     :: -66681
+    kQueueErr_InvalidDevice                                   :: -66680
+    kQueueErr_BufferInQueue                                   :: -66679
+    kQueueErr_InvalidRunState                                 :: -66678
+    kQueueErr_InvalidQueueType                                :: -66677
+    kQueueErr_Permissions                                     :: -66676
+    kQueueErr_InvalidPropertyValue                            :: -66675
+    kQueueErr_PrimeTimedOut                                   :: -66674
+    kQueueErr_CodecNotFound                                   :: -66673
+    kQueueErr_InvalidCodecAccess                              :: -66672
+    kQueueErr_QueueInvalidated                                :: -66671
+    kQueueErr_TooManyTaps                                     :: -66670
+    kQueueErr_InvalidTapContext                               :: -66669
+    kQueueErr_RecordUnderrun                                  :: -66668
+    kQueueErr_InvalidTapType                                  :: -66667
+    kQueueErr_BufferEnqueuedTwice                             :: -66666
+    kQueueErr_CannotStartYet                                  :: -66665
+    kQueueErr_EnqueueDuringReset                              :: -66632
+    kQueueErr_InvalidOfflineMode                              :: -66626
+    kQueueProperty_IsRunning                                  :: 1634824814
+    kQueueDeviceProperty_SampleRate                           :: 1634825074
+    kQueueDeviceProperty_NumberChannels                       :: 1634821219
+    kQueueProperty_CurrentDevice                              :: 1634820964
+    kQueueProperty_MagicCookie                                :: 1634823523
+    kQueueProperty_MaximumOutputPacketSize                    :: 2020569203
+    kQueueProperty_StreamDescription                          :: 1634821748
+    kQueueProperty_ChannelLayout                              :: 1634820972
+    kQueueProperty_EnableLevelMetering                        :: 1634823525
+    kQueueProperty_CurrentLevelMeter                          :: 1634823542
+    kQueueProperty_CurrentLevelMeterDB                        :: 1634823524
+    kQueueProperty_DecodeBufferSizeFrames                     :: 1684234854
+    kQueueProperty_ConverterError                             :: 1902343781
+    kQueueProperty_EnableTimePitch                            :: 1902081136
+    kQueueProperty_TimePitchAlgorithm                         :: 1903456353
+    kQueueProperty_TimePitchBypass                            :: 1903456354
+    kQueueProperty_IntendedSpatialExperience                  :: 1769170287
+    kQueueTimePitchAlgorithm_Spectral                         :: 1936745827
+    kQueueTimePitchAlgorithm_TimeDomain                       :: 1953064047
+    kQueueTimePitchAlgorithm_Varispeed                        :: 1987276900
+    kQueueTimePitchAlgorithm_LowQualityZeroLatency            :: 1819376236
+    kQueueProperty_HardwareCodecPolicy                        :: 1634820976
+    kQueueHardwareCodecPolicy_Default                         :: 0
+    kQueueHardwareCodecPolicy_UseSoftwareOnly                 :: 1
+    kQueueHardwareCodecPolicy_UseHardwareOnly                 :: 2
+    kQueueHardwareCodecPolicy_PreferSoftware                  :: 3
+    kQueueHardwareCodecPolicy_PreferHardware                  :: 4
+    kQueueProperty_ChannelAssignments                         :: 1634820961
+    kQueueParam_Volume                                        :: 1
+    kQueueParam_PlayRate                                      :: 2
+    kQueueParam_Pitch                                         :: 3
+    kQueueParam_VolumeRampTime                                :: 4
+    kQueueParam_Pan                                           :: 13
+    kSessionNoError                                           :: 0
+    kSessionNotInitialized                                    :: 560557673
+    kSessionAlreadyInitialized                                :: 1768843636
+    kSessionInitializationError                               :: 1768843583
+    kSessionUnsupportedPropertyError                          :: 1886681407
+    kSessionBadPropertySizeError                              :: 561211770
+    kSessionNotActiveError                                    :: 560030580
+    kServicesNoHardwareError                                  :: 1852794999
+    kSessionNoCategorySet                                     :: 1063477620
+    kSessionIncompatibleCategory                              :: 560161140
+    kSessionUnspecifiedError                                  :: 2003329396
+    kSessionBeginInterruption                                 :: 1
+    kSessionEndInterruption                                   :: 0
+    kSessionCategory_AmbientSound                             :: 1634558569
+    kSessionCategory_SoloAmbientSound                         :: 1936682095
+    kSessionCategory_MediaPlayback                            :: 1835361385
+    kSessionCategory_RecordAudio                              :: 1919247201
+    kSessionCategory_PlayAndRecord                            :: 1886151026
+    kSessionCategory_AudioProcessing                          :: 1886547811
+    kSessionOverrideAudioRoute_None                           :: 0
+    kSessionOverrideAudioRoute_Speaker                        :: 1936747378
+    kSessionRouteChangeReason_Unknown                         :: 0
+    kSessionRouteChangeReason_NewDeviceAvailable              :: 1
+    kSessionRouteChangeReason_OldDeviceUnavailable            :: 2
+    kSessionRouteChangeReason_CategoryChange                  :: 3
+    kSessionRouteChangeReason_Override                        :: 4
+    kSessionRouteChangeReason_WakeFromSleep                   :: 6
+    kSessionRouteChangeReason_NoSuitableRouteForCategory      :: 7
+    kSessionRouteChangeReason_RouteConfigurationChange        :: 8
+    kSessionInterruptionType_ShouldResume                     :: 1769108333
+    kSessionInterruptionType_ShouldNotResume                  :: 561148781
+    kSessionMode_Default                                      :: 1684434036
+    kSessionMode_VoiceChat                                    :: 1986225012
+    kSessionMode_VideoRecording                               :: 1987208036
+    kSessionMode_Measurement                                  :: 1836281204
+    kSessionMode_GameChat                                     :: 1735222132
+    kSessionProperty_PreferredHardwareSampleRate              :: 1752658802
+    kSessionProperty_PreferredHardwareIOBufferDuration        :: 1768907364
+    kSessionProperty_AudioCategory                            :: 1633902964
+    kSessionProperty_AudioRouteChange                         :: 1919902568
+    kSessionProperty_CurrentHardwareSampleRate                :: 1667789682
+    kSessionProperty_CurrentHardwareInputNumberChannels       :: 1667787107
+    kSessionProperty_CurrentHardwareOutputNumberChannels      :: 1667788643
+    kSessionProperty_CurrentHardwareOutputVolume              :: 1667788662
+    kSessionProperty_CurrentHardwareInputLatency              :: 1667853428
+    kSessionProperty_CurrentHardwareOutputLatency             :: 1668246644
+    kSessionProperty_CurrentHardwareIOBufferDuration          :: 1667785316
+    kSessionProperty_OtherAudioIsPlaying                      :: 1869899890
+    kSessionProperty_OverrideAudioRoute                       :: 1870033508
+    kSessionProperty_AudioInputAvailable                      :: 1634296182
+    kSessionProperty_ServerDied                               :: 1684628836
+    kSessionProperty_OtherMixableAudioShouldDuck              :: 1685414763
+    kSessionProperty_OverrideCategoryMixWithOthers            :: 1668114808
+    kSessionProperty_OverrideCategoryDefaultToSpeaker         :: 1668509803
+    kSessionProperty_OverrideCategoryEnableBluetoothInput     :: 1667394677
+    kSessionProperty_InterruptionType                         :: 1954115685
+    kSessionProperty_Mode                                     :: 1836016741
+    kSessionProperty_InputSources                             :: 1936876403
+    kSessionProperty_OutputDestinations                       :: 1685288051
+    kSessionProperty_InputSource                              :: 1769173603
+    kSessionProperty_OutputDestination                        :: 1868854132
+    kSessionProperty_InputGainAvailable                       :: 1768382838
+    kSessionProperty_InputGainScalar                          :: 1768387427
+    kSessionProperty_AudioRouteDescription                    :: 1668440434
+    kSessionSetActiveFlag_NotifyOthersOnDeactivation          :: 1
+    kSessionCategory_UserInterfaceSoundEffects                :: 1969841784
+    kSessionCategory_LiveAudio                                :: 1818850917
+    kSessionProperty_AudioRoute                               :: 1919907188
+    kServicesNoError                                          :: 0
+    kServicesUnsupportedPropertyError                         :: 1886681407
+    kServicesBadPropertySizeError                             :: 561211770
+    kServicesBadSpecifierSizeError                            :: 561213539
+    kServicesSystemSoundUnspecifiedError                      :: -1500
+    kServicesSystemSoundClientTimedOutError                   :: -1501
+    kServicesSystemSoundExceededMaximumDurationError          :: -1502
+    kServicesPropertyIsUISound                                :: 1769174377
+    kServicesPropertyCompletePlaybackIfAppDies                :: 1768318057
+    kAUParameterListener_AnyParameter                         :: 4294967295
+    kToolboxErr_InvalidSequenceType                           :: -10846
+    kToolboxErr_TrackIndexError                               :: -10859
+    kToolboxErr_TrackNotFound                                 :: -10858
+    kToolboxErr_EndOfTrack                                    :: -10857
+    kToolboxErr_StartOfTrack                                  :: -10856
+    kToolboxErr_IllegalTrackDestination                       :: -10855
+    kToolboxErr_NoSequence                                    :: -10854
+    kToolboxErr_InvalidEventType                              :: -10853
+    kToolboxErr_InvalidPlayerState                            :: -10852
+    kToolboxErr_CannotDoInCurrentContext                      :: -10863
+    kToolboxError_NoTrackDestination                          :: -66720
     Component :: ^OpaqueAudioComponent
-
-    /// AudioComponentInstance
     ComponentInstance :: ^OpaqueAudioComponentInstance
-
-    /// AudioComponentMethod
-    ComponentMethod :: proc "c" (self: rawptr) -> CF.OSStatus
-
-    /// AudioComponentFactoryFunction
-    ComponentFactoryFunction :: proc "c" (inDesc: ^ComponentDescription) -> ^ComponentPlugInInterface
-
-    /// AudioCodec
+    ComponentMethod :: proc "c" ( self: rawptr ) -> CF.OSStatus
+    ComponentFactoryFunction :: proc "c" ( inDesc: ^ComponentDescription ) -> ^ComponentPlugInInterface
     Codec :: ComponentInstance
-
-    /// AudioCodecPropertyID
     CodecPropertyID :: CF.UInt32
-
-    /// AudioCodecGetPropertyInfoProc
-    CodecGetPropertyInfoProc :: proc "c" (self: rawptr, inPropertyID: CodecPropertyID, outSize: ^CF.UInt32, outWritable: ^CF.Boolean) -> CF.OSStatus
-
-    /// AudioCodecGetPropertyProc
-    CodecGetPropertyProc :: proc "c" (self: rawptr, inPropertyID: CodecPropertyID, ioPropertyDataSize: ^CF.UInt32, outPropertyData: rawptr) -> CF.OSStatus
-
-    /// AudioCodecSetPropertyProc
-    CodecSetPropertyProc :: proc "c" (self: rawptr, inPropertyID: CodecPropertyID, inPropertyDataSize: CF.UInt32, inPropertyData: rawptr) -> CF.OSStatus
-
-    /// AudioCodecInitializeProc
-    CodecInitializeProc :: proc "c" (self: rawptr, inInputFormat: ^StreamBasicDescription, inOutputFormat: ^StreamBasicDescription, inMagicCookie: rawptr, inMagicCookieByteSize: CF.UInt32) -> CF.OSStatus
-
-    /// AudioCodecUninitializeProc
-    CodecUninitializeProc :: proc "c" (self: rawptr) -> CF.OSStatus
-
-    /// AudioCodecAppendInputDataProc
-    CodecAppendInputDataProc :: proc "c" (self: rawptr, inInputData: rawptr, ioInputDataByteSize: ^CF.UInt32, ioNumberPackets: ^CF.UInt32, inPacketDescription: ^StreamPacketDescription) -> CF.OSStatus
-
-    /// AudioCodecProduceOutputPacketsProc
-    CodecProduceOutputPacketsProc :: proc "c" (self: rawptr, outOutputData: rawptr, ioOutputDataByteSize: ^CF.UInt32, ioNumberPackets: ^CF.UInt32, outPacketDescription: ^StreamPacketDescription, outStatus: ^CF.UInt32) -> CF.OSStatus
-
-    /// AudioCodecResetProc
-    CodecResetProc :: proc "c" (self: rawptr) -> CF.OSStatus
-
-    /// AudioCodecAppendInputBufferListProc
-    CodecAppendInputBufferListProc :: proc "c" (self: rawptr, ioBufferList: ^BufferList, inNumberPackets: ^CF.UInt32, inPacketDescription: ^StreamPacketDescription, outBytesConsumed: ^CF.UInt32) -> CF.OSStatus
-
-    /// AudioCodecProduceOutputBufferListProc
-    CodecProduceOutputBufferListProc :: proc "c" (self: rawptr, ioBufferList: ^BufferList, ioNumberPackets: ^CF.UInt32, outPacketDescription: ^StreamPacketDescription, outStatus: ^CF.UInt32) -> CF.OSStatus
-
-    /// AudioUnit
+    CodecGetPropertyInfoProc :: proc "c" ( self: rawptr, inPropertyID: CodecPropertyID, outSize: ^CF.UInt32, outWritable: ^CF.Boolean ) -> CF.OSStatus
+    CodecGetPropertyProc :: proc "c" ( self: rawptr, inPropertyID: CodecPropertyID, ioPropertyDataSize: ^CF.UInt32, outPropertyData: rawptr ) -> CF.OSStatus
+    CodecSetPropertyProc :: proc "c" ( self: rawptr, inPropertyID: CodecPropertyID, inPropertyDataSize: CF.UInt32, inPropertyData: rawptr ) -> CF.OSStatus
+    CodecInitializeProc :: proc "c" ( self: rawptr, inInputFormat: ^StreamBasicDescription, inOutputFormat: ^StreamBasicDescription, inMagicCookie: rawptr, inMagicCookieByteSize: CF.UInt32 ) -> CF.OSStatus
+    CodecUninitializeProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
+    CodecAppendInputDataProc :: proc "c" ( self: rawptr, inInputData: rawptr, ioInputDataByteSize: ^CF.UInt32, ioNumberPackets: ^CF.UInt32, inPacketDescription: ^StreamPacketDescription ) -> CF.OSStatus
+    CodecProduceOutputPacketsProc :: proc "c" ( self: rawptr, outOutputData: rawptr, ioOutputDataByteSize: ^CF.UInt32, ioNumberPackets: ^CF.UInt32, outPacketDescription: ^StreamPacketDescription, outStatus: ^CF.UInt32 ) -> CF.OSStatus
+    CodecResetProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
+    CodecAppendInputBufferListProc :: proc "c" ( self: rawptr, ioBufferList: ^BufferList, inNumberPackets: ^CF.UInt32, inPacketDescription: ^StreamPacketDescription, outBytesConsumed: ^CF.UInt32 ) -> CF.OSStatus
+    CodecProduceOutputBufferListProc :: proc "c" ( self: rawptr, ioBufferList: ^BufferList, ioNumberPackets: ^CF.UInt32, outPacketDescription: ^StreamPacketDescription, outStatus: ^CF.UInt32 ) -> CF.OSStatus
     Unit :: ComponentInstance
-
-    /// AudioUnitPropertyID
     UnitPropertyID :: CF.UInt32
-
-    /// AudioUnitScope
     UnitScope :: CF.UInt32
-
-    /// AudioUnitElement
     UnitElement :: CF.UInt32
-
-    /// AudioUnitParameterID
     UnitParameterID :: CF.UInt32
-
-    /// AudioUnitParameterValue
     UnitParameterValue :: cffi.float
-
-    /// AURenderCallback
-    AURenderCallback :: proc "c" (inRefCon: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inBusNumber: CF.UInt32, inNumberFrames: CF.UInt32, ioData: ^BufferList) -> CF.OSStatus
-
-    /// AudioUnitPropertyListenerProc
-    UnitPropertyListenerProc :: proc "c" (inRefCon: rawptr, inUnit: Unit, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement)
-
-    /// AUInputSamplesInOutputCallback
-    AUInputSamplesInOutputCallback :: proc "c" (inRefCon: rawptr, inOutputTimeStamp: ^TimeStamp, inInputSample: cffi.double, inNumberInputSamples: cffi.double)
-
-    /// AudioUnitInitializeProc
-    UnitInitializeProc :: proc "c" (self: rawptr) -> CF.OSStatus
-
-    /// AudioUnitUninitializeProc
-    UnitUninitializeProc :: proc "c" (self: rawptr) -> CF.OSStatus
-
-    /// AudioUnitGetPropertyInfoProc
-    UnitGetPropertyInfoProc :: proc "c" (self: rawptr, prop: UnitPropertyID, scope: UnitScope, elem: UnitElement, outDataSize: ^CF.UInt32, outWritable: ^CF.Boolean) -> CF.OSStatus
-
-    /// AudioUnitGetPropertyProc
-    UnitGetPropertyProc :: proc "c" (self: rawptr, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement, outData: rawptr, ioDataSize: ^CF.UInt32) -> CF.OSStatus
-
-    /// AudioUnitSetPropertyProc
-    UnitSetPropertyProc :: proc "c" (self: rawptr, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement, inData: rawptr, inDataSize: CF.UInt32) -> CF.OSStatus
-
-    /// AudioUnitAddPropertyListenerProc
-    UnitAddPropertyListenerProc :: proc "c" (self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc, userData: rawptr) -> CF.OSStatus
-
-    /// AudioUnitRemovePropertyListenerProc
-    UnitRemovePropertyListenerProc :: proc "c" (self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc) -> CF.OSStatus
-
-    /// AudioUnitRemovePropertyListenerWithUserDataProc
-    UnitRemovePropertyListenerWithUserDataProc :: proc "c" (self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc, userData: rawptr) -> CF.OSStatus
-
-    /// AudioUnitAddRenderNotifyProc
-    UnitAddRenderNotifyProc :: proc "c" (self: rawptr, _proc: AURenderCallback, userData: rawptr) -> CF.OSStatus
-
-    /// AudioUnitRemoveRenderNotifyProc
-    UnitRemoveRenderNotifyProc :: proc "c" (self: rawptr, _proc: AURenderCallback, userData: rawptr) -> CF.OSStatus
-
-    /// AudioUnitScheduleParametersProc
-    UnitScheduleParametersProc :: proc "c" (self: rawptr, events: ^UnitParameterEvent, numEvents: CF.UInt32) -> CF.OSStatus
-
-    /// AudioUnitResetProc
-    UnitResetProc :: proc "c" (self: rawptr, inScope: UnitScope, inElement: UnitElement) -> CF.OSStatus
-
-    /// AudioUnitComplexRenderProc
-    UnitComplexRenderProc :: proc "c" (self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inOutputBusNumber: CF.UInt32, inNumberOfPackets: CF.UInt32, outNumberOfPackets: ^CF.UInt32, outPacketDescriptions: ^StreamPacketDescription, ioData: ^BufferList, outMetadata: rawptr, outMetadataByteSize: ^CF.UInt32) -> CF.OSStatus
-
-    /// AudioUnitProcessProc
-    UnitProcessProc :: proc "c" (self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inNumberFrames: CF.UInt32, ioData: ^BufferList) -> CF.OSStatus
-
-    /// AudioUnitProcessMultipleProc
-    UnitProcessMultipleProc :: proc "c" (self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inNumberFrames: CF.UInt32, inNumberInputBufferLists: CF.UInt32, inInputBufferLists: ^^BufferList, inNumberOutputBufferLists: CF.UInt32, ioOutputBufferLists: ^^BufferList) -> CF.OSStatus
-
-    /// AudioUnitGetParameterProc
-    UnitGetParameterProc :: proc "c" (inComponentStorage: rawptr, inID: UnitParameterID, inScope: UnitScope, inElement: UnitElement, outValue: ^UnitParameterValue) -> CF.OSStatus
-
-    /// AudioUnitSetParameterProc
-    UnitSetParameterProc :: proc "c" (inComponentStorage: rawptr, inID: UnitParameterID, inScope: UnitScope, inElement: UnitElement, inValue: UnitParameterValue, inBufferOffsetInFrames: CF.UInt32) -> CF.OSStatus
-
-    /// AudioUnitRenderProc
-    UnitRenderProc :: proc "c" (inComponentStorage: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inOutputBusNumber: CF.UInt32, inNumberFrames: CF.UInt32, ioData: ^BufferList) -> CF.OSStatus
-
-    /// AUMIDIOutputCallback
-    AUMIDIOutputCallback :: proc "c" (userData: rawptr, timeStamp: ^TimeStamp, midiOutNum: CF.UInt32, pktlist: ^MIDIPacketList) -> CF.OSStatus
-
-    /// AURenderContextObserver
-    AURenderContextObserver :: ^Objc_Block(proc "c" (_context: ^UnitRenderContext))
-
-    /// AUEventSampleTime
+    AURenderCallback :: proc "c" ( inRefCon: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inBusNumber: CF.UInt32, inNumberFrames: CF.UInt32, ioData: ^BufferList ) -> CF.OSStatus
+    UnitPropertyListenerProc :: proc "c" ( inRefCon: rawptr, inUnit: Unit, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement )
+    AUInputSamplesInOutputCallback :: proc "c" ( inRefCon: rawptr, inOutputTimeStamp: ^TimeStamp, inInputSample: cffi.double, inNumberInputSamples: cffi.double )
+    UnitInitializeProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
+    UnitUninitializeProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
+    UnitGetPropertyInfoProc :: proc "c" ( self: rawptr, prop: UnitPropertyID, scope: UnitScope, elem: UnitElement, outDataSize: ^CF.UInt32, outWritable: ^CF.Boolean ) -> CF.OSStatus
+    UnitGetPropertyProc :: proc "c" ( self: rawptr, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement, outData: rawptr, ioDataSize: ^CF.UInt32 ) -> CF.OSStatus
+    UnitSetPropertyProc :: proc "c" ( self: rawptr, inID: UnitPropertyID, inScope: UnitScope, inElement: UnitElement, inData: rawptr, inDataSize: CF.UInt32 ) -> CF.OSStatus
+    UnitAddPropertyListenerProc :: proc "c" ( self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc, userData: rawptr ) -> CF.OSStatus
+    UnitRemovePropertyListenerProc :: proc "c" ( self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc ) -> CF.OSStatus
+    UnitRemovePropertyListenerWithUserDataProc :: proc "c" ( self: rawptr, prop: UnitPropertyID, _proc: UnitPropertyListenerProc, userData: rawptr ) -> CF.OSStatus
+    UnitAddRenderNotifyProc :: proc "c" ( self: rawptr, _proc: AURenderCallback, userData: rawptr ) -> CF.OSStatus
+    UnitRemoveRenderNotifyProc :: proc "c" ( self: rawptr, _proc: AURenderCallback, userData: rawptr ) -> CF.OSStatus
+    UnitScheduleParametersProc :: proc "c" ( self: rawptr, events: ^UnitParameterEvent, numEvents: CF.UInt32 ) -> CF.OSStatus
+    UnitResetProc :: proc "c" ( self: rawptr, inScope: UnitScope, inElement: UnitElement ) -> CF.OSStatus
+    UnitComplexRenderProc :: proc "c" ( self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inOutputBusNumber: CF.UInt32, inNumberOfPackets: CF.UInt32, outNumberOfPackets: ^CF.UInt32, outPacketDescriptions: ^StreamPacketDescription, ioData: ^BufferList, outMetadata: rawptr, outMetadataByteSize: ^CF.UInt32 ) -> CF.OSStatus
+    UnitProcessProc :: proc "c" ( self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inNumberFrames: CF.UInt32, ioData: ^BufferList ) -> CF.OSStatus
+    UnitProcessMultipleProc :: proc "c" ( self: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inNumberFrames: CF.UInt32, inNumberInputBufferLists: CF.UInt32, inInputBufferLists: ^^BufferList, inNumberOutputBufferLists: CF.UInt32, ioOutputBufferLists: ^^BufferList ) -> CF.OSStatus
+    UnitGetParameterProc :: proc "c" ( inComponentStorage: rawptr, inID: UnitParameterID, inScope: UnitScope, inElement: UnitElement, outValue: ^UnitParameterValue ) -> CF.OSStatus
+    UnitSetParameterProc :: proc "c" ( inComponentStorage: rawptr, inID: UnitParameterID, inScope: UnitScope, inElement: UnitElement, inValue: UnitParameterValue, inBufferOffsetInFrames: CF.UInt32 ) -> CF.OSStatus
+    UnitRenderProc :: proc "c" ( inComponentStorage: rawptr, ioActionFlags: ^UnitRenderActionFlags, inTimeStamp: ^TimeStamp, inOutputBusNumber: CF.UInt32, inNumberFrames: CF.UInt32, ioData: ^BufferList ) -> CF.OSStatus
+    AUMIDIOutputCallback :: proc "c" ( userData: rawptr, timeStamp: ^TimeStamp, midiOutNum: CF.UInt32, pktlist: ^MIDIPacketList ) -> CF.OSStatus
+    AURenderContextObserver :: ^Objc_Block(proc "c" ( _context: ^UnitRenderContext ))
     AUEventSampleTime :: cffi.int64_t
-
-    /// AUMIDIEventListBlock
-    AUMIDIEventListBlock :: ^Objc_Block(proc "c" (eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, eventList: ^MIDIEventList) -> CF.OSStatus)
-
-    /// AudioUnitParameterIDName
+    AUMIDIEventListBlock :: ^Objc_Block(proc "c" ( eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, eventList: ^MIDIEventList ) -> CF.OSStatus)
     UnitParameterIDName :: UnitParameterNameInfo
-
-    /// AudioUnitRemoteControlEventListener
-    UnitRemoteControlEventListener :: ^Objc_Block(proc "c" (event: UnitRemoteControlEvent))
-
-    /// AUVoiceIOMutedSpeechActivityEventListener
-    AUVoiceIOMutedSpeechActivityEventListener :: ^Objc_Block(proc "c" (event: AUVoiceIOSpeechActivityEvent))
-
-    /// AUValue
+    UnitRemoteControlEventListener :: ^Objc_Block(proc "c" ( event: UnitRemoteControlEvent ))
+    AUVoiceIOMutedSpeechActivityEventListener :: ^Objc_Block(proc "c" ( event: AUVoiceIOSpeechActivityEvent ))
     AUValue :: cffi.float
-
-    /// AUParameterAddress
     AUParameterAddress :: cffi.uint64_t
-
-    /// AUParameterObserver
-    AUParameterObserver :: ^Objc_Block(proc "c" (address: AUParameterAddress, value: AUValue))
-
-    /// AUParameterRecordingObserver
-    AUParameterRecordingObserver :: ^Objc_Block(proc "c" (numberEvents: NSInteger, events: ^AURecordedParameterEvent))
-
-    /// AUParameterAutomationObserver
-    AUParameterAutomationObserver :: ^Objc_Block(proc "c" (numberEvents: NSInteger, events: ^AUParameterAutomationEvent))
-
-    /// AUParameterObserverToken
+    AUParameterObserver :: ^Objc_Block(proc "c" ( address: AUParameterAddress, value: AUValue ))
+    AUParameterRecordingObserver :: ^Objc_Block(proc "c" ( numberEvents: NSInteger, events: ^AURecordedParameterEvent ))
+    AUParameterAutomationObserver :: ^Objc_Block(proc "c" ( numberEvents: NSInteger, events: ^AUParameterAutomationEvent ))
     AUParameterObserverToken :: rawptr
-
-    /// MIDIObjectRef
     MIDIObjectRef :: CF.UInt32
-
-    /// MIDIClientRef
     MIDIClientRef :: MIDIObjectRef
-
-    /// MIDIPortRef
     MIDIPortRef :: MIDIObjectRef
-
-    /// MIDIDeviceRef
     MIDIDeviceRef :: MIDIObjectRef
-
-    /// MIDIEntityRef
     MIDIEntityRef :: MIDIObjectRef
-
-    /// MIDITimeStamp
     MIDITimeStamp :: CF.UInt64
-
-    /// MIDIUniqueID
     MIDIUniqueID :: CF.SInt32
-
-    /// MIDINotifyProc
-    MIDINotifyProc :: proc "c" (message: ^MIDINotification, refCon: rawptr)
-
-    /// MIDINotifyBlock
-    MIDINotifyBlock :: ^Objc_Block(proc "c" (message: ^MIDINotification))
-
-    /// MIDIReceiveBlock
-    MIDIReceiveBlock :: ^Objc_Block(proc "c" (evtlist: ^MIDIEventList, srcConnRefCon: rawptr))
-
-    /// MIDIReadProc
-    MIDIReadProc :: proc "c" (pktlist: ^MIDIPacketList, readProcRefCon: rawptr, srcConnRefCon: rawptr)
-
-    /// MIDIReadBlock
-    MIDIReadBlock :: ^Objc_Block(proc "c" (pktlist: ^MIDIPacketList, srcConnRefCon: rawptr))
-
-    /// MIDICompletionProc
-    MIDICompletionProc :: proc "c" (request: ^MIDISysexSendRequest)
-
-    /// MIDICompletionProcUMP
-    MIDICompletionProcUMP :: proc "c" (request: ^MIDISysexSendRequestUMP)
-
-    /// MIDIChannelNumber
+    MIDINotifyProc :: proc "c" ( message: ^MIDINotification, refCon: rawptr )
+    MIDINotifyBlock :: ^Objc_Block(proc "c" ( message: ^MIDINotification ))
+    MIDIReceiveBlock :: ^Objc_Block(proc "c" ( evtlist: ^MIDIEventList, srcConnRefCon: rawptr ))
+    MIDIReadProc :: proc "c" ( pktlist: ^MIDIPacketList, readProcRefCon: rawptr, srcConnRefCon: rawptr )
+    MIDIReadBlock :: ^Objc_Block(proc "c" ( pktlist: ^MIDIPacketList, srcConnRefCon: rawptr ))
+    MIDICompletionProc :: proc "c" ( request: ^MIDISysexSendRequest )
+    MIDICompletionProcUMP :: proc "c" ( request: ^MIDISysexSendRequestUMP )
     MIDIChannelNumber :: cffi.uint8_t
-
-    /// AUAudioUnitStatus
     AUAudioUnitStatus :: CF.OSStatus
-
-    /// AUAudioFrameCount
     AUAudioFrameCount :: cffi.uint32_t
-
-    /// AUAudioChannelCount
     AUAudioChannelCount :: cffi.uint32_t
-
-    /// AURenderPullInputBlock
-    AURenderPullInputBlock :: ^Objc_Block(proc "c" (actionFlags: ^UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, inputBusNumber: NSInteger, inputData: ^BufferList) -> AUAudioUnitStatus)
-
-    /// AURenderBlock
-    AURenderBlock :: ^Objc_Block(proc "c" (actionFlags: ^UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NSInteger, outputData: ^BufferList, pullInputBlock: AURenderPullInputBlock) -> AUAudioUnitStatus)
-
-    /// AURenderObserver
-    AURenderObserver :: ^Objc_Block(proc "c" (actionFlags: UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NSInteger))
-
-    /// AUScheduleParameterBlock
-    AUScheduleParameterBlock :: ^Objc_Block(proc "c" (eventSampleTime: AUEventSampleTime, rampDurationSampleFrames: AUAudioFrameCount, parameterAddress: AUParameterAddress, value: AUValue))
-
-    /// AUScheduleMIDIEventBlock
-    AUScheduleMIDIEventBlock :: ^Objc_Block(proc "c" (eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, length: NSInteger, midiBytes: ^cffi.uint8_t))
-
-    /// AUMIDIOutputEventBlock
-    AUMIDIOutputEventBlock :: ^Objc_Block(proc "c" (eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, length: NSInteger, midiBytes: ^cffi.uint8_t) -> CF.OSStatus)
-
-    /// AUHostMusicalContextBlock
-    AUHostMusicalContextBlock :: ^Objc_Block(proc "c" (currentTempo: ^cffi.double, timeSignatureNumerator: ^cffi.double, timeSignatureDenominator: ^NSInteger, currentBeatPosition: ^cffi.double, sampleOffsetToNextBeat: ^NSInteger, currentMeasureDownbeatPosition: ^cffi.double) -> bool)
-
-    /// AUMIDICIProfileChangedBlock
-    AUMIDICIProfileChangedBlock :: ^Objc_Block(proc "c" (cable: cffi.uint8_t, channel: MIDIChannelNumber, profile: ^MIDICIProfile, enabled: bool))
-
-    /// AUHostTransportStateBlock
-    AUHostTransportStateBlock :: ^Objc_Block(proc "c" (transportStateFlags: ^AUHostTransportStateFlags, currentSamplePosition: ^cffi.double, cycleStartBeatPosition: ^cffi.double, cycleEndBeatPosition: ^cffi.double) -> bool)
-
-    /// AUInputHandler
-    AUInputHandler :: ^Objc_Block(proc "c" (actionFlags: ^UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, inputBusNumber: NSInteger))
-
-    /// AUInternalRenderBlock
-    AUInternalRenderBlock :: ^Objc_Block(proc "c" (actionFlags: ^UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NSInteger, outputData: ^BufferList, realtimeEventListHead: ^AURenderEvent, pullInputBlock: AURenderPullInputBlock) -> AUAudioUnitStatus)
-
-    /// AUImplementorValueObserver
-    AUImplementorValueObserver :: ^Objc_Block(proc "c" (param: ^AUParameter, value: AUValue))
-
-    /// AUImplementorValueProvider
-    AUImplementorValueProvider :: ^Objc_Block(proc "c" (param: ^AUParameter) -> AUValue)
-
-    /// AUImplementorStringFromValueCallback
-    AUImplementorStringFromValueCallback :: ^Objc_Block(proc "c" (param: ^AUParameter, value: ^AUValue) -> ^NSString)
-
-    /// AUImplementorValueFromStringCallback
-    AUImplementorValueFromStringCallback :: ^Objc_Block(proc "c" (param: ^AUParameter, string: ^NSString) -> AUValue)
-
-    /// AUImplementorDisplayNameWithLengthCallback
-    AUImplementorDisplayNameWithLengthCallback :: ^Objc_Block(proc "c" (node: ^AUParameterNode, desiredLength: NSInteger) -> ^NSString)
-
-    /// AudioOutputUnitStartProc
-    OutputUnitStartProc :: proc "c" (self: rawptr) -> CF.OSStatus
-
-    /// AudioOutputUnitStopProc
-    OutputUnitStopProc :: proc "c" (self: rawptr) -> CF.OSStatus
-
-    /// AUGraph
+    AURenderPullInputBlock :: ^Objc_Block(proc "c" ( actionFlags: ^UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, inputBusNumber: NSInteger, inputData: ^BufferList ) -> AUAudioUnitStatus)
+    AURenderBlock :: ^Objc_Block(proc "c" ( actionFlags: ^UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NSInteger, outputData: ^BufferList, pullInputBlock: AURenderPullInputBlock ) -> AUAudioUnitStatus)
+    AURenderObserver :: ^Objc_Block(proc "c" ( actionFlags: UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NSInteger ))
+    AUScheduleParameterBlock :: ^Objc_Block(proc "c" ( eventSampleTime: AUEventSampleTime, rampDurationSampleFrames: AUAudioFrameCount, parameterAddress: AUParameterAddress, value: AUValue ))
+    AUScheduleMIDIEventBlock :: ^Objc_Block(proc "c" ( eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, length: NSInteger, midiBytes: ^cffi.uint8_t ))
+    AUMIDIOutputEventBlock :: ^Objc_Block(proc "c" ( eventSampleTime: AUEventSampleTime, cable: cffi.uint8_t, length: NSInteger, midiBytes: ^cffi.uint8_t ) -> CF.OSStatus)
+    AUHostMusicalContextBlock :: ^Objc_Block(proc "c" ( currentTempo: ^cffi.double, timeSignatureNumerator: ^cffi.double, timeSignatureDenominator: ^NSInteger, currentBeatPosition: ^cffi.double, sampleOffsetToNextBeat: ^NSInteger, currentMeasureDownbeatPosition: ^cffi.double ) -> bool)
+    AUMIDICIProfileChangedBlock :: ^Objc_Block(proc "c" ( cable: cffi.uint8_t, channel: MIDIChannelNumber, profile: ^MIDICIProfile, enabled: bool ))
+    AUHostTransportStateBlock :: ^Objc_Block(proc "c" ( transportStateFlags: ^AUHostTransportStateFlags, currentSamplePosition: ^cffi.double, cycleStartBeatPosition: ^cffi.double, cycleEndBeatPosition: ^cffi.double ) -> bool)
+    AUInputHandler :: ^Objc_Block(proc "c" ( actionFlags: ^UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, inputBusNumber: NSInteger ))
+    AUInternalRenderBlock :: ^Objc_Block(proc "c" ( actionFlags: ^UnitRenderActionFlags, timestamp: ^TimeStamp, frameCount: AUAudioFrameCount, outputBusNumber: NSInteger, outputData: ^BufferList, realtimeEventListHead: ^AURenderEvent, pullInputBlock: AURenderPullInputBlock ) -> AUAudioUnitStatus)
+    AUImplementorValueObserver :: ^Objc_Block(proc "c" ( param: ^AUParameter, value: AUValue ))
+    AUImplementorValueProvider :: ^Objc_Block(proc "c" ( param: ^AUParameter ) -> AUValue)
+    AUImplementorStringFromValueCallback :: ^Objc_Block(proc "c" ( param: ^AUParameter, value: ^AUValue ) -> ^NSString)
+    AUImplementorValueFromStringCallback :: ^Objc_Block(proc "c" ( param: ^AUParameter, string: ^NSString ) -> AUValue)
+    AUImplementorDisplayNameWithLengthCallback :: ^Objc_Block(proc "c" ( node: ^AUParameterNode, desiredLength: NSInteger ) -> ^NSString)
+    OutputUnitStartProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
+    OutputUnitStopProc :: proc "c" ( self: rawptr ) -> CF.OSStatus
     AUGraph :: ^OpaqueAUGraph
-
-    /// AUNode
     AUNode :: CF.SInt32
-
-    /// AUNodeConnection
     AUNodeConnection :: UnitNodeConnection
-
-    /// AudioConverterRef
     ConverterRef :: ^OpaqueAudioConverter
-
-    /// AudioConverterPropertyID
     ConverterPropertyID :: CF.UInt32
-
-    /// AudioConverterComplexInputDataProc
-    ConverterComplexInputDataProc :: proc "c" (inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^BufferList, outDataPacketDescription: ^^StreamPacketDescription, inUserData: rawptr) -> CF.OSStatus
-
-    /// AudioConverterComplexInputDataProcRealtimeSafe
-    ConverterComplexInputDataProcRealtimeSafe :: proc "c" (inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^BufferList, outDataPacketDescription: ^^StreamPacketDescription, inUserData: rawptr) -> CF.OSStatus
-
-    /// AudioConverterInputDataProc
-    ConverterInputDataProc :: proc "c" (inAudioConverter: ConverterRef, ioDataSize: ^CF.UInt32, outData: ^rawptr, inUserData: rawptr) -> CF.OSStatus
-
-    /// AudioFileTypeID
+    ConverterComplexInputDataProc :: proc "c" ( inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^BufferList, outDataPacketDescription: ^^StreamPacketDescription, inUserData: rawptr ) -> CF.OSStatus
+    ConverterComplexInputDataProcRealtimeSafe :: proc "c" ( inAudioConverter: ConverterRef, ioNumberDataPackets: ^CF.UInt32, ioData: ^BufferList, outDataPacketDescription: ^^StreamPacketDescription, inUserData: rawptr ) -> CF.OSStatus
+    ConverterInputDataProc :: proc "c" ( inAudioConverter: ConverterRef, ioDataSize: ^CF.UInt32, outData: ^rawptr, inUserData: rawptr ) -> CF.OSStatus
     FileTypeID :: CF.UInt32
-
-    /// AudioFileID
     FileID :: ^OpaqueAudioFileID
-
-    /// AudioFilePropertyID
     FilePropertyID :: CF.UInt32
-
-    /// AudioFile_ReadProc
-    File_ReadProc :: proc "c" (inClientData: rawptr, inPosition: CF.SInt64, requestCount: CF.UInt32, buffer: rawptr, actualCount: ^CF.UInt32) -> CF.OSStatus
-
-    /// AudioFile_WriteProc
-    File_WriteProc :: proc "c" (inClientData: rawptr, inPosition: CF.SInt64, requestCount: CF.UInt32, buffer: rawptr, actualCount: ^CF.UInt32) -> CF.OSStatus
-
-    /// AudioFile_GetSizeProc
-    File_GetSizeProc :: proc "c" (inClientData: rawptr) -> CF.SInt64
-
-    /// AudioFile_SetSizeProc
-    File_SetSizeProc :: proc "c" (inClientData: rawptr, inSize: CF.SInt64) -> CF.OSStatus
-
-    /// AudioFileStreamPropertyID
+    File_ReadProc :: proc "c" ( inClientData: rawptr, inPosition: CF.SInt64, requestCount: CF.UInt32, buffer: rawptr, actualCount: ^CF.UInt32 ) -> CF.OSStatus
+    File_WriteProc :: proc "c" ( inClientData: rawptr, inPosition: CF.SInt64, requestCount: CF.UInt32, buffer: rawptr, actualCount: ^CF.UInt32 ) -> CF.OSStatus
+    File_GetSizeProc :: proc "c" ( inClientData: rawptr ) -> CF.SInt64
+    File_SetSizeProc :: proc "c" ( inClientData: rawptr, inSize: CF.SInt64 ) -> CF.OSStatus
     FileStreamPropertyID :: CF.UInt32
-
-    /// AudioFileStreamID
     FileStreamID :: ^OpaqueAudioFileStreamID
-
-    /// AudioFileStream_PropertyListenerProc
-    FileStream_PropertyListenerProc :: proc "c" (inClientData: rawptr, inAudioFileStream: FileStreamID, inPropertyID: FileStreamPropertyID, ioFlags: ^FileStreamPropertyFlags)
-
-    /// AudioFileStream_PacketsProc
-    FileStream_PacketsProc :: proc "c" (inClientData: rawptr, inNumberBytes: CF.UInt32, inNumberPackets: CF.UInt32, inInputData: rawptr, inPacketDescriptions: ^StreamPacketDescription)
-
-    /// AudioFormatPropertyID
+    FileStream_PropertyListenerProc :: proc "c" ( inClientData: rawptr, inAudioFileStream: FileStreamID, inPropertyID: FileStreamPropertyID, ioFlags: ^FileStreamPropertyFlags )
+    FileStream_PacketsProc :: proc "c" ( inClientData: rawptr, inNumberBytes: CF.UInt32, inNumberPackets: CF.UInt32, inInputData: rawptr, inPacketDescriptions: ^StreamPacketDescription )
     FormatPropertyID :: CF.UInt32
-
-    /// AudioQueuePropertyID
     QueuePropertyID :: CF.UInt32
-
-    /// AudioQueueParameterID
     QueueParameterID :: CF.UInt32
-
-    /// AudioQueueParameterValue
     QueueParameterValue :: cffi.float
-
-    /// AudioQueueRef
     QueueRef :: ^OpaqueAudioQueue
-
-    /// AudioQueueTimelineRef
     QueueTimelineRef :: ^OpaqueAudioQueueTimeline
-
-    /// AudioQueueBufferRef
     QueueBufferRef :: ^QueueBuffer
-
-    /// AudioQueueProcessingTapRef
     QueueProcessingTapRef :: ^OpaqueAudioQueueProcessingTap
-
-    /// AudioQueueOutputCallbackBlock
-    QueueOutputCallbackBlock :: ^Objc_Block(proc "c" (inAQ: QueueRef, inBuffer: QueueBufferRef))
-
-    /// AudioQueueInputCallbackBlock
-    QueueInputCallbackBlock :: ^Objc_Block(proc "c" (inAQ: QueueRef, inBuffer: QueueBufferRef, inStartTime: ^TimeStamp, inNumberPacketDescriptions: CF.UInt32, inPacketDescs: ^StreamPacketDescription))
-
-    /// AudioQueueOutputCallback
-    QueueOutputCallback :: proc "c" (inUserData: rawptr, inAQ: QueueRef, inBuffer: QueueBufferRef)
-
-    /// AudioQueueInputCallback
-    QueueInputCallback :: proc "c" (inUserData: rawptr, inAQ: QueueRef, inBuffer: QueueBufferRef, inStartTime: ^TimeStamp, inNumberPacketDescriptions: CF.UInt32, inPacketDescs: ^StreamPacketDescription)
-
-    /// AudioQueuePropertyListenerProc
-    QueuePropertyListenerProc :: proc "c" (inUserData: rawptr, inAQ: QueueRef, inID: QueuePropertyID)
-
-    /// AudioQueueProcessingTapCallback
-    QueueProcessingTapCallback :: proc "c" (inClientData: rawptr, inAQTap: QueueProcessingTapRef, inNumberFrames: CF.UInt32, ioTimeStamp: ^TimeStamp, ioFlags: ^QueueProcessingTapFlags, outNumberFrames: ^CF.UInt32, ioData: ^BufferList)
-
-    /// AudioSessionPropertyID
+    QueueOutputCallbackBlock :: ^Objc_Block(proc "c" ( inAQ: QueueRef, inBuffer: QueueBufferRef ))
+    QueueInputCallbackBlock :: ^Objc_Block(proc "c" ( inAQ: QueueRef, inBuffer: QueueBufferRef, inStartTime: ^TimeStamp, inNumberPacketDescriptions: CF.UInt32, inPacketDescs: ^StreamPacketDescription ))
+    QueueOutputCallback :: proc "c" ( inUserData: rawptr, inAQ: QueueRef, inBuffer: QueueBufferRef )
+    QueueInputCallback :: proc "c" ( inUserData: rawptr, inAQ: QueueRef, inBuffer: QueueBufferRef, inStartTime: ^TimeStamp, inNumberPacketDescriptions: CF.UInt32, inPacketDescs: ^StreamPacketDescription )
+    QueuePropertyListenerProc :: proc "c" ( inUserData: rawptr, inAQ: QueueRef, inID: QueuePropertyID )
+    QueueProcessingTapCallback :: proc "c" ( inClientData: rawptr, inAQTap: QueueProcessingTapRef, inNumberFrames: CF.UInt32, ioTimeStamp: ^TimeStamp, ioFlags: ^QueueProcessingTapFlags, outNumberFrames: ^CF.UInt32, ioData: ^BufferList )
     SessionPropertyID :: CF.UInt32
-
-    /// AudioSessionInterruptionType
     SessionInterruptionType :: CF.UInt32
-
-    /// AudioSessionInterruptionListener
-    SessionInterruptionListener :: proc "c" (inClientData: rawptr, inInterruptionState: CF.UInt32)
-
-    /// AudioSessionPropertyListener
-    SessionPropertyListener :: proc "c" (inClientData: rawptr, inID: SessionPropertyID, inDataSize: CF.UInt32, inData: rawptr)
-
-    /// AudioServicesPropertyID
+    SessionInterruptionListener :: proc "c" ( inClientData: rawptr, inInterruptionState: CF.UInt32 )
+    SessionPropertyListener :: proc "c" ( inClientData: rawptr, inID: SessionPropertyID, inDataSize: CF.UInt32, inData: rawptr )
     ServicesPropertyID :: CF.UInt32
-
-    /// AudioServicesSystemSoundCompletionProc
-    ServicesSystemSoundCompletionProc :: proc "c" (ssID: SystemSoundID, clientData: rawptr)
-
-    /// AUParameterListenerRef
+    ServicesSystemSoundCompletionProc :: proc "c" ( ssID: SystemSoundID, clientData: rawptr )
     AUParameterListenerRef :: ^AUListenerBase
-
-    /// AUEventListenerRef
     AUEventListenerRef :: AUParameterListenerRef
+    AUParameterListenerBlock :: ^Objc_Block(proc "c" ( inObject: rawptr, inParameter: ^UnitParameter, inValue: UnitParameterValue ))
+    AUEventListenerBlock :: ^Objc_Block(proc "c" ( inObject: rawptr, inEvent: ^UnitEvent, inEventHostTime: CF.UInt64, inParameterValue: UnitParameterValue ))
+    AUParameterListenerProc :: proc "c" ( inUserData: rawptr, inObject: rawptr, inParameter: ^UnitParameter, inValue: UnitParameterValue )
+    AUEventListenerProc :: proc "c" ( inUserData: rawptr, inObject: rawptr, inEvent: ^UnitEvent, inEventHostTime: CF.UInt64, inParameterValue: UnitParameterValue )
+    UnitParameterOptions_DisplayMask :: UnitParameterOptions { .DisplaySquareRoot, .DisplaySquared, .DisplayCubeRoot, .DisplayLogarithmic, }
+    UnitParameterOptions_DisplayCubed :: UnitParameterOptions { .DisplaySquareRoot, .DisplaySquared, }
+    UnitParameterOptions_DisplayExponential :: UnitParameterOptions { .DisplaySquareRoot, .DisplayCubeRoot, }
+}
 
-    /// AUParameterListenerBlock
-    AUParameterListenerBlock :: ^Objc_Block(proc "c" (inObject: rawptr, inParameter: ^UnitParameter, inValue: UnitParameterValue))
-
-    /// AUEventListenerBlock
-    AUEventListenerBlock :: ^Objc_Block(proc "c" (inObject: rawptr, inEvent: ^UnitEvent, inEventHostTime: CF.UInt64, inParameterValue: UnitParameterValue))
-
-    /// AUParameterListenerProc
-    AUParameterListenerProc :: proc "c" (inUserData: rawptr, inObject: rawptr, inParameter: ^UnitParameter, inValue: UnitParameterValue)
-
-    /// AUEventListenerProc
-    AUEventListenerProc :: proc "c" (inUserData: rawptr, inObject: rawptr, inEvent: ^UnitEvent, inEventHostTime: CF.UInt64, inParameterValue: UnitParameterValue)
-} // End else
-
-/// SMPTETimeType
 SMPTETimeType :: enum cffi.uint {
     _24       = 0,
     _25       = 1,
@@ -3316,14 +4813,13 @@ SMPTETimeType :: enum cffi.uint {
     _2398     = 11,
 }
 
-/// SMPTETimeFlags
 SMPTETimeFlag :: enum cffi.uint {
     Valid   = 0,
     Running = 1,
 }
+
 SMPTETimeFlags :: bit_set[SMPTETimeFlag; cffi.uint]
 
-/// AudioTimeStampFlags
 TimeStampFlag :: enum cffi.uint {
     SampleTimeValid    = 0,
     HostTimeValid      = 1,
@@ -3331,11 +4827,9 @@ TimeStampFlag :: enum cffi.uint {
     WordClockTimeValid = 3,
     SMPTETimeValid     = 4,
 }
+
 TimeStampFlags :: bit_set[TimeStampFlag; cffi.uint]
 
-TimeStampFlags_SampleHostTimeValid :: TimeStampFlags { .SampleTimeValid, .HostTimeValid, }
-
-/// AudioChannelBitmap
 ChannelBitmapBit :: enum cffi.uint {
     Left                 = 0,
     Right                = 1,
@@ -3365,17 +4859,17 @@ ChannelBitmapBit :: enum cffi.uint {
     CenterTopRear        = 25,
     RightTopRear         = 26,
 }
+
 ChannelBitmap :: bit_set[ChannelBitmapBit; cffi.uint]
 
-/// AudioChannelFlags
 ChannelFlag :: enum cffi.uint {
     RectangularCoordinates = 0,
     SphericalCoordinates   = 1,
     Meters                 = 2,
 }
+
 ChannelFlags :: bit_set[ChannelFlag; cffi.uint]
 
-/// AudioChannelCoordinateIndex
 ChannelCoordinateIndex :: enum cffi.uint {
     LeftRight = 0,
     BackFront = 1,
@@ -3385,14 +4879,12 @@ ChannelCoordinateIndex :: enum cffi.uint {
     Distance  = 2,
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// AudioHardwarePowerHint
+when ODIN_PLATFORM_SUBTARGET == .Default {
     HardwarePowerHint :: enum cffi.uint {
         None             = 0,
         FavorSavingPower = 1,
     }
 
-    /// AudioLevelControlTransferFunction
     LevelControlTransferFunction :: enum cffi.uint {
         Linear   = 0,
         _1Over3  = 1,
@@ -3411,412 +4903,9 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         _11Over1 = 14,
         _12Over1 = 15,
     }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-    /// AudioComponentFlags
-    ComponentFlag :: enum cffi.uint {
-        Unsearchable               = 0,
-        SandboxSafe                = 1,
-        IsV3AudioUnit              = 2,
-        RequiresAsyncInstantiation = 3,
-        CanLoadInProcess           = 4,
-    }
-    ComponentFlags :: bit_set[ComponentFlag; cffi.uint]
-
-    /// AudioComponentInstantiationOptions
-    ComponentInstantiationOption :: enum cffi.uint {
-        OutOfProcess = 0,
-        InProcess    = 1,
-        edRemotely   = 31,
-    }
-    ComponentInstantiationOptions :: bit_set[ComponentInstantiationOption; cffi.uint]
-
-    /// AudioComponentValidationResult
-    ComponentValidationResult :: enum cffi.uint {
-        Unknown                = 0,
-        Passed                 = 1,
-        Failed                 = 2,
-        TimedOut               = 3,
-        UnauthorizedError_Open = 4,
-        UnauthorizedError_Init = 5,
-    }
-
-    /// AudioSettingsFlags
-    SettingsFlag :: enum cffi.uint {
-        ExpertParameter        = 0,
-        InvisibleParameter     = 1,
-        MetaParameter          = 2,
-        UserInterfaceParameter = 3,
-    }
-    SettingsFlags :: bit_set[SettingsFlag; cffi.uint]
-
-    /// AudioUnitRenderActionFlags
-    UnitRenderActionFlag :: enum cffi.uint {
-        PreRender                        = 2,
-        PostRender                       = 3,
-        OutputIsSilence                  = 4,
-        OfflineUnitRenderAction_Preflight = 5,
-        OfflineUnitRenderAction_Render   = 6,
-        OfflineUnitRenderAction_Complete = 7,
-        PostRenderError                  = 8,
-        DoNotCheckRenderArgs             = 9,
-    }
-    UnitRenderActionFlags :: bit_set[UnitRenderActionFlag; cffi.uint]
-
-    /// AUParameterEventType
-    AUParameterEventType :: enum cffi.uint {
-        Immediate = 1,
-        Ramped    = 2,
-    }
-
-    /// AudioUnitParameterUnit
-    UnitParameterUnit :: enum cffi.uint {
-        Generic             = 0,
-        Indexed             = 1,
-        Boolean             = 2,
-        Percent             = 3,
-        Seconds             = 4,
-        SampleFrames        = 5,
-        Phase               = 6,
-        Rate                = 7,
-        Hertz               = 8,
-        Cents               = 9,
-        RelativeSemiTones   = 10,
-        MIDINoteNumber      = 11,
-        MIDIController      = 12,
-        Decibels            = 13,
-        LinearGain          = 14,
-        Degrees             = 15,
-        EqualPowerCrossfade = 16,
-        MixerFaderCurve1    = 17,
-        Pan                 = 18,
-        Meters              = 19,
-        AbsoluteCents       = 20,
-        Octaves             = 21,
-        BPM                 = 22,
-        Beats               = 23,
-        Milliseconds        = 24,
-        Ratio               = 25,
-        CustomUnit          = 26,
-        MIDI2Controller     = 27,
-    }
-
-    /// AudioUnitParameterOptions
-    UnitParameterOption :: enum cffi.uint {
-        CFNameRelease      = 4,
-        OmitFromPresets    = 13,
-        PlotHistory        = 14,
-        MeterReadOnly      = 15,
-        DisplaySquareRoot  = 16,
-        DisplaySquared     = 17,
-        DisplayCubeRoot    = 18,
-        HasClump           = 20,
-        ValuesHaveStrings  = 21,
-        DisplayLogarithmic = 22,
-        IsHighResolution   = 23,
-        NonRealTime        = 24,
-        CanRamp            = 25,
-        ExpertMode         = 26,
-        HasCFNameString    = 27,
-        IsGlobalMeta       = 28,
-        IsElementMeta      = 29,
-        IsReadable         = 30,
-        IsWritable         = 31,
-    }
-    UnitParameterOptions :: bit_set[UnitParameterOption; cffi.uint]
-
-    UnitParameterOptions_DisplayMask :: UnitParameterOptions { .DisplaySquareRoot, .DisplaySquared, .DisplayCubeRoot, .DisplayLogarithmic, }
-
-    UnitParameterOptions_DisplayCubed :: UnitParameterOptions { .DisplaySquareRoot, .DisplaySquared, }
-
-    UnitParameterOptions_DisplayExponential :: UnitParameterOptions { .DisplaySquareRoot, .DisplayCubeRoot, }
-
-    /// AudioUnitRemoteControlEvent
-    UnitRemoteControlEvent :: enum cffi.uint {
-        TogglePlayPause = 1,
-        ToggleRecord    = 2,
-        Rewind          = 3,
-    }
-
-    /// AUVoiceIOSpeechActivityEvent
-    AUVoiceIOSpeechActivityEvent :: enum cffi.uint {
-        Started = 0,
-        Ended   = 1,
-    }
-
-    /// AUVoiceIOOtherAudioDuckingLevel
-    AUVoiceIOOtherAudioDuckingLevel :: enum cffi.uint {
-        Default = 0,
-        Min     = 10,
-        Mid     = 20,
-        Max     = 30,
-    }
-
-    /// AUSpatializationAlgorithm
-    AUSpatializationAlgorithm :: enum cffi.uint {
-        EqualPowerPanning  = 0,
-        SphericalHead      = 1,
-        HRTF               = 2,
-        SoundField         = 3,
-        VectorBasedPanning = 4,
-        StereoPassThrough  = 5,
-        HRTFHQ             = 6,
-        UseOutputType      = 7,
-    }
-
-    /// AUSpatialMixerSourceMode
-    AUSpatialMixerSourceMode :: enum cffi.uint {
-        izeIfMono   = 0,
-        Bypass      = 1,
-        PointSource = 2,
-        AmbienceBed = 3,
-    }
-
-    /// AUReverbRoomType
-    AUReverbRoomType :: enum cffi.uint {
-        SmallRoom     = 0,
-        MediumRoom    = 1,
-        LargeRoom     = 2,
-        MediumHall    = 3,
-        LargeHall     = 4,
-        Plate         = 5,
-        MediumChamber = 6,
-        LargeChamber  = 7,
-        Cathedral     = 8,
-        LargeRoom2    = 9,
-        MediumHall2   = 10,
-        MediumHall3   = 11,
-        LargeHall2    = 12,
-    }
-
-    /// AUSpatialMixerAttenuationCurve
-    AUSpatialMixerAttenuationCurve :: enum cffi.uint {
-        Power       = 0,
-        Exponential = 1,
-        Inverse     = 2,
-        Linear      = 3,
-    }
-
-    /// AUSpatialMixerRenderingFlags
-    AUSpatialMixerRenderingFlag :: enum cffi.uint {
-        InterAuralDelay     = 0,
-        DistanceAttenuation = 2,
-    }
-    AUSpatialMixerRenderingFlags :: bit_set[AUSpatialMixerRenderingFlag; cffi.uint]
-
-    /// AUSpatialMixerPersonalizedHRTFMode
-    AUSpatialMixerPersonalizedHRTFMode :: enum cffi.uint {
-        Off = 0,
-        On  = 1,
-        to  = 2,
-    }
-
-    /// AUSpatialMixerOutputType
-    AUSpatialMixerOutputType :: enum cffi.uint {
-        Headphones       = 1,
-        BuiltInSpeakers  = 2,
-        ExternalSpeakers = 3,
-    }
-
-    /// AUSpatialMixerPointSourceInHeadMode
-    AUSpatialMixerPointSourceInHeadMode :: enum cffi.uint {
-        Mono   = 0,
-        Bypass = 1,
-    }
-
-    /// AU3DMixerRenderingFlags
-    AU3DMixerRenderingFlag :: enum cffi.uint {
-        InterAuralDelay           = 0,
-        DopplerShift              = 1,
-        DistanceAttenuation       = 2,
-        DistanceFilter            = 3,
-        DistanceDiffusion         = 4,
-        LinearDistanceAttenuation = 5,
-        ConstantReverbBlend       = 6,
-    }
-    AU3DMixerRenderingFlags :: bit_set[AU3DMixerRenderingFlag; cffi.uint]
-
-    /// AU3DMixerAttenuationCurve
-    AU3DMixerAttenuationCurve :: enum cffi.uint {
-        Power       = 0,
-        Exponential = 1,
-        Inverse     = 2,
-        Linear      = 3,
-    }
-
-    /// AUScheduledAudioSliceFlags
-    AUScheduledAudioSliceFlag :: enum cffi.uint {
-        Complete          = 0,
-        BeganToRender     = 1,
-        BeganToRenderLate = 2,
-        Loop              = 3,
-        Interrupt         = 4,
-        InterruptAtLoop   = 5,
-    }
-    AUScheduledAudioSliceFlags :: bit_set[AUScheduledAudioSliceFlag; cffi.uint]
-
-    /// AUParameterAutomationEventType
-    AUParameterAutomationEventType :: enum cffi.uint {
-        Value   = 0,
-        Touch   = 1,
-        Release = 2,
-    }
-
-    /// MIDIObjectType
-    MIDIObjectType :: enum cffi.int {
-        Other               = -1,
-        Device              = 0,
-        Entity              = 1,
-        Source              = 2,
-        Destination         = 3,
-        ExternalDevice      = 16,
-        ExternalEntity      = 17,
-        ExternalSource      = 18,
-        ExternalDestination = 19,
-    }
-
-    /// MIDIProtocolID
-    MIDIProtocolID :: enum cffi.int {
-        _1_0 = 1,
-        _2_0 = 2,
-    }
-
-    /// MIDINotificationMessageID
-    MIDINotificationMessageID :: enum cffi.int {
-        SetupChanged           = 1,
-        ObjectAdded            = 2,
-        ObjectRemoved          = 3,
-        PropertyChanged        = 4,
-        ThruConnectionsChanged = 5,
-        SerialPortOwnerChanged = 6,
-        IOError                = 7,
-        InternalStart          = 4096,
-    }
-
-    /// AUAudioUnitBusType
-    AUAudioUnitBusType :: enum cffi.long {
-        Input  = 1,
-        Output = 2,
-    }
-
-    /// AUHostTransportStateFlags
-    AUHostTransportStateFlag :: enum cffi.ulong {
-        Changed   = 0,
-        Moving    = 1,
-        Recording = 2,
-        Cycling   = 3,
-    }
-    AUHostTransportStateFlags :: bit_set[AUHostTransportStateFlag; cffi.ulong]
-
-    /// AURenderEventType
-    AURenderEventType :: enum cffi.uchar {
-        Parameter     = 1,
-        ParameterRamp = 2,
-        MIDI          = 8,
-        MIDISysEx     = 9,
-        MIDIEventList = 10,
-    }
-
-    /// AUAudioMixRenderingStyle
-    AUAudioMixRenderingStyle :: enum cffi.uint {
-        Cinematic               = 0,
-        Studio                  = 1,
-        InFrame                 = 2,
-        CinematicBackgroundStem = 3,
-        CinematicForegroundStem = 4,
-        StudioForegroundStem    = 5,
-        InFrameForegroundStem   = 6,
-        Standard                = 7,
-        StudioBackgroundStem    = 8,
-        InFrameBackgroundStem   = 9,
-    }
-
-    /// AudioConverterOptions
-    ConverterOption :: enum cffi.uint {
-        kAudioConverterOption_Unbuffered = 16,
-    }
-    ConverterOptions :: bit_set[ConverterOption; cffi.uint]
-
-    /// AudioFileFlags
-    FileFlag :: enum cffi.uint {
-        EraseFile              = 0,
-        DontPageAlignAudioData = 1,
-    }
-    FileFlags :: bit_set[FileFlag; cffi.uint]
-
-    /// AudioFilePermissions
-    FilePermissions :: enum cffi.schar {
-        ReadPermission      = 1,
-        WritePermission     = 2,
-        ReadWritePermission = 3,
-    }
-
-    /// AudioFileRegionFlags
-    FileRegionFlag :: enum cffi.uint {
-        LoopEnable   = 0,
-        PlayForward  = 1,
-        PlayBackward = 2,
-    }
-    FileRegionFlags :: bit_set[FileRegionFlag; cffi.uint]
-
-    /// AudioBytePacketTranslationFlags
-    BytePacketTranslationFlag :: enum cffi.uint {
-        kBytePacketTranslationFlag_IsEstimate = 0,
-    }
-    BytePacketTranslationFlags :: bit_set[BytePacketTranslationFlag; cffi.uint]
-
-    /// AudioFileStreamPropertyFlags
-    FileStreamPropertyFlag :: enum cffi.uint {
-        IsCached      = 0,
-        CacheProperty = 1,
-    }
-    FileStreamPropertyFlags :: bit_set[FileStreamPropertyFlag; cffi.uint]
-
-    /// AudioFileStreamParseFlags
-    FileStreamParseFlag :: enum cffi.uint {
-        kAudioFileStreamParseFlag_Discontinuity = 0,
-    }
-    FileStreamParseFlags :: bit_set[FileStreamParseFlag; cffi.uint]
-
-    /// AudioFileStreamSeekFlags
-    FileStreamSeekFlag :: enum cffi.uint {
-        kAudioFileStreamSeekFlag_OffsetIsEstimated = 0,
-    }
-    FileStreamSeekFlags :: bit_set[FileStreamSeekFlag; cffi.uint]
-
-    /// AudioPanningMode
-    PanningMode :: enum cffi.uint {
-        SoundField         = 3,
-        VectorBasedPanning = 4,
-    }
-
-    /// AudioBalanceFadeType
-    BalanceFadeType :: enum cffi.uint {
-        MaxUnityGain = 0,
-        EqualPower   = 1,
-    }
-
-    /// AudioQueueProcessingTapFlags
-    QueueProcessingTapFlag :: enum cffi.uint {
-        PreEffects    = 0,
-        PostEffects   = 1,
-        Siphon        = 2,
-        StartOfStream = 8,
-        EndOfStream   = 9,
-    }
-    QueueProcessingTapFlags :: bit_set[QueueProcessingTapFlag; cffi.uint]
-
-    /// AudioUnitEventType
-    UnitEventType :: enum cffi.uint {
-        ParameterValueChange        = 0,
-        BeginParameterChangeGesture = 1,
-        EndParameterChangeGesture   = 2,
-        PropertyChange              = 3,
-} // End else
 }
 
-/// AudioFormatID
-when !ODIN_PLATFORM_SUBTARGET_IOS {
+when ODIN_PLATFORM_SUBTARGET == .Default {
     FormatID :: enum cffi.uint {
         LinearPCM            = 1819304813,
         AC3                  = 1633889587,
@@ -3860,8 +4949,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         Opus                 = 1869641075,
         APAC                 = 1634754915,
     }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
     FormatID :: enum cffi.uint {
         LinearPCM                        = 1819304813,
         AC3                              = 1633889587,
@@ -3952,9 +5040,8 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         UnsupportedDataFormatError       = 1718449215,
         UnknownFormatError               = 560360820,
     }
-} // End else
+}
 
-/// AudioFormatFlag
 FormatFlag :: enum cffi.uint {
     IsFloat                          = 0,
     IsBigEndian                      = 1,
@@ -3978,60 +5065,420 @@ FormatFlag :: enum cffi.uint {
     // LinearPCMFormatFlagsSampleFractionMask = 8064,
     // LinearPCMFormatFlagsAreAllClear = 2147483648,
 }
+
 FormatFlags :: bit_set[FormatFlag; cffi.uint]
 
-FormatFlags_AppleLosslessFormatFlag_24BitSourceData :: FormatFlags { .AppleLosslessFormatFlag_16BitSourceData, .AppleLosslessFormatFlag_20BitSourceData, }
-
-/// AudioFormatFlags
-when !ODIN_PLATFORM_SUBTARGET_IOS {
+when ODIN_PLATFORM_SUBTARGET == .Default {
     FormatFlagsPreset :: enum cffi.uint {
         NativeEndian      = 0,
         Canonical         = 9,
         UnitCanonical     = 41,
         NativeFloatPacked = 9,
     }
-}
-when ODIN_PLATFORM_SUBTARGET_IOS {
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
     FormatFlagsPreset :: enum cffi.uint {
-        NativeEndian      = 0,    
+        NativeEndian      = 0,
         Canonical         = 12,
         UnitCanonical     = 3116,
         NativeFloatPacked = 9,
     }
 }
 
-/// AudioValueRange
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    ComponentFlag :: enum cffi.uint {
+        Unsearchable               = 0,
+        SandboxSafe                = 1,
+        IsV3AudioUnit              = 2,
+        RequiresAsyncInstantiation = 3,
+        CanLoadInProcess           = 4,
+    }
+
+    ComponentFlags :: bit_set[ComponentFlag; cffi.uint]
+
+    ComponentInstantiationOption :: enum cffi.uint {
+        OutOfProcess = 0,
+        InProcess    = 1,
+        edRemotely   = 31,
+    }
+
+    ComponentInstantiationOptions :: bit_set[ComponentInstantiationOption; cffi.uint]
+
+    ComponentValidationResult :: enum cffi.uint {
+        Unknown                = 0,
+        Passed                 = 1,
+        Failed                 = 2,
+        TimedOut               = 3,
+        UnauthorizedError_Open = 4,
+        UnauthorizedError_Init = 5,
+    }
+
+    SettingsFlag :: enum cffi.uint {
+        ExpertParameter        = 0,
+        InvisibleParameter     = 1,
+        MetaParameter          = 2,
+        UserInterfaceParameter = 3,
+    }
+
+    SettingsFlags :: bit_set[SettingsFlag; cffi.uint]
+
+    UnitRenderActionFlag :: enum cffi.uint {
+        PreRender                        = 2,
+        PostRender                       = 3,
+        OutputIsSilence                  = 4,
+        OfflineUnitRenderAction_Preflight = 5,
+        OfflineUnitRenderAction_Render   = 6,
+        OfflineUnitRenderAction_Complete = 7,
+        PostRenderError                  = 8,
+        DoNotCheckRenderArgs             = 9,
+    }
+
+    UnitRenderActionFlags :: bit_set[UnitRenderActionFlag; cffi.uint]
+
+    AUParameterEventType :: enum cffi.uint {
+        Immediate = 1,
+        Ramped    = 2,
+    }
+
+    UnitParameterUnit :: enum cffi.uint {
+        Generic             = 0,
+        Indexed             = 1,
+        Boolean             = 2,
+        Percent             = 3,
+        Seconds             = 4,
+        SampleFrames        = 5,
+        Phase               = 6,
+        Rate                = 7,
+        Hertz               = 8,
+        Cents               = 9,
+        RelativeSemiTones   = 10,
+        MIDINoteNumber      = 11,
+        MIDIController      = 12,
+        Decibels            = 13,
+        LinearGain          = 14,
+        Degrees             = 15,
+        EqualPowerCrossfade = 16,
+        MixerFaderCurve1    = 17,
+        Pan                 = 18,
+        Meters              = 19,
+        AbsoluteCents       = 20,
+        Octaves             = 21,
+        BPM                 = 22,
+        Beats               = 23,
+        Milliseconds        = 24,
+        Ratio               = 25,
+        CustomUnit          = 26,
+        MIDI2Controller     = 27,
+    }
+
+    UnitParameterOption :: enum cffi.uint {
+        CFNameRelease      = 4,
+        OmitFromPresets    = 13,
+        PlotHistory        = 14,
+        MeterReadOnly      = 15,
+        DisplaySquareRoot  = 16,
+        DisplaySquared     = 17,
+        DisplayCubeRoot    = 18,
+        HasClump           = 20,
+        ValuesHaveStrings  = 21,
+        DisplayLogarithmic = 22,
+        IsHighResolution   = 23,
+        NonRealTime        = 24,
+        CanRamp            = 25,
+        ExpertMode         = 26,
+        HasCFNameString    = 27,
+        IsGlobalMeta       = 28,
+        IsElementMeta      = 29,
+        IsReadable         = 30,
+        IsWritable         = 31,
+    }
+
+    UnitParameterOptions :: bit_set[UnitParameterOption; cffi.uint]
+
+    UnitRemoteControlEvent :: enum cffi.uint {
+        TogglePlayPause = 1,
+        ToggleRecord    = 2,
+        Rewind          = 3,
+    }
+
+    AUVoiceIOSpeechActivityEvent :: enum cffi.uint {
+        Started = 0,
+        Ended   = 1,
+    }
+
+    AUVoiceIOOtherAudioDuckingLevel :: enum cffi.uint {
+        Default = 0,
+        Min     = 10,
+        Mid     = 20,
+        Max     = 30,
+    }
+
+    AUSpatializationAlgorithm :: enum cffi.uint {
+        EqualPowerPanning  = 0,
+        SphericalHead      = 1,
+        HRTF               = 2,
+        SoundField         = 3,
+        VectorBasedPanning = 4,
+        StereoPassThrough  = 5,
+        HRTFHQ             = 6,
+        UseOutputType      = 7,
+    }
+
+    AUSpatialMixerSourceMode :: enum cffi.uint {
+        izeIfMono   = 0,
+        Bypass      = 1,
+        PointSource = 2,
+        AmbienceBed = 3,
+    }
+
+    AUReverbRoomType :: enum cffi.uint {
+        SmallRoom     = 0,
+        MediumRoom    = 1,
+        LargeRoom     = 2,
+        MediumHall    = 3,
+        LargeHall     = 4,
+        Plate         = 5,
+        MediumChamber = 6,
+        LargeChamber  = 7,
+        Cathedral     = 8,
+        LargeRoom2    = 9,
+        MediumHall2   = 10,
+        MediumHall3   = 11,
+        LargeHall2    = 12,
+    }
+
+    AUSpatialMixerAttenuationCurve :: enum cffi.uint {
+        Power       = 0,
+        Exponential = 1,
+        Inverse     = 2,
+        Linear      = 3,
+    }
+
+    AUSpatialMixerRenderingFlag :: enum cffi.uint {
+        InterAuralDelay     = 0,
+        DistanceAttenuation = 2,
+    }
+
+    AUSpatialMixerRenderingFlags :: bit_set[AUSpatialMixerRenderingFlag; cffi.uint]
+
+    AUSpatialMixerPersonalizedHRTFMode :: enum cffi.uint {
+        Off = 0,
+        On  = 1,
+        to  = 2,
+    }
+
+    AUSpatialMixerOutputType :: enum cffi.uint {
+        Headphones       = 1,
+        BuiltInSpeakers  = 2,
+        ExternalSpeakers = 3,
+    }
+
+    AUSpatialMixerPointSourceInHeadMode :: enum cffi.uint {
+        Mono   = 0,
+        Bypass = 1,
+    }
+
+    AU3DMixerRenderingFlag :: enum cffi.uint {
+        InterAuralDelay           = 0,
+        DopplerShift              = 1,
+        DistanceAttenuation       = 2,
+        DistanceFilter            = 3,
+        DistanceDiffusion         = 4,
+        LinearDistanceAttenuation = 5,
+        ConstantReverbBlend       = 6,
+    }
+
+    AU3DMixerRenderingFlags :: bit_set[AU3DMixerRenderingFlag; cffi.uint]
+
+    AU3DMixerAttenuationCurve :: enum cffi.uint {
+        Power       = 0,
+        Exponential = 1,
+        Inverse     = 2,
+        Linear      = 3,
+    }
+
+    AUScheduledAudioSliceFlag :: enum cffi.uint {
+        Complete          = 0,
+        BeganToRender     = 1,
+        BeganToRenderLate = 2,
+        Loop              = 3,
+        Interrupt         = 4,
+        InterruptAtLoop   = 5,
+    }
+
+    AUScheduledAudioSliceFlags :: bit_set[AUScheduledAudioSliceFlag; cffi.uint]
+
+    AUParameterAutomationEventType :: enum cffi.uint {
+        Value   = 0,
+        Touch   = 1,
+        Release = 2,
+    }
+
+    MIDIObjectType :: enum cffi.int {
+        Other               = -1,
+        Device              = 0,
+        Entity              = 1,
+        Source              = 2,
+        Destination         = 3,
+        ExternalDevice      = 16,
+        ExternalEntity      = 17,
+        ExternalSource      = 18,
+        ExternalDestination = 19,
+    }
+
+    MIDIProtocolID :: enum cffi.int {
+        _1_0 = 1,
+        _2_0 = 2,
+    }
+
+    MIDINotificationMessageID :: enum cffi.int {
+        SetupChanged           = 1,
+        ObjectAdded            = 2,
+        ObjectRemoved          = 3,
+        PropertyChanged        = 4,
+        ThruConnectionsChanged = 5,
+        SerialPortOwnerChanged = 6,
+        IOError                = 7,
+        InternalStart          = 4096,
+    }
+
+    AUAudioUnitBusType :: enum cffi.long {
+        Input  = 1,
+        Output = 2,
+    }
+
+    AUHostTransportStateFlag :: enum cffi.ulong {
+        Changed   = 0,
+        Moving    = 1,
+        Recording = 2,
+        Cycling   = 3,
+    }
+
+    AUHostTransportStateFlags :: bit_set[AUHostTransportStateFlag; cffi.ulong]
+
+    AURenderEventType :: enum cffi.uchar {
+        Parameter     = 1,
+        ParameterRamp = 2,
+        MIDI          = 8,
+        MIDISysEx     = 9,
+        MIDIEventList = 10,
+    }
+
+    AUAudioMixRenderingStyle :: enum cffi.uint {
+        Cinematic               = 0,
+        Studio                  = 1,
+        InFrame                 = 2,
+        CinematicBackgroundStem = 3,
+        CinematicForegroundStem = 4,
+        StudioForegroundStem    = 5,
+        InFrameForegroundStem   = 6,
+        Standard                = 7,
+        StudioBackgroundStem    = 8,
+        InFrameBackgroundStem   = 9,
+    }
+
+    ConverterOption :: enum cffi.uint {
+        kAudioConverterOption_Unbuffered = 16,
+    }
+
+    ConverterOptions :: bit_set[ConverterOption; cffi.uint]
+
+    FileFlag :: enum cffi.uint {
+        EraseFile              = 0,
+        DontPageAlignAudioData = 1,
+    }
+
+    FileFlags :: bit_set[FileFlag; cffi.uint]
+
+    FilePermissions :: enum cffi.schar {
+        ReadPermission      = 1,
+        WritePermission     = 2,
+        ReadWritePermission = 3,
+    }
+
+    FileRegionFlag :: enum cffi.uint {
+        LoopEnable   = 0,
+        PlayForward  = 1,
+        PlayBackward = 2,
+    }
+
+    FileRegionFlags :: bit_set[FileRegionFlag; cffi.uint]
+
+    BytePacketTranslationFlag :: enum cffi.uint {
+        kBytePacketTranslationFlag_IsEstimate = 0,
+    }
+
+    BytePacketTranslationFlags :: bit_set[BytePacketTranslationFlag; cffi.uint]
+
+    FileStreamPropertyFlag :: enum cffi.uint {
+        IsCached      = 0,
+        CacheProperty = 1,
+    }
+
+    FileStreamPropertyFlags :: bit_set[FileStreamPropertyFlag; cffi.uint]
+
+    FileStreamParseFlag :: enum cffi.uint {
+        kAudioFileStreamParseFlag_Discontinuity = 0,
+    }
+
+    FileStreamParseFlags :: bit_set[FileStreamParseFlag; cffi.uint]
+
+    FileStreamSeekFlag :: enum cffi.uint {
+        kAudioFileStreamSeekFlag_OffsetIsEstimated = 0,
+    }
+
+    FileStreamSeekFlags :: bit_set[FileStreamSeekFlag; cffi.uint]
+
+    PanningMode :: enum cffi.uint {
+        SoundField         = 3,
+        VectorBasedPanning = 4,
+    }
+
+    BalanceFadeType :: enum cffi.uint {
+        MaxUnityGain = 0,
+        EqualPower   = 1,
+    }
+
+    QueueProcessingTapFlag :: enum cffi.uint {
+        PreEffects    = 0,
+        PostEffects   = 1,
+        Siphon        = 2,
+        StartOfStream = 8,
+        EndOfStream   = 9,
+    }
+
+    QueueProcessingTapFlags :: bit_set[QueueProcessingTapFlag; cffi.uint]
+
+    UnitEventType :: enum cffi.uint {
+        ParameterValueChange        = 0,
+        BeginParameterChangeGesture = 1,
+        EndParameterChangeGesture   = 2,
+        PropertyChange              = 3,
+    }
+}
+
 ValueRange :: struct #align (8) {
     mMinimum: cffi.double,
     mMaximum: cffi.double,
 }
-#assert(size_of(ValueRange) == 16)
 
-/// AudioValueTranslation
 ValueTranslation :: struct #align (8) {
     mInputData:      rawptr,
     mInputDataSize:  CF.UInt32,
     mOutputData:     rawptr,
     mOutputDataSize: CF.UInt32,
 }
-#assert(size_of(ValueTranslation) == 32)
 
-/// AudioBuffer
 Buffer :: struct #align (8) {
     mNumberChannels: CF.UInt32,
     mDataByteSize:   CF.UInt32,
     mData:           rawptr,
 }
-#assert(size_of(Buffer) == 16)
 
-/// AudioBufferList
 BufferList :: struct #align (8) {
     mNumberBuffers: CF.UInt32,
     mBuffers:       [1]Buffer,
 }
-#assert(size_of(BufferList) == 24)
 
-/// AudioStreamBasicDescription
 StreamBasicDescription :: struct #align (8) {
     mSampleRate:       cffi.double,
     mFormatID:         FormatID,
@@ -4043,26 +5490,20 @@ StreamBasicDescription :: struct #align (8) {
     mBitsPerChannel:   CF.UInt32,
     mReserved:         CF.UInt32,
 }
-#assert(size_of(StreamBasicDescription) == 40)
 
-/// AudioStreamPacketDescription
 StreamPacketDescription :: struct #align (8) {
     mStartOffset:            CF.SInt64,
     mVariableFramesInPacket: CF.UInt32,
     mDataByteSize:           CF.UInt32,
 }
-#assert(size_of(StreamPacketDescription) == 16)
 
-/// AudioStreamPacketDependencyDescription
 StreamPacketDependencyDescription :: struct #align (4) {
     mIsIndependentlyDecodable: CF.UInt32,
     mPreRollCount:             CF.UInt32,
     mFlags:                    CF.UInt32,
     mReserved:                 CF.UInt32,
 }
-#assert(size_of(StreamPacketDependencyDescription) == 16)
 
-/// SMPTETime
 SMPTETime :: struct #align (4) {
     mSubframes:       CF.SInt16,
     mSubframeDivisor: CF.SInt16,
@@ -4074,9 +5515,7 @@ SMPTETime :: struct #align (4) {
     mSeconds:         CF.SInt16,
     mFrames:          CF.SInt16,
 }
-#assert(size_of(SMPTETime) == 24)
 
-/// AudioTimeStamp
 TimeStamp :: struct #align (8) {
     mSampleTime:    cffi.double,
     mHostTime:      CF.UInt64,
@@ -4086,67 +5525,51 @@ TimeStamp :: struct #align (8) {
     mFlags:         TimeStampFlags,
     mReserved:      CF.UInt32,
 }
-#assert(size_of(TimeStamp) == 64)
 
-/// AudioClassDescription
 ClassDescription :: struct #align (4) {
     mType:         CF.OSType,
     mSubType:      CF.OSType,
     mManufacturer: CF.OSType,
 }
-#assert(size_of(ClassDescription) == 12)
 
-/// AudioChannelDescription
 ChannelDescription :: struct #align (4) {
     mChannelLabel: ChannelLabel,
     mChannelFlags: ChannelFlags,
     mCoordinates:  [3]cffi.float,
 }
-#assert(size_of(ChannelDescription) == 20)
 
-/// AudioChannelLayout
 ChannelLayout :: struct #align (4) {
     mChannelLayoutTag:          ChannelLayoutTag,
     mChannelBitmap:             ChannelBitmap,
     mNumberChannelDescriptions: CF.UInt32,
     mChannelDescriptions:       [1]ChannelDescription,
 }
-#assert(size_of(ChannelLayout) == 32)
 
-/// AudioFormatListItem
 FormatListItem :: struct #align (8) {
     mASBD:             StreamBasicDescription,
     mChannelLayoutTag: ChannelLayoutTag,
 }
-#assert(size_of(FormatListItem) == 48)
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// AudioObjectPropertyAddress
+when ODIN_PLATFORM_SUBTARGET == .Default {
     ObjectPropertyAddress :: struct #align (4) {
         mSelector: ObjectPropertySelector,
         mScope:    ObjectPropertyScope,
         mElement:  ObjectPropertyElement,
     }
-    #assert(size_of(ObjectPropertyAddress) == 12)
 
-    /// AudioStreamRangedDescription
     StreamRangedDescription :: struct #align (8) {
         mFormat:          StreamBasicDescription,
         mSampleRateRange: ValueRange,
     }
-    #assert(size_of(StreamRangedDescription) == 56)
 
-    /// AudioHardwareIOProcStreamUsage
     HardwareIOProcStreamUsage :: struct #align (8) {
         mIOProc:        rawptr,
         mNumberStreams: CF.UInt32,
         mStreamIsOn:    [1]CF.UInt32,
     }
-    #assert(size_of(HardwareIOProcStreamUsage) == 16)
+}
 
-} // End when
 when ODIN_PLATFORM_SUBTARGET_IOS {
-    /// AudioComponentDescription
     ComponentDescription :: struct #align (4) {
         componentType:         CF.OSType,
         componentSubType:      CF.OSType,
@@ -4154,38 +5577,28 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         componentFlags:        CF.UInt32,
         componentFlagsMask:    CF.UInt32,
     }
-    #assert(size_of(ComponentDescription) == 20)
 
-    /// OpaqueAudioComponent
     OpaqueAudioComponent :: struct {}
 
-    /// OpaqueAudioComponentInstance
     OpaqueAudioComponentInstance :: struct {}
 
-    /// AudioComponentPlugInInterface
     ComponentPlugInInterface :: struct #align (8) {
-        Open:     proc "c" (self: rawptr, mInstance: ComponentInstance) -> CF.OSStatus,
-        Close:    proc "c" (self: rawptr) -> CF.OSStatus,
-        Lookup:   proc "c" (selector: CF.SInt16) -> ComponentMethod,
+        Open:     proc "c" ( self: rawptr, mInstance: ComponentInstance ) -> CF.OSStatus,
+        Close:    proc "c" ( self: rawptr ) -> CF.OSStatus,
+        Lookup:   proc "c" ( selector: CF.SInt16 ) -> ComponentMethod,
         reserved: rawptr,
     }
-    #assert(size_of(ComponentPlugInInterface) == 32)
 
-    /// AudioCodecMagicCookieInfo
     CodecMagicCookieInfo :: struct #align (8) {
         mMagicCookieSize: CF.UInt32,
         mMagicCookie:     rawptr,
     }
-    #assert(size_of(CodecMagicCookieInfo) == 16)
 
-    /// AudioCodecPrimeInfo
     CodecPrimeInfo :: struct #align (4) {
         leadingFrames:  CF.UInt32,
         trailingFrames: CF.UInt32,
     }
-    #assert(size_of(CodecPrimeInfo) == 8)
 
-    /// AudioUnitParameterEvent
     UnitParameterEvent :: struct #align (4) {
         scope:             UnitScope,
         element:           UnitElement,
@@ -4204,120 +5617,88 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
             },
         },
     }
-    #assert(size_of(UnitParameterEvent) == 32)
 
-    /// AudioUnitParameter
     UnitParameter :: struct #align (8) {
         mAudioUnit:   Unit,
         mParameterID: UnitParameterID,
         mScope:       UnitScope,
         mElement:     UnitElement,
     }
-    #assert(size_of(UnitParameter) == 24)
 
-    /// AudioUnitProperty
     UnitProperty :: struct #align (8) {
         mAudioUnit:  Unit,
         mPropertyID: UnitPropertyID,
         mScope:      UnitScope,
         mElement:    UnitElement,
     }
-    #assert(size_of(UnitProperty) == 24)
 
-    /// AudioUnitConnection
     UnitConnection :: struct #align (8) {
         sourceAudioUnit:    Unit,
         sourceOutputNumber: CF.UInt32,
         destInputNumber:    CF.UInt32,
     }
-    #assert(size_of(UnitConnection) == 16)
 
-    /// AUChannelInfo
     AUChannelInfo :: struct #align (2) {
         inChannels:  CF.SInt16,
         outChannels: CF.SInt16,
     }
-    #assert(size_of(AUChannelInfo) == 4)
 
-    /// AudioUnitExternalBuffer
     UnitExternalBuffer :: struct #align (8) {
         buffer: ^cffi.uchar,
         size:   CF.UInt32,
     }
-    #assert(size_of(UnitExternalBuffer) == 16)
 
-    /// AURenderCallbackStruct
     AURenderCallbackStruct :: struct #align (8) {
         inputProc:       AURenderCallback,
         inputProcRefCon: rawptr,
     }
-    #assert(size_of(AURenderCallbackStruct) == 16)
 
-    /// AUPreset
     AUPreset :: struct #align (8) {
         presetNumber: CF.SInt32,
         presetName:   CF.StringRef,
     }
-    #assert(size_of(AUPreset) == 16)
 
-    /// AudioUnitFrequencyResponseBin
     UnitFrequencyResponseBin :: struct #align (8) {
         mFrequency: cffi.double,
         mMagnitude: cffi.double,
     }
-    #assert(size_of(UnitFrequencyResponseBin) == 16)
 
-    /// AUDependentParameter
     AUDependentParameter :: struct #align (4) {
         mScope:       UnitScope,
         mParameterID: UnitParameterID,
     }
-    #assert(size_of(AUDependentParameter) == 8)
 
-    /// MIDIPacketList
     MIDIPacketList :: struct #align (4) {
         numPackets: CF.UInt32,
         packet:     [1]MIDIPacket,
     }
-    #assert(size_of(MIDIPacketList) == 272)
 
-    /// AUMIDIOutputCallbackStruct
     AUMIDIOutputCallbackStruct :: struct #align (8) {
         midiOutputCallback: AUMIDIOutputCallback,
         userData:           rawptr,
     }
-    #assert(size_of(AUMIDIOutputCallbackStruct) == 16)
 
-    /// AUInputSamplesInOutputCallbackStruct
     AUInputSamplesInOutputCallbackStruct :: struct #align (8) {
         inputToOutputCallback: AUInputSamplesInOutputCallback,
         userData:              rawptr,
     }
-    #assert(size_of(AUInputSamplesInOutputCallbackStruct) == 16)
 
-    /// AudioUnitParameterHistoryInfo
     UnitParameterHistoryInfo :: struct #align (4) {
         updatesPerSecond:         cffi.float,
         historyDurationInSeconds: cffi.float,
     }
-    #assert(size_of(UnitParameterHistoryInfo) == 8)
 
-    /// AudioUnitRenderContext
     UnitRenderContext :: struct #align (8) {
         workgroup: CF.os_workgroup_t,
         reserved:  [6]cffi.uint32_t,
     }
-    #assert(size_of(UnitRenderContext) == 32)
 
-    /// MIDIEventList
     MIDIEventList :: struct #align (4) {
         protocol:   MIDIProtocolID,
         numPackets: CF.UInt32,
         packet:     [1]MIDIEventPacket,
     }
-    #assert(size_of(MIDIEventList) == 276)
 
-    /// AudioUnitParameterInfo
     UnitParameterInfo :: struct #align (8) {
         name:         [52]cffi.char,
         unitName:     CF.StringRef,
@@ -4329,63 +5710,47 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         defaultValue: UnitParameterValue,
         flags:        UnitParameterOptions,
     }
-    #assert(size_of(UnitParameterInfo) == 104)
 
-    /// AudioUnitParameterNameInfo
     UnitParameterNameInfo :: struct #align (8) {
         inID:            UnitParameterID,
         inDesiredLength: CF.SInt32,
         outName:         CF.StringRef,
     }
-    #assert(size_of(UnitParameterNameInfo) == 16)
 
-    /// AudioUnitParameterStringFromValue
     UnitParameterStringFromValue :: struct #align (8) {
         inParamID: UnitParameterID,
         inValue:   ^UnitParameterValue,
         outString: CF.StringRef,
     }
-    #assert(size_of(UnitParameterStringFromValue) == 24)
 
-    /// AudioUnitParameterValueFromString
     UnitParameterValueFromString :: struct #align (8) {
         inParamID: UnitParameterID,
         inString:  CF.StringRef,
         outValue:  UnitParameterValue,
     }
-    #assert(size_of(UnitParameterValueFromString) == 24)
 
-    /// AudioOutputUnitMIDICallbacks
     OutputUnitMIDICallbacks :: struct #align (8) {
         userData:      rawptr,
-        MIDIEventProc: proc "c" (userData: rawptr, inStatus: CF.UInt32, inData1: CF.UInt32, inData2: CF.UInt32, inOffsetSampleFrame: CF.UInt32),
-        MIDISysExProc: proc "c" (userData: rawptr, inData: ^CF.UInt8, inLength: CF.UInt32),
+        MIDIEventProc: proc "c" ( userData: rawptr, inStatus: CF.UInt32, inData1: CF.UInt32, inData2: CF.UInt32, inOffsetSampleFrame: CF.UInt32 ),
+        MIDISysExProc: proc "c" ( userData: rawptr, inData: ^CF.UInt8, inLength: CF.UInt32 ),
     }
-    #assert(size_of(OutputUnitMIDICallbacks) == 24)
 
-    /// AudioOutputUnitStartAtTimeParams
     OutputUnitStartAtTimeParams :: struct #align (8) {
         mTimestamp: TimeStamp,
         mFlags:     CF.UInt32,
     }
-    #assert(size_of(OutputUnitStartAtTimeParams) == 72)
 
-    /// AUVoiceIOOtherAudioDuckingConfiguration
     AUVoiceIOOtherAudioDuckingConfiguration :: struct #align (4) {
         mEnableAdvancedDucking: CF.Boolean,
         mDuckingLevel:          AUVoiceIOOtherAudioDuckingLevel,
     }
-    #assert(size_of(AUVoiceIOOtherAudioDuckingConfiguration) == 8)
 
-    /// AudioUnitMeterClipping
     UnitMeterClipping :: struct #align (4) {
         peakValueSinceLastCall: cffi.float,
         sawInfinity:            CF.Boolean,
         sawNotANumber:          CF.Boolean,
     }
-    #assert(size_of(UnitMeterClipping) == 8)
 
-    /// AUSamplerInstrumentData
     AUSamplerInstrumentData :: struct #align (8) {
         fileURL:        CF.URLRef,
         instrumentType: CF.UInt8,
@@ -4393,9 +5758,7 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         bankLSB:        CF.UInt8,
         presetID:       CF.UInt8,
     }
-    #assert(size_of(AUSamplerInstrumentData) == 16)
 
-    /// AUSamplerBankPresetData
     AUSamplerBankPresetData :: struct #align (8) {
         bankURL:  CF.URLRef,
         bankMSB:  CF.UInt8,
@@ -4403,17 +5766,13 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         presetID: CF.UInt8,
         reserved: CF.UInt8,
     }
-    #assert(size_of(AUSamplerBankPresetData) == 16)
 
-    /// AURecordedParameterEvent
     AURecordedParameterEvent :: struct #align (8) {
         hostTime: cffi.uint64_t,
         address:  AUParameterAddress,
         value:    AUValue,
     }
-    #assert(size_of(AURecordedParameterEvent) == 24)
 
-    /// AUParameterAutomationEvent
     AUParameterAutomationEvent :: struct #align (8) {
         hostTime:  cffi.uint64_t,
         address:   AUParameterAddress,
@@ -4421,9 +5780,7 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         eventType: AUParameterAutomationEventType,
         reserved:  cffi.uint64_t,
     }
-    #assert(size_of(AUParameterAutomationEvent) == 32)
 
-    /// MIDISysexSendRequest
     MIDISysexSendRequest :: struct #align (8) {
         destination:      cffi.uint,
         data:             ^cffi.uchar,
@@ -4433,9 +5790,7 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         completionProc:   MIDICompletionProc,
         completionRefCon: rawptr,
     }
-    #assert(size_of(MIDISysexSendRequest) == 40)
 
-    /// MIDISysexSendRequestUMP
     MIDISysexSendRequestUMP :: struct #align (8) {
         destination:      cffi.uint,
         words:            ^CF.UInt32,
@@ -4444,32 +5799,24 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         completionProc:   MIDICompletionProcUMP,
         completionRefCon: rawptr,
     }
-    #assert(size_of(MIDISysexSendRequestUMP) == 40)
 
-    /// MIDINotification
     MIDINotification :: struct #align (4) {
         messageID:   MIDINotificationMessageID,
         messageSize: CF.UInt32,
     }
-    #assert(size_of(MIDINotification) == 8)
 
-    /// MIDIEventPacket
     MIDIEventPacket :: struct #align (4) {
         timeStamp: MIDITimeStamp,
         wordCount: CF.UInt32,
         words:     [64]CF.UInt32,
     }
-    #assert(size_of(MIDIEventPacket) == 268)
 
-    /// MIDIPacket
     MIDIPacket :: struct #align (4) {
         timeStamp: MIDITimeStamp,
         length:    CF.UInt16,
         data:      [256]cffi.uchar,
     }
-    #assert(size_of(MIDIPacket) == 268)
 
-    /// MIDIObjectAddRemoveNotification
     MIDIObjectAddRemoveNotification :: struct #align (4) {
         messageID:   MIDINotificationMessageID,
         messageSize: CF.UInt32,
@@ -4478,9 +5825,7 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         child:       MIDIObjectRef,
         childType:   MIDIObjectType,
     }
-    #assert(size_of(MIDIObjectAddRemoveNotification) == 24)
 
-    /// MIDIObjectPropertyChangeNotification
     MIDIObjectPropertyChangeNotification :: struct #align (8) {
         messageID:    MIDINotificationMessageID,
         messageSize:  CF.UInt32,
@@ -4488,27 +5833,21 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         objectType:   MIDIObjectType,
         propertyName: CF.StringRef,
     }
-    #assert(size_of(MIDIObjectPropertyChangeNotification) == 24)
 
-    /// MIDIIOErrorNotification
     MIDIIOErrorNotification :: struct #align (4) {
         messageID:    MIDINotificationMessageID,
         messageSize:  CF.UInt32,
         driverDevice: MIDIDeviceRef,
         errorCode:    CF.OSStatus,
     }
-    #assert(size_of(MIDIIOErrorNotification) == 16)
 
-    /// AURenderEventHeader
     AURenderEventHeader :: struct #align (4) {
         next:            ^AURenderEvent,
         eventSampleTime: AUEventSampleTime,
         eventType:       AURenderEventType,
         reserved:        cffi.uint8_t,
     }
-    #assert(size_of(AURenderEventHeader) == 20)
 
-    /// AUParameterEvent
     AUParameterEvent :: struct #align (4) {
         next:                     ^AURenderEvent,
         eventSampleTime:          AUEventSampleTime,
@@ -4518,9 +5857,7 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         parameterAddress:         AUParameterAddress,
         value:                    AUValue,
     }
-    #assert(size_of(AUParameterEvent) == 36)
 
-    /// AUMIDIEvent
     AUMIDIEvent :: struct #align (4) {
         next:            ^AURenderEvent,
         eventSampleTime: AUEventSampleTime,
@@ -4530,9 +5867,7 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         cable:           cffi.uint8_t,
         data:            [3]cffi.uint8_t,
     }
-    #assert(size_of(AUMIDIEvent) == 24)
 
-    /// AUMIDIEventList
     AUMIDIEventList :: struct #align (4) {
         next:            ^AURenderEvent,
         eventSampleTime: AUEventSampleTime,
@@ -4541,29 +5876,22 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         cable:           cffi.uint8_t,
         eventList:       MIDIEventList,
     }
-    #assert(size_of(AUMIDIEventList) == 296)
 
-    /// OpaqueAUGraph
     OpaqueAUGraph :: struct {}
 
-    /// AudioUnitNodeConnection
     UnitNodeConnection :: struct #align (4) {
         sourceNode:         AUNode,
         sourceOutputNumber: CF.UInt32,
         destNode:           AUNode,
         destInputNumber:    CF.UInt32,
     }
-    #assert(size_of(UnitNodeConnection) == 16)
 
-    /// AUNodeRenderCallback
     AUNodeRenderCallback :: struct #align (8) {
         destNode:        AUNode,
         destInputNumber: UnitElement,
         cback:           AURenderCallbackStruct,
     }
-    #assert(size_of(AUNodeRenderCallback) == 24)
 
-    /// AUNodeInteraction
     AUNodeInteraction :: struct #align (8) {
         nodeInteractionType: CF.UInt32,
         nodeInteraction : struct #raw_union  {
@@ -4571,19 +5899,14 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
             inputCallback:       AUNodeRenderCallback,
         },
     }
-    #assert(size_of(AUNodeInteraction) == 32)
 
-    /// OpaqueAudioConverter
     OpaqueAudioConverter :: struct {}
 
-    /// AudioConverterPrimeInfo
     ConverterPrimeInfo :: struct #align (4) {
         leadingFrames:  CF.UInt32,
         trailingFrames: CF.UInt32,
     }
-    #assert(size_of(ConverterPrimeInfo) == 8)
 
-    /// AudioFile_SMPTE_Time
     File_SMPTE_Time :: struct #align (4) {
         mHours:                CF.SInt8,
         mMinutes:              CF.UInt8,
@@ -4591,9 +5914,7 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         mFrames:               CF.UInt8,
         mSubFrameSampleOffset: CF.UInt32,
     }
-    #assert(size_of(File_SMPTE_Time) == 8)
 
-    /// AudioFileMarker
     FileMarker :: struct #align (8) {
         mFramePosition: cffi.double,
         mName:          CF.StringRef,
@@ -4603,17 +5924,13 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         mReserved:      CF.UInt16,
         mChannel:       CF.UInt16,
     }
-    #assert(size_of(FileMarker) == 40)
 
-    /// AudioFileMarkerList
     FileMarkerList :: struct #align (8) {
         mSMPTE_TimeType: CF.UInt32,
         mNumberMarkers:  CF.UInt32,
         mMarkers:        [1]FileMarker,
     }
-    #assert(size_of(FileMarkerList) == 48)
 
-    /// AudioFileRegion
     FileRegion :: struct #align (8) {
         mRegionID:      CF.UInt32,
         mName:          CF.StringRef,
@@ -4621,82 +5938,61 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         mNumberMarkers: CF.UInt32,
         mMarkers:       [1]FileMarker,
     }
-    #assert(size_of(FileRegion) == 64)
 
-    /// AudioFileRegionList
     FileRegionList :: struct #align (8) {
         mSMPTE_TimeType: CF.UInt32,
         mNumberRegions:  CF.UInt32,
         mRegions:        [1]FileRegion,
     }
-    #assert(size_of(FileRegionList) == 72)
 
-    /// AudioFramePacketTranslation
     FramePacketTranslation :: struct #align (8) {
         mFrame:               CF.SInt64,
         mPacket:              CF.SInt64,
         mFrameOffsetInPacket: CF.UInt32,
     }
-    #assert(size_of(FramePacketTranslation) == 24)
 
-    /// AudioBytePacketTranslation
     BytePacketTranslation :: struct #align (8) {
         mByte:               CF.SInt64,
         mPacket:             CF.SInt64,
         mByteOffsetInPacket: CF.UInt32,
         mFlags:              BytePacketTranslationFlags,
     }
-    #assert(size_of(BytePacketTranslation) == 24)
 
-    /// AudioFilePacketTableInfo
     FilePacketTableInfo :: struct #align (8) {
         mNumberValidFrames: CF.SInt64,
         mPrimingFrames:     CF.SInt32,
         mRemainderFrames:   CF.SInt32,
     }
-    #assert(size_of(FilePacketTableInfo) == 16)
 
-    /// AudioPacketRangeByteCountTranslation
     PacketRangeByteCountTranslation :: struct #align (8) {
         mPacket:              CF.SInt64,
         mPacketCount:         CF.SInt64,
         mByteCountUpperBound: CF.SInt64,
     }
-    #assert(size_of(PacketRangeByteCountTranslation) == 24)
 
-    /// AudioPacketRollDistanceTranslation
     PacketRollDistanceTranslation :: struct #align (8) {
         mPacket:       CF.SInt64,
         mRollDistance: CF.SInt64,
     }
-    #assert(size_of(PacketRollDistanceTranslation) == 16)
 
-    /// AudioIndependentPacketTranslation
     IndependentPacketTranslation :: struct #align (8) {
         mPacket:                       CF.SInt64,
         mIndependentlyDecodablePacket: CF.SInt64,
     }
-    #assert(size_of(IndependentPacketTranslation) == 16)
 
-    /// AudioPacketDependencyInfoTranslation
     PacketDependencyInfoTranslation :: struct #align (8) {
         mPacket:                   CF.SInt64,
         mIsIndependentlyDecodable: CF.UInt32,
         mNumberPrerollPackets:     CF.UInt32,
     }
-    #assert(size_of(PacketDependencyInfoTranslation) == 16)
 
-    /// AudioFileTypeAndFormatID
     FileTypeAndFormatID :: struct #align (4) {
         mFileType: FileTypeID,
         mFormatID: CF.UInt32,
     }
-    #assert(size_of(FileTypeAndFormatID) == 8)
 
-    /// OpaqueAudioFileStreamID
     OpaqueAudioFileStreamID :: struct {}
 
-    /// AudioPanningInfo
     PanningInfo :: struct #align (8) {
         mPanningMode:      PanningMode,
         mCoordinateFlags:  CF.UInt32,
@@ -4704,32 +6000,24 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         mGainScale:        cffi.float,
         mOutputChannelMap: ^ChannelLayout,
     }
-    #assert(size_of(PanningInfo) == 32)
 
-    /// AudioBalanceFade
     BalanceFade :: struct #align (8) {
         mLeftRightBalance: cffi.float,
         mBackFrontFade:    cffi.float,
         mType:             BalanceFadeType,
         mChannelLayout:    ^ChannelLayout,
     }
-    #assert(size_of(BalanceFade) == 24)
 
-    /// AudioFormatInfo
     FormatInfo :: struct #align (8) {
         mASBD:            StreamBasicDescription,
         mMagicCookie:     rawptr,
         mMagicCookieSize: CF.UInt32,
     }
-    #assert(size_of(FormatInfo) == 56)
 
-    /// OpaqueAudioQueue
     OpaqueAudioQueue :: struct {}
 
-    /// OpaqueAudioQueueTimeline
     OpaqueAudioQueueTimeline :: struct {}
 
-    /// AudioQueueBuffer
     QueueBuffer :: struct #align (8) {
         mAudioDataBytesCapacity:    CF.UInt32,
         mAudioData:                 rawptr,
@@ -4739,36 +6027,26 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         mPacketDescriptions:        ^StreamPacketDescription,
         mPacketDescriptionCount:    CF.UInt32,
     }
-    #assert(size_of(QueueBuffer) == 56)
 
-    /// AudioQueueParameterEvent
     QueueParameterEvent :: struct #align (4) {
         mID:    QueueParameterID,
         mValue: QueueParameterValue,
     }
-    #assert(size_of(QueueParameterEvent) == 8)
 
-    /// AudioQueueLevelMeterState
     QueueLevelMeterState :: struct #align (4) {
         mAveragePower: cffi.float,
         mPeakPower:    cffi.float,
     }
-    #assert(size_of(QueueLevelMeterState) == 8)
 
-    /// OpaqueAudioQueueProcessingTap
     OpaqueAudioQueueProcessingTap :: struct {}
 
-    /// AudioQueueChannelAssignment
     QueueChannelAssignment :: struct #align (8) {
         mDeviceUID:     CF.StringRef,
         mChannelNumber: CF.UInt32,
     }
-    #assert(size_of(QueueChannelAssignment) == 16)
 
-    /// AUListenerBase
     AUListenerBase :: struct {}
 
-    /// AudioUnitEvent
     UnitEvent :: struct #align (8) {
         mEventType: UnitEventType,
         mArgument : struct #raw_union  {
@@ -4776,9 +6054,7 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
             mProperty:  UnitProperty,
         },
     }
-    #assert(size_of(UnitEvent) == 32)
 
-    /// MIDINoteMessage
     MIDINoteMessage :: struct #align (4) {
         channel:         CF.UInt8,
         note:            CF.UInt8,
@@ -4786,25 +6062,19 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         releaseVelocity: CF.UInt8,
         duration:        cffi.float,
     }
-    #assert(size_of(MIDINoteMessage) == 8)
 
-    /// MIDIChannelMessage
     MIDIChannelMessage :: struct #align (1) {
         status:   CF.UInt8,
         data1:    CF.UInt8,
         data2:    CF.UInt8,
         reserved: CF.UInt8,
     }
-    #assert(size_of(MIDIChannelMessage) == 4)
 
-    /// MIDIRawData
     MIDIRawData :: struct #align (4) {
         length: CF.UInt32,
         data:   [1]CF.UInt8,
     }
-    #assert(size_of(MIDIRawData) == 8)
 
-    /// MIDIMetaEvent
     MIDIMetaEvent :: struct #align (4) {
         metaEventType: CF.UInt8,
         unused1:       CF.UInt8,
@@ -4813,23 +6083,18 @@ when ODIN_PLATFORM_SUBTARGET_IOS {
         dataLength:    CF.UInt32,
         data:          [1]CF.UInt8,
     }
-    #assert(size_of(MIDIMetaEvent) == 12)
 
-    /// AUPresetEvent
     AUPresetEvent :: struct #align (8) {
         scope:   UnitScope,
         element: UnitElement,
         preset:  CF.PropertyListRef,
     }
-    #assert(size_of(AUPresetEvent) == 16)
 
-    /// AURenderEvent
     AURenderEvent :: struct #raw_union #align (4) {
         head:           AURenderEventHeader,
         parameter:      AUParameterEvent,
         MIDI:           AUMIDIEvent,
         MIDIEventsList: AUMIDIEventList,
     }
-    #assert(size_of(AURenderEvent) == 296)
+}
 
-} // End else

@@ -63,8 +63,8 @@ VTable :: struct {
     lineRangeForRange: proc(self: ^NS.String, range: NS._NSRange) -> NS._NSRange,
     getParagraphStart: proc(self: ^NS.String, startPtr: ^NS.UInteger, parEndPtr: ^NS.UInteger, contentsEndPtr: ^NS.UInteger, range: NS._NSRange),
     paragraphRangeForRange: proc(self: ^NS.String, range: NS._NSRange) -> NS._NSRange,
-    enumerateSubstringsInRange: proc(self: ^NS.String, range: NS._NSRange, opts: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" (substring: ^NS.String, substringRange: NS._NSRange, enclosingRange: NS._NSRange, stop: ^bool))),
-    enumerateLinesUsingBlock: proc(self: ^NS.String, block: ^Objc_Block(proc "c" (line: ^NS.String, stop: ^bool))),
+    enumerateSubstringsInRange: proc(self: ^NS.String, range: NS._NSRange, opts: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" ( substring: ^NS.String, substringRange: NS._NSRange, enclosingRange: NS._NSRange, stop: ^bool ))),
+    enumerateLinesUsingBlock: proc(self: ^NS.String, block: ^Objc_Block(proc "c" ( line: ^NS.String, stop: ^bool ))),
     dataUsingEncoding_allowLossyConversion: proc(self: ^NS.String, encoding: NS.StringEncoding, lossy: bool) -> ^NS.Data,
     dataUsingEncoding_: proc(self: ^NS.String, encoding: NS.StringEncoding) -> ^NS.Data,
     canBeConvertedToEncoding: proc(self: ^NS.String, encoding: NS.StringEncoding) -> bool,
@@ -86,7 +86,7 @@ VTable :: struct {
     writeToURL_atomically_encoding_error: proc(self: ^NS.String, url: ^NS.URL, useAuxiliaryFile: bool, enc: NS.StringEncoding, error: ^^NS.Error) -> bool,
     writeToFile_atomically_encoding_error: proc(self: ^NS.String, path: ^NS.String, useAuxiliaryFile: bool, enc: NS.StringEncoding, error: ^^NS.Error) -> bool,
     initWithCharactersNoCopy_length_freeWhenDone: proc(self: ^NS.String, characters: ^NS.unichar, length: NS.UInteger, freeBuffer: bool) -> instancetype,
-    initWithCharactersNoCopy_length_deallocator: proc(self: ^NS.String, chars: ^NS.unichar, len: NS.UInteger, deallocator: ^Objc_Block(proc "c" (_: ^NS.unichar, _1: NS.UInteger))) -> instancetype,
+    initWithCharactersNoCopy_length_deallocator: proc(self: ^NS.String, chars: ^NS.unichar, len: NS.UInteger, deallocator: ^Objc_Block(proc "c" ( _0: ^NS.unichar, _1: NS.UInteger ))) -> instancetype,
     initWithCharacters: proc(self: ^NS.String, characters: ^NS.unichar, length: NS.UInteger) -> instancetype,
     initWithUTF8String: proc(self: ^NS.String, nullTerminatedCString: cstring) -> instancetype,
     initWithString: proc(self: ^NS.String, aString: ^NS.String) -> instancetype,
@@ -101,7 +101,7 @@ VTable :: struct {
     initWithData: proc(self: ^NS.String, data: ^NS.Data, encoding: NS.StringEncoding) -> instancetype,
     initWithBytes: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding) -> instancetype,
     initWithBytesNoCopy_length_encoding_freeWhenDone: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, freeBuffer: bool) -> instancetype,
-    initWithBytesNoCopy_length_encoding_deallocator: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: NS.UInteger))) -> instancetype,
+    initWithBytesNoCopy_length_encoding_deallocator: proc(self: ^NS.String, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, deallocator: ^Objc_Block(proc "c" ( _0: rawptr, _1: NS.UInteger ))) -> instancetype,
     string: proc() -> instancetype,
     stringWithString: proc(string: ^NS.String) -> instancetype,
     stringWithCharacters: proc(characters: ^NS.unichar, length: NS.UInteger) -> instancetype,
@@ -187,7 +187,7 @@ VTable :: struct {
     stringByReplacingPercentEscapesUsingEncoding: proc(self: ^NS.String, enc: NS.StringEncoding) -> ^NS.String,
     stringByRemovingPercentEncoding: proc(self: ^NS.String) -> ^NS.String,
     linguisticTagsInRange: proc(self: ^NS.String, range: NS._NSRange, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, tokenRanges: ^^NS.Array) -> ^NS.Array,
-    enumerateLinguisticTagsInRange: proc(self: ^NS.String, range: NS._NSRange, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool))),
+    enumerateLinguisticTagsInRange: proc(self: ^NS.String, range: NS._NSRange, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: ^Objc_Block(proc "c" ( tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool ))),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -618,7 +618,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paragraphRangeForRange:"), auto_cast paragraphRangeForRange, "{_NSRange=LL}@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.enumerateSubstringsInRange != nil {
-        enumerateSubstringsInRange :: proc "c" (self: ^NS.String, _: SEL, range: NS._NSRange, opts: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" (substring: ^NS.String, substringRange: NS._NSRange, enclosingRange: NS._NSRange, stop: ^bool))) {
+        enumerateSubstringsInRange :: proc "c" (self: ^NS.String, _: SEL, range: NS._NSRange, opts: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" ( substring: ^NS.String, substringRange: NS._NSRange, enclosingRange: NS._NSRange, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -628,7 +628,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateSubstringsInRange:options:usingBlock:"), auto_cast enumerateSubstringsInRange, "v@:{_NSRange=LL}L?") do panic("Failed to register objC method.")
     }
     if vt.enumerateLinesUsingBlock != nil {
-        enumerateLinesUsingBlock :: proc "c" (self: ^NS.String, _: SEL, block: ^Objc_Block(proc "c" (line: ^NS.String, stop: ^bool))) {
+        enumerateLinesUsingBlock :: proc "c" (self: ^NS.String, _: SEL, block: ^Objc_Block(proc "c" ( line: ^NS.String, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -848,7 +848,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCharactersNoCopy:length:freeWhenDone:"), auto_cast initWithCharactersNoCopy_length_freeWhenDone, "@@:^voidLB") do panic("Failed to register objC method.")
     }
     if vt.initWithCharactersNoCopy_length_deallocator != nil {
-        initWithCharactersNoCopy_length_deallocator :: proc "c" (self: ^NS.String, _: SEL, chars: ^NS.unichar, len: NS.UInteger, deallocator: ^Objc_Block(proc "c" (_: ^NS.unichar, _1: NS.UInteger))) -> instancetype {
+        initWithCharactersNoCopy_length_deallocator :: proc "c" (self: ^NS.String, _: SEL, chars: ^NS.unichar, len: NS.UInteger, deallocator: ^Objc_Block(proc "c" ( _0: ^NS.unichar, _1: NS.UInteger ))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -998,7 +998,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithBytesNoCopy:length:encoding:freeWhenDone:"), auto_cast initWithBytesNoCopy_length_encoding_freeWhenDone, "@@:^voidLLB") do panic("Failed to register objC method.")
     }
     if vt.initWithBytesNoCopy_length_encoding_deallocator != nil {
-        initWithBytesNoCopy_length_encoding_deallocator :: proc "c" (self: ^NS.String, _: SEL, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: NS.UInteger))) -> instancetype {
+        initWithBytesNoCopy_length_encoding_deallocator :: proc "c" (self: ^NS.String, _: SEL, bytes: rawptr, len: NS.UInteger, encoding: NS.StringEncoding, deallocator: ^Objc_Block(proc "c" ( _0: rawptr, _1: NS.UInteger ))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1858,7 +1858,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("linguisticTagsInRange:scheme:options:orthography:tokenRanges:"), auto_cast linguisticTagsInRange, "^void@:{_NSRange=LL}@L@^void") do panic("Failed to register objC method.")
     }
     if vt.enumerateLinguisticTagsInRange != nil {
-        enumerateLinguisticTagsInRange :: proc "c" (self: ^NS.String, _: SEL, range: NS._NSRange, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: ^Objc_Block(proc "c" (tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool))) {
+        enumerateLinguisticTagsInRange :: proc "c" (self: ^NS.String, _: SEL, range: NS._NSRange, scheme: ^NS.String, options: NS.LinguisticTaggerOptions, orthography: ^NS.Orthography, block: ^Objc_Block(proc "c" ( tag: ^NS.String, tokenRange: NS._NSRange, sentenceRange: NS._NSRange, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

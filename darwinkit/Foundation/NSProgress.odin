@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSProgress
-///
 @(objc_class="NSProgress", objc_superclass=Object)
 Progress :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Progress, objc_selector="currentProgress", objc_name="currentProgress", objc_is_class_method=true)
     Progress_currentProgress :: proc() -> ^Progress ---
@@ -187,6 +181,8 @@ foreign lib {
     @(objc_type=Progress, objc_selector="isOld", objc_name="isOld")
     Progress_isOld :: proc(self: ^Progress) -> bool ---
 }
+
+
 
 @(objc_type=Progress, objc_name="progressWithTotalUnitCount")
 Progress_progressWithTotalUnitCount :: proc {

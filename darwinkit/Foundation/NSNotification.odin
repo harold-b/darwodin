@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSNotification
-///
 @(objc_class="NSNotification", objc_superclass=Object)
 Notification :: struct { using _: Object, 
     using _: Copying,
     using _: Coding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Notification, objc_selector="initWithName:object:userInfo:", objc_name="initWithName")
     Notification_initWithName :: proc(self: ^Notification, name: ^String, object: id, userInfo: ^Dictionary) -> instancetype ---
@@ -46,6 +40,8 @@ foreign lib {
     @(objc_type=Notification, objc_selector="init", objc_name="init")
     Notification_init :: proc(self: ^Notification) -> instancetype ---
 }
+
+
 
 @(objc_type=Notification, objc_name="notificationWithName")
 Notification_notificationWithName :: proc {

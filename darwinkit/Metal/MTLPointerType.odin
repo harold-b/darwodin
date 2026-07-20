@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLPointerType
-///
 @(objc_class="MTLPointerType", objc_superclass=Type)
 PointerType :: struct { using _: Type, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerType, objc_selector="elementStructType", objc_name="elementStructType")
     PointerType_elementStructType :: proc(self: ^PointerType) -> ^StructType ---
@@ -42,3 +36,6 @@ foreign lib {
     @(objc_type=PointerType, objc_selector="elementIsArgumentBuffer", objc_name="elementIsArgumentBuffer")
     PointerType_elementIsArgumentBuffer :: proc(self: ^PointerType) -> bool ---
 }
+
+
+

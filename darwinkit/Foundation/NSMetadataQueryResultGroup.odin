@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMetadataQueryResultGroup
-///
 @(objc_class="NSMetadataQueryResultGroup", objc_superclass=Object)
 MetadataQueryResultGroup :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetadataQueryResultGroup, objc_selector="resultAtIndex:", objc_name="resultAtIndex")
     MetadataQueryResultGroup_resultAtIndex :: proc(self: ^MetadataQueryResultGroup, idx: UInteger) -> id ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=MetadataQueryResultGroup, objc_selector="results", objc_name="results")
     MetadataQueryResultGroup_results :: proc(self: ^MetadataQueryResultGroup) -> ^Array ---
 }
+
+
+

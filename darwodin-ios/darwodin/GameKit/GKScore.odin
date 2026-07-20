@@ -27,7 +27,7 @@ foreign lib {
     Score_initWithLeaderboardIdentifier_player :: proc(self: ^Score, identifier: ^NS.String, player: ^Player) -> instancetype ---
 
     @(objc_type=Score, objc_selector="reportScores:withCompletionHandler:", objc_name="reportScores_withCompletionHandler", objc_is_class_method=true)
-    Score_reportScores_withCompletionHandler :: proc(scores: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Score_reportScores_withCompletionHandler :: proc(scores: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Score, objc_selector="value", objc_name="value")
     Score_value :: proc(self: ^Score) -> cffi.int64_t ---
@@ -66,7 +66,7 @@ foreign lib {
     Score_setShouldSetDefaultLeaderboard :: proc(self: ^Score, shouldSetDefaultLeaderboard: bool) ---
 
     @(objc_type=Score, objc_selector="reportScoreWithCompletionHandler:", objc_name="reportScoreWithCompletionHandler")
-    Score_reportScoreWithCompletionHandler :: proc(self: ^Score, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Score_reportScoreWithCompletionHandler :: proc(self: ^Score, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Score, objc_selector="initWithCategory:", objc_name="initWithCategory")
     Score_initWithCategory :: proc(self: ^Score, category: ^NS.String) -> instancetype ---
@@ -84,10 +84,10 @@ foreign lib {
     Score_playerID :: proc(self: ^Score) -> ^NS.String ---
 
     @(objc_type=Score, objc_selector="reportScores:withEligibleChallenges:withCompletionHandler:", objc_name="reportScores_withEligibleChallenges_withCompletionHandler", objc_is_class_method=true)
-    Score_reportScores_withEligibleChallenges_withCompletionHandler :: proc(scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Score_reportScores_withEligibleChallenges_withCompletionHandler :: proc(scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Score, objc_selector="reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:", objc_name="reportLeaderboardScores", objc_is_class_method=true)
-    Score_reportLeaderboardScores :: proc(scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Score_reportLeaderboardScores :: proc(scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Score, objc_selector="issueChallengeToPlayers:message:", objc_name="issueChallengeToPlayers")
     Score_issueChallengeToPlayers :: proc(self: ^Score, playerIDs: ^NS.Array, message: ^NS.String) ---

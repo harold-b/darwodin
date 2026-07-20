@@ -98,7 +98,7 @@ foreign lib {
     MetadataItem_keySpace :: proc(self: ^MetadataItem) -> ^NS.String ---
 
     @(objc_type=MetadataItem, objc_selector="metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:", objc_name="metadataItemWithPropertiesOfMetadataItem", objc_is_class_method=true)
-    MetadataItem_metadataItemWithPropertiesOfMetadataItem :: proc(metadataItem: ^MetadataItem, handler: ^Objc_Block(proc "c" (valueRequest: ^MetadataItemValueRequest))) -> ^MetadataItem ---
+    MetadataItem_metadataItemWithPropertiesOfMetadataItem :: proc(metadataItem: ^MetadataItem, handler: ^Objc_Block(proc "c" ( valueRequest: ^MetadataItemValueRequest ))) -> ^MetadataItem ---
 
     @(objc_type=MetadataItem, objc_selector="metadataItemsFromArray:withLocale:", objc_name="metadataItemsFromArray_withLocale", objc_is_class_method=true)
     MetadataItem_metadataItemsFromArray_withLocale :: proc(metadataItems: ^NS.Array, locale: ^NS.Locale) -> ^NS.Array ---

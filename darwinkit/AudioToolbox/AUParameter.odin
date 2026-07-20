@@ -10,17 +10,11 @@ import CA "../CoreAudio"
 import CM "../CoreMedia"
 import NS "../Foundation"
 
-
-
-///
-/// AUParameter
-///
 @(objc_class="AUParameter", objc_superclass=AUParameterNode)
 AUParameter :: struct { using _: AUParameterNode, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUParameter, objc_selector="setValue:originator:", objc_name="setValue_originator")
     AUParameter_setValue_originator :: proc(self: ^AUParameter, value: AUValue, originator: AUParameterObserverToken) ---
@@ -67,6 +61,8 @@ foreign lib {
     @(objc_type=AUParameter, objc_selector="setValue:", objc_name="setValue_")
     AUParameter_setValue_ :: proc(self: ^AUParameter, value: AUValue) ---
 }
+
+
 
 @(objc_type=AUParameter, objc_name="setValue")
 AUParameter_setValue :: proc {

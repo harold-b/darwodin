@@ -25,5 +25,5 @@ foreign lib {
     URLSessionUploadTask_new :: proc() -> ^URLSessionUploadTask ---
 
     @(objc_type=URLSessionUploadTask, objc_selector="cancelByProducingResumeData:", objc_name="cancelByProducingResumeData")
-    URLSessionUploadTask_cancelByProducingResumeData :: proc(self: ^URLSessionUploadTask, completionHandler: ^Objc_Block(proc "c" (resumeData: ^Data))) ---
+    URLSessionUploadTask_cancelByProducingResumeData :: proc(self: ^URLSessionUploadTask, completionHandler: ^Objc_Block(proc "c" ( resumeData: ^Data ))) ---
 }

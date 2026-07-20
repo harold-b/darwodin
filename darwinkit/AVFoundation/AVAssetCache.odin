@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetCache
-///
 @(objc_class="AVAssetCache", objc_superclass=NS.Object)
 AssetCache :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetCache, objc_selector="mediaSelectionOptionsInMediaSelectionGroup:", objc_name="mediaSelectionOptionsInMediaSelectionGroup")
     AssetCache_mediaSelectionOptionsInMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Array ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=AssetCache, objc_selector="mediaPresentationLanguagesForMediaSelectionGroup:", objc_name="mediaPresentationLanguagesForMediaSelectionGroup")
     AssetCache_mediaPresentationLanguagesForMediaSelectionGroup :: proc(self: ^AssetCache, mediaSelectionGroup: ^MediaSelectionGroup) -> ^NS.Array ---
 }
+
+
+

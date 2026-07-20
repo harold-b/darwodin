@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineFetchChangesScope
-///
 @(objc_class="CKSyncEngineFetchChangesScope", objc_superclass=NS.Object)
 SyncEngineFetchChangesScope :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineFetchChangesScope, objc_selector="initWithZoneIDs:", objc_name="initWithZoneIDs")
     SyncEngineFetchChangesScope_initWithZoneIDs :: proc(self: ^SyncEngineFetchChangesScope, zoneIDs: ^NS.Set) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=SyncEngineFetchChangesScope, objc_selector="excludedZoneIDs", objc_name="excludedZoneIDs")
     SyncEngineFetchChangesScope_excludedZoneIDs :: proc(self: ^SyncEngineFetchChangesScope) -> ^NS.Set ---
 }
+
+
+

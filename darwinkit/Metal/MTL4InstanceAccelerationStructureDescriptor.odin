@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4InstanceAccelerationStructureDescriptor
-///
 @(objc_class="MTL4InstanceAccelerationStructureDescriptor", objc_superclass=MTL4AccelerationStructureDescriptor)
 MTL4InstanceAccelerationStructureDescriptor :: struct { using _: MTL4AccelerationStructureDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4InstanceAccelerationStructureDescriptor, objc_selector="instanceDescriptorBuffer", objc_name="instanceDescriptorBuffer")
     MTL4InstanceAccelerationStructureDescriptor_instanceDescriptorBuffer :: proc(self: ^MTL4InstanceAccelerationStructureDescriptor) -> MTL4BufferRange ---
@@ -75,3 +69,6 @@ foreign lib {
     @(objc_type=MTL4InstanceAccelerationStructureDescriptor, objc_selector="setMotionTransformStride:", objc_name="setMotionTransformStride")
     MTL4InstanceAccelerationStructureDescriptor_setMotionTransformStride :: proc(self: ^MTL4InstanceAccelerationStructureDescriptor, motionTransformStride: NS.UInteger) ---
 }
+
+
+

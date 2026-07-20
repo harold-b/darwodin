@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVDelegatingPlaybackCoordinatorSeekCommand
-///
 @(objc_class="AVDelegatingPlaybackCoordinatorSeekCommand", objc_superclass=DelegatingPlaybackCoordinatorPlaybackControlCommand)
 DelegatingPlaybackCoordinatorSeekCommand :: struct { using _: DelegatingPlaybackCoordinatorPlaybackControlCommand, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DelegatingPlaybackCoordinatorSeekCommand, objc_selector="init", objc_name="init")
     DelegatingPlaybackCoordinatorSeekCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorSeekCommand) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=DelegatingPlaybackCoordinatorSeekCommand, objc_selector="completionDueDate", objc_name="completionDueDate")
     DelegatingPlaybackCoordinatorSeekCommand_completionDueDate :: proc(self: ^DelegatingPlaybackCoordinatorSeekCommand) -> ^NS.Date ---
 }
+
+
+

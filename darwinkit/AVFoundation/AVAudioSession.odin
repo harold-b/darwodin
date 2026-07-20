@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioSession
-///
 @(objc_class="AVAudioSession", objc_superclass=NS.Object)
 AudioSession :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioSession, objc_selector="sharedInstance", objc_name="sharedInstance", objc_is_class_method=true)
     AudioSession_sharedInstance :: proc() -> ^AudioSession ---
@@ -44,7 +38,7 @@ foreign lib {
     AudioSession_setAllowHapticsAndSystemSoundsDuringRecording :: proc(self: ^AudioSession, inValue: bool, outError: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioSession, objc_selector="requestRecordPermission:", objc_name="requestRecordPermission")
-    AudioSession_requestRecordPermission :: proc(self: ^AudioSession, response: ^Objc_Block(proc "c" (granted: bool))) ---
+    AudioSession_requestRecordPermission :: proc(self: ^AudioSession, response: ^Objc_Block(proc "c" ( granted: bool ))) ---
 
     @(objc_type=AudioSession, objc_selector="overrideOutputAudioPort:error:", objc_name="overrideOutputAudioPort")
     AudioSession_overrideOutputAudioPort :: proc(self: ^AudioSession, portOverride: AudioSessionPortOverride, outError: ^^NS.Error) -> bool ---
@@ -113,7 +107,7 @@ foreign lib {
     AudioSession_setActive_withOptions_error :: proc(self: ^AudioSession, active: bool, options: AudioSessionSetActiveOptions, outError: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioSession, objc_selector="activateWithOptions:completionHandler:", objc_name="activateWithOptions")
-    AudioSession_activateWithOptions :: proc(self: ^AudioSession, options: AudioSessionActivationOptions, handler: ^Objc_Block(proc "c" (activated: bool, error: ^NS.Error))) ---
+    AudioSession_activateWithOptions :: proc(self: ^AudioSession, options: AudioSessionActivationOptions, handler: ^Objc_Block(proc "c" ( activated: bool, error: ^NS.Error ))) ---
 
     @(objc_type=AudioSession, objc_selector="setPreferredSampleRate:error:", objc_name="setPreferredSampleRate")
     AudioSession_setPreferredSampleRate :: proc(self: ^AudioSession, sampleRate: cffi.double, outError: ^^NS.Error) -> bool ---
@@ -277,6 +271,8 @@ foreign lib {
     @(objc_type=AudioSession, objc_selector="preferredHardwareSampleRate", objc_name="preferredHardwareSampleRate")
     AudioSession_preferredHardwareSampleRate :: proc(self: ^AudioSession) -> cffi.double ---
 }
+
+
 
 @(objc_type=AudioSession, objc_name="setCategory")
 AudioSession_setCategory :: proc {

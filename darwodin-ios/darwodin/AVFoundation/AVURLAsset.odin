@@ -61,7 +61,7 @@ foreign lib {
     URLAsset_compatibleTrackForCompositionTrack :: proc(self: ^URLAsset, compositionTrack: ^CompositionTrack) -> ^AssetTrack ---
 
     @(objc_type=URLAsset, objc_selector="findCompatibleTrackForCompositionTrack:completionHandler:", objc_name="findCompatibleTrackForCompositionTrack")
-    URLAsset_findCompatibleTrackForCompositionTrack :: proc(self: ^URLAsset, compositionTrack: ^CompositionTrack, completionHandler: ^Objc_Block(proc "c" (_: ^AssetTrack, _1: ^NS.Error))) ---
+    URLAsset_findCompatibleTrackForCompositionTrack :: proc(self: ^URLAsset, compositionTrack: ^CompositionTrack, completionHandler: ^Objc_Block(proc "c" ( _0: ^AssetTrack, _1: ^NS.Error ))) ---
 
     @(objc_type=URLAsset, objc_selector="variants", objc_name="variants")
     URLAsset_variants :: proc(self: ^URLAsset) -> ^NS.Array ---

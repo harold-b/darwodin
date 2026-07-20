@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAsynchronousVideoCompositionRequest
-///
 @(objc_class="AVAsynchronousVideoCompositionRequest", objc_superclass=NS.Object)
 AsynchronousVideoCompositionRequest :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="sourceFrameByTrackID:", objc_name="sourceFrameByTrackID")
     AsynchronousVideoCompositionRequest_sourceFrameByTrackID :: proc(self: ^AsynchronousVideoCompositionRequest, trackID: CM.PersistentTrackID) -> CVPixelBufferRef ---
@@ -66,3 +60,6 @@ foreign lib {
     @(objc_type=AsynchronousVideoCompositionRequest, objc_selector="videoCompositionInstruction", objc_name="videoCompositionInstruction")
     AsynchronousVideoCompositionRequest_videoCompositionInstruction :: proc(self: ^AsynchronousVideoCompositionRequest) -> ^VideoCompositionInstructionProtocol ---
 }
+
+
+

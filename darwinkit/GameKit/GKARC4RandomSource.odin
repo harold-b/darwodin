@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKARC4RandomSource
-///
 @(objc_class="GKARC4RandomSource", objc_superclass=RandomSource)
 ARC4RandomSource :: struct { using _: RandomSource, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ARC4RandomSource, objc_selector="init", objc_name="init")
     ARC4RandomSource_init :: proc(self: ^ARC4RandomSource) -> instancetype ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=ARC4RandomSource, objc_selector="setSeed:", objc_name="setSeed")
     ARC4RandomSource_setSeed :: proc(self: ^ARC4RandomSource, seed: ^NS.Data) ---
 }
+
+
+

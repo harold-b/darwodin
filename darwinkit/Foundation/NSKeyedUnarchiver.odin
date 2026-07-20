@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSKeyedUnarchiver
-///
 @(objc_class="NSKeyedUnarchiver", objc_superclass=Coder)
 KeyedUnarchiver :: struct { using _: Coder, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=KeyedUnarchiver, objc_selector="initForReadingFromData:error:", objc_name="initForReadingFromData")
     KeyedUnarchiver_initForReadingFromData :: proc(self: ^KeyedUnarchiver, data: ^Data, error: ^^Error) -> instancetype ---
@@ -115,3 +109,6 @@ foreign lib {
     @(objc_type=KeyedUnarchiver, objc_selector="setDecodingFailurePolicy:", objc_name="setDecodingFailurePolicy")
     KeyedUnarchiver_setDecodingFailurePolicy :: proc(self: ^KeyedUnarchiver, decodingFailurePolicy: DecodingFailurePolicy) ---
 }
+
+
+

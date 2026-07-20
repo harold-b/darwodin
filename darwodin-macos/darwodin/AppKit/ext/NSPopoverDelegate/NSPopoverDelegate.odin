@@ -20,17 +20,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    popoverShouldClose: proc(self: ^AK.PopoverDelegate, popover: ^AK.Popover) -> bool,
-    popoverShouldDetach: proc(self: ^AK.PopoverDelegate, popover: ^AK.Popover) -> bool,
-    popoverDidDetach: proc(self: ^AK.PopoverDelegate, popover: ^AK.Popover),
-    detachableWindowForPopover: proc(self: ^AK.PopoverDelegate, popover: ^AK.Popover) -> ^AK.Window,
-    popoverWillShow: proc(self: ^AK.PopoverDelegate, notification: ^NS.Notification),
-    popoverDidShow: proc(self: ^AK.PopoverDelegate, notification: ^NS.Notification),
-    popoverWillClose: proc(self: ^AK.PopoverDelegate, notification: ^NS.Notification),
-    popoverDidClose: proc(self: ^AK.PopoverDelegate, notification: ^NS.Notification),
+    popoverShouldClose: proc(self: ^NS.PopoverDelegate, popover: ^NS.Popover) -> bool,
+    popoverShouldDetach: proc(self: ^NS.PopoverDelegate, popover: ^NS.Popover) -> bool,
+    popoverDidDetach: proc(self: ^NS.PopoverDelegate, popover: ^NS.Popover),
+    detachableWindowForPopover: proc(self: ^NS.PopoverDelegate, popover: ^NS.Popover) -> ^NS.Window,
+    popoverWillShow: proc(self: ^NS.PopoverDelegate, notification: ^NS.Notification),
+    popoverDidShow: proc(self: ^NS.PopoverDelegate, notification: ^NS.Notification),
+    popoverWillClose: proc(self: ^NS.PopoverDelegate, notification: ^NS.Notification),
+    popoverDidClose: proc(self: ^NS.PopoverDelegate, notification: ^NS.Notification),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.popoverShouldClose != nil {
-        popoverShouldClose :: proc "c" (self: ^AK.PopoverDelegate, _: SEL, popover: ^AK.Popover) -> bool {
+        popoverShouldClose :: proc "c" (self: ^NS.PopoverDelegate, _: SEL, popover: ^NS.Popover) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("popoverShouldClose:"), auto_cast popoverShouldClose, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.popoverShouldDetach != nil {
-        popoverShouldDetach :: proc "c" (self: ^AK.PopoverDelegate, _: SEL, popover: ^AK.Popover) -> bool {
+        popoverShouldDetach :: proc "c" (self: ^NS.PopoverDelegate, _: SEL, popover: ^NS.Popover) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("popoverShouldDetach:"), auto_cast popoverShouldDetach, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.popoverDidDetach != nil {
-        popoverDidDetach :: proc "c" (self: ^AK.PopoverDelegate, _: SEL, popover: ^AK.Popover) {
+        popoverDidDetach :: proc "c" (self: ^NS.PopoverDelegate, _: SEL, popover: ^NS.Popover) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("popoverDidDetach:"), auto_cast popoverDidDetach, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.detachableWindowForPopover != nil {
-        detachableWindowForPopover :: proc "c" (self: ^AK.PopoverDelegate, _: SEL, popover: ^AK.Popover) -> ^AK.Window {
+        detachableWindowForPopover :: proc "c" (self: ^NS.PopoverDelegate, _: SEL, popover: ^NS.Popover) -> ^NS.Window {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("detachableWindowForPopover:"), auto_cast detachableWindowForPopover, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.popoverWillShow != nil {
-        popoverWillShow :: proc "c" (self: ^AK.PopoverDelegate, _: SEL, notification: ^NS.Notification) {
+        popoverWillShow :: proc "c" (self: ^NS.PopoverDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("popoverWillShow:"), auto_cast popoverWillShow, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.popoverDidShow != nil {
-        popoverDidShow :: proc "c" (self: ^AK.PopoverDelegate, _: SEL, notification: ^NS.Notification) {
+        popoverDidShow :: proc "c" (self: ^NS.PopoverDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("popoverDidShow:"), auto_cast popoverDidShow, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.popoverWillClose != nil {
-        popoverWillClose :: proc "c" (self: ^AK.PopoverDelegate, _: SEL, notification: ^NS.Notification) {
+        popoverWillClose :: proc "c" (self: ^NS.PopoverDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("popoverWillClose:"), auto_cast popoverWillClose, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.popoverDidClose != nil {
-        popoverDidClose :: proc "c" (self: ^AK.PopoverDelegate, _: SEL, notification: ^NS.Notification) {
+        popoverDidClose :: proc "c" (self: ^NS.PopoverDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

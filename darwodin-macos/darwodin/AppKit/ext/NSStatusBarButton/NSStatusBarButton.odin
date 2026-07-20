@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSButton"
 
 VTable :: struct {
     super: NSButton.VTable,
-    appearsDisabled: proc(self: ^AK.StatusBarButton) -> bool,
-    setAppearsDisabled: proc(self: ^AK.StatusBarButton, appearsDisabled: bool),
+    appearsDisabled: proc(self: ^NS.StatusBarButton) -> bool,
+    setAppearsDisabled: proc(self: ^NS.StatusBarButton, appearsDisabled: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSButton.extend(cls, &vt.super)
 
     if vt.appearsDisabled != nil {
-        appearsDisabled :: proc "c" (self: ^AK.StatusBarButton, _: SEL) -> bool {
+        appearsDisabled :: proc "c" (self: ^NS.StatusBarButton, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("appearsDisabled"), auto_cast appearsDisabled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAppearsDisabled != nil {
-        setAppearsDisabled :: proc "c" (self: ^AK.StatusBarButton, _: SEL, appearsDisabled: bool) {
+        setAppearsDisabled :: proc "c" (self: ^NS.StatusBarButton, _: SEL, appearsDisabled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

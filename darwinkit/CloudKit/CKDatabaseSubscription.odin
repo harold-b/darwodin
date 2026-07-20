@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKDatabaseSubscription
-///
 @(objc_class="CKDatabaseSubscription", objc_superclass=Subscription)
 DatabaseSubscription :: struct { using _: Subscription, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DatabaseSubscription, objc_selector="init", objc_name="init")
     DatabaseSubscription_init :: proc(self: ^DatabaseSubscription) -> instancetype ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=DatabaseSubscription, objc_selector="setRecordType:", objc_name="setRecordType")
     DatabaseSubscription_setRecordType :: proc(self: ^DatabaseSubscription, recordType: ^NS.String) ---
 }
+
+
+

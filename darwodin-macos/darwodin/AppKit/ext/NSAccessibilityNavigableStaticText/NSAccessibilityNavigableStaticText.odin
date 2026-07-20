@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityStringForRange: proc(self: ^AK.AccessibilityNavigableStaticText, range: NS._NSRange) -> ^NS.String,
-    accessibilityLineForIndex: proc(self: ^AK.AccessibilityNavigableStaticText, index: NS.Integer) -> NS.Integer,
-    accessibilityRangeForLine: proc(self: ^AK.AccessibilityNavigableStaticText, lineNumber: NS.Integer) -> NS._NSRange,
-    accessibilityFrameForRange: proc(self: ^AK.AccessibilityNavigableStaticText, range: NS._NSRange) -> NS.Rect,
+    accessibilityStringForRange: proc(self: ^NS.AccessibilityNavigableStaticText, range: NS._NSRange) -> ^NS.String,
+    accessibilityLineForIndex: proc(self: ^NS.AccessibilityNavigableStaticText, index: NS.Integer) -> NS.Integer,
+    accessibilityRangeForLine: proc(self: ^NS.AccessibilityNavigableStaticText, lineNumber: NS.Integer) -> NS._NSRange,
+    accessibilityFrameForRange: proc(self: ^NS.AccessibilityNavigableStaticText, range: NS._NSRange) -> NS.Rect,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityStringForRange != nil {
-        accessibilityStringForRange :: proc "c" (self: ^AK.AccessibilityNavigableStaticText, _: SEL, range: NS._NSRange) -> ^NS.String {
+        accessibilityStringForRange :: proc "c" (self: ^NS.AccessibilityNavigableStaticText, _: SEL, range: NS._NSRange) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityStringForRange:"), auto_cast accessibilityStringForRange, "@@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.accessibilityLineForIndex != nil {
-        accessibilityLineForIndex :: proc "c" (self: ^AK.AccessibilityNavigableStaticText, _: SEL, index: NS.Integer) -> NS.Integer {
+        accessibilityLineForIndex :: proc "c" (self: ^NS.AccessibilityNavigableStaticText, _: SEL, index: NS.Integer) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityLineForIndex:"), auto_cast accessibilityLineForIndex, "l@:l") do panic("Failed to register objC method.")
     }
     if vt.accessibilityRangeForLine != nil {
-        accessibilityRangeForLine :: proc "c" (self: ^AK.AccessibilityNavigableStaticText, _: SEL, lineNumber: NS.Integer) -> NS._NSRange {
+        accessibilityRangeForLine :: proc "c" (self: ^NS.AccessibilityNavigableStaticText, _: SEL, lineNumber: NS.Integer) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityRangeForLine:"), auto_cast accessibilityRangeForLine, "{_NSRange=LL}@:l") do panic("Failed to register objC method.")
     }
     if vt.accessibilityFrameForRange != nil {
-        accessibilityFrameForRange :: proc "c" (self: ^AK.AccessibilityNavigableStaticText, _: SEL, range: NS._NSRange) -> NS.Rect {
+        accessibilityFrameForRange :: proc "c" (self: ^NS.AccessibilityNavigableStaticText, _: SEL, range: NS._NSRange) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetReaderOutputCaptionAdaptor
-///
 @(objc_class="AVAssetReaderOutputCaptionAdaptor", objc_superclass=NS.Object)
 AssetReaderOutputCaptionAdaptor :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderOutputCaptionAdaptor, objc_selector="init", objc_name="init")
     AssetReaderOutputCaptionAdaptor_init :: proc(self: ^AssetReaderOutputCaptionAdaptor) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=AssetReaderOutputCaptionAdaptor, objc_selector="setValidationDelegate:", objc_name="setValidationDelegate")
     AssetReaderOutputCaptionAdaptor_setValidationDelegate :: proc(self: ^AssetReaderOutputCaptionAdaptor, validationDelegate: ^AssetReaderCaptionValidationHandling) ---
 }
+
+
+

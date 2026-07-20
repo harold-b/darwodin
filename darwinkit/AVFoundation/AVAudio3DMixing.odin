@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudio3DMixing
-///
 @(objc_class="AVAudio3DMixing")
 Audio3DMixing :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Audio3DMixing, objc_selector="renderingAlgorithm", objc_name="renderingAlgorithm")
     Audio3DMixing_renderingAlgorithm :: proc(self: ^Audio3DMixing) -> Audio3DMixingRenderingAlgorithm ---
@@ -72,3 +66,6 @@ foreign lib {
     @(objc_type=Audio3DMixing, objc_selector="setPosition:", objc_name="setPosition")
     Audio3DMixing_setPosition :: proc(self: ^Audio3DMixing, position: Audio3DPoint) ---
 }
+
+
+

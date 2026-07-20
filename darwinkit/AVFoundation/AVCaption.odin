@@ -12,11 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaption
-///
 @(objc_class="AVCaption", objc_superclass=NS.Object)
 Caption :: struct { using _: NS.Object, 
     using _: NS.Copying,
@@ -24,7 +19,6 @@ Caption :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Caption, objc_selector="init", objc_name="init")
     Caption_init :: proc(self: ^Caption) -> instancetype ---
@@ -71,3 +65,6 @@ foreign lib {
     @(objc_type=Caption, objc_selector="animation", objc_name="animation")
     Caption_animation :: proc(self: ^Caption) -> CaptionAnimation ---
 }
+
+
+

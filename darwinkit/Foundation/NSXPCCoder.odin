@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSXPCCoder
-///
 @(objc_class="NSXPCCoder", objc_superclass=Coder)
 XPCCoder :: struct { using _: Coder, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=XPCCoder, objc_selector="encodeXPCObject:forKey:", objc_name="encodeXPCObject")
     XPCCoder_encodeXPCObject :: proc(self: ^XPCCoder, xpcObject: xpc_object_t, key: ^String) ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=XPCCoder, objc_selector="connection", objc_name="connection")
     XPCCoder_connection :: proc(self: ^XPCCoder) -> ^XPCConnection ---
 }
+
+
+

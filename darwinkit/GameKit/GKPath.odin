@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKPath
-///
 @(objc_class="GKPath", objc_superclass=NS.Object)
 Path :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Path, objc_selector="pathWithPoints:count:radius:cyclical:", objc_name="pathWithPoints", objc_is_class_method=true)
     Path_pathWithPoints :: proc(points: ^^vector_float2, count: cffi.size_t, radius: cffi.float, cyclical: bool) -> instancetype ---
@@ -59,3 +53,6 @@ foreign lib {
     @(objc_type=Path, objc_selector="setCyclical:", objc_name="setCyclical")
     Path_setCyclical :: proc(self: ^Path, cyclical: bool) ---
 }
+
+
+

@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMethodSignature
-///
 @(objc_class="NSMethodSignature", objc_superclass=Object)
 MethodSignature :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MethodSignature, objc_selector="signatureWithObjCTypes:", objc_name="signatureWithObjCTypes", objc_is_class_method=true)
     MethodSignature_signatureWithObjCTypes :: proc(types: cstring) -> ^MethodSignature ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=MethodSignature, objc_selector="methodReturnLength", objc_name="methodReturnLength")
     MethodSignature_methodReturnLength :: proc(self: ^MethodSignature) -> UInteger ---
 }
+
+
+

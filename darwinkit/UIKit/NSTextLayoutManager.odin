@@ -49,10 +49,10 @@ foreign lib {
     NSTextLayoutManager_textLayoutFragmentForLocation :: proc(self: ^NSTextLayoutManager, location: ^NSTextLocation) -> ^NSTextLayoutFragment ---
 
     @(objc_type=NSTextLayoutManager, objc_selector="enumerateTextLayoutFragmentsFromLocation:options:usingBlock:", objc_name="enumerateTextLayoutFragmentsFromLocation")
-    NSTextLayoutManager_enumerateTextLayoutFragmentsFromLocation :: proc(self: ^NSTextLayoutManager, location: ^NSTextLocation, options: NSTextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" (layoutFragment: ^NSTextLayoutFragment) -> bool)) -> ^NSTextLocation ---
+    NSTextLayoutManager_enumerateTextLayoutFragmentsFromLocation :: proc(self: ^NSTextLayoutManager, location: ^NSTextLocation, options: NSTextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" ( layoutFragment: ^NSTextLayoutFragment ) -> bool)) -> ^NSTextLocation ---
 
     @(objc_type=NSTextLayoutManager, objc_selector="enumerateRenderingAttributesFromLocation:reverse:usingBlock:", objc_name="enumerateRenderingAttributesFromLocation")
-    NSTextLayoutManager_enumerateRenderingAttributesFromLocation :: proc(self: ^NSTextLayoutManager, location: ^NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" (textLayoutManager: ^NSTextLayoutManager, attributes: ^NS.Dictionary, textRange: ^NSTextRange) -> bool)) ---
+    NSTextLayoutManager_enumerateRenderingAttributesFromLocation :: proc(self: ^NSTextLayoutManager, location: ^NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" ( textLayoutManager: ^NSTextLayoutManager, attributes: ^NS.Dictionary, textRange: ^NSTextRange ) -> bool)) ---
 
     @(objc_type=NSTextLayoutManager, objc_selector="setRenderingAttributes:forTextRange:", objc_name="setRenderingAttributes")
     NSTextLayoutManager_setRenderingAttributes :: proc(self: ^NSTextLayoutManager, renderingAttributes: ^NS.Dictionary, textRange: ^NSTextRange) ---
@@ -70,7 +70,7 @@ foreign lib {
     NSTextLayoutManager_renderingAttributesForLink :: proc(self: ^NSTextLayoutManager, link: id, location: ^NSTextLocation) -> ^NS.Dictionary ---
 
     @(objc_type=NSTextLayoutManager, objc_selector="enumerateTextSegmentsInRange:type:options:usingBlock:", objc_name="enumerateTextSegmentsInRange")
-    NSTextLayoutManager_enumerateTextSegmentsInRange :: proc(self: ^NSTextLayoutManager, textRange: ^NSTextRange, type: NSTextLayoutManagerSegmentType, options: NSTextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" (textSegmentRange: ^NSTextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^NSTextContainer) -> bool)) ---
+    NSTextLayoutManager_enumerateTextSegmentsInRange :: proc(self: ^NSTextLayoutManager, textRange: ^NSTextRange, type: NSTextLayoutManagerSegmentType, options: NSTextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" ( textSegmentRange: ^NSTextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^NSTextContainer ) -> bool)) ---
 
     @(objc_type=NSTextLayoutManager, objc_selector="replaceContentsInRange:withTextElements:", objc_name="replaceContentsInRange_withTextElements")
     NSTextLayoutManager_replaceContentsInRange_withTextElements :: proc(self: ^NSTextLayoutManager, range: ^NSTextRange, textElements: ^NS.Array) ---

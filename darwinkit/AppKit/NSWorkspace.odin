@@ -28,13 +28,13 @@ foreign lib {
     Workspace_openURL_ :: proc(self: ^Workspace, url: ^NS.URL) -> bool ---
 
     @(objc_type=Workspace, objc_selector="openURL:configuration:completionHandler:", objc_name="openURL_configuration_completionHandler")
-    Workspace_openURL_configuration_completionHandler :: proc(self: ^Workspace, url: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^RunningApplication, error: ^NS.Error))) ---
+    Workspace_openURL_configuration_completionHandler :: proc(self: ^Workspace, url: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" ( app: ^RunningApplication, error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="openURLs:withApplicationAtURL:configuration:completionHandler:", objc_name="openURLs_withApplicationAtURL_configuration_completionHandler")
-    Workspace_openURLs_withApplicationAtURL_configuration_completionHandler :: proc(self: ^Workspace, urls: ^NS.Array, applicationURL: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^RunningApplication, error: ^NS.Error))) ---
+    Workspace_openURLs_withApplicationAtURL_configuration_completionHandler :: proc(self: ^Workspace, urls: ^NS.Array, applicationURL: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" ( app: ^RunningApplication, error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="openApplicationAtURL:configuration:completionHandler:", objc_name="openApplicationAtURL")
-    Workspace_openApplicationAtURL :: proc(self: ^Workspace, applicationURL: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" (app: ^RunningApplication, error: ^NS.Error))) ---
+    Workspace_openApplicationAtURL :: proc(self: ^Workspace, applicationURL: ^NS.URL, configuration: ^WorkspaceOpenConfiguration, completionHandler: ^Objc_Block(proc "c" ( app: ^RunningApplication, error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="selectFile:inFileViewerRootedAtPath:", objc_name="selectFile")
     Workspace_selectFile :: proc(self: ^Workspace, fullPath: ^NS.String, rootFullPath: ^NS.String) -> bool ---
@@ -64,10 +64,10 @@ foreign lib {
     Workspace_setIcon :: proc(self: ^Workspace, image: ^Image, fullPath: ^NS.String, options: WorkspaceIconCreationOptions) -> bool ---
 
     @(objc_type=Workspace, objc_selector="recycleURLs:completionHandler:", objc_name="recycleURLs")
-    Workspace_recycleURLs :: proc(self: ^Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))) ---
+    Workspace_recycleURLs :: proc(self: ^Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" ( newURLs: ^NS.Dictionary, error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="duplicateURLs:completionHandler:", objc_name="duplicateURLs")
-    Workspace_duplicateURLs :: proc(self: ^Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" (newURLs: ^NS.Dictionary, error: ^NS.Error))) ---
+    Workspace_duplicateURLs :: proc(self: ^Workspace, URLs: ^NS.Array, handler: ^Objc_Block(proc "c" ( newURLs: ^NS.Dictionary, error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="getFileSystemInfoForPath:isRemovable:isWritable:isUnmountable:description:type:", objc_name="getFileSystemInfoForPath")
     Workspace_getFileSystemInfoForPath :: proc(self: ^Workspace, fullPath: ^NS.String, removableFlag: ^bool, writableFlag: ^bool, unmountableFlag: ^bool, description: ^^NS.String, fileSystemType: ^^NS.String) -> bool ---
@@ -97,13 +97,13 @@ foreign lib {
     Workspace_URLsForApplicationsToOpenURL :: proc(self: ^Workspace, url: ^NS.URL) -> ^NS.Array ---
 
     @(objc_type=Workspace, objc_selector="setDefaultApplicationAtURL:toOpenContentTypeOfFileAtURL:completionHandler:", objc_name="setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler")
-    Workspace_setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler :: proc(self: ^Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Workspace_setDefaultApplicationAtURL_toOpenContentTypeOfFileAtURL_completionHandler :: proc(self: ^Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="setDefaultApplicationAtURL:toOpenURLsWithScheme:completionHandler:", objc_name="setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler")
-    Workspace_setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler :: proc(self: ^Workspace, applicationURL: ^NS.URL, urlScheme: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Workspace_setDefaultApplicationAtURL_toOpenURLsWithScheme_completionHandler :: proc(self: ^Workspace, applicationURL: ^NS.URL, urlScheme: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="setDefaultApplicationAtURL:toOpenFileAtURL:completionHandler:", objc_name="setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler")
-    Workspace_setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler :: proc(self: ^Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Workspace_setDefaultApplicationAtURL_toOpenFileAtURL_completionHandler :: proc(self: ^Workspace, applicationURL: ^NS.URL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="URLForApplicationToOpenContentType:", objc_name="URLForApplicationToOpenContentType")
     Workspace_URLForApplicationToOpenContentType :: proc(self: ^Workspace, contentType: ^UTType) -> ^NS.URL ---
@@ -112,7 +112,7 @@ foreign lib {
     Workspace_URLsForApplicationsToOpenContentType :: proc(self: ^Workspace, contentType: ^UTType) -> ^NS.Array ---
 
     @(objc_type=Workspace, objc_selector="setDefaultApplicationAtURL:toOpenContentType:completionHandler:", objc_name="setDefaultApplicationAtURL_toOpenContentType_completionHandler")
-    Workspace_setDefaultApplicationAtURL_toOpenContentType_completionHandler :: proc(self: ^Workspace, applicationURL: ^NS.URL, contentType: ^UTType, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Workspace_setDefaultApplicationAtURL_toOpenContentType_completionHandler :: proc(self: ^Workspace, applicationURL: ^NS.URL, contentType: ^UTType, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="sharedWorkspace", objc_name="sharedWorkspace", objc_is_class_method=true)
     Workspace_sharedWorkspace :: proc() -> ^Workspace ---
@@ -142,7 +142,7 @@ foreign lib {
     Workspace_desktopImageOptionsForScreen :: proc(self: ^Workspace, screen: ^Screen) -> ^NS.Dictionary ---
 
     @(objc_type=Workspace, objc_selector="requestAuthorizationOfType:completionHandler:", objc_name="requestAuthorizationOfType")
-    Workspace_requestAuthorizationOfType :: proc(self: ^Workspace, type: WorkspaceAuthorizationType, completionHandler: ^Objc_Block(proc "c" (authorization: ^WorkspaceAuthorization, error: ^NS.Error))) ---
+    Workspace_requestAuthorizationOfType :: proc(self: ^Workspace, type: WorkspaceAuthorizationType, completionHandler: ^Objc_Block(proc "c" ( authorization: ^WorkspaceAuthorization, error: ^NS.Error ))) ---
 
     @(objc_type=Workspace, objc_selector="openFile:", objc_name="openFile_")
     Workspace_openFile_ :: proc(self: ^Workspace, fullPath: ^NS.String) -> bool ---

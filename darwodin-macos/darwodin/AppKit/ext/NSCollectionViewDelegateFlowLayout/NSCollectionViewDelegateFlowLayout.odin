@@ -20,15 +20,15 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    collectionView_layout_sizeForItemAtIndexPath: proc(self: ^AK.CollectionViewDelegateFlowLayout, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, indexPath: ^NS.IndexPath) -> NS.Size,
-    collectionView_layout_insetForSectionAtIndex: proc(self: ^AK.CollectionViewDelegateFlowLayout, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> NS.EdgeInsets,
-    collectionView_layout_minimumLineSpacingForSectionAtIndex: proc(self: ^AK.CollectionViewDelegateFlowLayout, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> CG.Float,
-    collectionView_layout_minimumInteritemSpacingForSectionAtIndex: proc(self: ^AK.CollectionViewDelegateFlowLayout, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> CG.Float,
-    collectionView_layout_referenceSizeForHeaderInSection: proc(self: ^AK.CollectionViewDelegateFlowLayout, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> NS.Size,
-    collectionView_layout_referenceSizeForFooterInSection: proc(self: ^AK.CollectionViewDelegateFlowLayout, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> NS.Size,
+    collectionView_layout_sizeForItemAtIndexPath: proc(self: ^NS.CollectionViewDelegateFlowLayout, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, indexPath: ^NS.IndexPath) -> NS.Size,
+    collectionView_layout_insetForSectionAtIndex: proc(self: ^NS.CollectionViewDelegateFlowLayout, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> NS.EdgeInsets,
+    collectionView_layout_minimumLineSpacingForSectionAtIndex: proc(self: ^NS.CollectionViewDelegateFlowLayout, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> CG.Float,
+    collectionView_layout_minimumInteritemSpacingForSectionAtIndex: proc(self: ^NS.CollectionViewDelegateFlowLayout, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> CG.Float,
+    collectionView_layout_referenceSizeForHeaderInSection: proc(self: ^NS.CollectionViewDelegateFlowLayout, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> NS.Size,
+    collectionView_layout_referenceSizeForFooterInSection: proc(self: ^NS.CollectionViewDelegateFlowLayout, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> NS.Size,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -36,7 +36,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.collectionView_layout_sizeForItemAtIndexPath != nil {
-        collectionView_layout_sizeForItemAtIndexPath :: proc "c" (self: ^AK.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, indexPath: ^NS.IndexPath) -> NS.Size {
+        collectionView_layout_sizeForItemAtIndexPath :: proc "c" (self: ^NS.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, indexPath: ^NS.IndexPath) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:layout:sizeForItemAtIndexPath:"), auto_cast collectionView_layout_sizeForItemAtIndexPath, "{CGSize=dd}@:@@@") do panic("Failed to register objC method.")
     }
     if vt.collectionView_layout_insetForSectionAtIndex != nil {
-        collectionView_layout_insetForSectionAtIndex :: proc "c" (self: ^AK.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> NS.EdgeInsets {
+        collectionView_layout_insetForSectionAtIndex :: proc "c" (self: ^NS.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> NS.EdgeInsets {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:layout:insetForSectionAtIndex:"), auto_cast collectionView_layout_insetForSectionAtIndex, "{NSEdgeInsets=dddd}@:@@l") do panic("Failed to register objC method.")
     }
     if vt.collectionView_layout_minimumLineSpacingForSectionAtIndex != nil {
-        collectionView_layout_minimumLineSpacingForSectionAtIndex :: proc "c" (self: ^AK.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> CG.Float {
+        collectionView_layout_minimumLineSpacingForSectionAtIndex :: proc "c" (self: ^NS.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:layout:minimumLineSpacingForSectionAtIndex:"), auto_cast collectionView_layout_minimumLineSpacingForSectionAtIndex, "d@:@@l") do panic("Failed to register objC method.")
     }
     if vt.collectionView_layout_minimumInteritemSpacingForSectionAtIndex != nil {
-        collectionView_layout_minimumInteritemSpacingForSectionAtIndex :: proc "c" (self: ^AK.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> CG.Float {
+        collectionView_layout_minimumInteritemSpacingForSectionAtIndex :: proc "c" (self: ^NS.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:layout:minimumInteritemSpacingForSectionAtIndex:"), auto_cast collectionView_layout_minimumInteritemSpacingForSectionAtIndex, "d@:@@l") do panic("Failed to register objC method.")
     }
     if vt.collectionView_layout_referenceSizeForHeaderInSection != nil {
-        collectionView_layout_referenceSizeForHeaderInSection :: proc "c" (self: ^AK.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> NS.Size {
+        collectionView_layout_referenceSizeForHeaderInSection :: proc "c" (self: ^NS.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collectionView:layout:referenceSizeForHeaderInSection:"), auto_cast collectionView_layout_referenceSizeForHeaderInSection, "{CGSize=dd}@:@@l") do panic("Failed to register objC method.")
     }
     if vt.collectionView_layout_referenceSizeForFooterInSection != nil {
-        collectionView_layout_referenceSizeForFooterInSection :: proc "c" (self: ^AK.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^AK.CollectionView, collectionViewLayout: ^AK.CollectionViewLayout, section: NS.Integer) -> NS.Size {
+        collectionView_layout_referenceSizeForFooterInSection :: proc "c" (self: ^NS.CollectionViewDelegateFlowLayout, _: SEL, collectionView: ^NS.CollectionView, collectionViewLayout: ^NS.CollectionViewLayout, section: NS.Integer) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

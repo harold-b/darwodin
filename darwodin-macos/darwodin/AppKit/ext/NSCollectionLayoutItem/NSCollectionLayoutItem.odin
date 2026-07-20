@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    itemWithLayoutSize_: proc(layoutSize: ^AK.CollectionLayoutSize) -> instancetype,
-    itemWithLayoutSize_supplementaryItems: proc(layoutSize: ^AK.CollectionLayoutSize, supplementaryItems: ^NS.Array) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutItem) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutItem,
-    contentInsets: proc(self: ^AK.CollectionLayoutItem) -> AK.DirectionalEdgeInsets,
-    setContentInsets: proc(self: ^AK.CollectionLayoutItem, contentInsets: AK.DirectionalEdgeInsets),
-    edgeSpacing: proc(self: ^AK.CollectionLayoutItem) -> ^AK.CollectionLayoutEdgeSpacing,
-    setEdgeSpacing: proc(self: ^AK.CollectionLayoutItem, edgeSpacing: ^AK.CollectionLayoutEdgeSpacing),
-    layoutSize: proc(self: ^AK.CollectionLayoutItem) -> ^AK.CollectionLayoutSize,
-    supplementaryItems: proc(self: ^AK.CollectionLayoutItem) -> ^NS.Array,
+    itemWithLayoutSize_: proc(layoutSize: ^NS.CollectionLayoutSize) -> instancetype,
+    itemWithLayoutSize_supplementaryItems: proc(layoutSize: ^NS.CollectionLayoutSize, supplementaryItems: ^NS.Array) -> instancetype,
+    init: proc(self: ^NS.CollectionLayoutItem) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutItem,
+    contentInsets: proc(self: ^NS.CollectionLayoutItem) -> NS.DirectionalEdgeInsets,
+    setContentInsets: proc(self: ^NS.CollectionLayoutItem, contentInsets: NS.DirectionalEdgeInsets),
+    edgeSpacing: proc(self: ^NS.CollectionLayoutItem) -> ^NS.CollectionLayoutEdgeSpacing,
+    setEdgeSpacing: proc(self: ^NS.CollectionLayoutItem, edgeSpacing: ^NS.CollectionLayoutEdgeSpacing),
+    layoutSize: proc(self: ^NS.CollectionLayoutItem) -> ^NS.CollectionLayoutSize,
+    supplementaryItems: proc(self: ^NS.CollectionLayoutItem) -> ^NS.Array,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.itemWithLayoutSize_ != nil {
-        itemWithLayoutSize_ :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize) -> instancetype {
+        itemWithLayoutSize_ :: proc "c" (self: Class, _: SEL, layoutSize: ^NS.CollectionLayoutSize) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("itemWithLayoutSize:"), auto_cast itemWithLayoutSize_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.itemWithLayoutSize_supplementaryItems != nil {
-        itemWithLayoutSize_supplementaryItems :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, supplementaryItems: ^NS.Array) -> instancetype {
+        itemWithLayoutSize_supplementaryItems :: proc "c" (self: Class, _: SEL, layoutSize: ^NS.CollectionLayoutSize, supplementaryItems: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("itemWithLayoutSize:supplementaryItems:"), auto_cast itemWithLayoutSize_supplementaryItems, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutItem, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutItem {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutItem {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.contentInsets != nil {
-        contentInsets :: proc "c" (self: ^AK.CollectionLayoutItem, _: SEL) -> AK.DirectionalEdgeInsets {
+        contentInsets :: proc "c" (self: ^NS.CollectionLayoutItem, _: SEL) -> NS.DirectionalEdgeInsets {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentInsets"), auto_cast contentInsets, "{NSDirectionalEdgeInsets=dddd}@:") do panic("Failed to register objC method.")
     }
     if vt.setContentInsets != nil {
-        setContentInsets :: proc "c" (self: ^AK.CollectionLayoutItem, _: SEL, contentInsets: AK.DirectionalEdgeInsets) {
+        setContentInsets :: proc "c" (self: ^NS.CollectionLayoutItem, _: SEL, contentInsets: NS.DirectionalEdgeInsets) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentInsets:"), auto_cast setContentInsets, "v@:{NSDirectionalEdgeInsets=dddd}") do panic("Failed to register objC method.")
     }
     if vt.edgeSpacing != nil {
-        edgeSpacing :: proc "c" (self: ^AK.CollectionLayoutItem, _: SEL) -> ^AK.CollectionLayoutEdgeSpacing {
+        edgeSpacing :: proc "c" (self: ^NS.CollectionLayoutItem, _: SEL) -> ^NS.CollectionLayoutEdgeSpacing {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("edgeSpacing"), auto_cast edgeSpacing, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setEdgeSpacing != nil {
-        setEdgeSpacing :: proc "c" (self: ^AK.CollectionLayoutItem, _: SEL, edgeSpacing: ^AK.CollectionLayoutEdgeSpacing) {
+        setEdgeSpacing :: proc "c" (self: ^NS.CollectionLayoutItem, _: SEL, edgeSpacing: ^NS.CollectionLayoutEdgeSpacing) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEdgeSpacing:"), auto_cast setEdgeSpacing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.layoutSize != nil {
-        layoutSize :: proc "c" (self: ^AK.CollectionLayoutItem, _: SEL) -> ^AK.CollectionLayoutSize {
+        layoutSize :: proc "c" (self: ^NS.CollectionLayoutItem, _: SEL) -> ^NS.CollectionLayoutSize {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutSize"), auto_cast layoutSize, "@@:") do panic("Failed to register objC method.")
     }
     if vt.supplementaryItems != nil {
-        supplementaryItems :: proc "c" (self: ^AK.CollectionLayoutItem, _: SEL) -> ^NS.Array {
+        supplementaryItems :: proc "c" (self: ^NS.CollectionLayoutItem, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

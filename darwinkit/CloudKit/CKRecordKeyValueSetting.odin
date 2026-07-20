@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKRecordKeyValueSetting
-///
 @(objc_class="CKRecordKeyValueSetting")
 RecordKeyValueSetting :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RecordKeyValueSetting, objc_selector="objectForKey:", objc_name="objectForKey")
     RecordKeyValueSetting_objectForKey :: proc(self: ^RecordKeyValueSetting, key: ^NS.String) -> ^RecordValue ---
@@ -37,4 +31,6 @@ foreign lib {
     @(objc_type=RecordKeyValueSetting, objc_selector="changedKeys", objc_name="changedKeys")
     RecordKeyValueSetting_changedKeys :: proc(self: ^RecordKeyValueSetting) -> ^NS.Array ---
 }
+
+
 

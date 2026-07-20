@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIndirectRenderCommand
-///
 @(objc_class="MTLIndirectRenderCommand")
 IndirectRenderCommand :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndirectRenderCommand, objc_selector="setRenderPipelineState:", objc_name="setRenderPipelineState")
     IndirectRenderCommand_setRenderPipelineState :: proc(self: ^IndirectRenderCommand, pipelineState: ^RenderPipelineState) ---
@@ -89,6 +83,8 @@ foreign lib {
     @(objc_type=IndirectRenderCommand, objc_selector="reset", objc_name="reset")
     IndirectRenderCommand_reset :: proc(self: ^IndirectRenderCommand) ---
 }
+
+
 
 @(objc_type=IndirectRenderCommand, objc_name="setVertexBuffer")
 IndirectRenderCommand_setVertexBuffer :: proc {

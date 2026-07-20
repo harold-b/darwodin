@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLVertexDescriptor
-///
 @(objc_class="MDLVertexDescriptor", objc_superclass=NS.Object)
 VertexDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexDescriptor, objc_selector="initWithVertexDescriptor:", objc_name="initWithVertexDescriptor")
     VertexDescriptor_initWithVertexDescriptor :: proc(self: ^VertexDescriptor, vertexDescriptor: ^VertexDescriptor) -> instancetype ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=VertexDescriptor, objc_selector="setLayouts:", objc_name="setLayouts")
     VertexDescriptor_setLayouts :: proc(self: ^VertexDescriptor, layouts: ^NS.MutableArray) ---
 }
+
+
+

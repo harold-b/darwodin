@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLTileRenderPipelineDescriptor
-///
 @(objc_class="MTLTileRenderPipelineDescriptor", objc_superclass=NS.Object)
 TileRenderPipelineDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TileRenderPipelineDescriptor, objc_selector="reset", objc_name="reset")
     TileRenderPipelineDescriptor_reset :: proc(self: ^TileRenderPipelineDescriptor) ---
@@ -104,3 +98,6 @@ foreign lib {
     @(objc_type=TileRenderPipelineDescriptor, objc_selector="setRequiredThreadsPerThreadgroup:", objc_name="setRequiredThreadsPerThreadgroup")
     TileRenderPipelineDescriptor_setRequiredThreadsPerThreadgroup :: proc(self: ^TileRenderPipelineDescriptor, requiredThreadsPerThreadgroup: Size) ---
 }
+
+
+

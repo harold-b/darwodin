@@ -24,13 +24,13 @@ NSTextElementProvider :: struct { using _: intrinsics.objc_object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSTextElementProvider, objc_selector="enumerateTextElementsFromLocation:options:usingBlock:", objc_name="enumerateTextElementsFromLocation")
-    NSTextElementProvider_enumerateTextElementsFromLocation :: proc(self: ^NSTextElementProvider, textLocation: ^NSTextLocation, options: NSTextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^NSTextElement) -> bool)) -> ^NSTextLocation ---
+    NSTextElementProvider_enumerateTextElementsFromLocation :: proc(self: ^NSTextElementProvider, textLocation: ^NSTextLocation, options: NSTextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" ( element: ^NSTextElement ) -> bool)) -> ^NSTextLocation ---
 
     @(objc_type=NSTextElementProvider, objc_selector="replaceContentsInRange:withTextElements:", objc_name="replaceContentsInRange")
     NSTextElementProvider_replaceContentsInRange :: proc(self: ^NSTextElementProvider, range: ^NSTextRange, textElements: ^NS.Array) ---
 
     @(objc_type=NSTextElementProvider, objc_selector="synchronizeToBackingStore:", objc_name="synchronizeToBackingStore")
-    NSTextElementProvider_synchronizeToBackingStore :: proc(self: ^NSTextElementProvider, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    NSTextElementProvider_synchronizeToBackingStore :: proc(self: ^NSTextElementProvider, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=NSTextElementProvider, objc_selector="locationFromLocation:withOffset:", objc_name="locationFromLocation")
     NSTextElementProvider_locationFromLocation :: proc(self: ^NSTextElementProvider, location: ^NSTextLocation, offset: NS.Integer) -> ^NSTextLocation ---

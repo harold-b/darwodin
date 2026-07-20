@@ -20,38 +20,38 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    drawDividerInRect: proc(self: ^AK.SplitView, rect: NS.Rect),
-    adjustSubviews: proc(self: ^AK.SplitView),
-    isSubviewCollapsed: proc(self: ^AK.SplitView, subview: ^AK.View) -> bool,
-    minPossiblePositionOfDividerAtIndex: proc(self: ^AK.SplitView, dividerIndex: NS.Integer) -> CG.Float,
-    maxPossiblePositionOfDividerAtIndex: proc(self: ^AK.SplitView, dividerIndex: NS.Integer) -> CG.Float,
-    setPosition: proc(self: ^AK.SplitView, position: CG.Float, dividerIndex: NS.Integer),
-    holdingPriorityForSubviewAtIndex: proc(self: ^AK.SplitView, subviewIndex: NS.Integer) -> AK.LayoutPriority,
-    setHoldingPriority: proc(self: ^AK.SplitView, priority: AK.LayoutPriority, subviewIndex: NS.Integer),
-    isVertical: proc(self: ^AK.SplitView) -> bool,
-    setVertical: proc(self: ^AK.SplitView, vertical: bool),
-    dividerStyle: proc(self: ^AK.SplitView) -> AK.SplitViewDividerStyle,
-    setDividerStyle: proc(self: ^AK.SplitView, dividerStyle: AK.SplitViewDividerStyle),
-    autosaveName: proc(self: ^AK.SplitView) -> ^NS.String,
-    setAutosaveName: proc(self: ^AK.SplitView, autosaveName: ^NS.String),
-    delegate: proc(self: ^AK.SplitView) -> ^AK.SplitViewDelegate,
-    setDelegate: proc(self: ^AK.SplitView, delegate: ^AK.SplitViewDelegate),
-    dividerColor: proc(self: ^AK.SplitView) -> ^AK.Color,
-    dividerThickness: proc(self: ^AK.SplitView) -> CG.Float,
-    addArrangedSubview: proc(self: ^AK.SplitView, view: ^AK.View),
-    insertArrangedSubview: proc(self: ^AK.SplitView, view: ^AK.View, index: NS.Integer),
-    removeArrangedSubview: proc(self: ^AK.SplitView, view: ^AK.View),
-    arrangesAllSubviews: proc(self: ^AK.SplitView) -> bool,
-    setArrangesAllSubviews: proc(self: ^AK.SplitView, arrangesAllSubviews: bool),
-    arrangedSubviews: proc(self: ^AK.SplitView) -> ^NS.Array,
-    setIsPaneSplitter: proc(self: ^AK.SplitView, flag: bool),
-    isPaneSplitter: proc(self: ^AK.SplitView) -> bool,
+    drawDividerInRect: proc(self: ^NS.SplitView, rect: NS.Rect),
+    adjustSubviews: proc(self: ^NS.SplitView),
+    isSubviewCollapsed: proc(self: ^NS.SplitView, subview: ^NS.View) -> bool,
+    minPossiblePositionOfDividerAtIndex: proc(self: ^NS.SplitView, dividerIndex: NS.Integer) -> CG.Float,
+    maxPossiblePositionOfDividerAtIndex: proc(self: ^NS.SplitView, dividerIndex: NS.Integer) -> CG.Float,
+    setPosition: proc(self: ^NS.SplitView, position: CG.Float, dividerIndex: NS.Integer),
+    holdingPriorityForSubviewAtIndex: proc(self: ^NS.SplitView, subviewIndex: NS.Integer) -> NS.LayoutPriority,
+    setHoldingPriority: proc(self: ^NS.SplitView, priority: NS.LayoutPriority, subviewIndex: NS.Integer),
+    isVertical: proc(self: ^NS.SplitView) -> bool,
+    setVertical: proc(self: ^NS.SplitView, vertical: bool),
+    dividerStyle: proc(self: ^NS.SplitView) -> NS.SplitViewDividerStyle,
+    setDividerStyle: proc(self: ^NS.SplitView, dividerStyle: NS.SplitViewDividerStyle),
+    autosaveName: proc(self: ^NS.SplitView) -> ^NS.String,
+    setAutosaveName: proc(self: ^NS.SplitView, autosaveName: ^NS.String),
+    delegate: proc(self: ^NS.SplitView) -> ^NS.SplitViewDelegate,
+    setDelegate: proc(self: ^NS.SplitView, delegate: ^NS.SplitViewDelegate),
+    dividerColor: proc(self: ^NS.SplitView) -> ^NS.Color,
+    dividerThickness: proc(self: ^NS.SplitView) -> CG.Float,
+    addArrangedSubview: proc(self: ^NS.SplitView, view: ^NS.View),
+    insertArrangedSubview: proc(self: ^NS.SplitView, view: ^NS.View, index: NS.Integer),
+    removeArrangedSubview: proc(self: ^NS.SplitView, view: ^NS.View),
+    arrangesAllSubviews: proc(self: ^NS.SplitView) -> bool,
+    setArrangesAllSubviews: proc(self: ^NS.SplitView, arrangesAllSubviews: bool),
+    arrangedSubviews: proc(self: ^NS.SplitView) -> ^NS.Array,
+    setIsPaneSplitter: proc(self: ^NS.SplitView, flag: bool),
+    isPaneSplitter: proc(self: ^NS.SplitView) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.drawDividerInRect != nil {
-        drawDividerInRect :: proc "c" (self: ^AK.SplitView, _: SEL, rect: NS.Rect) {
+        drawDividerInRect :: proc "c" (self: ^NS.SplitView, _: SEL, rect: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawDividerInRect:"), auto_cast drawDividerInRect, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.adjustSubviews != nil {
-        adjustSubviews :: proc "c" (self: ^AK.SplitView, _: SEL) {
+        adjustSubviews :: proc "c" (self: ^NS.SplitView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("adjustSubviews"), auto_cast adjustSubviews, "v@:") do panic("Failed to register objC method.")
     }
     if vt.isSubviewCollapsed != nil {
-        isSubviewCollapsed :: proc "c" (self: ^AK.SplitView, _: SEL, subview: ^AK.View) -> bool {
+        isSubviewCollapsed :: proc "c" (self: ^NS.SplitView, _: SEL, subview: ^NS.View) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isSubviewCollapsed:"), auto_cast isSubviewCollapsed, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.minPossiblePositionOfDividerAtIndex != nil {
-        minPossiblePositionOfDividerAtIndex :: proc "c" (self: ^AK.SplitView, _: SEL, dividerIndex: NS.Integer) -> CG.Float {
+        minPossiblePositionOfDividerAtIndex :: proc "c" (self: ^NS.SplitView, _: SEL, dividerIndex: NS.Integer) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minPossiblePositionOfDividerAtIndex:"), auto_cast minPossiblePositionOfDividerAtIndex, "d@:l") do panic("Failed to register objC method.")
     }
     if vt.maxPossiblePositionOfDividerAtIndex != nil {
-        maxPossiblePositionOfDividerAtIndex :: proc "c" (self: ^AK.SplitView, _: SEL, dividerIndex: NS.Integer) -> CG.Float {
+        maxPossiblePositionOfDividerAtIndex :: proc "c" (self: ^NS.SplitView, _: SEL, dividerIndex: NS.Integer) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maxPossiblePositionOfDividerAtIndex:"), auto_cast maxPossiblePositionOfDividerAtIndex, "d@:l") do panic("Failed to register objC method.")
     }
     if vt.setPosition != nil {
-        setPosition :: proc "c" (self: ^AK.SplitView, _: SEL, position: CG.Float, dividerIndex: NS.Integer) {
+        setPosition :: proc "c" (self: ^NS.SplitView, _: SEL, position: CG.Float, dividerIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPosition:ofDividerAtIndex:"), auto_cast setPosition, "v@:dl") do panic("Failed to register objC method.")
     }
     if vt.holdingPriorityForSubviewAtIndex != nil {
-        holdingPriorityForSubviewAtIndex :: proc "c" (self: ^AK.SplitView, _: SEL, subviewIndex: NS.Integer) -> AK.LayoutPriority {
+        holdingPriorityForSubviewAtIndex :: proc "c" (self: ^NS.SplitView, _: SEL, subviewIndex: NS.Integer) -> NS.LayoutPriority {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("holdingPriorityForSubviewAtIndex:"), auto_cast holdingPriorityForSubviewAtIndex, "f@:l") do panic("Failed to register objC method.")
     }
     if vt.setHoldingPriority != nil {
-        setHoldingPriority :: proc "c" (self: ^AK.SplitView, _: SEL, priority: AK.LayoutPriority, subviewIndex: NS.Integer) {
+        setHoldingPriority :: proc "c" (self: ^NS.SplitView, _: SEL, priority: NS.LayoutPriority, subviewIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHoldingPriority:forSubviewAtIndex:"), auto_cast setHoldingPriority, "v@:fl") do panic("Failed to register objC method.")
     }
     if vt.isVertical != nil {
-        isVertical :: proc "c" (self: ^AK.SplitView, _: SEL) -> bool {
+        isVertical :: proc "c" (self: ^NS.SplitView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isVertical"), auto_cast isVertical, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setVertical != nil {
-        setVertical :: proc "c" (self: ^AK.SplitView, _: SEL, vertical: bool) {
+        setVertical :: proc "c" (self: ^NS.SplitView, _: SEL, vertical: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVertical:"), auto_cast setVertical, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.dividerStyle != nil {
-        dividerStyle :: proc "c" (self: ^AK.SplitView, _: SEL) -> AK.SplitViewDividerStyle {
+        dividerStyle :: proc "c" (self: ^NS.SplitView, _: SEL) -> NS.SplitViewDividerStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dividerStyle"), auto_cast dividerStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setDividerStyle != nil {
-        setDividerStyle :: proc "c" (self: ^AK.SplitView, _: SEL, dividerStyle: AK.SplitViewDividerStyle) {
+        setDividerStyle :: proc "c" (self: ^NS.SplitView, _: SEL, dividerStyle: NS.SplitViewDividerStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -182,7 +182,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDividerStyle:"), auto_cast setDividerStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.autosaveName != nil {
-        autosaveName :: proc "c" (self: ^AK.SplitView, _: SEL) -> ^NS.String {
+        autosaveName :: proc "c" (self: ^NS.SplitView, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -192,7 +192,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autosaveName"), auto_cast autosaveName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAutosaveName != nil {
-        setAutosaveName :: proc "c" (self: ^AK.SplitView, _: SEL, autosaveName: ^NS.String) {
+        setAutosaveName :: proc "c" (self: ^NS.SplitView, _: SEL, autosaveName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutosaveName:"), auto_cast setAutosaveName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.SplitView, _: SEL) -> ^AK.SplitViewDelegate {
+        delegate :: proc "c" (self: ^NS.SplitView, _: SEL) -> ^NS.SplitViewDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -212,7 +212,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.SplitView, _: SEL, delegate: ^AK.SplitViewDelegate) {
+        setDelegate :: proc "c" (self: ^NS.SplitView, _: SEL, delegate: ^NS.SplitViewDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -222,7 +222,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.dividerColor != nil {
-        dividerColor :: proc "c" (self: ^AK.SplitView, _: SEL) -> ^AK.Color {
+        dividerColor :: proc "c" (self: ^NS.SplitView, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -232,7 +232,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dividerColor"), auto_cast dividerColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.dividerThickness != nil {
-        dividerThickness :: proc "c" (self: ^AK.SplitView, _: SEL) -> CG.Float {
+        dividerThickness :: proc "c" (self: ^NS.SplitView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -242,7 +242,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dividerThickness"), auto_cast dividerThickness, "d@:") do panic("Failed to register objC method.")
     }
     if vt.addArrangedSubview != nil {
-        addArrangedSubview :: proc "c" (self: ^AK.SplitView, _: SEL, view: ^AK.View) {
+        addArrangedSubview :: proc "c" (self: ^NS.SplitView, _: SEL, view: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -252,7 +252,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addArrangedSubview:"), auto_cast addArrangedSubview, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.insertArrangedSubview != nil {
-        insertArrangedSubview :: proc "c" (self: ^AK.SplitView, _: SEL, view: ^AK.View, index: NS.Integer) {
+        insertArrangedSubview :: proc "c" (self: ^NS.SplitView, _: SEL, view: ^NS.View, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -262,7 +262,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertArrangedSubview:atIndex:"), auto_cast insertArrangedSubview, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.removeArrangedSubview != nil {
-        removeArrangedSubview :: proc "c" (self: ^AK.SplitView, _: SEL, view: ^AK.View) {
+        removeArrangedSubview :: proc "c" (self: ^NS.SplitView, _: SEL, view: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -272,7 +272,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeArrangedSubview:"), auto_cast removeArrangedSubview, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.arrangesAllSubviews != nil {
-        arrangesAllSubviews :: proc "c" (self: ^AK.SplitView, _: SEL) -> bool {
+        arrangesAllSubviews :: proc "c" (self: ^NS.SplitView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -282,7 +282,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("arrangesAllSubviews"), auto_cast arrangesAllSubviews, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setArrangesAllSubviews != nil {
-        setArrangesAllSubviews :: proc "c" (self: ^AK.SplitView, _: SEL, arrangesAllSubviews: bool) {
+        setArrangesAllSubviews :: proc "c" (self: ^NS.SplitView, _: SEL, arrangesAllSubviews: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -292,7 +292,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setArrangesAllSubviews:"), auto_cast setArrangesAllSubviews, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.arrangedSubviews != nil {
-        arrangedSubviews :: proc "c" (self: ^AK.SplitView, _: SEL) -> ^NS.Array {
+        arrangedSubviews :: proc "c" (self: ^NS.SplitView, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -302,7 +302,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("arrangedSubviews"), auto_cast arrangedSubviews, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setIsPaneSplitter != nil {
-        setIsPaneSplitter :: proc "c" (self: ^AK.SplitView, _: SEL, flag: bool) {
+        setIsPaneSplitter :: proc "c" (self: ^NS.SplitView, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -312,7 +312,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIsPaneSplitter:"), auto_cast setIsPaneSplitter, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isPaneSplitter != nil {
-        isPaneSplitter :: proc "c" (self: ^AK.SplitView, _: SEL) -> bool {
+        isPaneSplitter :: proc "c" (self: ^NS.SplitView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

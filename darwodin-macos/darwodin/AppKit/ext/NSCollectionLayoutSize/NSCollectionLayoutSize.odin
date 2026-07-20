@@ -20,17 +20,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    sizeWithWidthDimension: proc(width: ^AK.CollectionLayoutDimension, height: ^AK.CollectionLayoutDimension) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutSize) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutSize,
-    widthDimension: proc(self: ^AK.CollectionLayoutSize) -> ^AK.CollectionLayoutDimension,
-    heightDimension: proc(self: ^AK.CollectionLayoutSize) -> ^AK.CollectionLayoutDimension,
+    sizeWithWidthDimension: proc(width: ^NS.CollectionLayoutDimension, height: ^NS.CollectionLayoutDimension) -> instancetype,
+    init: proc(self: ^NS.CollectionLayoutSize) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutSize,
+    widthDimension: proc(self: ^NS.CollectionLayoutSize) -> ^NS.CollectionLayoutDimension,
+    heightDimension: proc(self: ^NS.CollectionLayoutSize) -> ^NS.CollectionLayoutDimension,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.sizeWithWidthDimension != nil {
-        sizeWithWidthDimension :: proc "c" (self: Class, _: SEL, width: ^AK.CollectionLayoutDimension, height: ^AK.CollectionLayoutDimension) -> instancetype {
+        sizeWithWidthDimension :: proc "c" (self: Class, _: SEL, width: ^NS.CollectionLayoutDimension, height: ^NS.CollectionLayoutDimension) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sizeWithWidthDimension:heightDimension:"), auto_cast sizeWithWidthDimension, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutSize, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutSize, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutSize {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutSize {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.widthDimension != nil {
-        widthDimension :: proc "c" (self: ^AK.CollectionLayoutSize, _: SEL) -> ^AK.CollectionLayoutDimension {
+        widthDimension :: proc "c" (self: ^NS.CollectionLayoutSize, _: SEL) -> ^NS.CollectionLayoutDimension {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("widthDimension"), auto_cast widthDimension, "@@:") do panic("Failed to register objC method.")
     }
     if vt.heightDimension != nil {
-        heightDimension :: proc "c" (self: ^AK.CollectionLayoutSize, _: SEL) -> ^AK.CollectionLayoutDimension {
+        heightDimension :: proc "c" (self: ^NS.CollectionLayoutSize, _: SEL) -> ^NS.CollectionLayoutDimension {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

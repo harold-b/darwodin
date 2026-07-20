@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricMediaRendition
-///
 @(objc_class="AVMetricMediaRendition", objc_superclass=NS.Object)
 MetricMediaRendition :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricMediaRendition, objc_selector="init", objc_name="init")
     MetricMediaRendition_init :: proc(self: ^MetricMediaRendition) -> instancetype ---
@@ -36,3 +30,6 @@ foreign lib {
     @(objc_type=MetricMediaRendition, objc_selector="URL", objc_name="URL")
     MetricMediaRendition_URL :: proc(self: ^MetricMediaRendition) -> ^NS.URL ---
 }
+
+
+

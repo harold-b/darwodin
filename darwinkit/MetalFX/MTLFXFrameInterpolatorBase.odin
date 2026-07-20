@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MTLFXFrameInterpolatorBase
-///
 @(objc_class="MTLFXFrameInterpolatorBase")
 FrameInterpolatorBase :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FrameInterpolatorBase, objc_selector="colorTextureUsage", objc_name="colorTextureUsage")
     FrameInterpolatorBase_colorTextureUsage :: proc(self: ^FrameInterpolatorBase) -> MTL.TextureUsage ---
@@ -178,3 +172,6 @@ foreign lib {
     @(objc_type=FrameInterpolatorBase, objc_selector="setDepthReversed:", objc_name="setDepthReversed")
     FrameInterpolatorBase_setDepthReversed :: proc(self: ^FrameInterpolatorBase, depthReversed: bool) ---
 }
+
+
+

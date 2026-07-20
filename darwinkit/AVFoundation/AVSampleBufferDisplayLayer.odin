@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSampleBufferDisplayLayer
-///
 @(objc_class="AVSampleBufferDisplayLayer", objc_superclass=CA.Layer)
 SampleBufferDisplayLayer :: struct { using _: CA.Layer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleBufferDisplayLayer, objc_selector="controlTimebase", objc_name="controlTimebase")
     SampleBufferDisplayLayer_controlTimebase :: proc(self: ^SampleBufferDisplayLayer) -> CM.TimebaseRef ---
@@ -94,3 +88,6 @@ foreign lib {
     @(objc_type=SampleBufferDisplayLayer, objc_selector="sampleBufferRenderer", objc_name="sampleBufferRenderer")
     SampleBufferDisplayLayer_sampleBufferRenderer :: proc(self: ^SampleBufferDisplayLayer) -> ^SampleBufferVideoRenderer ---
 }
+
+
+

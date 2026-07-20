@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    new: proc() -> ^AK.SymbolContentTransition,
-    init: proc(self: ^AK.SymbolContentTransition) -> instancetype,
+    new: proc() -> ^NS.SymbolContentTransition,
+    init: proc(self: ^NS.SymbolContentTransition) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolContentTransition {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.SymbolContentTransition {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.SymbolContentTransition, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.SymbolContentTransition, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

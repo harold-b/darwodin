@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitComponent
-///
 @(objc_class="AVAudioUnitComponent", objc_superclass=NS.Object)
 AudioUnitComponent :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitComponent, objc_selector="supportsNumberInputChannels:outputChannels:", objc_name="supportsNumberInputChannels")
     AudioUnitComponent_supportsNumberInputChannels :: proc(self: ^AudioUnitComponent, numInputChannels: NS.Integer, numOutputChannels: NS.Integer) -> bool ---
@@ -76,14 +70,13 @@ foreign lib {
     @(objc_type=AudioUnitComponent, objc_selector="iconURL", objc_name="iconURL")
     AudioUnitComponent_iconURL :: proc(self: ^AudioUnitComponent) -> ^NS.URL ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=AudioUnitComponent, objc_selector="icon", objc_name="icon")
         AudioUnitComponent_icon :: proc(self: ^AudioUnitComponent) -> ^NSImage ---
-    } // End when
-    when ODIN_PLATFORM_SUBTARGET_IOS {
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=AudioUnitComponent, objc_selector="icon", objc_name="icon")
         AudioUnitComponent_icon :: proc(self: ^AudioUnitComponent) -> ^UIImage ---
-    } // End else
+    }
 
     @(objc_type=AudioUnitComponent, objc_selector="passesAUVal", objc_name="passesAUVal")
     AudioUnitComponent_passesAUVal :: proc(self: ^AudioUnitComponent) -> bool ---
@@ -94,3 +87,6 @@ foreign lib {
     @(objc_type=AudioUnitComponent, objc_selector="configurationDictionary", objc_name="configurationDictionary")
     AudioUnitComponent_configurationDictionary :: proc(self: ^AudioUnitComponent) -> ^NS.Dictionary ---
 }
+
+
+

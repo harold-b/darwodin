@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    validateMenuItem: proc(self: ^AK.MenuItemValidation, menuItem: ^AK.MenuItem) -> bool,
+    validateMenuItem: proc(self: ^NS.MenuItemValidation, menuItem: ^NS.MenuItem) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.validateMenuItem != nil {
-        validateMenuItem :: proc "c" (self: ^AK.MenuItemValidation, _: SEL, menuItem: ^AK.MenuItem) -> bool {
+        validateMenuItem :: proc "c" (self: ^NS.MenuItemValidation, _: SEL, menuItem: ^NS.MenuItem) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

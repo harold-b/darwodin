@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    safeAreaLayoutRegionWithCornerAdaptation: proc(adaptivityAxis: AK.ViewLayoutRegionAdaptivityAxis) -> ^AK.ViewLayoutRegion,
-    marginsLayoutRegionWithCornerAdaptation: proc(adaptivityAxis: AK.ViewLayoutRegionAdaptivityAxis) -> ^AK.ViewLayoutRegion,
-    new: proc() -> ^AK.ViewLayoutRegion,
-    init: proc(self: ^AK.ViewLayoutRegion) -> instancetype,
+    safeAreaLayoutRegionWithCornerAdaptation: proc(adaptivityAxis: NS.ViewLayoutRegionAdaptivityAxis) -> ^NS.ViewLayoutRegion,
+    marginsLayoutRegionWithCornerAdaptation: proc(adaptivityAxis: NS.ViewLayoutRegionAdaptivityAxis) -> ^NS.ViewLayoutRegion,
+    new: proc() -> ^NS.ViewLayoutRegion,
+    init: proc(self: ^NS.ViewLayoutRegion) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.safeAreaLayoutRegionWithCornerAdaptation != nil {
-        safeAreaLayoutRegionWithCornerAdaptation :: proc "c" (self: Class, _: SEL, adaptivityAxis: AK.ViewLayoutRegionAdaptivityAxis) -> ^AK.ViewLayoutRegion {
+        safeAreaLayoutRegionWithCornerAdaptation :: proc "c" (self: Class, _: SEL, adaptivityAxis: NS.ViewLayoutRegionAdaptivityAxis) -> ^NS.ViewLayoutRegion {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("safeAreaLayoutRegionWithCornerAdaptation:"), auto_cast safeAreaLayoutRegionWithCornerAdaptation, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.marginsLayoutRegionWithCornerAdaptation != nil {
-        marginsLayoutRegionWithCornerAdaptation :: proc "c" (self: Class, _: SEL, adaptivityAxis: AK.ViewLayoutRegionAdaptivityAxis) -> ^AK.ViewLayoutRegion {
+        marginsLayoutRegionWithCornerAdaptation :: proc "c" (self: Class, _: SEL, adaptivityAxis: NS.ViewLayoutRegionAdaptivityAxis) -> ^NS.ViewLayoutRegion {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("marginsLayoutRegionWithCornerAdaptation:"), auto_cast marginsLayoutRegionWithCornerAdaptation, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.ViewLayoutRegion {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.ViewLayoutRegion {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.ViewLayoutRegion, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.ViewLayoutRegion, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

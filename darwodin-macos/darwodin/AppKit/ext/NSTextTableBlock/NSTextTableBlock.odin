@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTextBlock"
 
 VTable :: struct {
     super: NSTextBlock.VTable,
-    initWithTable: proc(self: ^AK.TextTableBlock, table: ^AK.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype,
-    table: proc(self: ^AK.TextTableBlock) -> ^AK.TextTable,
-    startingRow: proc(self: ^AK.TextTableBlock) -> NS.Integer,
-    rowSpan: proc(self: ^AK.TextTableBlock) -> NS.Integer,
-    startingColumn: proc(self: ^AK.TextTableBlock) -> NS.Integer,
-    columnSpan: proc(self: ^AK.TextTableBlock) -> NS.Integer,
+    initWithTable: proc(self: ^NS.TextTableBlock, table: ^NS.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype,
+    table: proc(self: ^NS.TextTableBlock) -> ^NS.TextTable,
+    startingRow: proc(self: ^NS.TextTableBlock) -> NS.Integer,
+    rowSpan: proc(self: ^NS.TextTableBlock) -> NS.Integer,
+    startingColumn: proc(self: ^NS.TextTableBlock) -> NS.Integer,
+    columnSpan: proc(self: ^NS.TextTableBlock) -> NS.Integer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextBlock.extend(cls, &vt.super)
 
     if vt.initWithTable != nil {
-        initWithTable :: proc "c" (self: ^AK.TextTableBlock, _: SEL, table: ^AK.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype {
+        initWithTable :: proc "c" (self: ^NS.TextTableBlock, _: SEL, table: ^NS.TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTable:startingRow:rowSpan:startingColumn:columnSpan:"), auto_cast initWithTable, "@@:@llll") do panic("Failed to register objC method.")
     }
     if vt.table != nil {
-        table :: proc "c" (self: ^AK.TextTableBlock, _: SEL) -> ^AK.TextTable {
+        table :: proc "c" (self: ^NS.TextTableBlock, _: SEL) -> ^NS.TextTable {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("table"), auto_cast table, "@@:") do panic("Failed to register objC method.")
     }
     if vt.startingRow != nil {
-        startingRow :: proc "c" (self: ^AK.TextTableBlock, _: SEL) -> NS.Integer {
+        startingRow :: proc "c" (self: ^NS.TextTableBlock, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("startingRow"), auto_cast startingRow, "l@:") do panic("Failed to register objC method.")
     }
     if vt.rowSpan != nil {
-        rowSpan :: proc "c" (self: ^AK.TextTableBlock, _: SEL) -> NS.Integer {
+        rowSpan :: proc "c" (self: ^NS.TextTableBlock, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowSpan"), auto_cast rowSpan, "l@:") do panic("Failed to register objC method.")
     }
     if vt.startingColumn != nil {
-        startingColumn :: proc "c" (self: ^AK.TextTableBlock, _: SEL) -> NS.Integer {
+        startingColumn :: proc "c" (self: ^NS.TextTableBlock, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("startingColumn"), auto_cast startingColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.columnSpan != nil {
-        columnSpan :: proc "c" (self: ^AK.TextTableBlock, _: SEL) -> NS.Integer {
+        columnSpan :: proc "c" (self: ^NS.TextTableBlock, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

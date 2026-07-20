@@ -1,0 +1,41 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UIPointerHoverEffect
+///
+@(objc_class="UIPointerHoverEffect", objc_superclass=PointerEffect)
+PointerHoverEffect :: struct { using _: PointerEffect, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PointerHoverEffect, objc_selector="preferredTintMode", objc_name="preferredTintMode")
+    PointerHoverEffect_preferredTintMode :: proc(self: ^PointerHoverEffect) -> PointerEffectTintMode ---
+
+    @(objc_type=PointerHoverEffect, objc_selector="setPreferredTintMode:", objc_name="setPreferredTintMode")
+    PointerHoverEffect_setPreferredTintMode :: proc(self: ^PointerHoverEffect, preferredTintMode: PointerEffectTintMode) ---
+
+    @(objc_type=PointerHoverEffect, objc_selector="prefersShadow", objc_name="prefersShadow")
+    PointerHoverEffect_prefersShadow :: proc(self: ^PointerHoverEffect) -> bool ---
+
+    @(objc_type=PointerHoverEffect, objc_selector="setPrefersShadow:", objc_name="setPrefersShadow")
+    PointerHoverEffect_setPrefersShadow :: proc(self: ^PointerHoverEffect, prefersShadow: bool) ---
+
+    @(objc_type=PointerHoverEffect, objc_selector="prefersScaledContent", objc_name="prefersScaledContent")
+    PointerHoverEffect_prefersScaledContent :: proc(self: ^PointerHoverEffect) -> bool ---
+
+    @(objc_type=PointerHoverEffect, objc_selector="setPrefersScaledContent:", objc_name="setPrefersScaledContent")
+    PointerHoverEffect_setPrefersScaledContent :: proc(self: ^PointerHoverEffect, prefersScaledContent: bool) ---
+}

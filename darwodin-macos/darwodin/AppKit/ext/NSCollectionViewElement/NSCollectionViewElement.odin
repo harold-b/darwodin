@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    prepareForReuse: proc(self: ^AK.CollectionViewElement),
-    applyLayoutAttributes: proc(self: ^AK.CollectionViewElement, layoutAttributes: ^AK.CollectionViewLayoutAttributes),
-    willTransitionFromLayout: proc(self: ^AK.CollectionViewElement, oldLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout),
-    didTransitionFromLayout: proc(self: ^AK.CollectionViewElement, oldLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout),
-    preferredLayoutAttributesFittingAttributes: proc(self: ^AK.CollectionViewElement, layoutAttributes: ^AK.CollectionViewLayoutAttributes) -> ^AK.CollectionViewLayoutAttributes,
+    prepareForReuse: proc(self: ^NS.CollectionViewElement),
+    applyLayoutAttributes: proc(self: ^NS.CollectionViewElement, layoutAttributes: ^NS.CollectionViewLayoutAttributes),
+    willTransitionFromLayout: proc(self: ^NS.CollectionViewElement, oldLayout: ^NS.CollectionViewLayout, newLayout: ^NS.CollectionViewLayout),
+    didTransitionFromLayout: proc(self: ^NS.CollectionViewElement, oldLayout: ^NS.CollectionViewLayout, newLayout: ^NS.CollectionViewLayout),
+    preferredLayoutAttributesFittingAttributes: proc(self: ^NS.CollectionViewElement, layoutAttributes: ^NS.CollectionViewLayoutAttributes) -> ^NS.CollectionViewLayoutAttributes,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -35,7 +35,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.prepareForReuse != nil {
-        prepareForReuse :: proc "c" (self: ^AK.CollectionViewElement, _: SEL) {
+        prepareForReuse :: proc "c" (self: ^NS.CollectionViewElement, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("prepareForReuse"), auto_cast prepareForReuse, "v@:") do panic("Failed to register objC method.")
     }
     if vt.applyLayoutAttributes != nil {
-        applyLayoutAttributes :: proc "c" (self: ^AK.CollectionViewElement, _: SEL, layoutAttributes: ^AK.CollectionViewLayoutAttributes) {
+        applyLayoutAttributes :: proc "c" (self: ^NS.CollectionViewElement, _: SEL, layoutAttributes: ^NS.CollectionViewLayoutAttributes) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("applyLayoutAttributes:"), auto_cast applyLayoutAttributes, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.willTransitionFromLayout != nil {
-        willTransitionFromLayout :: proc "c" (self: ^AK.CollectionViewElement, _: SEL, oldLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout) {
+        willTransitionFromLayout :: proc "c" (self: ^NS.CollectionViewElement, _: SEL, oldLayout: ^NS.CollectionViewLayout, newLayout: ^NS.CollectionViewLayout) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("willTransitionFromLayout:toLayout:"), auto_cast willTransitionFromLayout, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.didTransitionFromLayout != nil {
-        didTransitionFromLayout :: proc "c" (self: ^AK.CollectionViewElement, _: SEL, oldLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout) {
+        didTransitionFromLayout :: proc "c" (self: ^NS.CollectionViewElement, _: SEL, oldLayout: ^NS.CollectionViewLayout, newLayout: ^NS.CollectionViewLayout) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didTransitionFromLayout:toLayout:"), auto_cast didTransitionFromLayout, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.preferredLayoutAttributesFittingAttributes != nil {
-        preferredLayoutAttributesFittingAttributes :: proc "c" (self: ^AK.CollectionViewElement, _: SEL, layoutAttributes: ^AK.CollectionViewLayoutAttributes) -> ^AK.CollectionViewLayoutAttributes {
+        preferredLayoutAttributesFittingAttributes :: proc "c" (self: ^NS.CollectionViewElement, _: SEL, layoutAttributes: ^NS.CollectionViewLayoutAttributes) -> ^NS.CollectionViewLayoutAttributes {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

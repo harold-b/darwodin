@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSCollectionViewLayout"
 
 VTable :: struct {
     super: NSCollectionViewLayout.VTable,
-    initWithCurrentLayout: proc(self: ^AK.CollectionViewTransitionLayout, currentLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout) -> instancetype,
-    updateValue: proc(self: ^AK.CollectionViewTransitionLayout, value: CG.Float, key: ^NS.String),
-    valueForAnimatedKey: proc(self: ^AK.CollectionViewTransitionLayout, key: ^NS.String) -> CG.Float,
-    transitionProgress: proc(self: ^AK.CollectionViewTransitionLayout) -> CG.Float,
-    setTransitionProgress: proc(self: ^AK.CollectionViewTransitionLayout, transitionProgress: CG.Float),
-    currentLayout: proc(self: ^AK.CollectionViewTransitionLayout) -> ^AK.CollectionViewLayout,
-    nextLayout: proc(self: ^AK.CollectionViewTransitionLayout) -> ^AK.CollectionViewLayout,
+    initWithCurrentLayout: proc(self: ^NS.CollectionViewTransitionLayout, currentLayout: ^NS.CollectionViewLayout, newLayout: ^NS.CollectionViewLayout) -> instancetype,
+    updateValue: proc(self: ^NS.CollectionViewTransitionLayout, value: CG.Float, key: ^NS.String),
+    valueForAnimatedKey: proc(self: ^NS.CollectionViewTransitionLayout, key: ^NS.String) -> CG.Float,
+    transitionProgress: proc(self: ^NS.CollectionViewTransitionLayout) -> CG.Float,
+    setTransitionProgress: proc(self: ^NS.CollectionViewTransitionLayout, transitionProgress: CG.Float),
+    currentLayout: proc(self: ^NS.CollectionViewTransitionLayout) -> ^NS.CollectionViewLayout,
+    nextLayout: proc(self: ^NS.CollectionViewTransitionLayout) -> ^NS.CollectionViewLayout,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionViewLayout.extend(cls, &vt.super)
 
     if vt.initWithCurrentLayout != nil {
-        initWithCurrentLayout :: proc "c" (self: ^AK.CollectionViewTransitionLayout, _: SEL, currentLayout: ^AK.CollectionViewLayout, newLayout: ^AK.CollectionViewLayout) -> instancetype {
+        initWithCurrentLayout :: proc "c" (self: ^NS.CollectionViewTransitionLayout, _: SEL, currentLayout: ^NS.CollectionViewLayout, newLayout: ^NS.CollectionViewLayout) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCurrentLayout:nextLayout:"), auto_cast initWithCurrentLayout, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.updateValue != nil {
-        updateValue :: proc "c" (self: ^AK.CollectionViewTransitionLayout, _: SEL, value: CG.Float, key: ^NS.String) {
+        updateValue :: proc "c" (self: ^NS.CollectionViewTransitionLayout, _: SEL, value: CG.Float, key: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateValue:forAnimatedKey:"), auto_cast updateValue, "v@:d@") do panic("Failed to register objC method.")
     }
     if vt.valueForAnimatedKey != nil {
-        valueForAnimatedKey :: proc "c" (self: ^AK.CollectionViewTransitionLayout, _: SEL, key: ^NS.String) -> CG.Float {
+        valueForAnimatedKey :: proc "c" (self: ^NS.CollectionViewTransitionLayout, _: SEL, key: ^NS.String) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("valueForAnimatedKey:"), auto_cast valueForAnimatedKey, "d@:@") do panic("Failed to register objC method.")
     }
     if vt.transitionProgress != nil {
-        transitionProgress :: proc "c" (self: ^AK.CollectionViewTransitionLayout, _: SEL) -> CG.Float {
+        transitionProgress :: proc "c" (self: ^NS.CollectionViewTransitionLayout, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("transitionProgress"), auto_cast transitionProgress, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setTransitionProgress != nil {
-        setTransitionProgress :: proc "c" (self: ^AK.CollectionViewTransitionLayout, _: SEL, transitionProgress: CG.Float) {
+        setTransitionProgress :: proc "c" (self: ^NS.CollectionViewTransitionLayout, _: SEL, transitionProgress: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTransitionProgress:"), auto_cast setTransitionProgress, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.currentLayout != nil {
-        currentLayout :: proc "c" (self: ^AK.CollectionViewTransitionLayout, _: SEL) -> ^AK.CollectionViewLayout {
+        currentLayout :: proc "c" (self: ^NS.CollectionViewTransitionLayout, _: SEL) -> ^NS.CollectionViewLayout {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentLayout"), auto_cast currentLayout, "@@:") do panic("Failed to register objC method.")
     }
     if vt.nextLayout != nil {
-        nextLayout :: proc "c" (self: ^AK.CollectionViewTransitionLayout, _: SEL) -> ^AK.CollectionViewLayout {
+        nextLayout :: proc "c" (self: ^NS.CollectionViewTransitionLayout, _: SEL) -> ^NS.CollectionViewLayout {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

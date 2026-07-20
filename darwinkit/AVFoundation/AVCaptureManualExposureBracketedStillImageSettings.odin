@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureManualExposureBracketedStillImageSettings
-///
 @(objc_class="AVCaptureManualExposureBracketedStillImageSettings", objc_superclass=CaptureBracketedStillImageSettings)
 CaptureManualExposureBracketedStillImageSettings :: struct { using _: CaptureBracketedStillImageSettings, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureManualExposureBracketedStillImageSettings, objc_selector="manualExposureSettingsWithExposureDuration:ISO:", objc_name="manualExposureSettingsWithExposureDuration", objc_is_class_method=true)
     CaptureManualExposureBracketedStillImageSettings_manualExposureSettingsWithExposureDuration :: proc(duration: CM.Time, ISO: cffi.float) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=CaptureManualExposureBracketedStillImageSettings, objc_selector="ISO", objc_name="ISO")
     CaptureManualExposureBracketedStillImageSettings_ISO :: proc(self: ^CaptureManualExposureBracketedStillImageSettings) -> cffi.float ---
 }
+
+
+

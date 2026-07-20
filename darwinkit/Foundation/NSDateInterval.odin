@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSDateInterval
-///
 @(objc_class="NSDateInterval", objc_superclass=Object)
 DateInterval :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DateInterval, objc_selector="init", objc_name="init")
     DateInterval_init :: proc(self: ^DateInterval) -> instancetype ---
@@ -58,6 +52,8 @@ foreign lib {
     @(objc_type=DateInterval, objc_selector="duration", objc_name="duration")
     DateInterval_duration :: proc(self: ^DateInterval) -> TimeInterval ---
 }
+
+
 
 @(objc_type=DateInterval, objc_name="initWithStartDate")
 DateInterval_initWithStartDate :: proc {

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVURLAsset
-///
 @(objc_class="AVURLAsset", objc_superclass=Asset)
 URLAsset :: struct { using _: Asset, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLAsset, objc_selector="init", objc_name="init")
     URLAsset_init :: proc(self: ^URLAsset) -> instancetype ---
@@ -62,7 +56,7 @@ foreign lib {
     URLAsset_compatibleTrackForCompositionTrack :: proc(self: ^URLAsset, compositionTrack: ^CompositionTrack) -> ^AssetTrack ---
 
     @(objc_type=URLAsset, objc_selector="findCompatibleTrackForCompositionTrack:completionHandler:", objc_name="findCompatibleTrackForCompositionTrack")
-    URLAsset_findCompatibleTrackForCompositionTrack :: proc(self: ^URLAsset, compositionTrack: ^CompositionTrack, completionHandler: ^Objc_Block(proc "c" (_: ^AssetTrack, _1: ^NS.Error))) ---
+    URLAsset_findCompatibleTrackForCompositionTrack :: proc(self: ^URLAsset, compositionTrack: ^CompositionTrack, completionHandler: ^Objc_Block(proc "c" ( _0: ^AssetTrack, _1: ^NS.Error ))) ---
 
     @(objc_type=URLAsset, objc_selector="variants", objc_name="variants")
     URLAsset_variants :: proc(self: ^URLAsset) -> ^NS.Array ---
@@ -76,3 +70,6 @@ foreign lib {
     @(objc_type=URLAsset, objc_selector="mayRequireContentKeysForMediaDataProcessing", objc_name="mayRequireContentKeysForMediaDataProcessing")
     URLAsset_mayRequireContentKeysForMediaDataProcessing :: proc(self: ^URLAsset) -> bool ---
 }
+
+
+

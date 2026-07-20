@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVFrameRateRange
-///
 @(objc_class="AVFrameRateRange", objc_superclass=NS.Object)
 FrameRateRange :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FrameRateRange, objc_selector="init", objc_name="init")
     FrameRateRange_init :: proc(self: ^FrameRateRange) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=FrameRateRange, objc_selector="minFrameDuration", objc_name="minFrameDuration")
     FrameRateRange_minFrameDuration :: proc(self: ^FrameRateRange) -> CM.Time ---
 }
+
+
+

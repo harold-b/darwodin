@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTextFieldCell"
 
 VTable :: struct {
     super: NSTextFieldCell.VTable,
-    tokenStyle: proc(self: ^AK.TokenFieldCell) -> AK.TokenStyle,
-    setTokenStyle: proc(self: ^AK.TokenFieldCell, tokenStyle: AK.TokenStyle),
-    completionDelay: proc(self: ^AK.TokenFieldCell) -> NS.TimeInterval,
-    setCompletionDelay: proc(self: ^AK.TokenFieldCell, completionDelay: NS.TimeInterval),
+    tokenStyle: proc(self: ^NS.TokenFieldCell) -> NS.TokenStyle,
+    setTokenStyle: proc(self: ^NS.TokenFieldCell, tokenStyle: NS.TokenStyle),
+    completionDelay: proc(self: ^NS.TokenFieldCell) -> NS.TimeInterval,
+    setCompletionDelay: proc(self: ^NS.TokenFieldCell, completionDelay: NS.TimeInterval),
     defaultCompletionDelay: proc() -> NS.TimeInterval,
-    tokenizingCharacterSet: proc(self: ^AK.TokenFieldCell) -> ^NS.CharacterSet,
-    setTokenizingCharacterSet: proc(self: ^AK.TokenFieldCell, tokenizingCharacterSet: ^NS.CharacterSet),
+    tokenizingCharacterSet: proc(self: ^NS.TokenFieldCell) -> ^NS.CharacterSet,
+    setTokenizingCharacterSet: proc(self: ^NS.TokenFieldCell, tokenizingCharacterSet: ^NS.CharacterSet),
     defaultTokenizingCharacterSet: proc() -> ^NS.CharacterSet,
-    delegate: proc(self: ^AK.TokenFieldCell) -> ^AK.TokenFieldCellDelegate,
-    setDelegate: proc(self: ^AK.TokenFieldCell, delegate: ^AK.TokenFieldCellDelegate),
+    delegate: proc(self: ^NS.TokenFieldCell) -> ^NS.TokenFieldCellDelegate,
+    setDelegate: proc(self: ^NS.TokenFieldCell, delegate: ^NS.TokenFieldCellDelegate),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextFieldCell.extend(cls, &vt.super)
 
     if vt.tokenStyle != nil {
-        tokenStyle :: proc "c" (self: ^AK.TokenFieldCell, _: SEL) -> AK.TokenStyle {
+        tokenStyle :: proc "c" (self: ^NS.TokenFieldCell, _: SEL) -> NS.TokenStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tokenStyle"), auto_cast tokenStyle, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setTokenStyle != nil {
-        setTokenStyle :: proc "c" (self: ^AK.TokenFieldCell, _: SEL, tokenStyle: AK.TokenStyle) {
+        setTokenStyle :: proc "c" (self: ^NS.TokenFieldCell, _: SEL, tokenStyle: NS.TokenStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTokenStyle:"), auto_cast setTokenStyle, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.completionDelay != nil {
-        completionDelay :: proc "c" (self: ^AK.TokenFieldCell, _: SEL) -> NS.TimeInterval {
+        completionDelay :: proc "c" (self: ^NS.TokenFieldCell, _: SEL) -> NS.TimeInterval {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("completionDelay"), auto_cast completionDelay, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setCompletionDelay != nil {
-        setCompletionDelay :: proc "c" (self: ^AK.TokenFieldCell, _: SEL, completionDelay: NS.TimeInterval) {
+        setCompletionDelay :: proc "c" (self: ^NS.TokenFieldCell, _: SEL, completionDelay: NS.TimeInterval) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultCompletionDelay"), auto_cast defaultCompletionDelay, "d#:") do panic("Failed to register objC method.")
     }
     if vt.tokenizingCharacterSet != nil {
-        tokenizingCharacterSet :: proc "c" (self: ^AK.TokenFieldCell, _: SEL) -> ^NS.CharacterSet {
+        tokenizingCharacterSet :: proc "c" (self: ^NS.TokenFieldCell, _: SEL) -> ^NS.CharacterSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tokenizingCharacterSet"), auto_cast tokenizingCharacterSet, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTokenizingCharacterSet != nil {
-        setTokenizingCharacterSet :: proc "c" (self: ^AK.TokenFieldCell, _: SEL, tokenizingCharacterSet: ^NS.CharacterSet) {
+        setTokenizingCharacterSet :: proc "c" (self: ^NS.TokenFieldCell, _: SEL, tokenizingCharacterSet: ^NS.CharacterSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultTokenizingCharacterSet"), auto_cast defaultTokenizingCharacterSet, "@#:") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.TokenFieldCell, _: SEL) -> ^AK.TokenFieldCellDelegate {
+        delegate :: proc "c" (self: ^NS.TokenFieldCell, _: SEL) -> ^NS.TokenFieldCellDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.TokenFieldCell, _: SEL, delegate: ^AK.TokenFieldCellDelegate) {
+        setDelegate :: proc "c" (self: ^NS.TokenFieldCell, _: SEL, delegate: ^NS.TokenFieldCellDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

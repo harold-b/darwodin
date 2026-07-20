@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSIndexPath
-///
 @(objc_class="NSIndexPath", objc_superclass=Object)
 IndexPath :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndexPath, objc_selector="indexPathWithIndex:", objc_name="indexPathWithIndex", objc_is_class_method=true)
     IndexPath_indexPathWithIndex :: proc(index: UInteger) -> instancetype ---
@@ -55,6 +49,8 @@ foreign lib {
     @(objc_type=IndexPath, objc_selector="getIndexes:", objc_name="getIndexes_")
     IndexPath_getIndexes_ :: proc(self: ^IndexPath, indexes: ^UInteger) ---
 }
+
+
 
 @(objc_type=IndexPath, objc_name="getIndexes")
 IndexPath_getIndexes :: proc {

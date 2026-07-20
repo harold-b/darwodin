@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLMotionKeyframeData
-///
 @(objc_class="MTLMotionKeyframeData", objc_superclass=NS.Object)
 MotionKeyframeData :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MotionKeyframeData, objc_selector="data", objc_name="data", objc_is_class_method=true)
     MotionKeyframeData_data :: proc() -> instancetype ---
@@ -36,3 +30,6 @@ foreign lib {
     @(objc_type=MotionKeyframeData, objc_selector="setOffset:", objc_name="setOffset")
     MotionKeyframeData_setOffset :: proc(self: ^MotionKeyframeData, offset: NS.UInteger) ---
 }
+
+
+

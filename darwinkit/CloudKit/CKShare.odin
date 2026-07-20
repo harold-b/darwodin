@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKShare
-///
 @(objc_class="CKShare", objc_superclass=Record)
 Share :: struct { using _: Record, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Share, objc_selector="initWithRootRecord:", objc_name="initWithRootRecord_")
     Share_initWithRootRecord_ :: proc(self: ^Share, rootRecord: ^Record) -> instancetype ---
@@ -95,6 +89,8 @@ foreign lib {
     @(objc_type=Share, objc_selector="setAllowsAccessRequests:", objc_name="setAllowsAccessRequests")
     Share_setAllowsAccessRequests :: proc(self: ^Share, allowsAccessRequests: bool) ---
 }
+
+
 
 @(objc_type=Share, objc_name="initWithRootRecord")
 Share_initWithRootRecord :: proc {

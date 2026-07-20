@@ -14,8 +14,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:CoreText.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:CoreText.framework",
+    }
+}
+
+
+// +user-text-begin
+// -user-text-end
 
 
 kFontClassMaskShift        :: 28
@@ -555,19 +568,19 @@ foreign lib {
     FontManagerUnregisterFontsForURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, errors: ^CF.ArrayRef) -> cffi.bool ---
 
     @(link_name="CTFontManagerRegisterFontURLs")
-    FontManagerRegisterFontURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerRegisterFontURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerUnregisterFontURLs")
-    FontManagerUnregisterFontURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerUnregisterFontURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerRegisterFontDescriptors")
-    FontManagerRegisterFontDescriptors :: proc(fontDescriptors: CF.ArrayRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerRegisterFontDescriptors :: proc(fontDescriptors: CF.ArrayRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerUnregisterFontDescriptors")
-    FontManagerUnregisterFontDescriptors :: proc(fontDescriptors: CF.ArrayRef, scope: FontManagerScope, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerUnregisterFontDescriptors :: proc(fontDescriptors: CF.ArrayRef, scope: FontManagerScope, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerRegisterFontsWithAssetNames")
-    FontManagerRegisterFontsWithAssetNames :: proc(fontAssetNames: CF.ArrayRef, bundle: CF.BundleRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerRegisterFontsWithAssetNames :: proc(fontAssetNames: CF.ArrayRef, bundle: CF.BundleRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerEnableFontDescriptors")
     FontManagerEnableFontDescriptors :: proc(descriptors: CF.ArrayRef, enable: cffi.bool) ---
@@ -579,13 +592,13 @@ foreign lib {
     FontManagerCopyRegisteredFontDescriptors :: proc(scope: FontManagerScope, enabled: cffi.bool) -> CF.ArrayRef ---
 
     @(link_name="CTFontManagerRequestFonts")
-    FontManagerRequestFonts :: proc(fontDescriptors: CF.ArrayRef, completionHandler: ^Objc_Block(proc "c" (unresolvedFontDescriptors: CF.ArrayRef))) ---
+    FontManagerRequestFonts :: proc(fontDescriptors: CF.ArrayRef, completionHandler: ^Objc_Block(proc "c" ( unresolvedFontDescriptors: CF.ArrayRef ))) ---
 
     @(link_name="CTFontManagerIsSupportedFont")
     FontManagerIsSupportedFont :: proc(fontURL: CF.URLRef) -> cffi.bool ---
 
     @(link_name="CTFontManagerCreateFontRequestRunLoopSource")
-    FontManagerCreateFontRequestRunLoopSource :: proc(sourceOrder: CF.Index, createMatchesCallback: ^Objc_Block(proc "c" (requestAttributes: CF.DictionaryRef, requestingProcess: libc.pid_t) -> CF.ArrayRef)) -> CF.RunLoopSourceRef ---
+    FontManagerCreateFontRequestRunLoopSource :: proc(sourceOrder: CF.Index, createMatchesCallback: ^Objc_Block(proc "c" ( requestAttributes: CF.DictionaryRef, requestingProcess: libc.pid_t ) -> CF.ArrayRef)) -> CF.RunLoopSourceRef ---
 
     @(link_name="CTFontManagerSetAutoActivationSetting")
     FontManagerSetAutoActivationSetting :: proc(bundleIdentifier: CF.StringRef, setting: FontManagerAutoActivationSetting) ---
@@ -663,7 +676,7 @@ foreign lib {
     LineGetOffsetForStringIndex :: proc(line: LineRef, charIndex: CF.Index, secondaryOffset: ^CG.Float) -> CG.Float ---
 
     @(link_name="CTLineEnumerateCaretOffsets")
-    LineEnumerateCaretOffsets :: proc(line: LineRef, block: ^Objc_Block(proc "c" (offset: cffi.double, charIndex: CF.Index, leadingEdge: cffi.bool, stop: ^cffi.bool))) ---
+    LineEnumerateCaretOffsets :: proc(line: LineRef, block: ^Objc_Block(proc "c" ( offset: cffi.double, charIndex: CF.Index, leadingEdge: cffi.bool, stop: ^cffi.bool ))) ---
 
     @(link_name="CTTypesetterGetTypeID")
     TypesetterGetTypeID :: proc() -> CF.TypeID ---
@@ -860,7 +873,7 @@ FontDescriptorRef :: distinct ^__CTFontDescriptor
 FontPriority :: distinct cffi.uint32_t
 
 /// CTFontDescriptorProgressHandler
-FontDescriptorProgressHandler :: ^Objc_Block(proc "c" (state: FontDescriptorMatchingState, progressParameter: CF.DictionaryRef) -> cffi.bool)
+FontDescriptorProgressHandler :: ^Objc_Block(proc "c" ( state: FontDescriptorMatchingState, progressParameter: CF.DictionaryRef ) -> cffi.bool)
 
 /// CTFontRef
 FontRef :: distinct ^__CTFont
@@ -878,7 +891,7 @@ FontCollectionRef :: distinct ^__CTFontCollection
 MutableFontCollectionRef :: distinct ^__CTFontCollection
 
 /// CTFontCollectionSortDescriptorsCallback
-FontCollectionSortDescriptorsCallback :: proc "c" (first: FontDescriptorRef, second: FontDescriptorRef, refCon: rawptr) -> CF.ComparisonResult
+FontCollectionSortDescriptorsCallback :: proc "c" ( first: FontDescriptorRef, second: FontDescriptorRef, refCon: rawptr ) -> CF.ComparisonResult
 
 /// CTFrameRef
 FrameRef :: distinct ^__CTFrame
@@ -908,16 +921,16 @@ RunRef :: distinct ^__CTRun
 RunDelegateRef :: distinct ^__CTRunDelegate
 
 /// CTRunDelegateDeallocateCallback
-RunDelegateDeallocateCallback :: proc "c" (refCon: rawptr)
+RunDelegateDeallocateCallback :: proc "c" ( refCon: rawptr )
 
 /// CTRunDelegateGetAscentCallback
-RunDelegateGetAscentCallback :: proc "c" (refCon: rawptr) -> CG.Float
+RunDelegateGetAscentCallback :: proc "c" ( refCon: rawptr ) -> CG.Float
 
 /// CTRunDelegateGetDescentCallback
-RunDelegateGetDescentCallback :: proc "c" (refCon: rawptr) -> CG.Float
+RunDelegateGetDescentCallback :: proc "c" ( refCon: rawptr ) -> CG.Float
 
 /// CTRunDelegateGetWidthCallback
-RunDelegateGetWidthCallback :: proc "c" (refCon: rawptr) -> CG.Float
+RunDelegateGetWidthCallback :: proc "c" ( refCon: rawptr ) -> CG.Float
 
 /// CTTextTabRef
 TextTabRef :: distinct ^__CTTextTab

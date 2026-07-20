@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSNumber
-///
 @(objc_class="NSNumber", objc_superclass=Value)
 Number :: struct { using _: Value, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Number, objc_selector="initWithCoder:", objc_name="initWithCoder")
     Number_initWithCoder :: proc(self: ^Number, coder: ^Coder) -> instancetype ---
@@ -172,3 +166,6 @@ foreign lib {
     @(objc_type=Number, objc_selector="decimalValue", objc_name="decimalValue")
     Number_decimalValue :: proc(self: ^Number) -> Decimal ---
 }
+
+
+

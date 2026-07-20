@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSJSONSerialization
-///
 @(objc_class="NSJSONSerialization", objc_superclass=Object)
 JSONSerialization :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=JSONSerialization, objc_selector="isValidJSONObject:", objc_name="isValidJSONObject", objc_is_class_method=true)
     JSONSerialization_isValidJSONObject :: proc(obj: id) -> bool ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=JSONSerialization, objc_selector="JSONObjectWithStream:options:error:", objc_name="JSONObjectWithStream", objc_is_class_method=true)
     JSONSerialization_JSONObjectWithStream :: proc(stream: ^InputStream, opt: JSONReadingOptions, error: ^^Error) -> id ---
 }
+
+
+

@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLStructMember
-///
 @(objc_class="MTLStructMember", objc_superclass=NS.Object)
 StructMember :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=StructMember, objc_selector="structType", objc_name="structType")
     StructMember_structType :: proc(self: ^StructMember) -> ^StructType ---
@@ -48,3 +42,6 @@ foreign lib {
     @(objc_type=StructMember, objc_selector="argumentIndex", objc_name="argumentIndex")
     StructMember_argumentIndex :: proc(self: ^StructMember) -> NS.UInteger ---
 }
+
+
+

@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSRuleEditor"
 
 VTable :: struct {
     super: NSRuleEditor.VTable,
-    rowTemplates: proc(self: ^AK.PredicateEditor) -> ^NS.Array,
-    setRowTemplates: proc(self: ^AK.PredicateEditor, rowTemplates: ^NS.Array),
+    rowTemplates: proc(self: ^NS.PredicateEditor) -> ^NS.Array,
+    setRowTemplates: proc(self: ^NS.PredicateEditor, rowTemplates: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSRuleEditor.extend(cls, &vt.super)
 
     if vt.rowTemplates != nil {
-        rowTemplates :: proc "c" (self: ^AK.PredicateEditor, _: SEL) -> ^NS.Array {
+        rowTemplates :: proc "c" (self: ^NS.PredicateEditor, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowTemplates"), auto_cast rowTemplates, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setRowTemplates != nil {
-        setRowTemplates :: proc "c" (self: ^AK.PredicateEditor, _: SEL, rowTemplates: ^NS.Array) {
+        setRowTemplates :: proc "c" (self: ^NS.PredicateEditor, _: SEL, rowTemplates: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

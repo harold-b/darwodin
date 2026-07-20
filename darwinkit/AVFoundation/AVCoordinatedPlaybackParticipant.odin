@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCoordinatedPlaybackParticipant
-///
 @(objc_class="AVCoordinatedPlaybackParticipant", objc_superclass=NS.Object)
 CoordinatedPlaybackParticipant :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CoordinatedPlaybackParticipant, objc_selector="suspensionReasons", objc_name="suspensionReasons")
     CoordinatedPlaybackParticipant_suspensionReasons :: proc(self: ^CoordinatedPlaybackParticipant) -> ^NS.Array ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=CoordinatedPlaybackParticipant, objc_selector="identifier", objc_name="identifier")
     CoordinatedPlaybackParticipant_identifier :: proc(self: ^CoordinatedPlaybackParticipant) -> ^NS.UUID ---
 }
+
+
+

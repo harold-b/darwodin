@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLSubmeshTopology
-///
 @(objc_class="MDLSubmeshTopology", objc_superclass=NS.Object)
 SubmeshTopology :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SubmeshTopology, objc_selector="initWithSubmesh:", objc_name="initWithSubmesh")
     SubmeshTopology_initWithSubmesh :: proc(self: ^SubmeshTopology, submesh: ^Submesh) -> instancetype ---
@@ -83,3 +77,6 @@ foreign lib {
     @(objc_type=SubmeshTopology, objc_selector="setHoleCount:", objc_name="setHoleCount")
     SubmeshTopology_setHoleCount :: proc(self: ^SubmeshTopology, holeCount: NS.UInteger) ---
 }
+
+
+

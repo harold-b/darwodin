@@ -31,14 +31,14 @@ VTable :: struct {
     invalidateLayoutForRange: proc(self: ^UI.NSTextLayoutManager, range: ^UI.NSTextRange),
     textLayoutFragmentForPosition: proc(self: ^UI.NSTextLayoutManager, position: CG.Point) -> ^UI.NSTextLayoutFragment,
     textLayoutFragmentForLocation: proc(self: ^UI.NSTextLayoutManager, location: ^UI.NSTextLocation) -> ^UI.NSTextLayoutFragment,
-    enumerateTextLayoutFragmentsFromLocation: proc(self: ^UI.NSTextLayoutManager, location: ^UI.NSTextLocation, options: UI.NSTextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" (layoutFragment: ^UI.NSTextLayoutFragment) -> bool)) -> ^UI.NSTextLocation,
-    enumerateRenderingAttributesFromLocation: proc(self: ^UI.NSTextLayoutManager, location: ^UI.NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" (textLayoutManager: ^UI.NSTextLayoutManager, attributes: ^NS.Dictionary, textRange: ^UI.NSTextRange) -> bool)),
+    enumerateTextLayoutFragmentsFromLocation: proc(self: ^UI.NSTextLayoutManager, location: ^UI.NSTextLocation, options: UI.NSTextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" ( layoutFragment: ^UI.NSTextLayoutFragment ) -> bool)) -> ^UI.NSTextLocation,
+    enumerateRenderingAttributesFromLocation: proc(self: ^UI.NSTextLayoutManager, location: ^UI.NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" ( textLayoutManager: ^UI.NSTextLayoutManager, attributes: ^NS.Dictionary, textRange: ^UI.NSTextRange ) -> bool)),
     setRenderingAttributes: proc(self: ^UI.NSTextLayoutManager, renderingAttributes: ^NS.Dictionary, textRange: ^UI.NSTextRange),
     addRenderingAttribute: proc(self: ^UI.NSTextLayoutManager, renderingAttribute: ^NS.String, value: id, textRange: ^UI.NSTextRange),
     removeRenderingAttribute: proc(self: ^UI.NSTextLayoutManager, renderingAttribute: ^NS.String, textRange: ^UI.NSTextRange),
     invalidateRenderingAttributesForTextRange: proc(self: ^UI.NSTextLayoutManager, textRange: ^UI.NSTextRange),
     renderingAttributesForLink: proc(self: ^UI.NSTextLayoutManager, link: id, location: ^UI.NSTextLocation) -> ^NS.Dictionary,
-    enumerateTextSegmentsInRange: proc(self: ^UI.NSTextLayoutManager, textRange: ^UI.NSTextRange, type: UI.NSTextLayoutManagerSegmentType, options: UI.NSTextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" (textSegmentRange: ^UI.NSTextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^UI.NSTextContainer) -> bool)),
+    enumerateTextSegmentsInRange: proc(self: ^UI.NSTextLayoutManager, textRange: ^UI.NSTextRange, type: UI.NSTextLayoutManagerSegmentType, options: UI.NSTextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" ( textSegmentRange: ^UI.NSTextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^UI.NSTextContainer ) -> bool)),
     replaceContentsInRange_withTextElements: proc(self: ^UI.NSTextLayoutManager, range: ^UI.NSTextRange, textElements: ^NS.Array),
     replaceContentsInRange_withAttributedString: proc(self: ^UI.NSTextLayoutManager, range: ^UI.NSTextRange, attributedString: ^NS.AttributedString),
     delegate: proc(self: ^UI.NSTextLayoutManager) -> ^UI.NSTextLayoutManagerDelegate,
@@ -155,7 +155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutFragmentForLocation:"), auto_cast textLayoutFragmentForLocation, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.enumerateTextLayoutFragmentsFromLocation != nil {
-        enumerateTextLayoutFragmentsFromLocation :: proc "c" (self: ^UI.NSTextLayoutManager, _: SEL, location: ^UI.NSTextLocation, options: UI.NSTextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" (layoutFragment: ^UI.NSTextLayoutFragment) -> bool)) -> ^UI.NSTextLocation {
+        enumerateTextLayoutFragmentsFromLocation :: proc "c" (self: ^UI.NSTextLayoutManager, _: SEL, location: ^UI.NSTextLocation, options: UI.NSTextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" ( layoutFragment: ^UI.NSTextLayoutFragment ) -> bool)) -> ^UI.NSTextLocation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -165,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateTextLayoutFragmentsFromLocation:options:usingBlock:"), auto_cast enumerateTextLayoutFragmentsFromLocation, "@@:@L?") do panic("Failed to register objC method.")
     }
     if vt.enumerateRenderingAttributesFromLocation != nil {
-        enumerateRenderingAttributesFromLocation :: proc "c" (self: ^UI.NSTextLayoutManager, _: SEL, location: ^UI.NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" (textLayoutManager: ^UI.NSTextLayoutManager, attributes: ^NS.Dictionary, textRange: ^UI.NSTextRange) -> bool)) {
+        enumerateRenderingAttributesFromLocation :: proc "c" (self: ^UI.NSTextLayoutManager, _: SEL, location: ^UI.NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" ( textLayoutManager: ^UI.NSTextLayoutManager, attributes: ^NS.Dictionary, textRange: ^UI.NSTextRange ) -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -225,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("renderingAttributesForLink:atLocation:"), auto_cast renderingAttributesForLink, "^void@:@@") do panic("Failed to register objC method.")
     }
     if vt.enumerateTextSegmentsInRange != nil {
-        enumerateTextSegmentsInRange :: proc "c" (self: ^UI.NSTextLayoutManager, _: SEL, textRange: ^UI.NSTextRange, type: UI.NSTextLayoutManagerSegmentType, options: UI.NSTextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" (textSegmentRange: ^UI.NSTextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^UI.NSTextContainer) -> bool)) {
+        enumerateTextSegmentsInRange :: proc "c" (self: ^UI.NSTextLayoutManager, _: SEL, textRange: ^UI.NSTextRange, type: UI.NSTextLayoutManagerSegmentType, options: UI.NSTextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" ( textSegmentRange: ^UI.NSTextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^UI.NSTextContainer ) -> bool)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

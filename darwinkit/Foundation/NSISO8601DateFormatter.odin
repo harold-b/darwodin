@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSISO8601DateFormatter
-///
 @(objc_class="NSISO8601DateFormatter", objc_superclass=Formatter)
 ISO8601DateFormatter :: struct { using _: Formatter, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ISO8601DateFormatter, objc_selector="init", objc_name="init")
     ISO8601DateFormatter_init :: proc(self: ^ISO8601DateFormatter) -> instancetype ---
@@ -45,6 +39,8 @@ foreign lib {
     @(objc_type=ISO8601DateFormatter, objc_selector="setFormatOptions:", objc_name="setFormatOptions")
     ISO8601DateFormatter_setFormatOptions :: proc(self: ^ISO8601DateFormatter, formatOptions: ISO8601DateFormatOptions) ---
 }
+
+
 
 @(objc_type=ISO8601DateFormatter, objc_name="stringFromDate")
 ISO8601DateFormatter_stringFromDate :: proc {

@@ -20,31 +20,31 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSViewController"
 
 VTable :: struct {
     super: NSViewController.VTable,
-    addSplitViewItem: proc(self: ^AK.SplitViewController, splitViewItem: ^AK.SplitViewItem),
-    insertSplitViewItem: proc(self: ^AK.SplitViewController, splitViewItem: ^AK.SplitViewItem, index: NS.Integer),
-    removeSplitViewItem: proc(self: ^AK.SplitViewController, splitViewItem: ^AK.SplitViewItem),
-    splitViewItemForViewController: proc(self: ^AK.SplitViewController, viewController: ^AK.ViewController) -> ^AK.SplitViewItem,
-    validateUserInterfaceItem: proc(self: ^AK.SplitViewController, item: ^AK.ValidatedUserInterfaceItem) -> bool,
-    viewDidLoad: proc(self: ^AK.SplitViewController),
-    splitView_canCollapseSubview: proc(self: ^AK.SplitViewController, splitView: ^AK.SplitView, subview: ^AK.View) -> bool,
-    splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex: proc(self: ^AK.SplitViewController, splitView: ^AK.SplitView, subview: ^AK.View, dividerIndex: NS.Integer) -> bool,
-    splitView_shouldHideDividerAtIndex: proc(self: ^AK.SplitViewController, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> bool,
-    splitView_effectiveRect_forDrawnRect_ofDividerAtIndex: proc(self: ^AK.SplitViewController, splitView: ^AK.SplitView, proposedEffectiveRect: NS.Rect, drawnRect: NS.Rect, dividerIndex: NS.Integer) -> NS.Rect,
-    splitView_additionalEffectiveRectOfDividerAtIndex: proc(self: ^AK.SplitViewController, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> NS.Rect,
-    splitView_: proc(self: ^AK.SplitViewController) -> ^AK.SplitView,
-    setSplitView: proc(self: ^AK.SplitViewController, splitView: ^AK.SplitView),
-    splitViewItems: proc(self: ^AK.SplitViewController) -> ^NS.Array,
-    setSplitViewItems: proc(self: ^AK.SplitViewController, splitViewItems: ^NS.Array),
-    minimumThicknessForInlineSidebars: proc(self: ^AK.SplitViewController) -> CG.Float,
-    setMinimumThicknessForInlineSidebars: proc(self: ^AK.SplitViewController, minimumThicknessForInlineSidebars: CG.Float),
-    toggleSidebar: proc(self: ^AK.SplitViewController, sender: id),
-    toggleInspector: proc(self: ^AK.SplitViewController, sender: id),
+    addSplitViewItem: proc(self: ^NS.SplitViewController, splitViewItem: ^NS.SplitViewItem),
+    insertSplitViewItem: proc(self: ^NS.SplitViewController, splitViewItem: ^NS.SplitViewItem, index: NS.Integer),
+    removeSplitViewItem: proc(self: ^NS.SplitViewController, splitViewItem: ^NS.SplitViewItem),
+    splitViewItemForViewController: proc(self: ^NS.SplitViewController, viewController: ^NS.ViewController) -> ^NS.SplitViewItem,
+    validateUserInterfaceItem: proc(self: ^NS.SplitViewController, item: ^NS.ValidatedUserInterfaceItem) -> bool,
+    viewDidLoad: proc(self: ^NS.SplitViewController),
+    splitView_canCollapseSubview: proc(self: ^NS.SplitViewController, splitView: ^NS.SplitView, subview: ^NS.View) -> bool,
+    splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex: proc(self: ^NS.SplitViewController, splitView: ^NS.SplitView, subview: ^NS.View, dividerIndex: NS.Integer) -> bool,
+    splitView_shouldHideDividerAtIndex: proc(self: ^NS.SplitViewController, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> bool,
+    splitView_effectiveRect_forDrawnRect_ofDividerAtIndex: proc(self: ^NS.SplitViewController, splitView: ^NS.SplitView, proposedEffectiveRect: NS.Rect, drawnRect: NS.Rect, dividerIndex: NS.Integer) -> NS.Rect,
+    splitView_additionalEffectiveRectOfDividerAtIndex: proc(self: ^NS.SplitViewController, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> NS.Rect,
+    splitView_: proc(self: ^NS.SplitViewController) -> ^NS.SplitView,
+    setSplitView: proc(self: ^NS.SplitViewController, splitView: ^NS.SplitView),
+    splitViewItems: proc(self: ^NS.SplitViewController) -> ^NS.Array,
+    setSplitViewItems: proc(self: ^NS.SplitViewController, splitViewItems: ^NS.Array),
+    minimumThicknessForInlineSidebars: proc(self: ^NS.SplitViewController) -> CG.Float,
+    setMinimumThicknessForInlineSidebars: proc(self: ^NS.SplitViewController, minimumThicknessForInlineSidebars: CG.Float),
+    toggleSidebar: proc(self: ^NS.SplitViewController, sender: id),
+    toggleInspector: proc(self: ^NS.SplitViewController, sender: id),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSViewController.extend(cls, &vt.super)
 
     if vt.addSplitViewItem != nil {
-        addSplitViewItem :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitViewItem: ^AK.SplitViewItem) {
+        addSplitViewItem :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitViewItem: ^NS.SplitViewItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addSplitViewItem:"), auto_cast addSplitViewItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.insertSplitViewItem != nil {
-        insertSplitViewItem :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitViewItem: ^AK.SplitViewItem, index: NS.Integer) {
+        insertSplitViewItem :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitViewItem: ^NS.SplitViewItem, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertSplitViewItem:atIndex:"), auto_cast insertSplitViewItem, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.removeSplitViewItem != nil {
-        removeSplitViewItem :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitViewItem: ^AK.SplitViewItem) {
+        removeSplitViewItem :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitViewItem: ^NS.SplitViewItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeSplitViewItem:"), auto_cast removeSplitViewItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.splitViewItemForViewController != nil {
-        splitViewItemForViewController :: proc "c" (self: ^AK.SplitViewController, _: SEL, viewController: ^AK.ViewController) -> ^AK.SplitViewItem {
+        splitViewItemForViewController :: proc "c" (self: ^NS.SplitViewController, _: SEL, viewController: ^NS.ViewController) -> ^NS.SplitViewItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitViewItemForViewController:"), auto_cast splitViewItemForViewController, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.validateUserInterfaceItem != nil {
-        validateUserInterfaceItem :: proc "c" (self: ^AK.SplitViewController, _: SEL, item: ^AK.ValidatedUserInterfaceItem) -> bool {
+        validateUserInterfaceItem :: proc "c" (self: ^NS.SplitViewController, _: SEL, item: ^NS.ValidatedUserInterfaceItem) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("validateUserInterfaceItem:"), auto_cast validateUserInterfaceItem, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.viewDidLoad != nil {
-        viewDidLoad :: proc "c" (self: ^AK.SplitViewController, _: SEL) {
+        viewDidLoad :: proc "c" (self: ^NS.SplitViewController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewDidLoad"), auto_cast viewDidLoad, "v@:") do panic("Failed to register objC method.")
     }
     if vt.splitView_canCollapseSubview != nil {
-        splitView_canCollapseSubview :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitView: ^AK.SplitView, subview: ^AK.View) -> bool {
+        splitView_canCollapseSubview :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitView: ^NS.SplitView, subview: ^NS.View) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:canCollapseSubview:"), auto_cast splitView_canCollapseSubview, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex != nil {
-        splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitView: ^AK.SplitView, subview: ^AK.View, dividerIndex: NS.Integer) -> bool {
+        splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitView: ^NS.SplitView, subview: ^NS.View, dividerIndex: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -135,7 +135,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:"), auto_cast splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex, "B@:@@l") do panic("Failed to register objC method.")
     }
     if vt.splitView_shouldHideDividerAtIndex != nil {
-        splitView_shouldHideDividerAtIndex :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> bool {
+        splitView_shouldHideDividerAtIndex :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -145,7 +145,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:shouldHideDividerAtIndex:"), auto_cast splitView_shouldHideDividerAtIndex, "B@:@l") do panic("Failed to register objC method.")
     }
     if vt.splitView_effectiveRect_forDrawnRect_ofDividerAtIndex != nil {
-        splitView_effectiveRect_forDrawnRect_ofDividerAtIndex :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitView: ^AK.SplitView, proposedEffectiveRect: NS.Rect, drawnRect: NS.Rect, dividerIndex: NS.Integer) -> NS.Rect {
+        splitView_effectiveRect_forDrawnRect_ofDividerAtIndex :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitView: ^NS.SplitView, proposedEffectiveRect: NS.Rect, drawnRect: NS.Rect, dividerIndex: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -155,7 +155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:"), auto_cast splitView_effectiveRect_forDrawnRect_ofDividerAtIndex, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}l") do panic("Failed to register objC method.")
     }
     if vt.splitView_additionalEffectiveRectOfDividerAtIndex != nil {
-        splitView_additionalEffectiveRectOfDividerAtIndex :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> NS.Rect {
+        splitView_additionalEffectiveRectOfDividerAtIndex :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -165,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:additionalEffectiveRectOfDividerAtIndex:"), auto_cast splitView_additionalEffectiveRectOfDividerAtIndex, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@l") do panic("Failed to register objC method.")
     }
     if vt.splitView_ != nil {
-        splitView_ :: proc "c" (self: ^AK.SplitViewController, _: SEL) -> ^AK.SplitView {
+        splitView_ :: proc "c" (self: ^NS.SplitViewController, _: SEL) -> ^NS.SplitView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -175,7 +175,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView"), auto_cast splitView_, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSplitView != nil {
-        setSplitView :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitView: ^AK.SplitView) {
+        setSplitView :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitView: ^NS.SplitView) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -185,7 +185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSplitView:"), auto_cast setSplitView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.splitViewItems != nil {
-        splitViewItems :: proc "c" (self: ^AK.SplitViewController, _: SEL) -> ^NS.Array {
+        splitViewItems :: proc "c" (self: ^NS.SplitViewController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -195,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitViewItems"), auto_cast splitViewItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSplitViewItems != nil {
-        setSplitViewItems :: proc "c" (self: ^AK.SplitViewController, _: SEL, splitViewItems: ^NS.Array) {
+        setSplitViewItems :: proc "c" (self: ^NS.SplitViewController, _: SEL, splitViewItems: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -205,7 +205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSplitViewItems:"), auto_cast setSplitViewItems, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.minimumThicknessForInlineSidebars != nil {
-        minimumThicknessForInlineSidebars :: proc "c" (self: ^AK.SplitViewController, _: SEL) -> CG.Float {
+        minimumThicknessForInlineSidebars :: proc "c" (self: ^NS.SplitViewController, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -215,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumThicknessForInlineSidebars"), auto_cast minimumThicknessForInlineSidebars, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumThicknessForInlineSidebars != nil {
-        setMinimumThicknessForInlineSidebars :: proc "c" (self: ^AK.SplitViewController, _: SEL, minimumThicknessForInlineSidebars: CG.Float) {
+        setMinimumThicknessForInlineSidebars :: proc "c" (self: ^NS.SplitViewController, _: SEL, minimumThicknessForInlineSidebars: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -225,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumThicknessForInlineSidebars:"), auto_cast setMinimumThicknessForInlineSidebars, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.toggleSidebar != nil {
-        toggleSidebar :: proc "c" (self: ^AK.SplitViewController, _: SEL, sender: id) {
+        toggleSidebar :: proc "c" (self: ^NS.SplitViewController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -235,7 +235,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("toggleSidebar:"), auto_cast toggleSidebar, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.toggleInspector != nil {
-        toggleInspector :: proc "c" (self: ^AK.SplitViewController, _: SEL, sender: id) {
+        toggleInspector :: proc "c" (self: ^NS.SplitViewController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

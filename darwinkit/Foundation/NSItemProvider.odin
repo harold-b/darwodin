@@ -9,26 +9,20 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSItemProvider
-///
 @(objc_class="NSItemProvider", objc_superclass=Object)
 ItemProvider :: struct { using _: Object, 
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ItemProvider, objc_selector="init", objc_name="init")
     ItemProvider_init :: proc(self: ^ItemProvider) -> instancetype ---
 
     @(objc_type=ItemProvider, objc_selector="registerDataRepresentationForTypeIdentifier:visibility:loadHandler:", objc_name="registerDataRepresentationForTypeIdentifier")
-    ItemProvider_registerDataRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (data: ^Data, error: ^Error))) -> ^Progress)) ---
+    ItemProvider_registerDataRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" ( completionHandler: ^Objc_Block(proc "c" ( data: ^Data, error: ^Error )) ) -> ^Progress)) ---
 
     @(objc_type=ItemProvider, objc_selector="registerFileRepresentationForTypeIdentifier:fileOptions:visibility:loadHandler:", objc_name="registerFileRepresentationForTypeIdentifier")
-    ItemProvider_registerFileRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, fileOptions: ItemProviderFileOptions, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (url: ^URL, coordinated: bool, error: ^Error))) -> ^Progress)) ---
+    ItemProvider_registerFileRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, fileOptions: ItemProviderFileOptions, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" ( completionHandler: ^Objc_Block(proc "c" ( url: ^URL, coordinated: bool, error: ^Error )) ) -> ^Progress)) ---
 
     @(objc_type=ItemProvider, objc_selector="registeredTypeIdentifiersWithFileOptions:", objc_name="registeredTypeIdentifiersWithFileOptions")
     ItemProvider_registeredTypeIdentifiersWithFileOptions :: proc(self: ^ItemProvider, fileOptions: ItemProviderFileOptions) -> ^Array ---
@@ -40,13 +34,13 @@ foreign lib {
     ItemProvider_hasRepresentationConformingToTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, fileOptions: ItemProviderFileOptions) -> bool ---
 
     @(objc_type=ItemProvider, objc_selector="loadDataRepresentationForTypeIdentifier:completionHandler:", objc_name="loadDataRepresentationForTypeIdentifier")
-    ItemProvider_loadDataRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (data: ^Data, error: ^Error))) -> ^Progress ---
+    ItemProvider_loadDataRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" ( data: ^Data, error: ^Error ))) -> ^Progress ---
 
     @(objc_type=ItemProvider, objc_selector="loadFileRepresentationForTypeIdentifier:completionHandler:", objc_name="loadFileRepresentationForTypeIdentifier")
-    ItemProvider_loadFileRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (url: ^URL, error: ^Error))) -> ^Progress ---
+    ItemProvider_loadFileRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" ( url: ^URL, error: ^Error ))) -> ^Progress ---
 
     @(objc_type=ItemProvider, objc_selector="loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:", objc_name="loadInPlaceFileRepresentationForTypeIdentifier")
-    ItemProvider_loadInPlaceFileRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (url: ^URL, isInPlace: bool, error: ^Error))) -> ^Progress ---
+    ItemProvider_loadInPlaceFileRepresentationForTypeIdentifier :: proc(self: ^ItemProvider, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" ( url: ^URL, isInPlace: bool, error: ^Error ))) -> ^Progress ---
 
     @(objc_type=ItemProvider, objc_selector="initWithObject:", objc_name="initWithObject")
     ItemProvider_initWithObject :: proc(self: ^ItemProvider, object: ^ItemProviderWriting) -> instancetype ---
@@ -55,13 +49,13 @@ foreign lib {
     ItemProvider_registerObject :: proc(self: ^ItemProvider, object: ^ItemProviderWriting, visibility: ItemProviderRepresentationVisibility) ---
 
     @(objc_type=ItemProvider, objc_selector="registerObjectOfClass:visibility:loadHandler:", objc_name="registerObjectOfClass")
-    ItemProvider_registerObjectOfClass :: proc(self: ^ItemProvider, aClass: ^Class, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" (object: ^ItemProviderWriting, error: ^Error))) -> ^Progress)) ---
+    ItemProvider_registerObjectOfClass :: proc(self: ^ItemProvider, aClass: ^Class, visibility: ItemProviderRepresentationVisibility, loadHandler: ^Objc_Block(proc "c" ( completionHandler: ^Objc_Block(proc "c" ( object: ^ItemProviderWriting, error: ^Error )) ) -> ^Progress)) ---
 
     @(objc_type=ItemProvider, objc_selector="canLoadObjectOfClass:", objc_name="canLoadObjectOfClass")
     ItemProvider_canLoadObjectOfClass :: proc(self: ^ItemProvider, aClass: ^Class) -> bool ---
 
     @(objc_type=ItemProvider, objc_selector="loadObjectOfClass:completionHandler:", objc_name="loadObjectOfClass")
-    ItemProvider_loadObjectOfClass :: proc(self: ^ItemProvider, aClass: ^Class, completionHandler: ^Objc_Block(proc "c" (object: ^ItemProviderReading, error: ^Error))) -> ^Progress ---
+    ItemProvider_loadObjectOfClass :: proc(self: ^ItemProvider, aClass: ^Class, completionHandler: ^Objc_Block(proc "c" ( object: ^ItemProviderReading, error: ^Error ))) -> ^Progress ---
 
     @(objc_type=ItemProvider, objc_selector="initWithItem:typeIdentifier:", objc_name="initWithItem")
     ItemProvider_initWithItem :: proc(self: ^ItemProvider, item: ^SecureCoding, typeIdentifier: ^String) -> instancetype ---
@@ -93,3 +87,6 @@ foreign lib {
     @(objc_type=ItemProvider, objc_selector="setPreviewImageHandler:", objc_name="setPreviewImageHandler")
     ItemProvider_setPreviewImageHandler :: proc(self: ^ItemProvider, previewImageHandler: ItemProviderLoadHandler) ---
 }
+
+
+

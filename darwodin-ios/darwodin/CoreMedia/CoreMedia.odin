@@ -16,14 +16,27 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:CoreMedia.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:CoreMedia.framework",
+    }
+}
+
+
+// +user-text-begin
 
 NCMDeviceProfileInfo :: struct {}
 CVImageBufferRef     :: struct {}
 CVPixelBufferPoolRef :: struct {}
 CVPixelBufferRef     :: struct {}
 
+// -user-text-end
 
 ASK                             :: 22
 TIMEBASE_USE_SOURCE_TERMINOLOGY :: 1
@@ -1121,7 +1134,7 @@ foreign lib {
     BufferQueueReset :: proc(queue: BufferQueueRef) -> CF.OSStatus ---
 
     @(link_name="CMBufferQueueResetWithCallback")
-    BufferQueueResetWithCallback :: proc(queue: BufferQueueRef, callback: proc "c" (buffer: BufferRef, refcon: rawptr), refcon: rawptr) -> CF.OSStatus ---
+    BufferQueueResetWithCallback :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ), refcon: rawptr) -> CF.OSStatus ---
 
     @(link_name="CMBufferQueueGetBufferCount")
     BufferQueueGetBufferCount :: proc(queue: BufferQueueRef) -> ItemCount ---
@@ -1169,7 +1182,7 @@ foreign lib {
     BufferQueueTestTrigger :: proc(queue: BufferQueueRef, triggerToken: BufferQueueTriggerToken) -> CF.Boolean ---
 
     @(link_name="CMBufferQueueCallForEachBuffer")
-    BufferQueueCallForEachBuffer :: proc(queue: BufferQueueRef, callback: proc "c" (buffer: BufferRef, refcon: rawptr) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
+    BufferQueueCallForEachBuffer :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
 
     @(link_name="CMBufferQueueSetValidationCallback")
     BufferQueueSetValidationCallback :: proc(queue: BufferQueueRef, callback: BufferValidationCallback, refcon: rawptr) -> CF.OSStatus ---
@@ -1319,10 +1332,10 @@ foreign lib {
     SampleBufferGetSampleAttachmentsArray :: proc(sbuf: SampleBufferRef, createIfNecessary: CF.Boolean) -> CF.ArrayRef ---
 
     @(link_name="CMSampleBufferCallForEachSample")
-    SampleBufferCallForEachSample :: proc(sbuf: SampleBufferRef, callback: proc "c" (sampleBuffer: SampleBufferRef, index: ItemCount, refcon: rawptr) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
+    SampleBufferCallForEachSample :: proc(sbuf: SampleBufferRef, callback: proc "c" ( sampleBuffer: SampleBufferRef, index: ItemCount, refcon: rawptr ) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
 
     @(link_name="CMSampleBufferCallBlockForEachSample")
-    SampleBufferCallBlockForEachSample :: proc(sbuf: SampleBufferRef, handler: ^Objc_Block(proc "c" (sampleBuffer: SampleBufferRef, index: ItemCount) -> CF.OSStatus)) -> CF.OSStatus ---
+    SampleBufferCallBlockForEachSample :: proc(sbuf: SampleBufferRef, handler: ^Objc_Block(proc "c" ( sampleBuffer: SampleBufferRef, index: ItemCount ) -> CF.OSStatus)) -> CF.OSStatus ---
 
     @(link_name="CMTagGetValueDataType")
     TagGetValueDataType :: proc(tag: Tag) -> TagDataType ---
@@ -1876,61 +1889,61 @@ BufferQueueRef :: ^opaqueCMBufferQueue
 BufferRef :: CF.TypeRef
 
 /// CMBufferGetTimeCallback
-BufferGetTimeCallback :: proc "c" (buf: BufferRef, refcon: rawptr) -> Time
+BufferGetTimeCallback :: proc "c" ( buf: BufferRef, refcon: rawptr ) -> Time
 
 /// CMBufferGetTimeHandler
-BufferGetTimeHandler :: ^Objc_Block(proc "c" (buf: BufferRef) -> Time)
+BufferGetTimeHandler :: ^Objc_Block(proc "c" ( buf: BufferRef ) -> Time)
 
 /// CMBufferGetBooleanCallback
-BufferGetBooleanCallback :: proc "c" (buf: BufferRef, refcon: rawptr) -> CF.Boolean
+BufferGetBooleanCallback :: proc "c" ( buf: BufferRef, refcon: rawptr ) -> CF.Boolean
 
 /// CMBufferGetBooleanHandler
-BufferGetBooleanHandler :: ^Objc_Block(proc "c" (buf: BufferRef) -> CF.Boolean)
+BufferGetBooleanHandler :: ^Objc_Block(proc "c" ( buf: BufferRef ) -> CF.Boolean)
 
 /// CMBufferCompareCallback
-BufferCompareCallback :: proc "c" (buf1: BufferRef, buf2: BufferRef, refcon: rawptr) -> CF.ComparisonResult
+BufferCompareCallback :: proc "c" ( buf1: BufferRef, buf2: BufferRef, refcon: rawptr ) -> CF.ComparisonResult
 
 /// CMBufferCompareHandler
-BufferCompareHandler :: ^Objc_Block(proc "c" (buf1: BufferRef, buf2: BufferRef) -> CF.ComparisonResult)
+BufferCompareHandler :: ^Objc_Block(proc "c" ( buf1: BufferRef, buf2: BufferRef ) -> CF.ComparisonResult)
 
 /// CMBufferGetSizeCallback
-BufferGetSizeCallback :: proc "c" (buf: BufferRef, refcon: rawptr) -> cffi.size_t
+BufferGetSizeCallback :: proc "c" ( buf: BufferRef, refcon: rawptr ) -> cffi.size_t
 
 /// CMBufferGetSizeHandler
-BufferGetSizeHandler :: ^Objc_Block(proc "c" (buf: BufferRef) -> cffi.size_t)
+BufferGetSizeHandler :: ^Objc_Block(proc "c" ( buf: BufferRef ) -> cffi.size_t)
 
 /// CMBufferQueueTriggerToken
 BufferQueueTriggerToken :: ^opaqueCMBufferQueueTriggerToken
 
 /// CMBufferQueueTriggerCallback
-BufferQueueTriggerCallback :: proc "c" (triggerRefcon: rawptr, triggerToken: BufferQueueTriggerToken)
+BufferQueueTriggerCallback :: proc "c" ( triggerRefcon: rawptr, triggerToken: BufferQueueTriggerToken )
 
 /// CMBufferQueueTriggerHandler
-BufferQueueTriggerHandler :: ^Objc_Block(proc "c" (triggerToken: BufferQueueTriggerToken))
+BufferQueueTriggerHandler :: ^Objc_Block(proc "c" ( triggerToken: BufferQueueTriggerToken ))
 
 /// CMBufferQueueTriggerCondition
 BufferQueueTriggerCondition :: cffi.int32_t
 
 /// CMBufferValidationCallback
-BufferValidationCallback :: proc "c" (queue: BufferQueueRef, buf: BufferRef, validationRefCon: rawptr) -> CF.OSStatus
+BufferValidationCallback :: proc "c" ( queue: BufferQueueRef, buf: BufferRef, validationRefCon: rawptr ) -> CF.OSStatus
 
 /// CMBufferValidationHandler
-BufferValidationHandler :: ^Objc_Block(proc "c" (queue: BufferQueueRef, buf: BufferRef) -> CF.OSStatus)
+BufferValidationHandler :: ^Objc_Block(proc "c" ( queue: BufferQueueRef, buf: BufferRef ) -> CF.OSStatus)
 
 /// CMSampleBufferRef
 SampleBufferRef :: ^opaqueCMSampleBuffer
 
 /// CMSampleBufferMakeDataReadyCallback
-SampleBufferMakeDataReadyCallback :: proc "c" (sbuf: SampleBufferRef, makeDataReadyRefcon: rawptr) -> CF.OSStatus
+SampleBufferMakeDataReadyCallback :: proc "c" ( sbuf: SampleBufferRef, makeDataReadyRefcon: rawptr ) -> CF.OSStatus
 
 /// CMSampleBufferMakeDataReadyHandler
-SampleBufferMakeDataReadyHandler :: ^Objc_Block(proc "c" (sbuf: SampleBufferRef) -> CF.OSStatus)
+SampleBufferMakeDataReadyHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ) -> CF.OSStatus)
 
 /// CMSampleBufferInvalidateCallback
-SampleBufferInvalidateCallback :: proc "c" (sbuf: SampleBufferRef, invalidateRefCon: cffi.uint64_t)
+SampleBufferInvalidateCallback :: proc "c" ( sbuf: SampleBufferRef, invalidateRefCon: cffi.uint64_t )
 
 /// CMSampleBufferInvalidateHandler
-SampleBufferInvalidateHandler :: ^Objc_Block(proc "c" (sbuf: SampleBufferRef))
+SampleBufferInvalidateHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ))
 
 /// CMTagValue
 TagValue :: cffi.uint64_t
@@ -1942,10 +1955,10 @@ TagCollectionRef :: ^OpaqueCMTagCollection
 MutableTagCollectionRef :: ^OpaqueCMTagCollection
 
 /// CMTagCollectionApplierFunction
-TagCollectionApplierFunction :: proc "c" (tag: Tag, _context: rawptr)
+TagCollectionApplierFunction :: proc "c" ( tag: Tag, _context: rawptr )
 
 /// CMTagCollectionTagFilterFunction
-TagCollectionTagFilterFunction :: proc "c" (tag: Tag, _context: rawptr) -> CF.Boolean
+TagCollectionTagFilterFunction :: proc "c" ( tag: Tag, _context: rawptr ) -> CF.Boolean
 
 /// CMTaggedBufferGroupRef
 TaggedBufferGroupRef :: ^OpaqueCMTaggedBufferGroup
@@ -2108,8 +2121,8 @@ OpaqueCMBlockBuffer :: struct {}
 /// CMBlockBufferCustomBlockSource
 BlockBufferCustomBlockSource :: struct #align (4) #max_field_align(4) {
     version:       cffi.uint32_t,
-    AllocateBlock: proc "c" (refcon: rawptr, sizeInBytes: cffi.size_t) -> rawptr,
-    FreeBlock:     proc "c" (refcon: rawptr, doomedMemoryBlock: rawptr, sizeInBytes: cffi.size_t),
+    AllocateBlock: proc "c" ( refcon: rawptr, sizeInBytes: cffi.size_t ) -> rawptr,
+    FreeBlock:     proc "c" ( refcon: rawptr, doomedMemoryBlock: rawptr, sizeInBytes: cffi.size_t ),
     refCon:        rawptr,
 }
 #assert(size_of(BlockBufferCustomBlockSource) == 28)

@@ -26,7 +26,7 @@ foreign lib {
     AUAudioUnit_initWithComponentDescription_error :: proc(self: ^AUAudioUnit, componentDescription: ComponentDescription, outError: ^^NSError) -> instancetype ---
 
     @(objc_type=AUAudioUnit, objc_selector="instantiateWithComponentDescription:options:completionHandler:", objc_name="instantiateWithComponentDescription", objc_is_class_method=true)
-    AUAudioUnit_instantiateWithComponentDescription :: proc(componentDescription: ComponentDescription, options: ComponentInstantiationOptions, completionHandler: ^Objc_Block(proc "c" (audioUnit: ^AUAudioUnit, error: ^NSError))) ---
+    AUAudioUnit_instantiateWithComponentDescription :: proc(componentDescription: ComponentDescription, options: ComponentInstantiationOptions, completionHandler: ^Objc_Block(proc "c" ( audioUnit: ^AUAudioUnit, error: ^NSError ))) ---
 
     @(objc_type=AUAudioUnit, objc_selector="allocateRenderResourcesAndReturnError:", objc_name="allocateRenderResourcesAndReturnError")
     AUAudioUnit_allocateRenderResourcesAndReturnError :: proc(self: ^AUAudioUnit, outError: ^^NSError) -> bool ---

@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitElectricPotentialDifference
-///
 @(objc_class="NSUnitElectricPotentialDifference", objc_superclass=Dimension)
 UnitElectricPotentialDifference :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitElectricPotentialDifference, objc_selector="megavolts", objc_name="megavolts", objc_is_class_method=true)
     UnitElectricPotentialDifference_megavolts :: proc() -> ^UnitElectricPotentialDifference ---
@@ -36,3 +30,6 @@ foreign lib {
     @(objc_type=UnitElectricPotentialDifference, objc_selector="microvolts", objc_name="microvolts", objc_is_class_method=true)
     UnitElectricPotentialDifference_microvolts :: proc() -> ^UnitElectricPotentialDifference ---
 }
+
+
+

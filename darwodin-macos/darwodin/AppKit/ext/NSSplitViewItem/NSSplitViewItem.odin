@@ -20,55 +20,55 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    splitViewItemWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
-    sidebarWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
-    contentListWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
-    inspectorWithViewController: proc(viewController: ^AK.ViewController) -> instancetype,
-    addTopAlignedAccessoryViewController: proc(self: ^AK.SplitViewItem, childViewController: ^AK.SplitViewItemAccessoryViewController),
-    insertTopAlignedAccessoryViewController: proc(self: ^AK.SplitViewItem, childViewController: ^AK.SplitViewItemAccessoryViewController, index: NS.Integer),
-    removeTopAlignedAccessoryViewControllerAtIndex: proc(self: ^AK.SplitViewItem, index: NS.Integer),
-    addBottomAlignedAccessoryViewController: proc(self: ^AK.SplitViewItem, childViewController: ^AK.SplitViewItemAccessoryViewController),
-    insertBottomAlignedAccessoryViewController: proc(self: ^AK.SplitViewItem, childViewController: ^AK.SplitViewItemAccessoryViewController, index: NS.Integer),
-    removeBottomAlignedAccessoryViewControllerAtIndex: proc(self: ^AK.SplitViewItem, index: NS.Integer),
-    behavior: proc(self: ^AK.SplitViewItem) -> AK.SplitViewItemBehavior,
-    viewController: proc(self: ^AK.SplitViewItem) -> ^AK.ViewController,
-    setViewController: proc(self: ^AK.SplitViewItem, viewController: ^AK.ViewController),
-    isCollapsed: proc(self: ^AK.SplitViewItem) -> bool,
-    setCollapsed: proc(self: ^AK.SplitViewItem, collapsed: bool),
-    canCollapse: proc(self: ^AK.SplitViewItem) -> bool,
-    setCanCollapse: proc(self: ^AK.SplitViewItem, canCollapse: bool),
-    collapseBehavior: proc(self: ^AK.SplitViewItem) -> AK.SplitViewItemCollapseBehavior,
-    setCollapseBehavior: proc(self: ^AK.SplitViewItem, collapseBehavior: AK.SplitViewItemCollapseBehavior),
-    minimumThickness: proc(self: ^AK.SplitViewItem) -> CG.Float,
-    setMinimumThickness: proc(self: ^AK.SplitViewItem, minimumThickness: CG.Float),
-    maximumThickness: proc(self: ^AK.SplitViewItem) -> CG.Float,
-    setMaximumThickness: proc(self: ^AK.SplitViewItem, maximumThickness: CG.Float),
-    preferredThicknessFraction: proc(self: ^AK.SplitViewItem) -> CG.Float,
-    setPreferredThicknessFraction: proc(self: ^AK.SplitViewItem, preferredThicknessFraction: CG.Float),
-    holdingPriority: proc(self: ^AK.SplitViewItem) -> AK.LayoutPriority,
-    setHoldingPriority: proc(self: ^AK.SplitViewItem, holdingPriority: AK.LayoutPriority),
-    automaticMaximumThickness: proc(self: ^AK.SplitViewItem) -> CG.Float,
-    setAutomaticMaximumThickness: proc(self: ^AK.SplitViewItem, automaticMaximumThickness: CG.Float),
-    isSpringLoaded: proc(self: ^AK.SplitViewItem) -> bool,
-    setSpringLoaded: proc(self: ^AK.SplitViewItem, springLoaded: bool),
-    canCollapseFromWindowResize: proc(self: ^AK.SplitViewItem) -> bool,
-    setCanCollapseFromWindowResize: proc(self: ^AK.SplitViewItem, canCollapseFromWindowResize: bool),
-    allowsFullHeightLayout: proc(self: ^AK.SplitViewItem) -> bool,
-    setAllowsFullHeightLayout: proc(self: ^AK.SplitViewItem, allowsFullHeightLayout: bool),
-    titlebarSeparatorStyle: proc(self: ^AK.SplitViewItem) -> AK.TitlebarSeparatorStyle,
-    setTitlebarSeparatorStyle: proc(self: ^AK.SplitViewItem, titlebarSeparatorStyle: AK.TitlebarSeparatorStyle),
-    automaticallyAdjustsSafeAreaInsets: proc(self: ^AK.SplitViewItem) -> bool,
-    setAutomaticallyAdjustsSafeAreaInsets: proc(self: ^AK.SplitViewItem, automaticallyAdjustsSafeAreaInsets: bool),
-    topAlignedAccessoryViewControllers: proc(self: ^AK.SplitViewItem) -> ^NS.Array,
-    setTopAlignedAccessoryViewControllers: proc(self: ^AK.SplitViewItem, topAlignedAccessoryViewControllers: ^NS.Array),
-    bottomAlignedAccessoryViewControllers: proc(self: ^AK.SplitViewItem) -> ^NS.Array,
-    setBottomAlignedAccessoryViewControllers: proc(self: ^AK.SplitViewItem, bottomAlignedAccessoryViewControllers: ^NS.Array),
+    splitViewItemWithViewController: proc(viewController: ^NS.ViewController) -> instancetype,
+    sidebarWithViewController: proc(viewController: ^NS.ViewController) -> instancetype,
+    contentListWithViewController: proc(viewController: ^NS.ViewController) -> instancetype,
+    inspectorWithViewController: proc(viewController: ^NS.ViewController) -> instancetype,
+    addTopAlignedAccessoryViewController: proc(self: ^NS.SplitViewItem, childViewController: ^NS.SplitViewItemAccessoryViewController),
+    insertTopAlignedAccessoryViewController: proc(self: ^NS.SplitViewItem, childViewController: ^NS.SplitViewItemAccessoryViewController, index: NS.Integer),
+    removeTopAlignedAccessoryViewControllerAtIndex: proc(self: ^NS.SplitViewItem, index: NS.Integer),
+    addBottomAlignedAccessoryViewController: proc(self: ^NS.SplitViewItem, childViewController: ^NS.SplitViewItemAccessoryViewController),
+    insertBottomAlignedAccessoryViewController: proc(self: ^NS.SplitViewItem, childViewController: ^NS.SplitViewItemAccessoryViewController, index: NS.Integer),
+    removeBottomAlignedAccessoryViewControllerAtIndex: proc(self: ^NS.SplitViewItem, index: NS.Integer),
+    behavior: proc(self: ^NS.SplitViewItem) -> NS.SplitViewItemBehavior,
+    viewController: proc(self: ^NS.SplitViewItem) -> ^NS.ViewController,
+    setViewController: proc(self: ^NS.SplitViewItem, viewController: ^NS.ViewController),
+    isCollapsed: proc(self: ^NS.SplitViewItem) -> bool,
+    setCollapsed: proc(self: ^NS.SplitViewItem, collapsed: bool),
+    canCollapse: proc(self: ^NS.SplitViewItem) -> bool,
+    setCanCollapse: proc(self: ^NS.SplitViewItem, canCollapse: bool),
+    collapseBehavior: proc(self: ^NS.SplitViewItem) -> NS.SplitViewItemCollapseBehavior,
+    setCollapseBehavior: proc(self: ^NS.SplitViewItem, collapseBehavior: NS.SplitViewItemCollapseBehavior),
+    minimumThickness: proc(self: ^NS.SplitViewItem) -> CG.Float,
+    setMinimumThickness: proc(self: ^NS.SplitViewItem, minimumThickness: CG.Float),
+    maximumThickness: proc(self: ^NS.SplitViewItem) -> CG.Float,
+    setMaximumThickness: proc(self: ^NS.SplitViewItem, maximumThickness: CG.Float),
+    preferredThicknessFraction: proc(self: ^NS.SplitViewItem) -> CG.Float,
+    setPreferredThicknessFraction: proc(self: ^NS.SplitViewItem, preferredThicknessFraction: CG.Float),
+    holdingPriority: proc(self: ^NS.SplitViewItem) -> NS.LayoutPriority,
+    setHoldingPriority: proc(self: ^NS.SplitViewItem, holdingPriority: NS.LayoutPriority),
+    automaticMaximumThickness: proc(self: ^NS.SplitViewItem) -> CG.Float,
+    setAutomaticMaximumThickness: proc(self: ^NS.SplitViewItem, automaticMaximumThickness: CG.Float),
+    isSpringLoaded: proc(self: ^NS.SplitViewItem) -> bool,
+    setSpringLoaded: proc(self: ^NS.SplitViewItem, springLoaded: bool),
+    canCollapseFromWindowResize: proc(self: ^NS.SplitViewItem) -> bool,
+    setCanCollapseFromWindowResize: proc(self: ^NS.SplitViewItem, canCollapseFromWindowResize: bool),
+    allowsFullHeightLayout: proc(self: ^NS.SplitViewItem) -> bool,
+    setAllowsFullHeightLayout: proc(self: ^NS.SplitViewItem, allowsFullHeightLayout: bool),
+    titlebarSeparatorStyle: proc(self: ^NS.SplitViewItem) -> NS.TitlebarSeparatorStyle,
+    setTitlebarSeparatorStyle: proc(self: ^NS.SplitViewItem, titlebarSeparatorStyle: NS.TitlebarSeparatorStyle),
+    automaticallyAdjustsSafeAreaInsets: proc(self: ^NS.SplitViewItem) -> bool,
+    setAutomaticallyAdjustsSafeAreaInsets: proc(self: ^NS.SplitViewItem, automaticallyAdjustsSafeAreaInsets: bool),
+    topAlignedAccessoryViewControllers: proc(self: ^NS.SplitViewItem) -> ^NS.Array,
+    setTopAlignedAccessoryViewControllers: proc(self: ^NS.SplitViewItem, topAlignedAccessoryViewControllers: ^NS.Array),
+    bottomAlignedAccessoryViewControllers: proc(self: ^NS.SplitViewItem) -> ^NS.Array,
+    setBottomAlignedAccessoryViewControllers: proc(self: ^NS.SplitViewItem, bottomAlignedAccessoryViewControllers: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.splitViewItemWithViewController != nil {
-        splitViewItemWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> instancetype {
+        splitViewItemWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^NS.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("splitViewItemWithViewController:"), auto_cast splitViewItemWithViewController, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.sidebarWithViewController != nil {
-        sidebarWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> instancetype {
+        sidebarWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^NS.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sidebarWithViewController:"), auto_cast sidebarWithViewController, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.contentListWithViewController != nil {
-        contentListWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> instancetype {
+        contentListWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^NS.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("contentListWithViewController:"), auto_cast contentListWithViewController, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.inspectorWithViewController != nil {
-        inspectorWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^AK.ViewController) -> instancetype {
+        inspectorWithViewController :: proc "c" (self: Class, _: SEL, viewController: ^NS.ViewController) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("inspectorWithViewController:"), auto_cast inspectorWithViewController, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.addTopAlignedAccessoryViewController != nil {
-        addTopAlignedAccessoryViewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL, childViewController: ^AK.SplitViewItemAccessoryViewController) {
+        addTopAlignedAccessoryViewController :: proc "c" (self: ^NS.SplitViewItem, _: SEL, childViewController: ^NS.SplitViewItemAccessoryViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addTopAlignedAccessoryViewController:"), auto_cast addTopAlignedAccessoryViewController, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.insertTopAlignedAccessoryViewController != nil {
-        insertTopAlignedAccessoryViewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL, childViewController: ^AK.SplitViewItemAccessoryViewController, index: NS.Integer) {
+        insertTopAlignedAccessoryViewController :: proc "c" (self: ^NS.SplitViewItem, _: SEL, childViewController: ^NS.SplitViewItemAccessoryViewController, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertTopAlignedAccessoryViewController:atIndex:"), auto_cast insertTopAlignedAccessoryViewController, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.removeTopAlignedAccessoryViewControllerAtIndex != nil {
-        removeTopAlignedAccessoryViewControllerAtIndex :: proc "c" (self: ^AK.SplitViewItem, _: SEL, index: NS.Integer) {
+        removeTopAlignedAccessoryViewControllerAtIndex :: proc "c" (self: ^NS.SplitViewItem, _: SEL, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeTopAlignedAccessoryViewControllerAtIndex:"), auto_cast removeTopAlignedAccessoryViewControllerAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.addBottomAlignedAccessoryViewController != nil {
-        addBottomAlignedAccessoryViewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL, childViewController: ^AK.SplitViewItemAccessoryViewController) {
+        addBottomAlignedAccessoryViewController :: proc "c" (self: ^NS.SplitViewItem, _: SEL, childViewController: ^NS.SplitViewItemAccessoryViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addBottomAlignedAccessoryViewController:"), auto_cast addBottomAlignedAccessoryViewController, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.insertBottomAlignedAccessoryViewController != nil {
-        insertBottomAlignedAccessoryViewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL, childViewController: ^AK.SplitViewItemAccessoryViewController, index: NS.Integer) {
+        insertBottomAlignedAccessoryViewController :: proc "c" (self: ^NS.SplitViewItem, _: SEL, childViewController: ^NS.SplitViewItemAccessoryViewController, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertBottomAlignedAccessoryViewController:atIndex:"), auto_cast insertBottomAlignedAccessoryViewController, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.removeBottomAlignedAccessoryViewControllerAtIndex != nil {
-        removeBottomAlignedAccessoryViewControllerAtIndex :: proc "c" (self: ^AK.SplitViewItem, _: SEL, index: NS.Integer) {
+        removeBottomAlignedAccessoryViewControllerAtIndex :: proc "c" (self: ^NS.SplitViewItem, _: SEL, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -179,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeBottomAlignedAccessoryViewControllerAtIndex:"), auto_cast removeBottomAlignedAccessoryViewControllerAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.behavior != nil {
-        behavior :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> AK.SplitViewItemBehavior {
+        behavior :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> NS.SplitViewItemBehavior {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -189,7 +189,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("behavior"), auto_cast behavior, "l@:") do panic("Failed to register objC method.")
     }
     if vt.viewController != nil {
-        viewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> ^AK.ViewController {
+        viewController :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> ^NS.ViewController {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -199,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewController"), auto_cast viewController, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setViewController != nil {
-        setViewController :: proc "c" (self: ^AK.SplitViewItem, _: SEL, viewController: ^AK.ViewController) {
+        setViewController :: proc "c" (self: ^NS.SplitViewItem, _: SEL, viewController: ^NS.ViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -209,7 +209,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setViewController:"), auto_cast setViewController, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isCollapsed != nil {
-        isCollapsed :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> bool {
+        isCollapsed :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -219,7 +219,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isCollapsed"), auto_cast isCollapsed, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setCollapsed != nil {
-        setCollapsed :: proc "c" (self: ^AK.SplitViewItem, _: SEL, collapsed: bool) {
+        setCollapsed :: proc "c" (self: ^NS.SplitViewItem, _: SEL, collapsed: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -229,7 +229,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCollapsed:"), auto_cast setCollapsed, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.canCollapse != nil {
-        canCollapse :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> bool {
+        canCollapse :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -239,7 +239,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canCollapse"), auto_cast canCollapse, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setCanCollapse != nil {
-        setCanCollapse :: proc "c" (self: ^AK.SplitViewItem, _: SEL, canCollapse: bool) {
+        setCanCollapse :: proc "c" (self: ^NS.SplitViewItem, _: SEL, canCollapse: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -249,7 +249,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCanCollapse:"), auto_cast setCanCollapse, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.collapseBehavior != nil {
-        collapseBehavior :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> AK.SplitViewItemCollapseBehavior {
+        collapseBehavior :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> NS.SplitViewItemCollapseBehavior {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -259,7 +259,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collapseBehavior"), auto_cast collapseBehavior, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setCollapseBehavior != nil {
-        setCollapseBehavior :: proc "c" (self: ^AK.SplitViewItem, _: SEL, collapseBehavior: AK.SplitViewItemCollapseBehavior) {
+        setCollapseBehavior :: proc "c" (self: ^NS.SplitViewItem, _: SEL, collapseBehavior: NS.SplitViewItemCollapseBehavior) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -269,7 +269,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCollapseBehavior:"), auto_cast setCollapseBehavior, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.minimumThickness != nil {
-        minimumThickness :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> CG.Float {
+        minimumThickness :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -279,7 +279,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumThickness"), auto_cast minimumThickness, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumThickness != nil {
-        setMinimumThickness :: proc "c" (self: ^AK.SplitViewItem, _: SEL, minimumThickness: CG.Float) {
+        setMinimumThickness :: proc "c" (self: ^NS.SplitViewItem, _: SEL, minimumThickness: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -289,7 +289,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumThickness:"), auto_cast setMinimumThickness, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.maximumThickness != nil {
-        maximumThickness :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> CG.Float {
+        maximumThickness :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -299,7 +299,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumThickness"), auto_cast maximumThickness, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumThickness != nil {
-        setMaximumThickness :: proc "c" (self: ^AK.SplitViewItem, _: SEL, maximumThickness: CG.Float) {
+        setMaximumThickness :: proc "c" (self: ^NS.SplitViewItem, _: SEL, maximumThickness: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -309,7 +309,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumThickness:"), auto_cast setMaximumThickness, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.preferredThicknessFraction != nil {
-        preferredThicknessFraction :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> CG.Float {
+        preferredThicknessFraction :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -319,7 +319,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredThicknessFraction"), auto_cast preferredThicknessFraction, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setPreferredThicknessFraction != nil {
-        setPreferredThicknessFraction :: proc "c" (self: ^AK.SplitViewItem, _: SEL, preferredThicknessFraction: CG.Float) {
+        setPreferredThicknessFraction :: proc "c" (self: ^NS.SplitViewItem, _: SEL, preferredThicknessFraction: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -329,7 +329,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredThicknessFraction:"), auto_cast setPreferredThicknessFraction, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.holdingPriority != nil {
-        holdingPriority :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> AK.LayoutPriority {
+        holdingPriority :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> NS.LayoutPriority {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -339,7 +339,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("holdingPriority"), auto_cast holdingPriority, "f@:") do panic("Failed to register objC method.")
     }
     if vt.setHoldingPriority != nil {
-        setHoldingPriority :: proc "c" (self: ^AK.SplitViewItem, _: SEL, holdingPriority: AK.LayoutPriority) {
+        setHoldingPriority :: proc "c" (self: ^NS.SplitViewItem, _: SEL, holdingPriority: NS.LayoutPriority) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -349,7 +349,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHoldingPriority:"), auto_cast setHoldingPriority, "v@:f") do panic("Failed to register objC method.")
     }
     if vt.automaticMaximumThickness != nil {
-        automaticMaximumThickness :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> CG.Float {
+        automaticMaximumThickness :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -359,7 +359,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticMaximumThickness"), auto_cast automaticMaximumThickness, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticMaximumThickness != nil {
-        setAutomaticMaximumThickness :: proc "c" (self: ^AK.SplitViewItem, _: SEL, automaticMaximumThickness: CG.Float) {
+        setAutomaticMaximumThickness :: proc "c" (self: ^NS.SplitViewItem, _: SEL, automaticMaximumThickness: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -369,7 +369,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticMaximumThickness:"), auto_cast setAutomaticMaximumThickness, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.isSpringLoaded != nil {
-        isSpringLoaded :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> bool {
+        isSpringLoaded :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -379,7 +379,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isSpringLoaded"), auto_cast isSpringLoaded, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSpringLoaded != nil {
-        setSpringLoaded :: proc "c" (self: ^AK.SplitViewItem, _: SEL, springLoaded: bool) {
+        setSpringLoaded :: proc "c" (self: ^NS.SplitViewItem, _: SEL, springLoaded: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -389,7 +389,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSpringLoaded:"), auto_cast setSpringLoaded, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.canCollapseFromWindowResize != nil {
-        canCollapseFromWindowResize :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> bool {
+        canCollapseFromWindowResize :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -399,7 +399,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canCollapseFromWindowResize"), auto_cast canCollapseFromWindowResize, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setCanCollapseFromWindowResize != nil {
-        setCanCollapseFromWindowResize :: proc "c" (self: ^AK.SplitViewItem, _: SEL, canCollapseFromWindowResize: bool) {
+        setCanCollapseFromWindowResize :: proc "c" (self: ^NS.SplitViewItem, _: SEL, canCollapseFromWindowResize: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -409,7 +409,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCanCollapseFromWindowResize:"), auto_cast setCanCollapseFromWindowResize, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsFullHeightLayout != nil {
-        allowsFullHeightLayout :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> bool {
+        allowsFullHeightLayout :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -419,7 +419,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsFullHeightLayout"), auto_cast allowsFullHeightLayout, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsFullHeightLayout != nil {
-        setAllowsFullHeightLayout :: proc "c" (self: ^AK.SplitViewItem, _: SEL, allowsFullHeightLayout: bool) {
+        setAllowsFullHeightLayout :: proc "c" (self: ^NS.SplitViewItem, _: SEL, allowsFullHeightLayout: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -429,7 +429,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsFullHeightLayout:"), auto_cast setAllowsFullHeightLayout, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.titlebarSeparatorStyle != nil {
-        titlebarSeparatorStyle :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> AK.TitlebarSeparatorStyle {
+        titlebarSeparatorStyle :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> NS.TitlebarSeparatorStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -439,7 +439,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titlebarSeparatorStyle"), auto_cast titlebarSeparatorStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setTitlebarSeparatorStyle != nil {
-        setTitlebarSeparatorStyle :: proc "c" (self: ^AK.SplitViewItem, _: SEL, titlebarSeparatorStyle: AK.TitlebarSeparatorStyle) {
+        setTitlebarSeparatorStyle :: proc "c" (self: ^NS.SplitViewItem, _: SEL, titlebarSeparatorStyle: NS.TitlebarSeparatorStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -449,7 +449,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitlebarSeparatorStyle:"), auto_cast setTitlebarSeparatorStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.automaticallyAdjustsSafeAreaInsets != nil {
-        automaticallyAdjustsSafeAreaInsets :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> bool {
+        automaticallyAdjustsSafeAreaInsets :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -459,7 +459,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyAdjustsSafeAreaInsets"), auto_cast automaticallyAdjustsSafeAreaInsets, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyAdjustsSafeAreaInsets != nil {
-        setAutomaticallyAdjustsSafeAreaInsets :: proc "c" (self: ^AK.SplitViewItem, _: SEL, automaticallyAdjustsSafeAreaInsets: bool) {
+        setAutomaticallyAdjustsSafeAreaInsets :: proc "c" (self: ^NS.SplitViewItem, _: SEL, automaticallyAdjustsSafeAreaInsets: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -469,7 +469,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyAdjustsSafeAreaInsets:"), auto_cast setAutomaticallyAdjustsSafeAreaInsets, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.topAlignedAccessoryViewControllers != nil {
-        topAlignedAccessoryViewControllers :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> ^NS.Array {
+        topAlignedAccessoryViewControllers :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -479,7 +479,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("topAlignedAccessoryViewControllers"), auto_cast topAlignedAccessoryViewControllers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTopAlignedAccessoryViewControllers != nil {
-        setTopAlignedAccessoryViewControllers :: proc "c" (self: ^AK.SplitViewItem, _: SEL, topAlignedAccessoryViewControllers: ^NS.Array) {
+        setTopAlignedAccessoryViewControllers :: proc "c" (self: ^NS.SplitViewItem, _: SEL, topAlignedAccessoryViewControllers: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -489,7 +489,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTopAlignedAccessoryViewControllers:"), auto_cast setTopAlignedAccessoryViewControllers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.bottomAlignedAccessoryViewControllers != nil {
-        bottomAlignedAccessoryViewControllers :: proc "c" (self: ^AK.SplitViewItem, _: SEL) -> ^NS.Array {
+        bottomAlignedAccessoryViewControllers :: proc "c" (self: ^NS.SplitViewItem, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -499,7 +499,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bottomAlignedAccessoryViewControllers"), auto_cast bottomAlignedAccessoryViewControllers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setBottomAlignedAccessoryViewControllers != nil {
-        setBottomAlignedAccessoryViewControllers :: proc "c" (self: ^AK.SplitViewItem, _: SEL, bottomAlignedAccessoryViewControllers: ^NS.Array) {
+        setBottomAlignedAccessoryViewControllers :: proc "c" (self: ^NS.SplitViewItem, _: SEL, bottomAlignedAccessoryViewControllers: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

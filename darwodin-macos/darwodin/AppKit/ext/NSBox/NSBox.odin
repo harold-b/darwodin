@@ -20,42 +20,42 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    sizeToFit: proc(self: ^AK.Box),
-    setFrameFromContentFrame: proc(self: ^AK.Box, contentFrame: NS.Rect),
-    boxType: proc(self: ^AK.Box) -> AK.BoxType,
-    setBoxType: proc(self: ^AK.Box, boxType: AK.BoxType),
-    titlePosition: proc(self: ^AK.Box) -> AK.TitlePosition,
-    setTitlePosition: proc(self: ^AK.Box, titlePosition: AK.TitlePosition),
-    title: proc(self: ^AK.Box) -> ^NS.String,
-    setTitle: proc(self: ^AK.Box, title: ^NS.String),
-    titleFont: proc(self: ^AK.Box) -> ^AK.Font,
-    setTitleFont: proc(self: ^AK.Box, titleFont: ^AK.Font),
-    borderRect: proc(self: ^AK.Box) -> NS.Rect,
-    titleRect: proc(self: ^AK.Box) -> NS.Rect,
-    titleCell: proc(self: ^AK.Box) -> id,
-    contentViewMargins: proc(self: ^AK.Box) -> NS.Size,
-    setContentViewMargins: proc(self: ^AK.Box, contentViewMargins: NS.Size),
-    contentView: proc(self: ^AK.Box) -> ^AK.View,
-    setContentView: proc(self: ^AK.Box, contentView: ^AK.View),
-    isTransparent: proc(self: ^AK.Box) -> bool,
-    setTransparent: proc(self: ^AK.Box, transparent: bool),
-    borderWidth: proc(self: ^AK.Box) -> CG.Float,
-    setBorderWidth: proc(self: ^AK.Box, borderWidth: CG.Float),
-    cornerRadius: proc(self: ^AK.Box) -> CG.Float,
-    setCornerRadius: proc(self: ^AK.Box, cornerRadius: CG.Float),
-    borderColor: proc(self: ^AK.Box) -> ^AK.Color,
-    setBorderColor: proc(self: ^AK.Box, borderColor: ^AK.Color),
-    fillColor: proc(self: ^AK.Box) -> ^AK.Color,
-    setFillColor: proc(self: ^AK.Box, fillColor: ^AK.Color),
-    setTitleWithMnemonic: proc(self: ^AK.Box, stringWithAmpersand: ^NS.String),
-    borderType: proc(self: ^AK.Box) -> AK.BorderType,
-    setBorderType: proc(self: ^AK.Box, borderType: AK.BorderType),
+    sizeToFit: proc(self: ^NS.Box),
+    setFrameFromContentFrame: proc(self: ^NS.Box, contentFrame: NS.Rect),
+    boxType: proc(self: ^NS.Box) -> NS.BoxType,
+    setBoxType: proc(self: ^NS.Box, boxType: NS.BoxType),
+    titlePosition: proc(self: ^NS.Box) -> NS.TitlePosition,
+    setTitlePosition: proc(self: ^NS.Box, titlePosition: NS.TitlePosition),
+    title: proc(self: ^NS.Box) -> ^NS.String,
+    setTitle: proc(self: ^NS.Box, title: ^NS.String),
+    titleFont: proc(self: ^NS.Box) -> ^NS.Font,
+    setTitleFont: proc(self: ^NS.Box, titleFont: ^NS.Font),
+    borderRect: proc(self: ^NS.Box) -> NS.Rect,
+    titleRect: proc(self: ^NS.Box) -> NS.Rect,
+    titleCell: proc(self: ^NS.Box) -> id,
+    contentViewMargins: proc(self: ^NS.Box) -> NS.Size,
+    setContentViewMargins: proc(self: ^NS.Box, contentViewMargins: NS.Size),
+    contentView: proc(self: ^NS.Box) -> ^NS.View,
+    setContentView: proc(self: ^NS.Box, contentView: ^NS.View),
+    isTransparent: proc(self: ^NS.Box) -> bool,
+    setTransparent: proc(self: ^NS.Box, transparent: bool),
+    borderWidth: proc(self: ^NS.Box) -> CG.Float,
+    setBorderWidth: proc(self: ^NS.Box, borderWidth: CG.Float),
+    cornerRadius: proc(self: ^NS.Box) -> CG.Float,
+    setCornerRadius: proc(self: ^NS.Box, cornerRadius: CG.Float),
+    borderColor: proc(self: ^NS.Box) -> ^NS.Color,
+    setBorderColor: proc(self: ^NS.Box, borderColor: ^NS.Color),
+    fillColor: proc(self: ^NS.Box) -> ^NS.Color,
+    setFillColor: proc(self: ^NS.Box, fillColor: ^NS.Color),
+    setTitleWithMnemonic: proc(self: ^NS.Box, stringWithAmpersand: ^NS.String),
+    borderType: proc(self: ^NS.Box) -> NS.BorderType,
+    setBorderType: proc(self: ^NS.Box, borderType: NS.BorderType),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.sizeToFit != nil {
-        sizeToFit :: proc "c" (self: ^AK.Box, _: SEL) {
+        sizeToFit :: proc "c" (self: ^NS.Box, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sizeToFit"), auto_cast sizeToFit, "v@:") do panic("Failed to register objC method.")
     }
     if vt.setFrameFromContentFrame != nil {
-        setFrameFromContentFrame :: proc "c" (self: ^AK.Box, _: SEL, contentFrame: NS.Rect) {
+        setFrameFromContentFrame :: proc "c" (self: ^NS.Box, _: SEL, contentFrame: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFrameFromContentFrame:"), auto_cast setFrameFromContentFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.boxType != nil {
-        boxType :: proc "c" (self: ^AK.Box, _: SEL) -> AK.BoxType {
+        boxType :: proc "c" (self: ^NS.Box, _: SEL) -> NS.BoxType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("boxType"), auto_cast boxType, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setBoxType != nil {
-        setBoxType :: proc "c" (self: ^AK.Box, _: SEL, boxType: AK.BoxType) {
+        setBoxType :: proc "c" (self: ^NS.Box, _: SEL, boxType: NS.BoxType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBoxType:"), auto_cast setBoxType, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.titlePosition != nil {
-        titlePosition :: proc "c" (self: ^AK.Box, _: SEL) -> AK.TitlePosition {
+        titlePosition :: proc "c" (self: ^NS.Box, _: SEL) -> NS.TitlePosition {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titlePosition"), auto_cast titlePosition, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setTitlePosition != nil {
-        setTitlePosition :: proc "c" (self: ^AK.Box, _: SEL, titlePosition: AK.TitlePosition) {
+        setTitlePosition :: proc "c" (self: ^NS.Box, _: SEL, titlePosition: NS.TitlePosition) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitlePosition:"), auto_cast setTitlePosition, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.title != nil {
-        title :: proc "c" (self: ^AK.Box, _: SEL) -> ^NS.String {
+        title :: proc "c" (self: ^NS.Box, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.Box, _: SEL, title: ^NS.String) {
+        setTitle :: proc "c" (self: ^NS.Box, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.titleFont != nil {
-        titleFont :: proc "c" (self: ^AK.Box, _: SEL) -> ^AK.Font {
+        titleFont :: proc "c" (self: ^NS.Box, _: SEL) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleFont"), auto_cast titleFont, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitleFont != nil {
-        setTitleFont :: proc "c" (self: ^AK.Box, _: SEL, titleFont: ^AK.Font) {
+        setTitleFont :: proc "c" (self: ^NS.Box, _: SEL, titleFont: ^NS.Font) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleFont:"), auto_cast setTitleFont, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.borderRect != nil {
-        borderRect :: proc "c" (self: ^AK.Box, _: SEL) -> NS.Rect {
+        borderRect :: proc "c" (self: ^NS.Box, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -176,7 +176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("borderRect"), auto_cast borderRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.titleRect != nil {
-        titleRect :: proc "c" (self: ^AK.Box, _: SEL) -> NS.Rect {
+        titleRect :: proc "c" (self: ^NS.Box, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -186,7 +186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleRect"), auto_cast titleRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.titleCell != nil {
-        titleCell :: proc "c" (self: ^AK.Box, _: SEL) -> id {
+        titleCell :: proc "c" (self: ^NS.Box, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -196,7 +196,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleCell"), auto_cast titleCell, "@@:") do panic("Failed to register objC method.")
     }
     if vt.contentViewMargins != nil {
-        contentViewMargins :: proc "c" (self: ^AK.Box, _: SEL) -> NS.Size {
+        contentViewMargins :: proc "c" (self: ^NS.Box, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -206,7 +206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentViewMargins"), auto_cast contentViewMargins, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setContentViewMargins != nil {
-        setContentViewMargins :: proc "c" (self: ^AK.Box, _: SEL, contentViewMargins: NS.Size) {
+        setContentViewMargins :: proc "c" (self: ^NS.Box, _: SEL, contentViewMargins: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -216,7 +216,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentViewMargins:"), auto_cast setContentViewMargins, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.contentView != nil {
-        contentView :: proc "c" (self: ^AK.Box, _: SEL) -> ^AK.View {
+        contentView :: proc "c" (self: ^NS.Box, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -226,7 +226,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentView"), auto_cast contentView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContentView != nil {
-        setContentView :: proc "c" (self: ^AK.Box, _: SEL, contentView: ^AK.View) {
+        setContentView :: proc "c" (self: ^NS.Box, _: SEL, contentView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -236,7 +236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentView:"), auto_cast setContentView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isTransparent != nil {
-        isTransparent :: proc "c" (self: ^AK.Box, _: SEL) -> bool {
+        isTransparent :: proc "c" (self: ^NS.Box, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -246,7 +246,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isTransparent"), auto_cast isTransparent, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setTransparent != nil {
-        setTransparent :: proc "c" (self: ^AK.Box, _: SEL, transparent: bool) {
+        setTransparent :: proc "c" (self: ^NS.Box, _: SEL, transparent: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -256,7 +256,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTransparent:"), auto_cast setTransparent, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.borderWidth != nil {
-        borderWidth :: proc "c" (self: ^AK.Box, _: SEL) -> CG.Float {
+        borderWidth :: proc "c" (self: ^NS.Box, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -266,7 +266,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("borderWidth"), auto_cast borderWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setBorderWidth != nil {
-        setBorderWidth :: proc "c" (self: ^AK.Box, _: SEL, borderWidth: CG.Float) {
+        setBorderWidth :: proc "c" (self: ^NS.Box, _: SEL, borderWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -276,7 +276,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderWidth:"), auto_cast setBorderWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.cornerRadius != nil {
-        cornerRadius :: proc "c" (self: ^AK.Box, _: SEL) -> CG.Float {
+        cornerRadius :: proc "c" (self: ^NS.Box, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -286,7 +286,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cornerRadius"), auto_cast cornerRadius, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setCornerRadius != nil {
-        setCornerRadius :: proc "c" (self: ^AK.Box, _: SEL, cornerRadius: CG.Float) {
+        setCornerRadius :: proc "c" (self: ^NS.Box, _: SEL, cornerRadius: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -296,7 +296,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCornerRadius:"), auto_cast setCornerRadius, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.borderColor != nil {
-        borderColor :: proc "c" (self: ^AK.Box, _: SEL) -> ^AK.Color {
+        borderColor :: proc "c" (self: ^NS.Box, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -306,7 +306,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("borderColor"), auto_cast borderColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBorderColor != nil {
-        setBorderColor :: proc "c" (self: ^AK.Box, _: SEL, borderColor: ^AK.Color) {
+        setBorderColor :: proc "c" (self: ^NS.Box, _: SEL, borderColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -316,7 +316,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderColor:"), auto_cast setBorderColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.fillColor != nil {
-        fillColor :: proc "c" (self: ^AK.Box, _: SEL) -> ^AK.Color {
+        fillColor :: proc "c" (self: ^NS.Box, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -326,7 +326,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fillColor"), auto_cast fillColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setFillColor != nil {
-        setFillColor :: proc "c" (self: ^AK.Box, _: SEL, fillColor: ^AK.Color) {
+        setFillColor :: proc "c" (self: ^NS.Box, _: SEL, fillColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -336,7 +336,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFillColor:"), auto_cast setFillColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.setTitleWithMnemonic != nil {
-        setTitleWithMnemonic :: proc "c" (self: ^AK.Box, _: SEL, stringWithAmpersand: ^NS.String) {
+        setTitleWithMnemonic :: proc "c" (self: ^NS.Box, _: SEL, stringWithAmpersand: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -346,7 +346,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleWithMnemonic:"), auto_cast setTitleWithMnemonic, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.borderType != nil {
-        borderType :: proc "c" (self: ^AK.Box, _: SEL) -> AK.BorderType {
+        borderType :: proc "c" (self: ^NS.Box, _: SEL) -> NS.BorderType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -356,7 +356,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("borderType"), auto_cast borderType, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setBorderType != nil {
-        setBorderType :: proc "c" (self: ^AK.Box, _: SEL, borderType: AK.BorderType) {
+        setBorderType :: proc "c" (self: ^NS.Box, _: SEL, borderType: NS.BorderType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAnimatedQuaternionArray
-///
 @(objc_class="MDLAnimatedQuaternionArray", objc_superclass=AnimatedValue)
 AnimatedQuaternionArray :: struct { using _: AnimatedValue, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimatedQuaternionArray, objc_selector="initWithElementCount:", objc_name="initWithElementCount")
     AnimatedQuaternionArray_initWithElementCount :: proc(self: ^AnimatedQuaternionArray, arrayElementCount: NS.UInteger) -> id ---
@@ -50,6 +44,8 @@ foreign lib {
     @(objc_type=AnimatedQuaternionArray, objc_selector="elementCount", objc_name="elementCount")
     AnimatedQuaternionArray_elementCount :: proc(self: ^AnimatedQuaternionArray) -> NS.UInteger ---
 }
+
+
 
 @(objc_type=AnimatedQuaternionArray, objc_name="getFloatQuaternionArray")
 AnimatedQuaternionArray_getFloatQuaternionArray :: proc {

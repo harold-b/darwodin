@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricPlayerItemRateChangeEvent
-///
 @(objc_class="AVMetricPlayerItemRateChangeEvent", objc_superclass=MetricEvent)
 MetricPlayerItemRateChangeEvent :: struct { using _: MetricEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemRateChangeEvent, objc_selector="init", objc_name="init")
     MetricPlayerItemRateChangeEvent_init :: proc(self: ^MetricPlayerItemRateChangeEvent) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=MetricPlayerItemRateChangeEvent, objc_selector="variant", objc_name="variant")
     MetricPlayerItemRateChangeEvent_variant :: proc(self: ^MetricPlayerItemRateChangeEvent) -> ^AssetVariant ---
 }
+
+
+

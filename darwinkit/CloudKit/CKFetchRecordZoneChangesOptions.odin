@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKFetchRecordZoneChangesOptions
-///
 @(objc_class="CKFetchRecordZoneChangesOptions", objc_superclass=NS.Object)
 FetchRecordZoneChangesOptions :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchRecordZoneChangesOptions, objc_selector="previousServerChangeToken", objc_name="previousServerChangeToken")
     FetchRecordZoneChangesOptions_previousServerChangeToken :: proc(self: ^FetchRecordZoneChangesOptions) -> ^ServerChangeToken ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=FetchRecordZoneChangesOptions, objc_selector="setDesiredKeys:", objc_name="setDesiredKeys")
     FetchRecordZoneChangesOptions_setDesiredKeys :: proc(self: ^FetchRecordZoneChangesOptions, desiredKeys: ^NS.Array) ---
 }
+
+
+

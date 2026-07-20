@@ -10,18 +10,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAnimationBindComponent
-///
 @(objc_class="MDLAnimationBindComponent", objc_superclass=NS.Object)
 AnimationBindComponent :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: Component,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimationBindComponent, objc_selector="skeleton", objc_name="skeleton")
     AnimationBindComponent_skeleton :: proc(self: ^AnimationBindComponent) -> ^Skeleton ---
@@ -47,3 +41,6 @@ foreign lib {
     @(objc_type=AnimationBindComponent, objc_selector="setGeometryBindTransform:", objc_name="setGeometryBindTransform")
     AnimationBindComponent_setGeometryBindTransform :: proc(self: ^AnimationBindComponent, geometryBindTransform: matrix[4,4]f64) ---
 }
+
+
+

@@ -66,7 +66,7 @@ foreign lib {
     CollectionView_setCollectionViewLayout_animated :: proc(self: ^CollectionView, layout: ^CollectionViewLayout, animated: bool) ---
 
     @(objc_type=CollectionView, objc_selector="setCollectionViewLayout:animated:completion:", objc_name="setCollectionViewLayout_animated_completion")
-    CollectionView_setCollectionViewLayout_animated_completion :: proc(self: ^CollectionView, layout: ^CollectionViewLayout, animated: bool, completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    CollectionView_setCollectionViewLayout_animated_completion :: proc(self: ^CollectionView, layout: ^CollectionViewLayout, animated: bool, completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=CollectionView, objc_selector="startInteractiveTransitionToCollectionViewLayout:completion:", objc_name="startInteractiveTransitionToCollectionViewLayout")
     CollectionView_startInteractiveTransitionToCollectionViewLayout :: proc(self: ^CollectionView, layout: ^CollectionViewLayout, completion: CollectionViewLayoutInteractiveTransitionCompletion) -> ^CollectionViewTransitionLayout ---
@@ -138,7 +138,7 @@ foreign lib {
     CollectionView_reconfigureItemsAtIndexPaths :: proc(self: ^CollectionView, indexPaths: ^NS.Array) ---
 
     @(objc_type=CollectionView, objc_selector="performBatchUpdates:completion:", objc_name="performBatchUpdates")
-    CollectionView_performBatchUpdates :: proc(self: ^CollectionView, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    CollectionView_performBatchUpdates :: proc(self: ^CollectionView, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=CollectionView, objc_selector="beginInteractiveMovementForItemAtIndexPath:", objc_name="beginInteractiveMovementForItemAtIndexPath")
     CollectionView_beginInteractiveMovementForItemAtIndexPath :: proc(self: ^CollectionView, indexPath: ^NS.IndexPath) -> bool ---

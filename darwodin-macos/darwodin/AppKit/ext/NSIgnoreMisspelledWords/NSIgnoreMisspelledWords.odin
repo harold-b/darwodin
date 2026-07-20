@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    ignoreSpelling: proc(self: ^AK.IgnoreMisspelledWords, sender: id),
+    ignoreSpelling: proc(self: ^NS.IgnoreMisspelledWords, sender: id),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.ignoreSpelling != nil {
-        ignoreSpelling :: proc "c" (self: ^AK.IgnoreMisspelledWords, _: SEL, sender: id) {
+        ignoreSpelling :: proc "c" (self: ^NS.IgnoreMisspelledWords, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

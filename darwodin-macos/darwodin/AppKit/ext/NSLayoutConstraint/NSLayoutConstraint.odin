@@ -20,34 +20,34 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    constraintsWithVisualFormat: proc(format: ^NS.String, opts: AK.LayoutFormatOptions, metrics: ^NS.Dictionary, views: ^NS.Dictionary) -> ^NS.Array,
-    constraintWithItem: proc(view1: id, attr1: AK.LayoutAttribute, relation: AK.LayoutRelation, view2: id, attr2: AK.LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> instancetype,
+    constraintsWithVisualFormat: proc(format: ^NS.String, opts: NS.LayoutFormatOptions, metrics: ^NS.Dictionary, views: ^NS.Dictionary) -> ^NS.Array,
+    constraintWithItem: proc(view1: id, attr1: NS.LayoutAttribute, relation: NS.LayoutRelation, view2: id, attr2: NS.LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> instancetype,
     activateConstraints: proc(constraints: ^NS.Array),
     deactivateConstraints: proc(constraints: ^NS.Array),
-    priority: proc(self: ^AK.LayoutConstraint) -> AK.LayoutPriority,
-    setPriority: proc(self: ^AK.LayoutConstraint, priority: AK.LayoutPriority),
-    shouldBeArchived: proc(self: ^AK.LayoutConstraint) -> bool,
-    setShouldBeArchived: proc(self: ^AK.LayoutConstraint, shouldBeArchived: bool),
-    firstItem: proc(self: ^AK.LayoutConstraint) -> id,
-    secondItem: proc(self: ^AK.LayoutConstraint) -> id,
-    firstAttribute: proc(self: ^AK.LayoutConstraint) -> AK.LayoutAttribute,
-    secondAttribute: proc(self: ^AK.LayoutConstraint) -> AK.LayoutAttribute,
-    firstAnchor: proc(self: ^AK.LayoutConstraint) -> ^AK.LayoutAnchor,
-    secondAnchor: proc(self: ^AK.LayoutConstraint) -> ^AK.LayoutAnchor,
-    relation: proc(self: ^AK.LayoutConstraint) -> AK.LayoutRelation,
-    multiplier: proc(self: ^AK.LayoutConstraint) -> CG.Float,
-    constant: proc(self: ^AK.LayoutConstraint) -> CG.Float,
-    setConstant: proc(self: ^AK.LayoutConstraint, constant: CG.Float),
-    isActive: proc(self: ^AK.LayoutConstraint) -> bool,
-    setActive: proc(self: ^AK.LayoutConstraint, active: bool),
-    identifier: proc(self: ^AK.LayoutConstraint) -> ^NS.String,
-    setIdentifier: proc(self: ^AK.LayoutConstraint, identifier: ^NS.String),
+    priority: proc(self: ^NS.LayoutConstraint) -> NS.LayoutPriority,
+    setPriority: proc(self: ^NS.LayoutConstraint, priority: NS.LayoutPriority),
+    shouldBeArchived: proc(self: ^NS.LayoutConstraint) -> bool,
+    setShouldBeArchived: proc(self: ^NS.LayoutConstraint, shouldBeArchived: bool),
+    firstItem: proc(self: ^NS.LayoutConstraint) -> id,
+    secondItem: proc(self: ^NS.LayoutConstraint) -> id,
+    firstAttribute: proc(self: ^NS.LayoutConstraint) -> NS.LayoutAttribute,
+    secondAttribute: proc(self: ^NS.LayoutConstraint) -> NS.LayoutAttribute,
+    firstAnchor: proc(self: ^NS.LayoutConstraint) -> ^NS.LayoutAnchor,
+    secondAnchor: proc(self: ^NS.LayoutConstraint) -> ^NS.LayoutAnchor,
+    relation: proc(self: ^NS.LayoutConstraint) -> NS.LayoutRelation,
+    multiplier: proc(self: ^NS.LayoutConstraint) -> CG.Float,
+    constant: proc(self: ^NS.LayoutConstraint) -> CG.Float,
+    setConstant: proc(self: ^NS.LayoutConstraint, constant: CG.Float),
+    isActive: proc(self: ^NS.LayoutConstraint) -> bool,
+    setActive: proc(self: ^NS.LayoutConstraint, active: bool),
+    identifier: proc(self: ^NS.LayoutConstraint) -> ^NS.String,
+    setIdentifier: proc(self: ^NS.LayoutConstraint, identifier: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.constraintsWithVisualFormat != nil {
-        constraintsWithVisualFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String, opts: AK.LayoutFormatOptions, metrics: ^NS.Dictionary, views: ^NS.Dictionary) -> ^NS.Array {
+        constraintsWithVisualFormat :: proc "c" (self: Class, _: SEL, format: ^NS.String, opts: NS.LayoutFormatOptions, metrics: ^NS.Dictionary, views: ^NS.Dictionary) -> ^NS.Array {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("constraintsWithVisualFormat:options:metrics:views:"), auto_cast constraintsWithVisualFormat, "^void#:@L^void^void") do panic("Failed to register objC method.")
     }
     if vt.constraintWithItem != nil {
-        constraintWithItem :: proc "c" (self: Class, _: SEL, view1: id, attr1: AK.LayoutAttribute, relation: AK.LayoutRelation, view2: id, attr2: AK.LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> instancetype {
+        constraintWithItem :: proc "c" (self: Class, _: SEL, view1: id, attr1: NS.LayoutAttribute, relation: NS.LayoutRelation, view2: id, attr2: NS.LayoutAttribute, multiplier: CG.Float, c: CG.Float) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("deactivateConstraints:"), auto_cast deactivateConstraints, "v#:^void") do panic("Failed to register objC method.")
     }
     if vt.priority != nil {
-        priority :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> AK.LayoutPriority {
+        priority :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> NS.LayoutPriority {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("priority"), auto_cast priority, "f@:") do panic("Failed to register objC method.")
     }
     if vt.setPriority != nil {
-        setPriority :: proc "c" (self: ^AK.LayoutConstraint, _: SEL, priority: AK.LayoutPriority) {
+        setPriority :: proc "c" (self: ^NS.LayoutConstraint, _: SEL, priority: NS.LayoutPriority) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPriority:"), auto_cast setPriority, "v@:f") do panic("Failed to register objC method.")
     }
     if vt.shouldBeArchived != nil {
-        shouldBeArchived :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> bool {
+        shouldBeArchived :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shouldBeArchived"), auto_cast shouldBeArchived, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setShouldBeArchived != nil {
-        setShouldBeArchived :: proc "c" (self: ^AK.LayoutConstraint, _: SEL, shouldBeArchived: bool) {
+        setShouldBeArchived :: proc "c" (self: ^NS.LayoutConstraint, _: SEL, shouldBeArchived: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -138,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShouldBeArchived:"), auto_cast setShouldBeArchived, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.firstItem != nil {
-        firstItem :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> id {
+        firstItem :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("firstItem"), auto_cast firstItem, "@@:") do panic("Failed to register objC method.")
     }
     if vt.secondItem != nil {
-        secondItem :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> id {
+        secondItem :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -158,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("secondItem"), auto_cast secondItem, "@@:") do panic("Failed to register objC method.")
     }
     if vt.firstAttribute != nil {
-        firstAttribute :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> AK.LayoutAttribute {
+        firstAttribute :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> NS.LayoutAttribute {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -168,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("firstAttribute"), auto_cast firstAttribute, "l@:") do panic("Failed to register objC method.")
     }
     if vt.secondAttribute != nil {
-        secondAttribute :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> AK.LayoutAttribute {
+        secondAttribute :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> NS.LayoutAttribute {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -178,7 +178,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("secondAttribute"), auto_cast secondAttribute, "l@:") do panic("Failed to register objC method.")
     }
     if vt.firstAnchor != nil {
-        firstAnchor :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> ^AK.LayoutAnchor {
+        firstAnchor :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> ^NS.LayoutAnchor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -188,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("firstAnchor"), auto_cast firstAnchor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.secondAnchor != nil {
-        secondAnchor :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> ^AK.LayoutAnchor {
+        secondAnchor :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> ^NS.LayoutAnchor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -198,7 +198,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("secondAnchor"), auto_cast secondAnchor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.relation != nil {
-        relation :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> AK.LayoutRelation {
+        relation :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> NS.LayoutRelation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -208,7 +208,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("relation"), auto_cast relation, "l@:") do panic("Failed to register objC method.")
     }
     if vt.multiplier != nil {
-        multiplier :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> CG.Float {
+        multiplier :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -218,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("multiplier"), auto_cast multiplier, "d@:") do panic("Failed to register objC method.")
     }
     if vt.constant != nil {
-        constant :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> CG.Float {
+        constant :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -228,7 +228,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("constant"), auto_cast constant, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setConstant != nil {
-        setConstant :: proc "c" (self: ^AK.LayoutConstraint, _: SEL, constant: CG.Float) {
+        setConstant :: proc "c" (self: ^NS.LayoutConstraint, _: SEL, constant: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -238,7 +238,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setConstant:"), auto_cast setConstant, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.isActive != nil {
-        isActive :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> bool {
+        isActive :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -248,7 +248,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isActive"), auto_cast isActive, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setActive != nil {
-        setActive :: proc "c" (self: ^AK.LayoutConstraint, _: SEL, active: bool) {
+        setActive :: proc "c" (self: ^NS.LayoutConstraint, _: SEL, active: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -258,7 +258,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setActive:"), auto_cast setActive, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.identifier != nil {
-        identifier :: proc "c" (self: ^AK.LayoutConstraint, _: SEL) -> ^NS.String {
+        identifier :: proc "c" (self: ^NS.LayoutConstraint, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -268,7 +268,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("identifier"), auto_cast identifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setIdentifier != nil {
-        setIdentifier :: proc "c" (self: ^AK.LayoutConstraint, _: SEL, identifier: ^NS.String) {
+        setIdentifier :: proc "c" (self: ^NS.LayoutConstraint, _: SEL, identifier: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

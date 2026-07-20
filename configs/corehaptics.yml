@@ -44,8 +44,11 @@ Odin:
       DarwinLinkLibs: [system:CoreHaptics.framework]
       Filter: .*
 
-      # Imports:
-      #   - 
+      Imports:
+        - |
+          AVAudioSession           :: struct {}
+          CASpatialAudioExperience :: struct {}
+
 
       # TypeMap:
 

@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLSessionTaskMetrics
-///
 @(objc_class="NSURLSessionTaskMetrics", objc_superclass=Object)
 URLSessionTaskMetrics :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionTaskMetrics, objc_selector="init", objc_name="init")
     URLSessionTaskMetrics_init :: proc(self: ^URLSessionTaskMetrics) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=URLSessionTaskMetrics, objc_selector="redirectCount", objc_name="redirectCount")
     URLSessionTaskMetrics_redirectCount :: proc(self: ^URLSessionTaskMetrics) -> UInteger ---
 }
+
+
+

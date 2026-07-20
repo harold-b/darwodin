@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    pasteboard: proc(self: ^AK.PasteboardItemDataProvider, pasteboard: ^AK.Pasteboard, item: ^AK.PasteboardItem, type: ^NS.String),
-    pasteboardFinishedWithDataProvider: proc(self: ^AK.PasteboardItemDataProvider, pasteboard: ^AK.Pasteboard),
+    pasteboard: proc(self: ^NS.PasteboardItemDataProvider, pasteboard: ^NS.Pasteboard, item: ^NS.PasteboardItem, type: ^NS.String),
+    pasteboardFinishedWithDataProvider: proc(self: ^NS.PasteboardItemDataProvider, pasteboard: ^NS.Pasteboard),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.pasteboard != nil {
-        pasteboard :: proc "c" (self: ^AK.PasteboardItemDataProvider, _: SEL, pasteboard: ^AK.Pasteboard, item: ^AK.PasteboardItem, type: ^NS.String) {
+        pasteboard :: proc "c" (self: ^NS.PasteboardItemDataProvider, _: SEL, pasteboard: ^NS.Pasteboard, item: ^NS.PasteboardItem, type: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pasteboard:item:provideDataForType:"), auto_cast pasteboard, "v@:@@@") do panic("Failed to register objC method.")
     }
     if vt.pasteboardFinishedWithDataProvider != nil {
-        pasteboardFinishedWithDataProvider :: proc "c" (self: ^AK.PasteboardItemDataProvider, _: SEL, pasteboard: ^AK.Pasteboard) {
+        pasteboardFinishedWithDataProvider :: proc "c" (self: ^NS.PasteboardItemDataProvider, _: SEL, pasteboard: ^NS.Pasteboard) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

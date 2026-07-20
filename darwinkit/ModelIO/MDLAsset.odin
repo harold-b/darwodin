@@ -10,18 +10,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAsset
-///
 @(objc_class="MDLAsset", objc_superclass=NS.Object)
 Asset :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Asset, objc_selector="initWithURL:", objc_name="initWithURL_")
     Asset_initWithURL_ :: proc(self: ^Asset, _URL: ^NS.URL) -> instancetype ---
@@ -137,6 +131,8 @@ foreign lib {
     @(objc_type=Asset, objc_selector="placeLightProbesWithDensity:heuristic:usingIrradianceDataSource:", objc_name="placeLightProbesWithDensity", objc_is_class_method=true)
     Asset_placeLightProbesWithDensity :: proc(value: cffi.float, type: ProbePlacement, dataSource: ^LightProbeIrradianceDataSource) -> ^NS.Array ---
 }
+
+
 
 @(objc_type=Asset, objc_name="initWithURL")
 Asset_initWithURL :: proc {

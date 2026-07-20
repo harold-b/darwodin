@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKMatchDelegate
-///
 @(objc_class="GKMatchDelegate")
 MatchDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MatchDelegate, objc_selector="match:didReceiveData:fromRemotePlayer:", objc_name="match_didReceiveData_fromRemotePlayer")
     MatchDelegate_match_didReceiveData_fromRemotePlayer :: proc(self: ^MatchDelegate, match: ^Match, data: ^NS.Data, player: ^Player) ---
@@ -43,6 +37,8 @@ foreign lib {
     @(objc_type=MatchDelegate, objc_selector="match:shouldReinvitePlayer:", objc_name="match_shouldReinvitePlayer")
     MatchDelegate_match_shouldReinvitePlayer :: proc(self: ^MatchDelegate, match: ^Match, playerID: ^NS.String) -> bool ---
 }
+
+
 
 @(objc_type=MatchDelegate, objc_name="match")
 MatchDelegate_match :: proc {

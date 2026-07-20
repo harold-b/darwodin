@@ -10,18 +10,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLPackedJointAnimation
-///
 @(objc_class="MDLPackedJointAnimation", objc_superclass=Object)
 PackedJointAnimation :: struct { using _: Object, 
     using _: NS.Copying,
     using _: JointAnimation,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PackedJointAnimation, objc_selector="initWithName:jointPaths:", objc_name="initWithName")
     PackedJointAnimation_initWithName :: proc(self: ^PackedJointAnimation, name: ^NS.String, jointPaths: ^NS.Array) -> instancetype ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=PackedJointAnimation, objc_selector="scales", objc_name="scales")
     PackedJointAnimation_scales :: proc(self: ^PackedJointAnimation) -> ^AnimatedVector3Array ---
 }
+
+
+

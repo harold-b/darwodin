@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_CoreFoundation
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -14,8 +16,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:CoreFoundation.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:CoreFoundation.framework",
+    }
+}
+
+
+// +user-text-begin
 FSRef             :: struct {}
 NSObject          :: intrinsics.objc_object
 NSString          :: NSObject
@@ -56,446 +70,1152 @@ StringCopyToOdinString :: proc( theString: StringRef, allocator := context.alloc
 
 
 
-OSUnknownByteOrder                          :: 0
-OSLittleEndian                              :: 1
-OSBigEndian                                 :: 2
-kNotificationDeliverImmediately             :: 1
-kNotificationPostToAllSessions              :: 2
-kCalendarComponentsWrap                     :: 1
-kSocketAutomaticallyReenableReadCallBack    :: 1
-kSocketAutomaticallyReenableAcceptCallBack  :: 2
-kSocketAutomaticallyReenableDataCallBack    :: 3
-kSocketAutomaticallyReenableWriteCallBack   :: 8
-kSocketLeaveErrors                          :: 64
-kSocketCloseOnInvalidate                    :: 128
-DISPATCH_WALLTIME_NOW                       :: 18446744073709551614
-kPropertyListReadCorruptError               :: 3840
-kPropertyListReadUnknownVersionError        :: 3841
-kPropertyListReadStreamError                :: 3842
-kPropertyListWriteStreamError               :: 3851
-kBundleExecutableArchitectureI386           :: 7
-kBundleExecutableArchitecturePPC            :: 18
-kBundleExecutableArchitectureX86_64         :: 16777223
-kBundleExecutableArchitecturePPC64          :: 16777234
-kBundleExecutableArchitectureARM64          :: 16777228
-kMessagePortSuccess                         :: 0
-kMessagePortSendTimeout                     :: -1
-kMessagePortReceiveTimeout                  :: -2
-kMessagePortIsInvalid                       :: -3
-kMessagePortTransportError                  :: -4
-kMessagePortBecameInvalidError              :: -5
-kStringTokenizerUnitWord                    :: 0
-kStringTokenizerUnitSentence                :: 1
-kStringTokenizerUnitParagraph               :: 2
-kStringTokenizerUnitLineBreak               :: 3
-kStringTokenizerUnitWordBoundary            :: 4
-kStringTokenizerAttributeLatinTranscription :: 65536
-kStringTokenizerAttributeLanguage           :: 131072
-kFileDescriptorReadCallBack                 :: 1
-kFileDescriptorWriteCallBack                :: 2
-kUserNotificationStopAlertLevel             :: 0
-kUserNotificationNoteAlertLevel             :: 1
-kUserNotificationCautionAlertLevel          :: 2
-kUserNotificationPlainAlertLevel            :: 3
-kUserNotificationDefaultResponse            :: 0
-kUserNotificationAlternateResponse          :: 1
-kUserNotificationOtherResponse              :: 2
-kUserNotificationCancelResponse             :: 3
-kUserNotificationNoDefaultButtonFlag        :: 32
-kUserNotificationUseRadioButtonsFlag        :: 64
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    kXMLNodeCurrentVersion                      :: 1
-}
-kNotFound                                   :: -1
-
 foreign lib {
-    @(link_name="kCFCoreFoundationVersionNumber") kCoreFoundationVersionNumber: cffi.double
-    @(link_name="kCFNull") kNull: NullRef
-    @(link_name="kCFAllocatorDefault") kAllocatorDefault: AllocatorRef
-    @(link_name="kCFAllocatorSystemDefault") kAllocatorSystemDefault: AllocatorRef
-    @(link_name="kCFAllocatorMalloc") kAllocatorMalloc: AllocatorRef
-    @(link_name="kCFAllocatorMallocZone") kAllocatorMallocZone: AllocatorRef
-    @(link_name="kCFAllocatorNull") kAllocatorNull: AllocatorRef
-    @(link_name="kCFAllocatorUseContext") kAllocatorUseContext: AllocatorRef
-    @(link_name="kCFTypeArrayCallBacks") kTypeArrayCallBacks: ArrayCallBacks
-    @(link_name="kCFTypeBagCallBacks") kTypeBagCallBacks: BagCallBacks
-    @(link_name="kCFCopyStringBagCallBacks") kCopyStringBagCallBacks: BagCallBacks
-    @(link_name="kCFStringBinaryHeapCallBacks") kStringBinaryHeapCallBacks: BinaryHeapCallBacks
-    @(link_name="kCFTypeDictionaryKeyCallBacks") kTypeDictionaryKeyCallBacks: DictionaryKeyCallBacks
-    @(link_name="kCFCopyStringDictionaryKeyCallBacks") kCopyStringDictionaryKeyCallBacks: DictionaryKeyCallBacks
-    @(link_name="kCFTypeDictionaryValueCallBacks") kTypeDictionaryValueCallBacks: DictionaryValueCallBacks
-    @(link_name="kCFLocaleCurrentLocaleDidChangeNotification") kLocaleCurrentLocaleDidChangeNotification: NotificationName
-    @(link_name="kCFLocaleIdentifier") kLocaleIdentifier: LocaleKey
-    @(link_name="kCFLocaleLanguageCode") kLocaleLanguageCode: LocaleKey
-    @(link_name="kCFLocaleCountryCode") kLocaleCountryCode: LocaleKey
-    @(link_name="kCFLocaleScriptCode") kLocaleScriptCode: LocaleKey
-    @(link_name="kCFLocaleVariantCode") kLocaleVariantCode: LocaleKey
-    @(link_name="kCFLocaleExemplarCharacterSet") kLocaleExemplarCharacterSet: LocaleKey
-    @(link_name="kCFLocaleCalendarIdentifier") kLocaleCalendarIdentifier: LocaleKey
-    @(link_name="kCFLocaleCalendar") kLocaleCalendar: LocaleKey
-    @(link_name="kCFLocaleCollationIdentifier") kLocaleCollationIdentifier: LocaleKey
-    @(link_name="kCFLocaleUsesMetricSystem") kLocaleUsesMetricSystem: LocaleKey
-    @(link_name="kCFLocaleMeasurementSystem") kLocaleMeasurementSystem: LocaleKey
-    @(link_name="kCFLocaleDecimalSeparator") kLocaleDecimalSeparator: LocaleKey
-    @(link_name="kCFLocaleGroupingSeparator") kLocaleGroupingSeparator: LocaleKey
-    @(link_name="kCFLocaleCurrencySymbol") kLocaleCurrencySymbol: LocaleKey
-    @(link_name="kCFLocaleCurrencyCode") kLocaleCurrencyCode: LocaleKey
-    @(link_name="kCFLocaleCollatorIdentifier") kLocaleCollatorIdentifier: LocaleKey
-    @(link_name="kCFLocaleQuotationBeginDelimiterKey") kLocaleQuotationBeginDelimiterKey: LocaleKey
-    @(link_name="kCFLocaleQuotationEndDelimiterKey") kLocaleQuotationEndDelimiterKey: LocaleKey
-    @(link_name="kCFLocaleAlternateQuotationBeginDelimiterKey") kLocaleAlternateQuotationBeginDelimiterKey: LocaleKey
-    @(link_name="kCFLocaleAlternateQuotationEndDelimiterKey") kLocaleAlternateQuotationEndDelimiterKey: LocaleKey
-    @(link_name="kCFGregorianCalendar") kGregorianCalendar: CalendarIdentifier
-    @(link_name="kCFBuddhistCalendar") kBuddhistCalendar: CalendarIdentifier
-    @(link_name="kCFChineseCalendar") kChineseCalendar: CalendarIdentifier
-    @(link_name="kCFHebrewCalendar") kHebrewCalendar: CalendarIdentifier
-    @(link_name="kCFIslamicCalendar") kIslamicCalendar: CalendarIdentifier
-    @(link_name="kCFIslamicCivilCalendar") kIslamicCivilCalendar: CalendarIdentifier
-    @(link_name="kCFJapaneseCalendar") kJapaneseCalendar: CalendarIdentifier
-    @(link_name="kCFRepublicOfChinaCalendar") kRepublicOfChinaCalendar: CalendarIdentifier
-    @(link_name="kCFPersianCalendar") kPersianCalendar: CalendarIdentifier
-    @(link_name="kCFIndianCalendar") kIndianCalendar: CalendarIdentifier
-    @(link_name="kCFISO8601Calendar") kISO8601Calendar: CalendarIdentifier
-    @(link_name="kCFIslamicTabularCalendar") kIslamicTabularCalendar: CalendarIdentifier
-    @(link_name="kCFIslamicUmmAlQuraCalendar") kIslamicUmmAlQuraCalendar: CalendarIdentifier
-    @(link_name="kCFBanglaCalendar") kBanglaCalendar: CalendarIdentifier
-    @(link_name="kCFGujaratiCalendar") kGujaratiCalendar: CalendarIdentifier
-    @(link_name="kCFKannadaCalendar") kKannadaCalendar: CalendarIdentifier
-    @(link_name="kCFMalayalamCalendar") kMalayalamCalendar: CalendarIdentifier
-    @(link_name="kCFMarathiCalendar") kMarathiCalendar: CalendarIdentifier
-    @(link_name="kCFOdiaCalendar") kOdiaCalendar: CalendarIdentifier
-    @(link_name="kCFTamilCalendar") kTamilCalendar: CalendarIdentifier
-    @(link_name="kCFTeluguCalendar") kTeluguCalendar: CalendarIdentifier
-    @(link_name="kCFVikramCalendar") kVikramCalendar: CalendarIdentifier
-    @(link_name="kCFDangiCalendar") kDangiCalendar: CalendarIdentifier
-    @(link_name="kCFVietnameseCalendar") kVietnameseCalendar: CalendarIdentifier
-    @(link_name="kCFAbsoluteTimeIntervalSince1970") kAbsoluteTimeIntervalSince1970: TimeInterval
-    @(link_name="kCFAbsoluteTimeIntervalSince1904") kAbsoluteTimeIntervalSince1904: TimeInterval
-    @(link_name="kCFErrorDomainPOSIX") kErrorDomainPOSIX: ErrorDomain
-    @(link_name="kCFErrorDomainOSStatus") kErrorDomainOSStatus: ErrorDomain
-    @(link_name="kCFErrorDomainMach") kErrorDomainMach: ErrorDomain
-    @(link_name="kCFErrorDomainCocoa") kErrorDomainCocoa: ErrorDomain
-    @(link_name="kCFErrorLocalizedDescriptionKey") kErrorLocalizedDescriptionKey: StringRef
-    @(link_name="kCFErrorLocalizedFailureKey") kErrorLocalizedFailureKey: StringRef
-    @(link_name="kCFErrorLocalizedFailureReasonKey") kErrorLocalizedFailureReasonKey: StringRef
-    @(link_name="kCFErrorLocalizedRecoverySuggestionKey") kErrorLocalizedRecoverySuggestionKey: StringRef
-    @(link_name="kCFErrorDescriptionKey") kErrorDescriptionKey: StringRef
-    @(link_name="kCFErrorUnderlyingErrorKey") kErrorUnderlyingErrorKey: StringRef
-    @(link_name="kCFErrorURLKey") kErrorURLKey: StringRef
-    @(link_name="kCFErrorFilePathKey") kErrorFilePathKey: StringRef
-    @(link_name="kCFStringTransformStripCombiningMarks") kStringTransformStripCombiningMarks: StringRef
-    @(link_name="kCFStringTransformToLatin") kStringTransformToLatin: StringRef
-    @(link_name="kCFStringTransformFullwidthHalfwidth") kStringTransformFullwidthHalfwidth: StringRef
-    @(link_name="kCFStringTransformLatinKatakana") kStringTransformLatinKatakana: StringRef
-    @(link_name="kCFStringTransformLatinHiragana") kStringTransformLatinHiragana: StringRef
-    @(link_name="kCFStringTransformHiraganaKatakana") kStringTransformHiraganaKatakana: StringRef
-    @(link_name="kCFStringTransformMandarinLatin") kStringTransformMandarinLatin: StringRef
-    @(link_name="kCFStringTransformLatinHangul") kStringTransformLatinHangul: StringRef
-    @(link_name="kCFStringTransformLatinArabic") kStringTransformLatinArabic: StringRef
-    @(link_name="kCFStringTransformLatinHebrew") kStringTransformLatinHebrew: StringRef
-    @(link_name="kCFStringTransformLatinThai") kStringTransformLatinThai: StringRef
-    @(link_name="kCFStringTransformLatinCyrillic") kStringTransformLatinCyrillic: StringRef
-    @(link_name="kCFStringTransformLatinGreek") kStringTransformLatinGreek: StringRef
-    @(link_name="kCFStringTransformToXMLHex") kStringTransformToXMLHex: StringRef
-    @(link_name="kCFStringTransformToUnicodeName") kStringTransformToUnicodeName: StringRef
-    @(link_name="kCFStringTransformStripDiacritics") kStringTransformStripDiacritics: StringRef
-    @(link_name="kCFTimeZoneSystemTimeZoneDidChangeNotification") kTimeZoneSystemTimeZoneDidChangeNotification: NotificationName
-    @(link_name="kCFDateFormatterIsLenient") kDateFormatterIsLenient: DateFormatterKey
-    @(link_name="kCFDateFormatterTimeZone") kDateFormatterTimeZone: DateFormatterKey
-    @(link_name="kCFDateFormatterCalendarName") kDateFormatterCalendarName: DateFormatterKey
-    @(link_name="kCFDateFormatterDefaultFormat") kDateFormatterDefaultFormat: DateFormatterKey
-    @(link_name="kCFDateFormatterTwoDigitStartDate") kDateFormatterTwoDigitStartDate: DateFormatterKey
-    @(link_name="kCFDateFormatterDefaultDate") kDateFormatterDefaultDate: DateFormatterKey
-    @(link_name="kCFDateFormatterCalendar") kDateFormatterCalendar: DateFormatterKey
-    @(link_name="kCFDateFormatterEraSymbols") kDateFormatterEraSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterMonthSymbols") kDateFormatterMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortMonthSymbols") kDateFormatterShortMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterWeekdaySymbols") kDateFormatterWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortWeekdaySymbols") kDateFormatterShortWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterAMSymbol") kDateFormatterAMSymbol: DateFormatterKey
-    @(link_name="kCFDateFormatterPMSymbol") kDateFormatterPMSymbol: DateFormatterKey
-    @(link_name="kCFDateFormatterLongEraSymbols") kDateFormatterLongEraSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterVeryShortMonthSymbols") kDateFormatterVeryShortMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterStandaloneMonthSymbols") kDateFormatterStandaloneMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortStandaloneMonthSymbols") kDateFormatterShortStandaloneMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterVeryShortStandaloneMonthSymbols") kDateFormatterVeryShortStandaloneMonthSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterVeryShortWeekdaySymbols") kDateFormatterVeryShortWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterStandaloneWeekdaySymbols") kDateFormatterStandaloneWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortStandaloneWeekdaySymbols") kDateFormatterShortStandaloneWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterVeryShortStandaloneWeekdaySymbols") kDateFormatterVeryShortStandaloneWeekdaySymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterQuarterSymbols") kDateFormatterQuarterSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortQuarterSymbols") kDateFormatterShortQuarterSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterStandaloneQuarterSymbols") kDateFormatterStandaloneQuarterSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterShortStandaloneQuarterSymbols") kDateFormatterShortStandaloneQuarterSymbols: DateFormatterKey
-    @(link_name="kCFDateFormatterGregorianStartDate") kDateFormatterGregorianStartDate: DateFormatterKey
-    @(link_name="kCFDateFormatterDoesRelativeDateFormattingKey") kDateFormatterDoesRelativeDateFormattingKey: DateFormatterKey
-    @(link_name="kCFBooleanTrue") kBooleanTrue: BooleanRef
-    @(link_name="kCFBooleanFalse") kBooleanFalse: BooleanRef
-    @(link_name="kCFNumberPositiveInfinity") kNumberPositiveInfinity: NumberRef
-    @(link_name="kCFNumberNegativeInfinity") kNumberNegativeInfinity: NumberRef
-    @(link_name="kCFNumberNaN") kNumberNaN: NumberRef
-    @(link_name="kCFNumberFormatterCurrencyCode") kNumberFormatterCurrencyCode: NumberFormatterKey
-    @(link_name="kCFNumberFormatterDecimalSeparator") kNumberFormatterDecimalSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterCurrencyDecimalSeparator") kNumberFormatterCurrencyDecimalSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterAlwaysShowDecimalSeparator") kNumberFormatterAlwaysShowDecimalSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterGroupingSeparator") kNumberFormatterGroupingSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterUseGroupingSeparator") kNumberFormatterUseGroupingSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPercentSymbol") kNumberFormatterPercentSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterZeroSymbol") kNumberFormatterZeroSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterNaNSymbol") kNumberFormatterNaNSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterInfinitySymbol") kNumberFormatterInfinitySymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinusSign") kNumberFormatterMinusSign: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPlusSign") kNumberFormatterPlusSign: NumberFormatterKey
-    @(link_name="kCFNumberFormatterCurrencySymbol") kNumberFormatterCurrencySymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterExponentSymbol") kNumberFormatterExponentSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinIntegerDigits") kNumberFormatterMinIntegerDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMaxIntegerDigits") kNumberFormatterMaxIntegerDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinFractionDigits") kNumberFormatterMinFractionDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMaxFractionDigits") kNumberFormatterMaxFractionDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterGroupingSize") kNumberFormatterGroupingSize: NumberFormatterKey
-    @(link_name="kCFNumberFormatterSecondaryGroupingSize") kNumberFormatterSecondaryGroupingSize: NumberFormatterKey
-    @(link_name="kCFNumberFormatterRoundingMode") kNumberFormatterRoundingMode: NumberFormatterKey
-    @(link_name="kCFNumberFormatterRoundingIncrement") kNumberFormatterRoundingIncrement: NumberFormatterKey
-    @(link_name="kCFNumberFormatterFormatWidth") kNumberFormatterFormatWidth: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPaddingPosition") kNumberFormatterPaddingPosition: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPaddingCharacter") kNumberFormatterPaddingCharacter: NumberFormatterKey
-    @(link_name="kCFNumberFormatterDefaultFormat") kNumberFormatterDefaultFormat: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMultiplier") kNumberFormatterMultiplier: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPositivePrefix") kNumberFormatterPositivePrefix: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPositiveSuffix") kNumberFormatterPositiveSuffix: NumberFormatterKey
-    @(link_name="kCFNumberFormatterNegativePrefix") kNumberFormatterNegativePrefix: NumberFormatterKey
-    @(link_name="kCFNumberFormatterNegativeSuffix") kNumberFormatterNegativeSuffix: NumberFormatterKey
-    @(link_name="kCFNumberFormatterPerMillSymbol") kNumberFormatterPerMillSymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterInternationalCurrencySymbol") kNumberFormatterInternationalCurrencySymbol: NumberFormatterKey
-    @(link_name="kCFNumberFormatterCurrencyGroupingSeparator") kNumberFormatterCurrencyGroupingSeparator: NumberFormatterKey
-    @(link_name="kCFNumberFormatterIsLenient") kNumberFormatterIsLenient: NumberFormatterKey
-    @(link_name="kCFNumberFormatterUseSignificantDigits") kNumberFormatterUseSignificantDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinSignificantDigits") kNumberFormatterMinSignificantDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMaxSignificantDigits") kNumberFormatterMaxSignificantDigits: NumberFormatterKey
-    @(link_name="kCFNumberFormatterMinGroupingDigits") kNumberFormatterMinGroupingDigits: NumberFormatterKey
-    @(link_name="kCFPreferencesAnyApplication") kPreferencesAnyApplication: StringRef
-    @(link_name="kCFPreferencesCurrentApplication") kPreferencesCurrentApplication: StringRef
-    @(link_name="kCFPreferencesAnyHost") kPreferencesAnyHost: StringRef
-    @(link_name="kCFPreferencesCurrentHost") kPreferencesCurrentHost: StringRef
-    @(link_name="kCFPreferencesAnyUser") kPreferencesAnyUser: StringRef
-    @(link_name="kCFPreferencesCurrentUser") kPreferencesCurrentUser: StringRef
-    @(link_name="kCFURLKeysOfUnsetValuesKey") kURLKeysOfUnsetValuesKey: StringRef
-    @(link_name="kCFURLNameKey") kURLNameKey: StringRef
-    @(link_name="kCFURLLocalizedNameKey") kURLLocalizedNameKey: StringRef
-    @(link_name="kCFURLIsRegularFileKey") kURLIsRegularFileKey: StringRef
-    @(link_name="kCFURLIsDirectoryKey") kURLIsDirectoryKey: StringRef
-    @(link_name="kCFURLIsSymbolicLinkKey") kURLIsSymbolicLinkKey: StringRef
-    @(link_name="kCFURLIsVolumeKey") kURLIsVolumeKey: StringRef
-    @(link_name="kCFURLIsPackageKey") kURLIsPackageKey: StringRef
-    @(link_name="kCFURLIsApplicationKey") kURLIsApplicationKey: StringRef
-    @(link_name="kCFURLApplicationIsScriptableKey") kURLApplicationIsScriptableKey: StringRef
-    @(link_name="kCFURLIsSystemImmutableKey") kURLIsSystemImmutableKey: StringRef
-    @(link_name="kCFURLIsUserImmutableKey") kURLIsUserImmutableKey: StringRef
-    @(link_name="kCFURLIsHiddenKey") kURLIsHiddenKey: StringRef
-    @(link_name="kCFURLHasHiddenExtensionKey") kURLHasHiddenExtensionKey: StringRef
-    @(link_name="kCFURLCreationDateKey") kURLCreationDateKey: StringRef
-    @(link_name="kCFURLContentAccessDateKey") kURLContentAccessDateKey: StringRef
-    @(link_name="kCFURLContentModificationDateKey") kURLContentModificationDateKey: StringRef
-    @(link_name="kCFURLAttributeModificationDateKey") kURLAttributeModificationDateKey: StringRef
-    @(link_name="kCFURLFileIdentifierKey") kURLFileIdentifierKey: StringRef
-    @(link_name="kCFURLFileContentIdentifierKey") kURLFileContentIdentifierKey: StringRef
-    @(link_name="kCFURLMayShareFileContentKey") kURLMayShareFileContentKey: StringRef
-    @(link_name="kCFURLMayHaveExtendedAttributesKey") kURLMayHaveExtendedAttributesKey: StringRef
-    @(link_name="kCFURLIsPurgeableKey") kURLIsPurgeableKey: StringRef
-    @(link_name="kCFURLIsSparseKey") kURLIsSparseKey: StringRef
-    @(link_name="kCFURLLinkCountKey") kURLLinkCountKey: StringRef
-    @(link_name="kCFURLParentDirectoryURLKey") kURLParentDirectoryURLKey: StringRef
-    @(link_name="kCFURLVolumeURLKey") kURLVolumeURLKey: StringRef
-    @(link_name="kCFURLTypeIdentifierKey") kURLTypeIdentifierKey: StringRef
-    @(link_name="kCFURLLocalizedTypeDescriptionKey") kURLLocalizedTypeDescriptionKey: StringRef
-    @(link_name="kCFURLLabelNumberKey") kURLLabelNumberKey: StringRef
-    @(link_name="kCFURLLabelColorKey") kURLLabelColorKey: StringRef
-    @(link_name="kCFURLLocalizedLabelKey") kURLLocalizedLabelKey: StringRef
-    @(link_name="kCFURLEffectiveIconKey") kURLEffectiveIconKey: StringRef
-    @(link_name="kCFURLCustomIconKey") kURLCustomIconKey: StringRef
-    @(link_name="kCFURLFileResourceIdentifierKey") kURLFileResourceIdentifierKey: StringRef
-    @(link_name="kCFURLVolumeIdentifierKey") kURLVolumeIdentifierKey: StringRef
-    @(link_name="kCFURLPreferredIOBlockSizeKey") kURLPreferredIOBlockSizeKey: StringRef
-    @(link_name="kCFURLIsReadableKey") kURLIsReadableKey: StringRef
-    @(link_name="kCFURLIsWritableKey") kURLIsWritableKey: StringRef
-    @(link_name="kCFURLIsExecutableKey") kURLIsExecutableKey: StringRef
-    @(link_name="kCFURLFileSecurityKey") kURLFileSecurityKey: StringRef
-    @(link_name="kCFURLIsExcludedFromBackupKey") kURLIsExcludedFromBackupKey: StringRef
-    @(link_name="kCFURLTagNamesKey") kURLTagNamesKey: StringRef
-    @(link_name="kCFURLPathKey") kURLPathKey: StringRef
-    @(link_name="kCFURLCanonicalPathKey") kURLCanonicalPathKey: StringRef
-    @(link_name="kCFURLIsMountTriggerKey") kURLIsMountTriggerKey: StringRef
-    @(link_name="kCFURLGenerationIdentifierKey") kURLGenerationIdentifierKey: StringRef
-    @(link_name="kCFURLDocumentIdentifierKey") kURLDocumentIdentifierKey: StringRef
-    @(link_name="kCFURLAddedToDirectoryDateKey") kURLAddedToDirectoryDateKey: StringRef
-    @(link_name="kCFURLQuarantinePropertiesKey") kURLQuarantinePropertiesKey: StringRef
-    @(link_name="kCFURLFileResourceTypeKey") kURLFileResourceTypeKey: StringRef
-    @(link_name="kCFURLFileResourceTypeNamedPipe") kURLFileResourceTypeNamedPipe: StringRef
-    @(link_name="kCFURLFileResourceTypeCharacterSpecial") kURLFileResourceTypeCharacterSpecial: StringRef
-    @(link_name="kCFURLFileResourceTypeDirectory") kURLFileResourceTypeDirectory: StringRef
-    @(link_name="kCFURLFileResourceTypeBlockSpecial") kURLFileResourceTypeBlockSpecial: StringRef
-    @(link_name="kCFURLFileResourceTypeRegular") kURLFileResourceTypeRegular: StringRef
-    @(link_name="kCFURLFileResourceTypeSymbolicLink") kURLFileResourceTypeSymbolicLink: StringRef
-    @(link_name="kCFURLFileResourceTypeSocket") kURLFileResourceTypeSocket: StringRef
-    @(link_name="kCFURLFileResourceTypeUnknown") kURLFileResourceTypeUnknown: StringRef
-    @(link_name="kCFURLFileSizeKey") kURLFileSizeKey: StringRef
-    @(link_name="kCFURLFileAllocatedSizeKey") kURLFileAllocatedSizeKey: StringRef
-    @(link_name="kCFURLTotalFileSizeKey") kURLTotalFileSizeKey: StringRef
-    @(link_name="kCFURLTotalFileAllocatedSizeKey") kURLTotalFileAllocatedSizeKey: StringRef
-    @(link_name="kCFURLIsAliasFileKey") kURLIsAliasFileKey: StringRef
-    @(link_name="kCFURLFileProtectionKey") kURLFileProtectionKey: StringRef
-    @(link_name="kCFURLFileProtectionNone") kURLFileProtectionNone: StringRef
-    @(link_name="kCFURLFileProtectionComplete") kURLFileProtectionComplete: StringRef
-    @(link_name="kCFURLFileProtectionCompleteUnlessOpen") kURLFileProtectionCompleteUnlessOpen: StringRef
-    @(link_name="kCFURLFileProtectionCompleteUntilFirstUserAuthentication") kURLFileProtectionCompleteUntilFirstUserAuthentication: StringRef
-    @(link_name="kCFURLFileProtectionCompleteWhenUserInactive") kURLFileProtectionCompleteWhenUserInactive: StringRef
-    @(link_name="kCFURLDirectoryEntryCountKey") kURLDirectoryEntryCountKey: StringRef
-    @(link_name="kCFURLVolumeLocalizedFormatDescriptionKey") kURLVolumeLocalizedFormatDescriptionKey: StringRef
-    @(link_name="kCFURLVolumeTotalCapacityKey") kURLVolumeTotalCapacityKey: StringRef
-    @(link_name="kCFURLVolumeAvailableCapacityKey") kURLVolumeAvailableCapacityKey: StringRef
-    @(link_name="kCFURLVolumeAvailableCapacityForImportantUsageKey") kURLVolumeAvailableCapacityForImportantUsageKey: StringRef
-    @(link_name="kCFURLVolumeAvailableCapacityForOpportunisticUsageKey") kURLVolumeAvailableCapacityForOpportunisticUsageKey: StringRef
-    @(link_name="kCFURLVolumeResourceCountKey") kURLVolumeResourceCountKey: StringRef
-    @(link_name="kCFURLVolumeSupportsPersistentIDsKey") kURLVolumeSupportsPersistentIDsKey: StringRef
-    @(link_name="kCFURLVolumeSupportsSymbolicLinksKey") kURLVolumeSupportsSymbolicLinksKey: StringRef
-    @(link_name="kCFURLVolumeSupportsHardLinksKey") kURLVolumeSupportsHardLinksKey: StringRef
-    @(link_name="kCFURLVolumeSupportsJournalingKey") kURLVolumeSupportsJournalingKey: StringRef
-    @(link_name="kCFURLVolumeIsJournalingKey") kURLVolumeIsJournalingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsSparseFilesKey") kURLVolumeSupportsSparseFilesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsZeroRunsKey") kURLVolumeSupportsZeroRunsKey: StringRef
-    @(link_name="kCFURLVolumeSupportsCaseSensitiveNamesKey") kURLVolumeSupportsCaseSensitiveNamesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsCasePreservedNamesKey") kURLVolumeSupportsCasePreservedNamesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsRootDirectoryDatesKey") kURLVolumeSupportsRootDirectoryDatesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsVolumeSizesKey") kURLVolumeSupportsVolumeSizesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsRenamingKey") kURLVolumeSupportsRenamingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsAdvisoryFileLockingKey") kURLVolumeSupportsAdvisoryFileLockingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsExtendedSecurityKey") kURLVolumeSupportsExtendedSecurityKey: StringRef
-    @(link_name="kCFURLVolumeIsBrowsableKey") kURLVolumeIsBrowsableKey: StringRef
-    @(link_name="kCFURLVolumeMaximumFileSizeKey") kURLVolumeMaximumFileSizeKey: StringRef
-    @(link_name="kCFURLVolumeIsEjectableKey") kURLVolumeIsEjectableKey: StringRef
-    @(link_name="kCFURLVolumeIsRemovableKey") kURLVolumeIsRemovableKey: StringRef
-    @(link_name="kCFURLVolumeIsInternalKey") kURLVolumeIsInternalKey: StringRef
-    @(link_name="kCFURLVolumeIsAutomountedKey") kURLVolumeIsAutomountedKey: StringRef
-    @(link_name="kCFURLVolumeIsLocalKey") kURLVolumeIsLocalKey: StringRef
-    @(link_name="kCFURLVolumeIsReadOnlyKey") kURLVolumeIsReadOnlyKey: StringRef
-    @(link_name="kCFURLVolumeCreationDateKey") kURLVolumeCreationDateKey: StringRef
-    @(link_name="kCFURLVolumeURLForRemountingKey") kURLVolumeURLForRemountingKey: StringRef
-    @(link_name="kCFURLVolumeUUIDStringKey") kURLVolumeUUIDStringKey: StringRef
-    @(link_name="kCFURLVolumeNameKey") kURLVolumeNameKey: StringRef
-    @(link_name="kCFURLVolumeLocalizedNameKey") kURLVolumeLocalizedNameKey: StringRef
-    @(link_name="kCFURLVolumeIsEncryptedKey") kURLVolumeIsEncryptedKey: StringRef
-    @(link_name="kCFURLVolumeIsRootFileSystemKey") kURLVolumeIsRootFileSystemKey: StringRef
-    @(link_name="kCFURLVolumeSupportsCompressionKey") kURLVolumeSupportsCompressionKey: StringRef
-    @(link_name="kCFURLVolumeSupportsFileCloningKey") kURLVolumeSupportsFileCloningKey: StringRef
-    @(link_name="kCFURLVolumeSupportsSwapRenamingKey") kURLVolumeSupportsSwapRenamingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsExclusiveRenamingKey") kURLVolumeSupportsExclusiveRenamingKey: StringRef
-    @(link_name="kCFURLVolumeSupportsImmutableFilesKey") kURLVolumeSupportsImmutableFilesKey: StringRef
-    @(link_name="kCFURLVolumeSupportsAccessPermissionsKey") kURLVolumeSupportsAccessPermissionsKey: StringRef
-    @(link_name="kCFURLVolumeSupportsFileProtectionKey") kURLVolumeSupportsFileProtectionKey: StringRef
-    @(link_name="kCFURLVolumeTypeNameKey") kURLVolumeTypeNameKey: StringRef
-    @(link_name="kCFURLVolumeSubtypeKey") kURLVolumeSubtypeKey: StringRef
-    @(link_name="kCFURLVolumeMountFromLocationKey") kURLVolumeMountFromLocationKey: StringRef
-    @(link_name="kCFURLIsUbiquitousItemKey") kURLIsUbiquitousItemKey: StringRef
-    @(link_name="kCFURLUbiquitousItemHasUnresolvedConflictsKey") kURLUbiquitousItemHasUnresolvedConflictsKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsDownloadedKey") kURLUbiquitousItemIsDownloadedKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsDownloadingKey") kURLUbiquitousItemIsDownloadingKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsUploadedKey") kURLUbiquitousItemIsUploadedKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsUploadingKey") kURLUbiquitousItemIsUploadingKey: StringRef
-    @(link_name="kCFURLUbiquitousItemPercentDownloadedKey") kURLUbiquitousItemPercentDownloadedKey: StringRef
-    @(link_name="kCFURLUbiquitousItemPercentUploadedKey") kURLUbiquitousItemPercentUploadedKey: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingStatusKey") kURLUbiquitousItemDownloadingStatusKey: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingErrorKey") kURLUbiquitousItemDownloadingErrorKey: StringRef
-    @(link_name="kCFURLUbiquitousItemUploadingErrorKey") kURLUbiquitousItemUploadingErrorKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsExcludedFromSyncKey") kURLUbiquitousItemIsExcludedFromSyncKey: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingStatusNotDownloaded") kURLUbiquitousItemDownloadingStatusNotDownloaded: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingStatusDownloaded") kURLUbiquitousItemDownloadingStatusDownloaded: StringRef
-    @(link_name="kCFURLUbiquitousItemDownloadingStatusCurrent") kURLUbiquitousItemDownloadingStatusCurrent: StringRef
-    @(link_name="kCFURLUbiquitousItemSupportedSyncControlsKey") kURLUbiquitousItemSupportedSyncControlsKey: StringRef
-    @(link_name="kCFURLUbiquitousItemIsSyncPausedKey") kURLUbiquitousItemIsSyncPausedKey: StringRef
-    @(link_name="kCFRunLoopDefaultMode") kRunLoopDefaultMode: RunLoopMode
-    @(link_name="kCFRunLoopCommonModes") kRunLoopCommonModes: RunLoopMode
-    @(link_name="kCFSocketCommandKey") kSocketCommandKey: StringRef
-    @(link_name="kCFSocketNameKey") kSocketNameKey: StringRef
-    @(link_name="kCFSocketValueKey") kSocketValueKey: StringRef
-    @(link_name="kCFSocketResultKey") kSocketResultKey: StringRef
-    @(link_name="kCFSocketErrorKey") kSocketErrorKey: StringRef
-    @(link_name="kCFSocketRegisterCommand") kSocketRegisterCommand: StringRef
-    @(link_name="kCFSocketRetrieveCommand") kSocketRetrieveCommand: StringRef
-    @(link_name="kCFStreamPropertyDataWritten") kStreamPropertyDataWritten: StreamPropertyKey
-    @(link_name="kCFStreamPropertyAppendToFile") kStreamPropertyAppendToFile: StreamPropertyKey
-    @(link_name="kCFStreamPropertyFileCurrentOffset") kStreamPropertyFileCurrentOffset: StreamPropertyKey
-    @(link_name="kCFStreamPropertySocketNativeHandle") kStreamPropertySocketNativeHandle: StreamPropertyKey
-    @(link_name="kCFStreamPropertySocketRemoteHostName") kStreamPropertySocketRemoteHostName: StreamPropertyKey
-    @(link_name="kCFStreamPropertySocketRemotePortNumber") kStreamPropertySocketRemotePortNumber: StreamPropertyKey
-    @(link_name="kCFStreamErrorDomainSOCKS") kStreamErrorDomainSOCKS: cffi.int
-    @(link_name="kCFStreamPropertySOCKSProxy") kStreamPropertySOCKSProxy: StringRef
-    @(link_name="kCFStreamPropertySOCKSProxyHost") kStreamPropertySOCKSProxyHost: StringRef
-    @(link_name="kCFStreamPropertySOCKSProxyPort") kStreamPropertySOCKSProxyPort: StringRef
-    @(link_name="kCFStreamPropertySOCKSVersion") kStreamPropertySOCKSVersion: StringRef
-    @(link_name="kCFStreamSocketSOCKSVersion4") kStreamSocketSOCKSVersion4: StringRef
-    @(link_name="kCFStreamSocketSOCKSVersion5") kStreamSocketSOCKSVersion5: StringRef
-    @(link_name="kCFStreamPropertySOCKSUser") kStreamPropertySOCKSUser: StringRef
-    @(link_name="kCFStreamPropertySOCKSPassword") kStreamPropertySOCKSPassword: StringRef
-    @(link_name="kCFStreamErrorDomainSSL") kStreamErrorDomainSSL: cffi.int
-    @(link_name="kCFStreamPropertySocketSecurityLevel") kStreamPropertySocketSecurityLevel: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelNone") kStreamSocketSecurityLevelNone: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelSSLv2") kStreamSocketSecurityLevelSSLv2: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelSSLv3") kStreamSocketSecurityLevelSSLv3: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelTLSv1") kStreamSocketSecurityLevelTLSv1: StringRef
-    @(link_name="kCFStreamSocketSecurityLevelNegotiatedSSL") kStreamSocketSecurityLevelNegotiatedSSL: StringRef
-    @(link_name="kCFStreamPropertyShouldCloseNativeSocket") kStreamPropertyShouldCloseNativeSocket: StringRef
-    @(link_name="kCFTypeSetCallBacks") kTypeSetCallBacks: SetCallBacks
-    @(link_name="kCFCopyStringSetCallBacks") kCopyStringSetCallBacks: SetCallBacks
-    @(link_name="kCFURLFileExists") kURLFileExists: StringRef
-    @(link_name="kCFURLFileDirectoryContents") kURLFileDirectoryContents: StringRef
-    @(link_name="kCFURLFileLength") kURLFileLength: StringRef
-    @(link_name="kCFURLFileLastModificationTime") kURLFileLastModificationTime: StringRef
-    @(link_name="kCFURLFilePOSIXMode") kURLFilePOSIXMode: StringRef
-    @(link_name="kCFURLFileOwnerID") kURLFileOwnerID: StringRef
-    @(link_name="kCFURLHTTPStatusCode") kURLHTTPStatusCode: StringRef
-    @(link_name="kCFURLHTTPStatusLine") kURLHTTPStatusLine: StringRef
-    @(link_name="kCFBundleInfoDictionaryVersionKey") kBundleInfoDictionaryVersionKey: StringRef
-    @(link_name="kCFBundleExecutableKey") kBundleExecutableKey: StringRef
-    @(link_name="kCFBundleIdentifierKey") kBundleIdentifierKey: StringRef
-    @(link_name="kCFBundleVersionKey") kBundleVersionKey: StringRef
-    @(link_name="kCFBundleDevelopmentRegionKey") kBundleDevelopmentRegionKey: StringRef
-    @(link_name="kCFBundleNameKey") kBundleNameKey: StringRef
-    @(link_name="kCFBundleLocalizationsKey") kBundleLocalizationsKey: StringRef
-    @(link_name="kCFPlugInDynamicRegistrationKey") kPlugInDynamicRegistrationKey: StringRef
-    @(link_name="kCFPlugInDynamicRegisterFunctionKey") kPlugInDynamicRegisterFunctionKey: StringRef
-    @(link_name="kCFPlugInUnloadFunctionKey") kPlugInUnloadFunctionKey: StringRef
-    @(link_name="kCFPlugInFactoriesKey") kPlugInFactoriesKey: StringRef
-    @(link_name="kCFPlugInTypesKey") kPlugInTypesKey: StringRef
-    @(link_name="kCFUserNotificationIconURLKey") kUserNotificationIconURLKey: StringRef
-    @(link_name="kCFUserNotificationSoundURLKey") kUserNotificationSoundURLKey: StringRef
-    @(link_name="kCFUserNotificationLocalizationURLKey") kUserNotificationLocalizationURLKey: StringRef
-    @(link_name="kCFUserNotificationAlertHeaderKey") kUserNotificationAlertHeaderKey: StringRef
-    @(link_name="kCFUserNotificationAlertMessageKey") kUserNotificationAlertMessageKey: StringRef
-    @(link_name="kCFUserNotificationDefaultButtonTitleKey") kUserNotificationDefaultButtonTitleKey: StringRef
-    @(link_name="kCFUserNotificationAlternateButtonTitleKey") kUserNotificationAlternateButtonTitleKey: StringRef
-    @(link_name="kCFUserNotificationOtherButtonTitleKey") kUserNotificationOtherButtonTitleKey: StringRef
-    @(link_name="kCFUserNotificationProgressIndicatorValueKey") kUserNotificationProgressIndicatorValueKey: StringRef
-    @(link_name="kCFUserNotificationPopUpTitlesKey") kUserNotificationPopUpTitlesKey: StringRef
-    @(link_name="kCFUserNotificationTextFieldTitlesKey") kUserNotificationTextFieldTitlesKey: StringRef
-    @(link_name="kCFUserNotificationCheckBoxTitlesKey") kUserNotificationCheckBoxTitlesKey: StringRef
-    @(link_name="kCFUserNotificationTextFieldValuesKey") kUserNotificationTextFieldValuesKey: StringRef
-    @(link_name="kCFUserNotificationPopUpSelectionKey") kUserNotificationPopUpSelectionKey: StringRef
-    @(link_name="kCFUserNotificationAlertTopMostKey") kUserNotificationAlertTopMostKey: StringRef
-    @(link_name="kCFUserNotificationKeyboardTypesKey") kUserNotificationKeyboardTypesKey: StringRef
-    @(link_name="kCFUserNotificationAlertAccessibilityIdentifierKey") kUserNotificationAlertAccessibilityIdentifierKey: StringRef
-    @(link_name="kCFUserNotificationDefaultButtonAccessibilityIdentifierKey") kUserNotificationDefaultButtonAccessibilityIdentifierKey: StringRef
-    @(link_name="kCFUserNotificationAlternateButtonAccessibilityIdentifierKey") kUserNotificationAlternateButtonAccessibilityIdentifierKey: StringRef
-    @(link_name="kCFUserNotificationOtherButtonAccessibilityIdentifierKey") kUserNotificationOtherButtonAccessibilityIdentifierKey: StringRef
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
-        @(link_name="kCFXMLTreeErrorDescription") kXMLTreeErrorDescription: StringRef
-        @(link_name="kCFXMLTreeErrorLineNumber") kXMLTreeErrorLineNumber: StringRef
-        @(link_name="kCFXMLTreeErrorLocation") kXMLTreeErrorLocation: StringRef
-        @(link_name="kCFXMLTreeErrorStatusCode") kXMLTreeErrorStatusCode: StringRef
+    @(link_name="kCFCoreFoundationVersionNumber")
+    kCoreFoundationVersionNumber: cffi.double
+
+    @(link_name="kCFNull")
+    kNull: NullRef
+
+    @(link_name="kCFAllocatorDefault")
+    kAllocatorDefault: AllocatorRef
+
+    @(link_name="kCFAllocatorSystemDefault")
+    kAllocatorSystemDefault: AllocatorRef
+
+    @(link_name="kCFAllocatorMalloc")
+    kAllocatorMalloc: AllocatorRef
+
+    @(link_name="kCFAllocatorMallocZone")
+    kAllocatorMallocZone: AllocatorRef
+
+    @(link_name="kCFAllocatorNull")
+    kAllocatorNull: AllocatorRef
+
+    @(link_name="kCFAllocatorUseContext")
+    kAllocatorUseContext: AllocatorRef
+
+    @(link_name="kCFTypeArrayCallBacks")
+    kTypeArrayCallBacks: ArrayCallBacks
+
+    @(link_name="kCFTypeBagCallBacks")
+    kTypeBagCallBacks: BagCallBacks
+
+    @(link_name="kCFCopyStringBagCallBacks")
+    kCopyStringBagCallBacks: BagCallBacks
+
+    @(link_name="kCFStringBinaryHeapCallBacks")
+    kStringBinaryHeapCallBacks: BinaryHeapCallBacks
+
+    @(link_name="kCFTypeDictionaryKeyCallBacks")
+    kTypeDictionaryKeyCallBacks: DictionaryKeyCallBacks
+
+    @(link_name="kCFCopyStringDictionaryKeyCallBacks")
+    kCopyStringDictionaryKeyCallBacks: DictionaryKeyCallBacks
+
+    @(link_name="kCFTypeDictionaryValueCallBacks")
+    kTypeDictionaryValueCallBacks: DictionaryValueCallBacks
+
+    @(link_name="kCFLocaleCurrentLocaleDidChangeNotification")
+    kLocaleCurrentLocaleDidChangeNotification: NotificationName
+
+    @(link_name="kCFLocaleIdentifier")
+    kLocaleIdentifier: LocaleKey
+
+    @(link_name="kCFLocaleLanguageCode")
+    kLocaleLanguageCode: LocaleKey
+
+    @(link_name="kCFLocaleCountryCode")
+    kLocaleCountryCode: LocaleKey
+
+    @(link_name="kCFLocaleScriptCode")
+    kLocaleScriptCode: LocaleKey
+
+    @(link_name="kCFLocaleVariantCode")
+    kLocaleVariantCode: LocaleKey
+
+    @(link_name="kCFLocaleExemplarCharacterSet")
+    kLocaleExemplarCharacterSet: LocaleKey
+
+    @(link_name="kCFLocaleCalendarIdentifier")
+    kLocaleCalendarIdentifier: LocaleKey
+
+    @(link_name="kCFLocaleCalendar")
+    kLocaleCalendar: LocaleKey
+
+    @(link_name="kCFLocaleCollationIdentifier")
+    kLocaleCollationIdentifier: LocaleKey
+
+    @(link_name="kCFLocaleUsesMetricSystem")
+    kLocaleUsesMetricSystem: LocaleKey
+
+    @(link_name="kCFLocaleMeasurementSystem")
+    kLocaleMeasurementSystem: LocaleKey
+
+    @(link_name="kCFLocaleDecimalSeparator")
+    kLocaleDecimalSeparator: LocaleKey
+
+    @(link_name="kCFLocaleGroupingSeparator")
+    kLocaleGroupingSeparator: LocaleKey
+
+    @(link_name="kCFLocaleCurrencySymbol")
+    kLocaleCurrencySymbol: LocaleKey
+
+    @(link_name="kCFLocaleCurrencyCode")
+    kLocaleCurrencyCode: LocaleKey
+
+    @(link_name="kCFLocaleCollatorIdentifier")
+    kLocaleCollatorIdentifier: LocaleKey
+
+    @(link_name="kCFLocaleQuotationBeginDelimiterKey")
+    kLocaleQuotationBeginDelimiterKey: LocaleKey
+
+    @(link_name="kCFLocaleQuotationEndDelimiterKey")
+    kLocaleQuotationEndDelimiterKey: LocaleKey
+
+    @(link_name="kCFLocaleAlternateQuotationBeginDelimiterKey")
+    kLocaleAlternateQuotationBeginDelimiterKey: LocaleKey
+
+    @(link_name="kCFLocaleAlternateQuotationEndDelimiterKey")
+    kLocaleAlternateQuotationEndDelimiterKey: LocaleKey
+
+    @(link_name="kCFGregorianCalendar")
+    kGregorianCalendar: CalendarIdentifier
+
+    @(link_name="kCFBuddhistCalendar")
+    kBuddhistCalendar: CalendarIdentifier
+
+    @(link_name="kCFChineseCalendar")
+    kChineseCalendar: CalendarIdentifier
+
+    @(link_name="kCFHebrewCalendar")
+    kHebrewCalendar: CalendarIdentifier
+
+    @(link_name="kCFIslamicCalendar")
+    kIslamicCalendar: CalendarIdentifier
+
+    @(link_name="kCFIslamicCivilCalendar")
+    kIslamicCivilCalendar: CalendarIdentifier
+
+    @(link_name="kCFJapaneseCalendar")
+    kJapaneseCalendar: CalendarIdentifier
+
+    @(link_name="kCFRepublicOfChinaCalendar")
+    kRepublicOfChinaCalendar: CalendarIdentifier
+
+    @(link_name="kCFPersianCalendar")
+    kPersianCalendar: CalendarIdentifier
+
+    @(link_name="kCFIndianCalendar")
+    kIndianCalendar: CalendarIdentifier
+
+    @(link_name="kCFISO8601Calendar")
+    kISO8601Calendar: CalendarIdentifier
+
+    @(link_name="kCFIslamicTabularCalendar")
+    kIslamicTabularCalendar: CalendarIdentifier
+
+    @(link_name="kCFIslamicUmmAlQuraCalendar")
+    kIslamicUmmAlQuraCalendar: CalendarIdentifier
+
+    @(link_name="kCFBanglaCalendar")
+    kBanglaCalendar: CalendarIdentifier
+
+    @(link_name="kCFGujaratiCalendar")
+    kGujaratiCalendar: CalendarIdentifier
+
+    @(link_name="kCFKannadaCalendar")
+    kKannadaCalendar: CalendarIdentifier
+
+    @(link_name="kCFMalayalamCalendar")
+    kMalayalamCalendar: CalendarIdentifier
+
+    @(link_name="kCFMarathiCalendar")
+    kMarathiCalendar: CalendarIdentifier
+
+    @(link_name="kCFOdiaCalendar")
+    kOdiaCalendar: CalendarIdentifier
+
+    @(link_name="kCFTamilCalendar")
+    kTamilCalendar: CalendarIdentifier
+
+    @(link_name="kCFTeluguCalendar")
+    kTeluguCalendar: CalendarIdentifier
+
+    @(link_name="kCFVikramCalendar")
+    kVikramCalendar: CalendarIdentifier
+
+    @(link_name="kCFDangiCalendar")
+    kDangiCalendar: CalendarIdentifier
+
+    @(link_name="kCFVietnameseCalendar")
+    kVietnameseCalendar: CalendarIdentifier
+
+    @(link_name="kCFAbsoluteTimeIntervalSince1970")
+    kAbsoluteTimeIntervalSince1970: TimeInterval
+
+    @(link_name="kCFAbsoluteTimeIntervalSince1904")
+    kAbsoluteTimeIntervalSince1904: TimeInterval
+
+    @(link_name="kCFErrorDomainPOSIX")
+    kErrorDomainPOSIX: ErrorDomain
+
+    @(link_name="kCFErrorDomainOSStatus")
+    kErrorDomainOSStatus: ErrorDomain
+
+    @(link_name="kCFErrorDomainMach")
+    kErrorDomainMach: ErrorDomain
+
+    @(link_name="kCFErrorDomainCocoa")
+    kErrorDomainCocoa: ErrorDomain
+
+    @(link_name="kCFErrorLocalizedDescriptionKey")
+    kErrorLocalizedDescriptionKey: StringRef
+
+    @(link_name="kCFErrorLocalizedFailureKey")
+    kErrorLocalizedFailureKey: StringRef
+
+    @(link_name="kCFErrorLocalizedFailureReasonKey")
+    kErrorLocalizedFailureReasonKey: StringRef
+
+    @(link_name="kCFErrorLocalizedRecoverySuggestionKey")
+    kErrorLocalizedRecoverySuggestionKey: StringRef
+
+    @(link_name="kCFErrorDescriptionKey")
+    kErrorDescriptionKey: StringRef
+
+    @(link_name="kCFErrorUnderlyingErrorKey")
+    kErrorUnderlyingErrorKey: StringRef
+
+    @(link_name="kCFErrorURLKey")
+    kErrorURLKey: StringRef
+
+    @(link_name="kCFErrorFilePathKey")
+    kErrorFilePathKey: StringRef
+
+    @(link_name="kCFStringTransformStripCombiningMarks")
+    kStringTransformStripCombiningMarks: StringRef
+
+    @(link_name="kCFStringTransformToLatin")
+    kStringTransformToLatin: StringRef
+
+    @(link_name="kCFStringTransformFullwidthHalfwidth")
+    kStringTransformFullwidthHalfwidth: StringRef
+
+    @(link_name="kCFStringTransformLatinKatakana")
+    kStringTransformLatinKatakana: StringRef
+
+    @(link_name="kCFStringTransformLatinHiragana")
+    kStringTransformLatinHiragana: StringRef
+
+    @(link_name="kCFStringTransformHiraganaKatakana")
+    kStringTransformHiraganaKatakana: StringRef
+
+    @(link_name="kCFStringTransformMandarinLatin")
+    kStringTransformMandarinLatin: StringRef
+
+    @(link_name="kCFStringTransformLatinHangul")
+    kStringTransformLatinHangul: StringRef
+
+    @(link_name="kCFStringTransformLatinArabic")
+    kStringTransformLatinArabic: StringRef
+
+    @(link_name="kCFStringTransformLatinHebrew")
+    kStringTransformLatinHebrew: StringRef
+
+    @(link_name="kCFStringTransformLatinThai")
+    kStringTransformLatinThai: StringRef
+
+    @(link_name="kCFStringTransformLatinCyrillic")
+    kStringTransformLatinCyrillic: StringRef
+
+    @(link_name="kCFStringTransformLatinGreek")
+    kStringTransformLatinGreek: StringRef
+
+    @(link_name="kCFStringTransformToXMLHex")
+    kStringTransformToXMLHex: StringRef
+
+    @(link_name="kCFStringTransformToUnicodeName")
+    kStringTransformToUnicodeName: StringRef
+
+    @(link_name="kCFStringTransformStripDiacritics")
+    kStringTransformStripDiacritics: StringRef
+
+    @(link_name="kCFTimeZoneSystemTimeZoneDidChangeNotification")
+    kTimeZoneSystemTimeZoneDidChangeNotification: NotificationName
+
+    @(link_name="kCFDateFormatterIsLenient")
+    kDateFormatterIsLenient: DateFormatterKey
+
+    @(link_name="kCFDateFormatterTimeZone")
+    kDateFormatterTimeZone: DateFormatterKey
+
+    @(link_name="kCFDateFormatterCalendarName")
+    kDateFormatterCalendarName: DateFormatterKey
+
+    @(link_name="kCFDateFormatterDefaultFormat")
+    kDateFormatterDefaultFormat: DateFormatterKey
+
+    @(link_name="kCFDateFormatterTwoDigitStartDate")
+    kDateFormatterTwoDigitStartDate: DateFormatterKey
+
+    @(link_name="kCFDateFormatterDefaultDate")
+    kDateFormatterDefaultDate: DateFormatterKey
+
+    @(link_name="kCFDateFormatterCalendar")
+    kDateFormatterCalendar: DateFormatterKey
+
+    @(link_name="kCFDateFormatterEraSymbols")
+    kDateFormatterEraSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterMonthSymbols")
+    kDateFormatterMonthSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterShortMonthSymbols")
+    kDateFormatterShortMonthSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterWeekdaySymbols")
+    kDateFormatterWeekdaySymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterShortWeekdaySymbols")
+    kDateFormatterShortWeekdaySymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterAMSymbol")
+    kDateFormatterAMSymbol: DateFormatterKey
+
+    @(link_name="kCFDateFormatterPMSymbol")
+    kDateFormatterPMSymbol: DateFormatterKey
+
+    @(link_name="kCFDateFormatterLongEraSymbols")
+    kDateFormatterLongEraSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterVeryShortMonthSymbols")
+    kDateFormatterVeryShortMonthSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterStandaloneMonthSymbols")
+    kDateFormatterStandaloneMonthSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterShortStandaloneMonthSymbols")
+    kDateFormatterShortStandaloneMonthSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterVeryShortStandaloneMonthSymbols")
+    kDateFormatterVeryShortStandaloneMonthSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterVeryShortWeekdaySymbols")
+    kDateFormatterVeryShortWeekdaySymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterStandaloneWeekdaySymbols")
+    kDateFormatterStandaloneWeekdaySymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterShortStandaloneWeekdaySymbols")
+    kDateFormatterShortStandaloneWeekdaySymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterVeryShortStandaloneWeekdaySymbols")
+    kDateFormatterVeryShortStandaloneWeekdaySymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterQuarterSymbols")
+    kDateFormatterQuarterSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterShortQuarterSymbols")
+    kDateFormatterShortQuarterSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterStandaloneQuarterSymbols")
+    kDateFormatterStandaloneQuarterSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterShortStandaloneQuarterSymbols")
+    kDateFormatterShortStandaloneQuarterSymbols: DateFormatterKey
+
+    @(link_name="kCFDateFormatterGregorianStartDate")
+    kDateFormatterGregorianStartDate: DateFormatterKey
+
+    @(link_name="kCFDateFormatterDoesRelativeDateFormattingKey")
+    kDateFormatterDoesRelativeDateFormattingKey: DateFormatterKey
+
+    @(link_name="kCFBooleanTrue")
+    kBooleanTrue: BooleanRef
+
+    @(link_name="kCFBooleanFalse")
+    kBooleanFalse: BooleanRef
+
+    @(link_name="kCFNumberPositiveInfinity")
+    kNumberPositiveInfinity: NumberRef
+
+    @(link_name="kCFNumberNegativeInfinity")
+    kNumberNegativeInfinity: NumberRef
+
+    @(link_name="kCFNumberNaN")
+    kNumberNaN: NumberRef
+
+    @(link_name="kCFNumberFormatterCurrencyCode")
+    kNumberFormatterCurrencyCode: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterDecimalSeparator")
+    kNumberFormatterDecimalSeparator: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterCurrencyDecimalSeparator")
+    kNumberFormatterCurrencyDecimalSeparator: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterAlwaysShowDecimalSeparator")
+    kNumberFormatterAlwaysShowDecimalSeparator: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterGroupingSeparator")
+    kNumberFormatterGroupingSeparator: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterUseGroupingSeparator")
+    kNumberFormatterUseGroupingSeparator: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterPercentSymbol")
+    kNumberFormatterPercentSymbol: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterZeroSymbol")
+    kNumberFormatterZeroSymbol: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterNaNSymbol")
+    kNumberFormatterNaNSymbol: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterInfinitySymbol")
+    kNumberFormatterInfinitySymbol: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterMinusSign")
+    kNumberFormatterMinusSign: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterPlusSign")
+    kNumberFormatterPlusSign: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterCurrencySymbol")
+    kNumberFormatterCurrencySymbol: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterExponentSymbol")
+    kNumberFormatterExponentSymbol: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterMinIntegerDigits")
+    kNumberFormatterMinIntegerDigits: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterMaxIntegerDigits")
+    kNumberFormatterMaxIntegerDigits: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterMinFractionDigits")
+    kNumberFormatterMinFractionDigits: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterMaxFractionDigits")
+    kNumberFormatterMaxFractionDigits: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterGroupingSize")
+    kNumberFormatterGroupingSize: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterSecondaryGroupingSize")
+    kNumberFormatterSecondaryGroupingSize: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterRoundingMode")
+    kNumberFormatterRoundingMode: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterRoundingIncrement")
+    kNumberFormatterRoundingIncrement: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterFormatWidth")
+    kNumberFormatterFormatWidth: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterPaddingPosition")
+    kNumberFormatterPaddingPosition: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterPaddingCharacter")
+    kNumberFormatterPaddingCharacter: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterDefaultFormat")
+    kNumberFormatterDefaultFormat: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterMultiplier")
+    kNumberFormatterMultiplier: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterPositivePrefix")
+    kNumberFormatterPositivePrefix: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterPositiveSuffix")
+    kNumberFormatterPositiveSuffix: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterNegativePrefix")
+    kNumberFormatterNegativePrefix: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterNegativeSuffix")
+    kNumberFormatterNegativeSuffix: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterPerMillSymbol")
+    kNumberFormatterPerMillSymbol: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterInternationalCurrencySymbol")
+    kNumberFormatterInternationalCurrencySymbol: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterCurrencyGroupingSeparator")
+    kNumberFormatterCurrencyGroupingSeparator: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterIsLenient")
+    kNumberFormatterIsLenient: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterUseSignificantDigits")
+    kNumberFormatterUseSignificantDigits: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterMinSignificantDigits")
+    kNumberFormatterMinSignificantDigits: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterMaxSignificantDigits")
+    kNumberFormatterMaxSignificantDigits: NumberFormatterKey
+
+    @(link_name="kCFNumberFormatterMinGroupingDigits")
+    kNumberFormatterMinGroupingDigits: NumberFormatterKey
+
+    @(link_name="kCFPreferencesAnyApplication")
+    kPreferencesAnyApplication: StringRef
+
+    @(link_name="kCFPreferencesCurrentApplication")
+    kPreferencesCurrentApplication: StringRef
+
+    @(link_name="kCFPreferencesAnyHost")
+    kPreferencesAnyHost: StringRef
+
+    @(link_name="kCFPreferencesCurrentHost")
+    kPreferencesCurrentHost: StringRef
+
+    @(link_name="kCFPreferencesAnyUser")
+    kPreferencesAnyUser: StringRef
+
+    @(link_name="kCFPreferencesCurrentUser")
+    kPreferencesCurrentUser: StringRef
+
+    @(link_name="kCFURLKeysOfUnsetValuesKey")
+    kURLKeysOfUnsetValuesKey: StringRef
+
+    @(link_name="kCFURLNameKey")
+    kURLNameKey: StringRef
+
+    @(link_name="kCFURLLocalizedNameKey")
+    kURLLocalizedNameKey: StringRef
+
+    @(link_name="kCFURLIsRegularFileKey")
+    kURLIsRegularFileKey: StringRef
+
+    @(link_name="kCFURLIsDirectoryKey")
+    kURLIsDirectoryKey: StringRef
+
+    @(link_name="kCFURLIsSymbolicLinkKey")
+    kURLIsSymbolicLinkKey: StringRef
+
+    @(link_name="kCFURLIsVolumeKey")
+    kURLIsVolumeKey: StringRef
+
+    @(link_name="kCFURLIsPackageKey")
+    kURLIsPackageKey: StringRef
+
+    @(link_name="kCFURLIsApplicationKey")
+    kURLIsApplicationKey: StringRef
+
+    @(link_name="kCFURLApplicationIsScriptableKey")
+    kURLApplicationIsScriptableKey: StringRef
+
+    @(link_name="kCFURLIsSystemImmutableKey")
+    kURLIsSystemImmutableKey: StringRef
+
+    @(link_name="kCFURLIsUserImmutableKey")
+    kURLIsUserImmutableKey: StringRef
+
+    @(link_name="kCFURLIsHiddenKey")
+    kURLIsHiddenKey: StringRef
+
+    @(link_name="kCFURLHasHiddenExtensionKey")
+    kURLHasHiddenExtensionKey: StringRef
+
+    @(link_name="kCFURLCreationDateKey")
+    kURLCreationDateKey: StringRef
+
+    @(link_name="kCFURLContentAccessDateKey")
+    kURLContentAccessDateKey: StringRef
+
+    @(link_name="kCFURLContentModificationDateKey")
+    kURLContentModificationDateKey: StringRef
+
+    @(link_name="kCFURLAttributeModificationDateKey")
+    kURLAttributeModificationDateKey: StringRef
+
+    @(link_name="kCFURLFileIdentifierKey")
+    kURLFileIdentifierKey: StringRef
+
+    @(link_name="kCFURLFileContentIdentifierKey")
+    kURLFileContentIdentifierKey: StringRef
+
+    @(link_name="kCFURLMayShareFileContentKey")
+    kURLMayShareFileContentKey: StringRef
+
+    @(link_name="kCFURLMayHaveExtendedAttributesKey")
+    kURLMayHaveExtendedAttributesKey: StringRef
+
+    @(link_name="kCFURLIsPurgeableKey")
+    kURLIsPurgeableKey: StringRef
+
+    @(link_name="kCFURLIsSparseKey")
+    kURLIsSparseKey: StringRef
+
+    @(link_name="kCFURLLinkCountKey")
+    kURLLinkCountKey: StringRef
+
+    @(link_name="kCFURLParentDirectoryURLKey")
+    kURLParentDirectoryURLKey: StringRef
+
+    @(link_name="kCFURLVolumeURLKey")
+    kURLVolumeURLKey: StringRef
+
+    @(link_name="kCFURLTypeIdentifierKey")
+    kURLTypeIdentifierKey: StringRef
+
+    @(link_name="kCFURLLocalizedTypeDescriptionKey")
+    kURLLocalizedTypeDescriptionKey: StringRef
+
+    @(link_name="kCFURLLabelNumberKey")
+    kURLLabelNumberKey: StringRef
+
+    @(link_name="kCFURLLabelColorKey")
+    kURLLabelColorKey: StringRef
+
+    @(link_name="kCFURLLocalizedLabelKey")
+    kURLLocalizedLabelKey: StringRef
+
+    @(link_name="kCFURLEffectiveIconKey")
+    kURLEffectiveIconKey: StringRef
+
+    @(link_name="kCFURLCustomIconKey")
+    kURLCustomIconKey: StringRef
+
+    @(link_name="kCFURLFileResourceIdentifierKey")
+    kURLFileResourceIdentifierKey: StringRef
+
+    @(link_name="kCFURLVolumeIdentifierKey")
+    kURLVolumeIdentifierKey: StringRef
+
+    @(link_name="kCFURLPreferredIOBlockSizeKey")
+    kURLPreferredIOBlockSizeKey: StringRef
+
+    @(link_name="kCFURLIsReadableKey")
+    kURLIsReadableKey: StringRef
+
+    @(link_name="kCFURLIsWritableKey")
+    kURLIsWritableKey: StringRef
+
+    @(link_name="kCFURLIsExecutableKey")
+    kURLIsExecutableKey: StringRef
+
+    @(link_name="kCFURLFileSecurityKey")
+    kURLFileSecurityKey: StringRef
+
+    @(link_name="kCFURLIsExcludedFromBackupKey")
+    kURLIsExcludedFromBackupKey: StringRef
+
+    @(link_name="kCFURLTagNamesKey")
+    kURLTagNamesKey: StringRef
+
+    @(link_name="kCFURLPathKey")
+    kURLPathKey: StringRef
+
+    @(link_name="kCFURLCanonicalPathKey")
+    kURLCanonicalPathKey: StringRef
+
+    @(link_name="kCFURLIsMountTriggerKey")
+    kURLIsMountTriggerKey: StringRef
+
+    @(link_name="kCFURLGenerationIdentifierKey")
+    kURLGenerationIdentifierKey: StringRef
+
+    @(link_name="kCFURLDocumentIdentifierKey")
+    kURLDocumentIdentifierKey: StringRef
+
+    @(link_name="kCFURLAddedToDirectoryDateKey")
+    kURLAddedToDirectoryDateKey: StringRef
+
+    @(link_name="kCFURLQuarantinePropertiesKey")
+    kURLQuarantinePropertiesKey: StringRef
+
+    @(link_name="kCFURLFileResourceTypeKey")
+    kURLFileResourceTypeKey: StringRef
+
+    @(link_name="kCFURLFileResourceTypeNamedPipe")
+    kURLFileResourceTypeNamedPipe: StringRef
+
+    @(link_name="kCFURLFileResourceTypeCharacterSpecial")
+    kURLFileResourceTypeCharacterSpecial: StringRef
+
+    @(link_name="kCFURLFileResourceTypeDirectory")
+    kURLFileResourceTypeDirectory: StringRef
+
+    @(link_name="kCFURLFileResourceTypeBlockSpecial")
+    kURLFileResourceTypeBlockSpecial: StringRef
+
+    @(link_name="kCFURLFileResourceTypeRegular")
+    kURLFileResourceTypeRegular: StringRef
+
+    @(link_name="kCFURLFileResourceTypeSymbolicLink")
+    kURLFileResourceTypeSymbolicLink: StringRef
+
+    @(link_name="kCFURLFileResourceTypeSocket")
+    kURLFileResourceTypeSocket: StringRef
+
+    @(link_name="kCFURLFileResourceTypeUnknown")
+    kURLFileResourceTypeUnknown: StringRef
+
+    @(link_name="kCFURLFileSizeKey")
+    kURLFileSizeKey: StringRef
+
+    @(link_name="kCFURLFileAllocatedSizeKey")
+    kURLFileAllocatedSizeKey: StringRef
+
+    @(link_name="kCFURLTotalFileSizeKey")
+    kURLTotalFileSizeKey: StringRef
+
+    @(link_name="kCFURLTotalFileAllocatedSizeKey")
+    kURLTotalFileAllocatedSizeKey: StringRef
+
+    @(link_name="kCFURLIsAliasFileKey")
+    kURLIsAliasFileKey: StringRef
+
+    @(link_name="kCFURLFileProtectionKey")
+    kURLFileProtectionKey: StringRef
+
+    @(link_name="kCFURLFileProtectionNone")
+    kURLFileProtectionNone: StringRef
+
+    @(link_name="kCFURLFileProtectionComplete")
+    kURLFileProtectionComplete: StringRef
+
+    @(link_name="kCFURLFileProtectionCompleteUnlessOpen")
+    kURLFileProtectionCompleteUnlessOpen: StringRef
+
+    @(link_name="kCFURLFileProtectionCompleteUntilFirstUserAuthentication")
+    kURLFileProtectionCompleteUntilFirstUserAuthentication: StringRef
+
+    @(link_name="kCFURLFileProtectionCompleteWhenUserInactive")
+    kURLFileProtectionCompleteWhenUserInactive: StringRef
+
+    @(link_name="kCFURLDirectoryEntryCountKey")
+    kURLDirectoryEntryCountKey: StringRef
+
+    @(link_name="kCFURLVolumeLocalizedFormatDescriptionKey")
+    kURLVolumeLocalizedFormatDescriptionKey: StringRef
+
+    @(link_name="kCFURLVolumeTotalCapacityKey")
+    kURLVolumeTotalCapacityKey: StringRef
+
+    @(link_name="kCFURLVolumeAvailableCapacityKey")
+    kURLVolumeAvailableCapacityKey: StringRef
+
+    @(link_name="kCFURLVolumeAvailableCapacityForImportantUsageKey")
+    kURLVolumeAvailableCapacityForImportantUsageKey: StringRef
+
+    @(link_name="kCFURLVolumeAvailableCapacityForOpportunisticUsageKey")
+    kURLVolumeAvailableCapacityForOpportunisticUsageKey: StringRef
+
+    @(link_name="kCFURLVolumeResourceCountKey")
+    kURLVolumeResourceCountKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsPersistentIDsKey")
+    kURLVolumeSupportsPersistentIDsKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsSymbolicLinksKey")
+    kURLVolumeSupportsSymbolicLinksKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsHardLinksKey")
+    kURLVolumeSupportsHardLinksKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsJournalingKey")
+    kURLVolumeSupportsJournalingKey: StringRef
+
+    @(link_name="kCFURLVolumeIsJournalingKey")
+    kURLVolumeIsJournalingKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsSparseFilesKey")
+    kURLVolumeSupportsSparseFilesKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsZeroRunsKey")
+    kURLVolumeSupportsZeroRunsKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsCaseSensitiveNamesKey")
+    kURLVolumeSupportsCaseSensitiveNamesKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsCasePreservedNamesKey")
+    kURLVolumeSupportsCasePreservedNamesKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsRootDirectoryDatesKey")
+    kURLVolumeSupportsRootDirectoryDatesKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsVolumeSizesKey")
+    kURLVolumeSupportsVolumeSizesKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsRenamingKey")
+    kURLVolumeSupportsRenamingKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsAdvisoryFileLockingKey")
+    kURLVolumeSupportsAdvisoryFileLockingKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsExtendedSecurityKey")
+    kURLVolumeSupportsExtendedSecurityKey: StringRef
+
+    @(link_name="kCFURLVolumeIsBrowsableKey")
+    kURLVolumeIsBrowsableKey: StringRef
+
+    @(link_name="kCFURLVolumeMaximumFileSizeKey")
+    kURLVolumeMaximumFileSizeKey: StringRef
+
+    @(link_name="kCFURLVolumeIsEjectableKey")
+    kURLVolumeIsEjectableKey: StringRef
+
+    @(link_name="kCFURLVolumeIsRemovableKey")
+    kURLVolumeIsRemovableKey: StringRef
+
+    @(link_name="kCFURLVolumeIsInternalKey")
+    kURLVolumeIsInternalKey: StringRef
+
+    @(link_name="kCFURLVolumeIsAutomountedKey")
+    kURLVolumeIsAutomountedKey: StringRef
+
+    @(link_name="kCFURLVolumeIsLocalKey")
+    kURLVolumeIsLocalKey: StringRef
+
+    @(link_name="kCFURLVolumeIsReadOnlyKey")
+    kURLVolumeIsReadOnlyKey: StringRef
+
+    @(link_name="kCFURLVolumeCreationDateKey")
+    kURLVolumeCreationDateKey: StringRef
+
+    @(link_name="kCFURLVolumeURLForRemountingKey")
+    kURLVolumeURLForRemountingKey: StringRef
+
+    @(link_name="kCFURLVolumeUUIDStringKey")
+    kURLVolumeUUIDStringKey: StringRef
+
+    @(link_name="kCFURLVolumeNameKey")
+    kURLVolumeNameKey: StringRef
+
+    @(link_name="kCFURLVolumeLocalizedNameKey")
+    kURLVolumeLocalizedNameKey: StringRef
+
+    @(link_name="kCFURLVolumeIsEncryptedKey")
+    kURLVolumeIsEncryptedKey: StringRef
+
+    @(link_name="kCFURLVolumeIsRootFileSystemKey")
+    kURLVolumeIsRootFileSystemKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsCompressionKey")
+    kURLVolumeSupportsCompressionKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsFileCloningKey")
+    kURLVolumeSupportsFileCloningKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsSwapRenamingKey")
+    kURLVolumeSupportsSwapRenamingKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsExclusiveRenamingKey")
+    kURLVolumeSupportsExclusiveRenamingKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsImmutableFilesKey")
+    kURLVolumeSupportsImmutableFilesKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsAccessPermissionsKey")
+    kURLVolumeSupportsAccessPermissionsKey: StringRef
+
+    @(link_name="kCFURLVolumeSupportsFileProtectionKey")
+    kURLVolumeSupportsFileProtectionKey: StringRef
+
+    @(link_name="kCFURLVolumeTypeNameKey")
+    kURLVolumeTypeNameKey: StringRef
+
+    @(link_name="kCFURLVolumeSubtypeKey")
+    kURLVolumeSubtypeKey: StringRef
+
+    @(link_name="kCFURLVolumeMountFromLocationKey")
+    kURLVolumeMountFromLocationKey: StringRef
+
+    @(link_name="kCFURLIsUbiquitousItemKey")
+    kURLIsUbiquitousItemKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemHasUnresolvedConflictsKey")
+    kURLUbiquitousItemHasUnresolvedConflictsKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemIsDownloadedKey")
+    kURLUbiquitousItemIsDownloadedKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemIsDownloadingKey")
+    kURLUbiquitousItemIsDownloadingKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemIsUploadedKey")
+    kURLUbiquitousItemIsUploadedKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemIsUploadingKey")
+    kURLUbiquitousItemIsUploadingKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemPercentDownloadedKey")
+    kURLUbiquitousItemPercentDownloadedKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemPercentUploadedKey")
+    kURLUbiquitousItemPercentUploadedKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemDownloadingStatusKey")
+    kURLUbiquitousItemDownloadingStatusKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemDownloadingErrorKey")
+    kURLUbiquitousItemDownloadingErrorKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemUploadingErrorKey")
+    kURLUbiquitousItemUploadingErrorKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemIsExcludedFromSyncKey")
+    kURLUbiquitousItemIsExcludedFromSyncKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemDownloadingStatusNotDownloaded")
+    kURLUbiquitousItemDownloadingStatusNotDownloaded: StringRef
+
+    @(link_name="kCFURLUbiquitousItemDownloadingStatusDownloaded")
+    kURLUbiquitousItemDownloadingStatusDownloaded: StringRef
+
+    @(link_name="kCFURLUbiquitousItemDownloadingStatusCurrent")
+    kURLUbiquitousItemDownloadingStatusCurrent: StringRef
+
+    @(link_name="kCFURLUbiquitousItemSupportedSyncControlsKey")
+    kURLUbiquitousItemSupportedSyncControlsKey: StringRef
+
+    @(link_name="kCFURLUbiquitousItemIsSyncPausedKey")
+    kURLUbiquitousItemIsSyncPausedKey: StringRef
+
+    @(link_name="kCFRunLoopDefaultMode")
+    kRunLoopDefaultMode: RunLoopMode
+
+    @(link_name="kCFRunLoopCommonModes")
+    kRunLoopCommonModes: RunLoopMode
+
+    @(link_name="kCFSocketCommandKey")
+    kSocketCommandKey: StringRef
+
+    @(link_name="kCFSocketNameKey")
+    kSocketNameKey: StringRef
+
+    @(link_name="kCFSocketValueKey")
+    kSocketValueKey: StringRef
+
+    @(link_name="kCFSocketResultKey")
+    kSocketResultKey: StringRef
+
+    @(link_name="kCFSocketErrorKey")
+    kSocketErrorKey: StringRef
+
+    @(link_name="kCFSocketRegisterCommand")
+    kSocketRegisterCommand: StringRef
+
+    @(link_name="kCFSocketRetrieveCommand")
+    kSocketRetrieveCommand: StringRef
+
+    @(link_name="kCFStreamPropertyDataWritten")
+    kStreamPropertyDataWritten: StreamPropertyKey
+
+    @(link_name="kCFStreamPropertyAppendToFile")
+    kStreamPropertyAppendToFile: StreamPropertyKey
+
+    @(link_name="kCFStreamPropertyFileCurrentOffset")
+    kStreamPropertyFileCurrentOffset: StreamPropertyKey
+
+    @(link_name="kCFStreamPropertySocketNativeHandle")
+    kStreamPropertySocketNativeHandle: StreamPropertyKey
+
+    @(link_name="kCFStreamPropertySocketRemoteHostName")
+    kStreamPropertySocketRemoteHostName: StreamPropertyKey
+
+    @(link_name="kCFStreamPropertySocketRemotePortNumber")
+    kStreamPropertySocketRemotePortNumber: StreamPropertyKey
+
+    @(link_name="kCFStreamErrorDomainSOCKS")
+    kStreamErrorDomainSOCKS: cffi.int
+
+    @(link_name="kCFStreamPropertySOCKSProxy")
+    kStreamPropertySOCKSProxy: StringRef
+
+    @(link_name="kCFStreamPropertySOCKSProxyHost")
+    kStreamPropertySOCKSProxyHost: StringRef
+
+    @(link_name="kCFStreamPropertySOCKSProxyPort")
+    kStreamPropertySOCKSProxyPort: StringRef
+
+    @(link_name="kCFStreamPropertySOCKSVersion")
+    kStreamPropertySOCKSVersion: StringRef
+
+    @(link_name="kCFStreamSocketSOCKSVersion4")
+    kStreamSocketSOCKSVersion4: StringRef
+
+    @(link_name="kCFStreamSocketSOCKSVersion5")
+    kStreamSocketSOCKSVersion5: StringRef
+
+    @(link_name="kCFStreamPropertySOCKSUser")
+    kStreamPropertySOCKSUser: StringRef
+
+    @(link_name="kCFStreamPropertySOCKSPassword")
+    kStreamPropertySOCKSPassword: StringRef
+
+    @(link_name="kCFStreamErrorDomainSSL")
+    kStreamErrorDomainSSL: cffi.int
+
+    @(link_name="kCFStreamPropertySocketSecurityLevel")
+    kStreamPropertySocketSecurityLevel: StringRef
+
+    @(link_name="kCFStreamSocketSecurityLevelNone")
+    kStreamSocketSecurityLevelNone: StringRef
+
+    @(link_name="kCFStreamSocketSecurityLevelSSLv2")
+    kStreamSocketSecurityLevelSSLv2: StringRef
+
+    @(link_name="kCFStreamSocketSecurityLevelSSLv3")
+    kStreamSocketSecurityLevelSSLv3: StringRef
+
+    @(link_name="kCFStreamSocketSecurityLevelTLSv1")
+    kStreamSocketSecurityLevelTLSv1: StringRef
+
+    @(link_name="kCFStreamSocketSecurityLevelNegotiatedSSL")
+    kStreamSocketSecurityLevelNegotiatedSSL: StringRef
+
+    @(link_name="kCFStreamPropertyShouldCloseNativeSocket")
+    kStreamPropertyShouldCloseNativeSocket: StringRef
+
+    @(link_name="kCFTypeSetCallBacks")
+    kTypeSetCallBacks: SetCallBacks
+
+    @(link_name="kCFCopyStringSetCallBacks")
+    kCopyStringSetCallBacks: SetCallBacks
+
+    @(link_name="kCFURLFileExists")
+    kURLFileExists: StringRef
+
+    @(link_name="kCFURLFileDirectoryContents")
+    kURLFileDirectoryContents: StringRef
+
+    @(link_name="kCFURLFileLength")
+    kURLFileLength: StringRef
+
+    @(link_name="kCFURLFileLastModificationTime")
+    kURLFileLastModificationTime: StringRef
+
+    @(link_name="kCFURLFilePOSIXMode")
+    kURLFilePOSIXMode: StringRef
+
+    @(link_name="kCFURLFileOwnerID")
+    kURLFileOwnerID: StringRef
+
+    @(link_name="kCFURLHTTPStatusCode")
+    kURLHTTPStatusCode: StringRef
+
+    @(link_name="kCFURLHTTPStatusLine")
+    kURLHTTPStatusLine: StringRef
+
+    @(link_name="kCFBundleInfoDictionaryVersionKey")
+    kBundleInfoDictionaryVersionKey: StringRef
+
+    @(link_name="kCFBundleExecutableKey")
+    kBundleExecutableKey: StringRef
+
+    @(link_name="kCFBundleIdentifierKey")
+    kBundleIdentifierKey: StringRef
+
+    @(link_name="kCFBundleVersionKey")
+    kBundleVersionKey: StringRef
+
+    @(link_name="kCFBundleDevelopmentRegionKey")
+    kBundleDevelopmentRegionKey: StringRef
+
+    @(link_name="kCFBundleNameKey")
+    kBundleNameKey: StringRef
+
+    @(link_name="kCFBundleLocalizationsKey")
+    kBundleLocalizationsKey: StringRef
+
+    @(link_name="kCFPlugInDynamicRegistrationKey")
+    kPlugInDynamicRegistrationKey: StringRef
+
+    @(link_name="kCFPlugInDynamicRegisterFunctionKey")
+    kPlugInDynamicRegisterFunctionKey: StringRef
+
+    @(link_name="kCFPlugInUnloadFunctionKey")
+    kPlugInUnloadFunctionKey: StringRef
+
+    @(link_name="kCFPlugInFactoriesKey")
+    kPlugInFactoriesKey: StringRef
+
+    @(link_name="kCFPlugInTypesKey")
+    kPlugInTypesKey: StringRef
+
+    @(link_name="kCFUserNotificationIconURLKey")
+    kUserNotificationIconURLKey: StringRef
+
+    @(link_name="kCFUserNotificationSoundURLKey")
+    kUserNotificationSoundURLKey: StringRef
+
+    @(link_name="kCFUserNotificationLocalizationURLKey")
+    kUserNotificationLocalizationURLKey: StringRef
+
+    @(link_name="kCFUserNotificationAlertHeaderKey")
+    kUserNotificationAlertHeaderKey: StringRef
+
+    @(link_name="kCFUserNotificationAlertMessageKey")
+    kUserNotificationAlertMessageKey: StringRef
+
+    @(link_name="kCFUserNotificationDefaultButtonTitleKey")
+    kUserNotificationDefaultButtonTitleKey: StringRef
+
+    @(link_name="kCFUserNotificationAlternateButtonTitleKey")
+    kUserNotificationAlternateButtonTitleKey: StringRef
+
+    @(link_name="kCFUserNotificationOtherButtonTitleKey")
+    kUserNotificationOtherButtonTitleKey: StringRef
+
+    @(link_name="kCFUserNotificationProgressIndicatorValueKey")
+    kUserNotificationProgressIndicatorValueKey: StringRef
+
+    @(link_name="kCFUserNotificationPopUpTitlesKey")
+    kUserNotificationPopUpTitlesKey: StringRef
+
+    @(link_name="kCFUserNotificationTextFieldTitlesKey")
+    kUserNotificationTextFieldTitlesKey: StringRef
+
+    @(link_name="kCFUserNotificationCheckBoxTitlesKey")
+    kUserNotificationCheckBoxTitlesKey: StringRef
+
+    @(link_name="kCFUserNotificationTextFieldValuesKey")
+    kUserNotificationTextFieldValuesKey: StringRef
+
+    @(link_name="kCFUserNotificationPopUpSelectionKey")
+    kUserNotificationPopUpSelectionKey: StringRef
+
+    @(link_name="kCFUserNotificationAlertTopMostKey")
+    kUserNotificationAlertTopMostKey: StringRef
+
+    @(link_name="kCFUserNotificationKeyboardTypesKey")
+    kUserNotificationKeyboardTypesKey: StringRef
+
+    @(link_name="kCFUserNotificationAlertAccessibilityIdentifierKey")
+    kUserNotificationAlertAccessibilityIdentifierKey: StringRef
+
+    @(link_name="kCFUserNotificationDefaultButtonAccessibilityIdentifierKey")
+    kUserNotificationDefaultButtonAccessibilityIdentifierKey: StringRef
+
+    @(link_name="kCFUserNotificationAlternateButtonAccessibilityIdentifierKey")
+    kUserNotificationAlternateButtonAccessibilityIdentifierKey: StringRef
+
+    @(link_name="kCFUserNotificationOtherButtonAccessibilityIdentifierKey")
+    kUserNotificationOtherButtonAccessibilityIdentifierKey: StringRef
+
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(link_name="kCFXMLTreeErrorDescription")
+        kXMLTreeErrorDescription: StringRef
+
+        @(link_name="kCFXMLTreeErrorLineNumber")
+        kXMLTreeErrorLineNumber: StringRef
+
+        @(link_name="kCFXMLTreeErrorLocation")
+        kXMLTreeErrorLocation: StringRef
+
+        @(link_name="kCFXMLTreeErrorStatusCode")
+        kXMLTreeErrorStatusCode: StringRef
     }
-}
 
-@(default_calling_convention="c")
-foreign lib {
     @(link_name="CFNullGetTypeID")
     NullGetTypeID :: proc() -> TypeID ---
 
@@ -850,7 +1570,7 @@ foreign lib {
     @(link_name="CFNotificationCenterGetLocalCenter")
     NotificationCenterGetLocalCenter :: proc() -> NotificationCenterRef ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(link_name="CFNotificationCenterGetDistributedCenter")
         NotificationCenterGetDistributedCenter :: proc() -> NotificationCenterRef ---
     }
@@ -1939,7 +2659,7 @@ foreign lib {
     RunLoopObserverCreate :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, callout: RunLoopObserverCallBack, _context: ^RunLoopObserverContext) -> RunLoopObserverRef ---
 
     @(link_name="CFRunLoopObserverCreateWithHandler")
-    RunLoopObserverCreateWithHandler :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, block: ^Objc_Block(proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity))) -> RunLoopObserverRef ---
+    RunLoopObserverCreateWithHandler :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, block: ^Objc_Block(proc "c" ( observer: RunLoopObserverRef, activity: RunLoopActivity ))) -> RunLoopObserverRef ---
 
     @(link_name="CFRunLoopObserverGetActivities")
     RunLoopObserverGetActivities :: proc(observer: RunLoopObserverRef) -> OptionFlags ---
@@ -1966,7 +2686,7 @@ foreign lib {
     RunLoopTimerCreate :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, callout: RunLoopTimerCallBack, _context: ^RunLoopTimerContext) -> RunLoopTimerRef ---
 
     @(link_name="CFRunLoopTimerCreateWithHandler")
-    RunLoopTimerCreateWithHandler :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, block: ^Objc_Block(proc "c" (timer: RunLoopTimerRef))) -> RunLoopTimerRef ---
+    RunLoopTimerCreateWithHandler :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, block: ^Objc_Block(proc "c" ( timer: RunLoopTimerRef ))) -> RunLoopTimerRef ---
 
     @(link_name="CFRunLoopTimerGetNextFireDate")
     RunLoopTimerGetNextFireDate :: proc(timer: RunLoopTimerRef) -> CFAbsoluteTime ---
@@ -2146,10 +2866,10 @@ foreign lib {
     dispatch_async_and_wait_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
     @(link_name="dispatch_apply")
-    dispatch_apply :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, block: ^Objc_Block(proc "c" (iteration: cffi.size_t))) ---
+    dispatch_apply :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, block: ^Objc_Block(proc "c" ( iteration: cffi.size_t ))) ---
 
     @(link_name="dispatch_apply_f")
-    dispatch_apply_f :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, _context: rawptr, work: proc "c" (_context: rawptr, iteration: cffi.size_t)) ---
+    dispatch_apply_f :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, _context: rawptr, work: proc "c" ( _context: rawptr, iteration: cffi.size_t )) ---
 
     @(link_name="dispatch_get_current_queue")
     dispatch_get_current_queue :: proc() -> dispatch_queue_t ---
@@ -2353,19 +3073,19 @@ foreign lib {
     dispatch_data_copy_region :: proc(data: dispatch_data_t, location: cffi.size_t, offset_ptr: ^cffi.size_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_read")
-    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.size_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" (data: dispatch_data_t, error: cffi.int))) ---
+    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.size_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" ( data: dispatch_data_t, error: cffi.int ))) ---
 
     @(link_name="dispatch_write")
-    dispatch_write :: proc(fd: dispatch_fd_t, data: dispatch_data_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" (data: dispatch_data_t, error: cffi.int))) ---
+    dispatch_write :: proc(fd: dispatch_fd_t, data: dispatch_data_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" ( data: dispatch_data_t, error: cffi.int ))) ---
 
     @(link_name="dispatch_io_create")
-    dispatch_io_create :: proc(type: dispatch_io_type_t, fd: dispatch_fd_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
+    dispatch_io_create :: proc(type: dispatch_io_type_t, fd: dispatch_fd_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" ( error: cffi.int ))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_create_with_path")
-    dispatch_io_create_with_path :: proc(type: dispatch_io_type_t, path: cstring, oflag: cffi.int, mode: libc.mode_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
+    dispatch_io_create_with_path :: proc(type: dispatch_io_type_t, path: cstring, oflag: cffi.int, mode: libc.mode_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" ( error: cffi.int ))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_create_with_io")
-    dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
+    dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" ( error: cffi.int ))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_read")
     dispatch_io_read :: proc(channel: dispatch_io_t, offset: libc.off_t, length: cffi.size_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
@@ -3213,7 +3933,7 @@ foreign lib {
     @(link_name="CFUserNotificationDisplayAlert")
     UserNotificationDisplayAlert :: proc(timeout: TimeInterval, flags: OptionFlags, iconURL: URLRef, soundURL: URLRef, localizationURL: URLRef, alertHeader: StringRef, alertMessage: StringRef, defaultButtonTitle: StringRef, alternateButtonTitle: StringRef, otherButtonTitle: StringRef, responseFlags: ^OptionFlags) -> SInt32 ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(link_name="CFXMLNodeGetTypeID")
         XMLNodeGetTypeID :: proc() -> TypeID ---
 
@@ -3298,743 +4018,310 @@ foreign lib {
         @(link_name="CFXMLCreateStringByUnescapingEntities")
         XMLCreateStringByUnescapingEntities :: proc(allocator: AllocatorRef, string: StringRef, entitiesDictionary: DictionaryRef) -> StringRef ---
     }
-
 }
 
-/// UInt8
+
+
+OSUnknownByteOrder                          :: 0
+OSLittleEndian                              :: 1
+OSBigEndian                                 :: 2
+kNotificationDeliverImmediately             :: 1
+kNotificationPostToAllSessions              :: 2
+kCalendarComponentsWrap                     :: 1
+kSocketAutomaticallyReenableReadCallBack    :: 1
+kSocketAutomaticallyReenableAcceptCallBack  :: 2
+kSocketAutomaticallyReenableDataCallBack    :: 3
+kSocketAutomaticallyReenableWriteCallBack   :: 8
+kSocketLeaveErrors                          :: 64
+kSocketCloseOnInvalidate                    :: 128
+DISPATCH_WALLTIME_NOW                       :: 18446744073709551614
+kPropertyListReadCorruptError               :: 3840
+kPropertyListReadUnknownVersionError        :: 3841
+kPropertyListReadStreamError                :: 3842
+kPropertyListWriteStreamError               :: 3851
+kBundleExecutableArchitectureI386           :: 7
+kBundleExecutableArchitecturePPC            :: 18
+kBundleExecutableArchitectureX86_64         :: 16777223
+kBundleExecutableArchitecturePPC64          :: 16777234
+kBundleExecutableArchitectureARM64          :: 16777228
+kMessagePortSuccess                         :: 0
+kMessagePortSendTimeout                     :: -1
+kMessagePortReceiveTimeout                  :: -2
+kMessagePortIsInvalid                       :: -3
+kMessagePortTransportError                  :: -4
+kMessagePortBecameInvalidError              :: -5
+kStringTokenizerUnitWord                    :: 0
+kStringTokenizerUnitSentence                :: 1
+kStringTokenizerUnitParagraph               :: 2
+kStringTokenizerUnitLineBreak               :: 3
+kStringTokenizerUnitWordBoundary            :: 4
+kStringTokenizerAttributeLatinTranscription :: 65536
+kStringTokenizerAttributeLanguage           :: 131072
+kFileDescriptorReadCallBack                 :: 1
+kFileDescriptorWriteCallBack                :: 2
+kUserNotificationStopAlertLevel             :: 0
+kUserNotificationNoteAlertLevel             :: 1
+kUserNotificationCautionAlertLevel          :: 2
+kUserNotificationPlainAlertLevel            :: 3
+kUserNotificationDefaultResponse            :: 0
+kUserNotificationAlternateResponse          :: 1
+kUserNotificationOtherResponse              :: 2
+kUserNotificationCancelResponse             :: 3
+kUserNotificationNoDefaultButtonFlag        :: 32
+kUserNotificationUseRadioButtonsFlag        :: 64
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    kXMLNodeCurrentVersion                      :: 1
+}
+kNotFound                                   :: -1
 UInt8 :: cffi.uchar
-
-/// SInt8
 SInt8 :: cffi.schar
-
-/// UInt16
 UInt16 :: cffi.ushort
-
-/// SInt16
 SInt16 :: cffi.short
-
-/// UInt32
 UInt32 :: cffi.uint
-
-/// SInt32
 SInt32 :: cffi.int
-
-/// SInt64
 SInt64 :: cffi.longlong
-
-/// UInt64
 UInt64 :: cffi.ulonglong
-
-/// Ptr
 Ptr :: cstring
-
-/// Handle
 Handle :: ^Ptr
-
-/// Size
 Size :: cffi.long
-
-/// OSErr
 OSErr :: SInt16
-
-/// OSStatus
 OSStatus :: SInt32
-
-/// LogicalAddress
 LogicalAddress :: rawptr
-
-/// ConstLogicalAddress
 ConstLogicalAddress :: rawptr
-
-/// PhysicalAddress
 PhysicalAddress :: rawptr
-
-/// BytePtr
 BytePtr :: ^UInt8
-
-/// ByteCount
 ByteCount :: cffi.ulong
-
-/// ByteOffset
 ByteOffset :: cffi.ulong
-
-/// Duration
 Duration :: SInt32
-
-/// AbsoluteTime
 AbsoluteTime :: UnsignedWide
-
-/// OptionBits
 OptionBits :: UInt32
-
-/// ItemCount
 ItemCount :: cffi.ulong
-
-/// PBVersion
 PBVersion :: UInt32
-
-/// ScriptCode
 ScriptCode :: SInt16
-
-/// LangCode
 LangCode :: SInt16
-
-/// RegionCode
 RegionCode :: SInt16
-
-/// FourCharCode
 FourCharCode :: UInt32
-
-/// OSType
 OSType :: FourCharCode
-
-/// ResType
 ResType :: FourCharCode
-
-/// OSTypePtr
 OSTypePtr :: ^OSType
-
-/// ResTypePtr
 ResTypePtr :: ^ResType
-
-/// SRefCon
 SRefCon :: rawptr
-
-/// UTF32Char
 UTF32Char :: UInt32
-
-/// UniChar
 UniChar :: UInt16
-
-/// UTF16Char
 UTF16Char :: UInt16
-
-/// UTF8Char
 UTF8Char :: UInt8
-
-/// UniCharPtr
 UniCharPtr :: ^UniChar
-
-/// UniCharCount
 UniCharCount :: cffi.ulong
-
-/// UniCharCountPtr
 UniCharCountPtr :: ^UniCharCount
-
-/// Str255
 Str255 :: [256]cffi.uchar
-
-/// Str63
 Str63 :: [64]cffi.uchar
-
-/// Str32
 Str32 :: [33]cffi.uchar
-
-/// Str31
 Str31 :: [32]cffi.uchar
-
-/// Str27
 Str27 :: [28]cffi.uchar
-
-/// Str15
 Str15 :: [16]cffi.uchar
-
-/// Str32Field
 Str32Field :: [34]cffi.uchar
-
-/// StrFileName
 StrFileName :: Str63
-
-/// StringPtr
 StringPtr :: ^cffi.uchar
-
-/// StringHandle
 StringHandle :: ^StringPtr
-
-/// ConstStringPtr
 ConstStringPtr :: ^cffi.uchar
-
-/// ConstStr255Param
 ConstStr255Param :: ^cffi.uchar
-
-/// ConstStr63Param
 ConstStr63Param :: ^cffi.uchar
-
-/// ConstStr32Param
 ConstStr32Param :: ^cffi.uchar
-
-/// ConstStr31Param
 ConstStr31Param :: ^cffi.uchar
-
-/// ConstStr27Param
 ConstStr27Param :: ^cffi.uchar
-
-/// ConstStr15Param
 ConstStr15Param :: ^cffi.uchar
-
-/// ConstStrFileNameParam
 ConstStrFileNameParam :: ConstStr63Param
-
-/// SignedByte
 SignedByte :: SInt8
-
-/// UnsignedWidePtr
 UnsignedWidePtr :: ^UnsignedWide
-
-/// CFAllocatorTypeID
 AllocatorTypeID :: cffi.ulonglong
-
-/// CFTypeID
 TypeID :: cffi.ulong
-
-/// CFOptionFlags
 OptionFlags :: cffi.ulong
-
-/// CFHashCode
 HashCode :: cffi.ulong
-
-/// CFIndex
 Index :: cffi.long
-
-/// CFTypeRef
 TypeRef :: rawptr
-
-/// CFStringRef
 StringRef :: ^__CFString
-
-/// CFMutableStringRef
 MutableStringRef :: ^__CFString
-
-/// CFPropertyListRef
 PropertyListRef :: TypeRef
-
-/// CFComparatorFunction
-ComparatorFunction :: proc "c" (val1: rawptr, val2: rawptr, _context: rawptr) -> ComparisonResult
-
-/// CFNullRef
+ComparatorFunction :: proc "c" ( val1: rawptr, val2: rawptr, _context: rawptr ) -> ComparisonResult
 NullRef :: ^__CFNull
-
-/// CFAllocatorRef
 AllocatorRef :: ^__CFAllocator
-
-/// CFAllocatorRetainCallBack
-AllocatorRetainCallBack :: proc "c" (info: rawptr) -> rawptr
-
-/// CFAllocatorReleaseCallBack
-AllocatorReleaseCallBack :: proc "c" (info: rawptr)
-
-/// CFAllocatorCopyDescriptionCallBack
-AllocatorCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
-
-/// CFAllocatorAllocateCallBack
-AllocatorAllocateCallBack :: proc "c" (allocSize: Index, hint: OptionFlags, info: rawptr) -> rawptr
-
-/// CFAllocatorReallocateCallBack
-AllocatorReallocateCallBack :: proc "c" (ptr: rawptr, newsize: Index, hint: OptionFlags, info: rawptr) -> rawptr
-
-/// CFAllocatorDeallocateCallBack
-AllocatorDeallocateCallBack :: proc "c" (ptr: rawptr, info: rawptr)
-
-/// CFAllocatorPreferredSizeCallBack
-AllocatorPreferredSizeCallBack :: proc "c" (size: Index, hint: OptionFlags, info: rawptr) -> Index
-
-/// CFArrayRetainCallBack
-ArrayRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
-
-/// CFArrayReleaseCallBack
-ArrayReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
-
-/// CFArrayCopyDescriptionCallBack
-ArrayCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
-
-/// CFArrayEqualCallBack
-ArrayEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
-
-/// CFArrayApplierFunction
-ArrayApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
-
-/// CFArrayRef
+AllocatorRetainCallBack :: proc "c" ( info: rawptr ) -> rawptr
+AllocatorReleaseCallBack :: proc "c" ( info: rawptr )
+AllocatorCopyDescriptionCallBack :: proc "c" ( info: rawptr ) -> StringRef
+AllocatorAllocateCallBack :: proc "c" ( allocSize: Index, hint: OptionFlags, info: rawptr ) -> rawptr
+AllocatorReallocateCallBack :: proc "c" ( ptr: rawptr, newsize: Index, hint: OptionFlags, info: rawptr ) -> rawptr
+AllocatorDeallocateCallBack :: proc "c" ( ptr: rawptr, info: rawptr )
+AllocatorPreferredSizeCallBack :: proc "c" ( size: Index, hint: OptionFlags, info: rawptr ) -> Index
+ArrayRetainCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr ) -> rawptr
+ArrayReleaseCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr )
+ArrayCopyDescriptionCallBack :: proc "c" ( value: rawptr ) -> StringRef
+ArrayEqualCallBack :: proc "c" ( value1: rawptr, value2: rawptr ) -> Boolean
+ArrayApplierFunction :: proc "c" ( value: rawptr, _context: rawptr )
 ArrayRef :: ^__CFArray
-
-/// CFMutableArrayRef
 MutableArrayRef :: ^__CFArray
-
-/// CFBagRetainCallBack
-BagRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
-
-/// CFBagReleaseCallBack
-BagReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
-
-/// CFBagCopyDescriptionCallBack
-BagCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
-
-/// CFBagEqualCallBack
-BagEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
-
-/// CFBagHashCallBack
-BagHashCallBack :: proc "c" (value: rawptr) -> HashCode
-
-/// CFBagApplierFunction
-BagApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
-
-/// CFBagRef
+BagRetainCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr ) -> rawptr
+BagReleaseCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr )
+BagCopyDescriptionCallBack :: proc "c" ( value: rawptr ) -> StringRef
+BagEqualCallBack :: proc "c" ( value1: rawptr, value2: rawptr ) -> Boolean
+BagHashCallBack :: proc "c" ( value: rawptr ) -> HashCode
+BagApplierFunction :: proc "c" ( value: rawptr, _context: rawptr )
 BagRef :: ^__CFBag
-
-/// CFMutableBagRef
 MutableBagRef :: ^__CFBag
-
-/// CFBinaryHeapApplierFunction
-BinaryHeapApplierFunction :: proc "c" (val: rawptr, _context: rawptr)
-
-/// CFBinaryHeapRef
+BinaryHeapApplierFunction :: proc "c" ( val: rawptr, _context: rawptr )
 BinaryHeapRef :: ^__CFBinaryHeap
-
-/// CFBit
 Bit :: UInt32
-
-/// CFBitVectorRef
 BitVectorRef :: ^__CFBitVector
-
-/// CFMutableBitVectorRef
 MutableBitVectorRef :: ^__CFBitVector
-
-/// CFByteOrder
 ByteOrder :: Index
-
-/// CFDictionaryRetainCallBack
-DictionaryRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
-
-/// CFDictionaryReleaseCallBack
-DictionaryReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
-
-/// CFDictionaryCopyDescriptionCallBack
-DictionaryCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
-
-/// CFDictionaryEqualCallBack
-DictionaryEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
-
-/// CFDictionaryHashCallBack
-DictionaryHashCallBack :: proc "c" (value: rawptr) -> HashCode
-
-/// CFDictionaryApplierFunction
-DictionaryApplierFunction :: proc "c" (key: rawptr, value: rawptr, _context: rawptr)
-
-/// CFDictionaryRef
+DictionaryRetainCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr ) -> rawptr
+DictionaryReleaseCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr )
+DictionaryCopyDescriptionCallBack :: proc "c" ( value: rawptr ) -> StringRef
+DictionaryEqualCallBack :: proc "c" ( value1: rawptr, value2: rawptr ) -> Boolean
+DictionaryHashCallBack :: proc "c" ( value: rawptr ) -> HashCode
+DictionaryApplierFunction :: proc "c" ( key: rawptr, value: rawptr, _context: rawptr )
 DictionaryRef :: ^__CFDictionary
-
-/// CFMutableDictionaryRef
 MutableDictionaryRef :: ^__CFDictionary
-
-/// CFNotificationName
 NotificationName :: StringRef
-
-/// CFNotificationCenterRef
 NotificationCenterRef :: ^__CFNotificationCenter
-
-/// CFNotificationCallback
-NotificationCallback :: proc "c" (center: NotificationCenterRef, observer: rawptr, name: NotificationName, object: rawptr, userInfo: DictionaryRef)
-
-/// CFLocaleIdentifier
+NotificationCallback :: proc "c" ( center: NotificationCenterRef, observer: rawptr, name: NotificationName, object: rawptr, userInfo: DictionaryRef )
 LocaleIdentifier :: StringRef
-
-/// CFLocaleKey
 LocaleKey :: StringRef
-
-/// CFLocaleRef
 LocaleRef :: ^__CFLocale
-
-/// CFCalendarIdentifier
 CalendarIdentifier :: StringRef
-
-/// CFTimeInterval
 TimeInterval :: cffi.double
-
-/// CFAbsoluteTime
 CFAbsoluteTime :: TimeInterval
-
-/// CFDateRef
 DateRef :: ^__CFDate
-
-/// CFTimeZoneRef
 TimeZoneRef :: ^__CFTimeZone
-
-/// CFDataRef
 DataRef :: ^__CFData
-
-/// CFMutableDataRef
 MutableDataRef :: ^__CFData
-
-/// CFCharacterSetRef
 CharacterSetRef :: ^__CFCharacterSet
-
-/// CFMutableCharacterSetRef
 MutableCharacterSetRef :: ^__CFCharacterSet
-
-/// CFErrorDomain
 ErrorDomain :: StringRef
-
-/// CFErrorRef
 ErrorRef :: ^__CFError
-
-/// CFCalendarRef
 CalendarRef :: ^__CFCalendar
-
-/// CFDateFormatterKey
 DateFormatterKey :: StringRef
-
-/// CFDateFormatterRef
 DateFormatterRef :: ^__CFDateFormatter
-
-/// CFBooleanRef
 BooleanRef :: ^__CFBoolean
-
-/// CFNumberRef
 NumberRef :: ^__CFNumber
-
-/// CFNumberFormatterKey
 NumberFormatterKey :: StringRef
-
-/// CFNumberFormatterRef
 NumberFormatterRef :: ^__CFNumberFormatter
-
-/// CFURLRef
 URLRef :: ^__CFURL
-
-/// CFURLBookmarkFileCreationOptions
 URLBookmarkFileCreationOptions :: OptionFlags
-
-/// CFRunLoopMode
 RunLoopMode :: StringRef
-
-/// CFRunLoopRef
 RunLoopRef :: ^__CFRunLoop
-
-/// CFRunLoopSourceRef
 RunLoopSourceRef :: ^__CFRunLoopSource
-
-/// CFRunLoopObserverRef
 RunLoopObserverRef :: ^__CFRunLoopObserver
-
-/// CFRunLoopTimerRef
 RunLoopTimerRef :: ^__CFRunLoopTimer
-
-/// CFRunLoopObserverCallBack
-RunLoopObserverCallBack :: proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity, info: rawptr)
-
-/// CFRunLoopTimerCallBack
-RunLoopTimerCallBack :: proc "c" (timer: RunLoopTimerRef, info: rawptr)
-
-/// CFSocketRef
+RunLoopObserverCallBack :: proc "c" ( observer: RunLoopObserverRef, activity: RunLoopActivity, info: rawptr )
+RunLoopTimerCallBack :: proc "c" ( timer: RunLoopTimerRef, info: rawptr )
 SocketRef :: ^__CFSocket
-
-/// CFSocketCallBack
-SocketCallBack :: proc "c" (s: SocketRef, type: SocketCallBackType, address: DataRef, data: rawptr, info: rawptr)
-
-/// CFSocketNativeHandle
+SocketCallBack :: proc "c" ( s: SocketRef, type: SocketCallBackType, address: DataRef, data: rawptr, info: rawptr )
 SocketNativeHandle :: cffi.int
-
-/// os_function_t
-os_function_t :: proc "c" (_: rawptr)
-
-/// os_block_t
+os_function_t :: proc "c" ( _0: rawptr )
 os_block_t :: ^Objc_Block(proc "c" ())
-
-/// os_workgroup_t
 os_workgroup_t :: ^os_workgroup_s
-
-/// os_workgroup_attr_s
 os_workgroup_attr_s :: os_workgroup_attr_opaque_s
-
-/// os_workgroup_attr_t
 os_workgroup_attr_t :: ^os_workgroup_attr_opaque_s
-
-/// os_workgroup_join_token_s
 os_workgroup_join_token_s :: os_workgroup_join_token_opaque_s
-
-/// os_workgroup_join_token_t
 os_workgroup_join_token_t :: ^os_workgroup_join_token_opaque_s
-
-/// os_workgroup_index
 os_workgroup_index :: cffi.uint32_t
-
-/// os_workgroup_working_arena_destructor_t
-os_workgroup_working_arena_destructor_t :: proc "c" (_: rawptr)
-
-/// os_workgroup_mpt_attr_s
+os_workgroup_working_arena_destructor_t :: proc "c" ( _0: rawptr )
 os_workgroup_mpt_attr_s :: os_workgroup_max_parallel_threads_attr_s
-
-/// os_workgroup_mpt_attr_t
 os_workgroup_mpt_attr_t :: ^os_workgroup_max_parallel_threads_attr_s
-
-/// os_workgroup_parallel_t
 os_workgroup_parallel_t :: os_workgroup_t
-
-/// dispatch_function_t
-dispatch_function_t :: proc "c" (_: rawptr)
-
-/// dispatch_time_t
+dispatch_function_t :: proc "c" ( _0: rawptr )
 dispatch_time_t :: cffi.uint64_t
-
-/// dispatch_block_t
 dispatch_block_t :: ^Objc_Block(proc "c" ())
-
-/// dispatch_qos_class_t
 dispatch_qos_class_t :: qos_class_t
-
-/// dispatch_queue_t
 dispatch_queue_t :: ^dispatch_queue_s
-
-/// dispatch_queue_global_t
 dispatch_queue_global_t :: dispatch_queue_t
-
-/// dispatch_queue_serial_executor_t
 dispatch_queue_serial_executor_t :: dispatch_queue_t
-
-/// dispatch_queue_serial_t
 dispatch_queue_serial_t :: dispatch_queue_t
-
-/// dispatch_queue_main_t
 dispatch_queue_main_t :: dispatch_queue_serial_t
-
-/// dispatch_queue_concurrent_t
 dispatch_queue_concurrent_t :: dispatch_queue_t
-
-/// dispatch_queue_priority_t
 dispatch_queue_priority_t :: cffi.long
-
-/// dispatch_queue_attr_t
 dispatch_queue_attr_t :: ^dispatch_queue_attr_s
-
-/// dispatch_source_t
 dispatch_source_t :: ^dispatch_source_s
-
-/// dispatch_source_type_t
 dispatch_source_type_t :: ^dispatch_source_type_s
-
-/// dispatch_source_mach_send_flags_t
 dispatch_source_mach_send_flags_t :: cffi.ulong
-
-/// dispatch_source_mach_recv_flags_t
 dispatch_source_mach_recv_flags_t :: cffi.ulong
-
-/// dispatch_source_memorypressure_flags_t
 dispatch_source_memorypressure_flags_t :: cffi.ulong
-
-/// dispatch_source_proc_flags_t
 dispatch_source_proc_flags_t :: cffi.ulong
-
-/// dispatch_source_vnode_flags_t
 dispatch_source_vnode_flags_t :: cffi.ulong
-
-/// dispatch_source_timer_flags_t
 dispatch_source_timer_flags_t :: cffi.ulong
-
-/// dispatch_group_t
 dispatch_group_t :: ^dispatch_group_s
-
-/// dispatch_semaphore_t
 dispatch_semaphore_t :: ^dispatch_semaphore_s
-
-/// dispatch_once_t
 dispatch_once_t :: cffi.intptr_t
-
-/// dispatch_data_t
 dispatch_data_t :: ^dispatch_data_s
-
-/// dispatch_data_applier_t
-dispatch_data_applier_t :: ^Objc_Block(proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool)
-
-/// dispatch_fd_t
+dispatch_data_applier_t :: ^Objc_Block(proc "c" ( region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t ) -> cffi.bool)
 dispatch_fd_t :: cffi.int
-
-/// dispatch_io_t
 dispatch_io_t :: ^dispatch_io_s
-
-/// dispatch_io_type_t
 dispatch_io_type_t :: cffi.ulong
-
-/// dispatch_io_handler_t
-dispatch_io_handler_t :: ^Objc_Block(proc "c" (done: cffi.bool, data: dispatch_data_t, error: cffi.int))
-
-/// dispatch_io_close_flags_t
+dispatch_io_handler_t :: ^Objc_Block(proc "c" ( done: cffi.bool, data: dispatch_data_t, error: cffi.int ))
 dispatch_io_close_flags_t :: cffi.ulong
-
-/// dispatch_workloop_t
 dispatch_workloop_t :: dispatch_queue_t
-
-/// CFStreamPropertyKey
 StreamPropertyKey :: StringRef
-
-/// CFReadStreamRef
 ReadStreamRef :: ^__CFReadStream
-
-/// CFWriteStreamRef
 WriteStreamRef :: ^__CFWriteStream
-
-/// CFReadStreamClientCallBack
-ReadStreamClientCallBack :: proc "c" (stream: ReadStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
-
-/// CFWriteStreamClientCallBack
-WriteStreamClientCallBack :: proc "c" (stream: WriteStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
-
-/// CFSetRetainCallBack
-SetRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
-
-/// CFSetReleaseCallBack
-SetReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
-
-/// CFSetCopyDescriptionCallBack
-SetCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
-
-/// CFSetEqualCallBack
-SetEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
-
-/// CFSetHashCallBack
-SetHashCallBack :: proc "c" (value: rawptr) -> HashCode
-
-/// CFSetApplierFunction
-SetApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
-
-/// CFSetRef
+ReadStreamClientCallBack :: proc "c" ( stream: ReadStreamRef, type: StreamEventType, clientCallBackInfo: rawptr )
+WriteStreamClientCallBack :: proc "c" ( stream: WriteStreamRef, type: StreamEventType, clientCallBackInfo: rawptr )
+SetRetainCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr ) -> rawptr
+SetReleaseCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr )
+SetCopyDescriptionCallBack :: proc "c" ( value: rawptr ) -> StringRef
+SetEqualCallBack :: proc "c" ( value1: rawptr, value2: rawptr ) -> Boolean
+SetHashCallBack :: proc "c" ( value: rawptr ) -> HashCode
+SetApplierFunction :: proc "c" ( value: rawptr, _context: rawptr )
 SetRef :: ^__CFSet
-
-/// CFMutableSetRef
 MutableSetRef :: ^__CFSet
-
-/// CFTreeRetainCallBack
-TreeRetainCallBack :: proc "c" (info: rawptr) -> rawptr
-
-/// CFTreeReleaseCallBack
-TreeReleaseCallBack :: proc "c" (info: rawptr)
-
-/// CFTreeCopyDescriptionCallBack
-TreeCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
-
-/// CFTreeApplierFunction
-TreeApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
-
-/// CFTreeRef
+TreeRetainCallBack :: proc "c" ( info: rawptr ) -> rawptr
+TreeReleaseCallBack :: proc "c" ( info: rawptr )
+TreeCopyDescriptionCallBack :: proc "c" ( info: rawptr ) -> StringRef
+TreeApplierFunction :: proc "c" ( value: rawptr, _context: rawptr )
 TreeRef :: ^__CFTree
-
-/// CFUUIDRef
 UUIDRef :: ^__CFUUID
-
-/// CFBundleRef
 BundleRef :: ^__CFBundle
-
-/// CFPlugInRef
 PlugInRef :: ^__CFBundle
-
-/// CFBundleRefNum
 BundleRefNum :: cffi.int
-
-/// CFMessagePortRef
 MessagePortRef :: ^__CFMessagePort
-
-/// CFMessagePortCallBack
-MessagePortCallBack :: proc "c" (local: MessagePortRef, msgid: SInt32, data: DataRef, info: rawptr) -> DataRef
-
-/// CFMessagePortInvalidationCallBack
-MessagePortInvalidationCallBack :: proc "c" (ms: MessagePortRef, info: rawptr)
-
-/// CFPlugInDynamicRegisterFunction
-PlugInDynamicRegisterFunction :: proc "c" (plugIn: PlugInRef)
-
-/// CFPlugInUnloadFunction
-PlugInUnloadFunction :: proc "c" (plugIn: PlugInRef)
-
-/// CFPlugInFactoryFunction
-PlugInFactoryFunction :: proc "c" (allocator: AllocatorRef, typeUUID: UUIDRef) -> rawptr
-
-/// CFPlugInInstanceRef
+MessagePortCallBack :: proc "c" ( local: MessagePortRef, msgid: SInt32, data: DataRef, info: rawptr ) -> DataRef
+MessagePortInvalidationCallBack :: proc "c" ( ms: MessagePortRef, info: rawptr )
+PlugInDynamicRegisterFunction :: proc "c" ( plugIn: PlugInRef )
+PlugInUnloadFunction :: proc "c" ( plugIn: PlugInRef )
+PlugInFactoryFunction :: proc "c" ( allocator: AllocatorRef, typeUUID: UUIDRef ) -> rawptr
 PlugInInstanceRef :: ^__CFPlugInInstance
-
-/// CFPlugInInstanceGetInterfaceFunction
-PlugInInstanceGetInterfaceFunction :: proc "c" (instance: PlugInInstanceRef, interfaceName: StringRef, ftbl: ^rawptr) -> Boolean
-
-/// CFPlugInInstanceDeallocateInstanceDataFunction
-PlugInInstanceDeallocateInstanceDataFunction :: proc "c" (instanceData: rawptr)
-
-/// CFMachPortRef
+PlugInInstanceGetInterfaceFunction :: proc "c" ( instance: PlugInInstanceRef, interfaceName: StringRef, ftbl: ^rawptr ) -> Boolean
+PlugInInstanceDeallocateInstanceDataFunction :: proc "c" ( instanceData: rawptr )
 MachPortRef :: ^__CFMachPort
-
-/// CFMachPortCallBack
-MachPortCallBack :: proc "c" (port: MachPortRef, msg: rawptr, size: Index, info: rawptr)
-
-/// CFMachPortInvalidationCallBack
-MachPortInvalidationCallBack :: proc "c" (port: MachPortRef, info: rawptr)
-
-/// CFAttributedStringRef
+MachPortCallBack :: proc "c" ( port: MachPortRef, msg: rawptr, size: Index, info: rawptr )
+MachPortInvalidationCallBack :: proc "c" ( port: MachPortRef, info: rawptr )
 AttributedStringRef :: ^__CFAttributedString
-
-/// CFMutableAttributedStringRef
 MutableAttributedStringRef :: ^__CFAttributedString
-
-/// CFURLEnumeratorRef
 URLEnumeratorRef :: ^__CFURLEnumerator
-
-/// CFFileSecurityRef
 FileSecurityRef :: ^__CFFileSecurity
-
-/// CFStringTokenizerRef
 StringTokenizerRef :: ^__CFStringTokenizer
-
-/// CFFileDescriptorNativeDescriptor
 FileDescriptorNativeDescriptor :: cffi.int
-
-/// CFFileDescriptorRef
 FileDescriptorRef :: ^__CFFileDescriptor
-
-/// CFFileDescriptorCallBack
-FileDescriptorCallBack :: proc "c" (f: FileDescriptorRef, callBackTypes: OptionFlags, info: rawptr)
-
-/// CFUserNotificationRef
+FileDescriptorCallBack :: proc "c" ( f: FileDescriptorRef, callBackTypes: OptionFlags, info: rawptr )
 UserNotificationRef :: ^__CFUserNotification
-
-/// CFUserNotificationCallBack
-UserNotificationCallBack :: proc "c" (userNotification: UserNotificationRef, responseFlags: OptionFlags)
-
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CFXMLNodeRef
+UserNotificationCallBack :: proc "c" ( userNotification: UserNotificationRef, responseFlags: OptionFlags )
+when ODIN_PLATFORM_SUBTARGET == .Default {
     XMLNodeRef :: ^__CFXMLNode
-
-    /// CFXMLTreeRef
     XMLTreeRef :: TreeRef
-
-    /// CFXMLParserRef
     XMLParserRef :: ^__CFXMLParser
-
-    /// CFXMLParserCreateXMLStructureCallBack
-    XMLParserCreateXMLStructureCallBack :: proc "c" (parser: XMLParserRef, nodeDesc: XMLNodeRef, info: rawptr) -> rawptr
-
-    /// CFXMLParserAddChildCallBack
-    XMLParserAddChildCallBack :: proc "c" (parser: XMLParserRef, parent: rawptr, child: rawptr, info: rawptr)
-
-    /// CFXMLParserEndXMLStructureCallBack
-    XMLParserEndXMLStructureCallBack :: proc "c" (parser: XMLParserRef, xmlType: rawptr, info: rawptr)
-
-    /// CFXMLParserResolveExternalEntityCallBack
-    XMLParserResolveExternalEntityCallBack :: proc "c" (parser: XMLParserRef, extID: ^XMLExternalID, info: rawptr) -> DataRef
-
-    /// CFXMLParserHandleErrorCallBack
-    XMLParserHandleErrorCallBack :: proc "c" (parser: XMLParserRef, error: XMLParserStatusCode, info: rawptr) -> Boolean
-
-    /// CFXMLParserRetainCallBack
-    XMLParserRetainCallBack :: proc "c" (info: rawptr) -> rawptr
-
-    /// CFXMLParserReleaseCallBack
-    XMLParserReleaseCallBack :: proc "c" (info: rawptr)
-
-    /// CFXMLParserCopyDescriptionCallBack
-    XMLParserCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
+    XMLParserCreateXMLStructureCallBack :: proc "c" ( parser: XMLParserRef, nodeDesc: XMLNodeRef, info: rawptr ) -> rawptr
+    XMLParserAddChildCallBack :: proc "c" ( parser: XMLParserRef, parent: rawptr, child: rawptr, info: rawptr )
+    XMLParserEndXMLStructureCallBack :: proc "c" ( parser: XMLParserRef, xmlType: rawptr, info: rawptr )
+    XMLParserResolveExternalEntityCallBack :: proc "c" ( parser: XMLParserRef, extID: ^XMLExternalID, info: rawptr ) -> DataRef
+    XMLParserHandleErrorCallBack :: proc "c" ( parser: XMLParserRef, error: XMLParserStatusCode, info: rawptr ) -> Boolean
+    XMLParserRetainCallBack :: proc "c" ( info: rawptr ) -> rawptr
+    XMLParserReleaseCallBack :: proc "c" ( info: rawptr )
+    XMLParserCopyDescriptionCallBack :: proc "c" ( info: rawptr ) -> StringRef
 }
 
-/// os_clockid_t
 os_clockid_t :: enum cffi.uint {
     CLOCK_MACH_ABSOLUTE_TIME = 32,
 }
 
-/// qos_class_t
 qos_class_t :: enum cffi.uint {
     USER_INTERACTIVE = 33,
     USER_INITIATED   = 25,
@@ -4044,14 +4331,12 @@ qos_class_t :: enum cffi.uint {
     UNSPECIFIED      = 0,
 }
 
-/// dispatch_autorelease_frequency_t
 dispatch_autorelease_frequency_t :: enum cffi.ulong {
     INHERIT   = 0,
     WORK_ITEM = 1,
     NEVER     = 2,
 }
 
-/// dispatch_block_flags_t
 dispatch_block_flags_t :: enum cffi.ulong {
     BARRIER           = 1,
     DETACHED          = 2,
@@ -4061,21 +4346,18 @@ dispatch_block_flags_t :: enum cffi.ulong {
     ENFORCE_QOS_CLASS = 32,
 }
 
-/// CFComparisonResult
 ComparisonResult :: enum cffi.long {
     LessThan    = -1,
     EqualTo     = 0,
     GreaterThan = 1,
 }
 
-/// __CFByteOrder
 __CFByteOrder :: enum cffi.uint {
     Unknown      = 0,
     LittleEndian = 1,
     BigEndian    = 2,
 }
 
-/// CFNotificationSuspensionBehavior
 NotificationSuspensionBehavior :: enum cffi.long {
     Drop               = 1,
     Coalesce           = 2,
@@ -4083,7 +4365,6 @@ NotificationSuspensionBehavior :: enum cffi.long {
     DeliverImmediately = 4,
 }
 
-/// CFLocaleLanguageDirection
 LocaleLanguageDirection :: enum cffi.long {
     Unknown     = 0,
     LeftToRight = 1,
@@ -4092,7 +4373,6 @@ LocaleLanguageDirection :: enum cffi.long {
     BottomToTop = 4,
 }
 
-/// CFGregorianUnitFlags
 GregorianUnitFlag :: enum cffi.ulong {
     sYears   = 0,
     sMonths  = 1,
@@ -4101,16 +4381,16 @@ GregorianUnitFlag :: enum cffi.ulong {
     sMinutes = 4,
     sSeconds = 5,
 }
+
 GregorianUnitFlags :: bit_set[GregorianUnitFlag; cffi.ulong]
 
-/// CFDataSearchFlags
 DataSearchFlag :: enum cffi.ulong {
     Backwards = 0,
     Anchored  = 1,
 }
+
 DataSearchFlags :: bit_set[DataSearchFlag; cffi.ulong]
 
-/// CFCharacterSetPredefinedSet
 CharacterSetPredefinedSet :: enum cffi.long {
     Control              = 1,
     Whitespace           = 2,
@@ -4129,7 +4409,6 @@ CharacterSetPredefinedSet :: enum cffi.long {
     Illegal              = 12,
 }
 
-/// CFStringBuiltInEncodings
 StringBuiltInEncodings :: enum cffi.uint {
     MacRoman      = 0,
     WindowsLatin1 = 1280,
@@ -4147,7 +4426,6 @@ StringBuiltInEncodings :: enum cffi.uint {
     UTF32LE       = 469762304,
 }
 
-/// CFStringCompareFlags
 StringCompareFlag :: enum cffi.ulong {
     CaseInsensitive      = 0,
     Backwards            = 2,
@@ -4159,9 +4437,9 @@ StringCompareFlag :: enum cffi.ulong {
     WidthInsensitive     = 8,
     ForcedOrdering       = 9,
 }
+
 StringCompareFlags :: bit_set[StringCompareFlag; cffi.ulong]
 
-/// CFStringNormalizationForm
 StringNormalizationForm :: enum cffi.long {
     D  = 0,
     KD = 1,
@@ -4169,7 +4447,6 @@ StringNormalizationForm :: enum cffi.long {
     KC = 3,
 }
 
-/// CFTimeZoneNameStyle
 TimeZoneNameStyle :: enum cffi.long {
     Standard            = 0,
     ShortStandard       = 1,
@@ -4179,7 +4456,6 @@ TimeZoneNameStyle :: enum cffi.long {
     ShortGeneric        = 5,
 }
 
-/// CFCalendarUnit
 CalendarUnit :: enum cffi.ulong {
     Era               = 2,
     Year              = 4,
@@ -4198,7 +4474,6 @@ CalendarUnit :: enum cffi.ulong {
     DayOfYear         = 65536,
 }
 
-/// CFDateFormatterStyle
 DateFormatterStyle :: enum cffi.long {
     NoStyle     = 0,
     ShortStyle  = 1,
@@ -4207,7 +4482,6 @@ DateFormatterStyle :: enum cffi.long {
     FullStyle   = 4,
 }
 
-/// CFISO8601DateFormatOptions
 ISO8601DateFormatOptions :: enum cffi.ulong {
     Year                     = 1,
     Month                    = 2,
@@ -4225,7 +4499,6 @@ ISO8601DateFormatOptions :: enum cffi.ulong {
     InternetDateTime         = 1907,
 }
 
-/// CFNumberType
 NumberType :: enum cffi.long {
     SInt8Type     = 1,
     SInt16Type    = 2,
@@ -4246,7 +4519,6 @@ NumberType :: enum cffi.long {
     MaxType       = 16,
 }
 
-/// CFNumberFormatterStyle
 NumberFormatterStyle :: enum cffi.long {
     NoStyle                 = 0,
     DecimalStyle            = 1,
@@ -4260,13 +4532,12 @@ NumberFormatterStyle :: enum cffi.long {
     CurrencyAccountingStyle = 10,
 }
 
-/// CFNumberFormatterOptionFlags
 NumberFormatterOptionFlag :: enum cffi.ulong {
     ParseIntegersOnly = 0,
 }
+
 NumberFormatterOptionFlags :: bit_set[NumberFormatterOptionFlag; cffi.ulong]
 
-/// CFNumberFormatterRoundingMode
 NumberFormatterRoundingMode :: enum cffi.long {
     RoundCeiling  = 0,
     RoundFloor    = 1,
@@ -4277,7 +4548,6 @@ NumberFormatterRoundingMode :: enum cffi.long {
     RoundHalfUp   = 6,
 }
 
-/// CFNumberFormatterPadPosition
 NumberFormatterPadPosition :: enum cffi.long {
     BeforePrefix = 0,
     AfterPrefix  = 1,
@@ -4285,14 +4555,12 @@ NumberFormatterPadPosition :: enum cffi.long {
     AfterSuffix  = 3,
 }
 
-/// CFURLPathStyle
 URLPathStyle :: enum cffi.long {
     POSIXPathStyle   = 0,
     HFSPathStyle     = 1,
     WindowsPathStyle = 2,
 }
 
-/// CFURLComponentType
 URLComponentType :: enum cffi.long {
     Scheme            = 1,
     NetLocation       = 2,
@@ -4308,7 +4576,6 @@ URLComponentType :: enum cffi.long {
     Fragment          = 12,
 }
 
-/// CFURLBookmarkCreationOptions
 URLBookmarkCreationOptions :: enum cffi.ulong {
     MinimalBookmarkMask              = 512,
     SuitableForBookmarkFile          = 1024,
@@ -4318,7 +4585,6 @@ URLBookmarkCreationOptions :: enum cffi.ulong {
     PreferFileIDResolutionMask       = 256,
 }
 
-/// CFURLBookmarkResolutionOptions
 URLBookmarkResolutionOptions :: enum cffi.ulong {
     WithoutUIMask                 = 256,
     WithoutMountingMask           = 512,
@@ -4328,7 +4594,6 @@ URLBookmarkResolutionOptions :: enum cffi.ulong {
     kWithoutMountingMask          = 512,
 }
 
-/// CFRunLoopRunResult
 RunLoopRunResult :: enum cffi.int {
     Finished      = 1,
     Stopped       = 2,
@@ -4336,7 +4601,6 @@ RunLoopRunResult :: enum cffi.int {
     HandledSource = 4,
 }
 
-/// CFRunLoopActivity
 RunLoopActivity :: enum cffi.ulong {
     Entry         = 1,
     BeforeTimers  = 2,
@@ -4347,14 +4611,12 @@ RunLoopActivity :: enum cffi.ulong {
     AllActivities = 268435455,
 }
 
-/// CFSocketError
 SocketError :: enum cffi.long {
     Success = 0,
     Error   = -1,
     Timeout = -2,
 }
 
-/// CFSocketCallBackType
 SocketCallBackType :: enum cffi.ulong {
     NoCallBack      = 0,
     ReadCallBack    = 1,
@@ -4364,7 +4626,6 @@ SocketCallBackType :: enum cffi.ulong {
     WriteCallBack   = 8,
 }
 
-/// CFStreamStatus
 StreamStatus :: enum cffi.long {
     NotOpen = 0,
     Opening = 1,
@@ -4376,7 +4637,6 @@ StreamStatus :: enum cffi.long {
     Error   = 7,
 }
 
-/// CFStreamEventType
 StreamEventType :: enum cffi.ulong {
     None              = 0,
     OpenCompleted     = 1,
@@ -4386,28 +4646,24 @@ StreamEventType :: enum cffi.ulong {
     EndEncountered    = 16,
 }
 
-/// CFStreamErrorDomain
 StreamErrorDomain :: enum cffi.long {
     Custom      = -1,
     POSIX       = 1,
     MacOSStatus = 2,
 }
 
-/// CFPropertyListMutabilityOptions
 PropertyListMutabilityOptions :: enum cffi.ulong {
     Immutable                  = 0,
     MutableContainers          = 1,
     MutableContainersAndLeaves = 2,
 }
 
-/// CFPropertyListFormat
 PropertyListFormat :: enum cffi.long {
     OpenStepFormat    = 1,
     XMLFormat_v1_0    = 100,
     BinaryFormat_v1_0 = 200,
 }
 
-/// CFStringEncodings
 StringEncoding :: enum cffi.long {
     MacJapanese             = 1,
     MacChineseTrad          = 2,
@@ -4540,7 +4796,6 @@ StringEncoding :: enum cffi.long {
     ShiftJIS_X0213_00       = 1576,
 }
 
-/// CFURLError
 URLError :: enum cffi.long {
     UnknownError                 = -10,
     UnknownSchemeError           = -11,
@@ -4553,7 +4808,6 @@ URLError :: enum cffi.long {
     TimeoutError                 = -18,
 }
 
-/// CFURLEnumeratorOptions
 URLEnumeratorOptions :: enum cffi.ulong {
     DefaultBehavior             = 0,
     DescendRecursively          = 1,
@@ -4565,7 +4819,6 @@ URLEnumeratorOptions :: enum cffi.ulong {
     GenerateRelativePathURLs    = 64,
 }
 
-/// CFURLEnumeratorResult
 URLEnumeratorResult :: enum cffi.long {
     Success                   = 1,
     End                       = 2,
@@ -4573,7 +4826,6 @@ URLEnumeratorResult :: enum cffi.long {
     DirectoryPostOrderSuccess = 4,
 }
 
-/// CFFileSecurityClearOptions
 FileSecurityClearOptions :: enum cffi.ulong {
     Owner             = 1,
     Group             = 2,
@@ -4583,7 +4835,6 @@ FileSecurityClearOptions :: enum cffi.ulong {
     AccessControlList = 32,
 }
 
-/// CFStringTokenizerTokenType
 StringTokenizerTokenType :: enum cffi.ulong {
     None                    = 0,
     Normal                  = 1,
@@ -4594,8 +4845,7 @@ StringTokenizerTokenType :: enum cffi.ulong {
     IsCJWordMask            = 32,
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CFXMLNodeTypeCode
+when ODIN_PLATFORM_SUBTARGET == .Default {
     XMLNodeTypeCode :: enum cffi.long {
         Document                 = 1,
         Element                  = 2,
@@ -4614,7 +4864,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         AttributeListDeclaration = 15,
     }
 
-    /// CFXMLEntityTypeCode
     XMLEntityTypeCode :: enum cffi.long {
         Parameter      = 0,
         ParsedInternal = 1,
@@ -4623,7 +4872,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         Character      = 4,
     }
 
-    /// CFXMLParserOptions
     XMLParserOptions :: enum cffi.ulong {
         ValidateDocument        = 1,
         SkipMetaData            = 2,
@@ -4635,7 +4883,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         NoOptions               = 0,
     }
 
-    /// CFXMLParserStatusCode
     XMLParserStatusCode :: enum cffi.long {
         ParseNotBegun                    = -2,
         ParseInProgress                  = -1,
@@ -4658,30 +4905,22 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
     }
 }
 
-/// UnsignedWide
 UnsignedWide :: struct #align (2) {
     lo: UInt32,
     hi: UInt32,
 }
-#assert(size_of(UnsignedWide) == 8)
 
-/// __CFString
 __CFString :: struct {}
 
-/// CFRange
 Range :: struct #align (8) {
     location: Index,
     length:   Index,
 }
-#assert(size_of(Range) == 16)
 
-/// __CFNull
 __CFNull :: struct {}
 
-/// __CFAllocator
 __CFAllocator :: struct {}
 
-/// CFAllocatorContext
 AllocatorContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
@@ -4693,9 +4932,7 @@ AllocatorContext :: struct #align (8) {
     deallocate:      AllocatorDeallocateCallBack,
     preferredSize:   AllocatorPreferredSizeCallBack,
 }
-#assert(size_of(AllocatorContext) == 72)
 
-/// CFArrayCallBacks
 ArrayCallBacks :: struct #align (8) {
     version:         Index,
     retain:          ArrayRetainCallBack,
@@ -4703,12 +4940,9 @@ ArrayCallBacks :: struct #align (8) {
     copyDescription: ArrayCopyDescriptionCallBack,
     equal:           ArrayEqualCallBack,
 }
-#assert(size_of(ArrayCallBacks) == 40)
 
-/// __CFArray
 __CFArray :: struct {}
 
-/// CFBagCallBacks
 BagCallBacks :: struct #align (8) {
     version:         Index,
     retain:          BagRetainCallBack,
@@ -4717,50 +4951,37 @@ BagCallBacks :: struct #align (8) {
     equal:           BagEqualCallBack,
     hash:            BagHashCallBack,
 }
-#assert(size_of(BagCallBacks) == 48)
 
-/// __CFBag
 __CFBag :: struct {}
 
-/// CFBinaryHeapCompareContext
 BinaryHeapCompareContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
-#assert(size_of(BinaryHeapCompareContext) == 40)
 
-/// CFBinaryHeapCallBacks
 BinaryHeapCallBacks :: struct #align (8) {
     version:         Index,
-    retain:          proc "c" (allocator: AllocatorRef, ptr: rawptr) -> rawptr,
-    release:         proc "c" (allocator: AllocatorRef, ptr: rawptr),
-    copyDescription: proc "c" (ptr: rawptr) -> StringRef,
-    compare:         proc "c" (ptr1: rawptr, ptr2: rawptr, _context: rawptr) -> ComparisonResult,
+    retain:          proc "c" ( allocator: AllocatorRef, ptr: rawptr ) -> rawptr,
+    release:         proc "c" ( allocator: AllocatorRef, ptr: rawptr ),
+    copyDescription: proc "c" ( ptr: rawptr ) -> StringRef,
+    compare:         proc "c" ( ptr1: rawptr, ptr2: rawptr, _context: rawptr ) -> ComparisonResult,
 }
-#assert(size_of(BinaryHeapCallBacks) == 40)
 
-/// __CFBinaryHeap
 __CFBinaryHeap :: struct {}
 
-/// __CFBitVector
 __CFBitVector :: struct {}
 
-/// CFSwappedFloat32
 SwappedFloat32 :: struct #align (4) {
     v: cffi.uint32_t,
 }
-#assert(size_of(SwappedFloat32) == 4)
 
-/// CFSwappedFloat64
 SwappedFloat64 :: struct #align (8) {
     v: cffi.uint64_t,
 }
-#assert(size_of(SwappedFloat64) == 8)
 
-/// CFDictionaryKeyCallBacks
 DictionaryKeyCallBacks :: struct #align (8) {
     version:         Index,
     retain:          DictionaryRetainCallBack,
@@ -4769,9 +4990,7 @@ DictionaryKeyCallBacks :: struct #align (8) {
     equal:           DictionaryEqualCallBack,
     hash:            DictionaryHashCallBack,
 }
-#assert(size_of(DictionaryKeyCallBacks) == 48)
 
-/// CFDictionaryValueCallBacks
 DictionaryValueCallBacks :: struct #align (8) {
     version:         Index,
     retain:          DictionaryRetainCallBack,
@@ -4779,24 +4998,17 @@ DictionaryValueCallBacks :: struct #align (8) {
     copyDescription: DictionaryCopyDescriptionCallBack,
     equal:           DictionaryEqualCallBack,
 }
-#assert(size_of(DictionaryValueCallBacks) == 40)
 
-/// __CFDictionary
 __CFDictionary :: struct {}
 
-/// __CFNotificationCenter
 __CFNotificationCenter :: struct {}
 
-/// __CFLocale
 __CFLocale :: struct {}
 
-/// __CFDate
 __CFDate :: struct {}
 
-/// __CFTimeZone
 __CFTimeZone :: struct {}
 
-/// CFGregorianDate
 GregorianDate :: struct #align (8) {
     year:   SInt32,
     month:  SInt8,
@@ -4805,9 +5017,7 @@ GregorianDate :: struct #align (8) {
     minute: SInt8,
     second: cffi.double,
 }
-#assert(size_of(GregorianDate) == 16)
 
-/// CFGregorianUnits
 GregorianUnits :: struct #align (8) {
     years:   SInt32,
     months:  SInt32,
@@ -4816,18 +5026,13 @@ GregorianUnits :: struct #align (8) {
     minutes: SInt32,
     seconds: cffi.double,
 }
-#assert(size_of(GregorianUnits) == 32)
 
-/// __CFData
 __CFData :: struct {}
 
-/// __CFCharacterSet
 __CFCharacterSet :: struct {}
 
-/// __CFError
 __CFError :: struct {}
 
-/// CFStringInlineBuffer
 StringInlineBuffer :: struct #align (8) {
     buffer:              [64]UniChar,
     theString:           StringRef,
@@ -4837,199 +5042,147 @@ StringInlineBuffer :: struct #align (8) {
     bufferedRangeStart:  Index,
     bufferedRangeEnd:    Index,
 }
-#assert(size_of(StringInlineBuffer) == 184)
 
-/// __CFCalendar
 __CFCalendar :: struct {}
 
-/// __CFDateFormatter
 __CFDateFormatter :: struct {}
 
-/// __CFBoolean
 __CFBoolean :: struct {}
 
-/// __CFNumber
 __CFNumber :: struct {}
 
-/// __CFNumberFormatter
 __CFNumberFormatter :: struct {}
 
-/// __CFURL
 __CFURL :: struct {}
 
-/// __CFRunLoop
 __CFRunLoop :: struct {}
 
-/// __CFRunLoopSource
 __CFRunLoopSource :: struct {}
 
-/// __CFRunLoopObserver
 __CFRunLoopObserver :: struct {}
 
-/// __CFRunLoopTimer
 __CFRunLoopTimer :: struct {}
 
-/// CFRunLoopSourceContext
 RunLoopSourceContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
-    equal:           proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
-    hash:            proc "c" (info: rawptr) -> HashCode,
-    schedule:        proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
-    cancel:          proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
-    perform:         proc "c" (info: rawptr),
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
+    equal:           proc "c" ( info1: rawptr, info2: rawptr ) -> Boolean,
+    hash:            proc "c" ( info: rawptr ) -> HashCode,
+    schedule:        proc "c" ( info: rawptr, rl: RunLoopRef, mode: RunLoopMode ),
+    cancel:          proc "c" ( info: rawptr, rl: RunLoopRef, mode: RunLoopMode ),
+    perform:         proc "c" ( info: rawptr ),
 }
-#assert(size_of(RunLoopSourceContext) == 80)
 
-/// CFRunLoopSourceContext1
 RunLoopSourceContext1 :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
-    equal:           proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
-    hash:            proc "c" (info: rawptr) -> HashCode,
-    getPort:         proc "c" (info: rawptr) -> mach.port_t,
-    perform:         proc "c" (msg: rawptr, size: Index, allocator: AllocatorRef, info: rawptr) -> rawptr,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
+    equal:           proc "c" ( info1: rawptr, info2: rawptr ) -> Boolean,
+    hash:            proc "c" ( info: rawptr ) -> HashCode,
+    getPort:         proc "c" ( info: rawptr ) -> mach.port_t,
+    perform:         proc "c" ( msg: rawptr, size: Index, allocator: AllocatorRef, info: rawptr ) -> rawptr,
 }
-#assert(size_of(RunLoopSourceContext1) == 72)
 
-/// CFRunLoopObserverContext
 RunLoopObserverContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
-#assert(size_of(RunLoopObserverContext) == 40)
 
-/// CFRunLoopTimerContext
 RunLoopTimerContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
-#assert(size_of(RunLoopTimerContext) == 40)
 
-/// __CFSocket
 __CFSocket :: struct {}
 
-/// CFSocketSignature
 SocketSignature :: struct #align (8) {
     protocolFamily: SInt32,
     socketType:     SInt32,
     protocol:       SInt32,
     address:        DataRef,
 }
-#assert(size_of(SocketSignature) == 24)
 
-/// CFSocketContext
 SocketContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
-#assert(size_of(SocketContext) == 40)
 
-/// os_workgroup_attr_opaque_s
 os_workgroup_attr_opaque_s :: struct #align (4) {
     sig:    cffi.uint32_t,
     opaque: [60]cffi.char,
 }
-#assert(size_of(os_workgroup_attr_opaque_s) == 64)
 
-/// os_workgroup_interval_data_opaque_s
 os_workgroup_interval_data_opaque_s :: struct #align (4) {
     sig:    cffi.uint32_t,
     opaque: [56]cffi.char,
 }
-#assert(size_of(os_workgroup_interval_data_opaque_s) == 60)
 
-/// os_workgroup_join_token_opaque_s
 os_workgroup_join_token_opaque_s :: struct #align (4) {
     sig:    cffi.uint32_t,
     opaque: [36]cffi.char,
 }
-#assert(size_of(os_workgroup_join_token_opaque_s) == 40)
 
-/// os_workgroup_s
 os_workgroup_s :: struct {}
 
-/// os_workgroup_max_parallel_threads_attr_s
 os_workgroup_max_parallel_threads_attr_s :: struct {}
 
-/// dispatch_object_t::_os_object_s
 _os_object_s :: struct {}
 
-/// dispatch_object_t::dispatch_object_s
 dispatch_object_s :: struct {}
 
-/// dispatch_object_t::dispatch_queue_s
 dispatch_queue_s :: struct {}
 
-/// dispatch_object_t::dispatch_queue_attr_s
 dispatch_queue_attr_s :: struct {}
 
-/// dispatch_object_t::dispatch_group_s
 dispatch_group_s :: struct {}
 
-/// dispatch_object_t::dispatch_source_s
 dispatch_source_s :: struct {}
 
-/// dispatch_object_t::dispatch_channel_s
 dispatch_channel_s :: struct {}
 
-/// dispatch_object_t::dispatch_mach_s
 dispatch_mach_s :: struct {}
 
-/// dispatch_object_t::dispatch_mach_msg_s
 dispatch_mach_msg_s :: struct {}
 
-/// dispatch_object_t::dispatch_semaphore_s
 dispatch_semaphore_s :: struct {}
 
-/// dispatch_object_t::dispatch_data_s
 dispatch_data_s :: struct {}
 
-/// dispatch_object_t::dispatch_io_s
 dispatch_io_s :: struct {}
 
-/// dispatch_source_type_s
 dispatch_source_type_s :: struct {}
 
-/// CFStreamError
 StreamError :: struct #align (8) {
     domain: Index,
     error:  SInt32,
 }
-#assert(size_of(StreamError) == 16)
 
-/// CFStreamClientContext
 StreamClientContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
-#assert(size_of(StreamClientContext) == 40)
 
-/// __CFReadStream
 __CFReadStream :: struct {}
 
-/// __CFWriteStream
 __CFWriteStream :: struct {}
 
-/// CFSetCallBacks
 SetCallBacks :: struct #align (8) {
     version:         Index,
     retain:          SetRetainCallBack,
@@ -5038,12 +5191,9 @@ SetCallBacks :: struct #align (8) {
     equal:           SetEqualCallBack,
     hash:            SetHashCallBack,
 }
-#assert(size_of(SetCallBacks) == 48)
 
-/// __CFSet
 __CFSet :: struct {}
 
-/// CFTreeContext
 TreeContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
@@ -5051,15 +5201,11 @@ TreeContext :: struct #align (8) {
     release:         TreeReleaseCallBack,
     copyDescription: TreeCopyDescriptionCallBack,
 }
-#assert(size_of(TreeContext) == 40)
 
-/// __CFTree
 __CFTree :: struct {}
 
-/// __CFUUID
 __CFUUID :: struct {}
 
-/// CFUUIDBytes
 UUIDBytes :: struct #align (1) {
     byte0:  UInt8,
     byte1:  UInt8,
@@ -5078,153 +5224,111 @@ UUIDBytes :: struct #align (1) {
     byte14: UInt8,
     byte15: UInt8,
 }
-#assert(size_of(UUIDBytes) == 16)
 
-/// __CFBundle
 __CFBundle :: struct {}
 
-/// __CFMessagePort
 __CFMessagePort :: struct {}
 
-/// CFMessagePortContext
 MessagePortContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
-#assert(size_of(MessagePortContext) == 40)
 
-/// __CFPlugInInstance
 __CFPlugInInstance :: struct {}
 
-/// __CFMachPort
 __CFMachPort :: struct {}
 
-/// CFMachPortContext
 MachPortContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
-#assert(size_of(MachPortContext) == 40)
 
-/// __CFAttributedString
 __CFAttributedString :: struct {}
 
-/// __CFURLEnumerator
 __CFURLEnumerator :: struct {}
 
-/// __CFFileSecurity
 __CFFileSecurity :: struct {}
 
-/// __CFStringTokenizer
 __CFStringTokenizer :: struct {}
 
-/// __CFFileDescriptor
 __CFFileDescriptor :: struct {}
 
-/// CFFileDescriptorContext
 FileDescriptorContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
-#assert(size_of(FileDescriptorContext) == 40)
 
-/// __CFUserNotification
 __CFUserNotification :: struct {}
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// __CFXMLNode
+when ODIN_PLATFORM_SUBTARGET == .Default {
     __CFXMLNode :: struct {}
 
-    /// CFXMLElementInfo
     XMLElementInfo :: struct #align (8) {
         attributes:     DictionaryRef,
         attributeOrder: ArrayRef,
         isEmpty:        Boolean,
         _reserved:      [3]cffi.char,
     }
-    #assert(size_of(XMLElementInfo) == 24)
 
-    /// CFXMLProcessingInstructionInfo
     XMLProcessingInstructionInfo :: struct #align (8) {
         dataString: StringRef,
     }
-    #assert(size_of(XMLProcessingInstructionInfo) == 8)
 
-    /// CFXMLDocumentInfo
     XMLDocumentInfo :: struct #align (8) {
         sourceURL: URLRef,
         encoding:  StringEncoding,
     }
-    #assert(size_of(XMLDocumentInfo) == 16)
 
-    /// CFXMLExternalID
     XMLExternalID :: struct #align (8) {
         systemID: URLRef,
         publicID: StringRef,
     }
-    #assert(size_of(XMLExternalID) == 16)
 
-    /// CFXMLDocumentTypeInfo
     XMLDocumentTypeInfo :: struct #align (8) {
         externalID: XMLExternalID,
     }
-    #assert(size_of(XMLDocumentTypeInfo) == 16)
 
-    /// CFXMLNotationInfo
     XMLNotationInfo :: struct #align (8) {
         externalID: XMLExternalID,
     }
-    #assert(size_of(XMLNotationInfo) == 16)
 
-    /// CFXMLElementTypeDeclarationInfo
     XMLElementTypeDeclarationInfo :: struct #align (8) {
         contentDescription: StringRef,
     }
-    #assert(size_of(XMLElementTypeDeclarationInfo) == 8)
 
-    /// CFXMLAttributeDeclarationInfo
     XMLAttributeDeclarationInfo :: struct #align (8) {
         attributeName: StringRef,
         typeString:    StringRef,
         defaultString: StringRef,
     }
-    #assert(size_of(XMLAttributeDeclarationInfo) == 24)
 
-    /// CFXMLAttributeListDeclarationInfo
     XMLAttributeListDeclarationInfo :: struct #align (8) {
         numberOfAttributes: Index,
         attributes:         ^XMLAttributeDeclarationInfo,
     }
-    #assert(size_of(XMLAttributeListDeclarationInfo) == 16)
 
-    /// CFXMLEntityInfo
     XMLEntityInfo :: struct #align (8) {
         entityType:      XMLEntityTypeCode,
         replacementText: StringRef,
         entityID:        XMLExternalID,
         notationName:    StringRef,
     }
-    #assert(size_of(XMLEntityInfo) == 40)
 
-    /// CFXMLEntityReferenceInfo
     XMLEntityReferenceInfo :: struct #align (8) {
         entityType: XMLEntityTypeCode,
     }
-    #assert(size_of(XMLEntityReferenceInfo) == 8)
 
-    /// __CFXMLParser
     __CFXMLParser :: struct {}
 
-    /// CFXMLParserCallBacks
     XMLParserCallBacks :: struct #align (8) {
         version:               Index,
         createXMLStructure:    XMLParserCreateXMLStructureCallBack,
@@ -5233,9 +5337,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         resolveExternalEntity: XMLParserResolveExternalEntityCallBack,
         handleError:           XMLParserHandleErrorCallBack,
     }
-    #assert(size_of(XMLParserCallBacks) == 48)
 
-    /// CFXMLParserContext
     XMLParserContext :: struct #align (8) {
         version:         Index,
         info:            rawptr,
@@ -5243,10 +5345,8 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         release:         XMLParserReleaseCallBack,
         copyDescription: XMLParserCopyDescriptionCallBack,
     }
-    #assert(size_of(XMLParserContext) == 40)
 }
 
-/// dispatch_object_t
 dispatch_object_t :: struct #raw_union #align (8) {
     _os_obj:   ^_os_object_s,
     _do:       ^dispatch_object_s,
@@ -5261,5 +5361,4 @@ dispatch_object_t :: struct #raw_union #align (8) {
     _ddata:    ^dispatch_data_s,
     _dchannel: ^dispatch_io_s,
 }
-#assert(size_of(dispatch_object_t) == 8)
 

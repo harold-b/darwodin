@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    setAccessibilityFrame: proc(self: ^AK.AccessibilityLayoutItem, frame: NS.Rect),
+    setAccessibilityFrame: proc(self: ^NS.AccessibilityLayoutItem, frame: NS.Rect),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.setAccessibilityFrame != nil {
-        setAccessibilityFrame :: proc "c" (self: ^AK.AccessibilityLayoutItem, _: SEL, frame: NS.Rect) {
+        setAccessibilityFrame :: proc "c" (self: ^NS.AccessibilityLayoutItem, _: SEL, frame: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

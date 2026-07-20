@@ -46,14 +46,14 @@ VTable :: struct {
     application_handleActionWithIdentifier_forRemoteNotification_withResponseInfo_completionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, identifier: ^NS.String, userInfo: ^NS.Dictionary, responseInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ())),
     application_handleActionWithIdentifier_forRemoteNotification_completionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, identifier: ^NS.String, userInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ())),
     application_handleActionWithIdentifier_forLocalNotification_withResponseInfo_completionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, identifier: ^NS.String, notification: ^UI.LocalNotification, responseInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ())),
-    application_didReceiveRemoteNotification_fetchCompletionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, userInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" (result: UI.BackgroundFetchResult))),
-    application_performFetchWithCompletionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, completionHandler: ^Objc_Block(proc "c" (result: UI.BackgroundFetchResult))),
-    application_performActionForShortcutItem_completionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))),
+    application_didReceiveRemoteNotification_fetchCompletionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, userInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ( result: UI.BackgroundFetchResult ))),
+    application_performFetchWithCompletionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, completionHandler: ^Objc_Block(proc "c" ( result: UI.BackgroundFetchResult ))),
+    application_performActionForShortcutItem_completionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" ( succeeded: bool ))),
     application_handleEventsForBackgroundURLSession_completionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, identifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" ())),
-    application_handleWatchKitExtensionRequest_reply: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, userInfo: ^NS.Dictionary, reply: ^Objc_Block(proc "c" (replyInfo: ^NS.Dictionary))),
+    application_handleWatchKitExtensionRequest_reply: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, userInfo: ^NS.Dictionary, reply: ^Objc_Block(proc "c" ( replyInfo: ^NS.Dictionary ))),
     applicationShouldRequestHealthAuthorization: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
     application_handlerForIntent: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, intent: ^UI.INIntent) -> id,
-    application_handleIntent_completionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, intent: ^UI.INIntent, completionHandler: ^Objc_Block(proc "c" (intentResponse: ^UI.INIntentResponse))),
+    application_handleIntent_completionHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, intent: ^UI.INIntent, completionHandler: ^Objc_Block(proc "c" ( intentResponse: ^UI.INIntentResponse ))),
     applicationProtectedDataWillBecomeUnavailable: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
     applicationProtectedDataDidBecomeAvailable: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application),
     application_supportedInterfaceOrientationsForWindow: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, window: ^UI.Window) -> UI.InterfaceOrientationMask,
@@ -66,7 +66,7 @@ VTable :: struct {
     application_shouldSaveApplicationState: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, coder: ^NS.Coder) -> bool,
     application_shouldRestoreApplicationState: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, coder: ^NS.Coder) -> bool,
     application_willContinueUserActivityWithType: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, userActivityType: ^NS.String) -> bool,
-    application_continueUserActivity_restorationHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" (restorableObjects: ^NS.Array))) -> bool,
+    application_continueUserActivity_restorationHandler: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" ( restorableObjects: ^NS.Array ))) -> bool,
     application_didFailToContinueUserActivityWithType_error: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, userActivityType: ^NS.String, error: ^NS.Error),
     application_didUpdateUserActivity: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, userActivity: ^NS.UserActivity),
     application_userDidAcceptCloudKitShareWithMetadata: proc(self: ^UI.ApplicationDelegate, application: ^UI.Application, cloudKitShareMetadata: ^UI.CKShareMetadata),
@@ -342,7 +342,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("application:handleActionWithIdentifier:forLocalNotification:withResponseInfo:completionHandler:"), auto_cast application_handleActionWithIdentifier_forLocalNotification_withResponseInfo_completionHandler, "v@:@@@@?") do panic("Failed to register objC method.")
     }
     if vt.application_didReceiveRemoteNotification_fetchCompletionHandler != nil {
-        application_didReceiveRemoteNotification_fetchCompletionHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, userInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" (result: UI.BackgroundFetchResult))) {
+        application_didReceiveRemoteNotification_fetchCompletionHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, userInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ( result: UI.BackgroundFetchResult ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -352,7 +352,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("application:didReceiveRemoteNotification:fetchCompletionHandler:"), auto_cast application_didReceiveRemoteNotification_fetchCompletionHandler, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.application_performFetchWithCompletionHandler != nil {
-        application_performFetchWithCompletionHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, completionHandler: ^Objc_Block(proc "c" (result: UI.BackgroundFetchResult))) {
+        application_performFetchWithCompletionHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, completionHandler: ^Objc_Block(proc "c" ( result: UI.BackgroundFetchResult ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -362,7 +362,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("application:performFetchWithCompletionHandler:"), auto_cast application_performFetchWithCompletionHandler, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.application_performActionForShortcutItem_completionHandler != nil {
-        application_performActionForShortcutItem_completionHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))) {
+        application_performActionForShortcutItem_completionHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, shortcutItem: ^UI.ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" ( succeeded: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -382,7 +382,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("application:handleEventsForBackgroundURLSession:completionHandler:"), auto_cast application_handleEventsForBackgroundURLSession_completionHandler, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.application_handleWatchKitExtensionRequest_reply != nil {
-        application_handleWatchKitExtensionRequest_reply :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, userInfo: ^NS.Dictionary, reply: ^Objc_Block(proc "c" (replyInfo: ^NS.Dictionary))) {
+        application_handleWatchKitExtensionRequest_reply :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, userInfo: ^NS.Dictionary, reply: ^Objc_Block(proc "c" ( replyInfo: ^NS.Dictionary ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -412,7 +412,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("application:handlerForIntent:"), auto_cast application_handlerForIntent, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.application_handleIntent_completionHandler != nil {
-        application_handleIntent_completionHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, intent: ^UI.INIntent, completionHandler: ^Objc_Block(proc "c" (intentResponse: ^UI.INIntentResponse))) {
+        application_handleIntent_completionHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, intent: ^UI.INIntent, completionHandler: ^Objc_Block(proc "c" ( intentResponse: ^UI.INIntentResponse ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -542,7 +542,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("application:willContinueUserActivityWithType:"), auto_cast application_willContinueUserActivityWithType, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.application_continueUserActivity_restorationHandler != nil {
-        application_continueUserActivity_restorationHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" (restorableObjects: ^NS.Array))) -> bool {
+        application_continueUserActivity_restorationHandler :: proc "c" (self: ^UI.ApplicationDelegate, _: SEL, application: ^UI.Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" ( restorableObjects: ^NS.Array ))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

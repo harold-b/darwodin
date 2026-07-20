@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CHHapticParameterCurve
-///
 @(objc_class="CHHapticParameterCurve", objc_superclass=NS.Object)
 HapticParameterCurve :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticParameterCurve, objc_selector="init", objc_name="init")
     HapticParameterCurve_init :: proc(self: ^HapticParameterCurve) -> instancetype ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=HapticParameterCurve, objc_selector="controlPoints", objc_name="controlPoints")
     HapticParameterCurve_controlPoints :: proc(self: ^HapticParameterCurve) -> ^NS.Array ---
 }
+
+
+

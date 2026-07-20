@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKGoal
-///
 @(objc_class="GKGoal", objc_superclass=NS.Object)
 Goal :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Goal, objc_selector="goalToSeekAgent:", objc_name="goalToSeekAgent", objc_is_class_method=true)
     Goal_goalToSeekAgent :: proc(agent: ^Agent) -> instancetype ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=Goal, objc_selector="goalToStayOnPath:maxPredictionTime:", objc_name="goalToStayOnPath", objc_is_class_method=true)
     Goal_goalToStayOnPath :: proc(path: ^Path, maxPredictionTime: NS.TimeInterval) -> instancetype ---
 }
+
+
+

@@ -20,26 +20,26 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    currentInputManager: proc() -> ^AK.InputManager,
+    currentInputManager: proc() -> ^NS.InputManager,
     cycleToNextInputLanguage: proc(sender: id),
     cycleToNextInputServerInLanguage: proc(sender: id),
-    initWithName: proc(self: ^AK.InputManager, inputServerName: ^NS.String, hostName: ^NS.String) -> ^AK.InputManager,
-    localizedInputManagerName: proc(self: ^AK.InputManager) -> ^NS.String,
-    markedTextAbandoned: proc(self: ^AK.InputManager, cli: id),
-    markedTextSelectionChanged: proc(self: ^AK.InputManager, newSel: NS._NSRange, cli: id),
-    wantsToInterpretAllKeystrokes: proc(self: ^AK.InputManager) -> bool,
-    language: proc(self: ^AK.InputManager) -> ^NS.String,
-    image: proc(self: ^AK.InputManager) -> ^AK.Image,
-    server: proc(self: ^AK.InputManager) -> ^AK.InputServer,
-    wantsToHandleMouseEvents: proc(self: ^AK.InputManager) -> bool,
-    handleMouseEvent: proc(self: ^AK.InputManager, mouseEvent: ^AK.Event) -> bool,
-    wantsToDelayTextChangeNotifications: proc(self: ^AK.InputManager) -> bool,
+    initWithName: proc(self: ^NS.InputManager, inputServerName: ^NS.String, hostName: ^NS.String) -> ^NS.InputManager,
+    localizedInputManagerName: proc(self: ^NS.InputManager) -> ^NS.String,
+    markedTextAbandoned: proc(self: ^NS.InputManager, cli: id),
+    markedTextSelectionChanged: proc(self: ^NS.InputManager, newSel: NS._NSRange, cli: id),
+    wantsToInterpretAllKeystrokes: proc(self: ^NS.InputManager) -> bool,
+    language: proc(self: ^NS.InputManager) -> ^NS.String,
+    image: proc(self: ^NS.InputManager) -> ^NS.Image,
+    server: proc(self: ^NS.InputManager) -> ^NS.InputServer,
+    wantsToHandleMouseEvents: proc(self: ^NS.InputManager) -> bool,
+    handleMouseEvent: proc(self: ^NS.InputManager, mouseEvent: ^NS.Event) -> bool,
+    wantsToDelayTextChangeNotifications: proc(self: ^NS.InputManager) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.currentInputManager != nil {
-        currentInputManager :: proc "c" (self: Class, _: SEL) -> ^AK.InputManager {
+        currentInputManager :: proc "c" (self: Class, _: SEL) -> ^NS.InputManager {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("cycleToNextInputServerInLanguage:"), auto_cast cycleToNextInputServerInLanguage, "v#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithName != nil {
-        initWithName :: proc "c" (self: ^AK.InputManager, _: SEL, inputServerName: ^NS.String, hostName: ^NS.String) -> ^AK.InputManager {
+        initWithName :: proc "c" (self: ^NS.InputManager, _: SEL, inputServerName: ^NS.String, hostName: ^NS.String) -> ^NS.InputManager {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:host:"), auto_cast initWithName, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.localizedInputManagerName != nil {
-        localizedInputManagerName :: proc "c" (self: ^AK.InputManager, _: SEL) -> ^NS.String {
+        localizedInputManagerName :: proc "c" (self: ^NS.InputManager, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("localizedInputManagerName"), auto_cast localizedInputManagerName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.markedTextAbandoned != nil {
-        markedTextAbandoned :: proc "c" (self: ^AK.InputManager, _: SEL, cli: id) {
+        markedTextAbandoned :: proc "c" (self: ^NS.InputManager, _: SEL, cli: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("markedTextAbandoned:"), auto_cast markedTextAbandoned, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.markedTextSelectionChanged != nil {
-        markedTextSelectionChanged :: proc "c" (self: ^AK.InputManager, _: SEL, newSel: NS._NSRange, cli: id) {
+        markedTextSelectionChanged :: proc "c" (self: ^NS.InputManager, _: SEL, newSel: NS._NSRange, cli: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("markedTextSelectionChanged:client:"), auto_cast markedTextSelectionChanged, "v@:{_NSRange=LL}@") do panic("Failed to register objC method.")
     }
     if vt.wantsToInterpretAllKeystrokes != nil {
-        wantsToInterpretAllKeystrokes :: proc "c" (self: ^AK.InputManager, _: SEL) -> bool {
+        wantsToInterpretAllKeystrokes :: proc "c" (self: ^NS.InputManager, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("wantsToInterpretAllKeystrokes"), auto_cast wantsToInterpretAllKeystrokes, "B@:") do panic("Failed to register objC method.")
     }
     if vt.language != nil {
-        language :: proc "c" (self: ^AK.InputManager, _: SEL) -> ^NS.String {
+        language :: proc "c" (self: ^NS.InputManager, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("language"), auto_cast language, "@@:") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.InputManager, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.InputManager, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.server != nil {
-        server :: proc "c" (self: ^AK.InputManager, _: SEL) -> ^AK.InputServer {
+        server :: proc "c" (self: ^NS.InputManager, _: SEL) -> ^NS.InputServer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("server"), auto_cast server, "@@:") do panic("Failed to register objC method.")
     }
     if vt.wantsToHandleMouseEvents != nil {
-        wantsToHandleMouseEvents :: proc "c" (self: ^AK.InputManager, _: SEL) -> bool {
+        wantsToHandleMouseEvents :: proc "c" (self: ^NS.InputManager, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -170,7 +170,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("wantsToHandleMouseEvents"), auto_cast wantsToHandleMouseEvents, "B@:") do panic("Failed to register objC method.")
     }
     if vt.handleMouseEvent != nil {
-        handleMouseEvent :: proc "c" (self: ^AK.InputManager, _: SEL, mouseEvent: ^AK.Event) -> bool {
+        handleMouseEvent :: proc "c" (self: ^NS.InputManager, _: SEL, mouseEvent: ^NS.Event) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("handleMouseEvent:"), auto_cast handleMouseEvent, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.wantsToDelayTextChangeNotifications != nil {
-        wantsToDelayTextChangeNotifications :: proc "c" (self: ^AK.InputManager, _: SEL) -> bool {
+        wantsToDelayTextChangeNotifications :: proc "c" (self: ^NS.InputManager, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

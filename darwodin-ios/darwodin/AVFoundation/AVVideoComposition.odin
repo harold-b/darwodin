@@ -28,7 +28,7 @@ foreign lib {
     VideoComposition_videoCompositionWithPropertiesOfAsset_ :: proc(asset: ^Asset) -> ^VideoComposition ---
 
     @(objc_type=VideoComposition, objc_selector="videoCompositionWithPropertiesOfAsset:completionHandler:", objc_name="videoCompositionWithPropertiesOfAsset_completionHandler", objc_is_class_method=true)
-    VideoComposition_videoCompositionWithPropertiesOfAsset_completionHandler :: proc(asset: ^Asset, completionHandler: ^Objc_Block(proc "c" (videoComposition: ^VideoComposition, error: ^NS.Error))) ---
+    VideoComposition_videoCompositionWithPropertiesOfAsset_completionHandler :: proc(asset: ^Asset, completionHandler: ^Objc_Block(proc "c" ( videoComposition: ^VideoComposition, error: ^NS.Error ))) ---
 
     @(objc_type=VideoComposition, objc_selector="videoCompositionWithVideoComposition:", objc_name="videoCompositionWithVideoComposition", objc_is_class_method=true)
     VideoComposition_videoCompositionWithVideoComposition :: proc(videoComposition: ^VideoComposition) -> ^VideoComposition ---
@@ -76,16 +76,16 @@ foreign lib {
     VideoComposition_perFrameHDRDisplayMetadataPolicy :: proc(self: ^VideoComposition) -> ^NS.String ---
 
     @(objc_type=VideoComposition, objc_selector="videoCompositionWithAsset:applyingCIFiltersWithHandler:", objc_name="videoCompositionWithAsset_applyingCIFiltersWithHandler", objc_is_class_method=true)
-    VideoComposition_videoCompositionWithAsset_applyingCIFiltersWithHandler :: proc(asset: ^Asset, applier: ^Objc_Block(proc "c" (request: ^AsynchronousCIImageFilteringRequest))) -> ^VideoComposition ---
+    VideoComposition_videoCompositionWithAsset_applyingCIFiltersWithHandler :: proc(asset: ^Asset, applier: ^Objc_Block(proc "c" ( request: ^AsynchronousCIImageFilteringRequest ))) -> ^VideoComposition ---
 
     @(objc_type=VideoComposition, objc_selector="videoCompositionWithAsset:applyingCIFiltersWithHandler:completionHandler:", objc_name="videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler", objc_is_class_method=true)
-    VideoComposition_videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler :: proc(asset: ^Asset, applier: ^Objc_Block(proc "c" (request: ^AsynchronousCIImageFilteringRequest)), completionHandler: ^Objc_Block(proc "c" (videoComposition: ^VideoComposition, error: ^NS.Error))) ---
+    VideoComposition_videoCompositionWithAsset_applyingCIFiltersWithHandler_completionHandler :: proc(asset: ^Asset, applier: ^Objc_Block(proc "c" ( request: ^AsynchronousCIImageFilteringRequest )), completionHandler: ^Objc_Block(proc "c" ( videoComposition: ^VideoComposition, error: ^NS.Error ))) ---
 
     @(objc_type=VideoComposition, objc_selector="isValidForAsset:timeRange:validationDelegate:", objc_name="isValidForAsset")
     VideoComposition_isValidForAsset :: proc(self: ^VideoComposition, asset: ^Asset, timeRange: CM.TimeRange, validationDelegate: ^VideoCompositionValidationHandling) -> bool ---
 
     @(objc_type=VideoComposition, objc_selector="determineValidityForAsset:timeRange:validationDelegate:completionHandler:", objc_name="determineValidityForAsset")
-    VideoComposition_determineValidityForAsset :: proc(self: ^VideoComposition, asset: ^Asset, timeRange: CM.TimeRange, validationDelegate: ^VideoCompositionValidationHandling, completionHandler: ^Objc_Block(proc "c" (isValid: bool, error: ^NS.Error))) ---
+    VideoComposition_determineValidityForAsset :: proc(self: ^VideoComposition, asset: ^Asset, timeRange: CM.TimeRange, validationDelegate: ^VideoCompositionValidationHandling, completionHandler: ^Objc_Block(proc "c" ( isValid: bool, error: ^NS.Error ))) ---
 
     @(objc_type=VideoComposition, objc_selector="isValidForTracks:assetDuration:timeRange:validationDelegate:", objc_name="isValidForTracks")
     VideoComposition_isValidForTracks :: proc(self: ^VideoComposition, tracks: ^NS.Array, duration: CM.Time, timeRange: CM.TimeRange, validationDelegate: ^VideoCompositionValidationHandling) -> bool ---

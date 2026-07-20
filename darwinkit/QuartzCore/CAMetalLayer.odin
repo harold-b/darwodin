@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAMetalLayer
-///
 @(objc_class="CAMetalLayer", objc_superclass=Layer)
 MetalLayer :: struct { using _: Layer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetalLayer, objc_selector="nextDrawable", objc_name="nextDrawable")
     MetalLayer_nextDrawable :: proc(self: ^MetalLayer) -> ^MetalDrawable ---
@@ -101,3 +95,6 @@ foreign lib {
     @(objc_type=MetalLayer, objc_selector="residencySet", objc_name="residencySet")
     MetalLayer_residencySet :: proc(self: ^MetalLayer) -> ^MTLResidencySet ---
 }
+
+
+

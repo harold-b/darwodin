@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    supportsMode: proc(self: ^AK.ColorPickingCustom, mode: AK.ColorPanelMode) -> bool,
-    currentMode: proc(self: ^AK.ColorPickingCustom) -> AK.ColorPanelMode,
-    provideNewView: proc(self: ^AK.ColorPickingCustom, initialRequest: bool) -> ^AK.View,
-    setColor: proc(self: ^AK.ColorPickingCustom, newColor: ^AK.Color),
+    supportsMode: proc(self: ^NS.ColorPickingCustom, mode: NS.ColorPanelMode) -> bool,
+    currentMode: proc(self: ^NS.ColorPickingCustom) -> NS.ColorPanelMode,
+    provideNewView: proc(self: ^NS.ColorPickingCustom, initialRequest: bool) -> ^NS.View,
+    setColor: proc(self: ^NS.ColorPickingCustom, newColor: ^NS.Color),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.supportsMode != nil {
-        supportsMode :: proc "c" (self: ^AK.ColorPickingCustom, _: SEL, mode: AK.ColorPanelMode) -> bool {
+        supportsMode :: proc "c" (self: ^NS.ColorPickingCustom, _: SEL, mode: NS.ColorPanelMode) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("supportsMode:"), auto_cast supportsMode, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.currentMode != nil {
-        currentMode :: proc "c" (self: ^AK.ColorPickingCustom, _: SEL) -> AK.ColorPanelMode {
+        currentMode :: proc "c" (self: ^NS.ColorPickingCustom, _: SEL) -> NS.ColorPanelMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentMode"), auto_cast currentMode, "l@:") do panic("Failed to register objC method.")
     }
     if vt.provideNewView != nil {
-        provideNewView :: proc "c" (self: ^AK.ColorPickingCustom, _: SEL, initialRequest: bool) -> ^AK.View {
+        provideNewView :: proc "c" (self: ^NS.ColorPickingCustom, _: SEL, initialRequest: bool) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("provideNewView:"), auto_cast provideNewView, "@@:B") do panic("Failed to register objC method.")
     }
     if vt.setColor != nil {
-        setColor :: proc "c" (self: ^AK.ColorPickingCustom, _: SEL, newColor: ^AK.Color) {
+        setColor :: proc "c" (self: ^NS.ColorPickingCustom, _: SEL, newColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

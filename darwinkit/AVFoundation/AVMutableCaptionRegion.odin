@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableCaptionRegion
-///
 @(objc_class="AVMutableCaptionRegion", objc_superclass=CaptionRegion)
 MutableCaptionRegion :: struct { using _: CaptionRegion, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableCaptionRegion, objc_selector="init", objc_name="init")
     MutableCaptionRegion_init :: proc(self: ^MutableCaptionRegion) -> instancetype ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=MutableCaptionRegion, objc_selector="setWritingMode:", objc_name="setWritingMode")
     MutableCaptionRegion_setWritingMode :: proc(self: ^MutableCaptionRegion, writingMode: CaptionRegionWritingMode) ---
 }
+
+
+

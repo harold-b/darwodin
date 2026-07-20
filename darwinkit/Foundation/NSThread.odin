@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSThread
-///
 @(objc_class="NSThread", objc_superclass=Object)
 Thread :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Thread, objc_selector="detachNewThreadWithBlock:", objc_name="detachNewThreadWithBlock", objc_is_class_method=true)
     Thread_detachNewThreadWithBlock :: proc(block: ^Objc_Block(proc "c" ())) ---
@@ -115,3 +109,6 @@ foreign lib {
     @(objc_type=Thread, objc_selector="isCancelled", objc_name="isCancelled")
     Thread_isCancelled :: proc(self: ^Thread) -> bool ---
 }
+
+
+

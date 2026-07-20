@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLBufferLayoutDescriptor
-///
 @(objc_class="MTLBufferLayoutDescriptor", objc_superclass=NS.Object)
 BufferLayoutDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=BufferLayoutDescriptor, objc_selector="stride", objc_name="stride")
     BufferLayoutDescriptor_stride :: proc(self: ^BufferLayoutDescriptor) -> NS.UInteger ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=BufferLayoutDescriptor, objc_selector="setStepRate:", objc_name="setStepRate")
     BufferLayoutDescriptor_setStepRate :: proc(self: ^BufferLayoutDescriptor, stepRate: NS.UInteger) ---
 }
+
+
+

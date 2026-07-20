@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioSessionDelegate
-///
 @(objc_class="AVAudioSessionDelegate")
 AudioSessionDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioSessionDelegate, objc_selector="beginInterruption", objc_name="beginInterruption")
     AudioSessionDelegate_beginInterruption :: proc(self: ^AudioSessionDelegate) ---
@@ -36,3 +30,6 @@ foreign lib {
     @(objc_type=AudioSessionDelegate, objc_selector="inputIsAvailableChanged:", objc_name="inputIsAvailableChanged")
     AudioSessionDelegate_inputIsAvailableChanged :: proc(self: ^AudioSessionDelegate, isInputAvailable: bool) ---
 }
+
+
+

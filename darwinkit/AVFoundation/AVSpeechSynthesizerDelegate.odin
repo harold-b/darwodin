@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSpeechSynthesizerDelegate
-///
 @(objc_class="AVSpeechSynthesizerDelegate")
 SpeechSynthesizerDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesizerDelegate, objc_selector="speechSynthesizer:didStartSpeechUtterance:", objc_name="speechSynthesizer_didStartSpeechUtterance")
     SpeechSynthesizerDelegate_speechSynthesizer_didStartSpeechUtterance :: proc(self: ^SpeechSynthesizerDelegate, synthesizer: ^SpeechSynthesizer, utterance: ^SpeechUtterance) ---
@@ -45,4 +39,6 @@ foreign lib {
     @(objc_type=SpeechSynthesizerDelegate, objc_selector="speechSynthesizer:willSpeakMarker:utterance:", objc_name="speechSynthesizer_willSpeakMarker_utterance")
     SpeechSynthesizerDelegate_speechSynthesizer_willSpeakMarker_utterance :: proc(self: ^SpeechSynthesizerDelegate, synthesizer: ^SpeechSynthesizer, marker: ^SpeechSynthesisMarker, utterance: ^SpeechUtterance) ---
 }
+
+
 

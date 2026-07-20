@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVDelegatingPlaybackCoordinatorPlayCommand
-///
 @(objc_class="AVDelegatingPlaybackCoordinatorPlayCommand", objc_superclass=DelegatingPlaybackCoordinatorPlaybackControlCommand)
 DelegatingPlaybackCoordinatorPlayCommand :: struct { using _: DelegatingPlaybackCoordinatorPlaybackControlCommand, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DelegatingPlaybackCoordinatorPlayCommand, objc_selector="init", objc_name="init")
     DelegatingPlaybackCoordinatorPlayCommand_init :: proc(self: ^DelegatingPlaybackCoordinatorPlayCommand) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=DelegatingPlaybackCoordinatorPlayCommand, objc_selector="hostClockTime", objc_name="hostClockTime")
     DelegatingPlaybackCoordinatorPlayCommand_hostClockTime :: proc(self: ^DelegatingPlaybackCoordinatorPlayCommand) -> CM.Time ---
 }
+
+
+

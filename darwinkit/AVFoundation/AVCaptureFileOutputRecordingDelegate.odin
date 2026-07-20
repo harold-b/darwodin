@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureFileOutputRecordingDelegate
-///
 @(objc_class="AVCaptureFileOutputRecordingDelegate")
 CaptureFileOutputRecordingDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureFileOutputRecordingDelegate, objc_selector="captureOutput:didStartRecordingToOutputFileAtURL:fromConnections:", objc_name="captureOutput_didStartRecordingToOutputFileAtURL_fromConnections")
     CaptureFileOutputRecordingDelegate_captureOutput_didStartRecordingToOutputFileAtURL_fromConnections :: proc(self: ^CaptureFileOutputRecordingDelegate, output: ^CaptureFileOutput, fileURL: ^NS.URL, connections: ^NS.Array) ---
@@ -42,4 +36,6 @@ foreign lib {
     @(objc_type=CaptureFileOutputRecordingDelegate, objc_selector="captureOutput:didFinishRecordingToOutputFileAtURL:fromConnections:error:", objc_name="captureOutput_didFinishRecordingToOutputFileAtURL_fromConnections_error")
     CaptureFileOutputRecordingDelegate_captureOutput_didFinishRecordingToOutputFileAtURL_fromConnections_error :: proc(self: ^CaptureFileOutputRecordingDelegate, output: ^CaptureFileOutput, outputFileURL: ^NS.URL, connections: ^NS.Array, error: ^NS.Error) ---
 }
+
+
 

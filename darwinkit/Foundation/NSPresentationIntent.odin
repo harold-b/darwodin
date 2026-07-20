@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSPresentationIntent
-///
 @(objc_class="NSPresentationIntent", objc_superclass=Object)
 PresentationIntent :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PresentationIntent, objc_selector="init", objc_name="init")
     PresentationIntent_init :: proc(self: ^PresentationIntent) -> instancetype ---
@@ -97,3 +91,6 @@ foreign lib {
     @(objc_type=PresentationIntent, objc_selector="indentationLevel", objc_name="indentationLevel")
     PresentationIntent_indentationLevel :: proc(self: ^PresentationIntent) -> Integer ---
 }
+
+
+

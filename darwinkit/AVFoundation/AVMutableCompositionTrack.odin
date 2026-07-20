@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableCompositionTrack
-///
 @(objc_class="AVMutableCompositionTrack", objc_superclass=CompositionTrack)
 MutableCompositionTrack :: struct { using _: CompositionTrack, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableCompositionTrack, objc_selector="insertTimeRange:ofTrack:atTime:error:", objc_name="insertTimeRange")
     MutableCompositionTrack_insertTimeRange :: proc(self: ^MutableCompositionTrack, timeRange: CM.TimeRange, track: ^AssetTrack, startTime: CM.Time, outError: ^^NS.Error) -> bool ---
@@ -91,3 +85,6 @@ foreign lib {
     @(objc_type=MutableCompositionTrack, objc_selector="replaceFormatDescription:withFormatDescription:", objc_name="replaceFormatDescription")
     MutableCompositionTrack_replaceFormatDescription :: proc(self: ^MutableCompositionTrack, originalFormatDescription: CM.FormatDescriptionRef, replacementFormatDescription: CM.FormatDescriptionRef) ---
 }
+
+
+

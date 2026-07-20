@@ -14,8 +14,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:GameKit.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:GameKit.framework",
+    }
+}
+
+
+// +user-text-begin
+// -user-text-end
 
 
 GameModelMaxScore :: 16777216
@@ -39,10 +52,10 @@ foreign lib {
 MatchProperties :: distinct NS.Dictionary
 
 /// GKChallengeComposeCompletionBlock
-ChallengeComposeCompletionBlock :: ^Objc_Block(proc "c" (composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayerIDs: ^NS.Array))
+ChallengeComposeCompletionBlock :: ^Objc_Block(proc "c" ( composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayerIDs: ^NS.Array ))
 
 /// GKChallengeComposeHandler
-ChallengeComposeHandler :: ^Objc_Block(proc "c" (composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayers: ^NS.Array))
+ChallengeComposeHandler :: ^Objc_Block(proc "c" ( composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayers: ^NS.Array ))
 
 /// GKInviteeResponse
 InviteeResponse :: distinct InviteRecipientResponse

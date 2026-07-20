@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSGestureRecognizer"
 
 VTable :: struct {
     super: NSGestureRecognizer.VTable,
-    translationInView: proc(self: ^AK.PanGestureRecognizer, view: ^AK.View) -> CG.Point,
-    setTranslation: proc(self: ^AK.PanGestureRecognizer, translation: CG.Point, view: ^AK.View),
-    velocityInView: proc(self: ^AK.PanGestureRecognizer, view: ^AK.View) -> CG.Point,
-    buttonMask: proc(self: ^AK.PanGestureRecognizer) -> NS.UInteger,
-    setButtonMask: proc(self: ^AK.PanGestureRecognizer, buttonMask: NS.UInteger),
-    numberOfTouchesRequired: proc(self: ^AK.PanGestureRecognizer) -> NS.Integer,
-    setNumberOfTouchesRequired: proc(self: ^AK.PanGestureRecognizer, numberOfTouchesRequired: NS.Integer),
+    translationInView: proc(self: ^NS.PanGestureRecognizer, view: ^NS.View) -> CG.Point,
+    setTranslation: proc(self: ^NS.PanGestureRecognizer, translation: CG.Point, view: ^NS.View),
+    velocityInView: proc(self: ^NS.PanGestureRecognizer, view: ^NS.View) -> CG.Point,
+    buttonMask: proc(self: ^NS.PanGestureRecognizer) -> NS.UInteger,
+    setButtonMask: proc(self: ^NS.PanGestureRecognizer, buttonMask: NS.UInteger),
+    numberOfTouchesRequired: proc(self: ^NS.PanGestureRecognizer) -> NS.Integer,
+    setNumberOfTouchesRequired: proc(self: ^NS.PanGestureRecognizer, numberOfTouchesRequired: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSGestureRecognizer.extend(cls, &vt.super)
 
     if vt.translationInView != nil {
-        translationInView :: proc "c" (self: ^AK.PanGestureRecognizer, _: SEL, view: ^AK.View) -> CG.Point {
+        translationInView :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL, view: ^NS.View) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("translationInView:"), auto_cast translationInView, "{CGPoint=dd}@:@") do panic("Failed to register objC method.")
     }
     if vt.setTranslation != nil {
-        setTranslation :: proc "c" (self: ^AK.PanGestureRecognizer, _: SEL, translation: CG.Point, view: ^AK.View) {
+        setTranslation :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL, translation: CG.Point, view: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTranslation:inView:"), auto_cast setTranslation, "v@:{CGPoint=dd}@") do panic("Failed to register objC method.")
     }
     if vt.velocityInView != nil {
-        velocityInView :: proc "c" (self: ^AK.PanGestureRecognizer, _: SEL, view: ^AK.View) -> CG.Point {
+        velocityInView :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL, view: ^NS.View) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("velocityInView:"), auto_cast velocityInView, "{CGPoint=dd}@:@") do panic("Failed to register objC method.")
     }
     if vt.buttonMask != nil {
-        buttonMask :: proc "c" (self: ^AK.PanGestureRecognizer, _: SEL) -> NS.UInteger {
+        buttonMask :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("buttonMask"), auto_cast buttonMask, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setButtonMask != nil {
-        setButtonMask :: proc "c" (self: ^AK.PanGestureRecognizer, _: SEL, buttonMask: NS.UInteger) {
+        setButtonMask :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL, buttonMask: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setButtonMask:"), auto_cast setButtonMask, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.numberOfTouchesRequired != nil {
-        numberOfTouchesRequired :: proc "c" (self: ^AK.PanGestureRecognizer, _: SEL) -> NS.Integer {
+        numberOfTouchesRequired :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfTouchesRequired"), auto_cast numberOfTouchesRequired, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setNumberOfTouchesRequired != nil {
-        setNumberOfTouchesRequired :: proc "c" (self: ^AK.PanGestureRecognizer, _: SEL, numberOfTouchesRequired: NS.Integer) {
+        setNumberOfTouchesRequired :: proc "c" (self: ^NS.PanGestureRecognizer, _: SEL, numberOfTouchesRequired: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

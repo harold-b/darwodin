@@ -8,22 +8,16 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCController
-///
 @(objc_class="GCController", objc_superclass=NS.Object)
 Controller :: struct { using _: NS.Object, 
     using _: Device,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Controller, objc_selector="controllers", objc_name="controllers", objc_is_class_method=true)
     Controller_controllers :: proc() -> ^NS.Array ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Controller, objc_selector="supportsHIDDevice:", objc_name="supportsHIDDevice", objc_is_class_method=true)
         Controller_supportsHIDDevice :: proc(device: IOHIDDeviceRef) -> bool ---
     }
@@ -97,3 +91,6 @@ foreign lib {
     @(objc_type=Controller, objc_selector="stopWirelessControllerDiscovery", objc_name="stopWirelessControllerDiscovery", objc_is_class_method=true)
     Controller_stopWirelessControllerDiscovery :: proc() ---
 }
+
+
+

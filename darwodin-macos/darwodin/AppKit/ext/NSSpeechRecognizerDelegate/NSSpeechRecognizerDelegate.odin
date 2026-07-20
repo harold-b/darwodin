@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    speechRecognizer: proc(self: ^AK.SpeechRecognizerDelegate, sender: ^AK.SpeechRecognizer, command: ^NS.String),
+    speechRecognizer: proc(self: ^NS.SpeechRecognizerDelegate, sender: ^NS.SpeechRecognizer, command: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.speechRecognizer != nil {
-        speechRecognizer :: proc "c" (self: ^AK.SpeechRecognizerDelegate, _: SEL, sender: ^AK.SpeechRecognizer, command: ^NS.String) {
+        speechRecognizer :: proc "c" (self: ^NS.SpeechRecognizerDelegate, _: SEL, sender: ^NS.SpeechRecognizer, command: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKVoiceChat
-///
 @(objc_class="GKVoiceChat", objc_superclass=NS.Object)
 VoiceChat :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VoiceChat, objc_selector="start", objc_name="start")
     VoiceChat_start :: proc(self: ^VoiceChat) ---
@@ -65,3 +59,6 @@ foreign lib {
     @(objc_type=VoiceChat, objc_selector="playerIDs", objc_name="playerIDs")
     VoiceChat_playerIDs :: proc(self: ^VoiceChat) -> ^NS.Array ---
 }
+
+
+

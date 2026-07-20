@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioSessionChannelDescription
-///
 @(objc_class="AVAudioSessionChannelDescription", objc_superclass=NS.Object)
 AudioSessionChannelDescription :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioSessionChannelDescription, objc_selector="channelName", objc_name="channelName")
     AudioSessionChannelDescription_channelName :: proc(self: ^AudioSessionChannelDescription) -> ^NS.String ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=AudioSessionChannelDescription, objc_selector="channelLabel", objc_name="channelLabel")
     AudioSessionChannelDescription_channelLabel :: proc(self: ^AudioSessionChannelDescription) -> Audio.ChannelLabel ---
 }
+
+
+

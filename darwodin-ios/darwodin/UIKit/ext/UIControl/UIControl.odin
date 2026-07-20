@@ -37,7 +37,7 @@ VTable :: struct {
     removeActionForIdentifier: proc(self: ^UI.Control, actionIdentifier: ^NS.String, controlEvents: UI.ControlEvents),
     performPrimaryAction: proc(self: ^UI.Control),
     actionsForTarget: proc(self: ^UI.Control, target: id, controlEvent: UI.ControlEvents) -> ^NS.Array,
-    enumerateEventHandlers: proc(self: ^UI.Control, iterator: ^Objc_Block(proc "c" (actionHandler: ^UI.Action, target: id, action: SEL, controlEvents: UI.ControlEvents, stop: ^bool))),
+    enumerateEventHandlers: proc(self: ^UI.Control, iterator: ^Objc_Block(proc "c" ( actionHandler: ^UI.Action, target: id, action: SEL, controlEvents: UI.ControlEvents, stop: ^bool ))),
     sendAction_to_forEvent: proc(self: ^UI.Control, action: SEL, target: id, event: ^UI.Event),
     sendAction_: proc(self: ^UI.Control, action: ^UI.Action),
     sendActionsForControlEvents: proc(self: ^UI.Control, controlEvents: UI.ControlEvents),
@@ -224,7 +224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("actionsForTarget:forControlEvent:"), auto_cast actionsForTarget, "^void@:@L") do panic("Failed to register objC method.")
     }
     if vt.enumerateEventHandlers != nil {
-        enumerateEventHandlers :: proc "c" (self: ^UI.Control, _: SEL, iterator: ^Objc_Block(proc "c" (actionHandler: ^UI.Action, target: id, action: SEL, controlEvents: UI.ControlEvents, stop: ^bool))) {
+        enumerateEventHandlers :: proc "c" (self: ^UI.Control, _: SEL, iterator: ^Objc_Block(proc "c" ( actionHandler: ^UI.Action, target: id, action: SEL, controlEvents: UI.ControlEvents, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

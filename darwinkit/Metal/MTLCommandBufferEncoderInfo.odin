@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCommandBufferEncoderInfo
-///
 @(objc_class="MTLCommandBufferEncoderInfo")
 CommandBufferEncoderInfo :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CommandBufferEncoderInfo, objc_selector="label", objc_name="label")
     CommandBufferEncoderInfo_label :: proc(self: ^CommandBufferEncoderInfo) -> ^NS.String ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=CommandBufferEncoderInfo, objc_selector="errorState", objc_name="errorState")
     CommandBufferEncoderInfo_errorState :: proc(self: ^CommandBufferEncoderInfo) -> CommandEncoderErrorState ---
 }
+
+
+

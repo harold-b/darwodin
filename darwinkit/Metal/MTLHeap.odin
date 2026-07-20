@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLHeap
-///
 @(objc_class="MTLHeap")
 Heap :: struct { using _: intrinsics.objc_object, 
     using _: Allocation,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Heap, objc_selector="maxAvailableSizeWithAlignment:", objc_name="maxAvailableSizeWithAlignment")
     Heap_maxAvailableSizeWithAlignment :: proc(self: ^Heap, alignment: NS.UInteger) -> NS.UInteger ---
@@ -86,6 +80,8 @@ foreign lib {
     @(objc_type=Heap, objc_selector="type", objc_name="type")
     Heap_type :: proc(self: ^Heap) -> HeapType ---
 }
+
+
 
 @(objc_type=Heap, objc_name="newBufferWithLength")
 Heap_newBufferWithLength :: proc {

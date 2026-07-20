@@ -159,13 +159,13 @@ foreign lib {
     Image_imageByPreparingForDisplay :: proc(self: ^Image) -> ^Image ---
 
     @(objc_type=Image, objc_selector="prepareForDisplayWithCompletionHandler:", objc_name="prepareForDisplayWithCompletionHandler")
-    Image_prepareForDisplayWithCompletionHandler :: proc(self: ^Image, completionHandler: ^Objc_Block(proc "c" (_: ^Image))) ---
+    Image_prepareForDisplayWithCompletionHandler :: proc(self: ^Image, completionHandler: ^Objc_Block(proc "c" ( _0: ^Image ))) ---
 
     @(objc_type=Image, objc_selector="imageByPreparingThumbnailOfSize:", objc_name="imageByPreparingThumbnailOfSize")
     Image_imageByPreparingThumbnailOfSize :: proc(self: ^Image, size: CG.Size) -> ^Image ---
 
     @(objc_type=Image, objc_selector="prepareThumbnailOfSize:completionHandler:", objc_name="prepareThumbnailOfSize")
-    Image_prepareThumbnailOfSize :: proc(self: ^Image, size: CG.Size, completionHandler: ^Objc_Block(proc "c" (_: ^Image))) ---
+    Image_prepareThumbnailOfSize :: proc(self: ^Image, size: CG.Size, completionHandler: ^Objc_Block(proc "c" ( _0: ^Image ))) ---
 
     @(objc_type=Image, objc_selector="imageRestrictedToStandardDynamicRange", objc_name="imageRestrictedToStandardDynamicRange")
     Image_imageRestrictedToStandardDynamicRange :: proc(self: ^Image) -> ^Image ---

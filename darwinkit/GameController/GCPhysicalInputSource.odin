@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCPhysicalInputSource
-///
 @(objc_class="GCPhysicalInputSource")
 PhysicalInputSource :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PhysicalInputSource, objc_selector="elementAliases", objc_name="elementAliases")
     PhysicalInputSource_elementAliases :: proc(self: ^PhysicalInputSource) -> ^NS.Set ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=PhysicalInputSource, objc_selector="direction", objc_name="direction")
     PhysicalInputSource_direction :: proc(self: ^PhysicalInputSource) -> PhysicalInputSourceDirection ---
 }
+
+
+

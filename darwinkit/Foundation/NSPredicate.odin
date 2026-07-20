@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSPredicate
-///
 @(objc_class="NSPredicate", objc_superclass=Object)
 Predicate :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Predicate, objc_selector="predicateWithFormat:argumentArray:", objc_name="predicateWithFormat_argumentArray", objc_is_class_method=true)
     Predicate_predicateWithFormat_argumentArray :: proc(predicateFormat: ^String, arguments: ^Array) -> ^Predicate ---
@@ -38,7 +32,7 @@ foreign lib {
     Predicate_predicateWithValue :: proc(value: bool) -> ^Predicate ---
 
     @(objc_type=Predicate, objc_selector="predicateWithBlock:", objc_name="predicateWithBlock", objc_is_class_method=true)
-    Predicate_predicateWithBlock :: proc(block: ^Objc_Block(proc "c" (evaluatedObject: id, bindings: ^Dictionary) -> bool)) -> ^Predicate ---
+    Predicate_predicateWithBlock :: proc(block: ^Objc_Block(proc "c" ( evaluatedObject: id, bindings: ^Dictionary ) -> bool)) -> ^Predicate ---
 
     @(objc_type=Predicate, objc_selector="predicateWithSubstitutionVariables:", objc_name="predicateWithSubstitutionVariables")
     Predicate_predicateWithSubstitutionVariables :: proc(self: ^Predicate, variables: ^Dictionary) -> instancetype ---
@@ -58,6 +52,8 @@ foreign lib {
     @(objc_type=Predicate, objc_selector="predicateFormat", objc_name="predicateFormat")
     Predicate_predicateFormat :: proc(self: ^Predicate) -> ^String ---
 }
+
+
 
 @(objc_type=Predicate, objc_name="predicateWithFormat")
 Predicate_predicateWithFormat :: proc {

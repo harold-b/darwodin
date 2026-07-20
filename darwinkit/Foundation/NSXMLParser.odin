@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSXMLParser
-///
 @(objc_class="NSXMLParser", objc_superclass=Object)
 XMLParser :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=XMLParser, objc_selector="initWithContentsOfURL:", objc_name="initWithContentsOfURL")
     XMLParser_initWithContentsOfURL :: proc(self: ^XMLParser, url: ^URL) -> instancetype ---
@@ -85,3 +79,6 @@ foreign lib {
     @(objc_type=XMLParser, objc_selector="columnNumber", objc_name="columnNumber")
     XMLParser_columnNumber :: proc(self: ^XMLParser) -> Integer ---
 }
+
+
+

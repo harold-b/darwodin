@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCapturePhotoCaptureDelegate
-///
 @(objc_class="AVCapturePhotoCaptureDelegate")
 CapturePhotoCaptureDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhotoCaptureDelegate, objc_selector="captureOutput:willBeginCaptureForResolvedSettings:", objc_name="captureOutput_willBeginCaptureForResolvedSettings")
     CapturePhotoCaptureDelegate_captureOutput_willBeginCaptureForResolvedSettings :: proc(self: ^CapturePhotoCaptureDelegate, output: ^CapturePhotoOutput, resolvedSettings: ^CaptureResolvedPhotoSettings) ---
@@ -54,4 +48,6 @@ foreign lib {
     @(objc_type=CapturePhotoCaptureDelegate, objc_selector="captureOutput:didFinishCaptureForResolvedSettings:error:", objc_name="captureOutput_didFinishCaptureForResolvedSettings_error")
     CapturePhotoCaptureDelegate_captureOutput_didFinishCaptureForResolvedSettings_error :: proc(self: ^CapturePhotoCaptureDelegate, output: ^CapturePhotoOutput, resolvedSettings: ^CaptureResolvedPhotoSettings, error: ^NS.Error) ---
 }
+
+
 

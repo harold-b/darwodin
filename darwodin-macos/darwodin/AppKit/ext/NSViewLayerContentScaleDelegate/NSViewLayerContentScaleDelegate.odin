@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    layer: proc(self: ^AK.ViewLayerContentScaleDelegate, layer: ^CA.Layer, newScale: CG.Float, window: ^AK.Window) -> bool,
+    layer: proc(self: ^NS.ViewLayerContentScaleDelegate, layer: ^CA.Layer, newScale: CG.Float, window: ^NS.Window) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.layer != nil {
-        layer :: proc "c" (self: ^AK.ViewLayerContentScaleDelegate, _: SEL, layer: ^CA.Layer, newScale: CG.Float, window: ^AK.Window) -> bool {
+        layer :: proc "c" (self: ^NS.ViewLayerContentScaleDelegate, _: SEL, layer: ^CA.Layer, newScale: CG.Float, window: ^NS.Window) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

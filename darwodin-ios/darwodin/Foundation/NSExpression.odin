@@ -67,7 +67,7 @@ foreign lib {
     Expression_expressionForAnyKey :: proc() -> ^Expression ---
 
     @(objc_type=Expression, objc_selector="expressionForBlock:arguments:", objc_name="expressionForBlock", objc_is_class_method=true)
-    Expression_expressionForBlock :: proc(block: ^Objc_Block(proc "c" (evaluatedObject: id, expressions: ^Array, _context: ^MutableDictionary) -> id), arguments: ^Array) -> ^Expression ---
+    Expression_expressionForBlock :: proc(block: ^Objc_Block(proc "c" ( evaluatedObject: id, expressions: ^Array, _context: ^MutableDictionary ) -> id), arguments: ^Array) -> ^Expression ---
 
     @(objc_type=Expression, objc_selector="expressionForConditional:trueExpression:falseExpression:", objc_name="expressionForConditional", objc_is_class_method=true)
     Expression_expressionForConditional :: proc(predicate: ^Predicate, trueExpression: ^Expression, falseExpression: ^Expression) -> ^Expression ---

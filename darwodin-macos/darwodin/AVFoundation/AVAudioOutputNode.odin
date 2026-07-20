@@ -25,8 +25,8 @@ foreign lib {
     AudioOutputNode_init :: proc(self: ^AudioOutputNode) -> instancetype ---
 
     @(objc_type=AudioOutputNode, objc_selector="intendedSpatialExperience", objc_name="intendedSpatialExperience")
-    AudioOutputNode_intendedSpatialExperience :: proc(self: ^AudioOutputNode) -> ^CASpatialAudioExperience ---
+    AudioOutputNode_intendedSpatialExperience :: proc(self: ^AudioOutputNode) -> ^Audio.CASpatialAudioExperience ---
 
     @(objc_type=AudioOutputNode, objc_selector="setIntendedSpatialExperience:", objc_name="setIntendedSpatialExperience")
-    AudioOutputNode_setIntendedSpatialExperience :: proc(self: ^AudioOutputNode, intendedSpatialExperience: ^CASpatialAudioExperience) ---
+    AudioOutputNode_setIntendedSpatialExperience :: proc(self: ^AudioOutputNode, intendedSpatialExperience: ^Audio.CASpatialAudioExperience) ---
 }

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLFunctionConstantValues
-///
 @(objc_class="MTLFunctionConstantValues", objc_superclass=NS.Object)
 FunctionConstantValues :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FunctionConstantValues, objc_selector="setConstantValue:type:atIndex:", objc_name="setConstantValue_type_atIndex")
     FunctionConstantValues_setConstantValue_type_atIndex :: proc(self: ^FunctionConstantValues, value: rawptr, type: DataType, index: NS.UInteger) ---
@@ -35,6 +29,8 @@ foreign lib {
     @(objc_type=FunctionConstantValues, objc_selector="reset", objc_name="reset")
     FunctionConstantValues_reset :: proc(self: ^FunctionConstantValues) ---
 }
+
+
 
 @(objc_type=FunctionConstantValues, objc_name="setConstantValue")
 FunctionConstantValues_setConstantValue :: proc {

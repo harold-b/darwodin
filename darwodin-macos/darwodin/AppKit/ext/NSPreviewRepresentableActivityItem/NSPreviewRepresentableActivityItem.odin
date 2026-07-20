@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    item: proc(self: ^AK.PreviewRepresentableActivityItem) -> id,
-    title: proc(self: ^AK.PreviewRepresentableActivityItem) -> ^NS.String,
-    imageProvider: proc(self: ^AK.PreviewRepresentableActivityItem) -> ^NS.ItemProvider,
-    iconProvider: proc(self: ^AK.PreviewRepresentableActivityItem) -> ^NS.ItemProvider,
+    item: proc(self: ^NS.PreviewRepresentableActivityItem) -> id,
+    title: proc(self: ^NS.PreviewRepresentableActivityItem) -> ^NS.String,
+    imageProvider: proc(self: ^NS.PreviewRepresentableActivityItem) -> ^NS.ItemProvider,
+    iconProvider: proc(self: ^NS.PreviewRepresentableActivityItem) -> ^NS.ItemProvider,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.item != nil {
-        item :: proc "c" (self: ^AK.PreviewRepresentableActivityItem, _: SEL) -> id {
+        item :: proc "c" (self: ^NS.PreviewRepresentableActivityItem, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("item"), auto_cast item, "@@:") do panic("Failed to register objC method.")
     }
     if vt.title != nil {
-        title :: proc "c" (self: ^AK.PreviewRepresentableActivityItem, _: SEL) -> ^NS.String {
+        title :: proc "c" (self: ^NS.PreviewRepresentableActivityItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.imageProvider != nil {
-        imageProvider :: proc "c" (self: ^AK.PreviewRepresentableActivityItem, _: SEL) -> ^NS.ItemProvider {
+        imageProvider :: proc "c" (self: ^NS.PreviewRepresentableActivityItem, _: SEL) -> ^NS.ItemProvider {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageProvider"), auto_cast imageProvider, "@@:") do panic("Failed to register objC method.")
     }
     if vt.iconProvider != nil {
-        iconProvider :: proc "c" (self: ^AK.PreviewRepresentableActivityItem, _: SEL) -> ^NS.ItemProvider {
+        iconProvider :: proc "c" (self: ^NS.PreviewRepresentableActivityItem, _: SEL) -> ^NS.ItemProvider {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

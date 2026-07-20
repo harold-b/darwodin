@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLSharedEvent
-///
 @(objc_class="MTLSharedEvent")
 SharedEvent :: struct { using _: intrinsics.objc_object, 
     using _: Event,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SharedEvent, objc_selector="notifyListener:atValue:block:", objc_name="notifyListener")
     SharedEvent_notifyListener :: proc(self: ^SharedEvent, listener: ^SharedEventListener, value: cffi.uint64_t, block: SharedEventNotificationBlock) ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=SharedEvent, objc_selector="setSignaledValue:", objc_name="setSignaledValue")
     SharedEvent_setSignaledValue :: proc(self: ^SharedEvent, signaledValue: cffi.uint64_t) ---
 }
+
+
+

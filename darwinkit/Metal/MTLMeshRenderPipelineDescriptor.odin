@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLMeshRenderPipelineDescriptor
-///
 @(objc_class="MTLMeshRenderPipelineDescriptor", objc_superclass=NS.Object)
 MeshRenderPipelineDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeshRenderPipelineDescriptor, objc_selector="reset", objc_name="reset")
     MeshRenderPipelineDescriptor_reset :: proc(self: ^MeshRenderPipelineDescriptor) ---
@@ -188,3 +182,6 @@ foreign lib {
     @(objc_type=MeshRenderPipelineDescriptor, objc_selector="setRequiredThreadsPerMeshThreadgroup:", objc_name="setRequiredThreadsPerMeshThreadgroup")
     MeshRenderPipelineDescriptor_setRequiredThreadsPerMeshThreadgroup :: proc(self: ^MeshRenderPipelineDescriptor, requiredThreadsPerMeshThreadgroup: Size) ---
 }
+
+
+

@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    insertGlyphs: proc(self: ^AK.GlyphStorage, glyphs: ^AK.Glyph, length: NS.UInteger, glyphIndex: NS.UInteger, charIndex: NS.UInteger),
-    setIntAttribute: proc(self: ^AK.GlyphStorage, attributeTag: NS.Integer, val: NS.Integer, glyphIndex: NS.UInteger),
-    attributedString: proc(self: ^AK.GlyphStorage) -> ^NS.AttributedString,
-    layoutOptions: proc(self: ^AK.GlyphStorage) -> NS.UInteger,
+    insertGlyphs: proc(self: ^NS.GlyphStorage, glyphs: ^NS.Glyph, length: NS.UInteger, glyphIndex: NS.UInteger, charIndex: NS.UInteger),
+    setIntAttribute: proc(self: ^NS.GlyphStorage, attributeTag: NS.Integer, val: NS.Integer, glyphIndex: NS.UInteger),
+    attributedString: proc(self: ^NS.GlyphStorage) -> ^NS.AttributedString,
+    layoutOptions: proc(self: ^NS.GlyphStorage) -> NS.UInteger,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.insertGlyphs != nil {
-        insertGlyphs :: proc "c" (self: ^AK.GlyphStorage, _: SEL, glyphs: ^AK.Glyph, length: NS.UInteger, glyphIndex: NS.UInteger, charIndex: NS.UInteger) {
+        insertGlyphs :: proc "c" (self: ^NS.GlyphStorage, _: SEL, glyphs: ^NS.Glyph, length: NS.UInteger, glyphIndex: NS.UInteger, charIndex: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertGlyphs:length:forStartingGlyphAtIndex:characterIndex:"), auto_cast insertGlyphs, "v@:^voidLLL") do panic("Failed to register objC method.")
     }
     if vt.setIntAttribute != nil {
-        setIntAttribute :: proc "c" (self: ^AK.GlyphStorage, _: SEL, attributeTag: NS.Integer, val: NS.Integer, glyphIndex: NS.UInteger) {
+        setIntAttribute :: proc "c" (self: ^NS.GlyphStorage, _: SEL, attributeTag: NS.Integer, val: NS.Integer, glyphIndex: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIntAttribute:value:forGlyphAtIndex:"), auto_cast setIntAttribute, "v@:llL") do panic("Failed to register objC method.")
     }
     if vt.attributedString != nil {
-        attributedString :: proc "c" (self: ^AK.GlyphStorage, _: SEL) -> ^NS.AttributedString {
+        attributedString :: proc "c" (self: ^NS.GlyphStorage, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedString"), auto_cast attributedString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.layoutOptions != nil {
-        layoutOptions :: proc "c" (self: ^AK.GlyphStorage, _: SEL) -> NS.UInteger {
+        layoutOptions :: proc "c" (self: ^NS.GlyphStorage, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

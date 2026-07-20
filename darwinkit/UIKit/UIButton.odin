@@ -141,10 +141,10 @@ foreign lib {
     Button_setPointerInteractionEnabled :: proc(self: ^Button, pointerInteractionEnabled: bool) ---
 
     @(objc_type=Button, objc_selector="pointerStyleProvider", objc_name="pointerStyleProvider")
-    Button_pointerStyleProvider :: proc(self: ^Button) -> ^Objc_Block(proc "c" (button: ^Button, proposedEffect: ^PointerEffect, proposedShape: ^PointerShape) -> ^PointerStyle) ---
+    Button_pointerStyleProvider :: proc(self: ^Button) -> ^Objc_Block(proc "c" ( button: ^Button, proposedEffect: ^PointerEffect, proposedShape: ^PointerShape ) -> ^PointerStyle) ---
 
     @(objc_type=Button, objc_selector="setPointerStyleProvider:", objc_name="setPointerStyleProvider")
-    Button_setPointerStyleProvider :: proc(self: ^Button, pointerStyleProvider: ^Objc_Block(proc "c" (button: ^Button, proposedEffect: ^PointerEffect, proposedShape: ^PointerShape) -> ^PointerStyle)) ---
+    Button_setPointerStyleProvider :: proc(self: ^Button, pointerStyleProvider: ^Objc_Block(proc "c" ( button: ^Button, proposedEffect: ^PointerEffect, proposedShape: ^PointerShape ) -> ^PointerStyle)) ---
 
     @(objc_type=Button, objc_selector="menu", objc_name="menu")
     Button_menu :: proc(self: ^Button) -> ^Menu ---

@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    pathCell_willDisplayOpenPanel: proc(self: ^AK.PathCellDelegate, pathCell: ^AK.PathCell, openPanel: ^AK.OpenPanel),
-    pathCell_willPopUpMenu: proc(self: ^AK.PathCellDelegate, pathCell: ^AK.PathCell, menu: ^AK.Menu),
+    pathCell_willDisplayOpenPanel: proc(self: ^NS.PathCellDelegate, pathCell: ^NS.PathCell, openPanel: ^NS.OpenPanel),
+    pathCell_willPopUpMenu: proc(self: ^NS.PathCellDelegate, pathCell: ^NS.PathCell, menu: ^NS.Menu),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.pathCell_willDisplayOpenPanel != nil {
-        pathCell_willDisplayOpenPanel :: proc "c" (self: ^AK.PathCellDelegate, _: SEL, pathCell: ^AK.PathCell, openPanel: ^AK.OpenPanel) {
+        pathCell_willDisplayOpenPanel :: proc "c" (self: ^NS.PathCellDelegate, _: SEL, pathCell: ^NS.PathCell, openPanel: ^NS.OpenPanel) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pathCell:willDisplayOpenPanel:"), auto_cast pathCell_willDisplayOpenPanel, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.pathCell_willPopUpMenu != nil {
-        pathCell_willPopUpMenu :: proc "c" (self: ^AK.PathCellDelegate, _: SEL, pathCell: ^AK.PathCell, menu: ^AK.Menu) {
+        pathCell_willPopUpMenu :: proc "c" (self: ^NS.PathCellDelegate, _: SEL, pathCell: ^NS.PathCell, menu: ^NS.Menu) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

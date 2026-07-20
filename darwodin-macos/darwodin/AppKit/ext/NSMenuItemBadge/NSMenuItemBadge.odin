@@ -20,7 +20,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
@@ -29,13 +29,13 @@ VTable :: struct {
     updatesWithCount: proc(itemCount: NS.Integer) -> instancetype,
     newItemsWithCount: proc(itemCount: NS.Integer) -> instancetype,
     alertsWithCount: proc(itemCount: NS.Integer) -> instancetype,
-    initWithCount_type: proc(self: ^AK.MenuItemBadge, itemCount: NS.Integer, type: AK.MenuItemBadgeType) -> instancetype,
-    initWithCount_: proc(self: ^AK.MenuItemBadge, itemCount: NS.Integer) -> instancetype,
-    initWithString: proc(self: ^AK.MenuItemBadge, string: ^NS.String) -> instancetype,
-    init: proc(self: ^AK.MenuItemBadge) -> instancetype,
-    itemCount: proc(self: ^AK.MenuItemBadge) -> NS.Integer,
-    type: proc(self: ^AK.MenuItemBadge) -> AK.MenuItemBadgeType,
-    stringValue: proc(self: ^AK.MenuItemBadge) -> ^NS.String,
+    initWithCount_type: proc(self: ^NS.MenuItemBadge, itemCount: NS.Integer, type: NS.MenuItemBadgeType) -> instancetype,
+    initWithCount_: proc(self: ^NS.MenuItemBadge, itemCount: NS.Integer) -> instancetype,
+    initWithString: proc(self: ^NS.MenuItemBadge, string: ^NS.String) -> instancetype,
+    init: proc(self: ^NS.MenuItemBadge) -> instancetype,
+    itemCount: proc(self: ^NS.MenuItemBadge) -> NS.Integer,
+    type: proc(self: ^NS.MenuItemBadge) -> NS.MenuItemBadgeType,
+    stringValue: proc(self: ^NS.MenuItemBadge) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("alertsWithCount:"), auto_cast alertsWithCount, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.initWithCount_type != nil {
-        initWithCount_type :: proc "c" (self: ^AK.MenuItemBadge, _: SEL, itemCount: NS.Integer, type: AK.MenuItemBadgeType) -> instancetype {
+        initWithCount_type :: proc "c" (self: ^NS.MenuItemBadge, _: SEL, itemCount: NS.Integer, type: NS.MenuItemBadgeType) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCount:type:"), auto_cast initWithCount_type, "@@:ll") do panic("Failed to register objC method.")
     }
     if vt.initWithCount_ != nil {
-        initWithCount_ :: proc "c" (self: ^AK.MenuItemBadge, _: SEL, itemCount: NS.Integer) -> instancetype {
+        initWithCount_ :: proc "c" (self: ^NS.MenuItemBadge, _: SEL, itemCount: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCount:"), auto_cast initWithCount_, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.initWithString != nil {
-        initWithString :: proc "c" (self: ^AK.MenuItemBadge, _: SEL, string: ^NS.String) -> instancetype {
+        initWithString :: proc "c" (self: ^NS.MenuItemBadge, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithString:"), auto_cast initWithString, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.MenuItemBadge, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.MenuItemBadge, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.itemCount != nil {
-        itemCount :: proc "c" (self: ^AK.MenuItemBadge, _: SEL) -> NS.Integer {
+        itemCount :: proc "c" (self: ^NS.MenuItemBadge, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemCount"), auto_cast itemCount, "l@:") do panic("Failed to register objC method.")
     }
     if vt.type != nil {
-        type :: proc "c" (self: ^AK.MenuItemBadge, _: SEL) -> AK.MenuItemBadgeType {
+        type :: proc "c" (self: ^NS.MenuItemBadge, _: SEL) -> NS.MenuItemBadgeType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("type"), auto_cast type, "l@:") do panic("Failed to register objC method.")
     }
     if vt.stringValue != nil {
-        stringValue :: proc "c" (self: ^AK.MenuItemBadge, _: SEL) -> ^NS.String {
+        stringValue :: proc "c" (self: ^NS.MenuItemBadge, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

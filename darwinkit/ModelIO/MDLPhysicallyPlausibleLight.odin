@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLPhysicallyPlausibleLight
-///
 @(objc_class="MDLPhysicallyPlausibleLight", objc_superclass=Light)
 PhysicallyPlausibleLight :: struct { using _: Light, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PhysicallyPlausibleLight, objc_selector="setColorByTemperature:", objc_name="setColorByTemperature")
     PhysicallyPlausibleLight_setColorByTemperature :: proc(self: ^PhysicallyPlausibleLight, temperature: cffi.float) ---
@@ -59,3 +53,6 @@ foreign lib {
     @(objc_type=PhysicallyPlausibleLight, objc_selector="setAttenuationEndDistance:", objc_name="setAttenuationEndDistance")
     PhysicallyPlausibleLight_setAttenuationEndDistance :: proc(self: ^PhysicallyPlausibleLight, attenuationEndDistance: cffi.float) ---
 }
+
+
+

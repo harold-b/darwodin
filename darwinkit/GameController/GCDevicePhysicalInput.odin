@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCDevicePhysicalInput
-///
 @(objc_class="GCDevicePhysicalInput")
 DevicePhysicalInput :: struct { using _: intrinsics.objc_object, 
     using _: DevicePhysicalInputState,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DevicePhysicalInput, objc_selector="capture", objc_name="capture")
     DevicePhysicalInput_capture :: proc(self: ^DevicePhysicalInput) -> ^DevicePhysicalInputState ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=DevicePhysicalInput, objc_selector="setInputStateQueueDepth:", objc_name="setInputStateQueueDepth")
     DevicePhysicalInput_setInputStateQueueDepth :: proc(self: ^DevicePhysicalInput, inputStateQueueDepth: NS.Integer) ---
 }
+
+
+

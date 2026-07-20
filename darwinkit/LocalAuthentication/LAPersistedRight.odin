@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import NS "../Foundation"
 import Sec "../Security"
 
-
-
-///
-/// LAPersistedRight
-///
 @(objc_class="LAPersistedRight", objc_superclass=Right)
 PersistedRight :: struct { using _: Right, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PersistedRight, objc_selector="new", objc_name="new", objc_is_class_method=true)
     PersistedRight_new :: proc() -> ^PersistedRight ---
@@ -30,3 +24,6 @@ foreign lib {
     @(objc_type=PersistedRight, objc_selector="secret", objc_name="secret")
     PersistedRight_secret :: proc(self: ^PersistedRight) -> ^Secret ---
 }
+
+
+

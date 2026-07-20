@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSDateIntervalFormatter
-///
 @(objc_class="NSDateIntervalFormatter", objc_superclass=Formatter)
 DateIntervalFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DateIntervalFormatter, objc_selector="stringFromDate:toDate:", objc_name="stringFromDate")
     DateIntervalFormatter_stringFromDate :: proc(self: ^DateIntervalFormatter, fromDate: ^Date, toDate: ^Date) -> ^String ---
@@ -61,3 +55,6 @@ foreign lib {
     @(objc_type=DateIntervalFormatter, objc_selector="setTimeStyle:", objc_name="setTimeStyle")
     DateIntervalFormatter_setTimeStyle :: proc(self: ^DateIntervalFormatter, timeStyle: DateIntervalFormatterStyle) ---
 }
+
+
+

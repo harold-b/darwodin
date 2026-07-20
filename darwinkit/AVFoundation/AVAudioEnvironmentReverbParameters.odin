@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioEnvironmentReverbParameters
-///
 @(objc_class="AVAudioEnvironmentReverbParameters", objc_superclass=NS.Object)
 AudioEnvironmentReverbParameters :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioEnvironmentReverbParameters, objc_selector="init", objc_name="init")
     AudioEnvironmentReverbParameters_init :: proc(self: ^AudioEnvironmentReverbParameters) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=AudioEnvironmentReverbParameters, objc_selector="filterParameters", objc_name="filterParameters")
     AudioEnvironmentReverbParameters_filterParameters :: proc(self: ^AudioEnvironmentReverbParameters) -> ^AudioUnitEQFilterParameters ---
 }
+
+
+

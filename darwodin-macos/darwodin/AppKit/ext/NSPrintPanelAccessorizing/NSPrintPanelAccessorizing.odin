@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    localizedSummaryItems: proc(self: ^AK.PrintPanelAccessorizing) -> ^NS.Array,
-    keyPathsForValuesAffectingPreview: proc(self: ^AK.PrintPanelAccessorizing) -> ^NS.Set,
+    localizedSummaryItems: proc(self: ^NS.PrintPanelAccessorizing) -> ^NS.Array,
+    keyPathsForValuesAffectingPreview: proc(self: ^NS.PrintPanelAccessorizing) -> ^NS.Set,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.localizedSummaryItems != nil {
-        localizedSummaryItems :: proc "c" (self: ^AK.PrintPanelAccessorizing, _: SEL) -> ^NS.Array {
+        localizedSummaryItems :: proc "c" (self: ^NS.PrintPanelAccessorizing, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("localizedSummaryItems"), auto_cast localizedSummaryItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.keyPathsForValuesAffectingPreview != nil {
-        keyPathsForValuesAffectingPreview :: proc "c" (self: ^AK.PrintPanelAccessorizing, _: SEL) -> ^NS.Set {
+        keyPathsForValuesAffectingPreview :: proc "c" (self: ^NS.PrintPanelAccessorizing, _: SEL) -> ^NS.Set {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -20,7 +20,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
@@ -28,11 +28,11 @@ VTable :: struct {
     super: NSObject.VTable,
     flexibleSpacing: proc(flexibleSpacing: CG.Float) -> instancetype,
     fixedSpacing: proc(fixedSpacing: CG.Float) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutSpacing) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutSpacing,
-    spacing: proc(self: ^AK.CollectionLayoutSpacing) -> CG.Float,
-    isFlexibleSpacing: proc(self: ^AK.CollectionLayoutSpacing) -> bool,
-    isFixedSpacing: proc(self: ^AK.CollectionLayoutSpacing) -> bool,
+    init: proc(self: ^NS.CollectionLayoutSpacing) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutSpacing,
+    spacing: proc(self: ^NS.CollectionLayoutSpacing) -> CG.Float,
+    isFlexibleSpacing: proc(self: ^NS.CollectionLayoutSpacing) -> bool,
+    isFixedSpacing: proc(self: ^NS.CollectionLayoutSpacing) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fixedSpacing:"), auto_cast fixedSpacing, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutSpacing, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutSpacing, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutSpacing {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutSpacing {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.spacing != nil {
-        spacing :: proc "c" (self: ^AK.CollectionLayoutSpacing, _: SEL) -> CG.Float {
+        spacing :: proc "c" (self: ^NS.CollectionLayoutSpacing, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("spacing"), auto_cast spacing, "d@:") do panic("Failed to register objC method.")
     }
     if vt.isFlexibleSpacing != nil {
-        isFlexibleSpacing :: proc "c" (self: ^AK.CollectionLayoutSpacing, _: SEL) -> bool {
+        isFlexibleSpacing :: proc "c" (self: ^NS.CollectionLayoutSpacing, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFlexibleSpacing"), auto_cast isFlexibleSpacing, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isFixedSpacing != nil {
-        isFixedSpacing :: proc "c" (self: ^AK.CollectionLayoutSpacing, _: SEL) -> bool {
+        isFixedSpacing :: proc "c" (self: ^NS.CollectionLayoutSpacing, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

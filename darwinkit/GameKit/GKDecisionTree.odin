@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKDecisionTree
-///
 @(objc_class="GKDecisionTree", objc_superclass=NS.Object)
 DecisionTree :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DecisionTree, objc_selector="initWithAttribute:", objc_name="initWithAttribute")
     DecisionTree_initWithAttribute :: proc(self: ^DecisionTree, attribute: ^NS.ObjectProtocol) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=DecisionTree, objc_selector="setRandomSource:", objc_name="setRandomSource")
     DecisionTree_setRandomSource :: proc(self: ^DecisionTree, randomSource: ^RandomSource) ---
 }
+
+
+

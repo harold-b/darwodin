@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CHHapticPatternPlayer
-///
 @(objc_class="CHHapticPatternPlayer")
 HapticPatternPlayer :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticPatternPlayer, objc_selector="startAtTime:error:", objc_name="startAtTime")
     HapticPatternPlayer_startAtTime :: proc(self: ^HapticPatternPlayer, time: NS.TimeInterval, outError: ^^NS.Error) -> bool ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=HapticPatternPlayer, objc_selector="setIsMuted:", objc_name="setIsMuted")
     HapticPatternPlayer_setIsMuted :: proc(self: ^HapticPatternPlayer, isMuted: bool) ---
 }
+
+
+

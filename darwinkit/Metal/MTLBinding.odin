@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLBinding
-///
 @(objc_class="MTLBinding")
 Binding :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Binding, objc_selector="name", objc_name="name")
     Binding_name :: proc(self: ^Binding) -> ^NS.String ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=Binding, objc_selector="isArgument", objc_name="isArgument")
     Binding_isArgument :: proc(self: ^Binding) -> bool ---
 }
+
+
+

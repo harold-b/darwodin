@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4PipelineStageDynamicLinkingDescriptor
-///
 @(objc_class="MTL4PipelineStageDynamicLinkingDescriptor", objc_superclass=NS.Object)
 MTL4PipelineStageDynamicLinkingDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4PipelineStageDynamicLinkingDescriptor, objc_selector="maxCallStackDepth", objc_name="maxCallStackDepth")
     MTL4PipelineStageDynamicLinkingDescriptor_maxCallStackDepth :: proc(self: ^MTL4PipelineStageDynamicLinkingDescriptor) -> NS.UInteger ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=MTL4PipelineStageDynamicLinkingDescriptor, objc_selector="setPreloadedLibraries:", objc_name="setPreloadedLibraries")
     MTL4PipelineStageDynamicLinkingDescriptor_setPreloadedLibraries :: proc(self: ^MTL4PipelineStageDynamicLinkingDescriptor, preloadedLibraries: ^NS.Array) ---
 }
+
+
+

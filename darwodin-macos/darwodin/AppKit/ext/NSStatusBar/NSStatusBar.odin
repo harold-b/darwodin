@@ -20,17 +20,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    statusItemWithLength: proc(self: ^AK.StatusBar, length: CG.Float) -> ^AK.StatusItem,
-    removeStatusItem: proc(self: ^AK.StatusBar, item: ^AK.StatusItem),
-    systemStatusBar: proc() -> ^AK.StatusBar,
-    isVertical: proc(self: ^AK.StatusBar) -> bool,
-    thickness: proc(self: ^AK.StatusBar) -> CG.Float,
+    statusItemWithLength: proc(self: ^NS.StatusBar, length: CG.Float) -> ^NS.StatusItem,
+    removeStatusItem: proc(self: ^NS.StatusBar, item: ^NS.StatusItem),
+    systemStatusBar: proc() -> ^NS.StatusBar,
+    isVertical: proc(self: ^NS.StatusBar) -> bool,
+    thickness: proc(self: ^NS.StatusBar) -> CG.Float,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.statusItemWithLength != nil {
-        statusItemWithLength :: proc "c" (self: ^AK.StatusBar, _: SEL, length: CG.Float) -> ^AK.StatusItem {
+        statusItemWithLength :: proc "c" (self: ^NS.StatusBar, _: SEL, length: CG.Float) -> ^NS.StatusItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("statusItemWithLength:"), auto_cast statusItemWithLength, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.removeStatusItem != nil {
-        removeStatusItem :: proc "c" (self: ^AK.StatusBar, _: SEL, item: ^AK.StatusItem) {
+        removeStatusItem :: proc "c" (self: ^NS.StatusBar, _: SEL, item: ^NS.StatusItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeStatusItem:"), auto_cast removeStatusItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.systemStatusBar != nil {
-        systemStatusBar :: proc "c" (self: Class, _: SEL) -> ^AK.StatusBar {
+        systemStatusBar :: proc "c" (self: Class, _: SEL) -> ^NS.StatusBar {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemStatusBar"), auto_cast systemStatusBar, "@#:") do panic("Failed to register objC method.")
     }
     if vt.isVertical != nil {
-        isVertical :: proc "c" (self: ^AK.StatusBar, _: SEL) -> bool {
+        isVertical :: proc "c" (self: ^NS.StatusBar, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isVertical"), auto_cast isVertical, "B@:") do panic("Failed to register objC method.")
     }
     if vt.thickness != nil {
-        thickness :: proc "c" (self: ^AK.StatusBar, _: SEL) -> CG.Float {
+        thickness :: proc "c" (self: ^NS.StatusBar, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -33,7 +33,7 @@ foreign lib {
     FontAssetRequest_initWithFontDescriptors :: proc(self: ^FontAssetRequest, fontDescriptors: ^NS.Array, options: FontAssetRequestOptions) -> instancetype ---
 
     @(objc_type=FontAssetRequest, objc_selector="downloadFontAssetsWithCompletionHandler:", objc_name="downloadFontAssetsWithCompletionHandler")
-    FontAssetRequest_downloadFontAssetsWithCompletionHandler :: proc(self: ^FontAssetRequest, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error) -> bool)) ---
+    FontAssetRequest_downloadFontAssetsWithCompletionHandler :: proc(self: ^FontAssetRequest, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ) -> bool)) ---
 
     @(objc_type=FontAssetRequest, objc_selector="downloadedFontDescriptors", objc_name="downloadedFontDescriptors")
     FontAssetRequest_downloadedFontDescriptors :: proc(self: ^FontAssetRequest) -> ^NS.Array ---

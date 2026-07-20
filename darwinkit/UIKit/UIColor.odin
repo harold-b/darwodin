@@ -166,10 +166,10 @@ foreign lib {
     Color_colorNamed_inBundle_compatibleWithTraitCollection :: proc(name: ^NS.String, bundle: ^NS.Bundle, traitCollection: ^TraitCollection) -> ^Color ---
 
     @(objc_type=Color, objc_selector="colorWithDynamicProvider:", objc_name="colorWithDynamicProvider", objc_is_class_method=true)
-    Color_colorWithDynamicProvider :: proc(dynamicProvider: ^Objc_Block(proc "c" (traitCollection: ^TraitCollection) -> ^Color)) -> ^Color ---
+    Color_colorWithDynamicProvider :: proc(dynamicProvider: ^Objc_Block(proc "c" ( traitCollection: ^TraitCollection ) -> ^Color)) -> ^Color ---
 
     @(objc_type=Color, objc_selector="initWithDynamicProvider:", objc_name="initWithDynamicProvider")
-    Color_initWithDynamicProvider :: proc(self: ^Color, dynamicProvider: ^Objc_Block(proc "c" (traitCollection: ^TraitCollection) -> ^Color)) -> ^Color ---
+    Color_initWithDynamicProvider :: proc(self: ^Color, dynamicProvider: ^Objc_Block(proc "c" ( traitCollection: ^TraitCollection ) -> ^Color)) -> ^Color ---
 
     @(objc_type=Color, objc_selector="resolvedColorWithTraitCollection:", objc_name="resolvedColorWithTraitCollection")
     Color_resolvedColorWithTraitCollection :: proc(self: ^Color, traitCollection: ^TraitCollection) -> ^Color ---

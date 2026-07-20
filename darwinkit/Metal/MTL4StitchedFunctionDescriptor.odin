@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4StitchedFunctionDescriptor
-///
 @(objc_class="MTL4StitchedFunctionDescriptor", objc_superclass=MTL4FunctionDescriptor)
 MTL4StitchedFunctionDescriptor :: struct { using _: MTL4FunctionDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4StitchedFunctionDescriptor, objc_selector="functionGraph", objc_name="functionGraph")
     MTL4StitchedFunctionDescriptor_functionGraph :: proc(self: ^MTL4StitchedFunctionDescriptor) -> ^FunctionStitchingGraph ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=MTL4StitchedFunctionDescriptor, objc_selector="setFunctionDescriptors:", objc_name="setFunctionDescriptors")
     MTL4StitchedFunctionDescriptor_setFunctionDescriptors :: proc(self: ^MTL4StitchedFunctionDescriptor, functionDescriptors: ^NS.Array) ---
 }
+
+
+

@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKOperationGroup
-///
 @(objc_class="CKOperationGroup", objc_superclass=NS.Object)
 OperationGroup :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=OperationGroup, objc_selector="init", objc_name="init")
     OperationGroup_init :: proc(self: ^OperationGroup) -> instancetype ---
@@ -59,3 +53,6 @@ foreign lib {
     @(objc_type=OperationGroup, objc_selector="setExpectedReceiveSize:", objc_name="setExpectedReceiveSize")
     OperationGroup_setExpectedReceiveSize :: proc(self: ^OperationGroup, expectedReceiveSize: OperationGroupTransferSize) ---
 }
+
+
+

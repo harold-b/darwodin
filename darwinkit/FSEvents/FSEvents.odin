@@ -15,8 +15,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:CoreServices.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:CoreServices.framework",
+    }
+}
+
+
+// +user-text-begin
 // FSEventStreamCreateFlags
 EventStreamCreateFlag :: enum CF.UInt32 {
 
@@ -66,6 +78,7 @@ EventStreamEventFlag :: enum CF.UInt32 {
 
 EventStreamEventFlags :: bit_set[EventStreamEventFlag; CF.UInt32]
 
+// -user-text-end
 
 
 kTextUnsupportedEncodingErr              :: -8738
@@ -953,7 +966,7 @@ ConstFSSpecPtr :: distinct ^Spec
 ParmBlkPtr :: distinct rawptr
 
 /// IOCompletionProcPtr
-IOCompletionProcPtr :: proc "c" (paramBlock: ParmBlkPtr)
+IOCompletionProcPtr :: proc "c" ( paramBlock: ParmBlkPtr )
 
 /// IOCompletionUPP
 IOCompletionUPP :: distinct IOCompletionProcPtr
@@ -1022,13 +1035,13 @@ UnmountStatus :: distinct CF.UInt32
 VolumeOperation :: distinct ^OpaqueFSVolumeOperation
 
 /// FSVolumeMountProcPtr
-VolumeMountProcPtr :: proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, mountedVolumeRefNum: VolumeRefNum)
+VolumeMountProcPtr :: proc "c" ( volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, mountedVolumeRefNum: VolumeRefNum )
 
 /// FSVolumeUnmountProcPtr
-VolumeUnmountProcPtr :: proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: libc.pid_t)
+VolumeUnmountProcPtr :: proc "c" ( volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: libc.pid_t )
 
 /// FSVolumeEjectProcPtr
-VolumeEjectProcPtr :: proc "c" (volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: libc.pid_t)
+VolumeEjectProcPtr :: proc "c" ( volumeOp: VolumeOperation, clientData: rawptr, err: CF.OSStatus, volumeRefNum: VolumeRefNum, dissenter: libc.pid_t )
 
 /// FSVolumeMountUPP
 VolumeMountUPP :: distinct VolumeMountProcPtr
@@ -1046,10 +1059,10 @@ FileOperationRef :: distinct ^__FSFileOperation
 FileOperationStage :: distinct CF.UInt32
 
 /// FSFileOperationStatusProcPtr
-FileOperationStatusProcPtr :: proc "c" (fileOp: FileOperationRef, currentItem: ^Ref, stage: FileOperationStage, error: CF.OSStatus, statusDictionary: CF.DictionaryRef, info: rawptr)
+FileOperationStatusProcPtr :: proc "c" ( fileOp: FileOperationRef, currentItem: ^Ref, stage: FileOperationStage, error: CF.OSStatus, statusDictionary: CF.DictionaryRef, info: rawptr )
 
 /// FSPathFileOperationStatusProcPtr
-PathFileOperationStatusProcPtr :: proc "c" (fileOp: FileOperationRef, currentItem: cstring, stage: FileOperationStage, error: CF.OSStatus, statusDictionary: CF.DictionaryRef, info: rawptr)
+PathFileOperationStatusProcPtr :: proc "c" ( fileOp: FileOperationRef, currentItem: cstring, stage: FileOperationStage, error: CF.OSStatus, statusDictionary: CF.DictionaryRef, info: rawptr )
 
 /// ResID
 ResID :: distinct CF.SInt16
@@ -1082,7 +1095,7 @@ AliasHandle :: distinct ^AliasPtr
 AliasInfoPtr :: distinct ^AliasInfo
 
 /// FSAliasFilterProcPtr
-AliasFilterProcPtr :: proc "c" (ref: ^Ref, quitFlag: ^CF.Boolean, myDataPtr: CF.Ptr) -> CF.Boolean
+AliasFilterProcPtr :: proc "c" ( ref: ^Ref, quitFlag: ^CF.Boolean, myDataPtr: CF.Ptr ) -> CF.Boolean
 
 /// TextBreakLocatorRef
 TextBreakLocatorRef :: distinct ^OpaqueTextBreakLocatorRef
@@ -1124,7 +1137,7 @@ EventStreamRef :: distinct ^__FSEventStream
 ConstFSEventStreamRef :: distinct ^__FSEventStream
 
 /// FSEventStreamCallback
-EventStreamCallback :: proc "c" (streamRef: ConstFSEventStreamRef, clientCallBackInfo: rawptr, numEvents: cffi.size_t, eventPaths: rawptr, eventFlags: ^EventStreamEventFlags, eventIds: ^EventStreamEventId)
+EventStreamCallback :: proc "c" ( streamRef: ConstFSEventStreamRef, clientCallBackInfo: rawptr, numEvents: cffi.size_t, eventPaths: rawptr, eventFlags: ^EventStreamEventFlags, eventIds: ^EventStreamEventId )
 
 /// FSRef
 Ref :: struct #align (1) {

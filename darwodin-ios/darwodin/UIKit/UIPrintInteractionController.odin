@@ -27,16 +27,16 @@ foreign lib {
     PrintInteractionController_canPrintData :: proc(data: ^NS.Data) -> bool ---
 
     @(objc_type=PrintInteractionController, objc_selector="presentAnimated:completionHandler:", objc_name="presentAnimated")
-    PrintInteractionController_presentAnimated :: proc(self: ^PrintInteractionController, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool ---
+    PrintInteractionController_presentAnimated :: proc(self: ^PrintInteractionController, animated: bool, completion: ^Objc_Block(proc "c" ( printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error ))) -> bool ---
 
     @(objc_type=PrintInteractionController, objc_selector="presentFromRect:inView:animated:completionHandler:", objc_name="presentFromRect")
-    PrintInteractionController_presentFromRect :: proc(self: ^PrintInteractionController, rect: CG.Rect, view: ^View, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool ---
+    PrintInteractionController_presentFromRect :: proc(self: ^PrintInteractionController, rect: CG.Rect, view: ^View, animated: bool, completion: ^Objc_Block(proc "c" ( printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error ))) -> bool ---
 
     @(objc_type=PrintInteractionController, objc_selector="presentFromBarButtonItem:animated:completionHandler:", objc_name="presentFromBarButtonItem")
-    PrintInteractionController_presentFromBarButtonItem :: proc(self: ^PrintInteractionController, item: ^BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool ---
+    PrintInteractionController_presentFromBarButtonItem :: proc(self: ^PrintInteractionController, item: ^BarButtonItem, animated: bool, completion: ^Objc_Block(proc "c" ( printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error ))) -> bool ---
 
     @(objc_type=PrintInteractionController, objc_selector="printToPrinter:completionHandler:", objc_name="printToPrinter")
-    PrintInteractionController_printToPrinter :: proc(self: ^PrintInteractionController, printer: ^Printer, completion: ^Objc_Block(proc "c" (printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error))) -> bool ---
+    PrintInteractionController_printToPrinter :: proc(self: ^PrintInteractionController, printer: ^Printer, completion: ^Objc_Block(proc "c" ( printInteractionController: ^PrintInteractionController, completed: bool, error: ^NS.Error ))) -> bool ---
 
     @(objc_type=PrintInteractionController, objc_selector="dismissAnimated:", objc_name="dismissAnimated")
     PrintInteractionController_dismissAnimated :: proc(self: ^PrintInteractionController, animated: bool) ---

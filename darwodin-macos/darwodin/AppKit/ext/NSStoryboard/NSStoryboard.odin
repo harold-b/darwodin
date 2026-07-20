@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
     storyboardWithName: proc(name: ^NS.String, storyboardBundleOrNil: ^NS.Bundle) -> instancetype,
-    instantiateInitialController: proc(self: ^AK.Storyboard) -> id,
-    instantiateInitialControllerWithCreator: proc(self: ^AK.Storyboard, block: AK.StoryboardControllerCreator) -> id,
-    instantiateControllerWithIdentifier_: proc(self: ^AK.Storyboard, identifier: ^NS.String) -> id,
-    instantiateControllerWithIdentifier_creator: proc(self: ^AK.Storyboard, identifier: ^NS.String, block: AK.StoryboardControllerCreator) -> id,
-    mainStoryboard: proc() -> ^AK.Storyboard,
+    instantiateInitialController: proc(self: ^NS.Storyboard) -> id,
+    instantiateInitialControllerWithCreator: proc(self: ^NS.Storyboard, block: NS.StoryboardControllerCreator) -> id,
+    instantiateControllerWithIdentifier_: proc(self: ^NS.Storyboard, identifier: ^NS.String) -> id,
+    instantiateControllerWithIdentifier_creator: proc(self: ^NS.Storyboard, identifier: ^NS.String, block: NS.StoryboardControllerCreator) -> id,
+    mainStoryboard: proc() -> ^NS.Storyboard,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("storyboardWithName:bundle:"), auto_cast storyboardWithName, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.instantiateInitialController != nil {
-        instantiateInitialController :: proc "c" (self: ^AK.Storyboard, _: SEL) -> id {
+        instantiateInitialController :: proc "c" (self: ^NS.Storyboard, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateInitialController"), auto_cast instantiateInitialController, "@@:") do panic("Failed to register objC method.")
     }
     if vt.instantiateInitialControllerWithCreator != nil {
-        instantiateInitialControllerWithCreator :: proc "c" (self: ^AK.Storyboard, _: SEL, block: AK.StoryboardControllerCreator) -> id {
+        instantiateInitialControllerWithCreator :: proc "c" (self: ^NS.Storyboard, _: SEL, block: NS.StoryboardControllerCreator) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateInitialControllerWithCreator:"), auto_cast instantiateInitialControllerWithCreator, "@@:?") do panic("Failed to register objC method.")
     }
     if vt.instantiateControllerWithIdentifier_ != nil {
-        instantiateControllerWithIdentifier_ :: proc "c" (self: ^AK.Storyboard, _: SEL, identifier: ^NS.String) -> id {
+        instantiateControllerWithIdentifier_ :: proc "c" (self: ^NS.Storyboard, _: SEL, identifier: ^NS.String) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateControllerWithIdentifier:"), auto_cast instantiateControllerWithIdentifier_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.instantiateControllerWithIdentifier_creator != nil {
-        instantiateControllerWithIdentifier_creator :: proc "c" (self: ^AK.Storyboard, _: SEL, identifier: ^NS.String, block: AK.StoryboardControllerCreator) -> id {
+        instantiateControllerWithIdentifier_creator :: proc "c" (self: ^NS.Storyboard, _: SEL, identifier: ^NS.String, block: NS.StoryboardControllerCreator) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateControllerWithIdentifier:creator:"), auto_cast instantiateControllerWithIdentifier_creator, "@@:@?") do panic("Failed to register objC method.")
     }
     if vt.mainStoryboard != nil {
-        mainStoryboard :: proc "c" (self: Class, _: SEL) -> ^AK.Storyboard {
+        mainStoryboard :: proc "c" (self: Class, _: SEL) -> ^NS.Storyboard {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

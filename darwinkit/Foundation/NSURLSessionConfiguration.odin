@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLSessionConfiguration
-///
 @(objc_class="NSURLSessionConfiguration", objc_superclass=Object)
 URLSessionConfiguration :: struct { using _: Object, 
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionConfiguration, objc_selector="backgroundSessionConfigurationWithIdentifier:", objc_name="backgroundSessionConfigurationWithIdentifier", objc_is_class_method=true)
     URLSessionConfiguration_backgroundSessionConfigurationWithIdentifier :: proc(identifier: ^String) -> ^URLSessionConfiguration ---
@@ -228,3 +222,6 @@ foreign lib {
     @(objc_type=URLSessionConfiguration, objc_selector="backgroundSessionConfiguration:", objc_name="backgroundSessionConfiguration", objc_is_class_method=true)
     URLSessionConfiguration_backgroundSessionConfiguration :: proc(identifier: ^String) -> ^URLSessionConfiguration ---
 }
+
+
+

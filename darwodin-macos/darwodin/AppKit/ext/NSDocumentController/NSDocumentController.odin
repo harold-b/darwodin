@@ -20,71 +20,71 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.DocumentController) -> instancetype,
-    initWithCoder: proc(self: ^AK.DocumentController, coder: ^NS.Coder) -> instancetype,
-    documentForURL: proc(self: ^AK.DocumentController, url: ^NS.URL) -> ^AK.Document,
-    documentForWindow: proc(self: ^AK.DocumentController, window: ^AK.Window) -> ^AK.Document,
-    addDocument: proc(self: ^AK.DocumentController, document: ^AK.Document),
-    removeDocument: proc(self: ^AK.DocumentController, document: ^AK.Document),
-    newDocument: proc(self: ^AK.DocumentController, sender: id),
-    openUntitledDocumentAndDisplay: proc(self: ^AK.DocumentController, displayDocument: bool, outError: ^^NS.Error) -> ^AK.Document,
-    makeUntitledDocumentOfType_error: proc(self: ^AK.DocumentController, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
-    openDocument: proc(self: ^AK.DocumentController, sender: id),
-    _URLsFromRunningOpenPanel: proc(self: ^AK.DocumentController) -> ^NS.Array,
-    runModalOpenPanel: proc(self: ^AK.DocumentController, openPanel: ^AK.OpenPanel, types: ^NS.Array) -> NS.Integer,
-    beginOpenPanelWithCompletionHandler: proc(self: ^AK.DocumentController, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array))),
-    beginOpenPanel: proc(self: ^AK.DocumentController, openPanel: ^AK.OpenPanel, inTypes: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (result: NS.Integer))),
-    openDocumentWithContentsOfURL_display_completionHandler: proc(self: ^AK.DocumentController, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error))),
-    makeDocumentWithContentsOfURL_ofType_error: proc(self: ^AK.DocumentController, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
-    reopenDocumentForURL_withContentsOfURL_display_completionHandler: proc(self: ^AK.DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error))),
-    makeDocumentForURL: proc(self: ^AK.DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
-    saveAllDocuments: proc(self: ^AK.DocumentController, sender: id),
-    reviewUnsavedDocumentsWithAlertTitle: proc(self: ^AK.DocumentController, title: ^NS.String, cancellable: bool, delegate: id, didReviewAllSelector: SEL, contextInfo: rawptr),
-    closeAllDocumentsWithDelegate: proc(self: ^AK.DocumentController, delegate: id, didCloseAllSelector: SEL, contextInfo: rawptr),
-    duplicateDocumentWithContentsOfURL: proc(self: ^AK.DocumentController, url: ^NS.URL, duplicateByCopying: bool, displayNameOrNil: ^NS.String, outError: ^^NS.Error) -> ^AK.Document,
-    standardShareMenuItem: proc(self: ^AK.DocumentController) -> ^AK.MenuItem,
-    presentError_modalForWindow_delegate_didPresentSelector_contextInfo: proc(self: ^AK.DocumentController, error: ^NS.Error, window: ^AK.Window, delegate: id, didPresentSelector: SEL, contextInfo: rawptr),
-    presentError_: proc(self: ^AK.DocumentController, error: ^NS.Error) -> bool,
-    willPresentError: proc(self: ^AK.DocumentController, error: ^NS.Error) -> ^NS.Error,
-    clearRecentDocuments: proc(self: ^AK.DocumentController, sender: id),
-    noteNewRecentDocument: proc(self: ^AK.DocumentController, document: ^AK.Document),
-    noteNewRecentDocumentURL: proc(self: ^AK.DocumentController, url: ^NS.URL),
-    typeForContentsOfURL: proc(self: ^AK.DocumentController, url: ^NS.URL, outError: ^^NS.Error) -> ^NS.String,
-    documentClassForType: proc(self: ^AK.DocumentController, typeName: ^NS.String) -> Class,
-    displayNameForType: proc(self: ^AK.DocumentController, typeName: ^NS.String) -> ^NS.String,
-    validateUserInterfaceItem: proc(self: ^AK.DocumentController, item: ^AK.ValidatedUserInterfaceItem) -> bool,
-    sharedDocumentController: proc() -> ^AK.DocumentController,
-    documents: proc(self: ^AK.DocumentController) -> ^NS.Array,
-    currentDocument: proc(self: ^AK.DocumentController) -> ^AK.Document,
-    currentDirectory: proc(self: ^AK.DocumentController) -> ^NS.String,
-    autosavingDelay: proc(self: ^AK.DocumentController) -> NS.TimeInterval,
-    setAutosavingDelay: proc(self: ^AK.DocumentController, autosavingDelay: NS.TimeInterval),
-    hasEditedDocuments: proc(self: ^AK.DocumentController) -> bool,
-    allowsAutomaticShareMenu: proc(self: ^AK.DocumentController) -> bool,
-    maximumRecentDocumentCount: proc(self: ^AK.DocumentController) -> NS.UInteger,
-    recentDocumentURLs: proc(self: ^AK.DocumentController) -> ^NS.Array,
-    defaultType: proc(self: ^AK.DocumentController) -> ^NS.String,
-    documentClassNames: proc(self: ^AK.DocumentController) -> ^NS.Array,
-    openDocumentWithContentsOfURL_display_error: proc(self: ^AK.DocumentController, url: ^NS.URL, displayDocument: bool, outError: ^^NS.Error) -> id,
-    reopenDocumentForURL_withContentsOfURL_error: proc(self: ^AK.DocumentController, url: ^NS.URL, contentsURL: ^NS.URL, outError: ^^NS.Error) -> bool,
-    fileExtensionsFromType: proc(self: ^AK.DocumentController, typeName: ^NS.String) -> ^NS.Array,
-    typeFromFileExtension: proc(self: ^AK.DocumentController, fileNameExtensionOrHFSFileType: ^NS.String) -> ^NS.String,
-    documentForFileName: proc(self: ^AK.DocumentController, fileName: ^NS.String) -> id,
-    fileNamesFromRunningOpenPanel: proc(self: ^AK.DocumentController) -> ^NS.Array,
-    makeDocumentWithContentsOfFile: proc(self: ^AK.DocumentController, fileName: ^NS.String, type: ^NS.String) -> id,
-    makeDocumentWithContentsOfURL_ofType: proc(self: ^AK.DocumentController, url: ^NS.URL, type: ^NS.String) -> id,
-    makeUntitledDocumentOfType_: proc(self: ^AK.DocumentController, type: ^NS.String) -> id,
-    openDocumentWithContentsOfFile: proc(self: ^AK.DocumentController, fileName: ^NS.String, display: bool) -> id,
-    openDocumentWithContentsOfURL_display: proc(self: ^AK.DocumentController, url: ^NS.URL, display: bool) -> id,
-    openUntitledDocumentOfType: proc(self: ^AK.DocumentController, type: ^NS.String, display: bool) -> id,
-    setShouldCreateUI: proc(self: ^AK.DocumentController, flag: bool),
-    shouldCreateUI: proc(self: ^AK.DocumentController) -> bool,
+    init: proc(self: ^NS.DocumentController) -> instancetype,
+    initWithCoder: proc(self: ^NS.DocumentController, coder: ^NS.Coder) -> instancetype,
+    documentForURL: proc(self: ^NS.DocumentController, url: ^NS.URL) -> ^NS.Document,
+    documentForWindow: proc(self: ^NS.DocumentController, window: ^NS.Window) -> ^NS.Document,
+    addDocument: proc(self: ^NS.DocumentController, document: ^NS.Document),
+    removeDocument: proc(self: ^NS.DocumentController, document: ^NS.Document),
+    newDocument: proc(self: ^NS.DocumentController, sender: id),
+    openUntitledDocumentAndDisplay: proc(self: ^NS.DocumentController, displayDocument: bool, outError: ^^NS.Error) -> ^NS.Document,
+    makeUntitledDocumentOfType_error: proc(self: ^NS.DocumentController, typeName: ^NS.String, outError: ^^NS.Error) -> ^NS.Document,
+    openDocument: proc(self: ^NS.DocumentController, sender: id),
+    _URLsFromRunningOpenPanel: proc(self: ^NS.DocumentController) -> ^NS.Array,
+    runModalOpenPanel: proc(self: ^NS.DocumentController, openPanel: ^NS.OpenPanel, types: ^NS.Array) -> NS.Integer,
+    beginOpenPanelWithCompletionHandler: proc(self: ^NS.DocumentController, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array ))),
+    beginOpenPanel: proc(self: ^NS.DocumentController, openPanel: ^NS.OpenPanel, inTypes: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( result: NS.Integer ))),
+    openDocumentWithContentsOfURL_display_completionHandler: proc(self: ^NS.DocumentController, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" ( document: ^NS.Document, documentWasAlreadyOpen: bool, error: ^NS.Error ))),
+    makeDocumentWithContentsOfURL_ofType_error: proc(self: ^NS.DocumentController, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^NS.Document,
+    reopenDocumentForURL_withContentsOfURL_display_completionHandler: proc(self: ^NS.DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" ( document: ^NS.Document, documentWasAlreadyOpen: bool, error: ^NS.Error ))),
+    makeDocumentForURL: proc(self: ^NS.DocumentController, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^NS.Document,
+    saveAllDocuments: proc(self: ^NS.DocumentController, sender: id),
+    reviewUnsavedDocumentsWithAlertTitle: proc(self: ^NS.DocumentController, title: ^NS.String, cancellable: bool, delegate: id, didReviewAllSelector: SEL, contextInfo: rawptr),
+    closeAllDocumentsWithDelegate: proc(self: ^NS.DocumentController, delegate: id, didCloseAllSelector: SEL, contextInfo: rawptr),
+    duplicateDocumentWithContentsOfURL: proc(self: ^NS.DocumentController, url: ^NS.URL, duplicateByCopying: bool, displayNameOrNil: ^NS.String, outError: ^^NS.Error) -> ^NS.Document,
+    standardShareMenuItem: proc(self: ^NS.DocumentController) -> ^NS.MenuItem,
+    presentError_modalForWindow_delegate_didPresentSelector_contextInfo: proc(self: ^NS.DocumentController, error: ^NS.Error, window: ^NS.Window, delegate: id, didPresentSelector: SEL, contextInfo: rawptr),
+    presentError_: proc(self: ^NS.DocumentController, error: ^NS.Error) -> bool,
+    willPresentError: proc(self: ^NS.DocumentController, error: ^NS.Error) -> ^NS.Error,
+    clearRecentDocuments: proc(self: ^NS.DocumentController, sender: id),
+    noteNewRecentDocument: proc(self: ^NS.DocumentController, document: ^NS.Document),
+    noteNewRecentDocumentURL: proc(self: ^NS.DocumentController, url: ^NS.URL),
+    typeForContentsOfURL: proc(self: ^NS.DocumentController, url: ^NS.URL, outError: ^^NS.Error) -> ^NS.String,
+    documentClassForType: proc(self: ^NS.DocumentController, typeName: ^NS.String) -> Class,
+    displayNameForType: proc(self: ^NS.DocumentController, typeName: ^NS.String) -> ^NS.String,
+    validateUserInterfaceItem: proc(self: ^NS.DocumentController, item: ^NS.ValidatedUserInterfaceItem) -> bool,
+    sharedDocumentController: proc() -> ^NS.DocumentController,
+    documents: proc(self: ^NS.DocumentController) -> ^NS.Array,
+    currentDocument: proc(self: ^NS.DocumentController) -> ^NS.Document,
+    currentDirectory: proc(self: ^NS.DocumentController) -> ^NS.String,
+    autosavingDelay: proc(self: ^NS.DocumentController) -> NS.TimeInterval,
+    setAutosavingDelay: proc(self: ^NS.DocumentController, autosavingDelay: NS.TimeInterval),
+    hasEditedDocuments: proc(self: ^NS.DocumentController) -> bool,
+    allowsAutomaticShareMenu: proc(self: ^NS.DocumentController) -> bool,
+    maximumRecentDocumentCount: proc(self: ^NS.DocumentController) -> NS.UInteger,
+    recentDocumentURLs: proc(self: ^NS.DocumentController) -> ^NS.Array,
+    defaultType: proc(self: ^NS.DocumentController) -> ^NS.String,
+    documentClassNames: proc(self: ^NS.DocumentController) -> ^NS.Array,
+    openDocumentWithContentsOfURL_display_error: proc(self: ^NS.DocumentController, url: ^NS.URL, displayDocument: bool, outError: ^^NS.Error) -> id,
+    reopenDocumentForURL_withContentsOfURL_error: proc(self: ^NS.DocumentController, url: ^NS.URL, contentsURL: ^NS.URL, outError: ^^NS.Error) -> bool,
+    fileExtensionsFromType: proc(self: ^NS.DocumentController, typeName: ^NS.String) -> ^NS.Array,
+    typeFromFileExtension: proc(self: ^NS.DocumentController, fileNameExtensionOrHFSFileType: ^NS.String) -> ^NS.String,
+    documentForFileName: proc(self: ^NS.DocumentController, fileName: ^NS.String) -> id,
+    fileNamesFromRunningOpenPanel: proc(self: ^NS.DocumentController) -> ^NS.Array,
+    makeDocumentWithContentsOfFile: proc(self: ^NS.DocumentController, fileName: ^NS.String, type: ^NS.String) -> id,
+    makeDocumentWithContentsOfURL_ofType: proc(self: ^NS.DocumentController, url: ^NS.URL, type: ^NS.String) -> id,
+    makeUntitledDocumentOfType_: proc(self: ^NS.DocumentController, type: ^NS.String) -> id,
+    openDocumentWithContentsOfFile: proc(self: ^NS.DocumentController, fileName: ^NS.String, display: bool) -> id,
+    openDocumentWithContentsOfURL_display: proc(self: ^NS.DocumentController, url: ^NS.URL, display: bool) -> id,
+    openUntitledDocumentOfType: proc(self: ^NS.DocumentController, type: ^NS.String, display: bool) -> id,
+    setShouldCreateUI: proc(self: ^NS.DocumentController, flag: bool),
+    shouldCreateUI: proc(self: ^NS.DocumentController) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.DocumentController, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.DocumentController, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.DocumentController, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.DocumentController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.documentForURL != nil {
-        documentForURL :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL) -> ^AK.Document {
+        documentForURL :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL) -> ^NS.Document {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentForURL:"), auto_cast documentForURL, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.documentForWindow != nil {
-        documentForWindow :: proc "c" (self: ^AK.DocumentController, _: SEL, window: ^AK.Window) -> ^AK.Document {
+        documentForWindow :: proc "c" (self: ^NS.DocumentController, _: SEL, window: ^NS.Window) -> ^NS.Document {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -135,7 +135,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentForWindow:"), auto_cast documentForWindow, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.addDocument != nil {
-        addDocument :: proc "c" (self: ^AK.DocumentController, _: SEL, document: ^AK.Document) {
+        addDocument :: proc "c" (self: ^NS.DocumentController, _: SEL, document: ^NS.Document) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -145,7 +145,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addDocument:"), auto_cast addDocument, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeDocument != nil {
-        removeDocument :: proc "c" (self: ^AK.DocumentController, _: SEL, document: ^AK.Document) {
+        removeDocument :: proc "c" (self: ^NS.DocumentController, _: SEL, document: ^NS.Document) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -155,7 +155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeDocument:"), auto_cast removeDocument, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.newDocument != nil {
-        newDocument :: proc "c" (self: ^AK.DocumentController, _: SEL, sender: id) {
+        newDocument :: proc "c" (self: ^NS.DocumentController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -165,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("newDocument:"), auto_cast newDocument, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.openUntitledDocumentAndDisplay != nil {
-        openUntitledDocumentAndDisplay :: proc "c" (self: ^AK.DocumentController, _: SEL, displayDocument: bool, outError: ^^NS.Error) -> ^AK.Document {
+        openUntitledDocumentAndDisplay :: proc "c" (self: ^NS.DocumentController, _: SEL, displayDocument: bool, outError: ^^NS.Error) -> ^NS.Document {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -175,7 +175,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openUntitledDocumentAndDisplay:error:"), auto_cast openUntitledDocumentAndDisplay, "@@:B^void") do panic("Failed to register objC method.")
     }
     if vt.makeUntitledDocumentOfType_error != nil {
-        makeUntitledDocumentOfType_error :: proc "c" (self: ^AK.DocumentController, _: SEL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document {
+        makeUntitledDocumentOfType_error :: proc "c" (self: ^NS.DocumentController, _: SEL, typeName: ^NS.String, outError: ^^NS.Error) -> ^NS.Document {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -185,7 +185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeUntitledDocumentOfType:error:"), auto_cast makeUntitledDocumentOfType_error, "@@:@^void") do panic("Failed to register objC method.")
     }
     if vt.openDocument != nil {
-        openDocument :: proc "c" (self: ^AK.DocumentController, _: SEL, sender: id) {
+        openDocument :: proc "c" (self: ^NS.DocumentController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -195,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openDocument:"), auto_cast openDocument, "v@:@") do panic("Failed to register objC method.")
     }
     if vt._URLsFromRunningOpenPanel != nil {
-        _URLsFromRunningOpenPanel :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^NS.Array {
+        _URLsFromRunningOpenPanel :: proc "c" (self: ^NS.DocumentController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -205,7 +205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLsFromRunningOpenPanel"), auto_cast _URLsFromRunningOpenPanel, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.runModalOpenPanel != nil {
-        runModalOpenPanel :: proc "c" (self: ^AK.DocumentController, _: SEL, openPanel: ^AK.OpenPanel, types: ^NS.Array) -> NS.Integer {
+        runModalOpenPanel :: proc "c" (self: ^NS.DocumentController, _: SEL, openPanel: ^NS.OpenPanel, types: ^NS.Array) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -215,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("runModalOpenPanel:forTypes:"), auto_cast runModalOpenPanel, "l@:@^void") do panic("Failed to register objC method.")
     }
     if vt.beginOpenPanelWithCompletionHandler != nil {
-        beginOpenPanelWithCompletionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array))) {
+        beginOpenPanelWithCompletionHandler :: proc "c" (self: ^NS.DocumentController, _: SEL, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -225,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginOpenPanelWithCompletionHandler:"), auto_cast beginOpenPanelWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.beginOpenPanel != nil {
-        beginOpenPanel :: proc "c" (self: ^AK.DocumentController, _: SEL, openPanel: ^AK.OpenPanel, inTypes: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (result: NS.Integer))) {
+        beginOpenPanel :: proc "c" (self: ^NS.DocumentController, _: SEL, openPanel: ^NS.OpenPanel, inTypes: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( result: NS.Integer ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -235,7 +235,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginOpenPanel:forTypes:completionHandler:"), auto_cast beginOpenPanel, "v@:@^void?") do panic("Failed to register objC method.")
     }
     if vt.openDocumentWithContentsOfURL_display_completionHandler != nil {
-        openDocumentWithContentsOfURL_display_completionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error))) {
+        openDocumentWithContentsOfURL_display_completionHandler :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" ( document: ^NS.Document, documentWasAlreadyOpen: bool, error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -245,7 +245,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openDocumentWithContentsOfURL:display:completionHandler:"), auto_cast openDocumentWithContentsOfURL_display_completionHandler, "v@:@B?") do panic("Failed to register objC method.")
     }
     if vt.makeDocumentWithContentsOfURL_ofType_error != nil {
-        makeDocumentWithContentsOfURL_ofType_error :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document {
+        makeDocumentWithContentsOfURL_ofType_error :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^NS.Document {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -255,7 +255,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeDocumentWithContentsOfURL:ofType:error:"), auto_cast makeDocumentWithContentsOfURL_ofType_error, "@@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.reopenDocumentForURL_withContentsOfURL_display_completionHandler != nil {
-        reopenDocumentForURL_withContentsOfURL_display_completionHandler :: proc "c" (self: ^AK.DocumentController, _: SEL, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" (document: ^AK.Document, documentWasAlreadyOpen: bool, error: ^NS.Error))) {
+        reopenDocumentForURL_withContentsOfURL_display_completionHandler :: proc "c" (self: ^NS.DocumentController, _: SEL, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, displayDocument: bool, completionHandler: ^Objc_Block(proc "c" ( document: ^NS.Document, documentWasAlreadyOpen: bool, error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -265,7 +265,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reopenDocumentForURL:withContentsOfURL:display:completionHandler:"), auto_cast reopenDocumentForURL_withContentsOfURL_display_completionHandler, "v@:@@B?") do panic("Failed to register objC method.")
     }
     if vt.makeDocumentForURL != nil {
-        makeDocumentForURL :: proc "c" (self: ^AK.DocumentController, _: SEL, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^AK.Document {
+        makeDocumentForURL :: proc "c" (self: ^NS.DocumentController, _: SEL, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> ^NS.Document {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -275,7 +275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeDocumentForURL:withContentsOfURL:ofType:error:"), auto_cast makeDocumentForURL, "@@:@@@^void") do panic("Failed to register objC method.")
     }
     if vt.saveAllDocuments != nil {
-        saveAllDocuments :: proc "c" (self: ^AK.DocumentController, _: SEL, sender: id) {
+        saveAllDocuments :: proc "c" (self: ^NS.DocumentController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -285,7 +285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("saveAllDocuments:"), auto_cast saveAllDocuments, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.reviewUnsavedDocumentsWithAlertTitle != nil {
-        reviewUnsavedDocumentsWithAlertTitle :: proc "c" (self: ^AK.DocumentController, _: SEL, title: ^NS.String, cancellable: bool, delegate: id, didReviewAllSelector: SEL, contextInfo: rawptr) {
+        reviewUnsavedDocumentsWithAlertTitle :: proc "c" (self: ^NS.DocumentController, _: SEL, title: ^NS.String, cancellable: bool, delegate: id, didReviewAllSelector: SEL, contextInfo: rawptr) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -295,7 +295,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:"), auto_cast reviewUnsavedDocumentsWithAlertTitle, "v@:@B@:^void") do panic("Failed to register objC method.")
     }
     if vt.closeAllDocumentsWithDelegate != nil {
-        closeAllDocumentsWithDelegate :: proc "c" (self: ^AK.DocumentController, _: SEL, delegate: id, didCloseAllSelector: SEL, contextInfo: rawptr) {
+        closeAllDocumentsWithDelegate :: proc "c" (self: ^NS.DocumentController, _: SEL, delegate: id, didCloseAllSelector: SEL, contextInfo: rawptr) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -305,7 +305,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("closeAllDocumentsWithDelegate:didCloseAllSelector:contextInfo:"), auto_cast closeAllDocumentsWithDelegate, "v@:@:^void") do panic("Failed to register objC method.")
     }
     if vt.duplicateDocumentWithContentsOfURL != nil {
-        duplicateDocumentWithContentsOfURL :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, duplicateByCopying: bool, displayNameOrNil: ^NS.String, outError: ^^NS.Error) -> ^AK.Document {
+        duplicateDocumentWithContentsOfURL :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL, duplicateByCopying: bool, displayNameOrNil: ^NS.String, outError: ^^NS.Error) -> ^NS.Document {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -315,7 +315,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("duplicateDocumentWithContentsOfURL:copying:displayName:error:"), auto_cast duplicateDocumentWithContentsOfURL, "@@:@B@^void") do panic("Failed to register objC method.")
     }
     if vt.standardShareMenuItem != nil {
-        standardShareMenuItem :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^AK.MenuItem {
+        standardShareMenuItem :: proc "c" (self: ^NS.DocumentController, _: SEL) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -325,7 +325,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("standardShareMenuItem"), auto_cast standardShareMenuItem, "@@:") do panic("Failed to register objC method.")
     }
     if vt.presentError_modalForWindow_delegate_didPresentSelector_contextInfo != nil {
-        presentError_modalForWindow_delegate_didPresentSelector_contextInfo :: proc "c" (self: ^AK.DocumentController, _: SEL, error: ^NS.Error, window: ^AK.Window, delegate: id, didPresentSelector: SEL, contextInfo: rawptr) {
+        presentError_modalForWindow_delegate_didPresentSelector_contextInfo :: proc "c" (self: ^NS.DocumentController, _: SEL, error: ^NS.Error, window: ^NS.Window, delegate: id, didPresentSelector: SEL, contextInfo: rawptr) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -335,7 +335,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), auto_cast presentError_modalForWindow_delegate_didPresentSelector_contextInfo, "v@:@@@:^void") do panic("Failed to register objC method.")
     }
     if vt.presentError_ != nil {
-        presentError_ :: proc "c" (self: ^AK.DocumentController, _: SEL, error: ^NS.Error) -> bool {
+        presentError_ :: proc "c" (self: ^NS.DocumentController, _: SEL, error: ^NS.Error) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -345,7 +345,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentError:"), auto_cast presentError_, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.willPresentError != nil {
-        willPresentError :: proc "c" (self: ^AK.DocumentController, _: SEL, error: ^NS.Error) -> ^NS.Error {
+        willPresentError :: proc "c" (self: ^NS.DocumentController, _: SEL, error: ^NS.Error) -> ^NS.Error {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -355,7 +355,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("willPresentError:"), auto_cast willPresentError, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.clearRecentDocuments != nil {
-        clearRecentDocuments :: proc "c" (self: ^AK.DocumentController, _: SEL, sender: id) {
+        clearRecentDocuments :: proc "c" (self: ^NS.DocumentController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -365,7 +365,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("clearRecentDocuments:"), auto_cast clearRecentDocuments, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.noteNewRecentDocument != nil {
-        noteNewRecentDocument :: proc "c" (self: ^AK.DocumentController, _: SEL, document: ^AK.Document) {
+        noteNewRecentDocument :: proc "c" (self: ^NS.DocumentController, _: SEL, document: ^NS.Document) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -375,7 +375,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("noteNewRecentDocument:"), auto_cast noteNewRecentDocument, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.noteNewRecentDocumentURL != nil {
-        noteNewRecentDocumentURL :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL) {
+        noteNewRecentDocumentURL :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -385,7 +385,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("noteNewRecentDocumentURL:"), auto_cast noteNewRecentDocumentURL, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.typeForContentsOfURL != nil {
-        typeForContentsOfURL :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, outError: ^^NS.Error) -> ^NS.String {
+        typeForContentsOfURL :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL, outError: ^^NS.Error) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -395,7 +395,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("typeForContentsOfURL:error:"), auto_cast typeForContentsOfURL, "@@:@^void") do panic("Failed to register objC method.")
     }
     if vt.documentClassForType != nil {
-        documentClassForType :: proc "c" (self: ^AK.DocumentController, _: SEL, typeName: ^NS.String) -> Class {
+        documentClassForType :: proc "c" (self: ^NS.DocumentController, _: SEL, typeName: ^NS.String) -> Class {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -405,7 +405,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentClassForType:"), auto_cast documentClassForType, "#@:@") do panic("Failed to register objC method.")
     }
     if vt.displayNameForType != nil {
-        displayNameForType :: proc "c" (self: ^AK.DocumentController, _: SEL, typeName: ^NS.String) -> ^NS.String {
+        displayNameForType :: proc "c" (self: ^NS.DocumentController, _: SEL, typeName: ^NS.String) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -415,7 +415,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("displayNameForType:"), auto_cast displayNameForType, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.validateUserInterfaceItem != nil {
-        validateUserInterfaceItem :: proc "c" (self: ^AK.DocumentController, _: SEL, item: ^AK.ValidatedUserInterfaceItem) -> bool {
+        validateUserInterfaceItem :: proc "c" (self: ^NS.DocumentController, _: SEL, item: ^NS.ValidatedUserInterfaceItem) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -425,7 +425,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("validateUserInterfaceItem:"), auto_cast validateUserInterfaceItem, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.sharedDocumentController != nil {
-        sharedDocumentController :: proc "c" (self: Class, _: SEL) -> ^AK.DocumentController {
+        sharedDocumentController :: proc "c" (self: Class, _: SEL) -> ^NS.DocumentController {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -435,7 +435,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sharedDocumentController"), auto_cast sharedDocumentController, "@#:") do panic("Failed to register objC method.")
     }
     if vt.documents != nil {
-        documents :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^NS.Array {
+        documents :: proc "c" (self: ^NS.DocumentController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -445,7 +445,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documents"), auto_cast documents, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.currentDocument != nil {
-        currentDocument :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^AK.Document {
+        currentDocument :: proc "c" (self: ^NS.DocumentController, _: SEL) -> ^NS.Document {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -455,7 +455,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentDocument"), auto_cast currentDocument, "@@:") do panic("Failed to register objC method.")
     }
     if vt.currentDirectory != nil {
-        currentDirectory :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^NS.String {
+        currentDirectory :: proc "c" (self: ^NS.DocumentController, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -465,7 +465,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentDirectory"), auto_cast currentDirectory, "@@:") do panic("Failed to register objC method.")
     }
     if vt.autosavingDelay != nil {
-        autosavingDelay :: proc "c" (self: ^AK.DocumentController, _: SEL) -> NS.TimeInterval {
+        autosavingDelay :: proc "c" (self: ^NS.DocumentController, _: SEL) -> NS.TimeInterval {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -475,7 +475,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autosavingDelay"), auto_cast autosavingDelay, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setAutosavingDelay != nil {
-        setAutosavingDelay :: proc "c" (self: ^AK.DocumentController, _: SEL, autosavingDelay: NS.TimeInterval) {
+        setAutosavingDelay :: proc "c" (self: ^NS.DocumentController, _: SEL, autosavingDelay: NS.TimeInterval) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -485,7 +485,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutosavingDelay:"), auto_cast setAutosavingDelay, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.hasEditedDocuments != nil {
-        hasEditedDocuments :: proc "c" (self: ^AK.DocumentController, _: SEL) -> bool {
+        hasEditedDocuments :: proc "c" (self: ^NS.DocumentController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -495,7 +495,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasEditedDocuments"), auto_cast hasEditedDocuments, "B@:") do panic("Failed to register objC method.")
     }
     if vt.allowsAutomaticShareMenu != nil {
-        allowsAutomaticShareMenu :: proc "c" (self: ^AK.DocumentController, _: SEL) -> bool {
+        allowsAutomaticShareMenu :: proc "c" (self: ^NS.DocumentController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -505,7 +505,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsAutomaticShareMenu"), auto_cast allowsAutomaticShareMenu, "B@:") do panic("Failed to register objC method.")
     }
     if vt.maximumRecentDocumentCount != nil {
-        maximumRecentDocumentCount :: proc "c" (self: ^AK.DocumentController, _: SEL) -> NS.UInteger {
+        maximumRecentDocumentCount :: proc "c" (self: ^NS.DocumentController, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -515,7 +515,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumRecentDocumentCount"), auto_cast maximumRecentDocumentCount, "L@:") do panic("Failed to register objC method.")
     }
     if vt.recentDocumentURLs != nil {
-        recentDocumentURLs :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^NS.Array {
+        recentDocumentURLs :: proc "c" (self: ^NS.DocumentController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -525,7 +525,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("recentDocumentURLs"), auto_cast recentDocumentURLs, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.defaultType != nil {
-        defaultType :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^NS.String {
+        defaultType :: proc "c" (self: ^NS.DocumentController, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -535,7 +535,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultType"), auto_cast defaultType, "@@:") do panic("Failed to register objC method.")
     }
     if vt.documentClassNames != nil {
-        documentClassNames :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^NS.Array {
+        documentClassNames :: proc "c" (self: ^NS.DocumentController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -545,7 +545,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentClassNames"), auto_cast documentClassNames, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.openDocumentWithContentsOfURL_display_error != nil {
-        openDocumentWithContentsOfURL_display_error :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, displayDocument: bool, outError: ^^NS.Error) -> id {
+        openDocumentWithContentsOfURL_display_error :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL, displayDocument: bool, outError: ^^NS.Error) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -555,7 +555,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openDocumentWithContentsOfURL:display:error:"), auto_cast openDocumentWithContentsOfURL_display_error, "@@:@B^void") do panic("Failed to register objC method.")
     }
     if vt.reopenDocumentForURL_withContentsOfURL_error != nil {
-        reopenDocumentForURL_withContentsOfURL_error :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, contentsURL: ^NS.URL, outError: ^^NS.Error) -> bool {
+        reopenDocumentForURL_withContentsOfURL_error :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL, contentsURL: ^NS.URL, outError: ^^NS.Error) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -565,7 +565,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reopenDocumentForURL:withContentsOfURL:error:"), auto_cast reopenDocumentForURL_withContentsOfURL_error, "B@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.fileExtensionsFromType != nil {
-        fileExtensionsFromType :: proc "c" (self: ^AK.DocumentController, _: SEL, typeName: ^NS.String) -> ^NS.Array {
+        fileExtensionsFromType :: proc "c" (self: ^NS.DocumentController, _: SEL, typeName: ^NS.String) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -575,7 +575,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fileExtensionsFromType:"), auto_cast fileExtensionsFromType, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.typeFromFileExtension != nil {
-        typeFromFileExtension :: proc "c" (self: ^AK.DocumentController, _: SEL, fileNameExtensionOrHFSFileType: ^NS.String) -> ^NS.String {
+        typeFromFileExtension :: proc "c" (self: ^NS.DocumentController, _: SEL, fileNameExtensionOrHFSFileType: ^NS.String) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -585,7 +585,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("typeFromFileExtension:"), auto_cast typeFromFileExtension, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.documentForFileName != nil {
-        documentForFileName :: proc "c" (self: ^AK.DocumentController, _: SEL, fileName: ^NS.String) -> id {
+        documentForFileName :: proc "c" (self: ^NS.DocumentController, _: SEL, fileName: ^NS.String) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -595,7 +595,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentForFileName:"), auto_cast documentForFileName, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.fileNamesFromRunningOpenPanel != nil {
-        fileNamesFromRunningOpenPanel :: proc "c" (self: ^AK.DocumentController, _: SEL) -> ^NS.Array {
+        fileNamesFromRunningOpenPanel :: proc "c" (self: ^NS.DocumentController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -605,7 +605,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fileNamesFromRunningOpenPanel"), auto_cast fileNamesFromRunningOpenPanel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.makeDocumentWithContentsOfFile != nil {
-        makeDocumentWithContentsOfFile :: proc "c" (self: ^AK.DocumentController, _: SEL, fileName: ^NS.String, type: ^NS.String) -> id {
+        makeDocumentWithContentsOfFile :: proc "c" (self: ^NS.DocumentController, _: SEL, fileName: ^NS.String, type: ^NS.String) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -615,7 +615,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeDocumentWithContentsOfFile:ofType:"), auto_cast makeDocumentWithContentsOfFile, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.makeDocumentWithContentsOfURL_ofType != nil {
-        makeDocumentWithContentsOfURL_ofType :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, type: ^NS.String) -> id {
+        makeDocumentWithContentsOfURL_ofType :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL, type: ^NS.String) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -625,7 +625,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeDocumentWithContentsOfURL:ofType:"), auto_cast makeDocumentWithContentsOfURL_ofType, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.makeUntitledDocumentOfType_ != nil {
-        makeUntitledDocumentOfType_ :: proc "c" (self: ^AK.DocumentController, _: SEL, type: ^NS.String) -> id {
+        makeUntitledDocumentOfType_ :: proc "c" (self: ^NS.DocumentController, _: SEL, type: ^NS.String) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -635,7 +635,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeUntitledDocumentOfType:"), auto_cast makeUntitledDocumentOfType_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.openDocumentWithContentsOfFile != nil {
-        openDocumentWithContentsOfFile :: proc "c" (self: ^AK.DocumentController, _: SEL, fileName: ^NS.String, display: bool) -> id {
+        openDocumentWithContentsOfFile :: proc "c" (self: ^NS.DocumentController, _: SEL, fileName: ^NS.String, display: bool) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -645,7 +645,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openDocumentWithContentsOfFile:display:"), auto_cast openDocumentWithContentsOfFile, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.openDocumentWithContentsOfURL_display != nil {
-        openDocumentWithContentsOfURL_display :: proc "c" (self: ^AK.DocumentController, _: SEL, url: ^NS.URL, display: bool) -> id {
+        openDocumentWithContentsOfURL_display :: proc "c" (self: ^NS.DocumentController, _: SEL, url: ^NS.URL, display: bool) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -655,7 +655,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openDocumentWithContentsOfURL:display:"), auto_cast openDocumentWithContentsOfURL_display, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.openUntitledDocumentOfType != nil {
-        openUntitledDocumentOfType :: proc "c" (self: ^AK.DocumentController, _: SEL, type: ^NS.String, display: bool) -> id {
+        openUntitledDocumentOfType :: proc "c" (self: ^NS.DocumentController, _: SEL, type: ^NS.String, display: bool) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -665,7 +665,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openUntitledDocumentOfType:display:"), auto_cast openUntitledDocumentOfType, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.setShouldCreateUI != nil {
-        setShouldCreateUI :: proc "c" (self: ^AK.DocumentController, _: SEL, flag: bool) {
+        setShouldCreateUI :: proc "c" (self: ^NS.DocumentController, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -675,7 +675,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShouldCreateUI:"), auto_cast setShouldCreateUI, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.shouldCreateUI != nil {
-        shouldCreateUI :: proc "c" (self: ^AK.DocumentController, _: SEL) -> bool {
+        shouldCreateUI :: proc "c" (self: ^NS.DocumentController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -170,7 +170,7 @@ foreign lib {
     TableView_makeViewWithIdentifier :: proc(self: ^TableView, identifier: ^NS.String, owner: id) -> ^View ---
 
     @(objc_type=TableView, objc_selector="enumerateAvailableRowViewsUsingBlock:", objc_name="enumerateAvailableRowViewsUsingBlock")
-    TableView_enumerateAvailableRowViewsUsingBlock :: proc(self: ^TableView, handler: ^Objc_Block(proc "c" (rowView: ^TableRowView, row: NS.Integer))) ---
+    TableView_enumerateAvailableRowViewsUsingBlock :: proc(self: ^TableView, handler: ^Objc_Block(proc "c" ( rowView: ^TableRowView, row: NS.Integer ))) ---
 
     @(objc_type=TableView, objc_selector="beginUpdates", objc_name="beginUpdates")
     TableView_beginUpdates :: proc(self: ^TableView) ---

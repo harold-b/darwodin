@@ -66,7 +66,7 @@ foreign lib {
     Image_initWithDataIgnoringOrientation :: proc(self: ^Image, data: ^NS.Data) -> instancetype ---
 
     @(objc_type=Image, objc_selector="imageWithSize:flipped:drawingHandler:", objc_name="imageWithSize", objc_is_class_method=true)
-    Image_imageWithSize :: proc(size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: ^Objc_Block(proc "c" (dstRect: NS.Rect) -> bool)) -> instancetype ---
+    Image_imageWithSize :: proc(size: NS.Size, drawingHandlerShouldBeCalledWithFlippedContext: bool, drawingHandler: ^Objc_Block(proc "c" ( dstRect: NS.Rect ) -> bool)) -> instancetype ---
 
     @(objc_type=Image, objc_selector="setName:", objc_name="setName")
     Image_setName :: proc(self: ^Image, string: ^NS.String) -> bool ---

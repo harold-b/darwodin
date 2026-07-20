@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKQuerySubscription
-///
 @(objc_class="CKQuerySubscription", objc_superclass=Subscription)
 QuerySubscription :: struct { using _: Subscription, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=QuerySubscription, objc_selector="initWithRecordType:predicate:options:", objc_name="initWithRecordType_predicate_options")
     QuerySubscription_initWithRecordType_predicate_options :: proc(self: ^QuerySubscription, recordType: ^NS.String, predicate: ^NS.Predicate, querySubscriptionOptions: QuerySubscriptionOptions) -> instancetype ---
@@ -44,6 +38,8 @@ foreign lib {
     @(objc_type=QuerySubscription, objc_selector="querySubscriptionOptions", objc_name="querySubscriptionOptions")
     QuerySubscription_querySubscriptionOptions :: proc(self: ^QuerySubscription) -> QuerySubscriptionOptions ---
 }
+
+
 
 @(objc_type=QuerySubscription, objc_name="initWithRecordType")
 QuerySubscription_initWithRecordType :: proc {

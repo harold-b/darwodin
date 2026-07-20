@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKLeaderboardScore
-///
 @(objc_class="GKLeaderboardScore", objc_superclass=NS.Object)
 LeaderboardScore :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LeaderboardScore, objc_selector="player", objc_name="player")
     LeaderboardScore_player :: proc(self: ^LeaderboardScore) -> ^Player ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=LeaderboardScore, objc_selector="setLeaderboardID:", objc_name="setLeaderboardID")
     LeaderboardScore_setLeaderboardID :: proc(self: ^LeaderboardScore, leaderboardID: ^NS.String) ---
 }
+
+
+

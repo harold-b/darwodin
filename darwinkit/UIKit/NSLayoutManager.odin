@@ -201,10 +201,10 @@ foreign lib {
     NSLayoutManager_getLineFragmentInsertionPointsForCharacterAtIndex :: proc(self: ^NSLayoutManager, charIndex: NS.UInteger, aFlag: bool, dFlag: bool, positions: ^CG.Float, charIndexes: ^NS.UInteger) -> NS.UInteger ---
 
     @(objc_type=NSLayoutManager, objc_selector="enumerateLineFragmentsForGlyphRange:usingBlock:", objc_name="enumerateLineFragmentsForGlyphRange")
-    NSLayoutManager_enumerateLineFragmentsForGlyphRange :: proc(self: ^NSLayoutManager, glyphRange: NS._NSRange, block: ^Objc_Block(proc "c" (rect: CG.Rect, usedRect: CG.Rect, textContainer: ^NSTextContainer, glyphRange: NS._NSRange, stop: ^bool))) ---
+    NSLayoutManager_enumerateLineFragmentsForGlyphRange :: proc(self: ^NSLayoutManager, glyphRange: NS._NSRange, block: ^Objc_Block(proc "c" ( rect: CG.Rect, usedRect: CG.Rect, textContainer: ^NSTextContainer, glyphRange: NS._NSRange, stop: ^bool ))) ---
 
     @(objc_type=NSLayoutManager, objc_selector="enumerateEnclosingRectsForGlyphRange:withinSelectedGlyphRange:inTextContainer:usingBlock:", objc_name="enumerateEnclosingRectsForGlyphRange")
-    NSLayoutManager_enumerateEnclosingRectsForGlyphRange :: proc(self: ^NSLayoutManager, glyphRange: NS._NSRange, selectedRange: NS._NSRange, textContainer: ^NSTextContainer, block: ^Objc_Block(proc "c" (rect: CG.Rect, stop: ^bool))) ---
+    NSLayoutManager_enumerateEnclosingRectsForGlyphRange :: proc(self: ^NSLayoutManager, glyphRange: NS._NSRange, selectedRange: NS._NSRange, textContainer: ^NSTextContainer, block: ^Objc_Block(proc "c" ( rect: CG.Rect, stop: ^bool ))) ---
 
     @(objc_type=NSLayoutManager, objc_selector="drawBackgroundForGlyphRange:atPoint:", objc_name="drawBackgroundForGlyphRange")
     NSLayoutManager_drawBackgroundForGlyphRange :: proc(self: ^NSLayoutManager, glyphsToShow: NS._NSRange, origin: CG.Point) ---

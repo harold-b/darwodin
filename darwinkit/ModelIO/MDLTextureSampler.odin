@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLTextureSampler
-///
 @(objc_class="MDLTextureSampler", objc_superclass=NS.Object)
 TextureSampler :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextureSampler, objc_selector="texture", objc_name="texture")
     TextureSampler_texture :: proc(self: ^TextureSampler) -> ^Texture ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=TextureSampler, objc_selector="setTransform:", objc_name="setTransform")
     TextureSampler_setTransform :: proc(self: ^TextureSampler, transform: ^Transform) ---
 }
+
+
+

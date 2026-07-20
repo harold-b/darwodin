@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLResourceViewPool
-///
 @(objc_class="MTLResourceViewPool")
 ResourceViewPool :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ResourceViewPool, objc_selector="copyResourceViewsFromPool:sourceRange:destinationIndex:", objc_name="copyResourceViewsFromPool")
     ResourceViewPool_copyResourceViewsFromPool :: proc(self: ^ResourceViewPool, sourcePool: ^ResourceViewPool, sourceRange: NS._NSRange, destinationIndex: NS.UInteger) -> ResourceID ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=ResourceViewPool, objc_selector="label", objc_name="label")
     ResourceViewPool_label :: proc(self: ^ResourceViewPool) -> ^NS.String ---
 }
+
+
+

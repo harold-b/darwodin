@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLMatrix4x4Array
-///
 @(objc_class="MDLMatrix4x4Array", objc_superclass=NS.Object)
 Matrix4x4Array :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Matrix4x4Array, objc_selector="clear", objc_name="clear")
     Matrix4x4Array_clear :: proc(self: ^Matrix4x4Array) ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=Matrix4x4Array, objc_selector="precision", objc_name="precision")
     Matrix4x4Array_precision :: proc(self: ^Matrix4x4Array) -> DataPrecision ---
 }
+
+
+

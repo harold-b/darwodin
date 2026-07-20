@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLTensorReferenceType
-///
 @(objc_class="MTLTensorReferenceType", objc_superclass=Type)
 TensorReferenceType :: struct { using _: Type, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TensorReferenceType, objc_selector="tensorDataType", objc_name="tensorDataType")
     TensorReferenceType_tensorDataType :: proc(self: ^TensorReferenceType) -> TensorDataType ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=TensorReferenceType, objc_selector="access", objc_name="access")
     TensorReferenceType_access :: proc(self: ^TensorReferenceType) -> BindingAccess ---
 }
+
+
+

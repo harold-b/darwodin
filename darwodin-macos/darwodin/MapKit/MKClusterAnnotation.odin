@@ -1,0 +1,43 @@
+package darwodin_MapKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../AppKit"
+import CL "../CoreLocation"
+
+
+
+///
+/// MKClusterAnnotation
+///
+@(objc_class="MKClusterAnnotation", objc_superclass=NS.Object)
+ClusterAnnotation :: struct { using _: NS.Object, 
+    using _: Annotation,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ClusterAnnotation, objc_selector="init", objc_name="init")
+    ClusterAnnotation_init :: proc(self: ^ClusterAnnotation) -> instancetype ---
+
+    @(objc_type=ClusterAnnotation, objc_selector="initWithMemberAnnotations:", objc_name="initWithMemberAnnotations")
+    ClusterAnnotation_initWithMemberAnnotations :: proc(self: ^ClusterAnnotation, memberAnnotations: ^NS.Array) -> instancetype ---
+
+    @(objc_type=ClusterAnnotation, objc_selector="title", objc_name="title")
+    ClusterAnnotation_title :: proc(self: ^ClusterAnnotation) -> ^NS.String ---
+
+    @(objc_type=ClusterAnnotation, objc_selector="setTitle:", objc_name="setTitle")
+    ClusterAnnotation_setTitle :: proc(self: ^ClusterAnnotation, title: ^NS.String) ---
+
+    @(objc_type=ClusterAnnotation, objc_selector="subtitle", objc_name="subtitle")
+    ClusterAnnotation_subtitle :: proc(self: ^ClusterAnnotation) -> ^NS.String ---
+
+    @(objc_type=ClusterAnnotation, objc_selector="setSubtitle:", objc_name="setSubtitle")
+    ClusterAnnotation_setSubtitle :: proc(self: ^ClusterAnnotation, subtitle: ^NS.String) ---
+
+    @(objc_type=ClusterAnnotation, objc_selector="memberAnnotations", objc_name="memberAnnotations")
+    ClusterAnnotation_memberAnnotations :: proc(self: ^ClusterAnnotation) -> ^NS.Array ---
+}

@@ -69,7 +69,7 @@ foreign lib {
     Color_colorNamed_ :: proc(name: ^NS.String) -> ^Color ---
 
     @(objc_type=Color, objc_selector="colorWithName:dynamicProvider:", objc_name="colorWithName", objc_is_class_method=true)
-    Color_colorWithName :: proc(colorName: ^NS.String, dynamicProvider: ^Objc_Block(proc "c" (_: ^Appearance) -> ^Color)) -> ^Color ---
+    Color_colorWithName :: proc(colorName: ^NS.String, dynamicProvider: ^Objc_Block(proc "c" ( _0: ^Appearance ) -> ^Color)) -> ^Color ---
 
     @(objc_type=Color, objc_selector="colorWithDeviceWhite:alpha:", objc_name="colorWithDeviceWhite", objc_is_class_method=true)
     Color_colorWithDeviceWhite :: proc(white: CG.Float, alpha: CG.Float) -> ^Color ---

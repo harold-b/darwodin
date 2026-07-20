@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    sound: proc(self: ^AK.SoundDelegate, sound: ^AK.Sound, flag: bool),
+    sound: proc(self: ^NS.SoundDelegate, sound: ^NS.Sound, flag: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.sound != nil {
-        sound :: proc "c" (self: ^AK.SoundDelegate, _: SEL, sound: ^AK.Sound, flag: bool) {
+        sound :: proc "c" (self: ^NS.SoundDelegate, _: SEL, sound: ^NS.Sound, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

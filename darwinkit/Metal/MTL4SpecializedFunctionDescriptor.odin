@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4SpecializedFunctionDescriptor
-///
 @(objc_class="MTL4SpecializedFunctionDescriptor", objc_superclass=MTL4FunctionDescriptor)
 MTL4SpecializedFunctionDescriptor :: struct { using _: MTL4FunctionDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4SpecializedFunctionDescriptor, objc_selector="functionDescriptor", objc_name="functionDescriptor")
     MTL4SpecializedFunctionDescriptor_functionDescriptor :: proc(self: ^MTL4SpecializedFunctionDescriptor) -> ^MTL4FunctionDescriptor ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=MTL4SpecializedFunctionDescriptor, objc_selector="setConstantValues:", objc_name="setConstantValues")
     MTL4SpecializedFunctionDescriptor_setConstantValues :: proc(self: ^MTL4SpecializedFunctionDescriptor, constantValues: ^FunctionConstantValues) ---
 }
+
+
+

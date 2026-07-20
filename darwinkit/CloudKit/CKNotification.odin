@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKNotification
-///
 @(objc_class="CKNotification", objc_superclass=NS.Object)
 Notification :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Notification, objc_selector="init", objc_name="init")
     Notification_init :: proc(self: ^Notification) -> instancetype ---
@@ -86,3 +80,6 @@ foreign lib {
     @(objc_type=Notification, objc_selector="category", objc_name="category")
     Notification_category :: proc(self: ^Notification) -> ^NS.String ---
 }
+
+
+

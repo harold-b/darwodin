@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLResourceViewPoolDescriptor
-///
 @(objc_class="MTLResourceViewPoolDescriptor", objc_superclass=NS.Object)
 ResourceViewPoolDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ResourceViewPoolDescriptor, objc_selector="resourceViewCount", objc_name="resourceViewCount")
     ResourceViewPoolDescriptor_resourceViewCount :: proc(self: ^ResourceViewPoolDescriptor) -> NS.UInteger ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=ResourceViewPoolDescriptor, objc_selector="setLabel:", objc_name="setLabel")
     ResourceViewPoolDescriptor_setLabel :: proc(self: ^ResourceViewPoolDescriptor, label: ^NS.String) ---
 }
+
+
+

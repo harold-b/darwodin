@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSpeechSynthesisProviderVoice
-///
 @(objc_class="AVSpeechSynthesisProviderVoice", objc_superclass=NS.Object)
 SpeechSynthesisProviderVoice :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesisProviderVoice, objc_selector="initWithName:identifier:primaryLanguages:supportedLanguages:", objc_name="initWithName")
     SpeechSynthesisProviderVoice_initWithName :: proc(self: ^SpeechSynthesisProviderVoice, name: ^NS.String, identifier: ^NS.String, primaryLanguages: ^NS.Array, supportedLanguages: ^NS.Array) -> instancetype ---
@@ -73,3 +67,6 @@ foreign lib {
     @(objc_type=SpeechSynthesisProviderVoice, objc_selector="setAge:", objc_name="setAge")
     SpeechSynthesisProviderVoice_setAge :: proc(self: ^SpeechSynthesisProviderVoice, age: NS.Integer) ---
 }
+
+
+

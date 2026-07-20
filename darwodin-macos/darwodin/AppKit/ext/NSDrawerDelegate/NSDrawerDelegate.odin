@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    drawerShouldOpen: proc(self: ^AK.DrawerDelegate, sender: ^AK.Drawer) -> bool,
-    drawerShouldClose: proc(self: ^AK.DrawerDelegate, sender: ^AK.Drawer) -> bool,
-    drawerWillResizeContents: proc(self: ^AK.DrawerDelegate, sender: ^AK.Drawer, contentSize: NS.Size) -> NS.Size,
-    drawerWillOpen: proc(self: ^AK.DrawerDelegate, notification: ^NS.Notification),
-    drawerDidOpen: proc(self: ^AK.DrawerDelegate, notification: ^NS.Notification),
-    drawerWillClose: proc(self: ^AK.DrawerDelegate, notification: ^NS.Notification),
-    drawerDidClose: proc(self: ^AK.DrawerDelegate, notification: ^NS.Notification),
+    drawerShouldOpen: proc(self: ^NS.DrawerDelegate, sender: ^NS.Drawer) -> bool,
+    drawerShouldClose: proc(self: ^NS.DrawerDelegate, sender: ^NS.Drawer) -> bool,
+    drawerWillResizeContents: proc(self: ^NS.DrawerDelegate, sender: ^NS.Drawer, contentSize: NS.Size) -> NS.Size,
+    drawerWillOpen: proc(self: ^NS.DrawerDelegate, notification: ^NS.Notification),
+    drawerDidOpen: proc(self: ^NS.DrawerDelegate, notification: ^NS.Notification),
+    drawerWillClose: proc(self: ^NS.DrawerDelegate, notification: ^NS.Notification),
+    drawerDidClose: proc(self: ^NS.DrawerDelegate, notification: ^NS.Notification),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.drawerShouldOpen != nil {
-        drawerShouldOpen :: proc "c" (self: ^AK.DrawerDelegate, _: SEL, sender: ^AK.Drawer) -> bool {
+        drawerShouldOpen :: proc "c" (self: ^NS.DrawerDelegate, _: SEL, sender: ^NS.Drawer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawerShouldOpen:"), auto_cast drawerShouldOpen, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.drawerShouldClose != nil {
-        drawerShouldClose :: proc "c" (self: ^AK.DrawerDelegate, _: SEL, sender: ^AK.Drawer) -> bool {
+        drawerShouldClose :: proc "c" (self: ^NS.DrawerDelegate, _: SEL, sender: ^NS.Drawer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawerShouldClose:"), auto_cast drawerShouldClose, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.drawerWillResizeContents != nil {
-        drawerWillResizeContents :: proc "c" (self: ^AK.DrawerDelegate, _: SEL, sender: ^AK.Drawer, contentSize: NS.Size) -> NS.Size {
+        drawerWillResizeContents :: proc "c" (self: ^NS.DrawerDelegate, _: SEL, sender: ^NS.Drawer, contentSize: NS.Size) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawerWillResizeContents:toSize:"), auto_cast drawerWillResizeContents, "{CGSize=dd}@:@{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.drawerWillOpen != nil {
-        drawerWillOpen :: proc "c" (self: ^AK.DrawerDelegate, _: SEL, notification: ^NS.Notification) {
+        drawerWillOpen :: proc "c" (self: ^NS.DrawerDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawerWillOpen:"), auto_cast drawerWillOpen, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.drawerDidOpen != nil {
-        drawerDidOpen :: proc "c" (self: ^AK.DrawerDelegate, _: SEL, notification: ^NS.Notification) {
+        drawerDidOpen :: proc "c" (self: ^NS.DrawerDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawerDidOpen:"), auto_cast drawerDidOpen, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.drawerWillClose != nil {
-        drawerWillClose :: proc "c" (self: ^AK.DrawerDelegate, _: SEL, notification: ^NS.Notification) {
+        drawerWillClose :: proc "c" (self: ^NS.DrawerDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawerWillClose:"), auto_cast drawerWillClose, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.drawerDidClose != nil {
-        drawerDidClose :: proc "c" (self: ^AK.DrawerDelegate, _: SEL, notification: ^NS.Notification) {
+        drawerDidClose :: proc "c" (self: ^NS.DrawerDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

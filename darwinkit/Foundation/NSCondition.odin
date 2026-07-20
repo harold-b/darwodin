@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSCondition
-///
 @(objc_class="NSCondition", objc_superclass=Object)
 Condition :: struct { using _: Object, 
     using _: Locking,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Condition, objc_selector="wait", objc_name="wait")
     Condition_wait :: proc(self: ^Condition) ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=Condition, objc_selector="setName:", objc_name="setName")
     Condition_setName :: proc(self: ^Condition, name: ^String) ---
 }
+
+
+

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLStitchedLibraryDescriptor
-///
 @(objc_class="MTLStitchedLibraryDescriptor", objc_superclass=NS.Object)
 StitchedLibraryDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=StitchedLibraryDescriptor, objc_selector="functionGraphs", objc_name="functionGraphs")
     StitchedLibraryDescriptor_functionGraphs :: proc(self: ^StitchedLibraryDescriptor) -> ^NS.Array ---
@@ -47,3 +41,6 @@ foreign lib {
     @(objc_type=StitchedLibraryDescriptor, objc_selector="setOptions:", objc_name="setOptions")
     StitchedLibraryDescriptor_setOptions :: proc(self: ^StitchedLibraryDescriptor, options: StitchedLibraryOptions) ---
 }
+
+
+

@@ -75,16 +75,16 @@ foreign lib {
     Set_setByAddingObjectsFromArray :: proc(self: ^Set, other: ^Array) -> ^Set ---
 
     @(objc_type=Set, objc_selector="enumerateObjectsUsingBlock:", objc_name="enumerateObjectsUsingBlock")
-    Set_enumerateObjectsUsingBlock :: proc(self: ^Set, block: ^Objc_Block(proc "c" (obj: id, stop: ^bool))) ---
+    Set_enumerateObjectsUsingBlock :: proc(self: ^Set, block: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ))) ---
 
     @(objc_type=Set, objc_selector="enumerateObjectsWithOptions:usingBlock:", objc_name="enumerateObjectsWithOptions")
-    Set_enumerateObjectsWithOptions :: proc(self: ^Set, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, stop: ^bool))) ---
+    Set_enumerateObjectsWithOptions :: proc(self: ^Set, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ))) ---
 
     @(objc_type=Set, objc_selector="objectsPassingTest:", objc_name="objectsPassingTest")
-    Set_objectsPassingTest :: proc(self: ^Set, predicate: ^Objc_Block(proc "c" (obj: id, stop: ^bool) -> bool)) -> ^Set ---
+    Set_objectsPassingTest :: proc(self: ^Set, predicate: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ) -> bool)) -> ^Set ---
 
     @(objc_type=Set, objc_selector="objectsWithOptions:passingTest:", objc_name="objectsWithOptions")
-    Set_objectsWithOptions :: proc(self: ^Set, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, stop: ^bool) -> bool)) -> ^Set ---
+    Set_objectsWithOptions :: proc(self: ^Set, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ) -> bool)) -> ^Set ---
 
     @(objc_type=Set, objc_selector="allObjects", objc_name="allObjects")
     Set_allObjects :: proc(self: ^Set) -> ^Array ---

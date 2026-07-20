@@ -24,7 +24,7 @@ CollectionViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=CollectionViewDropPlaceholderContext, objc_selector="commitInsertionWithDataSourceUpdates:", objc_name="commitInsertionWithDataSourceUpdates")
-    CollectionViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: proc(self: ^CollectionViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool ---
+    CollectionViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: proc(self: ^CollectionViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" ( insertionIndexPath: ^NS.IndexPath ))) -> bool ---
 
     @(objc_type=CollectionViewDropPlaceholderContext, objc_selector="deletePlaceholder", objc_name="deletePlaceholder")
     CollectionViewDropPlaceholderContext_deletePlaceholder :: proc(self: ^CollectionViewDropPlaceholderContext) -> bool ---

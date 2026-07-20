@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKAccessPoint
-///
 @(objc_class="GKAccessPoint", objc_superclass=NS.Object)
 AccessPoint :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccessPoint, objc_selector="triggerAccessPointWithHandler:", objc_name="triggerAccessPointWithHandler")
     AccessPoint_triggerAccessPointWithHandler :: proc(self: ^AccessPoint, handler: ^Objc_Block(proc "c" ())) ---
@@ -89,18 +83,26 @@ foreign lib {
     @(objc_type=AccessPoint, objc_selector="setLocation:", objc_name="setLocation")
     AccessPoint_setLocation :: proc(self: ^AccessPoint, location: AccessPointLocation) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=AccessPoint, objc_selector="frameInScreenCoordinates", objc_name="frameInScreenCoordinates")
         AccessPoint_frameInScreenCoordinates :: proc(self: ^AccessPoint) -> NS.Rect ---
-    } // End when
-    when ODIN_PLATFORM_SUBTARGET_IOS {
+
+        @(objc_type=AccessPoint, objc_selector="parentWindow", objc_name="parentWindow")
+        AccessPoint_parentWindow :: proc(self: ^AccessPoint) -> ^AK.Window ---
+
+        @(objc_type=AccessPoint, objc_selector="setParentWindow:", objc_name="setParentWindow")
+        AccessPoint_setParentWindow :: proc(self: ^AccessPoint, parentWindow: ^AK.Window) ---
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=AccessPoint, objc_selector="frameInScreenCoordinates", objc_name="frameInScreenCoordinates")
         AccessPoint_frameInScreenCoordinates :: proc(self: ^AccessPoint) -> CGRect ---
-    } // End else
 
-    @(objc_type=AccessPoint, objc_selector="parentWindow", objc_name="parentWindow")
-    AccessPoint_parentWindow :: proc(self: ^AccessPoint) -> ^AKWindow ---
+        @(objc_type=AccessPoint, objc_selector="parentWindow", objc_name="parentWindow")
+        AccessPoint_parentWindow :: proc(self: ^AccessPoint) -> ^UI.Window ---
 
-    @(objc_type=AccessPoint, objc_selector="setParentWindow:", objc_name="setParentWindow")
-    AccessPoint_setParentWindow :: proc(self: ^AccessPoint, parentWindow: ^AKWindow) ---
+        @(objc_type=AccessPoint, objc_selector="setParentWindow:", objc_name="setParentWindow")
+        AccessPoint_setParentWindow :: proc(self: ^AccessPoint, parentWindow: ^UI.Window) ---
+    }
 }
+
+
+

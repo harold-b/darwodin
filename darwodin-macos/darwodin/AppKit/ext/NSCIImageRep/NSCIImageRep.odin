@@ -20,15 +20,15 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
-    imageRepWithCIImage: proc(image: ^AK.CIImage) -> instancetype,
-    initWithCIImage: proc(self: ^AK.CIImageRep, image: ^AK.CIImage) -> instancetype,
-    _CIImage: proc(self: ^AK.CIImageRep) -> ^AK.CIImage,
+    imageRepWithCIImage: proc(image: ^NS.CIImage) -> instancetype,
+    initWithCIImage: proc(self: ^NS.CIImageRep, image: ^NS.CIImage) -> instancetype,
+    _CIImage: proc(self: ^NS.CIImageRep) -> ^NS.CIImage,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSImageRep.extend(cls, &vt.super)
 
     if vt.imageRepWithCIImage != nil {
-        imageRepWithCIImage :: proc "c" (self: Class, _: SEL, image: ^AK.CIImage) -> instancetype {
+        imageRepWithCIImage :: proc "c" (self: Class, _: SEL, image: ^NS.CIImage) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithCIImage:"), auto_cast imageRepWithCIImage, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCIImage != nil {
-        initWithCIImage :: proc "c" (self: ^AK.CIImageRep, _: SEL, image: ^AK.CIImage) -> instancetype {
+        initWithCIImage :: proc "c" (self: ^NS.CIImageRep, _: SEL, image: ^NS.CIImage) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCIImage:"), auto_cast initWithCIImage, "@@:@") do panic("Failed to register objC method.")
     }
     if vt._CIImage != nil {
-        _CIImage :: proc "c" (self: ^AK.CIImageRep, _: SEL) -> ^AK.CIImage {
+        _CIImage :: proc "c" (self: ^NS.CIImageRep, _: SEL) -> ^NS.CIImage {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

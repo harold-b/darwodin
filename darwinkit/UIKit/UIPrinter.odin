@@ -25,7 +25,7 @@ foreign lib {
     Printer_printerWithURL :: proc(url: ^NS.URL) -> ^Printer ---
 
     @(objc_type=Printer, objc_selector="contactPrinter:", objc_name="contactPrinter")
-    Printer_contactPrinter :: proc(self: ^Printer, completionHandler: ^Objc_Block(proc "c" (available: bool))) ---
+    Printer_contactPrinter :: proc(self: ^Printer, completionHandler: ^Objc_Block(proc "c" ( available: bool ))) ---
 
     @(objc_type=Printer, objc_selector="URL", objc_name="URL")
     Printer_URL :: proc(self: ^Printer) -> ^NS.URL ---

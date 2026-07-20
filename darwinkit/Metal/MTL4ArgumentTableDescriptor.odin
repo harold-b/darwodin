@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4ArgumentTableDescriptor
-///
 @(objc_class="MTL4ArgumentTableDescriptor", objc_superclass=NS.Object)
 MTL4ArgumentTableDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4ArgumentTableDescriptor, objc_selector="maxBufferBindCount", objc_name="maxBufferBindCount")
     MTL4ArgumentTableDescriptor_maxBufferBindCount :: proc(self: ^MTL4ArgumentTableDescriptor) -> NS.UInteger ---
@@ -59,3 +53,6 @@ foreign lib {
     @(objc_type=MTL4ArgumentTableDescriptor, objc_selector="setLabel:", objc_name="setLabel")
     MTL4ArgumentTableDescriptor_setLabel :: proc(self: ^MTL4ArgumentTableDescriptor, label: ^NS.String) ---
 }
+
+
+

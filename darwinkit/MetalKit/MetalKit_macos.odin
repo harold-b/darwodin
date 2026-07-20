@@ -2,7 +2,6 @@
 #+private package
 package darwodin_MetalKit
 
-import AK "../AppKit"
+import _AK "../AppKit"
+AK ::_AK
 
-AKView :: AK.View
-AKDisplayGamut :: AK.DisplayGamut

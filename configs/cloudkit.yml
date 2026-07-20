@@ -44,8 +44,10 @@ Odin:
       DarwinLinkLibs: [system:CloudKit.framework]
       Filter: .*
 
-      # Imports:
-      #   - 
+      Imports:
+        - |
+          CLLocation :: struct {}
+          CNContact  :: struct {}
 
       # TypeMap:
 

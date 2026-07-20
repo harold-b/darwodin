@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLTensor
-///
 @(objc_class="MTLTensor")
 Tensor :: struct { using _: intrinsics.objc_object, 
     using _: Resource,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Tensor, objc_selector="replaceSliceOrigin:sliceDimensions:withBytes:strides:", objc_name="replaceSliceOrigin")
     Tensor_replaceSliceOrigin :: proc(self: ^Tensor, sliceOrigin: ^TensorExtents, sliceDimensions: ^TensorExtents, bytes: rawptr, strides: ^TensorExtents) ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=Tensor, objc_selector="usage", objc_name="usage")
     Tensor_usage :: proc(self: ^Tensor) -> TensorUsage ---
 }
+
+
+

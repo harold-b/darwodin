@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVVideoCompositionValidationHandling
-///
 @(objc_class="AVVideoCompositionValidationHandling")
 VideoCompositionValidationHandling :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoCompositionValidationHandling, objc_selector="videoComposition:shouldContinueValidatingAfterFindingInvalidValueForKey:", objc_name="videoComposition_shouldContinueValidatingAfterFindingInvalidValueForKey")
     VideoCompositionValidationHandling_videoComposition_shouldContinueValidatingAfterFindingInvalidValueForKey :: proc(self: ^VideoCompositionValidationHandling, videoComposition: ^VideoComposition, key: ^NS.String) -> bool ---
@@ -36,6 +30,8 @@ foreign lib {
     @(objc_type=VideoCompositionValidationHandling, objc_selector="videoComposition:shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction:layerInstruction:asset:", objc_name="videoComposition_shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction_layerInstruction_asset")
     VideoCompositionValidationHandling_videoComposition_shouldContinueValidatingAfterFindingInvalidTrackIDInInstruction_layerInstruction_asset :: proc(self: ^VideoCompositionValidationHandling, videoComposition: ^VideoComposition, videoCompositionInstruction: ^VideoCompositionInstructionProtocol, layerInstruction: ^VideoCompositionLayerInstruction, asset: ^Asset) -> bool ---
 }
+
+
 
 @(objc_type=VideoCompositionValidationHandling, objc_name="videoComposition")
 VideoCompositionValidationHandling_videoComposition :: proc {

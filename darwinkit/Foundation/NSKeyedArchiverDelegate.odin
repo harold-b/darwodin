@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSKeyedArchiverDelegate
-///
 @(objc_class="NSKeyedArchiverDelegate")
 KeyedArchiverDelegate :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=KeyedArchiverDelegate, objc_selector="archiver:willEncodeObject:", objc_name="archiver_willEncodeObject")
     KeyedArchiverDelegate_archiver_willEncodeObject :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver, object: id) -> id ---
@@ -36,4 +30,6 @@ foreign lib {
     @(objc_type=KeyedArchiverDelegate, objc_selector="archiverDidFinish:", objc_name="archiverDidFinish")
     KeyedArchiverDelegate_archiverDidFinish :: proc(self: ^KeyedArchiverDelegate, archiver: ^KeyedArchiver) ---
 }
+
+
 

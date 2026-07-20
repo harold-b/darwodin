@@ -10,18 +10,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLTransformStack
-///
 @(objc_class="MDLTransformStack", objc_superclass=NS.Object)
 TransformStack :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: TransformComponent,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TransformStack, objc_selector="init", objc_name="init")
     TransformStack_init :: proc(self: ^TransformStack) -> id ---
@@ -68,3 +62,6 @@ foreign lib {
     @(objc_type=TransformStack, objc_selector="transformOps", objc_name="transformOps")
     TransformStack_transformOps :: proc(self: ^TransformStack) -> ^NS.Array ---
 }
+
+
+

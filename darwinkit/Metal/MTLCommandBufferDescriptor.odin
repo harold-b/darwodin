@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCommandBufferDescriptor
-///
 @(objc_class="MTLCommandBufferDescriptor", objc_superclass=NS.Object)
 CommandBufferDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CommandBufferDescriptor, objc_selector="retainedReferences", objc_name="retainedReferences")
     CommandBufferDescriptor_retainedReferences :: proc(self: ^CommandBufferDescriptor) -> bool ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=CommandBufferDescriptor, objc_selector="setLogState:", objc_name="setLogState")
     CommandBufferDescriptor_setLogState :: proc(self: ^CommandBufferDescriptor, logState: ^LogState) ---
 }
+
+
+

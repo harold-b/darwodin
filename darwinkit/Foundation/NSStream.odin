@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSStream
-///
 @(objc_class="NSStream", objc_superclass=Object)
 Stream :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Stream, objc_selector="open", objc_name="open")
     Stream_open :: proc(self: ^Stream) ---
@@ -52,7 +46,7 @@ foreign lib {
     @(objc_type=Stream, objc_selector="getStreamsToHostWithName:port:inputStream:outputStream:", objc_name="getStreamsToHostWithName", objc_is_class_method=true)
     Stream_getStreamsToHostWithName :: proc(hostname: ^String, port: Integer, inputStream: ^^InputStream, outputStream: ^^OutputStream) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Stream, objc_selector="getStreamsToHost:port:inputStream:outputStream:", objc_name="getStreamsToHost", objc_is_class_method=true)
         Stream_getStreamsToHost :: proc(host: ^Host, port: Integer, inputStream: ^^InputStream, outputStream: ^^OutputStream) ---
     }
@@ -60,3 +54,6 @@ foreign lib {
     @(objc_type=Stream, objc_selector="getBoundStreamsWithBufferSize:inputStream:outputStream:", objc_name="getBoundStreamsWithBufferSize", objc_is_class_method=true)
     Stream_getBoundStreamsWithBufferSize :: proc(bufferSize: UInteger, inputStream: ^^InputStream, outputStream: ^^OutputStream) ---
 }
+
+
+

@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    textContentStorage: proc(self: ^AK.TextContentStorageDelegate, textContentStorage: ^AK.TextContentStorage, range: NS._NSRange) -> ^AK.TextParagraph,
+    textContentStorage: proc(self: ^NS.TextContentStorageDelegate, textContentStorage: ^NS.TextContentStorage, range: NS._NSRange) -> ^NS.TextParagraph,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.textContentStorage != nil {
-        textContentStorage :: proc "c" (self: ^AK.TextContentStorageDelegate, _: SEL, textContentStorage: ^AK.TextContentStorage, range: NS._NSRange) -> ^AK.TextParagraph {
+        textContentStorage :: proc "c" (self: ^NS.TextContentStorageDelegate, _: SEL, textContentStorage: ^NS.TextContentStorage, range: NS._NSRange) -> ^NS.TextParagraph {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

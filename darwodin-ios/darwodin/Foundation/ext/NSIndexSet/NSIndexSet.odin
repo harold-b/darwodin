@@ -38,18 +38,18 @@ VTable :: struct {
     containsIndexesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange) -> bool,
     containsIndexes: proc(self: ^NS.IndexSet, indexSet: ^NS.IndexSet) -> bool,
     intersectsIndexesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange) -> bool,
-    enumerateIndexesUsingBlock: proc(self: ^NS.IndexSet, block: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool))),
-    enumerateIndexesWithOptions: proc(self: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool))),
-    enumerateIndexesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool))),
-    indexPassingTest: proc(self: ^NS.IndexSet, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger,
-    indexWithOptions: proc(self: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger,
-    indexInRange: proc(self: ^NS.IndexSet, range: NS._NSRange, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger,
-    indexesPassingTest: proc(self: ^NS.IndexSet, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet,
-    indexesWithOptions: proc(self: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet,
-    indexesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet,
-    enumerateRangesUsingBlock: proc(self: ^NS.IndexSet, block: ^Objc_Block(proc "c" (range: NS._NSRange, stop: ^bool))),
-    enumerateRangesWithOptions: proc(self: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (range: NS._NSRange, stop: ^bool))),
-    enumerateRangesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (range: NS._NSRange, stop: ^bool))),
+    enumerateIndexesUsingBlock: proc(self: ^NS.IndexSet, block: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ))),
+    enumerateIndexesWithOptions: proc(self: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ))),
+    enumerateIndexesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ))),
+    indexPassingTest: proc(self: ^NS.IndexSet, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger,
+    indexWithOptions: proc(self: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger,
+    indexInRange: proc(self: ^NS.IndexSet, range: NS._NSRange, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger,
+    indexesPassingTest: proc(self: ^NS.IndexSet, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet,
+    indexesWithOptions: proc(self: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet,
+    indexesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet,
+    enumerateRangesUsingBlock: proc(self: ^NS.IndexSet, block: ^Objc_Block(proc "c" ( range: NS._NSRange, stop: ^bool ))),
+    enumerateRangesWithOptions: proc(self: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( range: NS._NSRange, stop: ^bool ))),
+    enumerateRangesInRange: proc(self: ^NS.IndexSet, range: NS._NSRange, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( range: NS._NSRange, stop: ^bool ))),
     count: proc(self: ^NS.IndexSet) -> NS.UInteger,
     firstIndex: proc(self: ^NS.IndexSet) -> NS.UInteger,
     lastIndex: proc(self: ^NS.IndexSet) -> NS.UInteger,
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("intersectsIndexesInRange:"), auto_cast intersectsIndexesInRange, "B@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.enumerateIndexesUsingBlock != nil {
-        enumerateIndexesUsingBlock :: proc "c" (self: ^NS.IndexSet, _: SEL, block: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool))) {
+        enumerateIndexesUsingBlock :: proc "c" (self: ^NS.IndexSet, _: SEL, block: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateIndexesUsingBlock:"), auto_cast enumerateIndexesUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.enumerateIndexesWithOptions != nil {
-        enumerateIndexesWithOptions :: proc "c" (self: ^NS.IndexSet, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool))) {
+        enumerateIndexesWithOptions :: proc "c" (self: ^NS.IndexSet, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateIndexesWithOptions:usingBlock:"), auto_cast enumerateIndexesWithOptions, "v@:L?") do panic("Failed to register objC method.")
     }
     if vt.enumerateIndexesInRange != nil {
-        enumerateIndexesInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool))) {
+        enumerateIndexesInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -263,7 +263,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateIndexesInRange:options:usingBlock:"), auto_cast enumerateIndexesInRange, "v@:{_NSRange=LL}L?") do panic("Failed to register objC method.")
     }
     if vt.indexPassingTest != nil {
-        indexPassingTest :: proc "c" (self: ^NS.IndexSet, _: SEL, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger {
+        indexPassingTest :: proc "c" (self: ^NS.IndexSet, _: SEL, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -273,7 +273,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexPassingTest:"), auto_cast indexPassingTest, "L@:?") do panic("Failed to register objC method.")
     }
     if vt.indexWithOptions != nil {
-        indexWithOptions :: proc "c" (self: ^NS.IndexSet, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger {
+        indexWithOptions :: proc "c" (self: ^NS.IndexSet, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -283,7 +283,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexWithOptions:passingTest:"), auto_cast indexWithOptions, "L@:L?") do panic("Failed to register objC method.")
     }
     if vt.indexInRange != nil {
-        indexInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger {
+        indexInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -293,7 +293,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexInRange:options:passingTest:"), auto_cast indexInRange, "L@:{_NSRange=LL}L?") do panic("Failed to register objC method.")
     }
     if vt.indexesPassingTest != nil {
-        indexesPassingTest :: proc "c" (self: ^NS.IndexSet, _: SEL, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet {
+        indexesPassingTest :: proc "c" (self: ^NS.IndexSet, _: SEL, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -303,7 +303,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexesPassingTest:"), auto_cast indexesPassingTest, "@@:?") do panic("Failed to register objC method.")
     }
     if vt.indexesWithOptions != nil {
-        indexesWithOptions :: proc "c" (self: ^NS.IndexSet, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet {
+        indexesWithOptions :: proc "c" (self: ^NS.IndexSet, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -313,7 +313,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexesWithOptions:passingTest:"), auto_cast indexesWithOptions, "@@:L?") do panic("Failed to register objC method.")
     }
     if vt.indexesInRange != nil {
-        indexesInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet {
+        indexesInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -323,7 +323,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexesInRange:options:passingTest:"), auto_cast indexesInRange, "@@:{_NSRange=LL}L?") do panic("Failed to register objC method.")
     }
     if vt.enumerateRangesUsingBlock != nil {
-        enumerateRangesUsingBlock :: proc "c" (self: ^NS.IndexSet, _: SEL, block: ^Objc_Block(proc "c" (range: NS._NSRange, stop: ^bool))) {
+        enumerateRangesUsingBlock :: proc "c" (self: ^NS.IndexSet, _: SEL, block: ^Objc_Block(proc "c" ( range: NS._NSRange, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -333,7 +333,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateRangesUsingBlock:"), auto_cast enumerateRangesUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.enumerateRangesWithOptions != nil {
-        enumerateRangesWithOptions :: proc "c" (self: ^NS.IndexSet, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (range: NS._NSRange, stop: ^bool))) {
+        enumerateRangesWithOptions :: proc "c" (self: ^NS.IndexSet, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( range: NS._NSRange, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -343,7 +343,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateRangesWithOptions:usingBlock:"), auto_cast enumerateRangesWithOptions, "v@:L?") do panic("Failed to register objC method.")
     }
     if vt.enumerateRangesInRange != nil {
-        enumerateRangesInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (range: NS._NSRange, stop: ^bool))) {
+        enumerateRangesInRange :: proc "c" (self: ^NS.IndexSet, _: SEL, range: NS._NSRange, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( range: NS._NSRange, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

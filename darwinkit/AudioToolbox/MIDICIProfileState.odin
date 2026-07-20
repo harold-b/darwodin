@@ -10,13 +10,6 @@ import CA "../CoreAudio"
 import CM "../CoreMedia"
 import NS "../Foundation"
 
-
-
-///
-/// MIDICIProfileState
-///
 @(objc_class="MIDICIProfileState")
 MIDICIProfileState :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

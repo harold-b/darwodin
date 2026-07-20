@@ -44,7 +44,7 @@ foreign lib {
     Document_initForURL :: proc(self: ^Document, urlOrNil: ^NS.URL, contentsURL: ^NS.URL, typeName: ^NS.String, outError: ^^NS.Error) -> instancetype ---
 
     @(objc_type=Document, objc_selector="performActivityWithSynchronousWaiting:usingBlock:", objc_name="performActivityWithSynchronousWaiting")
-    Document_performActivityWithSynchronousWaiting :: proc(self: ^Document, waitSynchronously: bool, block: ^Objc_Block(proc "c" (activityCompletionHandler: ^Objc_Block(proc "c" ())))) ---
+    Document_performActivityWithSynchronousWaiting :: proc(self: ^Document, waitSynchronously: bool, block: ^Objc_Block(proc "c" ( activityCompletionHandler: ^Objc_Block(proc "c" ()) ))) ---
 
     @(objc_type=Document, objc_selector="continueActivityUsingBlock:", objc_name="continueActivityUsingBlock")
     Document_continueActivityUsingBlock :: proc(self: ^Document, block: ^Objc_Block(proc "c" ())) ---
@@ -56,7 +56,7 @@ foreign lib {
     Document_performSynchronousFileAccessUsingBlock :: proc(self: ^Document, block: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=Document, objc_selector="performAsynchronousFileAccessUsingBlock:", objc_name="performAsynchronousFileAccessUsingBlock")
-    Document_performAsynchronousFileAccessUsingBlock :: proc(self: ^Document, block: ^Objc_Block(proc "c" (fileAccessCompletionHandler: ^Objc_Block(proc "c" ())))) ---
+    Document_performAsynchronousFileAccessUsingBlock :: proc(self: ^Document, block: ^Objc_Block(proc "c" ( fileAccessCompletionHandler: ^Objc_Block(proc "c" ()) ))) ---
 
     @(objc_type=Document, objc_selector="revertDocumentToSaved:", objc_name="revertDocumentToSaved")
     Document_revertDocumentToSaved :: proc(self: ^Document, sender: id) ---
@@ -116,7 +116,7 @@ foreign lib {
     Document_saveToURL_ofType_forSaveOperation_delegate_didSaveSelector_contextInfo :: proc(self: ^Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: SaveOperationType, delegate: id, didSaveSelector: SEL, contextInfo: rawptr) ---
 
     @(objc_type=Document, objc_selector="saveToURL:ofType:forSaveOperation:completionHandler:", objc_name="saveToURL_ofType_forSaveOperation_completionHandler")
-    Document_saveToURL_ofType_forSaveOperation_completionHandler :: proc(self: ^Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: SaveOperationType, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) ---
+    Document_saveToURL_ofType_forSaveOperation_completionHandler :: proc(self: ^Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: SaveOperationType, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^NS.Error ))) ---
 
     @(objc_type=Document, objc_selector="canAsynchronouslyWriteToURL:ofType:forSaveOperation:", objc_name="canAsynchronouslyWriteToURL")
     Document_canAsynchronouslyWriteToURL :: proc(self: ^Document, url: ^NS.URL, typeName: ^NS.String, saveOperation: SaveOperationType) -> bool ---
@@ -131,7 +131,7 @@ foreign lib {
     Document_autosaveDocumentWithDelegate :: proc(self: ^Document, delegate: id, didAutosaveSelector: SEL, contextInfo: rawptr) ---
 
     @(objc_type=Document, objc_selector="autosaveWithImplicitCancellability:completionHandler:", objc_name="autosaveWithImplicitCancellability")
-    Document_autosaveWithImplicitCancellability :: proc(self: ^Document, autosavingIsImplicitlyCancellable: bool, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) ---
+    Document_autosaveWithImplicitCancellability :: proc(self: ^Document, autosavingIsImplicitlyCancellable: bool, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^NS.Error ))) ---
 
     @(objc_type=Document, objc_selector="browseDocumentVersions:", objc_name="browseDocumentVersions")
     Document_browseDocumentVersions :: proc(self: ^Document, sender: id) ---
@@ -164,10 +164,10 @@ foreign lib {
     Document_moveDocument :: proc(self: ^Document, sender: id) ---
 
     @(objc_type=Document, objc_selector="moveDocumentWithCompletionHandler:", objc_name="moveDocumentWithCompletionHandler")
-    Document_moveDocumentWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (didMove: bool))) ---
+    Document_moveDocumentWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( didMove: bool ))) ---
 
     @(objc_type=Document, objc_selector="moveToURL:completionHandler:", objc_name="moveToURL")
-    Document_moveToURL :: proc(self: ^Document, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) ---
+    Document_moveToURL :: proc(self: ^Document, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Error ))) ---
 
     @(objc_type=Document, objc_selector="lockDocument:", objc_name="lockDocument")
     Document_lockDocument :: proc(self: ^Document, sender: id) ---
@@ -176,16 +176,16 @@ foreign lib {
     Document_unlockDocument :: proc(self: ^Document, sender: id) ---
 
     @(objc_type=Document, objc_selector="lockDocumentWithCompletionHandler:", objc_name="lockDocumentWithCompletionHandler")
-    Document_lockDocumentWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (didLock: bool))) ---
+    Document_lockDocumentWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( didLock: bool ))) ---
 
     @(objc_type=Document, objc_selector="lockWithCompletionHandler:", objc_name="lockWithCompletionHandler")
-    Document_lockWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) ---
+    Document_lockWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Error ))) ---
 
     @(objc_type=Document, objc_selector="unlockDocumentWithCompletionHandler:", objc_name="unlockDocumentWithCompletionHandler")
-    Document_unlockDocumentWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (didUnlock: bool))) ---
+    Document_unlockDocumentWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( didUnlock: bool ))) ---
 
     @(objc_type=Document, objc_selector="unlockWithCompletionHandler:", objc_name="unlockWithCompletionHandler")
-    Document_unlockWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) ---
+    Document_unlockWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Error ))) ---
 
     @(objc_type=Document, objc_selector="runPageLayout:", objc_name="runPageLayout")
     Document_runPageLayout :: proc(self: ^Document, sender: id) ---
@@ -215,7 +215,7 @@ foreign lib {
     Document_saveDocumentToPDF :: proc(self: ^Document, sender: id) ---
 
     @(objc_type=Document, objc_selector="shareDocumentWithSharingService:completionHandler:", objc_name="shareDocumentWithSharingService")
-    Document_shareDocumentWithSharingService :: proc(self: ^Document, sharingService: ^SharingService, completionHandler: ^Objc_Block(proc "c" (success: bool))) ---
+    Document_shareDocumentWithSharingService :: proc(self: ^Document, sharingService: ^SharingService, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) ---
 
     @(objc_type=Document, objc_selector="prepareSharingServicePicker:", objc_name="prepareSharingServicePicker")
     Document_prepareSharingServicePicker :: proc(self: ^Document, sharingServicePicker: ^SharingServicePicker) ---
@@ -284,16 +284,16 @@ foreign lib {
     Document_validateUserInterfaceItem :: proc(self: ^Document, item: ^ValidatedUserInterfaceItem) -> bool ---
 
     @(objc_type=Document, objc_selector="relinquishPresentedItemToReader:", objc_name="relinquishPresentedItemToReader")
-    Document_relinquishPresentedItemToReader :: proc(self: ^Document, reader: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) ---
+    Document_relinquishPresentedItemToReader :: proc(self: ^Document, reader: ^Objc_Block(proc "c" ( reacquirer: ^Objc_Block(proc "c" ()) ))) ---
 
     @(objc_type=Document, objc_selector="relinquishPresentedItemToWriter:", objc_name="relinquishPresentedItemToWriter")
-    Document_relinquishPresentedItemToWriter :: proc(self: ^Document, writer: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) ---
+    Document_relinquishPresentedItemToWriter :: proc(self: ^Document, writer: ^Objc_Block(proc "c" ( reacquirer: ^Objc_Block(proc "c" ()) ))) ---
 
     @(objc_type=Document, objc_selector="savePresentedItemChangesWithCompletionHandler:", objc_name="savePresentedItemChangesWithCompletionHandler")
-    Document_savePresentedItemChangesWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) ---
+    Document_savePresentedItemChangesWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^NS.Error ))) ---
 
     @(objc_type=Document, objc_selector="accommodatePresentedItemDeletionWithCompletionHandler:", objc_name="accommodatePresentedItemDeletionWithCompletionHandler")
-    Document_accommodatePresentedItemDeletionWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) ---
+    Document_accommodatePresentedItemDeletionWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^NS.Error ))) ---
 
     @(objc_type=Document, objc_selector="presentedItemDidMoveToURL:", objc_name="presentedItemDidMoveToURL")
     Document_presentedItemDidMoveToURL :: proc(self: ^Document, newURL: ^NS.URL) ---
@@ -542,7 +542,7 @@ foreign lib {
     Document_objectSpecifier :: proc(self: ^Document) -> ^NS.ScriptObjectSpecifier ---
 
     @(objc_type=Document, objc_selector="restoreDocumentWindowWithIdentifier:state:completionHandler:", objc_name="restoreDocumentWindowWithIdentifier")
-    Document_restoreDocumentWindowWithIdentifier :: proc(self: ^Document, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" (_: ^Window, _1: ^NS.Error))) ---
+    Document_restoreDocumentWindowWithIdentifier :: proc(self: ^Document, identifier: ^NS.String, state: ^NS.Coder, completionHandler: ^Objc_Block(proc "c" ( _0: ^Window, _1: ^NS.Error ))) ---
 
     @(objc_type=Document, objc_selector="encodeRestorableStateWithCoder:", objc_name="encodeRestorableStateWithCoder_")
     Document_encodeRestorableStateWithCoder_ :: proc(self: ^Document, coder: ^NS.Coder) ---

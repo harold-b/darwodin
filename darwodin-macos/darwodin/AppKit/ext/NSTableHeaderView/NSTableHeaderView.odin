@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    headerRectOfColumn: proc(self: ^AK.TableHeaderView, column: NS.Integer) -> NS.Rect,
-    columnAtPoint: proc(self: ^AK.TableHeaderView, point: CG.Point) -> NS.Integer,
-    tableView: proc(self: ^AK.TableHeaderView) -> ^AK.TableView,
-    setTableView: proc(self: ^AK.TableHeaderView, tableView: ^AK.TableView),
-    draggedColumn: proc(self: ^AK.TableHeaderView) -> NS.Integer,
-    draggedDistance: proc(self: ^AK.TableHeaderView) -> CG.Float,
-    resizedColumn: proc(self: ^AK.TableHeaderView) -> NS.Integer,
+    headerRectOfColumn: proc(self: ^NS.TableHeaderView, column: NS.Integer) -> NS.Rect,
+    columnAtPoint: proc(self: ^NS.TableHeaderView, point: CG.Point) -> NS.Integer,
+    tableView: proc(self: ^NS.TableHeaderView) -> ^NS.TableView,
+    setTableView: proc(self: ^NS.TableHeaderView, tableView: ^NS.TableView),
+    draggedColumn: proc(self: ^NS.TableHeaderView) -> NS.Integer,
+    draggedDistance: proc(self: ^NS.TableHeaderView) -> CG.Float,
+    resizedColumn: proc(self: ^NS.TableHeaderView) -> NS.Integer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.headerRectOfColumn != nil {
-        headerRectOfColumn :: proc "c" (self: ^AK.TableHeaderView, _: SEL, column: NS.Integer) -> NS.Rect {
+        headerRectOfColumn :: proc "c" (self: ^NS.TableHeaderView, _: SEL, column: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("headerRectOfColumn:"), auto_cast headerRectOfColumn, "{CGRect={CGPoint=dd}{CGSize=dd}}@:l") do panic("Failed to register objC method.")
     }
     if vt.columnAtPoint != nil {
-        columnAtPoint :: proc "c" (self: ^AK.TableHeaderView, _: SEL, point: CG.Point) -> NS.Integer {
+        columnAtPoint :: proc "c" (self: ^NS.TableHeaderView, _: SEL, point: CG.Point) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnAtPoint:"), auto_cast columnAtPoint, "l@:{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.tableView != nil {
-        tableView :: proc "c" (self: ^AK.TableHeaderView, _: SEL) -> ^AK.TableView {
+        tableView :: proc "c" (self: ^NS.TableHeaderView, _: SEL) -> ^NS.TableView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tableView"), auto_cast tableView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTableView != nil {
-        setTableView :: proc "c" (self: ^AK.TableHeaderView, _: SEL, tableView: ^AK.TableView) {
+        setTableView :: proc "c" (self: ^NS.TableHeaderView, _: SEL, tableView: ^NS.TableView) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTableView:"), auto_cast setTableView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.draggedColumn != nil {
-        draggedColumn :: proc "c" (self: ^AK.TableHeaderView, _: SEL) -> NS.Integer {
+        draggedColumn :: proc "c" (self: ^NS.TableHeaderView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggedColumn"), auto_cast draggedColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.draggedDistance != nil {
-        draggedDistance :: proc "c" (self: ^AK.TableHeaderView, _: SEL) -> CG.Float {
+        draggedDistance :: proc "c" (self: ^NS.TableHeaderView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggedDistance"), auto_cast draggedDistance, "d@:") do panic("Failed to register objC method.")
     }
     if vt.resizedColumn != nil {
-        resizedColumn :: proc "c" (self: ^AK.TableHeaderView, _: SEL) -> NS.Integer {
+        resizedColumn :: proc "c" (self: ^NS.TableHeaderView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIOCommandQueue
-///
 @(objc_class="MTLIOCommandQueue")
 IOCommandQueue :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IOCommandQueue, objc_selector="enqueueBarrier", objc_name="enqueueBarrier")
     IOCommandQueue_enqueueBarrier :: proc(self: ^IOCommandQueue) ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=IOCommandQueue, objc_selector="setLabel:", objc_name="setLabel")
     IOCommandQueue_setLabel :: proc(self: ^IOCommandQueue, label: ^NS.String) ---
 }
+
+
+

@@ -34,7 +34,7 @@ foreign lib {
     MenuBuilder_replaceMenuForIdentifier_withMenu :: proc(self: ^MenuBuilder, replacedIdentifier: ^NS.String, replacementMenu: ^Menu) ---
 
     @(objc_type=MenuBuilder, objc_selector="replaceChildrenOfMenuForIdentifier:fromChildrenBlock:", objc_name="replaceChildrenOfMenuForIdentifier")
-    MenuBuilder_replaceChildrenOfMenuForIdentifier :: proc(self: ^MenuBuilder, parentIdentifier: ^NS.String, childrenBlock: ^Objc_Block(proc "c" (_: ^NS.Array) -> ^NS.Array)) ---
+    MenuBuilder_replaceChildrenOfMenuForIdentifier :: proc(self: ^MenuBuilder, parentIdentifier: ^NS.String, childrenBlock: ^Objc_Block(proc "c" ( _0: ^NS.Array ) -> ^NS.Array)) ---
 
     @(objc_type=MenuBuilder, objc_selector="replaceMenuForIdentifier:withElements:", objc_name="replaceMenuForIdentifier_withElements")
     MenuBuilder_replaceMenuForIdentifier_withElements :: proc(self: ^MenuBuilder, replacedIdentifier: ^NS.String, replacementElements: ^NS.Array) ---

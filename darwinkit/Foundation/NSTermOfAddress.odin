@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSTermOfAddress
-///
 @(objc_class="NSTermOfAddress", objc_superclass=Object)
 TermOfAddress :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TermOfAddress, objc_selector="neutral", objc_name="neutral", objc_is_class_method=true)
     TermOfAddress_neutral :: proc() -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=TermOfAddress, objc_selector="pronouns", objc_name="pronouns")
     TermOfAddress_pronouns :: proc(self: ^TermOfAddress) -> ^Array ---
 }
+
+
+

@@ -1,0 +1,93 @@
+---
+
+Defs: ../definitions/macos/mapkit.json
+
+Mono  : { Emit: false }
+CSharp: { Emit: false }
+
+Cpp:
+  Emit: false
+  ExportInternals: true
+  DontWrapCFunctions: true
+  ExportForwardDeclarations: true
+  
+  ExportTypes:
+    - ^_*MK.+
+
+  ExportMethods:
+    - ^::MK.+
+
+  ExportVars:
+    - ^::k?MK.+
+
+  IgnoreTypes  : []
+  IgnoreMethods: []
+
+
+Odin:
+  Emit           : true
+  ExportPath     : ..
+  BasePackageName: darwodin
+  SingleFile     : false
+  TargetPlatform : Darwin
+  ExportTypeMapDir: ../exports
+  ExternalTypes:
+    - ../exports/CoreFoundation.exports.yml
+    - ../exports/CoreGraphics.exports.yml
+    - ../exports/AppKit.exports.yml
+    - ../exports/CoreLocation.exports.yml
+
+  ResolvedTypedefs:
+    - '[su]?int.*'
+
+  Packages:
+    - Name  : MapKit
+      Export: MK
+      RequiredLink: true # TODO: Remove this if we are able to link when using objc_method calls
+      LinkLibs: [system:MapKit.framework]
+      NoCanonicalRelativeLinkPath: true
+      Filter: .*
+
+      Imports:
+        - |
+          CNPostalAddress :: NS.Object
+
+      # TypeMap:
+
+
+  # Symbol Transformers
+  EnumTransforms:
+    - Type: .*
+      Transforms:
+      - Kind: RemoveTypeWordsFromElements
+      - Kind: RemovePartialTypeNamePrefix
+      - Kind: RemoveUnderscorePrefix
+      - Kind: UnderscoreNumbers
+
+  TypeTransforms:
+    - Type: ^(MK).+
+      Transforms:
+      - Kind  : RemovePrefix
+        Source: $group0
+    - Type: (Flag|Option|Mask)$  # Transforms for bit_set types
+      Transforms:
+      - Kind  : AppendSuffix
+        Source: s
+
+  BitSetMap:
+    - Type: (Mask|Flags?|Options?)$ # Transforms the enum that will generate a bit_set to not have a collision type
+      Transforms:
+        - Kind  : RemoveSuffix
+          Source: s
+ 
+  ProcTransforms:
+  - Type: ^(_*MK).+
+    Transforms:
+    - Kind  : RemovePrefix
+      Source: $group0
+
+  VarTransforms:
+    - Type: ^(_*MK).+
+      Transforms:
+        - Kind  : RemovePrefix
+          Source: $group0

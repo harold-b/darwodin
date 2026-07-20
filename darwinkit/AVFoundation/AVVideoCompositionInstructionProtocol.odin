@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVVideoCompositionInstruction
-///
 @(objc_class="AVVideoCompositionInstruction")
 VideoCompositionInstructionProtocol :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoCompositionInstructionProtocol, objc_selector="timeRange", objc_name="timeRange")
     VideoCompositionInstructionProtocol_timeRange :: proc(self: ^VideoCompositionInstructionProtocol) -> CM.TimeRange ---
@@ -42,3 +36,6 @@ foreign lib {
     @(objc_type=VideoCompositionInstructionProtocol, objc_selector="requiredSourceSampleDataTrackIDs", objc_name="requiredSourceSampleDataTrackIDs")
     VideoCompositionInstructionProtocol_requiredSourceSampleDataTrackIDs :: proc(self: ^VideoCompositionInstructionProtocol) -> ^NS.Array ---
 }
+
+
+

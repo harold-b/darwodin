@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    title: proc(self: ^AK.PathControlItem) -> ^NS.String,
-    setTitle: proc(self: ^AK.PathControlItem, title: ^NS.String),
-    attributedTitle: proc(self: ^AK.PathControlItem) -> ^NS.AttributedString,
-    setAttributedTitle: proc(self: ^AK.PathControlItem, attributedTitle: ^NS.AttributedString),
-    image: proc(self: ^AK.PathControlItem) -> ^AK.Image,
-    setImage: proc(self: ^AK.PathControlItem, image: ^AK.Image),
-    _URL: proc(self: ^AK.PathControlItem) -> ^NS.URL,
+    title: proc(self: ^NS.PathControlItem) -> ^NS.String,
+    setTitle: proc(self: ^NS.PathControlItem, title: ^NS.String),
+    attributedTitle: proc(self: ^NS.PathControlItem) -> ^NS.AttributedString,
+    setAttributedTitle: proc(self: ^NS.PathControlItem, attributedTitle: ^NS.AttributedString),
+    image: proc(self: ^NS.PathControlItem) -> ^NS.Image,
+    setImage: proc(self: ^NS.PathControlItem, image: ^NS.Image),
+    _URL: proc(self: ^NS.PathControlItem) -> ^NS.URL,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.title != nil {
-        title :: proc "c" (self: ^AK.PathControlItem, _: SEL) -> ^NS.String {
+        title :: proc "c" (self: ^NS.PathControlItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.PathControlItem, _: SEL, title: ^NS.String) {
+        setTitle :: proc "c" (self: ^NS.PathControlItem, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.attributedTitle != nil {
-        attributedTitle :: proc "c" (self: ^AK.PathControlItem, _: SEL) -> ^NS.AttributedString {
+        attributedTitle :: proc "c" (self: ^NS.PathControlItem, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedTitle"), auto_cast attributedTitle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributedTitle != nil {
-        setAttributedTitle :: proc "c" (self: ^AK.PathControlItem, _: SEL, attributedTitle: ^NS.AttributedString) {
+        setAttributedTitle :: proc "c" (self: ^NS.PathControlItem, _: SEL, attributedTitle: ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributedTitle:"), auto_cast setAttributedTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.PathControlItem, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.PathControlItem, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.PathControlItem, _: SEL, image: ^AK.Image) {
+        setImage :: proc "c" (self: ^NS.PathControlItem, _: SEL, image: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt._URL != nil {
-        _URL :: proc "c" (self: ^AK.PathControlItem, _: SEL) -> ^NS.URL {
+        _URL :: proc "c" (self: ^NS.PathControlItem, _: SEL) -> ^NS.URL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

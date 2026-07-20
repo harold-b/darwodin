@@ -5,11 +5,10 @@ import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 import MDL "../ModelIO"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 

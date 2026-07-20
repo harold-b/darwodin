@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    animationShouldStart: proc(self: ^AK.AnimationDelegate, animation: ^AK.Animation) -> bool,
-    animationDidStop: proc(self: ^AK.AnimationDelegate, animation: ^AK.Animation),
-    animationDidEnd: proc(self: ^AK.AnimationDelegate, animation: ^AK.Animation),
-    animation_valueForProgress: proc(self: ^AK.AnimationDelegate, animation: ^AK.Animation, progress: AK.AnimationProgress) -> cffi.float,
-    animation_didReachProgressMark: proc(self: ^AK.AnimationDelegate, animation: ^AK.Animation, progress: AK.AnimationProgress),
+    animationShouldStart: proc(self: ^NS.AnimationDelegate, animation: ^NS.Animation) -> bool,
+    animationDidStop: proc(self: ^NS.AnimationDelegate, animation: ^NS.Animation),
+    animationDidEnd: proc(self: ^NS.AnimationDelegate, animation: ^NS.Animation),
+    animation_valueForProgress: proc(self: ^NS.AnimationDelegate, animation: ^NS.Animation, progress: NS.AnimationProgress) -> cffi.float,
+    animation_didReachProgressMark: proc(self: ^NS.AnimationDelegate, animation: ^NS.Animation, progress: NS.AnimationProgress),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -35,7 +35,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.animationShouldStart != nil {
-        animationShouldStart :: proc "c" (self: ^AK.AnimationDelegate, _: SEL, animation: ^AK.Animation) -> bool {
+        animationShouldStart :: proc "c" (self: ^NS.AnimationDelegate, _: SEL, animation: ^NS.Animation) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animationShouldStart:"), auto_cast animationShouldStart, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.animationDidStop != nil {
-        animationDidStop :: proc "c" (self: ^AK.AnimationDelegate, _: SEL, animation: ^AK.Animation) {
+        animationDidStop :: proc "c" (self: ^NS.AnimationDelegate, _: SEL, animation: ^NS.Animation) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animationDidStop:"), auto_cast animationDidStop, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.animationDidEnd != nil {
-        animationDidEnd :: proc "c" (self: ^AK.AnimationDelegate, _: SEL, animation: ^AK.Animation) {
+        animationDidEnd :: proc "c" (self: ^NS.AnimationDelegate, _: SEL, animation: ^NS.Animation) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animationDidEnd:"), auto_cast animationDidEnd, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.animation_valueForProgress != nil {
-        animation_valueForProgress :: proc "c" (self: ^AK.AnimationDelegate, _: SEL, animation: ^AK.Animation, progress: AK.AnimationProgress) -> cffi.float {
+        animation_valueForProgress :: proc "c" (self: ^NS.AnimationDelegate, _: SEL, animation: ^NS.Animation, progress: NS.AnimationProgress) -> cffi.float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animation:valueForProgress:"), auto_cast animation_valueForProgress, "f@:@f") do panic("Failed to register objC method.")
     }
     if vt.animation_didReachProgressMark != nil {
-        animation_didReachProgressMark :: proc "c" (self: ^AK.AnimationDelegate, _: SEL, animation: ^AK.Animation, progress: AK.AnimationProgress) {
+        animation_didReachProgressMark :: proc "c" (self: ^NS.AnimationDelegate, _: SEL, animation: ^NS.Animation, progress: NS.AnimationProgress) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

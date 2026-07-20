@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableURLRequest
-///
 @(objc_class="NSMutableURLRequest", objc_superclass=URLRequest)
 MutableURLRequest :: struct { using _: URLRequest, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableURLRequest, objc_selector="URL", objc_name="URL")
     MutableURLRequest_URL :: proc(self: ^MutableURLRequest) -> ^URL ---
@@ -145,3 +139,6 @@ foreign lib {
     @(objc_type=MutableURLRequest, objc_selector="setHTTPShouldUsePipelining:", objc_name="setHTTPShouldUsePipelining")
     MutableURLRequest_setHTTPShouldUsePipelining :: proc(self: ^MutableURLRequest, HTTPShouldUsePipelining: bool) ---
 }
+
+
+

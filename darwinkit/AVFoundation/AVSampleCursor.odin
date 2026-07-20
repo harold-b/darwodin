@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSampleCursor
-///
 @(objc_class="AVSampleCursor", objc_superclass=NS.Object)
 SampleCursor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleCursor, objc_selector="init", objc_name="init")
     SampleCursor_init :: proc(self: ^SampleCursor) -> instancetype ---
@@ -93,3 +87,6 @@ foreign lib {
     @(objc_type=SampleCursor, objc_selector="currentSampleStorageRange", objc_name="currentSampleStorageRange")
     SampleCursor_currentSampleStorageRange :: proc(self: ^SampleCursor) -> SampleCursorStorageRange ---
 }
+
+
+

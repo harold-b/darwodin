@@ -40,7 +40,7 @@ foreign lib {
     MutableComposition_insertTimeRange_ofAsset_atTime_error :: proc(self: ^MutableComposition, timeRange: CM.TimeRange, asset: ^Asset, startTime: CM.Time, outError: ^^NS.Error) -> bool ---
 
     @(objc_type=MutableComposition, objc_selector="insertTimeRange:ofAsset:atTime:completionHandler:", objc_name="insertTimeRange_ofAsset_atTime_completionHandler")
-    MutableComposition_insertTimeRange_ofAsset_atTime_completionHandler :: proc(self: ^MutableComposition, timeRange: CM.TimeRange, asset: ^Asset, startTime: CM.Time, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    MutableComposition_insertTimeRange_ofAsset_atTime_completionHandler :: proc(self: ^MutableComposition, timeRange: CM.TimeRange, asset: ^Asset, startTime: CM.Time, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=MutableComposition, objc_selector="insertEmptyTimeRange:", objc_name="insertEmptyTimeRange")
     MutableComposition_insertEmptyTimeRange :: proc(self: ^MutableComposition, timeRange: CM.TimeRange) ---
@@ -64,19 +64,19 @@ foreign lib {
     MutableComposition_trackWithTrackID :: proc(self: ^MutableComposition, trackID: CM.PersistentTrackID) -> ^MutableCompositionTrack ---
 
     @(objc_type=MutableComposition, objc_selector="loadTrackWithTrackID:completionHandler:", objc_name="loadTrackWithTrackID")
-    MutableComposition_loadTrackWithTrackID :: proc(self: ^MutableComposition, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" (_: ^MutableCompositionTrack, _1: ^NS.Error))) ---
+    MutableComposition_loadTrackWithTrackID :: proc(self: ^MutableComposition, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" ( _0: ^MutableCompositionTrack, _1: ^NS.Error ))) ---
 
     @(objc_type=MutableComposition, objc_selector="tracksWithMediaType:", objc_name="tracksWithMediaType")
     MutableComposition_tracksWithMediaType :: proc(self: ^MutableComposition, mediaType: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=MutableComposition, objc_selector="loadTracksWithMediaType:completionHandler:", objc_name="loadTracksWithMediaType")
-    MutableComposition_loadTracksWithMediaType :: proc(self: ^MutableComposition, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    MutableComposition_loadTracksWithMediaType :: proc(self: ^MutableComposition, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=MutableComposition, objc_selector="tracksWithMediaCharacteristic:", objc_name="tracksWithMediaCharacteristic")
     MutableComposition_tracksWithMediaCharacteristic :: proc(self: ^MutableComposition, mediaCharacteristic: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=MutableComposition, objc_selector="loadTracksWithMediaCharacteristic:completionHandler:", objc_name="loadTracksWithMediaCharacteristic")
-    MutableComposition_loadTracksWithMediaCharacteristic :: proc(self: ^MutableComposition, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    MutableComposition_loadTracksWithMediaCharacteristic :: proc(self: ^MutableComposition, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 }
 
 @(objc_type=MutableComposition, objc_name="insertTimeRange")

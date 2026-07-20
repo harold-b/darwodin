@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSLayoutAnchor"
 
 VTable :: struct {
     super: NSLayoutAnchor.VTable,
-    anchorWithOffsetToAnchor: proc(self: ^AK.LayoutXAxisAnchor, otherAnchor: ^AK.LayoutXAxisAnchor) -> ^AK.LayoutDimension,
-    constraintEqualToSystemSpacingAfterAnchor: proc(self: ^AK.LayoutXAxisAnchor, anchor: ^AK.LayoutXAxisAnchor, multiplier: CG.Float) -> ^AK.LayoutConstraint,
-    constraintGreaterThanOrEqualToSystemSpacingAfterAnchor: proc(self: ^AK.LayoutXAxisAnchor, anchor: ^AK.LayoutXAxisAnchor, multiplier: CG.Float) -> ^AK.LayoutConstraint,
-    constraintLessThanOrEqualToSystemSpacingAfterAnchor: proc(self: ^AK.LayoutXAxisAnchor, anchor: ^AK.LayoutXAxisAnchor, multiplier: CG.Float) -> ^AK.LayoutConstraint,
+    anchorWithOffsetToAnchor: proc(self: ^NS.LayoutXAxisAnchor, otherAnchor: ^NS.LayoutXAxisAnchor) -> ^NS.LayoutDimension,
+    constraintEqualToSystemSpacingAfterAnchor: proc(self: ^NS.LayoutXAxisAnchor, anchor: ^NS.LayoutXAxisAnchor, multiplier: CG.Float) -> ^NS.LayoutConstraint,
+    constraintGreaterThanOrEqualToSystemSpacingAfterAnchor: proc(self: ^NS.LayoutXAxisAnchor, anchor: ^NS.LayoutXAxisAnchor, multiplier: CG.Float) -> ^NS.LayoutConstraint,
+    constraintLessThanOrEqualToSystemSpacingAfterAnchor: proc(self: ^NS.LayoutXAxisAnchor, anchor: ^NS.LayoutXAxisAnchor, multiplier: CG.Float) -> ^NS.LayoutConstraint,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSLayoutAnchor.extend(cls, &vt.super)
 
     if vt.anchorWithOffsetToAnchor != nil {
-        anchorWithOffsetToAnchor :: proc "c" (self: ^AK.LayoutXAxisAnchor, _: SEL, otherAnchor: ^AK.LayoutXAxisAnchor) -> ^AK.LayoutDimension {
+        anchorWithOffsetToAnchor :: proc "c" (self: ^NS.LayoutXAxisAnchor, _: SEL, otherAnchor: ^NS.LayoutXAxisAnchor) -> ^NS.LayoutDimension {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("anchorWithOffsetToAnchor:"), auto_cast anchorWithOffsetToAnchor, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.constraintEqualToSystemSpacingAfterAnchor != nil {
-        constraintEqualToSystemSpacingAfterAnchor :: proc "c" (self: ^AK.LayoutXAxisAnchor, _: SEL, anchor: ^AK.LayoutXAxisAnchor, multiplier: CG.Float) -> ^AK.LayoutConstraint {
+        constraintEqualToSystemSpacingAfterAnchor :: proc "c" (self: ^NS.LayoutXAxisAnchor, _: SEL, anchor: ^NS.LayoutXAxisAnchor, multiplier: CG.Float) -> ^NS.LayoutConstraint {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("constraintEqualToSystemSpacingAfterAnchor:multiplier:"), auto_cast constraintEqualToSystemSpacingAfterAnchor, "@@:@d") do panic("Failed to register objC method.")
     }
     if vt.constraintGreaterThanOrEqualToSystemSpacingAfterAnchor != nil {
-        constraintGreaterThanOrEqualToSystemSpacingAfterAnchor :: proc "c" (self: ^AK.LayoutXAxisAnchor, _: SEL, anchor: ^AK.LayoutXAxisAnchor, multiplier: CG.Float) -> ^AK.LayoutConstraint {
+        constraintGreaterThanOrEqualToSystemSpacingAfterAnchor :: proc "c" (self: ^NS.LayoutXAxisAnchor, _: SEL, anchor: ^NS.LayoutXAxisAnchor, multiplier: CG.Float) -> ^NS.LayoutConstraint {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:"), auto_cast constraintGreaterThanOrEqualToSystemSpacingAfterAnchor, "@@:@d") do panic("Failed to register objC method.")
     }
     if vt.constraintLessThanOrEqualToSystemSpacingAfterAnchor != nil {
-        constraintLessThanOrEqualToSystemSpacingAfterAnchor :: proc "c" (self: ^AK.LayoutXAxisAnchor, _: SEL, anchor: ^AK.LayoutXAxisAnchor, multiplier: CG.Float) -> ^AK.LayoutConstraint {
+        constraintLessThanOrEqualToSystemSpacingAfterAnchor :: proc "c" (self: ^NS.LayoutXAxisAnchor, _: SEL, anchor: ^NS.LayoutXAxisAnchor, multiplier: CG.Float) -> ^NS.LayoutConstraint {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

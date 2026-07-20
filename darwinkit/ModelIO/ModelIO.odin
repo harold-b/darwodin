@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_ModelIO
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -17,8 +19,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:ModelIO.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:ModelIO.framework",
+    }
+}
+
+
+// +user-text-begin
 Boolean :: CF.Boolean
 simd_char1       :: struct #align (1 ) { v: [1 ]i8   } // size = 1  | align = 1
 simd_char2       :: struct #align (2 ) { v: [2 ]i8   } // size = 2  | align = 2
@@ -93,43 +107,99 @@ vector_double4   :: simd_double4
 
 
 foreign lib {
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
-        @(link_name="kMDLabelBundleURL") LabelBundleURL: CF.StringRef
-        @(link_name="kMDLabelContentChangeDate") LabelContentChangeDate: CF.StringRef
-        @(link_name="kMDLabelDisplayName") LabelDisplayName: CF.StringRef
-        @(link_name="kMDLabelIconData") LabelIconData: CF.StringRef
-        @(link_name="kMDLabelIconUUID") LabelIconUUID: CF.StringRef
-        @(link_name="kMDLabelIsMutuallyExclusiveSetMember") LabelIsMutuallyExclusiveSetMember: CF.StringRef
-        @(link_name="kMDLabelKind") LabelKind: CF.StringRef
-        @(link_name="kMDLabelSetsFinderColor") LabelSetsFinderColor: CF.StringRef
-        @(link_name="kMDLabelUUID") LabelUUID: CF.StringRef
-        @(link_name="kMDLabelVisibility") LabelVisibility: CF.StringRef
-        @(link_name="kMDLabelKindIsMutuallyExclusiveSetKey") LabelKindIsMutuallyExclusiveSetKey: CF.StringRef
-        @(link_name="kMDLabelKindVisibilityKey") LabelKindVisibilityKey: CF.StringRef
-        @(link_name="kMDLabelAddedNotification") LabelAddedNotification: CF.StringRef
-        @(link_name="kMDLabelChangedNotification") LabelChangedNotification: CF.StringRef
-        @(link_name="kMDLabelRemovedNotification") LabelRemovedNotification: CF.StringRef
-    }
-    @(link_name="MDLVertexAttributeAnisotropy") VertexAttributeAnisotropy: ^NS.String
-    @(link_name="MDLVertexAttributeBinormal") VertexAttributeBinormal: ^NS.String
-    @(link_name="MDLVertexAttributeBitangent") VertexAttributeBitangent: ^NS.String
-    @(link_name="MDLVertexAttributeColor") VertexAttributeColor: ^NS.String
-    @(link_name="MDLVertexAttributeEdgeCrease") VertexAttributeEdgeCrease: ^NS.String
-    @(link_name="MDLVertexAttributeJointIndices") VertexAttributeJointIndices: ^NS.String
-    @(link_name="MDLVertexAttributeJointWeights") VertexAttributeJointWeights: ^NS.String
-    @(link_name="MDLVertexAttributeNormal") VertexAttributeNormal: ^NS.String
-    @(link_name="MDLVertexAttributeOcclusionValue") VertexAttributeOcclusionValue: ^NS.String
-    @(link_name="MDLVertexAttributePosition") VertexAttributePosition: ^NS.String
-    @(link_name="MDLVertexAttributeShadingBasisU") VertexAttributeShadingBasisU: ^NS.String
-    @(link_name="MDLVertexAttributeShadingBasisV") VertexAttributeShadingBasisV: ^NS.String
-    @(link_name="MDLVertexAttributeSubdivisionStencil") VertexAttributeSubdivisionStencil: ^NS.String
-    @(link_name="MDLVertexAttributeTangent") VertexAttributeTangent: ^NS.String
-    @(link_name="MDLVertexAttributeTextureCoordinate") VertexAttributeTextureCoordinate: ^NS.String
-}
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(link_name="kMDLabelBundleURL")
+        LabelBundleURL: CF.StringRef
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    @(default_calling_convention="c")
-    foreign lib {
+        @(link_name="kMDLabelContentChangeDate")
+        LabelContentChangeDate: CF.StringRef
+
+        @(link_name="kMDLabelDisplayName")
+        LabelDisplayName: CF.StringRef
+
+        @(link_name="kMDLabelIconData")
+        LabelIconData: CF.StringRef
+
+        @(link_name="kMDLabelIconUUID")
+        LabelIconUUID: CF.StringRef
+
+        @(link_name="kMDLabelIsMutuallyExclusiveSetMember")
+        LabelIsMutuallyExclusiveSetMember: CF.StringRef
+
+        @(link_name="kMDLabelKind")
+        LabelKind: CF.StringRef
+
+        @(link_name="kMDLabelSetsFinderColor")
+        LabelSetsFinderColor: CF.StringRef
+
+        @(link_name="kMDLabelUUID")
+        LabelUUID: CF.StringRef
+
+        @(link_name="kMDLabelVisibility")
+        LabelVisibility: CF.StringRef
+
+        @(link_name="kMDLabelKindIsMutuallyExclusiveSetKey")
+        LabelKindIsMutuallyExclusiveSetKey: CF.StringRef
+
+        @(link_name="kMDLabelKindVisibilityKey")
+        LabelKindVisibilityKey: CF.StringRef
+
+        @(link_name="kMDLabelAddedNotification")
+        LabelAddedNotification: CF.StringRef
+
+        @(link_name="kMDLabelChangedNotification")
+        LabelChangedNotification: CF.StringRef
+
+        @(link_name="kMDLabelRemovedNotification")
+        LabelRemovedNotification: CF.StringRef
+    }
+
+    @(link_name="MDLVertexAttributeAnisotropy")
+    VertexAttributeAnisotropy: ^NS.String
+
+    @(link_name="MDLVertexAttributeBinormal")
+    VertexAttributeBinormal: ^NS.String
+
+    @(link_name="MDLVertexAttributeBitangent")
+    VertexAttributeBitangent: ^NS.String
+
+    @(link_name="MDLVertexAttributeColor")
+    VertexAttributeColor: ^NS.String
+
+    @(link_name="MDLVertexAttributeEdgeCrease")
+    VertexAttributeEdgeCrease: ^NS.String
+
+    @(link_name="MDLVertexAttributeJointIndices")
+    VertexAttributeJointIndices: ^NS.String
+
+    @(link_name="MDLVertexAttributeJointWeights")
+    VertexAttributeJointWeights: ^NS.String
+
+    @(link_name="MDLVertexAttributeNormal")
+    VertexAttributeNormal: ^NS.String
+
+    @(link_name="MDLVertexAttributeOcclusionValue")
+    VertexAttributeOcclusionValue: ^NS.String
+
+    @(link_name="MDLVertexAttributePosition")
+    VertexAttributePosition: ^NS.String
+
+    @(link_name="MDLVertexAttributeShadingBasisU")
+    VertexAttributeShadingBasisU: ^NS.String
+
+    @(link_name="MDLVertexAttributeShadingBasisV")
+    VertexAttributeShadingBasisV: ^NS.String
+
+    @(link_name="MDLVertexAttributeSubdivisionStencil")
+    VertexAttributeSubdivisionStencil: ^NS.String
+
+    @(link_name="MDLVertexAttributeTangent")
+    VertexAttributeTangent: ^NS.String
+
+    @(link_name="MDLVertexAttributeTextureCoordinate")
+    VertexAttributeTextureCoordinate: ^NS.String
+
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(link_name="MDLabelGetTypeID")
         LabelGetTypeID :: proc() -> CF.TypeID ---
 
@@ -147,25 +217,23 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
 
         @(link_name="MDLabelSetAttributes")
         LabelSetAttributes :: proc(label: LabelRef, attrs: CF.DictionaryRef) -> Boolean ---
-
     }
-
-    /// MDLabelRef
-    LabelRef :: distinct ^__MDLabel
 }
 
-/// MDLVoxelIndex
+
+
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    LabelRef :: distinct ^__MDLabel
+}
 VoxelIndex :: distinct [4]cffi.int
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// MDLabelDomain
+when ODIN_PLATFORM_SUBTARGET == .Default {
     LabelDomain :: enum cffi.uint {
         kMDLabelUserDomain  = 0,
         kMDLabelLocalDomain = 1,
     }
 }
 
-/// MDLIndexBitDepth
 IndexBitDepth :: enum cffi.ulong {
     Invalid = 0,
     UInt8   = 8,
@@ -176,7 +244,6 @@ IndexBitDepth :: enum cffi.ulong {
     Uint32  = 32,
 }
 
-/// MDLGeometryType
 GeometryType :: enum cffi.long {
     Points           = 0,
     Lines            = 1,
@@ -186,27 +253,23 @@ GeometryType :: enum cffi.long {
     VariableTopology = 5,
 }
 
-/// MDLProbePlacement
 ProbePlacement :: enum cffi.long {
     UniformGrid            = 0,
     IrradianceDistribution = 1,
 }
 
-/// MDLDataPrecision
 DataPrecision :: enum cffi.ulong {
     Undefined = 0,
     Float     = 1,
     Double    = 2,
 }
 
-/// MDLMeshBufferType
 MeshBufferType :: enum cffi.ulong {
     Vertex = 1,
     Index  = 2,
     Custom = 3,
 }
 
-/// MDLVertexFormat
 VertexFormat :: enum cffi.ulong {
     Invalid               = 0,
     PackedBit             = 4096,
@@ -274,19 +337,16 @@ VertexFormat :: enum cffi.ulong {
     UInt1010102Normalized = 593924,
 }
 
-/// MDLAnimatedValueInterpolation
 AnimatedValueInterpolation :: enum cffi.ulong {
     Constant = 0,
     Linear   = 1,
 }
 
-/// MDLCameraProjection
 CameraProjection :: enum cffi.ulong {
     Perspective  = 0,
     Orthographic = 1,
 }
 
-/// MDLLightType
 LightType :: enum cffi.ulong {
     Unknown         = 0,
     Ambient         = 1,
@@ -302,7 +362,6 @@ LightType :: enum cffi.ulong {
     Environment     = 11,
 }
 
-/// MDLMaterialSemantic
 MaterialSemantic :: enum cffi.ulong {
     BaseColor                  = 0,
     Subsurface                 = 1,
@@ -332,7 +391,6 @@ MaterialSemantic :: enum cffi.ulong {
     UserDefined                = 32769,
 }
 
-/// MDLMaterialPropertyType
 MaterialPropertyType :: enum cffi.ulong {
     None     = 0,
     String   = 1,
@@ -347,33 +405,28 @@ MaterialPropertyType :: enum cffi.ulong {
     Buffer   = 10,
 }
 
-/// MDLMaterialTextureWrapMode
 MaterialTextureWrapMode :: enum cffi.ulong {
     Clamp  = 0,
     Repeat = 1,
     Mirror = 2,
 }
 
-/// MDLMaterialTextureFilterMode
 MaterialTextureFilterMode :: enum cffi.ulong {
     Nearest = 0,
     Linear  = 1,
 }
 
-/// MDLMaterialMipMapFilterMode
 MaterialMipMapFilterMode :: enum cffi.ulong {
     Nearest = 0,
     Linear  = 1,
 }
 
-/// MDLMaterialFace
 MaterialFace :: enum cffi.ulong {
     Front       = 0,
     Back        = 1,
     DoubleSided = 2,
 }
 
-/// MDLTextureChannelEncoding
 TextureChannelEncoding :: enum cffi.long {
     UInt8     = 1,
     Uint8     = 1,
@@ -388,7 +441,6 @@ TextureChannelEncoding :: enum cffi.long {
     Float32   = 260,
 }
 
-/// MDLTransformOpRotationOrder
 TransformOpRotationOrder :: enum cffi.ulong {
     XYZ = 1,
     XZY = 2,
@@ -398,22 +450,17 @@ TransformOpRotationOrder :: enum cffi.ulong {
     ZYX = 6,
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// __MDLabel
+when ODIN_PLATFORM_SUBTARGET == .Default {
     __MDLabel :: struct {}
 }
 
-/// MDLAxisAlignedBoundingBox
 AxisAlignedBoundingBox :: struct #align (16) {
     maxBounds: vector_float3,
     minBounds: vector_float3,
 }
-#assert(size_of(AxisAlignedBoundingBox) == 32)
 
-/// MDLVoxelIndexExtent
 VoxelIndexExtent :: struct #align (16) {
     minimumExtent: VoxelIndex,
     maximumExtent: VoxelIndex,
 }
-#assert(size_of(VoxelIndexExtent) == 32)
 

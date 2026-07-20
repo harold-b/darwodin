@@ -20,21 +20,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    splitView_canCollapseSubview: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, subview: ^AK.View) -> bool,
-    splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, subview: ^AK.View, dividerIndex: NS.Integer) -> bool,
-    splitView_constrainMinCoordinate_ofSubviewAt: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, proposedMinimumPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float,
-    splitView_constrainMaxCoordinate_ofSubviewAt: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, proposedMaximumPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float,
-    splitView_constrainSplitPosition_ofSubviewAt: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, proposedPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float,
-    splitView_resizeSubviewsWithOldSize: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, oldSize: NS.Size),
-    splitView_shouldAdjustSizeOfSubview: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, view: ^AK.View) -> bool,
-    splitView_shouldHideDividerAtIndex: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> bool,
-    splitView_effectiveRect_forDrawnRect_ofDividerAtIndex: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, proposedEffectiveRect: NS.Rect, drawnRect: NS.Rect, dividerIndex: NS.Integer) -> NS.Rect,
-    splitView_additionalEffectiveRectOfDividerAtIndex: proc(self: ^AK.SplitViewDelegate, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> NS.Rect,
-    splitViewWillResizeSubviews: proc(self: ^AK.SplitViewDelegate, notification: ^NS.Notification),
-    splitViewDidResizeSubviews: proc(self: ^AK.SplitViewDelegate, notification: ^NS.Notification),
+    splitView_canCollapseSubview: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, subview: ^NS.View) -> bool,
+    splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, subview: ^NS.View, dividerIndex: NS.Integer) -> bool,
+    splitView_constrainMinCoordinate_ofSubviewAt: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, proposedMinimumPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float,
+    splitView_constrainMaxCoordinate_ofSubviewAt: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, proposedMaximumPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float,
+    splitView_constrainSplitPosition_ofSubviewAt: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, proposedPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float,
+    splitView_resizeSubviewsWithOldSize: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, oldSize: NS.Size),
+    splitView_shouldAdjustSizeOfSubview: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, view: ^NS.View) -> bool,
+    splitView_shouldHideDividerAtIndex: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> bool,
+    splitView_effectiveRect_forDrawnRect_ofDividerAtIndex: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, proposedEffectiveRect: NS.Rect, drawnRect: NS.Rect, dividerIndex: NS.Integer) -> NS.Rect,
+    splitView_additionalEffectiveRectOfDividerAtIndex: proc(self: ^NS.SplitViewDelegate, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> NS.Rect,
+    splitViewWillResizeSubviews: proc(self: ^NS.SplitViewDelegate, notification: ^NS.Notification),
+    splitViewDidResizeSubviews: proc(self: ^NS.SplitViewDelegate, notification: ^NS.Notification),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.splitView_canCollapseSubview != nil {
-        splitView_canCollapseSubview :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, subview: ^AK.View) -> bool {
+        splitView_canCollapseSubview :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, subview: ^NS.View) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:canCollapseSubview:"), auto_cast splitView_canCollapseSubview, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex != nil {
-        splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, subview: ^AK.View, dividerIndex: NS.Integer) -> bool {
+        splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, subview: ^NS.View, dividerIndex: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:shouldCollapseSubview:forDoubleClickOnDividerAtIndex:"), auto_cast splitView_shouldCollapseSubview_forDoubleClickOnDividerAtIndex, "B@:@@l") do panic("Failed to register objC method.")
     }
     if vt.splitView_constrainMinCoordinate_ofSubviewAt != nil {
-        splitView_constrainMinCoordinate_ofSubviewAt :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, proposedMinimumPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float {
+        splitView_constrainMinCoordinate_ofSubviewAt :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, proposedMinimumPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:constrainMinCoordinate:ofSubviewAt:"), auto_cast splitView_constrainMinCoordinate_ofSubviewAt, "d@:@dl") do panic("Failed to register objC method.")
     }
     if vt.splitView_constrainMaxCoordinate_ofSubviewAt != nil {
-        splitView_constrainMaxCoordinate_ofSubviewAt :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, proposedMaximumPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float {
+        splitView_constrainMaxCoordinate_ofSubviewAt :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, proposedMaximumPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:constrainMaxCoordinate:ofSubviewAt:"), auto_cast splitView_constrainMaxCoordinate_ofSubviewAt, "d@:@dl") do panic("Failed to register objC method.")
     }
     if vt.splitView_constrainSplitPosition_ofSubviewAt != nil {
-        splitView_constrainSplitPosition_ofSubviewAt :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, proposedPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float {
+        splitView_constrainSplitPosition_ofSubviewAt :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, proposedPosition: CG.Float, dividerIndex: NS.Integer) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:constrainSplitPosition:ofSubviewAt:"), auto_cast splitView_constrainSplitPosition_ofSubviewAt, "d@:@dl") do panic("Failed to register objC method.")
     }
     if vt.splitView_resizeSubviewsWithOldSize != nil {
-        splitView_resizeSubviewsWithOldSize :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, oldSize: NS.Size) {
+        splitView_resizeSubviewsWithOldSize :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, oldSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:resizeSubviewsWithOldSize:"), auto_cast splitView_resizeSubviewsWithOldSize, "v@:@{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.splitView_shouldAdjustSizeOfSubview != nil {
-        splitView_shouldAdjustSizeOfSubview :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, view: ^AK.View) -> bool {
+        splitView_shouldAdjustSizeOfSubview :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, view: ^NS.View) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:shouldAdjustSizeOfSubview:"), auto_cast splitView_shouldAdjustSizeOfSubview, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.splitView_shouldHideDividerAtIndex != nil {
-        splitView_shouldHideDividerAtIndex :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> bool {
+        splitView_shouldHideDividerAtIndex :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:shouldHideDividerAtIndex:"), auto_cast splitView_shouldHideDividerAtIndex, "B@:@l") do panic("Failed to register objC method.")
     }
     if vt.splitView_effectiveRect_forDrawnRect_ofDividerAtIndex != nil {
-        splitView_effectiveRect_forDrawnRect_ofDividerAtIndex :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, proposedEffectiveRect: NS.Rect, drawnRect: NS.Rect, dividerIndex: NS.Integer) -> NS.Rect {
+        splitView_effectiveRect_forDrawnRect_ofDividerAtIndex :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, proposedEffectiveRect: NS.Rect, drawnRect: NS.Rect, dividerIndex: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:"), auto_cast splitView_effectiveRect_forDrawnRect_ofDividerAtIndex, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}l") do panic("Failed to register objC method.")
     }
     if vt.splitView_additionalEffectiveRectOfDividerAtIndex != nil {
-        splitView_additionalEffectiveRectOfDividerAtIndex :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> NS.Rect {
+        splitView_additionalEffectiveRectOfDividerAtIndex :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView:additionalEffectiveRectOfDividerAtIndex:"), auto_cast splitView_additionalEffectiveRectOfDividerAtIndex, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@l") do panic("Failed to register objC method.")
     }
     if vt.splitViewWillResizeSubviews != nil {
-        splitViewWillResizeSubviews :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, notification: ^NS.Notification) {
+        splitViewWillResizeSubviews :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitViewWillResizeSubviews:"), auto_cast splitViewWillResizeSubviews, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.splitViewDidResizeSubviews != nil {
-        splitViewDidResizeSubviews :: proc "c" (self: ^AK.SplitViewDelegate, _: SEL, notification: ^NS.Notification) {
+        splitViewDidResizeSubviews :: proc "c" (self: ^NS.SplitViewDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

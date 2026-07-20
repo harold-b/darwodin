@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerLooper
-///
 @(objc_class="AVPlayerLooper", objc_superclass=NS.Object)
 PlayerLooper :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerLooper, objc_selector="init", objc_name="init")
     PlayerLooper_init :: proc(self: ^PlayerLooper) -> instancetype ---
@@ -55,6 +49,8 @@ foreign lib {
     @(objc_type=PlayerLooper, objc_selector="loopingPlayerItems", objc_name="loopingPlayerItems")
     PlayerLooper_loopingPlayerItems :: proc(self: ^PlayerLooper) -> ^NS.Array ---
 }
+
+
 
 @(objc_type=PlayerLooper, objc_name="playerLooperWithPlayer")
 PlayerLooper_playerLooperWithPlayer :: proc {

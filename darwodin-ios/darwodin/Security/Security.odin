@@ -14,14 +14,27 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:Security.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:Security.framework",
+    }
+}
+
+
+// +user-text-begin
 __sFILE :: rawptr
 OpaqueSecIdentitySearchRef :: struct {}
 OpaquePolicySearchRef :: struct {}
 OpaqueSecTransformImplementation :: struct {}
 xpc_object_t :: distinct rawptr // TODO: Move XPC to its own framework instead of exporting from Foundation
 
+// -user-text-end
 
 
 errSecSuccess                            :: 0
@@ -957,10 +970,10 @@ foreign lib {
     SecTrustCopyCertificateChain :: proc(trust: SecTrustRef) -> CF.ArrayRef ---
 
     @(link_name="SecAddSharedWebCredential")
-    SecAddSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, password: CF.StringRef, completionHandler: ^Objc_Block(proc "c" (error: CF.ErrorRef))) ---
+    SecAddSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, password: CF.StringRef, completionHandler: ^Objc_Block(proc "c" ( error: CF.ErrorRef ))) ---
 
     @(link_name="SecRequestSharedWebCredential")
-    SecRequestSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, completionHandler: ^Objc_Block(proc "c" (credentials: CF.ArrayRef, error: CF.ErrorRef))) ---
+    SecRequestSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, completionHandler: ^Objc_Block(proc "c" ( credentials: CF.ArrayRef, error: CF.ErrorRef ))) ---
 
     @(link_name="SecCreateSharedWebCredentialPassword")
     SecCreateSharedWebCredentialPassword :: proc() -> CF.StringRef ---
@@ -1025,10 +1038,10 @@ SecRandomRef :: distinct ^__SecRandom
 SecTrustRef :: distinct ^__SecTrust
 
 /// SecTrustCallback
-SecTrustCallback :: ^Objc_Block(proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType))
+SecTrustCallback :: ^Objc_Block(proc "c" ( trustRef: SecTrustRef, trustResult: SecTrustResultType ))
 
 /// SecTrustWithErrorCallback
-SecTrustWithErrorCallback :: ^Objc_Block(proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef))
+SecTrustWithErrorCallback :: ^Objc_Block(proc "c" ( trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef ))
 
 /// SSLCipherSuite
 SSLCipherSuite :: distinct cffi.uint16_t

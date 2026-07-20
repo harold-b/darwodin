@@ -20,24 +20,24 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    insertText: proc(self: ^AK.InputServiceProvider, string: id, sender: id),
-    doCommandBySelector: proc(self: ^AK.InputServiceProvider, selector: SEL, sender: id),
-    markedTextAbandoned: proc(self: ^AK.InputServiceProvider, sender: id),
-    markedTextSelectionChanged: proc(self: ^AK.InputServiceProvider, newSel: NS._NSRange, sender: id),
-    terminate: proc(self: ^AK.InputServiceProvider, sender: id),
-    canBeDisabled: proc(self: ^AK.InputServiceProvider) -> bool,
-    wantsToInterpretAllKeystrokes: proc(self: ^AK.InputServiceProvider) -> bool,
-    wantsToHandleMouseEvents: proc(self: ^AK.InputServiceProvider) -> bool,
-    wantsToDelayTextChangeNotifications: proc(self: ^AK.InputServiceProvider) -> bool,
-    inputClientBecomeActive: proc(self: ^AK.InputServiceProvider, sender: id),
-    inputClientResignActive: proc(self: ^AK.InputServiceProvider, sender: id),
-    inputClientEnabled: proc(self: ^AK.InputServiceProvider, sender: id),
-    inputClientDisabled: proc(self: ^AK.InputServiceProvider, sender: id),
-    activeConversationWillChange: proc(self: ^AK.InputServiceProvider, sender: id, oldConversation: NS.Integer),
-    activeConversationChanged: proc(self: ^AK.InputServiceProvider, sender: id, newConversation: NS.Integer),
+    insertText: proc(self: ^NS.InputServiceProvider, string: id, sender: id),
+    doCommandBySelector: proc(self: ^NS.InputServiceProvider, selector: SEL, sender: id),
+    markedTextAbandoned: proc(self: ^NS.InputServiceProvider, sender: id),
+    markedTextSelectionChanged: proc(self: ^NS.InputServiceProvider, newSel: NS._NSRange, sender: id),
+    terminate: proc(self: ^NS.InputServiceProvider, sender: id),
+    canBeDisabled: proc(self: ^NS.InputServiceProvider) -> bool,
+    wantsToInterpretAllKeystrokes: proc(self: ^NS.InputServiceProvider) -> bool,
+    wantsToHandleMouseEvents: proc(self: ^NS.InputServiceProvider) -> bool,
+    wantsToDelayTextChangeNotifications: proc(self: ^NS.InputServiceProvider) -> bool,
+    inputClientBecomeActive: proc(self: ^NS.InputServiceProvider, sender: id),
+    inputClientResignActive: proc(self: ^NS.InputServiceProvider, sender: id),
+    inputClientEnabled: proc(self: ^NS.InputServiceProvider, sender: id),
+    inputClientDisabled: proc(self: ^NS.InputServiceProvider, sender: id),
+    activeConversationWillChange: proc(self: ^NS.InputServiceProvider, sender: id, oldConversation: NS.Integer),
+    activeConversationChanged: proc(self: ^NS.InputServiceProvider, sender: id, newConversation: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.insertText != nil {
-        insertText :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, string: id, sender: id) {
+        insertText :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, string: id, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertText:client:"), auto_cast insertText, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.doCommandBySelector != nil {
-        doCommandBySelector :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, selector: SEL, sender: id) {
+        doCommandBySelector :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, selector: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("doCommandBySelector:client:"), auto_cast doCommandBySelector, "v@::@") do panic("Failed to register objC method.")
     }
     if vt.markedTextAbandoned != nil {
-        markedTextAbandoned :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, sender: id) {
+        markedTextAbandoned :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("markedTextAbandoned:"), auto_cast markedTextAbandoned, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.markedTextSelectionChanged != nil {
-        markedTextSelectionChanged :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, newSel: NS._NSRange, sender: id) {
+        markedTextSelectionChanged :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, newSel: NS._NSRange, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("markedTextSelectionChanged:client:"), auto_cast markedTextSelectionChanged, "v@:{_NSRange=LL}@") do panic("Failed to register objC method.")
     }
     if vt.terminate != nil {
-        terminate :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, sender: id) {
+        terminate :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("terminate:"), auto_cast terminate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.canBeDisabled != nil {
-        canBeDisabled :: proc "c" (self: ^AK.InputServiceProvider, _: SEL) -> bool {
+        canBeDisabled :: proc "c" (self: ^NS.InputServiceProvider, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canBeDisabled"), auto_cast canBeDisabled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.wantsToInterpretAllKeystrokes != nil {
-        wantsToInterpretAllKeystrokes :: proc "c" (self: ^AK.InputServiceProvider, _: SEL) -> bool {
+        wantsToInterpretAllKeystrokes :: proc "c" (self: ^NS.InputServiceProvider, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("wantsToInterpretAllKeystrokes"), auto_cast wantsToInterpretAllKeystrokes, "B@:") do panic("Failed to register objC method.")
     }
     if vt.wantsToHandleMouseEvents != nil {
-        wantsToHandleMouseEvents :: proc "c" (self: ^AK.InputServiceProvider, _: SEL) -> bool {
+        wantsToHandleMouseEvents :: proc "c" (self: ^NS.InputServiceProvider, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("wantsToHandleMouseEvents"), auto_cast wantsToHandleMouseEvents, "B@:") do panic("Failed to register objC method.")
     }
     if vt.wantsToDelayTextChangeNotifications != nil {
-        wantsToDelayTextChangeNotifications :: proc "c" (self: ^AK.InputServiceProvider, _: SEL) -> bool {
+        wantsToDelayTextChangeNotifications :: proc "c" (self: ^NS.InputServiceProvider, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -135,7 +135,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("wantsToDelayTextChangeNotifications"), auto_cast wantsToDelayTextChangeNotifications, "B@:") do panic("Failed to register objC method.")
     }
     if vt.inputClientBecomeActive != nil {
-        inputClientBecomeActive :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, sender: id) {
+        inputClientBecomeActive :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -145,7 +145,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("inputClientBecomeActive:"), auto_cast inputClientBecomeActive, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.inputClientResignActive != nil {
-        inputClientResignActive :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, sender: id) {
+        inputClientResignActive :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -155,7 +155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("inputClientResignActive:"), auto_cast inputClientResignActive, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.inputClientEnabled != nil {
-        inputClientEnabled :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, sender: id) {
+        inputClientEnabled :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -165,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("inputClientEnabled:"), auto_cast inputClientEnabled, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.inputClientDisabled != nil {
-        inputClientDisabled :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, sender: id) {
+        inputClientDisabled :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -175,7 +175,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("inputClientDisabled:"), auto_cast inputClientDisabled, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.activeConversationWillChange != nil {
-        activeConversationWillChange :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, sender: id, oldConversation: NS.Integer) {
+        activeConversationWillChange :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, sender: id, oldConversation: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -185,7 +185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activeConversationWillChange:fromOldConversation:"), auto_cast activeConversationWillChange, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.activeConversationChanged != nil {
-        activeConversationChanged :: proc "c" (self: ^AK.InputServiceProvider, _: SEL, sender: id, newConversation: NS.Integer) {
+        activeConversationChanged :: proc "c" (self: ^NS.InputServiceProvider, _: SEL, sender: id, newConversation: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

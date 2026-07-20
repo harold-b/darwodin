@@ -20,21 +20,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    layoutAnchorWithEdges_: proc(edges: AK.DirectionalRectEdge) -> instancetype,
-    layoutAnchorWithEdges_absoluteOffset: proc(edges: AK.DirectionalRectEdge, absoluteOffset: CG.Point) -> instancetype,
-    layoutAnchorWithEdges_fractionalOffset: proc(edges: AK.DirectionalRectEdge, fractionalOffset: CG.Point) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutAnchor) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutAnchor,
-    edges: proc(self: ^AK.CollectionLayoutAnchor) -> AK.DirectionalRectEdge,
-    offset: proc(self: ^AK.CollectionLayoutAnchor) -> CG.Point,
-    isAbsoluteOffset: proc(self: ^AK.CollectionLayoutAnchor) -> bool,
-    isFractionalOffset: proc(self: ^AK.CollectionLayoutAnchor) -> bool,
+    layoutAnchorWithEdges_: proc(edges: NS.DirectionalRectEdge) -> instancetype,
+    layoutAnchorWithEdges_absoluteOffset: proc(edges: NS.DirectionalRectEdge, absoluteOffset: CG.Point) -> instancetype,
+    layoutAnchorWithEdges_fractionalOffset: proc(edges: NS.DirectionalRectEdge, fractionalOffset: CG.Point) -> instancetype,
+    init: proc(self: ^NS.CollectionLayoutAnchor) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutAnchor,
+    edges: proc(self: ^NS.CollectionLayoutAnchor) -> NS.DirectionalRectEdge,
+    offset: proc(self: ^NS.CollectionLayoutAnchor) -> CG.Point,
+    isAbsoluteOffset: proc(self: ^NS.CollectionLayoutAnchor) -> bool,
+    isFractionalOffset: proc(self: ^NS.CollectionLayoutAnchor) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.layoutAnchorWithEdges_ != nil {
-        layoutAnchorWithEdges_ :: proc "c" (self: Class, _: SEL, edges: AK.DirectionalRectEdge) -> instancetype {
+        layoutAnchorWithEdges_ :: proc "c" (self: Class, _: SEL, edges: NS.DirectionalRectEdge) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("layoutAnchorWithEdges:"), auto_cast layoutAnchorWithEdges_, "@#:L") do panic("Failed to register objC method.")
     }
     if vt.layoutAnchorWithEdges_absoluteOffset != nil {
-        layoutAnchorWithEdges_absoluteOffset :: proc "c" (self: Class, _: SEL, edges: AK.DirectionalRectEdge, absoluteOffset: CG.Point) -> instancetype {
+        layoutAnchorWithEdges_absoluteOffset :: proc "c" (self: Class, _: SEL, edges: NS.DirectionalRectEdge, absoluteOffset: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("layoutAnchorWithEdges:absoluteOffset:"), auto_cast layoutAnchorWithEdges_absoluteOffset, "@#:L{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.layoutAnchorWithEdges_fractionalOffset != nil {
-        layoutAnchorWithEdges_fractionalOffset :: proc "c" (self: Class, _: SEL, edges: AK.DirectionalRectEdge, fractionalOffset: CG.Point) -> instancetype {
+        layoutAnchorWithEdges_fractionalOffset :: proc "c" (self: Class, _: SEL, edges: NS.DirectionalRectEdge, fractionalOffset: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("layoutAnchorWithEdges:fractionalOffset:"), auto_cast layoutAnchorWithEdges_fractionalOffset, "@#:L{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutAnchor, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutAnchor, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutAnchor {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutAnchor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.edges != nil {
-        edges :: proc "c" (self: ^AK.CollectionLayoutAnchor, _: SEL) -> AK.DirectionalRectEdge {
+        edges :: proc "c" (self: ^NS.CollectionLayoutAnchor, _: SEL) -> NS.DirectionalRectEdge {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("edges"), auto_cast edges, "L@:") do panic("Failed to register objC method.")
     }
     if vt.offset != nil {
-        offset :: proc "c" (self: ^AK.CollectionLayoutAnchor, _: SEL) -> CG.Point {
+        offset :: proc "c" (self: ^NS.CollectionLayoutAnchor, _: SEL) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("offset"), auto_cast offset, "{CGPoint=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.isAbsoluteOffset != nil {
-        isAbsoluteOffset :: proc "c" (self: ^AK.CollectionLayoutAnchor, _: SEL) -> bool {
+        isAbsoluteOffset :: proc "c" (self: ^NS.CollectionLayoutAnchor, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isAbsoluteOffset"), auto_cast isAbsoluteOffset, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isFractionalOffset != nil {
-        isFractionalOffset :: proc "c" (self: ^AK.CollectionLayoutAnchor, _: SEL) -> bool {
+        isFractionalOffset :: proc "c" (self: ^NS.CollectionLayoutAnchor, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -21,9 +21,9 @@ import "../NSURLSessionTask"
 
 VTable :: struct {
     super: NSURLSessionTask.VTable,
-    sendMessage: proc(self: ^NS.URLSessionWebSocketTask, message: ^NS.URLSessionWebSocketMessage, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
-    receiveMessageWithCompletionHandler: proc(self: ^NS.URLSessionWebSocketTask, completionHandler: ^Objc_Block(proc "c" (message: ^NS.URLSessionWebSocketMessage, error: ^NS.Error))),
-    sendPingWithPongReceiveHandler: proc(self: ^NS.URLSessionWebSocketTask, pongReceiveHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    sendMessage: proc(self: ^NS.URLSessionWebSocketTask, message: ^NS.URLSessionWebSocketMessage, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
+    receiveMessageWithCompletionHandler: proc(self: ^NS.URLSessionWebSocketTask, completionHandler: ^Objc_Block(proc "c" ( message: ^NS.URLSessionWebSocketMessage, error: ^NS.Error ))),
+    sendPingWithPongReceiveHandler: proc(self: ^NS.URLSessionWebSocketTask, pongReceiveHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
     cancelWithCloseCode: proc(self: ^NS.URLSessionWebSocketTask, closeCode: NS.URLSessionWebSocketCloseCode, reason: ^NS.Data),
     init: proc(self: ^NS.URLSessionWebSocketTask) -> instancetype,
     new: proc() -> ^NS.URLSessionWebSocketTask,
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSURLSessionTask.extend(cls, &vt.super)
 
     if vt.sendMessage != nil {
-        sendMessage :: proc "c" (self: ^NS.URLSessionWebSocketTask, _: SEL, message: ^NS.URLSessionWebSocketMessage, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        sendMessage :: proc "c" (self: ^NS.URLSessionWebSocketTask, _: SEL, message: ^NS.URLSessionWebSocketMessage, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sendMessage:completionHandler:"), auto_cast sendMessage, "v@:@?") do panic("Failed to register objC method.")
     }
     if vt.receiveMessageWithCompletionHandler != nil {
-        receiveMessageWithCompletionHandler :: proc "c" (self: ^NS.URLSessionWebSocketTask, _: SEL, completionHandler: ^Objc_Block(proc "c" (message: ^NS.URLSessionWebSocketMessage, error: ^NS.Error))) {
+        receiveMessageWithCompletionHandler :: proc "c" (self: ^NS.URLSessionWebSocketTask, _: SEL, completionHandler: ^Objc_Block(proc "c" ( message: ^NS.URLSessionWebSocketMessage, error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("receiveMessageWithCompletionHandler:"), auto_cast receiveMessageWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.sendPingWithPongReceiveHandler != nil {
-        sendPingWithPongReceiveHandler :: proc "c" (self: ^NS.URLSessionWebSocketTask, _: SEL, pongReceiveHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        sendPingWithPongReceiveHandler :: proc "c" (self: ^NS.URLSessionWebSocketTask, _: SEL, pongReceiveHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

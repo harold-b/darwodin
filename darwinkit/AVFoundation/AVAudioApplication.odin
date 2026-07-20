@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioApplication
-///
 @(objc_class="AVAudioApplication", objc_superclass=NS.Object)
 AudioApplication :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioApplication, objc_selector="init", objc_name="init")
     AudioApplication_init :: proc(self: ^AudioApplication) -> instancetype ---
@@ -29,13 +23,13 @@ foreign lib {
     AudioApplication_setInputMuted :: proc(self: ^AudioApplication, muted: bool, outError: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioApplication, objc_selector="setInputMuteStateChangeHandler:error:", objc_name="setInputMuteStateChangeHandler")
-    AudioApplication_setInputMuteStateChangeHandler :: proc(self: ^AudioApplication, inputMuteHandler: ^Objc_Block(proc "c" (inputShouldBeMuted: bool) -> bool), outError: ^^NS.Error) -> bool ---
+    AudioApplication_setInputMuteStateChangeHandler :: proc(self: ^AudioApplication, inputMuteHandler: ^Objc_Block(proc "c" ( inputShouldBeMuted: bool ) -> bool), outError: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioApplication, objc_selector="requestRecordPermissionWithCompletionHandler:", objc_name="requestRecordPermissionWithCompletionHandler", objc_is_class_method=true)
-    AudioApplication_requestRecordPermissionWithCompletionHandler :: proc(response: ^Objc_Block(proc "c" (granted: bool))) ---
+    AudioApplication_requestRecordPermissionWithCompletionHandler :: proc(response: ^Objc_Block(proc "c" ( granted: bool ))) ---
 
     @(objc_type=AudioApplication, objc_selector="requestMicrophoneInjectionPermissionWithCompletionHandler:", objc_name="requestMicrophoneInjectionPermissionWithCompletionHandler", objc_is_class_method=true)
-    AudioApplication_requestMicrophoneInjectionPermissionWithCompletionHandler :: proc(response: ^Objc_Block(proc "c" (permission: AudioApplicationMicrophoneInjectionPermission))) ---
+    AudioApplication_requestMicrophoneInjectionPermissionWithCompletionHandler :: proc(response: ^Objc_Block(proc "c" ( permission: AudioApplicationMicrophoneInjectionPermission ))) ---
 
     @(objc_type=AudioApplication, objc_selector="sharedInstance", objc_name="sharedInstance", objc_is_class_method=true)
     AudioApplication_sharedInstance :: proc() -> ^AudioApplication ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=AudioApplication, objc_selector="microphoneInjectionPermission", objc_name="microphoneInjectionPermission")
     AudioApplication_microphoneInjectionPermission :: proc(self: ^AudioApplication) -> AudioApplicationMicrophoneInjectionPermission ---
 }
+
+
+

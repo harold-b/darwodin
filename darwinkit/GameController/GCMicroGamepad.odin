@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCMicroGamepad
-///
 @(objc_class="GCMicroGamepad", objc_superclass=PhysicalInputProfile)
 MicroGamepad :: struct { using _: PhysicalInputProfile, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MicroGamepad, objc_selector="saveSnapshot", objc_name="saveSnapshot")
     MicroGamepad_saveSnapshot :: proc(self: ^MicroGamepad) -> ^MicroGamepadSnapshot ---
@@ -57,3 +51,6 @@ foreign lib {
     @(objc_type=MicroGamepad, objc_selector="setAllowsRotation:", objc_name="setAllowsRotation")
     MicroGamepad_setAllowsRotation :: proc(self: ^MicroGamepad, allowsRotation: bool) ---
 }
+
+
+

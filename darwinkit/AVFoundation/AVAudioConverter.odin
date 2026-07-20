@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioConverter
-///
 @(objc_class="AVAudioConverter", objc_superclass=NS.Object)
 AudioConverter :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioConverter, objc_selector="initFromFormat:toFormat:", objc_name="initFromFormat")
     AudioConverter_initFromFormat :: proc(self: ^AudioConverter, fromFormat: ^AudioFormat, toFormat: ^AudioFormat) -> instancetype ---
@@ -136,6 +130,8 @@ foreign lib {
     @(objc_type=AudioConverter, objc_selector="availableEncodeChannelLayoutTags", objc_name="availableEncodeChannelLayoutTags")
     AudioConverter_availableEncodeChannelLayoutTags :: proc(self: ^AudioConverter) -> ^NS.Array ---
 }
+
+
 
 @(objc_type=AudioConverter, objc_name="convertToBuffer")
 AudioConverter_convertToBuffer :: proc {

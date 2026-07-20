@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithCGLPixelFormatObj: proc(self: ^AK.OpenGLPixelFormat, format: CA.CGLPixelFormatObj) -> ^AK.OpenGLPixelFormat,
-    initWithAttributes: proc(self: ^AK.OpenGLPixelFormat, attribs: ^AK.OpenGLPixelFormatAttribute) -> instancetype,
-    initWithData: proc(self: ^AK.OpenGLPixelFormat, attribs: ^NS.Data) -> id,
-    attributes: proc(self: ^AK.OpenGLPixelFormat) -> ^NS.Data,
-    setAttributes: proc(self: ^AK.OpenGLPixelFormat, attribs: ^NS.Data),
-    getValues: proc(self: ^AK.OpenGLPixelFormat, vals: ^CA.GLint, attrib: AK.OpenGLPixelFormatAttribute, screen: CA.GLint),
-    numberOfVirtualScreens: proc(self: ^AK.OpenGLPixelFormat) -> CA.GLint,
-    _CGLPixelFormatObj: proc(self: ^AK.OpenGLPixelFormat) -> CA.CGLPixelFormatObj,
+    initWithCGLPixelFormatObj: proc(self: ^NS.OpenGLPixelFormat, format: CA.CGLPixelFormatObj) -> ^NS.OpenGLPixelFormat,
+    initWithAttributes: proc(self: ^NS.OpenGLPixelFormat, attribs: ^NS.OpenGLPixelFormatAttribute) -> instancetype,
+    initWithData: proc(self: ^NS.OpenGLPixelFormat, attribs: ^NS.Data) -> id,
+    attributes: proc(self: ^NS.OpenGLPixelFormat) -> ^NS.Data,
+    setAttributes: proc(self: ^NS.OpenGLPixelFormat, attribs: ^NS.Data),
+    getValues: proc(self: ^NS.OpenGLPixelFormat, vals: ^CA.GLint, attrib: NS.OpenGLPixelFormatAttribute, screen: CA.GLint),
+    numberOfVirtualScreens: proc(self: ^NS.OpenGLPixelFormat) -> CA.GLint,
+    _CGLPixelFormatObj: proc(self: ^NS.OpenGLPixelFormat) -> CA.CGLPixelFormatObj,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithCGLPixelFormatObj != nil {
-        initWithCGLPixelFormatObj :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL, format: CA.CGLPixelFormatObj) -> ^AK.OpenGLPixelFormat {
+        initWithCGLPixelFormatObj :: proc "c" (self: ^NS.OpenGLPixelFormat, _: SEL, format: CA.CGLPixelFormatObj) -> ^NS.OpenGLPixelFormat {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCGLPixelFormatObj:"), auto_cast initWithCGLPixelFormatObj, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributes != nil {
-        initWithAttributes :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL, attribs: ^AK.OpenGLPixelFormatAttribute) -> instancetype {
+        initWithAttributes :: proc "c" (self: ^NS.OpenGLPixelFormat, _: SEL, attribs: ^NS.OpenGLPixelFormatAttribute) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributes:"), auto_cast initWithAttributes, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL, attribs: ^NS.Data) -> id {
+        initWithData :: proc "c" (self: ^NS.OpenGLPixelFormat, _: SEL, attribs: ^NS.Data) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:"), auto_cast initWithData, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.attributes != nil {
-        attributes :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL) -> ^NS.Data {
+        attributes :: proc "c" (self: ^NS.OpenGLPixelFormat, _: SEL) -> ^NS.Data {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributes"), auto_cast attributes, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributes != nil {
-        setAttributes :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL, attribs: ^NS.Data) {
+        setAttributes :: proc "c" (self: ^NS.OpenGLPixelFormat, _: SEL, attribs: ^NS.Data) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributes:"), auto_cast setAttributes, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.getValues != nil {
-        getValues :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL, vals: ^CA.GLint, attrib: AK.OpenGLPixelFormatAttribute, screen: CA.GLint) {
+        getValues :: proc "c" (self: ^NS.OpenGLPixelFormat, _: SEL, vals: ^CA.GLint, attrib: NS.OpenGLPixelFormatAttribute, screen: CA.GLint) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getValues:forAttribute:forVirtualScreen:"), auto_cast getValues, "v@:^voidIi") do panic("Failed to register objC method.")
     }
     if vt.numberOfVirtualScreens != nil {
-        numberOfVirtualScreens :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL) -> CA.GLint {
+        numberOfVirtualScreens :: proc "c" (self: ^NS.OpenGLPixelFormat, _: SEL) -> CA.GLint {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfVirtualScreens"), auto_cast numberOfVirtualScreens, "i@:") do panic("Failed to register objC method.")
     }
     if vt._CGLPixelFormatObj != nil {
-        _CGLPixelFormatObj :: proc "c" (self: ^AK.OpenGLPixelFormat, _: SEL) -> CA.CGLPixelFormatObj {
+        _CGLPixelFormatObj :: proc "c" (self: ^NS.OpenGLPixelFormat, _: SEL) -> CA.CGLPixelFormatObj {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

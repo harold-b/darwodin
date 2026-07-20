@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCButtonElement
-///
 @(objc_class="GCButtonElement")
 ButtonElement :: struct { using _: intrinsics.objc_object, 
     using _: PhysicalInputElement,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ButtonElement, objc_selector="pressedInput", objc_name="pressedInput")
     ButtonElement_pressedInput :: proc(self: ^ButtonElement) -> ^id ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=ButtonElement, objc_selector="forceInput", objc_name="forceInput")
     ButtonElement_forceInput :: proc(self: ^ButtonElement) -> ^LinearInput ---
 }
+
+
+

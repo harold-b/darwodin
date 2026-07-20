@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSPipe
-///
 @(objc_class="NSPipe", objc_superclass=Object)
 Pipe :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Pipe, objc_selector="pipe", objc_name="pipe", objc_is_class_method=true)
     Pipe_pipe :: proc() -> ^Pipe ---
@@ -28,3 +22,6 @@ foreign lib {
     @(objc_type=Pipe, objc_selector="fileHandleForWriting", objc_name="fileHandleForWriting")
     Pipe_fileHandleForWriting :: proc(self: ^Pipe) -> ^FileHandle ---
 }
+
+
+

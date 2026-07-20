@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSFileHandle
-///
 @(objc_class="NSFileHandle", objc_superclass=Object)
 FileHandle :: struct { using _: Object, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FileHandle, objc_selector="initWithFileDescriptor:closeOnDealloc:", objc_name="initWithFileDescriptor_closeOnDealloc")
     FileHandle_initWithFileDescriptor_closeOnDealloc :: proc(self: ^FileHandle, fd: cffi.int, closeopt: bool) -> instancetype ---
@@ -156,6 +150,8 @@ foreign lib {
     @(objc_type=FileHandle, objc_selector="closeFile", objc_name="closeFile")
     FileHandle_closeFile :: proc(self: ^FileHandle) ---
 }
+
+
 
 @(objc_type=FileHandle, objc_name="initWithFileDescriptor")
 FileHandle_initWithFileDescriptor :: proc {

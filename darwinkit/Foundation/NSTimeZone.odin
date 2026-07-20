@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSTimeZone
-///
 @(objc_class="NSTimeZone", objc_superclass=Object)
 TimeZone :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TimeZone, objc_selector="secondsFromGMTForDate:", objc_name="secondsFromGMTForDate")
     TimeZone_secondsFromGMTForDate :: proc(self: ^TimeZone, aDate: ^Date) -> Integer ---
@@ -112,6 +106,8 @@ foreign lib {
     @(objc_type=TimeZone, objc_selector="timeZoneWithAbbreviation:", objc_name="timeZoneWithAbbreviation", objc_is_class_method=true)
     TimeZone_timeZoneWithAbbreviation :: proc(abbreviation: ^String) -> instancetype ---
 }
+
+
 
 @(objc_type=TimeZone, objc_name="timeZoneWithName")
 TimeZone_timeZoneWithName :: proc {

@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureTimecodeSource
-///
 @(objc_class="AVCaptureTimecodeSource", objc_superclass=NS.Object)
 CaptureTimecodeSource :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureTimecodeSource, objc_selector="displayName", objc_name="displayName")
     CaptureTimecodeSource_displayName :: proc(self: ^CaptureTimecodeSource) -> ^NS.String ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=CaptureTimecodeSource, objc_selector="uuid", objc_name="uuid")
     CaptureTimecodeSource_uuid :: proc(self: ^CaptureTimecodeSource) -> ^NS.UUID ---
 }
+
+
+

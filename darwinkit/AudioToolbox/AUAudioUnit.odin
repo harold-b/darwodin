@@ -10,15 +10,9 @@ import CA "../CoreAudio"
 import CM "../CoreMedia"
 import NS "../Foundation"
 
-
-
-///
-/// AUAudioUnit
-///
 @(objc_class="AUAudioUnit", objc_superclass=NS.Object)
 AUAudioUnit :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUAudioUnit, objc_selector="init", objc_name="init")
     AUAudioUnit_init :: proc(self: ^AUAudioUnit) -> instancetype ---
@@ -29,8 +23,13 @@ foreign lib {
     @(objc_type=AUAudioUnit, objc_selector="initWithComponentDescription:error:", objc_name="initWithComponentDescription_error")
     AUAudioUnit_initWithComponentDescription_error :: proc(self: ^AUAudioUnit, componentDescription: ComponentDescription, outError: ^^NS.Error) -> instancetype ---
 
-    @(objc_type=AUAudioUnit, objc_selector="instantiateWithComponentDescription:options:completionHandler:", objc_name="instantiateWithComponentDescription", objc_is_class_method=true)
-    AUAudioUnit_instantiateWithComponentDescription :: proc(componentDescription: ComponentDescription, options: ComponentInstantiationOptions, completionHandler: ^Objc_Block(proc "c" (audioUnit: ^AUAudioUnit, error: ^NS.Error))) ---
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(objc_type=AUAudioUnit, objc_selector="instantiateWithComponentDescription:options:completionHandler:", objc_name="instantiateWithComponentDescription", objc_is_class_method=true)
+        AUAudioUnit_instantiateWithComponentDescription :: proc(componentDescription: ComponentDescription, options: ComponentInstantiationOptions, completionHandler: ^Objc_Block(proc "c" ( audioUnit: ^AUAudioUnit, error: ^NS.Error ))) ---
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=AUAudioUnit, objc_selector="instantiateWithComponentDescription:options:completionHandler:", objc_name="instantiateWithComponentDescription", objc_is_class_method=true)
+        AUAudioUnit_instantiateWithComponentDescription :: proc(componentDescription: ComponentDescription, options: ComponentInstantiationOptions, completionHandler: ^Objc_Block(proc "c" (audioUnit: ^AUAudioUnit, error: ^NS.Error))) ---
+    }
 
     @(objc_type=AUAudioUnit, objc_selector="allocateRenderResourcesAndReturnError:", objc_name="allocateRenderResourcesAndReturnError")
     AUAudioUnit_allocateRenderResourcesAndReturnError :: proc(self: ^AUAudioUnit, outError: ^^NS.Error) -> bool ---
@@ -257,7 +256,7 @@ foreign lib {
     @(objc_type=AUAudioUnit, objc_selector="setProfileChangedBlock:", objc_name="setProfileChangedBlock")
     AUAudioUnit_setProfileChangedBlock :: proc(self: ^AUAudioUnit, profileChangedBlock: AUMIDICIProfileChangedBlock) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=AUAudioUnit, objc_selector="setDeviceID:error:", objc_name="setDeviceID")
         AUAudioUnit_setDeviceID :: proc(self: ^AUAudioUnit, deviceID: AUAudioObjectID, outError: ^^NS.Error) -> bool ---
     }
@@ -298,7 +297,7 @@ foreign lib {
     @(objc_type=AUAudioUnit, objc_selector="setInputHandler:", objc_name="setInputHandler")
     AUAudioUnit_setInputHandler :: proc(self: ^AUAudioUnit, inputHandler: AUInputHandler) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=AUAudioUnit, objc_selector="deviceID", objc_name="deviceID")
         AUAudioUnit_deviceID :: proc(self: ^AUAudioUnit) -> AUAudioObjectID ---
 
@@ -342,6 +341,8 @@ foreign lib {
     @(objc_type=AUAudioUnit, objc_selector="setMIDIOutputBufferSizeHint:", objc_name="setMIDIOutputBufferSizeHint")
     AUAudioUnit_setMIDIOutputBufferSizeHint :: proc(self: ^AUAudioUnit, MIDIOutputBufferSizeHint: NS.Integer) ---
 }
+
+
 
 @(objc_type=AUAudioUnit, objc_name="initWithComponentDescription")
 AUAudioUnit_initWithComponentDescription :: proc {

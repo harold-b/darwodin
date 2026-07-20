@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4TileRenderPipelineDescriptor
-///
 @(objc_class="MTL4TileRenderPipelineDescriptor", objc_superclass=MTL4PipelineDescriptor)
 MTL4TileRenderPipelineDescriptor :: struct { using _: MTL4PipelineDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4TileRenderPipelineDescriptor, objc_selector="reset", objc_name="reset")
     MTL4TileRenderPipelineDescriptor_reset :: proc(self: ^MTL4TileRenderPipelineDescriptor) ---
@@ -69,3 +63,6 @@ foreign lib {
     @(objc_type=MTL4TileRenderPipelineDescriptor, objc_selector="setSupportBinaryLinking:", objc_name="setSupportBinaryLinking")
     MTL4TileRenderPipelineDescriptor_setSupportBinaryLinking :: proc(self: ^MTL4TileRenderPipelineDescriptor, supportBinaryLinking: bool) ---
 }
+
+
+

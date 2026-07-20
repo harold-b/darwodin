@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureDepthDataOutput
-///
 @(objc_class="AVCaptureDepthDataOutput", objc_superclass=CaptureOutput)
 CaptureDepthDataOutput :: struct { using _: CaptureOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDepthDataOutput, objc_selector="init", objc_name="init")
     CaptureDepthDataOutput_init :: proc(self: ^CaptureDepthDataOutput) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=CaptureDepthDataOutput, objc_selector="setFilteringEnabled:", objc_name="setFilteringEnabled")
     CaptureDepthDataOutput_setFilteringEnabled :: proc(self: ^CaptureDepthDataOutput, filteringEnabled: bool) ---
 }
+
+
+

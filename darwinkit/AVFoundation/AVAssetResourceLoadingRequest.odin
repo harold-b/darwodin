@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetResourceLoadingRequest
-///
 @(objc_class="AVAssetResourceLoadingRequest", objc_superclass=NS.Object)
 AssetResourceLoadingRequest :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetResourceLoadingRequest, objc_selector="init", objc_name="init")
     AssetResourceLoadingRequest_init :: proc(self: ^AssetResourceLoadingRequest) -> instancetype ---
@@ -73,3 +67,6 @@ foreign lib {
     @(objc_type=AssetResourceLoadingRequest, objc_selector="finishLoadingWithResponse:data:redirect:", objc_name="finishLoadingWithResponse")
     AssetResourceLoadingRequest_finishLoadingWithResponse :: proc(self: ^AssetResourceLoadingRequest, response: ^NS.URLResponse, data: ^NS.Data, redirect: ^NS.URLRequest) ---
 }
+
+
+

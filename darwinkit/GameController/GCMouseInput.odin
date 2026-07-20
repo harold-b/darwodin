@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCMouseInput
-///
 @(objc_class="GCMouseInput", objc_superclass=PhysicalInputProfile)
 MouseInput :: struct { using _: PhysicalInputProfile, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MouseInput, objc_selector="mouseMovedHandler", objc_name="mouseMovedHandler")
     MouseInput_mouseMovedHandler :: proc(self: ^MouseInput) -> MouseMoved ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=MouseInput, objc_selector="auxiliaryButtons", objc_name="auxiliaryButtons")
     MouseInput_auxiliaryButtons :: proc(self: ^MouseInput) -> ^NS.Array ---
 }
+
+
+

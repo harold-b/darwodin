@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAUPresetEvent
-///
 @(objc_class="AVAUPresetEvent", objc_superclass=MusicEvent)
 AUPresetEvent :: struct { using _: MusicEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUPresetEvent, objc_selector="initWithScope:element:dictionary:", objc_name="initWithScope")
     AUPresetEvent_initWithScope :: proc(self: ^AUPresetEvent, scope: CF.UInt32, element: CF.UInt32, presetDictionary: ^NS.Dictionary) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=AUPresetEvent, objc_selector="presetDictionary", objc_name="presetDictionary")
     AUPresetEvent_presetDictionary :: proc(self: ^AUPresetEvent) -> ^NS.Dictionary ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetSegmentTrackReport
-///
 @(objc_class="AVAssetSegmentTrackReport", objc_superclass=NS.Object)
 AssetSegmentTrackReport :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetSegmentTrackReport, objc_selector="init", objc_name="init")
     AssetSegmentTrackReport_init :: proc(self: ^AssetSegmentTrackReport) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=AssetSegmentTrackReport, objc_selector="firstVideoSampleInformation", objc_name="firstVideoSampleInformation")
     AssetSegmentTrackReport_firstVideoSampleInformation :: proc(self: ^AssetSegmentTrackReport) -> ^AssetSegmentReportSampleInformation ---
 }
+
+
+

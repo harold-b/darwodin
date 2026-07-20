@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCapturePhoto
-///
 @(objc_class="AVCapturePhoto", objc_superclass=NS.Object)
 CapturePhoto :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhoto, objc_selector="init", objc_name="init")
     CapturePhoto_init :: proc(self: ^CapturePhoto) -> instancetype ---
@@ -100,3 +94,6 @@ foreign lib {
     @(objc_type=CapturePhoto, objc_selector="lensStabilizationStatus", objc_name="lensStabilizationStatus")
     CapturePhoto_lensStabilizationStatus :: proc(self: ^CapturePhoto) -> CaptureLensStabilizationStatus ---
 }
+
+
+

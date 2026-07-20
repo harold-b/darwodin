@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSDirectoryEnumerator
-///
 @(objc_class="NSDirectoryEnumerator", objc_superclass=Enumerator)
 DirectoryEnumerator :: struct { using _: Enumerator, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DirectoryEnumerator, objc_selector="skipDescendents", objc_name="skipDescendents")
     DirectoryEnumerator_skipDescendents :: proc(self: ^DirectoryEnumerator) ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=DirectoryEnumerator, objc_selector="level", objc_name="level")
     DirectoryEnumerator_level :: proc(self: ^DirectoryEnumerator) -> UInteger ---
 }
+
+
+

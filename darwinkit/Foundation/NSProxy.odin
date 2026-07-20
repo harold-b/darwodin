@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSProxy
-///
 @(objc_class="NSProxy")
 Proxy :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Proxy, objc_selector="alloc", objc_name="alloc", objc_is_class_method=true)
     Proxy_alloc :: proc() -> ^Proxy ---
@@ -57,3 +51,6 @@ foreign lib {
     @(objc_type=Proxy, objc_selector="debugDescription", objc_name="debugDescription")
     Proxy_debugDescription :: proc(self: ^Proxy) -> ^String ---
 }
+
+
+

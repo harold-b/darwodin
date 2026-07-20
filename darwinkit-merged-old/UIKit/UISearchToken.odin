@@ -1,0 +1,38 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UISearchToken
+///
+@(objc_class="UISearchToken", objc_superclass=NS.Object)
+SearchToken :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SearchToken, objc_selector="init", objc_name="init")
+    SearchToken_init :: proc(self: ^SearchToken) -> instancetype ---
+
+    @(objc_type=SearchToken, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    SearchToken_new :: proc() -> ^SearchToken ---
+
+    @(objc_type=SearchToken, objc_selector="tokenWithIcon:text:", objc_name="tokenWithIcon", objc_is_class_method=true)
+    SearchToken_tokenWithIcon :: proc(icon: ^Image, text: ^NS.String) -> ^SearchToken ---
+
+    @(objc_type=SearchToken, objc_selector="representedObject", objc_name="representedObject")
+    SearchToken_representedObject :: proc(self: ^SearchToken) -> id ---
+
+    @(objc_type=SearchToken, objc_selector="setRepresentedObject:", objc_name="setRepresentedObject")
+    SearchToken_setRepresentedObject :: proc(self: ^SearchToken, representedObject: id) ---
+}

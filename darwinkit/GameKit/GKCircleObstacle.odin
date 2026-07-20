@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKCircleObstacle
-///
 @(objc_class="GKCircleObstacle", objc_superclass=Obstacle)
 CircleObstacle :: struct { using _: Obstacle, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CircleObstacle, objc_selector="obstacleWithRadius:", objc_name="obstacleWithRadius", objc_is_class_method=true)
     CircleObstacle_obstacleWithRadius :: proc(radius: cffi.float) -> instancetype ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=CircleObstacle, objc_selector="setPosition:", objc_name="setPosition")
     CircleObstacle_setPosition :: proc(self: ^CircleObstacle, position: ^vector_float2) ---
 }
+
+
+

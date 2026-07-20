@@ -20,101 +20,101 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    initWithFrame: proc(self: ^AK.ScrollView, frameRect: NS.Rect) -> instancetype,
-    initWithCoder: proc(self: ^AK.ScrollView, coder: ^NS.Coder) -> instancetype,
-    frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle: proc(cSize: NS.Size, horizontalScrollerClass: Class, verticalScrollerClass: Class, type: AK.BorderType, controlSize: AK.ControlSize, scrollerStyle: AK.ScrollerStyle) -> NS.Size,
-    contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle: proc(fSize: NS.Size, horizontalScrollerClass: Class, verticalScrollerClass: Class, type: AK.BorderType, controlSize: AK.ControlSize, scrollerStyle: AK.ScrollerStyle) -> NS.Size,
-    frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType: proc(cSize: NS.Size, hFlag: bool, vFlag: bool, type: AK.BorderType) -> NS.Size,
-    contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType: proc(fSize: NS.Size, hFlag: bool, vFlag: bool, type: AK.BorderType) -> NS.Size,
-    tile: proc(self: ^AK.ScrollView),
-    reflectScrolledClipView: proc(self: ^AK.ScrollView, cView: ^AK.ClipView),
-    scrollWheel: proc(self: ^AK.ScrollView, event: ^AK.Event),
-    flashScrollers: proc(self: ^AK.ScrollView),
-    magnifyToFitRect: proc(self: ^AK.ScrollView, rect: NS.Rect),
-    setMagnification_centeredAtPoint: proc(self: ^AK.ScrollView, magnification: CG.Float, point: CG.Point),
-    addFloatingSubview: proc(self: ^AK.ScrollView, view: ^AK.View, axis: AK.EventGestureAxis),
-    documentVisibleRect: proc(self: ^AK.ScrollView) -> NS.Rect,
-    contentSize: proc(self: ^AK.ScrollView) -> NS.Size,
-    documentView: proc(self: ^AK.ScrollView) -> ^AK.View,
-    setDocumentView: proc(self: ^AK.ScrollView, documentView: ^AK.View),
-    contentView: proc(self: ^AK.ScrollView) -> ^AK.ClipView,
-    setContentView: proc(self: ^AK.ScrollView, contentView: ^AK.ClipView),
-    documentCursor: proc(self: ^AK.ScrollView) -> ^AK.Cursor,
-    setDocumentCursor: proc(self: ^AK.ScrollView, documentCursor: ^AK.Cursor),
-    borderType: proc(self: ^AK.ScrollView) -> AK.BorderType,
-    setBorderType: proc(self: ^AK.ScrollView, borderType: AK.BorderType),
-    backgroundColor: proc(self: ^AK.ScrollView) -> ^AK.Color,
-    setBackgroundColor: proc(self: ^AK.ScrollView, backgroundColor: ^AK.Color),
-    drawsBackground: proc(self: ^AK.ScrollView) -> bool,
-    setDrawsBackground: proc(self: ^AK.ScrollView, drawsBackground: bool),
-    hasVerticalScroller: proc(self: ^AK.ScrollView) -> bool,
-    setHasVerticalScroller: proc(self: ^AK.ScrollView, hasVerticalScroller: bool),
-    hasHorizontalScroller: proc(self: ^AK.ScrollView) -> bool,
-    setHasHorizontalScroller: proc(self: ^AK.ScrollView, hasHorizontalScroller: bool),
-    verticalScroller: proc(self: ^AK.ScrollView) -> ^AK.Scroller,
-    setVerticalScroller: proc(self: ^AK.ScrollView, verticalScroller: ^AK.Scroller),
-    horizontalScroller: proc(self: ^AK.ScrollView) -> ^AK.Scroller,
-    setHorizontalScroller: proc(self: ^AK.ScrollView, horizontalScroller: ^AK.Scroller),
-    autohidesScrollers: proc(self: ^AK.ScrollView) -> bool,
-    setAutohidesScrollers: proc(self: ^AK.ScrollView, autohidesScrollers: bool),
-    horizontalLineScroll: proc(self: ^AK.ScrollView) -> CG.Float,
-    setHorizontalLineScroll: proc(self: ^AK.ScrollView, horizontalLineScroll: CG.Float),
-    verticalLineScroll: proc(self: ^AK.ScrollView) -> CG.Float,
-    setVerticalLineScroll: proc(self: ^AK.ScrollView, verticalLineScroll: CG.Float),
-    lineScroll: proc(self: ^AK.ScrollView) -> CG.Float,
-    setLineScroll: proc(self: ^AK.ScrollView, lineScroll: CG.Float),
-    horizontalPageScroll: proc(self: ^AK.ScrollView) -> CG.Float,
-    setHorizontalPageScroll: proc(self: ^AK.ScrollView, horizontalPageScroll: CG.Float),
-    verticalPageScroll: proc(self: ^AK.ScrollView) -> CG.Float,
-    setVerticalPageScroll: proc(self: ^AK.ScrollView, verticalPageScroll: CG.Float),
-    pageScroll: proc(self: ^AK.ScrollView) -> CG.Float,
-    setPageScroll: proc(self: ^AK.ScrollView, pageScroll: CG.Float),
-    scrollsDynamically: proc(self: ^AK.ScrollView) -> bool,
-    setScrollsDynamically: proc(self: ^AK.ScrollView, scrollsDynamically: bool),
-    scrollerStyle: proc(self: ^AK.ScrollView) -> AK.ScrollerStyle,
-    setScrollerStyle: proc(self: ^AK.ScrollView, scrollerStyle: AK.ScrollerStyle),
-    scrollerKnobStyle: proc(self: ^AK.ScrollView) -> AK.ScrollerKnobStyle,
-    setScrollerKnobStyle: proc(self: ^AK.ScrollView, scrollerKnobStyle: AK.ScrollerKnobStyle),
-    horizontalScrollElasticity: proc(self: ^AK.ScrollView) -> AK.ScrollElasticity,
-    setHorizontalScrollElasticity: proc(self: ^AK.ScrollView, horizontalScrollElasticity: AK.ScrollElasticity),
-    verticalScrollElasticity: proc(self: ^AK.ScrollView) -> AK.ScrollElasticity,
-    setVerticalScrollElasticity: proc(self: ^AK.ScrollView, verticalScrollElasticity: AK.ScrollElasticity),
-    usesPredominantAxisScrolling: proc(self: ^AK.ScrollView) -> bool,
-    setUsesPredominantAxisScrolling: proc(self: ^AK.ScrollView, usesPredominantAxisScrolling: bool),
-    allowsMagnification: proc(self: ^AK.ScrollView) -> bool,
-    setAllowsMagnification: proc(self: ^AK.ScrollView, allowsMagnification: bool),
-    magnification: proc(self: ^AK.ScrollView) -> CG.Float,
-    setMagnification_: proc(self: ^AK.ScrollView, magnification: CG.Float),
-    maxMagnification: proc(self: ^AK.ScrollView) -> CG.Float,
-    setMaxMagnification: proc(self: ^AK.ScrollView, maxMagnification: CG.Float),
-    minMagnification: proc(self: ^AK.ScrollView) -> CG.Float,
-    setMinMagnification: proc(self: ^AK.ScrollView, minMagnification: CG.Float),
-    automaticallyAdjustsContentInsets: proc(self: ^AK.ScrollView) -> bool,
-    setAutomaticallyAdjustsContentInsets: proc(self: ^AK.ScrollView, automaticallyAdjustsContentInsets: bool),
-    contentInsets: proc(self: ^AK.ScrollView) -> NS.EdgeInsets,
-    setContentInsets: proc(self: ^AK.ScrollView, contentInsets: NS.EdgeInsets),
-    scrollerInsets: proc(self: ^AK.ScrollView) -> NS.EdgeInsets,
-    setScrollerInsets: proc(self: ^AK.ScrollView, scrollerInsets: NS.EdgeInsets),
+    initWithFrame: proc(self: ^NS.ScrollView, frameRect: NS.Rect) -> instancetype,
+    initWithCoder: proc(self: ^NS.ScrollView, coder: ^NS.Coder) -> instancetype,
+    frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle: proc(cSize: NS.Size, horizontalScrollerClass: Class, verticalScrollerClass: Class, type: NS.BorderType, controlSize: NS.ControlSize, scrollerStyle: NS.ScrollerStyle) -> NS.Size,
+    contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle: proc(fSize: NS.Size, horizontalScrollerClass: Class, verticalScrollerClass: Class, type: NS.BorderType, controlSize: NS.ControlSize, scrollerStyle: NS.ScrollerStyle) -> NS.Size,
+    frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType: proc(cSize: NS.Size, hFlag: bool, vFlag: bool, type: NS.BorderType) -> NS.Size,
+    contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType: proc(fSize: NS.Size, hFlag: bool, vFlag: bool, type: NS.BorderType) -> NS.Size,
+    tile: proc(self: ^NS.ScrollView),
+    reflectScrolledClipView: proc(self: ^NS.ScrollView, cView: ^NS.ClipView),
+    scrollWheel: proc(self: ^NS.ScrollView, event: ^NS.Event),
+    flashScrollers: proc(self: ^NS.ScrollView),
+    magnifyToFitRect: proc(self: ^NS.ScrollView, rect: NS.Rect),
+    setMagnification_centeredAtPoint: proc(self: ^NS.ScrollView, magnification: CG.Float, point: CG.Point),
+    addFloatingSubview: proc(self: ^NS.ScrollView, view: ^NS.View, axis: NS.EventGestureAxis),
+    documentVisibleRect: proc(self: ^NS.ScrollView) -> NS.Rect,
+    contentSize: proc(self: ^NS.ScrollView) -> NS.Size,
+    documentView: proc(self: ^NS.ScrollView) -> ^NS.View,
+    setDocumentView: proc(self: ^NS.ScrollView, documentView: ^NS.View),
+    contentView: proc(self: ^NS.ScrollView) -> ^NS.ClipView,
+    setContentView: proc(self: ^NS.ScrollView, contentView: ^NS.ClipView),
+    documentCursor: proc(self: ^NS.ScrollView) -> ^NS.Cursor,
+    setDocumentCursor: proc(self: ^NS.ScrollView, documentCursor: ^NS.Cursor),
+    borderType: proc(self: ^NS.ScrollView) -> NS.BorderType,
+    setBorderType: proc(self: ^NS.ScrollView, borderType: NS.BorderType),
+    backgroundColor: proc(self: ^NS.ScrollView) -> ^NS.Color,
+    setBackgroundColor: proc(self: ^NS.ScrollView, backgroundColor: ^NS.Color),
+    drawsBackground: proc(self: ^NS.ScrollView) -> bool,
+    setDrawsBackground: proc(self: ^NS.ScrollView, drawsBackground: bool),
+    hasVerticalScroller: proc(self: ^NS.ScrollView) -> bool,
+    setHasVerticalScroller: proc(self: ^NS.ScrollView, hasVerticalScroller: bool),
+    hasHorizontalScroller: proc(self: ^NS.ScrollView) -> bool,
+    setHasHorizontalScroller: proc(self: ^NS.ScrollView, hasHorizontalScroller: bool),
+    verticalScroller: proc(self: ^NS.ScrollView) -> ^NS.Scroller,
+    setVerticalScroller: proc(self: ^NS.ScrollView, verticalScroller: ^NS.Scroller),
+    horizontalScroller: proc(self: ^NS.ScrollView) -> ^NS.Scroller,
+    setHorizontalScroller: proc(self: ^NS.ScrollView, horizontalScroller: ^NS.Scroller),
+    autohidesScrollers: proc(self: ^NS.ScrollView) -> bool,
+    setAutohidesScrollers: proc(self: ^NS.ScrollView, autohidesScrollers: bool),
+    horizontalLineScroll: proc(self: ^NS.ScrollView) -> CG.Float,
+    setHorizontalLineScroll: proc(self: ^NS.ScrollView, horizontalLineScroll: CG.Float),
+    verticalLineScroll: proc(self: ^NS.ScrollView) -> CG.Float,
+    setVerticalLineScroll: proc(self: ^NS.ScrollView, verticalLineScroll: CG.Float),
+    lineScroll: proc(self: ^NS.ScrollView) -> CG.Float,
+    setLineScroll: proc(self: ^NS.ScrollView, lineScroll: CG.Float),
+    horizontalPageScroll: proc(self: ^NS.ScrollView) -> CG.Float,
+    setHorizontalPageScroll: proc(self: ^NS.ScrollView, horizontalPageScroll: CG.Float),
+    verticalPageScroll: proc(self: ^NS.ScrollView) -> CG.Float,
+    setVerticalPageScroll: proc(self: ^NS.ScrollView, verticalPageScroll: CG.Float),
+    pageScroll: proc(self: ^NS.ScrollView) -> CG.Float,
+    setPageScroll: proc(self: ^NS.ScrollView, pageScroll: CG.Float),
+    scrollsDynamically: proc(self: ^NS.ScrollView) -> bool,
+    setScrollsDynamically: proc(self: ^NS.ScrollView, scrollsDynamically: bool),
+    scrollerStyle: proc(self: ^NS.ScrollView) -> NS.ScrollerStyle,
+    setScrollerStyle: proc(self: ^NS.ScrollView, scrollerStyle: NS.ScrollerStyle),
+    scrollerKnobStyle: proc(self: ^NS.ScrollView) -> NS.ScrollerKnobStyle,
+    setScrollerKnobStyle: proc(self: ^NS.ScrollView, scrollerKnobStyle: NS.ScrollerKnobStyle),
+    horizontalScrollElasticity: proc(self: ^NS.ScrollView) -> NS.ScrollElasticity,
+    setHorizontalScrollElasticity: proc(self: ^NS.ScrollView, horizontalScrollElasticity: NS.ScrollElasticity),
+    verticalScrollElasticity: proc(self: ^NS.ScrollView) -> NS.ScrollElasticity,
+    setVerticalScrollElasticity: proc(self: ^NS.ScrollView, verticalScrollElasticity: NS.ScrollElasticity),
+    usesPredominantAxisScrolling: proc(self: ^NS.ScrollView) -> bool,
+    setUsesPredominantAxisScrolling: proc(self: ^NS.ScrollView, usesPredominantAxisScrolling: bool),
+    allowsMagnification: proc(self: ^NS.ScrollView) -> bool,
+    setAllowsMagnification: proc(self: ^NS.ScrollView, allowsMagnification: bool),
+    magnification: proc(self: ^NS.ScrollView) -> CG.Float,
+    setMagnification_: proc(self: ^NS.ScrollView, magnification: CG.Float),
+    maxMagnification: proc(self: ^NS.ScrollView) -> CG.Float,
+    setMaxMagnification: proc(self: ^NS.ScrollView, maxMagnification: CG.Float),
+    minMagnification: proc(self: ^NS.ScrollView) -> CG.Float,
+    setMinMagnification: proc(self: ^NS.ScrollView, minMagnification: CG.Float),
+    automaticallyAdjustsContentInsets: proc(self: ^NS.ScrollView) -> bool,
+    setAutomaticallyAdjustsContentInsets: proc(self: ^NS.ScrollView, automaticallyAdjustsContentInsets: bool),
+    contentInsets: proc(self: ^NS.ScrollView) -> NS.EdgeInsets,
+    setContentInsets: proc(self: ^NS.ScrollView, contentInsets: NS.EdgeInsets),
+    scrollerInsets: proc(self: ^NS.ScrollView) -> NS.EdgeInsets,
+    setScrollerInsets: proc(self: ^NS.ScrollView, scrollerInsets: NS.EdgeInsets),
     rulerViewClass: proc() -> Class,
     setRulerViewClass: proc(rulerViewClass: Class),
-    rulersVisible: proc(self: ^AK.ScrollView) -> bool,
-    setRulersVisible: proc(self: ^AK.ScrollView, rulersVisible: bool),
-    hasHorizontalRuler: proc(self: ^AK.ScrollView) -> bool,
-    setHasHorizontalRuler: proc(self: ^AK.ScrollView, hasHorizontalRuler: bool),
-    hasVerticalRuler: proc(self: ^AK.ScrollView) -> bool,
-    setHasVerticalRuler: proc(self: ^AK.ScrollView, hasVerticalRuler: bool),
-    horizontalRulerView: proc(self: ^AK.ScrollView) -> ^AK.RulerView,
-    setHorizontalRulerView: proc(self: ^AK.ScrollView, horizontalRulerView: ^AK.RulerView),
-    verticalRulerView: proc(self: ^AK.ScrollView) -> ^AK.RulerView,
-    setVerticalRulerView: proc(self: ^AK.ScrollView, verticalRulerView: ^AK.RulerView),
-    findBarPosition: proc(self: ^AK.ScrollView) -> AK.ScrollViewFindBarPosition,
-    setFindBarPosition: proc(self: ^AK.ScrollView, findBarPosition: AK.ScrollViewFindBarPosition),
+    rulersVisible: proc(self: ^NS.ScrollView) -> bool,
+    setRulersVisible: proc(self: ^NS.ScrollView, rulersVisible: bool),
+    hasHorizontalRuler: proc(self: ^NS.ScrollView) -> bool,
+    setHasHorizontalRuler: proc(self: ^NS.ScrollView, hasHorizontalRuler: bool),
+    hasVerticalRuler: proc(self: ^NS.ScrollView) -> bool,
+    setHasVerticalRuler: proc(self: ^NS.ScrollView, hasVerticalRuler: bool),
+    horizontalRulerView: proc(self: ^NS.ScrollView) -> ^NS.RulerView,
+    setHorizontalRulerView: proc(self: ^NS.ScrollView, horizontalRulerView: ^NS.RulerView),
+    verticalRulerView: proc(self: ^NS.ScrollView) -> ^NS.RulerView,
+    setVerticalRulerView: proc(self: ^NS.ScrollView, verticalRulerView: ^NS.RulerView),
+    findBarPosition: proc(self: ^NS.ScrollView) -> NS.ScrollViewFindBarPosition,
+    setFindBarPosition: proc(self: ^NS.ScrollView, findBarPosition: NS.ScrollViewFindBarPosition),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.ScrollView, _: SEL, frameRect: NS.Rect) -> instancetype {
+        initWithFrame :: proc "c" (self: ^NS.ScrollView, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -135,7 +135,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ScrollView, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.ScrollView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -145,7 +145,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle != nil {
-        frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle :: proc "c" (self: Class, _: SEL, cSize: NS.Size, horizontalScrollerClass: Class, verticalScrollerClass: Class, type: AK.BorderType, controlSize: AK.ControlSize, scrollerStyle: AK.ScrollerStyle) -> NS.Size {
+        frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle :: proc "c" (self: Class, _: SEL, cSize: NS.Size, horizontalScrollerClass: Class, verticalScrollerClass: Class, type: NS.BorderType, controlSize: NS.ControlSize, scrollerStyle: NS.ScrollerStyle) -> NS.Size {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -155,7 +155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("frameSizeForContentSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:"), auto_cast frameSizeForContentSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle, "{CGSize=dd}#:{CGSize=dd}##LLl") do panic("Failed to register objC method.")
     }
     if vt.contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle != nil {
-        contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle :: proc "c" (self: Class, _: SEL, fSize: NS.Size, horizontalScrollerClass: Class, verticalScrollerClass: Class, type: AK.BorderType, controlSize: AK.ControlSize, scrollerStyle: AK.ScrollerStyle) -> NS.Size {
+        contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle :: proc "c" (self: Class, _: SEL, fSize: NS.Size, horizontalScrollerClass: Class, verticalScrollerClass: Class, type: NS.BorderType, controlSize: NS.ControlSize, scrollerStyle: NS.ScrollerStyle) -> NS.Size {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -165,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("contentSizeForFrameSize:horizontalScrollerClass:verticalScrollerClass:borderType:controlSize:scrollerStyle:"), auto_cast contentSizeForFrameSize_horizontalScrollerClass_verticalScrollerClass_borderType_controlSize_scrollerStyle, "{CGSize=dd}#:{CGSize=dd}##LLl") do panic("Failed to register objC method.")
     }
     if vt.frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType != nil {
-        frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType :: proc "c" (self: Class, _: SEL, cSize: NS.Size, hFlag: bool, vFlag: bool, type: AK.BorderType) -> NS.Size {
+        frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType :: proc "c" (self: Class, _: SEL, cSize: NS.Size, hFlag: bool, vFlag: bool, type: NS.BorderType) -> NS.Size {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -175,7 +175,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("frameSizeForContentSize:hasHorizontalScroller:hasVerticalScroller:borderType:"), auto_cast frameSizeForContentSize_hasHorizontalScroller_hasVerticalScroller_borderType, "{CGSize=dd}#:{CGSize=dd}BBL") do panic("Failed to register objC method.")
     }
     if vt.contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType != nil {
-        contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType :: proc "c" (self: Class, _: SEL, fSize: NS.Size, hFlag: bool, vFlag: bool, type: AK.BorderType) -> NS.Size {
+        contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType :: proc "c" (self: Class, _: SEL, fSize: NS.Size, hFlag: bool, vFlag: bool, type: NS.BorderType) -> NS.Size {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -185,7 +185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("contentSizeForFrameSize:hasHorizontalScroller:hasVerticalScroller:borderType:"), auto_cast contentSizeForFrameSize_hasHorizontalScroller_hasVerticalScroller_borderType, "{CGSize=dd}#:{CGSize=dd}BBL") do panic("Failed to register objC method.")
     }
     if vt.tile != nil {
-        tile :: proc "c" (self: ^AK.ScrollView, _: SEL) {
+        tile :: proc "c" (self: ^NS.ScrollView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -195,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tile"), auto_cast tile, "v@:") do panic("Failed to register objC method.")
     }
     if vt.reflectScrolledClipView != nil {
-        reflectScrolledClipView :: proc "c" (self: ^AK.ScrollView, _: SEL, cView: ^AK.ClipView) {
+        reflectScrolledClipView :: proc "c" (self: ^NS.ScrollView, _: SEL, cView: ^NS.ClipView) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -205,7 +205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reflectScrolledClipView:"), auto_cast reflectScrolledClipView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.scrollWheel != nil {
-        scrollWheel :: proc "c" (self: ^AK.ScrollView, _: SEL, event: ^AK.Event) {
+        scrollWheel :: proc "c" (self: ^NS.ScrollView, _: SEL, event: ^NS.Event) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -215,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollWheel:"), auto_cast scrollWheel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.flashScrollers != nil {
-        flashScrollers :: proc "c" (self: ^AK.ScrollView, _: SEL) {
+        flashScrollers :: proc "c" (self: ^NS.ScrollView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -225,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("flashScrollers"), auto_cast flashScrollers, "v@:") do panic("Failed to register objC method.")
     }
     if vt.magnifyToFitRect != nil {
-        magnifyToFitRect :: proc "c" (self: ^AK.ScrollView, _: SEL, rect: NS.Rect) {
+        magnifyToFitRect :: proc "c" (self: ^NS.ScrollView, _: SEL, rect: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -235,7 +235,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("magnifyToFitRect:"), auto_cast magnifyToFitRect, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.setMagnification_centeredAtPoint != nil {
-        setMagnification_centeredAtPoint :: proc "c" (self: ^AK.ScrollView, _: SEL, magnification: CG.Float, point: CG.Point) {
+        setMagnification_centeredAtPoint :: proc "c" (self: ^NS.ScrollView, _: SEL, magnification: CG.Float, point: CG.Point) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -245,7 +245,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMagnification:centeredAtPoint:"), auto_cast setMagnification_centeredAtPoint, "v@:d{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.addFloatingSubview != nil {
-        addFloatingSubview :: proc "c" (self: ^AK.ScrollView, _: SEL, view: ^AK.View, axis: AK.EventGestureAxis) {
+        addFloatingSubview :: proc "c" (self: ^NS.ScrollView, _: SEL, view: ^NS.View, axis: NS.EventGestureAxis) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -255,7 +255,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addFloatingSubview:forAxis:"), auto_cast addFloatingSubview, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.documentVisibleRect != nil {
-        documentVisibleRect :: proc "c" (self: ^AK.ScrollView, _: SEL) -> NS.Rect {
+        documentVisibleRect :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -265,7 +265,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentVisibleRect"), auto_cast documentVisibleRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.contentSize != nil {
-        contentSize :: proc "c" (self: ^AK.ScrollView, _: SEL) -> NS.Size {
+        contentSize :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -275,7 +275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentSize"), auto_cast contentSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.documentView != nil {
-        documentView :: proc "c" (self: ^AK.ScrollView, _: SEL) -> ^AK.View {
+        documentView :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -285,7 +285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentView"), auto_cast documentView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDocumentView != nil {
-        setDocumentView :: proc "c" (self: ^AK.ScrollView, _: SEL, documentView: ^AK.View) {
+        setDocumentView :: proc "c" (self: ^NS.ScrollView, _: SEL, documentView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -295,7 +295,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDocumentView:"), auto_cast setDocumentView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.contentView != nil {
-        contentView :: proc "c" (self: ^AK.ScrollView, _: SEL) -> ^AK.ClipView {
+        contentView :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.ClipView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -305,7 +305,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentView"), auto_cast contentView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContentView != nil {
-        setContentView :: proc "c" (self: ^AK.ScrollView, _: SEL, contentView: ^AK.ClipView) {
+        setContentView :: proc "c" (self: ^NS.ScrollView, _: SEL, contentView: ^NS.ClipView) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -315,7 +315,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentView:"), auto_cast setContentView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.documentCursor != nil {
-        documentCursor :: proc "c" (self: ^AK.ScrollView, _: SEL) -> ^AK.Cursor {
+        documentCursor :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -325,7 +325,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("documentCursor"), auto_cast documentCursor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDocumentCursor != nil {
-        setDocumentCursor :: proc "c" (self: ^AK.ScrollView, _: SEL, documentCursor: ^AK.Cursor) {
+        setDocumentCursor :: proc "c" (self: ^NS.ScrollView, _: SEL, documentCursor: ^NS.Cursor) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -335,7 +335,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDocumentCursor:"), auto_cast setDocumentCursor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.borderType != nil {
-        borderType :: proc "c" (self: ^AK.ScrollView, _: SEL) -> AK.BorderType {
+        borderType :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.BorderType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -345,7 +345,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("borderType"), auto_cast borderType, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setBorderType != nil {
-        setBorderType :: proc "c" (self: ^AK.ScrollView, _: SEL, borderType: AK.BorderType) {
+        setBorderType :: proc "c" (self: ^NS.ScrollView, _: SEL, borderType: NS.BorderType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -355,7 +355,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderType:"), auto_cast setBorderType, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.backgroundColor != nil {
-        backgroundColor :: proc "c" (self: ^AK.ScrollView, _: SEL) -> ^AK.Color {
+        backgroundColor :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -365,7 +365,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundColor"), auto_cast backgroundColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundColor != nil {
-        setBackgroundColor :: proc "c" (self: ^AK.ScrollView, _: SEL, backgroundColor: ^AK.Color) {
+        setBackgroundColor :: proc "c" (self: ^NS.ScrollView, _: SEL, backgroundColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -375,7 +375,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundColor:"), auto_cast setBackgroundColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.drawsBackground != nil {
-        drawsBackground :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        drawsBackground :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -385,7 +385,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawsBackground"), auto_cast drawsBackground, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setDrawsBackground != nil {
-        setDrawsBackground :: proc "c" (self: ^AK.ScrollView, _: SEL, drawsBackground: bool) {
+        setDrawsBackground :: proc "c" (self: ^NS.ScrollView, _: SEL, drawsBackground: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -395,7 +395,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDrawsBackground:"), auto_cast setDrawsBackground, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.hasVerticalScroller != nil {
-        hasVerticalScroller :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        hasVerticalScroller :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -405,7 +405,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasVerticalScroller"), auto_cast hasVerticalScroller, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHasVerticalScroller != nil {
-        setHasVerticalScroller :: proc "c" (self: ^AK.ScrollView, _: SEL, hasVerticalScroller: bool) {
+        setHasVerticalScroller :: proc "c" (self: ^NS.ScrollView, _: SEL, hasVerticalScroller: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -415,7 +415,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHasVerticalScroller:"), auto_cast setHasVerticalScroller, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.hasHorizontalScroller != nil {
-        hasHorizontalScroller :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        hasHorizontalScroller :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -425,7 +425,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasHorizontalScroller"), auto_cast hasHorizontalScroller, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHasHorizontalScroller != nil {
-        setHasHorizontalScroller :: proc "c" (self: ^AK.ScrollView, _: SEL, hasHorizontalScroller: bool) {
+        setHasHorizontalScroller :: proc "c" (self: ^NS.ScrollView, _: SEL, hasHorizontalScroller: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -435,7 +435,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHasHorizontalScroller:"), auto_cast setHasHorizontalScroller, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.verticalScroller != nil {
-        verticalScroller :: proc "c" (self: ^AK.ScrollView, _: SEL) -> ^AK.Scroller {
+        verticalScroller :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.Scroller {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -445,7 +445,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("verticalScroller"), auto_cast verticalScroller, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setVerticalScroller != nil {
-        setVerticalScroller :: proc "c" (self: ^AK.ScrollView, _: SEL, verticalScroller: ^AK.Scroller) {
+        setVerticalScroller :: proc "c" (self: ^NS.ScrollView, _: SEL, verticalScroller: ^NS.Scroller) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -455,7 +455,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticalScroller:"), auto_cast setVerticalScroller, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.horizontalScroller != nil {
-        horizontalScroller :: proc "c" (self: ^AK.ScrollView, _: SEL) -> ^AK.Scroller {
+        horizontalScroller :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.Scroller {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -465,7 +465,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("horizontalScroller"), auto_cast horizontalScroller, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setHorizontalScroller != nil {
-        setHorizontalScroller :: proc "c" (self: ^AK.ScrollView, _: SEL, horizontalScroller: ^AK.Scroller) {
+        setHorizontalScroller :: proc "c" (self: ^NS.ScrollView, _: SEL, horizontalScroller: ^NS.Scroller) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -475,7 +475,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHorizontalScroller:"), auto_cast setHorizontalScroller, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.autohidesScrollers != nil {
-        autohidesScrollers :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        autohidesScrollers :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -485,7 +485,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autohidesScrollers"), auto_cast autohidesScrollers, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutohidesScrollers != nil {
-        setAutohidesScrollers :: proc "c" (self: ^AK.ScrollView, _: SEL, autohidesScrollers: bool) {
+        setAutohidesScrollers :: proc "c" (self: ^NS.ScrollView, _: SEL, autohidesScrollers: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -495,7 +495,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutohidesScrollers:"), auto_cast setAutohidesScrollers, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.horizontalLineScroll != nil {
-        horizontalLineScroll :: proc "c" (self: ^AK.ScrollView, _: SEL) -> CG.Float {
+        horizontalLineScroll :: proc "c" (self: ^NS.ScrollView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -505,7 +505,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("horizontalLineScroll"), auto_cast horizontalLineScroll, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setHorizontalLineScroll != nil {
-        setHorizontalLineScroll :: proc "c" (self: ^AK.ScrollView, _: SEL, horizontalLineScroll: CG.Float) {
+        setHorizontalLineScroll :: proc "c" (self: ^NS.ScrollView, _: SEL, horizontalLineScroll: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -515,7 +515,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHorizontalLineScroll:"), auto_cast setHorizontalLineScroll, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.verticalLineScroll != nil {
-        verticalLineScroll :: proc "c" (self: ^AK.ScrollView, _: SEL) -> CG.Float {
+        verticalLineScroll :: proc "c" (self: ^NS.ScrollView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -525,7 +525,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("verticalLineScroll"), auto_cast verticalLineScroll, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setVerticalLineScroll != nil {
-        setVerticalLineScroll :: proc "c" (self: ^AK.ScrollView, _: SEL, verticalLineScroll: CG.Float) {
+        setVerticalLineScroll :: proc "c" (self: ^NS.ScrollView, _: SEL, verticalLineScroll: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -535,7 +535,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticalLineScroll:"), auto_cast setVerticalLineScroll, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.lineScroll != nil {
-        lineScroll :: proc "c" (self: ^AK.ScrollView, _: SEL) -> CG.Float {
+        lineScroll :: proc "c" (self: ^NS.ScrollView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -545,7 +545,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineScroll"), auto_cast lineScroll, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setLineScroll != nil {
-        setLineScroll :: proc "c" (self: ^AK.ScrollView, _: SEL, lineScroll: CG.Float) {
+        setLineScroll :: proc "c" (self: ^NS.ScrollView, _: SEL, lineScroll: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -555,7 +555,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLineScroll:"), auto_cast setLineScroll, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.horizontalPageScroll != nil {
-        horizontalPageScroll :: proc "c" (self: ^AK.ScrollView, _: SEL) -> CG.Float {
+        horizontalPageScroll :: proc "c" (self: ^NS.ScrollView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -565,7 +565,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("horizontalPageScroll"), auto_cast horizontalPageScroll, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setHorizontalPageScroll != nil {
-        setHorizontalPageScroll :: proc "c" (self: ^AK.ScrollView, _: SEL, horizontalPageScroll: CG.Float) {
+        setHorizontalPageScroll :: proc "c" (self: ^NS.ScrollView, _: SEL, horizontalPageScroll: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -575,7 +575,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHorizontalPageScroll:"), auto_cast setHorizontalPageScroll, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.verticalPageScroll != nil {
-        verticalPageScroll :: proc "c" (self: ^AK.ScrollView, _: SEL) -> CG.Float {
+        verticalPageScroll :: proc "c" (self: ^NS.ScrollView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -585,7 +585,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("verticalPageScroll"), auto_cast verticalPageScroll, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setVerticalPageScroll != nil {
-        setVerticalPageScroll :: proc "c" (self: ^AK.ScrollView, _: SEL, verticalPageScroll: CG.Float) {
+        setVerticalPageScroll :: proc "c" (self: ^NS.ScrollView, _: SEL, verticalPageScroll: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -595,7 +595,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticalPageScroll:"), auto_cast setVerticalPageScroll, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.pageScroll != nil {
-        pageScroll :: proc "c" (self: ^AK.ScrollView, _: SEL) -> CG.Float {
+        pageScroll :: proc "c" (self: ^NS.ScrollView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -605,7 +605,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pageScroll"), auto_cast pageScroll, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setPageScroll != nil {
-        setPageScroll :: proc "c" (self: ^AK.ScrollView, _: SEL, pageScroll: CG.Float) {
+        setPageScroll :: proc "c" (self: ^NS.ScrollView, _: SEL, pageScroll: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -615,7 +615,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPageScroll:"), auto_cast setPageScroll, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.scrollsDynamically != nil {
-        scrollsDynamically :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        scrollsDynamically :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -625,7 +625,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollsDynamically"), auto_cast scrollsDynamically, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setScrollsDynamically != nil {
-        setScrollsDynamically :: proc "c" (self: ^AK.ScrollView, _: SEL, scrollsDynamically: bool) {
+        setScrollsDynamically :: proc "c" (self: ^NS.ScrollView, _: SEL, scrollsDynamically: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -635,7 +635,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScrollsDynamically:"), auto_cast setScrollsDynamically, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.scrollerStyle != nil {
-        scrollerStyle :: proc "c" (self: ^AK.ScrollView, _: SEL) -> AK.ScrollerStyle {
+        scrollerStyle :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.ScrollerStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -645,7 +645,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollerStyle"), auto_cast scrollerStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setScrollerStyle != nil {
-        setScrollerStyle :: proc "c" (self: ^AK.ScrollView, _: SEL, scrollerStyle: AK.ScrollerStyle) {
+        setScrollerStyle :: proc "c" (self: ^NS.ScrollView, _: SEL, scrollerStyle: NS.ScrollerStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -655,7 +655,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScrollerStyle:"), auto_cast setScrollerStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.scrollerKnobStyle != nil {
-        scrollerKnobStyle :: proc "c" (self: ^AK.ScrollView, _: SEL) -> AK.ScrollerKnobStyle {
+        scrollerKnobStyle :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.ScrollerKnobStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -665,7 +665,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollerKnobStyle"), auto_cast scrollerKnobStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setScrollerKnobStyle != nil {
-        setScrollerKnobStyle :: proc "c" (self: ^AK.ScrollView, _: SEL, scrollerKnobStyle: AK.ScrollerKnobStyle) {
+        setScrollerKnobStyle :: proc "c" (self: ^NS.ScrollView, _: SEL, scrollerKnobStyle: NS.ScrollerKnobStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -675,7 +675,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScrollerKnobStyle:"), auto_cast setScrollerKnobStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.horizontalScrollElasticity != nil {
-        horizontalScrollElasticity :: proc "c" (self: ^AK.ScrollView, _: SEL) -> AK.ScrollElasticity {
+        horizontalScrollElasticity :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.ScrollElasticity {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -685,7 +685,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("horizontalScrollElasticity"), auto_cast horizontalScrollElasticity, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setHorizontalScrollElasticity != nil {
-        setHorizontalScrollElasticity :: proc "c" (self: ^AK.ScrollView, _: SEL, horizontalScrollElasticity: AK.ScrollElasticity) {
+        setHorizontalScrollElasticity :: proc "c" (self: ^NS.ScrollView, _: SEL, horizontalScrollElasticity: NS.ScrollElasticity) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -695,7 +695,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHorizontalScrollElasticity:"), auto_cast setHorizontalScrollElasticity, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.verticalScrollElasticity != nil {
-        verticalScrollElasticity :: proc "c" (self: ^AK.ScrollView, _: SEL) -> AK.ScrollElasticity {
+        verticalScrollElasticity :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.ScrollElasticity {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -705,7 +705,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("verticalScrollElasticity"), auto_cast verticalScrollElasticity, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setVerticalScrollElasticity != nil {
-        setVerticalScrollElasticity :: proc "c" (self: ^AK.ScrollView, _: SEL, verticalScrollElasticity: AK.ScrollElasticity) {
+        setVerticalScrollElasticity :: proc "c" (self: ^NS.ScrollView, _: SEL, verticalScrollElasticity: NS.ScrollElasticity) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -715,7 +715,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticalScrollElasticity:"), auto_cast setVerticalScrollElasticity, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.usesPredominantAxisScrolling != nil {
-        usesPredominantAxisScrolling :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        usesPredominantAxisScrolling :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -725,7 +725,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("usesPredominantAxisScrolling"), auto_cast usesPredominantAxisScrolling, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setUsesPredominantAxisScrolling != nil {
-        setUsesPredominantAxisScrolling :: proc "c" (self: ^AK.ScrollView, _: SEL, usesPredominantAxisScrolling: bool) {
+        setUsesPredominantAxisScrolling :: proc "c" (self: ^NS.ScrollView, _: SEL, usesPredominantAxisScrolling: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -735,7 +735,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesPredominantAxisScrolling:"), auto_cast setUsesPredominantAxisScrolling, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsMagnification != nil {
-        allowsMagnification :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        allowsMagnification :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -745,7 +745,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsMagnification"), auto_cast allowsMagnification, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsMagnification != nil {
-        setAllowsMagnification :: proc "c" (self: ^AK.ScrollView, _: SEL, allowsMagnification: bool) {
+        setAllowsMagnification :: proc "c" (self: ^NS.ScrollView, _: SEL, allowsMagnification: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -755,7 +755,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsMagnification:"), auto_cast setAllowsMagnification, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.magnification != nil {
-        magnification :: proc "c" (self: ^AK.ScrollView, _: SEL) -> CG.Float {
+        magnification :: proc "c" (self: ^NS.ScrollView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -765,7 +765,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("magnification"), auto_cast magnification, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMagnification_ != nil {
-        setMagnification_ :: proc "c" (self: ^AK.ScrollView, _: SEL, magnification: CG.Float) {
+        setMagnification_ :: proc "c" (self: ^NS.ScrollView, _: SEL, magnification: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -775,7 +775,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMagnification:"), auto_cast setMagnification_, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.maxMagnification != nil {
-        maxMagnification :: proc "c" (self: ^AK.ScrollView, _: SEL) -> CG.Float {
+        maxMagnification :: proc "c" (self: ^NS.ScrollView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -785,7 +785,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maxMagnification"), auto_cast maxMagnification, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMaxMagnification != nil {
-        setMaxMagnification :: proc "c" (self: ^AK.ScrollView, _: SEL, maxMagnification: CG.Float) {
+        setMaxMagnification :: proc "c" (self: ^NS.ScrollView, _: SEL, maxMagnification: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -795,7 +795,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaxMagnification:"), auto_cast setMaxMagnification, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.minMagnification != nil {
-        minMagnification :: proc "c" (self: ^AK.ScrollView, _: SEL) -> CG.Float {
+        minMagnification :: proc "c" (self: ^NS.ScrollView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -805,7 +805,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minMagnification"), auto_cast minMagnification, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinMagnification != nil {
-        setMinMagnification :: proc "c" (self: ^AK.ScrollView, _: SEL, minMagnification: CG.Float) {
+        setMinMagnification :: proc "c" (self: ^NS.ScrollView, _: SEL, minMagnification: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -815,7 +815,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinMagnification:"), auto_cast setMinMagnification, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.automaticallyAdjustsContentInsets != nil {
-        automaticallyAdjustsContentInsets :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        automaticallyAdjustsContentInsets :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -825,7 +825,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyAdjustsContentInsets"), auto_cast automaticallyAdjustsContentInsets, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyAdjustsContentInsets != nil {
-        setAutomaticallyAdjustsContentInsets :: proc "c" (self: ^AK.ScrollView, _: SEL, automaticallyAdjustsContentInsets: bool) {
+        setAutomaticallyAdjustsContentInsets :: proc "c" (self: ^NS.ScrollView, _: SEL, automaticallyAdjustsContentInsets: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -835,7 +835,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyAdjustsContentInsets:"), auto_cast setAutomaticallyAdjustsContentInsets, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.contentInsets != nil {
-        contentInsets :: proc "c" (self: ^AK.ScrollView, _: SEL) -> NS.EdgeInsets {
+        contentInsets :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.EdgeInsets {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -845,7 +845,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentInsets"), auto_cast contentInsets, "{NSEdgeInsets=dddd}@:") do panic("Failed to register objC method.")
     }
     if vt.setContentInsets != nil {
-        setContentInsets :: proc "c" (self: ^AK.ScrollView, _: SEL, contentInsets: NS.EdgeInsets) {
+        setContentInsets :: proc "c" (self: ^NS.ScrollView, _: SEL, contentInsets: NS.EdgeInsets) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -855,7 +855,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentInsets:"), auto_cast setContentInsets, "v@:{NSEdgeInsets=dddd}") do panic("Failed to register objC method.")
     }
     if vt.scrollerInsets != nil {
-        scrollerInsets :: proc "c" (self: ^AK.ScrollView, _: SEL) -> NS.EdgeInsets {
+        scrollerInsets :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.EdgeInsets {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -865,7 +865,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollerInsets"), auto_cast scrollerInsets, "{NSEdgeInsets=dddd}@:") do panic("Failed to register objC method.")
     }
     if vt.setScrollerInsets != nil {
-        setScrollerInsets :: proc "c" (self: ^AK.ScrollView, _: SEL, scrollerInsets: NS.EdgeInsets) {
+        setScrollerInsets :: proc "c" (self: ^NS.ScrollView, _: SEL, scrollerInsets: NS.EdgeInsets) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -895,7 +895,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setRulerViewClass:"), auto_cast setRulerViewClass, "v#:#") do panic("Failed to register objC method.")
     }
     if vt.rulersVisible != nil {
-        rulersVisible :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        rulersVisible :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -905,7 +905,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rulersVisible"), auto_cast rulersVisible, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setRulersVisible != nil {
-        setRulersVisible :: proc "c" (self: ^AK.ScrollView, _: SEL, rulersVisible: bool) {
+        setRulersVisible :: proc "c" (self: ^NS.ScrollView, _: SEL, rulersVisible: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -915,7 +915,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRulersVisible:"), auto_cast setRulersVisible, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.hasHorizontalRuler != nil {
-        hasHorizontalRuler :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        hasHorizontalRuler :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -925,7 +925,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasHorizontalRuler"), auto_cast hasHorizontalRuler, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHasHorizontalRuler != nil {
-        setHasHorizontalRuler :: proc "c" (self: ^AK.ScrollView, _: SEL, hasHorizontalRuler: bool) {
+        setHasHorizontalRuler :: proc "c" (self: ^NS.ScrollView, _: SEL, hasHorizontalRuler: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -935,7 +935,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHasHorizontalRuler:"), auto_cast setHasHorizontalRuler, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.hasVerticalRuler != nil {
-        hasVerticalRuler :: proc "c" (self: ^AK.ScrollView, _: SEL) -> bool {
+        hasVerticalRuler :: proc "c" (self: ^NS.ScrollView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -945,7 +945,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasVerticalRuler"), auto_cast hasVerticalRuler, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHasVerticalRuler != nil {
-        setHasVerticalRuler :: proc "c" (self: ^AK.ScrollView, _: SEL, hasVerticalRuler: bool) {
+        setHasVerticalRuler :: proc "c" (self: ^NS.ScrollView, _: SEL, hasVerticalRuler: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -955,7 +955,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHasVerticalRuler:"), auto_cast setHasVerticalRuler, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.horizontalRulerView != nil {
-        horizontalRulerView :: proc "c" (self: ^AK.ScrollView, _: SEL) -> ^AK.RulerView {
+        horizontalRulerView :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.RulerView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -965,7 +965,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("horizontalRulerView"), auto_cast horizontalRulerView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setHorizontalRulerView != nil {
-        setHorizontalRulerView :: proc "c" (self: ^AK.ScrollView, _: SEL, horizontalRulerView: ^AK.RulerView) {
+        setHorizontalRulerView :: proc "c" (self: ^NS.ScrollView, _: SEL, horizontalRulerView: ^NS.RulerView) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -975,7 +975,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHorizontalRulerView:"), auto_cast setHorizontalRulerView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.verticalRulerView != nil {
-        verticalRulerView :: proc "c" (self: ^AK.ScrollView, _: SEL) -> ^AK.RulerView {
+        verticalRulerView :: proc "c" (self: ^NS.ScrollView, _: SEL) -> ^NS.RulerView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -985,7 +985,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("verticalRulerView"), auto_cast verticalRulerView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setVerticalRulerView != nil {
-        setVerticalRulerView :: proc "c" (self: ^AK.ScrollView, _: SEL, verticalRulerView: ^AK.RulerView) {
+        setVerticalRulerView :: proc "c" (self: ^NS.ScrollView, _: SEL, verticalRulerView: ^NS.RulerView) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -995,7 +995,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticalRulerView:"), auto_cast setVerticalRulerView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.findBarPosition != nil {
-        findBarPosition :: proc "c" (self: ^AK.ScrollView, _: SEL) -> AK.ScrollViewFindBarPosition {
+        findBarPosition :: proc "c" (self: ^NS.ScrollView, _: SEL) -> NS.ScrollViewFindBarPosition {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1005,7 +1005,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("findBarPosition"), auto_cast findBarPosition, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setFindBarPosition != nil {
-        setFindBarPosition :: proc "c" (self: ^AK.ScrollView, _: SEL, findBarPosition: AK.ScrollViewFindBarPosition) {
+        setFindBarPosition :: proc "c" (self: ^NS.ScrollView, _: SEL, findBarPosition: NS.ScrollViewFindBarPosition) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

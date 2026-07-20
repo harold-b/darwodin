@@ -20,9 +20,9 @@ instancetype  :: intrinsics.objc_instancetype
 import UI "../../"
 
 VTable :: struct {
-    enumerateTextElementsFromLocation: proc(self: ^UI.NSTextElementProvider, textLocation: ^UI.NSTextLocation, options: UI.NSTextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^UI.NSTextElement) -> bool)) -> ^UI.NSTextLocation,
+    enumerateTextElementsFromLocation: proc(self: ^UI.NSTextElementProvider, textLocation: ^UI.NSTextLocation, options: UI.NSTextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" ( element: ^UI.NSTextElement ) -> bool)) -> ^UI.NSTextLocation,
     replaceContentsInRange: proc(self: ^UI.NSTextElementProvider, range: ^UI.NSTextRange, textElements: ^NS.Array),
-    synchronizeToBackingStore: proc(self: ^UI.NSTextElementProvider, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
+    synchronizeToBackingStore: proc(self: ^UI.NSTextElementProvider, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
     locationFromLocation: proc(self: ^UI.NSTextElementProvider, location: ^UI.NSTextLocation, offset: NS.Integer) -> ^UI.NSTextLocation,
     offsetFromLocation: proc(self: ^UI.NSTextElementProvider, from: ^UI.NSTextLocation, to: ^UI.NSTextLocation) -> NS.Integer,
     adjustedRangeFromRange: proc(self: ^UI.NSTextElementProvider, textRange: ^UI.NSTextRange, forEditingTextSelection: bool) -> ^UI.NSTextRange,
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.enumerateTextElementsFromLocation != nil {
-        enumerateTextElementsFromLocation :: proc "c" (self: ^UI.NSTextElementProvider, _: SEL, textLocation: ^UI.NSTextLocation, options: UI.NSTextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" (element: ^UI.NSTextElement) -> bool)) -> ^UI.NSTextLocation {
+        enumerateTextElementsFromLocation :: proc "c" (self: ^UI.NSTextElementProvider, _: SEL, textLocation: ^UI.NSTextLocation, options: UI.NSTextContentManagerEnumerationOptions, block: ^Objc_Block(proc "c" ( element: ^UI.NSTextElement ) -> bool)) -> ^UI.NSTextLocation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("replaceContentsInRange:withTextElements:"), auto_cast replaceContentsInRange, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.synchronizeToBackingStore != nil {
-        synchronizeToBackingStore :: proc "c" (self: ^UI.NSTextElementProvider, _: SEL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        synchronizeToBackingStore :: proc "c" (self: ^UI.NSTextElementProvider, _: SEL, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

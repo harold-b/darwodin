@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemSegment
-///
 @(objc_class="AVPlayerItemSegment", objc_superclass=NS.Object)
 PlayerItemSegment :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemSegment, objc_selector="init", objc_name="init")
     PlayerItemSegment_init :: proc(self: ^PlayerItemSegment) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=PlayerItemSegment, objc_selector="interstitialEvent", objc_name="interstitialEvent")
     PlayerItemSegment_interstitialEvent :: proc(self: ^PlayerItemSegment) -> ^PlayerInterstitialEvent ---
 }
+
+
+

@@ -32,13 +32,13 @@ foreign lib {
     DocumentBrowserViewController_initWithNibName :: proc(self: ^DocumentBrowserViewController, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype ---
 
     @(objc_type=DocumentBrowserViewController, objc_selector="revealDocumentAtURL:importIfNeeded:completion:", objc_name="revealDocumentAtURL")
-    DocumentBrowserViewController_revealDocumentAtURL :: proc(self: ^DocumentBrowserViewController, url: ^NS.URL, importIfNeeded: bool, completion: ^Objc_Block(proc "c" (revealedDocumentURL: ^NS.URL, error: ^NS.Error))) ---
+    DocumentBrowserViewController_revealDocumentAtURL :: proc(self: ^DocumentBrowserViewController, url: ^NS.URL, importIfNeeded: bool, completion: ^Objc_Block(proc "c" ( revealedDocumentURL: ^NS.URL, error: ^NS.Error ))) ---
 
     @(objc_type=DocumentBrowserViewController, objc_selector="importDocumentAtURL:nextToDocumentAtURL:mode:completionHandler:", objc_name="importDocumentAtURL")
-    DocumentBrowserViewController_importDocumentAtURL :: proc(self: ^DocumentBrowserViewController, documentURL: ^NS.URL, neighbourURL: ^NS.URL, importMode: DocumentBrowserImportMode, completion: ^Objc_Block(proc "c" (_: ^NS.URL, _1: ^NS.Error))) ---
+    DocumentBrowserViewController_importDocumentAtURL :: proc(self: ^DocumentBrowserViewController, documentURL: ^NS.URL, neighbourURL: ^NS.URL, importMode: DocumentBrowserImportMode, completion: ^Objc_Block(proc "c" ( _0: ^NS.URL, _1: ^NS.Error ))) ---
 
     @(objc_type=DocumentBrowserViewController, objc_selector="renameDocumentAtURL:proposedName:completionHandler:", objc_name="renameDocumentAtURL")
-    DocumentBrowserViewController_renameDocumentAtURL :: proc(self: ^DocumentBrowserViewController, documentURL: ^NS.URL, proposedName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (finalURL: ^NS.URL, error: ^NS.Error))) ---
+    DocumentBrowserViewController_renameDocumentAtURL :: proc(self: ^DocumentBrowserViewController, documentURL: ^NS.URL, proposedName: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( finalURL: ^NS.URL, error: ^NS.Error ))) ---
 
     @(objc_type=DocumentBrowserViewController, objc_selector="transitionControllerForDocumentAtURL:", objc_name="transitionControllerForDocumentAtURL")
     DocumentBrowserViewController_transitionControllerForDocumentAtURL :: proc(self: ^DocumentBrowserViewController, documentURL: ^NS.URL) -> ^DocumentBrowserTransitionController ---

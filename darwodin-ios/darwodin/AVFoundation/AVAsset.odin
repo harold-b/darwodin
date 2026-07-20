@@ -61,19 +61,19 @@ foreign lib {
     Asset_trackWithTrackID :: proc(self: ^Asset, trackID: CM.PersistentTrackID) -> ^AssetTrack ---
 
     @(objc_type=Asset, objc_selector="loadTrackWithTrackID:completionHandler:", objc_name="loadTrackWithTrackID")
-    Asset_loadTrackWithTrackID :: proc(self: ^Asset, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" (_: ^AssetTrack, _1: ^NS.Error))) ---
+    Asset_loadTrackWithTrackID :: proc(self: ^Asset, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" ( _0: ^AssetTrack, _1: ^NS.Error ))) ---
 
     @(objc_type=Asset, objc_selector="tracksWithMediaType:", objc_name="tracksWithMediaType")
     Asset_tracksWithMediaType :: proc(self: ^Asset, mediaType: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=Asset, objc_selector="loadTracksWithMediaType:completionHandler:", objc_name="loadTracksWithMediaType")
-    Asset_loadTracksWithMediaType :: proc(self: ^Asset, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    Asset_loadTracksWithMediaType :: proc(self: ^Asset, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=Asset, objc_selector="tracksWithMediaCharacteristic:", objc_name="tracksWithMediaCharacteristic")
     Asset_tracksWithMediaCharacteristic :: proc(self: ^Asset, mediaCharacteristic: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=Asset, objc_selector="loadTracksWithMediaCharacteristic:completionHandler:", objc_name="loadTracksWithMediaCharacteristic")
-    Asset_loadTracksWithMediaCharacteristic :: proc(self: ^Asset, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    Asset_loadTracksWithMediaCharacteristic :: proc(self: ^Asset, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=Asset, objc_selector="tracks", objc_name="tracks")
     Asset_tracks :: proc(self: ^Asset) -> ^NS.Array ---
@@ -85,7 +85,7 @@ foreign lib {
     Asset_metadataForFormat :: proc(self: ^Asset, format: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=Asset, objc_selector="loadMetadataForFormat:completionHandler:", objc_name="loadMetadataForFormat")
-    Asset_loadMetadataForFormat :: proc(self: ^Asset, format: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    Asset_loadMetadataForFormat :: proc(self: ^Asset, format: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=Asset, objc_selector="creationDate", objc_name="creationDate")
     Asset_creationDate :: proc(self: ^Asset) -> ^MetadataItem ---
@@ -106,13 +106,13 @@ foreign lib {
     Asset_chapterMetadataGroupsWithTitleLocale :: proc(self: ^Asset, locale: ^NS.Locale, commonKeys: ^NS.Array) -> ^NS.Array ---
 
     @(objc_type=Asset, objc_selector="loadChapterMetadataGroupsWithTitleLocale:containingItemsWithCommonKeys:completionHandler:", objc_name="loadChapterMetadataGroupsWithTitleLocale")
-    Asset_loadChapterMetadataGroupsWithTitleLocale :: proc(self: ^Asset, locale: ^NS.Locale, commonKeys: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    Asset_loadChapterMetadataGroupsWithTitleLocale :: proc(self: ^Asset, locale: ^NS.Locale, commonKeys: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=Asset, objc_selector="chapterMetadataGroupsBestMatchingPreferredLanguages:", objc_name="chapterMetadataGroupsBestMatchingPreferredLanguages")
     Asset_chapterMetadataGroupsBestMatchingPreferredLanguages :: proc(self: ^Asset, preferredLanguages: ^NS.Array) -> ^NS.Array ---
 
     @(objc_type=Asset, objc_selector="loadChapterMetadataGroupsBestMatchingPreferredLanguages:completionHandler:", objc_name="loadChapterMetadataGroupsBestMatchingPreferredLanguages")
-    Asset_loadChapterMetadataGroupsBestMatchingPreferredLanguages :: proc(self: ^Asset, preferredLanguages: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    Asset_loadChapterMetadataGroupsBestMatchingPreferredLanguages :: proc(self: ^Asset, preferredLanguages: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=Asset, objc_selector="availableChapterLocales", objc_name="availableChapterLocales")
     Asset_availableChapterLocales :: proc(self: ^Asset) -> ^NS.Array ---
@@ -121,7 +121,7 @@ foreign lib {
     Asset_mediaSelectionGroupForMediaCharacteristic :: proc(self: ^Asset, mediaCharacteristic: ^NS.String) -> ^MediaSelectionGroup ---
 
     @(objc_type=Asset, objc_selector="loadMediaSelectionGroupForMediaCharacteristic:completionHandler:", objc_name="loadMediaSelectionGroupForMediaCharacteristic")
-    Asset_loadMediaSelectionGroupForMediaCharacteristic :: proc(self: ^Asset, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^MediaSelectionGroup, _1: ^NS.Error))) ---
+    Asset_loadMediaSelectionGroupForMediaCharacteristic :: proc(self: ^Asset, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^MediaSelectionGroup, _1: ^NS.Error ))) ---
 
     @(objc_type=Asset, objc_selector="availableMediaCharacteristicsWithMediaSelectionOptions", objc_name="availableMediaCharacteristicsWithMediaSelectionOptions")
     Asset_availableMediaCharacteristicsWithMediaSelectionOptions :: proc(self: ^Asset) -> ^NS.Array ---
@@ -166,5 +166,5 @@ foreign lib {
     Asset_unusedTrackID :: proc(self: ^Asset) -> CM.PersistentTrackID ---
 
     @(objc_type=Asset, objc_selector="findUnusedTrackIDWithCompletionHandler:", objc_name="findUnusedTrackIDWithCompletionHandler")
-    Asset_findUnusedTrackIDWithCompletionHandler :: proc(self: ^Asset, completionHandler: ^Objc_Block(proc "c" (_: CM.PersistentTrackID, _1: ^NS.Error))) ---
+    Asset_findUnusedTrackIDWithCompletionHandler :: proc(self: ^Asset, completionHandler: ^Objc_Block(proc "c" ( _0: CM.PersistentTrackID, _1: ^NS.Error ))) ---
 }

@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLFunctionConstant
-///
 @(objc_class="MTLFunctionConstant", objc_superclass=NS.Object)
 FunctionConstant :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FunctionConstant, objc_selector="name", objc_name="name")
     FunctionConstant_name :: proc(self: ^FunctionConstant) -> ^NS.String ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=FunctionConstant, objc_selector="required", objc_name="required")
     FunctionConstant_required :: proc(self: ^FunctionConstant) -> bool ---
 }
+
+
+

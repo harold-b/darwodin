@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSRegularExpression
-///
 @(objc_class="NSRegularExpression", objc_superclass=Object)
 RegularExpression :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RegularExpression, objc_selector="regularExpressionWithPattern:options:error:", objc_name="regularExpressionWithPattern", objc_is_class_method=true)
     RegularExpression_regularExpressionWithPattern :: proc(pattern: ^String, options: RegularExpressionOptions, error: ^^Error) -> ^RegularExpression ---
@@ -41,7 +35,7 @@ foreign lib {
     RegularExpression_numberOfCaptureGroups :: proc(self: ^RegularExpression) -> UInteger ---
 
     @(objc_type=RegularExpression, objc_selector="enumerateMatchesInString:options:range:usingBlock:", objc_name="enumerateMatchesInString")
-    RegularExpression_enumerateMatchesInString :: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: ^Objc_Block(proc "c" (result: ^TextCheckingResult, flags: MatchingFlags, stop: ^bool))) ---
+    RegularExpression_enumerateMatchesInString :: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: ^Objc_Block(proc "c" ( result: ^TextCheckingResult, flags: MatchingFlags, stop: ^bool ))) ---
 
     @(objc_type=RegularExpression, objc_selector="matchesInString:options:range:", objc_name="matchesInString")
     RegularExpression_matchesInString :: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange) -> ^Array ---
@@ -67,3 +61,6 @@ foreign lib {
     @(objc_type=RegularExpression, objc_selector="escapedTemplateForString:", objc_name="escapedTemplateForString", objc_is_class_method=true)
     RegularExpression_escapedTemplateForString :: proc(string: ^String) -> ^String ---
 }
+
+
+

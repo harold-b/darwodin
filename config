@@ -9,6 +9,7 @@ darwodin_base_frameworks=(
   CoreAudio
   Security
   CoreMedia
+  CoreLocation
   IOKit
   DiskArbitration
   FSEvents
@@ -16,6 +17,7 @@ darwodin_base_frameworks=(
   QuartzCore
   AppKit
   UIKit
+  MapKit
   Metal
   ModelIO
   MetalKit
@@ -27,6 +29,7 @@ darwodin_base_frameworks=(
   CoreHaptics
   AudioToolbox
   AVFoundation
+  EventKit
 )
 
 darwodin_macos_frameworks=(

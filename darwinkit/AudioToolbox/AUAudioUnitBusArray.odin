@@ -10,17 +10,11 @@ import CA "../CoreAudio"
 import CM "../CoreMedia"
 import NS "../Foundation"
 
-
-
-///
-/// AUAudioUnitBusArray
-///
 @(objc_class="AUAudioUnitBusArray", objc_superclass=NS.Object)
 AUAudioUnitBusArray :: struct { using _: NS.Object, 
     using _: NS.FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUAudioUnitBusArray, objc_selector="init", objc_name="init")
     AUAudioUnitBusArray_init :: proc(self: ^AUAudioUnitBusArray) -> instancetype ---
@@ -58,6 +52,8 @@ foreign lib {
     @(objc_type=AUAudioUnitBusArray, objc_selector="replaceBusses:", objc_name="replaceBusses")
     AUAudioUnitBusArray_replaceBusses :: proc(self: ^AUAudioUnitBusArray, busArray: ^NS.Array) ---
 }
+
+
 
 @(objc_type=AUAudioUnitBusArray, objc_name="initWithAudioUnit")
 AUAudioUnitBusArray_initWithAudioUnit :: proc {

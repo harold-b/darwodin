@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4MachineLearningPipelineDescriptor
-///
 @(objc_class="MTL4MachineLearningPipelineDescriptor", objc_superclass=MTL4PipelineDescriptor)
 MTL4MachineLearningPipelineDescriptor :: struct { using _: MTL4PipelineDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4MachineLearningPipelineDescriptor, objc_selector="setInputDimensions:atBufferIndex:", objc_name="setInputDimensions_atBufferIndex")
     MTL4MachineLearningPipelineDescriptor_setInputDimensions_atBufferIndex :: proc(self: ^MTL4MachineLearningPipelineDescriptor, dimensions: ^TensorExtents, bufferIndex: NS.Integer) ---
@@ -45,6 +39,8 @@ foreign lib {
     @(objc_type=MTL4MachineLearningPipelineDescriptor, objc_selector="setMachineLearningFunctionDescriptor:", objc_name="setMachineLearningFunctionDescriptor")
     MTL4MachineLearningPipelineDescriptor_setMachineLearningFunctionDescriptor :: proc(self: ^MTL4MachineLearningPipelineDescriptor, machineLearningFunctionDescriptor: ^MTL4FunctionDescriptor) ---
 }
+
+
 
 @(objc_type=MTL4MachineLearningPipelineDescriptor, objc_name="setInputDimensions")
 MTL4MachineLearningPipelineDescriptor_setInputDimensions :: proc {

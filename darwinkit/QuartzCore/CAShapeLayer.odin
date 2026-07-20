@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAShapeLayer
-///
 @(objc_class="CAShapeLayer", objc_superclass=Layer)
 ShapeLayer :: struct { using _: Layer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ShapeLayer, objc_selector="path", objc_name="path")
     ShapeLayer_path :: proc(self: ^ShapeLayer) -> CG.PathRef ---
@@ -92,3 +86,6 @@ foreign lib {
     @(objc_type=ShapeLayer, objc_selector="setLineDashPattern:", objc_name="setLineDashPattern")
     ShapeLayer_setLineDashPattern :: proc(self: ^ShapeLayer, lineDashPattern: ^NS.Array) ---
 }
+
+
+

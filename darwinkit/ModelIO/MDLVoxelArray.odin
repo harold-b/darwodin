@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLVoxelArray
-///
 @(objc_class="MDLVoxelArray", objc_superclass=Object)
 VoxelArray :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VoxelArray, objc_selector="initWithAsset:divisions:patchRadius:", objc_name="initWithAsset_divisions_patchRadius")
     VoxelArray_initWithAsset_divisions_patchRadius :: proc(self: ^VoxelArray, asset: ^Asset, divisions: cffi.int, patchRadius: cffi.float) -> instancetype ---
@@ -107,6 +101,8 @@ foreign lib {
     @(objc_type=VoxelArray, objc_selector="setShellFieldExteriorThickness:", objc_name="setShellFieldExteriorThickness")
     VoxelArray_setShellFieldExteriorThickness :: proc(self: ^VoxelArray, shellFieldExteriorThickness: cffi.float) ---
 }
+
+
 
 @(objc_type=VoxelArray, objc_name="initWithAsset")
 VoxelArray_initWithAsset :: proc {

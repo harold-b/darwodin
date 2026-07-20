@@ -55,7 +55,7 @@ foreign lib {
     URLConnection_sendSynchronousRequest :: proc(request: ^URLRequest, response: ^^URLResponse, error: ^^Error) -> ^Data ---
 
     @(objc_type=URLConnection, objc_selector="sendAsynchronousRequest:queue:completionHandler:", objc_name="sendAsynchronousRequest", objc_is_class_method=true)
-    URLConnection_sendAsynchronousRequest :: proc(request: ^URLRequest, queue: ^OperationQueue, handler: ^Objc_Block(proc "c" (response: ^URLResponse, data: ^Data, connectionError: ^Error))) ---
+    URLConnection_sendAsynchronousRequest :: proc(request: ^URLRequest, queue: ^OperationQueue, handler: ^Objc_Block(proc "c" ( response: ^URLResponse, data: ^Data, connectionError: ^Error ))) ---
 }
 
 @(objc_type=URLConnection, objc_name="initWithRequest")

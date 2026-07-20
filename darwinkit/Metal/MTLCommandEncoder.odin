@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCommandEncoder
-///
 @(objc_class="MTLCommandEncoder")
 CommandEncoder :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CommandEncoder, objc_selector="endEncoding", objc_name="endEncoding")
     CommandEncoder_endEncoding :: proc(self: ^CommandEncoder) ---
@@ -47,3 +41,6 @@ foreign lib {
     @(objc_type=CommandEncoder, objc_selector="setLabel:", objc_name="setLabel")
     CommandEncoder_setLabel :: proc(self: ^CommandEncoder, label: ^NS.String) ---
 }
+
+
+

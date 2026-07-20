@@ -20,55 +20,55 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    initWithFrame: proc(self: ^AK.Scrubber, frameRect: NS.Rect) -> instancetype,
-    initWithCoder: proc(self: ^AK.Scrubber, coder: ^NS.Coder) -> instancetype,
-    reloadData: proc(self: ^AK.Scrubber),
-    performSequentialBatchUpdates: proc(self: ^AK.Scrubber, updateBlock: ^Objc_Block(proc "c" ())),
-    insertItemsAtIndexes: proc(self: ^AK.Scrubber, indexes: ^NS.IndexSet),
-    removeItemsAtIndexes: proc(self: ^AK.Scrubber, indexes: ^NS.IndexSet),
-    reloadItemsAtIndexes: proc(self: ^AK.Scrubber, indexes: ^NS.IndexSet),
-    moveItemAtIndex: proc(self: ^AK.Scrubber, oldIndex: NS.Integer, newIndex: NS.Integer),
-    scrollItemAtIndex: proc(self: ^AK.Scrubber, index: NS.Integer, alignment: AK.ScrubberAlignment),
-    itemViewForItemAtIndex: proc(self: ^AK.Scrubber, index: NS.Integer) -> ^AK.ScrubberItemView,
-    registerClass: proc(self: ^AK.Scrubber, itemViewClass: Class, itemIdentifier: ^NS.String),
-    registerNib: proc(self: ^AK.Scrubber, nib: ^AK.Nib, itemIdentifier: ^NS.String),
-    makeItemWithIdentifier: proc(self: ^AK.Scrubber, itemIdentifier: ^NS.String, owner: id) -> ^AK.ScrubberItemView,
-    dataSource: proc(self: ^AK.Scrubber) -> ^AK.ScrubberDataSource,
-    setDataSource: proc(self: ^AK.Scrubber, dataSource: ^AK.ScrubberDataSource),
-    delegate: proc(self: ^AK.Scrubber) -> ^AK.ScrubberDelegate,
-    setDelegate: proc(self: ^AK.Scrubber, delegate: ^AK.ScrubberDelegate),
-    scrubberLayout: proc(self: ^AK.Scrubber) -> ^AK.ScrubberLayout,
-    setScrubberLayout: proc(self: ^AK.Scrubber, scrubberLayout: ^AK.ScrubberLayout),
-    numberOfItems: proc(self: ^AK.Scrubber) -> NS.Integer,
-    highlightedIndex: proc(self: ^AK.Scrubber) -> NS.Integer,
-    selectedIndex: proc(self: ^AK.Scrubber) -> NS.Integer,
-    setSelectedIndex: proc(self: ^AK.Scrubber, selectedIndex: NS.Integer),
-    mode: proc(self: ^AK.Scrubber) -> AK.ScrubberMode,
-    setMode: proc(self: ^AK.Scrubber, mode: AK.ScrubberMode),
-    itemAlignment: proc(self: ^AK.Scrubber) -> AK.ScrubberAlignment,
-    setItemAlignment: proc(self: ^AK.Scrubber, itemAlignment: AK.ScrubberAlignment),
-    isContinuous: proc(self: ^AK.Scrubber) -> bool,
-    setContinuous: proc(self: ^AK.Scrubber, continuous: bool),
-    floatsSelectionViews: proc(self: ^AK.Scrubber) -> bool,
-    setFloatsSelectionViews: proc(self: ^AK.Scrubber, floatsSelectionViews: bool),
-    selectionBackgroundStyle: proc(self: ^AK.Scrubber) -> ^AK.ScrubberSelectionStyle,
-    setSelectionBackgroundStyle: proc(self: ^AK.Scrubber, selectionBackgroundStyle: ^AK.ScrubberSelectionStyle),
-    selectionOverlayStyle: proc(self: ^AK.Scrubber) -> ^AK.ScrubberSelectionStyle,
-    setSelectionOverlayStyle: proc(self: ^AK.Scrubber, selectionOverlayStyle: ^AK.ScrubberSelectionStyle),
-    showsArrowButtons: proc(self: ^AK.Scrubber) -> bool,
-    setShowsArrowButtons: proc(self: ^AK.Scrubber, showsArrowButtons: bool),
-    showsAdditionalContentIndicators: proc(self: ^AK.Scrubber) -> bool,
-    setShowsAdditionalContentIndicators: proc(self: ^AK.Scrubber, showsAdditionalContentIndicators: bool),
-    backgroundColor: proc(self: ^AK.Scrubber) -> ^AK.Color,
-    setBackgroundColor: proc(self: ^AK.Scrubber, backgroundColor: ^AK.Color),
-    backgroundView: proc(self: ^AK.Scrubber) -> ^AK.View,
-    setBackgroundView: proc(self: ^AK.Scrubber, backgroundView: ^AK.View),
+    initWithFrame: proc(self: ^NS.Scrubber, frameRect: NS.Rect) -> instancetype,
+    initWithCoder: proc(self: ^NS.Scrubber, coder: ^NS.Coder) -> instancetype,
+    reloadData: proc(self: ^NS.Scrubber),
+    performSequentialBatchUpdates: proc(self: ^NS.Scrubber, updateBlock: ^Objc_Block(proc "c" ())),
+    insertItemsAtIndexes: proc(self: ^NS.Scrubber, indexes: ^NS.IndexSet),
+    removeItemsAtIndexes: proc(self: ^NS.Scrubber, indexes: ^NS.IndexSet),
+    reloadItemsAtIndexes: proc(self: ^NS.Scrubber, indexes: ^NS.IndexSet),
+    moveItemAtIndex: proc(self: ^NS.Scrubber, oldIndex: NS.Integer, newIndex: NS.Integer),
+    scrollItemAtIndex: proc(self: ^NS.Scrubber, index: NS.Integer, alignment: NS.ScrubberAlignment),
+    itemViewForItemAtIndex: proc(self: ^NS.Scrubber, index: NS.Integer) -> ^NS.ScrubberItemView,
+    registerClass: proc(self: ^NS.Scrubber, itemViewClass: Class, itemIdentifier: ^NS.String),
+    registerNib: proc(self: ^NS.Scrubber, nib: ^NS.Nib, itemIdentifier: ^NS.String),
+    makeItemWithIdentifier: proc(self: ^NS.Scrubber, itemIdentifier: ^NS.String, owner: id) -> ^NS.ScrubberItemView,
+    dataSource: proc(self: ^NS.Scrubber) -> ^NS.ScrubberDataSource,
+    setDataSource: proc(self: ^NS.Scrubber, dataSource: ^NS.ScrubberDataSource),
+    delegate: proc(self: ^NS.Scrubber) -> ^NS.ScrubberDelegate,
+    setDelegate: proc(self: ^NS.Scrubber, delegate: ^NS.ScrubberDelegate),
+    scrubberLayout: proc(self: ^NS.Scrubber) -> ^NS.ScrubberLayout,
+    setScrubberLayout: proc(self: ^NS.Scrubber, scrubberLayout: ^NS.ScrubberLayout),
+    numberOfItems: proc(self: ^NS.Scrubber) -> NS.Integer,
+    highlightedIndex: proc(self: ^NS.Scrubber) -> NS.Integer,
+    selectedIndex: proc(self: ^NS.Scrubber) -> NS.Integer,
+    setSelectedIndex: proc(self: ^NS.Scrubber, selectedIndex: NS.Integer),
+    mode: proc(self: ^NS.Scrubber) -> NS.ScrubberMode,
+    setMode: proc(self: ^NS.Scrubber, mode: NS.ScrubberMode),
+    itemAlignment: proc(self: ^NS.Scrubber) -> NS.ScrubberAlignment,
+    setItemAlignment: proc(self: ^NS.Scrubber, itemAlignment: NS.ScrubberAlignment),
+    isContinuous: proc(self: ^NS.Scrubber) -> bool,
+    setContinuous: proc(self: ^NS.Scrubber, continuous: bool),
+    floatsSelectionViews: proc(self: ^NS.Scrubber) -> bool,
+    setFloatsSelectionViews: proc(self: ^NS.Scrubber, floatsSelectionViews: bool),
+    selectionBackgroundStyle: proc(self: ^NS.Scrubber) -> ^NS.ScrubberSelectionStyle,
+    setSelectionBackgroundStyle: proc(self: ^NS.Scrubber, selectionBackgroundStyle: ^NS.ScrubberSelectionStyle),
+    selectionOverlayStyle: proc(self: ^NS.Scrubber) -> ^NS.ScrubberSelectionStyle,
+    setSelectionOverlayStyle: proc(self: ^NS.Scrubber, selectionOverlayStyle: ^NS.ScrubberSelectionStyle),
+    showsArrowButtons: proc(self: ^NS.Scrubber) -> bool,
+    setShowsArrowButtons: proc(self: ^NS.Scrubber, showsArrowButtons: bool),
+    showsAdditionalContentIndicators: proc(self: ^NS.Scrubber) -> bool,
+    setShowsAdditionalContentIndicators: proc(self: ^NS.Scrubber, showsAdditionalContentIndicators: bool),
+    backgroundColor: proc(self: ^NS.Scrubber) -> ^NS.Color,
+    setBackgroundColor: proc(self: ^NS.Scrubber, backgroundColor: ^NS.Color),
+    backgroundView: proc(self: ^NS.Scrubber) -> ^NS.View,
+    setBackgroundView: proc(self: ^NS.Scrubber, backgroundView: ^NS.View),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.Scrubber, _: SEL, frameRect: NS.Rect) -> instancetype {
+        initWithFrame :: proc "c" (self: ^NS.Scrubber, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Scrubber, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.Scrubber, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.reloadData != nil {
-        reloadData :: proc "c" (self: ^AK.Scrubber, _: SEL) {
+        reloadData :: proc "c" (self: ^NS.Scrubber, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reloadData"), auto_cast reloadData, "v@:") do panic("Failed to register objC method.")
     }
     if vt.performSequentialBatchUpdates != nil {
-        performSequentialBatchUpdates :: proc "c" (self: ^AK.Scrubber, _: SEL, updateBlock: ^Objc_Block(proc "c" ())) {
+        performSequentialBatchUpdates :: proc "c" (self: ^NS.Scrubber, _: SEL, updateBlock: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performSequentialBatchUpdates:"), auto_cast performSequentialBatchUpdates, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.insertItemsAtIndexes != nil {
-        insertItemsAtIndexes :: proc "c" (self: ^AK.Scrubber, _: SEL, indexes: ^NS.IndexSet) {
+        insertItemsAtIndexes :: proc "c" (self: ^NS.Scrubber, _: SEL, indexes: ^NS.IndexSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertItemsAtIndexes:"), auto_cast insertItemsAtIndexes, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeItemsAtIndexes != nil {
-        removeItemsAtIndexes :: proc "c" (self: ^AK.Scrubber, _: SEL, indexes: ^NS.IndexSet) {
+        removeItemsAtIndexes :: proc "c" (self: ^NS.Scrubber, _: SEL, indexes: ^NS.IndexSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeItemsAtIndexes:"), auto_cast removeItemsAtIndexes, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.reloadItemsAtIndexes != nil {
-        reloadItemsAtIndexes :: proc "c" (self: ^AK.Scrubber, _: SEL, indexes: ^NS.IndexSet) {
+        reloadItemsAtIndexes :: proc "c" (self: ^NS.Scrubber, _: SEL, indexes: ^NS.IndexSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reloadItemsAtIndexes:"), auto_cast reloadItemsAtIndexes, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.moveItemAtIndex != nil {
-        moveItemAtIndex :: proc "c" (self: ^AK.Scrubber, _: SEL, oldIndex: NS.Integer, newIndex: NS.Integer) {
+        moveItemAtIndex :: proc "c" (self: ^NS.Scrubber, _: SEL, oldIndex: NS.Integer, newIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("moveItemAtIndex:toIndex:"), auto_cast moveItemAtIndex, "v@:ll") do panic("Failed to register objC method.")
     }
     if vt.scrollItemAtIndex != nil {
-        scrollItemAtIndex :: proc "c" (self: ^AK.Scrubber, _: SEL, index: NS.Integer, alignment: AK.ScrubberAlignment) {
+        scrollItemAtIndex :: proc "c" (self: ^NS.Scrubber, _: SEL, index: NS.Integer, alignment: NS.ScrubberAlignment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollItemAtIndex:toAlignment:"), auto_cast scrollItemAtIndex, "v@:ll") do panic("Failed to register objC method.")
     }
     if vt.itemViewForItemAtIndex != nil {
-        itemViewForItemAtIndex :: proc "c" (self: ^AK.Scrubber, _: SEL, index: NS.Integer) -> ^AK.ScrubberItemView {
+        itemViewForItemAtIndex :: proc "c" (self: ^NS.Scrubber, _: SEL, index: NS.Integer) -> ^NS.ScrubberItemView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -179,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemViewForItemAtIndex:"), auto_cast itemViewForItemAtIndex, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.registerClass != nil {
-        registerClass :: proc "c" (self: ^AK.Scrubber, _: SEL, itemViewClass: Class, itemIdentifier: ^NS.String) {
+        registerClass :: proc "c" (self: ^NS.Scrubber, _: SEL, itemViewClass: Class, itemIdentifier: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -189,7 +189,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("registerClass:forItemIdentifier:"), auto_cast registerClass, "v@:#@") do panic("Failed to register objC method.")
     }
     if vt.registerNib != nil {
-        registerNib :: proc "c" (self: ^AK.Scrubber, _: SEL, nib: ^AK.Nib, itemIdentifier: ^NS.String) {
+        registerNib :: proc "c" (self: ^NS.Scrubber, _: SEL, nib: ^NS.Nib, itemIdentifier: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -199,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("registerNib:forItemIdentifier:"), auto_cast registerNib, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.makeItemWithIdentifier != nil {
-        makeItemWithIdentifier :: proc "c" (self: ^AK.Scrubber, _: SEL, itemIdentifier: ^NS.String, owner: id) -> ^AK.ScrubberItemView {
+        makeItemWithIdentifier :: proc "c" (self: ^NS.Scrubber, _: SEL, itemIdentifier: ^NS.String, owner: id) -> ^NS.ScrubberItemView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -209,7 +209,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeItemWithIdentifier:owner:"), auto_cast makeItemWithIdentifier, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.dataSource != nil {
-        dataSource :: proc "c" (self: ^AK.Scrubber, _: SEL) -> ^AK.ScrubberDataSource {
+        dataSource :: proc "c" (self: ^NS.Scrubber, _: SEL) -> ^NS.ScrubberDataSource {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -219,7 +219,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dataSource"), auto_cast dataSource, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDataSource != nil {
-        setDataSource :: proc "c" (self: ^AK.Scrubber, _: SEL, dataSource: ^AK.ScrubberDataSource) {
+        setDataSource :: proc "c" (self: ^NS.Scrubber, _: SEL, dataSource: ^NS.ScrubberDataSource) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -229,7 +229,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDataSource:"), auto_cast setDataSource, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.Scrubber, _: SEL) -> ^AK.ScrubberDelegate {
+        delegate :: proc "c" (self: ^NS.Scrubber, _: SEL) -> ^NS.ScrubberDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -239,7 +239,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.Scrubber, _: SEL, delegate: ^AK.ScrubberDelegate) {
+        setDelegate :: proc "c" (self: ^NS.Scrubber, _: SEL, delegate: ^NS.ScrubberDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -249,7 +249,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.scrubberLayout != nil {
-        scrubberLayout :: proc "c" (self: ^AK.Scrubber, _: SEL) -> ^AK.ScrubberLayout {
+        scrubberLayout :: proc "c" (self: ^NS.Scrubber, _: SEL) -> ^NS.ScrubberLayout {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -259,7 +259,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrubberLayout"), auto_cast scrubberLayout, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setScrubberLayout != nil {
-        setScrubberLayout :: proc "c" (self: ^AK.Scrubber, _: SEL, scrubberLayout: ^AK.ScrubberLayout) {
+        setScrubberLayout :: proc "c" (self: ^NS.Scrubber, _: SEL, scrubberLayout: ^NS.ScrubberLayout) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -269,7 +269,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScrubberLayout:"), auto_cast setScrubberLayout, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.numberOfItems != nil {
-        numberOfItems :: proc "c" (self: ^AK.Scrubber, _: SEL) -> NS.Integer {
+        numberOfItems :: proc "c" (self: ^NS.Scrubber, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -279,7 +279,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfItems"), auto_cast numberOfItems, "l@:") do panic("Failed to register objC method.")
     }
     if vt.highlightedIndex != nil {
-        highlightedIndex :: proc "c" (self: ^AK.Scrubber, _: SEL) -> NS.Integer {
+        highlightedIndex :: proc "c" (self: ^NS.Scrubber, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -289,7 +289,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("highlightedIndex"), auto_cast highlightedIndex, "l@:") do panic("Failed to register objC method.")
     }
     if vt.selectedIndex != nil {
-        selectedIndex :: proc "c" (self: ^AK.Scrubber, _: SEL) -> NS.Integer {
+        selectedIndex :: proc "c" (self: ^NS.Scrubber, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -299,7 +299,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedIndex"), auto_cast selectedIndex, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedIndex != nil {
-        setSelectedIndex :: proc "c" (self: ^AK.Scrubber, _: SEL, selectedIndex: NS.Integer) {
+        setSelectedIndex :: proc "c" (self: ^NS.Scrubber, _: SEL, selectedIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -309,7 +309,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedIndex:"), auto_cast setSelectedIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.mode != nil {
-        mode :: proc "c" (self: ^AK.Scrubber, _: SEL) -> AK.ScrubberMode {
+        mode :: proc "c" (self: ^NS.Scrubber, _: SEL) -> NS.ScrubberMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -319,7 +319,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mode"), auto_cast mode, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setMode != nil {
-        setMode :: proc "c" (self: ^AK.Scrubber, _: SEL, mode: AK.ScrubberMode) {
+        setMode :: proc "c" (self: ^NS.Scrubber, _: SEL, mode: NS.ScrubberMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -329,7 +329,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMode:"), auto_cast setMode, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.itemAlignment != nil {
-        itemAlignment :: proc "c" (self: ^AK.Scrubber, _: SEL) -> AK.ScrubberAlignment {
+        itemAlignment :: proc "c" (self: ^NS.Scrubber, _: SEL) -> NS.ScrubberAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -339,7 +339,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemAlignment"), auto_cast itemAlignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setItemAlignment != nil {
-        setItemAlignment :: proc "c" (self: ^AK.Scrubber, _: SEL, itemAlignment: AK.ScrubberAlignment) {
+        setItemAlignment :: proc "c" (self: ^NS.Scrubber, _: SEL, itemAlignment: NS.ScrubberAlignment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -349,7 +349,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setItemAlignment:"), auto_cast setItemAlignment, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.isContinuous != nil {
-        isContinuous :: proc "c" (self: ^AK.Scrubber, _: SEL) -> bool {
+        isContinuous :: proc "c" (self: ^NS.Scrubber, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -359,7 +359,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isContinuous"), auto_cast isContinuous, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setContinuous != nil {
-        setContinuous :: proc "c" (self: ^AK.Scrubber, _: SEL, continuous: bool) {
+        setContinuous :: proc "c" (self: ^NS.Scrubber, _: SEL, continuous: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -369,7 +369,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContinuous:"), auto_cast setContinuous, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.floatsSelectionViews != nil {
-        floatsSelectionViews :: proc "c" (self: ^AK.Scrubber, _: SEL) -> bool {
+        floatsSelectionViews :: proc "c" (self: ^NS.Scrubber, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -379,7 +379,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("floatsSelectionViews"), auto_cast floatsSelectionViews, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setFloatsSelectionViews != nil {
-        setFloatsSelectionViews :: proc "c" (self: ^AK.Scrubber, _: SEL, floatsSelectionViews: bool) {
+        setFloatsSelectionViews :: proc "c" (self: ^NS.Scrubber, _: SEL, floatsSelectionViews: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -389,7 +389,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFloatsSelectionViews:"), auto_cast setFloatsSelectionViews, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.selectionBackgroundStyle != nil {
-        selectionBackgroundStyle :: proc "c" (self: ^AK.Scrubber, _: SEL) -> ^AK.ScrubberSelectionStyle {
+        selectionBackgroundStyle :: proc "c" (self: ^NS.Scrubber, _: SEL) -> ^NS.ScrubberSelectionStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -399,7 +399,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionBackgroundStyle"), auto_cast selectionBackgroundStyle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionBackgroundStyle != nil {
-        setSelectionBackgroundStyle :: proc "c" (self: ^AK.Scrubber, _: SEL, selectionBackgroundStyle: ^AK.ScrubberSelectionStyle) {
+        setSelectionBackgroundStyle :: proc "c" (self: ^NS.Scrubber, _: SEL, selectionBackgroundStyle: ^NS.ScrubberSelectionStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -409,7 +409,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionBackgroundStyle:"), auto_cast setSelectionBackgroundStyle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectionOverlayStyle != nil {
-        selectionOverlayStyle :: proc "c" (self: ^AK.Scrubber, _: SEL) -> ^AK.ScrubberSelectionStyle {
+        selectionOverlayStyle :: proc "c" (self: ^NS.Scrubber, _: SEL) -> ^NS.ScrubberSelectionStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -419,7 +419,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionOverlayStyle"), auto_cast selectionOverlayStyle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionOverlayStyle != nil {
-        setSelectionOverlayStyle :: proc "c" (self: ^AK.Scrubber, _: SEL, selectionOverlayStyle: ^AK.ScrubberSelectionStyle) {
+        setSelectionOverlayStyle :: proc "c" (self: ^NS.Scrubber, _: SEL, selectionOverlayStyle: ^NS.ScrubberSelectionStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -429,7 +429,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionOverlayStyle:"), auto_cast setSelectionOverlayStyle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.showsArrowButtons != nil {
-        showsArrowButtons :: proc "c" (self: ^AK.Scrubber, _: SEL) -> bool {
+        showsArrowButtons :: proc "c" (self: ^NS.Scrubber, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -439,7 +439,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showsArrowButtons"), auto_cast showsArrowButtons, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setShowsArrowButtons != nil {
-        setShowsArrowButtons :: proc "c" (self: ^AK.Scrubber, _: SEL, showsArrowButtons: bool) {
+        setShowsArrowButtons :: proc "c" (self: ^NS.Scrubber, _: SEL, showsArrowButtons: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -449,7 +449,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsArrowButtons:"), auto_cast setShowsArrowButtons, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.showsAdditionalContentIndicators != nil {
-        showsAdditionalContentIndicators :: proc "c" (self: ^AK.Scrubber, _: SEL) -> bool {
+        showsAdditionalContentIndicators :: proc "c" (self: ^NS.Scrubber, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -459,7 +459,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showsAdditionalContentIndicators"), auto_cast showsAdditionalContentIndicators, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setShowsAdditionalContentIndicators != nil {
-        setShowsAdditionalContentIndicators :: proc "c" (self: ^AK.Scrubber, _: SEL, showsAdditionalContentIndicators: bool) {
+        setShowsAdditionalContentIndicators :: proc "c" (self: ^NS.Scrubber, _: SEL, showsAdditionalContentIndicators: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -469,7 +469,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsAdditionalContentIndicators:"), auto_cast setShowsAdditionalContentIndicators, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.backgroundColor != nil {
-        backgroundColor :: proc "c" (self: ^AK.Scrubber, _: SEL) -> ^AK.Color {
+        backgroundColor :: proc "c" (self: ^NS.Scrubber, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -479,7 +479,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundColor"), auto_cast backgroundColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundColor != nil {
-        setBackgroundColor :: proc "c" (self: ^AK.Scrubber, _: SEL, backgroundColor: ^AK.Color) {
+        setBackgroundColor :: proc "c" (self: ^NS.Scrubber, _: SEL, backgroundColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -489,7 +489,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundColor:"), auto_cast setBackgroundColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.backgroundView != nil {
-        backgroundView :: proc "c" (self: ^AK.Scrubber, _: SEL) -> ^AK.View {
+        backgroundView :: proc "c" (self: ^NS.Scrubber, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -499,7 +499,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundView"), auto_cast backgroundView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundView != nil {
-        setBackgroundView :: proc "c" (self: ^AK.Scrubber, _: SEL, backgroundView: ^AK.View) {
+        setBackgroundView :: proc "c" (self: ^NS.Scrubber, _: SEL, backgroundView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

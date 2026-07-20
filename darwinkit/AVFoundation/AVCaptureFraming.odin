@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureFraming
-///
 @(objc_class="AVCaptureFraming", objc_superclass=NS.Object)
 CaptureFraming :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureFraming, objc_selector="init", objc_name="init")
     CaptureFraming_init :: proc(self: ^CaptureFraming) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=CaptureFraming, objc_selector="zoomFactor", objc_name="zoomFactor")
     CaptureFraming_zoomFactor :: proc(self: ^CaptureFraming) -> cffi.float ---
 }
+
+
+

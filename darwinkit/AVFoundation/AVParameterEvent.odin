@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVParameterEvent
-///
 @(objc_class="AVParameterEvent", objc_superclass=MusicEvent)
 ParameterEvent :: struct { using _: MusicEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ParameterEvent, objc_selector="initWithParameterID:scope:element:value:", objc_name="initWithParameterID")
     ParameterEvent_initWithParameterID :: proc(self: ^ParameterEvent, parameterID: CF.UInt32, scope: CF.UInt32, element: CF.UInt32, value: cffi.float) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=ParameterEvent, objc_selector="setValue:", objc_name="setValue")
     ParameterEvent_setValue :: proc(self: ^ParameterEvent, value: cffi.float) ---
 }
+
+
+

@@ -28,7 +28,7 @@ foreign lib {
     PDFPanel_panel :: proc() -> ^PDFPanel ---
 
     @(objc_type=PDFPanel, objc_selector="beginSheetWithPDFInfo:modalForWindow:completionHandler:", objc_name="beginSheetWithPDFInfo")
-    PDFPanel_beginSheetWithPDFInfo :: proc(self: ^PDFPanel, pdfInfo: ^PDFInfo, docWindow: ^Window, completionHandler: ^Objc_Block(proc "c" (_: NS.Integer))) ---
+    PDFPanel_beginSheetWithPDFInfo :: proc(self: ^PDFPanel, pdfInfo: ^PDFInfo, docWindow: ^Window, completionHandler: ^Objc_Block(proc "c" ( _0: NS.Integer ))) ---
 
     @(objc_type=PDFPanel, objc_selector="accessoryController", objc_name="accessoryController")
     PDFPanel_accessoryController :: proc(self: ^PDFPanel) -> ^ViewController ---

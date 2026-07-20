@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    enumerateDraggingItemsWithOptions: proc(self: ^AK.DraggingSession, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool))),
-    draggingFormation: proc(self: ^AK.DraggingSession) -> AK.DraggingFormation,
-    setDraggingFormation: proc(self: ^AK.DraggingSession, draggingFormation: AK.DraggingFormation),
-    animatesToStartingPositionsOnCancelOrFail: proc(self: ^AK.DraggingSession) -> bool,
-    setAnimatesToStartingPositionsOnCancelOrFail: proc(self: ^AK.DraggingSession, animatesToStartingPositionsOnCancelOrFail: bool),
-    draggingLeaderIndex: proc(self: ^AK.DraggingSession) -> NS.Integer,
-    setDraggingLeaderIndex: proc(self: ^AK.DraggingSession, draggingLeaderIndex: NS.Integer),
-    draggingPasteboard: proc(self: ^AK.DraggingSession) -> ^AK.Pasteboard,
-    draggingSequenceNumber: proc(self: ^AK.DraggingSession) -> NS.Integer,
-    draggingLocation: proc(self: ^AK.DraggingSession) -> CG.Point,
+    enumerateDraggingItemsWithOptions: proc(self: ^NS.DraggingSession, enumOpts: NS.DraggingItemEnumerationOptions, view: ^NS.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" ( draggingItem: ^NS.DraggingItem, idx: NS.Integer, stop: ^bool ))),
+    draggingFormation: proc(self: ^NS.DraggingSession) -> NS.DraggingFormation,
+    setDraggingFormation: proc(self: ^NS.DraggingSession, draggingFormation: NS.DraggingFormation),
+    animatesToStartingPositionsOnCancelOrFail: proc(self: ^NS.DraggingSession) -> bool,
+    setAnimatesToStartingPositionsOnCancelOrFail: proc(self: ^NS.DraggingSession, animatesToStartingPositionsOnCancelOrFail: bool),
+    draggingLeaderIndex: proc(self: ^NS.DraggingSession) -> NS.Integer,
+    setDraggingLeaderIndex: proc(self: ^NS.DraggingSession, draggingLeaderIndex: NS.Integer),
+    draggingPasteboard: proc(self: ^NS.DraggingSession) -> ^NS.Pasteboard,
+    draggingSequenceNumber: proc(self: ^NS.DraggingSession) -> NS.Integer,
+    draggingLocation: proc(self: ^NS.DraggingSession) -> CG.Point,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.enumerateDraggingItemsWithOptions != nil {
-        enumerateDraggingItemsWithOptions :: proc "c" (self: ^AK.DraggingSession, _: SEL, enumOpts: AK.DraggingItemEnumerationOptions, view: ^AK.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^AK.DraggingItem, idx: NS.Integer, stop: ^bool))) {
+        enumerateDraggingItemsWithOptions :: proc "c" (self: ^NS.DraggingSession, _: SEL, enumOpts: NS.DraggingItemEnumerationOptions, view: ^NS.View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" ( draggingItem: ^NS.DraggingItem, idx: NS.Integer, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:"), auto_cast enumerateDraggingItemsWithOptions, "v@:L@^void^void?") do panic("Failed to register objC method.")
     }
     if vt.draggingFormation != nil {
-        draggingFormation :: proc "c" (self: ^AK.DraggingSession, _: SEL) -> AK.DraggingFormation {
+        draggingFormation :: proc "c" (self: ^NS.DraggingSession, _: SEL) -> NS.DraggingFormation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingFormation"), auto_cast draggingFormation, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setDraggingFormation != nil {
-        setDraggingFormation :: proc "c" (self: ^AK.DraggingSession, _: SEL, draggingFormation: AK.DraggingFormation) {
+        setDraggingFormation :: proc "c" (self: ^NS.DraggingSession, _: SEL, draggingFormation: NS.DraggingFormation) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDraggingFormation:"), auto_cast setDraggingFormation, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.animatesToStartingPositionsOnCancelOrFail != nil {
-        animatesToStartingPositionsOnCancelOrFail :: proc "c" (self: ^AK.DraggingSession, _: SEL) -> bool {
+        animatesToStartingPositionsOnCancelOrFail :: proc "c" (self: ^NS.DraggingSession, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animatesToStartingPositionsOnCancelOrFail"), auto_cast animatesToStartingPositionsOnCancelOrFail, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAnimatesToStartingPositionsOnCancelOrFail != nil {
-        setAnimatesToStartingPositionsOnCancelOrFail :: proc "c" (self: ^AK.DraggingSession, _: SEL, animatesToStartingPositionsOnCancelOrFail: bool) {
+        setAnimatesToStartingPositionsOnCancelOrFail :: proc "c" (self: ^NS.DraggingSession, _: SEL, animatesToStartingPositionsOnCancelOrFail: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAnimatesToStartingPositionsOnCancelOrFail:"), auto_cast setAnimatesToStartingPositionsOnCancelOrFail, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.draggingLeaderIndex != nil {
-        draggingLeaderIndex :: proc "c" (self: ^AK.DraggingSession, _: SEL) -> NS.Integer {
+        draggingLeaderIndex :: proc "c" (self: ^NS.DraggingSession, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingLeaderIndex"), auto_cast draggingLeaderIndex, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setDraggingLeaderIndex != nil {
-        setDraggingLeaderIndex :: proc "c" (self: ^AK.DraggingSession, _: SEL, draggingLeaderIndex: NS.Integer) {
+        setDraggingLeaderIndex :: proc "c" (self: ^NS.DraggingSession, _: SEL, draggingLeaderIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDraggingLeaderIndex:"), auto_cast setDraggingLeaderIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.draggingPasteboard != nil {
-        draggingPasteboard :: proc "c" (self: ^AK.DraggingSession, _: SEL) -> ^AK.Pasteboard {
+        draggingPasteboard :: proc "c" (self: ^NS.DraggingSession, _: SEL) -> ^NS.Pasteboard {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingPasteboard"), auto_cast draggingPasteboard, "@@:") do panic("Failed to register objC method.")
     }
     if vt.draggingSequenceNumber != nil {
-        draggingSequenceNumber :: proc "c" (self: ^AK.DraggingSession, _: SEL) -> NS.Integer {
+        draggingSequenceNumber :: proc "c" (self: ^NS.DraggingSession, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingSequenceNumber"), auto_cast draggingSequenceNumber, "l@:") do panic("Failed to register objC method.")
     }
     if vt.draggingLocation != nil {
-        draggingLocation :: proc "c" (self: ^AK.DraggingSession, _: SEL) -> CG.Point {
+        draggingLocation :: proc "c" (self: ^NS.DraggingSession, _: SEL) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

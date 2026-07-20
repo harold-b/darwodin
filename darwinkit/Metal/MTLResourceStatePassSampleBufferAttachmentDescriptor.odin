@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLResourceStatePassSampleBufferAttachmentDescriptor
-///
 @(objc_class="MTLResourceStatePassSampleBufferAttachmentDescriptor", objc_superclass=NS.Object)
 ResourceStatePassSampleBufferAttachmentDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ResourceStatePassSampleBufferAttachmentDescriptor, objc_selector="sampleBuffer", objc_name="sampleBuffer")
     ResourceStatePassSampleBufferAttachmentDescriptor_sampleBuffer :: proc(self: ^ResourceStatePassSampleBufferAttachmentDescriptor) -> ^CounterSampleBuffer ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=ResourceStatePassSampleBufferAttachmentDescriptor, objc_selector="setEndOfEncoderSampleIndex:", objc_name="setEndOfEncoderSampleIndex")
     ResourceStatePassSampleBufferAttachmentDescriptor_setEndOfEncoderSampleIndex :: proc(self: ^ResourceStatePassSampleBufferAttachmentDescriptor, endOfEncoderSampleIndex: NS.UInteger) ---
 }
+
+
+

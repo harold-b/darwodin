@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayer
-///
 @(objc_class="AVPlayer", objc_superclass=NS.Object)
 Player :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Player, objc_selector="init", objc_name="init")
     Player_init :: proc(self: ^Player) -> instancetype ---
@@ -89,7 +83,7 @@ foreign lib {
     Player_seekToDate_ :: proc(self: ^Player, date: ^NS.Date) ---
 
     @(objc_type=Player, objc_selector="seekToDate:completionHandler:", objc_name="seekToDate_completionHandler")
-    Player_seekToDate_completionHandler :: proc(self: ^Player, date: ^NS.Date, completionHandler: ^Objc_Block(proc "c" (finished: bool))) ---
+    Player_seekToDate_completionHandler :: proc(self: ^Player, date: ^NS.Date, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=Player, objc_selector="seekToTime:", objc_name="seekToTime_")
     Player_seekToTime_ :: proc(self: ^Player, time: CM.Time) ---
@@ -98,16 +92,16 @@ foreign lib {
     Player_seekToTime_toleranceBefore_toleranceAfter :: proc(self: ^Player, time: CM.Time, toleranceBefore: CM.Time, toleranceAfter: CM.Time) ---
 
     @(objc_type=Player, objc_selector="seekToTime:completionHandler:", objc_name="seekToTime_completionHandler")
-    Player_seekToTime_completionHandler :: proc(self: ^Player, time: CM.Time, completionHandler: ^Objc_Block(proc "c" (finished: bool))) ---
+    Player_seekToTime_completionHandler :: proc(self: ^Player, time: CM.Time, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=Player, objc_selector="seekToTime:toleranceBefore:toleranceAfter:completionHandler:", objc_name="seekToTime_toleranceBefore_toleranceAfter_completionHandler")
-    Player_seekToTime_toleranceBefore_toleranceAfter_completionHandler :: proc(self: ^Player, time: CM.Time, toleranceBefore: CM.Time, toleranceAfter: CM.Time, completionHandler: ^Objc_Block(proc "c" (finished: bool))) ---
+    Player_seekToTime_toleranceBefore_toleranceAfter_completionHandler :: proc(self: ^Player, time: CM.Time, toleranceBefore: CM.Time, toleranceAfter: CM.Time, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=Player, objc_selector="setRate:time:atHostTime:", objc_name="setRate_time_atHostTime")
     Player_setRate_time_atHostTime :: proc(self: ^Player, rate: cffi.float, itemTime: CM.Time, hostClockTime: CM.Time) ---
 
     @(objc_type=Player, objc_selector="prerollAtRate:completionHandler:", objc_name="prerollAtRate")
-    Player_prerollAtRate :: proc(self: ^Player, rate: cffi.float, completionHandler: ^Objc_Block(proc "c" (finished: bool))) ---
+    Player_prerollAtRate :: proc(self: ^Player, rate: cffi.float, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=Player, objc_selector="cancelPendingPrerolls", objc_name="cancelPendingPrerolls")
     Player_cancelPendingPrerolls :: proc(self: ^Player) ---
@@ -125,7 +119,7 @@ foreign lib {
     Player_setSourceClock :: proc(self: ^Player, sourceClock: CM.ClockRef) ---
 
     @(objc_type=Player, objc_selector="addPeriodicTimeObserverForInterval:queue:usingBlock:", objc_name="addPeriodicTimeObserverForInterval")
-    Player_addPeriodicTimeObserverForInterval :: proc(self: ^Player, interval: CM.Time, queue: CF.dispatch_queue_t, block: ^Objc_Block(proc "c" (time: CM.Time))) -> id ---
+    Player_addPeriodicTimeObserverForInterval :: proc(self: ^Player, interval: CM.Time, queue: CF.dispatch_queue_t, block: ^Objc_Block(proc "c" ( time: CM.Time ))) -> id ---
 
     @(objc_type=Player, objc_selector="addBoundaryTimeObserverForTimes:queue:usingBlock:", objc_name="addBoundaryTimeObserverForTimes")
     Player_addBoundaryTimeObserverForTimes :: proc(self: ^Player, times: ^NS.Array, queue: CF.dispatch_queue_t, block: ^Objc_Block(proc "c" ())) -> id ---
@@ -187,31 +181,39 @@ foreign lib {
     when ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=Player, objc_selector="allowsAirPlayVideo", objc_name="allowsAirPlayVideo")
         Player_allowsAirPlayVideo :: proc(self: ^Player) -> bool ---
-
-        @(objc_type=Player, objc_selector="setAllowsAirPlayVideo:", objc_name="setAllowsAirPlayVideo")
-        Player_setAllowsAirPlayVideo :: proc(self: ^Player, allowsAirPlayVideo: bool) ---
-
-        @(objc_type=Player, objc_selector="isAirPlayVideoActive", objc_name="isAirPlayVideoActive")
-        Player_isAirPlayVideoActive :: proc(self: ^Player) -> bool ---
-
-        @(objc_type=Player, objc_selector="usesAirPlayVideoWhileAirPlayScreenIsActive", objc_name="usesAirPlayVideoWhileAirPlayScreenIsActive")
-        Player_usesAirPlayVideoWhileAirPlayScreenIsActive :: proc(self: ^Player) -> bool ---
-
-        @(objc_type=Player, objc_selector="setUsesAirPlayVideoWhileAirPlayScreenIsActive:", objc_name="setUsesAirPlayVideoWhileAirPlayScreenIsActive")
-        Player_setUsesAirPlayVideoWhileAirPlayScreenIsActive :: proc(self: ^Player, usesAirPlayVideoWhileAirPlayScreenIsActive: bool) ---
     }
 
     @(objc_type=Player, objc_selector="outputObscuredDueToInsufficientExternalProtection", objc_name="outputObscuredDueToInsufficientExternalProtection")
     Player_outputObscuredDueToInsufficientExternalProtection :: proc(self: ^Player) -> bool ---
 
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=Player, objc_selector="setAllowsAirPlayVideo:", objc_name="setAllowsAirPlayVideo")
+        Player_setAllowsAirPlayVideo :: proc(self: ^Player, allowsAirPlayVideo: bool) ---
+    }
+
     @(objc_type=Player, objc_selector="availableHDRModes", objc_name="availableHDRModes", objc_is_class_method=true)
     Player_availableHDRModes :: proc() -> PlayerHDRMode ---
+
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=Player, objc_selector="isAirPlayVideoActive", objc_name="isAirPlayVideoActive")
+        Player_isAirPlayVideoActive :: proc(self: ^Player) -> bool ---
+    }
 
     @(objc_type=Player, objc_selector="eligibleForHDRPlayback", objc_name="eligibleForHDRPlayback", objc_is_class_method=true)
     Player_eligibleForHDRPlayback :: proc() -> bool ---
 
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=Player, objc_selector="usesAirPlayVideoWhileAirPlayScreenIsActive", objc_name="usesAirPlayVideoWhileAirPlayScreenIsActive")
+        Player_usesAirPlayVideoWhileAirPlayScreenIsActive :: proc(self: ^Player) -> bool ---
+    }
+
     @(objc_type=Player, objc_selector="preferredVideoDecoderGPURegistryID", objc_name="preferredVideoDecoderGPURegistryID")
     Player_preferredVideoDecoderGPURegistryID :: proc(self: ^Player) -> cffi.uint64_t ---
+
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=Player, objc_selector="setUsesAirPlayVideoWhileAirPlayScreenIsActive:", objc_name="setUsesAirPlayVideoWhileAirPlayScreenIsActive")
+        Player_setUsesAirPlayVideoWhileAirPlayScreenIsActive :: proc(self: ^Player, usesAirPlayVideoWhileAirPlayScreenIsActive: bool) ---
+    }
 
     @(objc_type=Player, objc_selector="setPreferredVideoDecoderGPURegistryID:", objc_name="setPreferredVideoDecoderGPURegistryID")
     Player_setPreferredVideoDecoderGPURegistryID :: proc(self: ^Player, preferredVideoDecoderGPURegistryID: cffi.uint64_t) ---
@@ -250,10 +252,10 @@ foreign lib {
     Player_setNetworkResourcePriority :: proc(self: ^Player, networkResourcePriority: PlayerNetworkResourcePriority) ---
 
     @(objc_type=Player, objc_selector="intendedSpatialAudioExperience", objc_name="intendedSpatialAudioExperience")
-    Player_intendedSpatialAudioExperience :: proc(self: ^Player) -> ^CASpatialAudioExperience ---
+    Player_intendedSpatialAudioExperience :: proc(self: ^Player) -> ^Audio.CASpatialAudioExperience ---
 
     @(objc_type=Player, objc_selector="setIntendedSpatialAudioExperience:", objc_name="setIntendedSpatialAudioExperience")
-    Player_setIntendedSpatialAudioExperience :: proc(self: ^Player, intendedSpatialAudioExperience: ^CASpatialAudioExperience) ---
+    Player_setIntendedSpatialAudioExperience :: proc(self: ^Player, intendedSpatialAudioExperience: ^Audio.CASpatialAudioExperience) ---
 
     @(objc_type=Player, objc_selector="audioOutputSuppressedDueToNonMixableAudioRoute", objc_name="audioOutputSuppressedDueToNonMixableAudioRoute")
     Player_audioOutputSuppressedDueToNonMixableAudioRoute :: proc(self: ^Player) -> bool ---
@@ -282,6 +284,8 @@ foreign lib {
     @(objc_type=Player, objc_selector="setMasterClock:", objc_name="setMasterClock")
     Player_setMasterClock :: proc(self: ^Player, masterClock: CM.ClockRef) ---
 }
+
+
 
 @(objc_type=Player, objc_name="seekToDate")
 Player_seekToDate :: proc {

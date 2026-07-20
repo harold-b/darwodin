@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineSendChangesOptions
-///
 @(objc_class="CKSyncEngineSendChangesOptions", objc_superclass=NS.Object)
 SyncEngineSendChangesOptions :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineSendChangesOptions, objc_selector="initWithScope:", objc_name="initWithScope")
     SyncEngineSendChangesOptions_initWithScope :: proc(self: ^SyncEngineSendChangesOptions, scope: ^SyncEngineSendChangesScope) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=SyncEngineSendChangesOptions, objc_selector="setOperationGroup:", objc_name="setOperationGroup")
     SyncEngineSendChangesOptions_setOperationGroup :: proc(self: ^SyncEngineSendChangesOptions, operationGroup: ^OperationGroup) ---
 }
+
+
+

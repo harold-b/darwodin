@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCommandBuffer
-///
 @(objc_class="MTLCommandBuffer")
 CommandBuffer :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CommandBuffer, objc_selector="enqueue", objc_name="enqueue")
     CommandBuffer_enqueue :: proc(self: ^CommandBuffer) ---
@@ -140,4 +134,6 @@ foreign lib {
     @(objc_type=CommandBuffer, objc_selector="error", objc_name="error")
     CommandBuffer_error :: proc(self: ^CommandBuffer) -> ^NS.Error ---
 }
+
+
 

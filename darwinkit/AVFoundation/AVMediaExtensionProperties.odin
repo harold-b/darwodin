@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMediaExtensionProperties
-///
 @(objc_class="AVMediaExtensionProperties", objc_superclass=NS.Object)
 MediaExtensionProperties :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MediaExtensionProperties, objc_selector="init", objc_name="init")
     MediaExtensionProperties_init :: proc(self: ^MediaExtensionProperties) -> instancetype ---
@@ -45,3 +39,6 @@ foreign lib {
     @(objc_type=MediaExtensionProperties, objc_selector="containingBundleURL", objc_name="containingBundleURL")
     MediaExtensionProperties_containingBundleURL :: proc(self: ^MediaExtensionProperties) -> ^NS.URL ---
 }
+
+
+

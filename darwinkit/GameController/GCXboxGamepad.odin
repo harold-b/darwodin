@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCXboxGamepad
-///
 @(objc_class="GCXboxGamepad", objc_superclass=ExtendedGamepad)
 XboxGamepad :: struct { using _: ExtendedGamepad, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=XboxGamepad, objc_selector="paddleButton1", objc_name="paddleButton1")
     XboxGamepad_paddleButton1 :: proc(self: ^XboxGamepad) -> ^ControllerButtonInput ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=XboxGamepad, objc_selector="buttonShare", objc_name="buttonShare")
     XboxGamepad_buttonShare :: proc(self: ^XboxGamepad) -> ^ControllerButtonInput ---
 }
+
+
+

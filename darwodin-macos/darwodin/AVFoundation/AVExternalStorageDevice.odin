@@ -49,7 +49,7 @@ foreign lib {
     ExternalStorageDevice_isNotRecommendedForCaptureUse :: proc(self: ^ExternalStorageDevice) -> bool ---
 
     @(objc_type=ExternalStorageDevice, objc_selector="requestAccessWithCompletionHandler:", objc_name="requestAccessWithCompletionHandler", objc_is_class_method=true)
-    ExternalStorageDevice_requestAccessWithCompletionHandler :: proc(handler: ^Objc_Block(proc "c" (granted: bool))) ---
+    ExternalStorageDevice_requestAccessWithCompletionHandler :: proc(handler: ^Objc_Block(proc "c" ( granted: bool ))) ---
 
     @(objc_type=ExternalStorageDevice, objc_selector="authorizationStatus", objc_name="authorizationStatus", objc_is_class_method=true)
     ExternalStorageDevice_authorizationStatus :: proc() -> AuthorizationStatus ---

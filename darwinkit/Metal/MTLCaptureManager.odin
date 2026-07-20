@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCaptureManager
-///
 @(objc_class="MTLCaptureManager", objc_superclass=NS.Object)
 CaptureManager :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureManager, objc_selector="sharedCaptureManager", objc_name="sharedCaptureManager", objc_is_class_method=true)
     CaptureManager_sharedCaptureManager :: proc() -> ^CaptureManager ---
@@ -63,3 +57,6 @@ foreign lib {
     @(objc_type=CaptureManager, objc_selector="isCapturing", objc_name="isCapturing")
     CaptureManager_isCapturing :: proc(self: ^CaptureManager) -> bool ---
 }
+
+
+

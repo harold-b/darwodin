@@ -20,12 +20,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    textLayoutManager_textLayoutFragmentForLocation_inTextElement: proc(self: ^AK.TextLayoutManagerDelegate, textLayoutManager: ^AK.TextLayoutManager, location: ^AK.TextLocation, textElement: ^AK.TextElement) -> ^AK.TextLayoutFragment,
-    textLayoutManager_shouldBreakLineBeforeLocation_hyphenating: proc(self: ^AK.TextLayoutManagerDelegate, textLayoutManager: ^AK.TextLayoutManager, location: ^AK.TextLocation, hyphenating: bool) -> bool,
-    textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes: proc(self: ^AK.TextLayoutManagerDelegate, textLayoutManager: ^AK.TextLayoutManager, link: id, location: ^AK.TextLocation, renderingAttributes: ^NS.Dictionary) -> ^NS.Dictionary,
+    textLayoutManager_textLayoutFragmentForLocation_inTextElement: proc(self: ^NS.TextLayoutManagerDelegate, textLayoutManager: ^NS.TextLayoutManager, location: ^NS.TextLocation, textElement: ^NS.TextElement) -> ^NS.TextLayoutFragment,
+    textLayoutManager_shouldBreakLineBeforeLocation_hyphenating: proc(self: ^NS.TextLayoutManagerDelegate, textLayoutManager: ^NS.TextLayoutManager, location: ^NS.TextLocation, hyphenating: bool) -> bool,
+    textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes: proc(self: ^NS.TextLayoutManagerDelegate, textLayoutManager: ^NS.TextLayoutManager, link: id, location: ^NS.TextLocation, renderingAttributes: ^NS.Dictionary) -> ^NS.Dictionary,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.textLayoutManager_textLayoutFragmentForLocation_inTextElement != nil {
-        textLayoutManager_textLayoutFragmentForLocation_inTextElement :: proc "c" (self: ^AK.TextLayoutManagerDelegate, _: SEL, textLayoutManager: ^AK.TextLayoutManager, location: ^AK.TextLocation, textElement: ^AK.TextElement) -> ^AK.TextLayoutFragment {
+        textLayoutManager_textLayoutFragmentForLocation_inTextElement :: proc "c" (self: ^NS.TextLayoutManagerDelegate, _: SEL, textLayoutManager: ^NS.TextLayoutManager, location: ^NS.TextLocation, textElement: ^NS.TextElement) -> ^NS.TextLayoutFragment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutManager:textLayoutFragmentForLocation:inTextElement:"), auto_cast textLayoutManager_textLayoutFragmentForLocation_inTextElement, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.textLayoutManager_shouldBreakLineBeforeLocation_hyphenating != nil {
-        textLayoutManager_shouldBreakLineBeforeLocation_hyphenating :: proc "c" (self: ^AK.TextLayoutManagerDelegate, _: SEL, textLayoutManager: ^AK.TextLayoutManager, location: ^AK.TextLocation, hyphenating: bool) -> bool {
+        textLayoutManager_shouldBreakLineBeforeLocation_hyphenating :: proc "c" (self: ^NS.TextLayoutManagerDelegate, _: SEL, textLayoutManager: ^NS.TextLayoutManager, location: ^NS.TextLocation, hyphenating: bool) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutManager:shouldBreakLineBeforeLocation:hyphenating:"), auto_cast textLayoutManager_shouldBreakLineBeforeLocation_hyphenating, "B@:@@B") do panic("Failed to register objC method.")
     }
     if vt.textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes != nil {
-        textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes :: proc "c" (self: ^AK.TextLayoutManagerDelegate, _: SEL, textLayoutManager: ^AK.TextLayoutManager, link: id, location: ^AK.TextLocation, renderingAttributes: ^NS.Dictionary) -> ^NS.Dictionary {
+        textLayoutManager_renderingAttributesForLink_atLocation_defaultAttributes :: proc "c" (self: ^NS.TextLayoutManagerDelegate, _: SEL, textLayoutManager: ^NS.TextLayoutManager, link: id, location: ^NS.TextLocation, renderingAttributes: ^NS.Dictionary) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

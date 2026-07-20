@@ -46,7 +46,7 @@ foreign lib {
     Matrix_sortUsingSelector :: proc(self: ^Matrix, comparator: SEL) ---
 
     @(objc_type=Matrix, objc_selector="sortUsingFunction:context:", objc_name="sortUsingFunction")
-    Matrix_sortUsingFunction :: proc(self: ^Matrix, compare: proc "c" (_: id, _1: id, _2: rawptr) -> NS.Integer, _context: rawptr) ---
+    Matrix_sortUsingFunction :: proc(self: ^Matrix, compare: proc "c" ( _0: id, _1: id, _2: rawptr ) -> NS.Integer, _context: rawptr) ---
 
     @(objc_type=Matrix, objc_selector="setSelectionFrom:to:anchor:highlight:", objc_name="setSelectionFrom")
     Matrix_setSelectionFrom :: proc(self: ^Matrix, startPos: NS.Integer, endPos: NS.Integer, anchorPos: NS.Integer, lit: bool) ---

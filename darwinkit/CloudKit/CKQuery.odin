@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKQuery
-///
 @(objc_class="CKQuery", objc_superclass=NS.Object)
 Query :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Query, objc_selector="init", objc_name="init")
     Query_init :: proc(self: ^Query) -> instancetype ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=Query, objc_selector="setSortDescriptors:", objc_name="setSortDescriptors")
     Query_setSortDescriptors :: proc(self: ^Query, sortDescriptors: ^NS.Array) ---
 }
+
+
+

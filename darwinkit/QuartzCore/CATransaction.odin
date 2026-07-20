@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CATransaction
-///
 @(objc_class="CATransaction", objc_superclass=NS.Object)
 Transaction :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Transaction, objc_selector="begin", objc_name="begin", objc_is_class_method=true)
     Transaction_begin :: proc() ---
@@ -65,3 +59,6 @@ foreign lib {
     @(objc_type=Transaction, objc_selector="setValue:forKey:", objc_name="setValue", objc_is_class_method=true)
     Transaction_setValue :: proc(anObject: id, key: ^NS.String) ---
 }
+
+
+

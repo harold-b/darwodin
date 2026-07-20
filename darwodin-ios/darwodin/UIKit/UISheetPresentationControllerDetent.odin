@@ -33,7 +33,7 @@ foreign lib {
     SheetPresentationControllerDetent_largeDetent :: proc() -> instancetype ---
 
     @(objc_type=SheetPresentationControllerDetent, objc_selector="customDetentWithIdentifier:resolver:", objc_name="customDetentWithIdentifier", objc_is_class_method=true)
-    SheetPresentationControllerDetent_customDetentWithIdentifier :: proc(identifier: ^NS.String, resolver: ^Objc_Block(proc "c" (_context: ^SheetPresentationControllerDetentResolutionContext) -> CG.Float)) -> instancetype ---
+    SheetPresentationControllerDetent_customDetentWithIdentifier :: proc(identifier: ^NS.String, resolver: ^Objc_Block(proc "c" ( _context: ^SheetPresentationControllerDetentResolutionContext ) -> CG.Float)) -> instancetype ---
 
     @(objc_type=SheetPresentationControllerDetent, objc_selector="resolvedValueInContext:", objc_name="resolvedValueInContext")
     SheetPresentationControllerDetent_resolvedValueInContext :: proc(self: ^SheetPresentationControllerDetent, _context: ^SheetPresentationControllerDetentResolutionContext) -> CG.Float ---

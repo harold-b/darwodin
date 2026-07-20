@@ -20,26 +20,26 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.ScrubberLayout) -> instancetype,
-    initWithCoder: proc(self: ^AK.ScrubberLayout, coder: ^NS.Coder) -> instancetype,
-    invalidateLayout: proc(self: ^AK.ScrubberLayout),
-    prepareLayout: proc(self: ^AK.ScrubberLayout),
-    layoutAttributesForItemAtIndex: proc(self: ^AK.ScrubberLayout, index: NS.Integer) -> ^AK.ScrubberLayoutAttributes,
-    layoutAttributesForItemsInRect: proc(self: ^AK.ScrubberLayout, rect: NS.Rect) -> ^NS.Set,
-    shouldInvalidateLayoutForChangeFromVisibleRect: proc(self: ^AK.ScrubberLayout, fromVisibleRect: NS.Rect, toVisibleRect: NS.Rect) -> bool,
+    init: proc(self: ^NS.ScrubberLayout) -> instancetype,
+    initWithCoder: proc(self: ^NS.ScrubberLayout, coder: ^NS.Coder) -> instancetype,
+    invalidateLayout: proc(self: ^NS.ScrubberLayout),
+    prepareLayout: proc(self: ^NS.ScrubberLayout),
+    layoutAttributesForItemAtIndex: proc(self: ^NS.ScrubberLayout, index: NS.Integer) -> ^NS.ScrubberLayoutAttributes,
+    layoutAttributesForItemsInRect: proc(self: ^NS.ScrubberLayout, rect: NS.Rect) -> ^NS.Set,
+    shouldInvalidateLayoutForChangeFromVisibleRect: proc(self: ^NS.ScrubberLayout, fromVisibleRect: NS.Rect, toVisibleRect: NS.Rect) -> bool,
     layoutAttributesClass: proc() -> Class,
-    scrubber: proc(self: ^AK.ScrubberLayout) -> ^AK.Scrubber,
-    visibleRect: proc(self: ^AK.ScrubberLayout) -> NS.Rect,
-    scrubberContentSize: proc(self: ^AK.ScrubberLayout) -> NS.Size,
-    shouldInvalidateLayoutForSelectionChange: proc(self: ^AK.ScrubberLayout) -> bool,
-    shouldInvalidateLayoutForHighlightChange: proc(self: ^AK.ScrubberLayout) -> bool,
-    automaticallyMirrorsInRightToLeftLayout: proc(self: ^AK.ScrubberLayout) -> bool,
+    scrubber: proc(self: ^NS.ScrubberLayout) -> ^NS.Scrubber,
+    visibleRect: proc(self: ^NS.ScrubberLayout) -> NS.Rect,
+    scrubberContentSize: proc(self: ^NS.ScrubberLayout) -> NS.Size,
+    shouldInvalidateLayoutForSelectionChange: proc(self: ^NS.ScrubberLayout) -> bool,
+    shouldInvalidateLayoutForHighlightChange: proc(self: ^NS.ScrubberLayout) -> bool,
+    automaticallyMirrorsInRightToLeftLayout: proc(self: ^NS.ScrubberLayout) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.ScrubberLayout, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ScrubberLayout, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.ScrubberLayout, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.invalidateLayout != nil {
-        invalidateLayout :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) {
+        invalidateLayout :: proc "c" (self: ^NS.ScrubberLayout, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateLayout"), auto_cast invalidateLayout, "v@:") do panic("Failed to register objC method.")
     }
     if vt.prepareLayout != nil {
-        prepareLayout :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) {
+        prepareLayout :: proc "c" (self: ^NS.ScrubberLayout, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("prepareLayout"), auto_cast prepareLayout, "v@:") do panic("Failed to register objC method.")
     }
     if vt.layoutAttributesForItemAtIndex != nil {
-        layoutAttributesForItemAtIndex :: proc "c" (self: ^AK.ScrubberLayout, _: SEL, index: NS.Integer) -> ^AK.ScrubberLayoutAttributes {
+        layoutAttributesForItemAtIndex :: proc "c" (self: ^NS.ScrubberLayout, _: SEL, index: NS.Integer) -> ^NS.ScrubberLayoutAttributes {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAttributesForItemAtIndex:"), auto_cast layoutAttributesForItemAtIndex, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.layoutAttributesForItemsInRect != nil {
-        layoutAttributesForItemsInRect :: proc "c" (self: ^AK.ScrubberLayout, _: SEL, rect: NS.Rect) -> ^NS.Set {
+        layoutAttributesForItemsInRect :: proc "c" (self: ^NS.ScrubberLayout, _: SEL, rect: NS.Rect) -> ^NS.Set {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAttributesForItemsInRect:"), auto_cast layoutAttributesForItemsInRect, "^void@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.shouldInvalidateLayoutForChangeFromVisibleRect != nil {
-        shouldInvalidateLayoutForChangeFromVisibleRect :: proc "c" (self: ^AK.ScrubberLayout, _: SEL, fromVisibleRect: NS.Rect, toVisibleRect: NS.Rect) -> bool {
+        shouldInvalidateLayoutForChangeFromVisibleRect :: proc "c" (self: ^NS.ScrubberLayout, _: SEL, fromVisibleRect: NS.Rect, toVisibleRect: NS.Rect) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("layoutAttributesClass"), auto_cast layoutAttributesClass, "##:") do panic("Failed to register objC method.")
     }
     if vt.scrubber != nil {
-        scrubber :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) -> ^AK.Scrubber {
+        scrubber :: proc "c" (self: ^NS.ScrubberLayout, _: SEL) -> ^NS.Scrubber {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrubber"), auto_cast scrubber, "@@:") do panic("Failed to register objC method.")
     }
     if vt.visibleRect != nil {
-        visibleRect :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) -> NS.Rect {
+        visibleRect :: proc "c" (self: ^NS.ScrubberLayout, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("visibleRect"), auto_cast visibleRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.scrubberContentSize != nil {
-        scrubberContentSize :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) -> NS.Size {
+        scrubberContentSize :: proc "c" (self: ^NS.ScrubberLayout, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrubberContentSize"), auto_cast scrubberContentSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.shouldInvalidateLayoutForSelectionChange != nil {
-        shouldInvalidateLayoutForSelectionChange :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) -> bool {
+        shouldInvalidateLayoutForSelectionChange :: proc "c" (self: ^NS.ScrubberLayout, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -170,7 +170,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shouldInvalidateLayoutForSelectionChange"), auto_cast shouldInvalidateLayoutForSelectionChange, "B@:") do panic("Failed to register objC method.")
     }
     if vt.shouldInvalidateLayoutForHighlightChange != nil {
-        shouldInvalidateLayoutForHighlightChange :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) -> bool {
+        shouldInvalidateLayoutForHighlightChange :: proc "c" (self: ^NS.ScrubberLayout, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shouldInvalidateLayoutForHighlightChange"), auto_cast shouldInvalidateLayoutForHighlightChange, "B@:") do panic("Failed to register objC method.")
     }
     if vt.automaticallyMirrorsInRightToLeftLayout != nil {
-        automaticallyMirrorsInRightToLeftLayout :: proc "c" (self: ^AK.ScrubberLayout, _: SEL) -> bool {
+        automaticallyMirrorsInRightToLeftLayout :: proc "c" (self: ^NS.ScrubberLayout, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

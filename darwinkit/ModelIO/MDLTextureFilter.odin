@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLTextureFilter
-///
 @(objc_class="MDLTextureFilter", objc_superclass=NS.Object)
 TextureFilter :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextureFilter, objc_selector="sWrapMode", objc_name="sWrapMode")
     TextureFilter_sWrapMode :: proc(self: ^TextureFilter) -> MaterialTextureWrapMode ---
@@ -56,3 +50,6 @@ foreign lib {
     @(objc_type=TextureFilter, objc_selector="setMipFilter:", objc_name="setMipFilter")
     TextureFilter_setMipFilter :: proc(self: ^TextureFilter, mipFilter: MaterialMipMapFilterMode) ---
 }
+
+
+

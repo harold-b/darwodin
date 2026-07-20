@@ -2,6 +2,6 @@
 #+private package
 package darwodin_MetalKit
 
-import UI "../UIKit"
+import _UI "../UIKit"
+UI ::_UI
 
-AKView :: UI.View

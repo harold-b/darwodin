@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCGamepad
-///
 @(objc_class="GCGamepad", objc_superclass=PhysicalInputProfile)
 Gamepad :: struct { using _: PhysicalInputProfile, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Gamepad, objc_selector="saveSnapshot", objc_name="saveSnapshot")
     Gamepad_saveSnapshot :: proc(self: ^Gamepad) -> ^GamepadSnapshot ---
@@ -51,3 +45,6 @@ foreign lib {
     @(objc_type=Gamepad, objc_selector="rightShoulder", objc_name="rightShoulder")
     Gamepad_rightShoulder :: proc(self: ^Gamepad) -> ^ControllerButtonInput ---
 }
+
+
+

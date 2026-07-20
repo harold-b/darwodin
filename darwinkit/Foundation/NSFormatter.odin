@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSFormatter
-///
 @(objc_class="NSFormatter", objc_superclass=Object)
 Formatter :: struct { using _: Object, 
     using _: Copying,
     using _: Coding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Formatter, objc_selector="stringForObjectValue:", objc_name="stringForObjectValue")
     Formatter_stringForObjectValue :: proc(self: ^Formatter, obj: id) -> ^String ---
@@ -40,6 +34,8 @@ foreign lib {
     @(objc_type=Formatter, objc_selector="isPartialStringValid:proposedSelectedRange:originalString:originalSelectedRange:errorDescription:", objc_name="isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription")
     Formatter_isPartialStringValid_proposedSelectedRange_originalString_originalSelectedRange_errorDescription :: proc(self: ^Formatter, partialStringPtr: ^^String, proposedSelRangePtr: ^_NSRange, origString: ^String, origSelRange: _NSRange, error: ^^String) -> bool ---
 }
+
+
 
 @(objc_type=Formatter, objc_name="isPartialStringValid")
 Formatter_isPartialStringValid :: proc {

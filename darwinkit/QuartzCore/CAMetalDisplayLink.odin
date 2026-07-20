@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAMetalDisplayLink
-///
 @(objc_class="CAMetalDisplayLink", objc_superclass=NS.Object)
 MetalDisplayLink :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetalDisplayLink, objc_selector="initWithMetalLayer:", objc_name="initWithMetalLayer")
     MetalDisplayLink_initWithMetalLayer :: proc(self: ^MetalDisplayLink, layer: ^MetalLayer) -> instancetype ---
@@ -56,3 +50,6 @@ foreign lib {
     @(objc_type=MetalDisplayLink, objc_selector="setPaused:", objc_name="setPaused")
     MetalDisplayLink_setPaused :: proc(self: ^MetalDisplayLink, paused: bool) ---
 }
+
+
+

@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CATiledLayer
-///
 @(objc_class="CATiledLayer", objc_superclass=Layer)
 TiledLayer :: struct { using _: Layer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TiledLayer, objc_selector="fadeDuration", objc_name="fadeDuration", objc_is_class_method=true)
     TiledLayer_fadeDuration :: proc() -> CF.TimeInterval ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=TiledLayer, objc_selector="setTileSize:", objc_name="setTileSize")
     TiledLayer_setTileSize :: proc(self: ^TiledLayer, tileSize: CG.Size) ---
 }
+
+
+

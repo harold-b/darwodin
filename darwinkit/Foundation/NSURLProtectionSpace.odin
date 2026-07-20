@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLProtectionSpace
-///
 @(objc_class="NSURLProtectionSpace", objc_superclass=Object)
 URLProtectionSpace :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLProtectionSpace, objc_selector="initWithHost:port:protocol:realm:authenticationMethod:", objc_name="initWithHost")
     URLProtectionSpace_initWithHost :: proc(self: ^URLProtectionSpace, host: ^String, port: Integer, protocol: ^String, realm: ^String, authenticationMethod: ^String) -> instancetype ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=URLProtectionSpace, objc_selector="serverTrust", objc_name="serverTrust")
     URLProtectionSpace_serverTrust :: proc(self: ^URLProtectionSpace) -> Sec.SecTrustRef ---
 }
+
+
+

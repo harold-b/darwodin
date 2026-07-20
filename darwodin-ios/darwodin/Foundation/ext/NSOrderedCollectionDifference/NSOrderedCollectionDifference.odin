@@ -24,7 +24,7 @@ VTable :: struct {
     initWithChanges: proc(self: ^NS.OrderedCollectionDifference, changes: ^NS.Array) -> instancetype,
     initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects_additionalChanges: proc(self: ^NS.OrderedCollectionDifference, inserts: ^NS.IndexSet, insertedObjects: ^NS.Array, removes: ^NS.IndexSet, removedObjects: ^NS.Array, changes: ^NS.Array) -> instancetype,
     initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects: proc(self: ^NS.OrderedCollectionDifference, inserts: ^NS.IndexSet, insertedObjects: ^NS.Array, removes: ^NS.IndexSet, removedObjects: ^NS.Array) -> instancetype,
-    differenceByTransformingChangesWithBlock: proc(self: ^NS.OrderedCollectionDifference, block: ^Objc_Block(proc "c" (_: ^NS.OrderedCollectionChange) -> ^NS.OrderedCollectionChange)) -> ^NS.OrderedCollectionDifference,
+    differenceByTransformingChangesWithBlock: proc(self: ^NS.OrderedCollectionDifference, block: ^Objc_Block(proc "c" ( _0: ^NS.OrderedCollectionChange ) -> ^NS.OrderedCollectionChange)) -> ^NS.OrderedCollectionDifference,
     inverseDifference: proc(self: ^NS.OrderedCollectionDifference) -> instancetype,
     insertions: proc(self: ^NS.OrderedCollectionDifference) -> ^NS.Array,
     removals: proc(self: ^NS.OrderedCollectionDifference) -> ^NS.Array,
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithInsertIndexes:insertedObjects:removeIndexes:removedObjects:"), auto_cast initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects, "^void@:@^void@^void") do panic("Failed to register objC method.")
     }
     if vt.differenceByTransformingChangesWithBlock != nil {
-        differenceByTransformingChangesWithBlock :: proc "c" (self: ^NS.OrderedCollectionDifference, _: SEL, block: ^Objc_Block(proc "c" (_: ^NS.OrderedCollectionChange) -> ^NS.OrderedCollectionChange)) -> ^NS.OrderedCollectionDifference {
+        differenceByTransformingChangesWithBlock :: proc "c" (self: ^NS.OrderedCollectionDifference, _: SEL, block: ^Objc_Block(proc "c" ( _0: ^NS.OrderedCollectionChange ) -> ^NS.OrderedCollectionChange)) -> ^NS.OrderedCollectionDifference {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -5,19 +5,18 @@ import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 import MDL "../ModelIO"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
 ///
 /// MTKView
 ///
-@(objc_class="MTKView", objc_superclass=AK.View)
-View :: struct { using _: AK.View, 
+@(objc_class="MTKView", objc_superclass=NS.View)
+View :: struct { using _: NS.View, 
     using _: NS.Coding,
     using _: CA.LayerDelegate,
 }

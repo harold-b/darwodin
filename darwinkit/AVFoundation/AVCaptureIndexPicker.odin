@@ -12,27 +12,21 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureIndexPicker
-///
 @(objc_class="AVCaptureIndexPicker", objc_superclass=CaptureControl)
 CaptureIndexPicker :: struct { using _: CaptureControl, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureIndexPicker, objc_selector="initWithLocalizedTitle:symbolName:numberOfIndexes:", objc_name="initWithLocalizedTitle_symbolName_numberOfIndexes")
     CaptureIndexPicker_initWithLocalizedTitle_symbolName_numberOfIndexes :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, numberOfIndexes: NS.Integer) -> instancetype ---
 
     @(objc_type=CaptureIndexPicker, objc_selector="initWithLocalizedTitle:symbolName:numberOfIndexes:localizedTitleTransform:", objc_name="initWithLocalizedTitle_symbolName_numberOfIndexes_localizedTitleTransform")
-    CaptureIndexPicker_initWithLocalizedTitle_symbolName_numberOfIndexes_localizedTitleTransform :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, numberOfIndexes: NS.Integer, localizedTitleTransform: ^Objc_Block(proc "c" (index: NS.Integer) -> ^NS.String)) -> instancetype ---
+    CaptureIndexPicker_initWithLocalizedTitle_symbolName_numberOfIndexes_localizedTitleTransform :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, numberOfIndexes: NS.Integer, localizedTitleTransform: ^Objc_Block(proc "c" ( index: NS.Integer ) -> ^NS.String)) -> instancetype ---
 
     @(objc_type=CaptureIndexPicker, objc_selector="initWithLocalizedTitle:symbolName:localizedIndexTitles:", objc_name="initWithLocalizedTitle_symbolName_localizedIndexTitles")
     CaptureIndexPicker_initWithLocalizedTitle_symbolName_localizedIndexTitles :: proc(self: ^CaptureIndexPicker, localizedTitle: ^NS.String, symbolName: ^NS.String, localizedIndexTitles: ^NS.Array) -> instancetype ---
 
     @(objc_type=CaptureIndexPicker, objc_selector="setActionQueue:action:", objc_name="setActionQueue")
-    CaptureIndexPicker_setActionQueue :: proc(self: ^CaptureIndexPicker, actionQueue: CF.dispatch_queue_t, action: ^Objc_Block(proc "c" (selectedIndex: NS.Integer))) ---
+    CaptureIndexPicker_setActionQueue :: proc(self: ^CaptureIndexPicker, actionQueue: CF.dispatch_queue_t, action: ^Objc_Block(proc "c" ( selectedIndex: NS.Integer ))) ---
 
     @(objc_type=CaptureIndexPicker, objc_selector="selectedIndex", objc_name="selectedIndex")
     CaptureIndexPicker_selectedIndex :: proc(self: ^CaptureIndexPicker) -> NS.Integer ---
@@ -58,6 +52,8 @@ foreign lib {
     @(objc_type=CaptureIndexPicker, objc_selector="setAccessibilityIdentifier:", objc_name="setAccessibilityIdentifier")
     CaptureIndexPicker_setAccessibilityIdentifier :: proc(self: ^CaptureIndexPicker, accessibilityIdentifier: ^NS.String) ---
 }
+
+
 
 @(objc_type=CaptureIndexPicker, objc_name="initWithLocalizedTitle")
 CaptureIndexPicker_initWithLocalizedTitle :: proc {

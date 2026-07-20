@@ -11,16 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLLogContainer
-///
 @(objc_class="MTLLogContainer")
 LogContainer :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
     using _: NS.FastEnumeration,
 }
 
-@(default_calling_convention="c")
-foreign lib {}

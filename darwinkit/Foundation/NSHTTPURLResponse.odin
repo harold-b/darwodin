@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSHTTPURLResponse
-///
 @(objc_class="NSHTTPURLResponse", objc_superclass=URLResponse)
 HTTPURLResponse :: struct { using _: URLResponse, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HTTPURLResponse, objc_selector="initWithURL:statusCode:HTTPVersion:headerFields:", objc_name="initWithURL")
     HTTPURLResponse_initWithURL :: proc(self: ^HTTPURLResponse, url: ^URL, statusCode: Integer, HTTPVersion: ^String, headerFields: ^Dictionary) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=HTTPURLResponse, objc_selector="allHeaderFields", objc_name="allHeaderFields")
     HTTPURLResponse_allHeaderFields :: proc(self: ^HTTPURLResponse) -> ^Dictionary ---
 }
+
+
+

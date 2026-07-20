@@ -11,18 +11,12 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLComputePipelineState
-///
 @(objc_class="MTLComputePipelineState")
 ComputePipelineState :: struct { using _: intrinsics.objc_object, 
     using _: Allocation,
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ComputePipelineState, objc_selector="functionHandleWithName:", objc_name="functionHandleWithName")
     ComputePipelineState_functionHandleWithName :: proc(self: ^ComputePipelineState, name: ^NS.String) -> ^FunctionHandle ---
@@ -78,3 +72,6 @@ foreign lib {
     @(objc_type=ComputePipelineState, objc_selector="requiredThreadsPerThreadgroup", objc_name="requiredThreadsPerThreadgroup")
     ComputePipelineState_requiredThreadsPerThreadgroup :: proc(self: ^ComputePipelineState) -> Size ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableTimedMetadataGroup
-///
 @(objc_class="AVMutableTimedMetadataGroup", objc_superclass=TimedMetadataGroup)
 MutableTimedMetadataGroup :: struct { using _: TimedMetadataGroup, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableTimedMetadataGroup, objc_selector="timeRange", objc_name="timeRange")
     MutableTimedMetadataGroup_timeRange :: proc(self: ^MutableTimedMetadataGroup) -> CM.TimeRange ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=MutableTimedMetadataGroup, objc_selector="setItems:", objc_name="setItems")
     MutableTimedMetadataGroup_setItems :: proc(self: ^MutableTimedMetadataGroup, items: ^NS.Array) ---
 }
+
+
+

@@ -30,7 +30,7 @@ foreign lib {
     OrderedCollectionDifference_initWithInsertIndexes_insertedObjects_removeIndexes_removedObjects :: proc(self: ^OrderedCollectionDifference, inserts: ^IndexSet, insertedObjects: ^Array, removes: ^IndexSet, removedObjects: ^Array) -> instancetype ---
 
     @(objc_type=OrderedCollectionDifference, objc_selector="differenceByTransformingChangesWithBlock:", objc_name="differenceByTransformingChangesWithBlock")
-    OrderedCollectionDifference_differenceByTransformingChangesWithBlock :: proc(self: ^OrderedCollectionDifference, block: ^Objc_Block(proc "c" (_: ^OrderedCollectionChange) -> ^OrderedCollectionChange)) -> ^OrderedCollectionDifference ---
+    OrderedCollectionDifference_differenceByTransformingChangesWithBlock :: proc(self: ^OrderedCollectionDifference, block: ^Objc_Block(proc "c" ( _0: ^OrderedCollectionChange ) -> ^OrderedCollectionChange)) -> ^OrderedCollectionDifference ---
 
     @(objc_type=OrderedCollectionDifference, objc_selector="inverseDifference", objc_name="inverseDifference")
     OrderedCollectionDifference_inverseDifference :: proc(self: ^OrderedCollectionDifference) -> instancetype ---

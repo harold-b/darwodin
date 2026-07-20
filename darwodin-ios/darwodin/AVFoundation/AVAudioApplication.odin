@@ -28,13 +28,13 @@ foreign lib {
     AudioApplication_setInputMuted :: proc(self: ^AudioApplication, muted: bool, outError: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioApplication, objc_selector="setInputMuteStateChangeHandler:error:", objc_name="setInputMuteStateChangeHandler")
-    AudioApplication_setInputMuteStateChangeHandler :: proc(self: ^AudioApplication, inputMuteHandler: ^Objc_Block(proc "c" (inputShouldBeMuted: bool) -> bool), outError: ^^NS.Error) -> bool ---
+    AudioApplication_setInputMuteStateChangeHandler :: proc(self: ^AudioApplication, inputMuteHandler: ^Objc_Block(proc "c" ( inputShouldBeMuted: bool ) -> bool), outError: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioApplication, objc_selector="requestRecordPermissionWithCompletionHandler:", objc_name="requestRecordPermissionWithCompletionHandler", objc_is_class_method=true)
-    AudioApplication_requestRecordPermissionWithCompletionHandler :: proc(response: ^Objc_Block(proc "c" (granted: bool))) ---
+    AudioApplication_requestRecordPermissionWithCompletionHandler :: proc(response: ^Objc_Block(proc "c" ( granted: bool ))) ---
 
     @(objc_type=AudioApplication, objc_selector="requestMicrophoneInjectionPermissionWithCompletionHandler:", objc_name="requestMicrophoneInjectionPermissionWithCompletionHandler", objc_is_class_method=true)
-    AudioApplication_requestMicrophoneInjectionPermissionWithCompletionHandler :: proc(response: ^Objc_Block(proc "c" (permission: AudioApplicationMicrophoneInjectionPermission))) ---
+    AudioApplication_requestMicrophoneInjectionPermissionWithCompletionHandler :: proc(response: ^Objc_Block(proc "c" ( permission: AudioApplicationMicrophoneInjectionPermission ))) ---
 
     @(objc_type=AudioApplication, objc_selector="sharedInstance", objc_name="sharedInstance", objc_is_class_method=true)
     AudioApplication_sharedInstance :: proc() -> ^AudioApplication ---

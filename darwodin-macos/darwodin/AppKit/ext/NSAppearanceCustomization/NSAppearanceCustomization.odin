@@ -20,12 +20,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    appearance: proc(self: ^AK.AppearanceCustomization) -> ^AK.Appearance,
-    setAppearance: proc(self: ^AK.AppearanceCustomization, appearance: ^AK.Appearance),
-    effectiveAppearance: proc(self: ^AK.AppearanceCustomization) -> ^AK.Appearance,
+    appearance: proc(self: ^NS.AppearanceCustomization) -> ^NS.Appearance,
+    setAppearance: proc(self: ^NS.AppearanceCustomization, appearance: ^NS.Appearance),
+    effectiveAppearance: proc(self: ^NS.AppearanceCustomization) -> ^NS.Appearance,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.appearance != nil {
-        appearance :: proc "c" (self: ^AK.AppearanceCustomization, _: SEL) -> ^AK.Appearance {
+        appearance :: proc "c" (self: ^NS.AppearanceCustomization, _: SEL) -> ^NS.Appearance {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("appearance"), auto_cast appearance, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAppearance != nil {
-        setAppearance :: proc "c" (self: ^AK.AppearanceCustomization, _: SEL, appearance: ^AK.Appearance) {
+        setAppearance :: proc "c" (self: ^NS.AppearanceCustomization, _: SEL, appearance: ^NS.Appearance) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAppearance:"), auto_cast setAppearance, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.effectiveAppearance != nil {
-        effectiveAppearance :: proc "c" (self: ^AK.AppearanceCustomization, _: SEL) -> ^AK.Appearance {
+        effectiveAppearance :: proc "c" (self: ^NS.AppearanceCustomization, _: SEL) -> ^NS.Appearance {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

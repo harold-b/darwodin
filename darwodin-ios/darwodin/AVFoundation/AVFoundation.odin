@@ -18,8 +18,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:AVFoundation.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:AVFoundation.framework",
+    }
+}
+
+
+// +user-text-begin
 
 // Avoiding binding CoreImage & CoreVideo for now, opaque references for the moment
 CVImageBufferRef     :: struct {}
@@ -36,6 +48,7 @@ DepthData                  :: ^NS.Object
 PortraitEffectsMatte       :: ^NS.Object
 SemanticSegmentationMatte  :: ^NS.Object
 
+// -user-text-end
 
 AUDIOFORMAT_HAVE_CMFORMATDESCRIPTION   :: 1
 AUDIONODE_HAVE_AUAUDIOUNIT             :: 1
@@ -1355,7 +1368,7 @@ AssetImageGeneratorApertureMode :: ^NS.String
 AssetImageGeneratorDynamicRangePolicy :: ^NS.String
 
 /// AVAssetImageGeneratorCompletionHandler
-AssetImageGeneratorCompletionHandler :: ^Objc_Block(proc "c" (requestedTime: CM.Time, image: CG.ImageRef, actualTime: CM.Time, result: AssetImageGeneratorResult, error: ^NS.Error))
+AssetImageGeneratorCompletionHandler :: ^Objc_Block(proc "c" ( requestedTime: CM.Time, image: CG.ImageRef, actualTime: CM.Time, result: AssetImageGeneratorResult, error: ^NS.Error ))
 
 /// AVVideoCompositionPerFrameHDRDisplayMetadataPolicy
 VideoCompositionPerFrameHDRDisplayMetadataPolicy :: ^NS.String
@@ -1430,16 +1443,16 @@ MusicTimeStamp :: cffi.double
 Audio3DVector :: Audio3DPoint
 
 /// AVAudioConverterInputBlock
-AudioConverterInputBlock :: ^Objc_Block(proc "c" (inNumberOfPackets: AudioPacketCount, outStatus: ^AudioConverterInputStatus) -> ^AudioBuffer)
+AudioConverterInputBlock :: ^Objc_Block(proc "c" ( inNumberOfPackets: AudioPacketCount, outStatus: ^AudioConverterInputStatus ) -> ^AudioBuffer)
 
 /// AVAudioNodeTapBlock
-AudioNodeTapBlock :: ^Objc_Block(proc "c" (buffer: ^AudioPCMBuffer, _when: ^AudioTime))
+AudioNodeTapBlock :: ^Objc_Block(proc "c" ( buffer: ^AudioPCMBuffer, _when: ^AudioTime ))
 
 /// AVAudioIONodeInputBlock
-AudioIONodeInputBlock :: ^Objc_Block(proc "c" (inNumberOfFrames: AudioFrameCount) -> ^Audio.BufferList)
+AudioIONodeInputBlock :: ^Objc_Block(proc "c" ( inNumberOfFrames: AudioFrameCount ) -> ^Audio.BufferList)
 
 /// AVAudioEngineManualRenderingBlock
-AudioEngineManualRenderingBlock :: ^Objc_Block(proc "c" (numberOfFrames: AudioFrameCount, outBuffer: ^Audio.BufferList, outError: ^CF.OSStatus) -> AudioEngineManualRenderingStatus)
+AudioEngineManualRenderingBlock :: ^Objc_Block(proc "c" ( numberOfFrames: AudioFrameCount, outBuffer: ^Audio.BufferList, outError: ^CF.OSStatus ) -> AudioEngineManualRenderingStatus)
 
 /// AVAudioSessionPort
 AudioSessionPort :: ^NS.String
@@ -1460,7 +1473,7 @@ AudioSessionOrientation :: ^NS.String
 AudioSessionPolarPattern :: ^NS.String
 
 /// AVAudioPlayerNodeCompletionHandler
-AudioPlayerNodeCompletionHandler :: ^Objc_Block(proc "c" (callbackType: AudioPlayerNodeCompletionCallbackType))
+AudioPlayerNodeCompletionHandler :: ^Objc_Block(proc "c" ( callbackType: AudioPlayerNodeCompletionCallbackType ))
 
 /// AVBeatRange
 BeatRange :: _AVBeatRange
@@ -1469,28 +1482,28 @@ BeatRange :: _AVBeatRange
 AudioSequencerInfoDictionaryKey :: ^NS.String
 
 /// AVAudioSequencerUserCallback
-AudioSequencerUserCallback :: ^Objc_Block(proc "c" (track: ^MusicTrack, userData: ^NS.Data, timeStamp: MusicTimeStamp))
+AudioSequencerUserCallback :: ^Objc_Block(proc "c" ( track: ^MusicTrack, userData: ^NS.Data, timeStamp: MusicTimeStamp ))
 
 /// AVMusicEventEnumerationBlock
-MusicEventEnumerationBlock :: ^Objc_Block(proc "c" (event: ^MusicEvent, timeStamp: ^MusicTimeStamp, removeEvent: ^bool))
+MusicEventEnumerationBlock :: ^Objc_Block(proc "c" ( event: ^MusicEvent, timeStamp: ^MusicTimeStamp, removeEvent: ^bool ))
 
 /// AVAudioSinkNodeReceiverBlock
-AudioSinkNodeReceiverBlock :: ^Objc_Block(proc "c" (timestamp: ^Audio.TimeStamp, frameCount: AudioFrameCount, inputData: ^Audio.BufferList) -> CF.OSStatus)
+AudioSinkNodeReceiverBlock :: ^Objc_Block(proc "c" ( timestamp: ^Audio.TimeStamp, frameCount: AudioFrameCount, inputData: ^Audio.BufferList ) -> CF.OSStatus)
 
 /// AVAudioSourceNodeRenderBlock
-AudioSourceNodeRenderBlock :: ^Objc_Block(proc "c" (isSilence: ^bool, timestamp: ^Audio.TimeStamp, frameCount: AudioFrameCount, outputData: ^Audio.BufferList) -> CF.OSStatus)
+AudioSourceNodeRenderBlock :: ^Objc_Block(proc "c" ( isSilence: ^bool, timestamp: ^Audio.TimeStamp, frameCount: AudioFrameCount, outputData: ^Audio.BufferList ) -> CF.OSStatus)
 
 /// AVMIDIPlayerCompletionHandler
 MIDIPlayerCompletionHandler :: ^Objc_Block(proc "c" ())
 
 /// AVSpeechSynthesizerBufferCallback
-SpeechSynthesizerBufferCallback :: ^Objc_Block(proc "c" (buffer: ^AudioBuffer))
+SpeechSynthesizerBufferCallback :: ^Objc_Block(proc "c" ( buffer: ^AudioBuffer ))
 
 /// AVSpeechSynthesizerMarkerCallback
-SpeechSynthesizerMarkerCallback :: ^Objc_Block(proc "c" (markers: ^NS.Array))
+SpeechSynthesizerMarkerCallback :: ^Objc_Block(proc "c" ( markers: ^NS.Array ))
 
 /// AVSpeechSynthesisProviderOutputBlock
-SpeechSynthesisProviderOutputBlock :: ^Objc_Block(proc "c" (markers: ^NS.Array, speechRequest: ^SpeechSynthesisProviderRequest))
+SpeechSynthesisProviderOutputBlock :: ^Objc_Block(proc "c" ( markers: ^NS.Array, speechRequest: ^SpeechSynthesisProviderRequest ))
 
 /// AVCaptureSessionPreset
 CaptureSessionPreset :: ^NS.String

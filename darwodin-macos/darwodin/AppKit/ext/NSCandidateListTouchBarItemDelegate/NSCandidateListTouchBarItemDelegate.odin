@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    candidateListTouchBarItem_beginSelectingCandidateAtIndex: proc(self: ^AK.CandidateListTouchBarItemDelegate, anItem: ^AK.CandidateListTouchBarItem, index: NS.Integer),
-    candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex: proc(self: ^AK.CandidateListTouchBarItemDelegate, anItem: ^AK.CandidateListTouchBarItem, previousIndex: NS.Integer, index: NS.Integer),
-    candidateListTouchBarItem_endSelectingCandidateAtIndex: proc(self: ^AK.CandidateListTouchBarItemDelegate, anItem: ^AK.CandidateListTouchBarItem, index: NS.Integer),
-    candidateListTouchBarItem_changedCandidateListVisibility: proc(self: ^AK.CandidateListTouchBarItemDelegate, anItem: ^AK.CandidateListTouchBarItem, isVisible: bool),
+    candidateListTouchBarItem_beginSelectingCandidateAtIndex: proc(self: ^NS.CandidateListTouchBarItemDelegate, anItem: ^NS.CandidateListTouchBarItem, index: NS.Integer),
+    candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex: proc(self: ^NS.CandidateListTouchBarItemDelegate, anItem: ^NS.CandidateListTouchBarItem, previousIndex: NS.Integer, index: NS.Integer),
+    candidateListTouchBarItem_endSelectingCandidateAtIndex: proc(self: ^NS.CandidateListTouchBarItemDelegate, anItem: ^NS.CandidateListTouchBarItem, index: NS.Integer),
+    candidateListTouchBarItem_changedCandidateListVisibility: proc(self: ^NS.CandidateListTouchBarItemDelegate, anItem: ^NS.CandidateListTouchBarItem, isVisible: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.candidateListTouchBarItem_beginSelectingCandidateAtIndex != nil {
-        candidateListTouchBarItem_beginSelectingCandidateAtIndex :: proc "c" (self: ^AK.CandidateListTouchBarItemDelegate, _: SEL, anItem: ^AK.CandidateListTouchBarItem, index: NS.Integer) {
+        candidateListTouchBarItem_beginSelectingCandidateAtIndex :: proc "c" (self: ^NS.CandidateListTouchBarItemDelegate, _: SEL, anItem: ^NS.CandidateListTouchBarItem, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("candidateListTouchBarItem:beginSelectingCandidateAtIndex:"), auto_cast candidateListTouchBarItem_beginSelectingCandidateAtIndex, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex != nil {
-        candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex :: proc "c" (self: ^AK.CandidateListTouchBarItemDelegate, _: SEL, anItem: ^AK.CandidateListTouchBarItem, previousIndex: NS.Integer, index: NS.Integer) {
+        candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex :: proc "c" (self: ^NS.CandidateListTouchBarItemDelegate, _: SEL, anItem: ^NS.CandidateListTouchBarItem, previousIndex: NS.Integer, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("candidateListTouchBarItem:changeSelectionFromCandidateAtIndex:toIndex:"), auto_cast candidateListTouchBarItem_changeSelectionFromCandidateAtIndex_toIndex, "v@:@ll") do panic("Failed to register objC method.")
     }
     if vt.candidateListTouchBarItem_endSelectingCandidateAtIndex != nil {
-        candidateListTouchBarItem_endSelectingCandidateAtIndex :: proc "c" (self: ^AK.CandidateListTouchBarItemDelegate, _: SEL, anItem: ^AK.CandidateListTouchBarItem, index: NS.Integer) {
+        candidateListTouchBarItem_endSelectingCandidateAtIndex :: proc "c" (self: ^NS.CandidateListTouchBarItemDelegate, _: SEL, anItem: ^NS.CandidateListTouchBarItem, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("candidateListTouchBarItem:endSelectingCandidateAtIndex:"), auto_cast candidateListTouchBarItem_endSelectingCandidateAtIndex, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.candidateListTouchBarItem_changedCandidateListVisibility != nil {
-        candidateListTouchBarItem_changedCandidateListVisibility :: proc "c" (self: ^AK.CandidateListTouchBarItemDelegate, _: SEL, anItem: ^AK.CandidateListTouchBarItem, isVisible: bool) {
+        candidateListTouchBarItem_changedCandidateListVisibility :: proc "c" (self: ^NS.CandidateListTouchBarItemDelegate, _: SEL, anItem: ^NS.CandidateListTouchBarItem, isVisible: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

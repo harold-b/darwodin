@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    imageForBounds: proc(self: ^AK.TextAttachmentContainer, imageBounds: CG.Rect, textContainer: ^AK.TextContainer, charIndex: NS.UInteger) -> ^AK.Image,
-    attachmentBoundsForTextContainer: proc(self: ^AK.TextAttachmentContainer, textContainer: ^AK.TextContainer, lineFrag: CG.Rect, position: CG.Point, charIndex: NS.UInteger) -> CG.Rect,
+    imageForBounds: proc(self: ^NS.TextAttachmentContainer, imageBounds: CG.Rect, textContainer: ^NS.TextContainer, charIndex: NS.UInteger) -> ^NS.Image,
+    attachmentBoundsForTextContainer: proc(self: ^NS.TextAttachmentContainer, textContainer: ^NS.TextContainer, lineFrag: CG.Rect, position: CG.Point, charIndex: NS.UInteger) -> CG.Rect,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.imageForBounds != nil {
-        imageForBounds :: proc "c" (self: ^AK.TextAttachmentContainer, _: SEL, imageBounds: CG.Rect, textContainer: ^AK.TextContainer, charIndex: NS.UInteger) -> ^AK.Image {
+        imageForBounds :: proc "c" (self: ^NS.TextAttachmentContainer, _: SEL, imageBounds: CG.Rect, textContainer: ^NS.TextContainer, charIndex: NS.UInteger) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageForBounds:textContainer:characterIndex:"), auto_cast imageForBounds, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}@L") do panic("Failed to register objC method.")
     }
     if vt.attachmentBoundsForTextContainer != nil {
-        attachmentBoundsForTextContainer :: proc "c" (self: ^AK.TextAttachmentContainer, _: SEL, textContainer: ^AK.TextContainer, lineFrag: CG.Rect, position: CG.Point, charIndex: NS.UInteger) -> CG.Rect {
+        attachmentBoundsForTextContainer :: proc "c" (self: ^NS.TextAttachmentContainer, _: SEL, textContainer: ^NS.TextContainer, lineFrag: CG.Rect, position: CG.Point, charIndex: NS.UInteger) -> CG.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

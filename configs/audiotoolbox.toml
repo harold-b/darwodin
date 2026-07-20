@@ -75,6 +75,9 @@ Imports = ["""
 AVAudioFormat     :: struct {}
 OpaqueAudioFileID :: struct {}
 FSRef             :: struct {}
+NSImage           :: struct {}
+UIImage           :: struct {}
+OpaqueCAClock     :: struct {}
 """]
 
 MacroFilter = [

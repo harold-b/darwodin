@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKUserIdentity
-///
 @(objc_class="CKUserIdentity", objc_superclass=NS.Object)
 UserIdentity :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserIdentity, objc_selector="init", objc_name="init")
     UserIdentity_init :: proc(self: ^UserIdentity) -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=UserIdentity, objc_selector="contactIdentifiers", objc_name="contactIdentifiers")
     UserIdentity_contactIdentifiers :: proc(self: ^UserIdentity) -> ^NS.Array ---
 }
+
+
+

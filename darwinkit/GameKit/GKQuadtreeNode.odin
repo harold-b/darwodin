@@ -7,16 +7,13 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKQuadtreeNode
-///
 @(objc_class="GKQuadtreeNode", objc_superclass=NS.Object)
 QuadtreeNode :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=QuadtreeNode, objc_selector="quad", objc_name="quad")
     QuadtreeNode_quad :: proc(self: ^QuadtreeNode) -> Quad ---
 }
+
+
+

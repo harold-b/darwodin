@@ -1,0 +1,65 @@
+PackageName: "EventKit"
+ImportName: "EK"
+
+Structs:
+
+Typedefs:
+    'EKEventSearchCallback': 'EK.EventSearchCallback'
+    'EKEventStoreRequestAccessCompletionHandler': 'EK.EventStoreRequestAccessCompletionHandler'
+    'EKVirtualConferenceRoomTypeIdentifier': 'EK.VirtualConferenceRoomTypeIdentifier'
+
+Enums:
+    'EKAuthorizationStatus': 'EK.AuthorizationStatus'
+    'EKWeekday': 'EK.Weekday'
+    'EKRecurrenceFrequency': 'EK.RecurrenceFrequency'
+    'EKParticipantType': 'EK.ParticipantType'
+    'EKParticipantRole': 'EK.ParticipantRole'
+    'EKParticipantScheduleStatus': 'EK.ParticipantScheduleStatus'
+    'EKParticipantStatus': 'EK.ParticipantStatus'
+    'EKCalendarType': 'EK.CalendarType'
+    'EKCalendarEventAvailabilityMask': 'EK.CalendarEventAvailabilityMasks'
+    'EKSourceType': 'EK.SourceType'
+    'EKEntityType': 'EK.EntityType'
+    'EKEntityMask': 'EK.EntityMasks'
+    'EKAlarmProximity': 'EK.AlarmProximity'
+    'EKAlarmType': 'EK.AlarmType'
+    'EKReminderPriority': 'EK.ReminderPriority'
+    'EKSpan': 'EK.Span'
+    'EKErrorCode': 'EK.ErrorCode'
+    'EKEventAvailability': 'EK.EventAvailability'
+    'EKEventStatus': 'EK.EventStatus'
+
+ObjCClasses:
+    'EKObject': 'EK.Object'
+    'EKCalendarItem': 'EK.CalendarItem'
+    'EKStructuredLocation': 'EK.StructuredLocation'
+    'EKAlarm': 'EK.Alarm'
+    'EKCalendar': 'EK.Calendar'
+    'EKEvent': 'EK.Event'
+    'EKSource': 'EK.Source'
+    'EKReminder': 'EK.Reminder'
+    'EKEventStore': 'EK.EventStore'
+    'EKRecurrenceRule': 'EK.RecurrenceRule'
+    'EKParticipant': 'EK.Participant'
+    'EKRecurrenceEnd': 'EK.RecurrenceEnd'
+    'EKRecurrenceDayOfWeek': 'EK.RecurrenceDayOfWeek'
+    'EKVirtualConferenceRoomTypeDescriptor': 'EK.VirtualConferenceRoomTypeDescriptor'
+    'EKVirtualConferenceURLDescriptor': 'EK.VirtualConferenceURLDescriptor'
+    'EKVirtualConferenceDescriptor': 'EK.VirtualConferenceDescriptor'
+    'EKVirtualConferenceProvider': 'EK.VirtualConferenceProvider'
+
+ObjCProtocols:
+
+
+Functions:
+
+ExternVars:
+    '::EKEventStoreChangedNotification': 'EK.EventStoreChangedNotification'
+    '::EKErrorDomain': 'EK.ErrorDomain'
+
+ExternTypes:
+    '::EKEventStoreChangedNotification': '^NS.String'
+    '::EKErrorDomain': '^NS.String'
+
+ConstVars:
+

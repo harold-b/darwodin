@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCounterSampleBuffer
-///
 @(objc_class="MTLCounterSampleBuffer")
 CounterSampleBuffer :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CounterSampleBuffer, objc_selector="resolveCounterRange:", objc_name="resolveCounterRange")
     CounterSampleBuffer_resolveCounterRange :: proc(self: ^CounterSampleBuffer, range: NS._NSRange) -> ^NS.Data ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=CounterSampleBuffer, objc_selector="sampleCount", objc_name="sampleCount")
     CounterSampleBuffer_sampleCount :: proc(self: ^CounterSampleBuffer) -> NS.UInteger ---
 }
+
+
+

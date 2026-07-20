@@ -10,17 +10,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAMediaTimingFunction
-///
 @(objc_class="CAMediaTimingFunction", objc_superclass=NS.Object)
 MediaTimingFunction :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MediaTimingFunction, objc_selector="functionWithName:", objc_name="functionWithName", objc_is_class_method=true)
     MediaTimingFunction_functionWithName :: proc(name: ^NS.String) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=MediaTimingFunction, objc_selector="getControlPointAtIndex:values:", objc_name="getControlPointAtIndex")
     MediaTimingFunction_getControlPointAtIndex :: proc(self: ^MediaTimingFunction, idx: cffi.size_t, ptr: ^cffi.float) ---
 }
+
+
+

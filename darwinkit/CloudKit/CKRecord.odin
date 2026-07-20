@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKRecord
-///
 @(objc_class="CKRecord", objc_superclass=NS.Object)
 Record :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Record, objc_selector="init", objc_name="init")
     Record_init :: proc(self: ^Record) -> instancetype ---
@@ -98,6 +92,8 @@ foreign lib {
     @(objc_type=Record, objc_selector="encryptedValues", objc_name="encryptedValues")
     Record_encryptedValues :: proc(self: ^Record) -> ^RecordKeyValueSetting ---
 }
+
+
 
 @(objc_type=Record, objc_name="initWithRecordType")
 Record_initWithRecordType :: proc {

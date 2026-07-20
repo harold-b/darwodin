@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIntersectionFunctionTableDescriptor
-///
 @(objc_class="MTLIntersectionFunctionTableDescriptor", objc_superclass=NS.Object)
 IntersectionFunctionTableDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IntersectionFunctionTableDescriptor, objc_selector="intersectionFunctionTableDescriptor", objc_name="intersectionFunctionTableDescriptor", objc_is_class_method=true)
     IntersectionFunctionTableDescriptor_intersectionFunctionTableDescriptor :: proc() -> ^IntersectionFunctionTableDescriptor ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=IntersectionFunctionTableDescriptor, objc_selector="setFunctionCount:", objc_name="setFunctionCount")
     IntersectionFunctionTableDescriptor_setFunctionCount :: proc(self: ^IntersectionFunctionTableDescriptor, functionCount: NS.UInteger) ---
 }
+
+
+

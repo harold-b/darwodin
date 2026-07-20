@@ -20,28 +20,28 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTouchBarItem"
 
 VTable :: struct {
     super: NSTouchBarItem.VTable,
     stepperTouchBarItemWithIdentifier_formatter: proc(identifier: ^NS.String, formatter: ^NS.Formatter) -> instancetype,
-    stepperTouchBarItemWithIdentifier_drawingHandler: proc(identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" (rect: NS.Rect, value: cffi.double))) -> instancetype,
-    maxValue: proc(self: ^AK.StepperTouchBarItem) -> cffi.double,
-    setMaxValue: proc(self: ^AK.StepperTouchBarItem, maxValue: cffi.double),
-    minValue: proc(self: ^AK.StepperTouchBarItem) -> cffi.double,
-    setMinValue: proc(self: ^AK.StepperTouchBarItem, minValue: cffi.double),
-    increment: proc(self: ^AK.StepperTouchBarItem) -> cffi.double,
-    setIncrement: proc(self: ^AK.StepperTouchBarItem, increment: cffi.double),
-    value: proc(self: ^AK.StepperTouchBarItem) -> cffi.double,
-    setValue: proc(self: ^AK.StepperTouchBarItem, value: cffi.double),
-    target: proc(self: ^AK.StepperTouchBarItem) -> id,
-    setTarget: proc(self: ^AK.StepperTouchBarItem, target: id),
-    action: proc(self: ^AK.StepperTouchBarItem) -> SEL,
-    setAction: proc(self: ^AK.StepperTouchBarItem, action: SEL),
-    customizationLabel: proc(self: ^AK.StepperTouchBarItem) -> ^NS.String,
-    setCustomizationLabel: proc(self: ^AK.StepperTouchBarItem, customizationLabel: ^NS.String),
+    stepperTouchBarItemWithIdentifier_drawingHandler: proc(identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" ( rect: NS.Rect, value: cffi.double ))) -> instancetype,
+    maxValue: proc(self: ^NS.StepperTouchBarItem) -> cffi.double,
+    setMaxValue: proc(self: ^NS.StepperTouchBarItem, maxValue: cffi.double),
+    minValue: proc(self: ^NS.StepperTouchBarItem) -> cffi.double,
+    setMinValue: proc(self: ^NS.StepperTouchBarItem, minValue: cffi.double),
+    increment: proc(self: ^NS.StepperTouchBarItem) -> cffi.double,
+    setIncrement: proc(self: ^NS.StepperTouchBarItem, increment: cffi.double),
+    value: proc(self: ^NS.StepperTouchBarItem) -> cffi.double,
+    setValue: proc(self: ^NS.StepperTouchBarItem, value: cffi.double),
+    target: proc(self: ^NS.StepperTouchBarItem) -> id,
+    setTarget: proc(self: ^NS.StepperTouchBarItem, target: id),
+    action: proc(self: ^NS.StepperTouchBarItem) -> SEL,
+    setAction: proc(self: ^NS.StepperTouchBarItem, action: SEL),
+    customizationLabel: proc(self: ^NS.StepperTouchBarItem) -> ^NS.String,
+    setCustomizationLabel: proc(self: ^NS.StepperTouchBarItem, customizationLabel: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stepperTouchBarItemWithIdentifier:formatter:"), auto_cast stepperTouchBarItemWithIdentifier_formatter, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.stepperTouchBarItemWithIdentifier_drawingHandler != nil {
-        stepperTouchBarItemWithIdentifier_drawingHandler :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" (rect: NS.Rect, value: cffi.double))) -> instancetype {
+        stepperTouchBarItemWithIdentifier_drawingHandler :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, drawingHandler: ^Objc_Block(proc "c" ( rect: NS.Rect, value: cffi.double ))) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("stepperTouchBarItemWithIdentifier:drawingHandler:"), auto_cast stepperTouchBarItemWithIdentifier_drawingHandler, "@#:@?") do panic("Failed to register objC method.")
     }
     if vt.maxValue != nil {
-        maxValue :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL) -> cffi.double {
+        maxValue :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL) -> cffi.double {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maxValue"), auto_cast maxValue, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMaxValue != nil {
-        setMaxValue :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL, maxValue: cffi.double) {
+        setMaxValue :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL, maxValue: cffi.double) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaxValue:"), auto_cast setMaxValue, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.minValue != nil {
-        minValue :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL) -> cffi.double {
+        minValue :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL) -> cffi.double {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minValue"), auto_cast minValue, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinValue != nil {
-        setMinValue :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL, minValue: cffi.double) {
+        setMinValue :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL, minValue: cffi.double) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinValue:"), auto_cast setMinValue, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.increment != nil {
-        increment :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL) -> cffi.double {
+        increment :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL) -> cffi.double {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("increment"), auto_cast increment, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setIncrement != nil {
-        setIncrement :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL, increment: cffi.double) {
+        setIncrement :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL, increment: cffi.double) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIncrement:"), auto_cast setIncrement, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.value != nil {
-        value :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL) -> cffi.double {
+        value :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL) -> cffi.double {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("value"), auto_cast value, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setValue != nil {
-        setValue :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL, value: cffi.double) {
+        setValue :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL, value: cffi.double) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setValue:"), auto_cast setValue, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.target != nil {
-        target :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL) -> id {
+        target :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("target"), auto_cast target, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTarget != nil {
-        setTarget :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL, target: id) {
+        setTarget :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL, target: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTarget:"), auto_cast setTarget, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.action != nil {
-        action :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL) -> SEL {
+        action :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL) -> SEL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -182,7 +182,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("action"), auto_cast action, ":@:") do panic("Failed to register objC method.")
     }
     if vt.setAction != nil {
-        setAction :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL, action: SEL) {
+        setAction :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL, action: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -192,7 +192,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAction:"), auto_cast setAction, "v@::") do panic("Failed to register objC method.")
     }
     if vt.customizationLabel != nil {
-        customizationLabel :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL) -> ^NS.String {
+        customizationLabel :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("customizationLabel"), auto_cast customizationLabel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCustomizationLabel != nil {
-        setCustomizationLabel :: proc "c" (self: ^AK.StepperTouchBarItem, _: SEL, customizationLabel: ^NS.String) {
+        setCustomizationLabel :: proc "c" (self: ^NS.StepperTouchBarItem, _: SEL, customizationLabel: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

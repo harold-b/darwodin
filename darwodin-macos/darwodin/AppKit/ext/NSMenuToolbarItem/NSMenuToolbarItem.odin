@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSToolbarItem"
 
 VTable :: struct {
     super: NSToolbarItem.VTable,
-    menu: proc(self: ^AK.MenuToolbarItem) -> ^AK.Menu,
-    setMenu: proc(self: ^AK.MenuToolbarItem, menu: ^AK.Menu),
-    showsIndicator: proc(self: ^AK.MenuToolbarItem) -> bool,
-    setShowsIndicator: proc(self: ^AK.MenuToolbarItem, showsIndicator: bool),
+    menu: proc(self: ^NS.MenuToolbarItem) -> ^NS.Menu,
+    setMenu: proc(self: ^NS.MenuToolbarItem, menu: ^NS.Menu),
+    showsIndicator: proc(self: ^NS.MenuToolbarItem) -> bool,
+    setShowsIndicator: proc(self: ^NS.MenuToolbarItem, showsIndicator: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSToolbarItem.extend(cls, &vt.super)
 
     if vt.menu != nil {
-        menu :: proc "c" (self: ^AK.MenuToolbarItem, _: SEL) -> ^AK.Menu {
+        menu :: proc "c" (self: ^NS.MenuToolbarItem, _: SEL) -> ^NS.Menu {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menu"), auto_cast menu, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setMenu != nil {
-        setMenu :: proc "c" (self: ^AK.MenuToolbarItem, _: SEL, menu: ^AK.Menu) {
+        setMenu :: proc "c" (self: ^NS.MenuToolbarItem, _: SEL, menu: ^NS.Menu) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMenu:"), auto_cast setMenu, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.showsIndicator != nil {
-        showsIndicator :: proc "c" (self: ^AK.MenuToolbarItem, _: SEL) -> bool {
+        showsIndicator :: proc "c" (self: ^NS.MenuToolbarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showsIndicator"), auto_cast showsIndicator, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setShowsIndicator != nil {
-        setShowsIndicator :: proc "c" (self: ^AK.MenuToolbarItem, _: SEL, showsIndicator: bool) {
+        setShowsIndicator :: proc "c" (self: ^NS.MenuToolbarItem, _: SEL, showsIndicator: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

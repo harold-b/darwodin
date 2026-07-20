@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVContentKeySessionDelegate
-///
 @(objc_class="AVContentKeySessionDelegate")
 ContentKeySessionDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentKeySessionDelegate, objc_selector="contentKeySession:didProvideContentKeyRequest:", objc_name="contentKeySession_didProvideContentKeyRequest")
     ContentKeySessionDelegate_contentKeySession_didProvideContentKeyRequest :: proc(self: ^ContentKeySessionDelegate, session: ^ContentKeySession, keyRequest: ^ContentKeyRequest) ---
@@ -57,4 +51,6 @@ foreign lib {
     @(objc_type=ContentKeySessionDelegate, objc_selector="contentKeySession:didProvideContentKeyRequests:forInitializationData:", objc_name="contentKeySession_didProvideContentKeyRequests_forInitializationData")
     ContentKeySessionDelegate_contentKeySession_didProvideContentKeyRequests_forInitializationData :: proc(self: ^ContentKeySessionDelegate, session: ^ContentKeySession, keyRequests: ^NS.Array, initializationData: ^NS.Data) ---
 }
+
+
 

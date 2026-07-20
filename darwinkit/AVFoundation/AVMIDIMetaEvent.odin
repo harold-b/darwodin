@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMIDIMetaEvent
-///
 @(objc_class="AVMIDIMetaEvent", objc_superclass=MusicEvent)
 MIDIMetaEvent :: struct { using _: MusicEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDIMetaEvent, objc_selector="initWithType:data:", objc_name="initWithType")
     MIDIMetaEvent_initWithType :: proc(self: ^MIDIMetaEvent, type: MIDIMetaEventType, data: ^NS.Data) -> instancetype ---
@@ -28,3 +22,6 @@ foreign lib {
     @(objc_type=MIDIMetaEvent, objc_selector="type", objc_name="type")
     MIDIMetaEvent_type :: proc(self: ^MIDIMetaEvent) -> MIDIMetaEventType ---
 }
+
+
+

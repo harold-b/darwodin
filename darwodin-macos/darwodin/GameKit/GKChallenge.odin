@@ -4,8 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
@@ -21,7 +20,7 @@ Challenge :: struct { using _: NS.Object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=Challenge, objc_selector="loadReceivedChallengesWithCompletionHandler:", objc_name="loadReceivedChallengesWithCompletionHandler", objc_is_class_method=true)
-    Challenge_loadReceivedChallengesWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (challenges: ^NS.Array, error: ^NS.Error))) ---
+    Challenge_loadReceivedChallengesWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( challenges: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Challenge, objc_selector="decline", objc_name="decline")
     Challenge_decline :: proc(self: ^Challenge) ---

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4BinaryFunctionDescriptor
-///
 @(objc_class="MTL4BinaryFunctionDescriptor", objc_superclass=NS.Object)
 MTL4BinaryFunctionDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4BinaryFunctionDescriptor, objc_selector="name", objc_name="name")
     MTL4BinaryFunctionDescriptor_name :: proc(self: ^MTL4BinaryFunctionDescriptor) -> ^NS.String ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=MTL4BinaryFunctionDescriptor, objc_selector="setOptions:", objc_name="setOptions")
     MTL4BinaryFunctionDescriptor_setOptions :: proc(self: ^MTL4BinaryFunctionDescriptor, options: MTL4BinaryFunctionOptions) ---
 }
+
+
+

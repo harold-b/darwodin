@@ -1,0 +1,48 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UIPageViewControllerDelegate
+///
+@(objc_class="UIPageViewControllerDelegate")
+PageViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
+    using _: NS.ObjectProtocol,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewController:willTransitionToViewControllers:", objc_name="pageViewController_willTransitionToViewControllers")
+    PageViewControllerDelegate_pageViewController_willTransitionToViewControllers :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController, pendingViewControllers: ^NS.Array) ---
+
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewController:didFinishAnimating:previousViewControllers:transitionCompleted:", objc_name="pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted")
+    PageViewControllerDelegate_pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController, finished: bool, previousViewControllers: ^NS.Array, completed: bool) ---
+
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewController:spineLocationForInterfaceOrientation:", objc_name="pageViewController_spineLocationForInterfaceOrientation")
+    PageViewControllerDelegate_pageViewController_spineLocationForInterfaceOrientation :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController, orientation: InterfaceOrientation) -> PageViewControllerSpineLocation ---
+
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewControllerSupportedInterfaceOrientations:", objc_name="pageViewControllerSupportedInterfaceOrientations")
+    PageViewControllerDelegate_pageViewControllerSupportedInterfaceOrientations :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController) -> InterfaceOrientationMask ---
+
+    @(objc_type=PageViewControllerDelegate, objc_selector="pageViewControllerPreferredInterfaceOrientationForPresentation:", objc_name="pageViewControllerPreferredInterfaceOrientationForPresentation")
+    PageViewControllerDelegate_pageViewControllerPreferredInterfaceOrientationForPresentation :: proc(self: ^PageViewControllerDelegate, pageViewController: ^PageViewController) -> InterfaceOrientation ---
+}
+
+@(objc_type=PageViewControllerDelegate, objc_name="pageViewController")
+PageViewControllerDelegate_pageViewController :: proc {
+    PageViewControllerDelegate_pageViewController_willTransitionToViewControllers,
+    PageViewControllerDelegate_pageViewController_didFinishAnimating_previousViewControllers_transitionCompleted,
+    PageViewControllerDelegate_pageViewController_spineLocationForInterfaceOrientation,
+}
+

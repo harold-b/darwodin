@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSSymbolEffect"
 
 VTable :: struct {
     super: NSSymbolEffect.VTable,
     effect: proc() -> instancetype,
-    effectWithIterative: proc(self: ^AK.SymbolVariableColorEffect) -> instancetype,
-    effectWithCumulative: proc(self: ^AK.SymbolVariableColorEffect) -> instancetype,
-    effectWithReversing: proc(self: ^AK.SymbolVariableColorEffect) -> instancetype,
-    effectWithNonReversing: proc(self: ^AK.SymbolVariableColorEffect) -> instancetype,
-    effectWithHideInactiveLayers: proc(self: ^AK.SymbolVariableColorEffect) -> instancetype,
-    effectWithDimInactiveLayers: proc(self: ^AK.SymbolVariableColorEffect) -> instancetype,
+    effectWithIterative: proc(self: ^NS.SymbolVariableColorEffect) -> instancetype,
+    effectWithCumulative: proc(self: ^NS.SymbolVariableColorEffect) -> instancetype,
+    effectWithReversing: proc(self: ^NS.SymbolVariableColorEffect) -> instancetype,
+    effectWithNonReversing: proc(self: ^NS.SymbolVariableColorEffect) -> instancetype,
+    effectWithHideInactiveLayers: proc(self: ^NS.SymbolVariableColorEffect) -> instancetype,
+    effectWithDimInactiveLayers: proc(self: ^NS.SymbolVariableColorEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.effectWithIterative != nil {
-        effectWithIterative :: proc "c" (self: ^AK.SymbolVariableColorEffect, _: SEL) -> instancetype {
+        effectWithIterative :: proc "c" (self: ^NS.SymbolVariableColorEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithIterative"), auto_cast effectWithIterative, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithCumulative != nil {
-        effectWithCumulative :: proc "c" (self: ^AK.SymbolVariableColorEffect, _: SEL) -> instancetype {
+        effectWithCumulative :: proc "c" (self: ^NS.SymbolVariableColorEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithCumulative"), auto_cast effectWithCumulative, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithReversing != nil {
-        effectWithReversing :: proc "c" (self: ^AK.SymbolVariableColorEffect, _: SEL) -> instancetype {
+        effectWithReversing :: proc "c" (self: ^NS.SymbolVariableColorEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithReversing"), auto_cast effectWithReversing, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithNonReversing != nil {
-        effectWithNonReversing :: proc "c" (self: ^AK.SymbolVariableColorEffect, _: SEL) -> instancetype {
+        effectWithNonReversing :: proc "c" (self: ^NS.SymbolVariableColorEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithNonReversing"), auto_cast effectWithNonReversing, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithHideInactiveLayers != nil {
-        effectWithHideInactiveLayers :: proc "c" (self: ^AK.SymbolVariableColorEffect, _: SEL) -> instancetype {
+        effectWithHideInactiveLayers :: proc "c" (self: ^NS.SymbolVariableColorEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithHideInactiveLayers"), auto_cast effectWithHideInactiveLayers, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithDimInactiveLayers != nil {
-        effectWithDimInactiveLayers :: proc "c" (self: ^AK.SymbolVariableColorEffect, _: SEL) -> instancetype {
+        effectWithDimInactiveLayers :: proc "c" (self: ^NS.SymbolVariableColorEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

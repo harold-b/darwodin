@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioEngine
-///
 @(objc_class="AVAudioEngine", objc_superclass=NS.Object)
 AudioEngine :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioEngine, objc_selector="init", objc_name="init")
     AudioEngine_init :: proc(self: ^AudioEngine) -> instancetype ---
@@ -151,6 +145,8 @@ foreign lib {
     @(objc_type=AudioEngine, objc_selector="manualRenderingSampleTime", objc_name="manualRenderingSampleTime")
     AudioEngine_manualRenderingSampleTime :: proc(self: ^AudioEngine) -> AudioFramePosition ---
 }
+
+
 
 @(objc_type=AudioEngine, objc_name="connect")
 AudioEngine_connect :: proc {

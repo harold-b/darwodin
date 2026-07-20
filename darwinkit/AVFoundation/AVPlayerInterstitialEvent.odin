@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerInterstitialEvent
-///
 @(objc_class="AVPlayerInterstitialEvent", objc_superclass=NS.Object)
 PlayerInterstitialEvent :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerInterstitialEvent, objc_selector="init", objc_name="init")
     PlayerInterstitialEvent_init :: proc(self: ^PlayerInterstitialEvent) -> instancetype ---
@@ -162,6 +156,8 @@ foreign lib {
     @(objc_type=PlayerInterstitialEvent, objc_selector="setSkipControlLocalizedLabelBundleKey:", objc_name="setSkipControlLocalizedLabelBundleKey")
     PlayerInterstitialEvent_setSkipControlLocalizedLabelBundleKey :: proc(self: ^PlayerInterstitialEvent, skipControlLocalizedLabelBundleKey: ^NS.String) ---
 }
+
+
 
 @(objc_type=PlayerInterstitialEvent, objc_name="interstitialEventWithPrimaryItem")
 PlayerInterstitialEvent_interstitialEventWithPrimaryItem :: proc {

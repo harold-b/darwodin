@@ -11,15 +11,9 @@ import CA "../QuartzCore"
 import MTL "../Metal"
 import MDL "../ModelIO"
 
-
-
-///
-/// MTKMesh
-///
 @(objc_class="MTKMesh", objc_superclass=NS.Object)
 Mesh :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Mesh, objc_selector="init", objc_name="init")
     Mesh_init :: proc(self: ^Mesh) -> instancetype ---
@@ -48,3 +42,6 @@ foreign lib {
     @(objc_type=Mesh, objc_selector="setName:", objc_name="setName")
     Mesh_setName :: proc(self: ^Mesh, name: ^NS.String) ---
 }
+
+
+

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLVertexAttributeDescriptor
-///
 @(objc_class="MTLVertexAttributeDescriptor", objc_superclass=NS.Object)
 VertexAttributeDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexAttributeDescriptor, objc_selector="format", objc_name="format")
     VertexAttributeDescriptor_format :: proc(self: ^VertexAttributeDescriptor) -> VertexFormat ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=VertexAttributeDescriptor, objc_selector="setBufferIndex:", objc_name="setBufferIndex")
     VertexAttributeDescriptor_setBufferIndex :: proc(self: ^VertexAttributeDescriptor, bufferIndex: NS.UInteger) ---
 }
+
+
+

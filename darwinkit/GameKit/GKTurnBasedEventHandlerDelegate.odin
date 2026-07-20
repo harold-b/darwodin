@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKTurnBasedEventHandlerDelegate
-///
 @(objc_class="GKTurnBasedEventHandlerDelegate")
 TurnBasedEventHandlerDelegate :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TurnBasedEventHandlerDelegate, objc_selector="handleInviteFromGameCenter:", objc_name="handleInviteFromGameCenter")
     TurnBasedEventHandlerDelegate_handleInviteFromGameCenter :: proc(self: ^TurnBasedEventHandlerDelegate, playersToInvite: ^NS.Array) ---
@@ -29,6 +23,8 @@ foreign lib {
     @(objc_type=TurnBasedEventHandlerDelegate, objc_selector="handleMatchEnded:", objc_name="handleMatchEnded")
     TurnBasedEventHandlerDelegate_handleMatchEnded :: proc(self: ^TurnBasedEventHandlerDelegate, match: ^TurnBasedMatch) ---
 }
+
+
 
 @(objc_type=TurnBasedEventHandlerDelegate, objc_name="handleTurnEventForMatch")
 TurnBasedEventHandlerDelegate_handleTurnEventForMatch :: proc {

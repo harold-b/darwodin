@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSDate
-///
 @(objc_class="NSDate", objc_superclass=Object)
 Date :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Date, objc_selector="init", objc_name="init")
     Date_init :: proc(self: ^Date) -> instancetype ---
@@ -103,7 +97,7 @@ foreign lib {
     @(objc_type=Date, objc_selector="now", objc_name="now", objc_is_class_method=true)
     Date_now :: proc() -> ^Date ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Date, objc_selector="dateWithNaturalLanguageString:locale:", objc_name="dateWithNaturalLanguageString_locale", objc_is_class_method=true)
         Date_dateWithNaturalLanguageString_locale :: proc(string: ^String, locale: id) -> id ---
 
@@ -124,7 +118,9 @@ foreign lib {
     }
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
+
+
+when ODIN_PLATFORM_SUBTARGET == .Default {
     @(objc_type=Date, objc_name="dateWithNaturalLanguageString")
     Date_dateWithNaturalLanguageString :: proc {
         Date_dateWithNaturalLanguageString_locale,

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLDepthStencilDescriptor
-///
 @(objc_class="MTLDepthStencilDescriptor", objc_superclass=NS.Object)
 DepthStencilDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DepthStencilDescriptor, objc_selector="depthCompareFunction", objc_name="depthCompareFunction")
     DepthStencilDescriptor_depthCompareFunction :: proc(self: ^DepthStencilDescriptor) -> CompareFunction ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=DepthStencilDescriptor, objc_selector="setLabel:", objc_name="setLabel")
     DepthStencilDescriptor_setLabel :: proc(self: ^DepthStencilDescriptor, label: ^NS.String) ---
 }
+
+
+

@@ -252,10 +252,10 @@ foreign lib {
     Window_removeFrameUsingName :: proc(name: ^NS.String) ---
 
     @(objc_type=Window, objc_selector="beginSheet:completionHandler:", objc_name="beginSheet")
-    Window_beginSheet :: proc(self: ^Window, sheetWindow: ^Window, handler: ^Objc_Block(proc "c" (returnCode: ModalResponse))) ---
+    Window_beginSheet :: proc(self: ^Window, sheetWindow: ^Window, handler: ^Objc_Block(proc "c" ( returnCode: ModalResponse ))) ---
 
     @(objc_type=Window, objc_selector="beginCriticalSheet:completionHandler:", objc_name="beginCriticalSheet")
-    Window_beginCriticalSheet :: proc(self: ^Window, sheetWindow: ^Window, handler: ^Objc_Block(proc "c" (returnCode: ModalResponse))) ---
+    Window_beginCriticalSheet :: proc(self: ^Window, sheetWindow: ^Window, handler: ^Objc_Block(proc "c" ( returnCode: ModalResponse ))) ---
 
     @(objc_type=Window, objc_selector="endSheet:", objc_name="endSheet_")
     Window_endSheet_ :: proc(self: ^Window, sheetWindow: ^Window) ---
@@ -339,13 +339,13 @@ foreign lib {
     Window_addTabbedWindow :: proc(self: ^Window, window: ^Window, ordered: WindowOrderingMode) ---
 
     @(objc_type=Window, objc_selector="transferWindowSharingToWindow:completionHandler:", objc_name="transferWindowSharingToWindow")
-    Window_transferWindowSharingToWindow :: proc(self: ^Window, window: ^Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Window_transferWindowSharingToWindow :: proc(self: ^Window, window: ^Window, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Window, objc_selector="requestSharingOfWindow:completionHandler:", objc_name="requestSharingOfWindow")
-    Window_requestSharingOfWindow :: proc(self: ^Window, window: ^Window, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Window_requestSharingOfWindow :: proc(self: ^Window, window: ^Window, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Window, objc_selector="requestSharingOfWindowUsingPreview:title:completionHandler:", objc_name="requestSharingOfWindowUsingPreview")
-    Window_requestSharingOfWindowUsingPreview :: proc(self: ^Window, image: ^Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Window_requestSharingOfWindowUsingPreview :: proc(self: ^Window, image: ^Image, title: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Window, objc_selector="defaultDepthLimit", objc_name="defaultDepthLimit", objc_is_class_method=true)
     Window_defaultDepthLimit :: proc() -> WindowDepth ---
@@ -831,7 +831,7 @@ foreign lib {
     Window_windowTitlebarLayoutDirection :: proc(self: ^Window) -> UserInterfaceLayoutDirection ---
 
     @(objc_type=Window, objc_selector="trackEventsMatchingMask:timeout:mode:handler:", objc_name="trackEventsMatchingMask")
-    Window_trackEventsMatchingMask :: proc(self: ^Window, mask: EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: ^Objc_Block(proc "c" (event: ^Event, stop: ^bool))) ---
+    Window_trackEventsMatchingMask :: proc(self: ^Window, mask: EventMask, timeout: NS.TimeInterval, mode: ^NS.String, trackingHandler: ^Objc_Block(proc "c" ( event: ^Event, stop: ^bool ))) ---
 
     @(objc_type=Window, objc_selector="nextEventMatchingMask:", objc_name="nextEventMatchingMask_")
     Window_nextEventMatchingMask_ :: proc(self: ^Window, mask: EventMask) -> ^Event ---

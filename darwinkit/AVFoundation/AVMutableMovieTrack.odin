@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableMovieTrack
-///
 @(objc_class="AVMutableMovieTrack", objc_superclass=MovieTrack)
 MutableMovieTrack :: struct { using _: MovieTrack, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableMovieTrack, objc_selector="mediaDataStorage", objc_name="mediaDataStorage")
     MutableMovieTrack_mediaDataStorage :: proc(self: ^MutableMovieTrack) -> ^MediaDataStorage ---
@@ -181,3 +175,6 @@ foreign lib {
     @(objc_type=MutableMovieTrack, objc_selector="associatedTracksOfType:", objc_name="associatedTracksOfType")
     MutableMovieTrack_associatedTracksOfType :: proc(self: ^MutableMovieTrack, trackAssociationType: ^NS.String) -> ^NS.Array ---
 }
+
+
+

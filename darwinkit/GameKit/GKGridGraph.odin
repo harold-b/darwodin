@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKGridGraph
-///
 @(objc_class="GKGridGraph", objc_superclass=Graph)
 GridGraph :: struct { using _: Graph, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=GridGraph, objc_selector="graphFromGridStartingAt:width:height:diagonalsAllowed:", objc_name="graphFromGridStartingAt_width_height_diagonalsAllowed", objc_is_class_method=true)
     GridGraph_graphFromGridStartingAt_width_height_diagonalsAllowed :: proc(position: ^[2]cffi.int, width: cffi.int, height: cffi.int, diagonalsAllowed: bool) -> instancetype ---
@@ -50,6 +44,8 @@ foreign lib {
     @(objc_type=GridGraph, objc_selector="diagonalsAllowed", objc_name="diagonalsAllowed")
     GridGraph_diagonalsAllowed :: proc(self: ^GridGraph) -> bool ---
 }
+
+
 
 @(objc_type=GridGraph, objc_name="graphFromGridStartingAt")
 GridGraph_graphFromGridStartingAt :: proc {

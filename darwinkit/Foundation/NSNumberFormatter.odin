@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSNumberFormatter
-///
 @(objc_class="NSNumberFormatter", objc_superclass=Formatter)
 NumberFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=NumberFormatter, objc_selector="getObjectValue:forString:range:error:", objc_name="getObjectValue")
     NumberFormatter_getObjectValue :: proc(self: ^NumberFormatter, obj: ^id, string: ^String, rangep: ^_NSRange, error: ^^Error) -> bool ---
@@ -385,7 +379,7 @@ foreign lib {
     @(objc_type=NumberFormatter, objc_selector="setPartialStringValidationEnabled:", objc_name="setPartialStringValidationEnabled")
     NumberFormatter_setPartialStringValidationEnabled :: proc(self: ^NumberFormatter, partialStringValidationEnabled: bool) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=NumberFormatter, objc_selector="hasThousandSeparators", objc_name="hasThousandSeparators")
         NumberFormatter_hasThousandSeparators :: proc(self: ^NumberFormatter) -> bool ---
 
@@ -435,3 +429,6 @@ foreign lib {
         NumberFormatter_setRoundingBehavior :: proc(self: ^NumberFormatter, roundingBehavior: ^DecimalNumberHandler) ---
     }
 }
+
+
+

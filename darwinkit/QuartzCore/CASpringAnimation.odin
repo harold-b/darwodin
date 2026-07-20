@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CASpringAnimation
-///
 @(objc_class="CASpringAnimation", objc_superclass=BasicAnimation)
 SpringAnimation :: struct { using _: BasicAnimation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpringAnimation, objc_selector="initWithPerceptualDuration:bounce:", objc_name="initWithPerceptualDuration")
     SpringAnimation_initWithPerceptualDuration :: proc(self: ^SpringAnimation, perceptualDuration: CF.TimeInterval, bounce: CG.Float) -> instancetype ---
@@ -62,3 +56,6 @@ foreign lib {
     @(objc_type=SpringAnimation, objc_selector="bounce", objc_name="bounce")
     SpringAnimation_bounce :: proc(self: ^SpringAnimation) -> CG.Float ---
 }
+
+
+

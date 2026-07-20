@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSNetServiceBrowser
-///
 @(objc_class="NSNetServiceBrowser", objc_superclass=Object)
 NetServiceBrowser :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=NetServiceBrowser, objc_selector="init", objc_name="init")
     NetServiceBrowser_init :: proc(self: ^NetServiceBrowser) -> instancetype ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=NetServiceBrowser, objc_selector="setIncludesPeerToPeer:", objc_name="setIncludesPeerToPeer")
     NetServiceBrowser_setIncludesPeerToPeer :: proc(self: ^NetServiceBrowser, includesPeerToPeer: bool) ---
 }
+
+
+

@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCControllerAxisInput
-///
 @(objc_class="GCControllerAxisInput", objc_superclass=ControllerElement)
 ControllerAxisInput :: struct { using _: ControllerElement, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ControllerAxisInput, objc_selector="setValue:", objc_name="setValue")
     ControllerAxisInput_setValue :: proc(self: ^ControllerAxisInput, value: cffi.float) ---
@@ -30,3 +24,6 @@ foreign lib {
     @(objc_type=ControllerAxisInput, objc_selector="value", objc_name="value")
     ControllerAxisInput_value :: proc(self: ^ControllerAxisInput) -> cffi.float ---
 }
+
+
+

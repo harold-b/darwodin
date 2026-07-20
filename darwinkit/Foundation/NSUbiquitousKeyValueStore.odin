@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUbiquitousKeyValueStore
-///
 @(objc_class="NSUbiquitousKeyValueStore", objc_superclass=Object)
 UbiquitousKeyValueStore :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UbiquitousKeyValueStore, objc_selector="objectForKey:", objc_name="objectForKey")
     UbiquitousKeyValueStore_objectForKey :: proc(self: ^UbiquitousKeyValueStore, aKey: ^String) -> id ---
@@ -79,3 +73,6 @@ foreign lib {
     @(objc_type=UbiquitousKeyValueStore, objc_selector="dictionaryRepresentation", objc_name="dictionaryRepresentation")
     UbiquitousKeyValueStore_dictionaryRepresentation :: proc(self: ^UbiquitousKeyValueStore) -> ^Dictionary ---
 }
+
+
+

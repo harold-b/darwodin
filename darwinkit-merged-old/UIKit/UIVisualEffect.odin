@@ -1,0 +1,26 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UIVisualEffect
+///
+@(objc_class="UIVisualEffect", objc_superclass=NS.Object)
+VisualEffect :: struct { using _: NS.Object, 
+    using _: NS.Copying,
+    using _: NS.SecureCoding,
+}
+
+@(default_calling_convention="c")
+foreign lib {}

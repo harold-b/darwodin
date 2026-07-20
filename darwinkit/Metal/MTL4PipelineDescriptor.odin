@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4PipelineDescriptor
-///
 @(objc_class="MTL4PipelineDescriptor", objc_superclass=NS.Object)
 MTL4PipelineDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4PipelineDescriptor, objc_selector="label", objc_name="label")
     MTL4PipelineDescriptor_label :: proc(self: ^MTL4PipelineDescriptor) -> ^NS.String ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=MTL4PipelineDescriptor, objc_selector="setOptions:", objc_name="setOptions")
     MTL4PipelineDescriptor_setOptions :: proc(self: ^MTL4PipelineDescriptor, options: ^MTL4PipelineOptions) ---
 }
+
+
+

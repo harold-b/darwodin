@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemLegibleOutput
-///
 @(objc_class="AVPlayerItemLegibleOutput", objc_superclass=PlayerItemOutput)
 PlayerItemLegibleOutput :: struct { using _: PlayerItemOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemLegibleOutput, objc_selector="setDelegate:queue:", objc_name="setDelegate")
     PlayerItemLegibleOutput_setDelegate :: proc(self: ^PlayerItemLegibleOutput, delegate: ^PlayerItemLegibleOutputPushDelegate, delegateQueue: CF.dispatch_queue_t) ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=PlayerItemLegibleOutput, objc_selector="setTextStylingResolution:", objc_name="setTextStylingResolution")
     PlayerItemLegibleOutput_setTextStylingResolution :: proc(self: ^PlayerItemLegibleOutput, textStylingResolution: ^NS.String) ---
 }
+
+
+

@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAreaLight
-///
 @(objc_class="MDLAreaLight", objc_superclass=PhysicallyPlausibleLight)
 AreaLight :: struct { using _: PhysicallyPlausibleLight, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AreaLight, objc_selector="areaRadius", objc_name="areaRadius")
     AreaLight_areaRadius :: proc(self: ^AreaLight) -> cffi.float ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=AreaLight, objc_selector="setAspect:", objc_name="setAspect")
     AreaLight_setAspect :: proc(self: ^AreaLight, aspect: cffi.float) ---
 }
+
+
+

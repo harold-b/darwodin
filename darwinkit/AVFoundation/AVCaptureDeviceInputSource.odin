@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureDeviceInputSource
-///
 @(objc_class="AVCaptureDeviceInputSource", objc_superclass=NS.Object)
 CaptureDeviceInputSource :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeviceInputSource, objc_selector="init", objc_name="init")
     CaptureDeviceInputSource_init :: proc(self: ^CaptureDeviceInputSource) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=CaptureDeviceInputSource, objc_selector="localizedName", objc_name="localizedName")
     CaptureDeviceInputSource_localizedName :: proc(self: ^CaptureDeviceInputSource) -> ^NS.String ---
 }
+
+
+

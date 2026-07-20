@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLQueryItem
-///
 @(objc_class="NSURLQueryItem", objc_superclass=Object)
 URLQueryItem :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLQueryItem, objc_selector="initWithName:value:", objc_name="initWithName")
     URLQueryItem_initWithName :: proc(self: ^URLQueryItem, name: ^String, value: ^String) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=URLQueryItem, objc_selector="value", objc_name="value")
     URLQueryItem_value :: proc(self: ^URLQueryItem) -> ^String ---
 }
+
+
+

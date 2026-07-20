@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    writeSelectionToPasteboard: proc(self: ^AK.ServicesMenuRequestor, pboard: ^AK.Pasteboard, types: ^NS.Array) -> bool,
-    readSelectionFromPasteboard: proc(self: ^AK.ServicesMenuRequestor, pboard: ^AK.Pasteboard) -> bool,
+    writeSelectionToPasteboard: proc(self: ^NS.ServicesMenuRequestor, pboard: ^NS.Pasteboard, types: ^NS.Array) -> bool,
+    readSelectionFromPasteboard: proc(self: ^NS.ServicesMenuRequestor, pboard: ^NS.Pasteboard) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.writeSelectionToPasteboard != nil {
-        writeSelectionToPasteboard :: proc "c" (self: ^AK.ServicesMenuRequestor, _: SEL, pboard: ^AK.Pasteboard, types: ^NS.Array) -> bool {
+        writeSelectionToPasteboard :: proc "c" (self: ^NS.ServicesMenuRequestor, _: SEL, pboard: ^NS.Pasteboard, types: ^NS.Array) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writeSelectionToPasteboard:types:"), auto_cast writeSelectionToPasteboard, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.readSelectionFromPasteboard != nil {
-        readSelectionFromPasteboard :: proc "c" (self: ^AK.ServicesMenuRequestor, _: SEL, pboard: ^AK.Pasteboard) -> bool {
+        readSelectionFromPasteboard :: proc "c" (self: ^NS.ServicesMenuRequestor, _: SEL, pboard: ^NS.Pasteboard) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -1,0 +1,37 @@
+#+build darwin:default
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import CM "../CoreMedia"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSTextAttachmentLayout
+///
+@(objc_class="NSTextAttachmentLayout")
+TextAttachmentLayout :: struct { using _: intrinsics.objc_object, 
+    using _: NS.ObjectProtocol,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextAttachmentLayout, objc_selector="imageForBounds:attributes:location:textContainer:", objc_name="imageForBounds")
+    TextAttachmentLayout_imageForBounds :: proc(self: ^TextAttachmentLayout, bounds: CG.Rect, attributes: ^NS.Dictionary, location: ^TextLocation, textContainer: ^TextContainer) -> ^Image ---
+
+    @(objc_type=TextAttachmentLayout, objc_selector="attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:", objc_name="attachmentBoundsForAttributes")
+    TextAttachmentLayout_attachmentBoundsForAttributes :: proc(self: ^TextAttachmentLayout, attributes: ^NS.Dictionary, location: ^TextLocation, textContainer: ^TextContainer, proposedLineFragment: CG.Rect, position: CG.Point) -> CG.Rect ---
+
+    @(objc_type=TextAttachmentLayout, objc_selector="viewProviderForParentView:location:textContainer:", objc_name="viewProviderForParentView")
+    TextAttachmentLayout_viewProviderForParentView :: proc(self: ^TextAttachmentLayout, parentView: ^View, location: ^TextLocation, textContainer: ^TextContainer) -> ^TextAttachmentViewProvider ---
+}

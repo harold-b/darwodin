@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    layoutOrientation: proc(self: ^AK.TextLayoutOrientationProvider) -> AK.TextLayoutOrientation,
+    layoutOrientation: proc(self: ^NS.TextLayoutOrientationProvider) -> NS.TextLayoutOrientation,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.layoutOrientation != nil {
-        layoutOrientation :: proc "c" (self: ^AK.TextLayoutOrientationProvider, _: SEL) -> AK.TextLayoutOrientation {
+        layoutOrientation :: proc "c" (self: ^NS.TextLayoutOrientationProvider, _: SEL) -> NS.TextLayoutOrientation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

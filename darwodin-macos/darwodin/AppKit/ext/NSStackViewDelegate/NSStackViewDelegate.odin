@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    stackView_willDetachViews: proc(self: ^AK.StackViewDelegate, stackView: ^AK.StackView, views: ^NS.Array),
-    stackView_didReattachViews: proc(self: ^AK.StackViewDelegate, stackView: ^AK.StackView, views: ^NS.Array),
+    stackView_willDetachViews: proc(self: ^NS.StackViewDelegate, stackView: ^NS.StackView, views: ^NS.Array),
+    stackView_didReattachViews: proc(self: ^NS.StackViewDelegate, stackView: ^NS.StackView, views: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.stackView_willDetachViews != nil {
-        stackView_willDetachViews :: proc "c" (self: ^AK.StackViewDelegate, _: SEL, stackView: ^AK.StackView, views: ^NS.Array) {
+        stackView_willDetachViews :: proc "c" (self: ^NS.StackViewDelegate, _: SEL, stackView: ^NS.StackView, views: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("stackView:willDetachViews:"), auto_cast stackView_willDetachViews, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.stackView_didReattachViews != nil {
-        stackView_didReattachViews :: proc "c" (self: ^AK.StackViewDelegate, _: SEL, stackView: ^AK.StackView, views: ^NS.Array) {
+        stackView_didReattachViews :: proc "c" (self: ^NS.StackViewDelegate, _: SEL, stackView: ^NS.StackView, views: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

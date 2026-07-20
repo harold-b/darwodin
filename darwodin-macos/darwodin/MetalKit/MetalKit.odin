@@ -5,11 +5,10 @@ import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 import MDL "../ModelIO"
-import AK "../AppKit"
+import NS "../AppKit"
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -18,7 +17,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:MetalKit.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:MetalKit.framework",
+    }
+}
+
 
 
 
@@ -77,10 +87,10 @@ TextureLoaderCubeLayout :: distinct ^NS.String
 TextureLoaderOrigin :: distinct ^NS.String
 
 /// MTKTextureLoaderCallback
-TextureLoaderCallback :: ^Objc_Block(proc "c" (texture: ^MTL.Texture, error: ^NS.Error))
+TextureLoaderCallback :: ^Objc_Block(proc "c" ( texture: ^MTL.Texture, error: ^NS.Error ))
 
 /// MTKTextureLoaderArrayCallback
-TextureLoaderArrayCallback :: ^Objc_Block(proc "c" (textures: ^NS.Array, error: ^NS.Error))
+TextureLoaderArrayCallback :: ^Objc_Block(proc "c" ( textures: ^NS.Array, error: ^NS.Error ))
 
 /// MTKModelError
 ModelError :: distinct ^NS.String

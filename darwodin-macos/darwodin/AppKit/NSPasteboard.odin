@@ -81,13 +81,13 @@ foreign lib {
     Pasteboard_stringForType :: proc(self: ^Pasteboard, dataType: ^NS.String) -> ^NS.String ---
 
     @(objc_type=Pasteboard, objc_selector="detectPatternsForPatterns:completionHandler:", objc_name="detectPatternsForPatterns")
-    Pasteboard_detectPatternsForPatterns :: proc(self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedPatterns: ^NS.Set, error: ^NS.Error))) ---
+    Pasteboard_detectPatternsForPatterns :: proc(self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" ( detectedPatterns: ^NS.Set, error: ^NS.Error ))) ---
 
     @(objc_type=Pasteboard, objc_selector="detectValuesForPatterns:completionHandler:", objc_name="detectValuesForPatterns")
-    Pasteboard_detectValuesForPatterns :: proc(self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedValues: ^NS.Dictionary, error: ^NS.Error))) ---
+    Pasteboard_detectValuesForPatterns :: proc(self: ^Pasteboard, patterns: ^NS.Set, completionHandler: ^Objc_Block(proc "c" ( detectedValues: ^NS.Dictionary, error: ^NS.Error ))) ---
 
     @(objc_type=Pasteboard, objc_selector="detectMetadataForTypes:completionHandler:", objc_name="detectMetadataForTypes")
-    Pasteboard_detectMetadataForTypes :: proc(self: ^Pasteboard, types: ^NS.Set, completionHandler: ^Objc_Block(proc "c" (detectedMetadata: ^NS.Dictionary, error: ^NS.Error))) ---
+    Pasteboard_detectMetadataForTypes :: proc(self: ^Pasteboard, types: ^NS.Set, completionHandler: ^Objc_Block(proc "c" ( detectedMetadata: ^NS.Dictionary, error: ^NS.Error ))) ---
 
     @(objc_type=Pasteboard, objc_selector="generalPasteboard", objc_name="generalPasteboard", objc_is_class_method=true)
     Pasteboard_generalPasteboard :: proc() -> ^Pasteboard ---

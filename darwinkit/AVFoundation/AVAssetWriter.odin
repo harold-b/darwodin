@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetWriter
-///
 @(objc_class="AVAssetWriter", objc_superclass=NS.Object)
 AssetWriter :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriter, objc_selector="init", objc_name="init")
     AssetWriter_init :: proc(self: ^AssetWriter) -> instancetype ---
@@ -172,3 +166,6 @@ foreign lib {
     @(objc_type=AssetWriter, objc_selector="setDelegate:", objc_name="setDelegate")
     AssetWriter_setDelegate :: proc(self: ^AssetWriter, delegate: ^AssetWriterDelegate) ---
 }
+
+
+

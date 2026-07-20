@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSSymbolEffect"
 
 VTable :: struct {
     super: NSSymbolEffect.VTable,
     effect: proc() -> instancetype,
-    effectWithByLayer: proc(self: ^AK.SymbolDrawOnEffect) -> instancetype,
-    effectWithWholeSymbol: proc(self: ^AK.SymbolDrawOnEffect) -> instancetype,
-    effectWithIndividually: proc(self: ^AK.SymbolDrawOnEffect) -> instancetype,
+    effectWithByLayer: proc(self: ^NS.SymbolDrawOnEffect) -> instancetype,
+    effectWithWholeSymbol: proc(self: ^NS.SymbolDrawOnEffect) -> instancetype,
+    effectWithIndividually: proc(self: ^NS.SymbolDrawOnEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("effect"), auto_cast effect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.effectWithByLayer != nil {
-        effectWithByLayer :: proc "c" (self: ^AK.SymbolDrawOnEffect, _: SEL) -> instancetype {
+        effectWithByLayer :: proc "c" (self: ^NS.SymbolDrawOnEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithByLayer"), auto_cast effectWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithWholeSymbol != nil {
-        effectWithWholeSymbol :: proc "c" (self: ^AK.SymbolDrawOnEffect, _: SEL) -> instancetype {
+        effectWithWholeSymbol :: proc "c" (self: ^NS.SymbolDrawOnEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithWholeSymbol"), auto_cast effectWithWholeSymbol, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithIndividually != nil {
-        effectWithIndividually :: proc "c" (self: ^AK.SymbolDrawOnEffect, _: SEL) -> instancetype {
+        effectWithIndividually :: proc "c" (self: ^NS.SymbolDrawOnEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

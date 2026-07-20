@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCapturePhotoOutput
-///
 @(objc_class="AVCapturePhotoOutput", objc_superclass=CaptureOutput)
 CapturePhotoOutput :: struct { using _: CaptureOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhotoOutput, objc_selector="init", objc_name="init")
     CapturePhotoOutput_init :: proc(self: ^CapturePhotoOutput) -> instancetype ---
@@ -32,7 +26,7 @@ foreign lib {
     CapturePhotoOutput_capturePhotoWithSettings :: proc(self: ^CapturePhotoOutput, settings: ^CapturePhotoSettings, delegate: ^CapturePhotoCaptureDelegate) ---
 
     @(objc_type=CapturePhotoOutput, objc_selector="setPreparedPhotoSettingsArray:completionHandler:", objc_name="setPreparedPhotoSettingsArray")
-    CapturePhotoOutput_setPreparedPhotoSettingsArray :: proc(self: ^CapturePhotoOutput, preparedPhotoSettingsArray: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (prepared: bool, error: ^NS.Error))) ---
+    CapturePhotoOutput_setPreparedPhotoSettingsArray :: proc(self: ^CapturePhotoOutput, preparedPhotoSettingsArray: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( prepared: bool, error: ^NS.Error ))) ---
 
     @(objc_type=CapturePhotoOutput, objc_selector="isBayerRAWPixelFormat:", objc_name="isBayerRAWPixelFormat", objc_is_class_method=true)
     CapturePhotoOutput_isBayerRAWPixelFormat :: proc(pixelFormat: CF.OSType) -> bool ---
@@ -289,3 +283,6 @@ foreign lib {
     @(objc_type=CapturePhotoOutput, objc_selector="setEnabledSemanticSegmentationMatteTypes:", objc_name="setEnabledSemanticSegmentationMatteTypes")
     CapturePhotoOutput_setEnabledSemanticSegmentationMatteTypes :: proc(self: ^CapturePhotoOutput, enabledSemanticSegmentationMatteTypes: ^NS.Array) ---
 }
+
+
+

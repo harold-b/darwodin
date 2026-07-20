@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLProtocolClient
-///
 @(objc_class="NSURLProtocolClient")
 URLProtocolClient :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLProtocolClient, objc_selector="URLProtocol:wasRedirectedToRequest:redirectResponse:", objc_name="URLProtocol_wasRedirectedToRequest_redirectResponse")
     URLProtocolClient_URLProtocol_wasRedirectedToRequest_redirectResponse :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol, request: ^URLRequest, redirectResponse: ^URLResponse) ---
@@ -45,4 +39,6 @@ foreign lib {
     @(objc_type=URLProtocolClient, objc_selector="URLProtocol:didCancelAuthenticationChallenge:", objc_name="URLProtocol_didCancelAuthenticationChallenge")
     URLProtocolClient_URLProtocol_didCancelAuthenticationChallenge :: proc(self: ^URLProtocolClient, protocol: ^URLProtocol, challenge: ^URLAuthenticationChallenge) ---
 }
+
+
 

@@ -1,11 +1,14 @@
 #+build darwin
 package darwodin_GameKit
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
+import AK "../AppKit"
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -14,47 +17,77 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:GameKit.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:GameKit.framework",
+    }
+}
+
+
+// +user-text-begin
+
+
+foreign lib {
+    @(link_name="GKErrorDomain")
+    ErrorDomain: ^NS.String
+
+    @(link_name="GKPlayerIDNoLongerAvailable")
+    PlayerIDNoLongerAvailable: ^NS.String
+
+    @(link_name="GKPlayerDidChangeNotificationName")
+    PlayerDidChangeNotificationName: ^NS.String
+
+    @(link_name="GKGameSessionErrorDomain")
+    GameSessionErrorDomain: ^NS.String
+
+    @(link_name="GKTurnTimeoutDefault")
+    TurnTimeoutDefault: NS.TimeInterval
+
+    @(link_name="GKTurnTimeoutNone")
+    TurnTimeoutNone: NS.TimeInterval
+
+    @(link_name="GKExchangeTimeoutDefault")
+    ExchangeTimeoutDefault: NS.TimeInterval
+
+    @(link_name="GKExchangeTimeoutNone")
+    ExchangeTimeoutNone: NS.TimeInterval
+
+    @(link_name="GKPlayerAuthenticationDidChangeNotificationName")
+    PlayerAuthenticationDidChangeNotificationName: ^NS.String
+
+    @(link_name="GKVoiceChatServiceErrorDomain")
+    VoiceChatServiceErrorDomain: ^NS.String
+
+    @(link_name="GKSessionErrorDomain")
+    SessionErrorDomain: ^NS.String
+}
 
 
 
 GameModelMaxScore :: 16777216
 GameModelMinScore :: -16777216
-
-foreign lib {
-    @(link_name="GKErrorDomain") ErrorDomain: ^NS.String
-    @(link_name="GKPlayerIDNoLongerAvailable") PlayerIDNoLongerAvailable: ^NS.String
-    @(link_name="GKPlayerDidChangeNotificationName") PlayerDidChangeNotificationName: ^NS.String
-    @(link_name="GKGameSessionErrorDomain") GameSessionErrorDomain: ^NS.String
-    @(link_name="GKTurnTimeoutDefault") TurnTimeoutDefault: NS.TimeInterval
-    @(link_name="GKTurnTimeoutNone") TurnTimeoutNone: NS.TimeInterval
-    @(link_name="GKExchangeTimeoutDefault") ExchangeTimeoutDefault: NS.TimeInterval
-    @(link_name="GKExchangeTimeoutNone") ExchangeTimeoutNone: NS.TimeInterval
-    @(link_name="GKPlayerAuthenticationDidChangeNotificationName") PlayerAuthenticationDidChangeNotificationName: ^NS.String
-    @(link_name="GKVoiceChatServiceErrorDomain") VoiceChatServiceErrorDomain: ^NS.String
-    @(link_name="GKSessionErrorDomain") SessionErrorDomain: ^NS.String
-}
-
-/// GKMatchProperties
 MatchProperties :: distinct NS.Dictionary
-
-/// GKChallengeComposeCompletionBlock
-ChallengeComposeCompletionBlock :: ^Objc_Block(proc "c" (composeController: ^AKViewController, didIssueChallenge: bool, sentPlayerIDs: ^NS.Array))
-
-/// GKChallengeComposeHandler
-ChallengeComposeHandler :: ^Objc_Block(proc "c" (composeController: ^AKViewController, didIssueChallenge: bool, sentPlayers: ^NS.Array))
-
-/// GKInviteeResponse
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    ChallengeComposeCompletionBlock :: ^Objc_Block(proc "c" ( composeController: ^AK.ViewController, didIssueChallenge: bool, sentPlayerIDs: ^NS.Array ))
+    ChallengeComposeHandler :: ^Objc_Block(proc "c" ( composeController: ^AK.ViewController, didIssueChallenge: bool, sentPlayers: ^NS.Array ))
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    ChallengeComposeCompletionBlock :: ^Objc_Block(proc "c" ( composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayerIDs: ^NS.Array ))
+    ChallengeComposeHandler :: ^Objc_Block(proc "c" ( composeController: ^UI.ViewController, didIssueChallenge: bool, sentPlayers: ^NS.Array ))
+}
 InviteeResponse :: distinct InviteRecipientResponse
 
-/// GKMeshGraphTriangulationMode
 MeshGraphTriangulationMode :: enum cffi.ulong {
     Vertices      = 1,
     Centers       = 2,
     EdgeMidpoints = 4,
 }
 
-/// GKRTreeSplitStrategy
 RTreeSplitStrategy :: enum cffi.long {
     Halve         = 0,
     Linear        = 1,
@@ -62,7 +95,6 @@ RTreeSplitStrategy :: enum cffi.long {
     ReduceOverlap = 3,
 }
 
-/// GKErrorCode
 ErrorCode :: enum cffi.long {
     Unknown                          = 1,
     Cancelled                        = 2,
@@ -108,39 +140,33 @@ ErrorCode :: enum cffi.long {
     FriendRequestNotAvailable        = 103,
 }
 
-/// GKPhotoSize
 PhotoSize :: enum cffi.long {
     Small  = 0,
     Normal = 1,
 }
 
-/// GKReleaseState
 ReleaseState :: enum cffi.ulong {
     Unknown     = 0,
     Released    = 1,
     Prereleased = 2,
 }
 
-/// GKLeaderboardTimeScope
 LeaderboardTimeScope :: enum cffi.long {
     Today   = 0,
     Week    = 1,
     AllTime = 2,
 }
 
-/// GKLeaderboardPlayerScope
 LeaderboardPlayerScope :: enum cffi.long {
     Global      = 0,
     FriendsOnly = 1,
 }
 
-/// GKLeaderboardType
 LeaderboardType :: enum cffi.long {
     Classic   = 0,
     Recurring = 1,
 }
 
-/// GKGameCenterViewControllerState
 GameCenterViewControllerState :: enum cffi.long {
     Default                = -1,
     Leaderboards           = 0,
@@ -151,7 +177,6 @@ GameCenterViewControllerState :: enum cffi.long {
     LocalPlayerFriendsList = 5,
 }
 
-/// GKAccessPointLocation
 AccessPointLocation :: enum cffi.long {
     TopLeading     = 0,
     TopTrailing    = 1,
@@ -159,7 +184,6 @@ AccessPointLocation :: enum cffi.long {
     BottomTrailing = 3,
 }
 
-/// GKChallengeState
 ChallengeState :: enum cffi.long {
     Invalid   = 0,
     Pending   = 1,
@@ -167,7 +191,6 @@ ChallengeState :: enum cffi.long {
     Declined  = 3,
 }
 
-/// GKGameActivityState
 GameActivityState :: enum cffi.ulong {
     Initialized = 0,
     Active      = 1,
@@ -175,26 +198,22 @@ GameActivityState :: enum cffi.ulong {
     Ended       = 4,
 }
 
-/// GKGameActivityPlayStyle
 GameActivityPlayStyle :: enum cffi.long {
     Unspecified  = 0,
     Synchronous  = 1,
     Asynchronous = 2,
 }
 
-/// GKConnectionState
 ConnectionState :: enum cffi.long {
     NotConnected = 0,
     Connected    = 1,
 }
 
-/// GKTransportType
 TransportType :: enum cffi.long {
     Unreliable = 0,
     Reliable   = 1,
 }
 
-/// GKGameSessionErrorCode
 GameSessionErrorCode :: enum cffi.long {
     Unknown                       = 1,
     NotAuthenticated              = 2,
@@ -214,7 +233,6 @@ GameSessionErrorCode :: enum cffi.long {
     InvalidSession                = 16,
 }
 
-/// GKTurnBasedMatchStatus
 TurnBasedMatchStatus :: enum cffi.long {
     Unknown  = 0,
     Open     = 1,
@@ -222,7 +240,6 @@ TurnBasedMatchStatus :: enum cffi.long {
     Matching = 3,
 }
 
-/// GKTurnBasedParticipantStatus
 TurnBasedParticipantStatus :: enum cffi.long {
     Unknown  = 0,
     Invited  = 1,
@@ -232,7 +249,6 @@ TurnBasedParticipantStatus :: enum cffi.long {
     Done     = 5,
 }
 
-/// GKTurnBasedMatchOutcome
 TurnBasedMatchOutcome :: enum cffi.long {
     None        = 0,
     Quit        = 1,
@@ -247,7 +263,6 @@ TurnBasedMatchOutcome :: enum cffi.long {
     CustomRange = 16711680,
 }
 
-/// GKTurnBasedExchangeStatus
 TurnBasedExchangeStatus :: enum cffi.schar {
     Unknown  = 0,
     Active   = 1,
@@ -256,7 +271,6 @@ TurnBasedExchangeStatus :: enum cffi.schar {
     Canceled = 4,
 }
 
-/// GKInviteRecipientResponse
 InviteRecipientResponse :: enum cffi.long {
     Accepted                 = 0,
     Declined                 = 1,
@@ -272,14 +286,12 @@ InviteRecipientResponse :: enum cffi.long {
     eResponseNoAnswer        = 5,
 }
 
-/// GKMatchType
 MatchType :: enum cffi.ulong {
     PeerToPeer = 0,
     Hosted     = 1,
     TurnBased  = 2,
 }
 
-/// GKFriendsAuthorizationStatus
 FriendsAuthorizationStatus :: enum cffi.long {
     NotDetermined = 0,
     Restricted    = 1,
@@ -287,20 +299,17 @@ FriendsAuthorizationStatus :: enum cffi.long {
     Authorized    = 3,
 }
 
-/// GKMatchSendDataMode
 MatchSendDataMode :: enum cffi.long {
     Reliable   = 0,
     Unreliable = 1,
 }
 
-/// GKPlayerConnectionState
 PlayerConnectionState :: enum cffi.long {
     Unknown      = 0,
     Connected    = 1,
     Disconnected = 2,
 }
 
-/// GKMatchmakingMode
 MatchmakingMode :: enum cffi.long {
     Default       = 0,
     NearbyOnly    = 1,
@@ -308,20 +317,17 @@ MatchmakingMode :: enum cffi.long {
     InviteOnly    = 3,
 }
 
-/// GKSendDataMode
 SendDataMode :: enum cffi.int {
     Reliable   = 0,
     Unreliable = 1,
 }
 
-/// GKSessionMode
 SessionMode :: enum cffi.int {
     Server = 0,
     Client = 1,
     Peer   = 2,
 }
 
-/// GKPeerConnectionState
 PeerConnectionState :: enum cffi.int {
     Available      = 0,
     Unavailable    = 1,
@@ -331,7 +337,6 @@ PeerConnectionState :: enum cffi.int {
     ConnectedRelay = 5,
 }
 
-/// GKVoiceChatServiceError
 VoiceChatServiceError :: enum cffi.int {
     InternalError                    = 32000,
     NoRemotePacketsError             = 32001,
@@ -352,15 +357,6 @@ VoiceChatServiceError :: enum cffi.int {
     InvalidParameterError            = 32016,
 }
 
-when ODIN_PLATFORM_SUBTARGET_IOS {
-    /// GKPeerPickerConnectionType
-    PeerPickerConnectionType :: enum cffi.ulong {
-        Online = 1,
-        Nearby = 2,
-    }
-}
-
-/// GKSessionError
 SessionError :: enum cffi.int {
     InvalidParameterError = 30500,
     PeerNotFoundError     = 30501,
@@ -380,7 +376,13 @@ SessionError :: enum cffi.int {
     SystemError           = 30205,
 }
 
-/// GKVoiceChatPlayerState
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    PeerPickerConnectionType :: enum cffi.ulong {
+        Online = 1,
+        Nearby = 2,
+    }
+}
+
 VoiceChatPlayerState :: enum cffi.long {
     Connected    = 0,
     Disconnected = 1,
@@ -389,23 +391,17 @@ VoiceChatPlayerState :: enum cffi.long {
     Connecting   = 4,
 }
 
-/// GKBox
 Box :: struct #align (16) {
     boxMin: vector_float3,
     boxMax: vector_float3,
 }
-#assert(size_of(Box) == 32)
 
-/// GKQuad
 Quad :: struct #align (8) {
     quadMin: vector_float2,
     quadMax: vector_float2,
 }
-#assert(size_of(Quad) == 16)
 
-/// GKTriangle
 Triangle :: struct #align (16) {
     points: [3]vector_float3,
 }
-#assert(size_of(Triangle) == 48)
 

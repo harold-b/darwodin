@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAEmitterLayer
-///
 @(objc_class="CAEmitterLayer", objc_superclass=Layer)
 EmitterLayer :: struct { using _: Layer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=EmitterLayer, objc_selector="emitterCells", objc_name="emitterCells")
     EmitterLayer_emitterCells :: proc(self: ^EmitterLayer) -> ^NS.Array ---
@@ -110,3 +104,6 @@ foreign lib {
     @(objc_type=EmitterLayer, objc_selector="setSeed:", objc_name="setSeed")
     EmitterLayer_setSeed :: proc(self: ^EmitterLayer, seed: cffi.uint) ---
 }
+
+
+

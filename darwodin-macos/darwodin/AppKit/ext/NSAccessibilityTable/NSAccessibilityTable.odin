@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityLabel: proc(self: ^AK.AccessibilityTable) -> ^NS.String,
-    accessibilityRows: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
-    accessibilitySelectedRows: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
-    setAccessibilitySelectedRows: proc(self: ^AK.AccessibilityTable, selectedRows: ^NS.Array),
-    accessibilityVisibleRows: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
-    accessibilityColumns: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
-    accessibilityVisibleColumns: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
-    accessibilitySelectedColumns: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
-    accessibilityHeaderGroup: proc(self: ^AK.AccessibilityTable) -> ^NS.String,
-    accessibilitySelectedCells: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
-    accessibilityVisibleCells: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
-    accessibilityRowHeaderUIElements: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
-    accessibilityColumnHeaderUIElements: proc(self: ^AK.AccessibilityTable) -> ^NS.Array,
+    accessibilityLabel: proc(self: ^NS.AccessibilityTable) -> ^NS.String,
+    accessibilityRows: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
+    accessibilitySelectedRows: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
+    setAccessibilitySelectedRows: proc(self: ^NS.AccessibilityTable, selectedRows: ^NS.Array),
+    accessibilityVisibleRows: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
+    accessibilityColumns: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
+    accessibilityVisibleColumns: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
+    accessibilitySelectedColumns: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
+    accessibilityHeaderGroup: proc(self: ^NS.AccessibilityTable) -> ^NS.String,
+    accessibilitySelectedCells: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
+    accessibilityVisibleCells: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
+    accessibilityRowHeaderUIElements: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
+    accessibilityColumnHeaderUIElements: proc(self: ^NS.AccessibilityTable) -> ^NS.Array,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityLabel != nil {
-        accessibilityLabel :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.String {
+        accessibilityLabel :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityLabel"), auto_cast accessibilityLabel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityRows != nil {
-        accessibilityRows :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilityRows :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityRows"), auto_cast accessibilityRows, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilitySelectedRows != nil {
-        accessibilitySelectedRows :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilitySelectedRows :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilitySelectedRows"), auto_cast accessibilitySelectedRows, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessibilitySelectedRows != nil {
-        setAccessibilitySelectedRows :: proc "c" (self: ^AK.AccessibilityTable, _: SEL, selectedRows: ^NS.Array) {
+        setAccessibilitySelectedRows :: proc "c" (self: ^NS.AccessibilityTable, _: SEL, selectedRows: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessibilitySelectedRows:"), auto_cast setAccessibilitySelectedRows, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessibilityVisibleRows != nil {
-        accessibilityVisibleRows :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilityVisibleRows :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityVisibleRows"), auto_cast accessibilityVisibleRows, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityColumns != nil {
-        accessibilityColumns :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilityColumns :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityColumns"), auto_cast accessibilityColumns, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityVisibleColumns != nil {
-        accessibilityVisibleColumns :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilityVisibleColumns :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityVisibleColumns"), auto_cast accessibilityVisibleColumns, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilitySelectedColumns != nil {
-        accessibilitySelectedColumns :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilitySelectedColumns :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilitySelectedColumns"), auto_cast accessibilitySelectedColumns, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityHeaderGroup != nil {
-        accessibilityHeaderGroup :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.String {
+        accessibilityHeaderGroup :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityHeaderGroup"), auto_cast accessibilityHeaderGroup, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilitySelectedCells != nil {
-        accessibilitySelectedCells :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilitySelectedCells :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilitySelectedCells"), auto_cast accessibilitySelectedCells, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityVisibleCells != nil {
-        accessibilityVisibleCells :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilityVisibleCells :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityVisibleCells"), auto_cast accessibilityVisibleCells, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityRowHeaderUIElements != nil {
-        accessibilityRowHeaderUIElements :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilityRowHeaderUIElements :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityRowHeaderUIElements"), auto_cast accessibilityRowHeaderUIElements, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityColumnHeaderUIElements != nil {
-        accessibilityColumnHeaderUIElements :: proc "c" (self: ^AK.AccessibilityTable, _: SEL) -> ^NS.Array {
+        accessibilityColumnHeaderUIElements :: proc "c" (self: ^NS.AccessibilityTable, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

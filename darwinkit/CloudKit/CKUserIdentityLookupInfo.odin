@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKUserIdentityLookupInfo
-///
 @(objc_class="CKUserIdentityLookupInfo", objc_superclass=NS.Object)
 UserIdentityLookupInfo :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserIdentityLookupInfo, objc_selector="init", objc_name="init")
     UserIdentityLookupInfo_init :: proc(self: ^UserIdentityLookupInfo) -> instancetype ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=UserIdentityLookupInfo, objc_selector="userRecordID", objc_name="userRecordID")
     UserIdentityLookupInfo_userRecordID :: proc(self: ^UserIdentityLookupInfo) -> ^RecordID ---
 }
+
+
+

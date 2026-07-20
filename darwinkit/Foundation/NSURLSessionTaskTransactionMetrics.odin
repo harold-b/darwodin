@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLSessionTaskTransactionMetrics
-///
 @(objc_class="NSURLSessionTaskTransactionMetrics", objc_superclass=Object)
 URLSessionTaskTransactionMetrics :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionTaskTransactionMetrics, objc_selector="init", objc_name="init")
     URLSessionTaskTransactionMetrics_init :: proc(self: ^URLSessionTaskTransactionMetrics) -> instancetype ---
@@ -127,3 +121,6 @@ foreign lib {
     @(objc_type=URLSessionTaskTransactionMetrics, objc_selector="domainResolutionProtocol", objc_name="domainResolutionProtocol")
     URLSessionTaskTransactionMetrics_domainResolutionProtocol :: proc(self: ^URLSessionTaskTransactionMetrics) -> URLSessionTaskMetricsDomainResolutionProtocol ---
 }
+
+
+

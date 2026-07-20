@@ -82,7 +82,7 @@ foreign lib {
     MutableArray_setArray :: proc(self: ^MutableArray, otherArray: ^Array) ---
 
     @(objc_type=MutableArray, objc_selector="sortUsingFunction:context:", objc_name="sortUsingFunction")
-    MutableArray_sortUsingFunction :: proc(self: ^MutableArray, compare: proc "c" (_: id, _1: id, _2: rawptr) -> Integer, _context: rawptr) ---
+    MutableArray_sortUsingFunction :: proc(self: ^MutableArray, compare: proc "c" ( _0: id, _1: id, _2: rawptr ) -> Integer, _context: rawptr) ---
 
     @(objc_type=MutableArray, objc_selector="sortUsingSelector:", objc_name="sortUsingSelector")
     MutableArray_sortUsingSelector :: proc(self: ^MutableArray, comparator: SEL) ---

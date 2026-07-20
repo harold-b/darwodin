@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4CommandQueueDescriptor
-///
 @(objc_class="MTL4CommandQueueDescriptor", objc_superclass=NS.Object)
 MTL4CommandQueueDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4CommandQueueDescriptor, objc_selector="label", objc_name="label")
     MTL4CommandQueueDescriptor_label :: proc(self: ^MTL4CommandQueueDescriptor) -> ^NS.String ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=MTL4CommandQueueDescriptor, objc_selector="setFeedbackQueue:", objc_name="setFeedbackQueue")
     MTL4CommandQueueDescriptor_setFeedbackQueue :: proc(self: ^MTL4CommandQueueDescriptor, feedbackQueue: CF.dispatch_queue_t) ---
 }
+
+
+

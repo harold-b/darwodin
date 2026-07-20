@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKComponent
-///
 @(objc_class="GKComponent", objc_superclass=NS.Object)
 Component :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Component, objc_selector="updateWithDeltaTime:", objc_name="updateWithDeltaTime")
     Component_updateWithDeltaTime :: proc(self: ^Component, seconds: NS.TimeInterval) ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=Component, objc_selector="entity", objc_name="entity")
     Component_entity :: proc(self: ^Component) -> ^Entity ---
 }
+
+
+

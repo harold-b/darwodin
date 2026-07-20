@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioNode
-///
 @(objc_class="AVAudioNode", objc_superclass=NS.Object)
 AudioNode :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioNode, objc_selector="reset", objc_name="reset")
     AudioNode_reset :: proc(self: ^AudioNode) ---
@@ -64,3 +58,6 @@ foreign lib {
     @(objc_type=AudioNode, objc_selector="outputPresentationLatency", objc_name="outputPresentationLatency")
     AudioNode_outputPresentationLatency :: proc(self: ^AudioNode) -> NS.TimeInterval ---
 }
+
+
+

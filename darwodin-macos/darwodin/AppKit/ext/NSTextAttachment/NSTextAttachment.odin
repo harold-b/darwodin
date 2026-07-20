@@ -20,33 +20,33 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithData: proc(self: ^AK.TextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> instancetype,
-    initWithFileWrapper: proc(self: ^AK.TextAttachment, fileWrapper: ^NS.FileWrapper) -> instancetype,
+    initWithData: proc(self: ^NS.TextAttachment, contentData: ^NS.Data, uti: ^NS.String) -> instancetype,
+    initWithFileWrapper: proc(self: ^NS.TextAttachment, fileWrapper: ^NS.FileWrapper) -> instancetype,
     textAttachmentViewProviderClassForFileType: proc(fileType: ^NS.String) -> Class,
     registerTextAttachmentViewProviderClass: proc(textAttachmentViewProviderClass: Class, fileType: ^NS.String),
-    contents: proc(self: ^AK.TextAttachment) -> ^NS.Data,
-    setContents: proc(self: ^AK.TextAttachment, contents: ^NS.Data),
-    fileType: proc(self: ^AK.TextAttachment) -> ^NS.String,
-    setFileType: proc(self: ^AK.TextAttachment, fileType: ^NS.String),
-    image: proc(self: ^AK.TextAttachment) -> ^AK.Image,
-    setImage: proc(self: ^AK.TextAttachment, image: ^AK.Image),
-    bounds: proc(self: ^AK.TextAttachment) -> CG.Rect,
-    setBounds: proc(self: ^AK.TextAttachment, bounds: CG.Rect),
-    fileWrapper: proc(self: ^AK.TextAttachment) -> ^NS.FileWrapper,
-    setFileWrapper: proc(self: ^AK.TextAttachment, fileWrapper: ^NS.FileWrapper),
-    attachmentCell: proc(self: ^AK.TextAttachment) -> ^AK.TextAttachmentCellProtocol,
-    setAttachmentCell: proc(self: ^AK.TextAttachment, attachmentCell: ^AK.TextAttachmentCellProtocol),
-    lineLayoutPadding: proc(self: ^AK.TextAttachment) -> CG.Float,
-    setLineLayoutPadding: proc(self: ^AK.TextAttachment, lineLayoutPadding: CG.Float),
-    allowsTextAttachmentView: proc(self: ^AK.TextAttachment) -> bool,
-    setAllowsTextAttachmentView: proc(self: ^AK.TextAttachment, allowsTextAttachmentView: bool),
-    usesTextAttachmentView: proc(self: ^AK.TextAttachment) -> bool,
+    contents: proc(self: ^NS.TextAttachment) -> ^NS.Data,
+    setContents: proc(self: ^NS.TextAttachment, contents: ^NS.Data),
+    fileType: proc(self: ^NS.TextAttachment) -> ^NS.String,
+    setFileType: proc(self: ^NS.TextAttachment, fileType: ^NS.String),
+    image: proc(self: ^NS.TextAttachment) -> ^NS.Image,
+    setImage: proc(self: ^NS.TextAttachment, image: ^NS.Image),
+    bounds: proc(self: ^NS.TextAttachment) -> CG.Rect,
+    setBounds: proc(self: ^NS.TextAttachment, bounds: CG.Rect),
+    fileWrapper: proc(self: ^NS.TextAttachment) -> ^NS.FileWrapper,
+    setFileWrapper: proc(self: ^NS.TextAttachment, fileWrapper: ^NS.FileWrapper),
+    attachmentCell: proc(self: ^NS.TextAttachment) -> ^NS.TextAttachmentCellProtocol,
+    setAttachmentCell: proc(self: ^NS.TextAttachment, attachmentCell: ^NS.TextAttachmentCellProtocol),
+    lineLayoutPadding: proc(self: ^NS.TextAttachment) -> CG.Float,
+    setLineLayoutPadding: proc(self: ^NS.TextAttachment, lineLayoutPadding: CG.Float),
+    allowsTextAttachmentView: proc(self: ^NS.TextAttachment) -> bool,
+    setAllowsTextAttachmentView: proc(self: ^NS.TextAttachment, allowsTextAttachmentView: bool),
+    usesTextAttachmentView: proc(self: ^NS.TextAttachment) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.TextAttachment, _: SEL, contentData: ^NS.Data, uti: ^NS.String) -> instancetype {
+        initWithData :: proc "c" (self: ^NS.TextAttachment, _: SEL, contentData: ^NS.Data, uti: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:ofType:"), auto_cast initWithData, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFileWrapper != nil {
-        initWithFileWrapper :: proc "c" (self: ^AK.TextAttachment, _: SEL, fileWrapper: ^NS.FileWrapper) -> instancetype {
+        initWithFileWrapper :: proc "c" (self: ^NS.TextAttachment, _: SEL, fileWrapper: ^NS.FileWrapper) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("registerTextAttachmentViewProviderClass:forFileType:"), auto_cast registerTextAttachmentViewProviderClass, "v#:#@") do panic("Failed to register objC method.")
     }
     if vt.contents != nil {
-        contents :: proc "c" (self: ^AK.TextAttachment, _: SEL) -> ^NS.Data {
+        contents :: proc "c" (self: ^NS.TextAttachment, _: SEL) -> ^NS.Data {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contents"), auto_cast contents, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContents != nil {
-        setContents :: proc "c" (self: ^AK.TextAttachment, _: SEL, contents: ^NS.Data) {
+        setContents :: proc "c" (self: ^NS.TextAttachment, _: SEL, contents: ^NS.Data) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContents:"), auto_cast setContents, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.fileType != nil {
-        fileType :: proc "c" (self: ^AK.TextAttachment, _: SEL) -> ^NS.String {
+        fileType :: proc "c" (self: ^NS.TextAttachment, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fileType"), auto_cast fileType, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setFileType != nil {
-        setFileType :: proc "c" (self: ^AK.TextAttachment, _: SEL, fileType: ^NS.String) {
+        setFileType :: proc "c" (self: ^NS.TextAttachment, _: SEL, fileType: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFileType:"), auto_cast setFileType, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.TextAttachment, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.TextAttachment, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.TextAttachment, _: SEL, image: ^AK.Image) {
+        setImage :: proc "c" (self: ^NS.TextAttachment, _: SEL, image: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.bounds != nil {
-        bounds :: proc "c" (self: ^AK.TextAttachment, _: SEL) -> CG.Rect {
+        bounds :: proc "c" (self: ^NS.TextAttachment, _: SEL) -> CG.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -167,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bounds"), auto_cast bounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.setBounds != nil {
-        setBounds :: proc "c" (self: ^AK.TextAttachment, _: SEL, bounds: CG.Rect) {
+        setBounds :: proc "c" (self: ^NS.TextAttachment, _: SEL, bounds: CG.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -177,7 +177,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBounds:"), auto_cast setBounds, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.fileWrapper != nil {
-        fileWrapper :: proc "c" (self: ^AK.TextAttachment, _: SEL) -> ^NS.FileWrapper {
+        fileWrapper :: proc "c" (self: ^NS.TextAttachment, _: SEL) -> ^NS.FileWrapper {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -187,7 +187,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fileWrapper"), auto_cast fileWrapper, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setFileWrapper != nil {
-        setFileWrapper :: proc "c" (self: ^AK.TextAttachment, _: SEL, fileWrapper: ^NS.FileWrapper) {
+        setFileWrapper :: proc "c" (self: ^NS.TextAttachment, _: SEL, fileWrapper: ^NS.FileWrapper) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -197,7 +197,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFileWrapper:"), auto_cast setFileWrapper, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.attachmentCell != nil {
-        attachmentCell :: proc "c" (self: ^AK.TextAttachment, _: SEL) -> ^AK.TextAttachmentCellProtocol {
+        attachmentCell :: proc "c" (self: ^NS.TextAttachment, _: SEL) -> ^NS.TextAttachmentCellProtocol {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -207,7 +207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attachmentCell"), auto_cast attachmentCell, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttachmentCell != nil {
-        setAttachmentCell :: proc "c" (self: ^AK.TextAttachment, _: SEL, attachmentCell: ^AK.TextAttachmentCellProtocol) {
+        setAttachmentCell :: proc "c" (self: ^NS.TextAttachment, _: SEL, attachmentCell: ^NS.TextAttachmentCellProtocol) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -217,7 +217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttachmentCell:"), auto_cast setAttachmentCell, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.lineLayoutPadding != nil {
-        lineLayoutPadding :: proc "c" (self: ^AK.TextAttachment, _: SEL) -> CG.Float {
+        lineLayoutPadding :: proc "c" (self: ^NS.TextAttachment, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -227,7 +227,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineLayoutPadding"), auto_cast lineLayoutPadding, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setLineLayoutPadding != nil {
-        setLineLayoutPadding :: proc "c" (self: ^AK.TextAttachment, _: SEL, lineLayoutPadding: CG.Float) {
+        setLineLayoutPadding :: proc "c" (self: ^NS.TextAttachment, _: SEL, lineLayoutPadding: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -237,7 +237,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLineLayoutPadding:"), auto_cast setLineLayoutPadding, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.allowsTextAttachmentView != nil {
-        allowsTextAttachmentView :: proc "c" (self: ^AK.TextAttachment, _: SEL) -> bool {
+        allowsTextAttachmentView :: proc "c" (self: ^NS.TextAttachment, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -247,7 +247,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsTextAttachmentView"), auto_cast allowsTextAttachmentView, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsTextAttachmentView != nil {
-        setAllowsTextAttachmentView :: proc "c" (self: ^AK.TextAttachment, _: SEL, allowsTextAttachmentView: bool) {
+        setAllowsTextAttachmentView :: proc "c" (self: ^NS.TextAttachment, _: SEL, allowsTextAttachmentView: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -257,7 +257,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsTextAttachmentView:"), auto_cast setAllowsTextAttachmentView, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.usesTextAttachmentView != nil {
-        usesTextAttachmentView :: proc "c" (self: ^AK.TextAttachment, _: SEL) -> bool {
+        usesTextAttachmentView :: proc "c" (self: ^NS.TextAttachment, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

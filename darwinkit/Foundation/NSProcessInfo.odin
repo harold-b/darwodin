@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSProcessInfo
-///
 @(objc_class="NSProcessInfo", objc_superclass=Object)
 ProcessInfo :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ProcessInfo, objc_selector="operatingSystem", objc_name="operatingSystem")
     ProcessInfo_operatingSystem :: proc(self: ^ProcessInfo) -> UInteger ---
@@ -98,7 +92,7 @@ foreign lib {
     ProcessInfo_performActivityWithOptions :: proc(self: ^ProcessInfo, options: ActivityOptions, reason: ^String, block: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=ProcessInfo, objc_selector="performExpiringActivityWithReason:usingBlock:", objc_name="performExpiringActivityWithReason")
-    ProcessInfo_performExpiringActivityWithReason :: proc(self: ^ProcessInfo, reason: ^String, block: ^Objc_Block(proc "c" (expired: bool))) ---
+    ProcessInfo_performExpiringActivityWithReason :: proc(self: ^ProcessInfo, reason: ^String, block: ^Objc_Block(proc "c" ( expired: bool ))) ---
 
     @(objc_type=ProcessInfo, objc_selector="userName", objc_name="userName")
     ProcessInfo_userName :: proc(self: ^ProcessInfo) -> ^String ---
@@ -121,3 +115,6 @@ foreign lib {
     @(objc_type=ProcessInfo, objc_selector="isiOSAppOnVision", objc_name="isiOSAppOnVision")
     ProcessInfo_isiOSAppOnVision :: proc(self: ^ProcessInfo) -> bool ---
 }
+
+
+

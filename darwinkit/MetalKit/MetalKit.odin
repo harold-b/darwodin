@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_MetalKit
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -10,6 +12,7 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 import MDL "../ModelIO"
+import AK "../AppKit"
 
 id            :: ^intrinsics.objc_object
 SEL           :: ^intrinsics.objc_selector
@@ -18,32 +21,74 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:MetalKit.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
-simd_float4x4 :: matrix[4,4]f32
-
-foreign lib {
-    @(link_name="MTKTextureLoaderErrorDomain") TextureLoaderErrorDomain: ^NS.String
-    @(link_name="MTKTextureLoaderErrorKey") TextureLoaderErrorKey: ^NS.String
-    @(link_name="MTKTextureLoaderOptionAllocateMipmaps") TextureLoaderOptionAllocateMipmaps: ^NS.String
-    @(link_name="MTKTextureLoaderOptionGenerateMipmaps") TextureLoaderOptionGenerateMipmaps: ^NS.String
-    @(link_name="MTKTextureLoaderOptionSRGB") TextureLoaderOptionSRGB: ^NS.String
-    @(link_name="MTKTextureLoaderOptionTextureUsage") TextureLoaderOptionTextureUsage: ^NS.String
-    @(link_name="MTKTextureLoaderOptionTextureCPUCacheMode") TextureLoaderOptionTextureCPUCacheMode: ^NS.String
-    @(link_name="MTKTextureLoaderOptionTextureStorageMode") TextureLoaderOptionTextureStorageMode: ^NS.String
-    @(link_name="MTKTextureLoaderOptionCubeLayout") TextureLoaderOptionCubeLayout: ^NS.String
-    @(link_name="MTKTextureLoaderCubeLayoutVertical") TextureLoaderCubeLayoutVertical: ^NS.String
-    @(link_name="MTKTextureLoaderOptionOrigin") TextureLoaderOptionOrigin: ^NS.String
-    @(link_name="MTKTextureLoaderOriginTopLeft") TextureLoaderOriginTopLeft: ^NS.String
-    @(link_name="MTKTextureLoaderOriginBottomLeft") TextureLoaderOriginBottomLeft: ^NS.String
-    @(link_name="MTKTextureLoaderOriginFlippedVertically") TextureLoaderOriginFlippedVertically: ^NS.String
-    @(link_name="MTKTextureLoaderOptionLoadAsArray") TextureLoaderOptionLoadAsArray: ^NS.String
-    @(link_name="MTKModelErrorDomain") ModelErrorDomain: ^NS.String
-    @(link_name="MTKModelErrorKey") ModelErrorKey: ^NS.String
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:MetalKit.framework",
+    }
 }
 
-@(default_calling_convention="c")
+
+// +user-text-begin
+
+
 foreign lib {
+    @(link_name="MTKTextureLoaderErrorDomain")
+    TextureLoaderErrorDomain: ^NS.String
+
+    @(link_name="MTKTextureLoaderErrorKey")
+    TextureLoaderErrorKey: ^NS.String
+
+    @(link_name="MTKTextureLoaderOptionAllocateMipmaps")
+    TextureLoaderOptionAllocateMipmaps: ^NS.String
+
+    @(link_name="MTKTextureLoaderOptionGenerateMipmaps")
+    TextureLoaderOptionGenerateMipmaps: ^NS.String
+
+    @(link_name="MTKTextureLoaderOptionSRGB")
+    TextureLoaderOptionSRGB: ^NS.String
+
+    @(link_name="MTKTextureLoaderOptionTextureUsage")
+    TextureLoaderOptionTextureUsage: ^NS.String
+
+    @(link_name="MTKTextureLoaderOptionTextureCPUCacheMode")
+    TextureLoaderOptionTextureCPUCacheMode: ^NS.String
+
+    @(link_name="MTKTextureLoaderOptionTextureStorageMode")
+    TextureLoaderOptionTextureStorageMode: ^NS.String
+
+    @(link_name="MTKTextureLoaderOptionCubeLayout")
+    TextureLoaderOptionCubeLayout: ^NS.String
+
+    @(link_name="MTKTextureLoaderCubeLayoutVertical")
+    TextureLoaderCubeLayoutVertical: ^NS.String
+
+    @(link_name="MTKTextureLoaderOptionOrigin")
+    TextureLoaderOptionOrigin: ^NS.String
+
+    @(link_name="MTKTextureLoaderOriginTopLeft")
+    TextureLoaderOriginTopLeft: ^NS.String
+
+    @(link_name="MTKTextureLoaderOriginBottomLeft")
+    TextureLoaderOriginBottomLeft: ^NS.String
+
+    @(link_name="MTKTextureLoaderOriginFlippedVertically")
+    TextureLoaderOriginFlippedVertically: ^NS.String
+
+    @(link_name="MTKTextureLoaderOptionLoadAsArray")
+    TextureLoaderOptionLoadAsArray: ^NS.String
+
+    @(link_name="MTKModelErrorDomain")
+    ModelErrorDomain: ^NS.String
+
+    @(link_name="MTKModelErrorKey")
+    ModelErrorKey: ^NS.String
+
     @(link_name="MTKModelIOVertexDescriptorFromMetal")
     ModelIOVertexDescriptorFromMetal :: proc(metalDescriptor: ^MTL.VertexDescriptor) -> ^MDL.VertexDescriptor ---
 
@@ -61,27 +106,15 @@ foreign lib {
 
     @(link_name="MTKMetalVertexFormatFromModelIO")
     MetalVertexFormatFromModelIO :: proc(vertexFormat: MDL.VertexFormat) -> MTL.VertexFormat ---
-
 }
 
-/// MTKTextureLoaderError
+
+
 TextureLoaderError :: distinct ^NS.String
-
-/// MTKTextureLoaderOption
 TextureLoaderOptions :: distinct ^NS.String
-
-/// MTKTextureLoaderCubeLayout
 TextureLoaderCubeLayout :: distinct ^NS.String
-
-/// MTKTextureLoaderOrigin
 TextureLoaderOrigin :: distinct ^NS.String
-
-/// MTKTextureLoaderCallback
-TextureLoaderCallback :: ^Objc_Block(proc "c" (texture: ^MTL.Texture, error: ^NS.Error))
-
-/// MTKTextureLoaderArrayCallback
-TextureLoaderArrayCallback :: ^Objc_Block(proc "c" (textures: ^NS.Array, error: ^NS.Error))
-
-/// MTKModelError
+TextureLoaderCallback :: ^Objc_Block(proc "c" ( texture: ^MTL.Texture, error: ^NS.Error ))
+TextureLoaderArrayCallback :: ^Objc_Block(proc "c" ( textures: ^NS.Array, error: ^NS.Error ))
 ModelError :: distinct ^NS.String
 

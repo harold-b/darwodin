@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSInputStream
-///
 @(objc_class="NSInputStream", objc_superclass=Stream)
 InputStream :: struct { using _: Stream, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=InputStream, objc_selector="read:maxLength:", objc_name="read")
     InputStream_read :: proc(self: ^InputStream, buffer: ^cffi.uint8_t, len: UInteger) -> Integer ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=InputStream, objc_selector="inputStreamWithURL:", objc_name="inputStreamWithURL", objc_is_class_method=true)
     InputStream_inputStreamWithURL :: proc(url: ^URL) -> instancetype ---
 }
+
+
+

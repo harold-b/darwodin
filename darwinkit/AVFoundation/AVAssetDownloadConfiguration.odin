@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetDownloadConfiguration
-///
 @(objc_class="AVAssetDownloadConfiguration", objc_superclass=NS.Object)
 AssetDownloadConfiguration :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetDownloadConfiguration, objc_selector="init", objc_name="init")
     AssetDownloadConfiguration_init :: proc(self: ^AssetDownloadConfiguration) -> instancetype ---
@@ -61,3 +55,6 @@ foreign lib {
     @(objc_type=AssetDownloadConfiguration, objc_selector="setDownloadsInterstitialAssets:", objc_name="setDownloadsInterstitialAssets")
     AssetDownloadConfiguration_setDownloadsInterstitialAssets :: proc(self: ^AssetDownloadConfiguration, downloadsInterstitialAssets: bool) ---
 }
+
+
+

@@ -24,10 +24,10 @@ foreign lib {
     Right_initWithRequirement :: proc(self: ^Right, requirement: ^AuthenticationRequirement) -> instancetype ---
 
     @(objc_type=Right, objc_selector="authorizeWithLocalizedReason:completion:", objc_name="authorizeWithLocalizedReason")
-    Right_authorizeWithLocalizedReason :: proc(self: ^Right, localizedReason: ^NS.String, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Right_authorizeWithLocalizedReason :: proc(self: ^Right, localizedReason: ^NS.String, handler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Right, objc_selector="checkCanAuthorizeWithCompletion:", objc_name="checkCanAuthorizeWithCompletion")
-    Right_checkCanAuthorizeWithCompletion :: proc(self: ^Right, handler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Right_checkCanAuthorizeWithCompletion :: proc(self: ^Right, handler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Right, objc_selector="deauthorizeWithCompletion:", objc_name="deauthorizeWithCompletion")
     Right_deauthorizeWithCompletion :: proc(self: ^Right, handler: ^Objc_Block(proc "c" ())) ---

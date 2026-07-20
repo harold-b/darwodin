@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSPersonNameComponentsFormatter
-///
 @(objc_class="NSPersonNameComponentsFormatter", objc_superclass=Formatter)
 PersonNameComponentsFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PersonNameComponentsFormatter, objc_selector="localizedStringFromPersonNameComponents:style:options:", objc_name="localizedStringFromPersonNameComponents", objc_is_class_method=true)
     PersonNameComponentsFormatter_localizedStringFromPersonNameComponents :: proc(components: ^PersonNameComponents, nameFormatStyle: PersonNameComponentsFormatterStyle, nameOptions: PersonNameComponentsFormatterOptions) -> ^String ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=PersonNameComponentsFormatter, objc_selector="setLocale:", objc_name="setLocale")
     PersonNameComponentsFormatter_setLocale :: proc(self: ^PersonNameComponentsFormatter, locale: ^Locale) ---
 }
+
+
+

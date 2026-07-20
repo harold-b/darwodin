@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureConnection
-///
 @(objc_class="AVCaptureConnection", objc_superclass=NS.Object)
 CaptureConnection :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureConnection, objc_selector="init", objc_name="init")
     CaptureConnection_init :: proc(self: ^CaptureConnection) -> instancetype ---
@@ -160,3 +154,6 @@ foreign lib {
     @(objc_type=CaptureConnection, objc_selector="setCameraIntrinsicMatrixDeliveryEnabled:", objc_name="setCameraIntrinsicMatrixDeliveryEnabled")
     CaptureConnection_setCameraIntrinsicMatrixDeliveryEnabled :: proc(self: ^CaptureConnection, cameraIntrinsicMatrixDeliveryEnabled: bool) ---
 }
+
+
+

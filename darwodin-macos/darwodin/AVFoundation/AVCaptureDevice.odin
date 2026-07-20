@@ -232,7 +232,7 @@ foreign lib {
     CaptureDevice_defaultRectForFocusPointOfInterest :: proc(self: ^CaptureDevice, pointOfInterest: CG.Point) -> CG.Rect ---
 
     @(objc_type=CaptureDevice, objc_selector="setFocusModeLockedWithLensPosition:completionHandler:", objc_name="setFocusModeLockedWithLensPosition")
-    CaptureDevice_setFocusModeLockedWithLensPosition :: proc(self: ^CaptureDevice, lensPosition: cffi.float, handler: ^Objc_Block(proc "c" (syncTime: CM.Time))) ---
+    CaptureDevice_setFocusModeLockedWithLensPosition :: proc(self: ^CaptureDevice, lensPosition: cffi.float, handler: ^Objc_Block(proc "c" ( syncTime: CM.Time ))) ---
 
     @(objc_type=CaptureDevice, objc_selector="setCinematicVideoTrackingFocusWithDetectedObjectID:focusMode:", objc_name="setCinematicVideoTrackingFocusWithDetectedObjectID")
     CaptureDevice_setCinematicVideoTrackingFocusWithDetectedObjectID :: proc(self: ^CaptureDevice, detectedObjectID: NS.Integer, focusMode: CaptureCinematicVideoFocusMode) ---
@@ -319,10 +319,10 @@ foreign lib {
     CaptureDevice_defaultRectForExposurePointOfInterest :: proc(self: ^CaptureDevice, pointOfInterest: CG.Point) -> CG.Rect ---
 
     @(objc_type=CaptureDevice, objc_selector="setExposureModeCustomWithDuration:ISO:completionHandler:", objc_name="setExposureModeCustomWithDuration")
-    CaptureDevice_setExposureModeCustomWithDuration :: proc(self: ^CaptureDevice, duration: CM.Time, ISO: cffi.float, handler: ^Objc_Block(proc "c" (syncTime: CM.Time))) ---
+    CaptureDevice_setExposureModeCustomWithDuration :: proc(self: ^CaptureDevice, duration: CM.Time, ISO: cffi.float, handler: ^Objc_Block(proc "c" ( syncTime: CM.Time ))) ---
 
     @(objc_type=CaptureDevice, objc_selector="setExposureTargetBias:completionHandler:", objc_name="setExposureTargetBias")
-    CaptureDevice_setExposureTargetBias :: proc(self: ^CaptureDevice, bias: cffi.float, handler: ^Objc_Block(proc "c" (syncTime: CM.Time))) ---
+    CaptureDevice_setExposureTargetBias :: proc(self: ^CaptureDevice, bias: cffi.float, handler: ^Objc_Block(proc "c" ( syncTime: CM.Time ))) ---
 
     @(objc_type=CaptureDevice, objc_selector="exposureMode", objc_name="exposureMode")
     CaptureDevice_exposureMode :: proc(self: ^CaptureDevice) -> CaptureExposureMode ---
@@ -403,10 +403,10 @@ foreign lib {
     CaptureDevice_isWhiteBalanceModeSupported :: proc(self: ^CaptureDevice, whiteBalanceMode: CaptureWhiteBalanceMode) -> bool ---
 
     @(objc_type=CaptureDevice, objc_selector="setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues:completionHandler:", objc_name="setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues")
-    CaptureDevice_setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues :: proc(self: ^CaptureDevice, whiteBalanceTemperatureAndTintValues: CaptureWhiteBalanceTemperatureAndTintValues, handler: ^Objc_Block(proc "c" (syncTime: CM.Time))) ---
+    CaptureDevice_setWhiteBalanceModeLockedWithDeviceWhiteBalanceTemperatureAndTintValues :: proc(self: ^CaptureDevice, whiteBalanceTemperatureAndTintValues: CaptureWhiteBalanceTemperatureAndTintValues, handler: ^Objc_Block(proc "c" ( syncTime: CM.Time ))) ---
 
     @(objc_type=CaptureDevice, objc_selector="setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains:completionHandler:", objc_name="setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains")
-    CaptureDevice_setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains :: proc(self: ^CaptureDevice, whiteBalanceGains: CaptureWhiteBalanceGains, handler: ^Objc_Block(proc "c" (syncTime: CM.Time))) ---
+    CaptureDevice_setWhiteBalanceModeLockedWithDeviceWhiteBalanceGains :: proc(self: ^CaptureDevice, whiteBalanceGains: CaptureWhiteBalanceGains, handler: ^Objc_Block(proc "c" ( syncTime: CM.Time ))) ---
 
     @(objc_type=CaptureDevice, objc_selector="chromaticityValuesForDeviceWhiteBalanceGains:", objc_name="chromaticityValuesForDeviceWhiteBalanceGains")
     CaptureDevice_chromaticityValuesForDeviceWhiteBalanceGains :: proc(self: ^CaptureDevice, whiteBalanceGains: CaptureWhiteBalanceGains) -> CaptureWhiteBalanceChromaticityValues ---
@@ -484,7 +484,7 @@ foreign lib {
     CaptureDevice_authorizationStatusForMediaType :: proc(mediaType: ^NS.String) -> AuthorizationStatus ---
 
     @(objc_type=CaptureDevice, objc_selector="requestAccessForMediaType:completionHandler:", objc_name="requestAccessForMediaType", objc_is_class_method=true)
-    CaptureDevice_requestAccessForMediaType :: proc(mediaType: ^NS.String, handler: ^Objc_Block(proc "c" (granted: bool))) ---
+    CaptureDevice_requestAccessForMediaType :: proc(mediaType: ^NS.String, handler: ^Objc_Block(proc "c" ( granted: bool ))) ---
 
     @(objc_type=CaptureDevice, objc_selector="setTransportControlsPlaybackMode:speed:", objc_name="setTransportControlsPlaybackMode")
     CaptureDevice_setTransportControlsPlaybackMode :: proc(self: ^CaptureDevice, mode: CaptureDeviceTransportControlsPlaybackMode, speed: CaptureDeviceTransportControlsSpeed) ---
@@ -622,7 +622,7 @@ foreign lib {
     CaptureDevice_cinematicVideoCaptureSceneMonitoringStatuses :: proc(self: ^CaptureDevice) -> ^NS.Set ---
 
     @(objc_type=CaptureDevice, objc_selector="setDynamicAspectRatio:completionHandler:", objc_name="setDynamicAspectRatio")
-    CaptureDevice_setDynamicAspectRatio :: proc(self: ^CaptureDevice, dynamicAspectRatio: ^NS.String, handler: ^Objc_Block(proc "c" (syncTime: CM.Time, error: ^NS.Error))) ---
+    CaptureDevice_setDynamicAspectRatio :: proc(self: ^CaptureDevice, dynamicAspectRatio: ^NS.String, handler: ^Objc_Block(proc "c" ( syncTime: CM.Time, error: ^NS.Error ))) ---
 
     @(objc_type=CaptureDevice, objc_selector="dynamicAspectRatio", objc_name="dynamicAspectRatio")
     CaptureDevice_dynamicAspectRatio :: proc(self: ^CaptureDevice) -> ^NS.String ---

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVExternalSyncDeviceDiscoverySession
-///
 @(objc_class="AVExternalSyncDeviceDiscoverySession", objc_superclass=NS.Object)
 ExternalSyncDeviceDiscoverySession :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExternalSyncDeviceDiscoverySession, objc_selector="init", objc_name="init")
     ExternalSyncDeviceDiscoverySession_init :: proc(self: ^ExternalSyncDeviceDiscoverySession) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=ExternalSyncDeviceDiscoverySession, objc_selector="devices", objc_name="devices")
     ExternalSyncDeviceDiscoverySession_devices :: proc(self: ^ExternalSyncDeviceDiscoverySession) -> ^NS.Array ---
 }
+
+
+

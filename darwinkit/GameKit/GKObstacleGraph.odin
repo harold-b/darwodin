@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKObstacleGraph
-///
 @(objc_class="GKObstacleGraph", objc_superclass=Graph)
 ObstacleGraph :: struct { using _: Graph, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ObstacleGraph, objc_selector="graphWithObstacles:bufferRadius:", objc_name="graphWithObstacles_bufferRadius", objc_is_class_method=true)
     ObstacleGraph_graphWithObstacles_bufferRadius :: proc(obstacles: ^NS.Array, bufferRadius: cffi.float) -> instancetype ---
@@ -68,6 +62,8 @@ foreign lib {
     @(objc_type=ObstacleGraph, objc_selector="bufferRadius", objc_name="bufferRadius")
     ObstacleGraph_bufferRadius :: proc(self: ^ObstacleGraph) -> cffi.float ---
 }
+
+
 
 @(objc_type=ObstacleGraph, objc_name="graphWithObstacles")
 ObstacleGraph_graphWithObstacles :: proc {

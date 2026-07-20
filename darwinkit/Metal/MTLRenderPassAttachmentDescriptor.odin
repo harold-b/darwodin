@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPassAttachmentDescriptor
-///
 @(objc_class="MTLRenderPassAttachmentDescriptor", objc_superclass=NS.Object)
 RenderPassAttachmentDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPassAttachmentDescriptor, objc_selector="texture", objc_name="texture")
     RenderPassAttachmentDescriptor_texture :: proc(self: ^RenderPassAttachmentDescriptor) -> ^Texture ---
@@ -89,3 +83,6 @@ foreign lib {
     @(objc_type=RenderPassAttachmentDescriptor, objc_selector="setStoreActionOptions:", objc_name="setStoreActionOptions")
     RenderPassAttachmentDescriptor_setStoreActionOptions :: proc(self: ^RenderPassAttachmentDescriptor, storeActionOptions: StoreActionOptions) ---
 }
+
+
+

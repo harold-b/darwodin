@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableMetadataItem
-///
 @(objc_class="AVMutableMetadataItem", objc_superclass=MetadataItem)
 MutableMetadataItem :: struct { using _: MetadataItem, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableMetadataItem, objc_selector="metadataItem", objc_name="metadataItem", objc_is_class_method=true)
     MutableMetadataItem_metadataItem :: proc() -> ^MutableMetadataItem ---
@@ -91,3 +85,6 @@ foreign lib {
     @(objc_type=MutableMetadataItem, objc_selector="setKey:", objc_name="setKey")
     MutableMetadataItem_setKey :: proc(self: ^MutableMetadataItem, key: ^id) ---
 }
+
+
+

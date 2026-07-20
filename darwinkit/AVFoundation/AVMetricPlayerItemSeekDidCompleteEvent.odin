@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricPlayerItemSeekDidCompleteEvent
-///
 @(objc_class="AVMetricPlayerItemSeekDidCompleteEvent", objc_superclass=MetricPlayerItemRateChangeEvent)
 MetricPlayerItemSeekDidCompleteEvent :: struct { using _: MetricPlayerItemRateChangeEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="init", objc_name="init")
     MetricPlayerItemSeekDidCompleteEvent_init :: proc(self: ^MetricPlayerItemSeekDidCompleteEvent) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=MetricPlayerItemSeekDidCompleteEvent, objc_selector="didSeekInBuffer", objc_name="didSeekInBuffer")
     MetricPlayerItemSeekDidCompleteEvent_didSeekInBuffer :: proc(self: ^MetricPlayerItemSeekDidCompleteEvent) -> bool ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitDelay
-///
 @(objc_class="AVAudioUnitDelay", objc_superclass=AudioUnitEffect)
 AudioUnitDelay :: struct { using _: AudioUnitEffect, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitDelay, objc_selector="delayTime", objc_name="delayTime")
     AudioUnitDelay_delayTime :: proc(self: ^AudioUnitDelay) -> NS.TimeInterval ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=AudioUnitDelay, objc_selector="setWetDryMix:", objc_name="setWetDryMix")
     AudioUnitDelay_setWetDryMix :: proc(self: ^AudioUnitDelay, wetDryMix: cffi.float) ---
 }
+
+
+

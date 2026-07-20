@@ -1,0 +1,50 @@
+package darwodin_MapKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../AppKit"
+import CL "../CoreLocation"
+
+
+
+///
+/// MKReverseGeocodingRequest
+///
+@(objc_class="MKReverseGeocodingRequest", objc_superclass=NS.Object)
+ReverseGeocodingRequest :: struct { using _: NS.Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=ReverseGeocodingRequest, objc_selector="init", objc_name="init")
+    ReverseGeocodingRequest_init :: proc(self: ^ReverseGeocodingRequest) -> instancetype ---
+
+    @(objc_type=ReverseGeocodingRequest, objc_selector="new", objc_name="new", objc_is_class_method=true)
+    ReverseGeocodingRequest_new :: proc() -> ^ReverseGeocodingRequest ---
+
+    @(objc_type=ReverseGeocodingRequest, objc_selector="initWithLocation:", objc_name="initWithLocation")
+    ReverseGeocodingRequest_initWithLocation :: proc(self: ^ReverseGeocodingRequest, location: ^CL.Location) -> instancetype ---
+
+    @(objc_type=ReverseGeocodingRequest, objc_selector="getMapItemsWithCompletionHandler:", objc_name="getMapItemsWithCompletionHandler")
+    ReverseGeocodingRequest_getMapItemsWithCompletionHandler :: proc(self: ^ReverseGeocodingRequest, completionHandler: ^Objc_Block(proc "c" ( mapItems: ^NS.Array, error: ^NS.Error ))) ---
+
+    @(objc_type=ReverseGeocodingRequest, objc_selector="cancel", objc_name="cancel")
+    ReverseGeocodingRequest_cancel :: proc(self: ^ReverseGeocodingRequest) ---
+
+    @(objc_type=ReverseGeocodingRequest, objc_selector="isCancelled", objc_name="isCancelled")
+    ReverseGeocodingRequest_isCancelled :: proc(self: ^ReverseGeocodingRequest) -> bool ---
+
+    @(objc_type=ReverseGeocodingRequest, objc_selector="isLoading", objc_name="isLoading")
+    ReverseGeocodingRequest_isLoading :: proc(self: ^ReverseGeocodingRequest) -> bool ---
+
+    @(objc_type=ReverseGeocodingRequest, objc_selector="location", objc_name="location")
+    ReverseGeocodingRequest_location :: proc(self: ^ReverseGeocodingRequest) -> ^CL.Location ---
+
+    @(objc_type=ReverseGeocodingRequest, objc_selector="preferredLocale", objc_name="preferredLocale")
+    ReverseGeocodingRequest_preferredLocale :: proc(self: ^ReverseGeocodingRequest) -> ^NS.Locale ---
+
+    @(objc_type=ReverseGeocodingRequest, objc_selector="setPreferredLocale:", objc_name="setPreferredLocale")
+    ReverseGeocodingRequest_setPreferredLocale :: proc(self: ^ReverseGeocodingRequest, preferredLocale: ^NS.Locale) ---
+}

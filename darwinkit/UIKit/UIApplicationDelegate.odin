@@ -102,19 +102,19 @@ foreign lib {
     ApplicationDelegate_application_handleActionWithIdentifier_forLocalNotification_withResponseInfo_completionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, notification: ^LocalNotification, responseInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:didReceiveRemoteNotification:fetchCompletionHandler:", objc_name="application_didReceiveRemoteNotification_fetchCompletionHandler")
-    ApplicationDelegate_application_didReceiveRemoteNotification_fetchCompletionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, userInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" (result: BackgroundFetchResult))) ---
+    ApplicationDelegate_application_didReceiveRemoteNotification_fetchCompletionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, userInfo: ^NS.Dictionary, completionHandler: ^Objc_Block(proc "c" ( result: BackgroundFetchResult ))) ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:performFetchWithCompletionHandler:", objc_name="application_performFetchWithCompletionHandler")
-    ApplicationDelegate_application_performFetchWithCompletionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, completionHandler: ^Objc_Block(proc "c" (result: BackgroundFetchResult))) ---
+    ApplicationDelegate_application_performFetchWithCompletionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, completionHandler: ^Objc_Block(proc "c" ( result: BackgroundFetchResult ))) ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:performActionForShortcutItem:completionHandler:", objc_name="application_performActionForShortcutItem_completionHandler")
-    ApplicationDelegate_application_performActionForShortcutItem_completionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" (succeeded: bool))) ---
+    ApplicationDelegate_application_performActionForShortcutItem_completionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, shortcutItem: ^ApplicationShortcutItem, completionHandler: ^Objc_Block(proc "c" ( succeeded: bool ))) ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:handleEventsForBackgroundURLSession:completionHandler:", objc_name="application_handleEventsForBackgroundURLSession_completionHandler")
     ApplicationDelegate_application_handleEventsForBackgroundURLSession_completionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, identifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:handleWatchKitExtensionRequest:reply:", objc_name="application_handleWatchKitExtensionRequest_reply")
-    ApplicationDelegate_application_handleWatchKitExtensionRequest_reply :: proc(self: ^ApplicationDelegate, application: ^Application, userInfo: ^NS.Dictionary, reply: ^Objc_Block(proc "c" (replyInfo: ^NS.Dictionary))) ---
+    ApplicationDelegate_application_handleWatchKitExtensionRequest_reply :: proc(self: ^ApplicationDelegate, application: ^Application, userInfo: ^NS.Dictionary, reply: ^Objc_Block(proc "c" ( replyInfo: ^NS.Dictionary ))) ---
 
     @(objc_type=ApplicationDelegate, objc_selector="applicationShouldRequestHealthAuthorization:", objc_name="applicationShouldRequestHealthAuthorization")
     ApplicationDelegate_applicationShouldRequestHealthAuthorization :: proc(self: ^ApplicationDelegate, application: ^Application) ---
@@ -123,7 +123,7 @@ foreign lib {
     ApplicationDelegate_application_handlerForIntent :: proc(self: ^ApplicationDelegate, application: ^Application, intent: ^INIntent) -> id ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:handleIntent:completionHandler:", objc_name="application_handleIntent_completionHandler")
-    ApplicationDelegate_application_handleIntent_completionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, intent: ^INIntent, completionHandler: ^Objc_Block(proc "c" (intentResponse: ^INIntentResponse))) ---
+    ApplicationDelegate_application_handleIntent_completionHandler :: proc(self: ^ApplicationDelegate, application: ^Application, intent: ^INIntent, completionHandler: ^Objc_Block(proc "c" ( intentResponse: ^INIntentResponse ))) ---
 
     @(objc_type=ApplicationDelegate, objc_selector="applicationProtectedDataWillBecomeUnavailable:", objc_name="applicationProtectedDataWillBecomeUnavailable")
     ApplicationDelegate_applicationProtectedDataWillBecomeUnavailable :: proc(self: ^ApplicationDelegate, application: ^Application) ---
@@ -162,7 +162,7 @@ foreign lib {
     ApplicationDelegate_application_willContinueUserActivityWithType :: proc(self: ^ApplicationDelegate, application: ^Application, userActivityType: ^NS.String) -> bool ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:continueUserActivity:restorationHandler:", objc_name="application_continueUserActivity_restorationHandler")
-    ApplicationDelegate_application_continueUserActivity_restorationHandler :: proc(self: ^ApplicationDelegate, application: ^Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" (restorableObjects: ^NS.Array))) -> bool ---
+    ApplicationDelegate_application_continueUserActivity_restorationHandler :: proc(self: ^ApplicationDelegate, application: ^Application, userActivity: ^NS.UserActivity, restorationHandler: ^Objc_Block(proc "c" ( restorableObjects: ^NS.Array ))) -> bool ---
 
     @(objc_type=ApplicationDelegate, objc_selector="application:didFailToContinueUserActivityWithType:error:", objc_name="application_didFailToContinueUserActivityWithType_error")
     ApplicationDelegate_application_didFailToContinueUserActivityWithType_error :: proc(self: ^ApplicationDelegate, application: ^Application, userActivityType: ^NS.String, error: ^NS.Error) ---

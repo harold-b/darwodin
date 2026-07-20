@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureDeviceDiscoverySession
-///
 @(objc_class="AVCaptureDeviceDiscoverySession", objc_superclass=NS.Object)
 CaptureDeviceDiscoverySession :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeviceDiscoverySession, objc_selector="init", objc_name="init")
     CaptureDeviceDiscoverySession_init :: proc(self: ^CaptureDeviceDiscoverySession) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=CaptureDeviceDiscoverySession, objc_selector="supportedMultiCamDeviceSets", objc_name="supportedMultiCamDeviceSets")
     CaptureDeviceDiscoverySession_supportedMultiCamDeviceSets :: proc(self: ^CaptureDeviceDiscoverySession) -> ^NS.Array ---
 }
+
+
+

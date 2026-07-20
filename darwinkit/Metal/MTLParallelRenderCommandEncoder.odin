@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLParallelRenderCommandEncoder
-///
 @(objc_class="MTLParallelRenderCommandEncoder")
 ParallelRenderCommandEncoder :: struct { using _: intrinsics.objc_object, 
     using _: CommandEncoder,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ParallelRenderCommandEncoder, objc_selector="renderCommandEncoder", objc_name="renderCommandEncoder")
     ParallelRenderCommandEncoder_renderCommandEncoder :: proc(self: ^ParallelRenderCommandEncoder) -> ^RenderCommandEncoder ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=ParallelRenderCommandEncoder, objc_selector="setStencilStoreActionOptions:", objc_name="setStencilStoreActionOptions")
     ParallelRenderCommandEncoder_setStencilStoreActionOptions :: proc(self: ^ParallelRenderCommandEncoder, storeActionOptions: StoreActionOptions) ---
 }
+
+
+

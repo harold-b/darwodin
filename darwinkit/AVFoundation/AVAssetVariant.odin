@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetVariant
-///
 @(objc_class="AVAssetVariant", objc_superclass=NS.Object)
 AssetVariant :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetVariant, objc_selector="init", objc_name="init")
     AssetVariant_init :: proc(self: ^AssetVariant) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=AssetVariant, objc_selector="URL", objc_name="URL")
     AssetVariant_URL :: proc(self: ^AssetVariant) -> ^NS.URL ---
 }
+
+
+

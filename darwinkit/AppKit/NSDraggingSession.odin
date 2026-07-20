@@ -25,7 +25,7 @@ DraggingSession :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=DraggingSession, objc_selector="enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:", objc_name="enumerateDraggingItemsWithOptions")
-    DraggingSession_enumerateDraggingItemsWithOptions :: proc(self: ^DraggingSession, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool))) ---
+    DraggingSession_enumerateDraggingItemsWithOptions :: proc(self: ^DraggingSession, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" ( draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool ))) ---
 
     @(objc_type=DraggingSession, objc_selector="draggingFormation", objc_name="draggingFormation")
     DraggingSession_draggingFormation :: proc(self: ^DraggingSession) -> DraggingFormation ---

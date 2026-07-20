@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKShareParticipant
-///
 @(objc_class="CKShareParticipant", objc_superclass=NS.Object)
 ShareParticipant :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ShareParticipant, objc_selector="init", objc_name="init")
     ShareParticipant_init :: proc(self: ^ShareParticipant) -> instancetype ---
@@ -62,3 +56,6 @@ foreign lib {
     @(objc_type=ShareParticipant, objc_selector="dateAddedToShare", objc_name="dateAddedToShare")
     ShareParticipant_dateAddedToShare :: proc(self: ^ShareParticipant) -> ^NS.Date ---
 }
+
+
+

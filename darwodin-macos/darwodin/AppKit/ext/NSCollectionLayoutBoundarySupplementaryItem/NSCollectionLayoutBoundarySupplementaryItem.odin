@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSCollectionLayoutSupplementaryItem"
 
 VTable :: struct {
     super: NSCollectionLayoutSupplementaryItem.VTable,
-    boundarySupplementaryItemWithLayoutSize_elementKind_alignment: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment) -> instancetype,
-    boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment, absoluteOffset: CG.Point) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutBoundarySupplementaryItem,
-    extendsBoundary: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem) -> bool,
-    setExtendsBoundary: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem, extendsBoundary: bool),
-    pinToVisibleBounds: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem) -> bool,
-    setPinToVisibleBounds: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem, pinToVisibleBounds: bool),
-    alignment: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem) -> AK.RectAlignment,
-    offset: proc(self: ^AK.CollectionLayoutBoundarySupplementaryItem) -> CG.Point,
+    boundarySupplementaryItemWithLayoutSize_elementKind_alignment: proc(layoutSize: ^NS.CollectionLayoutSize, elementKind: ^NS.String, alignment: NS.RectAlignment) -> instancetype,
+    boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset: proc(layoutSize: ^NS.CollectionLayoutSize, elementKind: ^NS.String, alignment: NS.RectAlignment, absoluteOffset: CG.Point) -> instancetype,
+    init: proc(self: ^NS.CollectionLayoutBoundarySupplementaryItem) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutBoundarySupplementaryItem,
+    extendsBoundary: proc(self: ^NS.CollectionLayoutBoundarySupplementaryItem) -> bool,
+    setExtendsBoundary: proc(self: ^NS.CollectionLayoutBoundarySupplementaryItem, extendsBoundary: bool),
+    pinToVisibleBounds: proc(self: ^NS.CollectionLayoutBoundarySupplementaryItem) -> bool,
+    setPinToVisibleBounds: proc(self: ^NS.CollectionLayoutBoundarySupplementaryItem, pinToVisibleBounds: bool),
+    alignment: proc(self: ^NS.CollectionLayoutBoundarySupplementaryItem) -> NS.RectAlignment,
+    offset: proc(self: ^NS.CollectionLayoutBoundarySupplementaryItem) -> CG.Point,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionLayoutSupplementaryItem.extend(cls, &vt.super)
 
     if vt.boundarySupplementaryItemWithLayoutSize_elementKind_alignment != nil {
-        boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment) -> instancetype {
+        boundarySupplementaryItemWithLayoutSize_elementKind_alignment :: proc "c" (self: Class, _: SEL, layoutSize: ^NS.CollectionLayoutSize, elementKind: ^NS.String, alignment: NS.RectAlignment) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:"), auto_cast boundarySupplementaryItemWithLayoutSize_elementKind_alignment, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset != nil {
-        boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, alignment: AK.RectAlignment, absoluteOffset: CG.Point) -> instancetype {
+        boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset :: proc "c" (self: Class, _: SEL, layoutSize: ^NS.CollectionLayoutSize, elementKind: ^NS.String, alignment: NS.RectAlignment, absoluteOffset: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("boundarySupplementaryItemWithLayoutSize:elementKind:alignment:absoluteOffset:"), auto_cast boundarySupplementaryItemWithLayoutSize_elementKind_alignment_absoluteOffset, "@#:@@l{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutBoundarySupplementaryItem {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutBoundarySupplementaryItem {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.extendsBoundary != nil {
-        extendsBoundary :: proc "c" (self: ^AK.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> bool {
+        extendsBoundary :: proc "c" (self: ^NS.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("extendsBoundary"), auto_cast extendsBoundary, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setExtendsBoundary != nil {
-        setExtendsBoundary :: proc "c" (self: ^AK.CollectionLayoutBoundarySupplementaryItem, _: SEL, extendsBoundary: bool) {
+        setExtendsBoundary :: proc "c" (self: ^NS.CollectionLayoutBoundarySupplementaryItem, _: SEL, extendsBoundary: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setExtendsBoundary:"), auto_cast setExtendsBoundary, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.pinToVisibleBounds != nil {
-        pinToVisibleBounds :: proc "c" (self: ^AK.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> bool {
+        pinToVisibleBounds :: proc "c" (self: ^NS.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pinToVisibleBounds"), auto_cast pinToVisibleBounds, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setPinToVisibleBounds != nil {
-        setPinToVisibleBounds :: proc "c" (self: ^AK.CollectionLayoutBoundarySupplementaryItem, _: SEL, pinToVisibleBounds: bool) {
+        setPinToVisibleBounds :: proc "c" (self: ^NS.CollectionLayoutBoundarySupplementaryItem, _: SEL, pinToVisibleBounds: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPinToVisibleBounds:"), auto_cast setPinToVisibleBounds, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.alignment != nil {
-        alignment :: proc "c" (self: ^AK.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> AK.RectAlignment {
+        alignment :: proc "c" (self: ^NS.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> NS.RectAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignment"), auto_cast alignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.offset != nil {
-        offset :: proc "c" (self: ^AK.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> CG.Point {
+        offset :: proc "c" (self: ^NS.CollectionLayoutBoundarySupplementaryItem, _: SEL) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

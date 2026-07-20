@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureAudioFileOutput
-///
 @(objc_class="AVCaptureAudioFileOutput", objc_superclass=CaptureFileOutput)
 CaptureAudioFileOutput :: struct { using _: CaptureFileOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureAudioFileOutput, objc_selector="init", objc_name="init")
     CaptureAudioFileOutput_init :: proc(self: ^CaptureAudioFileOutput) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=CaptureAudioFileOutput, objc_selector="setAudioSettings:", objc_name="setAudioSettings")
     CaptureAudioFileOutput_setAudioSettings :: proc(self: ^CaptureAudioFileOutput, audioSettings: ^NS.Dictionary) ---
 }
+
+
+

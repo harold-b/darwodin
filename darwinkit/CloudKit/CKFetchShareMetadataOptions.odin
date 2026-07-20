@@ -7,13 +7,6 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKFetchShareMetadataOptions
-///
 @(objc_class="CKFetchShareMetadataOptions")
 FetchShareMetadataOptions :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

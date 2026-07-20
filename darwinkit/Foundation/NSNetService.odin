@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSNetService
-///
 @(objc_class="NSNetService", objc_superclass=Object)
 NetService :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=NetService, objc_selector="initWithDomain:type:name:port:", objc_name="initWithDomain_type_name_port")
     NetService_initWithDomain_type_name_port :: proc(self: ^NetService, domain: ^String, type: ^String, name: ^String, port: cffi.int) -> instancetype ---
@@ -97,6 +91,8 @@ foreign lib {
     @(objc_type=NetService, objc_selector="port", objc_name="port")
     NetService_port :: proc(self: ^NetService) -> Integer ---
 }
+
+
 
 @(objc_type=NetService, objc_name="initWithDomain")
 NetService_initWithDomain :: proc {

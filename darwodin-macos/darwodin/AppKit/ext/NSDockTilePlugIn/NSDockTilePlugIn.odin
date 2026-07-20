@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    setDockTile: proc(self: ^AK.DockTilePlugIn, dockTile: ^AK.DockTile),
-    dockMenu: proc(self: ^AK.DockTilePlugIn) -> ^AK.Menu,
+    setDockTile: proc(self: ^NS.DockTilePlugIn, dockTile: ^NS.DockTile),
+    dockMenu: proc(self: ^NS.DockTilePlugIn) -> ^NS.Menu,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.setDockTile != nil {
-        setDockTile :: proc "c" (self: ^AK.DockTilePlugIn, _: SEL, dockTile: ^AK.DockTile) {
+        setDockTile :: proc "c" (self: ^NS.DockTilePlugIn, _: SEL, dockTile: ^NS.DockTile) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDockTile:"), auto_cast setDockTile, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.dockMenu != nil {
-        dockMenu :: proc "c" (self: ^AK.DockTilePlugIn, _: SEL) -> ^AK.Menu {
+        dockMenu :: proc "c" (self: ^NS.DockTilePlugIn, _: SEL) -> ^NS.Menu {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

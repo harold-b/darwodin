@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLArgumentEncoder
-///
 @(objc_class="MTLArgumentEncoder")
 ArgumentEncoder :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ArgumentEncoder, objc_selector="setArgumentBuffer:offset:", objc_name="setArgumentBuffer_offset")
     ArgumentEncoder_setArgumentBuffer_offset :: proc(self: ^ArgumentEncoder, argumentBuffer: ^Buffer, offset: NS.UInteger) ---
@@ -107,6 +101,8 @@ foreign lib {
     @(objc_type=ArgumentEncoder, objc_selector="alignment", objc_name="alignment")
     ArgumentEncoder_alignment :: proc(self: ^ArgumentEncoder) -> NS.UInteger ---
 }
+
+
 
 @(objc_type=ArgumentEncoder, objc_name="setArgumentBuffer")
 ArgumentEncoder_setArgumentBuffer :: proc {

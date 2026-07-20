@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerPlaybackCoordinator
-///
 @(objc_class="AVPlayerPlaybackCoordinator", objc_superclass=PlaybackCoordinator)
 PlayerPlaybackCoordinator :: struct { using _: PlaybackCoordinator, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerPlaybackCoordinator, objc_selector="init", objc_name="init")
     PlayerPlaybackCoordinator_init :: proc(self: ^PlayerPlaybackCoordinator) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=PlayerPlaybackCoordinator, objc_selector="playbackCoordinationMedium", objc_name="playbackCoordinationMedium")
     PlayerPlaybackCoordinator_playbackCoordinationMedium :: proc(self: ^PlayerPlaybackCoordinator) -> ^PlaybackCoordinationMedium ---
 }
+
+
+

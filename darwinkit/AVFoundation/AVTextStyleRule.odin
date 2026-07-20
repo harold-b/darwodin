@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVTextStyleRule
-///
 @(objc_class="AVTextStyleRule", objc_superclass=NS.Object)
 TextStyleRule :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextStyleRule, objc_selector="init", objc_name="init")
     TextStyleRule_init :: proc(self: ^TextStyleRule) -> instancetype ---
@@ -54,6 +48,8 @@ foreign lib {
     @(objc_type=TextStyleRule, objc_selector="textSelector", objc_name="textSelector")
     TextStyleRule_textSelector :: proc(self: ^TextStyleRule) -> ^NS.String ---
 }
+
+
 
 @(objc_type=TextStyleRule, objc_name="textStyleRuleWithTextMarkupAttributes")
 TextStyleRule_textStyleRuleWithTextMarkupAttributes :: proc {

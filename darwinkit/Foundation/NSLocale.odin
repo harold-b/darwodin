@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSLocale
-///
 @(objc_class="NSLocale", objc_superclass=Object)
 Locale :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Locale, objc_selector="objectForKey:", objc_name="objectForKey")
     Locale_objectForKey :: proc(self: ^Locale, key: ^String) -> id ---
@@ -178,3 +172,6 @@ foreign lib {
     @(objc_type=Locale, objc_selector="preferredLanguages", objc_name="preferredLanguages", objc_is_class_method=true)
     Locale_preferredLanguages :: proc() -> ^Array ---
 }
+
+
+

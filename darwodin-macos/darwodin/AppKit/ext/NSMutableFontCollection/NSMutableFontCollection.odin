@@ -20,23 +20,23 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSFontCollection"
 
 VTable :: struct {
     super: NSFontCollection.VTable,
-    fontCollectionWithDescriptors: proc(queryDescriptors: ^NS.Array) -> ^AK.MutableFontCollection,
-    fontCollectionWithLocale: proc(locale: ^NS.Locale) -> ^AK.MutableFontCollection,
-    fontCollectionWithName_: proc(name: ^NS.String) -> ^AK.MutableFontCollection,
-    fontCollectionWithName_visibility: proc(name: ^NS.String, visibility: AK.FontCollectionVisibility) -> ^AK.MutableFontCollection,
-    addQueryForDescriptors: proc(self: ^AK.MutableFontCollection, descriptors: ^NS.Array),
-    removeQueryForDescriptors: proc(self: ^AK.MutableFontCollection, descriptors: ^NS.Array),
-    fontCollectionWithAllAvailableDescriptors: proc() -> ^AK.MutableFontCollection,
-    queryDescriptors: proc(self: ^AK.MutableFontCollection) -> ^NS.Array,
-    setQueryDescriptors: proc(self: ^AK.MutableFontCollection, queryDescriptors: ^NS.Array),
-    exclusionDescriptors: proc(self: ^AK.MutableFontCollection) -> ^NS.Array,
-    setExclusionDescriptors: proc(self: ^AK.MutableFontCollection, exclusionDescriptors: ^NS.Array),
+    fontCollectionWithDescriptors: proc(queryDescriptors: ^NS.Array) -> ^NS.MutableFontCollection,
+    fontCollectionWithLocale: proc(locale: ^NS.Locale) -> ^NS.MutableFontCollection,
+    fontCollectionWithName_: proc(name: ^NS.String) -> ^NS.MutableFontCollection,
+    fontCollectionWithName_visibility: proc(name: ^NS.String, visibility: NS.FontCollectionVisibility) -> ^NS.MutableFontCollection,
+    addQueryForDescriptors: proc(self: ^NS.MutableFontCollection, descriptors: ^NS.Array),
+    removeQueryForDescriptors: proc(self: ^NS.MutableFontCollection, descriptors: ^NS.Array),
+    fontCollectionWithAllAvailableDescriptors: proc() -> ^NS.MutableFontCollection,
+    queryDescriptors: proc(self: ^NS.MutableFontCollection) -> ^NS.Array,
+    setQueryDescriptors: proc(self: ^NS.MutableFontCollection, queryDescriptors: ^NS.Array),
+    exclusionDescriptors: proc(self: ^NS.MutableFontCollection) -> ^NS.Array,
+    setExclusionDescriptors: proc(self: ^NS.MutableFontCollection, exclusionDescriptors: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSFontCollection.extend(cls, &vt.super)
 
     if vt.fontCollectionWithDescriptors != nil {
-        fontCollectionWithDescriptors :: proc "c" (self: Class, _: SEL, queryDescriptors: ^NS.Array) -> ^AK.MutableFontCollection {
+        fontCollectionWithDescriptors :: proc "c" (self: Class, _: SEL, queryDescriptors: ^NS.Array) -> ^NS.MutableFontCollection {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontCollectionWithDescriptors:"), auto_cast fontCollectionWithDescriptors, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.fontCollectionWithLocale != nil {
-        fontCollectionWithLocale :: proc "c" (self: Class, _: SEL, locale: ^NS.Locale) -> ^AK.MutableFontCollection {
+        fontCollectionWithLocale :: proc "c" (self: Class, _: SEL, locale: ^NS.Locale) -> ^NS.MutableFontCollection {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontCollectionWithLocale:"), auto_cast fontCollectionWithLocale, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.fontCollectionWithName_ != nil {
-        fontCollectionWithName_ :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^AK.MutableFontCollection {
+        fontCollectionWithName_ :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^NS.MutableFontCollection {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontCollectionWithName:"), auto_cast fontCollectionWithName_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.fontCollectionWithName_visibility != nil {
-        fontCollectionWithName_visibility :: proc "c" (self: Class, _: SEL, name: ^NS.String, visibility: AK.FontCollectionVisibility) -> ^AK.MutableFontCollection {
+        fontCollectionWithName_visibility :: proc "c" (self: Class, _: SEL, name: ^NS.String, visibility: NS.FontCollectionVisibility) -> ^NS.MutableFontCollection {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontCollectionWithName:visibility:"), auto_cast fontCollectionWithName_visibility, "@#:@L") do panic("Failed to register objC method.")
     }
     if vt.addQueryForDescriptors != nil {
-        addQueryForDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL, descriptors: ^NS.Array) {
+        addQueryForDescriptors :: proc "c" (self: ^NS.MutableFontCollection, _: SEL, descriptors: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addQueryForDescriptors:"), auto_cast addQueryForDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.removeQueryForDescriptors != nil {
-        removeQueryForDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL, descriptors: ^NS.Array) {
+        removeQueryForDescriptors :: proc "c" (self: ^NS.MutableFontCollection, _: SEL, descriptors: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeQueryForDescriptors:"), auto_cast removeQueryForDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.fontCollectionWithAllAvailableDescriptors != nil {
-        fontCollectionWithAllAvailableDescriptors :: proc "c" (self: Class, _: SEL) -> ^AK.MutableFontCollection {
+        fontCollectionWithAllAvailableDescriptors :: proc "c" (self: Class, _: SEL) -> ^NS.MutableFontCollection {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontCollectionWithAllAvailableDescriptors"), auto_cast fontCollectionWithAllAvailableDescriptors, "@#:") do panic("Failed to register objC method.")
     }
     if vt.queryDescriptors != nil {
-        queryDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL) -> ^NS.Array {
+        queryDescriptors :: proc "c" (self: ^NS.MutableFontCollection, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("queryDescriptors"), auto_cast queryDescriptors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setQueryDescriptors != nil {
-        setQueryDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL, queryDescriptors: ^NS.Array) {
+        setQueryDescriptors :: proc "c" (self: ^NS.MutableFontCollection, _: SEL, queryDescriptors: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setQueryDescriptors:"), auto_cast setQueryDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.exclusionDescriptors != nil {
-        exclusionDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL) -> ^NS.Array {
+        exclusionDescriptors :: proc "c" (self: ^NS.MutableFontCollection, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("exclusionDescriptors"), auto_cast exclusionDescriptors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setExclusionDescriptors != nil {
-        setExclusionDescriptors :: proc "c" (self: ^AK.MutableFontCollection, _: SEL, exclusionDescriptors: ^NS.Array) {
+        setExclusionDescriptors :: proc "c" (self: ^NS.MutableFontCollection, _: SEL, exclusionDescriptors: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

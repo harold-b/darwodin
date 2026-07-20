@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSNetServiceBrowserDelegate
-///
 @(objc_class="NSNetServiceBrowserDelegate")
 NetServiceBrowserDelegate :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=NetServiceBrowserDelegate, objc_selector="netServiceBrowserWillSearch:", objc_name="netServiceBrowserWillSearch")
     NetServiceBrowserDelegate_netServiceBrowserWillSearch :: proc(self: ^NetServiceBrowserDelegate, browser: ^NetServiceBrowser) ---
@@ -42,4 +36,6 @@ foreign lib {
     @(objc_type=NetServiceBrowserDelegate, objc_selector="netServiceBrowser:didRemoveService:moreComing:", objc_name="netServiceBrowser_didRemoveService_moreComing")
     NetServiceBrowserDelegate_netServiceBrowser_didRemoveService_moreComing :: proc(self: ^NetServiceBrowserDelegate, browser: ^NetServiceBrowser, service: ^NetService, moreComing: bool) ---
 }
+
+
 

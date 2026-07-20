@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLAccelerationStructureMotionTriangleGeometryDescriptor
-///
 @(objc_class="MTLAccelerationStructureMotionTriangleGeometryDescriptor", objc_superclass=AccelerationStructureGeometryDescriptor)
 AccelerationStructureMotionTriangleGeometryDescriptor :: struct { using _: AccelerationStructureGeometryDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccelerationStructureMotionTriangleGeometryDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
     AccelerationStructureMotionTriangleGeometryDescriptor_descriptor :: proc() -> instancetype ---
@@ -84,3 +78,6 @@ foreign lib {
     @(objc_type=AccelerationStructureMotionTriangleGeometryDescriptor, objc_selector="setTransformationMatrixLayout:", objc_name="setTransformationMatrixLayout")
     AccelerationStructureMotionTriangleGeometryDescriptor_setTransformationMatrixLayout :: proc(self: ^AccelerationStructureMotionTriangleGeometryDescriptor, transformationMatrixLayout: MatrixLayout) ---
 }
+
+
+

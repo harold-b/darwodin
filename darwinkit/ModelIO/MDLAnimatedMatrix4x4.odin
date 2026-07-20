@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAnimatedMatrix4x4
-///
 @(objc_class="MDLAnimatedMatrix4x4", objc_superclass=AnimatedValue)
 AnimatedMatrix4x4 :: struct { using _: AnimatedValue, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimatedMatrix4x4, objc_selector="setFloat4x4:atTime:", objc_name="setFloat4x4")
     AnimatedMatrix4x4_setFloat4x4 :: proc(self: ^AnimatedMatrix4x4, value: matrix[4,4]f32, time: NS.TimeInterval) ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=AnimatedMatrix4x4, objc_selector="getDouble4x4Array:maxCount:", objc_name="getDouble4x4Array")
     AnimatedMatrix4x4_getDouble4x4Array :: proc(self: ^AnimatedMatrix4x4, valuesArray: ^matrix[4,4]f64, maxCount: NS.UInteger) -> NS.UInteger ---
 }
+
+
+

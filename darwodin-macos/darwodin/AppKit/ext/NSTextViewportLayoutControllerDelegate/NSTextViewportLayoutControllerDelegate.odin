@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    viewportBoundsForTextViewportLayoutController: proc(self: ^AK.TextViewportLayoutControllerDelegate, textViewportLayoutController: ^AK.TextViewportLayoutController) -> CG.Rect,
-    textViewportLayoutController: proc(self: ^AK.TextViewportLayoutControllerDelegate, textViewportLayoutController: ^AK.TextViewportLayoutController, textLayoutFragment: ^AK.TextLayoutFragment),
-    textViewportLayoutControllerWillLayout: proc(self: ^AK.TextViewportLayoutControllerDelegate, textViewportLayoutController: ^AK.TextViewportLayoutController),
-    textViewportLayoutControllerDidLayout: proc(self: ^AK.TextViewportLayoutControllerDelegate, textViewportLayoutController: ^AK.TextViewportLayoutController),
+    viewportBoundsForTextViewportLayoutController: proc(self: ^NS.TextViewportLayoutControllerDelegate, textViewportLayoutController: ^NS.TextViewportLayoutController) -> CG.Rect,
+    textViewportLayoutController: proc(self: ^NS.TextViewportLayoutControllerDelegate, textViewportLayoutController: ^NS.TextViewportLayoutController, textLayoutFragment: ^NS.TextLayoutFragment),
+    textViewportLayoutControllerWillLayout: proc(self: ^NS.TextViewportLayoutControllerDelegate, textViewportLayoutController: ^NS.TextViewportLayoutController),
+    textViewportLayoutControllerDidLayout: proc(self: ^NS.TextViewportLayoutControllerDelegate, textViewportLayoutController: ^NS.TextViewportLayoutController),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.viewportBoundsForTextViewportLayoutController != nil {
-        viewportBoundsForTextViewportLayoutController :: proc "c" (self: ^AK.TextViewportLayoutControllerDelegate, _: SEL, textViewportLayoutController: ^AK.TextViewportLayoutController) -> CG.Rect {
+        viewportBoundsForTextViewportLayoutController :: proc "c" (self: ^NS.TextViewportLayoutControllerDelegate, _: SEL, textViewportLayoutController: ^NS.TextViewportLayoutController) -> CG.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewportBoundsForTextViewportLayoutController:"), auto_cast viewportBoundsForTextViewportLayoutController, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@") do panic("Failed to register objC method.")
     }
     if vt.textViewportLayoutController != nil {
-        textViewportLayoutController :: proc "c" (self: ^AK.TextViewportLayoutControllerDelegate, _: SEL, textViewportLayoutController: ^AK.TextViewportLayoutController, textLayoutFragment: ^AK.TextLayoutFragment) {
+        textViewportLayoutController :: proc "c" (self: ^NS.TextViewportLayoutControllerDelegate, _: SEL, textViewportLayoutController: ^NS.TextViewportLayoutController, textLayoutFragment: ^NS.TextLayoutFragment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textViewportLayoutController:configureRenderingSurfaceForTextLayoutFragment:"), auto_cast textViewportLayoutController, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.textViewportLayoutControllerWillLayout != nil {
-        textViewportLayoutControllerWillLayout :: proc "c" (self: ^AK.TextViewportLayoutControllerDelegate, _: SEL, textViewportLayoutController: ^AK.TextViewportLayoutController) {
+        textViewportLayoutControllerWillLayout :: proc "c" (self: ^NS.TextViewportLayoutControllerDelegate, _: SEL, textViewportLayoutController: ^NS.TextViewportLayoutController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textViewportLayoutControllerWillLayout:"), auto_cast textViewportLayoutControllerWillLayout, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.textViewportLayoutControllerDidLayout != nil {
-        textViewportLayoutControllerDidLayout :: proc "c" (self: ^AK.TextViewportLayoutControllerDelegate, _: SEL, textViewportLayoutController: ^AK.TextViewportLayoutController) {
+        textViewportLayoutControllerDidLayout :: proc "c" (self: ^NS.TextViewportLayoutControllerDelegate, _: SEL, textViewportLayoutController: ^NS.TextViewportLayoutController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

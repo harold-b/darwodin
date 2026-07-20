@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEnginePendingDatabaseChange
-///
 @(objc_class="CKSyncEnginePendingDatabaseChange", objc_superclass=NS.Object)
 SyncEnginePendingDatabaseChange :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEnginePendingDatabaseChange, objc_selector="init", objc_name="init")
     SyncEnginePendingDatabaseChange_init :: proc(self: ^SyncEnginePendingDatabaseChange) -> instancetype ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=SyncEnginePendingDatabaseChange, objc_selector="type", objc_name="type")
     SyncEnginePendingDatabaseChange_type :: proc(self: ^SyncEnginePendingDatabaseChange) -> SyncEnginePendingDatabaseChangeType ---
 }
+
+
+

@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPassStencilAttachmentDescriptor
-///
 @(objc_class="MTLRenderPassStencilAttachmentDescriptor", objc_superclass=RenderPassAttachmentDescriptor)
 RenderPassStencilAttachmentDescriptor :: struct { using _: RenderPassAttachmentDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPassStencilAttachmentDescriptor, objc_selector="clearStencil", objc_name="clearStencil")
     RenderPassStencilAttachmentDescriptor_clearStencil :: proc(self: ^RenderPassStencilAttachmentDescriptor) -> cffi.uint32_t ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=RenderPassStencilAttachmentDescriptor, objc_selector="setStencilResolveFilter:", objc_name="setStencilResolveFilter")
     RenderPassStencilAttachmentDescriptor_setStencilResolveFilter :: proc(self: ^RenderPassStencilAttachmentDescriptor, stencilResolveFilter: MultisampleStencilResolveFilter) ---
 }
+
+
+

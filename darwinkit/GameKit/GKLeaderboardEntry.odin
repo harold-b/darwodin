@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKLeaderboardEntry
-///
 @(objc_class="GKLeaderboardEntry", objc_superclass=NS.Object)
 LeaderboardEntry :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LeaderboardEntry, objc_selector="init", objc_name="init")
     LeaderboardEntry_init :: proc(self: ^LeaderboardEntry) -> instancetype ---
@@ -38,12 +32,22 @@ foreign lib {
     @(objc_type=LeaderboardEntry, objc_selector="date", objc_name="date")
     LeaderboardEntry_date :: proc(self: ^LeaderboardEntry) -> ^NS.Date ---
 
-    @(objc_type=LeaderboardEntry, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
-    LeaderboardEntry_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^LeaderboardEntry, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^AKViewController ---
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(objc_type=LeaderboardEntry, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
+        LeaderboardEntry_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^LeaderboardEntry, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^AK.ViewController ---
 
-    @(objc_type=LeaderboardEntry, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
-    LeaderboardEntry_challengeComposeControllerWithMessage_players_completion :: proc(self: ^LeaderboardEntry, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^AKViewController ---
+        @(objc_type=LeaderboardEntry, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
+        LeaderboardEntry_challengeComposeControllerWithMessage_players_completion :: proc(self: ^LeaderboardEntry, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^AK.ViewController ---
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=LeaderboardEntry, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
+        LeaderboardEntry_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^LeaderboardEntry, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^UI.ViewController ---
+
+        @(objc_type=LeaderboardEntry, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
+        LeaderboardEntry_challengeComposeControllerWithMessage_players_completion :: proc(self: ^LeaderboardEntry, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^UI.ViewController ---
+    }
 }
+
+
 
 @(objc_type=LeaderboardEntry, objc_name="challengeComposeControllerWithMessage")
 LeaderboardEntry_challengeComposeControllerWithMessage :: proc {

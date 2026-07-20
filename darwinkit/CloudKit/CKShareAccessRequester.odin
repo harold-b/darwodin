@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKShareAccessRequester
-///
 @(objc_class="CKShareAccessRequester", objc_superclass=NS.Object)
 ShareAccessRequester :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ShareAccessRequester, objc_selector="new", objc_name="new", objc_is_class_method=true)
     ShareAccessRequester_new :: proc() -> ^ShareAccessRequester ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=ShareAccessRequester, objc_selector="contact", objc_name="contact")
     ShareAccessRequester_contact :: proc(self: ^ShareAccessRequester) -> ^CNContact ---
 }
+
+
+

@@ -20,21 +20,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithPasteboardWriter: proc(self: ^AK.DraggingItem, pasteboardWriter: ^AK.PasteboardWriting) -> instancetype,
-    init: proc(self: ^AK.DraggingItem) -> instancetype,
-    setDraggingFrame_contents: proc(self: ^AK.DraggingItem, frame: NS.Rect, contents: id),
-    item: proc(self: ^AK.DraggingItem) -> id,
-    draggingFrame: proc(self: ^AK.DraggingItem) -> NS.Rect,
-    setDraggingFrame_: proc(self: ^AK.DraggingItem, draggingFrame: NS.Rect),
-    imageComponentsProvider: proc(self: ^AK.DraggingItem) -> ^Objc_Block(proc "c" () -> ^NS.Array),
-    setImageComponentsProvider: proc(self: ^AK.DraggingItem, imageComponentsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)),
-    imageComponents: proc(self: ^AK.DraggingItem) -> ^NS.Array,
+    initWithPasteboardWriter: proc(self: ^NS.DraggingItem, pasteboardWriter: ^NS.PasteboardWriting) -> instancetype,
+    init: proc(self: ^NS.DraggingItem) -> instancetype,
+    setDraggingFrame_contents: proc(self: ^NS.DraggingItem, frame: NS.Rect, contents: id),
+    item: proc(self: ^NS.DraggingItem) -> id,
+    draggingFrame: proc(self: ^NS.DraggingItem) -> NS.Rect,
+    setDraggingFrame_: proc(self: ^NS.DraggingItem, draggingFrame: NS.Rect),
+    imageComponentsProvider: proc(self: ^NS.DraggingItem) -> ^Objc_Block(proc "c" () -> ^NS.Array),
+    setImageComponentsProvider: proc(self: ^NS.DraggingItem, imageComponentsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)),
+    imageComponents: proc(self: ^NS.DraggingItem) -> ^NS.Array,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithPasteboardWriter != nil {
-        initWithPasteboardWriter :: proc "c" (self: ^AK.DraggingItem, _: SEL, pasteboardWriter: ^AK.PasteboardWriting) -> instancetype {
+        initWithPasteboardWriter :: proc "c" (self: ^NS.DraggingItem, _: SEL, pasteboardWriter: ^NS.PasteboardWriting) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPasteboardWriter:"), auto_cast initWithPasteboardWriter, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.DraggingItem, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.DraggingItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDraggingFrame_contents != nil {
-        setDraggingFrame_contents :: proc "c" (self: ^AK.DraggingItem, _: SEL, frame: NS.Rect, contents: id) {
+        setDraggingFrame_contents :: proc "c" (self: ^NS.DraggingItem, _: SEL, frame: NS.Rect, contents: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDraggingFrame:contents:"), auto_cast setDraggingFrame_contents, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.item != nil {
-        item :: proc "c" (self: ^AK.DraggingItem, _: SEL) -> id {
+        item :: proc "c" (self: ^NS.DraggingItem, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("item"), auto_cast item, "@@:") do panic("Failed to register objC method.")
     }
     if vt.draggingFrame != nil {
-        draggingFrame :: proc "c" (self: ^AK.DraggingItem, _: SEL) -> NS.Rect {
+        draggingFrame :: proc "c" (self: ^NS.DraggingItem, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingFrame"), auto_cast draggingFrame, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.setDraggingFrame_ != nil {
-        setDraggingFrame_ :: proc "c" (self: ^AK.DraggingItem, _: SEL, draggingFrame: NS.Rect) {
+        setDraggingFrame_ :: proc "c" (self: ^NS.DraggingItem, _: SEL, draggingFrame: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDraggingFrame:"), auto_cast setDraggingFrame_, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.imageComponentsProvider != nil {
-        imageComponentsProvider :: proc "c" (self: ^AK.DraggingItem, _: SEL) -> ^Objc_Block(proc "c" () -> ^NS.Array) {
+        imageComponentsProvider :: proc "c" (self: ^NS.DraggingItem, _: SEL) -> ^Objc_Block(proc "c" () -> ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageComponentsProvider"), auto_cast imageComponentsProvider, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setImageComponentsProvider != nil {
-        setImageComponentsProvider :: proc "c" (self: ^AK.DraggingItem, _: SEL, imageComponentsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)) {
+        setImageComponentsProvider :: proc "c" (self: ^NS.DraggingItem, _: SEL, imageComponentsProvider: ^Objc_Block(proc "c" () -> ^NS.Array)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImageComponentsProvider:"), auto_cast setImageComponentsProvider, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.imageComponents != nil {
-        imageComponents :: proc "c" (self: ^AK.DraggingItem, _: SEL) -> ^NS.Array {
+        imageComponents :: proc "c" (self: ^NS.DraggingItem, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

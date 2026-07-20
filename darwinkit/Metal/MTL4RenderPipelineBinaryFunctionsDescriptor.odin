@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4RenderPipelineBinaryFunctionsDescriptor
-///
 @(objc_class="MTL4RenderPipelineBinaryFunctionsDescriptor", objc_superclass=NS.Object)
 MTL4RenderPipelineBinaryFunctionsDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="reset", objc_name="reset")
     MTL4RenderPipelineBinaryFunctionsDescriptor_reset :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor) ---
@@ -56,3 +50,6 @@ foreign lib {
     @(objc_type=MTL4RenderPipelineBinaryFunctionsDescriptor, objc_selector="setMeshAdditionalBinaryFunctions:", objc_name="setMeshAdditionalBinaryFunctions")
     MTL4RenderPipelineBinaryFunctionsDescriptor_setMeshAdditionalBinaryFunctions :: proc(self: ^MTL4RenderPipelineBinaryFunctionsDescriptor, meshAdditionalBinaryFunctions: ^NS.Array) ---
 }
+
+
+

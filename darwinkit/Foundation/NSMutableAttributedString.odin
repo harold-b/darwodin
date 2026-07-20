@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableAttributedString
-///
 @(objc_class="NSMutableAttributedString", objc_superclass=AttributedString)
 MutableAttributedString :: struct { using _: AttributedString, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableAttributedString, objc_selector="replaceCharactersInRange:withString:", objc_name="replaceCharactersInRange_withString")
     MutableAttributedString_replaceCharactersInRange_withString :: proc(self: ^MutableAttributedString, range: _NSRange, str: ^String) ---
@@ -61,6 +55,8 @@ foreign lib {
     @(objc_type=MutableAttributedString, objc_selector="appendLocalizedFormat:", objc_name="appendLocalizedFormat")
     MutableAttributedString_appendLocalizedFormat :: proc(self: ^MutableAttributedString, format: ^AttributedString) ---
 }
+
+
 
 @(objc_type=MutableAttributedString, objc_name="replaceCharactersInRange")
 MutableAttributedString_replaceCharactersInRange :: proc {

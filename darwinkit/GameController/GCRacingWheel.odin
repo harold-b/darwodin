@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCRacingWheel
-///
 @(objc_class="GCRacingWheel", objc_superclass=NS.Object)
 RacingWheel :: struct { using _: NS.Object, 
     using _: Device,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RacingWheel, objc_selector="init", objc_name="init")
     RacingWheel_init :: proc(self: ^RacingWheel) -> instancetype ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=RacingWheel, objc_selector="isSnapshot", objc_name="isSnapshot")
     RacingWheel_isSnapshot :: proc(self: ^RacingWheel) -> bool ---
 }
+
+
+

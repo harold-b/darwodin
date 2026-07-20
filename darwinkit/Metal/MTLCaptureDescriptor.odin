@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCaptureDescriptor
-///
 @(objc_class="MTLCaptureDescriptor", objc_superclass=NS.Object)
 CaptureDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDescriptor, objc_selector="captureObject", objc_name="captureObject")
     CaptureDescriptor_captureObject :: proc(self: ^CaptureDescriptor) -> id ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=CaptureDescriptor, objc_selector="setOutputURL:", objc_name="setOutputURL")
     CaptureDescriptor_setOutputURL :: proc(self: ^CaptureDescriptor, outputURL: ^NS.URL) ---
 }
+
+
+

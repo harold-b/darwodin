@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCDualSenseGamepad
-///
 @(objc_class="GCDualSenseGamepad", objc_superclass=ExtendedGamepad)
 DualSenseGamepad :: struct { using _: ExtendedGamepad, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DualSenseGamepad, objc_selector="touchpadButton", objc_name="touchpadButton")
     DualSenseGamepad_touchpadButton :: proc(self: ^DualSenseGamepad) -> ^ControllerButtonInput ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=DualSenseGamepad, objc_selector="rightTrigger", objc_name="rightTrigger")
     DualSenseGamepad_rightTrigger :: proc(self: ^DualSenseGamepad) -> ^DualSenseAdaptiveTrigger ---
 }
+
+
+

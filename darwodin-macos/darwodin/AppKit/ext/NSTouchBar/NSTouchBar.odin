@@ -20,33 +20,33 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.TouchBar) -> instancetype,
-    initWithCoder: proc(self: ^AK.TouchBar, coder: ^NS.Coder) -> instancetype,
-    itemForIdentifier: proc(self: ^AK.TouchBar, identifier: ^NS.String) -> ^AK.TouchBarItem,
-    customizationIdentifier: proc(self: ^AK.TouchBar) -> ^NS.String,
-    setCustomizationIdentifier: proc(self: ^AK.TouchBar, customizationIdentifier: ^NS.String),
-    customizationAllowedItemIdentifiers: proc(self: ^AK.TouchBar) -> ^NS.Array,
-    setCustomizationAllowedItemIdentifiers: proc(self: ^AK.TouchBar, customizationAllowedItemIdentifiers: ^NS.Array),
-    customizationRequiredItemIdentifiers: proc(self: ^AK.TouchBar) -> ^NS.Array,
-    setCustomizationRequiredItemIdentifiers: proc(self: ^AK.TouchBar, customizationRequiredItemIdentifiers: ^NS.Array),
-    defaultItemIdentifiers: proc(self: ^AK.TouchBar) -> ^NS.Array,
-    setDefaultItemIdentifiers: proc(self: ^AK.TouchBar, defaultItemIdentifiers: ^NS.Array),
-    itemIdentifiers: proc(self: ^AK.TouchBar) -> ^NS.Array,
-    principalItemIdentifier: proc(self: ^AK.TouchBar) -> ^NS.String,
-    setPrincipalItemIdentifier: proc(self: ^AK.TouchBar, principalItemIdentifier: ^NS.String),
-    escapeKeyReplacementItemIdentifier: proc(self: ^AK.TouchBar) -> ^NS.String,
-    setEscapeKeyReplacementItemIdentifier: proc(self: ^AK.TouchBar, escapeKeyReplacementItemIdentifier: ^NS.String),
-    templateItems: proc(self: ^AK.TouchBar) -> ^NS.Set,
-    setTemplateItems: proc(self: ^AK.TouchBar, templateItems: ^NS.Set),
-    delegate: proc(self: ^AK.TouchBar) -> ^AK.TouchBarDelegate,
-    setDelegate: proc(self: ^AK.TouchBar, delegate: ^AK.TouchBarDelegate),
-    isVisible: proc(self: ^AK.TouchBar) -> bool,
+    init: proc(self: ^NS.TouchBar) -> instancetype,
+    initWithCoder: proc(self: ^NS.TouchBar, coder: ^NS.Coder) -> instancetype,
+    itemForIdentifier: proc(self: ^NS.TouchBar, identifier: ^NS.String) -> ^NS.TouchBarItem,
+    customizationIdentifier: proc(self: ^NS.TouchBar) -> ^NS.String,
+    setCustomizationIdentifier: proc(self: ^NS.TouchBar, customizationIdentifier: ^NS.String),
+    customizationAllowedItemIdentifiers: proc(self: ^NS.TouchBar) -> ^NS.Array,
+    setCustomizationAllowedItemIdentifiers: proc(self: ^NS.TouchBar, customizationAllowedItemIdentifiers: ^NS.Array),
+    customizationRequiredItemIdentifiers: proc(self: ^NS.TouchBar) -> ^NS.Array,
+    setCustomizationRequiredItemIdentifiers: proc(self: ^NS.TouchBar, customizationRequiredItemIdentifiers: ^NS.Array),
+    defaultItemIdentifiers: proc(self: ^NS.TouchBar) -> ^NS.Array,
+    setDefaultItemIdentifiers: proc(self: ^NS.TouchBar, defaultItemIdentifiers: ^NS.Array),
+    itemIdentifiers: proc(self: ^NS.TouchBar) -> ^NS.Array,
+    principalItemIdentifier: proc(self: ^NS.TouchBar) -> ^NS.String,
+    setPrincipalItemIdentifier: proc(self: ^NS.TouchBar, principalItemIdentifier: ^NS.String),
+    escapeKeyReplacementItemIdentifier: proc(self: ^NS.TouchBar) -> ^NS.String,
+    setEscapeKeyReplacementItemIdentifier: proc(self: ^NS.TouchBar, escapeKeyReplacementItemIdentifier: ^NS.String),
+    templateItems: proc(self: ^NS.TouchBar) -> ^NS.Set,
+    setTemplateItems: proc(self: ^NS.TouchBar, templateItems: ^NS.Set),
+    delegate: proc(self: ^NS.TouchBar) -> ^NS.TouchBarDelegate,
+    setDelegate: proc(self: ^NS.TouchBar, delegate: ^NS.TouchBarDelegate),
+    isVisible: proc(self: ^NS.TouchBar) -> bool,
     isAutomaticCustomizeTouchBarMenuItemEnabled: proc() -> bool,
     setAutomaticCustomizeTouchBarMenuItemEnabled: proc(automaticCustomizeTouchBarMenuItemEnabled: bool),
 }
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TouchBar, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.TouchBar, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TouchBar, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.TouchBar, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.itemForIdentifier != nil {
-        itemForIdentifier :: proc "c" (self: ^AK.TouchBar, _: SEL, identifier: ^NS.String) -> ^AK.TouchBarItem {
+        itemForIdentifier :: proc "c" (self: ^NS.TouchBar, _: SEL, identifier: ^NS.String) -> ^NS.TouchBarItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemForIdentifier:"), auto_cast itemForIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.customizationIdentifier != nil {
-        customizationIdentifier :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.String {
+        customizationIdentifier :: proc "c" (self: ^NS.TouchBar, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("customizationIdentifier"), auto_cast customizationIdentifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCustomizationIdentifier != nil {
-        setCustomizationIdentifier :: proc "c" (self: ^AK.TouchBar, _: SEL, customizationIdentifier: ^NS.String) {
+        setCustomizationIdentifier :: proc "c" (self: ^NS.TouchBar, _: SEL, customizationIdentifier: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCustomizationIdentifier:"), auto_cast setCustomizationIdentifier, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.customizationAllowedItemIdentifiers != nil {
-        customizationAllowedItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.Array {
+        customizationAllowedItemIdentifiers :: proc "c" (self: ^NS.TouchBar, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("customizationAllowedItemIdentifiers"), auto_cast customizationAllowedItemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setCustomizationAllowedItemIdentifiers != nil {
-        setCustomizationAllowedItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL, customizationAllowedItemIdentifiers: ^NS.Array) {
+        setCustomizationAllowedItemIdentifiers :: proc "c" (self: ^NS.TouchBar, _: SEL, customizationAllowedItemIdentifiers: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCustomizationAllowedItemIdentifiers:"), auto_cast setCustomizationAllowedItemIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.customizationRequiredItemIdentifiers != nil {
-        customizationRequiredItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.Array {
+        customizationRequiredItemIdentifiers :: proc "c" (self: ^NS.TouchBar, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("customizationRequiredItemIdentifiers"), auto_cast customizationRequiredItemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setCustomizationRequiredItemIdentifiers != nil {
-        setCustomizationRequiredItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL, customizationRequiredItemIdentifiers: ^NS.Array) {
+        setCustomizationRequiredItemIdentifiers :: proc "c" (self: ^NS.TouchBar, _: SEL, customizationRequiredItemIdentifiers: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCustomizationRequiredItemIdentifiers:"), auto_cast setCustomizationRequiredItemIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.defaultItemIdentifiers != nil {
-        defaultItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.Array {
+        defaultItemIdentifiers :: proc "c" (self: ^NS.TouchBar, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultItemIdentifiers"), auto_cast defaultItemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setDefaultItemIdentifiers != nil {
-        setDefaultItemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL, defaultItemIdentifiers: ^NS.Array) {
+        setDefaultItemIdentifiers :: proc "c" (self: ^NS.TouchBar, _: SEL, defaultItemIdentifiers: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDefaultItemIdentifiers:"), auto_cast setDefaultItemIdentifiers, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.itemIdentifiers != nil {
-        itemIdentifiers :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.Array {
+        itemIdentifiers :: proc "c" (self: ^NS.TouchBar, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -179,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifiers"), auto_cast itemIdentifiers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.principalItemIdentifier != nil {
-        principalItemIdentifier :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.String {
+        principalItemIdentifier :: proc "c" (self: ^NS.TouchBar, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -189,7 +189,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("principalItemIdentifier"), auto_cast principalItemIdentifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPrincipalItemIdentifier != nil {
-        setPrincipalItemIdentifier :: proc "c" (self: ^AK.TouchBar, _: SEL, principalItemIdentifier: ^NS.String) {
+        setPrincipalItemIdentifier :: proc "c" (self: ^NS.TouchBar, _: SEL, principalItemIdentifier: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -199,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPrincipalItemIdentifier:"), auto_cast setPrincipalItemIdentifier, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.escapeKeyReplacementItemIdentifier != nil {
-        escapeKeyReplacementItemIdentifier :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.String {
+        escapeKeyReplacementItemIdentifier :: proc "c" (self: ^NS.TouchBar, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -209,7 +209,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("escapeKeyReplacementItemIdentifier"), auto_cast escapeKeyReplacementItemIdentifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setEscapeKeyReplacementItemIdentifier != nil {
-        setEscapeKeyReplacementItemIdentifier :: proc "c" (self: ^AK.TouchBar, _: SEL, escapeKeyReplacementItemIdentifier: ^NS.String) {
+        setEscapeKeyReplacementItemIdentifier :: proc "c" (self: ^NS.TouchBar, _: SEL, escapeKeyReplacementItemIdentifier: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -219,7 +219,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEscapeKeyReplacementItemIdentifier:"), auto_cast setEscapeKeyReplacementItemIdentifier, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.templateItems != nil {
-        templateItems :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^NS.Set {
+        templateItems :: proc "c" (self: ^NS.TouchBar, _: SEL) -> ^NS.Set {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -229,7 +229,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("templateItems"), auto_cast templateItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTemplateItems != nil {
-        setTemplateItems :: proc "c" (self: ^AK.TouchBar, _: SEL, templateItems: ^NS.Set) {
+        setTemplateItems :: proc "c" (self: ^NS.TouchBar, _: SEL, templateItems: ^NS.Set) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -239,7 +239,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTemplateItems:"), auto_cast setTemplateItems, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.TouchBar, _: SEL) -> ^AK.TouchBarDelegate {
+        delegate :: proc "c" (self: ^NS.TouchBar, _: SEL) -> ^NS.TouchBarDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -249,7 +249,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.TouchBar, _: SEL, delegate: ^AK.TouchBarDelegate) {
+        setDelegate :: proc "c" (self: ^NS.TouchBar, _: SEL, delegate: ^NS.TouchBarDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -259,7 +259,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isVisible != nil {
-        isVisible :: proc "c" (self: ^AK.TouchBar, _: SEL) -> bool {
+        isVisible :: proc "c" (self: ^NS.TouchBar, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

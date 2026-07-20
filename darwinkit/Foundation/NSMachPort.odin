@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMachPort
-///
 @(objc_class="NSMachPort", objc_superclass=Port)
 MachPort :: struct { using _: Port, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MachPort, objc_selector="portWithMachPort:", objc_name="portWithMachPort_", objc_is_class_method=true)
     MachPort_portWithMachPort_ :: proc(machPort: cffi.uint32_t) -> ^Port ---
@@ -46,6 +40,8 @@ foreign lib {
     @(objc_type=MachPort, objc_selector="machPort", objc_name="machPort")
     MachPort_machPort :: proc(self: ^MachPort) -> cffi.uint32_t ---
 }
+
+
 
 @(objc_type=MachPort, objc_name="portWithMachPort")
 MachPort_portWithMachPort :: proc {

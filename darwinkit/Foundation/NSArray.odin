@@ -9,11 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSArray
-///
 @(objc_class="NSArray", objc_superclass=Object)
 Array :: struct { using _: Object, 
     using _: Copying,
@@ -22,7 +17,6 @@ Array :: struct { using _: Object,
     using _: FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Array, objc_selector="objectAtIndex:", objc_name="objectAtIndex")
     Array_objectAtIndex :: proc(self: ^Array, index: UInteger) -> id ---
@@ -85,10 +79,10 @@ foreign lib {
     Array_reverseObjectEnumerator :: proc(self: ^Array) -> ^Enumerator ---
 
     @(objc_type=Array, objc_selector="sortedArrayUsingFunction:context:", objc_name="sortedArrayUsingFunction_context")
-    Array_sortedArrayUsingFunction_context :: proc(self: ^Array, comparator: proc "c" (_: id, _1: id, _2: rawptr) -> Integer, _context: rawptr) -> ^Array ---
+    Array_sortedArrayUsingFunction_context :: proc(self: ^Array, comparator: proc "c" ( _0: id, _1: id, _2: rawptr ) -> Integer, _context: rawptr) -> ^Array ---
 
     @(objc_type=Array, objc_selector="sortedArrayUsingFunction:context:hint:", objc_name="sortedArrayUsingFunction_context_hint")
-    Array_sortedArrayUsingFunction_context_hint :: proc(self: ^Array, comparator: proc "c" (_: id, _1: id, _2: rawptr) -> Integer, _context: rawptr, hint: ^Data) -> ^Array ---
+    Array_sortedArrayUsingFunction_context_hint :: proc(self: ^Array, comparator: proc "c" ( _0: id, _1: id, _2: rawptr ) -> Integer, _context: rawptr, hint: ^Data) -> ^Array ---
 
     @(objc_type=Array, objc_selector="sortedArrayUsingSelector:", objc_name="sortedArrayUsingSelector")
     Array_sortedArrayUsingSelector :: proc(self: ^Array, comparator: SEL) -> ^Array ---
@@ -112,31 +106,31 @@ foreign lib {
     Array_objectAtIndexedSubscript :: proc(self: ^Array, idx: UInteger) -> id ---
 
     @(objc_type=Array, objc_selector="enumerateObjectsUsingBlock:", objc_name="enumerateObjectsUsingBlock")
-    Array_enumerateObjectsUsingBlock :: proc(self: ^Array, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) ---
+    Array_enumerateObjectsUsingBlock :: proc(self: ^Array, block: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=Array, objc_selector="enumerateObjectsWithOptions:usingBlock:", objc_name="enumerateObjectsWithOptions")
-    Array_enumerateObjectsWithOptions :: proc(self: ^Array, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) ---
+    Array_enumerateObjectsWithOptions :: proc(self: ^Array, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=Array, objc_selector="enumerateObjectsAtIndexes:options:usingBlock:", objc_name="enumerateObjectsAtIndexes")
-    Array_enumerateObjectsAtIndexes :: proc(self: ^Array, s: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) ---
+    Array_enumerateObjectsAtIndexes :: proc(self: ^Array, s: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=Array, objc_selector="indexOfObjectPassingTest:", objc_name="indexOfObjectPassingTest")
-    Array_indexOfObjectPassingTest :: proc(self: ^Array, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+    Array_indexOfObjectPassingTest :: proc(self: ^Array, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> UInteger ---
 
     @(objc_type=Array, objc_selector="indexOfObjectWithOptions:passingTest:", objc_name="indexOfObjectWithOptions")
-    Array_indexOfObjectWithOptions :: proc(self: ^Array, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+    Array_indexOfObjectWithOptions :: proc(self: ^Array, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> UInteger ---
 
     @(objc_type=Array, objc_selector="indexOfObjectAtIndexes:options:passingTest:", objc_name="indexOfObjectAtIndexes")
-    Array_indexOfObjectAtIndexes :: proc(self: ^Array, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+    Array_indexOfObjectAtIndexes :: proc(self: ^Array, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> UInteger ---
 
     @(objc_type=Array, objc_selector="indexesOfObjectsPassingTest:", objc_name="indexesOfObjectsPassingTest")
-    Array_indexesOfObjectsPassingTest :: proc(self: ^Array, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+    Array_indexesOfObjectsPassingTest :: proc(self: ^Array, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> ^IndexSet ---
 
     @(objc_type=Array, objc_selector="indexesOfObjectsWithOptions:passingTest:", objc_name="indexesOfObjectsWithOptions")
-    Array_indexesOfObjectsWithOptions :: proc(self: ^Array, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+    Array_indexesOfObjectsWithOptions :: proc(self: ^Array, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> ^IndexSet ---
 
     @(objc_type=Array, objc_selector="indexesOfObjectsAtIndexes:options:passingTest:", objc_name="indexesOfObjectsAtIndexes")
-    Array_indexesOfObjectsAtIndexes :: proc(self: ^Array, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+    Array_indexesOfObjectsAtIndexes :: proc(self: ^Array, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> ^IndexSet ---
 
     @(objc_type=Array, objc_selector="sortedArrayUsingComparator:", objc_name="sortedArrayUsingComparator")
     Array_sortedArrayUsingComparator :: proc(self: ^Array, cmptr: Comparator) -> ^Array ---
@@ -190,7 +184,7 @@ foreign lib {
     Array_arrayWithContentsOfURL_error :: proc(url: ^URL, error: ^^Error) -> ^Array ---
 
     @(objc_type=Array, objc_selector="differenceFromArray:withOptions:usingEquivalenceTest:", objc_name="differenceFromArray_withOptions_usingEquivalenceTest")
-    Array_differenceFromArray_withOptions_usingEquivalenceTest :: proc(self: ^Array, other: ^Array, options: OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> bool)) -> ^OrderedCollectionDifference ---
+    Array_differenceFromArray_withOptions_usingEquivalenceTest :: proc(self: ^Array, other: ^Array, options: OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" ( obj1: id, obj2: id ) -> bool)) -> ^OrderedCollectionDifference ---
 
     @(objc_type=Array, objc_selector="differenceFromArray:withOptions:", objc_name="differenceFromArray_withOptions")
     Array_differenceFromArray_withOptions :: proc(self: ^Array, other: ^Array, options: OrderedCollectionDifferenceCalculationOptions) -> ^OrderedCollectionDifference ---
@@ -255,6 +249,8 @@ foreign lib {
     @(objc_type=Array, objc_selector="filteredArrayUsingPredicate:", objc_name="filteredArrayUsingPredicate")
     Array_filteredArrayUsingPredicate :: proc(self: ^Array, predicate: ^Predicate) -> ^Array ---
 }
+
+
 
 @(objc_type=Array, objc_name="descriptionWithLocale")
 Array_descriptionWithLocale :: proc {

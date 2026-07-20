@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSDateFormatter
-///
 @(objc_class="NSDateFormatter", objc_superclass=Formatter)
 DateFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DateFormatter, objc_selector="getObjectValue:forString:range:error:", objc_name="getObjectValue")
     DateFormatter_getObjectValue :: proc(self: ^DateFormatter, obj: ^id, string: ^String, rangep: ^_NSRange, error: ^^Error) -> bool ---
@@ -247,7 +241,7 @@ foreign lib {
     @(objc_type=DateFormatter, objc_selector="setDoesRelativeDateFormatting:", objc_name="setDoesRelativeDateFormatting")
     DateFormatter_setDoesRelativeDateFormatting :: proc(self: ^DateFormatter, doesRelativeDateFormatting: bool) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=DateFormatter, objc_selector="initWithDateFormat:allowNaturalLanguage:", objc_name="initWithDateFormat")
         DateFormatter_initWithDateFormat :: proc(self: ^DateFormatter, format: ^String, flag: bool) -> id ---
 
@@ -255,3 +249,6 @@ foreign lib {
         DateFormatter_allowsNaturalLanguage :: proc(self: ^DateFormatter) -> bool ---
     }
 }
+
+
+

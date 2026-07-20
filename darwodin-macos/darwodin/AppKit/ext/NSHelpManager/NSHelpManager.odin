@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    setContextHelp: proc(self: ^AK.HelpManager, attrString: ^NS.AttributedString, object: id),
-    removeContextHelpForObject: proc(self: ^AK.HelpManager, object: id),
-    contextHelpForObject: proc(self: ^AK.HelpManager, object: id) -> ^NS.AttributedString,
-    showContextHelpForObject: proc(self: ^AK.HelpManager, object: id, pt: CG.Point) -> bool,
-    openHelpAnchor: proc(self: ^AK.HelpManager, anchor: ^NS.String, book: ^NS.String),
-    findString: proc(self: ^AK.HelpManager, query: ^NS.String, book: ^NS.String),
-    registerBooksInBundle: proc(self: ^AK.HelpManager, bundle: ^NS.Bundle) -> bool,
-    sharedHelpManager: proc() -> ^AK.HelpManager,
+    setContextHelp: proc(self: ^NS.HelpManager, attrString: ^NS.AttributedString, object: id),
+    removeContextHelpForObject: proc(self: ^NS.HelpManager, object: id),
+    contextHelpForObject: proc(self: ^NS.HelpManager, object: id) -> ^NS.AttributedString,
+    showContextHelpForObject: proc(self: ^NS.HelpManager, object: id, pt: CG.Point) -> bool,
+    openHelpAnchor: proc(self: ^NS.HelpManager, anchor: ^NS.String, book: ^NS.String),
+    findString: proc(self: ^NS.HelpManager, query: ^NS.String, book: ^NS.String),
+    registerBooksInBundle: proc(self: ^NS.HelpManager, bundle: ^NS.Bundle) -> bool,
+    sharedHelpManager: proc() -> ^NS.HelpManager,
     isContextHelpModeActive: proc() -> bool,
     setContextHelpModeActive: proc(contextHelpModeActive: bool),
 }
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.setContextHelp != nil {
-        setContextHelp :: proc "c" (self: ^AK.HelpManager, _: SEL, attrString: ^NS.AttributedString, object: id) {
+        setContextHelp :: proc "c" (self: ^NS.HelpManager, _: SEL, attrString: ^NS.AttributedString, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContextHelp:forObject:"), auto_cast setContextHelp, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.removeContextHelpForObject != nil {
-        removeContextHelpForObject :: proc "c" (self: ^AK.HelpManager, _: SEL, object: id) {
+        removeContextHelpForObject :: proc "c" (self: ^NS.HelpManager, _: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeContextHelpForObject:"), auto_cast removeContextHelpForObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.contextHelpForObject != nil {
-        contextHelpForObject :: proc "c" (self: ^AK.HelpManager, _: SEL, object: id) -> ^NS.AttributedString {
+        contextHelpForObject :: proc "c" (self: ^NS.HelpManager, _: SEL, object: id) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contextHelpForObject:"), auto_cast contextHelpForObject, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.showContextHelpForObject != nil {
-        showContextHelpForObject :: proc "c" (self: ^AK.HelpManager, _: SEL, object: id, pt: CG.Point) -> bool {
+        showContextHelpForObject :: proc "c" (self: ^NS.HelpManager, _: SEL, object: id, pt: CG.Point) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showContextHelpForObject:locationHint:"), auto_cast showContextHelpForObject, "B@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.openHelpAnchor != nil {
-        openHelpAnchor :: proc "c" (self: ^AK.HelpManager, _: SEL, anchor: ^NS.String, book: ^NS.String) {
+        openHelpAnchor :: proc "c" (self: ^NS.HelpManager, _: SEL, anchor: ^NS.String, book: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openHelpAnchor:inBook:"), auto_cast openHelpAnchor, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.findString != nil {
-        findString :: proc "c" (self: ^AK.HelpManager, _: SEL, query: ^NS.String, book: ^NS.String) {
+        findString :: proc "c" (self: ^NS.HelpManager, _: SEL, query: ^NS.String, book: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("findString:inBook:"), auto_cast findString, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.registerBooksInBundle != nil {
-        registerBooksInBundle :: proc "c" (self: ^AK.HelpManager, _: SEL, bundle: ^NS.Bundle) -> bool {
+        registerBooksInBundle :: proc "c" (self: ^NS.HelpManager, _: SEL, bundle: ^NS.Bundle) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("registerBooksInBundle:"), auto_cast registerBooksInBundle, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.sharedHelpManager != nil {
-        sharedHelpManager :: proc "c" (self: Class, _: SEL) -> ^AK.HelpManager {
+        sharedHelpManager :: proc "c" (self: Class, _: SEL) -> ^NS.HelpManager {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

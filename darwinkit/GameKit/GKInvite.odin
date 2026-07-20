@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKInvite
-///
 @(objc_class="GKInvite", objc_superclass=NS.Object)
 Invite :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Invite, objc_selector="sender", objc_name="sender")
     Invite_sender :: proc(self: ^Invite) -> ^Player ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=Invite, objc_selector="inviter", objc_name="inviter")
     Invite_inviter :: proc(self: ^Invite) -> ^NS.String ---
 }
+
+
+

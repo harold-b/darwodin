@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import NS "../Foundation"
 import Sec "../Security"
 
-
-
-///
-/// LAEnvironmentState
-///
 @(objc_class="LAEnvironmentState", objc_superclass=NS.Object)
 EnvironmentState :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=EnvironmentState, objc_selector="init", objc_name="init")
     EnvironmentState_init :: proc(self: ^EnvironmentState) -> instancetype ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=EnvironmentState, objc_selector="allMechanisms", objc_name="allMechanisms")
     EnvironmentState_allMechanisms :: proc(self: ^EnvironmentState) -> ^NS.Array ---
 }
+
+
+

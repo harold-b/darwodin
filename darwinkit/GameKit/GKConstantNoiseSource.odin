@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKConstantNoiseSource
-///
 @(objc_class="GKConstantNoiseSource", objc_superclass=NoiseSource)
 ConstantNoiseSource :: struct { using _: NoiseSource, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ConstantNoiseSource, objc_selector="constantNoiseWithValue:", objc_name="constantNoiseWithValue", objc_is_class_method=true)
     ConstantNoiseSource_constantNoiseWithValue :: proc(value: cffi.double) -> instancetype ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=ConstantNoiseSource, objc_selector="setValue:", objc_name="setValue")
     ConstantNoiseSource_setValue :: proc(self: ^ConstantNoiseSource, value: cffi.double) ---
 }
+
+
+

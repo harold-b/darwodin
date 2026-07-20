@@ -40,7 +40,7 @@ foreign lib {
     PrintPanel_defaultButtonTitle :: proc(self: ^PrintPanel) -> ^NS.String ---
 
     @(objc_type=PrintPanel, objc_selector="beginSheetUsingPrintInfo:onWindow:completionHandler:", objc_name="beginSheetUsingPrintInfo")
-    PrintPanel_beginSheetUsingPrintInfo :: proc(self: ^PrintPanel, printInfo: ^PrintInfo, parentWindow: ^Window, handler: ^Objc_Block(proc "c" (result: PrintPanelResult))) ---
+    PrintPanel_beginSheetUsingPrintInfo :: proc(self: ^PrintPanel, printInfo: ^PrintInfo, parentWindow: ^Window, handler: ^Objc_Block(proc "c" ( result: PrintPanelResult ))) ---
 
     @(objc_type=PrintPanel, objc_selector="beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:", objc_name="beginSheetWithPrintInfo")
     PrintPanel_beginSheetWithPrintInfo :: proc(self: ^PrintPanel, printInfo: ^PrintInfo, docWindow: ^Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr) ---

@@ -21,10 +21,10 @@ ViewControllerTransition :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ViewControllerTransition, objc_selector="zoomWithOptions:sourceViewProvider:", objc_name="zoomWithOptions_sourceViewProvider", objc_is_class_method=true)
-    ViewControllerTransition_zoomWithOptions_sourceViewProvider :: proc(options: ^ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^ZoomTransitionSourceViewProviderContext) -> ^View)) -> instancetype ---
+    ViewControllerTransition_zoomWithOptions_sourceViewProvider :: proc(options: ^ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" ( _0: ^ZoomTransitionSourceViewProviderContext ) -> ^View)) -> instancetype ---
 
     @(objc_type=ViewControllerTransition, objc_selector="zoomWithOptions:sourceBarButtonItemProvider:", objc_name="zoomWithOptions_sourceBarButtonItemProvider", objc_is_class_method=true)
-    ViewControllerTransition_zoomWithOptions_sourceBarButtonItemProvider :: proc(options: ^ZoomTransitionOptions, sourceBarButtonItemProvider: ^Objc_Block(proc "c" (_: ^ZoomTransitionSourceViewProviderContext) -> ^BarButtonItem)) -> instancetype ---
+    ViewControllerTransition_zoomWithOptions_sourceBarButtonItemProvider :: proc(options: ^ZoomTransitionOptions, sourceBarButtonItemProvider: ^Objc_Block(proc "c" ( _0: ^ZoomTransitionSourceViewProviderContext ) -> ^BarButtonItem)) -> instancetype ---
 
     @(objc_type=ViewControllerTransition, objc_selector="coverVerticalTransition", objc_name="coverVerticalTransition", objc_is_class_method=true)
     ViewControllerTransition_coverVerticalTransition :: proc() -> instancetype ---

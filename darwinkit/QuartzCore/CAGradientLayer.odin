@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAGradientLayer
-///
 @(objc_class="CAGradientLayer", objc_superclass=Layer)
 GradientLayer :: struct { using _: Layer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=GradientLayer, objc_selector="colors", objc_name="colors")
     GradientLayer_colors :: proc(self: ^GradientLayer) -> ^NS.Array ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=GradientLayer, objc_selector="setType:", objc_name="setType")
     GradientLayer_setType :: proc(self: ^GradientLayer, type: ^NS.String) ---
 }
+
+
+

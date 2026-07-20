@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVVideoOutputSpecification
-///
 @(objc_class="AVVideoOutputSpecification", objc_superclass=NS.Object)
 VideoOutputSpecification :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoOutputSpecification, objc_selector="init", objc_name="init")
     VideoOutputSpecification_init :: proc(self: ^VideoOutputSpecification) -> instancetype ---
@@ -54,3 +48,6 @@ foreign lib {
     @(objc_type=VideoOutputSpecification, objc_selector="setDefaultOutputSettings:", objc_name="setDefaultOutputSettings")
     VideoOutputSpecification_setDefaultOutputSettings :: proc(self: ^VideoOutputSpecification, defaultOutputSettings: ^NS.Dictionary) ---
 }
+
+
+

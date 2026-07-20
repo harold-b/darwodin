@@ -20,79 +20,79 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    fontWithName_size: proc(fontName: ^NS.String, fontSize: CG.Float) -> ^AK.Font,
-    fontWithName_matrix: proc(fontName: ^NS.String, fontMatrix: ^CG.Float) -> ^AK.Font,
-    fontWithDescriptor_size: proc(fontDescriptor: ^AK.FontDescriptor, fontSize: CG.Float) -> ^AK.Font,
-    fontWithDescriptor_textTransform: proc(fontDescriptor: ^AK.FontDescriptor, textTransform: ^NS.AffineTransform) -> ^AK.Font,
-    userFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    userFixedPitchFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    setUserFont: proc(font: ^AK.Font),
-    setUserFixedPitchFont: proc(font: ^AK.Font),
-    systemFontOfSize_: proc(fontSize: CG.Float) -> ^AK.Font,
-    boldSystemFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    labelFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    titleBarFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    menuFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    menuBarFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    messageFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    paletteFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    toolTipsFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    controlContentFontOfSize: proc(fontSize: CG.Float) -> ^AK.Font,
-    systemFontOfSize_weight: proc(fontSize: CG.Float, weight: AK.FontWeight) -> ^AK.Font,
-    monospacedDigitSystemFontOfSize: proc(fontSize: CG.Float, weight: AK.FontWeight) -> ^AK.Font,
-    systemFontOfSize_weight_width: proc(fontSize: CG.Float, weight: AK.FontWeight, width: AK.FontWidth) -> ^AK.Font,
-    monospacedSystemFontOfSize: proc(fontSize: CG.Float, weight: AK.FontWeight) -> ^AK.Font,
-    fontWithSize: proc(self: ^AK.Font, fontSize: CG.Float) -> ^AK.Font,
-    systemFontSizeForControlSize: proc(controlSize: AK.ControlSize) -> CG.Float,
-    boundingRectForCGGlyph: proc(self: ^AK.Font, glyph: CG.Glyph) -> NS.Rect,
-    advancementForCGGlyph: proc(self: ^AK.Font, glyph: CG.Glyph) -> NS.Size,
-    getBoundingRects_forCGGlyphs_count: proc(self: ^AK.Font, bounds: NS.RectArray, glyphs: ^CG.Glyph, glyphCount: NS.UInteger),
-    getAdvancements_forCGGlyphs_count: proc(self: ^AK.Font, advancements: NS.SizeArray, glyphs: ^CG.Glyph, glyphCount: NS.UInteger),
-    set: proc(self: ^AK.Font),
-    setInContext: proc(self: ^AK.Font, graphicsContext: ^AK.GraphicsContext),
+    fontWithName_size: proc(fontName: ^NS.String, fontSize: CG.Float) -> ^NS.Font,
+    fontWithName_matrix: proc(fontName: ^NS.String, fontMatrix: ^CG.Float) -> ^NS.Font,
+    fontWithDescriptor_size: proc(fontDescriptor: ^NS.FontDescriptor, fontSize: CG.Float) -> ^NS.Font,
+    fontWithDescriptor_textTransform: proc(fontDescriptor: ^NS.FontDescriptor, textTransform: ^NS.AffineTransform) -> ^NS.Font,
+    userFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    userFixedPitchFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    setUserFont: proc(font: ^NS.Font),
+    setUserFixedPitchFont: proc(font: ^NS.Font),
+    systemFontOfSize_: proc(fontSize: CG.Float) -> ^NS.Font,
+    boldSystemFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    labelFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    titleBarFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    menuFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    menuBarFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    messageFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    paletteFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    toolTipsFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    controlContentFontOfSize: proc(fontSize: CG.Float) -> ^NS.Font,
+    systemFontOfSize_weight: proc(fontSize: CG.Float, weight: NS.FontWeight) -> ^NS.Font,
+    monospacedDigitSystemFontOfSize: proc(fontSize: CG.Float, weight: NS.FontWeight) -> ^NS.Font,
+    systemFontOfSize_weight_width: proc(fontSize: CG.Float, weight: NS.FontWeight, width: NS.FontWidth) -> ^NS.Font,
+    monospacedSystemFontOfSize: proc(fontSize: CG.Float, weight: NS.FontWeight) -> ^NS.Font,
+    fontWithSize: proc(self: ^NS.Font, fontSize: CG.Float) -> ^NS.Font,
+    systemFontSizeForControlSize: proc(controlSize: NS.ControlSize) -> CG.Float,
+    boundingRectForCGGlyph: proc(self: ^NS.Font, glyph: CG.Glyph) -> NS.Rect,
+    advancementForCGGlyph: proc(self: ^NS.Font, glyph: CG.Glyph) -> NS.Size,
+    getBoundingRects_forCGGlyphs_count: proc(self: ^NS.Font, bounds: NS.RectArray, glyphs: ^CG.Glyph, glyphCount: NS.UInteger),
+    getAdvancements_forCGGlyphs_count: proc(self: ^NS.Font, advancements: NS.SizeArray, glyphs: ^CG.Glyph, glyphCount: NS.UInteger),
+    set: proc(self: ^NS.Font),
+    setInContext: proc(self: ^NS.Font, graphicsContext: ^NS.GraphicsContext),
     systemFontSize: proc() -> CG.Float,
     smallSystemFontSize: proc() -> CG.Float,
     labelFontSize: proc() -> CG.Float,
-    fontName: proc(self: ^AK.Font) -> ^NS.String,
-    pointSize: proc(self: ^AK.Font) -> CG.Float,
-    _matrix: proc(self: ^AK.Font) -> ^CG.Float,
-    familyName: proc(self: ^AK.Font) -> ^NS.String,
-    displayName: proc(self: ^AK.Font) -> ^NS.String,
-    fontDescriptor: proc(self: ^AK.Font) -> ^AK.FontDescriptor,
-    textTransform: proc(self: ^AK.Font) -> ^NS.AffineTransform,
-    numberOfGlyphs: proc(self: ^AK.Font) -> NS.UInteger,
-    mostCompatibleStringEncoding: proc(self: ^AK.Font) -> NS.StringEncoding,
-    coveredCharacterSet: proc(self: ^AK.Font) -> ^NS.CharacterSet,
-    boundingRectForFont: proc(self: ^AK.Font) -> NS.Rect,
-    maximumAdvancement: proc(self: ^AK.Font) -> NS.Size,
-    ascender: proc(self: ^AK.Font) -> CG.Float,
-    descender: proc(self: ^AK.Font) -> CG.Float,
-    leading: proc(self: ^AK.Font) -> CG.Float,
-    underlinePosition: proc(self: ^AK.Font) -> CG.Float,
-    underlineThickness: proc(self: ^AK.Font) -> CG.Float,
-    italicAngle: proc(self: ^AK.Font) -> CG.Float,
-    capHeight: proc(self: ^AK.Font) -> CG.Float,
-    xHeight: proc(self: ^AK.Font) -> CG.Float,
-    isFixedPitch: proc(self: ^AK.Font) -> bool,
-    verticalFont: proc(self: ^AK.Font) -> ^AK.Font,
-    isVertical: proc(self: ^AK.Font) -> bool,
-    glyphWithName: proc(self: ^AK.Font, name: ^NS.String) -> AK.Glyph,
-    boundingRectForGlyph: proc(self: ^AK.Font, glyph: AK.Glyph) -> NS.Rect,
-    advancementForGlyph: proc(self: ^AK.Font, glyph: AK.Glyph) -> NS.Size,
-    getBoundingRects_forGlyphs_count: proc(self: ^AK.Font, bounds: NS.RectArray, glyphs: ^AK.Glyph, glyphCount: NS.UInteger),
-    getAdvancements_forGlyphs_count: proc(self: ^AK.Font, advancements: NS.SizeArray, glyphs: ^AK.Glyph, glyphCount: NS.UInteger),
-    getAdvancements_forPackedGlyphs_length: proc(self: ^AK.Font, advancements: NS.SizeArray, packedGlyphs: rawptr, length: NS.UInteger),
-    screenFontWithRenderingMode: proc(self: ^AK.Font, renderingMode: AK.FontRenderingMode) -> ^AK.Font,
-    printerFont: proc(self: ^AK.Font) -> ^AK.Font,
-    screenFont: proc(self: ^AK.Font) -> ^AK.Font,
-    renderingMode: proc(self: ^AK.Font) -> AK.FontRenderingMode,
-    preferredFontForTextStyle: proc(style: ^NS.String, options: ^NS.Dictionary) -> ^AK.Font,
+    fontName: proc(self: ^NS.Font) -> ^NS.String,
+    pointSize: proc(self: ^NS.Font) -> CG.Float,
+    _matrix: proc(self: ^NS.Font) -> ^CG.Float,
+    familyName: proc(self: ^NS.Font) -> ^NS.String,
+    displayName: proc(self: ^NS.Font) -> ^NS.String,
+    fontDescriptor: proc(self: ^NS.Font) -> ^NS.FontDescriptor,
+    textTransform: proc(self: ^NS.Font) -> ^NS.AffineTransform,
+    numberOfGlyphs: proc(self: ^NS.Font) -> NS.UInteger,
+    mostCompatibleStringEncoding: proc(self: ^NS.Font) -> NS.StringEncoding,
+    coveredCharacterSet: proc(self: ^NS.Font) -> ^NS.CharacterSet,
+    boundingRectForFont: proc(self: ^NS.Font) -> NS.Rect,
+    maximumAdvancement: proc(self: ^NS.Font) -> NS.Size,
+    ascender: proc(self: ^NS.Font) -> CG.Float,
+    descender: proc(self: ^NS.Font) -> CG.Float,
+    leading: proc(self: ^NS.Font) -> CG.Float,
+    underlinePosition: proc(self: ^NS.Font) -> CG.Float,
+    underlineThickness: proc(self: ^NS.Font) -> CG.Float,
+    italicAngle: proc(self: ^NS.Font) -> CG.Float,
+    capHeight: proc(self: ^NS.Font) -> CG.Float,
+    xHeight: proc(self: ^NS.Font) -> CG.Float,
+    isFixedPitch: proc(self: ^NS.Font) -> bool,
+    verticalFont: proc(self: ^NS.Font) -> ^NS.Font,
+    isVertical: proc(self: ^NS.Font) -> bool,
+    glyphWithName: proc(self: ^NS.Font, name: ^NS.String) -> NS.Glyph,
+    boundingRectForGlyph: proc(self: ^NS.Font, glyph: NS.Glyph) -> NS.Rect,
+    advancementForGlyph: proc(self: ^NS.Font, glyph: NS.Glyph) -> NS.Size,
+    getBoundingRects_forGlyphs_count: proc(self: ^NS.Font, bounds: NS.RectArray, glyphs: ^NS.Glyph, glyphCount: NS.UInteger),
+    getAdvancements_forGlyphs_count: proc(self: ^NS.Font, advancements: NS.SizeArray, glyphs: ^NS.Glyph, glyphCount: NS.UInteger),
+    getAdvancements_forPackedGlyphs_length: proc(self: ^NS.Font, advancements: NS.SizeArray, packedGlyphs: rawptr, length: NS.UInteger),
+    screenFontWithRenderingMode: proc(self: ^NS.Font, renderingMode: NS.FontRenderingMode) -> ^NS.Font,
+    printerFont: proc(self: ^NS.Font) -> ^NS.Font,
+    screenFont: proc(self: ^NS.Font) -> ^NS.Font,
+    renderingMode: proc(self: ^NS.Font) -> NS.FontRenderingMode,
+    preferredFontForTextStyle: proc(style: ^NS.String, options: ^NS.Dictionary) -> ^NS.Font,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.fontWithName_size != nil {
-        fontWithName_size :: proc "c" (self: Class, _: SEL, fontName: ^NS.String, fontSize: CG.Float) -> ^AK.Font {
+        fontWithName_size :: proc "c" (self: Class, _: SEL, fontName: ^NS.String, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontWithName:size:"), auto_cast fontWithName_size, "@#:@d") do panic("Failed to register objC method.")
     }
     if vt.fontWithName_matrix != nil {
-        fontWithName_matrix :: proc "c" (self: Class, _: SEL, fontName: ^NS.String, fontMatrix: ^CG.Float) -> ^AK.Font {
+        fontWithName_matrix :: proc "c" (self: Class, _: SEL, fontName: ^NS.String, fontMatrix: ^CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontWithName:matrix:"), auto_cast fontWithName_matrix, "@#:@^void") do panic("Failed to register objC method.")
     }
     if vt.fontWithDescriptor_size != nil {
-        fontWithDescriptor_size :: proc "c" (self: Class, _: SEL, fontDescriptor: ^AK.FontDescriptor, fontSize: CG.Float) -> ^AK.Font {
+        fontWithDescriptor_size :: proc "c" (self: Class, _: SEL, fontDescriptor: ^NS.FontDescriptor, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontWithDescriptor:size:"), auto_cast fontWithDescriptor_size, "@#:@d") do panic("Failed to register objC method.")
     }
     if vt.fontWithDescriptor_textTransform != nil {
-        fontWithDescriptor_textTransform :: proc "c" (self: Class, _: SEL, fontDescriptor: ^AK.FontDescriptor, textTransform: ^NS.AffineTransform) -> ^AK.Font {
+        fontWithDescriptor_textTransform :: proc "c" (self: Class, _: SEL, fontDescriptor: ^NS.FontDescriptor, textTransform: ^NS.AffineTransform) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontWithDescriptor:textTransform:"), auto_cast fontWithDescriptor_textTransform, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.userFontOfSize != nil {
-        userFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        userFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("userFontOfSize:"), auto_cast userFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.userFixedPitchFontOfSize != nil {
-        userFixedPitchFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        userFixedPitchFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("userFixedPitchFontOfSize:"), auto_cast userFixedPitchFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.setUserFont != nil {
-        setUserFont :: proc "c" (self: Class, _: SEL, font: ^AK.Font) {
+        setUserFont :: proc "c" (self: Class, _: SEL, font: ^NS.Font) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setUserFont:"), auto_cast setUserFont, "v#:@") do panic("Failed to register objC method.")
     }
     if vt.setUserFixedPitchFont != nil {
-        setUserFixedPitchFont :: proc "c" (self: Class, _: SEL, font: ^AK.Font) {
+        setUserFixedPitchFont :: proc "c" (self: Class, _: SEL, font: ^NS.Font) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setUserFixedPitchFont:"), auto_cast setUserFixedPitchFont, "v#:@") do panic("Failed to register objC method.")
     }
     if vt.systemFontOfSize_ != nil {
-        systemFontOfSize_ :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        systemFontOfSize_ :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemFontOfSize:"), auto_cast systemFontOfSize_, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.boldSystemFontOfSize != nil {
-        boldSystemFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        boldSystemFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -203,7 +203,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("boldSystemFontOfSize:"), auto_cast boldSystemFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.labelFontOfSize != nil {
-        labelFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        labelFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("labelFontOfSize:"), auto_cast labelFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.titleBarFontOfSize != nil {
-        titleBarFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        titleBarFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("titleBarFontOfSize:"), auto_cast titleBarFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.menuFontOfSize != nil {
-        menuFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        menuFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("menuFontOfSize:"), auto_cast menuFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.menuBarFontOfSize != nil {
-        menuBarFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        menuBarFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("menuBarFontOfSize:"), auto_cast menuBarFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.messageFontOfSize != nil {
-        messageFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        messageFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("messageFontOfSize:"), auto_cast messageFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.paletteFontOfSize != nil {
-        paletteFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        paletteFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -263,7 +263,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("paletteFontOfSize:"), auto_cast paletteFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.toolTipsFontOfSize != nil {
-        toolTipsFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        toolTipsFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -273,7 +273,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("toolTipsFontOfSize:"), auto_cast toolTipsFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.controlContentFontOfSize != nil {
-        controlContentFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        controlContentFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -283,7 +283,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("controlContentFontOfSize:"), auto_cast controlContentFontOfSize, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.systemFontOfSize_weight != nil {
-        systemFontOfSize_weight :: proc "c" (self: Class, _: SEL, fontSize: CG.Float, weight: AK.FontWeight) -> ^AK.Font {
+        systemFontOfSize_weight :: proc "c" (self: Class, _: SEL, fontSize: CG.Float, weight: NS.FontWeight) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -293,7 +293,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemFontOfSize:weight:"), auto_cast systemFontOfSize_weight, "@#:dd") do panic("Failed to register objC method.")
     }
     if vt.monospacedDigitSystemFontOfSize != nil {
-        monospacedDigitSystemFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float, weight: AK.FontWeight) -> ^AK.Font {
+        monospacedDigitSystemFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float, weight: NS.FontWeight) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -303,7 +303,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("monospacedDigitSystemFontOfSize:weight:"), auto_cast monospacedDigitSystemFontOfSize, "@#:dd") do panic("Failed to register objC method.")
     }
     if vt.systemFontOfSize_weight_width != nil {
-        systemFontOfSize_weight_width :: proc "c" (self: Class, _: SEL, fontSize: CG.Float, weight: AK.FontWeight, width: AK.FontWidth) -> ^AK.Font {
+        systemFontOfSize_weight_width :: proc "c" (self: Class, _: SEL, fontSize: CG.Float, weight: NS.FontWeight, width: NS.FontWidth) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -313,7 +313,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemFontOfSize:weight:width:"), auto_cast systemFontOfSize_weight_width, "@#:ddd") do panic("Failed to register objC method.")
     }
     if vt.monospacedSystemFontOfSize != nil {
-        monospacedSystemFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float, weight: AK.FontWeight) -> ^AK.Font {
+        monospacedSystemFontOfSize :: proc "c" (self: Class, _: SEL, fontSize: CG.Float, weight: NS.FontWeight) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -323,7 +323,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("monospacedSystemFontOfSize:weight:"), auto_cast monospacedSystemFontOfSize, "@#:dd") do panic("Failed to register objC method.")
     }
     if vt.fontWithSize != nil {
-        fontWithSize :: proc "c" (self: ^AK.Font, _: SEL, fontSize: CG.Float) -> ^AK.Font {
+        fontWithSize :: proc "c" (self: ^NS.Font, _: SEL, fontSize: CG.Float) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -333,7 +333,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontWithSize:"), auto_cast fontWithSize, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.systemFontSizeForControlSize != nil {
-        systemFontSizeForControlSize :: proc "c" (self: Class, _: SEL, controlSize: AK.ControlSize) -> CG.Float {
+        systemFontSizeForControlSize :: proc "c" (self: Class, _: SEL, controlSize: NS.ControlSize) -> CG.Float {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -343,7 +343,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("systemFontSizeForControlSize:"), auto_cast systemFontSizeForControlSize, "d#:L") do panic("Failed to register objC method.")
     }
     if vt.boundingRectForCGGlyph != nil {
-        boundingRectForCGGlyph :: proc "c" (self: ^AK.Font, _: SEL, glyph: CG.Glyph) -> NS.Rect {
+        boundingRectForCGGlyph :: proc "c" (self: ^NS.Font, _: SEL, glyph: CG.Glyph) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -353,7 +353,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("boundingRectForCGGlyph:"), auto_cast boundingRectForCGGlyph, "{CGRect={CGPoint=dd}{CGSize=dd}}@:S") do panic("Failed to register objC method.")
     }
     if vt.advancementForCGGlyph != nil {
-        advancementForCGGlyph :: proc "c" (self: ^AK.Font, _: SEL, glyph: CG.Glyph) -> NS.Size {
+        advancementForCGGlyph :: proc "c" (self: ^NS.Font, _: SEL, glyph: CG.Glyph) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -363,7 +363,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("advancementForCGGlyph:"), auto_cast advancementForCGGlyph, "{CGSize=dd}@:S") do panic("Failed to register objC method.")
     }
     if vt.getBoundingRects_forCGGlyphs_count != nil {
-        getBoundingRects_forCGGlyphs_count :: proc "c" (self: ^AK.Font, _: SEL, bounds: NS.RectArray, glyphs: ^CG.Glyph, glyphCount: NS.UInteger) {
+        getBoundingRects_forCGGlyphs_count :: proc "c" (self: ^NS.Font, _: SEL, bounds: NS.RectArray, glyphs: ^CG.Glyph, glyphCount: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -373,7 +373,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getBoundingRects:forCGGlyphs:count:"), auto_cast getBoundingRects_forCGGlyphs_count, "v@:^void^voidL") do panic("Failed to register objC method.")
     }
     if vt.getAdvancements_forCGGlyphs_count != nil {
-        getAdvancements_forCGGlyphs_count :: proc "c" (self: ^AK.Font, _: SEL, advancements: NS.SizeArray, glyphs: ^CG.Glyph, glyphCount: NS.UInteger) {
+        getAdvancements_forCGGlyphs_count :: proc "c" (self: ^NS.Font, _: SEL, advancements: NS.SizeArray, glyphs: ^CG.Glyph, glyphCount: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -383,7 +383,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getAdvancements:forCGGlyphs:count:"), auto_cast getAdvancements_forCGGlyphs_count, "v@:^void^voidL") do panic("Failed to register objC method.")
     }
     if vt.set != nil {
-        set :: proc "c" (self: ^AK.Font, _: SEL) {
+        set :: proc "c" (self: ^NS.Font, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -393,7 +393,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("set"), auto_cast set, "v@:") do panic("Failed to register objC method.")
     }
     if vt.setInContext != nil {
-        setInContext :: proc "c" (self: ^AK.Font, _: SEL, graphicsContext: ^AK.GraphicsContext) {
+        setInContext :: proc "c" (self: ^NS.Font, _: SEL, graphicsContext: ^NS.GraphicsContext) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -433,7 +433,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("labelFontSize"), auto_cast labelFontSize, "d#:") do panic("Failed to register objC method.")
     }
     if vt.fontName != nil {
-        fontName :: proc "c" (self: ^AK.Font, _: SEL) -> ^NS.String {
+        fontName :: proc "c" (self: ^NS.Font, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -443,7 +443,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontName"), auto_cast fontName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.pointSize != nil {
-        pointSize :: proc "c" (self: ^AK.Font, _: SEL) -> CG.Float {
+        pointSize :: proc "c" (self: ^NS.Font, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -453,7 +453,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pointSize"), auto_cast pointSize, "d@:") do panic("Failed to register objC method.")
     }
     if vt._matrix != nil {
-        _matrix :: proc "c" (self: ^AK.Font, _: SEL) -> ^CG.Float {
+        _matrix :: proc "c" (self: ^NS.Font, _: SEL) -> ^CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -463,7 +463,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("matrix"), auto_cast _matrix, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.familyName != nil {
-        familyName :: proc "c" (self: ^AK.Font, _: SEL) -> ^NS.String {
+        familyName :: proc "c" (self: ^NS.Font, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -473,7 +473,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("familyName"), auto_cast familyName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.displayName != nil {
-        displayName :: proc "c" (self: ^AK.Font, _: SEL) -> ^NS.String {
+        displayName :: proc "c" (self: ^NS.Font, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -483,7 +483,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("displayName"), auto_cast displayName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptor != nil {
-        fontDescriptor :: proc "c" (self: ^AK.Font, _: SEL) -> ^AK.FontDescriptor {
+        fontDescriptor :: proc "c" (self: ^NS.Font, _: SEL) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -493,7 +493,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontDescriptor"), auto_cast fontDescriptor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.textTransform != nil {
-        textTransform :: proc "c" (self: ^AK.Font, _: SEL) -> ^NS.AffineTransform {
+        textTransform :: proc "c" (self: ^NS.Font, _: SEL) -> ^NS.AffineTransform {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -503,7 +503,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textTransform"), auto_cast textTransform, "@@:") do panic("Failed to register objC method.")
     }
     if vt.numberOfGlyphs != nil {
-        numberOfGlyphs :: proc "c" (self: ^AK.Font, _: SEL) -> NS.UInteger {
+        numberOfGlyphs :: proc "c" (self: ^NS.Font, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -513,7 +513,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfGlyphs"), auto_cast numberOfGlyphs, "L@:") do panic("Failed to register objC method.")
     }
     if vt.mostCompatibleStringEncoding != nil {
-        mostCompatibleStringEncoding :: proc "c" (self: ^AK.Font, _: SEL) -> NS.StringEncoding {
+        mostCompatibleStringEncoding :: proc "c" (self: ^NS.Font, _: SEL) -> NS.StringEncoding {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -523,7 +523,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mostCompatibleStringEncoding"), auto_cast mostCompatibleStringEncoding, "L@:") do panic("Failed to register objC method.")
     }
     if vt.coveredCharacterSet != nil {
-        coveredCharacterSet :: proc "c" (self: ^AK.Font, _: SEL) -> ^NS.CharacterSet {
+        coveredCharacterSet :: proc "c" (self: ^NS.Font, _: SEL) -> ^NS.CharacterSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -533,7 +533,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("coveredCharacterSet"), auto_cast coveredCharacterSet, "@@:") do panic("Failed to register objC method.")
     }
     if vt.boundingRectForFont != nil {
-        boundingRectForFont :: proc "c" (self: ^AK.Font, _: SEL) -> NS.Rect {
+        boundingRectForFont :: proc "c" (self: ^NS.Font, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -543,7 +543,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("boundingRectForFont"), auto_cast boundingRectForFont, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.maximumAdvancement != nil {
-        maximumAdvancement :: proc "c" (self: ^AK.Font, _: SEL) -> NS.Size {
+        maximumAdvancement :: proc "c" (self: ^NS.Font, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -553,7 +553,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumAdvancement"), auto_cast maximumAdvancement, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.ascender != nil {
-        ascender :: proc "c" (self: ^AK.Font, _: SEL) -> CG.Float {
+        ascender :: proc "c" (self: ^NS.Font, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -563,7 +563,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("ascender"), auto_cast ascender, "d@:") do panic("Failed to register objC method.")
     }
     if vt.descender != nil {
-        descender :: proc "c" (self: ^AK.Font, _: SEL) -> CG.Float {
+        descender :: proc "c" (self: ^NS.Font, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -573,7 +573,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("descender"), auto_cast descender, "d@:") do panic("Failed to register objC method.")
     }
     if vt.leading != nil {
-        leading :: proc "c" (self: ^AK.Font, _: SEL) -> CG.Float {
+        leading :: proc "c" (self: ^NS.Font, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -583,7 +583,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("leading"), auto_cast leading, "d@:") do panic("Failed to register objC method.")
     }
     if vt.underlinePosition != nil {
-        underlinePosition :: proc "c" (self: ^AK.Font, _: SEL) -> CG.Float {
+        underlinePosition :: proc "c" (self: ^NS.Font, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -593,7 +593,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("underlinePosition"), auto_cast underlinePosition, "d@:") do panic("Failed to register objC method.")
     }
     if vt.underlineThickness != nil {
-        underlineThickness :: proc "c" (self: ^AK.Font, _: SEL) -> CG.Float {
+        underlineThickness :: proc "c" (self: ^NS.Font, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -603,7 +603,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("underlineThickness"), auto_cast underlineThickness, "d@:") do panic("Failed to register objC method.")
     }
     if vt.italicAngle != nil {
-        italicAngle :: proc "c" (self: ^AK.Font, _: SEL) -> CG.Float {
+        italicAngle :: proc "c" (self: ^NS.Font, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -613,7 +613,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("italicAngle"), auto_cast italicAngle, "d@:") do panic("Failed to register objC method.")
     }
     if vt.capHeight != nil {
-        capHeight :: proc "c" (self: ^AK.Font, _: SEL) -> CG.Float {
+        capHeight :: proc "c" (self: ^NS.Font, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -623,7 +623,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("capHeight"), auto_cast capHeight, "d@:") do panic("Failed to register objC method.")
     }
     if vt.xHeight != nil {
-        xHeight :: proc "c" (self: ^AK.Font, _: SEL) -> CG.Float {
+        xHeight :: proc "c" (self: ^NS.Font, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -633,7 +633,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("xHeight"), auto_cast xHeight, "d@:") do panic("Failed to register objC method.")
     }
     if vt.isFixedPitch != nil {
-        isFixedPitch :: proc "c" (self: ^AK.Font, _: SEL) -> bool {
+        isFixedPitch :: proc "c" (self: ^NS.Font, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -643,7 +643,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFixedPitch"), auto_cast isFixedPitch, "B@:") do panic("Failed to register objC method.")
     }
     if vt.verticalFont != nil {
-        verticalFont :: proc "c" (self: ^AK.Font, _: SEL) -> ^AK.Font {
+        verticalFont :: proc "c" (self: ^NS.Font, _: SEL) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -653,7 +653,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("verticalFont"), auto_cast verticalFont, "@@:") do panic("Failed to register objC method.")
     }
     if vt.isVertical != nil {
-        isVertical :: proc "c" (self: ^AK.Font, _: SEL) -> bool {
+        isVertical :: proc "c" (self: ^NS.Font, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -663,7 +663,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isVertical"), auto_cast isVertical, "B@:") do panic("Failed to register objC method.")
     }
     if vt.glyphWithName != nil {
-        glyphWithName :: proc "c" (self: ^AK.Font, _: SEL, name: ^NS.String) -> AK.Glyph {
+        glyphWithName :: proc "c" (self: ^NS.Font, _: SEL, name: ^NS.String) -> NS.Glyph {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -673,7 +673,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("glyphWithName:"), auto_cast glyphWithName, "I@:@") do panic("Failed to register objC method.")
     }
     if vt.boundingRectForGlyph != nil {
-        boundingRectForGlyph :: proc "c" (self: ^AK.Font, _: SEL, glyph: AK.Glyph) -> NS.Rect {
+        boundingRectForGlyph :: proc "c" (self: ^NS.Font, _: SEL, glyph: NS.Glyph) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -683,7 +683,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("boundingRectForGlyph:"), auto_cast boundingRectForGlyph, "{CGRect={CGPoint=dd}{CGSize=dd}}@:I") do panic("Failed to register objC method.")
     }
     if vt.advancementForGlyph != nil {
-        advancementForGlyph :: proc "c" (self: ^AK.Font, _: SEL, glyph: AK.Glyph) -> NS.Size {
+        advancementForGlyph :: proc "c" (self: ^NS.Font, _: SEL, glyph: NS.Glyph) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -693,7 +693,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("advancementForGlyph:"), auto_cast advancementForGlyph, "{CGSize=dd}@:I") do panic("Failed to register objC method.")
     }
     if vt.getBoundingRects_forGlyphs_count != nil {
-        getBoundingRects_forGlyphs_count :: proc "c" (self: ^AK.Font, _: SEL, bounds: NS.RectArray, glyphs: ^AK.Glyph, glyphCount: NS.UInteger) {
+        getBoundingRects_forGlyphs_count :: proc "c" (self: ^NS.Font, _: SEL, bounds: NS.RectArray, glyphs: ^NS.Glyph, glyphCount: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -703,7 +703,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getBoundingRects:forGlyphs:count:"), auto_cast getBoundingRects_forGlyphs_count, "v@:^void^voidL") do panic("Failed to register objC method.")
     }
     if vt.getAdvancements_forGlyphs_count != nil {
-        getAdvancements_forGlyphs_count :: proc "c" (self: ^AK.Font, _: SEL, advancements: NS.SizeArray, glyphs: ^AK.Glyph, glyphCount: NS.UInteger) {
+        getAdvancements_forGlyphs_count :: proc "c" (self: ^NS.Font, _: SEL, advancements: NS.SizeArray, glyphs: ^NS.Glyph, glyphCount: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -713,7 +713,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getAdvancements:forGlyphs:count:"), auto_cast getAdvancements_forGlyphs_count, "v@:^void^voidL") do panic("Failed to register objC method.")
     }
     if vt.getAdvancements_forPackedGlyphs_length != nil {
-        getAdvancements_forPackedGlyphs_length :: proc "c" (self: ^AK.Font, _: SEL, advancements: NS.SizeArray, packedGlyphs: rawptr, length: NS.UInteger) {
+        getAdvancements_forPackedGlyphs_length :: proc "c" (self: ^NS.Font, _: SEL, advancements: NS.SizeArray, packedGlyphs: rawptr, length: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -723,7 +723,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getAdvancements:forPackedGlyphs:length:"), auto_cast getAdvancements_forPackedGlyphs_length, "v@:^void^voidL") do panic("Failed to register objC method.")
     }
     if vt.screenFontWithRenderingMode != nil {
-        screenFontWithRenderingMode :: proc "c" (self: ^AK.Font, _: SEL, renderingMode: AK.FontRenderingMode) -> ^AK.Font {
+        screenFontWithRenderingMode :: proc "c" (self: ^NS.Font, _: SEL, renderingMode: NS.FontRenderingMode) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -733,7 +733,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("screenFontWithRenderingMode:"), auto_cast screenFontWithRenderingMode, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.printerFont != nil {
-        printerFont :: proc "c" (self: ^AK.Font, _: SEL) -> ^AK.Font {
+        printerFont :: proc "c" (self: ^NS.Font, _: SEL) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -743,7 +743,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("printerFont"), auto_cast printerFont, "@@:") do panic("Failed to register objC method.")
     }
     if vt.screenFont != nil {
-        screenFont :: proc "c" (self: ^AK.Font, _: SEL) -> ^AK.Font {
+        screenFont :: proc "c" (self: ^NS.Font, _: SEL) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -753,7 +753,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("screenFont"), auto_cast screenFont, "@@:") do panic("Failed to register objC method.")
     }
     if vt.renderingMode != nil {
-        renderingMode :: proc "c" (self: ^AK.Font, _: SEL) -> AK.FontRenderingMode {
+        renderingMode :: proc "c" (self: ^NS.Font, _: SEL) -> NS.FontRenderingMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -763,7 +763,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("renderingMode"), auto_cast renderingMode, "L@:") do panic("Failed to register objC method.")
     }
     if vt.preferredFontForTextStyle != nil {
-        preferredFontForTextStyle :: proc "c" (self: Class, _: SEL, style: ^NS.String, options: ^NS.Dictionary) -> ^AK.Font {
+        preferredFontForTextStyle :: proc "c" (self: Class, _: SEL, style: ^NS.String, options: ^NS.Dictionary) -> ^NS.Font {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

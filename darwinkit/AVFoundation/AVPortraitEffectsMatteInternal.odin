@@ -12,13 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPortraitEffectsMatteInternal
-///
 @(objc_class="AVPortraitEffectsMatteInternal")
 PortraitEffectsMatteInternal :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

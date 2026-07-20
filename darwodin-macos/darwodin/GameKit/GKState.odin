@@ -4,8 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 

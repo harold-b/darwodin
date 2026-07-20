@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    sharingService_willShareItems: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, items: ^NS.Array),
-    sharingService_didFailToShareItems_error: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, items: ^NS.Array, error: ^NS.Error),
-    sharingService_didShareItems: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, items: ^NS.Array),
-    sharingService_sourceFrameOnScreenForShareItem: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, item: id) -> NS.Rect,
-    sharingService_transitionImageForShareItem_contentRect: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, item: id, contentRect: ^NS.Rect) -> ^AK.Image,
-    sharingService_sourceWindowForShareItems_sharingContentScope: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, items: ^NS.Array, sharingContentScope: ^AK.SharingContentScope) -> ^AK.Window,
-    anchoringViewForSharingService: proc(self: ^AK.SharingServiceDelegate, sharingService: ^AK.SharingService, positioningRect: ^NS.Rect, preferredEdge: ^NS.RectEdge) -> ^AK.View,
+    sharingService_willShareItems: proc(self: ^NS.SharingServiceDelegate, sharingService: ^NS.SharingService, items: ^NS.Array),
+    sharingService_didFailToShareItems_error: proc(self: ^NS.SharingServiceDelegate, sharingService: ^NS.SharingService, items: ^NS.Array, error: ^NS.Error),
+    sharingService_didShareItems: proc(self: ^NS.SharingServiceDelegate, sharingService: ^NS.SharingService, items: ^NS.Array),
+    sharingService_sourceFrameOnScreenForShareItem: proc(self: ^NS.SharingServiceDelegate, sharingService: ^NS.SharingService, item: id) -> NS.Rect,
+    sharingService_transitionImageForShareItem_contentRect: proc(self: ^NS.SharingServiceDelegate, sharingService: ^NS.SharingService, item: id, contentRect: ^NS.Rect) -> ^NS.Image,
+    sharingService_sourceWindowForShareItems_sharingContentScope: proc(self: ^NS.SharingServiceDelegate, sharingService: ^NS.SharingService, items: ^NS.Array, sharingContentScope: ^NS.SharingContentScope) -> ^NS.Window,
+    anchoringViewForSharingService: proc(self: ^NS.SharingServiceDelegate, sharingService: ^NS.SharingService, positioningRect: ^NS.Rect, preferredEdge: ^NS.RectEdge) -> ^NS.View,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.sharingService_willShareItems != nil {
-        sharingService_willShareItems :: proc "c" (self: ^AK.SharingServiceDelegate, _: SEL, sharingService: ^AK.SharingService, items: ^NS.Array) {
+        sharingService_willShareItems :: proc "c" (self: ^NS.SharingServiceDelegate, _: SEL, sharingService: ^NS.SharingService, items: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingService:willShareItems:"), auto_cast sharingService_willShareItems, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.sharingService_didFailToShareItems_error != nil {
-        sharingService_didFailToShareItems_error :: proc "c" (self: ^AK.SharingServiceDelegate, _: SEL, sharingService: ^AK.SharingService, items: ^NS.Array, error: ^NS.Error) {
+        sharingService_didFailToShareItems_error :: proc "c" (self: ^NS.SharingServiceDelegate, _: SEL, sharingService: ^NS.SharingService, items: ^NS.Array, error: ^NS.Error) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingService:didFailToShareItems:error:"), auto_cast sharingService_didFailToShareItems_error, "v@:@@@") do panic("Failed to register objC method.")
     }
     if vt.sharingService_didShareItems != nil {
-        sharingService_didShareItems :: proc "c" (self: ^AK.SharingServiceDelegate, _: SEL, sharingService: ^AK.SharingService, items: ^NS.Array) {
+        sharingService_didShareItems :: proc "c" (self: ^NS.SharingServiceDelegate, _: SEL, sharingService: ^NS.SharingService, items: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingService:didShareItems:"), auto_cast sharingService_didShareItems, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.sharingService_sourceFrameOnScreenForShareItem != nil {
-        sharingService_sourceFrameOnScreenForShareItem :: proc "c" (self: ^AK.SharingServiceDelegate, _: SEL, sharingService: ^AK.SharingService, item: id) -> NS.Rect {
+        sharingService_sourceFrameOnScreenForShareItem :: proc "c" (self: ^NS.SharingServiceDelegate, _: SEL, sharingService: ^NS.SharingService, item: id) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingService:sourceFrameOnScreenForShareItem:"), auto_cast sharingService_sourceFrameOnScreenForShareItem, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@@") do panic("Failed to register objC method.")
     }
     if vt.sharingService_transitionImageForShareItem_contentRect != nil {
-        sharingService_transitionImageForShareItem_contentRect :: proc "c" (self: ^AK.SharingServiceDelegate, _: SEL, sharingService: ^AK.SharingService, item: id, contentRect: ^NS.Rect) -> ^AK.Image {
+        sharingService_transitionImageForShareItem_contentRect :: proc "c" (self: ^NS.SharingServiceDelegate, _: SEL, sharingService: ^NS.SharingService, item: id, contentRect: ^NS.Rect) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingService:transitionImageForShareItem:contentRect:"), auto_cast sharingService_transitionImageForShareItem_contentRect, "@@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.sharingService_sourceWindowForShareItems_sharingContentScope != nil {
-        sharingService_sourceWindowForShareItems_sharingContentScope :: proc "c" (self: ^AK.SharingServiceDelegate, _: SEL, sharingService: ^AK.SharingService, items: ^NS.Array, sharingContentScope: ^AK.SharingContentScope) -> ^AK.Window {
+        sharingService_sourceWindowForShareItems_sharingContentScope :: proc "c" (self: ^NS.SharingServiceDelegate, _: SEL, sharingService: ^NS.SharingService, items: ^NS.Array, sharingContentScope: ^NS.SharingContentScope) -> ^NS.Window {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingService:sourceWindowForShareItems:sharingContentScope:"), auto_cast sharingService_sourceWindowForShareItems_sharingContentScope, "@@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.anchoringViewForSharingService != nil {
-        anchoringViewForSharingService :: proc "c" (self: ^AK.SharingServiceDelegate, _: SEL, sharingService: ^AK.SharingService, positioningRect: ^NS.Rect, preferredEdge: ^NS.RectEdge) -> ^AK.View {
+        anchoringViewForSharingService :: proc "c" (self: ^NS.SharingServiceDelegate, _: SEL, sharingService: ^NS.SharingService, positioningRect: ^NS.Rect, preferredEdge: ^NS.RectEdge) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

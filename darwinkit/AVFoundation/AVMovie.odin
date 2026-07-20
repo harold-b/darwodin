@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMovie
-///
 @(objc_class="AVMovie", objc_superclass=Asset)
 Movie :: struct { using _: Asset, 
     using _: NS.Copying,
     using _: NS.MutableCopying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Movie, objc_selector="movieTypes", objc_name="movieTypes", objc_is_class_method=true)
     Movie_movieTypes :: proc() -> ^NS.Array ---
@@ -71,17 +65,20 @@ foreign lib {
     Movie_trackWithTrackID :: proc(self: ^Movie, trackID: CM.PersistentTrackID) -> ^MovieTrack ---
 
     @(objc_type=Movie, objc_selector="loadTrackWithTrackID:completionHandler:", objc_name="loadTrackWithTrackID")
-    Movie_loadTrackWithTrackID :: proc(self: ^Movie, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" (_: ^MovieTrack, _1: ^NS.Error))) ---
+    Movie_loadTrackWithTrackID :: proc(self: ^Movie, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" ( _0: ^MovieTrack, _1: ^NS.Error ))) ---
 
     @(objc_type=Movie, objc_selector="tracksWithMediaType:", objc_name="tracksWithMediaType")
     Movie_tracksWithMediaType :: proc(self: ^Movie, mediaType: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=Movie, objc_selector="loadTracksWithMediaType:completionHandler:", objc_name="loadTracksWithMediaType")
-    Movie_loadTracksWithMediaType :: proc(self: ^Movie, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    Movie_loadTracksWithMediaType :: proc(self: ^Movie, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=Movie, objc_selector="tracksWithMediaCharacteristic:", objc_name="tracksWithMediaCharacteristic")
     Movie_tracksWithMediaCharacteristic :: proc(self: ^Movie, mediaCharacteristic: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=Movie, objc_selector="loadTracksWithMediaCharacteristic:completionHandler:", objc_name="loadTracksWithMediaCharacteristic")
-    Movie_loadTracksWithMediaCharacteristic :: proc(self: ^Movie, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    Movie_loadTracksWithMediaCharacteristic :: proc(self: ^Movie, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 }
+
+
+

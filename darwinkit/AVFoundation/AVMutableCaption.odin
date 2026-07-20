@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableCaption
-///
 @(objc_class="AVMutableCaption", objc_superclass=Caption)
 MutableCaption :: struct { using _: Caption, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableCaption, objc_selector="text", objc_name="text")
     MutableCaption_text :: proc(self: ^MutableCaption) -> ^NS.String ---
@@ -94,3 +88,6 @@ foreign lib {
     @(objc_type=MutableCaption, objc_selector="setAnimation:", objc_name="setAnimation")
     MutableCaption_setAnimation :: proc(self: ^MutableCaption, animation: CaptionAnimation) ---
 }
+
+
+

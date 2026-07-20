@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSGestureRecognizer"
 
 VTable :: struct {
     super: NSGestureRecognizer.VTable,
-    buttonMask: proc(self: ^AK.ClickGestureRecognizer) -> NS.UInteger,
-    setButtonMask: proc(self: ^AK.ClickGestureRecognizer, buttonMask: NS.UInteger),
-    numberOfClicksRequired: proc(self: ^AK.ClickGestureRecognizer) -> NS.Integer,
-    setNumberOfClicksRequired: proc(self: ^AK.ClickGestureRecognizer, numberOfClicksRequired: NS.Integer),
-    numberOfTouchesRequired: proc(self: ^AK.ClickGestureRecognizer) -> NS.Integer,
-    setNumberOfTouchesRequired: proc(self: ^AK.ClickGestureRecognizer, numberOfTouchesRequired: NS.Integer),
+    buttonMask: proc(self: ^NS.ClickGestureRecognizer) -> NS.UInteger,
+    setButtonMask: proc(self: ^NS.ClickGestureRecognizer, buttonMask: NS.UInteger),
+    numberOfClicksRequired: proc(self: ^NS.ClickGestureRecognizer) -> NS.Integer,
+    setNumberOfClicksRequired: proc(self: ^NS.ClickGestureRecognizer, numberOfClicksRequired: NS.Integer),
+    numberOfTouchesRequired: proc(self: ^NS.ClickGestureRecognizer) -> NS.Integer,
+    setNumberOfTouchesRequired: proc(self: ^NS.ClickGestureRecognizer, numberOfTouchesRequired: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSGestureRecognizer.extend(cls, &vt.super)
 
     if vt.buttonMask != nil {
-        buttonMask :: proc "c" (self: ^AK.ClickGestureRecognizer, _: SEL) -> NS.UInteger {
+        buttonMask :: proc "c" (self: ^NS.ClickGestureRecognizer, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("buttonMask"), auto_cast buttonMask, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setButtonMask != nil {
-        setButtonMask :: proc "c" (self: ^AK.ClickGestureRecognizer, _: SEL, buttonMask: NS.UInteger) {
+        setButtonMask :: proc "c" (self: ^NS.ClickGestureRecognizer, _: SEL, buttonMask: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setButtonMask:"), auto_cast setButtonMask, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.numberOfClicksRequired != nil {
-        numberOfClicksRequired :: proc "c" (self: ^AK.ClickGestureRecognizer, _: SEL) -> NS.Integer {
+        numberOfClicksRequired :: proc "c" (self: ^NS.ClickGestureRecognizer, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfClicksRequired"), auto_cast numberOfClicksRequired, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setNumberOfClicksRequired != nil {
-        setNumberOfClicksRequired :: proc "c" (self: ^AK.ClickGestureRecognizer, _: SEL, numberOfClicksRequired: NS.Integer) {
+        setNumberOfClicksRequired :: proc "c" (self: ^NS.ClickGestureRecognizer, _: SEL, numberOfClicksRequired: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNumberOfClicksRequired:"), auto_cast setNumberOfClicksRequired, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.numberOfTouchesRequired != nil {
-        numberOfTouchesRequired :: proc "c" (self: ^AK.ClickGestureRecognizer, _: SEL) -> NS.Integer {
+        numberOfTouchesRequired :: proc "c" (self: ^NS.ClickGestureRecognizer, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfTouchesRequired"), auto_cast numberOfTouchesRequired, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setNumberOfTouchesRequired != nil {
-        setNumberOfTouchesRequired :: proc "c" (self: ^AK.ClickGestureRecognizer, _: SEL, numberOfTouchesRequired: NS.Integer) {
+        setNumberOfTouchesRequired :: proc "c" (self: ^NS.ClickGestureRecognizer, _: SEL, numberOfTouchesRequired: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

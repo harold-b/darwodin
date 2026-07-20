@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioCompressedBuffer
-///
 @(objc_class="AVAudioCompressedBuffer", objc_superclass=AudioBuffer)
 AudioCompressedBuffer :: struct { using _: AudioBuffer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioCompressedBuffer, objc_selector="initWithFormat:packetCapacity:maximumPacketSize:", objc_name="initWithFormat_packetCapacity_maximumPacketSize")
     AudioCompressedBuffer_initWithFormat_packetCapacity_maximumPacketSize :: proc(self: ^AudioCompressedBuffer, format: ^AudioFormat, packetCapacity: AudioPacketCount, maximumPacketSize: NS.Integer) -> instancetype ---
@@ -58,6 +52,8 @@ foreign lib {
     @(objc_type=AudioCompressedBuffer, objc_selector="packetDependencies", objc_name="packetDependencies")
     AudioCompressedBuffer_packetDependencies :: proc(self: ^AudioCompressedBuffer) -> ^Audio.StreamPacketDependencyDescription ---
 }
+
+
 
 @(objc_type=AudioCompressedBuffer, objc_name="initWithFormat")
 AudioCompressedBuffer_initWithFormat :: proc {

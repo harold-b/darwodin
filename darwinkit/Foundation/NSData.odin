@@ -9,11 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSData
-///
 @(objc_class="NSData", objc_superclass=Object)
 Data :: struct { using _: Object, 
     using _: Copying,
@@ -21,7 +16,6 @@ Data :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Data, objc_selector="length", objc_name="length")
     Data_length :: proc(self: ^Data) -> UInteger ---
@@ -57,7 +51,7 @@ foreign lib {
     Data_rangeOfData :: proc(self: ^Data, dataToFind: ^Data, mask: DataSearchOptions, searchRange: _NSRange) -> _NSRange ---
 
     @(objc_type=Data, objc_selector="enumerateByteRangesUsingBlock:", objc_name="enumerateByteRangesUsingBlock")
-    Data_enumerateByteRangesUsingBlock :: proc(self: ^Data, block: ^Objc_Block(proc "c" (bytes: rawptr, byteRange: _NSRange, stop: ^bool))) ---
+    Data_enumerateByteRangesUsingBlock :: proc(self: ^Data, block: ^Objc_Block(proc "c" ( bytes: rawptr, byteRange: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=Data, objc_selector="description", objc_name="description")
     Data_description :: proc(self: ^Data) -> ^String ---
@@ -96,7 +90,7 @@ foreign lib {
     Data_initWithBytesNoCopy_length_freeWhenDone :: proc(self: ^Data, bytes: rawptr, length: UInteger, b: bool) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithBytesNoCopy:length:deallocator:", objc_name="initWithBytesNoCopy_length_deallocator")
-    Data_initWithBytesNoCopy_length_deallocator :: proc(self: ^Data, bytes: rawptr, length: UInteger, deallocator: ^Objc_Block(proc "c" (bytes: rawptr, length: UInteger))) -> instancetype ---
+    Data_initWithBytesNoCopy_length_deallocator :: proc(self: ^Data, bytes: rawptr, length: UInteger, deallocator: ^Objc_Block(proc "c" ( bytes: rawptr, length: UInteger ))) -> instancetype ---
 
     @(objc_type=Data, objc_selector="initWithContentsOfFile:options:error:", objc_name="initWithContentsOfFile_options_error")
     Data_initWithContentsOfFile_options_error :: proc(self: ^Data, path: ^String, readOptionsMask: DataReadingOptions, errorPtr: ^^Error) -> instancetype ---
@@ -149,6 +143,8 @@ foreign lib {
     @(objc_type=Data, objc_selector="base64Encoding", objc_name="base64Encoding")
     Data_base64Encoding :: proc(self: ^Data) -> ^String ---
 }
+
+
 
 @(objc_type=Data, objc_name="getBytes")
 Data_getBytes :: proc {

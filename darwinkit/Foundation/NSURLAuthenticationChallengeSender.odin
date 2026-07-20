@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLAuthenticationChallengeSender
-///
 @(objc_class="NSURLAuthenticationChallengeSender")
 URLAuthenticationChallengeSender :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLAuthenticationChallengeSender, objc_selector="useCredential:forAuthenticationChallenge:", objc_name="useCredential")
     URLAuthenticationChallengeSender_useCredential :: proc(self: ^URLAuthenticationChallengeSender, credential: ^URLCredential, challenge: ^URLAuthenticationChallenge) ---
@@ -36,3 +30,6 @@ foreign lib {
     @(objc_type=URLAuthenticationChallengeSender, objc_selector="rejectProtectionSpaceAndContinueWithChallenge:", objc_name="rejectProtectionSpaceAndContinueWithChallenge")
     URLAuthenticationChallengeSender_rejectProtectionSpaceAndContinueWithChallenge :: proc(self: ^URLAuthenticationChallengeSender, challenge: ^URLAuthenticationChallenge) ---
 }
+
+
+

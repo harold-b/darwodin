@@ -24,5 +24,5 @@ ColorSampler :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ColorSampler, objc_selector="showSamplerWithSelectionHandler:", objc_name="showSamplerWithSelectionHandler")
-    ColorSampler_showSamplerWithSelectionHandler :: proc(self: ^ColorSampler, selectionHandler: ^Objc_Block(proc "c" (selectedColor: ^Color))) ---
+    ColorSampler_showSamplerWithSelectionHandler :: proc(self: ^ColorSampler, selectionHandler: ^Objc_Block(proc "c" ( selectedColor: ^Color ))) ---
 }

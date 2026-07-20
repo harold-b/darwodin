@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKMatchedPlayers
-///
 @(objc_class="GKMatchedPlayers", objc_superclass=NS.Object)
 MatchedPlayers :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MatchedPlayers, objc_selector="properties", objc_name="properties")
     MatchedPlayers_properties :: proc(self: ^MatchedPlayers) -> ^MatchProperties ---
@@ -26,3 +20,6 @@ foreign lib {
     @(objc_type=MatchedPlayers, objc_selector="playerProperties", objc_name="playerProperties")
     MatchedPlayers_playerProperties :: proc(self: ^MatchedPlayers) -> ^NS.Dictionary ---
 }
+
+
+

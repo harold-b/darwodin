@@ -16,7 +16,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:QuartzCore.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:QuartzCore.framework",
+    }
+}
+
 
 MTLDevice       :: NS.Object
 MTLTexture      :: NS.Object

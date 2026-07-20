@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTextParagraph"
 
 VTable :: struct {
     super: NSTextParagraph.VTable,
-    initWithParentElement: proc(self: ^AK.TextListElement, parent: ^AK.TextListElement, textList: ^AK.TextList, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, children: ^NS.Array) -> instancetype,
-    initWithAttributedString: proc(self: ^AK.TextListElement, attributedString: ^NS.AttributedString) -> instancetype,
-    textListElementWithContents: proc(contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, textList: ^AK.TextList, children: ^NS.Array) -> instancetype,
-    textListElementWithChildElements: proc(children: ^NS.Array, textList: ^AK.TextList, nestingLevel: NS.Integer) -> instancetype,
-    textList: proc(self: ^AK.TextListElement) -> ^AK.TextList,
-    contents: proc(self: ^AK.TextListElement) -> ^NS.AttributedString,
-    markerAttributes: proc(self: ^AK.TextListElement) -> ^NS.Dictionary,
-    attributedString: proc(self: ^AK.TextListElement) -> ^NS.AttributedString,
-    childElements: proc(self: ^AK.TextListElement) -> ^NS.Array,
-    parentElement: proc(self: ^AK.TextListElement) -> ^AK.TextListElement,
+    initWithParentElement: proc(self: ^NS.TextListElement, parent: ^NS.TextListElement, textList: ^NS.TextList, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, children: ^NS.Array) -> instancetype,
+    initWithAttributedString: proc(self: ^NS.TextListElement, attributedString: ^NS.AttributedString) -> instancetype,
+    textListElementWithContents: proc(contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, textList: ^NS.TextList, children: ^NS.Array) -> instancetype,
+    textListElementWithChildElements: proc(children: ^NS.Array, textList: ^NS.TextList, nestingLevel: NS.Integer) -> instancetype,
+    textList: proc(self: ^NS.TextListElement) -> ^NS.TextList,
+    contents: proc(self: ^NS.TextListElement) -> ^NS.AttributedString,
+    markerAttributes: proc(self: ^NS.TextListElement) -> ^NS.Dictionary,
+    attributedString: proc(self: ^NS.TextListElement) -> ^NS.AttributedString,
+    childElements: proc(self: ^NS.TextListElement) -> ^NS.Array,
+    parentElement: proc(self: ^NS.TextListElement) -> ^NS.TextListElement,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextParagraph.extend(cls, &vt.super)
 
     if vt.initWithParentElement != nil {
-        initWithParentElement :: proc "c" (self: ^AK.TextListElement, _: SEL, parent: ^AK.TextListElement, textList: ^AK.TextList, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, children: ^NS.Array) -> instancetype {
+        initWithParentElement :: proc "c" (self: ^NS.TextListElement, _: SEL, parent: ^NS.TextListElement, textList: ^NS.TextList, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, children: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithParentElement:textList:contents:markerAttributes:childElements:"), auto_cast initWithParentElement, "@@:@@@^void^void") do panic("Failed to register objC method.")
     }
     if vt.initWithAttributedString != nil {
-        initWithAttributedString :: proc "c" (self: ^AK.TextListElement, _: SEL, attributedString: ^NS.AttributedString) -> instancetype {
+        initWithAttributedString :: proc "c" (self: ^NS.TextListElement, _: SEL, attributedString: ^NS.AttributedString) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithAttributedString:"), auto_cast initWithAttributedString, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.textListElementWithContents != nil {
-        textListElementWithContents :: proc "c" (self: Class, _: SEL, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, textList: ^AK.TextList, children: ^NS.Array) -> instancetype {
+        textListElementWithContents :: proc "c" (self: Class, _: SEL, contents: ^NS.AttributedString, markerAttributes: ^NS.Dictionary, textList: ^NS.TextList, children: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("textListElementWithContents:markerAttributes:textList:childElements:"), auto_cast textListElementWithContents, "@#:@^void@^void") do panic("Failed to register objC method.")
     }
     if vt.textListElementWithChildElements != nil {
-        textListElementWithChildElements :: proc "c" (self: Class, _: SEL, children: ^NS.Array, textList: ^AK.TextList, nestingLevel: NS.Integer) -> instancetype {
+        textListElementWithChildElements :: proc "c" (self: Class, _: SEL, children: ^NS.Array, textList: ^NS.TextList, nestingLevel: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("textListElementWithChildElements:textList:nestingLevel:"), auto_cast textListElementWithChildElements, "@#:^void@l") do panic("Failed to register objC method.")
     }
     if vt.textList != nil {
-        textList :: proc "c" (self: ^AK.TextListElement, _: SEL) -> ^AK.TextList {
+        textList :: proc "c" (self: ^NS.TextListElement, _: SEL) -> ^NS.TextList {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textList"), auto_cast textList, "@@:") do panic("Failed to register objC method.")
     }
     if vt.contents != nil {
-        contents :: proc "c" (self: ^AK.TextListElement, _: SEL) -> ^NS.AttributedString {
+        contents :: proc "c" (self: ^NS.TextListElement, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contents"), auto_cast contents, "@@:") do panic("Failed to register objC method.")
     }
     if vt.markerAttributes != nil {
-        markerAttributes :: proc "c" (self: ^AK.TextListElement, _: SEL) -> ^NS.Dictionary {
+        markerAttributes :: proc "c" (self: ^NS.TextListElement, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("markerAttributes"), auto_cast markerAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.attributedString != nil {
-        attributedString :: proc "c" (self: ^AK.TextListElement, _: SEL) -> ^NS.AttributedString {
+        attributedString :: proc "c" (self: ^NS.TextListElement, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedString"), auto_cast attributedString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.childElements != nil {
-        childElements :: proc "c" (self: ^AK.TextListElement, _: SEL) -> ^NS.Array {
+        childElements :: proc "c" (self: ^NS.TextListElement, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("childElements"), auto_cast childElements, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.parentElement != nil {
-        parentElement :: proc "c" (self: ^AK.TextListElement, _: SEL) -> ^AK.TextListElement {
+        parentElement :: proc "c" (self: ^NS.TextListElement, _: SEL) -> ^NS.TextListElement {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

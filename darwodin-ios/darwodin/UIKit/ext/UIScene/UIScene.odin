@@ -26,7 +26,7 @@ VTable :: struct {
     new: proc() -> ^UI.Scene,
     init: proc(self: ^UI.Scene) -> instancetype,
     initWithSession: proc(self: ^UI.Scene, session: ^UI.SceneSession, connectionOptions: ^UI.SceneConnectionOptions) -> instancetype,
-    openURL: proc(self: ^UI.Scene, url: ^NS.URL, options: ^UI.SceneOpenExternalURLOptions, completion: ^Objc_Block(proc "c" (success: bool))),
+    openURL: proc(self: ^UI.Scene, url: ^NS.URL, options: ^UI.SceneOpenExternalURLOptions, completion: ^Objc_Block(proc "c" ( success: bool ))),
     session: proc(self: ^UI.Scene) -> ^UI.SceneSession,
     delegate: proc(self: ^UI.Scene) -> ^UI.SceneDelegate,
     setDelegate: proc(self: ^UI.Scene, delegate: ^UI.SceneDelegate),
@@ -42,7 +42,7 @@ VTable :: struct {
     pointerLockState: proc(self: ^UI.Scene) -> ^UI.PointerLockState,
     extendStateRestoration: proc(self: ^UI.Scene),
     completeStateRestoration: proc(self: ^UI.Scene),
-    getDefaultAudioSessionWithCompletionHandler: proc(self: ^UI.Scene, handler: ^Objc_Block(proc "c" (_: ^UI.AVAudioSession))),
+    getDefaultAudioSessionWithCompletionHandler: proc(self: ^UI.Scene, handler: ^Objc_Block(proc "c" ( _0: ^UI.AVAudioSession ))),
     systemProtectionManager: proc(self: ^UI.Scene) -> ^UI.SceneSystemProtectionManager,
 }
 
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSession:connectionOptions:"), auto_cast initWithSession, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.openURL != nil {
-        openURL :: proc "c" (self: ^UI.Scene, _: SEL, url: ^NS.URL, options: ^UI.SceneOpenExternalURLOptions, completion: ^Objc_Block(proc "c" (success: bool))) {
+        openURL :: proc "c" (self: ^UI.Scene, _: SEL, url: ^NS.URL, options: ^UI.SceneOpenExternalURLOptions, completion: ^Objc_Block(proc "c" ( success: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -244,7 +244,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("completeStateRestoration"), auto_cast completeStateRestoration, "v@:") do panic("Failed to register objC method.")
     }
     if vt.getDefaultAudioSessionWithCompletionHandler != nil {
-        getDefaultAudioSessionWithCompletionHandler :: proc "c" (self: ^UI.Scene, _: SEL, handler: ^Objc_Block(proc "c" (_: ^UI.AVAudioSession))) {
+        getDefaultAudioSessionWithCompletionHandler :: proc "c" (self: ^UI.Scene, _: SEL, handler: ^Objc_Block(proc "c" ( _0: ^UI.AVAudioSession ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

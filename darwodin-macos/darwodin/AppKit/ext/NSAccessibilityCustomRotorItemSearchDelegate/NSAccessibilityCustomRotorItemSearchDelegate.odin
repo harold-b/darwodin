@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    rotor: proc(self: ^AK.AccessibilityCustomRotorItemSearchDelegate, rotor: ^AK.AccessibilityCustomRotor, searchParameters: ^AK.AccessibilityCustomRotorSearchParameters) -> ^AK.AccessibilityCustomRotorItemResult,
+    rotor: proc(self: ^NS.AccessibilityCustomRotorItemSearchDelegate, rotor: ^NS.AccessibilityCustomRotor, searchParameters: ^NS.AccessibilityCustomRotorSearchParameters) -> ^NS.AccessibilityCustomRotorItemResult,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.rotor != nil {
-        rotor :: proc "c" (self: ^AK.AccessibilityCustomRotorItemSearchDelegate, _: SEL, rotor: ^AK.AccessibilityCustomRotor, searchParameters: ^AK.AccessibilityCustomRotorSearchParameters) -> ^AK.AccessibilityCustomRotorItemResult {
+        rotor :: proc "c" (self: ^NS.AccessibilityCustomRotorItemSearchDelegate, _: SEL, rotor: ^NS.AccessibilityCustomRotor, searchParameters: ^NS.AccessibilityCustomRotorSearchParameters) -> ^NS.AccessibilityCustomRotorItemResult {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

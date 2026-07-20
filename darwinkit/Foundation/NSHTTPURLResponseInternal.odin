@@ -9,13 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSHTTPURLResponseInternal
-///
 @(objc_class="NSHTTPURLResponseInternal")
 HTTPURLResponseInternal :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

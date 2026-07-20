@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVFragmentedAssetMinder
-///
 @(objc_class="AVFragmentedAssetMinder", objc_superclass=NS.Object)
 FragmentedAssetMinder :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FragmentedAssetMinder, objc_selector="fragmentedAssetMinderWithAsset:mindingInterval:", objc_name="fragmentedAssetMinderWithAsset", objc_is_class_method=true)
     FragmentedAssetMinder_fragmentedAssetMinderWithAsset :: proc(asset: ^Asset, mindingInterval: NS.TimeInterval) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=FragmentedAssetMinder, objc_selector="assets", objc_name="assets")
     FragmentedAssetMinder_assets :: proc(self: ^FragmentedAssetMinder) -> ^NS.Array ---
 }
+
+
+

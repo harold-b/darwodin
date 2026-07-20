@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitPressure
-///
 @(objc_class="NSUnitPressure", objc_superclass=Dimension)
 UnitPressure :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitPressure, objc_selector="newtonsPerMetersSquared", objc_name="newtonsPerMetersSquared", objc_is_class_method=true)
     UnitPressure_newtonsPerMetersSquared :: proc() -> ^UnitPressure ---
@@ -51,3 +45,6 @@ foreign lib {
     @(objc_type=UnitPressure, objc_selector="poundsForcePerSquareInch", objc_name="poundsForcePerSquareInch", objc_is_class_method=true)
     UnitPressure_poundsForcePerSquareInch :: proc() -> ^UnitPressure ---
 }
+
+
+

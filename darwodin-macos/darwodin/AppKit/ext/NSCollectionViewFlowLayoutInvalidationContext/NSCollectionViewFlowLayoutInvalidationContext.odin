@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSCollectionViewLayoutInvalidationContext"
 
 VTable :: struct {
     super: NSCollectionViewLayoutInvalidationContext.VTable,
-    invalidateFlowLayoutDelegateMetrics: proc(self: ^AK.CollectionViewFlowLayoutInvalidationContext) -> bool,
-    setInvalidateFlowLayoutDelegateMetrics: proc(self: ^AK.CollectionViewFlowLayoutInvalidationContext, invalidateFlowLayoutDelegateMetrics: bool),
-    invalidateFlowLayoutAttributes: proc(self: ^AK.CollectionViewFlowLayoutInvalidationContext) -> bool,
-    setInvalidateFlowLayoutAttributes: proc(self: ^AK.CollectionViewFlowLayoutInvalidationContext, invalidateFlowLayoutAttributes: bool),
+    invalidateFlowLayoutDelegateMetrics: proc(self: ^NS.CollectionViewFlowLayoutInvalidationContext) -> bool,
+    setInvalidateFlowLayoutDelegateMetrics: proc(self: ^NS.CollectionViewFlowLayoutInvalidationContext, invalidateFlowLayoutDelegateMetrics: bool),
+    invalidateFlowLayoutAttributes: proc(self: ^NS.CollectionViewFlowLayoutInvalidationContext) -> bool,
+    setInvalidateFlowLayoutAttributes: proc(self: ^NS.CollectionViewFlowLayoutInvalidationContext, invalidateFlowLayoutAttributes: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionViewLayoutInvalidationContext.extend(cls, &vt.super)
 
     if vt.invalidateFlowLayoutDelegateMetrics != nil {
-        invalidateFlowLayoutDelegateMetrics :: proc "c" (self: ^AK.CollectionViewFlowLayoutInvalidationContext, _: SEL) -> bool {
+        invalidateFlowLayoutDelegateMetrics :: proc "c" (self: ^NS.CollectionViewFlowLayoutInvalidationContext, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateFlowLayoutDelegateMetrics"), auto_cast invalidateFlowLayoutDelegateMetrics, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setInvalidateFlowLayoutDelegateMetrics != nil {
-        setInvalidateFlowLayoutDelegateMetrics :: proc "c" (self: ^AK.CollectionViewFlowLayoutInvalidationContext, _: SEL, invalidateFlowLayoutDelegateMetrics: bool) {
+        setInvalidateFlowLayoutDelegateMetrics :: proc "c" (self: ^NS.CollectionViewFlowLayoutInvalidationContext, _: SEL, invalidateFlowLayoutDelegateMetrics: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setInvalidateFlowLayoutDelegateMetrics:"), auto_cast setInvalidateFlowLayoutDelegateMetrics, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.invalidateFlowLayoutAttributes != nil {
-        invalidateFlowLayoutAttributes :: proc "c" (self: ^AK.CollectionViewFlowLayoutInvalidationContext, _: SEL) -> bool {
+        invalidateFlowLayoutAttributes :: proc "c" (self: ^NS.CollectionViewFlowLayoutInvalidationContext, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("invalidateFlowLayoutAttributes"), auto_cast invalidateFlowLayoutAttributes, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setInvalidateFlowLayoutAttributes != nil {
-        setInvalidateFlowLayoutAttributes :: proc "c" (self: ^AK.CollectionViewFlowLayoutInvalidationContext, _: SEL, invalidateFlowLayoutAttributes: bool) {
+        setInvalidateFlowLayoutAttributes :: proc "c" (self: ^NS.CollectionViewFlowLayoutInvalidationContext, _: SEL, invalidateFlowLayoutAttributes: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

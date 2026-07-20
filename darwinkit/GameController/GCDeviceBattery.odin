@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCDeviceBattery
-///
 @(objc_class="GCDeviceBattery", objc_superclass=NS.Object)
 DeviceBattery :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DeviceBattery, objc_selector="init", objc_name="init")
     DeviceBattery_init :: proc(self: ^DeviceBattery) -> instancetype ---
@@ -27,3 +21,6 @@ foreign lib {
     @(objc_type=DeviceBattery, objc_selector="batteryState", objc_name="batteryState")
     DeviceBattery_batteryState :: proc(self: ^DeviceBattery) -> DeviceBatteryState ---
 }
+
+
+

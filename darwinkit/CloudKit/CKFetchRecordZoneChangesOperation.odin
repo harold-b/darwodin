@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKFetchRecordZoneChangesOperation
-///
 @(objc_class="CKFetchRecordZoneChangesOperation", objc_superclass=DatabaseOperation)
 FetchRecordZoneChangesOperation :: struct { using _: DatabaseOperation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchRecordZoneChangesOperation, objc_selector="init", objc_name="init")
     FetchRecordZoneChangesOperation_init :: proc(self: ^FetchRecordZoneChangesOperation) -> instancetype ---
@@ -86,4 +80,6 @@ foreign lib {
     @(objc_type=FetchRecordZoneChangesOperation, objc_selector="setOptionsByRecordZoneID:", objc_name="setOptionsByRecordZoneID")
     FetchRecordZoneChangesOperation_setOptionsByRecordZoneID :: proc(self: ^FetchRecordZoneChangesOperation, optionsByRecordZoneID: ^NS.Dictionary) ---
 }
+
+
 

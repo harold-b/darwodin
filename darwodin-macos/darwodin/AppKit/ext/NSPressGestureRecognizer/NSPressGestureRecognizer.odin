@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSGestureRecognizer"
 
 VTable :: struct {
     super: NSGestureRecognizer.VTable,
-    buttonMask: proc(self: ^AK.PressGestureRecognizer) -> NS.UInteger,
-    setButtonMask: proc(self: ^AK.PressGestureRecognizer, buttonMask: NS.UInteger),
-    minimumPressDuration: proc(self: ^AK.PressGestureRecognizer) -> NS.TimeInterval,
-    setMinimumPressDuration: proc(self: ^AK.PressGestureRecognizer, minimumPressDuration: NS.TimeInterval),
-    allowableMovement: proc(self: ^AK.PressGestureRecognizer) -> CG.Float,
-    setAllowableMovement: proc(self: ^AK.PressGestureRecognizer, allowableMovement: CG.Float),
-    numberOfTouchesRequired: proc(self: ^AK.PressGestureRecognizer) -> NS.Integer,
-    setNumberOfTouchesRequired: proc(self: ^AK.PressGestureRecognizer, numberOfTouchesRequired: NS.Integer),
+    buttonMask: proc(self: ^NS.PressGestureRecognizer) -> NS.UInteger,
+    setButtonMask: proc(self: ^NS.PressGestureRecognizer, buttonMask: NS.UInteger),
+    minimumPressDuration: proc(self: ^NS.PressGestureRecognizer) -> NS.TimeInterval,
+    setMinimumPressDuration: proc(self: ^NS.PressGestureRecognizer, minimumPressDuration: NS.TimeInterval),
+    allowableMovement: proc(self: ^NS.PressGestureRecognizer) -> CG.Float,
+    setAllowableMovement: proc(self: ^NS.PressGestureRecognizer, allowableMovement: CG.Float),
+    numberOfTouchesRequired: proc(self: ^NS.PressGestureRecognizer) -> NS.Integer,
+    setNumberOfTouchesRequired: proc(self: ^NS.PressGestureRecognizer, numberOfTouchesRequired: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSGestureRecognizer.extend(cls, &vt.super)
 
     if vt.buttonMask != nil {
-        buttonMask :: proc "c" (self: ^AK.PressGestureRecognizer, _: SEL) -> NS.UInteger {
+        buttonMask :: proc "c" (self: ^NS.PressGestureRecognizer, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("buttonMask"), auto_cast buttonMask, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setButtonMask != nil {
-        setButtonMask :: proc "c" (self: ^AK.PressGestureRecognizer, _: SEL, buttonMask: NS.UInteger) {
+        setButtonMask :: proc "c" (self: ^NS.PressGestureRecognizer, _: SEL, buttonMask: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setButtonMask:"), auto_cast setButtonMask, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.minimumPressDuration != nil {
-        minimumPressDuration :: proc "c" (self: ^AK.PressGestureRecognizer, _: SEL) -> NS.TimeInterval {
+        minimumPressDuration :: proc "c" (self: ^NS.PressGestureRecognizer, _: SEL) -> NS.TimeInterval {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumPressDuration"), auto_cast minimumPressDuration, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumPressDuration != nil {
-        setMinimumPressDuration :: proc "c" (self: ^AK.PressGestureRecognizer, _: SEL, minimumPressDuration: NS.TimeInterval) {
+        setMinimumPressDuration :: proc "c" (self: ^NS.PressGestureRecognizer, _: SEL, minimumPressDuration: NS.TimeInterval) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumPressDuration:"), auto_cast setMinimumPressDuration, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.allowableMovement != nil {
-        allowableMovement :: proc "c" (self: ^AK.PressGestureRecognizer, _: SEL) -> CG.Float {
+        allowableMovement :: proc "c" (self: ^NS.PressGestureRecognizer, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowableMovement"), auto_cast allowableMovement, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowableMovement != nil {
-        setAllowableMovement :: proc "c" (self: ^AK.PressGestureRecognizer, _: SEL, allowableMovement: CG.Float) {
+        setAllowableMovement :: proc "c" (self: ^NS.PressGestureRecognizer, _: SEL, allowableMovement: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowableMovement:"), auto_cast setAllowableMovement, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.numberOfTouchesRequired != nil {
-        numberOfTouchesRequired :: proc "c" (self: ^AK.PressGestureRecognizer, _: SEL) -> NS.Integer {
+        numberOfTouchesRequired :: proc "c" (self: ^NS.PressGestureRecognizer, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfTouchesRequired"), auto_cast numberOfTouchesRequired, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setNumberOfTouchesRequired != nil {
-        setNumberOfTouchesRequired :: proc "c" (self: ^AK.PressGestureRecognizer, _: SEL, numberOfTouchesRequired: NS.Integer) {
+        setNumberOfTouchesRequired :: proc "c" (self: ^NS.PressGestureRecognizer, _: SEL, numberOfTouchesRequired: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

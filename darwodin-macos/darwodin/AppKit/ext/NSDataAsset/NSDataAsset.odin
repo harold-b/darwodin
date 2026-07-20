@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.DataAsset) -> instancetype,
-    initWithName_: proc(self: ^AK.DataAsset, name: ^NS.String) -> instancetype,
-    initWithName_bundle: proc(self: ^AK.DataAsset, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype,
-    name: proc(self: ^AK.DataAsset) -> ^NS.String,
-    data: proc(self: ^AK.DataAsset) -> ^NS.Data,
-    typeIdentifier: proc(self: ^AK.DataAsset) -> ^NS.String,
+    init: proc(self: ^NS.DataAsset) -> instancetype,
+    initWithName_: proc(self: ^NS.DataAsset, name: ^NS.String) -> instancetype,
+    initWithName_bundle: proc(self: ^NS.DataAsset, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype,
+    name: proc(self: ^NS.DataAsset) -> ^NS.String,
+    data: proc(self: ^NS.DataAsset) -> ^NS.Data,
+    typeIdentifier: proc(self: ^NS.DataAsset) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.DataAsset, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.DataAsset, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithName_ != nil {
-        initWithName_ :: proc "c" (self: ^AK.DataAsset, _: SEL, name: ^NS.String) -> instancetype {
+        initWithName_ :: proc "c" (self: ^NS.DataAsset, _: SEL, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:"), auto_cast initWithName_, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithName_bundle != nil {
-        initWithName_bundle :: proc "c" (self: ^AK.DataAsset, _: SEL, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype {
+        initWithName_bundle :: proc "c" (self: ^NS.DataAsset, _: SEL, name: ^NS.String, bundle: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithName:bundle:"), auto_cast initWithName_bundle, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.name != nil {
-        name :: proc "c" (self: ^AK.DataAsset, _: SEL) -> ^NS.String {
+        name :: proc "c" (self: ^NS.DataAsset, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("name"), auto_cast name, "@@:") do panic("Failed to register objC method.")
     }
     if vt.data != nil {
-        data :: proc "c" (self: ^AK.DataAsset, _: SEL) -> ^NS.Data {
+        data :: proc "c" (self: ^NS.DataAsset, _: SEL) -> ^NS.Data {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("data"), auto_cast data, "@@:") do panic("Failed to register objC method.")
     }
     if vt.typeIdentifier != nil {
-        typeIdentifier :: proc "c" (self: ^AK.DataAsset, _: SEL) -> ^NS.String {
+        typeIdentifier :: proc "c" (self: ^NS.DataAsset, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

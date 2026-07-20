@@ -25,7 +25,7 @@ foreign lib {
     CaptureSystemZoomSlider_initWithDevice_ :: proc(self: ^CaptureSystemZoomSlider, device: ^CaptureDevice) -> instancetype ---
 
     @(objc_type=CaptureSystemZoomSlider, objc_selector="initWithDevice:action:", objc_name="initWithDevice_action")
-    CaptureSystemZoomSlider_initWithDevice_action :: proc(self: ^CaptureSystemZoomSlider, device: ^CaptureDevice, action: ^Objc_Block(proc "c" (videoZoomFactor: CG.Float))) -> instancetype ---
+    CaptureSystemZoomSlider_initWithDevice_action :: proc(self: ^CaptureSystemZoomSlider, device: ^CaptureDevice, action: ^Objc_Block(proc "c" ( videoZoomFactor: CG.Float ))) -> instancetype ---
 }
 
 @(objc_type=CaptureSystemZoomSlider, objc_name="initWithDevice")

@@ -43,7 +43,7 @@ foreign lib {
     AudioSession_setAllowHapticsAndSystemSoundsDuringRecording :: proc(self: ^AudioSession, inValue: bool, outError: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioSession, objc_selector="requestRecordPermission:", objc_name="requestRecordPermission")
-    AudioSession_requestRecordPermission :: proc(self: ^AudioSession, response: ^Objc_Block(proc "c" (granted: bool))) ---
+    AudioSession_requestRecordPermission :: proc(self: ^AudioSession, response: ^Objc_Block(proc "c" ( granted: bool ))) ---
 
     @(objc_type=AudioSession, objc_selector="overrideOutputAudioPort:error:", objc_name="overrideOutputAudioPort")
     AudioSession_overrideOutputAudioPort :: proc(self: ^AudioSession, portOverride: AudioSessionPortOverride, outError: ^^NS.Error) -> bool ---
@@ -112,7 +112,7 @@ foreign lib {
     AudioSession_setActive_withOptions_error :: proc(self: ^AudioSession, active: bool, options: AudioSessionSetActiveOptions, outError: ^^NS.Error) -> bool ---
 
     @(objc_type=AudioSession, objc_selector="activateWithOptions:completionHandler:", objc_name="activateWithOptions")
-    AudioSession_activateWithOptions :: proc(self: ^AudioSession, options: AudioSessionActivationOptions, handler: ^Objc_Block(proc "c" (activated: bool, error: ^NS.Error))) ---
+    AudioSession_activateWithOptions :: proc(self: ^AudioSession, options: AudioSessionActivationOptions, handler: ^Objc_Block(proc "c" ( activated: bool, error: ^NS.Error ))) ---
 
     @(objc_type=AudioSession, objc_selector="setPreferredSampleRate:error:", objc_name="setPreferredSampleRate")
     AudioSession_setPreferredSampleRate :: proc(self: ^AudioSession, sampleRate: cffi.double, outError: ^^NS.Error) -> bool ---

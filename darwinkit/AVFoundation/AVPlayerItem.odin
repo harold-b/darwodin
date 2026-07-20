@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItem
-///
 @(objc_class="AVPlayerItem", objc_superclass=NS.Object)
 PlayerItem :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItem, objc_selector="init", objc_name="init")
     PlayerItem_init :: proc(self: ^PlayerItem) -> instancetype ---
@@ -118,10 +112,10 @@ foreign lib {
     PlayerItem_currentTime :: proc(self: ^PlayerItem) -> CM.Time ---
 
     @(objc_type=PlayerItem, objc_selector="seekToTime:completionHandler:", objc_name="seekToTime_completionHandler")
-    PlayerItem_seekToTime_completionHandler :: proc(self: ^PlayerItem, time: CM.Time, completionHandler: ^Objc_Block(proc "c" (finished: bool))) ---
+    PlayerItem_seekToTime_completionHandler :: proc(self: ^PlayerItem, time: CM.Time, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=PlayerItem, objc_selector="seekToTime:toleranceBefore:toleranceAfter:completionHandler:", objc_name="seekToTime_toleranceBefore_toleranceAfter_completionHandler")
-    PlayerItem_seekToTime_toleranceBefore_toleranceAfter_completionHandler :: proc(self: ^PlayerItem, time: CM.Time, toleranceBefore: CM.Time, toleranceAfter: CM.Time, completionHandler: ^Objc_Block(proc "c" (finished: bool))) ---
+    PlayerItem_seekToTime_toleranceBefore_toleranceAfter_completionHandler :: proc(self: ^PlayerItem, time: CM.Time, toleranceBefore: CM.Time, toleranceAfter: CM.Time, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=PlayerItem, objc_selector="cancelPendingSeeks", objc_name="cancelPendingSeeks")
     PlayerItem_cancelPendingSeeks :: proc(self: ^PlayerItem) ---
@@ -130,7 +124,7 @@ foreign lib {
     PlayerItem_currentDate :: proc(self: ^PlayerItem) -> ^NS.Date ---
 
     @(objc_type=PlayerItem, objc_selector="seekToDate:completionHandler:", objc_name="seekToDate_completionHandler")
-    PlayerItem_seekToDate_completionHandler :: proc(self: ^PlayerItem, date: ^NS.Date, completionHandler: ^Objc_Block(proc "c" (finished: bool))) -> bool ---
+    PlayerItem_seekToDate_completionHandler :: proc(self: ^PlayerItem, date: ^NS.Date, completionHandler: ^Objc_Block(proc "c" ( finished: bool ))) -> bool ---
 
     @(objc_type=PlayerItem, objc_selector="stepByCount:", objc_name="stepByCount")
     PlayerItem_stepByCount :: proc(self: ^PlayerItem, stepCount: NS.Integer) ---
@@ -336,7 +330,7 @@ foreign lib {
     @(objc_type=PlayerItem, objc_selector="selectedMediaOptionInMediaSelectionGroup:", objc_name="selectedMediaOptionInMediaSelectionGroup")
     PlayerItem_selectedMediaOptionInMediaSelectionGroup :: proc(self: ^PlayerItem, mediaSelectionGroup: ^MediaSelectionGroup) -> ^MediaSelectionOptions ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=PlayerItem, objc_selector="requestContentAuthorizationAsynchronouslyWithTimeoutInterval:completionHandler:", objc_name="requestContentAuthorizationAsynchronouslyWithTimeoutInterval")
         PlayerItem_requestContentAuthorizationAsynchronouslyWithTimeoutInterval :: proc(self: ^PlayerItem, timeoutInterval: NS.TimeInterval, handler: ^Objc_Block(proc "c" ())) ---
 
@@ -371,6 +365,8 @@ foreign lib {
     @(objc_type=PlayerItem, objc_selector="integratedTimeline", objc_name="integratedTimeline")
     PlayerItem_integratedTimeline :: proc(self: ^PlayerItem) -> ^PlayerItemIntegratedTimeline ---
 }
+
+
 
 @(objc_type=PlayerItem, objc_name="playerItemWithAsset")
 PlayerItem_playerItemWithAsset :: proc {

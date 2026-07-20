@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptionGroup
-///
 @(objc_class="AVCaptionGroup", objc_superclass=NS.Object)
 CaptionGroup :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionGroup, objc_selector="initWithCaptions:timeRange:", objc_name="initWithCaptions")
     CaptionGroup_initWithCaptions :: proc(self: ^CaptionGroup, captions: ^NS.Array, timeRange: CM.TimeRange) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=CaptionGroup, objc_selector="captions", objc_name="captions")
     CaptionGroup_captions :: proc(self: ^CaptionGroup) -> ^NS.Array ---
 }
+
+
+

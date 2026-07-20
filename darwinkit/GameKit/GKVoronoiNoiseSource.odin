@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKVoronoiNoiseSource
-///
 @(objc_class="GKVoronoiNoiseSource", objc_superclass=NoiseSource)
 VoronoiNoiseSource :: struct { using _: NoiseSource, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VoronoiNoiseSource, objc_selector="voronoiNoiseWithFrequency:displacement:distanceEnabled:seed:", objc_name="voronoiNoiseWithFrequency", objc_is_class_method=true)
     VoronoiNoiseSource_voronoiNoiseWithFrequency :: proc(frequency: cffi.double, displacement: cffi.double, distanceEnabled: bool, seed: cffi.int32_t) -> instancetype ---
@@ -47,3 +41,6 @@ foreign lib {
     @(objc_type=VoronoiNoiseSource, objc_selector="setSeed:", objc_name="setSeed")
     VoronoiNoiseSource_setSeed :: proc(self: ^VoronoiNoiseSource, seed: cffi.int32_t) ---
 }
+
+
+

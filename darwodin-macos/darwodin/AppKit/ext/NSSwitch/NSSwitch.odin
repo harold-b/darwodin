@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    state: proc(self: ^AK.Switch) -> AK.ControlStateValue,
-    setState: proc(self: ^AK.Switch, state: AK.ControlStateValue),
+    state: proc(self: ^NS.Switch) -> NS.ControlStateValue,
+    setState: proc(self: ^NS.Switch, state: NS.ControlStateValue),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.state != nil {
-        state :: proc "c" (self: ^AK.Switch, _: SEL) -> AK.ControlStateValue {
+        state :: proc "c" (self: ^NS.Switch, _: SEL) -> NS.ControlStateValue {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("state"), auto_cast state, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setState != nil {
-        setState :: proc "c" (self: ^AK.Switch, _: SEL, state: AK.ControlStateValue) {
+        setState :: proc "c" (self: ^NS.Switch, _: SEL, state: NS.ControlStateValue) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

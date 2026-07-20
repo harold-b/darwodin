@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    itemsForSharingServicePickerToolbarItem: proc(self: ^AK.SharingServicePickerToolbarItemDelegate, pickerToolbarItem: ^AK.SharingServicePickerToolbarItem) -> ^NS.Array,
+    itemsForSharingServicePickerToolbarItem: proc(self: ^NS.SharingServicePickerToolbarItemDelegate, pickerToolbarItem: ^NS.SharingServicePickerToolbarItem) -> ^NS.Array,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.itemsForSharingServicePickerToolbarItem != nil {
-        itemsForSharingServicePickerToolbarItem :: proc "c" (self: ^AK.SharingServicePickerToolbarItemDelegate, _: SEL, pickerToolbarItem: ^AK.SharingServicePickerToolbarItem) -> ^NS.Array {
+        itemsForSharingServicePickerToolbarItem :: proc "c" (self: ^NS.SharingServicePickerToolbarItemDelegate, _: SEL, pickerToolbarItem: ^NS.SharingServicePickerToolbarItem) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

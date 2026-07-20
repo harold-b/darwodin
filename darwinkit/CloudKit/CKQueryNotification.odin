@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKQueryNotification
-///
 @(objc_class="CKQueryNotification", objc_superclass=Notification)
 QueryNotification :: struct { using _: Notification, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=QueryNotification, objc_selector="queryNotificationReason", objc_name="queryNotificationReason")
     QueryNotification_queryNotificationReason :: proc(self: ^QueryNotification) -> QueryNotificationReason ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=QueryNotification, objc_selector="databaseScope", objc_name="databaseScope")
     QueryNotification_databaseScope :: proc(self: ^QueryNotification) -> DatabaseScope ---
 }
+
+
+

@@ -20,21 +20,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSCollectionLayoutItem"
 
 VTable :: struct {
     super: NSCollectionLayoutItem.VTable,
-    supplementaryItemWithLayoutSize_elementKind_containerAnchor: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor) -> instancetype,
-    supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor: proc(layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor, itemAnchor: ^AK.CollectionLayoutAnchor) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutSupplementaryItem) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutSupplementaryItem,
-    zIndex: proc(self: ^AK.CollectionLayoutSupplementaryItem) -> NS.Integer,
-    setZIndex: proc(self: ^AK.CollectionLayoutSupplementaryItem, zIndex: NS.Integer),
-    elementKind: proc(self: ^AK.CollectionLayoutSupplementaryItem) -> ^NS.String,
-    containerAnchor: proc(self: ^AK.CollectionLayoutSupplementaryItem) -> ^AK.CollectionLayoutAnchor,
-    itemAnchor: proc(self: ^AK.CollectionLayoutSupplementaryItem) -> ^AK.CollectionLayoutAnchor,
+    supplementaryItemWithLayoutSize_elementKind_containerAnchor: proc(layoutSize: ^NS.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^NS.CollectionLayoutAnchor) -> instancetype,
+    supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor: proc(layoutSize: ^NS.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^NS.CollectionLayoutAnchor, itemAnchor: ^NS.CollectionLayoutAnchor) -> instancetype,
+    init: proc(self: ^NS.CollectionLayoutSupplementaryItem) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutSupplementaryItem,
+    zIndex: proc(self: ^NS.CollectionLayoutSupplementaryItem) -> NS.Integer,
+    setZIndex: proc(self: ^NS.CollectionLayoutSupplementaryItem, zIndex: NS.Integer),
+    elementKind: proc(self: ^NS.CollectionLayoutSupplementaryItem) -> ^NS.String,
+    containerAnchor: proc(self: ^NS.CollectionLayoutSupplementaryItem) -> ^NS.CollectionLayoutAnchor,
+    itemAnchor: proc(self: ^NS.CollectionLayoutSupplementaryItem) -> ^NS.CollectionLayoutAnchor,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionLayoutItem.extend(cls, &vt.super)
 
     if vt.supplementaryItemWithLayoutSize_elementKind_containerAnchor != nil {
-        supplementaryItemWithLayoutSize_elementKind_containerAnchor :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor) -> instancetype {
+        supplementaryItemWithLayoutSize_elementKind_containerAnchor :: proc "c" (self: Class, _: SEL, layoutSize: ^NS.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^NS.CollectionLayoutAnchor) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("supplementaryItemWithLayoutSize:elementKind:containerAnchor:"), auto_cast supplementaryItemWithLayoutSize_elementKind_containerAnchor, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor != nil {
-        supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor :: proc "c" (self: Class, _: SEL, layoutSize: ^AK.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^AK.CollectionLayoutAnchor, itemAnchor: ^AK.CollectionLayoutAnchor) -> instancetype {
+        supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor :: proc "c" (self: Class, _: SEL, layoutSize: ^NS.CollectionLayoutSize, elementKind: ^NS.String, containerAnchor: ^NS.CollectionLayoutAnchor, itemAnchor: ^NS.CollectionLayoutAnchor) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("supplementaryItemWithLayoutSize:elementKind:containerAnchor:itemAnchor:"), auto_cast supplementaryItemWithLayoutSize_elementKind_containerAnchor_itemAnchor, "@#:@@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutSupplementaryItem, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutSupplementaryItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutSupplementaryItem {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutSupplementaryItem {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.zIndex != nil {
-        zIndex :: proc "c" (self: ^AK.CollectionLayoutSupplementaryItem, _: SEL) -> NS.Integer {
+        zIndex :: proc "c" (self: ^NS.CollectionLayoutSupplementaryItem, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("zIndex"), auto_cast zIndex, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setZIndex != nil {
-        setZIndex :: proc "c" (self: ^AK.CollectionLayoutSupplementaryItem, _: SEL, zIndex: NS.Integer) {
+        setZIndex :: proc "c" (self: ^NS.CollectionLayoutSupplementaryItem, _: SEL, zIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setZIndex:"), auto_cast setZIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.elementKind != nil {
-        elementKind :: proc "c" (self: ^AK.CollectionLayoutSupplementaryItem, _: SEL) -> ^NS.String {
+        elementKind :: proc "c" (self: ^NS.CollectionLayoutSupplementaryItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("elementKind"), auto_cast elementKind, "@@:") do panic("Failed to register objC method.")
     }
     if vt.containerAnchor != nil {
-        containerAnchor :: proc "c" (self: ^AK.CollectionLayoutSupplementaryItem, _: SEL) -> ^AK.CollectionLayoutAnchor {
+        containerAnchor :: proc "c" (self: ^NS.CollectionLayoutSupplementaryItem, _: SEL) -> ^NS.CollectionLayoutAnchor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("containerAnchor"), auto_cast containerAnchor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.itemAnchor != nil {
-        itemAnchor :: proc "c" (self: ^AK.CollectionLayoutSupplementaryItem, _: SEL) -> ^AK.CollectionLayoutAnchor {
+        itemAnchor :: proc "c" (self: ^NS.CollectionLayoutSupplementaryItem, _: SEL) -> ^NS.CollectionLayoutAnchor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

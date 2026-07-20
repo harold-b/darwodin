@@ -24,8 +24,8 @@ import "../../../Foundation/ext/NSObject"
 VTable :: struct {
     super: NSObject.VTable,
     initWithFileURL: proc(self: ^UI.Document, url: ^NS.URL) -> instancetype,
-    openWithCompletionHandler: proc(self: ^UI.Document, completionHandler: ^Objc_Block(proc "c" (success: bool))),
-    closeWithCompletionHandler: proc(self: ^UI.Document, completionHandler: ^Objc_Block(proc "c" (success: bool))),
+    openWithCompletionHandler: proc(self: ^UI.Document, completionHandler: ^Objc_Block(proc "c" ( success: bool ))),
+    closeWithCompletionHandler: proc(self: ^UI.Document, completionHandler: ^Objc_Block(proc "c" ( success: bool ))),
     loadFromContents: proc(self: ^UI.Document, contents: id, typeName: ^NS.String, outError: ^^NS.Error) -> bool,
     contentsForType: proc(self: ^UI.Document, typeName: ^NS.String, outError: ^^NS.Error) -> id,
     disableEditing: proc(self: ^UI.Document),
@@ -33,8 +33,8 @@ VTable :: struct {
     updateChangeCount: proc(self: ^UI.Document, change: UI.DocumentChangeKind),
     changeCountTokenForSaveOperation: proc(self: ^UI.Document, saveOperation: UI.DocumentSaveOperation) -> id,
     updateChangeCountWithToken: proc(self: ^UI.Document, changeCountToken: id, saveOperation: UI.DocumentSaveOperation),
-    saveToURL: proc(self: ^UI.Document, url: ^NS.URL, saveOperation: UI.DocumentSaveOperation, completionHandler: ^Objc_Block(proc "c" (success: bool))),
-    autosaveWithCompletionHandler: proc(self: ^UI.Document, completionHandler: ^Objc_Block(proc "c" (success: bool))),
+    saveToURL: proc(self: ^UI.Document, url: ^NS.URL, saveOperation: UI.DocumentSaveOperation, completionHandler: ^Objc_Block(proc "c" ( success: bool ))),
+    autosaveWithCompletionHandler: proc(self: ^UI.Document, completionHandler: ^Objc_Block(proc "c" ( success: bool ))),
     fileNameExtensionForType: proc(self: ^UI.Document, typeName: ^NS.String, saveOperation: UI.DocumentSaveOperation) -> ^NS.String,
     writeContents_andAttributes_safelyToURL_forSaveOperation_error: proc(self: ^UI.Document, contents: id, additionalFileAttributes: ^NS.Dictionary, url: ^NS.URL, saveOperation: UI.DocumentSaveOperation, outError: ^^NS.Error) -> bool,
     writeContents_toURL_forSaveOperation_originalContentsURL_error: proc(self: ^UI.Document, contents: id, url: ^NS.URL, saveOperation: UI.DocumentSaveOperation, originalContentsURL: ^NS.URL, outError: ^^NS.Error) -> bool,
@@ -44,7 +44,7 @@ VTable :: struct {
     handleError: proc(self: ^UI.Document, error: ^NS.Error, userInteractionPermitted: bool),
     finishedHandlingError: proc(self: ^UI.Document, error: ^NS.Error, recovered: bool),
     userInteractionNoLongerPermittedForError: proc(self: ^UI.Document, error: ^NS.Error),
-    revertToContentsOfURL: proc(self: ^UI.Document, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (success: bool))),
+    revertToContentsOfURL: proc(self: ^UI.Document, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( success: bool ))),
     fileURL: proc(self: ^UI.Document) -> ^NS.URL,
     localizedName: proc(self: ^UI.Document) -> ^NS.String,
     fileType: proc(self: ^UI.Document) -> ^NS.String,
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFileURL:"), auto_cast initWithFileURL, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.openWithCompletionHandler != nil {
-        openWithCompletionHandler :: proc "c" (self: ^UI.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
+        openWithCompletionHandler :: proc "c" (self: ^UI.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("openWithCompletionHandler:"), auto_cast openWithCompletionHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.closeWithCompletionHandler != nil {
-        closeWithCompletionHandler :: proc "c" (self: ^UI.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
+        closeWithCompletionHandler :: proc "c" (self: ^UI.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -170,7 +170,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateChangeCountWithToken:forSaveOperation:"), auto_cast updateChangeCountWithToken, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.saveToURL != nil {
-        saveToURL :: proc "c" (self: ^UI.Document, _: SEL, url: ^NS.URL, saveOperation: UI.DocumentSaveOperation, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
+        saveToURL :: proc "c" (self: ^UI.Document, _: SEL, url: ^NS.URL, saveOperation: UI.DocumentSaveOperation, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("saveToURL:forSaveOperation:completionHandler:"), auto_cast saveToURL, "v@:@l?") do panic("Failed to register objC method.")
     }
     if vt.autosaveWithCompletionHandler != nil {
-        autosaveWithCompletionHandler :: proc "c" (self: ^UI.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
+        autosaveWithCompletionHandler :: proc "c" (self: ^UI.Document, _: SEL, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -280,7 +280,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("userInteractionNoLongerPermittedForError:"), auto_cast userInteractionNoLongerPermittedForError, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.revertToContentsOfURL != nil {
-        revertToContentsOfURL :: proc "c" (self: ^UI.Document, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (success: bool))) {
+        revertToContentsOfURL :: proc "c" (self: ^UI.Document, _: SEL, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

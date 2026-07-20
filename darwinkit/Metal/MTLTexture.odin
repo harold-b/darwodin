@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLTexture
-///
 @(objc_class="MTLTexture")
 Texture :: struct { using _: intrinsics.objc_object, 
     using _: Resource,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Texture, objc_selector="getBytes:bytesPerRow:bytesPerImage:fromRegion:mipmapLevel:slice:", objc_name="getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice")
     Texture_getBytes_bytesPerRow_bytesPerImage_fromRegion_mipmapLevel_slice :: proc(self: ^Texture, pixelBytes: rawptr, bytesPerRow: NS.UInteger, bytesPerImage: NS.UInteger, region: Region, level: NS.UInteger, slice: NS.UInteger) ---
@@ -47,7 +41,7 @@ foreign lib {
     @(objc_type=Texture, objc_selector="newTextureViewWithDescriptor:", objc_name="newTextureViewWithDescriptor")
     Texture_newTextureViewWithDescriptor :: proc(self: ^Texture, descriptor: ^TextureViewDescriptor) -> ^Texture ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Texture, objc_selector="newRemoteTextureViewForDevice:", objc_name="newRemoteTextureViewForDevice")
         Texture_newRemoteTextureViewForDevice :: proc(self: ^Texture, device: ^Device) -> ^Texture ---
     }
@@ -133,7 +127,7 @@ foreign lib {
     @(objc_type=Texture, objc_selector="gpuResourceID", objc_name="gpuResourceID")
     Texture_gpuResourceID :: proc(self: ^Texture) -> ResourceID ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Texture, objc_selector="remoteStorageTexture", objc_name="remoteStorageTexture")
         Texture_remoteStorageTexture :: proc(self: ^Texture) -> ^Texture ---
     }
@@ -144,6 +138,8 @@ foreign lib {
     @(objc_type=Texture, objc_selector="sparseTextureTier", objc_name="sparseTextureTier")
     Texture_sparseTextureTier :: proc(self: ^Texture) -> TextureSparseTier ---
 }
+
+
 
 @(objc_type=Texture, objc_name="getBytes")
 Texture_getBytes :: proc {

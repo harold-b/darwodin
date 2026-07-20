@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetReaderVideoCompositionOutput
-///
 @(objc_class="AVAssetReaderVideoCompositionOutput", objc_superclass=AssetReaderOutput)
 AssetReaderVideoCompositionOutput :: struct { using _: AssetReaderOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderVideoCompositionOutput, objc_selector="init", objc_name="init")
     AssetReaderVideoCompositionOutput_init :: proc(self: ^AssetReaderVideoCompositionOutput) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=AssetReaderVideoCompositionOutput, objc_selector="customVideoCompositor", objc_name="customVideoCompositor")
     AssetReaderVideoCompositionOutput_customVideoCompositor :: proc(self: ^AssetReaderVideoCompositionOutput) -> ^VideoCompositing ---
 }
+
+
+

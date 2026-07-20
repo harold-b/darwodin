@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureExternalDisplayConfigurator
-///
 @(objc_class="AVCaptureExternalDisplayConfigurator", objc_superclass=NS.Object)
 CaptureExternalDisplayConfigurator :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureExternalDisplayConfigurator, objc_selector="init", objc_name="init")
     CaptureExternalDisplayConfigurator_init :: proc(self: ^CaptureExternalDisplayConfigurator) -> instancetype ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=CaptureExternalDisplayConfigurator, objc_selector="isPreferredResolutionSupported", objc_name="isPreferredResolutionSupported", objc_is_class_method=true)
     CaptureExternalDisplayConfigurator_isPreferredResolutionSupported :: proc() -> bool ---
 }
+
+
+

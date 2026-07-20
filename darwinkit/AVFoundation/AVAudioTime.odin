@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioTime
-///
 @(objc_class="AVAudioTime", objc_superclass=NS.Object)
 AudioTime :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioTime, objc_selector="initWithAudioTimeStamp:sampleRate:", objc_name="initWithAudioTimeStamp")
     AudioTime_initWithAudioTimeStamp :: proc(self: ^AudioTime, ts: ^Audio.TimeStamp, sampleRate: cffi.double) -> instancetype ---
@@ -73,6 +67,8 @@ foreign lib {
     @(objc_type=AudioTime, objc_selector="audioTimeStamp", objc_name="audioTimeStamp")
     AudioTime_audioTimeStamp :: proc(self: ^AudioTime) -> Audio.TimeStamp ---
 }
+
+
 
 @(objc_type=AudioTime, objc_name="initWithHostTime")
 AudioTime_initWithHostTime :: proc {

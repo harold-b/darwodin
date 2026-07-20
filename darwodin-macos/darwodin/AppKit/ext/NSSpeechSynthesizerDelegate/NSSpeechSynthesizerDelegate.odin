@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    speechSynthesizer_didFinishSpeaking: proc(self: ^AK.SpeechSynthesizerDelegate, sender: ^AK.SpeechSynthesizer, finishedSpeaking: bool),
-    speechSynthesizer_willSpeakWord_ofString: proc(self: ^AK.SpeechSynthesizerDelegate, sender: ^AK.SpeechSynthesizer, characterRange: NS._NSRange, string: ^NS.String),
-    speechSynthesizer_willSpeakPhoneme: proc(self: ^AK.SpeechSynthesizerDelegate, sender: ^AK.SpeechSynthesizer, phonemeOpcode: cffi.short),
-    speechSynthesizer_didEncounterErrorAtIndex_ofString_message: proc(self: ^AK.SpeechSynthesizerDelegate, sender: ^AK.SpeechSynthesizer, characterIndex: NS.UInteger, string: ^NS.String, message: ^NS.String),
-    speechSynthesizer_didEncounterSyncMessage: proc(self: ^AK.SpeechSynthesizerDelegate, sender: ^AK.SpeechSynthesizer, message: ^NS.String),
+    speechSynthesizer_didFinishSpeaking: proc(self: ^NS.SpeechSynthesizerDelegate, sender: ^NS.SpeechSynthesizer, finishedSpeaking: bool),
+    speechSynthesizer_willSpeakWord_ofString: proc(self: ^NS.SpeechSynthesizerDelegate, sender: ^NS.SpeechSynthesizer, characterRange: NS._NSRange, string: ^NS.String),
+    speechSynthesizer_willSpeakPhoneme: proc(self: ^NS.SpeechSynthesizerDelegate, sender: ^NS.SpeechSynthesizer, phonemeOpcode: cffi.short),
+    speechSynthesizer_didEncounterErrorAtIndex_ofString_message: proc(self: ^NS.SpeechSynthesizerDelegate, sender: ^NS.SpeechSynthesizer, characterIndex: NS.UInteger, string: ^NS.String, message: ^NS.String),
+    speechSynthesizer_didEncounterSyncMessage: proc(self: ^NS.SpeechSynthesizerDelegate, sender: ^NS.SpeechSynthesizer, message: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -35,7 +35,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.speechSynthesizer_didFinishSpeaking != nil {
-        speechSynthesizer_didFinishSpeaking :: proc "c" (self: ^AK.SpeechSynthesizerDelegate, _: SEL, sender: ^AK.SpeechSynthesizer, finishedSpeaking: bool) {
+        speechSynthesizer_didFinishSpeaking :: proc "c" (self: ^NS.SpeechSynthesizerDelegate, _: SEL, sender: ^NS.SpeechSynthesizer, finishedSpeaking: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("speechSynthesizer:didFinishSpeaking:"), auto_cast speechSynthesizer_didFinishSpeaking, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.speechSynthesizer_willSpeakWord_ofString != nil {
-        speechSynthesizer_willSpeakWord_ofString :: proc "c" (self: ^AK.SpeechSynthesizerDelegate, _: SEL, sender: ^AK.SpeechSynthesizer, characterRange: NS._NSRange, string: ^NS.String) {
+        speechSynthesizer_willSpeakWord_ofString :: proc "c" (self: ^NS.SpeechSynthesizerDelegate, _: SEL, sender: ^NS.SpeechSynthesizer, characterRange: NS._NSRange, string: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("speechSynthesizer:willSpeakWord:ofString:"), auto_cast speechSynthesizer_willSpeakWord_ofString, "v@:@{_NSRange=LL}@") do panic("Failed to register objC method.")
     }
     if vt.speechSynthesizer_willSpeakPhoneme != nil {
-        speechSynthesizer_willSpeakPhoneme :: proc "c" (self: ^AK.SpeechSynthesizerDelegate, _: SEL, sender: ^AK.SpeechSynthesizer, phonemeOpcode: cffi.short) {
+        speechSynthesizer_willSpeakPhoneme :: proc "c" (self: ^NS.SpeechSynthesizerDelegate, _: SEL, sender: ^NS.SpeechSynthesizer, phonemeOpcode: cffi.short) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("speechSynthesizer:willSpeakPhoneme:"), auto_cast speechSynthesizer_willSpeakPhoneme, "v@:@s") do panic("Failed to register objC method.")
     }
     if vt.speechSynthesizer_didEncounterErrorAtIndex_ofString_message != nil {
-        speechSynthesizer_didEncounterErrorAtIndex_ofString_message :: proc "c" (self: ^AK.SpeechSynthesizerDelegate, _: SEL, sender: ^AK.SpeechSynthesizer, characterIndex: NS.UInteger, string: ^NS.String, message: ^NS.String) {
+        speechSynthesizer_didEncounterErrorAtIndex_ofString_message :: proc "c" (self: ^NS.SpeechSynthesizerDelegate, _: SEL, sender: ^NS.SpeechSynthesizer, characterIndex: NS.UInteger, string: ^NS.String, message: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("speechSynthesizer:didEncounterErrorAtIndex:ofString:message:"), auto_cast speechSynthesizer_didEncounterErrorAtIndex_ofString_message, "v@:@L@@") do panic("Failed to register objC method.")
     }
     if vt.speechSynthesizer_didEncounterSyncMessage != nil {
-        speechSynthesizer_didEncounterSyncMessage :: proc "c" (self: ^AK.SpeechSynthesizerDelegate, _: SEL, sender: ^AK.SpeechSynthesizer, message: ^NS.String) {
+        speechSynthesizer_didEncounterSyncMessage :: proc "c" (self: ^NS.SpeechSynthesizerDelegate, _: SEL, sender: ^NS.SpeechSynthesizer, message: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

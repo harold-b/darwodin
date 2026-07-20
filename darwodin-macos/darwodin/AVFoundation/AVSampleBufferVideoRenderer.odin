@@ -51,5 +51,5 @@ foreign lib {
     SampleBufferVideoRenderer_recommendedPixelBufferAttributes :: proc(self: ^SampleBufferVideoRenderer) -> ^NS.Dictionary ---
 
     @(objc_type=SampleBufferVideoRenderer, objc_selector="loadVideoPerformanceMetricsWithCompletionHandler:", objc_name="loadVideoPerformanceMetricsWithCompletionHandler")
-    SampleBufferVideoRenderer_loadVideoPerformanceMetricsWithCompletionHandler :: proc(self: ^SampleBufferVideoRenderer, completionHandler: ^Objc_Block(proc "c" (videoPerformanceMetrics: ^VideoPerformanceMetrics))) ---
+    SampleBufferVideoRenderer_loadVideoPerformanceMetricsWithCompletionHandler :: proc(self: ^SampleBufferVideoRenderer, completionHandler: ^Objc_Block(proc "c" ( videoPerformanceMetrics: ^VideoPerformanceMetrics ))) ---
 }

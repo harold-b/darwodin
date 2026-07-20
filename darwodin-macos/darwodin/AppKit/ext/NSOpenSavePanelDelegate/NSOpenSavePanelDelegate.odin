@@ -20,17 +20,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    panel_shouldEnableURL: proc(self: ^AK.OpenSavePanelDelegate, sender: id, url: ^NS.URL) -> bool,
-    panel_validateURL_error: proc(self: ^AK.OpenSavePanelDelegate, sender: id, url: ^NS.URL, outError: ^^NS.Error) -> bool,
-    panel_didChangeToDirectoryURL: proc(self: ^AK.OpenSavePanelDelegate, sender: id, url: ^NS.URL),
-    panel_userEnteredFilename_confirmed: proc(self: ^AK.OpenSavePanelDelegate, sender: id, filename: ^NS.String, okFlag: bool) -> ^NS.String,
-    panel_willExpand: proc(self: ^AK.OpenSavePanelDelegate, sender: id, expanding: bool),
-    panelSelectionDidChange: proc(self: ^AK.OpenSavePanelDelegate, sender: id),
-    panel_displayNameForType: proc(self: ^AK.OpenSavePanelDelegate, sender: id, type: ^AK.UTType) -> ^NS.String,
-    panel_didSelectType: proc(self: ^AK.OpenSavePanelDelegate, sender: id, type: ^AK.UTType),
+    panel_shouldEnableURL: proc(self: ^NS.OpenSavePanelDelegate, sender: id, url: ^NS.URL) -> bool,
+    panel_validateURL_error: proc(self: ^NS.OpenSavePanelDelegate, sender: id, url: ^NS.URL, outError: ^^NS.Error) -> bool,
+    panel_didChangeToDirectoryURL: proc(self: ^NS.OpenSavePanelDelegate, sender: id, url: ^NS.URL),
+    panel_userEnteredFilename_confirmed: proc(self: ^NS.OpenSavePanelDelegate, sender: id, filename: ^NS.String, okFlag: bool) -> ^NS.String,
+    panel_willExpand: proc(self: ^NS.OpenSavePanelDelegate, sender: id, expanding: bool),
+    panelSelectionDidChange: proc(self: ^NS.OpenSavePanelDelegate, sender: id),
+    panel_displayNameForType: proc(self: ^NS.OpenSavePanelDelegate, sender: id, type: ^NS.UTType) -> ^NS.String,
+    panel_didSelectType: proc(self: ^NS.OpenSavePanelDelegate, sender: id, type: ^NS.UTType),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.panel_shouldEnableURL != nil {
-        panel_shouldEnableURL :: proc "c" (self: ^AK.OpenSavePanelDelegate, _: SEL, sender: id, url: ^NS.URL) -> bool {
+        panel_shouldEnableURL :: proc "c" (self: ^NS.OpenSavePanelDelegate, _: SEL, sender: id, url: ^NS.URL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("panel:shouldEnableURL:"), auto_cast panel_shouldEnableURL, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.panel_validateURL_error != nil {
-        panel_validateURL_error :: proc "c" (self: ^AK.OpenSavePanelDelegate, _: SEL, sender: id, url: ^NS.URL, outError: ^^NS.Error) -> bool {
+        panel_validateURL_error :: proc "c" (self: ^NS.OpenSavePanelDelegate, _: SEL, sender: id, url: ^NS.URL, outError: ^^NS.Error) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("panel:validateURL:error:"), auto_cast panel_validateURL_error, "B@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.panel_didChangeToDirectoryURL != nil {
-        panel_didChangeToDirectoryURL :: proc "c" (self: ^AK.OpenSavePanelDelegate, _: SEL, sender: id, url: ^NS.URL) {
+        panel_didChangeToDirectoryURL :: proc "c" (self: ^NS.OpenSavePanelDelegate, _: SEL, sender: id, url: ^NS.URL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("panel:didChangeToDirectoryURL:"), auto_cast panel_didChangeToDirectoryURL, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.panel_userEnteredFilename_confirmed != nil {
-        panel_userEnteredFilename_confirmed :: proc "c" (self: ^AK.OpenSavePanelDelegate, _: SEL, sender: id, filename: ^NS.String, okFlag: bool) -> ^NS.String {
+        panel_userEnteredFilename_confirmed :: proc "c" (self: ^NS.OpenSavePanelDelegate, _: SEL, sender: id, filename: ^NS.String, okFlag: bool) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("panel:userEnteredFilename:confirmed:"), auto_cast panel_userEnteredFilename_confirmed, "@@:@@B") do panic("Failed to register objC method.")
     }
     if vt.panel_willExpand != nil {
-        panel_willExpand :: proc "c" (self: ^AK.OpenSavePanelDelegate, _: SEL, sender: id, expanding: bool) {
+        panel_willExpand :: proc "c" (self: ^NS.OpenSavePanelDelegate, _: SEL, sender: id, expanding: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("panel:willExpand:"), auto_cast panel_willExpand, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.panelSelectionDidChange != nil {
-        panelSelectionDidChange :: proc "c" (self: ^AK.OpenSavePanelDelegate, _: SEL, sender: id) {
+        panelSelectionDidChange :: proc "c" (self: ^NS.OpenSavePanelDelegate, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("panelSelectionDidChange:"), auto_cast panelSelectionDidChange, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.panel_displayNameForType != nil {
-        panel_displayNameForType :: proc "c" (self: ^AK.OpenSavePanelDelegate, _: SEL, sender: id, type: ^AK.UTType) -> ^NS.String {
+        panel_displayNameForType :: proc "c" (self: ^NS.OpenSavePanelDelegate, _: SEL, sender: id, type: ^NS.UTType) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("panel:displayNameForType:"), auto_cast panel_displayNameForType, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.panel_didSelectType != nil {
-        panel_didSelectType :: proc "c" (self: ^AK.OpenSavePanelDelegate, _: SEL, sender: id, type: ^AK.UTType) {
+        panel_didSelectType :: proc "c" (self: ^NS.OpenSavePanelDelegate, _: SEL, sender: id, type: ^NS.UTType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

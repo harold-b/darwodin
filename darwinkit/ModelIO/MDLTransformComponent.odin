@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLTransformComponent
-///
 @(objc_class="MDLTransformComponent")
 TransformComponent :: struct { using _: intrinsics.objc_object, 
     using _: Component,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TransformComponent, objc_selector="setLocalTransform:forTime:", objc_name="setLocalTransform_forTime")
     TransformComponent_setLocalTransform_forTime :: proc(self: ^TransformComponent, transform: matrix[4,4]f32, time: NS.TimeInterval) ---
@@ -55,6 +49,8 @@ foreign lib {
     @(objc_type=TransformComponent, objc_selector="keyTimes", objc_name="keyTimes")
     TransformComponent_keyTimes :: proc(self: ^TransformComponent) -> ^NS.Array ---
 }
+
+
 
 @(objc_type=TransformComponent, objc_name="setLocalTransform")
 TransformComponent_setLocalTransform :: proc {

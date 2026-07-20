@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSpeechSynthesisMarker
-///
 @(objc_class="AVSpeechSynthesisMarker", objc_superclass=NS.Object)
 SpeechSynthesisMarker :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesisMarker, objc_selector="initWithMarkerType:forTextRange:atByteSampleOffset:", objc_name="initWithMarkerType")
     SpeechSynthesisMarker_initWithMarkerType :: proc(self: ^SpeechSynthesisMarker, type: SpeechSynthesisMarkerMark, range: NS._NSRange, byteSampleOffset: NS.UInteger) -> instancetype ---
@@ -73,3 +67,6 @@ foreign lib {
     @(objc_type=SpeechSynthesisMarker, objc_selector="setPhoneme:", objc_name="setPhoneme")
     SpeechSynthesisMarker_setPhoneme :: proc(self: ^SpeechSynthesisMarker, phoneme: ^NS.String) ---
 }
+
+
+

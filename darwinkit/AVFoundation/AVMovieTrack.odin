@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMovieTrack
-///
 @(objc_class="AVMovieTrack", objc_superclass=AssetTrack)
 MovieTrack :: struct { using _: AssetTrack, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MovieTrack, objc_selector="mediaPresentationTimeRange", objc_name="mediaPresentationTimeRange")
     MovieTrack_mediaPresentationTimeRange :: proc(self: ^MovieTrack) -> CM.TimeRange ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=MovieTrack, objc_selector="mediaDataStorage", objc_name="mediaDataStorage")
     MovieTrack_mediaDataStorage :: proc(self: ^MovieTrack) -> ^MediaDataStorage ---
 }
+
+
+

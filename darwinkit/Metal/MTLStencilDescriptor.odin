@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLStencilDescriptor
-///
 @(objc_class="MTLStencilDescriptor", objc_superclass=NS.Object)
 StencilDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=StencilDescriptor, objc_selector="stencilCompareFunction", objc_name="stencilCompareFunction")
     StencilDescriptor_stencilCompareFunction :: proc(self: ^StencilDescriptor) -> CompareFunction ---
@@ -59,3 +53,6 @@ foreign lib {
     @(objc_type=StencilDescriptor, objc_selector="setWriteMask:", objc_name="setWriteMask")
     StencilDescriptor_setWriteMask :: proc(self: ^StencilDescriptor, writeMask: cffi.uint32_t) ---
 }
+
+
+

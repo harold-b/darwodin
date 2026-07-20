@@ -9,13 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLAuthenticationChallengeInternal
-///
 @(objc_class="NSURLAuthenticationChallengeInternal")
 URLAuthenticationChallengeInternal :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
-foreign lib {}

@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MTLFXTemporalScalerBase
-///
 @(objc_class="MTLFXTemporalScalerBase")
 TemporalScalerBase :: struct { using _: intrinsics.objc_object, 
     using _: FrameInterpolatableScaler,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TemporalScalerBase, objc_selector="colorTextureUsage", objc_name="colorTextureUsage")
     TemporalScalerBase_colorTextureUsage :: proc(self: ^TemporalScalerBase) -> MTL.TextureUsage ---
@@ -166,3 +160,6 @@ foreign lib {
     @(objc_type=TemporalScalerBase, objc_selector="setFence:", objc_name="setFence")
     TemporalScalerBase_setFence :: proc(self: ^TemporalScalerBase, fence: ^MTL.Fence) ---
 }
+
+
+

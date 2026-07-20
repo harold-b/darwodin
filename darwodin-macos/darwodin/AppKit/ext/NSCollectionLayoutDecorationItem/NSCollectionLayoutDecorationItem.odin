@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSCollectionLayoutItem"
 
 VTable :: struct {
     super: NSCollectionLayoutItem.VTable,
     backgroundDecorationItemWithElementKind: proc(elementKind: ^NS.String) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutDecorationItem) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutDecorationItem,
-    zIndex: proc(self: ^AK.CollectionLayoutDecorationItem) -> NS.Integer,
-    setZIndex: proc(self: ^AK.CollectionLayoutDecorationItem, zIndex: NS.Integer),
-    elementKind: proc(self: ^AK.CollectionLayoutDecorationItem) -> ^NS.String,
+    init: proc(self: ^NS.CollectionLayoutDecorationItem) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutDecorationItem,
+    zIndex: proc(self: ^NS.CollectionLayoutDecorationItem) -> NS.Integer,
+    setZIndex: proc(self: ^NS.CollectionLayoutDecorationItem, zIndex: NS.Integer),
+    elementKind: proc(self: ^NS.CollectionLayoutDecorationItem) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("backgroundDecorationItemWithElementKind:"), auto_cast backgroundDecorationItemWithElementKind, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutDecorationItem, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutDecorationItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutDecorationItem {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutDecorationItem {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.zIndex != nil {
-        zIndex :: proc "c" (self: ^AK.CollectionLayoutDecorationItem, _: SEL) -> NS.Integer {
+        zIndex :: proc "c" (self: ^NS.CollectionLayoutDecorationItem, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("zIndex"), auto_cast zIndex, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setZIndex != nil {
-        setZIndex :: proc "c" (self: ^AK.CollectionLayoutDecorationItem, _: SEL, zIndex: NS.Integer) {
+        setZIndex :: proc "c" (self: ^NS.CollectionLayoutDecorationItem, _: SEL, zIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setZIndex:"), auto_cast setZIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.elementKind != nil {
-        elementKind :: proc "c" (self: ^AK.CollectionLayoutDecorationItem, _: SEL) -> ^NS.String {
+        elementKind :: proc "c" (self: ^NS.CollectionLayoutDecorationItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

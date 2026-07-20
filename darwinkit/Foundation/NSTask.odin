@@ -110,7 +110,7 @@ foreign lib {
     Task_setQualityOfService :: proc(self: ^Task, qualityOfService: QualityOfService) ---
 
     @(objc_type=Task, objc_selector="launchedTaskWithExecutableURL:arguments:error:terminationHandler:", objc_name="launchedTaskWithExecutableURL", objc_is_class_method=true)
-    Task_launchedTaskWithExecutableURL :: proc(url: ^URL, arguments: ^Array, error: ^^Error, terminationHandler: ^Objc_Block(proc "c" (_: ^Task))) -> ^Task ---
+    Task_launchedTaskWithExecutableURL :: proc(url: ^URL, arguments: ^Array, error: ^^Error, terminationHandler: ^Objc_Block(proc "c" ( _0: ^Task ))) -> ^Task ---
 
     @(objc_type=Task, objc_selector="waitUntilExit", objc_name="waitUntilExit")
     Task_waitUntilExit :: proc(self: ^Task) ---

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPipelineDescriptor
-///
 @(objc_class="MTLRenderPipelineDescriptor", objc_superclass=NS.Object)
 RenderPipelineDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPipelineDescriptor, objc_selector="reset", objc_name="reset")
     RenderPipelineDescriptor_reset :: proc(self: ^RenderPipelineDescriptor) ---
@@ -221,3 +215,6 @@ foreign lib {
     @(objc_type=RenderPipelineDescriptor, objc_selector="setShaderValidation:", objc_name="setShaderValidation")
     RenderPipelineDescriptor_setShaderValidation :: proc(self: ^RenderPipelineDescriptor, shaderValidation: ShaderValidation) ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetWriterInputCaptionAdaptor
-///
 @(objc_class="AVAssetWriterInputCaptionAdaptor", objc_superclass=NS.Object)
 AssetWriterInputCaptionAdaptor :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriterInputCaptionAdaptor, objc_selector="init", objc_name="init")
     AssetWriterInputCaptionAdaptor_init :: proc(self: ^AssetWriterInputCaptionAdaptor) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=AssetWriterInputCaptionAdaptor, objc_selector="assetWriterInput", objc_name="assetWriterInput")
     AssetWriterInputCaptionAdaptor_assetWriterInput :: proc(self: ^AssetWriterInputCaptionAdaptor) -> ^AssetWriterInput ---
 }
+
+
+

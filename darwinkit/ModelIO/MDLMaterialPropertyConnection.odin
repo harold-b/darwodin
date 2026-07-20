@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLMaterialPropertyConnection
-///
 @(objc_class="MDLMaterialPropertyConnection", objc_superclass=NS.Object)
 MaterialPropertyConnection :: struct { using _: NS.Object, 
     using _: Named,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MaterialPropertyConnection, objc_selector="init", objc_name="init")
     MaterialPropertyConnection_init :: proc(self: ^MaterialPropertyConnection) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=MaterialPropertyConnection, objc_selector="input", objc_name="input")
     MaterialPropertyConnection_input :: proc(self: ^MaterialPropertyConnection) -> ^MaterialProperty ---
 }
+
+
+

@@ -20,30 +20,30 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithRanges: proc(self: ^AK.TextSelection, textRanges: ^NS.Array, affinity: AK.TextSelectionAffinity, granularity: AK.TextSelectionGranularity) -> instancetype,
-    initWithCoder: proc(self: ^AK.TextSelection, coder: ^NS.Coder) -> instancetype,
-    initWithRange: proc(self: ^AK.TextSelection, range: ^AK.TextRange, affinity: AK.TextSelectionAffinity, granularity: AK.TextSelectionGranularity) -> instancetype,
-    initWithLocation: proc(self: ^AK.TextSelection, location: ^AK.TextLocation, affinity: AK.TextSelectionAffinity) -> instancetype,
-    init: proc(self: ^AK.TextSelection) -> instancetype,
-    textSelectionWithTextRanges: proc(self: ^AK.TextSelection, textRanges: ^NS.Array) -> ^AK.TextSelection,
-    textRanges: proc(self: ^AK.TextSelection) -> ^NS.Array,
-    granularity: proc(self: ^AK.TextSelection) -> AK.TextSelectionGranularity,
-    affinity: proc(self: ^AK.TextSelection) -> AK.TextSelectionAffinity,
-    isTransient: proc(self: ^AK.TextSelection) -> bool,
-    anchorPositionOffset: proc(self: ^AK.TextSelection) -> CG.Float,
-    setAnchorPositionOffset: proc(self: ^AK.TextSelection, anchorPositionOffset: CG.Float),
-    isLogical: proc(self: ^AK.TextSelection) -> bool,
-    setLogical: proc(self: ^AK.TextSelection, logical: bool),
-    secondarySelectionLocation: proc(self: ^AK.TextSelection) -> ^AK.TextLocation,
-    setSecondarySelectionLocation: proc(self: ^AK.TextSelection, secondarySelectionLocation: ^AK.TextLocation),
-    typingAttributes: proc(self: ^AK.TextSelection) -> ^NS.Dictionary,
-    setTypingAttributes: proc(self: ^AK.TextSelection, typingAttributes: ^NS.Dictionary),
+    initWithRanges: proc(self: ^NS.TextSelection, textRanges: ^NS.Array, affinity: NS.TextSelectionAffinity, granularity: NS.TextSelectionGranularity) -> instancetype,
+    initWithCoder: proc(self: ^NS.TextSelection, coder: ^NS.Coder) -> instancetype,
+    initWithRange: proc(self: ^NS.TextSelection, range: ^NS.TextRange, affinity: NS.TextSelectionAffinity, granularity: NS.TextSelectionGranularity) -> instancetype,
+    initWithLocation: proc(self: ^NS.TextSelection, location: ^NS.TextLocation, affinity: NS.TextSelectionAffinity) -> instancetype,
+    init: proc(self: ^NS.TextSelection) -> instancetype,
+    textSelectionWithTextRanges: proc(self: ^NS.TextSelection, textRanges: ^NS.Array) -> ^NS.TextSelection,
+    textRanges: proc(self: ^NS.TextSelection) -> ^NS.Array,
+    granularity: proc(self: ^NS.TextSelection) -> NS.TextSelectionGranularity,
+    affinity: proc(self: ^NS.TextSelection) -> NS.TextSelectionAffinity,
+    isTransient: proc(self: ^NS.TextSelection) -> bool,
+    anchorPositionOffset: proc(self: ^NS.TextSelection) -> CG.Float,
+    setAnchorPositionOffset: proc(self: ^NS.TextSelection, anchorPositionOffset: CG.Float),
+    isLogical: proc(self: ^NS.TextSelection) -> bool,
+    setLogical: proc(self: ^NS.TextSelection, logical: bool),
+    secondarySelectionLocation: proc(self: ^NS.TextSelection) -> ^NS.TextLocation,
+    setSecondarySelectionLocation: proc(self: ^NS.TextSelection, secondarySelectionLocation: ^NS.TextLocation),
+    typingAttributes: proc(self: ^NS.TextSelection) -> ^NS.Dictionary,
+    setTypingAttributes: proc(self: ^NS.TextSelection, typingAttributes: ^NS.Dictionary),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithRanges != nil {
-        initWithRanges :: proc "c" (self: ^AK.TextSelection, _: SEL, textRanges: ^NS.Array, affinity: AK.TextSelectionAffinity, granularity: AK.TextSelectionGranularity) -> instancetype {
+        initWithRanges :: proc "c" (self: ^NS.TextSelection, _: SEL, textRanges: ^NS.Array, affinity: NS.TextSelectionAffinity, granularity: NS.TextSelectionGranularity) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRanges:affinity:granularity:"), auto_cast initWithRanges, "@@:^voidll") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextSelection, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.TextSelection, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithRange != nil {
-        initWithRange :: proc "c" (self: ^AK.TextSelection, _: SEL, range: ^AK.TextRange, affinity: AK.TextSelectionAffinity, granularity: AK.TextSelectionGranularity) -> instancetype {
+        initWithRange :: proc "c" (self: ^NS.TextSelection, _: SEL, range: ^NS.TextRange, affinity: NS.TextSelectionAffinity, granularity: NS.TextSelectionGranularity) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRange:affinity:granularity:"), auto_cast initWithRange, "@@:@ll") do panic("Failed to register objC method.")
     }
     if vt.initWithLocation != nil {
-        initWithLocation :: proc "c" (self: ^AK.TextSelection, _: SEL, location: ^AK.TextLocation, affinity: AK.TextSelectionAffinity) -> instancetype {
+        initWithLocation :: proc "c" (self: ^NS.TextSelection, _: SEL, location: ^NS.TextLocation, affinity: NS.TextSelectionAffinity) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLocation:affinity:"), auto_cast initWithLocation, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextSelection, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.TextSelection, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.textSelectionWithTextRanges != nil {
-        textSelectionWithTextRanges :: proc "c" (self: ^AK.TextSelection, _: SEL, textRanges: ^NS.Array) -> ^AK.TextSelection {
+        textSelectionWithTextRanges :: proc "c" (self: ^NS.TextSelection, _: SEL, textRanges: ^NS.Array) -> ^NS.TextSelection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textSelectionWithTextRanges:"), auto_cast textSelectionWithTextRanges, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.textRanges != nil {
-        textRanges :: proc "c" (self: ^AK.TextSelection, _: SEL) -> ^NS.Array {
+        textRanges :: proc "c" (self: ^NS.TextSelection, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textRanges"), auto_cast textRanges, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.granularity != nil {
-        granularity :: proc "c" (self: ^AK.TextSelection, _: SEL) -> AK.TextSelectionGranularity {
+        granularity :: proc "c" (self: ^NS.TextSelection, _: SEL) -> NS.TextSelectionGranularity {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -134,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("granularity"), auto_cast granularity, "l@:") do panic("Failed to register objC method.")
     }
     if vt.affinity != nil {
-        affinity :: proc "c" (self: ^AK.TextSelection, _: SEL) -> AK.TextSelectionAffinity {
+        affinity :: proc "c" (self: ^NS.TextSelection, _: SEL) -> NS.TextSelectionAffinity {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -144,7 +144,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("affinity"), auto_cast affinity, "l@:") do panic("Failed to register objC method.")
     }
     if vt.isTransient != nil {
-        isTransient :: proc "c" (self: ^AK.TextSelection, _: SEL) -> bool {
+        isTransient :: proc "c" (self: ^NS.TextSelection, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -154,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isTransient"), auto_cast isTransient, "B@:") do panic("Failed to register objC method.")
     }
     if vt.anchorPositionOffset != nil {
-        anchorPositionOffset :: proc "c" (self: ^AK.TextSelection, _: SEL) -> CG.Float {
+        anchorPositionOffset :: proc "c" (self: ^NS.TextSelection, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("anchorPositionOffset"), auto_cast anchorPositionOffset, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setAnchorPositionOffset != nil {
-        setAnchorPositionOffset :: proc "c" (self: ^AK.TextSelection, _: SEL, anchorPositionOffset: CG.Float) {
+        setAnchorPositionOffset :: proc "c" (self: ^NS.TextSelection, _: SEL, anchorPositionOffset: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAnchorPositionOffset:"), auto_cast setAnchorPositionOffset, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.isLogical != nil {
-        isLogical :: proc "c" (self: ^AK.TextSelection, _: SEL) -> bool {
+        isLogical :: proc "c" (self: ^NS.TextSelection, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -184,7 +184,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isLogical"), auto_cast isLogical, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setLogical != nil {
-        setLogical :: proc "c" (self: ^AK.TextSelection, _: SEL, logical: bool) {
+        setLogical :: proc "c" (self: ^NS.TextSelection, _: SEL, logical: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -194,7 +194,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLogical:"), auto_cast setLogical, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.secondarySelectionLocation != nil {
-        secondarySelectionLocation :: proc "c" (self: ^AK.TextSelection, _: SEL) -> ^AK.TextLocation {
+        secondarySelectionLocation :: proc "c" (self: ^NS.TextSelection, _: SEL) -> ^NS.TextLocation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -204,7 +204,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("secondarySelectionLocation"), auto_cast secondarySelectionLocation, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSecondarySelectionLocation != nil {
-        setSecondarySelectionLocation :: proc "c" (self: ^AK.TextSelection, _: SEL, secondarySelectionLocation: ^AK.TextLocation) {
+        setSecondarySelectionLocation :: proc "c" (self: ^NS.TextSelection, _: SEL, secondarySelectionLocation: ^NS.TextLocation) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -214,7 +214,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSecondarySelectionLocation:"), auto_cast setSecondarySelectionLocation, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.typingAttributes != nil {
-        typingAttributes :: proc "c" (self: ^AK.TextSelection, _: SEL) -> ^NS.Dictionary {
+        typingAttributes :: proc "c" (self: ^NS.TextSelection, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -224,7 +224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("typingAttributes"), auto_cast typingAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setTypingAttributes != nil {
-        setTypingAttributes :: proc "c" (self: ^AK.TextSelection, _: SEL, typingAttributes: ^NS.Dictionary) {
+        setTypingAttributes :: proc "c" (self: ^NS.TextSelection, _: SEL, typingAttributes: ^NS.Dictionary) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

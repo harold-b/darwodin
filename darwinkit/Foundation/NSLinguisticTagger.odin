@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSLinguisticTagger
-///
 @(objc_class="NSLinguisticTagger", objc_superclass=Object)
 LinguisticTagger :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LinguisticTagger, objc_selector="initWithTagSchemes:options:", objc_name="initWithTagSchemes")
     LinguisticTagger_initWithTagSchemes :: proc(self: ^LinguisticTagger, tagSchemes: ^Array, opts: UInteger) -> instancetype ---
@@ -44,7 +38,7 @@ foreign lib {
     LinguisticTagger_sentenceRangeForRange :: proc(self: ^LinguisticTagger, range: _NSRange) -> _NSRange ---
 
     @(objc_type=LinguisticTagger, objc_selector="enumerateTagsInRange:unit:scheme:options:usingBlock:", objc_name="enumerateTagsInRange_unit_scheme_options_usingBlock")
-    LinguisticTagger_enumerateTagsInRange_unit_scheme_options_usingBlock :: proc(self: ^LinguisticTagger, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, block: ^Objc_Block(proc "c" (tag: ^String, tokenRange: _NSRange, stop: ^bool))) ---
+    LinguisticTagger_enumerateTagsInRange_unit_scheme_options_usingBlock :: proc(self: ^LinguisticTagger, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, block: ^Objc_Block(proc "c" ( tag: ^String, tokenRange: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=LinguisticTagger, objc_selector="tagAtIndex:unit:scheme:tokenRange:", objc_name="tagAtIndex_unit_scheme_tokenRange")
     LinguisticTagger_tagAtIndex_unit_scheme_tokenRange :: proc(self: ^LinguisticTagger, charIndex: UInteger, unit: LinguisticTaggerUnit, scheme: ^String, tokenRange: ^_NSRange) -> ^String ---
@@ -53,7 +47,7 @@ foreign lib {
     LinguisticTagger_tagsInRange_unit_scheme_options_tokenRanges :: proc(self: ^LinguisticTagger, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, tokenRanges: ^^Array) -> ^Array ---
 
     @(objc_type=LinguisticTagger, objc_selector="enumerateTagsInRange:scheme:options:usingBlock:", objc_name="enumerateTagsInRange_scheme_options_usingBlock")
-    LinguisticTagger_enumerateTagsInRange_scheme_options_usingBlock :: proc(self: ^LinguisticTagger, range: _NSRange, tagScheme: ^String, opts: LinguisticTaggerOptions, block: ^Objc_Block(proc "c" (tag: ^String, tokenRange: _NSRange, sentenceRange: _NSRange, stop: ^bool))) ---
+    LinguisticTagger_enumerateTagsInRange_scheme_options_usingBlock :: proc(self: ^LinguisticTagger, range: _NSRange, tagScheme: ^String, opts: LinguisticTaggerOptions, block: ^Objc_Block(proc "c" ( tag: ^String, tokenRange: _NSRange, sentenceRange: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=LinguisticTagger, objc_selector="tagAtIndex:scheme:tokenRange:sentenceRange:", objc_name="tagAtIndex_scheme_tokenRange_sentenceRange")
     LinguisticTagger_tagAtIndex_scheme_tokenRange_sentenceRange :: proc(self: ^LinguisticTagger, charIndex: UInteger, scheme: ^String, tokenRange: ^_NSRange, sentenceRange: ^_NSRange) -> ^String ---
@@ -71,7 +65,7 @@ foreign lib {
     LinguisticTagger_tagsForString :: proc(string: ^String, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, tokenRanges: ^^Array) -> ^Array ---
 
     @(objc_type=LinguisticTagger, objc_selector="enumerateTagsForString:range:unit:scheme:options:orthography:usingBlock:", objc_name="enumerateTagsForString", objc_is_class_method=true)
-    LinguisticTagger_enumerateTagsForString :: proc(string: ^String, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, block: ^Objc_Block(proc "c" (tag: ^String, tokenRange: _NSRange, stop: ^bool))) ---
+    LinguisticTagger_enumerateTagsForString :: proc(string: ^String, range: _NSRange, unit: LinguisticTaggerUnit, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, block: ^Objc_Block(proc "c" ( tag: ^String, tokenRange: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=LinguisticTagger, objc_selector="possibleTagsAtIndex:scheme:tokenRange:sentenceRange:scores:", objc_name="possibleTagsAtIndex")
     LinguisticTagger_possibleTagsAtIndex :: proc(self: ^LinguisticTagger, charIndex: UInteger, tagScheme: ^String, tokenRange: ^_NSRange, sentenceRange: ^_NSRange, scores: ^^Array) -> ^Array ---
@@ -88,6 +82,8 @@ foreign lib {
     @(objc_type=LinguisticTagger, objc_selector="dominantLanguage", objc_name="dominantLanguage")
     LinguisticTagger_dominantLanguage :: proc(self: ^LinguisticTagger) -> ^String ---
 }
+
+
 
 @(objc_type=LinguisticTagger, objc_name="enumerateTagsInRange")
 LinguisticTagger_enumerateTagsInRange :: proc {

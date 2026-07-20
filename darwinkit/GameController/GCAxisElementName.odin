@@ -8,15 +8,8 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCAxisElementName
-///
 @(objc_class="GCAxisElementName")
 AxisElementName :: struct { using _: intrinsics.objc_object, 
     using _: PhysicalInputElementName,
 }
 
-@(default_calling_convention="c")
-foreign lib {}

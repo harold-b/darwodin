@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCaptureScope
-///
 @(objc_class="MTLCaptureScope")
 CaptureScope :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureScope, objc_selector="beginScope", objc_name="beginScope")
     CaptureScope_beginScope :: proc(self: ^CaptureScope) ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=CaptureScope, objc_selector="mtl4CommandQueue", objc_name="mtl4CommandQueue")
     CaptureScope_mtl4CommandQueue :: proc(self: ^CaptureScope) -> ^MTL4CommandQueue ---
 }
+
+
+

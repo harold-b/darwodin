@@ -20,60 +20,60 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDictionary: proc(self: ^AK.PrintInfo, attributes: ^NS.Dictionary) -> instancetype,
-    initWithCoder: proc(self: ^AK.PrintInfo, coder: ^NS.Coder) -> instancetype,
-    init: proc(self: ^AK.PrintInfo) -> instancetype,
-    dictionary: proc(self: ^AK.PrintInfo) -> ^NS.MutableDictionary,
-    setUpPrintOperationDefaultValues: proc(self: ^AK.PrintInfo),
-    _PMPrintSession: proc(self: ^AK.PrintInfo) -> rawptr,
-    _PMPageFormat: proc(self: ^AK.PrintInfo) -> rawptr,
-    _PMPrintSettings: proc(self: ^AK.PrintInfo) -> rawptr,
-    updateFromPMPageFormat: proc(self: ^AK.PrintInfo),
-    updateFromPMPrintSettings: proc(self: ^AK.PrintInfo),
-    takeSettingsFromPDFInfo: proc(self: ^AK.PrintInfo, inPDFInfo: ^AK.PDFInfo),
-    sharedPrintInfo: proc() -> ^AK.PrintInfo,
-    setSharedPrintInfo: proc(sharedPrintInfo: ^AK.PrintInfo),
-    paperName: proc(self: ^AK.PrintInfo) -> ^NS.String,
-    setPaperName: proc(self: ^AK.PrintInfo, paperName: ^NS.String),
-    paperSize: proc(self: ^AK.PrintInfo) -> NS.Size,
-    setPaperSize: proc(self: ^AK.PrintInfo, paperSize: NS.Size),
-    orientation: proc(self: ^AK.PrintInfo) -> AK.PaperOrientation,
-    setOrientation: proc(self: ^AK.PrintInfo, orientation: AK.PaperOrientation),
-    scalingFactor: proc(self: ^AK.PrintInfo) -> CG.Float,
-    setScalingFactor: proc(self: ^AK.PrintInfo, scalingFactor: CG.Float),
-    leftMargin: proc(self: ^AK.PrintInfo) -> CG.Float,
-    setLeftMargin: proc(self: ^AK.PrintInfo, leftMargin: CG.Float),
-    rightMargin: proc(self: ^AK.PrintInfo) -> CG.Float,
-    setRightMargin: proc(self: ^AK.PrintInfo, rightMargin: CG.Float),
-    topMargin: proc(self: ^AK.PrintInfo) -> CG.Float,
-    setTopMargin: proc(self: ^AK.PrintInfo, topMargin: CG.Float),
-    bottomMargin: proc(self: ^AK.PrintInfo) -> CG.Float,
-    setBottomMargin: proc(self: ^AK.PrintInfo, bottomMargin: CG.Float),
-    isHorizontallyCentered: proc(self: ^AK.PrintInfo) -> bool,
-    setHorizontallyCentered: proc(self: ^AK.PrintInfo, horizontallyCentered: bool),
-    isVerticallyCentered: proc(self: ^AK.PrintInfo) -> bool,
-    setVerticallyCentered: proc(self: ^AK.PrintInfo, verticallyCentered: bool),
-    horizontalPagination: proc(self: ^AK.PrintInfo) -> AK.PrintingPaginationMode,
-    setHorizontalPagination: proc(self: ^AK.PrintInfo, horizontalPagination: AK.PrintingPaginationMode),
-    verticalPagination: proc(self: ^AK.PrintInfo) -> AK.PrintingPaginationMode,
-    setVerticalPagination: proc(self: ^AK.PrintInfo, verticalPagination: AK.PrintingPaginationMode),
-    jobDisposition: proc(self: ^AK.PrintInfo) -> ^NS.String,
-    setJobDisposition: proc(self: ^AK.PrintInfo, jobDisposition: ^NS.String),
-    printer: proc(self: ^AK.PrintInfo) -> ^AK.Printer,
-    setPrinter: proc(self: ^AK.PrintInfo, printer: ^AK.Printer),
-    imageablePageBounds: proc(self: ^AK.PrintInfo) -> NS.Rect,
-    localizedPaperName: proc(self: ^AK.PrintInfo) -> ^NS.String,
-    defaultPrinter: proc() -> ^AK.Printer,
-    printSettings: proc(self: ^AK.PrintInfo) -> ^NS.MutableDictionary,
-    isSelectionOnly: proc(self: ^AK.PrintInfo) -> bool,
-    setSelectionOnly: proc(self: ^AK.PrintInfo, selectionOnly: bool),
-    setDefaultPrinter: proc(printer: ^AK.Printer),
+    initWithDictionary: proc(self: ^NS.PrintInfo, attributes: ^NS.Dictionary) -> instancetype,
+    initWithCoder: proc(self: ^NS.PrintInfo, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^NS.PrintInfo) -> instancetype,
+    dictionary: proc(self: ^NS.PrintInfo) -> ^NS.MutableDictionary,
+    setUpPrintOperationDefaultValues: proc(self: ^NS.PrintInfo),
+    _PMPrintSession: proc(self: ^NS.PrintInfo) -> rawptr,
+    _PMPageFormat: proc(self: ^NS.PrintInfo) -> rawptr,
+    _PMPrintSettings: proc(self: ^NS.PrintInfo) -> rawptr,
+    updateFromPMPageFormat: proc(self: ^NS.PrintInfo),
+    updateFromPMPrintSettings: proc(self: ^NS.PrintInfo),
+    takeSettingsFromPDFInfo: proc(self: ^NS.PrintInfo, inPDFInfo: ^NS.PDFInfo),
+    sharedPrintInfo: proc() -> ^NS.PrintInfo,
+    setSharedPrintInfo: proc(sharedPrintInfo: ^NS.PrintInfo),
+    paperName: proc(self: ^NS.PrintInfo) -> ^NS.String,
+    setPaperName: proc(self: ^NS.PrintInfo, paperName: ^NS.String),
+    paperSize: proc(self: ^NS.PrintInfo) -> NS.Size,
+    setPaperSize: proc(self: ^NS.PrintInfo, paperSize: NS.Size),
+    orientation: proc(self: ^NS.PrintInfo) -> NS.PaperOrientation,
+    setOrientation: proc(self: ^NS.PrintInfo, orientation: NS.PaperOrientation),
+    scalingFactor: proc(self: ^NS.PrintInfo) -> CG.Float,
+    setScalingFactor: proc(self: ^NS.PrintInfo, scalingFactor: CG.Float),
+    leftMargin: proc(self: ^NS.PrintInfo) -> CG.Float,
+    setLeftMargin: proc(self: ^NS.PrintInfo, leftMargin: CG.Float),
+    rightMargin: proc(self: ^NS.PrintInfo) -> CG.Float,
+    setRightMargin: proc(self: ^NS.PrintInfo, rightMargin: CG.Float),
+    topMargin: proc(self: ^NS.PrintInfo) -> CG.Float,
+    setTopMargin: proc(self: ^NS.PrintInfo, topMargin: CG.Float),
+    bottomMargin: proc(self: ^NS.PrintInfo) -> CG.Float,
+    setBottomMargin: proc(self: ^NS.PrintInfo, bottomMargin: CG.Float),
+    isHorizontallyCentered: proc(self: ^NS.PrintInfo) -> bool,
+    setHorizontallyCentered: proc(self: ^NS.PrintInfo, horizontallyCentered: bool),
+    isVerticallyCentered: proc(self: ^NS.PrintInfo) -> bool,
+    setVerticallyCentered: proc(self: ^NS.PrintInfo, verticallyCentered: bool),
+    horizontalPagination: proc(self: ^NS.PrintInfo) -> NS.PrintingPaginationMode,
+    setHorizontalPagination: proc(self: ^NS.PrintInfo, horizontalPagination: NS.PrintingPaginationMode),
+    verticalPagination: proc(self: ^NS.PrintInfo) -> NS.PrintingPaginationMode,
+    setVerticalPagination: proc(self: ^NS.PrintInfo, verticalPagination: NS.PrintingPaginationMode),
+    jobDisposition: proc(self: ^NS.PrintInfo) -> ^NS.String,
+    setJobDisposition: proc(self: ^NS.PrintInfo, jobDisposition: ^NS.String),
+    printer: proc(self: ^NS.PrintInfo) -> ^NS.Printer,
+    setPrinter: proc(self: ^NS.PrintInfo, printer: ^NS.Printer),
+    imageablePageBounds: proc(self: ^NS.PrintInfo) -> NS.Rect,
+    localizedPaperName: proc(self: ^NS.PrintInfo) -> ^NS.String,
+    defaultPrinter: proc() -> ^NS.Printer,
+    printSettings: proc(self: ^NS.PrintInfo) -> ^NS.MutableDictionary,
+    isSelectionOnly: proc(self: ^NS.PrintInfo) -> bool,
+    setSelectionOnly: proc(self: ^NS.PrintInfo, selectionOnly: bool),
+    setDefaultPrinter: proc(printer: ^NS.Printer),
     sizeForPaperName: proc(name: ^NS.String) -> NS.Size,
 }
 
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDictionary != nil {
-        initWithDictionary :: proc "c" (self: ^AK.PrintInfo, _: SEL, attributes: ^NS.Dictionary) -> instancetype {
+        initWithDictionary :: proc "c" (self: ^NS.PrintInfo, _: SEL, attributes: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDictionary:"), auto_cast initWithDictionary, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.PrintInfo, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.PrintInfo, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.dictionary != nil {
-        dictionary :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> ^NS.MutableDictionary {
+        dictionary :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> ^NS.MutableDictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dictionary"), auto_cast dictionary, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setUpPrintOperationDefaultValues != nil {
-        setUpPrintOperationDefaultValues :: proc "c" (self: ^AK.PrintInfo, _: SEL) {
+        setUpPrintOperationDefaultValues :: proc "c" (self: ^NS.PrintInfo, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -135,7 +135,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUpPrintOperationDefaultValues"), auto_cast setUpPrintOperationDefaultValues, "v@:") do panic("Failed to register objC method.")
     }
     if vt._PMPrintSession != nil {
-        _PMPrintSession :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> rawptr {
+        _PMPrintSession :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> rawptr {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -145,7 +145,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("PMPrintSession"), auto_cast _PMPrintSession, "^void@:") do panic("Failed to register objC method.")
     }
     if vt._PMPageFormat != nil {
-        _PMPageFormat :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> rawptr {
+        _PMPageFormat :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> rawptr {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -155,7 +155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("PMPageFormat"), auto_cast _PMPageFormat, "^void@:") do panic("Failed to register objC method.")
     }
     if vt._PMPrintSettings != nil {
-        _PMPrintSettings :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> rawptr {
+        _PMPrintSettings :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> rawptr {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -165,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("PMPrintSettings"), auto_cast _PMPrintSettings, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.updateFromPMPageFormat != nil {
-        updateFromPMPageFormat :: proc "c" (self: ^AK.PrintInfo, _: SEL) {
+        updateFromPMPageFormat :: proc "c" (self: ^NS.PrintInfo, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -175,7 +175,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateFromPMPageFormat"), auto_cast updateFromPMPageFormat, "v@:") do panic("Failed to register objC method.")
     }
     if vt.updateFromPMPrintSettings != nil {
-        updateFromPMPrintSettings :: proc "c" (self: ^AK.PrintInfo, _: SEL) {
+        updateFromPMPrintSettings :: proc "c" (self: ^NS.PrintInfo, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -185,7 +185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateFromPMPrintSettings"), auto_cast updateFromPMPrintSettings, "v@:") do panic("Failed to register objC method.")
     }
     if vt.takeSettingsFromPDFInfo != nil {
-        takeSettingsFromPDFInfo :: proc "c" (self: ^AK.PrintInfo, _: SEL, inPDFInfo: ^AK.PDFInfo) {
+        takeSettingsFromPDFInfo :: proc "c" (self: ^NS.PrintInfo, _: SEL, inPDFInfo: ^NS.PDFInfo) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -195,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("takeSettingsFromPDFInfo:"), auto_cast takeSettingsFromPDFInfo, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.sharedPrintInfo != nil {
-        sharedPrintInfo :: proc "c" (self: Class, _: SEL) -> ^AK.PrintInfo {
+        sharedPrintInfo :: proc "c" (self: Class, _: SEL) -> ^NS.PrintInfo {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -205,7 +205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sharedPrintInfo"), auto_cast sharedPrintInfo, "@#:") do panic("Failed to register objC method.")
     }
     if vt.setSharedPrintInfo != nil {
-        setSharedPrintInfo :: proc "c" (self: Class, _: SEL, sharedPrintInfo: ^AK.PrintInfo) {
+        setSharedPrintInfo :: proc "c" (self: Class, _: SEL, sharedPrintInfo: ^NS.PrintInfo) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -215,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setSharedPrintInfo:"), auto_cast setSharedPrintInfo, "v#:@") do panic("Failed to register objC method.")
     }
     if vt.paperName != nil {
-        paperName :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> ^NS.String {
+        paperName :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -225,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paperName"), auto_cast paperName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPaperName != nil {
-        setPaperName :: proc "c" (self: ^AK.PrintInfo, _: SEL, paperName: ^NS.String) {
+        setPaperName :: proc "c" (self: ^NS.PrintInfo, _: SEL, paperName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -235,7 +235,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPaperName:"), auto_cast setPaperName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.paperSize != nil {
-        paperSize :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> NS.Size {
+        paperSize :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -245,7 +245,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paperSize"), auto_cast paperSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setPaperSize != nil {
-        setPaperSize :: proc "c" (self: ^AK.PrintInfo, _: SEL, paperSize: NS.Size) {
+        setPaperSize :: proc "c" (self: ^NS.PrintInfo, _: SEL, paperSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -255,7 +255,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPaperSize:"), auto_cast setPaperSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.orientation != nil {
-        orientation :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> AK.PaperOrientation {
+        orientation :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> NS.PaperOrientation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -265,7 +265,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("orientation"), auto_cast orientation, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setOrientation != nil {
-        setOrientation :: proc "c" (self: ^AK.PrintInfo, _: SEL, orientation: AK.PaperOrientation) {
+        setOrientation :: proc "c" (self: ^NS.PrintInfo, _: SEL, orientation: NS.PaperOrientation) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -275,7 +275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setOrientation:"), auto_cast setOrientation, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.scalingFactor != nil {
-        scalingFactor :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> CG.Float {
+        scalingFactor :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -285,7 +285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scalingFactor"), auto_cast scalingFactor, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setScalingFactor != nil {
-        setScalingFactor :: proc "c" (self: ^AK.PrintInfo, _: SEL, scalingFactor: CG.Float) {
+        setScalingFactor :: proc "c" (self: ^NS.PrintInfo, _: SEL, scalingFactor: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -295,7 +295,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScalingFactor:"), auto_cast setScalingFactor, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.leftMargin != nil {
-        leftMargin :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> CG.Float {
+        leftMargin :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -305,7 +305,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("leftMargin"), auto_cast leftMargin, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setLeftMargin != nil {
-        setLeftMargin :: proc "c" (self: ^AK.PrintInfo, _: SEL, leftMargin: CG.Float) {
+        setLeftMargin :: proc "c" (self: ^NS.PrintInfo, _: SEL, leftMargin: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -315,7 +315,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLeftMargin:"), auto_cast setLeftMargin, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.rightMargin != nil {
-        rightMargin :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> CG.Float {
+        rightMargin :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -325,7 +325,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rightMargin"), auto_cast rightMargin, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setRightMargin != nil {
-        setRightMargin :: proc "c" (self: ^AK.PrintInfo, _: SEL, rightMargin: CG.Float) {
+        setRightMargin :: proc "c" (self: ^NS.PrintInfo, _: SEL, rightMargin: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -335,7 +335,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRightMargin:"), auto_cast setRightMargin, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.topMargin != nil {
-        topMargin :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> CG.Float {
+        topMargin :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -345,7 +345,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("topMargin"), auto_cast topMargin, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setTopMargin != nil {
-        setTopMargin :: proc "c" (self: ^AK.PrintInfo, _: SEL, topMargin: CG.Float) {
+        setTopMargin :: proc "c" (self: ^NS.PrintInfo, _: SEL, topMargin: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -355,7 +355,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTopMargin:"), auto_cast setTopMargin, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.bottomMargin != nil {
-        bottomMargin :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> CG.Float {
+        bottomMargin :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -365,7 +365,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bottomMargin"), auto_cast bottomMargin, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setBottomMargin != nil {
-        setBottomMargin :: proc "c" (self: ^AK.PrintInfo, _: SEL, bottomMargin: CG.Float) {
+        setBottomMargin :: proc "c" (self: ^NS.PrintInfo, _: SEL, bottomMargin: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -375,7 +375,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBottomMargin:"), auto_cast setBottomMargin, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.isHorizontallyCentered != nil {
-        isHorizontallyCentered :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> bool {
+        isHorizontallyCentered :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -385,7 +385,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isHorizontallyCentered"), auto_cast isHorizontallyCentered, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHorizontallyCentered != nil {
-        setHorizontallyCentered :: proc "c" (self: ^AK.PrintInfo, _: SEL, horizontallyCentered: bool) {
+        setHorizontallyCentered :: proc "c" (self: ^NS.PrintInfo, _: SEL, horizontallyCentered: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -395,7 +395,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHorizontallyCentered:"), auto_cast setHorizontallyCentered, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isVerticallyCentered != nil {
-        isVerticallyCentered :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> bool {
+        isVerticallyCentered :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -405,7 +405,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isVerticallyCentered"), auto_cast isVerticallyCentered, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setVerticallyCentered != nil {
-        setVerticallyCentered :: proc "c" (self: ^AK.PrintInfo, _: SEL, verticallyCentered: bool) {
+        setVerticallyCentered :: proc "c" (self: ^NS.PrintInfo, _: SEL, verticallyCentered: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -415,7 +415,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticallyCentered:"), auto_cast setVerticallyCentered, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.horizontalPagination != nil {
-        horizontalPagination :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> AK.PrintingPaginationMode {
+        horizontalPagination :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> NS.PrintingPaginationMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -425,7 +425,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("horizontalPagination"), auto_cast horizontalPagination, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setHorizontalPagination != nil {
-        setHorizontalPagination :: proc "c" (self: ^AK.PrintInfo, _: SEL, horizontalPagination: AK.PrintingPaginationMode) {
+        setHorizontalPagination :: proc "c" (self: ^NS.PrintInfo, _: SEL, horizontalPagination: NS.PrintingPaginationMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -435,7 +435,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHorizontalPagination:"), auto_cast setHorizontalPagination, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.verticalPagination != nil {
-        verticalPagination :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> AK.PrintingPaginationMode {
+        verticalPagination :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> NS.PrintingPaginationMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -445,7 +445,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("verticalPagination"), auto_cast verticalPagination, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setVerticalPagination != nil {
-        setVerticalPagination :: proc "c" (self: ^AK.PrintInfo, _: SEL, verticalPagination: AK.PrintingPaginationMode) {
+        setVerticalPagination :: proc "c" (self: ^NS.PrintInfo, _: SEL, verticalPagination: NS.PrintingPaginationMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -455,7 +455,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticalPagination:"), auto_cast setVerticalPagination, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.jobDisposition != nil {
-        jobDisposition :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> ^NS.String {
+        jobDisposition :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -465,7 +465,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("jobDisposition"), auto_cast jobDisposition, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setJobDisposition != nil {
-        setJobDisposition :: proc "c" (self: ^AK.PrintInfo, _: SEL, jobDisposition: ^NS.String) {
+        setJobDisposition :: proc "c" (self: ^NS.PrintInfo, _: SEL, jobDisposition: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -475,7 +475,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setJobDisposition:"), auto_cast setJobDisposition, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.printer != nil {
-        printer :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> ^AK.Printer {
+        printer :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> ^NS.Printer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -485,7 +485,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("printer"), auto_cast printer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPrinter != nil {
-        setPrinter :: proc "c" (self: ^AK.PrintInfo, _: SEL, printer: ^AK.Printer) {
+        setPrinter :: proc "c" (self: ^NS.PrintInfo, _: SEL, printer: ^NS.Printer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -495,7 +495,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPrinter:"), auto_cast setPrinter, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.imageablePageBounds != nil {
-        imageablePageBounds :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> NS.Rect {
+        imageablePageBounds :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -505,7 +505,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageablePageBounds"), auto_cast imageablePageBounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.localizedPaperName != nil {
-        localizedPaperName :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> ^NS.String {
+        localizedPaperName :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -515,7 +515,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("localizedPaperName"), auto_cast localizedPaperName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.defaultPrinter != nil {
-        defaultPrinter :: proc "c" (self: Class, _: SEL) -> ^AK.Printer {
+        defaultPrinter :: proc "c" (self: Class, _: SEL) -> ^NS.Printer {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -525,7 +525,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPrinter"), auto_cast defaultPrinter, "@#:") do panic("Failed to register objC method.")
     }
     if vt.printSettings != nil {
-        printSettings :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> ^NS.MutableDictionary {
+        printSettings :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> ^NS.MutableDictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -535,7 +535,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("printSettings"), auto_cast printSettings, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.isSelectionOnly != nil {
-        isSelectionOnly :: proc "c" (self: ^AK.PrintInfo, _: SEL) -> bool {
+        isSelectionOnly :: proc "c" (self: ^NS.PrintInfo, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -545,7 +545,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isSelectionOnly"), auto_cast isSelectionOnly, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionOnly != nil {
-        setSelectionOnly :: proc "c" (self: ^AK.PrintInfo, _: SEL, selectionOnly: bool) {
+        setSelectionOnly :: proc "c" (self: ^NS.PrintInfo, _: SEL, selectionOnly: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -555,7 +555,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionOnly:"), auto_cast setSelectionOnly, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.setDefaultPrinter != nil {
-        setDefaultPrinter :: proc "c" (self: Class, _: SEL, printer: ^AK.Printer) {
+        setDefaultPrinter :: proc "c" (self: Class, _: SEL, printer: ^NS.Printer) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

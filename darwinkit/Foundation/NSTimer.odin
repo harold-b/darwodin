@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSTimer
-///
 @(objc_class="NSTimer", objc_superclass=Object)
 Timer :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Timer, objc_selector="timerWithTimeInterval:invocation:repeats:", objc_name="timerWithTimeInterval_invocation_repeats", objc_is_class_method=true)
     Timer_timerWithTimeInterval_invocation_repeats :: proc(ti: TimeInterval, invocation: ^Invocation, yesOrNo: bool) -> ^Timer ---
@@ -32,13 +26,13 @@ foreign lib {
     Timer_scheduledTimerWithTimeInterval_target_selector_userInfo_repeats :: proc(ti: TimeInterval, aTarget: id, aSelector: SEL, userInfo: id, yesOrNo: bool) -> ^Timer ---
 
     @(objc_type=Timer, objc_selector="timerWithTimeInterval:repeats:block:", objc_name="timerWithTimeInterval_repeats_block", objc_is_class_method=true)
-    Timer_timerWithTimeInterval_repeats_block :: proc(interval: TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^Timer))) -> ^Timer ---
+    Timer_timerWithTimeInterval_repeats_block :: proc(interval: TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" ( timer: ^Timer ))) -> ^Timer ---
 
     @(objc_type=Timer, objc_selector="scheduledTimerWithTimeInterval:repeats:block:", objc_name="scheduledTimerWithTimeInterval_repeats_block", objc_is_class_method=true)
-    Timer_scheduledTimerWithTimeInterval_repeats_block :: proc(interval: TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^Timer))) -> ^Timer ---
+    Timer_scheduledTimerWithTimeInterval_repeats_block :: proc(interval: TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" ( timer: ^Timer ))) -> ^Timer ---
 
     @(objc_type=Timer, objc_selector="initWithFireDate:interval:repeats:block:", objc_name="initWithFireDate_interval_repeats_block")
-    Timer_initWithFireDate_interval_repeats_block :: proc(self: ^Timer, date: ^Date, interval: TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" (timer: ^Timer))) -> instancetype ---
+    Timer_initWithFireDate_interval_repeats_block :: proc(self: ^Timer, date: ^Date, interval: TimeInterval, repeats: bool, block: ^Objc_Block(proc "c" ( timer: ^Timer ))) -> instancetype ---
 
     @(objc_type=Timer, objc_selector="initWithFireDate:interval:target:selector:userInfo:repeats:", objc_name="initWithFireDate_interval_target_selector_userInfo_repeats")
     Timer_initWithFireDate_interval_target_selector_userInfo_repeats :: proc(self: ^Timer, date: ^Date, ti: TimeInterval, t: id, s: SEL, ui: id, rep: bool) -> instancetype ---
@@ -70,6 +64,8 @@ foreign lib {
     @(objc_type=Timer, objc_selector="userInfo", objc_name="userInfo")
     Timer_userInfo :: proc(self: ^Timer) -> id ---
 }
+
+
 
 @(objc_type=Timer, objc_name="timerWithTimeInterval")
 Timer_timerWithTimeInterval :: proc {

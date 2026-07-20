@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCControllerDirectionPad
-///
 @(objc_class="GCControllerDirectionPad", objc_superclass=ControllerElement)
 ControllerDirectionPad :: struct { using _: ControllerElement, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ControllerDirectionPad, objc_selector="setValueForXAxis:yAxis:", objc_name="setValueForXAxis")
     ControllerDirectionPad_setValueForXAxis :: proc(self: ^ControllerDirectionPad, xAxis: cffi.float, yAxis: cffi.float) ---
@@ -45,3 +39,6 @@ foreign lib {
     @(objc_type=ControllerDirectionPad, objc_selector="right", objc_name="right")
     ControllerDirectionPad_right :: proc(self: ^ControllerDirectionPad) -> ^ControllerButtonInput ---
 }
+
+
+

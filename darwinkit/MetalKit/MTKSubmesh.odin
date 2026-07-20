@@ -11,15 +11,9 @@ import CA "../QuartzCore"
 import MTL "../Metal"
 import MDL "../ModelIO"
 
-
-
-///
-/// MTKSubmesh
-///
 @(objc_class="MTKSubmesh", objc_superclass=NS.Object)
 Submesh :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Submesh, objc_selector="init", objc_name="init")
     Submesh_init :: proc(self: ^Submesh) -> instancetype ---
@@ -45,3 +39,6 @@ foreign lib {
     @(objc_type=Submesh, objc_selector="setName:", objc_name="setName")
     Submesh_setName :: proc(self: ^Submesh, name: ^NS.String) ---
 }
+
+
+

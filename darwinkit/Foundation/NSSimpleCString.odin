@@ -9,13 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSSimpleCString
-///
 @(objc_class="NSSimpleCString", objc_superclass=String)
 SimpleCString :: struct { using _: String, }
 
-@(default_calling_convention="c")
-foreign lib {}

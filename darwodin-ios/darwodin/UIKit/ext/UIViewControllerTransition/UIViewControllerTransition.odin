@@ -23,8 +23,8 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    zoomWithOptions_sourceViewProvider: proc(options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View)) -> instancetype,
-    zoomWithOptions_sourceBarButtonItemProvider: proc(options: ^UI.ZoomTransitionOptions, sourceBarButtonItemProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.BarButtonItem)) -> instancetype,
+    zoomWithOptions_sourceViewProvider: proc(options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" ( _0: ^UI.ZoomTransitionSourceViewProviderContext ) -> ^UI.View)) -> instancetype,
+    zoomWithOptions_sourceBarButtonItemProvider: proc(options: ^UI.ZoomTransitionOptions, sourceBarButtonItemProvider: ^Objc_Block(proc "c" ( _0: ^UI.ZoomTransitionSourceViewProviderContext ) -> ^UI.BarButtonItem)) -> instancetype,
     coverVerticalTransition: proc() -> instancetype,
     flipHorizontalTransition: proc() -> instancetype,
     crossDissolveTransition: proc() -> instancetype,
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.zoomWithOptions_sourceViewProvider != nil {
-        zoomWithOptions_sourceViewProvider :: proc "c" (self: Class, _: SEL, options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.View)) -> instancetype {
+        zoomWithOptions_sourceViewProvider :: proc "c" (self: Class, _: SEL, options: ^UI.ZoomTransitionOptions, sourceViewProvider: ^Objc_Block(proc "c" ( _0: ^UI.ZoomTransitionSourceViewProviderContext ) -> ^UI.View)) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("zoomWithOptions:sourceViewProvider:"), auto_cast zoomWithOptions_sourceViewProvider, "@#:@?") do panic("Failed to register objC method.")
     }
     if vt.zoomWithOptions_sourceBarButtonItemProvider != nil {
-        zoomWithOptions_sourceBarButtonItemProvider :: proc "c" (self: Class, _: SEL, options: ^UI.ZoomTransitionOptions, sourceBarButtonItemProvider: ^Objc_Block(proc "c" (_: ^UI.ZoomTransitionSourceViewProviderContext) -> ^UI.BarButtonItem)) -> instancetype {
+        zoomWithOptions_sourceBarButtonItemProvider :: proc "c" (self: Class, _: SEL, options: ^UI.ZoomTransitionOptions, sourceBarButtonItemProvider: ^Objc_Block(proc "c" ( _0: ^UI.ZoomTransitionSourceViewProviderContext ) -> ^UI.BarButtonItem)) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

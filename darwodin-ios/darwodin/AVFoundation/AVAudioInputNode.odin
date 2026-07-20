@@ -30,7 +30,7 @@ foreign lib {
     AudioInputNode_setManualRenderingInputPCMFormat :: proc(self: ^AudioInputNode, format: ^AudioFormat, block: AudioIONodeInputBlock) -> bool ---
 
     @(objc_type=AudioInputNode, objc_selector="setMutedSpeechActivityEventListener:", objc_name="setMutedSpeechActivityEventListener")
-    AudioInputNode_setMutedSpeechActivityEventListener :: proc(self: ^AudioInputNode, listenerBlock: ^Objc_Block(proc "c" (event: AudioVoiceProcessingSpeechActivityEvent))) -> bool ---
+    AudioInputNode_setMutedSpeechActivityEventListener :: proc(self: ^AudioInputNode, listenerBlock: ^Objc_Block(proc "c" ( event: AudioVoiceProcessingSpeechActivityEvent ))) -> bool ---
 
     @(objc_type=AudioInputNode, objc_selector="isVoiceProcessingBypassed", objc_name="isVoiceProcessingBypassed")
     AudioInputNode_isVoiceProcessingBypassed :: proc(self: ^AudioInputNode) -> bool ---

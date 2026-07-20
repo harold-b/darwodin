@@ -1,0 +1,37 @@
+package darwodin_MapKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import NS "../AppKit"
+import CL "../CoreLocation"
+
+
+
+///
+/// MKCircle
+///
+@(objc_class="MKCircle", objc_superclass=Shape)
+Circle :: struct { using _: Shape, 
+    using _: Overlay,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=Circle, objc_selector="circleWithCenterCoordinate:radius:", objc_name="circleWithCenterCoordinate", objc_is_class_method=true)
+    Circle_circleWithCenterCoordinate :: proc(coord: CL.LocationCoordinate2D, radius: CL.LocationDistance) -> instancetype ---
+
+    @(objc_type=Circle, objc_selector="circleWithMapRect:", objc_name="circleWithMapRect", objc_is_class_method=true)
+    Circle_circleWithMapRect :: proc(mapRect: MapRect) -> instancetype ---
+
+    @(objc_type=Circle, objc_selector="coordinate", objc_name="coordinate")
+    Circle_coordinate :: proc(self: ^Circle) -> CL.LocationCoordinate2D ---
+
+    @(objc_type=Circle, objc_selector="radius", objc_name="radius")
+    Circle_radius :: proc(self: ^Circle) -> CL.LocationDistance ---
+
+    @(objc_type=Circle, objc_selector="boundingMapRect", objc_name="boundingMapRect")
+    Circle_boundingMapRect :: proc(self: ^Circle) -> MapRect ---
+}

@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitMIDIInstrument
-///
 @(objc_class="AVAudioUnitMIDIInstrument", objc_superclass=AudioUnit)
 AudioUnitMIDIInstrument :: struct { using _: AudioUnit, 
     using _: AudioMixing,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitMIDIInstrument, objc_selector="initWithAudioComponentDescription:", objc_name="initWithAudioComponentDescription")
     AudioUnitMIDIInstrument_initWithAudioComponentDescription :: proc(self: ^AudioUnitMIDIInstrument, description: Audio.ComponentDescription) -> instancetype ---
@@ -63,6 +57,8 @@ foreign lib {
     @(objc_type=AudioUnitMIDIInstrument, objc_selector="sendMIDIEventList:", objc_name="sendMIDIEventList")
     AudioUnitMIDIInstrument_sendMIDIEventList :: proc(self: ^AudioUnitMIDIInstrument, eventList: ^Audio.MIDIEventList) ---
 }
+
+
 
 @(objc_type=AudioUnitMIDIInstrument, objc_name="sendProgramChange")
 AudioUnitMIDIInstrument_sendProgramChange :: proc {

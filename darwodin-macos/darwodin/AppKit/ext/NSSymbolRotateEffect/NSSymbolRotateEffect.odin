@@ -20,7 +20,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSSymbolEffect"
 
@@ -29,8 +29,8 @@ VTable :: struct {
     effect: proc() -> instancetype,
     rotateClockwiseEffect: proc() -> instancetype,
     rotateCounterClockwiseEffect: proc() -> instancetype,
-    effectWithByLayer: proc(self: ^AK.SymbolRotateEffect) -> instancetype,
-    effectWithWholeSymbol: proc(self: ^AK.SymbolRotateEffect) -> instancetype,
+    effectWithByLayer: proc(self: ^NS.SymbolRotateEffect) -> instancetype,
+    effectWithWholeSymbol: proc(self: ^NS.SymbolRotateEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("rotateCounterClockwiseEffect"), auto_cast rotateCounterClockwiseEffect, "@#:") do panic("Failed to register objC method.")
     }
     if vt.effectWithByLayer != nil {
-        effectWithByLayer :: proc "c" (self: ^AK.SymbolRotateEffect, _: SEL) -> instancetype {
+        effectWithByLayer :: proc "c" (self: ^NS.SymbolRotateEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectWithByLayer"), auto_cast effectWithByLayer, "@@:") do panic("Failed to register objC method.")
     }
     if vt.effectWithWholeSymbol != nil {
-        effectWithWholeSymbol :: proc "c" (self: ^AK.SymbolRotateEffect, _: SEL) -> instancetype {
+        effectWithWholeSymbol :: proc "c" (self: ^NS.SymbolRotateEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -10,15 +10,9 @@ import CA "../CoreAudio"
 import CM "../CoreMedia"
 import NS "../Foundation"
 
-
-
-///
-/// AUAudioUnitBus
-///
 @(objc_class="AUAudioUnitBus", objc_superclass=NS.Object)
 AUAudioUnitBus :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUAudioUnitBus, objc_selector="setFormat:error:", objc_name="setFormat")
     AUAudioUnitBus_setFormat :: proc(self: ^AUAudioUnitBus, format: ^AVAudioFormat, outError: ^^NS.Error) -> bool ---
@@ -77,3 +71,6 @@ foreign lib {
     @(objc_type=AUAudioUnitBus, objc_selector="setMaximumChannelCount:", objc_name="setMaximumChannelCount")
     AUAudioUnitBus_setMaximumChannelCount :: proc(self: ^AUAudioUnitBus, maximumChannelCount: AUAudioChannelCount) ---
 }
+
+
+

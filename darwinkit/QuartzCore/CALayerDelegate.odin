@@ -10,17 +10,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CALayerDelegate
-///
 @(objc_class="CALayerDelegate")
 LayerDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LayerDelegate, objc_selector="displayLayer:", objc_name="displayLayer")
     LayerDelegate_displayLayer :: proc(self: ^LayerDelegate, layer: ^Layer) ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=LayerDelegate, objc_selector="actionForLayer:forKey:", objc_name="actionForLayer")
     LayerDelegate_actionForLayer :: proc(self: ^LayerDelegate, layer: ^Layer, event: ^NS.String) -> ^Action ---
 }
+
+
+

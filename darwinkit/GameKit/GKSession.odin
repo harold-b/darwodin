@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKSession
-///
 @(objc_class="GKSession", objc_superclass=NS.Object)
 Session :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Session, objc_selector="initWithSessionID:displayName:sessionMode:", objc_name="initWithSessionID")
     Session_initWithSessionID :: proc(self: ^Session, sessionID: ^NS.String, name: ^NS.String, mode: SessionMode) -> id ---
@@ -83,3 +77,6 @@ foreign lib {
     @(objc_type=Session, objc_selector="setDisconnectTimeout:", objc_name="setDisconnectTimeout")
     Session_setDisconnectTimeout :: proc(self: ^Session, disconnectTimeout: NS.TimeInterval) ---
 }
+
+
+

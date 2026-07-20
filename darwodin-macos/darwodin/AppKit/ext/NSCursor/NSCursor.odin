@@ -20,57 +20,57 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithImage_hotSpot: proc(self: ^AK.Cursor, newImage: ^AK.Image, point: CG.Point) -> instancetype,
-    initWithCoder: proc(self: ^AK.Cursor, coder: ^NS.Coder) -> instancetype,
+    initWithImage_hotSpot: proc(self: ^NS.Cursor, newImage: ^NS.Image, point: CG.Point) -> instancetype,
+    initWithCoder: proc(self: ^NS.Cursor, coder: ^NS.Coder) -> instancetype,
     hide: proc(),
     unhide: proc(),
     setHiddenUntilMouseMoves: proc(flag: bool),
     popStatic: proc(),
-    pop: proc(self: ^AK.Cursor),
-    push: proc(self: ^AK.Cursor),
-    set: proc(self: ^AK.Cursor),
-    columnResizeCursorInDirections: proc(directions: AK.HorizontalDirections) -> ^AK.Cursor,
-    rowResizeCursorInDirections: proc(directions: AK.VerticalDirections) -> ^AK.Cursor,
-    frameResizeCursorFromPosition: proc(position: AK.CursorFrameResizePosition, directions: AK.CursorFrameResizeDirections) -> ^AK.Cursor,
-    image: proc(self: ^AK.Cursor) -> ^AK.Image,
-    hotSpot: proc(self: ^AK.Cursor) -> CG.Point,
-    currentCursor: proc() -> ^AK.Cursor,
-    arrowCursor: proc() -> ^AK.Cursor,
-    crosshairCursor: proc() -> ^AK.Cursor,
-    disappearingItemCursor: proc() -> ^AK.Cursor,
-    operationNotAllowedCursor: proc() -> ^AK.Cursor,
-    dragLinkCursor: proc() -> ^AK.Cursor,
-    dragCopyCursor: proc() -> ^AK.Cursor,
-    contextualMenuCursor: proc() -> ^AK.Cursor,
-    pointingHandCursor: proc() -> ^AK.Cursor,
-    closedHandCursor: proc() -> ^AK.Cursor,
-    openHandCursor: proc() -> ^AK.Cursor,
-    _IBeamCursor: proc() -> ^AK.Cursor,
-    _IBeamCursorForVerticalLayout: proc() -> ^AK.Cursor,
-    zoomInCursor: proc() -> ^AK.Cursor,
-    zoomOutCursor: proc() -> ^AK.Cursor,
-    columnResizeCursor: proc() -> ^AK.Cursor,
-    rowResizeCursor: proc() -> ^AK.Cursor,
-    currentSystemCursor: proc() -> ^AK.Cursor,
-    resizeLeftCursor: proc() -> ^AK.Cursor,
-    resizeRightCursor: proc() -> ^AK.Cursor,
-    resizeLeftRightCursor: proc() -> ^AK.Cursor,
-    resizeUpCursor: proc() -> ^AK.Cursor,
-    resizeDownCursor: proc() -> ^AK.Cursor,
-    resizeUpDownCursor: proc() -> ^AK.Cursor,
-    initWithImage_foregroundColorHint_backgroundColorHint_hotSpot: proc(self: ^AK.Cursor, newImage: ^AK.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> instancetype,
-    setOnMouseExited: proc(self: ^AK.Cursor, flag: bool),
-    setOnMouseEntered: proc(self: ^AK.Cursor, flag: bool),
-    mouseEntered: proc(self: ^AK.Cursor, event: ^AK.Event),
-    mouseExited: proc(self: ^AK.Cursor, event: ^AK.Event),
-    isSetOnMouseExited: proc(self: ^AK.Cursor) -> bool,
-    isSetOnMouseEntered: proc(self: ^AK.Cursor) -> bool,
+    pop: proc(self: ^NS.Cursor),
+    push: proc(self: ^NS.Cursor),
+    set: proc(self: ^NS.Cursor),
+    columnResizeCursorInDirections: proc(directions: NS.HorizontalDirections) -> ^NS.Cursor,
+    rowResizeCursorInDirections: proc(directions: NS.VerticalDirections) -> ^NS.Cursor,
+    frameResizeCursorFromPosition: proc(position: NS.CursorFrameResizePosition, directions: NS.CursorFrameResizeDirections) -> ^NS.Cursor,
+    image: proc(self: ^NS.Cursor) -> ^NS.Image,
+    hotSpot: proc(self: ^NS.Cursor) -> CG.Point,
+    currentCursor: proc() -> ^NS.Cursor,
+    arrowCursor: proc() -> ^NS.Cursor,
+    crosshairCursor: proc() -> ^NS.Cursor,
+    disappearingItemCursor: proc() -> ^NS.Cursor,
+    operationNotAllowedCursor: proc() -> ^NS.Cursor,
+    dragLinkCursor: proc() -> ^NS.Cursor,
+    dragCopyCursor: proc() -> ^NS.Cursor,
+    contextualMenuCursor: proc() -> ^NS.Cursor,
+    pointingHandCursor: proc() -> ^NS.Cursor,
+    closedHandCursor: proc() -> ^NS.Cursor,
+    openHandCursor: proc() -> ^NS.Cursor,
+    _IBeamCursor: proc() -> ^NS.Cursor,
+    _IBeamCursorForVerticalLayout: proc() -> ^NS.Cursor,
+    zoomInCursor: proc() -> ^NS.Cursor,
+    zoomOutCursor: proc() -> ^NS.Cursor,
+    columnResizeCursor: proc() -> ^NS.Cursor,
+    rowResizeCursor: proc() -> ^NS.Cursor,
+    currentSystemCursor: proc() -> ^NS.Cursor,
+    resizeLeftCursor: proc() -> ^NS.Cursor,
+    resizeRightCursor: proc() -> ^NS.Cursor,
+    resizeLeftRightCursor: proc() -> ^NS.Cursor,
+    resizeUpCursor: proc() -> ^NS.Cursor,
+    resizeDownCursor: proc() -> ^NS.Cursor,
+    resizeUpDownCursor: proc() -> ^NS.Cursor,
+    initWithImage_foregroundColorHint_backgroundColorHint_hotSpot: proc(self: ^NS.Cursor, newImage: ^NS.Image, fg: ^NS.Color, bg: ^NS.Color, hotSpot: CG.Point) -> instancetype,
+    setOnMouseExited: proc(self: ^NS.Cursor, flag: bool),
+    setOnMouseEntered: proc(self: ^NS.Cursor, flag: bool),
+    mouseEntered: proc(self: ^NS.Cursor, event: ^NS.Event),
+    mouseExited: proc(self: ^NS.Cursor, event: ^NS.Event),
+    isSetOnMouseExited: proc(self: ^NS.Cursor) -> bool,
+    isSetOnMouseEntered: proc(self: ^NS.Cursor) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithImage_hotSpot != nil {
-        initWithImage_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^AK.Image, point: CG.Point) -> instancetype {
+        initWithImage_hotSpot :: proc "c" (self: ^NS.Cursor, _: SEL, newImage: ^NS.Image, point: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImage:hotSpot:"), auto_cast initWithImage_hotSpot, "@@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Cursor, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.Cursor, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pop"), auto_cast popStatic, "v#:") do panic("Failed to register objC method.")
     }
     if vt.pop != nil {
-        pop :: proc "c" (self: ^AK.Cursor, _: SEL) {
+        pop :: proc "c" (self: ^NS.Cursor, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pop"), auto_cast pop, "v@:") do panic("Failed to register objC method.")
     }
     if vt.push != nil {
-        push :: proc "c" (self: ^AK.Cursor, _: SEL) {
+        push :: proc "c" (self: ^NS.Cursor, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -161,7 +161,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("push"), auto_cast push, "v@:") do panic("Failed to register objC method.")
     }
     if vt.set != nil {
-        set :: proc "c" (self: ^AK.Cursor, _: SEL) {
+        set :: proc "c" (self: ^NS.Cursor, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -171,7 +171,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("set"), auto_cast set, "v@:") do panic("Failed to register objC method.")
     }
     if vt.columnResizeCursorInDirections != nil {
-        columnResizeCursorInDirections :: proc "c" (self: Class, _: SEL, directions: AK.HorizontalDirections) -> ^AK.Cursor {
+        columnResizeCursorInDirections :: proc "c" (self: Class, _: SEL, directions: NS.HorizontalDirections) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -181,7 +181,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("columnResizeCursorInDirections:"), auto_cast columnResizeCursorInDirections, "@#:L") do panic("Failed to register objC method.")
     }
     if vt.rowResizeCursorInDirections != nil {
-        rowResizeCursorInDirections :: proc "c" (self: Class, _: SEL, directions: AK.VerticalDirections) -> ^AK.Cursor {
+        rowResizeCursorInDirections :: proc "c" (self: Class, _: SEL, directions: NS.VerticalDirections) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("rowResizeCursorInDirections:"), auto_cast rowResizeCursorInDirections, "@#:L") do panic("Failed to register objC method.")
     }
     if vt.frameResizeCursorFromPosition != nil {
-        frameResizeCursorFromPosition :: proc "c" (self: Class, _: SEL, position: AK.CursorFrameResizePosition, directions: AK.CursorFrameResizeDirections) -> ^AK.Cursor {
+        frameResizeCursorFromPosition :: proc "c" (self: Class, _: SEL, position: NS.CursorFrameResizePosition, directions: NS.CursorFrameResizeDirections) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -201,7 +201,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("frameResizeCursorFromPosition:inDirections:"), auto_cast frameResizeCursorFromPosition, "@#:LL") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.Cursor, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.Cursor, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -211,7 +211,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.hotSpot != nil {
-        hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL) -> CG.Point {
+        hotSpot :: proc "c" (self: ^NS.Cursor, _: SEL) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -221,7 +221,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hotSpot"), auto_cast hotSpot, "{CGPoint=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.currentCursor != nil {
-        currentCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        currentCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -231,7 +231,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("currentCursor"), auto_cast currentCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.arrowCursor != nil {
-        arrowCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        arrowCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -241,7 +241,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("arrowCursor"), auto_cast arrowCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.crosshairCursor != nil {
-        crosshairCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        crosshairCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -251,7 +251,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("crosshairCursor"), auto_cast crosshairCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.disappearingItemCursor != nil {
-        disappearingItemCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        disappearingItemCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -261,7 +261,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("disappearingItemCursor"), auto_cast disappearingItemCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.operationNotAllowedCursor != nil {
-        operationNotAllowedCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        operationNotAllowedCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -271,7 +271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("operationNotAllowedCursor"), auto_cast operationNotAllowedCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.dragLinkCursor != nil {
-        dragLinkCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        dragLinkCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -281,7 +281,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dragLinkCursor"), auto_cast dragLinkCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.dragCopyCursor != nil {
-        dragCopyCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        dragCopyCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -291,7 +291,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dragCopyCursor"), auto_cast dragCopyCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.contextualMenuCursor != nil {
-        contextualMenuCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        contextualMenuCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -301,7 +301,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("contextualMenuCursor"), auto_cast contextualMenuCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.pointingHandCursor != nil {
-        pointingHandCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        pointingHandCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -311,7 +311,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pointingHandCursor"), auto_cast pointingHandCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.closedHandCursor != nil {
-        closedHandCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        closedHandCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -321,7 +321,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("closedHandCursor"), auto_cast closedHandCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.openHandCursor != nil {
-        openHandCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        openHandCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -331,7 +331,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("openHandCursor"), auto_cast openHandCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt._IBeamCursor != nil {
-        _IBeamCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        _IBeamCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -341,7 +341,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("IBeamCursor"), auto_cast _IBeamCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt._IBeamCursorForVerticalLayout != nil {
-        _IBeamCursorForVerticalLayout :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        _IBeamCursorForVerticalLayout :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -351,7 +351,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("IBeamCursorForVerticalLayout"), auto_cast _IBeamCursorForVerticalLayout, "@#:") do panic("Failed to register objC method.")
     }
     if vt.zoomInCursor != nil {
-        zoomInCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        zoomInCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -361,7 +361,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("zoomInCursor"), auto_cast zoomInCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.zoomOutCursor != nil {
-        zoomOutCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        zoomOutCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -371,7 +371,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("zoomOutCursor"), auto_cast zoomOutCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.columnResizeCursor != nil {
-        columnResizeCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        columnResizeCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -381,7 +381,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("columnResizeCursor"), auto_cast columnResizeCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.rowResizeCursor != nil {
-        rowResizeCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        rowResizeCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -391,7 +391,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("rowResizeCursor"), auto_cast rowResizeCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.currentSystemCursor != nil {
-        currentSystemCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        currentSystemCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -401,7 +401,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("currentSystemCursor"), auto_cast currentSystemCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.resizeLeftCursor != nil {
-        resizeLeftCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        resizeLeftCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -411,7 +411,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("resizeLeftCursor"), auto_cast resizeLeftCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.resizeRightCursor != nil {
-        resizeRightCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        resizeRightCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -421,7 +421,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("resizeRightCursor"), auto_cast resizeRightCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.resizeLeftRightCursor != nil {
-        resizeLeftRightCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        resizeLeftRightCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -431,7 +431,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("resizeLeftRightCursor"), auto_cast resizeLeftRightCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.resizeUpCursor != nil {
-        resizeUpCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        resizeUpCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -441,7 +441,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("resizeUpCursor"), auto_cast resizeUpCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.resizeDownCursor != nil {
-        resizeDownCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        resizeDownCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -451,7 +451,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("resizeDownCursor"), auto_cast resizeDownCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.resizeUpDownCursor != nil {
-        resizeUpDownCursor :: proc "c" (self: Class, _: SEL) -> ^AK.Cursor {
+        resizeUpDownCursor :: proc "c" (self: Class, _: SEL) -> ^NS.Cursor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -461,7 +461,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("resizeUpDownCursor"), auto_cast resizeUpDownCursor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.initWithImage_foregroundColorHint_backgroundColorHint_hotSpot != nil {
-        initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc "c" (self: ^AK.Cursor, _: SEL, newImage: ^AK.Image, fg: ^AK.Color, bg: ^AK.Color, hotSpot: CG.Point) -> instancetype {
+        initWithImage_foregroundColorHint_backgroundColorHint_hotSpot :: proc "c" (self: ^NS.Cursor, _: SEL, newImage: ^NS.Image, fg: ^NS.Color, bg: ^NS.Color, hotSpot: CG.Point) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -471,7 +471,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImage:foregroundColorHint:backgroundColorHint:hotSpot:"), auto_cast initWithImage_foregroundColorHint_backgroundColorHint_hotSpot, "@@:@@@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.setOnMouseExited != nil {
-        setOnMouseExited :: proc "c" (self: ^AK.Cursor, _: SEL, flag: bool) {
+        setOnMouseExited :: proc "c" (self: ^NS.Cursor, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -481,7 +481,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setOnMouseExited:"), auto_cast setOnMouseExited, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.setOnMouseEntered != nil {
-        setOnMouseEntered :: proc "c" (self: ^AK.Cursor, _: SEL, flag: bool) {
+        setOnMouseEntered :: proc "c" (self: ^NS.Cursor, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -491,7 +491,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setOnMouseEntered:"), auto_cast setOnMouseEntered, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.mouseEntered != nil {
-        mouseEntered :: proc "c" (self: ^AK.Cursor, _: SEL, event: ^AK.Event) {
+        mouseEntered :: proc "c" (self: ^NS.Cursor, _: SEL, event: ^NS.Event) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -501,7 +501,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mouseEntered:"), auto_cast mouseEntered, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.mouseExited != nil {
-        mouseExited :: proc "c" (self: ^AK.Cursor, _: SEL, event: ^AK.Event) {
+        mouseExited :: proc "c" (self: ^NS.Cursor, _: SEL, event: ^NS.Event) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -511,7 +511,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mouseExited:"), auto_cast mouseExited, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isSetOnMouseExited != nil {
-        isSetOnMouseExited :: proc "c" (self: ^AK.Cursor, _: SEL) -> bool {
+        isSetOnMouseExited :: proc "c" (self: ^NS.Cursor, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -521,7 +521,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isSetOnMouseExited"), auto_cast isSetOnMouseExited, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isSetOnMouseEntered != nil {
-        isSetOnMouseEntered :: proc "c" (self: ^AK.Cursor, _: SEL) -> bool {
+        isSetOnMouseEntered :: proc "c" (self: ^NS.Cursor, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

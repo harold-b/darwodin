@@ -24,7 +24,7 @@ VTable :: struct {
     actionForIdentifier: proc(self: ^UI.MenuBuilder, identifier: ^NS.String) -> ^UI.Action,
     commandForAction: proc(self: ^UI.MenuBuilder, action: SEL, propertyList: id) -> ^UI.Command,
     replaceMenuForIdentifier_withMenu: proc(self: ^UI.MenuBuilder, replacedIdentifier: ^NS.String, replacementMenu: ^UI.Menu),
-    replaceChildrenOfMenuForIdentifier: proc(self: ^UI.MenuBuilder, parentIdentifier: ^NS.String, childrenBlock: ^Objc_Block(proc "c" (_: ^NS.Array) -> ^NS.Array)),
+    replaceChildrenOfMenuForIdentifier: proc(self: ^UI.MenuBuilder, parentIdentifier: ^NS.String, childrenBlock: ^Objc_Block(proc "c" ( _0: ^NS.Array ) -> ^NS.Array)),
     replaceMenuForIdentifier_withElements: proc(self: ^UI.MenuBuilder, replacedIdentifier: ^NS.String, replacementElements: ^NS.Array),
     replaceActionForIdentifier: proc(self: ^UI.MenuBuilder, replacedIdentifier: ^NS.String, replacementElements: ^NS.Array),
     replaceCommandForAction: proc(self: ^UI.MenuBuilder, replacedAction: SEL, replacedPropertyList: id, replacementElements: ^NS.Array),
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("replaceMenuForIdentifier:withMenu:"), auto_cast replaceMenuForIdentifier_withMenu, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.replaceChildrenOfMenuForIdentifier != nil {
-        replaceChildrenOfMenuForIdentifier :: proc "c" (self: ^UI.MenuBuilder, _: SEL, parentIdentifier: ^NS.String, childrenBlock: ^Objc_Block(proc "c" (_: ^NS.Array) -> ^NS.Array)) {
+        replaceChildrenOfMenuForIdentifier :: proc "c" (self: ^UI.MenuBuilder, _: SEL, parentIdentifier: ^NS.String, childrenBlock: ^Objc_Block(proc "c" ( _0: ^NS.Array ) -> ^NS.Array)) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

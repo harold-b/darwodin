@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSInvocation
-///
 @(objc_class="NSInvocation", objc_superclass=Object)
 Invocation :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Invocation, objc_selector="invocationWithMethodSignature:", objc_name="invocationWithMethodSignature", objc_is_class_method=true)
     Invocation_invocationWithMethodSignature :: proc(sig: ^MethodSignature) -> ^Invocation ---
@@ -64,3 +58,6 @@ foreign lib {
     @(objc_type=Invocation, objc_selector="setSelector:", objc_name="setSelector")
     Invocation_setSelector :: proc(self: ^Invocation, selector: SEL) ---
 }
+
+
+

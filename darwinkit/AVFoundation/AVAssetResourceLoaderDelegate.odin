@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetResourceLoaderDelegate
-///
 @(objc_class="AVAssetResourceLoaderDelegate")
 AssetResourceLoaderDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetResourceLoaderDelegate, objc_selector="resourceLoader:shouldWaitForLoadingOfRequestedResource:", objc_name="resourceLoader_shouldWaitForLoadingOfRequestedResource")
     AssetResourceLoaderDelegate_resourceLoader_shouldWaitForLoadingOfRequestedResource :: proc(self: ^AssetResourceLoaderDelegate, resourceLoader: ^AssetResourceLoader, loadingRequest: ^AssetResourceLoadingRequest) -> bool ---
@@ -39,4 +33,6 @@ foreign lib {
     @(objc_type=AssetResourceLoaderDelegate, objc_selector="resourceLoader:didCancelAuthenticationChallenge:", objc_name="resourceLoader_didCancelAuthenticationChallenge")
     AssetResourceLoaderDelegate_resourceLoader_didCancelAuthenticationChallenge :: proc(self: ^AssetResourceLoaderDelegate, resourceLoader: ^AssetResourceLoader, authenticationChallenge: ^NS.URLAuthenticationChallenge) ---
 }
+
+
 

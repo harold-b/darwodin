@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCPhysicalInputProfile
-///
 @(objc_class="GCPhysicalInputProfile", objc_superclass=NS.Object)
 PhysicalInputProfile :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PhysicalInputProfile, objc_selector="objectForKeyedSubscript:", objc_name="objectForKeyedSubscript")
     PhysicalInputProfile_objectForKeyedSubscript :: proc(self: ^PhysicalInputProfile, key: ^NS.String) -> ^ControllerElement ---
@@ -78,3 +72,6 @@ foreign lib {
     @(objc_type=PhysicalInputProfile, objc_selector="allTouchpads", objc_name="allTouchpads")
     PhysicalInputProfile_allTouchpads :: proc(self: ^PhysicalInputProfile) -> ^NS.Set ---
 }
+
+
+

@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_CoreGraphics
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -15,8 +17,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:CoreGraphics.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:CoreGraphics.framework",
+    }
+}
+
+
+// +user-text-begin
 NSObject  :: intrinsics.objc_object
 MTLDevice :: intrinsics.objc_object
 cl_device_id :: struct {}
@@ -31,149 +45,399 @@ when ODIN_PLATFORM_SUBTARGET == .Default {
 
 
 
-FontIndexMax          :: 65534
-FontIndexInvalid      :: 65535
-GlyphMax              :: 65534
-BitmapByteOrder16Host :: 4096
-BitmapByteOrder32Host :: 8192
-
 foreign lib {
-    @(link_name="CGPointZero") PointZero: Point
-    @(link_name="CGSizeZero") SizeZero: Size
-    @(link_name="CGRectZero") RectZero: Rect
-    @(link_name="CGRectNull") RectNull: Rect
-    @(link_name="CGRectInfinite") RectInfinite: Rect
-    @(link_name="CGAffineTransformIdentity") AffineTransformIdentity: AffineTransform
-    @(link_name="kCGColorSpaceGenericGray") ColorSpaceGenericGray: CF.StringRef
-    @(link_name="kCGColorSpaceGenericRGB") ColorSpaceGenericRGB: CF.StringRef
-    @(link_name="kCGColorSpaceGenericCMYK") ColorSpaceGenericCMYK: CF.StringRef
-    @(link_name="kCGColorSpaceDisplayP3") ColorSpaceDisplayP3: CF.StringRef
-    @(link_name="kCGColorSpaceGenericRGBLinear") ColorSpaceGenericRGBLinear: CF.StringRef
-    @(link_name="kCGColorSpaceAdobeRGB1998") ColorSpaceAdobeRGB1998: CF.StringRef
-    @(link_name="kCGColorSpaceSRGB") ColorSpaceSRGB: CF.StringRef
-    @(link_name="kCGColorSpaceGenericGrayGamma2_2") ColorSpaceGenericGrayGamma2_2: CF.StringRef
-    @(link_name="kCGColorSpaceGenericXYZ") ColorSpaceGenericXYZ: CF.StringRef
-    @(link_name="kCGColorSpaceGenericLab") ColorSpaceGenericLab: CF.StringRef
-    @(link_name="kCGColorSpaceACESCGLinear") ColorSpaceACESCGLinear: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_709") ColorSpaceITUR_709: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_709_PQ") ColorSpaceITUR_709_PQ: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_709_HLG") ColorSpaceITUR_709_HLG: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_2020") ColorSpaceITUR_2020: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_2020_sRGBGamma") ColorSpaceITUR_2020_sRGBGamma: CF.StringRef
-    @(link_name="kCGColorSpaceROMMRGB") ColorSpaceROMMRGB: CF.StringRef
-    @(link_name="kCGColorSpaceDCIP3") ColorSpaceDCIP3: CF.StringRef
-    @(link_name="kCGColorSpaceLinearITUR_2020") ColorSpaceLinearITUR_2020: CF.StringRef
-    @(link_name="kCGColorSpaceExtendedITUR_2020") ColorSpaceExtendedITUR_2020: CF.StringRef
-    @(link_name="kCGColorSpaceExtendedLinearITUR_2020") ColorSpaceExtendedLinearITUR_2020: CF.StringRef
-    @(link_name="kCGColorSpaceLinearDisplayP3") ColorSpaceLinearDisplayP3: CF.StringRef
-    @(link_name="kCGColorSpaceExtendedDisplayP3") ColorSpaceExtendedDisplayP3: CF.StringRef
-    @(link_name="kCGColorSpaceExtendedLinearDisplayP3") ColorSpaceExtendedLinearDisplayP3: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_2100_PQ") ColorSpaceITUR_2100_PQ: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_2100_HLG") ColorSpaceITUR_2100_HLG: CF.StringRef
-    @(link_name="kCGColorSpaceDisplayP3_PQ") ColorSpaceDisplayP3_PQ: CF.StringRef
-    @(link_name="kCGColorSpaceDisplayP3_HLG") ColorSpaceDisplayP3_HLG: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_2020_PQ") ColorSpaceITUR_2020_PQ: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_2020_HLG") ColorSpaceITUR_2020_HLG: CF.StringRef
-    @(link_name="kCGColorSpaceDisplayP3_PQ_EOTF") ColorSpaceDisplayP3_PQ_EOTF: CF.StringRef
-    @(link_name="kCGColorSpaceITUR_2020_PQ_EOTF") ColorSpaceITUR_2020_PQ_EOTF: CF.StringRef
-    @(link_name="kCGColorSpaceExtendedSRGB") ColorSpaceExtendedSRGB: CF.StringRef
-    @(link_name="kCGColorSpaceLinearSRGB") ColorSpaceLinearSRGB: CF.StringRef
-    @(link_name="kCGColorSpaceExtendedLinearSRGB") ColorSpaceExtendedLinearSRGB: CF.StringRef
-    @(link_name="kCGColorSpaceExtendedGray") ColorSpaceExtendedGray: CF.StringRef
-    @(link_name="kCGColorSpaceLinearGray") ColorSpaceLinearGray: CF.StringRef
-    @(link_name="kCGColorSpaceExtendedLinearGray") ColorSpaceExtendedLinearGray: CF.StringRef
-    @(link_name="kCGColorSpaceCoreMedia709") ColorSpaceCoreMedia709: CF.StringRef
-    @(link_name="kCGColorSpaceExtendedRange") ColorSpaceExtendedRange: CF.StringRef
-    @(link_name="kCGColorWhite") ColorWhite: CF.StringRef
-    @(link_name="kCGColorBlack") ColorBlack: CF.StringRef
-    @(link_name="kCGColorClear") ColorClear: CF.StringRef
-    @(link_name="kCGFontVariationAxisName") FontVariationAxisName: CF.StringRef
-    @(link_name="kCGFontVariationAxisMinValue") FontVariationAxisMinValue: CF.StringRef
-    @(link_name="kCGFontVariationAxisMaxValue") FontVariationAxisMaxValue: CF.StringRef
-    @(link_name="kCGFontVariationAxisDefaultValue") FontVariationAxisDefaultValue: CF.StringRef
-    @(link_name="kCGDefaultHDRImageContentHeadroom") DefaultHDRImageContentHeadroom: cffi.float
-    @(link_name="kCGPDFOutlineTitle") PDFOutlineTitle: CF.StringRef
-    @(link_name="kCGPDFOutlineChildren") PDFOutlineChildren: CF.StringRef
-    @(link_name="kCGPDFOutlineDestination") PDFOutlineDestination: CF.StringRef
-    @(link_name="kCGPDFOutlineDestinationRect") PDFOutlineDestinationRect: CF.StringRef
-    @(link_name="kCGEXRToneMappingGammaDefog") EXRToneMappingGammaDefog: CF.StringRef
-    @(link_name="kCGEXRToneMappingGammaExposure") EXRToneMappingGammaExposure: CF.StringRef
-    @(link_name="kCGEXRToneMappingGammaKneeLow") EXRToneMappingGammaKneeLow: CF.StringRef
-    @(link_name="kCGEXRToneMappingGammaKneeHigh") EXRToneMappingGammaKneeHigh: CF.StringRef
-    @(link_name="kCGUse100nitsHLGOOTF") Use100nitsHLGOOTF: CF.StringRef
-    @(link_name="kCGUseBT1886ForCoreVideoGamma") UseBT1886ForCoreVideoGamma: CF.StringRef
-    @(link_name="kCGSkipBoostToHDR") SkipBoostToHDR: CF.StringRef
-    @(link_name="kCGUseLegacyHDREcosystem") UseLegacyHDREcosystem: CF.StringRef
-    @(link_name="kCGPreferredDynamicRange") PreferredDynamicRange: CF.StringRef
-    @(link_name="kCGDynamicRangeHigh") DynamicRangeHigh: CF.StringRef
-    @(link_name="kCGDynamicRangeConstrained") DynamicRangeConstrained: CF.StringRef
-    @(link_name="kCGDynamicRangeStandard") DynamicRangeStandard: CF.StringRef
-    @(link_name="kCGContentAverageLightLevel") ContentAverageLightLevel: CF.StringRef
-    @(link_name="kCGContentAverageLightLevelNits") ContentAverageLightLevelNits: CF.StringRef
-    @(link_name="kCGAdaptiveMaximumBitDepth") AdaptiveMaximumBitDepth: CF.StringRef
-    @(link_name="kCGColorConversionBlackPointCompensation") ColorConversionBlackPointCompensation: CF.StringRef
-    @(link_name="kCGColorConversionTRCSize") ColorConversionTRCSize: CF.StringRef
-    @(link_name="kCGPDFContextMediaBox") PDFContextMediaBox: CF.StringRef
-    @(link_name="kCGPDFContextCropBox") PDFContextCropBox: CF.StringRef
-    @(link_name="kCGPDFContextBleedBox") PDFContextBleedBox: CF.StringRef
-    @(link_name="kCGPDFContextTrimBox") PDFContextTrimBox: CF.StringRef
-    @(link_name="kCGPDFContextArtBox") PDFContextArtBox: CF.StringRef
-    @(link_name="kCGPDFContextTitle") PDFContextTitle: CF.StringRef
-    @(link_name="kCGPDFContextAuthor") PDFContextAuthor: CF.StringRef
-    @(link_name="kCGPDFContextSubject") PDFContextSubject: CF.StringRef
-    @(link_name="kCGPDFContextKeywords") PDFContextKeywords: CF.StringRef
-    @(link_name="kCGPDFContextCreator") PDFContextCreator: CF.StringRef
-    @(link_name="kCGPDFContextOwnerPassword") PDFContextOwnerPassword: CF.StringRef
-    @(link_name="kCGPDFContextUserPassword") PDFContextUserPassword: CF.StringRef
-    @(link_name="kCGPDFContextEncryptionKeyLength") PDFContextEncryptionKeyLength: CF.StringRef
-    @(link_name="kCGPDFContextAllowsPrinting") PDFContextAllowsPrinting: CF.StringRef
-    @(link_name="kCGPDFContextAllowsCopying") PDFContextAllowsCopying: CF.StringRef
-    @(link_name="kCGPDFContextOutputIntent") PDFContextOutputIntent: CF.StringRef
-    @(link_name="kCGPDFXOutputIntentSubtype") PDFXOutputIntentSubtype: CF.StringRef
-    @(link_name="kCGPDFXOutputConditionIdentifier") PDFXOutputConditionIdentifier: CF.StringRef
-    @(link_name="kCGPDFXOutputCondition") PDFXOutputCondition: CF.StringRef
-    @(link_name="kCGPDFXRegistryName") PDFXRegistryName: CF.StringRef
-    @(link_name="kCGPDFXInfo") PDFXInfo: CF.StringRef
-    @(link_name="kCGPDFXDestinationOutputProfile") PDFXDestinationOutputProfile: CF.StringRef
-    @(link_name="kCGPDFContextOutputIntents") PDFContextOutputIntents: CF.StringRef
-    @(link_name="kCGPDFContextAccessPermissions") PDFContextAccessPermissions: CF.StringRef
-    @(link_name="kCGPDFContextCreateLinearizedPDF") PDFContextCreateLinearizedPDF: CF.StringRef
-    @(link_name="kCGPDFContextCreatePDFA") PDFContextCreatePDFA: CF.StringRef
-    @(link_name="kCGPDFTagPropertyActualText") PDFTagPropertyActualText: PDFTagProperty
-    @(link_name="kCGPDFTagPropertyAlternativeText") PDFTagPropertyAlternativeText: PDFTagProperty
-    @(link_name="kCGPDFTagPropertyTitleText") PDFTagPropertyTitleText: PDFTagProperty
-    @(link_name="kCGPDFTagPropertyLanguageText") PDFTagPropertyLanguageText: PDFTagProperty
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
-        @(link_name="kCGWindowNumber") WindowNumber: CF.StringRef
-        @(link_name="kCGWindowStoreType") WindowStoreType: CF.StringRef
-        @(link_name="kCGWindowLayer") WindowLayer: CF.StringRef
-        @(link_name="kCGWindowBounds") WindowBounds: CF.StringRef
-        @(link_name="kCGWindowSharingState") WindowSharingState: CF.StringRef
-        @(link_name="kCGWindowAlpha") WindowAlpha: CF.StringRef
-        @(link_name="kCGWindowOwnerPID") WindowOwnerPID: CF.StringRef
-        @(link_name="kCGWindowMemoryUsage") WindowMemoryUsage: CF.StringRef
-        @(link_name="kCGWindowWorkspace") WindowWorkspace: CF.StringRef
-        @(link_name="kCGWindowOwnerName") WindowOwnerName: CF.StringRef
-        @(link_name="kCGWindowName") WindowName: CF.StringRef
-        @(link_name="kCGWindowIsOnscreen") WindowIsOnscreen: CF.StringRef
-        @(link_name="kCGWindowBackingLocationVideoMemory") WindowBackingLocationVideoMemory: CF.StringRef
-        @(link_name="kCGDisplayShowDuplicateLowResolutionModes") DisplayShowDuplicateLowResolutionModes: CF.StringRef
-        @(link_name="kCGDisplayStreamSourceRect") DisplayStreamSourceRect: CF.StringRef
-        @(link_name="kCGDisplayStreamDestinationRect") DisplayStreamDestinationRect: CF.StringRef
-        @(link_name="kCGDisplayStreamPreserveAspectRatio") DisplayStreamPreserveAspectRatio: CF.StringRef
-        @(link_name="kCGDisplayStreamColorSpace") DisplayStreamColorSpace: CF.StringRef
-        @(link_name="kCGDisplayStreamMinimumFrameTime") DisplayStreamMinimumFrameTime: CF.StringRef
-        @(link_name="kCGDisplayStreamShowCursor") DisplayStreamShowCursor: CF.StringRef
-        @(link_name="kCGDisplayStreamQueueDepth") DisplayStreamQueueDepth: CF.StringRef
-        @(link_name="kCGDisplayStreamYCbCrMatrix") DisplayStreamYCbCrMatrix: CF.StringRef
-        @(link_name="kCGDisplayStreamYCbCrMatrix_ITU_R_709_2") DisplayStreamYCbCrMatrix_ITU_R_709_2: CF.StringRef
-        @(link_name="kCGDisplayStreamYCbCrMatrix_ITU_R_601_4") DisplayStreamYCbCrMatrix_ITU_R_601_4: CF.StringRef
-        @(link_name="kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995") DisplayStreamYCbCrMatrix_SMPTE_240M_1995: CF.StringRef
+    @(link_name="CGPointZero")
+    PointZero: Point
+
+    @(link_name="CGSizeZero")
+    SizeZero: Size
+
+    @(link_name="CGRectZero")
+    RectZero: Rect
+
+    @(link_name="CGRectNull")
+    RectNull: Rect
+
+    @(link_name="CGRectInfinite")
+    RectInfinite: Rect
+
+    @(link_name="CGAffineTransformIdentity")
+    AffineTransformIdentity: AffineTransform
+
+    @(link_name="kCGColorSpaceGenericGray")
+    ColorSpaceGenericGray: CF.StringRef
+
+    @(link_name="kCGColorSpaceGenericRGB")
+    ColorSpaceGenericRGB: CF.StringRef
+
+    @(link_name="kCGColorSpaceGenericCMYK")
+    ColorSpaceGenericCMYK: CF.StringRef
+
+    @(link_name="kCGColorSpaceDisplayP3")
+    ColorSpaceDisplayP3: CF.StringRef
+
+    @(link_name="kCGColorSpaceGenericRGBLinear")
+    ColorSpaceGenericRGBLinear: CF.StringRef
+
+    @(link_name="kCGColorSpaceAdobeRGB1998")
+    ColorSpaceAdobeRGB1998: CF.StringRef
+
+    @(link_name="kCGColorSpaceSRGB")
+    ColorSpaceSRGB: CF.StringRef
+
+    @(link_name="kCGColorSpaceGenericGrayGamma2_2")
+    ColorSpaceGenericGrayGamma2_2: CF.StringRef
+
+    @(link_name="kCGColorSpaceGenericXYZ")
+    ColorSpaceGenericXYZ: CF.StringRef
+
+    @(link_name="kCGColorSpaceGenericLab")
+    ColorSpaceGenericLab: CF.StringRef
+
+    @(link_name="kCGColorSpaceACESCGLinear")
+    ColorSpaceACESCGLinear: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_709")
+    ColorSpaceITUR_709: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_709_PQ")
+    ColorSpaceITUR_709_PQ: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_709_HLG")
+    ColorSpaceITUR_709_HLG: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_2020")
+    ColorSpaceITUR_2020: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_2020_sRGBGamma")
+    ColorSpaceITUR_2020_sRGBGamma: CF.StringRef
+
+    @(link_name="kCGColorSpaceROMMRGB")
+    ColorSpaceROMMRGB: CF.StringRef
+
+    @(link_name="kCGColorSpaceDCIP3")
+    ColorSpaceDCIP3: CF.StringRef
+
+    @(link_name="kCGColorSpaceLinearITUR_2020")
+    ColorSpaceLinearITUR_2020: CF.StringRef
+
+    @(link_name="kCGColorSpaceExtendedITUR_2020")
+    ColorSpaceExtendedITUR_2020: CF.StringRef
+
+    @(link_name="kCGColorSpaceExtendedLinearITUR_2020")
+    ColorSpaceExtendedLinearITUR_2020: CF.StringRef
+
+    @(link_name="kCGColorSpaceLinearDisplayP3")
+    ColorSpaceLinearDisplayP3: CF.StringRef
+
+    @(link_name="kCGColorSpaceExtendedDisplayP3")
+    ColorSpaceExtendedDisplayP3: CF.StringRef
+
+    @(link_name="kCGColorSpaceExtendedLinearDisplayP3")
+    ColorSpaceExtendedLinearDisplayP3: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_2100_PQ")
+    ColorSpaceITUR_2100_PQ: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_2100_HLG")
+    ColorSpaceITUR_2100_HLG: CF.StringRef
+
+    @(link_name="kCGColorSpaceDisplayP3_PQ")
+    ColorSpaceDisplayP3_PQ: CF.StringRef
+
+    @(link_name="kCGColorSpaceDisplayP3_HLG")
+    ColorSpaceDisplayP3_HLG: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_2020_PQ")
+    ColorSpaceITUR_2020_PQ: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_2020_HLG")
+    ColorSpaceITUR_2020_HLG: CF.StringRef
+
+    @(link_name="kCGColorSpaceDisplayP3_PQ_EOTF")
+    ColorSpaceDisplayP3_PQ_EOTF: CF.StringRef
+
+    @(link_name="kCGColorSpaceITUR_2020_PQ_EOTF")
+    ColorSpaceITUR_2020_PQ_EOTF: CF.StringRef
+
+    @(link_name="kCGColorSpaceExtendedSRGB")
+    ColorSpaceExtendedSRGB: CF.StringRef
+
+    @(link_name="kCGColorSpaceLinearSRGB")
+    ColorSpaceLinearSRGB: CF.StringRef
+
+    @(link_name="kCGColorSpaceExtendedLinearSRGB")
+    ColorSpaceExtendedLinearSRGB: CF.StringRef
+
+    @(link_name="kCGColorSpaceExtendedGray")
+    ColorSpaceExtendedGray: CF.StringRef
+
+    @(link_name="kCGColorSpaceLinearGray")
+    ColorSpaceLinearGray: CF.StringRef
+
+    @(link_name="kCGColorSpaceExtendedLinearGray")
+    ColorSpaceExtendedLinearGray: CF.StringRef
+
+    @(link_name="kCGColorSpaceCoreMedia709")
+    ColorSpaceCoreMedia709: CF.StringRef
+
+    @(link_name="kCGColorSpaceExtendedRange")
+    ColorSpaceExtendedRange: CF.StringRef
+
+    @(link_name="kCGColorWhite")
+    ColorWhite: CF.StringRef
+
+    @(link_name="kCGColorBlack")
+    ColorBlack: CF.StringRef
+
+    @(link_name="kCGColorClear")
+    ColorClear: CF.StringRef
+
+    @(link_name="kCGFontVariationAxisName")
+    FontVariationAxisName: CF.StringRef
+
+    @(link_name="kCGFontVariationAxisMinValue")
+    FontVariationAxisMinValue: CF.StringRef
+
+    @(link_name="kCGFontVariationAxisMaxValue")
+    FontVariationAxisMaxValue: CF.StringRef
+
+    @(link_name="kCGFontVariationAxisDefaultValue")
+    FontVariationAxisDefaultValue: CF.StringRef
+
+    @(link_name="kCGDefaultHDRImageContentHeadroom")
+    DefaultHDRImageContentHeadroom: cffi.float
+
+    @(link_name="kCGPDFOutlineTitle")
+    PDFOutlineTitle: CF.StringRef
+
+    @(link_name="kCGPDFOutlineChildren")
+    PDFOutlineChildren: CF.StringRef
+
+    @(link_name="kCGPDFOutlineDestination")
+    PDFOutlineDestination: CF.StringRef
+
+    @(link_name="kCGPDFOutlineDestinationRect")
+    PDFOutlineDestinationRect: CF.StringRef
+
+    @(link_name="kCGEXRToneMappingGammaDefog")
+    EXRToneMappingGammaDefog: CF.StringRef
+
+    @(link_name="kCGEXRToneMappingGammaExposure")
+    EXRToneMappingGammaExposure: CF.StringRef
+
+    @(link_name="kCGEXRToneMappingGammaKneeLow")
+    EXRToneMappingGammaKneeLow: CF.StringRef
+
+    @(link_name="kCGEXRToneMappingGammaKneeHigh")
+    EXRToneMappingGammaKneeHigh: CF.StringRef
+
+    @(link_name="kCGUse100nitsHLGOOTF")
+    Use100nitsHLGOOTF: CF.StringRef
+
+    @(link_name="kCGUseBT1886ForCoreVideoGamma")
+    UseBT1886ForCoreVideoGamma: CF.StringRef
+
+    @(link_name="kCGSkipBoostToHDR")
+    SkipBoostToHDR: CF.StringRef
+
+    @(link_name="kCGUseLegacyHDREcosystem")
+    UseLegacyHDREcosystem: CF.StringRef
+
+    @(link_name="kCGPreferredDynamicRange")
+    PreferredDynamicRange: CF.StringRef
+
+    @(link_name="kCGDynamicRangeHigh")
+    DynamicRangeHigh: CF.StringRef
+
+    @(link_name="kCGDynamicRangeConstrained")
+    DynamicRangeConstrained: CF.StringRef
+
+    @(link_name="kCGDynamicRangeStandard")
+    DynamicRangeStandard: CF.StringRef
+
+    @(link_name="kCGContentAverageLightLevel")
+    ContentAverageLightLevel: CF.StringRef
+
+    @(link_name="kCGContentAverageLightLevelNits")
+    ContentAverageLightLevelNits: CF.StringRef
+
+    @(link_name="kCGAdaptiveMaximumBitDepth")
+    AdaptiveMaximumBitDepth: CF.StringRef
+
+    @(link_name="kCGColorConversionBlackPointCompensation")
+    ColorConversionBlackPointCompensation: CF.StringRef
+
+    @(link_name="kCGColorConversionTRCSize")
+    ColorConversionTRCSize: CF.StringRef
+
+    @(link_name="kCGPDFContextMediaBox")
+    PDFContextMediaBox: CF.StringRef
+
+    @(link_name="kCGPDFContextCropBox")
+    PDFContextCropBox: CF.StringRef
+
+    @(link_name="kCGPDFContextBleedBox")
+    PDFContextBleedBox: CF.StringRef
+
+    @(link_name="kCGPDFContextTrimBox")
+    PDFContextTrimBox: CF.StringRef
+
+    @(link_name="kCGPDFContextArtBox")
+    PDFContextArtBox: CF.StringRef
+
+    @(link_name="kCGPDFContextTitle")
+    PDFContextTitle: CF.StringRef
+
+    @(link_name="kCGPDFContextAuthor")
+    PDFContextAuthor: CF.StringRef
+
+    @(link_name="kCGPDFContextSubject")
+    PDFContextSubject: CF.StringRef
+
+    @(link_name="kCGPDFContextKeywords")
+    PDFContextKeywords: CF.StringRef
+
+    @(link_name="kCGPDFContextCreator")
+    PDFContextCreator: CF.StringRef
+
+    @(link_name="kCGPDFContextOwnerPassword")
+    PDFContextOwnerPassword: CF.StringRef
+
+    @(link_name="kCGPDFContextUserPassword")
+    PDFContextUserPassword: CF.StringRef
+
+    @(link_name="kCGPDFContextEncryptionKeyLength")
+    PDFContextEncryptionKeyLength: CF.StringRef
+
+    @(link_name="kCGPDFContextAllowsPrinting")
+    PDFContextAllowsPrinting: CF.StringRef
+
+    @(link_name="kCGPDFContextAllowsCopying")
+    PDFContextAllowsCopying: CF.StringRef
+
+    @(link_name="kCGPDFContextOutputIntent")
+    PDFContextOutputIntent: CF.StringRef
+
+    @(link_name="kCGPDFXOutputIntentSubtype")
+    PDFXOutputIntentSubtype: CF.StringRef
+
+    @(link_name="kCGPDFXOutputConditionIdentifier")
+    PDFXOutputConditionIdentifier: CF.StringRef
+
+    @(link_name="kCGPDFXOutputCondition")
+    PDFXOutputCondition: CF.StringRef
+
+    @(link_name="kCGPDFXRegistryName")
+    PDFXRegistryName: CF.StringRef
+
+    @(link_name="kCGPDFXInfo")
+    PDFXInfo: CF.StringRef
+
+    @(link_name="kCGPDFXDestinationOutputProfile")
+    PDFXDestinationOutputProfile: CF.StringRef
+
+    @(link_name="kCGPDFContextOutputIntents")
+    PDFContextOutputIntents: CF.StringRef
+
+    @(link_name="kCGPDFContextAccessPermissions")
+    PDFContextAccessPermissions: CF.StringRef
+
+    @(link_name="kCGPDFContextCreateLinearizedPDF")
+    PDFContextCreateLinearizedPDF: CF.StringRef
+
+    @(link_name="kCGPDFContextCreatePDFA")
+    PDFContextCreatePDFA: CF.StringRef
+
+    @(link_name="kCGPDFTagPropertyActualText")
+    PDFTagPropertyActualText: PDFTagProperty
+
+    @(link_name="kCGPDFTagPropertyAlternativeText")
+    PDFTagPropertyAlternativeText: PDFTagProperty
+
+    @(link_name="kCGPDFTagPropertyTitleText")
+    PDFTagPropertyTitleText: PDFTagProperty
+
+    @(link_name="kCGPDFTagPropertyLanguageText")
+    PDFTagPropertyLanguageText: PDFTagProperty
+
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(link_name="kCGWindowNumber")
+        WindowNumber: CF.StringRef
+
+        @(link_name="kCGWindowStoreType")
+        WindowStoreType: CF.StringRef
+
+        @(link_name="kCGWindowLayer")
+        WindowLayer: CF.StringRef
+
+        @(link_name="kCGWindowBounds")
+        WindowBounds: CF.StringRef
+
+        @(link_name="kCGWindowSharingState")
+        WindowSharingState: CF.StringRef
+
+        @(link_name="kCGWindowAlpha")
+        WindowAlpha: CF.StringRef
+
+        @(link_name="kCGWindowOwnerPID")
+        WindowOwnerPID: CF.StringRef
+
+        @(link_name="kCGWindowMemoryUsage")
+        WindowMemoryUsage: CF.StringRef
+
+        @(link_name="kCGWindowWorkspace")
+        WindowWorkspace: CF.StringRef
+
+        @(link_name="kCGWindowOwnerName")
+        WindowOwnerName: CF.StringRef
+
+        @(link_name="kCGWindowName")
+        WindowName: CF.StringRef
+
+        @(link_name="kCGWindowIsOnscreen")
+        WindowIsOnscreen: CF.StringRef
+
+        @(link_name="kCGWindowBackingLocationVideoMemory")
+        WindowBackingLocationVideoMemory: CF.StringRef
+
+        @(link_name="kCGDisplayShowDuplicateLowResolutionModes")
+        DisplayShowDuplicateLowResolutionModes: CF.StringRef
+
+        @(link_name="kCGDisplayStreamSourceRect")
+        DisplayStreamSourceRect: CF.StringRef
+
+        @(link_name="kCGDisplayStreamDestinationRect")
+        DisplayStreamDestinationRect: CF.StringRef
+
+        @(link_name="kCGDisplayStreamPreserveAspectRatio")
+        DisplayStreamPreserveAspectRatio: CF.StringRef
+
+        @(link_name="kCGDisplayStreamColorSpace")
+        DisplayStreamColorSpace: CF.StringRef
+
+        @(link_name="kCGDisplayStreamMinimumFrameTime")
+        DisplayStreamMinimumFrameTime: CF.StringRef
+
+        @(link_name="kCGDisplayStreamShowCursor")
+        DisplayStreamShowCursor: CF.StringRef
+
+        @(link_name="kCGDisplayStreamQueueDepth")
+        DisplayStreamQueueDepth: CF.StringRef
+
+        @(link_name="kCGDisplayStreamYCbCrMatrix")
+        DisplayStreamYCbCrMatrix: CF.StringRef
+
+        @(link_name="kCGDisplayStreamYCbCrMatrix_ITU_R_709_2")
+        DisplayStreamYCbCrMatrix_ITU_R_709_2: CF.StringRef
+
+        @(link_name="kCGDisplayStreamYCbCrMatrix_ITU_R_601_4")
+        DisplayStreamYCbCrMatrix_ITU_R_601_4: CF.StringRef
+
+        @(link_name="kCGDisplayStreamYCbCrMatrix_SMPTE_240M_1995")
+        DisplayStreamYCbCrMatrix_SMPTE_240M_1995: CF.StringRef
     }
-}
 
-@(default_calling_convention="c")
-foreign lib {
     @(link_name="CGRectGetMinX")
     RectGetMinX :: proc(rect: Rect) -> Float ---
 
@@ -1522,7 +1786,7 @@ foreign lib {
     ContextDrawPDFDocument :: proc(c: ContextRef, rect: Rect, document: PDFDocumentRef, page: cffi.int) ---
 
     @(link_name="CGRenderingBufferProviderCreate")
-    RenderingBufferProviderCreate :: proc(info: rawptr, size: cffi.size_t, lockPointer: ^Objc_Block(proc "c" (info: rawptr) -> rawptr), unlockPointer: ^Objc_Block(proc "c" (info: rawptr, pointer: rawptr)), releaseInfo: ^Objc_Block(proc "c" (info: rawptr))) -> RenderingBufferProviderRef ---
+    RenderingBufferProviderCreate :: proc(info: rawptr, size: cffi.size_t, lockPointer: ^Objc_Block(proc "c" ( info: rawptr ) -> rawptr), unlockPointer: ^Objc_Block(proc "c" ( info: rawptr, pointer: rawptr )), releaseInfo: ^Objc_Block(proc "c" ( info: rawptr ))) -> RenderingBufferProviderRef ---
 
     @(link_name="CGRenderingBufferProviderCreateWithCFData")
     RenderingBufferProviderCreateWithCFData :: proc(data: CF.MutableDataRef) -> RenderingBufferProviderRef ---
@@ -1546,7 +1810,7 @@ foreign lib {
     BitmapContextCreate :: proc(data: rawptr, width: cffi.size_t, height: cffi.size_t, bitsPerComponent: cffi.size_t, bytesPerRow: cffi.size_t, space: ColorSpaceRef, bitmapInfo: BitmapInfo) -> ContextRef ---
 
     @(link_name="CGBitmapContextCreateAdaptive")
-    BitmapContextCreateAdaptive :: proc(width: cffi.size_t, height: cffi.size_t, auxiliaryInfo: CF.DictionaryRef, onResolve: ^Objc_Block(proc "c" (_: ^ContentInfo, _1: ^BitmapParameters) -> cffi.bool), onAllocate: ^Objc_Block(proc "c" (_: ^ContentInfo, _1: ^BitmapParameters) -> RenderingBufferProviderRef), onFree: ^Objc_Block(proc "c" (_: RenderingBufferProviderRef, _1: ^ContentInfo, _2: ^BitmapParameters)), onError: ^Objc_Block(proc "c" (_: CF.ErrorRef, _1: ^ContentInfo, _2: ^BitmapParameters))) -> ContextRef ---
+    BitmapContextCreateAdaptive :: proc(width: cffi.size_t, height: cffi.size_t, auxiliaryInfo: CF.DictionaryRef, onResolve: ^Objc_Block(proc "c" ( _0: ^ContentInfo, _1: ^BitmapParameters ) -> cffi.bool), onAllocate: ^Objc_Block(proc "c" ( _0: ^ContentInfo, _1: ^BitmapParameters ) -> RenderingBufferProviderRef), onFree: ^Objc_Block(proc "c" ( _0: RenderingBufferProviderRef, _1: ^ContentInfo, _2: ^BitmapParameters )), onError: ^Objc_Block(proc "c" ( _0: CF.ErrorRef, _1: ^ContentInfo, _2: ^BitmapParameters ))) -> ContextRef ---
 
     @(link_name="CGBitmapContextGetData")
     BitmapContextGetData :: proc(_context: ContextRef) -> rawptr ---
@@ -1770,7 +2034,7 @@ foreign lib {
     @(link_name="CGPDFOperatorTableSetCallback")
     PDFOperatorTableSetCallback :: proc(table: PDFOperatorTableRef, name: cstring, callback: PDFOperatorCallback) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(link_name="CGWindowListCopyWindowInfo")
         WindowListCopyWindowInfo :: proc(option: WindowListOption, relativeToWindow: WindowID) -> CF.ArrayRef ---
 
@@ -2356,303 +2620,115 @@ foreign lib {
         @(link_name="CGDirectDisplayCopyCurrentMetalDevice")
         DirectDisplayCopyCurrentMetalDevice :: proc(display: DirectDisplayID) -> ^MTLDevice ---
     }
-
 }
 
-/// CGFloat
+
+
+FontIndexMax          :: 65534
+FontIndexInvalid      :: 65535
+GlyphMax              :: 65534
+BitmapByteOrder16Host :: 4096
+BitmapByteOrder32Host :: 8192
 Float :: cffi.double
-
-/// IOSurfaceRef
 IOSurfaceRef :: distinct ^__IOSurface
-
-/// CGContextRef
 ContextRef :: distinct ^Context
-
-/// CGColorRef
 ColorRef :: distinct ^Color
-
-/// CGColorSpaceRef
 ColorSpaceRef :: distinct ^ColorSpace
-
-/// CGDataProviderRef
 DataProviderRef :: distinct ^DataProvider
-
-/// CGDataProviderGetBytesCallback
-DataProviderGetBytesCallback :: proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
-
-/// CGDataProviderSkipForwardCallback
-DataProviderSkipForwardCallback :: proc "c" (info: rawptr, count: libc.off_t) -> libc.off_t
-
-/// CGDataProviderRewindCallback
-DataProviderRewindCallback :: proc "c" (info: rawptr)
-
-/// CGDataProviderReleaseInfoCallback
-DataProviderReleaseInfoCallback :: proc "c" (info: rawptr)
-
-/// CGDataProviderGetBytesAtPositionCallback
-DataProviderGetBytesAtPositionCallback :: proc "c" (info: rawptr, buffer: rawptr, pos: libc.off_t, cnt: cffi.size_t) -> cffi.size_t
-
-/// CGDataProviderReleaseDataCallback
-DataProviderReleaseDataCallback :: proc "c" (info: rawptr, data: rawptr, size: cffi.size_t)
-
-/// ColorSyncProfileRef
+DataProviderGetBytesCallback :: proc "c" ( info: rawptr, buffer: rawptr, count: cffi.size_t ) -> cffi.size_t
+DataProviderSkipForwardCallback :: proc "c" ( info: rawptr, count: libc.off_t ) -> libc.off_t
+DataProviderRewindCallback :: proc "c" ( info: rawptr )
+DataProviderReleaseInfoCallback :: proc "c" ( info: rawptr )
+DataProviderGetBytesAtPositionCallback :: proc "c" ( info: rawptr, buffer: rawptr, pos: libc.off_t, cnt: cffi.size_t ) -> cffi.size_t
+DataProviderReleaseDataCallback :: proc "c" ( info: rawptr, data: rawptr, size: cffi.size_t )
 ColorSyncProfileRef :: distinct ^ColorSyncProfile
-
-/// CGPatternRef
 PatternRef :: distinct ^Pattern
-
-/// CGPatternDrawPatternCallback
-PatternDrawPatternCallback :: proc "c" (info: rawptr, _context: ContextRef)
-
-/// CGPatternReleaseInfoCallback
-PatternReleaseInfoCallback :: proc "c" (info: rawptr)
-
-/// CGFontRef
+PatternDrawPatternCallback :: proc "c" ( info: rawptr, _context: ContextRef )
+PatternReleaseInfoCallback :: proc "c" ( info: rawptr )
 FontRef :: distinct ^Font
-
-/// CGFontIndex
 FontIndex :: distinct cffi.ushort
-
-/// CGGlyph
 Glyph :: distinct FontIndex
-
-/// CGGradientRef
 GradientRef :: distinct ^Gradient
-
-/// CGImageRef
 ImageRef :: distinct ^Image
-
-/// CGMutablePathRef
 MutablePathRef :: distinct ^Path
-
-/// CGPathRef
 PathRef :: distinct ^Path
-
-/// CGPathApplierFunction
-PathApplierFunction :: proc "c" (info: rawptr, element: ^PathElement)
-
-/// CGPathApplyBlock
-PathApplyBlock :: ^Objc_Block(proc "c" (element: ^PathElement))
-
-/// CGPDFDocumentRef
+PathApplierFunction :: proc "c" ( info: rawptr, element: ^PathElement )
+PathApplyBlock :: ^Objc_Block(proc "c" ( element: ^PathElement ))
 PDFDocumentRef :: distinct ^PDFDocument
-
-/// CGPDFPageRef
 PDFPageRef :: distinct ^PDFPage
-
-/// CGPDFDictionaryRef
 PDFDictionaryRef :: distinct ^PDFDictionary
-
-/// CGPDFArrayRef
 PDFArrayRef :: distinct ^PDFArray
-
-/// CGPDFBoolean
 PDFBoolean :: distinct cffi.uchar
-
-/// CGPDFInteger
 PDFInteger :: distinct cffi.long
-
-/// CGPDFReal
 PDFReal :: distinct Float
-
-/// CGPDFObjectRef
 PDFObjectRef :: distinct ^PDFObject
-
-/// CGPDFStreamRef
 PDFStreamRef :: distinct ^PDFStream
-
-/// CGPDFStringRef
 PDFStringRef :: distinct ^PDFString
-
-/// CGPDFArrayApplierBlock
-PDFArrayApplierBlock :: ^Objc_Block(proc "c" (index: cffi.size_t, value: PDFObjectRef, info: rawptr) -> cffi.bool)
-
-/// CGPDFDictionaryApplierFunction
-PDFDictionaryApplierFunction :: proc "c" (key: cstring, value: PDFObjectRef, info: rawptr)
-
-/// CGPDFDictionaryApplierBlock
-PDFDictionaryApplierBlock :: ^Objc_Block(proc "c" (key: cstring, value: PDFObjectRef, info: rawptr) -> cffi.bool)
-
-/// CGShadingRef
+PDFArrayApplierBlock :: ^Objc_Block(proc "c" ( index: cffi.size_t, value: PDFObjectRef, info: rawptr ) -> cffi.bool)
+PDFDictionaryApplierFunction :: proc "c" ( key: cstring, value: PDFObjectRef, info: rawptr )
+PDFDictionaryApplierBlock :: ^Objc_Block(proc "c" ( key: cstring, value: PDFObjectRef, info: rawptr ) -> cffi.bool)
 ShadingRef :: distinct ^Shading
-
-/// CGFunctionRef
 FunctionRef :: distinct ^Function
-
-/// CGFunctionEvaluateCallback
-FunctionEvaluateCallback :: proc "c" (info: rawptr, _in: ^Float, out: ^Float)
-
-/// CGFunctionReleaseInfoCallback
-FunctionReleaseInfoCallback :: proc "c" (info: rawptr)
-
-/// CGRenderingBufferProviderRef
+FunctionEvaluateCallback :: proc "c" ( info: rawptr, _in: ^Float, out: ^Float )
+FunctionReleaseInfoCallback :: proc "c" ( info: rawptr )
 RenderingBufferProviderRef :: distinct ^RenderingBufferProvider
-
-/// CGBitmapContextReleaseDataCallback
-BitmapContextReleaseDataCallback :: proc "c" (releaseInfo: rawptr, data: rawptr)
-
-/// CGColorConversionInfoRef
+BitmapContextReleaseDataCallback :: proc "c" ( releaseInfo: rawptr, data: rawptr )
 ColorConversionInfoRef :: distinct ^ColorConversionInfo
-
-/// CGDataConsumerRef
 DataConsumerRef :: distinct ^DataConsumer
-
-/// CGDataConsumerPutBytesCallback
-DataConsumerPutBytesCallback :: proc "c" (info: rawptr, buffer: rawptr, count: cffi.size_t) -> cffi.size_t
-
-/// CGDataConsumerReleaseInfoCallback
-DataConsumerReleaseInfoCallback :: proc "c" (info: rawptr)
-
-/// CGErrorCallback
+DataConsumerPutBytesCallback :: proc "c" ( info: rawptr, buffer: rawptr, count: cffi.size_t ) -> cffi.size_t
+DataConsumerReleaseInfoCallback :: proc "c" ( info: rawptr )
 ErrorCallback :: proc "c" ()
-
-/// CGLayerRef
 LayerRef :: distinct ^Layer
-
-/// CGPDFContentStreamRef
 PDFContentStreamRef :: distinct ^PDFContentStream
-
-/// CGPDFTagProperty
 PDFTagProperty :: distinct CF.StringRef
-
-/// CGPDFOperatorTableRef
 PDFOperatorTableRef :: distinct ^PDFOperatorTable
-
-/// CGPDFScannerRef
 PDFScannerRef :: distinct ^PDFScanner
-
-/// CGPDFOperatorCallback
-PDFOperatorCallback :: proc "c" (scanner: PDFScannerRef, info: rawptr)
-
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CGWindowID
+PDFOperatorCallback :: proc "c" ( scanner: PDFScannerRef, info: rawptr )
+when ODIN_PLATFORM_SUBTARGET == .Default {
     WindowID :: distinct cffi.uint32_t
-
-    /// CGWindowLevel
     WindowLevel :: distinct cffi.int32_t
-
-    /// CGDirectDisplayID
     DirectDisplayID :: distinct cffi.uint32_t
-
-    /// CGOpenGLDisplayMask
     OpenGLDisplayMask :: distinct cffi.uint32_t
-
-    /// CGRefreshRate
     RefreshRate :: distinct cffi.double
-
-    /// CGDisplayModeRef
     DisplayModeRef :: distinct ^DisplayMode
-
-    /// CGGammaValue
     GammaValue :: distinct cffi.float
-
-    /// CGDisplayCount
     DisplayCount :: distinct cffi.uint32_t
-
-    /// CGDisplayErr
     DisplayErr :: distinct Error
-
-    /// CGDisplayConfigRef
     DisplayConfigRef :: distinct ^_CGDisplayConfigRef
-
-    /// CGDisplayReconfigurationCallBack
-    DisplayReconfigurationCallBack :: proc "c" (display: DirectDisplayID, flags: DisplayChangeSummaryFlags, userInfo: rawptr)
-
-    /// CGDisplayFadeReservationToken
+    DisplayReconfigurationCallBack :: proc "c" ( display: DirectDisplayID, flags: DisplayChangeSummaryFlags, userInfo: rawptr )
     DisplayFadeReservationToken :: distinct cffi.uint32_t
-
-    /// CGDisplayBlendFraction
     DisplayBlendFraction :: distinct cffi.float
-
-    /// CGDisplayFadeInterval
     DisplayFadeInterval :: distinct cffi.float
-
-    /// CGDisplayReservationInterval
     DisplayReservationInterval :: distinct cffi.float
-
-    /// CGDisplayStreamRef
     DisplayStreamRef :: distinct ^DisplayStream
-
-    /// CGDisplayStreamUpdateRef
     DisplayStreamUpdateRef :: distinct ^DisplayStreamUpdate
-
-    /// CGDisplayStreamFrameAvailableHandler
-    DisplayStreamFrameAvailableHandler :: ^Objc_Block(proc "c" (status: DisplayStreamFrameStatus, displayTime: cffi.uint64_t, frameSurface: IOSurfaceRef, updateRef: DisplayStreamUpdateRef))
-
-    /// CGEventErr
+    DisplayStreamFrameAvailableHandler :: ^Objc_Block(proc "c" ( status: DisplayStreamFrameStatus, displayTime: cffi.uint64_t, frameSurface: IOSurfaceRef, updateRef: DisplayStreamUpdateRef ))
     EventErr :: distinct Error
-
-    /// CGButtonCount
     ButtonCount :: distinct cffi.uint32_t
-
-    /// CGWheelCount
     WheelCount :: distinct cffi.uint32_t
-
-    /// CGCharCode
     CharCode :: distinct cffi.uint16_t
-
-    /// CGKeyCode
     KeyCode :: distinct cffi.uint16_t
-
-    /// CGScreenRefreshCallback
-    ScreenRefreshCallback :: proc "c" (count: cffi.uint32_t, rects: ^Rect, userInfo: rawptr)
-
-    /// CGScreenUpdateMoveCallback
-    ScreenUpdateMoveCallback :: proc "c" (delta: ScreenUpdateMoveDelta, count: cffi.size_t, rects: ^Rect, userInfo: rawptr)
-
-    /// CGRectCount
+    ScreenRefreshCallback :: proc "c" ( count: cffi.uint32_t, rects: ^Rect, userInfo: rawptr )
+    ScreenUpdateMoveCallback :: proc "c" ( delta: ScreenUpdateMoveDelta, count: cffi.size_t, rects: ^Rect, userInfo: rawptr )
     RectCount :: distinct cffi.uint32_t
-
-    /// CGEventRef
     EventRef :: distinct ^__CGEvent
-
-    /// CGEventTimestamp
     EventTimestamp :: distinct cffi.uint64_t
-
-    /// CGEventMask
     EventMask :: distinct cffi.uint64_t
-
-    /// CGEventTapProxy
     EventTapProxy :: distinct ^__CGEventTapProxy
-
-    /// CGEventTapCallBack
-    EventTapCallBack :: proc "c" (proxy: EventTapProxy, type: EventType, event: EventRef, userInfo: rawptr) -> EventRef
-
-    /// CGEventTapInformation
+    EventTapCallBack :: proc "c" ( proxy: EventTapProxy, type: EventType, event: EventRef, userInfo: rawptr ) -> EventRef
     EventTapInformation :: distinct __CGEventTapInformation
-
-    /// CGEventSourceRef
     EventSourceRef :: distinct ^__CGEventSource
-
-    /// CGEventSourceKeyboardType
     EventSourceKeyboardType :: distinct cffi.uint32_t
-
-    /// CGPSConverterRef
     PSConverterRef :: distinct ^PSConverter
-
-    /// CGPSConverterBeginDocumentCallback
-    PSConverterBeginDocumentCallback :: proc "c" (info: rawptr)
-
-    /// CGPSConverterEndDocumentCallback
-    PSConverterEndDocumentCallback :: proc "c" (info: rawptr, success: cffi.bool)
-
-    /// CGPSConverterBeginPageCallback
-    PSConverterBeginPageCallback :: proc "c" (info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef)
-
-    /// CGPSConverterEndPageCallback
-    PSConverterEndPageCallback :: proc "c" (info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef)
-
-    /// CGPSConverterProgressCallback
-    PSConverterProgressCallback :: proc "c" (info: rawptr)
-
-    /// CGPSConverterMessageCallback
-    PSConverterMessageCallback :: proc "c" (info: rawptr, message: CF.StringRef)
-
-    /// CGPSConverterReleaseInfoCallback
-    PSConverterReleaseInfoCallback :: proc "c" (info: rawptr)
+    PSConverterBeginDocumentCallback :: proc "c" ( info: rawptr )
+    PSConverterEndDocumentCallback :: proc "c" ( info: rawptr, success: cffi.bool )
+    PSConverterBeginPageCallback :: proc "c" ( info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef )
+    PSConverterEndPageCallback :: proc "c" ( info: rawptr, pageNumber: cffi.size_t, pageInfo: CF.DictionaryRef )
+    PSConverterProgressCallback :: proc "c" ( info: rawptr )
+    PSConverterMessageCallback :: proc "c" ( info: rawptr, message: CF.StringRef )
+    PSConverterReleaseInfoCallback :: proc "c" ( info: rawptr )
 }
 
-/// CGRectEdge
 RectEdge :: enum cffi.uint {
     MinXEdge = 0,
     MinYEdge = 1,
@@ -2660,7 +2736,6 @@ RectEdge :: enum cffi.uint {
     MaxYEdge = 3,
 }
 
-/// CGColorRenderingIntent
 ColorRenderingIntent :: enum cffi.int {
     Default              = 0,
     AbsoluteColorimetric = 1,
@@ -2669,7 +2744,6 @@ ColorRenderingIntent :: enum cffi.int {
     Saturation           = 4,
 }
 
-/// CGColorSpaceModel
 ColorSpaceModel :: enum cffi.int {
     Unknown    = -1,
     Monochrome = 0,
@@ -2682,33 +2756,28 @@ ColorSpaceModel :: enum cffi.int {
     XYZ        = 7,
 }
 
-/// CGPatternTiling
 PatternTiling :: enum cffi.int {
     NoDistortion                     = 0,
     ConstantSpacingMinimalDistortion = 1,
     ConstantSpacing                  = 2,
 }
 
-/// CGFontPostScriptFormat
 FontPostScriptFormat :: enum cffi.int {
     Type1  = 1,
     Type3  = 3,
     Type42 = 42,
 }
 
-/// CGGlyphDeprecatedEnum
 GlyphDeprecatedEnum :: enum cffi.int {
     Min = 0,
     Max = 1,
 }
 
-/// CGGradientDrawingOptions
 GradientDrawingOptions :: enum cffi.uint {
     DrawsBeforeStartLocation = 1,
     DrawsAfterEndLocation    = 2,
 }
 
-/// CGImageAlphaInfo
 ImageAlphaInfo :: enum cffi.uint {
     None               = 0,
     PremultipliedLast  = 1,
@@ -2720,13 +2789,11 @@ ImageAlphaInfo :: enum cffi.uint {
     Only               = 7,
 }
 
-/// CGImageComponentInfo
 ImageComponentInfo :: enum cffi.uint {
     Integer = 0,
     Float   = 256,
 }
 
-/// CGImageByteOrderInfo
 ImageByteOrderInfo :: enum cffi.uint {
     Mask      = 28672,
     Default   = 0,
@@ -2738,7 +2805,6 @@ ImageByteOrderInfo :: enum cffi.uint {
     _32Host   = 8192,
 }
 
-/// CGImagePixelFormatInfo
 ImagePixelFormatInfo :: enum cffi.uint {
     Mask      = 983040,
     Packed    = 0,
@@ -2748,7 +2814,6 @@ ImagePixelFormatInfo :: enum cffi.uint {
     RGBCIF10  = 262144,
 }
 
-/// CGBitmapInfo
 BitmapInfo :: enum cffi.uint {
     AlphaInfoMask       = 31,
     ComponentInfoMask   = 3840,
@@ -2764,21 +2829,18 @@ BitmapInfo :: enum cffi.uint {
     ByteOrder32Big      = 16384,
 }
 
-/// CGLineJoin
 LineJoin :: enum cffi.int {
     Miter = 0,
     Round = 1,
     Bevel = 2,
 }
 
-/// CGLineCap
 LineCap :: enum cffi.int {
     Butt   = 0,
     Round  = 1,
     Square = 2,
 }
 
-/// CGPathElementType
 PathElementType :: enum cffi.int {
     MoveToPoint         = 0,
     AddLineToPoint      = 1,
@@ -2787,7 +2849,6 @@ PathElementType :: enum cffi.int {
     CloseSubpath        = 4,
 }
 
-/// CGPDFObjectType
 PDFObjectType :: enum cffi.int {
     Null       = 1,
     Boolean    = 2,
@@ -2800,14 +2861,12 @@ PDFObjectType :: enum cffi.int {
     Stream     = 9,
 }
 
-/// CGPDFDataFormat
 PDFDataFormat :: enum cffi.int {
     Raw         = 0,
     JPEGEncoded = 1,
     JPEG2000    = 2,
 }
 
-/// CGPDFBox
 PDFBox :: enum cffi.int {
     MediaBox = 0,
     CropBox  = 1,
@@ -2816,7 +2875,6 @@ PDFBox :: enum cffi.int {
     ArtBox   = 4,
 }
 
-/// CGPDFAccessPermissions
 PDFAccessPermissions :: enum cffi.uint {
     AllowsLowQualityPrinting   = 1,
     AllowsHighQualityPrinting  = 2,
@@ -2828,7 +2886,6 @@ PDFAccessPermissions :: enum cffi.uint {
     AllowsFormFieldEntry       = 128,
 }
 
-/// CGToneMapping
 ToneMapping :: enum cffi.uint {
     Default                  = 0,
     ImageSpecificLumaScaling = 1,
@@ -2838,7 +2895,6 @@ ToneMapping :: enum cffi.uint {
     None                     = 5,
 }
 
-/// CGPathDrawingMode
 PathDrawingMode :: enum cffi.int {
     Fill         = 0,
     EOFill       = 1,
@@ -2847,7 +2903,6 @@ PathDrawingMode :: enum cffi.int {
     EOFillStroke = 4,
 }
 
-/// CGTextDrawingMode
 TextDrawingMode :: enum cffi.int {
     Fill           = 0,
     Stroke         = 1,
@@ -2859,13 +2914,11 @@ TextDrawingMode :: enum cffi.int {
     Clip           = 7,
 }
 
-/// CGTextEncoding
 TextEncoding :: enum cffi.int {
     FontSpecific = 0,
     MacRoman     = 1,
 }
 
-/// CGInterpolationQuality
 InterpolationQuality :: enum cffi.int {
     Default = 0,
     None    = 1,
@@ -2874,7 +2927,6 @@ InterpolationQuality :: enum cffi.int {
     High    = 3,
 }
 
-/// CGBlendMode
 BlendMode :: enum cffi.int {
     Normal          = 0,
     Multiply        = 1,
@@ -2906,7 +2958,6 @@ BlendMode :: enum cffi.int {
     PlusLighter     = 27,
 }
 
-/// CGColorModel
 ColorModel :: enum cffi.uint {
     NoColorant = 0,
     Gray       = 1,
@@ -2916,7 +2967,6 @@ ColorModel :: enum cffi.uint {
     DeviceN    = 16,
 }
 
-/// CGComponent
 Component :: enum cffi.uint {
     Unknown      = 0,
     Integer8Bit  = 1,
@@ -2927,7 +2977,6 @@ Component :: enum cffi.uint {
     Float32Bit   = 4,
 }
 
-/// CGBitmapLayout
 BitmapLayout :: enum cffi.uint {
     AlphaOnly = 0,
     Gray      = 1,
@@ -2943,14 +2992,12 @@ BitmapLayout :: enum cffi.uint {
     CMYK      = 11,
 }
 
-/// CGColorConversionInfoTransformType
 ColorConversionInfoTransformType :: enum cffi.uint {
     FromSpace  = 0,
     ToSpace    = 1,
     ApplySpace = 2,
 }
 
-/// CGError
 Error :: enum cffi.int {
     Success           = 0,
     Failure           = 1000,
@@ -2965,7 +3012,6 @@ Error :: enum cffi.int {
     NoneAvailable     = 1011,
 }
 
-/// CGPDFTagType
 PDFTagType :: enum cffi.int {
     Document           = 100,
     Part               = 101,
@@ -3019,22 +3065,19 @@ PDFTagType :: enum cffi.int {
     Object             = 800,
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CGWindowSharingType
+when ODIN_PLATFORM_SUBTARGET == .Default {
     WindowSharingType :: enum cffi.uint {
         None      = 0,
         ReadOnly  = 1,
         ReadWrite = 2,
     }
 
-    /// CGWindowBackingType
     WindowBackingType :: enum cffi.uint {
         StoreRetained    = 0,
         StoreNonretained = 1,
         StoreBuffered    = 2,
     }
 
-    /// CGWindowListOption
     WindowListOption :: enum cffi.uint {
         All                    = 0,
         OnScreenOnly           = 1,
@@ -3044,7 +3087,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         ExcludeDesktopElements = 16,
     }
 
-    /// CGWindowImageOption
     WindowImageOption :: enum cffi.uint {
         Default             = 0,
         BoundsIgnoreFraming = 1,
@@ -3054,7 +3096,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         NominalResolution   = 16,
     }
 
-    /// CGWindowLevelKey
     WindowLevelKey :: enum cffi.int {
         BaseWindowLevelKey              = 0,
         MinimumWindowLevelKey           = 1,
@@ -3080,20 +3121,17 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         NumberOfWindowLevelKeys         = 21,
     }
 
-    /// CGCaptureOptions
     CaptureOptions :: enum cffi.uint {
         NoOptions = 0,
         NoFill    = 1,
     }
 
-    /// CGConfigureOption
     ConfigureOption :: enum cffi.uint {
         ForAppOnly  = 0,
         ForSession  = 1,
         Permanently = 2,
     }
 
-    /// CGDisplayChangeSummaryFlags
     DisplayChangeSummaryFlag :: enum cffi.uint {
         BeginConfigurationFlag  = 0,
         MovedFlag               = 1,
@@ -3107,9 +3145,9 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         UnMirrorFlag            = 11,
         DesktopShapeChangedFlag = 12,
     }
+
     DisplayChangeSummaryFlags :: bit_set[DisplayChangeSummaryFlag; cffi.uint]
 
-    /// CGDisplayStreamUpdateRectType
     DisplayStreamUpdateRectType :: enum cffi.int {
         RefreshedRects    = 0,
         MovedRects        = 1,
@@ -3117,7 +3155,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         ReducedDirtyRects = 3,
     }
 
-    /// CGDisplayStreamFrameStatus
     DisplayStreamFrameStatus :: enum cffi.int {
         FrameComplete = 0,
         FrameIdle     = 1,
@@ -3125,42 +3162,37 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         Stopped       = 3,
     }
 
-    /// CGScreenUpdateOperation
     ScreenUpdateOperation :: enum cffi.uint {
         Refresh                    = 0,
         Move                       = 1,
         ReducedDirtyRectangleCount = 2147483648,
     }
 
-    /// CGEventFilterMask
     EventFilterMaskFlag :: enum cffi.uint {
         PermitLocalMouseEvents    = 0,
         PermitLocalKeyboardEvents = 1,
         PermitSystemDefinedEvents = 2,
     }
+
     EventFilterMask :: bit_set[EventFilterMaskFlag; cffi.uint]
 
-    /// CGEventSuppressionState
     EventSuppressionState :: enum cffi.uint {
         SuppressionInterval            = 0,
         RemoteMouseDrag                = 1,
         NumberOfEventSuppressionStates = 2,
     }
 
-    /// CGMouseButton
     MouseButton :: enum cffi.uint {
         Left   = 0,
         Right  = 1,
         Center = 2,
     }
 
-    /// CGScrollEventUnit
     ScrollEventUnit :: enum cffi.uint {
         Pixel = 0,
         Line  = 1,
     }
 
-    /// CGMomentumScrollPhase
     MomentumScrollPhase :: enum cffi.uint {
         None     = 0,
         Begin    = 1,
@@ -3168,7 +3200,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         End      = 3,
     }
 
-    /// CGScrollPhase
     ScrollPhase :: enum cffi.uint {
         Began     = 1,
         Changed   = 2,
@@ -3177,7 +3208,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         MayBegin  = 128,
     }
 
-    /// CGGesturePhase
     GesturePhase :: enum cffi.uint {
         None      = 0,
         Began     = 1,
@@ -3187,7 +3217,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         MayBegin  = 128,
     }
 
-    /// CGEventFlags
     EventFlag :: enum cffi.ulonglong {
         FlagMaskAlphaShift   = 16,
         FlagMaskShift        = 17,
@@ -3199,9 +3228,9 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         FlagMaskNumericPad   = 21,
         FlagMaskNonCoalesced = 8,
     }
+
     EventFlags :: bit_set[EventFlag; cffi.ulonglong]
 
-    /// CGEventType
     EventType :: enum cffi.uint {
         Null                   = 0,
         LeftMouseDown          = 1,
@@ -3224,7 +3253,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         TapDisabledByUserInput = 4294967295,
     }
 
-    /// CGEventField
     EventField :: enum cffi.uint {
         MouseEventNumber                 = 0,
         MouseEventClickState             = 1,
@@ -3293,33 +3321,28 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         ScrollWheelEventRawDeltaAxis2    = 177,
     }
 
-    /// CGEventMouseSubtype
     EventMouseSubtype :: enum cffi.uint {
         Default         = 0,
         TabletPoint     = 1,
         TabletProximity = 2,
     }
 
-    /// CGEventTapLocation
     EventTapLocation :: enum cffi.uint {
         HIDEventTap              = 0,
         SessionEventTap          = 1,
         AnnotatedSessionEventTap = 2,
     }
 
-    /// CGEventTapPlacement
     EventTapPlacement :: enum cffi.uint {
         HeadInsertEventTap = 0,
         TailAppendEventTap = 1,
     }
 
-    /// CGEventTapOptions
     EventTapOptions :: enum cffi.uint {
         OptionDefault    = 0,
         OptionListenOnly = 1,
     }
 
-    /// CGEventSourceStateID
     EventSourceStateID :: enum cffi.int {
         Private              = -1,
         CombinedSessionState = 0,
@@ -3327,35 +3350,26 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
     }
 }
 
-/// CGPoint
 Point :: struct #align (8) {
     x: Float,
     y: Float,
 }
-#assert(size_of(Point) == 16)
 
-/// CGSize
 Size :: struct #align (8) {
     width:  Float,
     height: Float,
 }
-#assert(size_of(Size) == 16)
 
-/// CGVector
 Vector :: struct #align (8) {
     dx: Float,
     dy: Float,
 }
-#assert(size_of(Vector) == 16)
 
-/// CGRect
 Rect :: struct #align (8) {
     origin: Point,
     size:   Size,
 }
-#assert(size_of(Rect) == 32)
 
-/// CGAffineTransform
 AffineTransform :: struct #align (8) {
     a:  Float,
     b:  Float,
@@ -3364,33 +3378,24 @@ AffineTransform :: struct #align (8) {
     tx: Float,
     ty: Float,
 }
-#assert(size_of(AffineTransform) == 48)
 
-/// CGAffineTransformComponents
 AffineTransformComponents :: struct #align (8) {
     scale:           Size,
     horizontalShear: Float,
     rotation:        Float,
     translation:     Vector,
 }
-#assert(size_of(AffineTransformComponents) == 48)
 
-/// __IOSurface
 __IOSurface :: struct {}
 
-/// CGContext
 Context :: struct {}
 
-/// CGColor
 Color :: struct {}
 
-/// CGColorSpace
 ColorSpace :: struct {}
 
-/// CGDataProvider
 DataProvider :: struct {}
 
-/// CGDataProviderSequentialCallbacks
 DataProviderSequentialCallbacks :: struct #align (8) {
     version:     cffi.uint,
     getBytes:    DataProviderGetBytesCallback,
@@ -3398,97 +3403,69 @@ DataProviderSequentialCallbacks :: struct #align (8) {
     rewind:      DataProviderRewindCallback,
     releaseInfo: DataProviderReleaseInfoCallback,
 }
-#assert(size_of(DataProviderSequentialCallbacks) == 40)
 
-/// CGDataProviderDirectCallbacks
 DataProviderDirectCallbacks :: struct #align (8) {
     version:            cffi.uint,
-    getBytePointer:     proc "c" (info: rawptr) -> rawptr,
-    releaseBytePointer: proc "c" (info: rawptr, pointer: rawptr),
+    getBytePointer:     proc "c" ( info: rawptr ) -> rawptr,
+    releaseBytePointer: proc "c" ( info: rawptr, pointer: rawptr ),
     getBytesAtPosition: DataProviderGetBytesAtPositionCallback,
     releaseInfo:        DataProviderReleaseInfoCallback,
 }
-#assert(size_of(DataProviderDirectCallbacks) == 40)
 
-/// ColorSyncProfile
 ColorSyncProfile :: struct {}
 
-/// CGPattern
 Pattern :: struct {}
 
-/// CGPatternCallbacks
 PatternCallbacks :: struct #align (8) {
     version:     cffi.uint,
     drawPattern: PatternDrawPatternCallback,
     releaseInfo: PatternReleaseInfoCallback,
 }
-#assert(size_of(PatternCallbacks) == 24)
 
-/// CGFont
 Font :: struct {}
 
-/// CGGradient
 Gradient :: struct {}
 
-/// CGImage
 Image :: struct {}
 
-/// CGPath
 Path :: struct {}
 
-/// CGPathElement
 PathElement :: struct #align (8) {
     type:   PathElementType,
     points: ^Point,
 }
-#assert(size_of(PathElement) == 16)
 
-/// CGPDFDocument
 PDFDocument :: struct {}
 
-/// CGPDFPage
 PDFPage :: struct {}
 
-/// CGPDFDictionary
 PDFDictionary :: struct {}
 
-/// CGPDFArray
 PDFArray :: struct {}
 
-/// CGPDFObject
 PDFObject :: struct {}
 
-/// CGPDFStream
 PDFStream :: struct {}
 
-/// CGPDFString
 PDFString :: struct {}
 
-/// CGShading
 Shading :: struct {}
 
-/// CGFunction
 Function :: struct {}
 
-/// CGFunctionCallbacks
 FunctionCallbacks :: struct #align (8) {
     version:     cffi.uint,
     evaluate:    FunctionEvaluateCallback,
     releaseInfo: FunctionReleaseInfoCallback,
 }
-#assert(size_of(FunctionCallbacks) == 24)
 
-/// CGContentToneMappingInfo
 ContentToneMappingInfo :: struct #align (8) {
     method:  ToneMapping,
     options: CF.DictionaryRef,
 }
-#assert(size_of(ContentToneMappingInfo) == 16)
 
-/// CGRenderingBufferProvider
 RenderingBufferProvider :: struct {}
 
-/// CGContentInfo
 ContentInfo :: struct #align (4) {
     deepestImageComponent:  Component,
     contentColorModels:     ColorModel,
@@ -3496,9 +3473,7 @@ ContentInfo :: struct #align (4) {
     hasTransparency:        cffi.bool,
     largestContentHeadroom: cffi.float,
 }
-#assert(size_of(ContentInfo) == 16)
 
-/// CGBitmapParameters
 BitmapParameters :: struct #align (8) {
     width:                 cffi.size_t,
     height:                cffi.size_t,
@@ -3512,12 +3487,9 @@ BitmapParameters :: struct #align (8) {
     byteOrder:             CF.ByteOrder,
     edrTargetHeadroom:     cffi.float,
 }
-#assert(size_of(BitmapParameters) == 80)
 
-/// CGColorConversionInfo
 ColorConversionInfo :: struct {}
 
-/// CGColorBufferFormat
 ColorBufferFormat :: struct #align (8) {
     version:          cffi.uint32_t,
     bitmapInfo:       BitmapInfo,
@@ -3525,9 +3497,7 @@ ColorBufferFormat :: struct #align (8) {
     bitsPerPixel:     cffi.size_t,
     bytesPerRow:      cffi.size_t,
 }
-#assert(size_of(ColorBufferFormat) == 32)
 
-/// CGColorDataFormat
 ColorDataFormat :: struct #align (8) {
     version:            cffi.uint32_t,
     colorspace_info:    CF.TypeRef,
@@ -3537,65 +3507,46 @@ ColorDataFormat :: struct #align (8) {
     intent:             ColorRenderingIntent,
     decode:             ^Float,
 }
-#assert(size_of(ColorDataFormat) == 56)
 
-/// CGDataConsumer
 DataConsumer :: struct {}
 
-/// CGDataConsumerCallbacks
 DataConsumerCallbacks :: struct #align (8) {
     putBytes:        DataConsumerPutBytesCallback,
     releaseConsumer: DataConsumerReleaseInfoCallback,
 }
-#assert(size_of(DataConsumerCallbacks) == 16)
 
-/// CGLayer
 Layer :: struct {}
 
-/// CGPDFContentStream
 PDFContentStream :: struct {}
 
-/// CGPDFOperatorTable
 PDFOperatorTable :: struct {}
 
-/// CGPDFScanner
 PDFScanner :: struct {}
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CGDisplayMode
+when ODIN_PLATFORM_SUBTARGET == .Default {
     DisplayMode :: struct {}
 
-    /// CGDeviceColor
     DeviceColor :: struct #align (4) {
         red:   cffi.float,
         green: cffi.float,
         blue:  cffi.float,
     }
-    #assert(size_of(DeviceColor) == 12)
 
-    /// _CGDisplayConfigRef
     _CGDisplayConfigRef :: struct {}
 
-    /// CGDisplayStream
     DisplayStream :: struct {}
 
-    /// CGDisplayStreamUpdate
     DisplayStreamUpdate :: struct {}
 
-    /// CGScreenUpdateMoveDelta
     ScreenUpdateMoveDelta :: struct #align (4) {
         dX: cffi.int32_t,
         dY: cffi.int32_t,
     }
-    #assert(size_of(ScreenUpdateMoveDelta) == 8)
 
-    /// __CGEvent
     __CGEvent :: struct {}
 
-    /// __CGEventTapProxy
     __CGEventTapProxy :: struct {}
 
-    /// __CGEventTapInformation
     __CGEventTapInformation :: struct #align (8) {
         eventTapID:         cffi.uint32_t,
         tapPoint:           EventTapLocation,
@@ -3608,15 +3559,11 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         avgUsecLatency:     cffi.float,
         maxUsecLatency:     cffi.float,
     }
-    #assert(size_of(__CGEventTapInformation) == 48)
 
-    /// __CGEventSource
     __CGEventSource :: struct {}
 
-    /// CGPSConverter
     PSConverter :: struct {}
 
-    /// CGPSConverterCallbacks
     PSConverterCallbacks :: struct #align (8) {
         version:       cffi.uint,
         beginDocument: PSConverterBeginDocumentCallback,
@@ -3627,6 +3574,5 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         noteMessage:   PSConverterMessageCallback,
         releaseInfo:   PSConverterReleaseInfoCallback,
     }
-    #assert(size_of(PSConverterCallbacks) == 64)
 }
 

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineConfiguration
-///
 @(objc_class="CKSyncEngineConfiguration", objc_superclass=NS.Object)
 SyncEngineConfiguration :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineConfiguration, objc_selector="initWithDatabase:stateSerialization:delegate:", objc_name="initWithDatabase")
     SyncEngineConfiguration_initWithDatabase :: proc(self: ^SyncEngineConfiguration, database: ^Database, stateSerialization: ^SyncEngineStateSerialization, delegate: ^SyncEngineDelegate) -> instancetype ---
@@ -56,3 +50,6 @@ foreign lib {
     @(objc_type=SyncEngineConfiguration, objc_selector="setSubscriptionID:", objc_name="setSubscriptionID")
     SyncEngineConfiguration_setSubscriptionID :: proc(self: ^SyncEngineConfiguration, subscriptionID: ^NS.String) ---
 }
+
+
+

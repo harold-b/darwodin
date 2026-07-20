@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4CommandBuffer
-///
 @(objc_class="MTL4CommandBuffer")
 MTL4CommandBuffer :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4CommandBuffer, objc_selector="beginCommandBufferWithAllocator:", objc_name="beginCommandBufferWithAllocator_")
     MTL4CommandBuffer_beginCommandBufferWithAllocator_ :: proc(self: ^MTL4CommandBuffer, allocator: ^MTL4CommandAllocator) ---
@@ -71,6 +65,8 @@ foreign lib {
     @(objc_type=MTL4CommandBuffer, objc_selector="setLabel:", objc_name="setLabel")
     MTL4CommandBuffer_setLabel :: proc(self: ^MTL4CommandBuffer, label: ^NS.String) ---
 }
+
+
 
 @(objc_type=MTL4CommandBuffer, objc_name="beginCommandBufferWithAllocator")
 MTL4CommandBuffer_beginCommandBufferWithAllocator :: proc {

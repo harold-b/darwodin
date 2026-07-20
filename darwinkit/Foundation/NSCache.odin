@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSCache
-///
 @(objc_class="NSCache", objc_superclass=Object)
 Cache :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Cache, objc_selector="objectForKey:", objc_name="objectForKey")
     Cache_objectForKey :: proc(self: ^Cache, key: id) -> id ---
@@ -64,6 +58,8 @@ foreign lib {
     @(objc_type=Cache, objc_selector="setEvictsObjectsWithDiscardedContent:", objc_name="setEvictsObjectsWithDiscardedContent")
     Cache_setEvictsObjectsWithDiscardedContent :: proc(self: ^Cache, evictsObjectsWithDiscardedContent: bool) ---
 }
+
+
 
 @(objc_type=Cache, objc_name="setObject")
 Cache_setObject :: proc {

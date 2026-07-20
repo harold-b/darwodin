@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMIDIPitchBendEvent
-///
 @(objc_class="AVMIDIPitchBendEvent", objc_superclass=MIDIChannelEvent)
 MIDIPitchBendEvent :: struct { using _: MIDIChannelEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDIPitchBendEvent, objc_selector="initWithChannel:value:", objc_name="initWithChannel")
     MIDIPitchBendEvent_initWithChannel :: proc(self: ^MIDIPitchBendEvent, channel: CF.UInt32, value: CF.UInt32) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=MIDIPitchBendEvent, objc_selector="setValue:", objc_name="setValue")
     MIDIPitchBendEvent_setValue :: proc(self: ^MIDIPitchBendEvent, value: CF.UInt32) ---
 }
+
+
+

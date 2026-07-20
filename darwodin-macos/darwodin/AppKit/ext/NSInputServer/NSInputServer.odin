@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDelegate: proc(self: ^AK.InputServer, delegate: id, name: ^NS.String) -> instancetype,
+    initWithDelegate: proc(self: ^NS.InputServer, delegate: id, name: ^NS.String) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDelegate != nil {
-        initWithDelegate :: proc "c" (self: ^AK.InputServer, _: SEL, delegate: id, name: ^NS.String) -> instancetype {
+        initWithDelegate :: proc "c" (self: ^NS.InputServer, _: SEL, delegate: id, name: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

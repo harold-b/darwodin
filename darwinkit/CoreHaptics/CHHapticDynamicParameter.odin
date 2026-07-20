@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CHHapticDynamicParameter
-///
 @(objc_class="CHHapticDynamicParameter", objc_superclass=NS.Object)
 HapticDynamicParameter :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticDynamicParameter, objc_selector="init", objc_name="init")
     HapticDynamicParameter_init :: proc(self: ^HapticDynamicParameter) -> instancetype ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=HapticDynamicParameter, objc_selector="setRelativeTime:", objc_name="setRelativeTime")
     HapticDynamicParameter_setRelativeTime :: proc(self: ^HapticDynamicParameter, relativeTime: NS.TimeInterval) ---
 }
+
+
+

@@ -24,7 +24,7 @@ foreign lib {
     URLSessionDelegate_URLSession_didBecomeInvalidWithError :: proc(self: ^URLSessionDelegate, session: ^URLSession, error: ^Error) ---
 
     @(objc_type=URLSessionDelegate, objc_selector="URLSession:didReceiveChallenge:completionHandler:", objc_name="URLSession_didReceiveChallenge_completionHandler")
-    URLSessionDelegate_URLSession_didReceiveChallenge_completionHandler :: proc(self: ^URLSessionDelegate, session: ^URLSession, challenge: ^URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" (disposition: URLSessionAuthChallengeDisposition, credential: ^URLCredential))) ---
+    URLSessionDelegate_URLSession_didReceiveChallenge_completionHandler :: proc(self: ^URLSessionDelegate, session: ^URLSession, challenge: ^URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" ( disposition: URLSessionAuthChallengeDisposition, credential: ^URLCredential ))) ---
 
     @(objc_type=URLSessionDelegate, objc_selector="URLSessionDidFinishEventsForBackgroundURLSession:", objc_name="URLSessionDidFinishEventsForBackgroundURLSession")
     URLSessionDelegate_URLSessionDidFinishEventsForBackgroundURLSession :: proc(self: ^URLSessionDelegate, session: ^URLSession) ---

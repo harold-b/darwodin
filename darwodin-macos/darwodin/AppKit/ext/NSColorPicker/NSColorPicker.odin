@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithPickerMask: proc(self: ^AK.ColorPicker, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> instancetype,
-    insertNewButtonImage: proc(self: ^AK.ColorPicker, newButtonImage: ^AK.Image, buttonCell: ^AK.ButtonCell),
-    viewSizeChanged: proc(self: ^AK.ColorPicker, sender: id),
-    attachColorList: proc(self: ^AK.ColorPicker, colorList: ^AK.ColorList),
-    detachColorList: proc(self: ^AK.ColorPicker, colorList: ^AK.ColorList),
-    setMode: proc(self: ^AK.ColorPicker, mode: AK.ColorPanelMode),
-    colorPanel: proc(self: ^AK.ColorPicker) -> ^AK.ColorPanel,
-    provideNewButtonImage: proc(self: ^AK.ColorPicker) -> ^AK.Image,
-    buttonToolTip: proc(self: ^AK.ColorPicker) -> ^NS.String,
-    minContentSize: proc(self: ^AK.ColorPicker) -> NS.Size,
+    initWithPickerMask: proc(self: ^NS.ColorPicker, mask: NS.UInteger, owningColorPanel: ^NS.ColorPanel) -> instancetype,
+    insertNewButtonImage: proc(self: ^NS.ColorPicker, newButtonImage: ^NS.Image, buttonCell: ^NS.ButtonCell),
+    viewSizeChanged: proc(self: ^NS.ColorPicker, sender: id),
+    attachColorList: proc(self: ^NS.ColorPicker, colorList: ^NS.ColorList),
+    detachColorList: proc(self: ^NS.ColorPicker, colorList: ^NS.ColorList),
+    setMode: proc(self: ^NS.ColorPicker, mode: NS.ColorPanelMode),
+    colorPanel: proc(self: ^NS.ColorPicker) -> ^NS.ColorPanel,
+    provideNewButtonImage: proc(self: ^NS.ColorPicker) -> ^NS.Image,
+    buttonToolTip: proc(self: ^NS.ColorPicker) -> ^NS.String,
+    minContentSize: proc(self: ^NS.ColorPicker) -> NS.Size,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithPickerMask != nil {
-        initWithPickerMask :: proc "c" (self: ^AK.ColorPicker, _: SEL, mask: NS.UInteger, owningColorPanel: ^AK.ColorPanel) -> instancetype {
+        initWithPickerMask :: proc "c" (self: ^NS.ColorPicker, _: SEL, mask: NS.UInteger, owningColorPanel: ^NS.ColorPanel) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithPickerMask:colorPanel:"), auto_cast initWithPickerMask, "@@:L@") do panic("Failed to register objC method.")
     }
     if vt.insertNewButtonImage != nil {
-        insertNewButtonImage :: proc "c" (self: ^AK.ColorPicker, _: SEL, newButtonImage: ^AK.Image, buttonCell: ^AK.ButtonCell) {
+        insertNewButtonImage :: proc "c" (self: ^NS.ColorPicker, _: SEL, newButtonImage: ^NS.Image, buttonCell: ^NS.ButtonCell) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertNewButtonImage:in:"), auto_cast insertNewButtonImage, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.viewSizeChanged != nil {
-        viewSizeChanged :: proc "c" (self: ^AK.ColorPicker, _: SEL, sender: id) {
+        viewSizeChanged :: proc "c" (self: ^NS.ColorPicker, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewSizeChanged:"), auto_cast viewSizeChanged, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.attachColorList != nil {
-        attachColorList :: proc "c" (self: ^AK.ColorPicker, _: SEL, colorList: ^AK.ColorList) {
+        attachColorList :: proc "c" (self: ^NS.ColorPicker, _: SEL, colorList: ^NS.ColorList) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attachColorList:"), auto_cast attachColorList, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.detachColorList != nil {
-        detachColorList :: proc "c" (self: ^AK.ColorPicker, _: SEL, colorList: ^AK.ColorList) {
+        detachColorList :: proc "c" (self: ^NS.ColorPicker, _: SEL, colorList: ^NS.ColorList) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("detachColorList:"), auto_cast detachColorList, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.setMode != nil {
-        setMode :: proc "c" (self: ^AK.ColorPicker, _: SEL, mode: AK.ColorPanelMode) {
+        setMode :: proc "c" (self: ^NS.ColorPicker, _: SEL, mode: NS.ColorPanelMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMode:"), auto_cast setMode, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.colorPanel != nil {
-        colorPanel :: proc "c" (self: ^AK.ColorPicker, _: SEL) -> ^AK.ColorPanel {
+        colorPanel :: proc "c" (self: ^NS.ColorPicker, _: SEL) -> ^NS.ColorPanel {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("colorPanel"), auto_cast colorPanel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.provideNewButtonImage != nil {
-        provideNewButtonImage :: proc "c" (self: ^AK.ColorPicker, _: SEL) -> ^AK.Image {
+        provideNewButtonImage :: proc "c" (self: ^NS.ColorPicker, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("provideNewButtonImage"), auto_cast provideNewButtonImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.buttonToolTip != nil {
-        buttonToolTip :: proc "c" (self: ^AK.ColorPicker, _: SEL) -> ^NS.String {
+        buttonToolTip :: proc "c" (self: ^NS.ColorPicker, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("buttonToolTip"), auto_cast buttonToolTip, "@@:") do panic("Failed to register objC method.")
     }
     if vt.minContentSize != nil {
-        minContentSize :: proc "c" (self: ^AK.ColorPicker, _: SEL) -> NS.Size {
+        minContentSize :: proc "c" (self: ^NS.ColorPicker, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

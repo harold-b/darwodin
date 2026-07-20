@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKRecordZone
-///
 @(objc_class="CKRecordZone", objc_superclass=NS.Object)
 RecordZone :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RecordZone, objc_selector="defaultRecordZone", objc_name="defaultRecordZone", objc_is_class_method=true)
     RecordZone_defaultRecordZone :: proc() -> ^RecordZone ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=RecordZone, objc_selector="setEncryptionScope:", objc_name="setEncryptionScope")
     RecordZone_setEncryptionScope :: proc(self: ^RecordZone, encryptionScope: RecordZoneEncryptionScope) ---
 }
+
+
+

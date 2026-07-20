@@ -40,7 +40,7 @@ foreign lib {
     SpeechSynthesizer_continueSpeaking :: proc(self: ^SpeechSynthesizer) -> bool ---
 
     @(objc_type=SpeechSynthesizer, objc_selector="requestPersonalVoiceAuthorizationWithCompletionHandler:", objc_name="requestPersonalVoiceAuthorizationWithCompletionHandler", objc_is_class_method=true)
-    SpeechSynthesizer_requestPersonalVoiceAuthorizationWithCompletionHandler :: proc(handler: ^Objc_Block(proc "c" (status: SpeechSynthesisPersonalVoiceAuthorizationStatus))) ---
+    SpeechSynthesizer_requestPersonalVoiceAuthorizationWithCompletionHandler :: proc(handler: ^Objc_Block(proc "c" ( status: SpeechSynthesisPersonalVoiceAuthorizationStatus ))) ---
 
     @(objc_type=SpeechSynthesizer, objc_selector="delegate", objc_name="delegate")
     SpeechSynthesizer_delegate :: proc(self: ^SpeechSynthesizer) -> ^SpeechSynthesizerDelegate ---

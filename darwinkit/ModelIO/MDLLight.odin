@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLLight
-///
 @(objc_class="MDLLight", objc_superclass=Object)
 Light :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Light, objc_selector="irradianceAtPoint:", objc_name="irradianceAtPoint_")
     Light_irradianceAtPoint_ :: proc(self: ^Light, point: ^vector_float3) -> CG.ColorRef ---
@@ -38,6 +32,8 @@ foreign lib {
     @(objc_type=Light, objc_selector="setColorSpace:", objc_name="setColorSpace")
     Light_setColorSpace :: proc(self: ^Light, colorSpace: ^NS.String) ---
 }
+
+
 
 @(objc_type=Light, objc_name="irradianceAtPoint")
 Light_irradianceAtPoint :: proc {

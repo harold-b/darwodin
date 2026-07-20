@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAnimatedScalar
-///
 @(objc_class="MDLAnimatedScalar", objc_superclass=AnimatedValue)
 AnimatedScalar :: struct { using _: AnimatedValue, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimatedScalar, objc_selector="setFloat:atTime:", objc_name="setFloat")
     AnimatedScalar_setFloat :: proc(self: ^AnimatedScalar, value: cffi.float, time: NS.TimeInterval) ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=AnimatedScalar, objc_selector="getDoubleArray:maxCount:", objc_name="getDoubleArray")
     AnimatedScalar_getDoubleArray :: proc(self: ^AnimatedScalar, valuesArray: ^cffi.double, maxCount: NS.UInteger) -> NS.UInteger ---
 }
+
+
+

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIndirectCommandBufferDescriptor
-///
 @(objc_class="MTLIndirectCommandBufferDescriptor", objc_superclass=NS.Object)
 IndirectCommandBufferDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndirectCommandBufferDescriptor, objc_selector="commandTypes", objc_name="commandTypes")
     IndirectCommandBufferDescriptor_commandTypes :: proc(self: ^IndirectCommandBufferDescriptor) -> IndirectCommandType ---
@@ -137,3 +131,6 @@ foreign lib {
     @(objc_type=IndirectCommandBufferDescriptor, objc_selector="setSupportColorAttachmentMapping:", objc_name="setSupportColorAttachmentMapping")
     IndirectCommandBufferDescriptor_setSupportColorAttachmentMapping :: proc(self: ^IndirectCommandBufferDescriptor, supportColorAttachmentMapping: bool) ---
 }
+
+
+

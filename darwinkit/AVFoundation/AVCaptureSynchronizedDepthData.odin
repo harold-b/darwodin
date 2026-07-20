@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureSynchronizedDepthData
-///
 @(objc_class="AVCaptureSynchronizedDepthData", objc_superclass=CaptureSynchronizedData)
 CaptureSynchronizedDepthData :: struct { using _: CaptureSynchronizedData, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSynchronizedDepthData, objc_selector="depthData", objc_name="depthData")
     CaptureSynchronizedDepthData_depthData :: proc(self: ^CaptureSynchronizedDepthData) -> ^DepthData ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=CaptureSynchronizedDepthData, objc_selector="droppedReason", objc_name="droppedReason")
     CaptureSynchronizedDepthData_droppedReason :: proc(self: ^CaptureSynchronizedDepthData) -> CaptureOutputDataDroppedReason ---
 }
+
+
+

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLVertexBufferLayoutDescriptor
-///
 @(objc_class="MTLVertexBufferLayoutDescriptor", objc_superclass=NS.Object)
 VertexBufferLayoutDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexBufferLayoutDescriptor, objc_selector="stride", objc_name="stride")
     VertexBufferLayoutDescriptor_stride :: proc(self: ^VertexBufferLayoutDescriptor) -> NS.UInteger ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=VertexBufferLayoutDescriptor, objc_selector="setStepRate:", objc_name="setStepRate")
     VertexBufferLayoutDescriptor_setStepRate :: proc(self: ^VertexBufferLayoutDescriptor, stepRate: NS.UInteger) ---
 }
+
+
+

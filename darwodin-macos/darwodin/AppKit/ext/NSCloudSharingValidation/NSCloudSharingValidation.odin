@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    cloudShareForUserInterfaceItem: proc(self: ^AK.CloudSharingValidation, item: ^AK.ValidatedUserInterfaceItem) -> ^AK.CKShare,
+    cloudShareForUserInterfaceItem: proc(self: ^NS.CloudSharingValidation, item: ^NS.ValidatedUserInterfaceItem) -> ^NS.CKShare,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.cloudShareForUserInterfaceItem != nil {
-        cloudShareForUserInterfaceItem :: proc "c" (self: ^AK.CloudSharingValidation, _: SEL, item: ^AK.ValidatedUserInterfaceItem) -> ^AK.CKShare {
+        cloudShareForUserInterfaceItem :: proc "c" (self: ^NS.CloudSharingValidation, _: SEL, item: ^NS.ValidatedUserInterfaceItem) -> ^NS.CKShare {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

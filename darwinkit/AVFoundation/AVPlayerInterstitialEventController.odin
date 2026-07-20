@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerInterstitialEventController
-///
 @(objc_class="AVPlayerInterstitialEventController", objc_superclass=PlayerInterstitialEventMonitor)
 PlayerInterstitialEventController :: struct { using _: PlayerInterstitialEventMonitor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerInterstitialEventController, objc_selector="interstitialEventControllerWithPrimaryPlayer:", objc_name="interstitialEventControllerWithPrimaryPlayer", objc_is_class_method=true)
     PlayerInterstitialEventController_interstitialEventControllerWithPrimaryPlayer :: proc(primaryPlayer: ^Player) -> instancetype ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=PlayerInterstitialEventController, objc_selector="setLocalizedStringsTableName:", objc_name="setLocalizedStringsTableName")
     PlayerInterstitialEventController_setLocalizedStringsTableName :: proc(self: ^PlayerInterstitialEventController, localizedStringsTableName: ^NS.String) ---
 }
+
+
+

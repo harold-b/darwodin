@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKGaussianDistribution
-///
 @(objc_class="GKGaussianDistribution", objc_superclass=RandomDistribution)
 GaussianDistribution :: struct { using _: RandomDistribution, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=GaussianDistribution, objc_selector="initWithRandomSource:lowestValue:highestValue:", objc_name="initWithRandomSource_lowestValue_highestValue")
     GaussianDistribution_initWithRandomSource_lowestValue_highestValue :: proc(self: ^GaussianDistribution, source: ^Random, lowestInclusive: NS.Integer, highestInclusive: NS.Integer) -> instancetype ---
@@ -29,6 +23,8 @@ foreign lib {
     @(objc_type=GaussianDistribution, objc_selector="deviation", objc_name="deviation")
     GaussianDistribution_deviation :: proc(self: ^GaussianDistribution) -> cffi.float ---
 }
+
+
 
 @(objc_type=GaussianDistribution, objc_name="initWithRandomSource")
 GaussianDistribution_initWithRandomSource :: proc {

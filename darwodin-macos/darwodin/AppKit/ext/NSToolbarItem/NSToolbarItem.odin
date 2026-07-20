@@ -20,62 +20,62 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithItemIdentifier: proc(self: ^AK.ToolbarItem, itemIdentifier: ^NS.String) -> instancetype,
-    validate: proc(self: ^AK.ToolbarItem),
-    itemIdentifier: proc(self: ^AK.ToolbarItem) -> ^NS.String,
-    toolbar: proc(self: ^AK.ToolbarItem) -> ^AK.Toolbar,
-    label: proc(self: ^AK.ToolbarItem) -> ^NS.String,
-    setLabel: proc(self: ^AK.ToolbarItem, label: ^NS.String),
-    paletteLabel: proc(self: ^AK.ToolbarItem) -> ^NS.String,
-    setPaletteLabel: proc(self: ^AK.ToolbarItem, paletteLabel: ^NS.String),
-    possibleLabels: proc(self: ^AK.ToolbarItem) -> ^NS.Set,
-    setPossibleLabels: proc(self: ^AK.ToolbarItem, possibleLabels: ^NS.Set),
-    toolTip: proc(self: ^AK.ToolbarItem) -> ^NS.String,
-    setToolTip: proc(self: ^AK.ToolbarItem, toolTip: ^NS.String),
-    menuFormRepresentation: proc(self: ^AK.ToolbarItem) -> ^AK.MenuItem,
-    setMenuFormRepresentation: proc(self: ^AK.ToolbarItem, menuFormRepresentation: ^AK.MenuItem),
-    tag: proc(self: ^AK.ToolbarItem) -> NS.Integer,
-    setTag: proc(self: ^AK.ToolbarItem, tag: NS.Integer),
-    target: proc(self: ^AK.ToolbarItem) -> id,
-    setTarget: proc(self: ^AK.ToolbarItem, target: id),
-    action: proc(self: ^AK.ToolbarItem) -> SEL,
-    setAction: proc(self: ^AK.ToolbarItem, action: SEL),
-    isEnabled: proc(self: ^AK.ToolbarItem) -> bool,
-    setEnabled: proc(self: ^AK.ToolbarItem, enabled: bool),
-    image: proc(self: ^AK.ToolbarItem) -> ^AK.Image,
-    setImage: proc(self: ^AK.ToolbarItem, image: ^AK.Image),
-    title: proc(self: ^AK.ToolbarItem) -> ^NS.String,
-    setTitle: proc(self: ^AK.ToolbarItem, title: ^NS.String),
-    isBordered: proc(self: ^AK.ToolbarItem) -> bool,
-    setBordered: proc(self: ^AK.ToolbarItem, bordered: bool),
-    backgroundTintColor: proc(self: ^AK.ToolbarItem) -> ^AK.Color,
-    setBackgroundTintColor: proc(self: ^AK.ToolbarItem, backgroundTintColor: ^AK.Color),
-    style: proc(self: ^AK.ToolbarItem) -> AK.ToolbarItemStyle,
-    setStyle: proc(self: ^AK.ToolbarItem, style: AK.ToolbarItemStyle),
-    isNavigational: proc(self: ^AK.ToolbarItem) -> bool,
-    setNavigational: proc(self: ^AK.ToolbarItem, navigational: bool),
-    view: proc(self: ^AK.ToolbarItem) -> ^AK.View,
-    setView: proc(self: ^AK.ToolbarItem, view: ^AK.View),
-    isVisible: proc(self: ^AK.ToolbarItem) -> bool,
-    isHidden: proc(self: ^AK.ToolbarItem) -> bool,
-    setHidden: proc(self: ^AK.ToolbarItem, hidden: bool),
-    minSize: proc(self: ^AK.ToolbarItem) -> NS.Size,
-    setMinSize: proc(self: ^AK.ToolbarItem, minSize: NS.Size),
-    maxSize: proc(self: ^AK.ToolbarItem) -> NS.Size,
-    setMaxSize: proc(self: ^AK.ToolbarItem, maxSize: NS.Size),
-    visibilityPriority: proc(self: ^AK.ToolbarItem) -> AK.ToolbarItemVisibilityPriority,
-    setVisibilityPriority: proc(self: ^AK.ToolbarItem, visibilityPriority: AK.ToolbarItemVisibilityPriority),
-    badge: proc(self: ^AK.ToolbarItem) -> ^AK.ItemBadge,
-    setBadge: proc(self: ^AK.ToolbarItem, badge: ^AK.ItemBadge),
-    autovalidates: proc(self: ^AK.ToolbarItem) -> bool,
-    setAutovalidates: proc(self: ^AK.ToolbarItem, autovalidates: bool),
-    allowsDuplicatesInToolbar: proc(self: ^AK.ToolbarItem) -> bool,
+    initWithItemIdentifier: proc(self: ^NS.ToolbarItem, itemIdentifier: ^NS.String) -> instancetype,
+    validate: proc(self: ^NS.ToolbarItem),
+    itemIdentifier: proc(self: ^NS.ToolbarItem) -> ^NS.String,
+    toolbar: proc(self: ^NS.ToolbarItem) -> ^NS.Toolbar,
+    label: proc(self: ^NS.ToolbarItem) -> ^NS.String,
+    setLabel: proc(self: ^NS.ToolbarItem, label: ^NS.String),
+    paletteLabel: proc(self: ^NS.ToolbarItem) -> ^NS.String,
+    setPaletteLabel: proc(self: ^NS.ToolbarItem, paletteLabel: ^NS.String),
+    possibleLabels: proc(self: ^NS.ToolbarItem) -> ^NS.Set,
+    setPossibleLabels: proc(self: ^NS.ToolbarItem, possibleLabels: ^NS.Set),
+    toolTip: proc(self: ^NS.ToolbarItem) -> ^NS.String,
+    setToolTip: proc(self: ^NS.ToolbarItem, toolTip: ^NS.String),
+    menuFormRepresentation: proc(self: ^NS.ToolbarItem) -> ^NS.MenuItem,
+    setMenuFormRepresentation: proc(self: ^NS.ToolbarItem, menuFormRepresentation: ^NS.MenuItem),
+    tag: proc(self: ^NS.ToolbarItem) -> NS.Integer,
+    setTag: proc(self: ^NS.ToolbarItem, tag: NS.Integer),
+    target: proc(self: ^NS.ToolbarItem) -> id,
+    setTarget: proc(self: ^NS.ToolbarItem, target: id),
+    action: proc(self: ^NS.ToolbarItem) -> SEL,
+    setAction: proc(self: ^NS.ToolbarItem, action: SEL),
+    isEnabled: proc(self: ^NS.ToolbarItem) -> bool,
+    setEnabled: proc(self: ^NS.ToolbarItem, enabled: bool),
+    image: proc(self: ^NS.ToolbarItem) -> ^NS.Image,
+    setImage: proc(self: ^NS.ToolbarItem, image: ^NS.Image),
+    title: proc(self: ^NS.ToolbarItem) -> ^NS.String,
+    setTitle: proc(self: ^NS.ToolbarItem, title: ^NS.String),
+    isBordered: proc(self: ^NS.ToolbarItem) -> bool,
+    setBordered: proc(self: ^NS.ToolbarItem, bordered: bool),
+    backgroundTintColor: proc(self: ^NS.ToolbarItem) -> ^NS.Color,
+    setBackgroundTintColor: proc(self: ^NS.ToolbarItem, backgroundTintColor: ^NS.Color),
+    style: proc(self: ^NS.ToolbarItem) -> NS.ToolbarItemStyle,
+    setStyle: proc(self: ^NS.ToolbarItem, style: NS.ToolbarItemStyle),
+    isNavigational: proc(self: ^NS.ToolbarItem) -> bool,
+    setNavigational: proc(self: ^NS.ToolbarItem, navigational: bool),
+    view: proc(self: ^NS.ToolbarItem) -> ^NS.View,
+    setView: proc(self: ^NS.ToolbarItem, view: ^NS.View),
+    isVisible: proc(self: ^NS.ToolbarItem) -> bool,
+    isHidden: proc(self: ^NS.ToolbarItem) -> bool,
+    setHidden: proc(self: ^NS.ToolbarItem, hidden: bool),
+    minSize: proc(self: ^NS.ToolbarItem) -> NS.Size,
+    setMinSize: proc(self: ^NS.ToolbarItem, minSize: NS.Size),
+    maxSize: proc(self: ^NS.ToolbarItem) -> NS.Size,
+    setMaxSize: proc(self: ^NS.ToolbarItem, maxSize: NS.Size),
+    visibilityPriority: proc(self: ^NS.ToolbarItem) -> NS.ToolbarItemVisibilityPriority,
+    setVisibilityPriority: proc(self: ^NS.ToolbarItem, visibilityPriority: NS.ToolbarItemVisibilityPriority),
+    badge: proc(self: ^NS.ToolbarItem) -> ^NS.ItemBadge,
+    setBadge: proc(self: ^NS.ToolbarItem, badge: ^NS.ItemBadge),
+    autovalidates: proc(self: ^NS.ToolbarItem) -> bool,
+    setAutovalidates: proc(self: ^NS.ToolbarItem, autovalidates: bool),
+    allowsDuplicatesInToolbar: proc(self: ^NS.ToolbarItem) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithItemIdentifier != nil {
-        initWithItemIdentifier :: proc "c" (self: ^AK.ToolbarItem, _: SEL, itemIdentifier: ^NS.String) -> instancetype {
+        initWithItemIdentifier :: proc "c" (self: ^NS.ToolbarItem, _: SEL, itemIdentifier: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithItemIdentifier:"), auto_cast initWithItemIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.validate != nil {
-        validate :: proc "c" (self: ^AK.ToolbarItem, _: SEL) {
+        validate :: proc "c" (self: ^NS.ToolbarItem, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("validate"), auto_cast validate, "v@:") do panic("Failed to register objC method.")
     }
     if vt.itemIdentifier != nil {
-        itemIdentifier :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^NS.String {
+        itemIdentifier :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemIdentifier"), auto_cast itemIdentifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.toolbar != nil {
-        toolbar :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^AK.Toolbar {
+        toolbar :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.Toolbar {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("toolbar"), auto_cast toolbar, "@@:") do panic("Failed to register objC method.")
     }
     if vt.label != nil {
-        label :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^NS.String {
+        label :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("label"), auto_cast label, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setLabel != nil {
-        setLabel :: proc "c" (self: ^AK.ToolbarItem, _: SEL, label: ^NS.String) {
+        setLabel :: proc "c" (self: ^NS.ToolbarItem, _: SEL, label: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLabel:"), auto_cast setLabel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.paletteLabel != nil {
-        paletteLabel :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^NS.String {
+        paletteLabel :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("paletteLabel"), auto_cast paletteLabel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPaletteLabel != nil {
-        setPaletteLabel :: proc "c" (self: ^AK.ToolbarItem, _: SEL, paletteLabel: ^NS.String) {
+        setPaletteLabel :: proc "c" (self: ^NS.ToolbarItem, _: SEL, paletteLabel: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPaletteLabel:"), auto_cast setPaletteLabel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.possibleLabels != nil {
-        possibleLabels :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^NS.Set {
+        possibleLabels :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.Set {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -176,7 +176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("possibleLabels"), auto_cast possibleLabels, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setPossibleLabels != nil {
-        setPossibleLabels :: proc "c" (self: ^AK.ToolbarItem, _: SEL, possibleLabels: ^NS.Set) {
+        setPossibleLabels :: proc "c" (self: ^NS.ToolbarItem, _: SEL, possibleLabels: ^NS.Set) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -186,7 +186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPossibleLabels:"), auto_cast setPossibleLabels, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.toolTip != nil {
-        toolTip :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^NS.String {
+        toolTip :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -196,7 +196,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("toolTip"), auto_cast toolTip, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setToolTip != nil {
-        setToolTip :: proc "c" (self: ^AK.ToolbarItem, _: SEL, toolTip: ^NS.String) {
+        setToolTip :: proc "c" (self: ^NS.ToolbarItem, _: SEL, toolTip: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -206,7 +206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setToolTip:"), auto_cast setToolTip, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.menuFormRepresentation != nil {
-        menuFormRepresentation :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^AK.MenuItem {
+        menuFormRepresentation :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -216,7 +216,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menuFormRepresentation"), auto_cast menuFormRepresentation, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setMenuFormRepresentation != nil {
-        setMenuFormRepresentation :: proc "c" (self: ^AK.ToolbarItem, _: SEL, menuFormRepresentation: ^AK.MenuItem) {
+        setMenuFormRepresentation :: proc "c" (self: ^NS.ToolbarItem, _: SEL, menuFormRepresentation: ^NS.MenuItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -226,7 +226,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMenuFormRepresentation:"), auto_cast setMenuFormRepresentation, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.tag != nil {
-        tag :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> NS.Integer {
+        tag :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -236,7 +236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tag"), auto_cast tag, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setTag != nil {
-        setTag :: proc "c" (self: ^AK.ToolbarItem, _: SEL, tag: NS.Integer) {
+        setTag :: proc "c" (self: ^NS.ToolbarItem, _: SEL, tag: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -246,7 +246,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTag:"), auto_cast setTag, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.target != nil {
-        target :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> id {
+        target :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -256,7 +256,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("target"), auto_cast target, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTarget != nil {
-        setTarget :: proc "c" (self: ^AK.ToolbarItem, _: SEL, target: id) {
+        setTarget :: proc "c" (self: ^NS.ToolbarItem, _: SEL, target: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -266,7 +266,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTarget:"), auto_cast setTarget, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.action != nil {
-        action :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> SEL {
+        action :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> SEL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -276,7 +276,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("action"), auto_cast action, ":@:") do panic("Failed to register objC method.")
     }
     if vt.setAction != nil {
-        setAction :: proc "c" (self: ^AK.ToolbarItem, _: SEL, action: SEL) {
+        setAction :: proc "c" (self: ^NS.ToolbarItem, _: SEL, action: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -286,7 +286,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAction:"), auto_cast setAction, "v@::") do panic("Failed to register objC method.")
     }
     if vt.isEnabled != nil {
-        isEnabled :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> bool {
+        isEnabled :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -296,7 +296,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEnabled"), auto_cast isEnabled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setEnabled != nil {
-        setEnabled :: proc "c" (self: ^AK.ToolbarItem, _: SEL, enabled: bool) {
+        setEnabled :: proc "c" (self: ^NS.ToolbarItem, _: SEL, enabled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -306,7 +306,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEnabled:"), auto_cast setEnabled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -316,7 +316,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.ToolbarItem, _: SEL, image: ^AK.Image) {
+        setImage :: proc "c" (self: ^NS.ToolbarItem, _: SEL, image: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -326,7 +326,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.title != nil {
-        title :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^NS.String {
+        title :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -336,7 +336,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.ToolbarItem, _: SEL, title: ^NS.String) {
+        setTitle :: proc "c" (self: ^NS.ToolbarItem, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -346,7 +346,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isBordered != nil {
-        isBordered :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> bool {
+        isBordered :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -356,7 +356,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isBordered"), auto_cast isBordered, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setBordered != nil {
-        setBordered :: proc "c" (self: ^AK.ToolbarItem, _: SEL, bordered: bool) {
+        setBordered :: proc "c" (self: ^NS.ToolbarItem, _: SEL, bordered: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -366,7 +366,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBordered:"), auto_cast setBordered, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.backgroundTintColor != nil {
-        backgroundTintColor :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^AK.Color {
+        backgroundTintColor :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -376,7 +376,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundTintColor"), auto_cast backgroundTintColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundTintColor != nil {
-        setBackgroundTintColor :: proc "c" (self: ^AK.ToolbarItem, _: SEL, backgroundTintColor: ^AK.Color) {
+        setBackgroundTintColor :: proc "c" (self: ^NS.ToolbarItem, _: SEL, backgroundTintColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -386,7 +386,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundTintColor:"), auto_cast setBackgroundTintColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.style != nil {
-        style :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> AK.ToolbarItemStyle {
+        style :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> NS.ToolbarItemStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -396,7 +396,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("style"), auto_cast style, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setStyle != nil {
-        setStyle :: proc "c" (self: ^AK.ToolbarItem, _: SEL, style: AK.ToolbarItemStyle) {
+        setStyle :: proc "c" (self: ^NS.ToolbarItem, _: SEL, style: NS.ToolbarItemStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -406,7 +406,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setStyle:"), auto_cast setStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.isNavigational != nil {
-        isNavigational :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> bool {
+        isNavigational :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -416,7 +416,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isNavigational"), auto_cast isNavigational, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setNavigational != nil {
-        setNavigational :: proc "c" (self: ^AK.ToolbarItem, _: SEL, navigational: bool) {
+        setNavigational :: proc "c" (self: ^NS.ToolbarItem, _: SEL, navigational: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -426,7 +426,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNavigational:"), auto_cast setNavigational, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.view != nil {
-        view :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^AK.View {
+        view :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -436,7 +436,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("view"), auto_cast view, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setView != nil {
-        setView :: proc "c" (self: ^AK.ToolbarItem, _: SEL, view: ^AK.View) {
+        setView :: proc "c" (self: ^NS.ToolbarItem, _: SEL, view: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -446,7 +446,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setView:"), auto_cast setView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isVisible != nil {
-        isVisible :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> bool {
+        isVisible :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -456,7 +456,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isVisible"), auto_cast isVisible, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isHidden != nil {
-        isHidden :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> bool {
+        isHidden :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -466,7 +466,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isHidden"), auto_cast isHidden, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHidden != nil {
-        setHidden :: proc "c" (self: ^AK.ToolbarItem, _: SEL, hidden: bool) {
+        setHidden :: proc "c" (self: ^NS.ToolbarItem, _: SEL, hidden: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -476,7 +476,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHidden:"), auto_cast setHidden, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.minSize != nil {
-        minSize :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> NS.Size {
+        minSize :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -486,7 +486,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minSize"), auto_cast minSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setMinSize != nil {
-        setMinSize :: proc "c" (self: ^AK.ToolbarItem, _: SEL, minSize: NS.Size) {
+        setMinSize :: proc "c" (self: ^NS.ToolbarItem, _: SEL, minSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -496,7 +496,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinSize:"), auto_cast setMinSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.maxSize != nil {
-        maxSize :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> NS.Size {
+        maxSize :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -506,7 +506,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maxSize"), auto_cast maxSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setMaxSize != nil {
-        setMaxSize :: proc "c" (self: ^AK.ToolbarItem, _: SEL, maxSize: NS.Size) {
+        setMaxSize :: proc "c" (self: ^NS.ToolbarItem, _: SEL, maxSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -516,7 +516,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaxSize:"), auto_cast setMaxSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.visibilityPriority != nil {
-        visibilityPriority :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> AK.ToolbarItemVisibilityPriority {
+        visibilityPriority :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> NS.ToolbarItemVisibilityPriority {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -526,7 +526,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("visibilityPriority"), auto_cast visibilityPriority, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setVisibilityPriority != nil {
-        setVisibilityPriority :: proc "c" (self: ^AK.ToolbarItem, _: SEL, visibilityPriority: AK.ToolbarItemVisibilityPriority) {
+        setVisibilityPriority :: proc "c" (self: ^NS.ToolbarItem, _: SEL, visibilityPriority: NS.ToolbarItemVisibilityPriority) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -536,7 +536,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVisibilityPriority:"), auto_cast setVisibilityPriority, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.badge != nil {
-        badge :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> ^AK.ItemBadge {
+        badge :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> ^NS.ItemBadge {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -546,7 +546,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("badge"), auto_cast badge, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBadge != nil {
-        setBadge :: proc "c" (self: ^AK.ToolbarItem, _: SEL, badge: ^AK.ItemBadge) {
+        setBadge :: proc "c" (self: ^NS.ToolbarItem, _: SEL, badge: ^NS.ItemBadge) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -556,7 +556,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBadge:"), auto_cast setBadge, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.autovalidates != nil {
-        autovalidates :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> bool {
+        autovalidates :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -566,7 +566,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autovalidates"), auto_cast autovalidates, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutovalidates != nil {
-        setAutovalidates :: proc "c" (self: ^AK.ToolbarItem, _: SEL, autovalidates: bool) {
+        setAutovalidates :: proc "c" (self: ^NS.ToolbarItem, _: SEL, autovalidates: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -576,7 +576,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutovalidates:"), auto_cast setAutovalidates, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsDuplicatesInToolbar != nil {
-        allowsDuplicatesInToolbar :: proc "c" (self: ^AK.ToolbarItem, _: SEL) -> bool {
+        allowsDuplicatesInToolbar :: proc "c" (self: ^NS.ToolbarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

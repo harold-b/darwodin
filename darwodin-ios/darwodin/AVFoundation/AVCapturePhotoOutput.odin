@@ -31,7 +31,7 @@ foreign lib {
     CapturePhotoOutput_capturePhotoWithSettings :: proc(self: ^CapturePhotoOutput, settings: ^CapturePhotoSettings, delegate: ^CapturePhotoCaptureDelegate) ---
 
     @(objc_type=CapturePhotoOutput, objc_selector="setPreparedPhotoSettingsArray:completionHandler:", objc_name="setPreparedPhotoSettingsArray")
-    CapturePhotoOutput_setPreparedPhotoSettingsArray :: proc(self: ^CapturePhotoOutput, preparedPhotoSettingsArray: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (prepared: bool, error: ^NS.Error))) ---
+    CapturePhotoOutput_setPreparedPhotoSettingsArray :: proc(self: ^CapturePhotoOutput, preparedPhotoSettingsArray: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( prepared: bool, error: ^NS.Error ))) ---
 
     @(objc_type=CapturePhotoOutput, objc_selector="isBayerRAWPixelFormat:", objc_name="isBayerRAWPixelFormat", objc_is_class_method=true)
     CapturePhotoOutput_isBayerRAWPixelFormat :: proc(pixelFormat: CF.OSType) -> bool ---

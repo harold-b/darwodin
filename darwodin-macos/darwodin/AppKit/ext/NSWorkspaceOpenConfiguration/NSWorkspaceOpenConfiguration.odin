@@ -20,39 +20,39 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
     configuration: proc() -> instancetype,
-    promptsUserIfNeeded: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
-    setPromptsUserIfNeeded: proc(self: ^AK.WorkspaceOpenConfiguration, promptsUserIfNeeded: bool),
-    addsToRecentItems: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
-    setAddsToRecentItems: proc(self: ^AK.WorkspaceOpenConfiguration, addsToRecentItems: bool),
-    activates: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
-    setActivates: proc(self: ^AK.WorkspaceOpenConfiguration, activates: bool),
-    hides: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
-    setHides: proc(self: ^AK.WorkspaceOpenConfiguration, hides: bool),
-    hidesOthers: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
-    setHidesOthers: proc(self: ^AK.WorkspaceOpenConfiguration, hidesOthers: bool),
-    isForPrinting: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
-    setForPrinting: proc(self: ^AK.WorkspaceOpenConfiguration, forPrinting: bool),
-    createsNewApplicationInstance: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
-    setCreatesNewApplicationInstance: proc(self: ^AK.WorkspaceOpenConfiguration, createsNewApplicationInstance: bool),
-    allowsRunningApplicationSubstitution: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
-    setAllowsRunningApplicationSubstitution: proc(self: ^AK.WorkspaceOpenConfiguration, allowsRunningApplicationSubstitution: bool),
-    arguments: proc(self: ^AK.WorkspaceOpenConfiguration) -> ^NS.Array,
-    setArguments: proc(self: ^AK.WorkspaceOpenConfiguration, arguments: ^NS.Array),
-    environment: proc(self: ^AK.WorkspaceOpenConfiguration) -> ^NS.Dictionary,
-    setEnvironment: proc(self: ^AK.WorkspaceOpenConfiguration, environment: ^NS.Dictionary),
-    appleEvent: proc(self: ^AK.WorkspaceOpenConfiguration) -> ^NS.AppleEventDescriptor,
-    setAppleEvent: proc(self: ^AK.WorkspaceOpenConfiguration, appleEvent: ^NS.AppleEventDescriptor),
-    architecture: proc(self: ^AK.WorkspaceOpenConfiguration) -> mach.cpu_type_t,
-    setArchitecture: proc(self: ^AK.WorkspaceOpenConfiguration, architecture: mach.cpu_type_t),
-    requiresUniversalLinks: proc(self: ^AK.WorkspaceOpenConfiguration) -> bool,
-    setRequiresUniversalLinks: proc(self: ^AK.WorkspaceOpenConfiguration, requiresUniversalLinks: bool),
+    promptsUserIfNeeded: proc(self: ^NS.WorkspaceOpenConfiguration) -> bool,
+    setPromptsUserIfNeeded: proc(self: ^NS.WorkspaceOpenConfiguration, promptsUserIfNeeded: bool),
+    addsToRecentItems: proc(self: ^NS.WorkspaceOpenConfiguration) -> bool,
+    setAddsToRecentItems: proc(self: ^NS.WorkspaceOpenConfiguration, addsToRecentItems: bool),
+    activates: proc(self: ^NS.WorkspaceOpenConfiguration) -> bool,
+    setActivates: proc(self: ^NS.WorkspaceOpenConfiguration, activates: bool),
+    hides: proc(self: ^NS.WorkspaceOpenConfiguration) -> bool,
+    setHides: proc(self: ^NS.WorkspaceOpenConfiguration, hides: bool),
+    hidesOthers: proc(self: ^NS.WorkspaceOpenConfiguration) -> bool,
+    setHidesOthers: proc(self: ^NS.WorkspaceOpenConfiguration, hidesOthers: bool),
+    isForPrinting: proc(self: ^NS.WorkspaceOpenConfiguration) -> bool,
+    setForPrinting: proc(self: ^NS.WorkspaceOpenConfiguration, forPrinting: bool),
+    createsNewApplicationInstance: proc(self: ^NS.WorkspaceOpenConfiguration) -> bool,
+    setCreatesNewApplicationInstance: proc(self: ^NS.WorkspaceOpenConfiguration, createsNewApplicationInstance: bool),
+    allowsRunningApplicationSubstitution: proc(self: ^NS.WorkspaceOpenConfiguration) -> bool,
+    setAllowsRunningApplicationSubstitution: proc(self: ^NS.WorkspaceOpenConfiguration, allowsRunningApplicationSubstitution: bool),
+    arguments: proc(self: ^NS.WorkspaceOpenConfiguration) -> ^NS.Array,
+    setArguments: proc(self: ^NS.WorkspaceOpenConfiguration, arguments: ^NS.Array),
+    environment: proc(self: ^NS.WorkspaceOpenConfiguration) -> ^NS.Dictionary,
+    setEnvironment: proc(self: ^NS.WorkspaceOpenConfiguration, environment: ^NS.Dictionary),
+    appleEvent: proc(self: ^NS.WorkspaceOpenConfiguration) -> ^NS.AppleEventDescriptor,
+    setAppleEvent: proc(self: ^NS.WorkspaceOpenConfiguration, appleEvent: ^NS.AppleEventDescriptor),
+    architecture: proc(self: ^NS.WorkspaceOpenConfiguration) -> mach.cpu_type_t,
+    setArchitecture: proc(self: ^NS.WorkspaceOpenConfiguration, architecture: mach.cpu_type_t),
+    requiresUniversalLinks: proc(self: ^NS.WorkspaceOpenConfiguration) -> bool,
+    setRequiresUniversalLinks: proc(self: ^NS.WorkspaceOpenConfiguration, requiresUniversalLinks: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configuration"), auto_cast configuration, "@#:") do panic("Failed to register objC method.")
     }
     if vt.promptsUserIfNeeded != nil {
-        promptsUserIfNeeded :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> bool {
+        promptsUserIfNeeded :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("promptsUserIfNeeded"), auto_cast promptsUserIfNeeded, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setPromptsUserIfNeeded != nil {
-        setPromptsUserIfNeeded :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, promptsUserIfNeeded: bool) {
+        setPromptsUserIfNeeded :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, promptsUserIfNeeded: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPromptsUserIfNeeded:"), auto_cast setPromptsUserIfNeeded, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.addsToRecentItems != nil {
-        addsToRecentItems :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> bool {
+        addsToRecentItems :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addsToRecentItems"), auto_cast addsToRecentItems, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAddsToRecentItems != nil {
-        setAddsToRecentItems :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, addsToRecentItems: bool) {
+        setAddsToRecentItems :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, addsToRecentItems: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAddsToRecentItems:"), auto_cast setAddsToRecentItems, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.activates != nil {
-        activates :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> bool {
+        activates :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activates"), auto_cast activates, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setActivates != nil {
-        setActivates :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, activates: bool) {
+        setActivates :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, activates: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setActivates:"), auto_cast setActivates, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.hides != nil {
-        hides :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> bool {
+        hides :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hides"), auto_cast hides, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHides != nil {
-        setHides :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, hides: bool) {
+        setHides :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, hides: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHides:"), auto_cast setHides, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.hidesOthers != nil {
-        hidesOthers :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> bool {
+        hidesOthers :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hidesOthers"), auto_cast hidesOthers, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHidesOthers != nil {
-        setHidesOthers :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, hidesOthers: bool) {
+        setHidesOthers :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, hidesOthers: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHidesOthers:"), auto_cast setHidesOthers, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isForPrinting != nil {
-        isForPrinting :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> bool {
+        isForPrinting :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isForPrinting"), auto_cast isForPrinting, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setForPrinting != nil {
-        setForPrinting :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, forPrinting: bool) {
+        setForPrinting :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, forPrinting: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setForPrinting:"), auto_cast setForPrinting, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.createsNewApplicationInstance != nil {
-        createsNewApplicationInstance :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> bool {
+        createsNewApplicationInstance :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -203,7 +203,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("createsNewApplicationInstance"), auto_cast createsNewApplicationInstance, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setCreatesNewApplicationInstance != nil {
-        setCreatesNewApplicationInstance :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, createsNewApplicationInstance: bool) {
+        setCreatesNewApplicationInstance :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, createsNewApplicationInstance: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCreatesNewApplicationInstance:"), auto_cast setCreatesNewApplicationInstance, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsRunningApplicationSubstitution != nil {
-        allowsRunningApplicationSubstitution :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> bool {
+        allowsRunningApplicationSubstitution :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsRunningApplicationSubstitution"), auto_cast allowsRunningApplicationSubstitution, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsRunningApplicationSubstitution != nil {
-        setAllowsRunningApplicationSubstitution :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, allowsRunningApplicationSubstitution: bool) {
+        setAllowsRunningApplicationSubstitution :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, allowsRunningApplicationSubstitution: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsRunningApplicationSubstitution:"), auto_cast setAllowsRunningApplicationSubstitution, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.arguments != nil {
-        arguments :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> ^NS.Array {
+        arguments :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("arguments"), auto_cast arguments, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setArguments != nil {
-        setArguments :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, arguments: ^NS.Array) {
+        setArguments :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, arguments: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setArguments:"), auto_cast setArguments, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.environment != nil {
-        environment :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> ^NS.Dictionary {
+        environment :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -263,7 +263,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("environment"), auto_cast environment, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setEnvironment != nil {
-        setEnvironment :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, environment: ^NS.Dictionary) {
+        setEnvironment :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, environment: ^NS.Dictionary) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -273,7 +273,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEnvironment:"), auto_cast setEnvironment, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.appleEvent != nil {
-        appleEvent :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> ^NS.AppleEventDescriptor {
+        appleEvent :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> ^NS.AppleEventDescriptor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -283,7 +283,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("appleEvent"), auto_cast appleEvent, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAppleEvent != nil {
-        setAppleEvent :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, appleEvent: ^NS.AppleEventDescriptor) {
+        setAppleEvent :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, appleEvent: ^NS.AppleEventDescriptor) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -293,7 +293,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAppleEvent:"), auto_cast setAppleEvent, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.architecture != nil {
-        architecture :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> mach.cpu_type_t {
+        architecture :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> mach.cpu_type_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -303,7 +303,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("architecture"), auto_cast architecture, "i@:") do panic("Failed to register objC method.")
     }
     if vt.setArchitecture != nil {
-        setArchitecture :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, architecture: mach.cpu_type_t) {
+        setArchitecture :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, architecture: mach.cpu_type_t) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -313,7 +313,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setArchitecture:"), auto_cast setArchitecture, "v@:i") do panic("Failed to register objC method.")
     }
     if vt.requiresUniversalLinks != nil {
-        requiresUniversalLinks :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL) -> bool {
+        requiresUniversalLinks :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -323,7 +323,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("requiresUniversalLinks"), auto_cast requiresUniversalLinks, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setRequiresUniversalLinks != nil {
-        setRequiresUniversalLinks :: proc "c" (self: ^AK.WorkspaceOpenConfiguration, _: SEL, requiresUniversalLinks: bool) {
+        setRequiresUniversalLinks :: proc "c" (self: ^NS.WorkspaceOpenConfiguration, _: SEL, requiresUniversalLinks: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

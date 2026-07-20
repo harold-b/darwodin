@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4ArgumentTable
-///
 @(objc_class="MTL4ArgumentTable")
 MTL4ArgumentTable :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4ArgumentTable, objc_selector="setAddress:atIndex:", objc_name="setAddress_atIndex")
     MTL4ArgumentTable_setAddress_atIndex :: proc(self: ^MTL4ArgumentTable, gpuAddress: GPUAddress, bindingIndex: NS.UInteger) ---
@@ -44,6 +38,8 @@ foreign lib {
     @(objc_type=MTL4ArgumentTable, objc_selector="label", objc_name="label")
     MTL4ArgumentTable_label :: proc(self: ^MTL4ArgumentTable) -> ^NS.String ---
 }
+
+
 
 @(objc_type=MTL4ArgumentTable, objc_name="setAddress")
 MTL4ArgumentTable_setAddress :: proc {

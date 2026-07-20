@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSNotificationQueue
-///
 @(objc_class="NSNotificationQueue", objc_superclass=Object)
 NotificationQueue :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=NotificationQueue, objc_selector="initWithNotificationCenter:", objc_name="initWithNotificationCenter")
     NotificationQueue_initWithNotificationCenter :: proc(self: ^NotificationQueue, notificationCenter: ^NotificationCenter) -> instancetype ---
@@ -34,6 +28,8 @@ foreign lib {
     @(objc_type=NotificationQueue, objc_selector="defaultQueue", objc_name="defaultQueue", objc_is_class_method=true)
     NotificationQueue_defaultQueue :: proc() -> ^NotificationQueue ---
 }
+
+
 
 @(objc_type=NotificationQueue, objc_name="enqueueNotification")
 NotificationQueue_enqueueNotification :: proc {

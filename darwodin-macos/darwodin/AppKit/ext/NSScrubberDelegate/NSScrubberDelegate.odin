@@ -20,15 +20,15 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    scrubber_didSelectItemAtIndex: proc(self: ^AK.ScrubberDelegate, scrubber: ^AK.Scrubber, selectedIndex: NS.Integer),
-    scrubber_didHighlightItemAtIndex: proc(self: ^AK.ScrubberDelegate, scrubber: ^AK.Scrubber, highlightedIndex: NS.Integer),
-    scrubber_didChangeVisibleRange: proc(self: ^AK.ScrubberDelegate, scrubber: ^AK.Scrubber, visibleRange: NS._NSRange),
-    didBeginInteractingWithScrubber: proc(self: ^AK.ScrubberDelegate, scrubber: ^AK.Scrubber),
-    didFinishInteractingWithScrubber: proc(self: ^AK.ScrubberDelegate, scrubber: ^AK.Scrubber),
-    didCancelInteractingWithScrubber: proc(self: ^AK.ScrubberDelegate, scrubber: ^AK.Scrubber),
+    scrubber_didSelectItemAtIndex: proc(self: ^NS.ScrubberDelegate, scrubber: ^NS.Scrubber, selectedIndex: NS.Integer),
+    scrubber_didHighlightItemAtIndex: proc(self: ^NS.ScrubberDelegate, scrubber: ^NS.Scrubber, highlightedIndex: NS.Integer),
+    scrubber_didChangeVisibleRange: proc(self: ^NS.ScrubberDelegate, scrubber: ^NS.Scrubber, visibleRange: NS._NSRange),
+    didBeginInteractingWithScrubber: proc(self: ^NS.ScrubberDelegate, scrubber: ^NS.Scrubber),
+    didFinishInteractingWithScrubber: proc(self: ^NS.ScrubberDelegate, scrubber: ^NS.Scrubber),
+    didCancelInteractingWithScrubber: proc(self: ^NS.ScrubberDelegate, scrubber: ^NS.Scrubber),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -36,7 +36,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.scrubber_didSelectItemAtIndex != nil {
-        scrubber_didSelectItemAtIndex :: proc "c" (self: ^AK.ScrubberDelegate, _: SEL, scrubber: ^AK.Scrubber, selectedIndex: NS.Integer) {
+        scrubber_didSelectItemAtIndex :: proc "c" (self: ^NS.ScrubberDelegate, _: SEL, scrubber: ^NS.Scrubber, selectedIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrubber:didSelectItemAtIndex:"), auto_cast scrubber_didSelectItemAtIndex, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.scrubber_didHighlightItemAtIndex != nil {
-        scrubber_didHighlightItemAtIndex :: proc "c" (self: ^AK.ScrubberDelegate, _: SEL, scrubber: ^AK.Scrubber, highlightedIndex: NS.Integer) {
+        scrubber_didHighlightItemAtIndex :: proc "c" (self: ^NS.ScrubberDelegate, _: SEL, scrubber: ^NS.Scrubber, highlightedIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrubber:didHighlightItemAtIndex:"), auto_cast scrubber_didHighlightItemAtIndex, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.scrubber_didChangeVisibleRange != nil {
-        scrubber_didChangeVisibleRange :: proc "c" (self: ^AK.ScrubberDelegate, _: SEL, scrubber: ^AK.Scrubber, visibleRange: NS._NSRange) {
+        scrubber_didChangeVisibleRange :: proc "c" (self: ^NS.ScrubberDelegate, _: SEL, scrubber: ^NS.Scrubber, visibleRange: NS._NSRange) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrubber:didChangeVisibleRange:"), auto_cast scrubber_didChangeVisibleRange, "v@:@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.didBeginInteractingWithScrubber != nil {
-        didBeginInteractingWithScrubber :: proc "c" (self: ^AK.ScrubberDelegate, _: SEL, scrubber: ^AK.Scrubber) {
+        didBeginInteractingWithScrubber :: proc "c" (self: ^NS.ScrubberDelegate, _: SEL, scrubber: ^NS.Scrubber) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didBeginInteractingWithScrubber:"), auto_cast didBeginInteractingWithScrubber, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.didFinishInteractingWithScrubber != nil {
-        didFinishInteractingWithScrubber :: proc "c" (self: ^AK.ScrubberDelegate, _: SEL, scrubber: ^AK.Scrubber) {
+        didFinishInteractingWithScrubber :: proc "c" (self: ^NS.ScrubberDelegate, _: SEL, scrubber: ^NS.Scrubber) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didFinishInteractingWithScrubber:"), auto_cast didFinishInteractingWithScrubber, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.didCancelInteractingWithScrubber != nil {
-        didCancelInteractingWithScrubber :: proc "c" (self: ^AK.ScrubberDelegate, _: SEL, scrubber: ^AK.Scrubber) {
+        didCancelInteractingWithScrubber :: proc "c" (self: ^NS.ScrubberDelegate, _: SEL, scrubber: ^NS.Scrubber) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

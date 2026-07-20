@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptionRendererScene
-///
 @(objc_class="AVCaptionRendererScene", objc_superclass=NS.Object)
 CaptionRendererScene :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionRendererScene, objc_selector="init", objc_name="init")
     CaptionRendererScene_init :: proc(self: ^CaptionRendererScene) -> instancetype ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=CaptionRendererScene, objc_selector="needsPeriodicRefresh", objc_name="needsPeriodicRefresh")
     CaptionRendererScene_needsPeriodicRefresh :: proc(self: ^CaptionRendererScene) -> bool ---
 }
+
+
+

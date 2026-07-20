@@ -4,8 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
@@ -36,8 +35,8 @@ foreign lib {
     Agent3D_setRightHanded :: proc(self: ^Agent3D, rightHanded: bool) ---
 
     @(objc_type=Agent3D, objc_selector="rotation", objc_name="rotation")
-    Agent3D_rotation :: proc(self: ^Agent3D) -> matrix_float3x3 ---
+    Agent3D_rotation :: proc(self: ^Agent3D) -> matrix[3,3]f32 ---
 
     @(objc_type=Agent3D, objc_selector="setRotation:", objc_name="setRotation")
-    Agent3D_setRotation :: proc(self: ^Agent3D, rotation: matrix_float3x3) ---
+    Agent3D_setRotation :: proc(self: ^Agent3D, rotation: matrix[3,3]f32) ---
 }

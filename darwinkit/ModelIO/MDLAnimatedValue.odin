@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAnimatedValue
-///
 @(objc_class="MDLAnimatedValue", objc_superclass=NS.Object)
 AnimatedValue :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimatedValue, objc_selector="isAnimated", objc_name="isAnimated")
     AnimatedValue_isAnimated :: proc(self: ^AnimatedValue) -> bool ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=AnimatedValue, objc_selector="keyTimes", objc_name="keyTimes")
     AnimatedValue_keyTimes :: proc(self: ^AnimatedValue) -> ^NS.Array ---
 }
+
+
+

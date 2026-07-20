@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    spacingForLeading: proc(leading: ^AK.CollectionLayoutSpacing, top: ^AK.CollectionLayoutSpacing, trailing: ^AK.CollectionLayoutSpacing, bottom: ^AK.CollectionLayoutSpacing) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutEdgeSpacing) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutEdgeSpacing,
-    leading: proc(self: ^AK.CollectionLayoutEdgeSpacing) -> ^AK.CollectionLayoutSpacing,
-    top: proc(self: ^AK.CollectionLayoutEdgeSpacing) -> ^AK.CollectionLayoutSpacing,
-    trailing: proc(self: ^AK.CollectionLayoutEdgeSpacing) -> ^AK.CollectionLayoutSpacing,
-    bottom: proc(self: ^AK.CollectionLayoutEdgeSpacing) -> ^AK.CollectionLayoutSpacing,
+    spacingForLeading: proc(leading: ^NS.CollectionLayoutSpacing, top: ^NS.CollectionLayoutSpacing, trailing: ^NS.CollectionLayoutSpacing, bottom: ^NS.CollectionLayoutSpacing) -> instancetype,
+    init: proc(self: ^NS.CollectionLayoutEdgeSpacing) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutEdgeSpacing,
+    leading: proc(self: ^NS.CollectionLayoutEdgeSpacing) -> ^NS.CollectionLayoutSpacing,
+    top: proc(self: ^NS.CollectionLayoutEdgeSpacing) -> ^NS.CollectionLayoutSpacing,
+    trailing: proc(self: ^NS.CollectionLayoutEdgeSpacing) -> ^NS.CollectionLayoutSpacing,
+    bottom: proc(self: ^NS.CollectionLayoutEdgeSpacing) -> ^NS.CollectionLayoutSpacing,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.spacingForLeading != nil {
-        spacingForLeading :: proc "c" (self: Class, _: SEL, leading: ^AK.CollectionLayoutSpacing, top: ^AK.CollectionLayoutSpacing, trailing: ^AK.CollectionLayoutSpacing, bottom: ^AK.CollectionLayoutSpacing) -> instancetype {
+        spacingForLeading :: proc "c" (self: Class, _: SEL, leading: ^NS.CollectionLayoutSpacing, top: ^NS.CollectionLayoutSpacing, trailing: ^NS.CollectionLayoutSpacing, bottom: ^NS.CollectionLayoutSpacing) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("spacingForLeading:top:trailing:bottom:"), auto_cast spacingForLeading, "@#:@@@@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutEdgeSpacing, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutEdgeSpacing, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutEdgeSpacing {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutEdgeSpacing {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.leading != nil {
-        leading :: proc "c" (self: ^AK.CollectionLayoutEdgeSpacing, _: SEL) -> ^AK.CollectionLayoutSpacing {
+        leading :: proc "c" (self: ^NS.CollectionLayoutEdgeSpacing, _: SEL) -> ^NS.CollectionLayoutSpacing {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("leading"), auto_cast leading, "@@:") do panic("Failed to register objC method.")
     }
     if vt.top != nil {
-        top :: proc "c" (self: ^AK.CollectionLayoutEdgeSpacing, _: SEL) -> ^AK.CollectionLayoutSpacing {
+        top :: proc "c" (self: ^NS.CollectionLayoutEdgeSpacing, _: SEL) -> ^NS.CollectionLayoutSpacing {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("top"), auto_cast top, "@@:") do panic("Failed to register objC method.")
     }
     if vt.trailing != nil {
-        trailing :: proc "c" (self: ^AK.CollectionLayoutEdgeSpacing, _: SEL) -> ^AK.CollectionLayoutSpacing {
+        trailing :: proc "c" (self: ^NS.CollectionLayoutEdgeSpacing, _: SEL) -> ^NS.CollectionLayoutSpacing {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("trailing"), auto_cast trailing, "@@:") do panic("Failed to register objC method.")
     }
     if vt.bottom != nil {
-        bottom :: proc "c" (self: ^AK.CollectionLayoutEdgeSpacing, _: SEL) -> ^AK.CollectionLayoutSpacing {
+        bottom :: proc "c" (self: ^NS.CollectionLayoutEdgeSpacing, _: SEL) -> ^NS.CollectionLayoutSpacing {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

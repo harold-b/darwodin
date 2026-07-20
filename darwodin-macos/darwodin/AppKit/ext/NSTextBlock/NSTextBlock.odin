@@ -20,33 +20,33 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.TextBlock) -> instancetype,
-    setValue: proc(self: ^AK.TextBlock, val: CG.Float, type: AK.TextBlockValueType, dimension: AK.TextBlockDimension),
-    valueForDimension: proc(self: ^AK.TextBlock, dimension: AK.TextBlockDimension) -> CG.Float,
-    valueTypeForDimension: proc(self: ^AK.TextBlock, dimension: AK.TextBlockDimension) -> AK.TextBlockValueType,
-    setContentWidth: proc(self: ^AK.TextBlock, val: CG.Float, type: AK.TextBlockValueType),
-    setWidth_type_forLayer_edge: proc(self: ^AK.TextBlock, val: CG.Float, type: AK.TextBlockValueType, layer: AK.TextBlockLayer, edge: NS.RectEdge),
-    setWidth_type_forLayer: proc(self: ^AK.TextBlock, val: CG.Float, type: AK.TextBlockValueType, layer: AK.TextBlockLayer),
-    widthForLayer: proc(self: ^AK.TextBlock, layer: AK.TextBlockLayer, edge: NS.RectEdge) -> CG.Float,
-    widthValueTypeForLayer: proc(self: ^AK.TextBlock, layer: AK.TextBlockLayer, edge: NS.RectEdge) -> AK.TextBlockValueType,
-    setBorderColor_forEdge: proc(self: ^AK.TextBlock, color: ^AK.Color, edge: NS.RectEdge),
-    setBorderColor_: proc(self: ^AK.TextBlock, color: ^AK.Color),
-    borderColorForEdge: proc(self: ^AK.TextBlock, edge: NS.RectEdge) -> ^AK.Color,
-    rectForLayoutAtPoint: proc(self: ^AK.TextBlock, startingPoint: CG.Point, rect: NS.Rect, textContainer: ^AK.TextContainer, charRange: NS._NSRange) -> NS.Rect,
-    boundsRectForContentRect: proc(self: ^AK.TextBlock, contentRect: NS.Rect, rect: NS.Rect, textContainer: ^AK.TextContainer, charRange: NS._NSRange) -> NS.Rect,
-    drawBackgroundWithFrame: proc(self: ^AK.TextBlock, frameRect: NS.Rect, controlView: ^AK.View, charRange: NS._NSRange, layoutManager: ^AK.LayoutManager),
-    contentWidth: proc(self: ^AK.TextBlock) -> CG.Float,
-    contentWidthValueType: proc(self: ^AK.TextBlock) -> AK.TextBlockValueType,
-    verticalAlignment: proc(self: ^AK.TextBlock) -> AK.TextBlockVerticalAlignment,
-    setVerticalAlignment: proc(self: ^AK.TextBlock, verticalAlignment: AK.TextBlockVerticalAlignment),
-    backgroundColor: proc(self: ^AK.TextBlock) -> ^AK.Color,
-    setBackgroundColor: proc(self: ^AK.TextBlock, backgroundColor: ^AK.Color),
+    init: proc(self: ^NS.TextBlock) -> instancetype,
+    setValue: proc(self: ^NS.TextBlock, val: CG.Float, type: NS.TextBlockValueType, dimension: NS.TextBlockDimension),
+    valueForDimension: proc(self: ^NS.TextBlock, dimension: NS.TextBlockDimension) -> CG.Float,
+    valueTypeForDimension: proc(self: ^NS.TextBlock, dimension: NS.TextBlockDimension) -> NS.TextBlockValueType,
+    setContentWidth: proc(self: ^NS.TextBlock, val: CG.Float, type: NS.TextBlockValueType),
+    setWidth_type_forLayer_edge: proc(self: ^NS.TextBlock, val: CG.Float, type: NS.TextBlockValueType, layer: NS.TextBlockLayer, edge: NS.RectEdge),
+    setWidth_type_forLayer: proc(self: ^NS.TextBlock, val: CG.Float, type: NS.TextBlockValueType, layer: NS.TextBlockLayer),
+    widthForLayer: proc(self: ^NS.TextBlock, layer: NS.TextBlockLayer, edge: NS.RectEdge) -> CG.Float,
+    widthValueTypeForLayer: proc(self: ^NS.TextBlock, layer: NS.TextBlockLayer, edge: NS.RectEdge) -> NS.TextBlockValueType,
+    setBorderColor_forEdge: proc(self: ^NS.TextBlock, color: ^NS.Color, edge: NS.RectEdge),
+    setBorderColor_: proc(self: ^NS.TextBlock, color: ^NS.Color),
+    borderColorForEdge: proc(self: ^NS.TextBlock, edge: NS.RectEdge) -> ^NS.Color,
+    rectForLayoutAtPoint: proc(self: ^NS.TextBlock, startingPoint: CG.Point, rect: NS.Rect, textContainer: ^NS.TextContainer, charRange: NS._NSRange) -> NS.Rect,
+    boundsRectForContentRect: proc(self: ^NS.TextBlock, contentRect: NS.Rect, rect: NS.Rect, textContainer: ^NS.TextContainer, charRange: NS._NSRange) -> NS.Rect,
+    drawBackgroundWithFrame: proc(self: ^NS.TextBlock, frameRect: NS.Rect, controlView: ^NS.View, charRange: NS._NSRange, layoutManager: ^NS.LayoutManager),
+    contentWidth: proc(self: ^NS.TextBlock) -> CG.Float,
+    contentWidthValueType: proc(self: ^NS.TextBlock) -> NS.TextBlockValueType,
+    verticalAlignment: proc(self: ^NS.TextBlock) -> NS.TextBlockVerticalAlignment,
+    setVerticalAlignment: proc(self: ^NS.TextBlock, verticalAlignment: NS.TextBlockVerticalAlignment),
+    backgroundColor: proc(self: ^NS.TextBlock) -> ^NS.Color,
+    setBackgroundColor: proc(self: ^NS.TextBlock, backgroundColor: ^NS.Color),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextBlock, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.TextBlock, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setValue != nil {
-        setValue :: proc "c" (self: ^AK.TextBlock, _: SEL, val: CG.Float, type: AK.TextBlockValueType, dimension: AK.TextBlockDimension) {
+        setValue :: proc "c" (self: ^NS.TextBlock, _: SEL, val: CG.Float, type: NS.TextBlockValueType, dimension: NS.TextBlockDimension) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setValue:type:forDimension:"), auto_cast setValue, "v@:dLL") do panic("Failed to register objC method.")
     }
     if vt.valueForDimension != nil {
-        valueForDimension :: proc "c" (self: ^AK.TextBlock, _: SEL, dimension: AK.TextBlockDimension) -> CG.Float {
+        valueForDimension :: proc "c" (self: ^NS.TextBlock, _: SEL, dimension: NS.TextBlockDimension) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("valueForDimension:"), auto_cast valueForDimension, "d@:L") do panic("Failed to register objC method.")
     }
     if vt.valueTypeForDimension != nil {
-        valueTypeForDimension :: proc "c" (self: ^AK.TextBlock, _: SEL, dimension: AK.TextBlockDimension) -> AK.TextBlockValueType {
+        valueTypeForDimension :: proc "c" (self: ^NS.TextBlock, _: SEL, dimension: NS.TextBlockDimension) -> NS.TextBlockValueType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("valueTypeForDimension:"), auto_cast valueTypeForDimension, "L@:L") do panic("Failed to register objC method.")
     }
     if vt.setContentWidth != nil {
-        setContentWidth :: proc "c" (self: ^AK.TextBlock, _: SEL, val: CG.Float, type: AK.TextBlockValueType) {
+        setContentWidth :: proc "c" (self: ^NS.TextBlock, _: SEL, val: CG.Float, type: NS.TextBlockValueType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentWidth:type:"), auto_cast setContentWidth, "v@:dL") do panic("Failed to register objC method.")
     }
     if vt.setWidth_type_forLayer_edge != nil {
-        setWidth_type_forLayer_edge :: proc "c" (self: ^AK.TextBlock, _: SEL, val: CG.Float, type: AK.TextBlockValueType, layer: AK.TextBlockLayer, edge: NS.RectEdge) {
+        setWidth_type_forLayer_edge :: proc "c" (self: ^NS.TextBlock, _: SEL, val: CG.Float, type: NS.TextBlockValueType, layer: NS.TextBlockLayer, edge: NS.RectEdge) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWidth:type:forLayer:edge:"), auto_cast setWidth_type_forLayer_edge, "v@:dLlL") do panic("Failed to register objC method.")
     }
     if vt.setWidth_type_forLayer != nil {
-        setWidth_type_forLayer :: proc "c" (self: ^AK.TextBlock, _: SEL, val: CG.Float, type: AK.TextBlockValueType, layer: AK.TextBlockLayer) {
+        setWidth_type_forLayer :: proc "c" (self: ^NS.TextBlock, _: SEL, val: CG.Float, type: NS.TextBlockValueType, layer: NS.TextBlockLayer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWidth:type:forLayer:"), auto_cast setWidth_type_forLayer, "v@:dLl") do panic("Failed to register objC method.")
     }
     if vt.widthForLayer != nil {
-        widthForLayer :: proc "c" (self: ^AK.TextBlock, _: SEL, layer: AK.TextBlockLayer, edge: NS.RectEdge) -> CG.Float {
+        widthForLayer :: proc "c" (self: ^NS.TextBlock, _: SEL, layer: NS.TextBlockLayer, edge: NS.RectEdge) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("widthForLayer:edge:"), auto_cast widthForLayer, "d@:lL") do panic("Failed to register objC method.")
     }
     if vt.widthValueTypeForLayer != nil {
-        widthValueTypeForLayer :: proc "c" (self: ^AK.TextBlock, _: SEL, layer: AK.TextBlockLayer, edge: NS.RectEdge) -> AK.TextBlockValueType {
+        widthValueTypeForLayer :: proc "c" (self: ^NS.TextBlock, _: SEL, layer: NS.TextBlockLayer, edge: NS.RectEdge) -> NS.TextBlockValueType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("widthValueTypeForLayer:edge:"), auto_cast widthValueTypeForLayer, "L@:lL") do panic("Failed to register objC method.")
     }
     if vt.setBorderColor_forEdge != nil {
-        setBorderColor_forEdge :: proc "c" (self: ^AK.TextBlock, _: SEL, color: ^AK.Color, edge: NS.RectEdge) {
+        setBorderColor_forEdge :: proc "c" (self: ^NS.TextBlock, _: SEL, color: ^NS.Color, edge: NS.RectEdge) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderColor:forEdge:"), auto_cast setBorderColor_forEdge, "v@:@L") do panic("Failed to register objC method.")
     }
     if vt.setBorderColor_ != nil {
-        setBorderColor_ :: proc "c" (self: ^AK.TextBlock, _: SEL, color: ^AK.Color) {
+        setBorderColor_ :: proc "c" (self: ^NS.TextBlock, _: SEL, color: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -167,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderColor:"), auto_cast setBorderColor_, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.borderColorForEdge != nil {
-        borderColorForEdge :: proc "c" (self: ^AK.TextBlock, _: SEL, edge: NS.RectEdge) -> ^AK.Color {
+        borderColorForEdge :: proc "c" (self: ^NS.TextBlock, _: SEL, edge: NS.RectEdge) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -177,7 +177,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("borderColorForEdge:"), auto_cast borderColorForEdge, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.rectForLayoutAtPoint != nil {
-        rectForLayoutAtPoint :: proc "c" (self: ^AK.TextBlock, _: SEL, startingPoint: CG.Point, rect: NS.Rect, textContainer: ^AK.TextContainer, charRange: NS._NSRange) -> NS.Rect {
+        rectForLayoutAtPoint :: proc "c" (self: ^NS.TextBlock, _: SEL, startingPoint: CG.Point, rect: NS.Rect, textContainer: ^NS.TextContainer, charRange: NS._NSRange) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -187,7 +187,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rectForLayoutAtPoint:inRect:textContainer:characterRange:"), auto_cast rectForLayoutAtPoint, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGPoint=dd}{CGRect={CGPoint=dd}{CGSize=dd}}@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.boundsRectForContentRect != nil {
-        boundsRectForContentRect :: proc "c" (self: ^AK.TextBlock, _: SEL, contentRect: NS.Rect, rect: NS.Rect, textContainer: ^AK.TextContainer, charRange: NS._NSRange) -> NS.Rect {
+        boundsRectForContentRect :: proc "c" (self: ^NS.TextBlock, _: SEL, contentRect: NS.Rect, rect: NS.Rect, textContainer: ^NS.TextContainer, charRange: NS._NSRange) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -197,7 +197,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("boundsRectForContentRect:inRect:textContainer:characterRange:"), auto_cast boundsRectForContentRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}{CGRect={CGPoint=dd}{CGSize=dd}}@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.drawBackgroundWithFrame != nil {
-        drawBackgroundWithFrame :: proc "c" (self: ^AK.TextBlock, _: SEL, frameRect: NS.Rect, controlView: ^AK.View, charRange: NS._NSRange, layoutManager: ^AK.LayoutManager) {
+        drawBackgroundWithFrame :: proc "c" (self: ^NS.TextBlock, _: SEL, frameRect: NS.Rect, controlView: ^NS.View, charRange: NS._NSRange, layoutManager: ^NS.LayoutManager) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -207,7 +207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawBackgroundWithFrame:inView:characterRange:layoutManager:"), auto_cast drawBackgroundWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@{_NSRange=LL}@") do panic("Failed to register objC method.")
     }
     if vt.contentWidth != nil {
-        contentWidth :: proc "c" (self: ^AK.TextBlock, _: SEL) -> CG.Float {
+        contentWidth :: proc "c" (self: ^NS.TextBlock, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -217,7 +217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentWidth"), auto_cast contentWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.contentWidthValueType != nil {
-        contentWidthValueType :: proc "c" (self: ^AK.TextBlock, _: SEL) -> AK.TextBlockValueType {
+        contentWidthValueType :: proc "c" (self: ^NS.TextBlock, _: SEL) -> NS.TextBlockValueType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -227,7 +227,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentWidthValueType"), auto_cast contentWidthValueType, "L@:") do panic("Failed to register objC method.")
     }
     if vt.verticalAlignment != nil {
-        verticalAlignment :: proc "c" (self: ^AK.TextBlock, _: SEL) -> AK.TextBlockVerticalAlignment {
+        verticalAlignment :: proc "c" (self: ^NS.TextBlock, _: SEL) -> NS.TextBlockVerticalAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -237,7 +237,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("verticalAlignment"), auto_cast verticalAlignment, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setVerticalAlignment != nil {
-        setVerticalAlignment :: proc "c" (self: ^AK.TextBlock, _: SEL, verticalAlignment: AK.TextBlockVerticalAlignment) {
+        setVerticalAlignment :: proc "c" (self: ^NS.TextBlock, _: SEL, verticalAlignment: NS.TextBlockVerticalAlignment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -247,7 +247,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticalAlignment:"), auto_cast setVerticalAlignment, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.backgroundColor != nil {
-        backgroundColor :: proc "c" (self: ^AK.TextBlock, _: SEL) -> ^AK.Color {
+        backgroundColor :: proc "c" (self: ^NS.TextBlock, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -257,7 +257,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundColor"), auto_cast backgroundColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundColor != nil {
-        setBackgroundColor :: proc "c" (self: ^AK.TextBlock, _: SEL, backgroundColor: ^AK.Color) {
+        setBackgroundColor :: proc "c" (self: ^NS.TextBlock, _: SEL, backgroundColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -1,0 +1,68 @@
+#+build darwin:default
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import CM "../CoreMedia"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSOpenGLView
+///
+@(objc_class="NSOpenGLView", objc_superclass=View)
+OpenGLView :: struct { using _: View, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=OpenGLView, objc_selector="defaultPixelFormat", objc_name="defaultPixelFormat", objc_is_class_method=true)
+    OpenGLView_defaultPixelFormat :: proc() -> ^OpenGLPixelFormat ---
+
+    @(objc_type=OpenGLView, objc_selector="initWithFrame:pixelFormat:", objc_name="initWithFrame")
+    OpenGLView_initWithFrame :: proc(self: ^OpenGLView, frameRect: NS.Rect, format: ^OpenGLPixelFormat) -> instancetype ---
+
+    @(objc_type=OpenGLView, objc_selector="clearGLContext", objc_name="clearGLContext")
+    OpenGLView_clearGLContext :: proc(self: ^OpenGLView) ---
+
+    @(objc_type=OpenGLView, objc_selector="update", objc_name="update")
+    OpenGLView_update :: proc(self: ^OpenGLView) ---
+
+    @(objc_type=OpenGLView, objc_selector="reshape", objc_name="reshape")
+    OpenGLView_reshape :: proc(self: ^OpenGLView) ---
+
+    @(objc_type=OpenGLView, objc_selector="prepareOpenGL", objc_name="prepareOpenGL")
+    OpenGLView_prepareOpenGL :: proc(self: ^OpenGLView) ---
+
+    @(objc_type=OpenGLView, objc_selector="openGLContext", objc_name="openGLContext")
+    OpenGLView_openGLContext :: proc(self: ^OpenGLView) -> ^OpenGLContext ---
+
+    @(objc_type=OpenGLView, objc_selector="setOpenGLContext:", objc_name="setOpenGLContext")
+    OpenGLView_setOpenGLContext :: proc(self: ^OpenGLView, openGLContext: ^OpenGLContext) ---
+
+    @(objc_type=OpenGLView, objc_selector="pixelFormat", objc_name="pixelFormat")
+    OpenGLView_pixelFormat :: proc(self: ^OpenGLView) -> ^OpenGLPixelFormat ---
+
+    @(objc_type=OpenGLView, objc_selector="setPixelFormat:", objc_name="setPixelFormat")
+    OpenGLView_setPixelFormat :: proc(self: ^OpenGLView, pixelFormat: ^OpenGLPixelFormat) ---
+
+    @(objc_type=OpenGLView, objc_selector="wantsBestResolutionOpenGLSurface", objc_name="wantsBestResolutionOpenGLSurface")
+    OpenGLView_wantsBestResolutionOpenGLSurface :: proc(self: ^OpenGLView) -> bool ---
+
+    @(objc_type=OpenGLView, objc_selector="setWantsBestResolutionOpenGLSurface:", objc_name="setWantsBestResolutionOpenGLSurface")
+    OpenGLView_setWantsBestResolutionOpenGLSurface :: proc(self: ^OpenGLView, wantsBestResolutionOpenGLSurface: bool) ---
+
+    @(objc_type=OpenGLView, objc_selector="wantsExtendedDynamicRangeOpenGLSurface", objc_name="wantsExtendedDynamicRangeOpenGLSurface")
+    OpenGLView_wantsExtendedDynamicRangeOpenGLSurface :: proc(self: ^OpenGLView) -> bool ---
+
+    @(objc_type=OpenGLView, objc_selector="setWantsExtendedDynamicRangeOpenGLSurface:", objc_name="setWantsExtendedDynamicRangeOpenGLSurface")
+    OpenGLView_setWantsExtendedDynamicRangeOpenGLSurface :: proc(self: ^OpenGLView, wantsExtendedDynamicRangeOpenGLSurface: bool) ---
+}

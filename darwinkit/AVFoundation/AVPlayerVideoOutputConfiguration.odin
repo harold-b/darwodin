@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerVideoOutputConfiguration
-///
 @(objc_class="AVPlayerVideoOutputConfiguration", objc_superclass=NS.Object)
 PlayerVideoOutputConfiguration :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerVideoOutputConfiguration, objc_selector="init", objc_name="init")
     PlayerVideoOutputConfiguration_init :: proc(self: ^PlayerVideoOutputConfiguration) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=PlayerVideoOutputConfiguration, objc_selector="activationTime", objc_name="activationTime")
     PlayerVideoOutputConfiguration_activationTime :: proc(self: ^PlayerVideoOutputConfiguration) -> CM.Time ---
 }
+
+
+

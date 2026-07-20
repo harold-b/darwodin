@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureSession
-///
 @(objc_class="AVCaptureSession", objc_superclass=NS.Object)
 CaptureSession :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSession, objc_selector="canSetSessionPreset:", objc_name="canSetSessionPreset")
     CaptureSession_canSetSessionPreset :: proc(self: ^CaptureSession, preset: ^NS.String) -> bool ---
@@ -187,3 +181,6 @@ foreign lib {
     @(objc_type=CaptureSession, objc_selector="deferredStartDelegateCallbackQueue", objc_name="deferredStartDelegateCallbackQueue")
     CaptureSession_deferredStartDelegateCallbackQueue :: proc(self: ^CaptureSession) -> CF.dispatch_queue_t ---
 }
+
+
+

@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSViewController"
 
 VTable :: struct {
     super: NSViewController.VTable,
-    viewWillAppear: proc(self: ^AK.SplitViewItemAccessoryViewController),
-    viewDidAppear: proc(self: ^AK.SplitViewItemAccessoryViewController),
-    viewWillDisappear: proc(self: ^AK.SplitViewItemAccessoryViewController),
-    viewDidDisappear: proc(self: ^AK.SplitViewItemAccessoryViewController),
-    isHidden: proc(self: ^AK.SplitViewItemAccessoryViewController) -> bool,
-    setHidden: proc(self: ^AK.SplitViewItemAccessoryViewController, hidden: bool),
-    automaticallyAppliesContentInsets: proc(self: ^AK.SplitViewItemAccessoryViewController) -> bool,
-    setAutomaticallyAppliesContentInsets: proc(self: ^AK.SplitViewItemAccessoryViewController, automaticallyAppliesContentInsets: bool),
-    preferredScrollEdgeEffectStyle: proc(self: ^AK.SplitViewItemAccessoryViewController) -> ^AK.ScrollEdgeEffectStyle,
-    setPreferredScrollEdgeEffectStyle: proc(self: ^AK.SplitViewItemAccessoryViewController, preferredScrollEdgeEffectStyle: ^AK.ScrollEdgeEffectStyle),
+    viewWillAppear: proc(self: ^NS.SplitViewItemAccessoryViewController),
+    viewDidAppear: proc(self: ^NS.SplitViewItemAccessoryViewController),
+    viewWillDisappear: proc(self: ^NS.SplitViewItemAccessoryViewController),
+    viewDidDisappear: proc(self: ^NS.SplitViewItemAccessoryViewController),
+    isHidden: proc(self: ^NS.SplitViewItemAccessoryViewController) -> bool,
+    setHidden: proc(self: ^NS.SplitViewItemAccessoryViewController, hidden: bool),
+    automaticallyAppliesContentInsets: proc(self: ^NS.SplitViewItemAccessoryViewController) -> bool,
+    setAutomaticallyAppliesContentInsets: proc(self: ^NS.SplitViewItemAccessoryViewController, automaticallyAppliesContentInsets: bool),
+    preferredScrollEdgeEffectStyle: proc(self: ^NS.SplitViewItemAccessoryViewController) -> ^NS.ScrollEdgeEffectStyle,
+    setPreferredScrollEdgeEffectStyle: proc(self: ^NS.SplitViewItemAccessoryViewController, preferredScrollEdgeEffectStyle: ^NS.ScrollEdgeEffectStyle),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSViewController.extend(cls, &vt.super)
 
     if vt.viewWillAppear != nil {
-        viewWillAppear :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL) {
+        viewWillAppear :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewWillAppear"), auto_cast viewWillAppear, "v@:") do panic("Failed to register objC method.")
     }
     if vt.viewDidAppear != nil {
-        viewDidAppear :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL) {
+        viewDidAppear :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewDidAppear"), auto_cast viewDidAppear, "v@:") do panic("Failed to register objC method.")
     }
     if vt.viewWillDisappear != nil {
-        viewWillDisappear :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL) {
+        viewWillDisappear :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewWillDisappear"), auto_cast viewWillDisappear, "v@:") do panic("Failed to register objC method.")
     }
     if vt.viewDidDisappear != nil {
-        viewDidDisappear :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL) {
+        viewDidDisappear :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewDidDisappear"), auto_cast viewDidDisappear, "v@:") do panic("Failed to register objC method.")
     }
     if vt.isHidden != nil {
-        isHidden :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL) -> bool {
+        isHidden :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isHidden"), auto_cast isHidden, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHidden != nil {
-        setHidden :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL, hidden: bool) {
+        setHidden :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL, hidden: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHidden:"), auto_cast setHidden, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.automaticallyAppliesContentInsets != nil {
-        automaticallyAppliesContentInsets :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL) -> bool {
+        automaticallyAppliesContentInsets :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyAppliesContentInsets"), auto_cast automaticallyAppliesContentInsets, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyAppliesContentInsets != nil {
-        setAutomaticallyAppliesContentInsets :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL, automaticallyAppliesContentInsets: bool) {
+        setAutomaticallyAppliesContentInsets :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL, automaticallyAppliesContentInsets: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyAppliesContentInsets:"), auto_cast setAutomaticallyAppliesContentInsets, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.preferredScrollEdgeEffectStyle != nil {
-        preferredScrollEdgeEffectStyle :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL) -> ^AK.ScrollEdgeEffectStyle {
+        preferredScrollEdgeEffectStyle :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL) -> ^NS.ScrollEdgeEffectStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredScrollEdgeEffectStyle"), auto_cast preferredScrollEdgeEffectStyle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPreferredScrollEdgeEffectStyle != nil {
-        setPreferredScrollEdgeEffectStyle :: proc "c" (self: ^AK.SplitViewItemAccessoryViewController, _: SEL, preferredScrollEdgeEffectStyle: ^AK.ScrollEdgeEffectStyle) {
+        setPreferredScrollEdgeEffectStyle :: proc "c" (self: ^NS.SplitViewItemAccessoryViewController, _: SEL, preferredScrollEdgeEffectStyle: ^NS.ScrollEdgeEffectStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

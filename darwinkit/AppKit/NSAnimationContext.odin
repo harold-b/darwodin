@@ -25,10 +25,10 @@ AnimationContext :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimationContext, objc_selector="runAnimationGroup:completionHandler:", objc_name="runAnimationGroup_completionHandler", objc_is_class_method=true)
-    AnimationContext_runAnimationGroup_completionHandler :: proc(changes: ^Objc_Block(proc "c" (_context: ^AnimationContext)), completionHandler: ^Objc_Block(proc "c" ())) ---
+    AnimationContext_runAnimationGroup_completionHandler :: proc(changes: ^Objc_Block(proc "c" ( _context: ^AnimationContext )), completionHandler: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=AnimationContext, objc_selector="runAnimationGroup:", objc_name="runAnimationGroup_", objc_is_class_method=true)
-    AnimationContext_runAnimationGroup_ :: proc(changes: ^Objc_Block(proc "c" (_context: ^AnimationContext))) ---
+    AnimationContext_runAnimationGroup_ :: proc(changes: ^Objc_Block(proc "c" ( _context: ^AnimationContext ))) ---
 
     @(objc_type=AnimationContext, objc_selector="beginGrouping", objc_name="beginGrouping", objc_is_class_method=true)
     AnimationContext_beginGrouping :: proc() ---

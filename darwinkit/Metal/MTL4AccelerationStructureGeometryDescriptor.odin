@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4AccelerationStructureGeometryDescriptor
-///
 @(objc_class="MTL4AccelerationStructureGeometryDescriptor", objc_superclass=NS.Object)
 MTL4AccelerationStructureGeometryDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4AccelerationStructureGeometryDescriptor, objc_selector="intersectionFunctionTableOffset", objc_name="intersectionFunctionTableOffset")
     MTL4AccelerationStructureGeometryDescriptor_intersectionFunctionTableOffset :: proc(self: ^MTL4AccelerationStructureGeometryDescriptor) -> NS.UInteger ---
@@ -65,3 +59,6 @@ foreign lib {
     @(objc_type=MTL4AccelerationStructureGeometryDescriptor, objc_selector="setPrimitiveDataElementSize:", objc_name="setPrimitiveDataElementSize")
     MTL4AccelerationStructureGeometryDescriptor_setPrimitiveDataElementSize :: proc(self: ^MTL4AccelerationStructureGeometryDescriptor, primitiveDataElementSize: NS.UInteger) ---
 }
+
+
+

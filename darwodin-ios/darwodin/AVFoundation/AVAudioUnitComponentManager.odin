@@ -28,7 +28,7 @@ foreign lib {
     AudioUnitComponentManager_componentsMatchingPredicate :: proc(self: ^AudioUnitComponentManager, predicate: ^NS.Predicate) -> ^NS.Array ---
 
     @(objc_type=AudioUnitComponentManager, objc_selector="componentsPassingTest:", objc_name="componentsPassingTest")
-    AudioUnitComponentManager_componentsPassingTest :: proc(self: ^AudioUnitComponentManager, testHandler: ^Objc_Block(proc "c" (comp: ^AudioUnitComponent, stop: ^bool) -> bool)) -> ^NS.Array ---
+    AudioUnitComponentManager_componentsPassingTest :: proc(self: ^AudioUnitComponentManager, testHandler: ^Objc_Block(proc "c" ( comp: ^AudioUnitComponent, stop: ^bool ) -> bool)) -> ^NS.Array ---
 
     @(objc_type=AudioUnitComponentManager, objc_selector="componentsMatchingDescription:", objc_name="componentsMatchingDescription")
     AudioUnitComponentManager_componentsMatchingDescription :: proc(self: ^AudioUnitComponentManager, desc: Audio.ComponentDescription) -> ^NS.Array ---

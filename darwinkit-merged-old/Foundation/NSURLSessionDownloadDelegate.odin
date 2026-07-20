@@ -1,0 +1,40 @@
+#+build darwin
+package darwodin_Foundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import Sec "../Security"
+
+
+
+///
+/// NSURLSessionDownloadDelegate
+///
+@(objc_class="NSURLSessionDownloadDelegate")
+URLSessionDownloadDelegate :: struct { using _: intrinsics.objc_object, 
+    using _: URLSessionTaskDelegate,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=URLSessionDownloadDelegate, objc_selector="URLSession:downloadTask:didFinishDownloadingToURL:", objc_name="URLSession_downloadTask_didFinishDownloadingToURL")
+    URLSessionDownloadDelegate_URLSession_downloadTask_didFinishDownloadingToURL :: proc(self: ^URLSessionDownloadDelegate, session: ^URLSession, downloadTask: ^URLSessionDownloadTask, location: ^URL) ---
+
+    @(objc_type=URLSessionDownloadDelegate, objc_selector="URLSession:downloadTask:didWriteData:totalBytesWritten:totalBytesExpectedToWrite:", objc_name="URLSession_downloadTask_didWriteData_totalBytesWritten_totalBytesExpectedToWrite")
+    URLSessionDownloadDelegate_URLSession_downloadTask_didWriteData_totalBytesWritten_totalBytesExpectedToWrite :: proc(self: ^URLSessionDownloadDelegate, session: ^URLSession, downloadTask: ^URLSessionDownloadTask, bytesWritten: cffi.int64_t, totalBytesWritten: cffi.int64_t, totalBytesExpectedToWrite: cffi.int64_t) ---
+
+    @(objc_type=URLSessionDownloadDelegate, objc_selector="URLSession:downloadTask:didResumeAtOffset:expectedTotalBytes:", objc_name="URLSession_downloadTask_didResumeAtOffset_expectedTotalBytes")
+    URLSessionDownloadDelegate_URLSession_downloadTask_didResumeAtOffset_expectedTotalBytes :: proc(self: ^URLSessionDownloadDelegate, session: ^URLSession, downloadTask: ^URLSessionDownloadTask, fileOffset: cffi.int64_t, expectedTotalBytes: cffi.int64_t) ---
+}
+
+@(objc_type=URLSessionDownloadDelegate, objc_name="URLSession")
+URLSessionDownloadDelegate_URLSession :: proc {
+    URLSessionDownloadDelegate_URLSession_downloadTask_didFinishDownloadingToURL,
+    URLSessionDownloadDelegate_URLSession_downloadTask_didWriteData_totalBytesWritten_totalBytesExpectedToWrite,
+    URLSessionDownloadDelegate_URLSession_downloadTask_didResumeAtOffset_expectedTotalBytes,
+}
+

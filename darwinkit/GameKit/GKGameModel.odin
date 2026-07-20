@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKGameModel
-///
 @(objc_class="GKGameModel")
 GameModel :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=GameModel, objc_selector="setGameModel:", objc_name="setGameModel")
     GameModel_setGameModel :: proc(self: ^GameModel, gameModel: ^GameModel) ---
@@ -47,3 +41,6 @@ foreign lib {
     @(objc_type=GameModel, objc_selector="activePlayer", objc_name="activePlayer")
     GameModel_activePlayer :: proc(self: ^GameModel) -> ^GameModelPlayer ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetReaderAudioMixOutput
-///
 @(objc_class="AVAssetReaderAudioMixOutput", objc_superclass=AssetReaderOutput)
 AssetReaderAudioMixOutput :: struct { using _: AssetReaderOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderAudioMixOutput, objc_selector="init", objc_name="init")
     AssetReaderAudioMixOutput_init :: proc(self: ^AssetReaderAudioMixOutput) -> instancetype ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=AssetReaderAudioMixOutput, objc_selector="setAudioTimePitchAlgorithm:", objc_name="setAudioTimePitchAlgorithm")
     AssetReaderAudioMixOutput_setAudioTimePitchAlgorithm :: proc(self: ^AssetReaderAudioMixOutput, audioTimePitchAlgorithm: ^NS.String) ---
 }
+
+
+

@@ -38,10 +38,10 @@ VTable :: struct {
     setByAddingObject: proc(self: ^NS.Set, anObject: id) -> ^NS.Set,
     setByAddingObjectsFromSet: proc(self: ^NS.Set, other: ^NS.Set) -> ^NS.Set,
     setByAddingObjectsFromArray: proc(self: ^NS.Set, other: ^NS.Array) -> ^NS.Set,
-    enumerateObjectsUsingBlock: proc(self: ^NS.Set, block: ^Objc_Block(proc "c" (obj: id, stop: ^bool))),
-    enumerateObjectsWithOptions: proc(self: ^NS.Set, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, stop: ^bool))),
-    objectsPassingTest: proc(self: ^NS.Set, predicate: ^Objc_Block(proc "c" (obj: id, stop: ^bool) -> bool)) -> ^NS.Set,
-    objectsWithOptions: proc(self: ^NS.Set, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, stop: ^bool) -> bool)) -> ^NS.Set,
+    enumerateObjectsUsingBlock: proc(self: ^NS.Set, block: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ))),
+    enumerateObjectsWithOptions: proc(self: ^NS.Set, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ))),
+    objectsPassingTest: proc(self: ^NS.Set, predicate: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ) -> bool)) -> ^NS.Set,
+    objectsWithOptions: proc(self: ^NS.Set, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ) -> bool)) -> ^NS.Set,
     allObjects: proc(self: ^NS.Set) -> ^NS.Array,
     description: proc(self: ^NS.Set) -> ^NS.String,
     set: proc() -> instancetype,
@@ -241,7 +241,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setByAddingObjectsFromArray:"), auto_cast setByAddingObjectsFromArray, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.enumerateObjectsUsingBlock != nil {
-        enumerateObjectsUsingBlock :: proc "c" (self: ^NS.Set, _: SEL, block: ^Objc_Block(proc "c" (obj: id, stop: ^bool))) {
+        enumerateObjectsUsingBlock :: proc "c" (self: ^NS.Set, _: SEL, block: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -251,7 +251,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateObjectsUsingBlock:"), auto_cast enumerateObjectsUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.enumerateObjectsWithOptions != nil {
-        enumerateObjectsWithOptions :: proc "c" (self: ^NS.Set, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, stop: ^bool))) {
+        enumerateObjectsWithOptions :: proc "c" (self: ^NS.Set, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -261,7 +261,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateObjectsWithOptions:usingBlock:"), auto_cast enumerateObjectsWithOptions, "v@:L?") do panic("Failed to register objC method.")
     }
     if vt.objectsPassingTest != nil {
-        objectsPassingTest :: proc "c" (self: ^NS.Set, _: SEL, predicate: ^Objc_Block(proc "c" (obj: id, stop: ^bool) -> bool)) -> ^NS.Set {
+        objectsPassingTest :: proc "c" (self: ^NS.Set, _: SEL, predicate: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ) -> bool)) -> ^NS.Set {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -271,7 +271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("objectsPassingTest:"), auto_cast objectsPassingTest, "^void@:?") do panic("Failed to register objC method.")
     }
     if vt.objectsWithOptions != nil {
-        objectsWithOptions :: proc "c" (self: ^NS.Set, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, stop: ^bool) -> bool)) -> ^NS.Set {
+        objectsWithOptions :: proc "c" (self: ^NS.Set, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, stop: ^bool ) -> bool)) -> ^NS.Set {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

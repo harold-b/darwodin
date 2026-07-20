@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioEnvironmentDistanceAttenuationParameters
-///
 @(objc_class="AVAudioEnvironmentDistanceAttenuationParameters", objc_superclass=NS.Object)
 AudioEnvironmentDistanceAttenuationParameters :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioEnvironmentDistanceAttenuationParameters, objc_selector="init", objc_name="init")
     AudioEnvironmentDistanceAttenuationParameters_init :: proc(self: ^AudioEnvironmentDistanceAttenuationParameters) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=AudioEnvironmentDistanceAttenuationParameters, objc_selector="setRolloffFactor:", objc_name="setRolloffFactor")
     AudioEnvironmentDistanceAttenuationParameters_setRolloffFactor :: proc(self: ^AudioEnvironmentDistanceAttenuationParameters, rolloffFactor: cffi.float) ---
 }
+
+
+

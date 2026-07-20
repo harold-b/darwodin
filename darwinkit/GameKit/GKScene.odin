@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKScene
-///
 @(objc_class="GKScene", objc_superclass=NS.Object)
 Scene :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Scene, objc_selector="sceneWithFileNamed:", objc_name="sceneWithFileNamed_", objc_is_class_method=true)
     Scene_sceneWithFileNamed_ :: proc(filename: ^NS.String) -> instancetype ---
@@ -50,6 +44,8 @@ foreign lib {
     @(objc_type=Scene, objc_selector="graphs", objc_name="graphs")
     Scene_graphs :: proc(self: ^Scene) -> ^NS.Dictionary ---
 }
+
+
 
 @(objc_type=Scene, objc_name="sceneWithFileNamed")
 Scene_sceneWithFileNamed :: proc {

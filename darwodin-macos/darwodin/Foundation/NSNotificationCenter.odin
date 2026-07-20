@@ -37,7 +37,7 @@ foreign lib {
     NotificationCenter_removeObserver_name_object :: proc(self: ^NotificationCenter, observer: id, aName: ^String, anObject: id) ---
 
     @(objc_type=NotificationCenter, objc_selector="addObserverForName:object:queue:usingBlock:", objc_name="addObserverForName")
-    NotificationCenter_addObserverForName :: proc(self: ^NotificationCenter, name: ^String, obj: id, queue: ^OperationQueue, block: ^Objc_Block(proc "c" (notification: ^Notification))) -> ^ObjectProtocol ---
+    NotificationCenter_addObserverForName :: proc(self: ^NotificationCenter, name: ^String, obj: id, queue: ^OperationQueue, block: ^Objc_Block(proc "c" ( notification: ^Notification ))) -> ^ObjectProtocol ---
 
     @(objc_type=NotificationCenter, objc_selector="defaultCenter", objc_name="defaultCenter", objc_is_class_method=true)
     NotificationCenter_defaultCenter :: proc() -> ^NotificationCenter ---

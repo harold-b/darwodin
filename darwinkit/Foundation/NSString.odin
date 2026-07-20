@@ -9,11 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSString
-///
 @(objc_class="NSString", objc_superclass=Object)
 String :: struct { using _: Object, 
     using _: Copying,
@@ -21,7 +16,6 @@ String :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=String, objc_selector="characterAtIndex:", objc_name="characterAtIndex")
     String_characterAtIndex :: proc(self: ^String, index: UInteger) -> unichar ---
@@ -150,10 +144,10 @@ foreign lib {
     String_paragraphRangeForRange :: proc(self: ^String, range: _NSRange) -> _NSRange ---
 
     @(objc_type=String, objc_selector="enumerateSubstringsInRange:options:usingBlock:", objc_name="enumerateSubstringsInRange")
-    String_enumerateSubstringsInRange :: proc(self: ^String, range: _NSRange, opts: StringEnumerationOptions, block: ^Objc_Block(proc "c" (substring: ^String, substringRange: _NSRange, enclosingRange: _NSRange, stop: ^bool))) ---
+    String_enumerateSubstringsInRange :: proc(self: ^String, range: _NSRange, opts: StringEnumerationOptions, block: ^Objc_Block(proc "c" ( substring: ^String, substringRange: _NSRange, enclosingRange: _NSRange, stop: ^bool ))) ---
 
     @(objc_type=String, objc_selector="enumerateLinesUsingBlock:", objc_name="enumerateLinesUsingBlock")
-    String_enumerateLinesUsingBlock :: proc(self: ^String, block: ^Objc_Block(proc "c" (line: ^String, stop: ^bool))) ---
+    String_enumerateLinesUsingBlock :: proc(self: ^String, block: ^Objc_Block(proc "c" ( line: ^String, stop: ^bool ))) ---
 
     @(objc_type=String, objc_selector="dataUsingEncoding:allowLossyConversion:", objc_name="dataUsingEncoding_allowLossyConversion")
     String_dataUsingEncoding_allowLossyConversion :: proc(self: ^String, encoding: StringEncoding, lossy: bool) -> ^Data ---
@@ -219,7 +213,7 @@ foreign lib {
     String_initWithCharactersNoCopy_length_freeWhenDone :: proc(self: ^String, characters: ^unichar, length: UInteger, freeBuffer: bool) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithCharactersNoCopy:length:deallocator:", objc_name="initWithCharactersNoCopy_length_deallocator")
-    String_initWithCharactersNoCopy_length_deallocator :: proc(self: ^String, chars: ^unichar, len: UInteger, deallocator: ^Objc_Block(proc "c" (_: ^unichar, _1: UInteger))) -> instancetype ---
+    String_initWithCharactersNoCopy_length_deallocator :: proc(self: ^String, chars: ^unichar, len: UInteger, deallocator: ^Objc_Block(proc "c" ( _0: ^unichar, _1: UInteger ))) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithCharacters:length:", objc_name="initWithCharacters")
     String_initWithCharacters :: proc(self: ^String, characters: ^unichar, length: UInteger) -> instancetype ---
@@ -264,7 +258,7 @@ foreign lib {
     String_initWithBytesNoCopy_length_encoding_freeWhenDone :: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, freeBuffer: bool) -> instancetype ---
 
     @(objc_type=String, objc_selector="initWithBytesNoCopy:length:encoding:deallocator:", objc_name="initWithBytesNoCopy_length_encoding_deallocator")
-    String_initWithBytesNoCopy_length_encoding_deallocator :: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, deallocator: ^Objc_Block(proc "c" (_: rawptr, _1: UInteger))) -> instancetype ---
+    String_initWithBytesNoCopy_length_encoding_deallocator :: proc(self: ^String, bytes: rawptr, len: UInteger, encoding: StringEncoding, deallocator: ^Objc_Block(proc "c" ( _0: rawptr, _1: UInteger ))) -> instancetype ---
 
     @(objc_type=String, objc_selector="string", objc_name="string", objc_is_class_method=true)
     String_string :: proc() -> instancetype ---
@@ -522,8 +516,10 @@ foreign lib {
     String_linguisticTagsInRange :: proc(self: ^String, range: _NSRange, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, tokenRanges: ^^Array) -> ^Array ---
 
     @(objc_type=String, objc_selector="enumerateLinguisticTagsInRange:scheme:options:orthography:usingBlock:", objc_name="enumerateLinguisticTagsInRange")
-    String_enumerateLinguisticTagsInRange :: proc(self: ^String, range: _NSRange, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, block: ^Objc_Block(proc "c" (tag: ^String, tokenRange: _NSRange, sentenceRange: _NSRange, stop: ^bool))) ---
+    String_enumerateLinguisticTagsInRange :: proc(self: ^String, range: _NSRange, scheme: ^String, options: LinguisticTaggerOptions, orthography: ^Orthography, block: ^Objc_Block(proc "c" ( tag: ^String, tokenRange: _NSRange, sentenceRange: _NSRange, stop: ^bool ))) ---
 }
+
+
 
 @(objc_type=String, objc_name="compare")
 String_compare :: proc {

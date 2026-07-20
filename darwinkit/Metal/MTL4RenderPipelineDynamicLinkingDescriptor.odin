@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4RenderPipelineDynamicLinkingDescriptor
-///
 @(objc_class="MTL4RenderPipelineDynamicLinkingDescriptor", objc_superclass=NS.Object)
 MTL4RenderPipelineDynamicLinkingDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4RenderPipelineDynamicLinkingDescriptor, objc_selector="vertexLinkingDescriptor", objc_name="vertexLinkingDescriptor")
     MTL4RenderPipelineDynamicLinkingDescriptor_vertexLinkingDescriptor :: proc(self: ^MTL4RenderPipelineDynamicLinkingDescriptor) -> ^MTL4PipelineStageDynamicLinkingDescriptor ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=MTL4RenderPipelineDynamicLinkingDescriptor, objc_selector="meshLinkingDescriptor", objc_name="meshLinkingDescriptor")
     MTL4RenderPipelineDynamicLinkingDescriptor_meshLinkingDescriptor :: proc(self: ^MTL4RenderPipelineDynamicLinkingDescriptor) -> ^MTL4PipelineStageDynamicLinkingDescriptor ---
 }
+
+
+

@@ -21,7 +21,7 @@ foreign lib {
     Context_canEvaluatePolicy :: proc(self: ^Context, policy: Policy, error: ^^NS.Error) -> bool ---
 
     @(objc_type=Context, objc_selector="evaluatePolicy:localizedReason:reply:", objc_name="evaluatePolicy")
-    Context_evaluatePolicy :: proc(self: ^Context, policy: Policy, localizedReason: ^NS.String, reply: ^Objc_Block(proc "c" (success: bool, error: ^NS.Error))) ---
+    Context_evaluatePolicy :: proc(self: ^Context, policy: Policy, localizedReason: ^NS.String, reply: ^Objc_Block(proc "c" ( success: bool, error: ^NS.Error ))) ---
 
     @(objc_type=Context, objc_selector="invalidate", objc_name="invalidate")
     Context_invalidate :: proc(self: ^Context) ---
@@ -33,7 +33,7 @@ foreign lib {
     Context_isCredentialSet :: proc(self: ^Context, type: CredentialType) -> bool ---
 
     @(objc_type=Context, objc_selector="evaluateAccessControl:operation:localizedReason:reply:", objc_name="evaluateAccessControl")
-    Context_evaluateAccessControl :: proc(self: ^Context, accessControl: Sec.SecAccessControlRef, operation: AccessControlOperation, localizedReason: ^NS.String, reply: ^Objc_Block(proc "c" (success: bool, error: ^NS.Error))) ---
+    Context_evaluateAccessControl :: proc(self: ^Context, accessControl: Sec.SecAccessControlRef, operation: AccessControlOperation, localizedReason: ^NS.String, reply: ^Objc_Block(proc "c" ( success: bool, error: ^NS.Error ))) ---
 
     @(objc_type=Context, objc_selector="localizedFallbackTitle", objc_name="localizedFallbackTitle")
     Context_localizedFallbackTitle :: proc(self: ^Context) -> ^NS.String ---

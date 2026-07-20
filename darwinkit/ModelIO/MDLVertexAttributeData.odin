@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLVertexAttributeData
-///
 @(objc_class="MDLVertexAttributeData", objc_superclass=NS.Object)
 VertexAttributeData :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexAttributeData, objc_selector="map", objc_name="map")
     VertexAttributeData_map :: proc(self: ^VertexAttributeData) -> ^MeshBufferMap ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=VertexAttributeData, objc_selector="setBufferSize:", objc_name="setBufferSize")
     VertexAttributeData_setBufferSize :: proc(self: ^VertexAttributeData, bufferSize: NS.UInteger) ---
 }
+
+
+

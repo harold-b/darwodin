@@ -12,15 +12,8 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetadataHumanBodyObject
-///
 @(objc_class="AVMetadataHumanBodyObject", objc_superclass=MetadataBodyObject)
 MetadataHumanBodyObject :: struct { using _: MetadataBodyObject, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
-foreign lib {}

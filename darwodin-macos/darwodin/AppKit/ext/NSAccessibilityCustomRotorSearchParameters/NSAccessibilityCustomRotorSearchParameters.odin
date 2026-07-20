@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    currentItem: proc(self: ^AK.AccessibilityCustomRotorSearchParameters) -> ^AK.AccessibilityCustomRotorItemResult,
-    setCurrentItem: proc(self: ^AK.AccessibilityCustomRotorSearchParameters, currentItem: ^AK.AccessibilityCustomRotorItemResult),
-    searchDirection: proc(self: ^AK.AccessibilityCustomRotorSearchParameters) -> AK.AccessibilityCustomRotorSearchDirection,
-    setSearchDirection: proc(self: ^AK.AccessibilityCustomRotorSearchParameters, searchDirection: AK.AccessibilityCustomRotorSearchDirection),
-    filterString: proc(self: ^AK.AccessibilityCustomRotorSearchParameters) -> ^NS.String,
-    setFilterString: proc(self: ^AK.AccessibilityCustomRotorSearchParameters, filterString: ^NS.String),
+    currentItem: proc(self: ^NS.AccessibilityCustomRotorSearchParameters) -> ^NS.AccessibilityCustomRotorItemResult,
+    setCurrentItem: proc(self: ^NS.AccessibilityCustomRotorSearchParameters, currentItem: ^NS.AccessibilityCustomRotorItemResult),
+    searchDirection: proc(self: ^NS.AccessibilityCustomRotorSearchParameters) -> NS.AccessibilityCustomRotorSearchDirection,
+    setSearchDirection: proc(self: ^NS.AccessibilityCustomRotorSearchParameters, searchDirection: NS.AccessibilityCustomRotorSearchDirection),
+    filterString: proc(self: ^NS.AccessibilityCustomRotorSearchParameters) -> ^NS.String,
+    setFilterString: proc(self: ^NS.AccessibilityCustomRotorSearchParameters, filterString: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.currentItem != nil {
-        currentItem :: proc "c" (self: ^AK.AccessibilityCustomRotorSearchParameters, _: SEL) -> ^AK.AccessibilityCustomRotorItemResult {
+        currentItem :: proc "c" (self: ^NS.AccessibilityCustomRotorSearchParameters, _: SEL) -> ^NS.AccessibilityCustomRotorItemResult {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentItem"), auto_cast currentItem, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCurrentItem != nil {
-        setCurrentItem :: proc "c" (self: ^AK.AccessibilityCustomRotorSearchParameters, _: SEL, currentItem: ^AK.AccessibilityCustomRotorItemResult) {
+        setCurrentItem :: proc "c" (self: ^NS.AccessibilityCustomRotorSearchParameters, _: SEL, currentItem: ^NS.AccessibilityCustomRotorItemResult) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCurrentItem:"), auto_cast setCurrentItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.searchDirection != nil {
-        searchDirection :: proc "c" (self: ^AK.AccessibilityCustomRotorSearchParameters, _: SEL) -> AK.AccessibilityCustomRotorSearchDirection {
+        searchDirection :: proc "c" (self: ^NS.AccessibilityCustomRotorSearchParameters, _: SEL) -> NS.AccessibilityCustomRotorSearchDirection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchDirection"), auto_cast searchDirection, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSearchDirection != nil {
-        setSearchDirection :: proc "c" (self: ^AK.AccessibilityCustomRotorSearchParameters, _: SEL, searchDirection: AK.AccessibilityCustomRotorSearchDirection) {
+        setSearchDirection :: proc "c" (self: ^NS.AccessibilityCustomRotorSearchParameters, _: SEL, searchDirection: NS.AccessibilityCustomRotorSearchDirection) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSearchDirection:"), auto_cast setSearchDirection, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.filterString != nil {
-        filterString :: proc "c" (self: ^AK.AccessibilityCustomRotorSearchParameters, _: SEL) -> ^NS.String {
+        filterString :: proc "c" (self: ^NS.AccessibilityCustomRotorSearchParameters, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("filterString"), auto_cast filterString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setFilterString != nil {
-        setFilterString :: proc "c" (self: ^AK.AccessibilityCustomRotorSearchParameters, _: SEL, filterString: ^NS.String) {
+        setFilterString :: proc "c" (self: ^NS.AccessibilityCustomRotorSearchParameters, _: SEL, filterString: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

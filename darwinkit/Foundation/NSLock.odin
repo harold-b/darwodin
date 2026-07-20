@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSLock
-///
 @(objc_class="NSLock", objc_superclass=Object)
 Lock :: struct { using _: Object, 
     using _: Locking,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Lock, objc_selector="tryLock", objc_name="tryLock")
     Lock_tryLock :: proc(self: ^Lock) -> bool ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=Lock, objc_selector="setName:", objc_name="setName")
     Lock_setName :: proc(self: ^Lock, name: ^String) ---
 }
+
+
+

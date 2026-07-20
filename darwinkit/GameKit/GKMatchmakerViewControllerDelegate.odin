@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKMatchmakerViewControllerDelegate
-///
 @(objc_class="GKMatchmakerViewControllerDelegate")
 MatchmakerViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MatchmakerViewControllerDelegate, objc_selector="matchmakerViewControllerWasCancelled:", objc_name="matchmakerViewControllerWasCancelled")
     MatchmakerViewControllerDelegate_matchmakerViewControllerWasCancelled :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController) ---
@@ -35,7 +29,7 @@ foreign lib {
     MatchmakerViewControllerDelegate_matchmakerViewController_hostedPlayerDidAccept :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, player: ^Player) ---
 
     @(objc_type=MatchmakerViewControllerDelegate, objc_selector="matchmakerViewController:getMatchPropertiesForRecipient:withCompletionHandler:", objc_name="matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler")
-    MatchmakerViewControllerDelegate_matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, recipient: ^Player, completionHandler: ^Objc_Block(proc "c" (recipientProperties: ^MatchProperties))) ---
+    MatchmakerViewControllerDelegate_matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, recipient: ^Player, completionHandler: ^Objc_Block(proc "c" ( recipientProperties: ^MatchProperties ))) ---
 
     @(objc_type=MatchmakerViewControllerDelegate, objc_selector="matchmakerViewController:didFindPlayers:", objc_name="matchmakerViewController_didFindPlayers")
     MatchmakerViewControllerDelegate_matchmakerViewController_didFindPlayers :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, playerIDs: ^NS.Array) ---
@@ -43,4 +37,6 @@ foreign lib {
     @(objc_type=MatchmakerViewControllerDelegate, objc_selector="matchmakerViewController:didReceiveAcceptFromHostedPlayer:", objc_name="matchmakerViewController_didReceiveAcceptFromHostedPlayer")
     MatchmakerViewControllerDelegate_matchmakerViewController_didReceiveAcceptFromHostedPlayer :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, playerID: ^NS.String) ---
 }
+
+
 

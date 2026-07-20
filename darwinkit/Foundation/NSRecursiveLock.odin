@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSRecursiveLock
-///
 @(objc_class="NSRecursiveLock", objc_superclass=Object)
 RecursiveLock :: struct { using _: Object, 
     using _: Locking,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RecursiveLock, objc_selector="tryLock", objc_name="tryLock")
     RecursiveLock_tryLock :: proc(self: ^RecursiveLock) -> bool ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=RecursiveLock, objc_selector="setName:", objc_name="setName")
     RecursiveLock_setName :: proc(self: ^RecursiveLock, name: ^String) ---
 }
+
+
+

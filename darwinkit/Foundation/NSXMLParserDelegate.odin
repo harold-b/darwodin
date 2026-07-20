@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSXMLParserDelegate
-///
 @(objc_class="NSXMLParserDelegate")
 XMLParserDelegate :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=XMLParserDelegate, objc_selector="parserDidStartDocument:", objc_name="parserDidStartDocument")
     XMLParserDelegate_parserDidStartDocument :: proc(self: ^XMLParserDelegate, parser: ^XMLParser) ---
@@ -81,4 +75,6 @@ foreign lib {
     @(objc_type=XMLParserDelegate, objc_selector="parser:validationErrorOccurred:", objc_name="parser_validationErrorOccurred")
     XMLParserDelegate_parser_validationErrorOccurred :: proc(self: ^XMLParserDelegate, parser: ^XMLParser, validationError: ^Error) ---
 }
+
+
 

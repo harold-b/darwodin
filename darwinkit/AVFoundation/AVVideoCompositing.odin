@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVVideoCompositing
-///
 @(objc_class="AVVideoCompositing")
 VideoCompositing :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoCompositing, objc_selector="renderContextChanged:", objc_name="renderContextChanged")
     VideoCompositing_renderContextChanged :: proc(self: ^VideoCompositing, newRenderContext: ^VideoCompositionRenderContext) ---
@@ -57,3 +51,6 @@ foreign lib {
     @(objc_type=VideoCompositing, objc_selector="canConformColorOfSourceFrames", objc_name="canConformColorOfSourceFrames")
     VideoCompositing_canConformColorOfSourceFrames :: proc(self: ^VideoCompositing) -> bool ---
 }
+
+
+

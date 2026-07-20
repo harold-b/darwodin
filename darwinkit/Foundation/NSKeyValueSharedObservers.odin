@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSKeyValueSharedObservers
-///
 @(objc_class="NSKeyValueSharedObservers", objc_superclass=Object)
 KeyValueSharedObservers :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=KeyValueSharedObservers, objc_selector="initWithObservableClass:", objc_name="initWithObservableClass")
     KeyValueSharedObservers_initWithObservableClass :: proc(self: ^KeyValueSharedObservers, observableClass: Class) -> id ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=KeyValueSharedObservers, objc_selector="snapshot", objc_name="snapshot")
     KeyValueSharedObservers_snapshot :: proc(self: ^KeyValueSharedObservers) -> ^KeyValueSharedObserversSnapshot ---
 }
+
+
+

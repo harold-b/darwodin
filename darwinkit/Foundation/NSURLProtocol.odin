@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLProtocol
-///
 @(objc_class="NSURLProtocol", objc_superclass=Object)
 URLProtocol :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLProtocol, objc_selector="initWithRequest:cachedResponse:client:", objc_name="initWithRequest")
     URLProtocol_initWithRequest :: proc(self: ^URLProtocol, request: ^URLRequest, cachedResponse: ^CachedURLResponse, client: ^URLProtocolClient) -> instancetype ---
@@ -70,3 +64,6 @@ foreign lib {
     @(objc_type=URLProtocol, objc_selector="task", objc_name="task")
     URLProtocol_task :: proc(self: ^URLProtocol) -> ^URLSessionTask ---
 }
+
+
+

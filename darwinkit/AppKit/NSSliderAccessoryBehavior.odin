@@ -31,7 +31,7 @@ foreign lib {
     SliderAccessoryBehavior_behaviorWithTarget :: proc(target: id, action: SEL) -> ^SliderAccessoryBehavior ---
 
     @(objc_type=SliderAccessoryBehavior, objc_selector="behaviorWithHandler:", objc_name="behaviorWithHandler", objc_is_class_method=true)
-    SliderAccessoryBehavior_behaviorWithHandler :: proc(handler: ^Objc_Block(proc "c" (_: ^SliderAccessory))) -> ^SliderAccessoryBehavior ---
+    SliderAccessoryBehavior_behaviorWithHandler :: proc(handler: ^Objc_Block(proc "c" ( _0: ^SliderAccessory ))) -> ^SliderAccessoryBehavior ---
 
     @(objc_type=SliderAccessoryBehavior, objc_selector="handleAction:", objc_name="handleAction")
     SliderAccessoryBehavior_handleAction :: proc(self: ^SliderAccessoryBehavior, sender: ^SliderAccessory) ---

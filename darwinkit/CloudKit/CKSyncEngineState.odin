@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineState
-///
 @(objc_class="CKSyncEngineState", objc_superclass=NS.Object)
 SyncEngineState :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineState, objc_selector="init", objc_name="init")
     SyncEngineState_init :: proc(self: ^SyncEngineState) -> instancetype ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=SyncEngineState, objc_selector="zoneIDsWithUnfetchedServerChanges", objc_name="zoneIDsWithUnfetchedServerChanges")
     SyncEngineState_zoneIDsWithUnfetchedServerChanges :: proc(self: ^SyncEngineState) -> ^NS.Array ---
 }
+
+
+

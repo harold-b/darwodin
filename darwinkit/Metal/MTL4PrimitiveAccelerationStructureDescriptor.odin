@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4PrimitiveAccelerationStructureDescriptor
-///
 @(objc_class="MTL4PrimitiveAccelerationStructureDescriptor", objc_superclass=MTL4AccelerationStructureDescriptor)
 MTL4PrimitiveAccelerationStructureDescriptor :: struct { using _: MTL4AccelerationStructureDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4PrimitiveAccelerationStructureDescriptor, objc_selector="geometryDescriptors", objc_name="geometryDescriptors")
     MTL4PrimitiveAccelerationStructureDescriptor_geometryDescriptors :: proc(self: ^MTL4PrimitiveAccelerationStructureDescriptor) -> ^NS.Array ---
@@ -57,3 +51,6 @@ foreign lib {
     @(objc_type=MTL4PrimitiveAccelerationStructureDescriptor, objc_selector="setMotionKeyframeCount:", objc_name="setMotionKeyframeCount")
     MTL4PrimitiveAccelerationStructureDescriptor_setMotionKeyframeCount :: proc(self: ^MTL4PrimitiveAccelerationStructureDescriptor, motionKeyframeCount: NS.UInteger) ---
 }
+
+
+

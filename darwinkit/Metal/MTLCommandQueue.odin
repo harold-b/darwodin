@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCommandQueue
-///
 @(objc_class="MTLCommandQueue")
 CommandQueue :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CommandQueue, objc_selector="commandBuffer", objc_name="commandBuffer")
     CommandQueue_commandBuffer :: proc(self: ^CommandQueue) -> ^CommandBuffer ---
@@ -56,3 +50,6 @@ foreign lib {
     @(objc_type=CommandQueue, objc_selector="device", objc_name="device")
     CommandQueue_device :: proc(self: ^CommandQueue) -> ^Device ---
 }
+
+
+

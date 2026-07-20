@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLResponse
-///
 @(objc_class="NSURLResponse", objc_superclass=Object)
 URLResponse :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLResponse, objc_selector="initWithURL:MIMEType:expectedContentLength:textEncodingName:", objc_name="initWithURL")
     URLResponse_initWithURL :: proc(self: ^URLResponse, _URL: ^URL, MIMEType: ^String, length: Integer, name: ^String) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=URLResponse, objc_selector="suggestedFilename", objc_name="suggestedFilename")
     URLResponse_suggestedFilename :: proc(self: ^URLResponse) -> ^String ---
 }
+
+
+

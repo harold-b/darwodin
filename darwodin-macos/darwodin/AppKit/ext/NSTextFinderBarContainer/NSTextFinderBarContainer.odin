@@ -20,15 +20,15 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    findBarViewDidChangeHeight: proc(self: ^AK.TextFinderBarContainer),
-    contentView: proc(self: ^AK.TextFinderBarContainer) -> ^AK.View,
-    findBarView: proc(self: ^AK.TextFinderBarContainer) -> ^AK.View,
-    setFindBarView: proc(self: ^AK.TextFinderBarContainer, findBarView: ^AK.View),
-    isFindBarVisible: proc(self: ^AK.TextFinderBarContainer) -> bool,
-    setFindBarVisible: proc(self: ^AK.TextFinderBarContainer, findBarVisible: bool),
+    findBarViewDidChangeHeight: proc(self: ^NS.TextFinderBarContainer),
+    contentView: proc(self: ^NS.TextFinderBarContainer) -> ^NS.View,
+    findBarView: proc(self: ^NS.TextFinderBarContainer) -> ^NS.View,
+    setFindBarView: proc(self: ^NS.TextFinderBarContainer, findBarView: ^NS.View),
+    isFindBarVisible: proc(self: ^NS.TextFinderBarContainer) -> bool,
+    setFindBarVisible: proc(self: ^NS.TextFinderBarContainer, findBarVisible: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -36,7 +36,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.findBarViewDidChangeHeight != nil {
-        findBarViewDidChangeHeight :: proc "c" (self: ^AK.TextFinderBarContainer, _: SEL) {
+        findBarViewDidChangeHeight :: proc "c" (self: ^NS.TextFinderBarContainer, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("findBarViewDidChangeHeight"), auto_cast findBarViewDidChangeHeight, "v@:") do panic("Failed to register objC method.")
     }
     if vt.contentView != nil {
-        contentView :: proc "c" (self: ^AK.TextFinderBarContainer, _: SEL) -> ^AK.View {
+        contentView :: proc "c" (self: ^NS.TextFinderBarContainer, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentView"), auto_cast contentView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.findBarView != nil {
-        findBarView :: proc "c" (self: ^AK.TextFinderBarContainer, _: SEL) -> ^AK.View {
+        findBarView :: proc "c" (self: ^NS.TextFinderBarContainer, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("findBarView"), auto_cast findBarView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setFindBarView != nil {
-        setFindBarView :: proc "c" (self: ^AK.TextFinderBarContainer, _: SEL, findBarView: ^AK.View) {
+        setFindBarView :: proc "c" (self: ^NS.TextFinderBarContainer, _: SEL, findBarView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFindBarView:"), auto_cast setFindBarView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isFindBarVisible != nil {
-        isFindBarVisible :: proc "c" (self: ^AK.TextFinderBarContainer, _: SEL) -> bool {
+        isFindBarVisible :: proc "c" (self: ^NS.TextFinderBarContainer, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFindBarVisible"), auto_cast isFindBarVisible, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setFindBarVisible != nil {
-        setFindBarVisible :: proc "c" (self: ^AK.TextFinderBarContainer, _: SEL, findBarVisible: bool) {
+        setFindBarVisible :: proc "c" (self: ^NS.TextFinderBarContainer, _: SEL, findBarVisible: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

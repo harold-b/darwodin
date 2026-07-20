@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4PipelineOptions
-///
 @(objc_class="MTL4PipelineOptions", objc_superclass=NS.Object)
 MTL4PipelineOptions :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4PipelineOptions, objc_selector="shaderValidation", objc_name="shaderValidation")
     MTL4PipelineOptions_shaderValidation :: proc(self: ^MTL4PipelineOptions) -> ShaderValidation ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=MTL4PipelineOptions, objc_selector="setShaderReflection:", objc_name="setShaderReflection")
     MTL4PipelineOptions_setShaderReflection :: proc(self: ^MTL4PipelineOptions, shaderReflection: MTL4ShaderReflection) ---
 }
+
+
+

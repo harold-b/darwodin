@@ -20,36 +20,36 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTextFieldCell"
 
 VTable :: struct {
     super: NSTextFieldCell.VTable,
-    initTextCell: proc(self: ^AK.SearchFieldCell, string: ^NS.String) -> instancetype,
-    initWithCoder: proc(self: ^AK.SearchFieldCell, coder: ^NS.Coder) -> instancetype,
-    initImageCell: proc(self: ^AK.SearchFieldCell, image: ^AK.Image) -> instancetype,
-    resetSearchButtonCell: proc(self: ^AK.SearchFieldCell),
-    resetCancelButtonCell: proc(self: ^AK.SearchFieldCell),
-    searchTextRectForBounds: proc(self: ^AK.SearchFieldCell, rect: NS.Rect) -> NS.Rect,
-    searchButtonRectForBounds: proc(self: ^AK.SearchFieldCell, rect: NS.Rect) -> NS.Rect,
-    cancelButtonRectForBounds: proc(self: ^AK.SearchFieldCell, rect: NS.Rect) -> NS.Rect,
-    searchButtonCell: proc(self: ^AK.SearchFieldCell) -> ^AK.ButtonCell,
-    setSearchButtonCell: proc(self: ^AK.SearchFieldCell, searchButtonCell: ^AK.ButtonCell),
-    cancelButtonCell: proc(self: ^AK.SearchFieldCell) -> ^AK.ButtonCell,
-    setCancelButtonCell: proc(self: ^AK.SearchFieldCell, cancelButtonCell: ^AK.ButtonCell),
-    searchMenuTemplate: proc(self: ^AK.SearchFieldCell) -> ^AK.Menu,
-    setSearchMenuTemplate: proc(self: ^AK.SearchFieldCell, searchMenuTemplate: ^AK.Menu),
-    sendsWholeSearchString: proc(self: ^AK.SearchFieldCell) -> bool,
-    setSendsWholeSearchString: proc(self: ^AK.SearchFieldCell, sendsWholeSearchString: bool),
-    maximumRecents: proc(self: ^AK.SearchFieldCell) -> NS.Integer,
-    setMaximumRecents: proc(self: ^AK.SearchFieldCell, maximumRecents: NS.Integer),
-    recentSearches: proc(self: ^AK.SearchFieldCell) -> ^NS.Array,
-    setRecentSearches: proc(self: ^AK.SearchFieldCell, recentSearches: ^NS.Array),
-    recentsAutosaveName: proc(self: ^AK.SearchFieldCell) -> ^NS.String,
-    setRecentsAutosaveName: proc(self: ^AK.SearchFieldCell, recentsAutosaveName: ^NS.String),
-    sendsSearchStringImmediately: proc(self: ^AK.SearchFieldCell) -> bool,
-    setSendsSearchStringImmediately: proc(self: ^AK.SearchFieldCell, sendsSearchStringImmediately: bool),
+    initTextCell: proc(self: ^NS.SearchFieldCell, string: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^NS.SearchFieldCell, coder: ^NS.Coder) -> instancetype,
+    initImageCell: proc(self: ^NS.SearchFieldCell, image: ^NS.Image) -> instancetype,
+    resetSearchButtonCell: proc(self: ^NS.SearchFieldCell),
+    resetCancelButtonCell: proc(self: ^NS.SearchFieldCell),
+    searchTextRectForBounds: proc(self: ^NS.SearchFieldCell, rect: NS.Rect) -> NS.Rect,
+    searchButtonRectForBounds: proc(self: ^NS.SearchFieldCell, rect: NS.Rect) -> NS.Rect,
+    cancelButtonRectForBounds: proc(self: ^NS.SearchFieldCell, rect: NS.Rect) -> NS.Rect,
+    searchButtonCell: proc(self: ^NS.SearchFieldCell) -> ^NS.ButtonCell,
+    setSearchButtonCell: proc(self: ^NS.SearchFieldCell, searchButtonCell: ^NS.ButtonCell),
+    cancelButtonCell: proc(self: ^NS.SearchFieldCell) -> ^NS.ButtonCell,
+    setCancelButtonCell: proc(self: ^NS.SearchFieldCell, cancelButtonCell: ^NS.ButtonCell),
+    searchMenuTemplate: proc(self: ^NS.SearchFieldCell) -> ^NS.Menu,
+    setSearchMenuTemplate: proc(self: ^NS.SearchFieldCell, searchMenuTemplate: ^NS.Menu),
+    sendsWholeSearchString: proc(self: ^NS.SearchFieldCell) -> bool,
+    setSendsWholeSearchString: proc(self: ^NS.SearchFieldCell, sendsWholeSearchString: bool),
+    maximumRecents: proc(self: ^NS.SearchFieldCell) -> NS.Integer,
+    setMaximumRecents: proc(self: ^NS.SearchFieldCell, maximumRecents: NS.Integer),
+    recentSearches: proc(self: ^NS.SearchFieldCell) -> ^NS.Array,
+    setRecentSearches: proc(self: ^NS.SearchFieldCell, recentSearches: ^NS.Array),
+    recentsAutosaveName: proc(self: ^NS.SearchFieldCell) -> ^NS.String,
+    setRecentsAutosaveName: proc(self: ^NS.SearchFieldCell, recentsAutosaveName: ^NS.String),
+    sendsSearchStringImmediately: proc(self: ^NS.SearchFieldCell) -> bool,
+    setSendsSearchStringImmediately: proc(self: ^NS.SearchFieldCell, sendsSearchStringImmediately: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextFieldCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, string: ^NS.String) -> instancetype {
+        initTextCell :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, image: ^AK.Image) -> instancetype {
+        initImageCell :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initImageCell:"), auto_cast initImageCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.resetSearchButtonCell != nil {
-        resetSearchButtonCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) {
+        resetSearchButtonCell :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resetSearchButtonCell"), auto_cast resetSearchButtonCell, "v@:") do panic("Failed to register objC method.")
     }
     if vt.resetCancelButtonCell != nil {
-        resetCancelButtonCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) {
+        resetCancelButtonCell :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resetCancelButtonCell"), auto_cast resetCancelButtonCell, "v@:") do panic("Failed to register objC method.")
     }
     if vt.searchTextRectForBounds != nil {
-        searchTextRectForBounds :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, rect: NS.Rect) -> NS.Rect {
+        searchTextRectForBounds :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, rect: NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchTextRectForBounds:"), auto_cast searchTextRectForBounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.searchButtonRectForBounds != nil {
-        searchButtonRectForBounds :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, rect: NS.Rect) -> NS.Rect {
+        searchButtonRectForBounds :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, rect: NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchButtonRectForBounds:"), auto_cast searchButtonRectForBounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.cancelButtonRectForBounds != nil {
-        cancelButtonRectForBounds :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, rect: NS.Rect) -> NS.Rect {
+        cancelButtonRectForBounds :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, rect: NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancelButtonRectForBounds:"), auto_cast cancelButtonRectForBounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.searchButtonCell != nil {
-        searchButtonCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) -> ^AK.ButtonCell {
+        searchButtonCell :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) -> ^NS.ButtonCell {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchButtonCell"), auto_cast searchButtonCell, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSearchButtonCell != nil {
-        setSearchButtonCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, searchButtonCell: ^AK.ButtonCell) {
+        setSearchButtonCell :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, searchButtonCell: ^NS.ButtonCell) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSearchButtonCell:"), auto_cast setSearchButtonCell, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.cancelButtonCell != nil {
-        cancelButtonCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) -> ^AK.ButtonCell {
+        cancelButtonCell :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) -> ^NS.ButtonCell {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -170,7 +170,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancelButtonCell"), auto_cast cancelButtonCell, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCancelButtonCell != nil {
-        setCancelButtonCell :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, cancelButtonCell: ^AK.ButtonCell) {
+        setCancelButtonCell :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, cancelButtonCell: ^NS.ButtonCell) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCancelButtonCell:"), auto_cast setCancelButtonCell, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.searchMenuTemplate != nil {
-        searchMenuTemplate :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) -> ^AK.Menu {
+        searchMenuTemplate :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) -> ^NS.Menu {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -190,7 +190,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchMenuTemplate"), auto_cast searchMenuTemplate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSearchMenuTemplate != nil {
-        setSearchMenuTemplate :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, searchMenuTemplate: ^AK.Menu) {
+        setSearchMenuTemplate :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, searchMenuTemplate: ^NS.Menu) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSearchMenuTemplate:"), auto_cast setSearchMenuTemplate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.sendsWholeSearchString != nil {
-        sendsWholeSearchString :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) -> bool {
+        sendsWholeSearchString :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sendsWholeSearchString"), auto_cast sendsWholeSearchString, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSendsWholeSearchString != nil {
-        setSendsWholeSearchString :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, sendsWholeSearchString: bool) {
+        setSendsWholeSearchString :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, sendsWholeSearchString: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSendsWholeSearchString:"), auto_cast setSendsWholeSearchString, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.maximumRecents != nil {
-        maximumRecents :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) -> NS.Integer {
+        maximumRecents :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -230,7 +230,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumRecents"), auto_cast maximumRecents, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumRecents != nil {
-        setMaximumRecents :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, maximumRecents: NS.Integer) {
+        setMaximumRecents :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, maximumRecents: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -240,7 +240,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumRecents:"), auto_cast setMaximumRecents, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.recentSearches != nil {
-        recentSearches :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) -> ^NS.Array {
+        recentSearches :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -250,7 +250,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("recentSearches"), auto_cast recentSearches, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setRecentSearches != nil {
-        setRecentSearches :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, recentSearches: ^NS.Array) {
+        setRecentSearches :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, recentSearches: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -260,7 +260,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRecentSearches:"), auto_cast setRecentSearches, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.recentsAutosaveName != nil {
-        recentsAutosaveName :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) -> ^NS.String {
+        recentsAutosaveName :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("recentsAutosaveName"), auto_cast recentsAutosaveName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setRecentsAutosaveName != nil {
-        setRecentsAutosaveName :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, recentsAutosaveName: ^NS.String) {
+        setRecentsAutosaveName :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, recentsAutosaveName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -280,7 +280,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRecentsAutosaveName:"), auto_cast setRecentsAutosaveName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.sendsSearchStringImmediately != nil {
-        sendsSearchStringImmediately :: proc "c" (self: ^AK.SearchFieldCell, _: SEL) -> bool {
+        sendsSearchStringImmediately :: proc "c" (self: ^NS.SearchFieldCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sendsSearchStringImmediately"), auto_cast sendsSearchStringImmediately, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSendsSearchStringImmediately != nil {
-        setSendsSearchStringImmediately :: proc "c" (self: ^AK.SearchFieldCell, _: SEL, sendsSearchStringImmediately: bool) {
+        setSendsSearchStringImmediately :: proc "c" (self: ^NS.SearchFieldCell, _: SEL, sendsSearchStringImmediately: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSValueTransformer
-///
 @(objc_class="NSValueTransformer", objc_superclass=Object)
 ValueTransformer :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ValueTransformer, objc_selector="setValueTransformer:forName:", objc_name="setValueTransformer", objc_is_class_method=true)
     ValueTransformer_setValueTransformer :: proc(transformer: ^ValueTransformer, name: ^String) ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=ValueTransformer, objc_selector="reverseTransformedValue:", objc_name="reverseTransformedValue")
     ValueTransformer_reverseTransformedValue :: proc(self: ^ValueTransformer, value: id) -> id ---
 }
+
+
+

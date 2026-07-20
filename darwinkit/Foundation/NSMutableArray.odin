@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableArray
-///
 @(objc_class="NSMutableArray", objc_superclass=Array)
 MutableArray :: struct { using _: Array, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableArray, objc_selector="addObject:", objc_name="addObject")
     MutableArray_addObject :: proc(self: ^MutableArray, anObject: id) ---
@@ -83,7 +77,7 @@ foreign lib {
     MutableArray_setArray :: proc(self: ^MutableArray, otherArray: ^Array) ---
 
     @(objc_type=MutableArray, objc_selector="sortUsingFunction:context:", objc_name="sortUsingFunction")
-    MutableArray_sortUsingFunction :: proc(self: ^MutableArray, compare: proc "c" (_: id, _1: id, _2: rawptr) -> Integer, _context: rawptr) ---
+    MutableArray_sortUsingFunction :: proc(self: ^MutableArray, compare: proc "c" ( _0: id, _1: id, _2: rawptr ) -> Integer, _context: rawptr) ---
 
     @(objc_type=MutableArray, objc_selector="sortUsingSelector:", objc_name="sortUsingSelector")
     MutableArray_sortUsingSelector :: proc(self: ^MutableArray, comparator: SEL) ---
@@ -130,6 +124,8 @@ foreign lib {
     @(objc_type=MutableArray, objc_selector="filterUsingPredicate:", objc_name="filterUsingPredicate")
     MutableArray_filterUsingPredicate :: proc(self: ^MutableArray, predicate: ^Predicate) ---
 }
+
+
 
 @(objc_type=MutableArray, objc_name="removeObject")
 MutableArray_removeObject :: proc {

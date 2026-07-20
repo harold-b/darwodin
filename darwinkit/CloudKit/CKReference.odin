@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKReference
-///
 @(objc_class="CKReference", objc_superclass=NS.Object)
 Reference :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Reference, objc_selector="init", objc_name="init")
     Reference_init :: proc(self: ^Reference) -> instancetype ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=Reference, objc_selector="recordID", objc_name="recordID")
     Reference_recordID :: proc(self: ^Reference) -> ^RecordID ---
 }
+
+
+

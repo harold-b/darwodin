@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCTouchedStateInput
-///
 @(objc_class="GCTouchedStateInput")
 TouchedStateInput :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TouchedStateInput, objc_selector="touchedDidChangeHandler", objc_name="touchedDidChangeHandler")
     TouchedStateInput_touchedDidChangeHandler :: proc(self: ^TouchedStateInput) -> ^Objc_Block(proc "c" ()) ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=TouchedStateInput, objc_selector="sources", objc_name="sources")
     TouchedStateInput_sources :: proc(self: ^TouchedStateInput) -> ^NS.Set ---
 }
+
+
+

@@ -1,0 +1,30 @@
+package darwodin_CoreLocation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import NS "../Foundation"
+
+
+
+///
+/// CLLocationSourceInformation
+///
+@(objc_class="CLLocationSourceInformation", objc_superclass=NS.Object)
+LocationSourceInformation :: struct { using _: NS.Object, 
+    using _: NS.Copying,
+    using _: NS.SecureCoding,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=LocationSourceInformation, objc_selector="initWithSoftwareSimulationState:andExternalAccessoryState:", objc_name="initWithSoftwareSimulationState")
+    LocationSourceInformation_initWithSoftwareSimulationState :: proc(self: ^LocationSourceInformation, isSoftware: bool, isAccessory: bool) -> instancetype ---
+
+    @(objc_type=LocationSourceInformation, objc_selector="isSimulatedBySoftware", objc_name="isSimulatedBySoftware")
+    LocationSourceInformation_isSimulatedBySoftware :: proc(self: ^LocationSourceInformation) -> bool ---
+
+    @(objc_type=LocationSourceInformation, objc_selector="isProducedByAccessory", objc_name="isProducedByAccessory")
+    LocationSourceInformation_isProducedByAccessory :: proc(self: ^LocationSourceInformation) -> bool ---
+}

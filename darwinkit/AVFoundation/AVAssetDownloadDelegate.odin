@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetDownloadDelegate
-///
 @(objc_class="AVAssetDownloadDelegate")
 AssetDownloadDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.URLSessionTaskDelegate,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetDownloadDelegate, objc_selector="URLSession:assetDownloadTask:didFinishDownloadingToURL:", objc_name="URLSession_assetDownloadTask_didFinishDownloadingToURL")
     AssetDownloadDelegate_URLSession_assetDownloadTask_didFinishDownloadingToURL :: proc(self: ^AssetDownloadDelegate, session: ^NS.URLSession, assetDownloadTask: ^AssetDownloadTask, location: ^NS.URL) ---
@@ -51,4 +45,6 @@ foreign lib {
     @(objc_type=AssetDownloadDelegate, objc_selector="URLSession:assetDownloadTask:didReceiveMetricEvent:", objc_name="URLSession_assetDownloadTask_didReceiveMetricEvent")
     AssetDownloadDelegate_URLSession_assetDownloadTask_didReceiveMetricEvent :: proc(self: ^AssetDownloadDelegate, session: ^NS.URLSession, assetDownloadTask: ^AssetDownloadTask, metricEvent: ^MetricEvent) ---
 }
+
+
 

@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    updateWithEvent: proc(self: ^AK.AlignmentFeedbackFilter, event: ^AK.Event),
-    updateWithPanRecognizer: proc(self: ^AK.AlignmentFeedbackFilter, panRecognizer: ^AK.PanGestureRecognizer),
-    alignmentFeedbackTokenForMovementInView: proc(self: ^AK.AlignmentFeedbackFilter, view: ^AK.View, previousPoint: CG.Point, alignedPoint: CG.Point, defaultPoint: CG.Point) -> ^AK.AlignmentFeedbackToken,
-    alignmentFeedbackTokenForHorizontalMovementInView: proc(self: ^AK.AlignmentFeedbackFilter, view: ^AK.View, previousX: CG.Float, alignedX: CG.Float, defaultX: CG.Float) -> ^AK.AlignmentFeedbackToken,
-    alignmentFeedbackTokenForVerticalMovementInView: proc(self: ^AK.AlignmentFeedbackFilter, view: ^AK.View, previousY: CG.Float, alignedY: CG.Float, defaultY: CG.Float) -> ^AK.AlignmentFeedbackToken,
-    performFeedback: proc(self: ^AK.AlignmentFeedbackFilter, alignmentFeedbackTokens: ^NS.Array, performanceTime: AK.HapticFeedbackPerformanceTime),
-    inputEventMask: proc() -> AK.EventMask,
+    updateWithEvent: proc(self: ^NS.AlignmentFeedbackFilter, event: ^NS.Event),
+    updateWithPanRecognizer: proc(self: ^NS.AlignmentFeedbackFilter, panRecognizer: ^NS.PanGestureRecognizer),
+    alignmentFeedbackTokenForMovementInView: proc(self: ^NS.AlignmentFeedbackFilter, view: ^NS.View, previousPoint: CG.Point, alignedPoint: CG.Point, defaultPoint: CG.Point) -> ^NS.AlignmentFeedbackToken,
+    alignmentFeedbackTokenForHorizontalMovementInView: proc(self: ^NS.AlignmentFeedbackFilter, view: ^NS.View, previousX: CG.Float, alignedX: CG.Float, defaultX: CG.Float) -> ^NS.AlignmentFeedbackToken,
+    alignmentFeedbackTokenForVerticalMovementInView: proc(self: ^NS.AlignmentFeedbackFilter, view: ^NS.View, previousY: CG.Float, alignedY: CG.Float, defaultY: CG.Float) -> ^NS.AlignmentFeedbackToken,
+    performFeedback: proc(self: ^NS.AlignmentFeedbackFilter, alignmentFeedbackTokens: ^NS.Array, performanceTime: NS.HapticFeedbackPerformanceTime),
+    inputEventMask: proc() -> NS.EventMask,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.updateWithEvent != nil {
-        updateWithEvent :: proc "c" (self: ^AK.AlignmentFeedbackFilter, _: SEL, event: ^AK.Event) {
+        updateWithEvent :: proc "c" (self: ^NS.AlignmentFeedbackFilter, _: SEL, event: ^NS.Event) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateWithEvent:"), auto_cast updateWithEvent, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.updateWithPanRecognizer != nil {
-        updateWithPanRecognizer :: proc "c" (self: ^AK.AlignmentFeedbackFilter, _: SEL, panRecognizer: ^AK.PanGestureRecognizer) {
+        updateWithPanRecognizer :: proc "c" (self: ^NS.AlignmentFeedbackFilter, _: SEL, panRecognizer: ^NS.PanGestureRecognizer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateWithPanRecognizer:"), auto_cast updateWithPanRecognizer, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.alignmentFeedbackTokenForMovementInView != nil {
-        alignmentFeedbackTokenForMovementInView :: proc "c" (self: ^AK.AlignmentFeedbackFilter, _: SEL, view: ^AK.View, previousPoint: CG.Point, alignedPoint: CG.Point, defaultPoint: CG.Point) -> ^AK.AlignmentFeedbackToken {
+        alignmentFeedbackTokenForMovementInView :: proc "c" (self: ^NS.AlignmentFeedbackFilter, _: SEL, view: ^NS.View, previousPoint: CG.Point, alignedPoint: CG.Point, defaultPoint: CG.Point) -> ^NS.AlignmentFeedbackToken {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignmentFeedbackTokenForMovementInView:previousPoint:alignedPoint:defaultPoint:"), auto_cast alignmentFeedbackTokenForMovementInView, "@@:@{CGPoint=dd}{CGPoint=dd}{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.alignmentFeedbackTokenForHorizontalMovementInView != nil {
-        alignmentFeedbackTokenForHorizontalMovementInView :: proc "c" (self: ^AK.AlignmentFeedbackFilter, _: SEL, view: ^AK.View, previousX: CG.Float, alignedX: CG.Float, defaultX: CG.Float) -> ^AK.AlignmentFeedbackToken {
+        alignmentFeedbackTokenForHorizontalMovementInView :: proc "c" (self: ^NS.AlignmentFeedbackFilter, _: SEL, view: ^NS.View, previousX: CG.Float, alignedX: CG.Float, defaultX: CG.Float) -> ^NS.AlignmentFeedbackToken {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignmentFeedbackTokenForHorizontalMovementInView:previousX:alignedX:defaultX:"), auto_cast alignmentFeedbackTokenForHorizontalMovementInView, "@@:@ddd") do panic("Failed to register objC method.")
     }
     if vt.alignmentFeedbackTokenForVerticalMovementInView != nil {
-        alignmentFeedbackTokenForVerticalMovementInView :: proc "c" (self: ^AK.AlignmentFeedbackFilter, _: SEL, view: ^AK.View, previousY: CG.Float, alignedY: CG.Float, defaultY: CG.Float) -> ^AK.AlignmentFeedbackToken {
+        alignmentFeedbackTokenForVerticalMovementInView :: proc "c" (self: ^NS.AlignmentFeedbackFilter, _: SEL, view: ^NS.View, previousY: CG.Float, alignedY: CG.Float, defaultY: CG.Float) -> ^NS.AlignmentFeedbackToken {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignmentFeedbackTokenForVerticalMovementInView:previousY:alignedY:defaultY:"), auto_cast alignmentFeedbackTokenForVerticalMovementInView, "@@:@ddd") do panic("Failed to register objC method.")
     }
     if vt.performFeedback != nil {
-        performFeedback :: proc "c" (self: ^AK.AlignmentFeedbackFilter, _: SEL, alignmentFeedbackTokens: ^NS.Array, performanceTime: AK.HapticFeedbackPerformanceTime) {
+        performFeedback :: proc "c" (self: ^NS.AlignmentFeedbackFilter, _: SEL, alignmentFeedbackTokens: ^NS.Array, performanceTime: NS.HapticFeedbackPerformanceTime) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performFeedback:performanceTime:"), auto_cast performFeedback, "v@:^voidL") do panic("Failed to register objC method.")
     }
     if vt.inputEventMask != nil {
-        inputEventMask :: proc "c" (self: Class, _: SEL) -> AK.EventMask {
+        inputEventMask :: proc "c" (self: Class, _: SEL) -> NS.EventMask {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

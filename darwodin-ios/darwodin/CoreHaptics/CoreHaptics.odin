@@ -13,8 +13,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:CoreHaptics.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:CoreHaptics.framework",
+    }
+}
+
+
+// +user-text-begin
+// -user-text-end
 
 
 foreign lib {
@@ -76,16 +89,16 @@ HapticEventType :: distinct ^NS.String
 HapticAudioResourceID :: distinct NS.UInteger
 
 /// CHHapticAdvancedPatternPlayerCompletionHandler
-HapticAdvancedPatternPlayerCompletionHandler :: ^Objc_Block(proc "c" (error: ^NS.Error))
+HapticAdvancedPatternPlayerCompletionHandler :: ^Objc_Block(proc "c" ( error: ^NS.Error ))
 
 /// CHHapticCompletionHandler
-HapticCompletionHandler :: ^Objc_Block(proc "c" (error: ^NS.Error))
+HapticCompletionHandler :: ^Objc_Block(proc "c" ( error: ^NS.Error ))
 
 /// CHHapticEngineFinishedHandler
-HapticEngineFinishedHandler :: ^Objc_Block(proc "c" (error: ^NS.Error) -> HapticEngineFinishedAction)
+HapticEngineFinishedHandler :: ^Objc_Block(proc "c" ( error: ^NS.Error ) -> HapticEngineFinishedAction)
 
 /// CHHapticEngineStoppedHandler
-HapticEngineStoppedHandler :: ^Objc_Block(proc "c" (stoppedReason: HapticEngineStoppedReason))
+HapticEngineStoppedHandler :: ^Objc_Block(proc "c" ( stoppedReason: HapticEngineStoppedReason ))
 
 /// CHHapticEngineResetHandler
 HapticEngineResetHandler :: ^Objc_Block(proc "c" ())

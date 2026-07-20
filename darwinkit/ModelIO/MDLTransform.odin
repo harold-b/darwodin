@@ -10,18 +10,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLTransform
-///
 @(objc_class="MDLTransform", objc_superclass=NS.Object)
 Transform :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: TransformComponent,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Transform, objc_selector="init", objc_name="init")
     Transform_init :: proc(self: ^Transform) -> instancetype ---
@@ -98,6 +92,8 @@ foreign lib {
     @(objc_type=Transform, objc_selector="setScale:", objc_name="setScale_")
     Transform_setScale_ :: proc(self: ^Transform, scale: ^vector_float3) ---
 }
+
+
 
 @(objc_type=Transform, objc_name="initWithTransformComponent")
 Transform_initWithTransformComponent :: proc {

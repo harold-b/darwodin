@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4RenderCommandEncoder
-///
 @(objc_class="MTL4RenderCommandEncoder")
 MTL4RenderCommandEncoder :: struct { using _: intrinsics.objc_object, 
     using _: MTL4CommandEncoder,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4RenderCommandEncoder, objc_selector="setColorAttachmentMap:", objc_name="setColorAttachmentMap")
     MTL4RenderCommandEncoder_setColorAttachmentMap :: proc(self: ^MTL4RenderCommandEncoder, mapping: ^LogicalToPhysicalColorAttachmentMap) ---
@@ -146,6 +140,8 @@ foreign lib {
     @(objc_type=MTL4RenderCommandEncoder, objc_selector="tileHeight", objc_name="tileHeight")
     MTL4RenderCommandEncoder_tileHeight :: proc(self: ^MTL4RenderCommandEncoder) -> NS.UInteger ---
 }
+
+
 
 @(objc_type=MTL4RenderCommandEncoder, objc_name="drawPrimitives")
 MTL4RenderCommandEncoder_drawPrimitives :: proc {

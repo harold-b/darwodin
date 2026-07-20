@@ -37,10 +37,10 @@ foreign lib {
     SavePanel_cancel :: proc(self: ^SavePanel, sender: id) ---
 
     @(objc_type=SavePanel, objc_selector="beginSheetModalForWindow:completionHandler:", objc_name="beginSheetModalForWindow")
-    SavePanel_beginSheetModalForWindow :: proc(self: ^SavePanel, window: ^Window, handler: ^Objc_Block(proc "c" (result: ModalResponse))) ---
+    SavePanel_beginSheetModalForWindow :: proc(self: ^SavePanel, window: ^Window, handler: ^Objc_Block(proc "c" ( result: ModalResponse ))) ---
 
     @(objc_type=SavePanel, objc_selector="beginWithCompletionHandler:", objc_name="beginWithCompletionHandler")
-    SavePanel_beginWithCompletionHandler :: proc(self: ^SavePanel, handler: ^Objc_Block(proc "c" (result: ModalResponse))) ---
+    SavePanel_beginWithCompletionHandler :: proc(self: ^SavePanel, handler: ^Objc_Block(proc "c" ( result: ModalResponse ))) ---
 
     @(objc_type=SavePanel, objc_selector="runModal", objc_name="runModal")
     SavePanel_runModal :: proc(self: ^SavePanel) -> ModalResponse ---

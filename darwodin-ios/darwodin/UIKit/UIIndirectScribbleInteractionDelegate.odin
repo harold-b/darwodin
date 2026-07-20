@@ -23,7 +23,7 @@ IndirectScribbleInteractionDelegate :: struct { using _: intrinsics.objc_object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:requestElementsInRect:completion:", objc_name="indirectScribbleInteraction_requestElementsInRect_completion")
-    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_requestElementsInRect_completion :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, rect: CG.Rect, completion: ^Objc_Block(proc "c" (elements: ^NS.Array))) ---
+    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_requestElementsInRect_completion :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, rect: CG.Rect, completion: ^Objc_Block(proc "c" ( elements: ^NS.Array ))) ---
 
     @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:isElementFocused:", objc_name="indirectScribbleInteraction_isElementFocused")
     IndirectScribbleInteractionDelegate_indirectScribbleInteraction_isElementFocused :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) -> bool ---
@@ -32,7 +32,7 @@ foreign lib {
     IndirectScribbleInteractionDelegate_indirectScribbleInteraction_frameForElement :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) -> CG.Rect ---
 
     @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:focusElementIfNeeded:referencePoint:completion:", objc_name="indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion")
-    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: ^Objc_Block(proc "c" (focusedInput: ^Responder))) ---
+    IndirectScribbleInteractionDelegate_indirectScribbleInteraction_focusElementIfNeeded_referencePoint_completion :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id, focusReferencePoint: CG.Point, completion: ^Objc_Block(proc "c" ( focusedInput: ^Responder ))) ---
 
     @(objc_type=IndirectScribbleInteractionDelegate, objc_selector="indirectScribbleInteraction:shouldDelayFocusForElement:", objc_name="indirectScribbleInteraction_shouldDelayFocusForElement")
     IndirectScribbleInteractionDelegate_indirectScribbleInteraction_shouldDelayFocusForElement :: proc(self: ^IndirectScribbleInteractionDelegate, interaction: ^IndirectScribbleInteraction, elementIdentifier: ^id) -> bool ---

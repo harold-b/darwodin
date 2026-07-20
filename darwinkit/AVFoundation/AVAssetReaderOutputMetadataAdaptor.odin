@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetReaderOutputMetadataAdaptor
-///
 @(objc_class="AVAssetReaderOutputMetadataAdaptor", objc_superclass=NS.Object)
 AssetReaderOutputMetadataAdaptor :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderOutputMetadataAdaptor, objc_selector="init", objc_name="init")
     AssetReaderOutputMetadataAdaptor_init :: proc(self: ^AssetReaderOutputMetadataAdaptor) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=AssetReaderOutputMetadataAdaptor, objc_selector="assetReaderTrackOutput", objc_name="assetReaderTrackOutput")
     AssetReaderOutputMetadataAdaptor_assetReaderTrackOutput :: proc(self: ^AssetReaderOutputMetadataAdaptor) -> ^AssetReaderTrackOutput ---
 }
+
+
+

@@ -20,17 +20,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
     imageRepWithData: proc(epsData: ^NS.Data) -> instancetype,
-    initWithData: proc(self: ^AK.EPSImageRep, epsData: ^NS.Data) -> instancetype,
-    prepareGState: proc(self: ^AK.EPSImageRep),
-    boundingBox: proc(self: ^AK.EPSImageRep) -> NS.Rect,
-    _EPSRepresentation: proc(self: ^AK.EPSImageRep) -> ^NS.Data,
+    initWithData: proc(self: ^NS.EPSImageRep, epsData: ^NS.Data) -> instancetype,
+    prepareGState: proc(self: ^NS.EPSImageRep),
+    boundingBox: proc(self: ^NS.EPSImageRep) -> NS.Rect,
+    _EPSRepresentation: proc(self: ^NS.EPSImageRep) -> ^NS.Data,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithData:"), auto_cast imageRepWithData, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.EPSImageRep, _: SEL, epsData: ^NS.Data) -> instancetype {
+        initWithData :: proc "c" (self: ^NS.EPSImageRep, _: SEL, epsData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:"), auto_cast initWithData, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.prepareGState != nil {
-        prepareGState :: proc "c" (self: ^AK.EPSImageRep, _: SEL) {
+        prepareGState :: proc "c" (self: ^NS.EPSImageRep, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("prepareGState"), auto_cast prepareGState, "v@:") do panic("Failed to register objC method.")
     }
     if vt.boundingBox != nil {
-        boundingBox :: proc "c" (self: ^AK.EPSImageRep, _: SEL) -> NS.Rect {
+        boundingBox :: proc "c" (self: ^NS.EPSImageRep, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("boundingBox"), auto_cast boundingBox, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt._EPSRepresentation != nil {
-        _EPSRepresentation :: proc "c" (self: ^AK.EPSImageRep, _: SEL) -> ^NS.Data {
+        _EPSRepresentation :: proc "c" (self: ^NS.EPSImageRep, _: SEL) -> ^NS.Data {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

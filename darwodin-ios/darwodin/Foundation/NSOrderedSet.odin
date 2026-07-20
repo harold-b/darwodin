@@ -75,31 +75,31 @@ foreign lib {
     OrderedSet_reverseObjectEnumerator :: proc(self: ^OrderedSet) -> ^Enumerator ---
 
     @(objc_type=OrderedSet, objc_selector="enumerateObjectsUsingBlock:", objc_name="enumerateObjectsUsingBlock")
-    OrderedSet_enumerateObjectsUsingBlock :: proc(self: ^OrderedSet, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) ---
+    OrderedSet_enumerateObjectsUsingBlock :: proc(self: ^OrderedSet, block: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=OrderedSet, objc_selector="enumerateObjectsWithOptions:usingBlock:", objc_name="enumerateObjectsWithOptions")
-    OrderedSet_enumerateObjectsWithOptions :: proc(self: ^OrderedSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) ---
+    OrderedSet_enumerateObjectsWithOptions :: proc(self: ^OrderedSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=OrderedSet, objc_selector="enumerateObjectsAtIndexes:options:usingBlock:", objc_name="enumerateObjectsAtIndexes")
-    OrderedSet_enumerateObjectsAtIndexes :: proc(self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool))) ---
+    OrderedSet_enumerateObjectsAtIndexes :: proc(self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ))) ---
 
     @(objc_type=OrderedSet, objc_selector="indexOfObjectPassingTest:", objc_name="indexOfObjectPassingTest")
-    OrderedSet_indexOfObjectPassingTest :: proc(self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+    OrderedSet_indexOfObjectPassingTest :: proc(self: ^OrderedSet, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> UInteger ---
 
     @(objc_type=OrderedSet, objc_selector="indexOfObjectWithOptions:passingTest:", objc_name="indexOfObjectWithOptions")
-    OrderedSet_indexOfObjectWithOptions :: proc(self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+    OrderedSet_indexOfObjectWithOptions :: proc(self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> UInteger ---
 
     @(objc_type=OrderedSet, objc_selector="indexOfObjectAtIndexes:options:passingTest:", objc_name="indexOfObjectAtIndexes")
-    OrderedSet_indexOfObjectAtIndexes :: proc(self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> UInteger ---
+    OrderedSet_indexOfObjectAtIndexes :: proc(self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> UInteger ---
 
     @(objc_type=OrderedSet, objc_selector="indexesOfObjectsPassingTest:", objc_name="indexesOfObjectsPassingTest")
-    OrderedSet_indexesOfObjectsPassingTest :: proc(self: ^OrderedSet, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+    OrderedSet_indexesOfObjectsPassingTest :: proc(self: ^OrderedSet, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> ^IndexSet ---
 
     @(objc_type=OrderedSet, objc_selector="indexesOfObjectsWithOptions:passingTest:", objc_name="indexesOfObjectsWithOptions")
-    OrderedSet_indexesOfObjectsWithOptions :: proc(self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+    OrderedSet_indexesOfObjectsWithOptions :: proc(self: ^OrderedSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> ^IndexSet ---
 
     @(objc_type=OrderedSet, objc_selector="indexesOfObjectsAtIndexes:options:passingTest:", objc_name="indexesOfObjectsAtIndexes")
-    OrderedSet_indexesOfObjectsAtIndexes :: proc(self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: UInteger, stop: ^bool) -> bool)) -> ^IndexSet ---
+    OrderedSet_indexesOfObjectsAtIndexes :: proc(self: ^OrderedSet, s: ^IndexSet, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: UInteger, stop: ^bool ) -> bool)) -> ^IndexSet ---
 
     @(objc_type=OrderedSet, objc_selector="indexOfObject:inSortedRange:options:usingComparator:", objc_name="indexOfObject_inSortedRange_options_usingComparator")
     OrderedSet_indexOfObject_inSortedRange_options_usingComparator :: proc(self: ^OrderedSet, object: id, range: _NSRange, opts: BinarySearchingOptions, cmp: Comparator) -> UInteger ---
@@ -195,7 +195,7 @@ foreign lib {
     OrderedSet_initWithSet_copyItems :: proc(self: ^OrderedSet, set: ^Set, flag: bool) -> instancetype ---
 
     @(objc_type=OrderedSet, objc_selector="differenceFromOrderedSet:withOptions:usingEquivalenceTest:", objc_name="differenceFromOrderedSet_withOptions_usingEquivalenceTest")
-    OrderedSet_differenceFromOrderedSet_withOptions_usingEquivalenceTest :: proc(self: ^OrderedSet, other: ^OrderedSet, options: OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> bool)) -> ^OrderedCollectionDifference ---
+    OrderedSet_differenceFromOrderedSet_withOptions_usingEquivalenceTest :: proc(self: ^OrderedSet, other: ^OrderedSet, options: OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" ( obj1: id, obj2: id ) -> bool)) -> ^OrderedCollectionDifference ---
 
     @(objc_type=OrderedSet, objc_selector="differenceFromOrderedSet:withOptions:", objc_name="differenceFromOrderedSet_withOptions")
     OrderedSet_differenceFromOrderedSet_withOptions :: proc(self: ^OrderedSet, other: ^OrderedSet, options: OrderedCollectionDifferenceCalculationOptions) -> ^OrderedCollectionDifference ---

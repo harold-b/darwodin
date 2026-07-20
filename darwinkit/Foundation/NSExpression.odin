@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSExpression
-///
 @(objc_class="NSExpression", objc_superclass=Object)
 Expression :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Expression, objc_selector="expressionWithFormat:argumentArray:", objc_name="expressionWithFormat_argumentArray", objc_is_class_method=true)
     Expression_expressionWithFormat_argumentArray :: proc(expressionFormat: ^String, arguments: ^Array) -> ^Expression ---
@@ -68,7 +62,7 @@ foreign lib {
     Expression_expressionForAnyKey :: proc() -> ^Expression ---
 
     @(objc_type=Expression, objc_selector="expressionForBlock:arguments:", objc_name="expressionForBlock", objc_is_class_method=true)
-    Expression_expressionForBlock :: proc(block: ^Objc_Block(proc "c" (evaluatedObject: id, expressions: ^Array, _context: ^MutableDictionary) -> id), arguments: ^Array) -> ^Expression ---
+    Expression_expressionForBlock :: proc(block: ^Objc_Block(proc "c" ( evaluatedObject: id, expressions: ^Array, _context: ^MutableDictionary ) -> id), arguments: ^Array) -> ^Expression ---
 
     @(objc_type=Expression, objc_selector="expressionForConditional:trueExpression:falseExpression:", objc_name="expressionForConditional", objc_is_class_method=true)
     Expression_expressionForConditional :: proc(predicate: ^Predicate, trueExpression: ^Expression, falseExpression: ^Expression) -> ^Expression ---
@@ -127,6 +121,8 @@ foreign lib {
     @(objc_type=Expression, objc_selector="expressionBlock", objc_name="expressionBlock")
     Expression_expressionBlock :: proc(self: ^Expression) -> ^Objc_Block(proc "c" () -> id) ---
 }
+
+
 
 @(objc_type=Expression, objc_name="expressionWithFormat")
 Expression_expressionWithFormat :: proc {

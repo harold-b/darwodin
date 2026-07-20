@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    pageController_identifierForObject: proc(self: ^AK.PageControllerDelegate, pageController: ^AK.PageController, object: id) -> ^NS.String,
-    pageController_viewControllerForIdentifier: proc(self: ^AK.PageControllerDelegate, pageController: ^AK.PageController, identifier: ^NS.String) -> ^AK.ViewController,
-    pageController_frameForObject: proc(self: ^AK.PageControllerDelegate, pageController: ^AK.PageController, object: id) -> NS.Rect,
-    pageController_prepareViewController_withObject: proc(self: ^AK.PageControllerDelegate, pageController: ^AK.PageController, viewController: ^AK.ViewController, object: id),
-    pageController_didTransitionToObject: proc(self: ^AK.PageControllerDelegate, pageController: ^AK.PageController, object: id),
-    pageControllerWillStartLiveTransition: proc(self: ^AK.PageControllerDelegate, pageController: ^AK.PageController),
-    pageControllerDidEndLiveTransition: proc(self: ^AK.PageControllerDelegate, pageController: ^AK.PageController),
+    pageController_identifierForObject: proc(self: ^NS.PageControllerDelegate, pageController: ^NS.PageController, object: id) -> ^NS.String,
+    pageController_viewControllerForIdentifier: proc(self: ^NS.PageControllerDelegate, pageController: ^NS.PageController, identifier: ^NS.String) -> ^NS.ViewController,
+    pageController_frameForObject: proc(self: ^NS.PageControllerDelegate, pageController: ^NS.PageController, object: id) -> NS.Rect,
+    pageController_prepareViewController_withObject: proc(self: ^NS.PageControllerDelegate, pageController: ^NS.PageController, viewController: ^NS.ViewController, object: id),
+    pageController_didTransitionToObject: proc(self: ^NS.PageControllerDelegate, pageController: ^NS.PageController, object: id),
+    pageControllerWillStartLiveTransition: proc(self: ^NS.PageControllerDelegate, pageController: ^NS.PageController),
+    pageControllerDidEndLiveTransition: proc(self: ^NS.PageControllerDelegate, pageController: ^NS.PageController),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.pageController_identifierForObject != nil {
-        pageController_identifierForObject :: proc "c" (self: ^AK.PageControllerDelegate, _: SEL, pageController: ^AK.PageController, object: id) -> ^NS.String {
+        pageController_identifierForObject :: proc "c" (self: ^NS.PageControllerDelegate, _: SEL, pageController: ^NS.PageController, object: id) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pageController:identifierForObject:"), auto_cast pageController_identifierForObject, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.pageController_viewControllerForIdentifier != nil {
-        pageController_viewControllerForIdentifier :: proc "c" (self: ^AK.PageControllerDelegate, _: SEL, pageController: ^AK.PageController, identifier: ^NS.String) -> ^AK.ViewController {
+        pageController_viewControllerForIdentifier :: proc "c" (self: ^NS.PageControllerDelegate, _: SEL, pageController: ^NS.PageController, identifier: ^NS.String) -> ^NS.ViewController {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pageController:viewControllerForIdentifier:"), auto_cast pageController_viewControllerForIdentifier, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.pageController_frameForObject != nil {
-        pageController_frameForObject :: proc "c" (self: ^AK.PageControllerDelegate, _: SEL, pageController: ^AK.PageController, object: id) -> NS.Rect {
+        pageController_frameForObject :: proc "c" (self: ^NS.PageControllerDelegate, _: SEL, pageController: ^NS.PageController, object: id) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pageController:frameForObject:"), auto_cast pageController_frameForObject, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@@") do panic("Failed to register objC method.")
     }
     if vt.pageController_prepareViewController_withObject != nil {
-        pageController_prepareViewController_withObject :: proc "c" (self: ^AK.PageControllerDelegate, _: SEL, pageController: ^AK.PageController, viewController: ^AK.ViewController, object: id) {
+        pageController_prepareViewController_withObject :: proc "c" (self: ^NS.PageControllerDelegate, _: SEL, pageController: ^NS.PageController, viewController: ^NS.ViewController, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pageController:prepareViewController:withObject:"), auto_cast pageController_prepareViewController_withObject, "v@:@@@") do panic("Failed to register objC method.")
     }
     if vt.pageController_didTransitionToObject != nil {
-        pageController_didTransitionToObject :: proc "c" (self: ^AK.PageControllerDelegate, _: SEL, pageController: ^AK.PageController, object: id) {
+        pageController_didTransitionToObject :: proc "c" (self: ^NS.PageControllerDelegate, _: SEL, pageController: ^NS.PageController, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pageController:didTransitionToObject:"), auto_cast pageController_didTransitionToObject, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.pageControllerWillStartLiveTransition != nil {
-        pageControllerWillStartLiveTransition :: proc "c" (self: ^AK.PageControllerDelegate, _: SEL, pageController: ^AK.PageController) {
+        pageControllerWillStartLiveTransition :: proc "c" (self: ^NS.PageControllerDelegate, _: SEL, pageController: ^NS.PageController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pageControllerWillStartLiveTransition:"), auto_cast pageControllerWillStartLiveTransition, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.pageControllerDidEndLiveTransition != nil {
-        pageControllerDidEndLiveTransition :: proc "c" (self: ^AK.PageControllerDelegate, _: SEL, pageController: ^AK.PageController) {
+        pageControllerDidEndLiveTransition :: proc "c" (self: ^NS.PageControllerDelegate, _: SEL, pageController: ^NS.PageController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

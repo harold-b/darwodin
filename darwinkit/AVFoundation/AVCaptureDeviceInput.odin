@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureDeviceInput
-///
 @(objc_class="AVCaptureDeviceInput", objc_superclass=CaptureInput)
 CaptureDeviceInput :: struct { using _: CaptureInput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeviceInput, objc_selector="deviceInputWithDevice:error:", objc_name="deviceInputWithDevice", objc_is_class_method=true)
     CaptureDeviceInput_deviceInputWithDevice :: proc(device: ^CaptureDevice, outError: ^^NS.Error) -> instancetype ---
@@ -112,3 +106,6 @@ foreign lib {
     @(objc_type=CaptureDeviceInput, objc_selector="setSimulatedAperture:", objc_name="setSimulatedAperture")
     CaptureDeviceInput_setSimulatedAperture :: proc(self: ^CaptureDeviceInput, simulatedAperture: cffi.float) ---
 }
+
+
+

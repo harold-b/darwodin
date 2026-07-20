@@ -7,23 +7,16 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKMatchmakerViewController
-///
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_class="GKMatchmakerViewController", objc_superclass=AKViewController)
-    MatchmakerViewController :: struct { using _: AKViewController, 
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    @(objc_class="GKMatchmakerViewController", objc_superclass=AK.ViewController)
+    MatchmakerViewController :: struct { using _: AK.ViewController, 
         using _: ViewController,
     }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_class="GKMatchmakerViewController", objc_superclass=AKNavigationController)
-    MatchmakerViewController :: struct { using _: AKNavigationController, }
-} // End else
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    @(objc_class="GKMatchmakerViewController", objc_superclass=UI.NavigationController)
+    MatchmakerViewController :: struct { using _: UI.NavigationController, }
+}
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MatchmakerViewController, objc_selector="initWithMatchRequest:", objc_name="initWithMatchRequest")
     MatchmakerViewController_initWithMatchRequest :: proc(self: ^MatchmakerViewController, request: ^MatchRequest) -> id ---
@@ -76,6 +69,8 @@ foreign lib {
     @(objc_type=MatchmakerViewController, objc_selector="setHostedPlayerReady:", objc_name="setHostedPlayerReady")
     MatchmakerViewController_setHostedPlayerReady :: proc(self: ^MatchmakerViewController, playerID: ^NS.String) ---
 }
+
+
 
 @(objc_type=MatchmakerViewController, objc_name="setHostedPlayer")
 MatchmakerViewController_setHostedPlayer :: proc {

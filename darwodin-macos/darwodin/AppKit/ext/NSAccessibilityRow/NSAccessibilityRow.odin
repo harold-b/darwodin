@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityIndex: proc(self: ^AK.AccessibilityRow) -> NS.Integer,
-    accessibilityDisclosureLevel: proc(self: ^AK.AccessibilityRow) -> NS.Integer,
+    accessibilityIndex: proc(self: ^NS.AccessibilityRow) -> NS.Integer,
+    accessibilityDisclosureLevel: proc(self: ^NS.AccessibilityRow) -> NS.Integer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityIndex != nil {
-        accessibilityIndex :: proc "c" (self: ^AK.AccessibilityRow, _: SEL) -> NS.Integer {
+        accessibilityIndex :: proc "c" (self: ^NS.AccessibilityRow, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityIndex"), auto_cast accessibilityIndex, "l@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityDisclosureLevel != nil {
-        accessibilityDisclosureLevel :: proc "c" (self: ^AK.AccessibilityRow, _: SEL) -> NS.Integer {
+        accessibilityDisclosureLevel :: proc "c" (self: ^NS.AccessibilityRow, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

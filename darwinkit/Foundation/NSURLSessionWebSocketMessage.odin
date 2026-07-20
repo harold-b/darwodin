@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLSessionWebSocketMessage
-///
 @(objc_class="NSURLSessionWebSocketMessage", objc_superclass=Object)
 URLSessionWebSocketMessage :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionWebSocketMessage, objc_selector="initWithData:", objc_name="initWithData")
     URLSessionWebSocketMessage_initWithData :: proc(self: ^URLSessionWebSocketMessage, data: ^Data) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=URLSessionWebSocketMessage, objc_selector="string", objc_name="string")
     URLSessionWebSocketMessage_string :: proc(self: ^URLSessionWebSocketMessage) -> ^String ---
 }
+
+
+

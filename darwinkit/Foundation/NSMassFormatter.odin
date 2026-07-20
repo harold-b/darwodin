@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMassFormatter
-///
 @(objc_class="NSMassFormatter", objc_superclass=Formatter)
 MassFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MassFormatter, objc_selector="stringFromValue:unit:", objc_name="stringFromValue")
     MassFormatter_stringFromValue :: proc(self: ^MassFormatter, value: cffi.double, unit: MassFormatterUnit) -> ^String ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=MassFormatter, objc_selector="setForPersonMassUse:", objc_name="setForPersonMassUse")
     MassFormatter_setForPersonMassUse :: proc(self: ^MassFormatter, forPersonMassUse: bool) ---
 }
+
+
+

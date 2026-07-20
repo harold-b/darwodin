@@ -20,33 +20,33 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    objectForKey: proc(self: ^AK.FontDescriptor, attribute: ^NS.String) -> id,
-    fontDescriptorWithFontAttributes: proc(attributes: ^NS.Dictionary) -> ^AK.FontDescriptor,
-    fontDescriptorWithName_size: proc(fontName: ^NS.String, size: CG.Float) -> ^AK.FontDescriptor,
-    fontDescriptorWithName_matrix: proc(fontName: ^NS.String, _matrix: ^NS.AffineTransform) -> ^AK.FontDescriptor,
-    initWithFontAttributes: proc(self: ^AK.FontDescriptor, attributes: ^NS.Dictionary) -> instancetype,
-    matchingFontDescriptorsWithMandatoryKeys: proc(self: ^AK.FontDescriptor, mandatoryKeys: ^NS.Set) -> ^NS.Array,
-    matchingFontDescriptorWithMandatoryKeys: proc(self: ^AK.FontDescriptor, mandatoryKeys: ^NS.Set) -> ^AK.FontDescriptor,
-    fontDescriptorByAddingAttributes: proc(self: ^AK.FontDescriptor, attributes: ^NS.Dictionary) -> ^AK.FontDescriptor,
-    fontDescriptorWithSymbolicTraits: proc(self: ^AK.FontDescriptor, symbolicTraits: AK.FontDescriptorSymbolicTraits) -> ^AK.FontDescriptor,
-    fontDescriptorWithSize: proc(self: ^AK.FontDescriptor, newPointSize: CG.Float) -> ^AK.FontDescriptor,
-    fontDescriptorWithMatrix: proc(self: ^AK.FontDescriptor, _matrix: ^NS.AffineTransform) -> ^AK.FontDescriptor,
-    fontDescriptorWithFace: proc(self: ^AK.FontDescriptor, newFace: ^NS.String) -> ^AK.FontDescriptor,
-    fontDescriptorWithFamily: proc(self: ^AK.FontDescriptor, newFamily: ^NS.String) -> ^AK.FontDescriptor,
-    fontDescriptorWithDesign: proc(self: ^AK.FontDescriptor, design: ^NS.String) -> instancetype,
-    postscriptName: proc(self: ^AK.FontDescriptor) -> ^NS.String,
-    pointSize: proc(self: ^AK.FontDescriptor) -> CG.Float,
-    _matrix: proc(self: ^AK.FontDescriptor) -> ^NS.AffineTransform,
-    symbolicTraits: proc(self: ^AK.FontDescriptor) -> AK.FontDescriptorSymbolicTraits,
-    requiresFontAssetRequest: proc(self: ^AK.FontDescriptor) -> bool,
-    fontAttributes: proc(self: ^AK.FontDescriptor) -> ^NS.Dictionary,
-    preferredFontDescriptorForTextStyle: proc(style: ^NS.String, options: ^NS.Dictionary) -> ^AK.FontDescriptor,
+    objectForKey: proc(self: ^NS.FontDescriptor, attribute: ^NS.String) -> id,
+    fontDescriptorWithFontAttributes: proc(attributes: ^NS.Dictionary) -> ^NS.FontDescriptor,
+    fontDescriptorWithName_size: proc(fontName: ^NS.String, size: CG.Float) -> ^NS.FontDescriptor,
+    fontDescriptorWithName_matrix: proc(fontName: ^NS.String, _matrix: ^NS.AffineTransform) -> ^NS.FontDescriptor,
+    initWithFontAttributes: proc(self: ^NS.FontDescriptor, attributes: ^NS.Dictionary) -> instancetype,
+    matchingFontDescriptorsWithMandatoryKeys: proc(self: ^NS.FontDescriptor, mandatoryKeys: ^NS.Set) -> ^NS.Array,
+    matchingFontDescriptorWithMandatoryKeys: proc(self: ^NS.FontDescriptor, mandatoryKeys: ^NS.Set) -> ^NS.FontDescriptor,
+    fontDescriptorByAddingAttributes: proc(self: ^NS.FontDescriptor, attributes: ^NS.Dictionary) -> ^NS.FontDescriptor,
+    fontDescriptorWithSymbolicTraits: proc(self: ^NS.FontDescriptor, symbolicTraits: NS.FontDescriptorSymbolicTraits) -> ^NS.FontDescriptor,
+    fontDescriptorWithSize: proc(self: ^NS.FontDescriptor, newPointSize: CG.Float) -> ^NS.FontDescriptor,
+    fontDescriptorWithMatrix: proc(self: ^NS.FontDescriptor, _matrix: ^NS.AffineTransform) -> ^NS.FontDescriptor,
+    fontDescriptorWithFace: proc(self: ^NS.FontDescriptor, newFace: ^NS.String) -> ^NS.FontDescriptor,
+    fontDescriptorWithFamily: proc(self: ^NS.FontDescriptor, newFamily: ^NS.String) -> ^NS.FontDescriptor,
+    fontDescriptorWithDesign: proc(self: ^NS.FontDescriptor, design: ^NS.String) -> instancetype,
+    postscriptName: proc(self: ^NS.FontDescriptor) -> ^NS.String,
+    pointSize: proc(self: ^NS.FontDescriptor) -> CG.Float,
+    _matrix: proc(self: ^NS.FontDescriptor) -> ^NS.AffineTransform,
+    symbolicTraits: proc(self: ^NS.FontDescriptor) -> NS.FontDescriptorSymbolicTraits,
+    requiresFontAssetRequest: proc(self: ^NS.FontDescriptor) -> bool,
+    fontAttributes: proc(self: ^NS.FontDescriptor) -> ^NS.Dictionary,
+    preferredFontDescriptorForTextStyle: proc(style: ^NS.String, options: ^NS.Dictionary) -> ^NS.FontDescriptor,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.objectForKey != nil {
-        objectForKey :: proc "c" (self: ^AK.FontDescriptor, _: SEL, attribute: ^NS.String) -> id {
+        objectForKey :: proc "c" (self: ^NS.FontDescriptor, _: SEL, attribute: ^NS.String) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("objectForKey:"), auto_cast objectForKey, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorWithFontAttributes != nil {
-        fontDescriptorWithFontAttributes :: proc "c" (self: Class, _: SEL, attributes: ^NS.Dictionary) -> ^AK.FontDescriptor {
+        fontDescriptorWithFontAttributes :: proc "c" (self: Class, _: SEL, attributes: ^NS.Dictionary) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontDescriptorWithFontAttributes:"), auto_cast fontDescriptorWithFontAttributes, "@#:^void") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorWithName_size != nil {
-        fontDescriptorWithName_size :: proc "c" (self: Class, _: SEL, fontName: ^NS.String, size: CG.Float) -> ^AK.FontDescriptor {
+        fontDescriptorWithName_size :: proc "c" (self: Class, _: SEL, fontName: ^NS.String, size: CG.Float) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontDescriptorWithName:size:"), auto_cast fontDescriptorWithName_size, "@#:@d") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorWithName_matrix != nil {
-        fontDescriptorWithName_matrix :: proc "c" (self: Class, _: SEL, fontName: ^NS.String, _matrix: ^NS.AffineTransform) -> ^AK.FontDescriptor {
+        fontDescriptorWithName_matrix :: proc "c" (self: Class, _: SEL, fontName: ^NS.String, _matrix: ^NS.AffineTransform) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("fontDescriptorWithName:matrix:"), auto_cast fontDescriptorWithName_matrix, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFontAttributes != nil {
-        initWithFontAttributes :: proc "c" (self: ^AK.FontDescriptor, _: SEL, attributes: ^NS.Dictionary) -> instancetype {
+        initWithFontAttributes :: proc "c" (self: ^NS.FontDescriptor, _: SEL, attributes: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFontAttributes:"), auto_cast initWithFontAttributes, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.matchingFontDescriptorsWithMandatoryKeys != nil {
-        matchingFontDescriptorsWithMandatoryKeys :: proc "c" (self: ^AK.FontDescriptor, _: SEL, mandatoryKeys: ^NS.Set) -> ^NS.Array {
+        matchingFontDescriptorsWithMandatoryKeys :: proc "c" (self: ^NS.FontDescriptor, _: SEL, mandatoryKeys: ^NS.Set) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("matchingFontDescriptorsWithMandatoryKeys:"), auto_cast matchingFontDescriptorsWithMandatoryKeys, "^void@:^void") do panic("Failed to register objC method.")
     }
     if vt.matchingFontDescriptorWithMandatoryKeys != nil {
-        matchingFontDescriptorWithMandatoryKeys :: proc "c" (self: ^AK.FontDescriptor, _: SEL, mandatoryKeys: ^NS.Set) -> ^AK.FontDescriptor {
+        matchingFontDescriptorWithMandatoryKeys :: proc "c" (self: ^NS.FontDescriptor, _: SEL, mandatoryKeys: ^NS.Set) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("matchingFontDescriptorWithMandatoryKeys:"), auto_cast matchingFontDescriptorWithMandatoryKeys, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorByAddingAttributes != nil {
-        fontDescriptorByAddingAttributes :: proc "c" (self: ^AK.FontDescriptor, _: SEL, attributes: ^NS.Dictionary) -> ^AK.FontDescriptor {
+        fontDescriptorByAddingAttributes :: proc "c" (self: ^NS.FontDescriptor, _: SEL, attributes: ^NS.Dictionary) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontDescriptorByAddingAttributes:"), auto_cast fontDescriptorByAddingAttributes, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorWithSymbolicTraits != nil {
-        fontDescriptorWithSymbolicTraits :: proc "c" (self: ^AK.FontDescriptor, _: SEL, symbolicTraits: AK.FontDescriptorSymbolicTraits) -> ^AK.FontDescriptor {
+        fontDescriptorWithSymbolicTraits :: proc "c" (self: ^NS.FontDescriptor, _: SEL, symbolicTraits: NS.FontDescriptorSymbolicTraits) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontDescriptorWithSymbolicTraits:"), auto_cast fontDescriptorWithSymbolicTraits, "@@:I") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorWithSize != nil {
-        fontDescriptorWithSize :: proc "c" (self: ^AK.FontDescriptor, _: SEL, newPointSize: CG.Float) -> ^AK.FontDescriptor {
+        fontDescriptorWithSize :: proc "c" (self: ^NS.FontDescriptor, _: SEL, newPointSize: CG.Float) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontDescriptorWithSize:"), auto_cast fontDescriptorWithSize, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorWithMatrix != nil {
-        fontDescriptorWithMatrix :: proc "c" (self: ^AK.FontDescriptor, _: SEL, _matrix: ^NS.AffineTransform) -> ^AK.FontDescriptor {
+        fontDescriptorWithMatrix :: proc "c" (self: ^NS.FontDescriptor, _: SEL, _matrix: ^NS.AffineTransform) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -167,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontDescriptorWithMatrix:"), auto_cast fontDescriptorWithMatrix, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorWithFace != nil {
-        fontDescriptorWithFace :: proc "c" (self: ^AK.FontDescriptor, _: SEL, newFace: ^NS.String) -> ^AK.FontDescriptor {
+        fontDescriptorWithFace :: proc "c" (self: ^NS.FontDescriptor, _: SEL, newFace: ^NS.String) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -177,7 +177,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontDescriptorWithFace:"), auto_cast fontDescriptorWithFace, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorWithFamily != nil {
-        fontDescriptorWithFamily :: proc "c" (self: ^AK.FontDescriptor, _: SEL, newFamily: ^NS.String) -> ^AK.FontDescriptor {
+        fontDescriptorWithFamily :: proc "c" (self: ^NS.FontDescriptor, _: SEL, newFamily: ^NS.String) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -187,7 +187,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontDescriptorWithFamily:"), auto_cast fontDescriptorWithFamily, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.fontDescriptorWithDesign != nil {
-        fontDescriptorWithDesign :: proc "c" (self: ^AK.FontDescriptor, _: SEL, design: ^NS.String) -> instancetype {
+        fontDescriptorWithDesign :: proc "c" (self: ^NS.FontDescriptor, _: SEL, design: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -197,7 +197,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontDescriptorWithDesign:"), auto_cast fontDescriptorWithDesign, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.postscriptName != nil {
-        postscriptName :: proc "c" (self: ^AK.FontDescriptor, _: SEL) -> ^NS.String {
+        postscriptName :: proc "c" (self: ^NS.FontDescriptor, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -207,7 +207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("postscriptName"), auto_cast postscriptName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.pointSize != nil {
-        pointSize :: proc "c" (self: ^AK.FontDescriptor, _: SEL) -> CG.Float {
+        pointSize :: proc "c" (self: ^NS.FontDescriptor, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -217,7 +217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pointSize"), auto_cast pointSize, "d@:") do panic("Failed to register objC method.")
     }
     if vt._matrix != nil {
-        _matrix :: proc "c" (self: ^AK.FontDescriptor, _: SEL) -> ^NS.AffineTransform {
+        _matrix :: proc "c" (self: ^NS.FontDescriptor, _: SEL) -> ^NS.AffineTransform {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -227,7 +227,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("matrix"), auto_cast _matrix, "@@:") do panic("Failed to register objC method.")
     }
     if vt.symbolicTraits != nil {
-        symbolicTraits :: proc "c" (self: ^AK.FontDescriptor, _: SEL) -> AK.FontDescriptorSymbolicTraits {
+        symbolicTraits :: proc "c" (self: ^NS.FontDescriptor, _: SEL) -> NS.FontDescriptorSymbolicTraits {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -237,7 +237,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("symbolicTraits"), auto_cast symbolicTraits, "I@:") do panic("Failed to register objC method.")
     }
     if vt.requiresFontAssetRequest != nil {
-        requiresFontAssetRequest :: proc "c" (self: ^AK.FontDescriptor, _: SEL) -> bool {
+        requiresFontAssetRequest :: proc "c" (self: ^NS.FontDescriptor, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -247,7 +247,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("requiresFontAssetRequest"), auto_cast requiresFontAssetRequest, "B@:") do panic("Failed to register objC method.")
     }
     if vt.fontAttributes != nil {
-        fontAttributes :: proc "c" (self: ^AK.FontDescriptor, _: SEL) -> ^NS.Dictionary {
+        fontAttributes :: proc "c" (self: ^NS.FontDescriptor, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -257,7 +257,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fontAttributes"), auto_cast fontAttributes, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.preferredFontDescriptorForTextStyle != nil {
-        preferredFontDescriptorForTextStyle :: proc "c" (self: Class, _: SEL, style: ^NS.String, options: ^NS.Dictionary) -> ^AK.FontDescriptor {
+        preferredFontDescriptorForTextStyle :: proc "c" (self: Class, _: SEL, style: ^NS.String, options: ^NS.Dictionary) -> ^NS.FontDescriptor {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

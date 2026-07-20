@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVContinuityDevice
-///
 @(objc_class="AVContinuityDevice", objc_superclass=NS.Object)
 ContinuityDevice :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContinuityDevice, objc_selector="init", objc_name="init")
     ContinuityDevice_init :: proc(self: ^ContinuityDevice) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=ContinuityDevice, objc_selector="audioSessionInputs", objc_name="audioSessionInputs")
     ContinuityDevice_audioSessionInputs :: proc(self: ^ContinuityDevice) -> ^NS.Array ---
 }
+
+
+

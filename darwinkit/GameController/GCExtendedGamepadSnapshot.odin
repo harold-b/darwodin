@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCExtendedGamepadSnapshot
-///
 @(objc_class="GCExtendedGamepadSnapshot", objc_superclass=ExtendedGamepad)
 ExtendedGamepadSnapshot :: struct { using _: ExtendedGamepad, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExtendedGamepadSnapshot, objc_selector="initWithSnapshotData:", objc_name="initWithSnapshotData")
     ExtendedGamepadSnapshot_initWithSnapshotData :: proc(self: ^ExtendedGamepadSnapshot, data: ^NS.Data) -> instancetype ---
@@ -30,3 +24,6 @@ foreign lib {
     @(objc_type=ExtendedGamepadSnapshot, objc_selector="setSnapshotData:", objc_name="setSnapshotData")
     ExtendedGamepadSnapshot_setSnapshotData :: proc(self: ^ExtendedGamepadSnapshot, snapshotData: ^NS.Data) ---
 }
+
+
+

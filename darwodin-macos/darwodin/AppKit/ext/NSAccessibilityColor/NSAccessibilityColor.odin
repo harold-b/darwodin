@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityName: proc(self: ^AK.AccessibilityColor) -> ^NS.String,
+    accessibilityName: proc(self: ^NS.AccessibilityColor) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityName != nil {
-        accessibilityName :: proc "c" (self: ^AK.AccessibilityColor, _: SEL) -> ^NS.String {
+        accessibilityName :: proc "c" (self: ^NS.AccessibilityColor, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

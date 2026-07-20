@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    numberOfItemsInComboBoxCell: proc(self: ^AK.ComboBoxCellDataSource, comboBoxCell: ^AK.ComboBoxCell) -> NS.Integer,
-    comboBoxCell_objectValueForItemAtIndex: proc(self: ^AK.ComboBoxCellDataSource, comboBoxCell: ^AK.ComboBoxCell, index: NS.Integer) -> id,
-    comboBoxCell_indexOfItemWithStringValue: proc(self: ^AK.ComboBoxCellDataSource, comboBoxCell: ^AK.ComboBoxCell, string: ^NS.String) -> NS.UInteger,
-    comboBoxCell_completedString: proc(self: ^AK.ComboBoxCellDataSource, comboBoxCell: ^AK.ComboBoxCell, uncompletedString: ^NS.String) -> ^NS.String,
+    numberOfItemsInComboBoxCell: proc(self: ^NS.ComboBoxCellDataSource, comboBoxCell: ^NS.ComboBoxCell) -> NS.Integer,
+    comboBoxCell_objectValueForItemAtIndex: proc(self: ^NS.ComboBoxCellDataSource, comboBoxCell: ^NS.ComboBoxCell, index: NS.Integer) -> id,
+    comboBoxCell_indexOfItemWithStringValue: proc(self: ^NS.ComboBoxCellDataSource, comboBoxCell: ^NS.ComboBoxCell, string: ^NS.String) -> NS.UInteger,
+    comboBoxCell_completedString: proc(self: ^NS.ComboBoxCellDataSource, comboBoxCell: ^NS.ComboBoxCell, uncompletedString: ^NS.String) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.numberOfItemsInComboBoxCell != nil {
-        numberOfItemsInComboBoxCell :: proc "c" (self: ^AK.ComboBoxCellDataSource, _: SEL, comboBoxCell: ^AK.ComboBoxCell) -> NS.Integer {
+        numberOfItemsInComboBoxCell :: proc "c" (self: ^NS.ComboBoxCellDataSource, _: SEL, comboBoxCell: ^NS.ComboBoxCell) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfItemsInComboBoxCell:"), auto_cast numberOfItemsInComboBoxCell, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.comboBoxCell_objectValueForItemAtIndex != nil {
-        comboBoxCell_objectValueForItemAtIndex :: proc "c" (self: ^AK.ComboBoxCellDataSource, _: SEL, comboBoxCell: ^AK.ComboBoxCell, index: NS.Integer) -> id {
+        comboBoxCell_objectValueForItemAtIndex :: proc "c" (self: ^NS.ComboBoxCellDataSource, _: SEL, comboBoxCell: ^NS.ComboBoxCell, index: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("comboBoxCell:objectValueForItemAtIndex:"), auto_cast comboBoxCell_objectValueForItemAtIndex, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.comboBoxCell_indexOfItemWithStringValue != nil {
-        comboBoxCell_indexOfItemWithStringValue :: proc "c" (self: ^AK.ComboBoxCellDataSource, _: SEL, comboBoxCell: ^AK.ComboBoxCell, string: ^NS.String) -> NS.UInteger {
+        comboBoxCell_indexOfItemWithStringValue :: proc "c" (self: ^NS.ComboBoxCellDataSource, _: SEL, comboBoxCell: ^NS.ComboBoxCell, string: ^NS.String) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("comboBoxCell:indexOfItemWithStringValue:"), auto_cast comboBoxCell_indexOfItemWithStringValue, "L@:@@") do panic("Failed to register objC method.")
     }
     if vt.comboBoxCell_completedString != nil {
-        comboBoxCell_completedString :: proc "c" (self: ^AK.ComboBoxCellDataSource, _: SEL, comboBoxCell: ^AK.ComboBoxCell, uncompletedString: ^NS.String) -> ^NS.String {
+        comboBoxCell_completedString :: proc "c" (self: ^NS.ComboBoxCellDataSource, _: SEL, comboBoxCell: ^NS.ComboBoxCell, uncompletedString: ^NS.String) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

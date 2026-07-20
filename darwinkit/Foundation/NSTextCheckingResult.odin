@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSTextCheckingResult
-///
 @(objc_class="NSTextCheckingResult", objc_superclass=Object)
 TextCheckingResult :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextCheckingResult, objc_selector="resultType", objc_name="resultType")
     TextCheckingResult_resultType :: proc(self: ^TextCheckingResult) -> TextCheckingType ---
@@ -121,6 +115,8 @@ foreign lib {
     @(objc_type=TextCheckingResult, objc_selector="transitInformationCheckingResultWithRange:components:", objc_name="transitInformationCheckingResultWithRange", objc_is_class_method=true)
     TextCheckingResult_transitInformationCheckingResultWithRange :: proc(range: _NSRange, components: ^Dictionary) -> ^TextCheckingResult ---
 }
+
+
 
 @(objc_type=TextCheckingResult, objc_name="dateCheckingResultWithRange")
 TextCheckingResult_dateCheckingResultWithRange :: proc {

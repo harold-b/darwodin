@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import NS "../Foundation"
 import Sec "../Security"
 
-
-
-///
-/// LADomainStateBiometry
-///
 @(objc_class="LADomainStateBiometry", objc_superclass=NS.Object)
 DomainStateBiometry :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DomainStateBiometry, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DomainStateBiometry_new :: proc() -> ^DomainStateBiometry ---
@@ -30,3 +24,6 @@ foreign lib {
     @(objc_type=DomainStateBiometry, objc_selector="stateHash", objc_name="stateHash")
     DomainStateBiometry_stateHash :: proc(self: ^DomainStateBiometry) -> ^NS.Data ---
 }
+
+
+

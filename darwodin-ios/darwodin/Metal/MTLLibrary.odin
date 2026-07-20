@@ -29,19 +29,19 @@ foreign lib {
     Library_newFunctionWithName_constantValues_error :: proc(self: ^Library, name: ^NS.String, constantValues: ^FunctionConstantValues, error: ^^NS.Error) -> ^Function ---
 
     @(objc_type=Library, objc_selector="newFunctionWithName:constantValues:completionHandler:", objc_name="newFunctionWithName_constantValues_completionHandler")
-    Library_newFunctionWithName_constantValues_completionHandler :: proc(self: ^Library, name: ^NS.String, constantValues: ^FunctionConstantValues, completionHandler: ^Objc_Block(proc "c" (function: ^Function, error: ^NS.Error))) ---
+    Library_newFunctionWithName_constantValues_completionHandler :: proc(self: ^Library, name: ^NS.String, constantValues: ^FunctionConstantValues, completionHandler: ^Objc_Block(proc "c" ( function: ^Function, error: ^NS.Error ))) ---
 
     @(objc_type=Library, objc_selector="reflectionForFunctionWithName:", objc_name="reflectionForFunctionWithName")
     Library_reflectionForFunctionWithName :: proc(self: ^Library, functionName: ^NS.String) -> ^FunctionReflection ---
 
     @(objc_type=Library, objc_selector="newFunctionWithDescriptor:completionHandler:", objc_name="newFunctionWithDescriptor_completionHandler")
-    Library_newFunctionWithDescriptor_completionHandler :: proc(self: ^Library, descriptor: ^FunctionDescriptor, completionHandler: ^Objc_Block(proc "c" (function: ^Function, error: ^NS.Error))) ---
+    Library_newFunctionWithDescriptor_completionHandler :: proc(self: ^Library, descriptor: ^FunctionDescriptor, completionHandler: ^Objc_Block(proc "c" ( function: ^Function, error: ^NS.Error ))) ---
 
     @(objc_type=Library, objc_selector="newFunctionWithDescriptor:error:", objc_name="newFunctionWithDescriptor_error")
     Library_newFunctionWithDescriptor_error :: proc(self: ^Library, descriptor: ^FunctionDescriptor, error: ^^NS.Error) -> ^Function ---
 
     @(objc_type=Library, objc_selector="newIntersectionFunctionWithDescriptor:completionHandler:", objc_name="newIntersectionFunctionWithDescriptor_completionHandler")
-    Library_newIntersectionFunctionWithDescriptor_completionHandler :: proc(self: ^Library, descriptor: ^IntersectionFunctionDescriptor, completionHandler: ^Objc_Block(proc "c" (function: ^Function, error: ^NS.Error))) ---
+    Library_newIntersectionFunctionWithDescriptor_completionHandler :: proc(self: ^Library, descriptor: ^IntersectionFunctionDescriptor, completionHandler: ^Objc_Block(proc "c" ( function: ^Function, error: ^NS.Error ))) ---
 
     @(objc_type=Library, objc_selector="newIntersectionFunctionWithDescriptor:error:", objc_name="newIntersectionFunctionWithDescriptor_error")
     Library_newIntersectionFunctionWithDescriptor_error :: proc(self: ^Library, descriptor: ^IntersectionFunctionDescriptor, error: ^^NS.Error) -> ^Function ---

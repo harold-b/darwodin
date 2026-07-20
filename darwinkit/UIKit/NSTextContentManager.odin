@@ -37,7 +37,7 @@ foreign lib {
     NSTextContentManager_removeTextLayoutManager :: proc(self: ^NSTextContentManager, textLayoutManager: ^NSTextLayoutManager) ---
 
     @(objc_type=NSTextContentManager, objc_selector="synchronizeTextLayoutManagers:", objc_name="synchronizeTextLayoutManagers")
-    NSTextContentManager_synchronizeTextLayoutManagers :: proc(self: ^NSTextContentManager, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    NSTextContentManager_synchronizeTextLayoutManagers :: proc(self: ^NSTextContentManager, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=NSTextContentManager, objc_selector="textElementsForRange:", objc_name="textElementsForRange")
     NSTextContentManager_textElementsForRange :: proc(self: ^NSTextContentManager, range: ^NSTextRange) -> ^NS.Array ---

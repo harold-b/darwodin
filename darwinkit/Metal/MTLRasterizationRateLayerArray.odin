@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRasterizationRateLayerArray
-///
 @(objc_class="MTLRasterizationRateLayerArray", objc_superclass=NS.Object)
 RasterizationRateLayerArray :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RasterizationRateLayerArray, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
     RasterizationRateLayerArray_objectAtIndexedSubscript :: proc(self: ^RasterizationRateLayerArray, layerIndex: NS.UInteger) -> ^RasterizationRateLayerDescriptor ---
@@ -27,3 +21,6 @@ foreign lib {
     @(objc_type=RasterizationRateLayerArray, objc_selector="setObject:atIndexedSubscript:", objc_name="setObject")
     RasterizationRateLayerArray_setObject :: proc(self: ^RasterizationRateLayerArray, layer: ^RasterizationRateLayerDescriptor, layerIndex: NS.UInteger) ---
 }
+
+
+

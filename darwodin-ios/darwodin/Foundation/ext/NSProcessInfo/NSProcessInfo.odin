@@ -47,7 +47,7 @@ VTable :: struct {
     beginActivityWithOptions: proc(self: ^NS.ProcessInfo, options: NS.ActivityOptions, reason: ^NS.String) -> ^NS.ObjectProtocol,
     endActivity: proc(self: ^NS.ProcessInfo, activity: ^NS.ObjectProtocol),
     performActivityWithOptions: proc(self: ^NS.ProcessInfo, options: NS.ActivityOptions, reason: ^NS.String, block: ^Objc_Block(proc "c" ())),
-    performExpiringActivityWithReason: proc(self: ^NS.ProcessInfo, reason: ^NS.String, block: ^Objc_Block(proc "c" (expired: bool))),
+    performExpiringActivityWithReason: proc(self: ^NS.ProcessInfo, reason: ^NS.String, block: ^Objc_Block(proc "c" ( expired: bool ))),
     userName: proc(self: ^NS.ProcessInfo) -> ^NS.String,
     fullUserName: proc(self: ^NS.ProcessInfo) -> ^NS.String,
     thermalState: proc(self: ^NS.ProcessInfo) -> NS.ProcessInfoThermalState,
@@ -325,7 +325,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performActivityWithOptions:reason:usingBlock:"), auto_cast performActivityWithOptions, "v@:Q@?") do panic("Failed to register objC method.")
     }
     if vt.performExpiringActivityWithReason != nil {
-        performExpiringActivityWithReason :: proc "c" (self: ^NS.ProcessInfo, _: SEL, reason: ^NS.String, block: ^Objc_Block(proc "c" (expired: bool))) {
+        performExpiringActivityWithReason :: proc "c" (self: ^NS.ProcessInfo, _: SEL, reason: ^NS.String, block: ^Objc_Block(proc "c" ( expired: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetDownloadURLSession
-///
 @(objc_class="AVAssetDownloadURLSession", objc_superclass=NS.URLSession)
 AssetDownloadURLSession :: struct { using _: NS.URLSession, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetDownloadURLSession, objc_selector="sessionWithConfiguration:assetDownloadDelegate:delegateQueue:", objc_name="sessionWithConfiguration_assetDownloadDelegate_delegateQueue", objc_is_class_method=true)
     AssetDownloadURLSession_sessionWithConfiguration_assetDownloadDelegate_delegateQueue :: proc(configuration: ^NS.URLSessionConfiguration, delegate: ^AssetDownloadDelegate, delegateQueue: ^NS.OperationQueue) -> ^AssetDownloadURLSession ---
@@ -77,26 +71,28 @@ foreign lib {
     AssetDownloadURLSession_downloadTaskWithResumeData_ :: proc(self: ^AssetDownloadURLSession, resumeData: ^NS.Data) -> ^NS.URLSessionDownloadTask ---
 
     @(objc_type=AssetDownloadURLSession, objc_selector="dataTaskWithRequest:completionHandler:", objc_name="dataTaskWithRequest_completionHandler")
-    AssetDownloadURLSession_dataTaskWithRequest_completionHandler :: proc(self: ^AssetDownloadURLSession, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDataTask ---
+    AssetDownloadURLSession_dataTaskWithRequest_completionHandler :: proc(self: ^AssetDownloadURLSession, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDataTask ---
 
     @(objc_type=AssetDownloadURLSession, objc_selector="dataTaskWithURL:completionHandler:", objc_name="dataTaskWithURL_completionHandler")
-    AssetDownloadURLSession_dataTaskWithURL_completionHandler :: proc(self: ^AssetDownloadURLSession, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDataTask ---
+    AssetDownloadURLSession_dataTaskWithURL_completionHandler :: proc(self: ^AssetDownloadURLSession, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDataTask ---
 
     @(objc_type=AssetDownloadURLSession, objc_selector="uploadTaskWithRequest:fromFile:completionHandler:", objc_name="uploadTaskWithRequest_fromFile_completionHandler")
-    AssetDownloadURLSession_uploadTaskWithRequest_fromFile_completionHandler :: proc(self: ^AssetDownloadURLSession, request: ^NS.URLRequest, fileURL: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionUploadTask ---
+    AssetDownloadURLSession_uploadTaskWithRequest_fromFile_completionHandler :: proc(self: ^AssetDownloadURLSession, request: ^NS.URLRequest, fileURL: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionUploadTask ---
 
     @(objc_type=AssetDownloadURLSession, objc_selector="uploadTaskWithRequest:fromData:completionHandler:", objc_name="uploadTaskWithRequest_fromData_completionHandler")
-    AssetDownloadURLSession_uploadTaskWithRequest_fromData_completionHandler :: proc(self: ^AssetDownloadURLSession, request: ^NS.URLRequest, bodyData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionUploadTask ---
+    AssetDownloadURLSession_uploadTaskWithRequest_fromData_completionHandler :: proc(self: ^AssetDownloadURLSession, request: ^NS.URLRequest, bodyData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionUploadTask ---
 
     @(objc_type=AssetDownloadURLSession, objc_selector="downloadTaskWithRequest:completionHandler:", objc_name="downloadTaskWithRequest_completionHandler")
-    AssetDownloadURLSession_downloadTaskWithRequest_completionHandler :: proc(self: ^AssetDownloadURLSession, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDownloadTask ---
+    AssetDownloadURLSession_downloadTaskWithRequest_completionHandler :: proc(self: ^AssetDownloadURLSession, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDownloadTask ---
 
     @(objc_type=AssetDownloadURLSession, objc_selector="downloadTaskWithURL:completionHandler:", objc_name="downloadTaskWithURL_completionHandler")
-    AssetDownloadURLSession_downloadTaskWithURL_completionHandler :: proc(self: ^AssetDownloadURLSession, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDownloadTask ---
+    AssetDownloadURLSession_downloadTaskWithURL_completionHandler :: proc(self: ^AssetDownloadURLSession, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDownloadTask ---
 
     @(objc_type=AssetDownloadURLSession, objc_selector="downloadTaskWithResumeData:completionHandler:", objc_name="downloadTaskWithResumeData_completionHandler")
-    AssetDownloadURLSession_downloadTaskWithResumeData_completionHandler :: proc(self: ^AssetDownloadURLSession, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error))) -> ^NS.URLSessionDownloadTask ---
+    AssetDownloadURLSession_downloadTaskWithResumeData_completionHandler :: proc(self: ^AssetDownloadURLSession, resumeData: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( location: ^NS.URL, response: ^NS.URLResponse, error: ^NS.Error ))) -> ^NS.URLSessionDownloadTask ---
 }
+
+
 
 @(objc_type=AssetDownloadURLSession, objc_name="assetDownloadTaskWithURLAsset")
 AssetDownloadURLSession_assetDownloadTaskWithURLAsset :: proc {

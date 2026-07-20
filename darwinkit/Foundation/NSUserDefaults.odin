@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUserDefaults
-///
 @(objc_class="NSUserDefaults", objc_superclass=Object)
 UserDefaults :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserDefaults, objc_selector="resetStandardUserDefaults", objc_name="resetStandardUserDefaults", objc_is_class_method=true)
     UserDefaults_resetStandardUserDefaults :: proc() ---
@@ -133,6 +127,8 @@ foreign lib {
     @(objc_type=UserDefaults, objc_selector="volatileDomainNames", objc_name="volatileDomainNames")
     UserDefaults_volatileDomainNames :: proc(self: ^UserDefaults) -> ^Array ---
 }
+
+
 
 @(objc_type=UserDefaults, objc_name="objectIsForcedForKey")
 UserDefaults_objectIsForcedForKey :: proc {

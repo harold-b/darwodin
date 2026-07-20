@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKEntity
-///
 @(objc_class="GKEntity", objc_superclass=NS.Object)
 Entity :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Entity, objc_selector="entity", objc_name="entity", objc_is_class_method=true)
     Entity_entity :: proc() -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=Entity, objc_selector="components", objc_name="components")
     Entity_components :: proc(self: ^Entity) -> ^NS.Array ---
 }
+
+
+

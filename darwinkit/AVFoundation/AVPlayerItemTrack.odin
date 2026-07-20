@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemTrack
-///
 @(objc_class="AVPlayerItemTrack", objc_superclass=NS.Object)
 PlayerItemTrack :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemTrack, objc_selector="assetTrack", objc_name="assetTrack")
     PlayerItemTrack_assetTrack :: proc(self: ^PlayerItemTrack) -> ^AssetTrack ---
@@ -34,7 +28,7 @@ foreign lib {
     @(objc_type=PlayerItemTrack, objc_selector="currentVideoFrameRate", objc_name="currentVideoFrameRate")
     PlayerItemTrack_currentVideoFrameRate :: proc(self: ^PlayerItemTrack) -> cffi.float ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=PlayerItemTrack, objc_selector="videoFieldMode", objc_name="videoFieldMode")
         PlayerItemTrack_videoFieldMode :: proc(self: ^PlayerItemTrack) -> ^NS.String ---
 
@@ -42,3 +36,6 @@ foreign lib {
         PlayerItemTrack_setVideoFieldMode :: proc(self: ^PlayerItemTrack, videoFieldMode: ^NS.String) ---
     }
 }
+
+
+

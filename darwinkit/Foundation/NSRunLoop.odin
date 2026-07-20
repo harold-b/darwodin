@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSRunLoop
-///
 @(objc_class="NSRunLoop", objc_superclass=Object)
 RunLoop :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RunLoop, objc_selector="getCFRunLoop", objc_name="getCFRunLoop")
     RunLoop_getCFRunLoop :: proc(self: ^RunLoop) -> CF.RunLoopRef ---
@@ -55,7 +49,7 @@ foreign lib {
     @(objc_type=RunLoop, objc_selector="runMode:beforeDate:", objc_name="runMode")
     RunLoop_runMode :: proc(self: ^RunLoop, mode: ^String, limitDate: ^Date) -> bool ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=RunLoop, objc_selector="configureAsServer", objc_name="configureAsServer")
         RunLoop_configureAsServer :: proc(self: ^RunLoop) ---
     }
@@ -75,3 +69,6 @@ foreign lib {
     @(objc_type=RunLoop, objc_selector="cancelPerformSelectorsWithTarget:", objc_name="cancelPerformSelectorsWithTarget")
     RunLoop_cancelPerformSelectorsWithTarget :: proc(self: ^RunLoop, target: id) ---
 }
+
+
+

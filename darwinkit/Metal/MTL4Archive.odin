@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4Archive
-///
 @(objc_class="MTL4Archive")
 MTL4Archive :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4Archive, objc_selector="newComputePipelineStateWithDescriptor:error:", objc_name="newComputePipelineStateWithDescriptor_error")
     MTL4Archive_newComputePipelineStateWithDescriptor_error :: proc(self: ^MTL4Archive, descriptor: ^MTL4ComputePipelineDescriptor, error: ^^NS.Error) -> ^ComputePipelineState ---
@@ -44,6 +38,8 @@ foreign lib {
     @(objc_type=MTL4Archive, objc_selector="setLabel:", objc_name="setLabel")
     MTL4Archive_setLabel :: proc(self: ^MTL4Archive, label: ^NS.String) ---
 }
+
+
 
 @(objc_type=MTL4Archive, objc_name="newComputePipelineStateWithDescriptor")
 MTL4Archive_newComputePipelineStateWithDescriptor :: proc {

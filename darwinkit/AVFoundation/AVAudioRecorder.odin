@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioRecorder
-///
 @(objc_class="AVAudioRecorder", objc_superclass=NS.Object)
 AudioRecorder :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioRecorder, objc_selector="initWithURL:settings:error:", objc_name="initWithURL_settings_error")
     AudioRecorder_initWithURL_settings_error :: proc(self: ^AudioRecorder, url: ^NS.URL, settings: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
@@ -97,6 +91,8 @@ foreign lib {
     @(objc_type=AudioRecorder, objc_selector="setChannelAssignments:", objc_name="setChannelAssignments")
     AudioRecorder_setChannelAssignments :: proc(self: ^AudioRecorder, channelAssignments: ^NS.Array) ---
 }
+
+
 
 @(objc_type=AudioRecorder, objc_name="initWithURL")
 AudioRecorder_initWithURL :: proc {

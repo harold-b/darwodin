@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKAgent
-///
 @(objc_class="GKAgent", objc_superclass=Component)
 Agent :: struct { using _: Component, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Agent, objc_selector="delegate", objc_name="delegate")
     Agent_delegate :: proc(self: ^Agent) -> ^AgentDelegate ---
@@ -61,3 +55,6 @@ foreign lib {
     @(objc_type=Agent, objc_selector="setMaxSpeed:", objc_name="setMaxSpeed")
     Agent_setMaxSpeed :: proc(self: ^Agent, maxSpeed: cffi.float) ---
 }
+
+
+

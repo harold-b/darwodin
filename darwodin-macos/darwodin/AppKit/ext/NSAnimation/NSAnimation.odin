@@ -20,39 +20,39 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithDuration: proc(self: ^AK.Animation, duration: NS.TimeInterval, animationCurve: AK.AnimationCurve) -> instancetype,
-    initWithCoder: proc(self: ^AK.Animation, coder: ^NS.Coder) -> instancetype,
-    startAnimation: proc(self: ^AK.Animation),
-    stopAnimation: proc(self: ^AK.Animation),
-    addProgressMark: proc(self: ^AK.Animation, progressMark: AK.AnimationProgress),
-    removeProgressMark: proc(self: ^AK.Animation, progressMark: AK.AnimationProgress),
-    startWhenAnimation: proc(self: ^AK.Animation, animation: ^AK.Animation, startProgress: AK.AnimationProgress),
-    stopWhenAnimation: proc(self: ^AK.Animation, animation: ^AK.Animation, stopProgress: AK.AnimationProgress),
-    clearStartAnimation: proc(self: ^AK.Animation),
-    clearStopAnimation: proc(self: ^AK.Animation),
-    isAnimating: proc(self: ^AK.Animation) -> bool,
-    currentProgress: proc(self: ^AK.Animation) -> AK.AnimationProgress,
-    setCurrentProgress: proc(self: ^AK.Animation, currentProgress: AK.AnimationProgress),
-    duration: proc(self: ^AK.Animation) -> NS.TimeInterval,
-    setDuration: proc(self: ^AK.Animation, duration: NS.TimeInterval),
-    animationBlockingMode: proc(self: ^AK.Animation) -> AK.AnimationBlockingMode,
-    setAnimationBlockingMode: proc(self: ^AK.Animation, animationBlockingMode: AK.AnimationBlockingMode),
-    frameRate: proc(self: ^AK.Animation) -> cffi.float,
-    setFrameRate: proc(self: ^AK.Animation, frameRate: cffi.float),
-    animationCurve: proc(self: ^AK.Animation) -> AK.AnimationCurve,
-    setAnimationCurve: proc(self: ^AK.Animation, animationCurve: AK.AnimationCurve),
-    currentValue: proc(self: ^AK.Animation) -> cffi.float,
-    delegate: proc(self: ^AK.Animation) -> ^AK.AnimationDelegate,
-    setDelegate: proc(self: ^AK.Animation, delegate: ^AK.AnimationDelegate),
-    progressMarks: proc(self: ^AK.Animation) -> ^NS.Array,
-    setProgressMarks: proc(self: ^AK.Animation, progressMarks: ^NS.Array),
-    runLoopModesForAnimating: proc(self: ^AK.Animation) -> ^NS.Array,
+    initWithDuration: proc(self: ^NS.Animation, duration: NS.TimeInterval, animationCurve: NS.AnimationCurve) -> instancetype,
+    initWithCoder: proc(self: ^NS.Animation, coder: ^NS.Coder) -> instancetype,
+    startAnimation: proc(self: ^NS.Animation),
+    stopAnimation: proc(self: ^NS.Animation),
+    addProgressMark: proc(self: ^NS.Animation, progressMark: NS.AnimationProgress),
+    removeProgressMark: proc(self: ^NS.Animation, progressMark: NS.AnimationProgress),
+    startWhenAnimation: proc(self: ^NS.Animation, animation: ^NS.Animation, startProgress: NS.AnimationProgress),
+    stopWhenAnimation: proc(self: ^NS.Animation, animation: ^NS.Animation, stopProgress: NS.AnimationProgress),
+    clearStartAnimation: proc(self: ^NS.Animation),
+    clearStopAnimation: proc(self: ^NS.Animation),
+    isAnimating: proc(self: ^NS.Animation) -> bool,
+    currentProgress: proc(self: ^NS.Animation) -> NS.AnimationProgress,
+    setCurrentProgress: proc(self: ^NS.Animation, currentProgress: NS.AnimationProgress),
+    duration: proc(self: ^NS.Animation) -> NS.TimeInterval,
+    setDuration: proc(self: ^NS.Animation, duration: NS.TimeInterval),
+    animationBlockingMode: proc(self: ^NS.Animation) -> NS.AnimationBlockingMode,
+    setAnimationBlockingMode: proc(self: ^NS.Animation, animationBlockingMode: NS.AnimationBlockingMode),
+    frameRate: proc(self: ^NS.Animation) -> cffi.float,
+    setFrameRate: proc(self: ^NS.Animation, frameRate: cffi.float),
+    animationCurve: proc(self: ^NS.Animation) -> NS.AnimationCurve,
+    setAnimationCurve: proc(self: ^NS.Animation, animationCurve: NS.AnimationCurve),
+    currentValue: proc(self: ^NS.Animation) -> cffi.float,
+    delegate: proc(self: ^NS.Animation) -> ^NS.AnimationDelegate,
+    setDelegate: proc(self: ^NS.Animation, delegate: ^NS.AnimationDelegate),
+    progressMarks: proc(self: ^NS.Animation) -> ^NS.Array,
+    setProgressMarks: proc(self: ^NS.Animation, progressMarks: ^NS.Array),
+    runLoopModesForAnimating: proc(self: ^NS.Animation) -> ^NS.Array,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithDuration != nil {
-        initWithDuration :: proc "c" (self: ^AK.Animation, _: SEL, duration: NS.TimeInterval, animationCurve: AK.AnimationCurve) -> instancetype {
+        initWithDuration :: proc "c" (self: ^NS.Animation, _: SEL, duration: NS.TimeInterval, animationCurve: NS.AnimationCurve) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithDuration:animationCurve:"), auto_cast initWithDuration, "@@:dL") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Animation, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.Animation, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.startAnimation != nil {
-        startAnimation :: proc "c" (self: ^AK.Animation, _: SEL) {
+        startAnimation :: proc "c" (self: ^NS.Animation, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("startAnimation"), auto_cast startAnimation, "v@:") do panic("Failed to register objC method.")
     }
     if vt.stopAnimation != nil {
-        stopAnimation :: proc "c" (self: ^AK.Animation, _: SEL) {
+        stopAnimation :: proc "c" (self: ^NS.Animation, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("stopAnimation"), auto_cast stopAnimation, "v@:") do panic("Failed to register objC method.")
     }
     if vt.addProgressMark != nil {
-        addProgressMark :: proc "c" (self: ^AK.Animation, _: SEL, progressMark: AK.AnimationProgress) {
+        addProgressMark :: proc "c" (self: ^NS.Animation, _: SEL, progressMark: NS.AnimationProgress) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addProgressMark:"), auto_cast addProgressMark, "v@:f") do panic("Failed to register objC method.")
     }
     if vt.removeProgressMark != nil {
-        removeProgressMark :: proc "c" (self: ^AK.Animation, _: SEL, progressMark: AK.AnimationProgress) {
+        removeProgressMark :: proc "c" (self: ^NS.Animation, _: SEL, progressMark: NS.AnimationProgress) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeProgressMark:"), auto_cast removeProgressMark, "v@:f") do panic("Failed to register objC method.")
     }
     if vt.startWhenAnimation != nil {
-        startWhenAnimation :: proc "c" (self: ^AK.Animation, _: SEL, animation: ^AK.Animation, startProgress: AK.AnimationProgress) {
+        startWhenAnimation :: proc "c" (self: ^NS.Animation, _: SEL, animation: ^NS.Animation, startProgress: NS.AnimationProgress) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("startWhenAnimation:reachesProgress:"), auto_cast startWhenAnimation, "v@:@f") do panic("Failed to register objC method.")
     }
     if vt.stopWhenAnimation != nil {
-        stopWhenAnimation :: proc "c" (self: ^AK.Animation, _: SEL, animation: ^AK.Animation, stopProgress: AK.AnimationProgress) {
+        stopWhenAnimation :: proc "c" (self: ^NS.Animation, _: SEL, animation: ^NS.Animation, stopProgress: NS.AnimationProgress) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("stopWhenAnimation:reachesProgress:"), auto_cast stopWhenAnimation, "v@:@f") do panic("Failed to register objC method.")
     }
     if vt.clearStartAnimation != nil {
-        clearStartAnimation :: proc "c" (self: ^AK.Animation, _: SEL) {
+        clearStartAnimation :: proc "c" (self: ^NS.Animation, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("clearStartAnimation"), auto_cast clearStartAnimation, "v@:") do panic("Failed to register objC method.")
     }
     if vt.clearStopAnimation != nil {
-        clearStopAnimation :: proc "c" (self: ^AK.Animation, _: SEL) {
+        clearStopAnimation :: proc "c" (self: ^NS.Animation, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("clearStopAnimation"), auto_cast clearStopAnimation, "v@:") do panic("Failed to register objC method.")
     }
     if vt.isAnimating != nil {
-        isAnimating :: proc "c" (self: ^AK.Animation, _: SEL) -> bool {
+        isAnimating :: proc "c" (self: ^NS.Animation, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isAnimating"), auto_cast isAnimating, "B@:") do panic("Failed to register objC method.")
     }
     if vt.currentProgress != nil {
-        currentProgress :: proc "c" (self: ^AK.Animation, _: SEL) -> AK.AnimationProgress {
+        currentProgress :: proc "c" (self: ^NS.Animation, _: SEL) -> NS.AnimationProgress {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentProgress"), auto_cast currentProgress, "f@:") do panic("Failed to register objC method.")
     }
     if vt.setCurrentProgress != nil {
-        setCurrentProgress :: proc "c" (self: ^AK.Animation, _: SEL, currentProgress: AK.AnimationProgress) {
+        setCurrentProgress :: proc "c" (self: ^NS.Animation, _: SEL, currentProgress: NS.AnimationProgress) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCurrentProgress:"), auto_cast setCurrentProgress, "v@:f") do panic("Failed to register objC method.")
     }
     if vt.duration != nil {
-        duration :: proc "c" (self: ^AK.Animation, _: SEL) -> NS.TimeInterval {
+        duration :: proc "c" (self: ^NS.Animation, _: SEL) -> NS.TimeInterval {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -203,7 +203,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("duration"), auto_cast duration, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setDuration != nil {
-        setDuration :: proc "c" (self: ^AK.Animation, _: SEL, duration: NS.TimeInterval) {
+        setDuration :: proc "c" (self: ^NS.Animation, _: SEL, duration: NS.TimeInterval) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDuration:"), auto_cast setDuration, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.animationBlockingMode != nil {
-        animationBlockingMode :: proc "c" (self: ^AK.Animation, _: SEL) -> AK.AnimationBlockingMode {
+        animationBlockingMode :: proc "c" (self: ^NS.Animation, _: SEL) -> NS.AnimationBlockingMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animationBlockingMode"), auto_cast animationBlockingMode, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setAnimationBlockingMode != nil {
-        setAnimationBlockingMode :: proc "c" (self: ^AK.Animation, _: SEL, animationBlockingMode: AK.AnimationBlockingMode) {
+        setAnimationBlockingMode :: proc "c" (self: ^NS.Animation, _: SEL, animationBlockingMode: NS.AnimationBlockingMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAnimationBlockingMode:"), auto_cast setAnimationBlockingMode, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.frameRate != nil {
-        frameRate :: proc "c" (self: ^AK.Animation, _: SEL) -> cffi.float {
+        frameRate :: proc "c" (self: ^NS.Animation, _: SEL) -> cffi.float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("frameRate"), auto_cast frameRate, "f@:") do panic("Failed to register objC method.")
     }
     if vt.setFrameRate != nil {
-        setFrameRate :: proc "c" (self: ^AK.Animation, _: SEL, frameRate: cffi.float) {
+        setFrameRate :: proc "c" (self: ^NS.Animation, _: SEL, frameRate: cffi.float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFrameRate:"), auto_cast setFrameRate, "v@:f") do panic("Failed to register objC method.")
     }
     if vt.animationCurve != nil {
-        animationCurve :: proc "c" (self: ^AK.Animation, _: SEL) -> AK.AnimationCurve {
+        animationCurve :: proc "c" (self: ^NS.Animation, _: SEL) -> NS.AnimationCurve {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -263,7 +263,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animationCurve"), auto_cast animationCurve, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setAnimationCurve != nil {
-        setAnimationCurve :: proc "c" (self: ^AK.Animation, _: SEL, animationCurve: AK.AnimationCurve) {
+        setAnimationCurve :: proc "c" (self: ^NS.Animation, _: SEL, animationCurve: NS.AnimationCurve) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -273,7 +273,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAnimationCurve:"), auto_cast setAnimationCurve, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.currentValue != nil {
-        currentValue :: proc "c" (self: ^AK.Animation, _: SEL) -> cffi.float {
+        currentValue :: proc "c" (self: ^NS.Animation, _: SEL) -> cffi.float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -283,7 +283,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentValue"), auto_cast currentValue, "f@:") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.Animation, _: SEL) -> ^AK.AnimationDelegate {
+        delegate :: proc "c" (self: ^NS.Animation, _: SEL) -> ^NS.AnimationDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -293,7 +293,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.Animation, _: SEL, delegate: ^AK.AnimationDelegate) {
+        setDelegate :: proc "c" (self: ^NS.Animation, _: SEL, delegate: ^NS.AnimationDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -303,7 +303,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.progressMarks != nil {
-        progressMarks :: proc "c" (self: ^AK.Animation, _: SEL) -> ^NS.Array {
+        progressMarks :: proc "c" (self: ^NS.Animation, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -313,7 +313,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("progressMarks"), auto_cast progressMarks, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setProgressMarks != nil {
-        setProgressMarks :: proc "c" (self: ^AK.Animation, _: SEL, progressMarks: ^NS.Array) {
+        setProgressMarks :: proc "c" (self: ^NS.Animation, _: SEL, progressMarks: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -323,7 +323,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setProgressMarks:"), auto_cast setProgressMarks, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.runLoopModesForAnimating != nil {
-        runLoopModesForAnimating :: proc "c" (self: ^AK.Animation, _: SEL) -> ^NS.Array {
+        runLoopModesForAnimating :: proc "c" (self: ^NS.Animation, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

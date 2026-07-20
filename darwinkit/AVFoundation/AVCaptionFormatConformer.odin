@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptionFormatConformer
-///
 @(objc_class="AVCaptionFormatConformer", objc_superclass=NS.Object)
 CaptionFormatConformer :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionFormatConformer, objc_selector="init", objc_name="init")
     CaptionFormatConformer_init :: proc(self: ^CaptionFormatConformer) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=CaptionFormatConformer, objc_selector="setConformsCaptionsToTimeRange:", objc_name="setConformsCaptionsToTimeRange")
     CaptionFormatConformer_setConformsCaptionsToTimeRange :: proc(self: ^CaptionFormatConformer, conformsCaptionsToTimeRange: bool) ---
 }
+
+
+

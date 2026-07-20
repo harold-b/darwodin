@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSListFormatter
-///
 @(objc_class="NSListFormatter", objc_superclass=Formatter)
 ListFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ListFormatter, objc_selector="localizedStringByJoiningStrings:", objc_name="localizedStringByJoiningStrings", objc_is_class_method=true)
     ListFormatter_localizedStringByJoiningStrings :: proc(strings: ^Array) -> ^String ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=ListFormatter, objc_selector="setItemFormatter:", objc_name="setItemFormatter")
     ListFormatter_setItemFormatter :: proc(self: ^ListFormatter, itemFormatter: ^Formatter) ---
 }
+
+
+

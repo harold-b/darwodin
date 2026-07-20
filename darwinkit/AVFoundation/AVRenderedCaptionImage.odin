@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVRenderedCaptionImage
-///
 @(objc_class="AVRenderedCaptionImage", objc_superclass=NS.Object)
 RenderedCaptionImage :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderedCaptionImage, objc_selector="init", objc_name="init")
     RenderedCaptionImage_init :: proc(self: ^RenderedCaptionImage) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=RenderedCaptionImage, objc_selector="position", objc_name="position")
     RenderedCaptionImage_position :: proc(self: ^RenderedCaptionImage) -> CG.Point ---
 }
+
+
+

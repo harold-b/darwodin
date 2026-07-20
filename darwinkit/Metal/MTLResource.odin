@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLResource
-///
 @(objc_class="MTLResource")
 Resource :: struct { using _: intrinsics.objc_object, 
     using _: Allocation,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Resource, objc_selector="setPurgeableState:", objc_name="setPurgeableState")
     Resource_setPurgeableState :: proc(self: ^Resource, state: PurgeableState) -> PurgeableState ---
@@ -65,3 +59,6 @@ foreign lib {
     @(objc_type=Resource, objc_selector="allocatedSize", objc_name="allocatedSize")
     Resource_allocatedSize :: proc(self: ^Resource) -> NS.UInteger ---
 }
+
+
+

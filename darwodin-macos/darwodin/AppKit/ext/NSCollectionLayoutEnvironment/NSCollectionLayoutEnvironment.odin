@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    container: proc(self: ^AK.CollectionLayoutEnvironment) -> ^AK.CollectionLayoutContainer,
+    container: proc(self: ^NS.CollectionLayoutEnvironment) -> ^NS.CollectionLayoutContainer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.container != nil {
-        container :: proc "c" (self: ^AK.CollectionLayoutEnvironment, _: SEL) -> ^AK.CollectionLayoutContainer {
+        container :: proc "c" (self: ^NS.CollectionLayoutEnvironment, _: SEL) -> ^NS.CollectionLayoutContainer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

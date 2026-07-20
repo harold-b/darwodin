@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLVertexDescriptor
-///
 @(objc_class="MTLVertexDescriptor", objc_superclass=NS.Object)
 VertexDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexDescriptor, objc_selector="vertexDescriptor", objc_name="vertexDescriptor", objc_is_class_method=true)
     VertexDescriptor_vertexDescriptor :: proc() -> ^VertexDescriptor ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=VertexDescriptor, objc_selector="attributes", objc_name="attributes")
     VertexDescriptor_attributes :: proc(self: ^VertexDescriptor) -> ^VertexAttributeDescriptorArray ---
 }
+
+
+

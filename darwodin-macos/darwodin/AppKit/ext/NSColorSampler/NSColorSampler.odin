@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    showSamplerWithSelectionHandler: proc(self: ^AK.ColorSampler, selectionHandler: ^Objc_Block(proc "c" (selectedColor: ^AK.Color))),
+    showSamplerWithSelectionHandler: proc(self: ^NS.ColorSampler, selectionHandler: ^Objc_Block(proc "c" ( selectedColor: ^NS.Color ))),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.showSamplerWithSelectionHandler != nil {
-        showSamplerWithSelectionHandler :: proc "c" (self: ^AK.ColorSampler, _: SEL, selectionHandler: ^Objc_Block(proc "c" (selectedColor: ^AK.Color))) {
+        showSamplerWithSelectionHandler :: proc "c" (self: ^NS.ColorSampler, _: SEL, selectionHandler: ^Objc_Block(proc "c" ( selectedColor: ^NS.Color ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

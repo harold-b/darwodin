@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKDiscoverUserIdentitiesOperation
-///
 @(objc_class="CKDiscoverUserIdentitiesOperation", objc_superclass=Operation)
 DiscoverUserIdentitiesOperation :: struct { using _: Operation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DiscoverUserIdentitiesOperation, objc_selector="init", objc_name="init")
     DiscoverUserIdentitiesOperation_init :: proc(self: ^DiscoverUserIdentitiesOperation) -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=DiscoverUserIdentitiesOperation, objc_selector="setDiscoverUserIdentitiesCompletionBlock:", objc_name="setDiscoverUserIdentitiesCompletionBlock")
     DiscoverUserIdentitiesOperation_setDiscoverUserIdentitiesCompletionBlock :: proc(self: ^DiscoverUserIdentitiesOperation, discoverUserIdentitiesCompletionBlock: ^Objc_Block(proc "c" ())) ---
 }
+
+
+

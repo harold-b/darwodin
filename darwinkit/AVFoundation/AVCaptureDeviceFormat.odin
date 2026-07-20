@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureDeviceFormat
-///
 @(objc_class="AVCaptureDeviceFormat", objc_superclass=NS.Object)
 CaptureDeviceFormat :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeviceFormat, objc_selector="init", objc_name="init")
     CaptureDeviceFormat_init :: proc(self: ^CaptureDeviceFormat) -> instancetype ---
@@ -208,3 +202,6 @@ foreign lib {
     @(objc_type=CaptureDeviceFormat, objc_selector="isCameraLensSmudgeDetectionSupported", objc_name="isCameraLensSmudgeDetectionSupported")
     CaptureDeviceFormat_isCameraLensSmudgeDetectionSupported :: proc(self: ^CaptureDeviceFormat) -> bool ---
 }
+
+
+

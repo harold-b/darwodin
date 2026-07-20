@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSLocking
-///
 @(objc_class="NSLocking")
 Locking :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Locking, objc_selector="lock", objc_name="lock")
     Locking_lock :: proc(self: ^Locking) ---
@@ -25,3 +19,6 @@ foreign lib {
     @(objc_type=Locking, objc_selector="unlock", objc_name="unlock")
     Locking_unlock :: proc(self: ^Locking) ---
 }
+
+
+

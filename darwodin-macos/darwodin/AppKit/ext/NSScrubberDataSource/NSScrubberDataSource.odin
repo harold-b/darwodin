@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    numberOfItemsForScrubber: proc(self: ^AK.ScrubberDataSource, scrubber: ^AK.Scrubber) -> NS.Integer,
-    scrubber: proc(self: ^AK.ScrubberDataSource, scrubber: ^AK.Scrubber, index: NS.Integer) -> ^AK.ScrubberItemView,
+    numberOfItemsForScrubber: proc(self: ^NS.ScrubberDataSource, scrubber: ^NS.Scrubber) -> NS.Integer,
+    scrubber: proc(self: ^NS.ScrubberDataSource, scrubber: ^NS.Scrubber, index: NS.Integer) -> ^NS.ScrubberItemView,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.numberOfItemsForScrubber != nil {
-        numberOfItemsForScrubber :: proc "c" (self: ^AK.ScrubberDataSource, _: SEL, scrubber: ^AK.Scrubber) -> NS.Integer {
+        numberOfItemsForScrubber :: proc "c" (self: ^NS.ScrubberDataSource, _: SEL, scrubber: ^NS.Scrubber) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfItemsForScrubber:"), auto_cast numberOfItemsForScrubber, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.scrubber != nil {
-        scrubber :: proc "c" (self: ^AK.ScrubberDataSource, _: SEL, scrubber: ^AK.Scrubber, index: NS.Integer) -> ^AK.ScrubberItemView {
+        scrubber :: proc "c" (self: ^NS.ScrubberDataSource, _: SEL, scrubber: ^NS.Scrubber, index: NS.Integer) -> ^NS.ScrubberItemView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

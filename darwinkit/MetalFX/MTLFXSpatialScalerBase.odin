@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MTLFXSpatialScalerBase
-///
 @(objc_class="MTLFXSpatialScalerBase")
 SpatialScalerBase :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpatialScalerBase, objc_selector="colorTextureUsage", objc_name="colorTextureUsage")
     SpatialScalerBase_colorTextureUsage :: proc(self: ^SpatialScalerBase) -> MTL.TextureUsage ---
@@ -79,3 +73,6 @@ foreign lib {
     @(objc_type=SpatialScalerBase, objc_selector="setFence:", objc_name="setFence")
     SpatialScalerBase_setFence :: proc(self: ^SpatialScalerBase, fence: ^MTL.Fence) ---
 }
+
+
+

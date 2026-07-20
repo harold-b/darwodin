@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithCoder: proc(self: ^AK.Movie, coder: ^NS.Coder) -> instancetype,
-    init: proc(self: ^AK.Movie) -> instancetype,
-    initWithMovie: proc(self: ^AK.Movie, movie: ^AK.QTMovie) -> instancetype,
-    _QTMovie: proc(self: ^AK.Movie) -> ^AK.QTMovie,
+    initWithCoder: proc(self: ^NS.Movie, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^NS.Movie) -> instancetype,
+    initWithMovie: proc(self: ^NS.Movie, movie: ^NS.QTMovie) -> instancetype,
+    _QTMovie: proc(self: ^NS.Movie) -> ^NS.QTMovie,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Movie, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.Movie, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Movie, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.Movie, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithMovie != nil {
-        initWithMovie :: proc "c" (self: ^AK.Movie, _: SEL, movie: ^AK.QTMovie) -> instancetype {
+        initWithMovie :: proc "c" (self: ^NS.Movie, _: SEL, movie: ^NS.QTMovie) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithMovie:"), auto_cast initWithMovie, "@@:@") do panic("Failed to register objC method.")
     }
     if vt._QTMovie != nil {
-        _QTMovie :: proc "c" (self: ^AK.Movie, _: SEL) -> ^AK.QTMovie {
+        _QTMovie :: proc "c" (self: ^NS.Movie, _: SEL) -> ^NS.QTMovie {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

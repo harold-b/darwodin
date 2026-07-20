@@ -20,25 +20,25 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSViewController"
 
 VTable :: struct {
     super: NSViewController.VTable,
-    viewWillAppear: proc(self: ^AK.TitlebarAccessoryViewController),
-    viewDidAppear: proc(self: ^AK.TitlebarAccessoryViewController),
-    viewDidDisappear: proc(self: ^AK.TitlebarAccessoryViewController),
-    layoutAttribute: proc(self: ^AK.TitlebarAccessoryViewController) -> AK.LayoutAttribute,
-    setLayoutAttribute: proc(self: ^AK.TitlebarAccessoryViewController, layoutAttribute: AK.LayoutAttribute),
-    fullScreenMinHeight: proc(self: ^AK.TitlebarAccessoryViewController) -> CG.Float,
-    setFullScreenMinHeight: proc(self: ^AK.TitlebarAccessoryViewController, fullScreenMinHeight: CG.Float),
-    isHidden: proc(self: ^AK.TitlebarAccessoryViewController) -> bool,
-    setHidden: proc(self: ^AK.TitlebarAccessoryViewController, hidden: bool),
-    automaticallyAdjustsSize: proc(self: ^AK.TitlebarAccessoryViewController) -> bool,
-    setAutomaticallyAdjustsSize: proc(self: ^AK.TitlebarAccessoryViewController, automaticallyAdjustsSize: bool),
-    preferredScrollEdgeEffectStyle: proc(self: ^AK.TitlebarAccessoryViewController) -> ^AK.ScrollEdgeEffectStyle,
-    setPreferredScrollEdgeEffectStyle: proc(self: ^AK.TitlebarAccessoryViewController, preferredScrollEdgeEffectStyle: ^AK.ScrollEdgeEffectStyle),
+    viewWillAppear: proc(self: ^NS.TitlebarAccessoryViewController),
+    viewDidAppear: proc(self: ^NS.TitlebarAccessoryViewController),
+    viewDidDisappear: proc(self: ^NS.TitlebarAccessoryViewController),
+    layoutAttribute: proc(self: ^NS.TitlebarAccessoryViewController) -> NS.LayoutAttribute,
+    setLayoutAttribute: proc(self: ^NS.TitlebarAccessoryViewController, layoutAttribute: NS.LayoutAttribute),
+    fullScreenMinHeight: proc(self: ^NS.TitlebarAccessoryViewController) -> CG.Float,
+    setFullScreenMinHeight: proc(self: ^NS.TitlebarAccessoryViewController, fullScreenMinHeight: CG.Float),
+    isHidden: proc(self: ^NS.TitlebarAccessoryViewController) -> bool,
+    setHidden: proc(self: ^NS.TitlebarAccessoryViewController, hidden: bool),
+    automaticallyAdjustsSize: proc(self: ^NS.TitlebarAccessoryViewController) -> bool,
+    setAutomaticallyAdjustsSize: proc(self: ^NS.TitlebarAccessoryViewController, automaticallyAdjustsSize: bool),
+    preferredScrollEdgeEffectStyle: proc(self: ^NS.TitlebarAccessoryViewController) -> ^NS.ScrollEdgeEffectStyle,
+    setPreferredScrollEdgeEffectStyle: proc(self: ^NS.TitlebarAccessoryViewController, preferredScrollEdgeEffectStyle: ^NS.ScrollEdgeEffectStyle),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSViewController.extend(cls, &vt.super)
 
     if vt.viewWillAppear != nil {
-        viewWillAppear :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL) {
+        viewWillAppear :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewWillAppear"), auto_cast viewWillAppear, "v@:") do panic("Failed to register objC method.")
     }
     if vt.viewDidAppear != nil {
-        viewDidAppear :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL) {
+        viewDidAppear :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewDidAppear"), auto_cast viewDidAppear, "v@:") do panic("Failed to register objC method.")
     }
     if vt.viewDidDisappear != nil {
-        viewDidDisappear :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL) {
+        viewDidDisappear :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewDidDisappear"), auto_cast viewDidDisappear, "v@:") do panic("Failed to register objC method.")
     }
     if vt.layoutAttribute != nil {
-        layoutAttribute :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL) -> AK.LayoutAttribute {
+        layoutAttribute :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL) -> NS.LayoutAttribute {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutAttribute"), auto_cast layoutAttribute, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setLayoutAttribute != nil {
-        setLayoutAttribute :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL, layoutAttribute: AK.LayoutAttribute) {
+        setLayoutAttribute :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL, layoutAttribute: NS.LayoutAttribute) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLayoutAttribute:"), auto_cast setLayoutAttribute, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.fullScreenMinHeight != nil {
-        fullScreenMinHeight :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL) -> CG.Float {
+        fullScreenMinHeight :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fullScreenMinHeight"), auto_cast fullScreenMinHeight, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setFullScreenMinHeight != nil {
-        setFullScreenMinHeight :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL, fullScreenMinHeight: CG.Float) {
+        setFullScreenMinHeight :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL, fullScreenMinHeight: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFullScreenMinHeight:"), auto_cast setFullScreenMinHeight, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.isHidden != nil {
-        isHidden :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL) -> bool {
+        isHidden :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isHidden"), auto_cast isHidden, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHidden != nil {
-        setHidden :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL, hidden: bool) {
+        setHidden :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL, hidden: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHidden:"), auto_cast setHidden, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.automaticallyAdjustsSize != nil {
-        automaticallyAdjustsSize :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL) -> bool {
+        automaticallyAdjustsSize :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyAdjustsSize"), auto_cast automaticallyAdjustsSize, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyAdjustsSize != nil {
-        setAutomaticallyAdjustsSize :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL, automaticallyAdjustsSize: bool) {
+        setAutomaticallyAdjustsSize :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL, automaticallyAdjustsSize: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyAdjustsSize:"), auto_cast setAutomaticallyAdjustsSize, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.preferredScrollEdgeEffectStyle != nil {
-        preferredScrollEdgeEffectStyle :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL) -> ^AK.ScrollEdgeEffectStyle {
+        preferredScrollEdgeEffectStyle :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL) -> ^NS.ScrollEdgeEffectStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredScrollEdgeEffectStyle"), auto_cast preferredScrollEdgeEffectStyle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPreferredScrollEdgeEffectStyle != nil {
-        setPreferredScrollEdgeEffectStyle :: proc "c" (self: ^AK.TitlebarAccessoryViewController, _: SEL, preferredScrollEdgeEffectStyle: ^AK.ScrollEdgeEffectStyle) {
+        setPreferredScrollEdgeEffectStyle :: proc "c" (self: ^NS.TitlebarAccessoryViewController, _: SEL, preferredScrollEdgeEffectStyle: ^NS.ScrollEdgeEffectStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

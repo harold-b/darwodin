@@ -10,18 +10,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAEmitterCell
-///
 @(objc_class="CAEmitterCell", objc_superclass=NS.Object)
 EmitterCell :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: MediaTiming,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=EmitterCell, objc_selector="emitterCell", objc_name="emitterCell", objc_is_class_method=true)
     EmitterCell_emitterCell :: proc() -> instancetype ---
@@ -242,3 +236,6 @@ foreign lib {
     @(objc_type=EmitterCell, objc_selector="setStyle:", objc_name="setStyle")
     EmitterCell_setStyle :: proc(self: ^EmitterCell, style: ^NS.Dictionary) ---
 }
+
+
+

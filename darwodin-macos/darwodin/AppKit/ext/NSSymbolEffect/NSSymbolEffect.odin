@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    new: proc() -> ^AK.SymbolEffect,
-    init: proc(self: ^AK.SymbolEffect) -> instancetype,
+    new: proc() -> ^NS.SymbolEffect,
+    init: proc(self: ^NS.SymbolEffect) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.SymbolEffect {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.SymbolEffect {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.SymbolEffect, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.SymbolEffect, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

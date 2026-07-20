@@ -4,8 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
@@ -30,7 +29,7 @@ foreign lib {
     Rule_ruleWithPredicate_retractingFact_grade :: proc(predicate: ^NS.Predicate, fact: ^NS.ObjectProtocol, grade: cffi.float) -> instancetype ---
 
     @(objc_type=Rule, objc_selector="ruleWithBlockPredicate:action:", objc_name="ruleWithBlockPredicate", objc_is_class_method=true)
-    Rule_ruleWithBlockPredicate :: proc(predicate: ^Objc_Block(proc "c" (_: ^RuleSystem) -> bool), action: ^Objc_Block(proc "c" (_: ^RuleSystem))) -> instancetype ---
+    Rule_ruleWithBlockPredicate :: proc(predicate: ^Objc_Block(proc "c" ( _0: ^RuleSystem ) -> bool), action: ^Objc_Block(proc "c" ( _0: ^RuleSystem ))) -> instancetype ---
 
     @(objc_type=Rule, objc_selector="salience", objc_name="salience")
     Rule_salience :: proc(self: ^Rule) -> NS.Integer ---

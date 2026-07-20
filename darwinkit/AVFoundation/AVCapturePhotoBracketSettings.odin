@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCapturePhotoBracketSettings
-///
 @(objc_class="AVCapturePhotoBracketSettings", objc_superclass=CapturePhotoSettings)
 CapturePhotoBracketSettings :: struct { using _: CapturePhotoSettings, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhotoBracketSettings, objc_selector="photoBracketSettingsWithRawPixelFormatType:processedFormat:bracketedSettings:", objc_name="photoBracketSettingsWithRawPixelFormatType_processedFormat_bracketedSettings", objc_is_class_method=true)
     CapturePhotoBracketSettings_photoBracketSettingsWithRawPixelFormatType_processedFormat_bracketedSettings :: proc(rawPixelFormatType: CF.OSType, processedFormat: ^NS.Dictionary, bracketedSettings: ^NS.Array) -> instancetype ---
@@ -37,6 +31,8 @@ foreign lib {
     @(objc_type=CapturePhotoBracketSettings, objc_selector="setLensStabilizationEnabled:", objc_name="setLensStabilizationEnabled")
     CapturePhotoBracketSettings_setLensStabilizationEnabled :: proc(self: ^CapturePhotoBracketSettings, lensStabilizationEnabled: bool) ---
 }
+
+
 
 @(objc_type=CapturePhotoBracketSettings, objc_name="photoBracketSettingsWithRawPixelFormatType")
 CapturePhotoBracketSettings_photoBracketSettingsWithRawPixelFormatType :: proc {

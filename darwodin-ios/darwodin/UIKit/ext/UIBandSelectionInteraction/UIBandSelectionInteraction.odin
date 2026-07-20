@@ -23,7 +23,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSelectionHandler: proc(self: ^UI.BandSelectionInteraction, selectionHandler: ^Objc_Block(proc "c" (interaction: ^UI.BandSelectionInteraction))) -> instancetype,
+    initWithSelectionHandler: proc(self: ^UI.BandSelectionInteraction, selectionHandler: ^Objc_Block(proc "c" ( interaction: ^UI.BandSelectionInteraction ))) -> instancetype,
     init: proc(self: ^UI.BandSelectionInteraction) -> instancetype,
     new: proc() -> ^UI.BandSelectionInteraction,
     isEnabled: proc(self: ^UI.BandSelectionInteraction) -> bool,
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSelectionHandler != nil {
-        initWithSelectionHandler :: proc "c" (self: ^UI.BandSelectionInteraction, _: SEL, selectionHandler: ^Objc_Block(proc "c" (interaction: ^UI.BandSelectionInteraction))) -> instancetype {
+        initWithSelectionHandler :: proc "c" (self: ^UI.BandSelectionInteraction, _: SEL, selectionHandler: ^Objc_Block(proc "c" ( interaction: ^UI.BandSelectionInteraction ))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

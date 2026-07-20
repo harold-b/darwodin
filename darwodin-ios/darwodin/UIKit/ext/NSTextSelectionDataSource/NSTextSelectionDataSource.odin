@@ -20,14 +20,14 @@ instancetype  :: intrinsics.objc_instancetype
 import UI "../../"
 
 VTable :: struct {
-    enumerateSubstringsFromLocation: proc(self: ^UI.NSTextSelectionDataSource, location: ^UI.NSTextLocation, options: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" (substring: ^NS.String, substringRange: ^UI.NSTextRange, enclosingRange: ^UI.NSTextRange, stop: ^bool))),
+    enumerateSubstringsFromLocation: proc(self: ^UI.NSTextSelectionDataSource, location: ^UI.NSTextLocation, options: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" ( substring: ^NS.String, substringRange: ^UI.NSTextRange, enclosingRange: ^UI.NSTextRange, stop: ^bool ))),
     textRangeForSelectionGranularity: proc(self: ^UI.NSTextSelectionDataSource, selectionGranularity: UI.NSTextSelectionGranularity, location: ^UI.NSTextLocation) -> ^UI.NSTextRange,
     locationFromLocation: proc(self: ^UI.NSTextSelectionDataSource, location: ^UI.NSTextLocation, offset: NS.Integer) -> ^UI.NSTextLocation,
     offsetFromLocation: proc(self: ^UI.NSTextSelectionDataSource, from: ^UI.NSTextLocation, to: ^UI.NSTextLocation) -> NS.Integer,
     baseWritingDirectionAtLocation: proc(self: ^UI.NSTextSelectionDataSource, location: ^UI.NSTextLocation) -> UI.NSTextSelectionNavigationWritingDirection,
-    enumerateCaretOffsetsInLineFragmentAtLocation: proc(self: ^UI.NSTextSelectionDataSource, location: ^UI.NSTextLocation, block: ^Objc_Block(proc "c" (caretOffset: CG.Float, location: ^UI.NSTextLocation, leadingEdge: bool, stop: ^bool))),
+    enumerateCaretOffsetsInLineFragmentAtLocation: proc(self: ^UI.NSTextSelectionDataSource, location: ^UI.NSTextLocation, block: ^Objc_Block(proc "c" ( caretOffset: CG.Float, location: ^UI.NSTextLocation, leadingEdge: bool, stop: ^bool ))),
     lineFragmentRangeForPoint: proc(self: ^UI.NSTextSelectionDataSource, point: CG.Point, location: ^UI.NSTextLocation) -> ^UI.NSTextRange,
-    enumerateContainerBoundariesFromLocation: proc(self: ^UI.NSTextSelectionDataSource, location: ^UI.NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" (boundaryLocation: ^UI.NSTextLocation, stop: ^bool))),
+    enumerateContainerBoundariesFromLocation: proc(self: ^UI.NSTextSelectionDataSource, location: ^UI.NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" ( boundaryLocation: ^UI.NSTextLocation, stop: ^bool ))),
     textLayoutOrientationAtLocation: proc(self: ^UI.NSTextSelectionDataSource, location: ^UI.NSTextLocation) -> UI.NSTextSelectionNavigationLayoutOrientation,
     documentRange: proc(self: ^UI.NSTextSelectionDataSource) -> ^UI.NSTextRange,
 }
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.enumerateSubstringsFromLocation != nil {
-        enumerateSubstringsFromLocation :: proc "c" (self: ^UI.NSTextSelectionDataSource, _: SEL, location: ^UI.NSTextLocation, options: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" (substring: ^NS.String, substringRange: ^UI.NSTextRange, enclosingRange: ^UI.NSTextRange, stop: ^bool))) {
+        enumerateSubstringsFromLocation :: proc "c" (self: ^UI.NSTextSelectionDataSource, _: SEL, location: ^UI.NSTextLocation, options: NS.StringEnumerationOptions, block: ^Objc_Block(proc "c" ( substring: ^NS.String, substringRange: ^UI.NSTextRange, enclosingRange: ^UI.NSTextRange, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("baseWritingDirectionAtLocation:"), auto_cast baseWritingDirectionAtLocation, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.enumerateCaretOffsetsInLineFragmentAtLocation != nil {
-        enumerateCaretOffsetsInLineFragmentAtLocation :: proc "c" (self: ^UI.NSTextSelectionDataSource, _: SEL, location: ^UI.NSTextLocation, block: ^Objc_Block(proc "c" (caretOffset: CG.Float, location: ^UI.NSTextLocation, leadingEdge: bool, stop: ^bool))) {
+        enumerateCaretOffsetsInLineFragmentAtLocation :: proc "c" (self: ^UI.NSTextSelectionDataSource, _: SEL, location: ^UI.NSTextLocation, block: ^Objc_Block(proc "c" ( caretOffset: CG.Float, location: ^UI.NSTextLocation, leadingEdge: bool, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineFragmentRangeForPoint:inContainerAtLocation:"), auto_cast lineFragmentRangeForPoint, "@@:{CGPoint=dd}@") do panic("Failed to register objC method.")
     }
     if vt.enumerateContainerBoundariesFromLocation != nil {
-        enumerateContainerBoundariesFromLocation :: proc "c" (self: ^UI.NSTextSelectionDataSource, _: SEL, location: ^UI.NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" (boundaryLocation: ^UI.NSTextLocation, stop: ^bool))) {
+        enumerateContainerBoundariesFromLocation :: proc "c" (self: ^UI.NSTextSelectionDataSource, _: SEL, location: ^UI.NSTextLocation, reverse: bool, block: ^Objc_Block(proc "c" ( boundaryLocation: ^UI.NSTextLocation, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

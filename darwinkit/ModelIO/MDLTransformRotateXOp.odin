@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLTransformRotateXOp
-///
 @(objc_class="MDLTransformRotateXOp", objc_superclass=NS.Object)
 TransformRotateXOp :: struct { using _: NS.Object, 
     using _: TransformOp,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TransformRotateXOp, objc_selector="name", objc_name="name")
     TransformRotateXOp_name :: proc(self: ^TransformRotateXOp) -> ^NS.String ---
@@ -28,3 +22,6 @@ foreign lib {
     @(objc_type=TransformRotateXOp, objc_selector="animatedValue", objc_name="animatedValue")
     TransformRotateXOp_animatedValue :: proc(self: ^TransformRotateXOp) -> ^AnimatedScalar ---
 }
+
+
+

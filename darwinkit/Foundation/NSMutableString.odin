@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableString
-///
 @(objc_class="NSMutableString", objc_superclass=String)
 MutableString :: struct { using _: String, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableString, objc_selector="replaceCharactersInRange:withString:", objc_name="replaceCharactersInRange")
     MutableString_replaceCharactersInRange :: proc(self: ^MutableString, range: _NSRange, aString: ^String) ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=MutableString, objc_selector="stringWithCapacity:", objc_name="stringWithCapacity", objc_is_class_method=true)
     MutableString_stringWithCapacity :: proc(capacity: UInteger) -> ^MutableString ---
 }
+
+
+

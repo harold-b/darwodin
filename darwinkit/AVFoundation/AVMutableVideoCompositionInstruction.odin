@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableVideoCompositionInstruction
-///
 @(objc_class="AVMutableVideoCompositionInstruction", objc_superclass=VideoCompositionInstruction)
 MutableVideoCompositionInstruction :: struct { using _: VideoCompositionInstruction, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableVideoCompositionInstruction, objc_selector="videoCompositionInstruction", objc_name="videoCompositionInstruction", objc_is_class_method=true)
     MutableVideoCompositionInstruction_videoCompositionInstruction :: proc() -> instancetype ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=MutableVideoCompositionInstruction, objc_selector="setRequiredSourceSampleDataTrackIDs:", objc_name="setRequiredSourceSampleDataTrackIDs")
     MutableVideoCompositionInstruction_setRequiredSourceSampleDataTrackIDs :: proc(self: ^MutableVideoCompositionInstruction, requiredSourceSampleDataTrackIDs: ^NS.Array) ---
 }
+
+
+

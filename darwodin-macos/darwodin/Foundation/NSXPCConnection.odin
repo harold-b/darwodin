@@ -30,10 +30,10 @@ foreign lib {
     XPCConnection_initWithListenerEndpoint :: proc(self: ^XPCConnection, endpoint: ^XPCListenerEndpoint) -> instancetype ---
 
     @(objc_type=XPCConnection, objc_selector="remoteObjectProxyWithErrorHandler:", objc_name="remoteObjectProxyWithErrorHandler")
-    XPCConnection_remoteObjectProxyWithErrorHandler :: proc(self: ^XPCConnection, handler: ^Objc_Block(proc "c" (error: ^Error))) -> id ---
+    XPCConnection_remoteObjectProxyWithErrorHandler :: proc(self: ^XPCConnection, handler: ^Objc_Block(proc "c" ( error: ^Error ))) -> id ---
 
     @(objc_type=XPCConnection, objc_selector="synchronousRemoteObjectProxyWithErrorHandler:", objc_name="synchronousRemoteObjectProxyWithErrorHandler")
-    XPCConnection_synchronousRemoteObjectProxyWithErrorHandler :: proc(self: ^XPCConnection, handler: ^Objc_Block(proc "c" (error: ^Error))) -> id ---
+    XPCConnection_synchronousRemoteObjectProxyWithErrorHandler :: proc(self: ^XPCConnection, handler: ^Objc_Block(proc "c" ( error: ^Error ))) -> id ---
 
     @(objc_type=XPCConnection, objc_selector="resume", objc_name="resume")
     XPCConnection_resume :: proc(self: ^XPCConnection) ---

@@ -33,7 +33,7 @@ foreign lib {
     UpdateLink_updateLinkForView_ :: proc(view: ^View) -> ^UpdateLink ---
 
     @(objc_type=UpdateLink, objc_selector="addActionToPhase:handler:", objc_name="addActionToPhase_handler")
-    UpdateLink_addActionToPhase_handler :: proc(self: ^UpdateLink, phase: ^UpdateActionPhase, handler: ^Objc_Block(proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo))) ---
+    UpdateLink_addActionToPhase_handler :: proc(self: ^UpdateLink, phase: ^UpdateActionPhase, handler: ^Objc_Block(proc "c" ( updateLink: ^UpdateLink, updateInfo: ^UpdateInfo ))) ---
 
     @(objc_type=UpdateLink, objc_selector="addActionToPhase:target:selector:", objc_name="addActionToPhase_target_selector")
     UpdateLink_addActionToPhase_target_selector :: proc(self: ^UpdateLink, phase: ^UpdateActionPhase, target: id, selector: SEL) ---
@@ -72,19 +72,19 @@ foreign lib {
     UpdateLink_setPreferredFrameRateRange :: proc(self: ^UpdateLink, preferredFrameRateRange: CA.FrameRateRange) ---
 
     @(objc_type=UpdateLink, objc_selector="addActionWithHandler:", objc_name="addActionWithHandler")
-    UpdateLink_addActionWithHandler :: proc(self: ^UpdateLink, handler: ^Objc_Block(proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo))) ---
+    UpdateLink_addActionWithHandler :: proc(self: ^UpdateLink, handler: ^Objc_Block(proc "c" ( updateLink: ^UpdateLink, updateInfo: ^UpdateInfo ))) ---
 
     @(objc_type=UpdateLink, objc_selector="addActionWithTarget:selector:", objc_name="addActionWithTarget")
     UpdateLink_addActionWithTarget :: proc(self: ^UpdateLink, target: id, selector: SEL) ---
 
     @(objc_type=UpdateLink, objc_selector="updateLinkForWindowScene:actionHandler:", objc_name="updateLinkForWindowScene_actionHandler", objc_is_class_method=true)
-    UpdateLink_updateLinkForWindowScene_actionHandler :: proc(windowScene: ^WindowScene, handler: ^Objc_Block(proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo))) -> ^UpdateLink ---
+    UpdateLink_updateLinkForWindowScene_actionHandler :: proc(windowScene: ^WindowScene, handler: ^Objc_Block(proc "c" ( updateLink: ^UpdateLink, updateInfo: ^UpdateInfo ))) -> ^UpdateLink ---
 
     @(objc_type=UpdateLink, objc_selector="updateLinkForWindowScene:actionTarget:selector:", objc_name="updateLinkForWindowScene_actionTarget_selector", objc_is_class_method=true)
     UpdateLink_updateLinkForWindowScene_actionTarget_selector :: proc(windowScene: ^WindowScene, target: id, selector: SEL) -> ^UpdateLink ---
 
     @(objc_type=UpdateLink, objc_selector="updateLinkForView:actionHandler:", objc_name="updateLinkForView_actionHandler", objc_is_class_method=true)
-    UpdateLink_updateLinkForView_actionHandler :: proc(view: ^View, handler: ^Objc_Block(proc "c" (updateLink: ^UpdateLink, updateInfo: ^UpdateInfo))) -> ^UpdateLink ---
+    UpdateLink_updateLinkForView_actionHandler :: proc(view: ^View, handler: ^Objc_Block(proc "c" ( updateLink: ^UpdateLink, updateInfo: ^UpdateInfo ))) -> ^UpdateLink ---
 
     @(objc_type=UpdateLink, objc_selector="updateLinkForView:actionTarget:selector:", objc_name="updateLinkForView_actionTarget_selector", objc_is_class_method=true)
     UpdateLink_updateLinkForView_actionTarget_selector :: proc(view: ^View, target: id, selector: SEL) -> ^UpdateLink ---

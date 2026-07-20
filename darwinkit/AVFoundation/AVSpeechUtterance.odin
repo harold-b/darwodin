@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSpeechUtterance
-///
 @(objc_class="AVSpeechUtterance", objc_superclass=NS.Object)
 SpeechUtterance :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechUtterance, objc_selector="speechUtteranceWithString:", objc_name="speechUtteranceWithString", objc_is_class_method=true)
     SpeechUtterance_speechUtteranceWithString :: proc(string: ^NS.String) -> instancetype ---
@@ -91,3 +85,6 @@ foreign lib {
     @(objc_type=SpeechUtterance, objc_selector="setPostUtteranceDelay:", objc_name="setPostUtteranceDelay")
     SpeechUtterance_setPostUtteranceDelay :: proc(self: ^SpeechUtterance, postUtteranceDelay: NS.TimeInterval) ---
 }
+
+
+

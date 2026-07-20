@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineFailedRecordSave
-///
 @(objc_class="CKSyncEngineFailedRecordSave", objc_superclass=NS.Object)
 SyncEngineFailedRecordSave :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineFailedRecordSave, objc_selector="init", objc_name="init")
     SyncEngineFailedRecordSave_init :: proc(self: ^SyncEngineFailedRecordSave) -> instancetype ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=SyncEngineFailedRecordSave, objc_selector="error", objc_name="error")
     SyncEngineFailedRecordSave_error :: proc(self: ^SyncEngineFailedRecordSave) -> ^NS.Error ---
 }
+
+
+

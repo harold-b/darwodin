@@ -24,8 +24,8 @@ foreign lib {
     FocusAnimationCoordinator_addCoordinatedAnimations :: proc(self: ^FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=FocusAnimationCoordinator, objc_selector="addCoordinatedFocusingAnimations:completion:", objc_name="addCoordinatedFocusingAnimations")
-    FocusAnimationCoordinator_addCoordinatedFocusingAnimations :: proc(self: ^FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" (animationContext: ^FocusAnimationContext)), completion: ^Objc_Block(proc "c" ())) ---
+    FocusAnimationCoordinator_addCoordinatedFocusingAnimations :: proc(self: ^FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" ( animationContext: ^FocusAnimationContext )), completion: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=FocusAnimationCoordinator, objc_selector="addCoordinatedUnfocusingAnimations:completion:", objc_name="addCoordinatedUnfocusingAnimations")
-    FocusAnimationCoordinator_addCoordinatedUnfocusingAnimations :: proc(self: ^FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" (animationContext: ^FocusAnimationContext)), completion: ^Objc_Block(proc "c" ())) ---
+    FocusAnimationCoordinator_addCoordinatedUnfocusingAnimations :: proc(self: ^FocusAnimationCoordinator, animations: ^Objc_Block(proc "c" ( animationContext: ^FocusAnimationContext )), completion: ^Objc_Block(proc "c" ())) ---
 }

@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_CoreText
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -15,231 +17,413 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:CoreText.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
-
-
-kFontClassMaskShift        :: 28
-kFontPrioritySystem        :: 10000
-kFontPriorityNetwork       :: 20000
-kFontPriorityComputer      :: 30000
-kFontPriorityUser          :: 40000
-kFontPriorityDynamic       :: 50000
-kFontPriorityProcess       :: 60000
-kFontTableBASE             :: 1111577413
-kFontTableCBDT             :: 1128416340
-kFontTableCBLC             :: 1128418371
-kFontTableCFF              :: 1128678944
-kFontTableCFF2             :: 1128678962
-kFontTableCOLR             :: 1129270354
-kFontTableCPAL             :: 1129333068
-kFontTableDSIG             :: 1146308935
-kFontTableEBDT             :: 1161970772
-kFontTableEBLC             :: 1161972803
-kFontTableEBSC             :: 1161974595
-kFontTableGDEF             :: 1195656518
-kFontTableGPOS             :: 1196445523
-kFontTableGSUB             :: 1196643650
-kFontTableHVAR             :: 1213612370
-kFontTableJSTF             :: 1246975046
-kFontTableLTSH             :: 1280594760
-kFontTableMATH             :: 1296127048
-kFontTableMERG             :: 1296388679
-kFontTableMVAR             :: 1297498450
-kFontTableOS2              :: 1330851634
-kFontTablePCLT             :: 1346587732
-kFontTableSTAT             :: 1398030676
-kFontTableSVG              :: 1398163232
-kFontTableVDMX             :: 1447316824
-kFontTableVORG             :: 1448038983
-kFontTableVVAR             :: 1448493394
-kFontTableZapf             :: 1516335206
-kFontTableAcnt             :: 1633906292
-kFontTableAnkr             :: 1634626418
-kFontTableAvar             :: 1635148146
-kFontTableBdat             :: 1650745716
-kFontTableBhed             :: 1651008868
-kFontTableBloc             :: 1651273571
-kFontTableBsln             :: 1651731566
-kFontTableCidg             :: 1667851367
-kFontTableCmap             :: 1668112752
-kFontTableCvar             :: 1668702578
-kFontTableCvt              :: 1668707360
-kFontTableFdsc             :: 1717859171
-kFontTableFeat             :: 1717920116
-kFontTableFmtx             :: 1718449272
-kFontTableFond             :: 1718578788
-kFontTableFpgm             :: 1718642541
-kFontTableFvar             :: 1719034226
-kFontTableGasp             :: 1734439792
-kFontTableGlyf             :: 1735162214
-kFontTableGvar             :: 1735811442
-kFontTableHdmx             :: 1751412088
-kFontTableHead             :: 1751474532
-kFontTableHhea             :: 1751672161
-kFontTableHmtx             :: 1752003704
-kFontTableHsty             :: 1752396921
-kFontTableJust             :: 1786082164
-kFontTableKern             :: 1801810542
-kFontTableKerx             :: 1801810552
-kFontTableLcar             :: 1818452338
-kFontTableLoca             :: 1819239265
-kFontTableLtag             :: 1819566439
-kFontTableMaxp             :: 1835104368
-kFontTableMeta             :: 1835365473
-kFontTableMort             :: 1836020340
-kFontTableMorx             :: 1836020344
-kFontTableName             :: 1851878757
-kFontTableOpbd             :: 1869636196
-kFontTablePost             :: 1886352244
-kFontTablePrep             :: 1886545264
-kFontTableProp             :: 1886547824
-kFontTableSbit             :: 1935829364
-kFontTableSbix             :: 1935829368
-kFontTableTrak             :: 1953653099
-kFontTableVhea             :: 1986553185
-kFontTableVmtx             :: 1986884728
-kFontTableXref             :: 2020762982
-kRunDelegateVersion1       :: 1
-kRunDelegateCurrentVersion :: 1
-kWritingDirectionEmbedding :: 0
-kWritingDirectionOverride  :: 2
-
-foreign lib {
-    @(link_name="kCTFontSymbolicTrait") kFontSymbolicTrait: CF.StringRef
-    @(link_name="kCTFontWeightTrait") kFontWeightTrait: CF.StringRef
-    @(link_name="kCTFontWidthTrait") kFontWidthTrait: CF.StringRef
-    @(link_name="kCTFontSlantTrait") kFontSlantTrait: CF.StringRef
-    @(link_name="kCTFontURLAttribute") kFontURLAttribute: CF.StringRef
-    @(link_name="kCTFontNameAttribute") kFontNameAttribute: CF.StringRef
-    @(link_name="kCTFontDisplayNameAttribute") kFontDisplayNameAttribute: CF.StringRef
-    @(link_name="kCTFontFamilyNameAttribute") kFontFamilyNameAttribute: CF.StringRef
-    @(link_name="kCTFontStyleNameAttribute") kFontStyleNameAttribute: CF.StringRef
-    @(link_name="kCTFontTraitsAttribute") kFontTraitsAttribute: CF.StringRef
-    @(link_name="kCTFontVariationAttribute") kFontVariationAttribute: CF.StringRef
-    @(link_name="kCTFontVariationAxesAttribute") kFontVariationAxesAttribute: CF.StringRef
-    @(link_name="kCTFontSizeAttribute") kFontSizeAttribute: CF.StringRef
-    @(link_name="kCTFontMatrixAttribute") kFontMatrixAttribute: CF.StringRef
-    @(link_name="kCTFontCascadeListAttribute") kFontCascadeListAttribute: CF.StringRef
-    @(link_name="kCTFontCharacterSetAttribute") kFontCharacterSetAttribute: CF.StringRef
-    @(link_name="kCTFontLanguagesAttribute") kFontLanguagesAttribute: CF.StringRef
-    @(link_name="kCTFontBaselineAdjustAttribute") kFontBaselineAdjustAttribute: CF.StringRef
-    @(link_name="kCTFontMacintoshEncodingsAttribute") kFontMacintoshEncodingsAttribute: CF.StringRef
-    @(link_name="kCTFontFeaturesAttribute") kFontFeaturesAttribute: CF.StringRef
-    @(link_name="kCTFontFeatureSettingsAttribute") kFontFeatureSettingsAttribute: CF.StringRef
-    @(link_name="kCTFontFixedAdvanceAttribute") kFontFixedAdvanceAttribute: CF.StringRef
-    @(link_name="kCTFontOrientationAttribute") kFontOrientationAttribute: CF.StringRef
-    @(link_name="kCTFontFormatAttribute") kFontFormatAttribute: CF.StringRef
-    @(link_name="kCTFontRegistrationScopeAttribute") kFontRegistrationScopeAttribute: CF.StringRef
-    @(link_name="kCTFontPriorityAttribute") kFontPriorityAttribute: CF.StringRef
-    @(link_name="kCTFontEnabledAttribute") kFontEnabledAttribute: CF.StringRef
-    @(link_name="kCTFontDownloadableAttribute") kFontDownloadableAttribute: CF.StringRef
-    @(link_name="kCTFontDownloadedAttribute") kFontDownloadedAttribute: CF.StringRef
-    @(link_name="kCTFontOpticalSizeAttribute") kFontOpticalSizeAttribute: CF.StringRef
-    @(link_name="kCTFontDescriptorLanguageAttribute") kFontDescriptorLanguageAttribute: CF.StringRef
-    @(link_name="kCTFontDescriptorMatchingSourceDescriptor") kFontDescriptorMatchingSourceDescriptor: CF.StringRef
-    @(link_name="kCTFontDescriptorMatchingDescriptors") kFontDescriptorMatchingDescriptors: CF.StringRef
-    @(link_name="kCTFontDescriptorMatchingResult") kFontDescriptorMatchingResult: CF.StringRef
-    @(link_name="kCTFontDescriptorMatchingPercentage") kFontDescriptorMatchingPercentage: CF.StringRef
-    @(link_name="kCTFontDescriptorMatchingCurrentAssetSize") kFontDescriptorMatchingCurrentAssetSize: CF.StringRef
-    @(link_name="kCTFontDescriptorMatchingTotalDownloadedSize") kFontDescriptorMatchingTotalDownloadedSize: CF.StringRef
-    @(link_name="kCTFontDescriptorMatchingTotalAssetSize") kFontDescriptorMatchingTotalAssetSize: CF.StringRef
-    @(link_name="kCTFontDescriptorMatchingError") kFontDescriptorMatchingError: CF.StringRef
-    @(link_name="kCTFontCopyrightNameKey") kFontCopyrightNameKey: CF.StringRef
-    @(link_name="kCTFontFamilyNameKey") kFontFamilyNameKey: CF.StringRef
-    @(link_name="kCTFontSubFamilyNameKey") kFontSubFamilyNameKey: CF.StringRef
-    @(link_name="kCTFontStyleNameKey") kFontStyleNameKey: CF.StringRef
-    @(link_name="kCTFontUniqueNameKey") kFontUniqueNameKey: CF.StringRef
-    @(link_name="kCTFontFullNameKey") kFontFullNameKey: CF.StringRef
-    @(link_name="kCTFontVersionNameKey") kFontVersionNameKey: CF.StringRef
-    @(link_name="kCTFontPostScriptNameKey") kFontPostScriptNameKey: CF.StringRef
-    @(link_name="kCTFontTrademarkNameKey") kFontTrademarkNameKey: CF.StringRef
-    @(link_name="kCTFontManufacturerNameKey") kFontManufacturerNameKey: CF.StringRef
-    @(link_name="kCTFontDesignerNameKey") kFontDesignerNameKey: CF.StringRef
-    @(link_name="kCTFontDescriptionNameKey") kFontDescriptionNameKey: CF.StringRef
-    @(link_name="kCTFontVendorURLNameKey") kFontVendorURLNameKey: CF.StringRef
-    @(link_name="kCTFontDesignerURLNameKey") kFontDesignerURLNameKey: CF.StringRef
-    @(link_name="kCTFontLicenseNameKey") kFontLicenseNameKey: CF.StringRef
-    @(link_name="kCTFontLicenseURLNameKey") kFontLicenseURLNameKey: CF.StringRef
-    @(link_name="kCTFontSampleTextNameKey") kFontSampleTextNameKey: CF.StringRef
-    @(link_name="kCTFontPostScriptCIDNameKey") kFontPostScriptCIDNameKey: CF.StringRef
-    @(link_name="kCTFontVariationAxisIdentifierKey") kFontVariationAxisIdentifierKey: CF.StringRef
-    @(link_name="kCTFontVariationAxisMinimumValueKey") kFontVariationAxisMinimumValueKey: CF.StringRef
-    @(link_name="kCTFontVariationAxisMaximumValueKey") kFontVariationAxisMaximumValueKey: CF.StringRef
-    @(link_name="kCTFontVariationAxisDefaultValueKey") kFontVariationAxisDefaultValueKey: CF.StringRef
-    @(link_name="kCTFontVariationAxisNameKey") kFontVariationAxisNameKey: CF.StringRef
-    @(link_name="kCTFontVariationAxisHiddenKey") kFontVariationAxisHiddenKey: CF.StringRef
-    @(link_name="kCTFontOpenTypeFeatureTag") kFontOpenTypeFeatureTag: CF.StringRef
-    @(link_name="kCTFontOpenTypeFeatureValue") kFontOpenTypeFeatureValue: CF.StringRef
-    @(link_name="kCTFontFeatureTypeIdentifierKey") kFontFeatureTypeIdentifierKey: CF.StringRef
-    @(link_name="kCTFontFeatureTypeNameKey") kFontFeatureTypeNameKey: CF.StringRef
-    @(link_name="kCTFontFeatureTypeExclusiveKey") kFontFeatureTypeExclusiveKey: CF.StringRef
-    @(link_name="kCTFontFeatureTypeSelectorsKey") kFontFeatureTypeSelectorsKey: CF.StringRef
-    @(link_name="kCTFontFeatureSelectorIdentifierKey") kFontFeatureSelectorIdentifierKey: CF.StringRef
-    @(link_name="kCTFontFeatureSelectorNameKey") kFontFeatureSelectorNameKey: CF.StringRef
-    @(link_name="kCTFontFeatureSelectorDefaultKey") kFontFeatureSelectorDefaultKey: CF.StringRef
-    @(link_name="kCTFontFeatureSelectorSettingKey") kFontFeatureSelectorSettingKey: CF.StringRef
-    @(link_name="kCTFontFeatureSampleTextKey") kFontFeatureSampleTextKey: CF.StringRef
-    @(link_name="kCTFontFeatureTooltipTextKey") kFontFeatureTooltipTextKey: CF.StringRef
-    @(link_name="kCTBaselineClassRoman") kBaselineClassRoman: CF.StringRef
-    @(link_name="kCTBaselineClassIdeographicCentered") kBaselineClassIdeographicCentered: CF.StringRef
-    @(link_name="kCTBaselineClassIdeographicLow") kBaselineClassIdeographicLow: CF.StringRef
-    @(link_name="kCTBaselineClassIdeographicHigh") kBaselineClassIdeographicHigh: CF.StringRef
-    @(link_name="kCTBaselineClassHanging") kBaselineClassHanging: CF.StringRef
-    @(link_name="kCTBaselineClassMath") kBaselineClassMath: CF.StringRef
-    @(link_name="kCTBaselineReferenceFont") kBaselineReferenceFont: CF.StringRef
-    @(link_name="kCTBaselineOriginalFont") kBaselineOriginalFont: CF.StringRef
-    @(link_name="kCTFontCollectionRemoveDuplicatesOption") kFontCollectionRemoveDuplicatesOption: CF.StringRef
-    @(link_name="kCTFontCollectionIncludeDisabledFontsOption") kFontCollectionIncludeDisabledFontsOption: CF.StringRef
-    @(link_name="kCTFontCollectionDisallowAutoActivationOption") kFontCollectionDisallowAutoActivationOption: CF.StringRef
-    @(link_name="kCTFontManagerErrorDomain") kFontManagerErrorDomain: CF.StringRef
-    @(link_name="kCTFontManagerErrorFontURLsKey") kFontManagerErrorFontURLsKey: CF.StringRef
-    @(link_name="kCTFontManagerErrorFontDescriptorsKey") kFontManagerErrorFontDescriptorsKey: CF.StringRef
-    @(link_name="kCTFontManagerErrorFontAssetNameKey") kFontManagerErrorFontAssetNameKey: CF.StringRef
-    @(link_name="kCTFontRegistrationUserInfoAttribute") kFontRegistrationUserInfoAttribute: CF.StringRef
-    @(link_name="kCTFontManagerBundleIdentifier") kFontManagerBundleIdentifier: CF.StringRef
-    @(link_name="kCTFontManagerRegisteredFontsChangedNotification") kFontManagerRegisteredFontsChangedNotification: CF.StringRef
-    @(link_name="kCTFrameProgressionAttributeName") kFrameProgressionAttributeName: CF.StringRef
-    @(link_name="kCTFramePathFillRuleAttributeName") kFramePathFillRuleAttributeName: CF.StringRef
-    @(link_name="kCTFramePathWidthAttributeName") kFramePathWidthAttributeName: CF.StringRef
-    @(link_name="kCTFrameClippingPathsAttributeName") kFrameClippingPathsAttributeName: CF.StringRef
-    @(link_name="kCTFramePathClippingPathAttributeName") kFramePathClippingPathAttributeName: CF.StringRef
-    @(link_name="kCTTypesetterOptionAllowUnboundedLayout") kTypesetterOptionAllowUnboundedLayout: CF.StringRef
-    @(link_name="kCTTypesetterOptionDisableBidiProcessing") kTypesetterOptionDisableBidiProcessing: CF.StringRef
-    @(link_name="kCTTypesetterOptionForcedEmbeddingLevel") kTypesetterOptionForcedEmbeddingLevel: CF.StringRef
-    @(link_name="kCTRubyAnnotationSizeFactorAttributeName") kRubyAnnotationSizeFactorAttributeName: CF.StringRef
-    @(link_name="kCTRubyAnnotationScaleToFitAttributeName") kRubyAnnotationScaleToFitAttributeName: CF.StringRef
-    @(link_name="kCTFontAttributeName") kFontAttributeName: CF.StringRef
-    @(link_name="kCTForegroundColorFromContextAttributeName") kForegroundColorFromContextAttributeName: CF.StringRef
-    @(link_name="kCTKernAttributeName") kKernAttributeName: CF.StringRef
-    @(link_name="kCTTrackingAttributeName") kTrackingAttributeName: CF.StringRef
-    @(link_name="kCTLigatureAttributeName") kLigatureAttributeName: CF.StringRef
-    @(link_name="kCTForegroundColorAttributeName") kForegroundColorAttributeName: CF.StringRef
-    @(link_name="kCTBackgroundColorAttributeName") kBackgroundColorAttributeName: CF.StringRef
-    @(link_name="kCTParagraphStyleAttributeName") kParagraphStyleAttributeName: CF.StringRef
-    @(link_name="kCTStrokeWidthAttributeName") kStrokeWidthAttributeName: CF.StringRef
-    @(link_name="kCTStrokeColorAttributeName") kStrokeColorAttributeName: CF.StringRef
-    @(link_name="kCTUnderlineStyleAttributeName") kUnderlineStyleAttributeName: CF.StringRef
-    @(link_name="kCTSuperscriptAttributeName") kSuperscriptAttributeName: CF.StringRef
-    @(link_name="kCTUnderlineColorAttributeName") kUnderlineColorAttributeName: CF.StringRef
-    @(link_name="kCTVerticalFormsAttributeName") kVerticalFormsAttributeName: CF.StringRef
-    @(link_name="kCTHorizontalInVerticalFormsAttributeName") kHorizontalInVerticalFormsAttributeName: CF.StringRef
-    @(link_name="kCTGlyphInfoAttributeName") kGlyphInfoAttributeName: CF.StringRef
-    @(link_name="kCTCharacterShapeAttributeName") kCharacterShapeAttributeName: CF.StringRef
-    @(link_name="kCTLanguageAttributeName") kLanguageAttributeName: CF.StringRef
-    @(link_name="kCTRunDelegateAttributeName") kRunDelegateAttributeName: CF.StringRef
-    @(link_name="kCTBaselineClassAttributeName") kBaselineClassAttributeName: CF.StringRef
-    @(link_name="kCTBaselineInfoAttributeName") kBaselineInfoAttributeName: CF.StringRef
-    @(link_name="kCTBaselineReferenceInfoAttributeName") kBaselineReferenceInfoAttributeName: CF.StringRef
-    @(link_name="kCTBaselineOffsetAttributeName") kBaselineOffsetAttributeName: CF.StringRef
-    @(link_name="kCTWritingDirectionAttributeName") kWritingDirectionAttributeName: CF.StringRef
-    @(link_name="kCTRubyAnnotationAttributeName") kRubyAnnotationAttributeName: CF.StringRef
-    @(link_name="kCTAdaptiveImageProviderAttributeName") kAdaptiveImageProviderAttributeName: CF.StringRef
-    @(link_name="kCTTabColumnTerminatorsAttributeName") kTabColumnTerminatorsAttributeName: CF.StringRef
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:CoreText.framework",
+    }
 }
 
-@(default_calling_convention="c")
+
+// +user-text-begin
+
+
 foreign lib {
+    @(link_name="kCTFontSymbolicTrait")
+    kFontSymbolicTrait: CF.StringRef
+
+    @(link_name="kCTFontWeightTrait")
+    kFontWeightTrait: CF.StringRef
+
+    @(link_name="kCTFontWidthTrait")
+    kFontWidthTrait: CF.StringRef
+
+    @(link_name="kCTFontSlantTrait")
+    kFontSlantTrait: CF.StringRef
+
+    @(link_name="kCTFontURLAttribute")
+    kFontURLAttribute: CF.StringRef
+
+    @(link_name="kCTFontNameAttribute")
+    kFontNameAttribute: CF.StringRef
+
+    @(link_name="kCTFontDisplayNameAttribute")
+    kFontDisplayNameAttribute: CF.StringRef
+
+    @(link_name="kCTFontFamilyNameAttribute")
+    kFontFamilyNameAttribute: CF.StringRef
+
+    @(link_name="kCTFontStyleNameAttribute")
+    kFontStyleNameAttribute: CF.StringRef
+
+    @(link_name="kCTFontTraitsAttribute")
+    kFontTraitsAttribute: CF.StringRef
+
+    @(link_name="kCTFontVariationAttribute")
+    kFontVariationAttribute: CF.StringRef
+
+    @(link_name="kCTFontVariationAxesAttribute")
+    kFontVariationAxesAttribute: CF.StringRef
+
+    @(link_name="kCTFontSizeAttribute")
+    kFontSizeAttribute: CF.StringRef
+
+    @(link_name="kCTFontMatrixAttribute")
+    kFontMatrixAttribute: CF.StringRef
+
+    @(link_name="kCTFontCascadeListAttribute")
+    kFontCascadeListAttribute: CF.StringRef
+
+    @(link_name="kCTFontCharacterSetAttribute")
+    kFontCharacterSetAttribute: CF.StringRef
+
+    @(link_name="kCTFontLanguagesAttribute")
+    kFontLanguagesAttribute: CF.StringRef
+
+    @(link_name="kCTFontBaselineAdjustAttribute")
+    kFontBaselineAdjustAttribute: CF.StringRef
+
+    @(link_name="kCTFontMacintoshEncodingsAttribute")
+    kFontMacintoshEncodingsAttribute: CF.StringRef
+
+    @(link_name="kCTFontFeaturesAttribute")
+    kFontFeaturesAttribute: CF.StringRef
+
+    @(link_name="kCTFontFeatureSettingsAttribute")
+    kFontFeatureSettingsAttribute: CF.StringRef
+
+    @(link_name="kCTFontFixedAdvanceAttribute")
+    kFontFixedAdvanceAttribute: CF.StringRef
+
+    @(link_name="kCTFontOrientationAttribute")
+    kFontOrientationAttribute: CF.StringRef
+
+    @(link_name="kCTFontFormatAttribute")
+    kFontFormatAttribute: CF.StringRef
+
+    @(link_name="kCTFontRegistrationScopeAttribute")
+    kFontRegistrationScopeAttribute: CF.StringRef
+
+    @(link_name="kCTFontPriorityAttribute")
+    kFontPriorityAttribute: CF.StringRef
+
+    @(link_name="kCTFontEnabledAttribute")
+    kFontEnabledAttribute: CF.StringRef
+
+    @(link_name="kCTFontDownloadableAttribute")
+    kFontDownloadableAttribute: CF.StringRef
+
+    @(link_name="kCTFontDownloadedAttribute")
+    kFontDownloadedAttribute: CF.StringRef
+
+    @(link_name="kCTFontOpticalSizeAttribute")
+    kFontOpticalSizeAttribute: CF.StringRef
+
+    @(link_name="kCTFontDescriptorLanguageAttribute")
+    kFontDescriptorLanguageAttribute: CF.StringRef
+
+    @(link_name="kCTFontDescriptorMatchingSourceDescriptor")
+    kFontDescriptorMatchingSourceDescriptor: CF.StringRef
+
+    @(link_name="kCTFontDescriptorMatchingDescriptors")
+    kFontDescriptorMatchingDescriptors: CF.StringRef
+
+    @(link_name="kCTFontDescriptorMatchingResult")
+    kFontDescriptorMatchingResult: CF.StringRef
+
+    @(link_name="kCTFontDescriptorMatchingPercentage")
+    kFontDescriptorMatchingPercentage: CF.StringRef
+
+    @(link_name="kCTFontDescriptorMatchingCurrentAssetSize")
+    kFontDescriptorMatchingCurrentAssetSize: CF.StringRef
+
+    @(link_name="kCTFontDescriptorMatchingTotalDownloadedSize")
+    kFontDescriptorMatchingTotalDownloadedSize: CF.StringRef
+
+    @(link_name="kCTFontDescriptorMatchingTotalAssetSize")
+    kFontDescriptorMatchingTotalAssetSize: CF.StringRef
+
+    @(link_name="kCTFontDescriptorMatchingError")
+    kFontDescriptorMatchingError: CF.StringRef
+
+    @(link_name="kCTFontCopyrightNameKey")
+    kFontCopyrightNameKey: CF.StringRef
+
+    @(link_name="kCTFontFamilyNameKey")
+    kFontFamilyNameKey: CF.StringRef
+
+    @(link_name="kCTFontSubFamilyNameKey")
+    kFontSubFamilyNameKey: CF.StringRef
+
+    @(link_name="kCTFontStyleNameKey")
+    kFontStyleNameKey: CF.StringRef
+
+    @(link_name="kCTFontUniqueNameKey")
+    kFontUniqueNameKey: CF.StringRef
+
+    @(link_name="kCTFontFullNameKey")
+    kFontFullNameKey: CF.StringRef
+
+    @(link_name="kCTFontVersionNameKey")
+    kFontVersionNameKey: CF.StringRef
+
+    @(link_name="kCTFontPostScriptNameKey")
+    kFontPostScriptNameKey: CF.StringRef
+
+    @(link_name="kCTFontTrademarkNameKey")
+    kFontTrademarkNameKey: CF.StringRef
+
+    @(link_name="kCTFontManufacturerNameKey")
+    kFontManufacturerNameKey: CF.StringRef
+
+    @(link_name="kCTFontDesignerNameKey")
+    kFontDesignerNameKey: CF.StringRef
+
+    @(link_name="kCTFontDescriptionNameKey")
+    kFontDescriptionNameKey: CF.StringRef
+
+    @(link_name="kCTFontVendorURLNameKey")
+    kFontVendorURLNameKey: CF.StringRef
+
+    @(link_name="kCTFontDesignerURLNameKey")
+    kFontDesignerURLNameKey: CF.StringRef
+
+    @(link_name="kCTFontLicenseNameKey")
+    kFontLicenseNameKey: CF.StringRef
+
+    @(link_name="kCTFontLicenseURLNameKey")
+    kFontLicenseURLNameKey: CF.StringRef
+
+    @(link_name="kCTFontSampleTextNameKey")
+    kFontSampleTextNameKey: CF.StringRef
+
+    @(link_name="kCTFontPostScriptCIDNameKey")
+    kFontPostScriptCIDNameKey: CF.StringRef
+
+    @(link_name="kCTFontVariationAxisIdentifierKey")
+    kFontVariationAxisIdentifierKey: CF.StringRef
+
+    @(link_name="kCTFontVariationAxisMinimumValueKey")
+    kFontVariationAxisMinimumValueKey: CF.StringRef
+
+    @(link_name="kCTFontVariationAxisMaximumValueKey")
+    kFontVariationAxisMaximumValueKey: CF.StringRef
+
+    @(link_name="kCTFontVariationAxisDefaultValueKey")
+    kFontVariationAxisDefaultValueKey: CF.StringRef
+
+    @(link_name="kCTFontVariationAxisNameKey")
+    kFontVariationAxisNameKey: CF.StringRef
+
+    @(link_name="kCTFontVariationAxisHiddenKey")
+    kFontVariationAxisHiddenKey: CF.StringRef
+
+    @(link_name="kCTFontOpenTypeFeatureTag")
+    kFontOpenTypeFeatureTag: CF.StringRef
+
+    @(link_name="kCTFontOpenTypeFeatureValue")
+    kFontOpenTypeFeatureValue: CF.StringRef
+
+    @(link_name="kCTFontFeatureTypeIdentifierKey")
+    kFontFeatureTypeIdentifierKey: CF.StringRef
+
+    @(link_name="kCTFontFeatureTypeNameKey")
+    kFontFeatureTypeNameKey: CF.StringRef
+
+    @(link_name="kCTFontFeatureTypeExclusiveKey")
+    kFontFeatureTypeExclusiveKey: CF.StringRef
+
+    @(link_name="kCTFontFeatureTypeSelectorsKey")
+    kFontFeatureTypeSelectorsKey: CF.StringRef
+
+    @(link_name="kCTFontFeatureSelectorIdentifierKey")
+    kFontFeatureSelectorIdentifierKey: CF.StringRef
+
+    @(link_name="kCTFontFeatureSelectorNameKey")
+    kFontFeatureSelectorNameKey: CF.StringRef
+
+    @(link_name="kCTFontFeatureSelectorDefaultKey")
+    kFontFeatureSelectorDefaultKey: CF.StringRef
+
+    @(link_name="kCTFontFeatureSelectorSettingKey")
+    kFontFeatureSelectorSettingKey: CF.StringRef
+
+    @(link_name="kCTFontFeatureSampleTextKey")
+    kFontFeatureSampleTextKey: CF.StringRef
+
+    @(link_name="kCTFontFeatureTooltipTextKey")
+    kFontFeatureTooltipTextKey: CF.StringRef
+
+    @(link_name="kCTBaselineClassRoman")
+    kBaselineClassRoman: CF.StringRef
+
+    @(link_name="kCTBaselineClassIdeographicCentered")
+    kBaselineClassIdeographicCentered: CF.StringRef
+
+    @(link_name="kCTBaselineClassIdeographicLow")
+    kBaselineClassIdeographicLow: CF.StringRef
+
+    @(link_name="kCTBaselineClassIdeographicHigh")
+    kBaselineClassIdeographicHigh: CF.StringRef
+
+    @(link_name="kCTBaselineClassHanging")
+    kBaselineClassHanging: CF.StringRef
+
+    @(link_name="kCTBaselineClassMath")
+    kBaselineClassMath: CF.StringRef
+
+    @(link_name="kCTBaselineReferenceFont")
+    kBaselineReferenceFont: CF.StringRef
+
+    @(link_name="kCTBaselineOriginalFont")
+    kBaselineOriginalFont: CF.StringRef
+
+    @(link_name="kCTFontCollectionRemoveDuplicatesOption")
+    kFontCollectionRemoveDuplicatesOption: CF.StringRef
+
+    @(link_name="kCTFontCollectionIncludeDisabledFontsOption")
+    kFontCollectionIncludeDisabledFontsOption: CF.StringRef
+
+    @(link_name="kCTFontCollectionDisallowAutoActivationOption")
+    kFontCollectionDisallowAutoActivationOption: CF.StringRef
+
+    @(link_name="kCTFontManagerErrorDomain")
+    kFontManagerErrorDomain: CF.StringRef
+
+    @(link_name="kCTFontManagerErrorFontURLsKey")
+    kFontManagerErrorFontURLsKey: CF.StringRef
+
+    @(link_name="kCTFontManagerErrorFontDescriptorsKey")
+    kFontManagerErrorFontDescriptorsKey: CF.StringRef
+
+    @(link_name="kCTFontManagerErrorFontAssetNameKey")
+    kFontManagerErrorFontAssetNameKey: CF.StringRef
+
+    @(link_name="kCTFontRegistrationUserInfoAttribute")
+    kFontRegistrationUserInfoAttribute: CF.StringRef
+
+    @(link_name="kCTFontManagerBundleIdentifier")
+    kFontManagerBundleIdentifier: CF.StringRef
+
+    @(link_name="kCTFontManagerRegisteredFontsChangedNotification")
+    kFontManagerRegisteredFontsChangedNotification: CF.StringRef
+
+    @(link_name="kCTFrameProgressionAttributeName")
+    kFrameProgressionAttributeName: CF.StringRef
+
+    @(link_name="kCTFramePathFillRuleAttributeName")
+    kFramePathFillRuleAttributeName: CF.StringRef
+
+    @(link_name="kCTFramePathWidthAttributeName")
+    kFramePathWidthAttributeName: CF.StringRef
+
+    @(link_name="kCTFrameClippingPathsAttributeName")
+    kFrameClippingPathsAttributeName: CF.StringRef
+
+    @(link_name="kCTFramePathClippingPathAttributeName")
+    kFramePathClippingPathAttributeName: CF.StringRef
+
+    @(link_name="kCTTypesetterOptionAllowUnboundedLayout")
+    kTypesetterOptionAllowUnboundedLayout: CF.StringRef
+
+    @(link_name="kCTTypesetterOptionDisableBidiProcessing")
+    kTypesetterOptionDisableBidiProcessing: CF.StringRef
+
+    @(link_name="kCTTypesetterOptionForcedEmbeddingLevel")
+    kTypesetterOptionForcedEmbeddingLevel: CF.StringRef
+
+    @(link_name="kCTRubyAnnotationSizeFactorAttributeName")
+    kRubyAnnotationSizeFactorAttributeName: CF.StringRef
+
+    @(link_name="kCTRubyAnnotationScaleToFitAttributeName")
+    kRubyAnnotationScaleToFitAttributeName: CF.StringRef
+
+    @(link_name="kCTFontAttributeName")
+    kFontAttributeName: CF.StringRef
+
+    @(link_name="kCTForegroundColorFromContextAttributeName")
+    kForegroundColorFromContextAttributeName: CF.StringRef
+
+    @(link_name="kCTKernAttributeName")
+    kKernAttributeName: CF.StringRef
+
+    @(link_name="kCTTrackingAttributeName")
+    kTrackingAttributeName: CF.StringRef
+
+    @(link_name="kCTLigatureAttributeName")
+    kLigatureAttributeName: CF.StringRef
+
+    @(link_name="kCTForegroundColorAttributeName")
+    kForegroundColorAttributeName: CF.StringRef
+
+    @(link_name="kCTBackgroundColorAttributeName")
+    kBackgroundColorAttributeName: CF.StringRef
+
+    @(link_name="kCTParagraphStyleAttributeName")
+    kParagraphStyleAttributeName: CF.StringRef
+
+    @(link_name="kCTStrokeWidthAttributeName")
+    kStrokeWidthAttributeName: CF.StringRef
+
+    @(link_name="kCTStrokeColorAttributeName")
+    kStrokeColorAttributeName: CF.StringRef
+
+    @(link_name="kCTUnderlineStyleAttributeName")
+    kUnderlineStyleAttributeName: CF.StringRef
+
+    @(link_name="kCTSuperscriptAttributeName")
+    kSuperscriptAttributeName: CF.StringRef
+
+    @(link_name="kCTUnderlineColorAttributeName")
+    kUnderlineColorAttributeName: CF.StringRef
+
+    @(link_name="kCTVerticalFormsAttributeName")
+    kVerticalFormsAttributeName: CF.StringRef
+
+    @(link_name="kCTHorizontalInVerticalFormsAttributeName")
+    kHorizontalInVerticalFormsAttributeName: CF.StringRef
+
+    @(link_name="kCTGlyphInfoAttributeName")
+    kGlyphInfoAttributeName: CF.StringRef
+
+    @(link_name="kCTCharacterShapeAttributeName")
+    kCharacterShapeAttributeName: CF.StringRef
+
+    @(link_name="kCTLanguageAttributeName")
+    kLanguageAttributeName: CF.StringRef
+
+    @(link_name="kCTRunDelegateAttributeName")
+    kRunDelegateAttributeName: CF.StringRef
+
+    @(link_name="kCTBaselineClassAttributeName")
+    kBaselineClassAttributeName: CF.StringRef
+
+    @(link_name="kCTBaselineInfoAttributeName")
+    kBaselineInfoAttributeName: CF.StringRef
+
+    @(link_name="kCTBaselineReferenceInfoAttributeName")
+    kBaselineReferenceInfoAttributeName: CF.StringRef
+
+    @(link_name="kCTBaselineOffsetAttributeName")
+    kBaselineOffsetAttributeName: CF.StringRef
+
+    @(link_name="kCTWritingDirectionAttributeName")
+    kWritingDirectionAttributeName: CF.StringRef
+
+    @(link_name="kCTRubyAnnotationAttributeName")
+    kRubyAnnotationAttributeName: CF.StringRef
+
+    @(link_name="kCTAdaptiveImageProviderAttributeName")
+    kAdaptiveImageProviderAttributeName: CF.StringRef
+
+    @(link_name="kCTTabColumnTerminatorsAttributeName")
+    kTabColumnTerminatorsAttributeName: CF.StringRef
+
     @(link_name="CTFontDescriptorGetTypeID")
     FontDescriptorGetTypeID :: proc() -> CF.TypeID ---
 
@@ -556,19 +740,19 @@ foreign lib {
     FontManagerUnregisterFontsForURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, errors: ^CF.ArrayRef) -> cffi.bool ---
 
     @(link_name="CTFontManagerRegisterFontURLs")
-    FontManagerRegisterFontURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerRegisterFontURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerUnregisterFontURLs")
-    FontManagerUnregisterFontURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerUnregisterFontURLs :: proc(fontURLs: CF.ArrayRef, scope: FontManagerScope, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerRegisterFontDescriptors")
-    FontManagerRegisterFontDescriptors :: proc(fontDescriptors: CF.ArrayRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerRegisterFontDescriptors :: proc(fontDescriptors: CF.ArrayRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerUnregisterFontDescriptors")
-    FontManagerUnregisterFontDescriptors :: proc(fontDescriptors: CF.ArrayRef, scope: FontManagerScope, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerUnregisterFontDescriptors :: proc(fontDescriptors: CF.ArrayRef, scope: FontManagerScope, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerRegisterFontsWithAssetNames")
-    FontManagerRegisterFontsWithAssetNames :: proc(fontAssetNames: CF.ArrayRef, bundle: CF.BundleRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" (errors: CF.ArrayRef, done: cffi.bool) -> cffi.bool)) ---
+    FontManagerRegisterFontsWithAssetNames :: proc(fontAssetNames: CF.ArrayRef, bundle: CF.BundleRef, scope: FontManagerScope, enabled: cffi.bool, registrationHandler: ^Objc_Block(proc "c" ( errors: CF.ArrayRef, done: cffi.bool ) -> cffi.bool)) ---
 
     @(link_name="CTFontManagerEnableFontDescriptors")
     FontManagerEnableFontDescriptors :: proc(descriptors: CF.ArrayRef, enable: cffi.bool) ---
@@ -580,13 +764,13 @@ foreign lib {
     FontManagerCopyRegisteredFontDescriptors :: proc(scope: FontManagerScope, enabled: cffi.bool) -> CF.ArrayRef ---
 
     @(link_name="CTFontManagerRequestFonts")
-    FontManagerRequestFonts :: proc(fontDescriptors: CF.ArrayRef, completionHandler: ^Objc_Block(proc "c" (unresolvedFontDescriptors: CF.ArrayRef))) ---
+    FontManagerRequestFonts :: proc(fontDescriptors: CF.ArrayRef, completionHandler: ^Objc_Block(proc "c" ( unresolvedFontDescriptors: CF.ArrayRef ))) ---
 
     @(link_name="CTFontManagerIsSupportedFont")
     FontManagerIsSupportedFont :: proc(fontURL: CF.URLRef) -> cffi.bool ---
 
     @(link_name="CTFontManagerCreateFontRequestRunLoopSource")
-    FontManagerCreateFontRequestRunLoopSource :: proc(sourceOrder: CF.Index, createMatchesCallback: ^Objc_Block(proc "c" (requestAttributes: CF.DictionaryRef, requestingProcess: libc.pid_t) -> CF.ArrayRef)) -> CF.RunLoopSourceRef ---
+    FontManagerCreateFontRequestRunLoopSource :: proc(sourceOrder: CF.Index, createMatchesCallback: ^Objc_Block(proc "c" ( requestAttributes: CF.DictionaryRef, requestingProcess: libc.pid_t ) -> CF.ArrayRef)) -> CF.RunLoopSourceRef ---
 
     @(link_name="CTFontManagerSetAutoActivationSetting")
     FontManagerSetAutoActivationSetting :: proc(bundleIdentifier: CF.StringRef, setting: FontManagerAutoActivationSetting) ---
@@ -664,7 +848,7 @@ foreign lib {
     LineGetOffsetForStringIndex :: proc(line: LineRef, charIndex: CF.Index, secondaryOffset: ^CG.Float) -> CG.Float ---
 
     @(link_name="CTLineEnumerateCaretOffsets")
-    LineEnumerateCaretOffsets :: proc(line: LineRef, block: ^Objc_Block(proc "c" (offset: cffi.double, charIndex: CF.Index, leadingEdge: cffi.bool, stop: ^cffi.bool))) ---
+    LineEnumerateCaretOffsets :: proc(line: LineRef, block: ^Objc_Block(proc "c" ( offset: cffi.double, charIndex: CF.Index, leadingEdge: cffi.bool, stop: ^cffi.bool ))) ---
 
     @(link_name="CTTypesetterGetTypeID")
     TypesetterGetTypeID :: proc() -> CF.TypeID ---
@@ -851,79 +1035,120 @@ foreign lib {
 
     @(link_name="CTGetCoreTextVersion")
     GetCoreTextVersion :: proc() -> cffi.uint32_t ---
-
 }
 
-/// CTFontDescriptorRef
+
+
+kFontClassMaskShift        :: 28
+kFontPrioritySystem        :: 10000
+kFontPriorityNetwork       :: 20000
+kFontPriorityComputer      :: 30000
+kFontPriorityUser          :: 40000
+kFontPriorityDynamic       :: 50000
+kFontPriorityProcess       :: 60000
+kFontTableBASE             :: 1111577413
+kFontTableCBDT             :: 1128416340
+kFontTableCBLC             :: 1128418371
+kFontTableCFF              :: 1128678944
+kFontTableCFF2             :: 1128678962
+kFontTableCOLR             :: 1129270354
+kFontTableCPAL             :: 1129333068
+kFontTableDSIG             :: 1146308935
+kFontTableEBDT             :: 1161970772
+kFontTableEBLC             :: 1161972803
+kFontTableEBSC             :: 1161974595
+kFontTableGDEF             :: 1195656518
+kFontTableGPOS             :: 1196445523
+kFontTableGSUB             :: 1196643650
+kFontTableHVAR             :: 1213612370
+kFontTableJSTF             :: 1246975046
+kFontTableLTSH             :: 1280594760
+kFontTableMATH             :: 1296127048
+kFontTableMERG             :: 1296388679
+kFontTableMVAR             :: 1297498450
+kFontTableOS2              :: 1330851634
+kFontTablePCLT             :: 1346587732
+kFontTableSTAT             :: 1398030676
+kFontTableSVG              :: 1398163232
+kFontTableVDMX             :: 1447316824
+kFontTableVORG             :: 1448038983
+kFontTableVVAR             :: 1448493394
+kFontTableZapf             :: 1516335206
+kFontTableAcnt             :: 1633906292
+kFontTableAnkr             :: 1634626418
+kFontTableAvar             :: 1635148146
+kFontTableBdat             :: 1650745716
+kFontTableBhed             :: 1651008868
+kFontTableBloc             :: 1651273571
+kFontTableBsln             :: 1651731566
+kFontTableCidg             :: 1667851367
+kFontTableCmap             :: 1668112752
+kFontTableCvar             :: 1668702578
+kFontTableCvt              :: 1668707360
+kFontTableFdsc             :: 1717859171
+kFontTableFeat             :: 1717920116
+kFontTableFmtx             :: 1718449272
+kFontTableFond             :: 1718578788
+kFontTableFpgm             :: 1718642541
+kFontTableFvar             :: 1719034226
+kFontTableGasp             :: 1734439792
+kFontTableGlyf             :: 1735162214
+kFontTableGvar             :: 1735811442
+kFontTableHdmx             :: 1751412088
+kFontTableHead             :: 1751474532
+kFontTableHhea             :: 1751672161
+kFontTableHmtx             :: 1752003704
+kFontTableHsty             :: 1752396921
+kFontTableJust             :: 1786082164
+kFontTableKern             :: 1801810542
+kFontTableKerx             :: 1801810552
+kFontTableLcar             :: 1818452338
+kFontTableLoca             :: 1819239265
+kFontTableLtag             :: 1819566439
+kFontTableMaxp             :: 1835104368
+kFontTableMeta             :: 1835365473
+kFontTableMort             :: 1836020340
+kFontTableMorx             :: 1836020344
+kFontTableName             :: 1851878757
+kFontTableOpbd             :: 1869636196
+kFontTablePost             :: 1886352244
+kFontTablePrep             :: 1886545264
+kFontTableProp             :: 1886547824
+kFontTableSbit             :: 1935829364
+kFontTableSbix             :: 1935829368
+kFontTableTrak             :: 1953653099
+kFontTableVhea             :: 1986553185
+kFontTableVmtx             :: 1986884728
+kFontTableXref             :: 2020762982
+kRunDelegateVersion1       :: 1
+kRunDelegateCurrentVersion :: 1
+kWritingDirectionEmbedding :: 0
+kWritingDirectionOverride  :: 2
 FontDescriptorRef :: distinct ^__CTFontDescriptor
-
-/// CTFontPriority
 FontPriority :: distinct cffi.uint32_t
-
-/// CTFontDescriptorProgressHandler
-FontDescriptorProgressHandler :: ^Objc_Block(proc "c" (state: FontDescriptorMatchingState, progressParameter: CF.DictionaryRef) -> cffi.bool)
-
-/// CTFontRef
+FontDescriptorProgressHandler :: ^Objc_Block(proc "c" ( state: FontDescriptorMatchingState, progressParameter: CF.DictionaryRef ) -> cffi.bool)
 FontRef :: distinct ^__CTFont
-
-/// ATSFontRef
 ATSFontRef :: distinct CF.UInt32
-
-/// CTFontTableTag
 FontTableTag :: distinct CF.FourCharCode
-
-/// CTFontCollectionRef
 FontCollectionRef :: distinct ^__CTFontCollection
-
-/// CTMutableFontCollectionRef
 MutableFontCollectionRef :: distinct ^__CTFontCollection
-
-/// CTFontCollectionSortDescriptorsCallback
-FontCollectionSortDescriptorsCallback :: proc "c" (first: FontDescriptorRef, second: FontDescriptorRef, refCon: rawptr) -> CF.ComparisonResult
-
-/// CTFrameRef
+FontCollectionSortDescriptorsCallback :: proc "c" ( first: FontDescriptorRef, second: FontDescriptorRef, refCon: rawptr ) -> CF.ComparisonResult
 FrameRef :: distinct ^__CTFrame
-
-/// CTLineRef
 LineRef :: distinct ^__CTLine
-
-/// CTTypesetterRef
 TypesetterRef :: distinct ^__CTTypesetter
-
-/// CTFramesetterRef
 FramesetterRef :: distinct ^__CTFramesetter
-
-/// CTGlyphInfoRef
 GlyphInfoRef :: distinct ^__CTGlyphInfo
-
-/// CTParagraphStyleRef
 ParagraphStyleRef :: distinct ^__CTParagraphStyle
-
-/// CTRubyAnnotationRef
 RubyAnnotationRef :: distinct ^__CTRubyAnnotation
-
-/// CTRunRef
 RunRef :: distinct ^__CTRun
-
-/// CTRunDelegateRef
 RunDelegateRef :: distinct ^__CTRunDelegate
-
-/// CTRunDelegateDeallocateCallback
-RunDelegateDeallocateCallback :: proc "c" (refCon: rawptr)
-
-/// CTRunDelegateGetAscentCallback
-RunDelegateGetAscentCallback :: proc "c" (refCon: rawptr) -> CG.Float
-
-/// CTRunDelegateGetDescentCallback
-RunDelegateGetDescentCallback :: proc "c" (refCon: rawptr) -> CG.Float
-
-/// CTRunDelegateGetWidthCallback
-RunDelegateGetWidthCallback :: proc "c" (refCon: rawptr) -> CG.Float
-
-/// CTTextTabRef
+RunDelegateDeallocateCallback :: proc "c" ( refCon: rawptr )
+RunDelegateGetAscentCallback :: proc "c" ( refCon: rawptr ) -> CG.Float
+RunDelegateGetDescentCallback :: proc "c" ( refCon: rawptr ) -> CG.Float
+RunDelegateGetWidthCallback :: proc "c" ( refCon: rawptr ) -> CG.Float
 TextTabRef :: distinct ^__CTTextTab
+UnderlineStyleModifiers_PatternDashDot :: UnderlineStyleModifiers { .PatternDot, .PatternDash, }
 
-/// CTFontSymbolicTraits
 FontSymbolicTrait :: enum cffi.uint {
     Italic      = 0,
     Bold        = 1,
@@ -945,9 +1170,9 @@ FontSymbolicTrait :: enum cffi.uint {
     // CompositeTrait = 16384,
     // ClassMaskTrait = 4026531840,
 }
+
 FontSymbolicTraits :: bit_set[FontSymbolicTrait; cffi.uint]
 
-/// CTFontStylisticClass
 FontStylisticClass :: enum cffi.uint {
     Unknown            = 0,
     OldStyleSerifs     = 268435456,
@@ -973,7 +1198,6 @@ FontStylisticClass :: enum cffi.uint {
     // SymbolicClass = 3221225472,
 }
 
-/// CTFontOrientation
 FontOrientation :: enum cffi.uint {
     Default               = 0,
     Horizontal            = 1,
@@ -983,7 +1207,6 @@ FontOrientation :: enum cffi.uint {
     VerticalOrientation   = 2,
 }
 
-/// CTFontFormat
 FontFormat :: enum cffi.uint {
     Unrecognized       = 0,
     OpenTypePostScript = 1,
@@ -993,7 +1216,6 @@ FontFormat :: enum cffi.uint {
     Bitmap             = 5,
 }
 
-/// CTFontDescriptorMatchingState
 FontDescriptorMatchingState :: enum cffi.uint {
     DidBegin             = 0,
     DidFinish            = 1,
@@ -1006,15 +1228,14 @@ FontDescriptorMatchingState :: enum cffi.uint {
     DidFailWithError     = 8,
 }
 
-/// CTFontOptions
 FontOption :: enum cffi.ulong {
     PreventAutoActivation = 0,
     PreventAutoDownload   = 1,
     PreferSystemFont      = 2,
 }
+
 FontOptions :: bit_set[FontOption; cffi.ulong]
 
-/// CTFontUIFontType
 FontUIFontType :: enum cffi.uint {
     None                           = 4294967295,
     User                           = 0,
@@ -1074,20 +1295,19 @@ FontUIFontType :: enum cffi.uint {
     ControlContentFontType         = 26,
 }
 
-/// CTFontTableOptions
 FontTableOption :: enum cffi.uint {
     OptionExcludeSynthetic = 0,
 }
+
 FontTableOptions :: bit_set[FontTableOption; cffi.uint]
 
-/// CTFontCollectionCopyOptions
 FontCollectionCopyOption :: enum cffi.uint {
     Unique       = 0,
     StandardSort = 1,
 }
+
 FontCollectionCopyOptions :: bit_set[FontCollectionCopyOption; cffi.uint]
 
-/// CTFontManagerError
 FontManagerError :: enum cffi.long {
     FileNotFound            = 101,
     InsufficientPermissions = 102,
@@ -1108,7 +1328,6 @@ FontManagerError :: enum cffi.long {
     UnsupportedScope        = 307,
 }
 
-/// CTFontManagerScope
 FontManagerScope :: enum cffi.uint {
     None       = 0,
     Process    = 1,
@@ -1117,7 +1336,6 @@ FontManagerScope :: enum cffi.uint {
     User       = 2,
 }
 
-/// CTFontManagerAutoActivationSetting
 FontManagerAutoActivationSetting :: enum cffi.uint {
     Default    = 0,
     Disabled   = 1,
@@ -1125,20 +1343,17 @@ FontManagerAutoActivationSetting :: enum cffi.uint {
     PromptUser = 3,
 }
 
-/// CTFrameProgression
 FrameProgression :: enum cffi.uint {
     TopToBottom = 0,
     RightToLeft = 1,
     LeftToRight = 2,
 }
 
-/// CTFramePathFillRule
 FramePathFillRule :: enum cffi.uint {
     EvenOdd       = 0,
     WindingNumber = 1,
 }
 
-/// CTLineBoundsOptions
 LineBoundsOption :: enum cffi.ulong {
     ExcludeTypographicLeading = 0,
     ExcludeTypographicShifts  = 1,
@@ -1147,16 +1362,15 @@ LineBoundsOption :: enum cffi.ulong {
     UseOpticalBounds          = 4,
     IncludeLanguageExtents    = 5,
 }
+
 LineBoundsOptions :: bit_set[LineBoundsOption; cffi.ulong]
 
-/// CTLineTruncationType
 LineTruncationType :: enum cffi.uint {
     Start  = 0,
     End    = 1,
     Middle = 2,
 }
 
-/// CTCharacterCollection
 CharacterCollection :: enum cffi.ushort {
     IdentityMapping                  = 0,
     AdobeCNS1                        = 1,
@@ -1172,7 +1386,6 @@ CharacterCollection :: enum cffi.ushort {
     AdobeKorea1CharacterCollection   = 5,
 }
 
-/// CTTextAlignment
 TextAlignment :: enum cffi.uchar {
     Left                   = 0,
     Right                  = 1,
@@ -1186,7 +1399,6 @@ TextAlignment :: enum cffi.uchar {
     NaturalTextAlignment   = 4,
 }
 
-/// CTLineBreakMode
 LineBreakMode :: enum cffi.uchar {
     ByWordWrapping     = 0,
     ByCharWrapping     = 1,
@@ -1196,14 +1408,12 @@ LineBreakMode :: enum cffi.uchar {
     ByTruncatingMiddle = 5,
 }
 
-/// CTWritingDirection
 WritingDirection :: enum cffi.schar {
     Natural     = -1,
     LeftToRight = 0,
     RightToLeft = 1,
 }
 
-/// CTParagraphStyleSpecifier
 ParagraphStyleSpecifier :: enum cffi.uint {
     Alignment              = 0,
     FirstLineHeadIndent    = 1,
@@ -1226,7 +1436,6 @@ ParagraphStyleSpecifier :: enum cffi.uint {
     Count                  = 18,
 }
 
-/// CTRubyAlignment
 RubyAlignment :: enum cffi.uchar {
     Invalid          = 255,
     Auto             = 0,
@@ -1238,7 +1447,6 @@ RubyAlignment :: enum cffi.uchar {
     LineEdge         = 6,
 }
 
-/// CTRubyOverhang
 RubyOverhang :: enum cffi.uchar {
     Invalid = 255,
     Auto    = 0,
@@ -1247,7 +1455,6 @@ RubyOverhang :: enum cffi.uchar {
     None    = 3,
 }
 
-/// CTRubyPosition
 RubyPosition :: enum cffi.uchar {
     Before         = 0,
     After          = 1,
@@ -1256,7 +1463,6 @@ RubyPosition :: enum cffi.uchar {
     Count          = 4,
 }
 
-/// CTRunStatus
 RunStatus :: enum cffi.uint {
     NoStatus             = 0,
     RightToLeft          = 1,
@@ -1264,7 +1470,6 @@ RunStatus :: enum cffi.uint {
     HasNonIdentityMatrix = 4,
 }
 
-/// CTUnderlineStyle
 UnderlineStyle :: enum cffi.int {
     None   = 0,
     Single = 1,
@@ -1272,61 +1477,44 @@ UnderlineStyle :: enum cffi.int {
     Double = 9,
 }
 
-/// CTUnderlineStyleModifiers
 UnderlineStyleModifier :: enum cffi.int {
     PatternDot        = 8,
     PatternDash       = 9,
     PatternDashDotDot = 10,
 }
+
 UnderlineStyleModifiers :: bit_set[UnderlineStyleModifier; cffi.int]
 
-UnderlineStyleModifiers_PatternDashDot :: UnderlineStyleModifiers { .PatternDot, .PatternDash, }
-
-/// __CTFontDescriptor
 __CTFontDescriptor :: struct {}
 
-/// __CTFont
 __CTFont :: struct {}
 
-/// __CTFontCollection
 __CTFontCollection :: struct {}
 
-/// __CTFrame
 __CTFrame :: struct {}
 
-/// __CTLine
 __CTLine :: struct {}
 
-/// __CTTypesetter
 __CTTypesetter :: struct {}
 
-/// __CTFramesetter
 __CTFramesetter :: struct {}
 
-/// __CTGlyphInfo
 __CTGlyphInfo :: struct {}
 
-/// __CTParagraphStyle
 __CTParagraphStyle :: struct {}
 
-/// CTParagraphStyleSetting
 ParagraphStyleSetting :: struct #align (8) {
     spec:      ParagraphStyleSpecifier,
     valueSize: cffi.size_t,
     value:     rawptr,
 }
-#assert(size_of(ParagraphStyleSetting) == 24)
 
-/// __CTRubyAnnotation
 __CTRubyAnnotation :: struct {}
 
-/// __CTRun
 __CTRun :: struct {}
 
-/// __CTRunDelegate
 __CTRunDelegate :: struct {}
 
-/// CTRunDelegateCallbacks
 RunDelegateCallbacks :: struct #align (8) {
     version:    CF.Index,
     dealloc:    RunDelegateDeallocateCallback,
@@ -1334,8 +1522,6 @@ RunDelegateCallbacks :: struct #align (8) {
     getDescent: RunDelegateGetDescentCallback,
     getWidth:   RunDelegateGetWidthCallback,
 }
-#assert(size_of(RunDelegateCallbacks) == 40)
 
-/// __CTTextTab
 __CTTextTab :: struct {}
 

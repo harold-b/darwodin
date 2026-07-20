@@ -31,10 +31,10 @@ foreign lib {
     ImageReader_imageWithData_ :: proc(self: ^ImageReader, data: ^NS.Data) -> ^Image ---
 
     @(objc_type=ImageReader, objc_selector="imageWithContentsOfFileURL:completion:", objc_name="imageWithContentsOfFileURL_completion")
-    ImageReader_imageWithContentsOfFileURL_completion :: proc(self: ^ImageReader, url: ^NS.URL, completion: ^Objc_Block(proc "c" (_: ^Image))) ---
+    ImageReader_imageWithContentsOfFileURL_completion :: proc(self: ^ImageReader, url: ^NS.URL, completion: ^Objc_Block(proc "c" ( _0: ^Image ))) ---
 
     @(objc_type=ImageReader, objc_selector="imageWithData:completion:", objc_name="imageWithData_completion")
-    ImageReader_imageWithData_completion :: proc(self: ^ImageReader, data: ^NS.Data, completion: ^Objc_Block(proc "c" (_: ^Image))) ---
+    ImageReader_imageWithData_completion :: proc(self: ^ImageReader, data: ^NS.Data, completion: ^Objc_Block(proc "c" ( _0: ^Image ))) ---
 
     @(objc_type=ImageReader, objc_selector="defaultReader", objc_name="defaultReader", objc_is_class_method=true)
     ImageReader_defaultReader :: proc() -> ^ImageReader ---

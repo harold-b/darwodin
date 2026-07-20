@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMusicTrack
-///
 @(objc_class="AVMusicTrack", objc_superclass=NS.Object)
 MusicTrack :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MusicTrack, objc_selector="destinationAudioUnit", objc_name="destinationAudioUnit")
     MusicTrack_destinationAudioUnit :: proc(self: ^MusicTrack) -> ^AudioUnit ---
@@ -112,3 +106,6 @@ foreign lib {
     @(objc_type=MusicTrack, objc_selector="setUsesAutomatedParameters:", objc_name="setUsesAutomatedParameters")
     MusicTrack_setUsesAutomatedParameters :: proc(self: ^MusicTrack, usesAutomatedParameters: bool) ---
 }
+
+
+

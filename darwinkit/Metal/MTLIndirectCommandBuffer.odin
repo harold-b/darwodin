@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIndirectCommandBuffer
-///
 @(objc_class="MTLIndirectCommandBuffer")
 IndirectCommandBuffer :: struct { using _: intrinsics.objc_object, 
     using _: Resource,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndirectCommandBuffer, objc_selector="resetWithRange:", objc_name="resetWithRange")
     IndirectCommandBuffer_resetWithRange :: proc(self: ^IndirectCommandBuffer, range: NS._NSRange) ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=IndirectCommandBuffer, objc_selector="gpuResourceID", objc_name="gpuResourceID")
     IndirectCommandBuffer_gpuResourceID :: proc(self: ^IndirectCommandBuffer) -> ResourceID ---
 }
+
+
+

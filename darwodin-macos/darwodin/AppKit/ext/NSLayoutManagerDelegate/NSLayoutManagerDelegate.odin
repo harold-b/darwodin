@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, glyphs: ^CG.Glyph, props: ^AK.GlyphProperty, charIndexes: ^NS.UInteger, aFont: ^AK.Font, glyphRange: NS._NSRange) -> NS.UInteger,
-    layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
-    layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
-    layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
-    layoutManager_shouldUseAction_forControlCharacterAtIndex: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, action: AK.ControlCharacterAction, charIndex: NS.UInteger) -> AK.ControlCharacterAction,
-    layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, charIndex: NS.UInteger) -> bool,
-    layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, charIndex: NS.UInteger) -> bool,
-    layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, glyphIndex: NS.UInteger, textContainer: ^AK.TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect,
-    layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, baselineOffset: ^CG.Float, textContainer: ^AK.TextContainer, glyphRange: NS._NSRange) -> bool,
-    layoutManagerDidInvalidateLayout: proc(self: ^AK.LayoutManagerDelegate, sender: ^AK.LayoutManager),
-    layoutManager_didCompleteLayoutForTextContainer_atEnd: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, textContainer: ^AK.TextContainer, layoutFinishedFlag: bool),
-    layoutManager_textContainer_didChangeGeometryFromSize: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, textContainer: ^AK.TextContainer, oldSize: NS.Size),
-    layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange: proc(self: ^AK.LayoutManagerDelegate, layoutManager: ^AK.LayoutManager, attrs: ^NS.Dictionary, toScreen: bool, charIndex: NS.UInteger, effectiveCharRange: ^NS._NSRange) -> ^NS.Dictionary,
+    layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, glyphs: ^CG.Glyph, props: ^NS.GlyphProperty, charIndexes: ^NS.UInteger, aFont: ^NS.Font, glyphRange: NS._NSRange) -> NS.UInteger,
+    layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
+    layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
+    layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float,
+    layoutManager_shouldUseAction_forControlCharacterAtIndex: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, action: NS.ControlCharacterAction, charIndex: NS.UInteger) -> NS.ControlCharacterAction,
+    layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, charIndex: NS.UInteger) -> bool,
+    layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, charIndex: NS.UInteger) -> bool,
+    layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, glyphIndex: NS.UInteger, textContainer: ^NS.TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect,
+    layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, baselineOffset: ^CG.Float, textContainer: ^NS.TextContainer, glyphRange: NS._NSRange) -> bool,
+    layoutManagerDidInvalidateLayout: proc(self: ^NS.LayoutManagerDelegate, sender: ^NS.LayoutManager),
+    layoutManager_didCompleteLayoutForTextContainer_atEnd: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, textContainer: ^NS.TextContainer, layoutFinishedFlag: bool),
+    layoutManager_textContainer_didChangeGeometryFromSize: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, textContainer: ^NS.TextContainer, oldSize: NS.Size),
+    layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange: proc(self: ^NS.LayoutManagerDelegate, layoutManager: ^NS.LayoutManager, attrs: ^NS.Dictionary, toScreen: bool, charIndex: NS.UInteger, effectiveCharRange: ^NS._NSRange) -> ^NS.Dictionary,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange != nil {
-        layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, glyphs: ^CG.Glyph, props: ^AK.GlyphProperty, charIndexes: ^NS.UInteger, aFont: ^AK.Font, glyphRange: NS._NSRange) -> NS.UInteger {
+        layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, glyphs: ^CG.Glyph, props: ^NS.GlyphProperty, charIndexes: ^NS.UInteger, aFont: ^NS.Font, glyphRange: NS._NSRange) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:shouldGenerateGlyphs:properties:characterIndexes:font:forGlyphRange:"), auto_cast layoutManager_shouldGenerateGlyphs_properties_characterIndexes_font_forGlyphRange, "L@:@^void^void^void@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect != nil {
-        layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
+        layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:lineSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:"), auto_cast layoutManager_lineSpacingAfterGlyphAtIndex_withProposedLineFragmentRect, "d@:@L{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect != nil {
-        layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
+        layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:paragraphSpacingBeforeGlyphAtIndex:withProposedLineFragmentRect:"), auto_cast layoutManager_paragraphSpacingBeforeGlyphAtIndex_withProposedLineFragmentRect, "d@:@L{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect != nil {
-        layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
+        layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, glyphIndex: NS.UInteger, rect: NS.Rect) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:paragraphSpacingAfterGlyphAtIndex:withProposedLineFragmentRect:"), auto_cast layoutManager_paragraphSpacingAfterGlyphAtIndex_withProposedLineFragmentRect, "d@:@L{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_shouldUseAction_forControlCharacterAtIndex != nil {
-        layoutManager_shouldUseAction_forControlCharacterAtIndex :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, action: AK.ControlCharacterAction, charIndex: NS.UInteger) -> AK.ControlCharacterAction {
+        layoutManager_shouldUseAction_forControlCharacterAtIndex :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, action: NS.ControlCharacterAction, charIndex: NS.UInteger) -> NS.ControlCharacterAction {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:shouldUseAction:forControlCharacterAtIndex:"), auto_cast layoutManager_shouldUseAction_forControlCharacterAtIndex, "l@:@lL") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex != nil {
-        layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, charIndex: NS.UInteger) -> bool {
+        layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, charIndex: NS.UInteger) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:shouldBreakLineByWordBeforeCharacterAtIndex:"), auto_cast layoutManager_shouldBreakLineByWordBeforeCharacterAtIndex, "B@:@L") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex != nil {
-        layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, charIndex: NS.UInteger) -> bool {
+        layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, charIndex: NS.UInteger) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:shouldBreakLineByHyphenatingBeforeCharacterAtIndex:"), auto_cast layoutManager_shouldBreakLineByHyphenatingBeforeCharacterAtIndex, "B@:@L") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex != nil {
-        layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, glyphIndex: NS.UInteger, textContainer: ^AK.TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect {
+        layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, glyphIndex: NS.UInteger, textContainer: ^NS.TextContainer, proposedRect: NS.Rect, glyphPosition: CG.Point, charIndex: NS.UInteger) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:boundingBoxForControlGlyphAtIndex:forTextContainer:proposedLineFragment:glyphPosition:characterIndex:"), auto_cast layoutManager_boundingBoxForControlGlyphAtIndex_forTextContainer_proposedLineFragment_glyphPosition_characterIndex, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@L@{CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}L") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange != nil {
-        layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, baselineOffset: ^CG.Float, textContainer: ^AK.TextContainer, glyphRange: NS._NSRange) -> bool {
+        layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, lineFragmentRect: ^NS.Rect, lineFragmentUsedRect: ^NS.Rect, baselineOffset: ^CG.Float, textContainer: ^NS.TextContainer, glyphRange: NS._NSRange) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:shouldSetLineFragmentRect:lineFragmentUsedRect:baselineOffset:inTextContainer:forGlyphRange:"), auto_cast layoutManager_shouldSetLineFragmentRect_lineFragmentUsedRect_baselineOffset_inTextContainer_forGlyphRange, "B@:@^void^void^void@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.layoutManagerDidInvalidateLayout != nil {
-        layoutManagerDidInvalidateLayout :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, sender: ^AK.LayoutManager) {
+        layoutManagerDidInvalidateLayout :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, sender: ^NS.LayoutManager) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManagerDidInvalidateLayout:"), auto_cast layoutManagerDidInvalidateLayout, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_didCompleteLayoutForTextContainer_atEnd != nil {
-        layoutManager_didCompleteLayoutForTextContainer_atEnd :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, textContainer: ^AK.TextContainer, layoutFinishedFlag: bool) {
+        layoutManager_didCompleteLayoutForTextContainer_atEnd :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, textContainer: ^NS.TextContainer, layoutFinishedFlag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:didCompleteLayoutForTextContainer:atEnd:"), auto_cast layoutManager_didCompleteLayoutForTextContainer_atEnd, "v@:@@B") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_textContainer_didChangeGeometryFromSize != nil {
-        layoutManager_textContainer_didChangeGeometryFromSize :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, textContainer: ^AK.TextContainer, oldSize: NS.Size) {
+        layoutManager_textContainer_didChangeGeometryFromSize :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, textContainer: ^NS.TextContainer, oldSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager:textContainer:didChangeGeometryFromSize:"), auto_cast layoutManager_textContainer_didChangeGeometryFromSize, "v@:@@{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange != nil {
-        layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange :: proc "c" (self: ^AK.LayoutManagerDelegate, _: SEL, layoutManager: ^AK.LayoutManager, attrs: ^NS.Dictionary, toScreen: bool, charIndex: NS.UInteger, effectiveCharRange: ^NS._NSRange) -> ^NS.Dictionary {
+        layoutManager_shouldUseTemporaryAttributes_forDrawingToScreen_atCharacterIndex_effectiveRange :: proc "c" (self: ^NS.LayoutManagerDelegate, _: SEL, layoutManager: ^NS.LayoutManager, attrs: ^NS.Dictionary, toScreen: bool, charIndex: NS.UInteger, effectiveCharRange: ^NS._NSRange) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

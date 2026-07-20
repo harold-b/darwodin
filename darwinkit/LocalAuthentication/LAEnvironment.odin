@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import NS "../Foundation"
 import Sec "../Security"
 
-
-
-///
-/// LAEnvironment
-///
 @(objc_class="LAEnvironment", objc_superclass=NS.Object)
 Environment :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Environment, objc_selector="new", objc_name="new", objc_is_class_method=true)
     Environment_new :: proc() -> ^Environment ---
@@ -36,3 +30,6 @@ foreign lib {
     @(objc_type=Environment, objc_selector="state", objc_name="state")
     Environment_state :: proc(self: ^Environment) -> ^EnvironmentState ---
 }
+
+
+

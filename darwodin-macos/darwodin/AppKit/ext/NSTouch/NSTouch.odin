@@ -20,21 +20,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    identity: proc(self: ^AK.Touch) -> ^id,
-    phase: proc(self: ^AK.Touch) -> AK.TouchPhase,
-    normalizedPosition: proc(self: ^AK.Touch) -> CG.Point,
-    isResting: proc(self: ^AK.Touch) -> bool,
-    device: proc(self: ^AK.Touch) -> id,
-    deviceSize: proc(self: ^AK.Touch) -> NS.Size,
-    locationInView: proc(self: ^AK.Touch, view: ^AK.View) -> CG.Point,
-    previousLocationInView: proc(self: ^AK.Touch, view: ^AK.View) -> CG.Point,
-    type: proc(self: ^AK.Touch) -> AK.TouchType,
+    identity: proc(self: ^NS.Touch) -> ^id,
+    phase: proc(self: ^NS.Touch) -> NS.TouchPhase,
+    normalizedPosition: proc(self: ^NS.Touch) -> CG.Point,
+    isResting: proc(self: ^NS.Touch) -> bool,
+    device: proc(self: ^NS.Touch) -> id,
+    deviceSize: proc(self: ^NS.Touch) -> NS.Size,
+    locationInView: proc(self: ^NS.Touch, view: ^NS.View) -> CG.Point,
+    previousLocationInView: proc(self: ^NS.Touch, view: ^NS.View) -> CG.Point,
+    type: proc(self: ^NS.Touch) -> NS.TouchType,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.identity != nil {
-        identity :: proc "c" (self: ^AK.Touch, _: SEL) -> ^id {
+        identity :: proc "c" (self: ^NS.Touch, _: SEL) -> ^id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("identity"), auto_cast identity, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.phase != nil {
-        phase :: proc "c" (self: ^AK.Touch, _: SEL) -> AK.TouchPhase {
+        phase :: proc "c" (self: ^NS.Touch, _: SEL) -> NS.TouchPhase {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("phase"), auto_cast phase, "L@:") do panic("Failed to register objC method.")
     }
     if vt.normalizedPosition != nil {
-        normalizedPosition :: proc "c" (self: ^AK.Touch, _: SEL) -> CG.Point {
+        normalizedPosition :: proc "c" (self: ^NS.Touch, _: SEL) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("normalizedPosition"), auto_cast normalizedPosition, "{CGPoint=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.isResting != nil {
-        isResting :: proc "c" (self: ^AK.Touch, _: SEL) -> bool {
+        isResting :: proc "c" (self: ^NS.Touch, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isResting"), auto_cast isResting, "B@:") do panic("Failed to register objC method.")
     }
     if vt.device != nil {
-        device :: proc "c" (self: ^AK.Touch, _: SEL) -> id {
+        device :: proc "c" (self: ^NS.Touch, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("device"), auto_cast device, "@@:") do panic("Failed to register objC method.")
     }
     if vt.deviceSize != nil {
-        deviceSize :: proc "c" (self: ^AK.Touch, _: SEL) -> NS.Size {
+        deviceSize :: proc "c" (self: ^NS.Touch, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("deviceSize"), auto_cast deviceSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.locationInView != nil {
-        locationInView :: proc "c" (self: ^AK.Touch, _: SEL, view: ^AK.View) -> CG.Point {
+        locationInView :: proc "c" (self: ^NS.Touch, _: SEL, view: ^NS.View) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("locationInView:"), auto_cast locationInView, "{CGPoint=dd}@:@") do panic("Failed to register objC method.")
     }
     if vt.previousLocationInView != nil {
-        previousLocationInView :: proc "c" (self: ^AK.Touch, _: SEL, view: ^AK.View) -> CG.Point {
+        previousLocationInView :: proc "c" (self: ^NS.Touch, _: SEL, view: ^NS.View) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("previousLocationInView:"), auto_cast previousLocationInView, "{CGPoint=dd}@:@") do panic("Failed to register objC method.")
     }
     if vt.type != nil {
-        type :: proc "c" (self: ^AK.Touch, _: SEL) -> AK.TouchType {
+        type :: proc "c" (self: ^NS.Touch, _: SEL) -> NS.TouchType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

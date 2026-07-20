@@ -27,7 +27,7 @@ foreign lib {
     ItemProviderWriting_itemProviderVisibilityForRepresentationWithTypeIdentifier :: proc(self: ^ItemProviderWriting, typeIdentifier: ^String) -> ItemProviderRepresentationVisibility ---
 
     @(objc_type=ItemProviderWriting, objc_selector="loadDataWithTypeIdentifier:forItemProviderCompletionHandler:", objc_name="loadDataWithTypeIdentifier")
-    ItemProviderWriting_loadDataWithTypeIdentifier :: proc(self: ^ItemProviderWriting, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" (data: ^Data, error: ^Error))) -> ^Progress ---
+    ItemProviderWriting_loadDataWithTypeIdentifier :: proc(self: ^ItemProviderWriting, typeIdentifier: ^String, completionHandler: ^Objc_Block(proc "c" ( data: ^Data, error: ^Error ))) -> ^Progress ---
 
     @(objc_type=ItemProviderWriting, objc_selector="writableTypeIdentifiersForItemProvider", objc_name="writableTypeIdentifiersForItemProviderStatic", objc_is_class_method=true)
     ItemProviderWriting_writableTypeIdentifiersForItemProviderStatic :: proc() -> ^Array ---

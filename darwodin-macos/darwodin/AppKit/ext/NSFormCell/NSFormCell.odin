@@ -20,36 +20,36 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSActionCell"
 
 VTable :: struct {
     super: NSActionCell.VTable,
-    initTextCell: proc(self: ^AK.FormCell, string: ^NS.String) -> instancetype,
-    initWithCoder: proc(self: ^AK.FormCell, coder: ^NS.Coder) -> instancetype,
-    initImageCell: proc(self: ^AK.FormCell, image: ^AK.Image) -> instancetype,
-    titleWidth_size: proc(self: ^AK.FormCell, size: NS.Size) -> CG.Float,
-    titleWidth_: proc(self: ^AK.FormCell) -> CG.Float,
-    setTitleWidth: proc(self: ^AK.FormCell, titleWidth: CG.Float),
-    title: proc(self: ^AK.FormCell) -> ^NS.String,
-    setTitle: proc(self: ^AK.FormCell, title: ^NS.String),
-    titleFont: proc(self: ^AK.FormCell) -> ^AK.Font,
-    setTitleFont: proc(self: ^AK.FormCell, titleFont: ^AK.Font),
-    isOpaque: proc(self: ^AK.FormCell) -> bool,
-    placeholderString: proc(self: ^AK.FormCell) -> ^NS.String,
-    setPlaceholderString: proc(self: ^AK.FormCell, placeholderString: ^NS.String),
-    placeholderAttributedString: proc(self: ^AK.FormCell) -> ^NS.AttributedString,
-    setPlaceholderAttributedString: proc(self: ^AK.FormCell, placeholderAttributedString: ^NS.AttributedString),
-    titleAlignment: proc(self: ^AK.FormCell) -> AK.TextAlignment,
-    setTitleAlignment: proc(self: ^AK.FormCell, titleAlignment: AK.TextAlignment),
-    titleBaseWritingDirection: proc(self: ^AK.FormCell) -> AK.WritingDirection,
-    setTitleBaseWritingDirection: proc(self: ^AK.FormCell, titleBaseWritingDirection: AK.WritingDirection),
-    preferredTextFieldWidth: proc(self: ^AK.FormCell) -> CG.Float,
-    setPreferredTextFieldWidth: proc(self: ^AK.FormCell, preferredTextFieldWidth: CG.Float),
-    setTitleWithMnemonic: proc(self: ^AK.FormCell, stringWithAmpersand: ^NS.String),
-    attributedTitle: proc(self: ^AK.FormCell) -> ^NS.AttributedString,
-    setAttributedTitle: proc(self: ^AK.FormCell, attributedTitle: ^NS.AttributedString),
+    initTextCell: proc(self: ^NS.FormCell, string: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^NS.FormCell, coder: ^NS.Coder) -> instancetype,
+    initImageCell: proc(self: ^NS.FormCell, image: ^NS.Image) -> instancetype,
+    titleWidth_size: proc(self: ^NS.FormCell, size: NS.Size) -> CG.Float,
+    titleWidth_: proc(self: ^NS.FormCell) -> CG.Float,
+    setTitleWidth: proc(self: ^NS.FormCell, titleWidth: CG.Float),
+    title: proc(self: ^NS.FormCell) -> ^NS.String,
+    setTitle: proc(self: ^NS.FormCell, title: ^NS.String),
+    titleFont: proc(self: ^NS.FormCell) -> ^NS.Font,
+    setTitleFont: proc(self: ^NS.FormCell, titleFont: ^NS.Font),
+    isOpaque: proc(self: ^NS.FormCell) -> bool,
+    placeholderString: proc(self: ^NS.FormCell) -> ^NS.String,
+    setPlaceholderString: proc(self: ^NS.FormCell, placeholderString: ^NS.String),
+    placeholderAttributedString: proc(self: ^NS.FormCell) -> ^NS.AttributedString,
+    setPlaceholderAttributedString: proc(self: ^NS.FormCell, placeholderAttributedString: ^NS.AttributedString),
+    titleAlignment: proc(self: ^NS.FormCell) -> NS.TextAlignment,
+    setTitleAlignment: proc(self: ^NS.FormCell, titleAlignment: NS.TextAlignment),
+    titleBaseWritingDirection: proc(self: ^NS.FormCell) -> NS.WritingDirection,
+    setTitleBaseWritingDirection: proc(self: ^NS.FormCell, titleBaseWritingDirection: NS.WritingDirection),
+    preferredTextFieldWidth: proc(self: ^NS.FormCell) -> CG.Float,
+    setPreferredTextFieldWidth: proc(self: ^NS.FormCell, preferredTextFieldWidth: CG.Float),
+    setTitleWithMnemonic: proc(self: ^NS.FormCell, stringWithAmpersand: ^NS.String),
+    attributedTitle: proc(self: ^NS.FormCell) -> ^NS.AttributedString,
+    setAttributedTitle: proc(self: ^NS.FormCell, attributedTitle: ^NS.AttributedString),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSActionCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.FormCell, _: SEL, string: ^NS.String) -> instancetype {
+        initTextCell :: proc "c" (self: ^NS.FormCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.FormCell, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.FormCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.FormCell, _: SEL, image: ^AK.Image) -> instancetype {
+        initImageCell :: proc "c" (self: ^NS.FormCell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initImageCell:"), auto_cast initImageCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.titleWidth_size != nil {
-        titleWidth_size :: proc "c" (self: ^AK.FormCell, _: SEL, size: NS.Size) -> CG.Float {
+        titleWidth_size :: proc "c" (self: ^NS.FormCell, _: SEL, size: NS.Size) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleWidth:"), auto_cast titleWidth_size, "d@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.titleWidth_ != nil {
-        titleWidth_ :: proc "c" (self: ^AK.FormCell, _: SEL) -> CG.Float {
+        titleWidth_ :: proc "c" (self: ^NS.FormCell, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleWidth"), auto_cast titleWidth_, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setTitleWidth != nil {
-        setTitleWidth :: proc "c" (self: ^AK.FormCell, _: SEL, titleWidth: CG.Float) {
+        setTitleWidth :: proc "c" (self: ^NS.FormCell, _: SEL, titleWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleWidth:"), auto_cast setTitleWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.title != nil {
-        title :: proc "c" (self: ^AK.FormCell, _: SEL) -> ^NS.String {
+        title :: proc "c" (self: ^NS.FormCell, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.FormCell, _: SEL, title: ^NS.String) {
+        setTitle :: proc "c" (self: ^NS.FormCell, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.titleFont != nil {
-        titleFont :: proc "c" (self: ^AK.FormCell, _: SEL) -> ^AK.Font {
+        titleFont :: proc "c" (self: ^NS.FormCell, _: SEL) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleFont"), auto_cast titleFont, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitleFont != nil {
-        setTitleFont :: proc "c" (self: ^AK.FormCell, _: SEL, titleFont: ^AK.Font) {
+        setTitleFont :: proc "c" (self: ^NS.FormCell, _: SEL, titleFont: ^NS.Font) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleFont:"), auto_cast setTitleFont, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isOpaque != nil {
-        isOpaque :: proc "c" (self: ^AK.FormCell, _: SEL) -> bool {
+        isOpaque :: proc "c" (self: ^NS.FormCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -170,7 +170,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isOpaque"), auto_cast isOpaque, "B@:") do panic("Failed to register objC method.")
     }
     if vt.placeholderString != nil {
-        placeholderString :: proc "c" (self: ^AK.FormCell, _: SEL) -> ^NS.String {
+        placeholderString :: proc "c" (self: ^NS.FormCell, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("placeholderString"), auto_cast placeholderString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPlaceholderString != nil {
-        setPlaceholderString :: proc "c" (self: ^AK.FormCell, _: SEL, placeholderString: ^NS.String) {
+        setPlaceholderString :: proc "c" (self: ^NS.FormCell, _: SEL, placeholderString: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -190,7 +190,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPlaceholderString:"), auto_cast setPlaceholderString, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.placeholderAttributedString != nil {
-        placeholderAttributedString :: proc "c" (self: ^AK.FormCell, _: SEL) -> ^NS.AttributedString {
+        placeholderAttributedString :: proc "c" (self: ^NS.FormCell, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("placeholderAttributedString"), auto_cast placeholderAttributedString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPlaceholderAttributedString != nil {
-        setPlaceholderAttributedString :: proc "c" (self: ^AK.FormCell, _: SEL, placeholderAttributedString: ^NS.AttributedString) {
+        setPlaceholderAttributedString :: proc "c" (self: ^NS.FormCell, _: SEL, placeholderAttributedString: ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPlaceholderAttributedString:"), auto_cast setPlaceholderAttributedString, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.titleAlignment != nil {
-        titleAlignment :: proc "c" (self: ^AK.FormCell, _: SEL) -> AK.TextAlignment {
+        titleAlignment :: proc "c" (self: ^NS.FormCell, _: SEL) -> NS.TextAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleAlignment"), auto_cast titleAlignment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setTitleAlignment != nil {
-        setTitleAlignment :: proc "c" (self: ^AK.FormCell, _: SEL, titleAlignment: AK.TextAlignment) {
+        setTitleAlignment :: proc "c" (self: ^NS.FormCell, _: SEL, titleAlignment: NS.TextAlignment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -230,7 +230,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleAlignment:"), auto_cast setTitleAlignment, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.titleBaseWritingDirection != nil {
-        titleBaseWritingDirection :: proc "c" (self: ^AK.FormCell, _: SEL) -> AK.WritingDirection {
+        titleBaseWritingDirection :: proc "c" (self: ^NS.FormCell, _: SEL) -> NS.WritingDirection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -240,7 +240,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleBaseWritingDirection"), auto_cast titleBaseWritingDirection, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setTitleBaseWritingDirection != nil {
-        setTitleBaseWritingDirection :: proc "c" (self: ^AK.FormCell, _: SEL, titleBaseWritingDirection: AK.WritingDirection) {
+        setTitleBaseWritingDirection :: proc "c" (self: ^NS.FormCell, _: SEL, titleBaseWritingDirection: NS.WritingDirection) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -250,7 +250,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleBaseWritingDirection:"), auto_cast setTitleBaseWritingDirection, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.preferredTextFieldWidth != nil {
-        preferredTextFieldWidth :: proc "c" (self: ^AK.FormCell, _: SEL) -> CG.Float {
+        preferredTextFieldWidth :: proc "c" (self: ^NS.FormCell, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -260,7 +260,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredTextFieldWidth"), auto_cast preferredTextFieldWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setPreferredTextFieldWidth != nil {
-        setPreferredTextFieldWidth :: proc "c" (self: ^AK.FormCell, _: SEL, preferredTextFieldWidth: CG.Float) {
+        setPreferredTextFieldWidth :: proc "c" (self: ^NS.FormCell, _: SEL, preferredTextFieldWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredTextFieldWidth:"), auto_cast setPreferredTextFieldWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.setTitleWithMnemonic != nil {
-        setTitleWithMnemonic :: proc "c" (self: ^AK.FormCell, _: SEL, stringWithAmpersand: ^NS.String) {
+        setTitleWithMnemonic :: proc "c" (self: ^NS.FormCell, _: SEL, stringWithAmpersand: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -280,7 +280,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleWithMnemonic:"), auto_cast setTitleWithMnemonic, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.attributedTitle != nil {
-        attributedTitle :: proc "c" (self: ^AK.FormCell, _: SEL) -> ^NS.AttributedString {
+        attributedTitle :: proc "c" (self: ^NS.FormCell, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedTitle"), auto_cast attributedTitle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributedTitle != nil {
-        setAttributedTitle :: proc "c" (self: ^AK.FormCell, _: SEL, attributedTitle: ^NS.AttributedString) {
+        setAttributedTitle :: proc "c" (self: ^NS.FormCell, _: SEL, attributedTitle: ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

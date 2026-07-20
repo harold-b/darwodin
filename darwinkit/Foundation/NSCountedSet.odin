@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSCountedSet
-///
 @(objc_class="NSCountedSet", objc_superclass=MutableSet)
 CountedSet :: struct { using _: MutableSet, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CountedSet, objc_selector="initWithCapacity:", objc_name="initWithCapacity")
     CountedSet_initWithCapacity :: proc(self: ^CountedSet, numItems: UInteger) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=CountedSet, objc_selector="removeObject:", objc_name="removeObject")
     CountedSet_removeObject :: proc(self: ^CountedSet, object: id) ---
 }
+
+
+

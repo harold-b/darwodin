@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLTexture
-///
 @(objc_class="MDLTexture", objc_superclass=NS.Object)
 Texture :: struct { using _: NS.Object, 
     using _: Named,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Texture, objc_selector="init", objc_name="init")
     Texture_init :: proc(self: ^Texture) -> instancetype ---
@@ -106,6 +100,8 @@ foreign lib {
     @(objc_type=Texture, objc_selector="setHasAlphaValues:", objc_name="setHasAlphaValues")
     Texture_setHasAlphaValues :: proc(self: ^Texture, hasAlphaValues: bool) ---
 }
+
+
 
 @(objc_type=Texture, objc_name="textureNamed")
 Texture_textureNamed :: proc {

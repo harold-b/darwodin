@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIOCommandQueueDescriptor
-///
 @(objc_class="MTLIOCommandQueueDescriptor", objc_superclass=NS.Object)
 IOCommandQueueDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IOCommandQueueDescriptor, objc_selector="maxCommandBufferCount", objc_name="maxCommandBufferCount")
     IOCommandQueueDescriptor_maxCommandBufferCount :: proc(self: ^IOCommandQueueDescriptor) -> NS.UInteger ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=IOCommandQueueDescriptor, objc_selector="setScratchBufferAllocator:", objc_name="setScratchBufferAllocator")
     IOCommandQueueDescriptor_setScratchBufferAllocator :: proc(self: ^IOCommandQueueDescriptor, scratchBufferAllocator: ^IOScratchBufferAllocator) ---
 }
+
+
+

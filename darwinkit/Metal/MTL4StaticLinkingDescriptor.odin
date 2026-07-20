@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4StaticLinkingDescriptor
-///
 @(objc_class="MTL4StaticLinkingDescriptor", objc_superclass=NS.Object)
 MTL4StaticLinkingDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4StaticLinkingDescriptor, objc_selector="functionDescriptors", objc_name="functionDescriptors")
     MTL4StaticLinkingDescriptor_functionDescriptors :: proc(self: ^MTL4StaticLinkingDescriptor) -> ^NS.Array ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=MTL4StaticLinkingDescriptor, objc_selector="setGroups:", objc_name="setGroups")
     MTL4StaticLinkingDescriptor_setGroups :: proc(self: ^MTL4StaticLinkingDescriptor, groups: ^NS.Dictionary) ---
 }
+
+
+

@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    imageDidNotDraw: proc(self: ^AK.ImageDelegate, sender: ^AK.Image, rect: NS.Rect) -> ^AK.Image,
-    image_willLoadRepresentation: proc(self: ^AK.ImageDelegate, image: ^AK.Image, rep: ^AK.ImageRep),
-    image_didLoadRepresentationHeader: proc(self: ^AK.ImageDelegate, image: ^AK.Image, rep: ^AK.ImageRep),
-    image_didLoadPartOfRepresentation_withValidRows: proc(self: ^AK.ImageDelegate, image: ^AK.Image, rep: ^AK.ImageRep, rows: NS.Integer),
-    image_didLoadRepresentation_withStatus: proc(self: ^AK.ImageDelegate, image: ^AK.Image, rep: ^AK.ImageRep, status: AK.ImageLoadStatus),
+    imageDidNotDraw: proc(self: ^NS.ImageDelegate, sender: ^NS.Image, rect: NS.Rect) -> ^NS.Image,
+    image_willLoadRepresentation: proc(self: ^NS.ImageDelegate, image: ^NS.Image, rep: ^NS.ImageRep),
+    image_didLoadRepresentationHeader: proc(self: ^NS.ImageDelegate, image: ^NS.Image, rep: ^NS.ImageRep),
+    image_didLoadPartOfRepresentation_withValidRows: proc(self: ^NS.ImageDelegate, image: ^NS.Image, rep: ^NS.ImageRep, rows: NS.Integer),
+    image_didLoadRepresentation_withStatus: proc(self: ^NS.ImageDelegate, image: ^NS.Image, rep: ^NS.ImageRep, status: NS.ImageLoadStatus),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -35,7 +35,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.imageDidNotDraw != nil {
-        imageDidNotDraw :: proc "c" (self: ^AK.ImageDelegate, _: SEL, sender: ^AK.Image, rect: NS.Rect) -> ^AK.Image {
+        imageDidNotDraw :: proc "c" (self: ^NS.ImageDelegate, _: SEL, sender: ^NS.Image, rect: NS.Rect) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageDidNotDraw:inRect:"), auto_cast imageDidNotDraw, "@@:@{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.image_willLoadRepresentation != nil {
-        image_willLoadRepresentation :: proc "c" (self: ^AK.ImageDelegate, _: SEL, image: ^AK.Image, rep: ^AK.ImageRep) {
+        image_willLoadRepresentation :: proc "c" (self: ^NS.ImageDelegate, _: SEL, image: ^NS.Image, rep: ^NS.ImageRep) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image:willLoadRepresentation:"), auto_cast image_willLoadRepresentation, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.image_didLoadRepresentationHeader != nil {
-        image_didLoadRepresentationHeader :: proc "c" (self: ^AK.ImageDelegate, _: SEL, image: ^AK.Image, rep: ^AK.ImageRep) {
+        image_didLoadRepresentationHeader :: proc "c" (self: ^NS.ImageDelegate, _: SEL, image: ^NS.Image, rep: ^NS.ImageRep) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image:didLoadRepresentationHeader:"), auto_cast image_didLoadRepresentationHeader, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.image_didLoadPartOfRepresentation_withValidRows != nil {
-        image_didLoadPartOfRepresentation_withValidRows :: proc "c" (self: ^AK.ImageDelegate, _: SEL, image: ^AK.Image, rep: ^AK.ImageRep, rows: NS.Integer) {
+        image_didLoadPartOfRepresentation_withValidRows :: proc "c" (self: ^NS.ImageDelegate, _: SEL, image: ^NS.Image, rep: ^NS.ImageRep, rows: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image:didLoadPartOfRepresentation:withValidRows:"), auto_cast image_didLoadPartOfRepresentation_withValidRows, "v@:@@l") do panic("Failed to register objC method.")
     }
     if vt.image_didLoadRepresentation_withStatus != nil {
-        image_didLoadRepresentation_withStatus :: proc "c" (self: ^AK.ImageDelegate, _: SEL, image: ^AK.Image, rep: ^AK.ImageRep, status: AK.ImageLoadStatus) {
+        image_didLoadRepresentation_withStatus :: proc "c" (self: ^NS.ImageDelegate, _: SEL, image: ^NS.Image, rep: ^NS.ImageRep, status: NS.ImageLoadStatus) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -51,10 +51,10 @@ foreign lib {
     TextLayoutManager_textLayoutFragmentForLocation :: proc(self: ^TextLayoutManager, location: ^TextLocation) -> ^TextLayoutFragment ---
 
     @(objc_type=TextLayoutManager, objc_selector="enumerateTextLayoutFragmentsFromLocation:options:usingBlock:", objc_name="enumerateTextLayoutFragmentsFromLocation")
-    TextLayoutManager_enumerateTextLayoutFragmentsFromLocation :: proc(self: ^TextLayoutManager, location: ^TextLocation, options: TextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" (layoutFragment: ^TextLayoutFragment) -> bool)) -> ^TextLocation ---
+    TextLayoutManager_enumerateTextLayoutFragmentsFromLocation :: proc(self: ^TextLayoutManager, location: ^TextLocation, options: TextLayoutFragmentEnumerationOptions, block: ^Objc_Block(proc "c" ( layoutFragment: ^TextLayoutFragment ) -> bool)) -> ^TextLocation ---
 
     @(objc_type=TextLayoutManager, objc_selector="enumerateRenderingAttributesFromLocation:reverse:usingBlock:", objc_name="enumerateRenderingAttributesFromLocation")
-    TextLayoutManager_enumerateRenderingAttributesFromLocation :: proc(self: ^TextLayoutManager, location: ^TextLocation, reverse: bool, block: ^Objc_Block(proc "c" (textLayoutManager: ^TextLayoutManager, attributes: ^NS.Dictionary, textRange: ^TextRange) -> bool)) ---
+    TextLayoutManager_enumerateRenderingAttributesFromLocation :: proc(self: ^TextLayoutManager, location: ^TextLocation, reverse: bool, block: ^Objc_Block(proc "c" ( textLayoutManager: ^TextLayoutManager, attributes: ^NS.Dictionary, textRange: ^TextRange ) -> bool)) ---
 
     @(objc_type=TextLayoutManager, objc_selector="setRenderingAttributes:forTextRange:", objc_name="setRenderingAttributes")
     TextLayoutManager_setRenderingAttributes :: proc(self: ^TextLayoutManager, renderingAttributes: ^NS.Dictionary, textRange: ^TextRange) ---
@@ -72,7 +72,7 @@ foreign lib {
     TextLayoutManager_renderingAttributesForLink :: proc(self: ^TextLayoutManager, link: id, location: ^TextLocation) -> ^NS.Dictionary ---
 
     @(objc_type=TextLayoutManager, objc_selector="enumerateTextSegmentsInRange:type:options:usingBlock:", objc_name="enumerateTextSegmentsInRange")
-    TextLayoutManager_enumerateTextSegmentsInRange :: proc(self: ^TextLayoutManager, textRange: ^TextRange, type: TextLayoutManagerSegmentType, options: TextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" (textSegmentRange: ^TextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^TextContainer) -> bool)) ---
+    TextLayoutManager_enumerateTextSegmentsInRange :: proc(self: ^TextLayoutManager, textRange: ^TextRange, type: TextLayoutManagerSegmentType, options: TextLayoutManagerSegmentOptions, block: ^Objc_Block(proc "c" ( textSegmentRange: ^TextRange, textSegmentFrame: CG.Rect, baselinePosition: CG.Float, textContainer: ^TextContainer ) -> bool)) ---
 
     @(objc_type=TextLayoutManager, objc_selector="replaceContentsInRange:withTextElements:", objc_name="replaceContentsInRange_withTextElements")
     TextLayoutManager_replaceContentsInRange_withTextElements :: proc(self: ^TextLayoutManager, range: ^TextRange, textElements: ^NS.Array) ---

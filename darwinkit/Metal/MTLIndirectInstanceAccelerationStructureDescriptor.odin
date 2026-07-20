@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIndirectInstanceAccelerationStructureDescriptor
-///
 @(objc_class="MTLIndirectInstanceAccelerationStructureDescriptor", objc_superclass=AccelerationStructureDescriptor)
 IndirectInstanceAccelerationStructureDescriptor :: struct { using _: AccelerationStructureDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndirectInstanceAccelerationStructureDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
     IndirectInstanceAccelerationStructureDescriptor_descriptor :: proc() -> instancetype ---
@@ -114,3 +108,6 @@ foreign lib {
     @(objc_type=IndirectInstanceAccelerationStructureDescriptor, objc_selector="setMotionTransformStride:", objc_name="setMotionTransformStride")
     IndirectInstanceAccelerationStructureDescriptor_setMotionTransformStride :: proc(self: ^IndirectInstanceAccelerationStructureDescriptor, motionTransformStride: NS.UInteger) ---
 }
+
+
+

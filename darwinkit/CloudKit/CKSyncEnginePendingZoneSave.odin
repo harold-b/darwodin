@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEnginePendingZoneSave
-///
 @(objc_class="CKSyncEnginePendingZoneSave", objc_superclass=SyncEnginePendingDatabaseChange)
 SyncEnginePendingZoneSave :: struct { using _: SyncEnginePendingDatabaseChange, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEnginePendingZoneSave, objc_selector="initWithZone:", objc_name="initWithZone")
     SyncEnginePendingZoneSave_initWithZone :: proc(self: ^SyncEnginePendingZoneSave, zone: ^RecordZone) -> instancetype ---
@@ -23,3 +17,6 @@ foreign lib {
     @(objc_type=SyncEnginePendingZoneSave, objc_selector="zone", objc_name="zone")
     SyncEnginePendingZoneSave_zone :: proc(self: ^SyncEnginePendingZoneSave) -> ^RecordZone ---
 }
+
+
+

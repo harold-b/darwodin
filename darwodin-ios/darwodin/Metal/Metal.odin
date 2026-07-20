@@ -17,8 +17,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:Metal.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:Metal.framework",
+    }
+}
+
+
+// +user-text-begin
+// -user-text-end
 
 
 BufferLayoutStrideDynamic :: 18446744073709551615
@@ -95,22 +108,22 @@ AutoreleasedRenderPipelineReflection :: distinct ^RenderPipelineReflection
 AutoreleasedComputePipelineReflection :: distinct ^ComputePipelineReflection
 
 /// MTLNewLibraryCompletionHandler
-NewLibraryCompletionHandler :: ^Objc_Block(proc "c" (library: ^Library, error: ^NS.Error))
+NewLibraryCompletionHandler :: ^Objc_Block(proc "c" ( library: ^Library, error: ^NS.Error ))
 
 /// MTLNewRenderPipelineStateCompletionHandler
-NewRenderPipelineStateCompletionHandler :: ^Objc_Block(proc "c" (renderPipelineState: ^RenderPipelineState, error: ^NS.Error))
+NewRenderPipelineStateCompletionHandler :: ^Objc_Block(proc "c" ( renderPipelineState: ^RenderPipelineState, error: ^NS.Error ))
 
 /// MTLNewRenderPipelineStateWithReflectionCompletionHandler
-NewRenderPipelineStateWithReflectionCompletionHandler :: ^Objc_Block(proc "c" (renderPipelineState: ^RenderPipelineState, reflection: ^RenderPipelineReflection, error: ^NS.Error))
+NewRenderPipelineStateWithReflectionCompletionHandler :: ^Objc_Block(proc "c" ( renderPipelineState: ^RenderPipelineState, reflection: ^RenderPipelineReflection, error: ^NS.Error ))
 
 /// MTLNewComputePipelineStateCompletionHandler
-NewComputePipelineStateCompletionHandler :: ^Objc_Block(proc "c" (computePipelineState: ^ComputePipelineState, error: ^NS.Error))
+NewComputePipelineStateCompletionHandler :: ^Objc_Block(proc "c" ( computePipelineState: ^ComputePipelineState, error: ^NS.Error ))
 
 /// MTLNewComputePipelineStateWithReflectionCompletionHandler
-NewComputePipelineStateWithReflectionCompletionHandler :: ^Objc_Block(proc "c" (computePipelineState: ^ComputePipelineState, reflection: ^ComputePipelineReflection, error: ^NS.Error))
+NewComputePipelineStateWithReflectionCompletionHandler :: ^Objc_Block(proc "c" ( computePipelineState: ^ComputePipelineState, reflection: ^ComputePipelineReflection, error: ^NS.Error ))
 
 /// MTLNewDynamicLibraryCompletionHandler
-NewDynamicLibraryCompletionHandler :: ^Objc_Block(proc "c" (library: ^DynamicLibraryProtocol, error: ^NS.Error))
+NewDynamicLibraryCompletionHandler :: ^Objc_Block(proc "c" ( library: ^DynamicLibraryProtocol, error: ^NS.Error ))
 
 /// MTLAutoreleasedArgument
 AutoreleasedArgument :: distinct ^Argument
@@ -122,19 +135,19 @@ CommonCounter :: distinct ^NS.String
 CommonCounterSet :: distinct ^NS.String
 
 /// MTL4NewBinaryFunctionCompletionHandler
-MTL4NewBinaryFunctionCompletionHandler :: ^Objc_Block(proc "c" (function: ^MTL4BinaryFunctionProtocol, error: ^NS.Error))
+MTL4NewBinaryFunctionCompletionHandler :: ^Objc_Block(proc "c" ( function: ^MTL4BinaryFunctionProtocol, error: ^NS.Error ))
 
 /// MTL4NewMachineLearningPipelineStateCompletionHandler
-MTL4NewMachineLearningPipelineStateCompletionHandler :: ^Objc_Block(proc "c" (mlPipelineState: ^MTL4MachineLearningPipelineState, error: ^NS.Error))
+MTL4NewMachineLearningPipelineStateCompletionHandler :: ^Objc_Block(proc "c" ( mlPipelineState: ^MTL4MachineLearningPipelineState, error: ^NS.Error ))
 
 /// MTLTimestamp
 Timestamp :: distinct cffi.uint64_t
 
 /// MTLCommandBufferHandler
-CommandBufferHandler :: ^Objc_Block(proc "c" (_: ^CommandBuffer))
+CommandBufferHandler :: ^Objc_Block(proc "c" ( _0: ^CommandBuffer ))
 
 /// MTLDrawablePresentedHandler
-DrawablePresentedHandler :: ^Objc_Block(proc "c" (_: ^Drawable))
+DrawablePresentedHandler :: ^Objc_Block(proc "c" ( _0: ^Drawable ))
 
 /// MTLPackedFloat3
 PackedFloat3 :: distinct _MTLPackedFloat3
@@ -146,13 +159,13 @@ PackedFloat4x3 :: distinct _MTLPackedFloat4x3
 AxisAlignedBoundingBox :: distinct _MTLAxisAlignedBoundingBox
 
 /// MTLSharedEventNotificationBlock
-SharedEventNotificationBlock :: ^Objc_Block(proc "c" (_: ^SharedEvent, value: cffi.uint64_t))
+SharedEventNotificationBlock :: ^Objc_Block(proc "c" ( _0: ^SharedEvent, value: cffi.uint64_t ))
 
 /// MTL4CommitFeedbackHandler
-MTL4CommitFeedbackHandler :: ^Objc_Block(proc "c" (commitFeedback: ^MTL4CommitFeedback))
+MTL4CommitFeedbackHandler :: ^Objc_Block(proc "c" ( commitFeedback: ^MTL4CommitFeedback ))
 
 /// MTLIOCommandBufferHandler
-IOCommandBufferHandler :: ^Objc_Block(proc "c" (_: ^IOCommandBuffer))
+IOCommandBufferHandler :: ^Objc_Block(proc "c" ( _0: ^IOCommandBuffer ))
 
 /// MTLIOCompressionContext
 IOCompressionContext :: distinct rawptr

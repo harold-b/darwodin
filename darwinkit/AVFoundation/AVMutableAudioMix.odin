@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableAudioMix
-///
 @(objc_class="AVMutableAudioMix", objc_superclass=AudioMix)
 MutableAudioMix :: struct { using _: AudioMix, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableAudioMix, objc_selector="audioMix", objc_name="audioMix", objc_is_class_method=true)
     MutableAudioMix_audioMix :: proc() -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=MutableAudioMix, objc_selector="setInputParameters:", objc_name="setInputParameters")
     MutableAudioMix_setInputParameters :: proc(self: ^MutableAudioMix, inputParameters: ^NS.Array) ---
 }
+
+
+

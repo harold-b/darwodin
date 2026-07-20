@@ -20,15 +20,15 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    gestureRecognizer_shouldAttemptToRecognizeWithEvent: proc(self: ^AK.GestureRecognizerDelegate, gestureRecognizer: ^AK.GestureRecognizer, event: ^AK.Event) -> bool,
-    gestureRecognizerShouldBegin: proc(self: ^AK.GestureRecognizerDelegate, gestureRecognizer: ^AK.GestureRecognizer) -> bool,
-    gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer: proc(self: ^AK.GestureRecognizerDelegate, gestureRecognizer: ^AK.GestureRecognizer, otherGestureRecognizer: ^AK.GestureRecognizer) -> bool,
-    gestureRecognizer_shouldRequireFailureOfGestureRecognizer: proc(self: ^AK.GestureRecognizerDelegate, gestureRecognizer: ^AK.GestureRecognizer, otherGestureRecognizer: ^AK.GestureRecognizer) -> bool,
-    gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer: proc(self: ^AK.GestureRecognizerDelegate, gestureRecognizer: ^AK.GestureRecognizer, otherGestureRecognizer: ^AK.GestureRecognizer) -> bool,
-    gestureRecognizer_shouldReceiveTouch: proc(self: ^AK.GestureRecognizerDelegate, gestureRecognizer: ^AK.GestureRecognizer, touch: ^AK.Touch) -> bool,
+    gestureRecognizer_shouldAttemptToRecognizeWithEvent: proc(self: ^NS.GestureRecognizerDelegate, gestureRecognizer: ^NS.GestureRecognizer, event: ^NS.Event) -> bool,
+    gestureRecognizerShouldBegin: proc(self: ^NS.GestureRecognizerDelegate, gestureRecognizer: ^NS.GestureRecognizer) -> bool,
+    gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer: proc(self: ^NS.GestureRecognizerDelegate, gestureRecognizer: ^NS.GestureRecognizer, otherGestureRecognizer: ^NS.GestureRecognizer) -> bool,
+    gestureRecognizer_shouldRequireFailureOfGestureRecognizer: proc(self: ^NS.GestureRecognizerDelegate, gestureRecognizer: ^NS.GestureRecognizer, otherGestureRecognizer: ^NS.GestureRecognizer) -> bool,
+    gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer: proc(self: ^NS.GestureRecognizerDelegate, gestureRecognizer: ^NS.GestureRecognizer, otherGestureRecognizer: ^NS.GestureRecognizer) -> bool,
+    gestureRecognizer_shouldReceiveTouch: proc(self: ^NS.GestureRecognizerDelegate, gestureRecognizer: ^NS.GestureRecognizer, touch: ^NS.Touch) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -36,7 +36,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.gestureRecognizer_shouldAttemptToRecognizeWithEvent != nil {
-        gestureRecognizer_shouldAttemptToRecognizeWithEvent :: proc "c" (self: ^AK.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^AK.GestureRecognizer, event: ^AK.Event) -> bool {
+        gestureRecognizer_shouldAttemptToRecognizeWithEvent :: proc "c" (self: ^NS.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^NS.GestureRecognizer, event: ^NS.Event) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("gestureRecognizer:shouldAttemptToRecognizeWithEvent:"), auto_cast gestureRecognizer_shouldAttemptToRecognizeWithEvent, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.gestureRecognizerShouldBegin != nil {
-        gestureRecognizerShouldBegin :: proc "c" (self: ^AK.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^AK.GestureRecognizer) -> bool {
+        gestureRecognizerShouldBegin :: proc "c" (self: ^NS.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^NS.GestureRecognizer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("gestureRecognizerShouldBegin:"), auto_cast gestureRecognizerShouldBegin, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer != nil {
-        gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer :: proc "c" (self: ^AK.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^AK.GestureRecognizer, otherGestureRecognizer: ^AK.GestureRecognizer) -> bool {
+        gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer :: proc "c" (self: ^NS.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^NS.GestureRecognizer, otherGestureRecognizer: ^NS.GestureRecognizer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("gestureRecognizer:shouldRecognizeSimultaneouslyWithGestureRecognizer:"), auto_cast gestureRecognizer_shouldRecognizeSimultaneouslyWithGestureRecognizer, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.gestureRecognizer_shouldRequireFailureOfGestureRecognizer != nil {
-        gestureRecognizer_shouldRequireFailureOfGestureRecognizer :: proc "c" (self: ^AK.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^AK.GestureRecognizer, otherGestureRecognizer: ^AK.GestureRecognizer) -> bool {
+        gestureRecognizer_shouldRequireFailureOfGestureRecognizer :: proc "c" (self: ^NS.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^NS.GestureRecognizer, otherGestureRecognizer: ^NS.GestureRecognizer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("gestureRecognizer:shouldRequireFailureOfGestureRecognizer:"), auto_cast gestureRecognizer_shouldRequireFailureOfGestureRecognizer, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer != nil {
-        gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer :: proc "c" (self: ^AK.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^AK.GestureRecognizer, otherGestureRecognizer: ^AK.GestureRecognizer) -> bool {
+        gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer :: proc "c" (self: ^NS.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^NS.GestureRecognizer, otherGestureRecognizer: ^NS.GestureRecognizer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("gestureRecognizer:shouldBeRequiredToFailByGestureRecognizer:"), auto_cast gestureRecognizer_shouldBeRequiredToFailByGestureRecognizer, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.gestureRecognizer_shouldReceiveTouch != nil {
-        gestureRecognizer_shouldReceiveTouch :: proc "c" (self: ^AK.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^AK.GestureRecognizer, touch: ^AK.Touch) -> bool {
+        gestureRecognizer_shouldReceiveTouch :: proc "c" (self: ^NS.GestureRecognizerDelegate, _: SEL, gestureRecognizer: ^NS.GestureRecognizer, touch: ^NS.Touch) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

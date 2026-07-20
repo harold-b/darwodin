@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    action: proc(self: ^AK.ValidatedUserInterfaceItem) -> SEL,
-    tag: proc(self: ^AK.ValidatedUserInterfaceItem) -> NS.Integer,
+    action: proc(self: ^NS.ValidatedUserInterfaceItem) -> SEL,
+    tag: proc(self: ^NS.ValidatedUserInterfaceItem) -> NS.Integer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.action != nil {
-        action :: proc "c" (self: ^AK.ValidatedUserInterfaceItem, _: SEL) -> SEL {
+        action :: proc "c" (self: ^NS.ValidatedUserInterfaceItem, _: SEL) -> SEL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("action"), auto_cast action, ":@:") do panic("Failed to register objC method.")
     }
     if vt.tag != nil {
-        tag :: proc "c" (self: ^AK.ValidatedUserInterfaceItem, _: SEL) -> NS.Integer {
+        tag :: proc "c" (self: ^NS.ValidatedUserInterfaceItem, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

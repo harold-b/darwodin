@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    sectionCollapseButton: proc(self: ^AK.CollectionViewSectionHeaderView) -> ^AK.Button,
-    setSectionCollapseButton: proc(self: ^AK.CollectionViewSectionHeaderView, sectionCollapseButton: ^AK.Button),
+    sectionCollapseButton: proc(self: ^NS.CollectionViewSectionHeaderView) -> ^NS.Button,
+    setSectionCollapseButton: proc(self: ^NS.CollectionViewSectionHeaderView, sectionCollapseButton: ^NS.Button),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.sectionCollapseButton != nil {
-        sectionCollapseButton :: proc "c" (self: ^AK.CollectionViewSectionHeaderView, _: SEL) -> ^AK.Button {
+        sectionCollapseButton :: proc "c" (self: ^NS.CollectionViewSectionHeaderView, _: SEL) -> ^NS.Button {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sectionCollapseButton"), auto_cast sectionCollapseButton, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSectionCollapseButton != nil {
-        setSectionCollapseButton :: proc "c" (self: ^AK.CollectionViewSectionHeaderView, _: SEL, sectionCollapseButton: ^AK.Button) {
+        setSectionCollapseButton :: proc "c" (self: ^NS.CollectionViewSectionHeaderView, _: SEL, sectionCollapseButton: ^NS.Button) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

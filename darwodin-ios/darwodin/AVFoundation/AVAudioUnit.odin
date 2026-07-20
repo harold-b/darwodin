@@ -22,7 +22,7 @@ AudioUnit :: struct { using _: AudioNode, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnit, objc_selector="instantiateWithComponentDescription:options:completionHandler:", objc_name="instantiateWithComponentDescription", objc_is_class_method=true)
-    AudioUnit_instantiateWithComponentDescription :: proc(audioComponentDescription: Audio.ComponentDescription, options: Audio.ComponentInstantiationOptions, completionHandler: ^Objc_Block(proc "c" (audioUnit: ^AudioUnit, error: ^NS.Error))) ---
+    AudioUnit_instantiateWithComponentDescription :: proc(audioComponentDescription: Audio.ComponentDescription, options: Audio.ComponentInstantiationOptions, completionHandler: ^Objc_Block(proc "c" ( audioUnit: ^AudioUnit, error: ^NS.Error ))) ---
 
     @(objc_type=AudioUnit, objc_selector="loadAudioUnitPresetAtURL:error:", objc_name="loadAudioUnitPresetAtURL")
     AudioUnit_loadAudioUnitPresetAtURL :: proc(self: ^AudioUnit, url: ^NS.URL, outError: ^^NS.Error) -> bool ---

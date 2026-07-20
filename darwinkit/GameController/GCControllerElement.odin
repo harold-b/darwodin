@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCControllerElement
-///
 @(objc_class="GCControllerElement", objc_superclass=NS.Object)
 ControllerElement :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ControllerElement, objc_selector="collection", objc_name="collection")
     ControllerElement_collection :: proc(self: ^ControllerElement) -> ^ControllerElement ---
@@ -60,3 +54,6 @@ foreign lib {
     @(objc_type=ControllerElement, objc_selector="aliases", objc_name="aliases")
     ControllerElement_aliases :: proc(self: ^ControllerElement) -> ^NS.Set ---
 }
+
+
+

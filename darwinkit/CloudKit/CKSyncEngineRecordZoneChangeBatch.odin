@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineRecordZoneChangeBatch
-///
 @(objc_class="CKSyncEngineRecordZoneChangeBatch", objc_superclass=NS.Object)
 SyncEngineRecordZoneChangeBatch :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineRecordZoneChangeBatch, objc_selector="initWithPendingChanges:recordProvider:", objc_name="initWithPendingChanges")
-    SyncEngineRecordZoneChangeBatch_initWithPendingChanges :: proc(self: ^SyncEngineRecordZoneChangeBatch, pendingChanges: ^NS.Array, recordProvider: ^Objc_Block(proc "c" (recordID: ^RecordID) -> ^Record)) -> instancetype ---
+    SyncEngineRecordZoneChangeBatch_initWithPendingChanges :: proc(self: ^SyncEngineRecordZoneChangeBatch, pendingChanges: ^NS.Array, recordProvider: ^Objc_Block(proc "c" ( recordID: ^RecordID ) -> ^Record)) -> instancetype ---
 
     @(objc_type=SyncEngineRecordZoneChangeBatch, objc_selector="initWithRecordsToSave:recordIDsToDelete:atomicByZone:", objc_name="initWithRecordsToSave")
     SyncEngineRecordZoneChangeBatch_initWithRecordsToSave :: proc(self: ^SyncEngineRecordZoneChangeBatch, recordsToSave: ^NS.Array, recordIDsToDelete: ^NS.Array, atomicByZone: bool) -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=SyncEngineRecordZoneChangeBatch, objc_selector="setAtomicByZone:", objc_name="setAtomicByZone")
     SyncEngineRecordZoneChangeBatch_setAtomicByZone :: proc(self: ^SyncEngineRecordZoneChangeBatch, atomicByZone: bool) ---
 }
+
+
+

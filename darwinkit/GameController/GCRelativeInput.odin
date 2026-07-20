@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCRelativeInput
-///
 @(objc_class="GCRelativeInput")
 RelativeInput :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RelativeInput, objc_selector="deltaDidChangeHandler", objc_name="deltaDidChangeHandler")
     RelativeInput_deltaDidChangeHandler :: proc(self: ^RelativeInput) -> ^Objc_Block(proc "c" ()) ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=RelativeInput, objc_selector="sources", objc_name="sources")
     RelativeInput_sources :: proc(self: ^RelativeInput) -> ^NS.Set ---
 }
+
+
+

@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithNibNamed: proc(self: ^AK.Nib, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype,
-    initWithNibData: proc(self: ^AK.Nib, nibData: ^NS.Data, bundle: ^NS.Bundle) -> instancetype,
-    instantiateWithOwner: proc(self: ^AK.Nib, owner: id, topLevelObjects: ^^NS.Array) -> bool,
-    initWithContentsOfURL: proc(self: ^AK.Nib, nibFileURL: ^NS.URL) -> id,
-    instantiateNibWithExternalNameTable: proc(self: ^AK.Nib, externalNameTable: ^NS.Dictionary) -> bool,
-    instantiateNibWithOwner: proc(self: ^AK.Nib, owner: id, topLevelObjects: ^^NS.Array) -> bool,
+    initWithNibNamed: proc(self: ^NS.Nib, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype,
+    initWithNibData: proc(self: ^NS.Nib, nibData: ^NS.Data, bundle: ^NS.Bundle) -> instancetype,
+    instantiateWithOwner: proc(self: ^NS.Nib, owner: id, topLevelObjects: ^^NS.Array) -> bool,
+    initWithContentsOfURL: proc(self: ^NS.Nib, nibFileURL: ^NS.URL) -> id,
+    instantiateNibWithExternalNameTable: proc(self: ^NS.Nib, externalNameTable: ^NS.Dictionary) -> bool,
+    instantiateNibWithOwner: proc(self: ^NS.Nib, owner: id, topLevelObjects: ^^NS.Array) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithNibNamed != nil {
-        initWithNibNamed :: proc "c" (self: ^AK.Nib, _: SEL, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype {
+        initWithNibNamed :: proc "c" (self: ^NS.Nib, _: SEL, nibName: ^NS.String, bundle: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibNamed:bundle:"), auto_cast initWithNibNamed, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithNibData != nil {
-        initWithNibData :: proc "c" (self: ^AK.Nib, _: SEL, nibData: ^NS.Data, bundle: ^NS.Bundle) -> instancetype {
+        initWithNibData :: proc "c" (self: ^NS.Nib, _: SEL, nibData: ^NS.Data, bundle: ^NS.Bundle) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithNibData:bundle:"), auto_cast initWithNibData, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.instantiateWithOwner != nil {
-        instantiateWithOwner :: proc "c" (self: ^AK.Nib, _: SEL, owner: id, topLevelObjects: ^^NS.Array) -> bool {
+        instantiateWithOwner :: proc "c" (self: ^NS.Nib, _: SEL, owner: id, topLevelObjects: ^^NS.Array) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateWithOwner:topLevelObjects:"), auto_cast instantiateWithOwner, "B@:@^void") do panic("Failed to register objC method.")
     }
     if vt.initWithContentsOfURL != nil {
-        initWithContentsOfURL :: proc "c" (self: ^AK.Nib, _: SEL, nibFileURL: ^NS.URL) -> id {
+        initWithContentsOfURL :: proc "c" (self: ^NS.Nib, _: SEL, nibFileURL: ^NS.URL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContentsOfURL:"), auto_cast initWithContentsOfURL, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.instantiateNibWithExternalNameTable != nil {
-        instantiateNibWithExternalNameTable :: proc "c" (self: ^AK.Nib, _: SEL, externalNameTable: ^NS.Dictionary) -> bool {
+        instantiateNibWithExternalNameTable :: proc "c" (self: ^NS.Nib, _: SEL, externalNameTable: ^NS.Dictionary) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("instantiateNibWithExternalNameTable:"), auto_cast instantiateNibWithExternalNameTable, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.instantiateNibWithOwner != nil {
-        instantiateNibWithOwner :: proc "c" (self: ^AK.Nib, _: SEL, owner: id, topLevelObjects: ^^NS.Array) -> bool {
+        instantiateNibWithOwner :: proc "c" (self: ^NS.Nib, _: SEL, owner: id, topLevelObjects: ^^NS.Array) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

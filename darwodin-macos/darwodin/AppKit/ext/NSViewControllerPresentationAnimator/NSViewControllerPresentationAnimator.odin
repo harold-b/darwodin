@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    animatePresentationOfViewController: proc(self: ^AK.ViewControllerPresentationAnimator, viewController: ^AK.ViewController, fromViewController: ^AK.ViewController),
-    animateDismissalOfViewController: proc(self: ^AK.ViewControllerPresentationAnimator, viewController: ^AK.ViewController, fromViewController: ^AK.ViewController),
+    animatePresentationOfViewController: proc(self: ^NS.ViewControllerPresentationAnimator, viewController: ^NS.ViewController, fromViewController: ^NS.ViewController),
+    animateDismissalOfViewController: proc(self: ^NS.ViewControllerPresentationAnimator, viewController: ^NS.ViewController, fromViewController: ^NS.ViewController),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.animatePresentationOfViewController != nil {
-        animatePresentationOfViewController :: proc "c" (self: ^AK.ViewControllerPresentationAnimator, _: SEL, viewController: ^AK.ViewController, fromViewController: ^AK.ViewController) {
+        animatePresentationOfViewController :: proc "c" (self: ^NS.ViewControllerPresentationAnimator, _: SEL, viewController: ^NS.ViewController, fromViewController: ^NS.ViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animatePresentationOfViewController:fromViewController:"), auto_cast animatePresentationOfViewController, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.animateDismissalOfViewController != nil {
-        animateDismissalOfViewController :: proc "c" (self: ^AK.ViewControllerPresentationAnimator, _: SEL, viewController: ^AK.ViewController, fromViewController: ^AK.ViewController) {
+        animateDismissalOfViewController :: proc "c" (self: ^NS.ViewControllerPresentationAnimator, _: SEL, viewController: ^NS.ViewController, fromViewController: ^NS.ViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

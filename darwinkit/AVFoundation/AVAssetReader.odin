@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetReader
-///
 @(objc_class="AVAssetReader", objc_superclass=NS.Object)
 AssetReader :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReader, objc_selector="init", objc_name="init")
     AssetReader_init :: proc(self: ^AssetReader) -> instancetype ---
@@ -64,3 +58,6 @@ foreign lib {
     @(objc_type=AssetReader, objc_selector="outputs", objc_name="outputs")
     AssetReader_outputs :: proc(self: ^AssetReader) -> ^NS.Array ---
 }
+
+
+

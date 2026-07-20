@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLFunctionStitchingGraph
-///
 @(objc_class="MTLFunctionStitchingGraph", objc_superclass=NS.Object)
 FunctionStitchingGraph :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FunctionStitchingGraph, objc_selector="initWithFunctionName:nodes:outputNode:attributes:", objc_name="initWithFunctionName")
     FunctionStitchingGraph_initWithFunctionName :: proc(self: ^FunctionStitchingGraph, functionName: ^NS.String, nodes: ^NS.Array, outputNode: ^FunctionStitchingFunctionNode, attributes: ^NS.Array) -> instancetype ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=FunctionStitchingGraph, objc_selector="setAttributes:", objc_name="setAttributes")
     FunctionStitchingGraph_setAttributes :: proc(self: ^FunctionStitchingGraph, attributes: ^NS.Array) ---
 }
+
+
+

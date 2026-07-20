@@ -1,0 +1,44 @@
+#+build darwin:default
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import CM "../CoreMedia"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSTextTableBlock
+///
+@(objc_class="NSTextTableBlock", objc_superclass=TextBlock)
+TextTableBlock :: struct { using _: TextBlock, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=TextTableBlock, objc_selector="initWithTable:startingRow:rowSpan:startingColumn:columnSpan:", objc_name="initWithTable")
+    TextTableBlock_initWithTable :: proc(self: ^TextTableBlock, table: ^TextTable, row: NS.Integer, rowSpan: NS.Integer, col: NS.Integer, colSpan: NS.Integer) -> instancetype ---
+
+    @(objc_type=TextTableBlock, objc_selector="table", objc_name="table")
+    TextTableBlock_table :: proc(self: ^TextTableBlock) -> ^TextTable ---
+
+    @(objc_type=TextTableBlock, objc_selector="startingRow", objc_name="startingRow")
+    TextTableBlock_startingRow :: proc(self: ^TextTableBlock) -> NS.Integer ---
+
+    @(objc_type=TextTableBlock, objc_selector="rowSpan", objc_name="rowSpan")
+    TextTableBlock_rowSpan :: proc(self: ^TextTableBlock) -> NS.Integer ---
+
+    @(objc_type=TextTableBlock, objc_selector="startingColumn", objc_name="startingColumn")
+    TextTableBlock_startingColumn :: proc(self: ^TextTableBlock) -> NS.Integer ---
+
+    @(objc_type=TextTableBlock, objc_selector="columnSpan", objc_name="columnSpan")
+    TextTableBlock_columnSpan :: proc(self: ^TextTableBlock) -> NS.Integer ---
+}

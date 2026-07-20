@@ -20,59 +20,59 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSObjectController"
 
 VTable :: struct {
     super: NSObjectController.VTable,
-    rearrangeObjects: proc(self: ^AK.ArrayController),
-    didChangeArrangementCriteria: proc(self: ^AK.ArrayController),
-    arrangeObjects: proc(self: ^AK.ArrayController, objects: ^NS.Array) -> ^NS.Array,
-    setSelectionIndexes: proc(self: ^AK.ArrayController, indexes: ^NS.IndexSet) -> bool,
-    setSelectionIndex: proc(self: ^AK.ArrayController, index: NS.UInteger) -> bool,
-    addSelectionIndexes: proc(self: ^AK.ArrayController, indexes: ^NS.IndexSet) -> bool,
-    removeSelectionIndexes: proc(self: ^AK.ArrayController, indexes: ^NS.IndexSet) -> bool,
-    setSelectedObjects: proc(self: ^AK.ArrayController, objects: ^NS.Array) -> bool,
-    addSelectedObjects: proc(self: ^AK.ArrayController, objects: ^NS.Array) -> bool,
-    removeSelectedObjects: proc(self: ^AK.ArrayController, objects: ^NS.Array) -> bool,
-    add: proc(self: ^AK.ArrayController, sender: id),
-    remove: proc(self: ^AK.ArrayController, sender: id),
-    insert: proc(self: ^AK.ArrayController, sender: id),
-    selectNext: proc(self: ^AK.ArrayController, sender: id),
-    selectPrevious: proc(self: ^AK.ArrayController, sender: id),
-    addObject: proc(self: ^AK.ArrayController, object: id),
-    addObjects: proc(self: ^AK.ArrayController, objects: ^NS.Array),
-    insertObject: proc(self: ^AK.ArrayController, object: id, index: NS.UInteger),
-    insertObjects: proc(self: ^AK.ArrayController, objects: ^NS.Array, indexes: ^NS.IndexSet),
-    removeObjectAtArrangedObjectIndex: proc(self: ^AK.ArrayController, index: NS.UInteger),
-    removeObjectsAtArrangedObjectIndexes: proc(self: ^AK.ArrayController, indexes: ^NS.IndexSet),
-    removeObject: proc(self: ^AK.ArrayController, object: id),
-    removeObjects: proc(self: ^AK.ArrayController, objects: ^NS.Array),
-    automaticallyRearrangesObjects: proc(self: ^AK.ArrayController) -> bool,
-    setAutomaticallyRearrangesObjects: proc(self: ^AK.ArrayController, automaticallyRearrangesObjects: bool),
-    automaticRearrangementKeyPaths: proc(self: ^AK.ArrayController) -> ^NS.Array,
-    sortDescriptors: proc(self: ^AK.ArrayController) -> ^NS.Array,
-    setSortDescriptors: proc(self: ^AK.ArrayController, sortDescriptors: ^NS.Array),
-    filterPredicate: proc(self: ^AK.ArrayController) -> ^NS.Predicate,
-    setFilterPredicate: proc(self: ^AK.ArrayController, filterPredicate: ^NS.Predicate),
-    clearsFilterPredicateOnInsertion: proc(self: ^AK.ArrayController) -> bool,
-    setClearsFilterPredicateOnInsertion: proc(self: ^AK.ArrayController, clearsFilterPredicateOnInsertion: bool),
-    arrangedObjects: proc(self: ^AK.ArrayController) -> id,
-    avoidsEmptySelection: proc(self: ^AK.ArrayController) -> bool,
-    setAvoidsEmptySelection: proc(self: ^AK.ArrayController, avoidsEmptySelection: bool),
-    preservesSelection: proc(self: ^AK.ArrayController) -> bool,
-    setPreservesSelection: proc(self: ^AK.ArrayController, preservesSelection: bool),
-    selectsInsertedObjects: proc(self: ^AK.ArrayController) -> bool,
-    setSelectsInsertedObjects: proc(self: ^AK.ArrayController, selectsInsertedObjects: bool),
-    alwaysUsesMultipleValuesMarker: proc(self: ^AK.ArrayController) -> bool,
-    setAlwaysUsesMultipleValuesMarker: proc(self: ^AK.ArrayController, alwaysUsesMultipleValuesMarker: bool),
-    selectionIndexes: proc(self: ^AK.ArrayController) -> ^NS.IndexSet,
-    selectionIndex: proc(self: ^AK.ArrayController) -> NS.UInteger,
-    selectedObjects: proc(self: ^AK.ArrayController) -> ^NS.Array,
-    canInsert: proc(self: ^AK.ArrayController) -> bool,
-    canSelectNext: proc(self: ^AK.ArrayController) -> bool,
-    canSelectPrevious: proc(self: ^AK.ArrayController) -> bool,
+    rearrangeObjects: proc(self: ^NS.ArrayController),
+    didChangeArrangementCriteria: proc(self: ^NS.ArrayController),
+    arrangeObjects: proc(self: ^NS.ArrayController, objects: ^NS.Array) -> ^NS.Array,
+    setSelectionIndexes: proc(self: ^NS.ArrayController, indexes: ^NS.IndexSet) -> bool,
+    setSelectionIndex: proc(self: ^NS.ArrayController, index: NS.UInteger) -> bool,
+    addSelectionIndexes: proc(self: ^NS.ArrayController, indexes: ^NS.IndexSet) -> bool,
+    removeSelectionIndexes: proc(self: ^NS.ArrayController, indexes: ^NS.IndexSet) -> bool,
+    setSelectedObjects: proc(self: ^NS.ArrayController, objects: ^NS.Array) -> bool,
+    addSelectedObjects: proc(self: ^NS.ArrayController, objects: ^NS.Array) -> bool,
+    removeSelectedObjects: proc(self: ^NS.ArrayController, objects: ^NS.Array) -> bool,
+    add: proc(self: ^NS.ArrayController, sender: id),
+    remove: proc(self: ^NS.ArrayController, sender: id),
+    insert: proc(self: ^NS.ArrayController, sender: id),
+    selectNext: proc(self: ^NS.ArrayController, sender: id),
+    selectPrevious: proc(self: ^NS.ArrayController, sender: id),
+    addObject: proc(self: ^NS.ArrayController, object: id),
+    addObjects: proc(self: ^NS.ArrayController, objects: ^NS.Array),
+    insertObject: proc(self: ^NS.ArrayController, object: id, index: NS.UInteger),
+    insertObjects: proc(self: ^NS.ArrayController, objects: ^NS.Array, indexes: ^NS.IndexSet),
+    removeObjectAtArrangedObjectIndex: proc(self: ^NS.ArrayController, index: NS.UInteger),
+    removeObjectsAtArrangedObjectIndexes: proc(self: ^NS.ArrayController, indexes: ^NS.IndexSet),
+    removeObject: proc(self: ^NS.ArrayController, object: id),
+    removeObjects: proc(self: ^NS.ArrayController, objects: ^NS.Array),
+    automaticallyRearrangesObjects: proc(self: ^NS.ArrayController) -> bool,
+    setAutomaticallyRearrangesObjects: proc(self: ^NS.ArrayController, automaticallyRearrangesObjects: bool),
+    automaticRearrangementKeyPaths: proc(self: ^NS.ArrayController) -> ^NS.Array,
+    sortDescriptors: proc(self: ^NS.ArrayController) -> ^NS.Array,
+    setSortDescriptors: proc(self: ^NS.ArrayController, sortDescriptors: ^NS.Array),
+    filterPredicate: proc(self: ^NS.ArrayController) -> ^NS.Predicate,
+    setFilterPredicate: proc(self: ^NS.ArrayController, filterPredicate: ^NS.Predicate),
+    clearsFilterPredicateOnInsertion: proc(self: ^NS.ArrayController) -> bool,
+    setClearsFilterPredicateOnInsertion: proc(self: ^NS.ArrayController, clearsFilterPredicateOnInsertion: bool),
+    arrangedObjects: proc(self: ^NS.ArrayController) -> id,
+    avoidsEmptySelection: proc(self: ^NS.ArrayController) -> bool,
+    setAvoidsEmptySelection: proc(self: ^NS.ArrayController, avoidsEmptySelection: bool),
+    preservesSelection: proc(self: ^NS.ArrayController) -> bool,
+    setPreservesSelection: proc(self: ^NS.ArrayController, preservesSelection: bool),
+    selectsInsertedObjects: proc(self: ^NS.ArrayController) -> bool,
+    setSelectsInsertedObjects: proc(self: ^NS.ArrayController, selectsInsertedObjects: bool),
+    alwaysUsesMultipleValuesMarker: proc(self: ^NS.ArrayController) -> bool,
+    setAlwaysUsesMultipleValuesMarker: proc(self: ^NS.ArrayController, alwaysUsesMultipleValuesMarker: bool),
+    selectionIndexes: proc(self: ^NS.ArrayController) -> ^NS.IndexSet,
+    selectionIndex: proc(self: ^NS.ArrayController) -> NS.UInteger,
+    selectedObjects: proc(self: ^NS.ArrayController) -> ^NS.Array,
+    canInsert: proc(self: ^NS.ArrayController) -> bool,
+    canSelectNext: proc(self: ^NS.ArrayController) -> bool,
+    canSelectPrevious: proc(self: ^NS.ArrayController) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObjectController.extend(cls, &vt.super)
 
     if vt.rearrangeObjects != nil {
-        rearrangeObjects :: proc "c" (self: ^AK.ArrayController, _: SEL) {
+        rearrangeObjects :: proc "c" (self: ^NS.ArrayController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rearrangeObjects"), auto_cast rearrangeObjects, "v@:") do panic("Failed to register objC method.")
     }
     if vt.didChangeArrangementCriteria != nil {
-        didChangeArrangementCriteria :: proc "c" (self: ^AK.ArrayController, _: SEL) {
+        didChangeArrangementCriteria :: proc "c" (self: ^NS.ArrayController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didChangeArrangementCriteria"), auto_cast didChangeArrangementCriteria, "v@:") do panic("Failed to register objC method.")
     }
     if vt.arrangeObjects != nil {
-        arrangeObjects :: proc "c" (self: ^AK.ArrayController, _: SEL, objects: ^NS.Array) -> ^NS.Array {
+        arrangeObjects :: proc "c" (self: ^NS.ArrayController, _: SEL, objects: ^NS.Array) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("arrangeObjects:"), auto_cast arrangeObjects, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.setSelectionIndexes != nil {
-        setSelectionIndexes :: proc "c" (self: ^AK.ArrayController, _: SEL, indexes: ^NS.IndexSet) -> bool {
+        setSelectionIndexes :: proc "c" (self: ^NS.ArrayController, _: SEL, indexes: ^NS.IndexSet) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionIndexes:"), auto_cast setSelectionIndexes, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.setSelectionIndex != nil {
-        setSelectionIndex :: proc "c" (self: ^AK.ArrayController, _: SEL, index: NS.UInteger) -> bool {
+        setSelectionIndex :: proc "c" (self: ^NS.ArrayController, _: SEL, index: NS.UInteger) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionIndex:"), auto_cast setSelectionIndex, "B@:L") do panic("Failed to register objC method.")
     }
     if vt.addSelectionIndexes != nil {
-        addSelectionIndexes :: proc "c" (self: ^AK.ArrayController, _: SEL, indexes: ^NS.IndexSet) -> bool {
+        addSelectionIndexes :: proc "c" (self: ^NS.ArrayController, _: SEL, indexes: ^NS.IndexSet) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addSelectionIndexes:"), auto_cast addSelectionIndexes, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.removeSelectionIndexes != nil {
-        removeSelectionIndexes :: proc "c" (self: ^AK.ArrayController, _: SEL, indexes: ^NS.IndexSet) -> bool {
+        removeSelectionIndexes :: proc "c" (self: ^NS.ArrayController, _: SEL, indexes: ^NS.IndexSet) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeSelectionIndexes:"), auto_cast removeSelectionIndexes, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.setSelectedObjects != nil {
-        setSelectedObjects :: proc "c" (self: ^AK.ArrayController, _: SEL, objects: ^NS.Array) -> bool {
+        setSelectedObjects :: proc "c" (self: ^NS.ArrayController, _: SEL, objects: ^NS.Array) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedObjects:"), auto_cast setSelectedObjects, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.addSelectedObjects != nil {
-        addSelectedObjects :: proc "c" (self: ^AK.ArrayController, _: SEL, objects: ^NS.Array) -> bool {
+        addSelectedObjects :: proc "c" (self: ^NS.ArrayController, _: SEL, objects: ^NS.Array) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addSelectedObjects:"), auto_cast addSelectedObjects, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.removeSelectedObjects != nil {
-        removeSelectedObjects :: proc "c" (self: ^AK.ArrayController, _: SEL, objects: ^NS.Array) -> bool {
+        removeSelectedObjects :: proc "c" (self: ^NS.ArrayController, _: SEL, objects: ^NS.Array) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeSelectedObjects:"), auto_cast removeSelectedObjects, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.add != nil {
-        add :: proc "c" (self: ^AK.ArrayController, _: SEL, sender: id) {
+        add :: proc "c" (self: ^NS.ArrayController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("add:"), auto_cast add, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.remove != nil {
-        remove :: proc "c" (self: ^AK.ArrayController, _: SEL, sender: id) {
+        remove :: proc "c" (self: ^NS.ArrayController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -203,7 +203,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("remove:"), auto_cast remove, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.insert != nil {
-        insert :: proc "c" (self: ^AK.ArrayController, _: SEL, sender: id) {
+        insert :: proc "c" (self: ^NS.ArrayController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insert:"), auto_cast insert, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectNext != nil {
-        selectNext :: proc "c" (self: ^AK.ArrayController, _: SEL, sender: id) {
+        selectNext :: proc "c" (self: ^NS.ArrayController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectNext:"), auto_cast selectNext, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectPrevious != nil {
-        selectPrevious :: proc "c" (self: ^AK.ArrayController, _: SEL, sender: id) {
+        selectPrevious :: proc "c" (self: ^NS.ArrayController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectPrevious:"), auto_cast selectPrevious, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.addObject != nil {
-        addObject :: proc "c" (self: ^AK.ArrayController, _: SEL, object: id) {
+        addObject :: proc "c" (self: ^NS.ArrayController, _: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addObject:"), auto_cast addObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.addObjects != nil {
-        addObjects :: proc "c" (self: ^AK.ArrayController, _: SEL, objects: ^NS.Array) {
+        addObjects :: proc "c" (self: ^NS.ArrayController, _: SEL, objects: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addObjects:"), auto_cast addObjects, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.insertObject != nil {
-        insertObject :: proc "c" (self: ^AK.ArrayController, _: SEL, object: id, index: NS.UInteger) {
+        insertObject :: proc "c" (self: ^NS.ArrayController, _: SEL, object: id, index: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -263,7 +263,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertObject:atArrangedObjectIndex:"), auto_cast insertObject, "v@:@L") do panic("Failed to register objC method.")
     }
     if vt.insertObjects != nil {
-        insertObjects :: proc "c" (self: ^AK.ArrayController, _: SEL, objects: ^NS.Array, indexes: ^NS.IndexSet) {
+        insertObjects :: proc "c" (self: ^NS.ArrayController, _: SEL, objects: ^NS.Array, indexes: ^NS.IndexSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -273,7 +273,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertObjects:atArrangedObjectIndexes:"), auto_cast insertObjects, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.removeObjectAtArrangedObjectIndex != nil {
-        removeObjectAtArrangedObjectIndex :: proc "c" (self: ^AK.ArrayController, _: SEL, index: NS.UInteger) {
+        removeObjectAtArrangedObjectIndex :: proc "c" (self: ^NS.ArrayController, _: SEL, index: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -283,7 +283,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeObjectAtArrangedObjectIndex:"), auto_cast removeObjectAtArrangedObjectIndex, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.removeObjectsAtArrangedObjectIndexes != nil {
-        removeObjectsAtArrangedObjectIndexes :: proc "c" (self: ^AK.ArrayController, _: SEL, indexes: ^NS.IndexSet) {
+        removeObjectsAtArrangedObjectIndexes :: proc "c" (self: ^NS.ArrayController, _: SEL, indexes: ^NS.IndexSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -293,7 +293,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeObjectsAtArrangedObjectIndexes:"), auto_cast removeObjectsAtArrangedObjectIndexes, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeObject != nil {
-        removeObject :: proc "c" (self: ^AK.ArrayController, _: SEL, object: id) {
+        removeObject :: proc "c" (self: ^NS.ArrayController, _: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -303,7 +303,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeObject:"), auto_cast removeObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeObjects != nil {
-        removeObjects :: proc "c" (self: ^AK.ArrayController, _: SEL, objects: ^NS.Array) {
+        removeObjects :: proc "c" (self: ^NS.ArrayController, _: SEL, objects: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -313,7 +313,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeObjects:"), auto_cast removeObjects, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.automaticallyRearrangesObjects != nil {
-        automaticallyRearrangesObjects :: proc "c" (self: ^AK.ArrayController, _: SEL) -> bool {
+        automaticallyRearrangesObjects :: proc "c" (self: ^NS.ArrayController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -323,7 +323,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyRearrangesObjects"), auto_cast automaticallyRearrangesObjects, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyRearrangesObjects != nil {
-        setAutomaticallyRearrangesObjects :: proc "c" (self: ^AK.ArrayController, _: SEL, automaticallyRearrangesObjects: bool) {
+        setAutomaticallyRearrangesObjects :: proc "c" (self: ^NS.ArrayController, _: SEL, automaticallyRearrangesObjects: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -333,7 +333,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyRearrangesObjects:"), auto_cast setAutomaticallyRearrangesObjects, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.automaticRearrangementKeyPaths != nil {
-        automaticRearrangementKeyPaths :: proc "c" (self: ^AK.ArrayController, _: SEL) -> ^NS.Array {
+        automaticRearrangementKeyPaths :: proc "c" (self: ^NS.ArrayController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -343,7 +343,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticRearrangementKeyPaths"), auto_cast automaticRearrangementKeyPaths, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.sortDescriptors != nil {
-        sortDescriptors :: proc "c" (self: ^AK.ArrayController, _: SEL) -> ^NS.Array {
+        sortDescriptors :: proc "c" (self: ^NS.ArrayController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -353,7 +353,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sortDescriptors"), auto_cast sortDescriptors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSortDescriptors != nil {
-        setSortDescriptors :: proc "c" (self: ^AK.ArrayController, _: SEL, sortDescriptors: ^NS.Array) {
+        setSortDescriptors :: proc "c" (self: ^NS.ArrayController, _: SEL, sortDescriptors: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -363,7 +363,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSortDescriptors:"), auto_cast setSortDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.filterPredicate != nil {
-        filterPredicate :: proc "c" (self: ^AK.ArrayController, _: SEL) -> ^NS.Predicate {
+        filterPredicate :: proc "c" (self: ^NS.ArrayController, _: SEL) -> ^NS.Predicate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -373,7 +373,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("filterPredicate"), auto_cast filterPredicate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setFilterPredicate != nil {
-        setFilterPredicate :: proc "c" (self: ^AK.ArrayController, _: SEL, filterPredicate: ^NS.Predicate) {
+        setFilterPredicate :: proc "c" (self: ^NS.ArrayController, _: SEL, filterPredicate: ^NS.Predicate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -383,7 +383,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFilterPredicate:"), auto_cast setFilterPredicate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.clearsFilterPredicateOnInsertion != nil {
-        clearsFilterPredicateOnInsertion :: proc "c" (self: ^AK.ArrayController, _: SEL) -> bool {
+        clearsFilterPredicateOnInsertion :: proc "c" (self: ^NS.ArrayController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -393,7 +393,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("clearsFilterPredicateOnInsertion"), auto_cast clearsFilterPredicateOnInsertion, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setClearsFilterPredicateOnInsertion != nil {
-        setClearsFilterPredicateOnInsertion :: proc "c" (self: ^AK.ArrayController, _: SEL, clearsFilterPredicateOnInsertion: bool) {
+        setClearsFilterPredicateOnInsertion :: proc "c" (self: ^NS.ArrayController, _: SEL, clearsFilterPredicateOnInsertion: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -403,7 +403,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setClearsFilterPredicateOnInsertion:"), auto_cast setClearsFilterPredicateOnInsertion, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.arrangedObjects != nil {
-        arrangedObjects :: proc "c" (self: ^AK.ArrayController, _: SEL) -> id {
+        arrangedObjects :: proc "c" (self: ^NS.ArrayController, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -413,7 +413,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("arrangedObjects"), auto_cast arrangedObjects, "@@:") do panic("Failed to register objC method.")
     }
     if vt.avoidsEmptySelection != nil {
-        avoidsEmptySelection :: proc "c" (self: ^AK.ArrayController, _: SEL) -> bool {
+        avoidsEmptySelection :: proc "c" (self: ^NS.ArrayController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -423,7 +423,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("avoidsEmptySelection"), auto_cast avoidsEmptySelection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAvoidsEmptySelection != nil {
-        setAvoidsEmptySelection :: proc "c" (self: ^AK.ArrayController, _: SEL, avoidsEmptySelection: bool) {
+        setAvoidsEmptySelection :: proc "c" (self: ^NS.ArrayController, _: SEL, avoidsEmptySelection: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -433,7 +433,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAvoidsEmptySelection:"), auto_cast setAvoidsEmptySelection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.preservesSelection != nil {
-        preservesSelection :: proc "c" (self: ^AK.ArrayController, _: SEL) -> bool {
+        preservesSelection :: proc "c" (self: ^NS.ArrayController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -443,7 +443,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preservesSelection"), auto_cast preservesSelection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setPreservesSelection != nil {
-        setPreservesSelection :: proc "c" (self: ^AK.ArrayController, _: SEL, preservesSelection: bool) {
+        setPreservesSelection :: proc "c" (self: ^NS.ArrayController, _: SEL, preservesSelection: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -453,7 +453,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreservesSelection:"), auto_cast setPreservesSelection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.selectsInsertedObjects != nil {
-        selectsInsertedObjects :: proc "c" (self: ^AK.ArrayController, _: SEL) -> bool {
+        selectsInsertedObjects :: proc "c" (self: ^NS.ArrayController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -463,7 +463,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectsInsertedObjects"), auto_cast selectsInsertedObjects, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectsInsertedObjects != nil {
-        setSelectsInsertedObjects :: proc "c" (self: ^AK.ArrayController, _: SEL, selectsInsertedObjects: bool) {
+        setSelectsInsertedObjects :: proc "c" (self: ^NS.ArrayController, _: SEL, selectsInsertedObjects: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -473,7 +473,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectsInsertedObjects:"), auto_cast setSelectsInsertedObjects, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.alwaysUsesMultipleValuesMarker != nil {
-        alwaysUsesMultipleValuesMarker :: proc "c" (self: ^AK.ArrayController, _: SEL) -> bool {
+        alwaysUsesMultipleValuesMarker :: proc "c" (self: ^NS.ArrayController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -483,7 +483,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alwaysUsesMultipleValuesMarker"), auto_cast alwaysUsesMultipleValuesMarker, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAlwaysUsesMultipleValuesMarker != nil {
-        setAlwaysUsesMultipleValuesMarker :: proc "c" (self: ^AK.ArrayController, _: SEL, alwaysUsesMultipleValuesMarker: bool) {
+        setAlwaysUsesMultipleValuesMarker :: proc "c" (self: ^NS.ArrayController, _: SEL, alwaysUsesMultipleValuesMarker: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -493,7 +493,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAlwaysUsesMultipleValuesMarker:"), auto_cast setAlwaysUsesMultipleValuesMarker, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.selectionIndexes != nil {
-        selectionIndexes :: proc "c" (self: ^AK.ArrayController, _: SEL) -> ^NS.IndexSet {
+        selectionIndexes :: proc "c" (self: ^NS.ArrayController, _: SEL) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -503,7 +503,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionIndexes"), auto_cast selectionIndexes, "@@:") do panic("Failed to register objC method.")
     }
     if vt.selectionIndex != nil {
-        selectionIndex :: proc "c" (self: ^AK.ArrayController, _: SEL) -> NS.UInteger {
+        selectionIndex :: proc "c" (self: ^NS.ArrayController, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -513,7 +513,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionIndex"), auto_cast selectionIndex, "L@:") do panic("Failed to register objC method.")
     }
     if vt.selectedObjects != nil {
-        selectedObjects :: proc "c" (self: ^AK.ArrayController, _: SEL) -> ^NS.Array {
+        selectedObjects :: proc "c" (self: ^NS.ArrayController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -523,7 +523,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedObjects"), auto_cast selectedObjects, "@@:") do panic("Failed to register objC method.")
     }
     if vt.canInsert != nil {
-        canInsert :: proc "c" (self: ^AK.ArrayController, _: SEL) -> bool {
+        canInsert :: proc "c" (self: ^NS.ArrayController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -533,7 +533,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canInsert"), auto_cast canInsert, "B@:") do panic("Failed to register objC method.")
     }
     if vt.canSelectNext != nil {
-        canSelectNext :: proc "c" (self: ^AK.ArrayController, _: SEL) -> bool {
+        canSelectNext :: proc "c" (self: ^NS.ArrayController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -543,7 +543,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canSelectNext"), auto_cast canSelectNext, "B@:") do panic("Failed to register objC method.")
     }
     if vt.canSelectPrevious != nil {
-        canSelectPrevious :: proc "c" (self: ^AK.ArrayController, _: SEL) -> bool {
+        canSelectPrevious :: proc "c" (self: ^NS.ArrayController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

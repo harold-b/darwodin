@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKOperationConfiguration
-///
 @(objc_class="CKOperationConfiguration", objc_superclass=NS.Object)
 OperationConfiguration :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=OperationConfiguration, objc_selector="container", objc_name="container")
     OperationConfiguration_container :: proc(self: ^OperationConfiguration) -> ^Container ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=OperationConfiguration, objc_selector="setTimeoutIntervalForResource:", objc_name="setTimeoutIntervalForResource")
     OperationConfiguration_setTimeoutIntervalForResource :: proc(self: ^OperationConfiguration, timeoutIntervalForResource: NS.TimeInterval) ---
 }
+
+
+

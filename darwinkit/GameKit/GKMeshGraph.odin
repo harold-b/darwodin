@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKMeshGraph
-///
 @(objc_class="GKMeshGraph", objc_superclass=Graph)
 MeshGraph :: struct { using _: Graph, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeshGraph, objc_selector="graphWithBufferRadius:minCoordinate:maxCoordinate:nodeClass:", objc_name="graphWithBufferRadius_minCoordinate_maxCoordinate_nodeClass", objc_is_class_method=true)
     MeshGraph_graphWithBufferRadius_minCoordinate_maxCoordinate_nodeClass :: proc(bufferRadius: cffi.float, min: ^vector_float2, max: ^vector_float2, nodeClass: Class) -> instancetype ---
@@ -62,6 +56,8 @@ foreign lib {
     @(objc_type=MeshGraph, objc_selector="triangleCount", objc_name="triangleCount")
     MeshGraph_triangleCount :: proc(self: ^MeshGraph) -> NS.UInteger ---
 }
+
+
 
 @(objc_type=MeshGraph, objc_name="graphWithBufferRadius")
 MeshGraph_graphWithBufferRadius :: proc {

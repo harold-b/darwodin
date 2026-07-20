@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_QuartzCore
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -17,8 +19,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:QuartzCore.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:QuartzCore.framework",
+    }
+}
+
+
+// +user-text-begin
 MTLDevice       :: NS.Object
 MTLTexture      :: NS.Object
 MTLDrawable     :: NS.Object
@@ -28,159 +42,372 @@ CVTimeStamp     :: struct {}
 
 
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    GLRendererGenericID        :: 131584
-    GLRendererGenericFloatID   :: 132096
-    GLRendererAppleSWID        :: 132608
-    GLRendererATIRage128ID     :: 135168
-    GLRendererATIRadeonID      :: 135680
-    GLRendererATIRageProID     :: 136192
-    GLRendererATIRadeon8500ID  :: 136704
-    GLRendererATIRadeon9700ID  :: 137216
-    GLRendererATIRadeonX1000ID :: 137472
-    GLRendererATIRadeonX2000ID :: 137728
-    GLRendererATIRadeonX3000ID :: 137984
-    GLRendererATIRadeonX4000ID :: 138240
-    GLRendererGeForce2MXID     :: 139264
-    GLRendererGeForce3ID       :: 139776
-    GLRendererGeForceFXID      :: 140288
-    GLRendererGeForce8xxxID    :: 140800
-    GLRendererGeForceID        :: 141056
-    GLRendererVTBladeXP2ID     :: 143360
-    GLRendererIntel900ID       :: 147456
-    GLRendererIntelX3100ID     :: 147968
-    GLRendererIntelHDID        :: 148224
-    GLRendererIntelHD4000ID    :: 148480
-    GLRendererIntelHD5000ID    :: 148736
-    GLRendererMesa3DFXID       :: 262144
-}
-
 foreign lib {
-    @(link_name="CATransform3DIdentity") Transform3DIdentity: Transform3D
-    @(link_name="kCAFillModeForwards") FillModeForwards: ^NS.String
-    @(link_name="kCAFillModeBackwards") FillModeBackwards: ^NS.String
-    @(link_name="kCAFillModeBoth") FillModeBoth: ^NS.String
-    @(link_name="kCAFillModeRemoved") FillModeRemoved: ^NS.String
-    @(link_name="CAToneMapModeAutomatic") ToneMapModeAutomatic: ^NS.String
-    @(link_name="CAToneMapModeNever") ToneMapModeNever: ^NS.String
-    @(link_name="CAToneMapModeIfSupported") ToneMapModeIfSupported: ^NS.String
-    @(link_name="CADynamicRangeAutomatic") DynamicRangeAutomatic: ^NS.String
-    @(link_name="CADynamicRangeStandard") DynamicRangeStandard: ^NS.String
-    @(link_name="CADynamicRangeConstrainedHigh") DynamicRangeConstrainedHigh: ^NS.String
-    @(link_name="CADynamicRangeHigh") DynamicRangeHigh: ^NS.String
-    @(link_name="kCAGravityCenter") GravityCenter: ^NS.String
-    @(link_name="kCAGravityTop") GravityTop: ^NS.String
-    @(link_name="kCAGravityBottom") GravityBottom: ^NS.String
-    @(link_name="kCAGravityLeft") GravityLeft: ^NS.String
-    @(link_name="kCAGravityRight") GravityRight: ^NS.String
-    @(link_name="kCAGravityTopLeft") GravityTopLeft: ^NS.String
-    @(link_name="kCAGravityTopRight") GravityTopRight: ^NS.String
-    @(link_name="kCAGravityBottomLeft") GravityBottomLeft: ^NS.String
-    @(link_name="kCAGravityBottomRight") GravityBottomRight: ^NS.String
-    @(link_name="kCAGravityResize") GravityResize: ^NS.String
-    @(link_name="kCAGravityResizeAspect") GravityResizeAspect: ^NS.String
-    @(link_name="kCAGravityResizeAspectFill") GravityResizeAspectFill: ^NS.String
-    @(link_name="kCAContentsFormatRGBA8Uint") ContentsFormatRGBA8Uint: ^NS.String
-    @(link_name="kCAContentsFormatRGBA16Float") ContentsFormatRGBA16Float: ^NS.String
-    @(link_name="kCAContentsFormatGray8Uint") ContentsFormatGray8Uint: ^NS.String
-    @(link_name="kCAContentsFormatAutomatic") ContentsFormatAutomatic: ^NS.String
-    @(link_name="kCAFilterNearest") FilterNearest: ^NS.String
-    @(link_name="kCAFilterLinear") FilterLinear: ^NS.String
-    @(link_name="kCAFilterTrilinear") FilterTrilinear: ^NS.String
-    @(link_name="kCACornerCurveCircular") CornerCurveCircular: ^NS.String
-    @(link_name="kCACornerCurveContinuous") CornerCurveContinuous: ^NS.String
-    @(link_name="kCAOnOrderIn") OnOrderIn: ^NS.String
-    @(link_name="kCAOnOrderOut") OnOrderOut: ^NS.String
-    @(link_name="kCATransition") kTransition: ^NS.String
-    @(link_name="CAFrameRateRangeDefault") FrameRateRangeDefault: FrameRateRange
-    @(link_name="kCAAnimationLinear") AnimationLinear: ^NS.String
-    @(link_name="kCAAnimationDiscrete") AnimationDiscrete: ^NS.String
-    @(link_name="kCAAnimationPaced") AnimationPaced: ^NS.String
-    @(link_name="kCAAnimationCubic") AnimationCubic: ^NS.String
-    @(link_name="kCAAnimationCubicPaced") AnimationCubicPaced: ^NS.String
-    @(link_name="kCAAnimationRotateAuto") AnimationRotateAuto: ^NS.String
-    @(link_name="kCAAnimationRotateAutoReverse") AnimationRotateAutoReverse: ^NS.String
-    @(link_name="kCATransitionFade") TransitionFade: ^NS.String
-    @(link_name="kCATransitionMoveIn") TransitionMoveIn: ^NS.String
-    @(link_name="kCATransitionPush") TransitionPush: ^NS.String
-    @(link_name="kCATransitionReveal") TransitionReveal: ^NS.String
-    @(link_name="kCATransitionFromRight") TransitionFromRight: ^NS.String
-    @(link_name="kCATransitionFromLeft") TransitionFromLeft: ^NS.String
-    @(link_name="kCATransitionFromTop") TransitionFromTop: ^NS.String
-    @(link_name="kCATransitionFromBottom") TransitionFromBottom: ^NS.String
+    @(link_name="CATransform3DIdentity")
+    Transform3DIdentity: Transform3D
+
+    @(link_name="kCAFillModeForwards")
+    FillModeForwards: ^NS.String
+
+    @(link_name="kCAFillModeBackwards")
+    FillModeBackwards: ^NS.String
+
+    @(link_name="kCAFillModeBoth")
+    FillModeBoth: ^NS.String
+
+    @(link_name="kCAFillModeRemoved")
+    FillModeRemoved: ^NS.String
+
+    @(link_name="CAToneMapModeAutomatic")
+    ToneMapModeAutomatic: ^NS.String
+
+    @(link_name="CAToneMapModeNever")
+    ToneMapModeNever: ^NS.String
+
+    @(link_name="CAToneMapModeIfSupported")
+    ToneMapModeIfSupported: ^NS.String
+
+    @(link_name="CADynamicRangeAutomatic")
+    DynamicRangeAutomatic: ^NS.String
+
+    @(link_name="CADynamicRangeStandard")
+    DynamicRangeStandard: ^NS.String
+
+    @(link_name="CADynamicRangeConstrainedHigh")
+    DynamicRangeConstrainedHigh: ^NS.String
+
+    @(link_name="CADynamicRangeHigh")
+    DynamicRangeHigh: ^NS.String
+
+    @(link_name="kCAGravityCenter")
+    GravityCenter: ^NS.String
+
+    @(link_name="kCAGravityTop")
+    GravityTop: ^NS.String
+
+    @(link_name="kCAGravityBottom")
+    GravityBottom: ^NS.String
+
+    @(link_name="kCAGravityLeft")
+    GravityLeft: ^NS.String
+
+    @(link_name="kCAGravityRight")
+    GravityRight: ^NS.String
+
+    @(link_name="kCAGravityTopLeft")
+    GravityTopLeft: ^NS.String
+
+    @(link_name="kCAGravityTopRight")
+    GravityTopRight: ^NS.String
+
+    @(link_name="kCAGravityBottomLeft")
+    GravityBottomLeft: ^NS.String
+
+    @(link_name="kCAGravityBottomRight")
+    GravityBottomRight: ^NS.String
+
+    @(link_name="kCAGravityResize")
+    GravityResize: ^NS.String
+
+    @(link_name="kCAGravityResizeAspect")
+    GravityResizeAspect: ^NS.String
+
+    @(link_name="kCAGravityResizeAspectFill")
+    GravityResizeAspectFill: ^NS.String
+
+    @(link_name="kCAContentsFormatRGBA8Uint")
+    ContentsFormatRGBA8Uint: ^NS.String
+
+    @(link_name="kCAContentsFormatRGBA16Float")
+    ContentsFormatRGBA16Float: ^NS.String
+
+    @(link_name="kCAContentsFormatGray8Uint")
+    ContentsFormatGray8Uint: ^NS.String
+
+    @(link_name="kCAContentsFormatAutomatic")
+    ContentsFormatAutomatic: ^NS.String
+
+    @(link_name="kCAFilterNearest")
+    FilterNearest: ^NS.String
+
+    @(link_name="kCAFilterLinear")
+    FilterLinear: ^NS.String
+
+    @(link_name="kCAFilterTrilinear")
+    FilterTrilinear: ^NS.String
+
+    @(link_name="kCACornerCurveCircular")
+    CornerCurveCircular: ^NS.String
+
+    @(link_name="kCACornerCurveContinuous")
+    CornerCurveContinuous: ^NS.String
+
+    @(link_name="kCAOnOrderIn")
+    OnOrderIn: ^NS.String
+
+    @(link_name="kCAOnOrderOut")
+    OnOrderOut: ^NS.String
+
+    @(link_name="kCATransition")
+    kTransition: ^NS.String
+
+    @(link_name="CAFrameRateRangeDefault")
+    FrameRateRangeDefault: FrameRateRange
+
+    @(link_name="kCAAnimationLinear")
+    AnimationLinear: ^NS.String
+
+    @(link_name="kCAAnimationDiscrete")
+    AnimationDiscrete: ^NS.String
+
+    @(link_name="kCAAnimationPaced")
+    AnimationPaced: ^NS.String
+
     when ODIN_PLATFORM_SUBTARGET_IOS {
-        @(link_name="kEAGLDrawablePropertyRetainedBacking") kEAGLDrawablePropertyRetainedBacking: ^NS.String
-        @(link_name="kEAGLDrawablePropertyColorFormat") kEAGLDrawablePropertyColorFormat: ^NS.String
-        @(link_name="kEAGLColorFormatRGBA8") kEAGLColorFormatRGBA8: ^NS.String
-        @(link_name="kEAGLColorFormatRGB565") kEAGLColorFormatRGB565: ^NS.String
-        @(link_name="kEAGLColorFormatSRGBA8") kEAGLColorFormatSRGBA8: ^NS.String
+        @(link_name="kEAGLDrawablePropertyRetainedBacking")
+        kEAGLDrawablePropertyRetainedBacking: ^NS.String
     }
-    @(link_name="kCAEmitterLayerPoint") EmitterLayerPoint: ^NS.String
-    @(link_name="kCAEmitterLayerLine") EmitterLayerLine: ^NS.String
-    @(link_name="kCAEmitterLayerRectangle") EmitterLayerRectangle: ^NS.String
-    @(link_name="kCAEmitterLayerCuboid") EmitterLayerCuboid: ^NS.String
-    @(link_name="kCAEmitterLayerCircle") EmitterLayerCircle: ^NS.String
-    @(link_name="kCAEmitterLayerSphere") EmitterLayerSphere: ^NS.String
-    @(link_name="kCAEmitterLayerPoints") EmitterLayerPoints: ^NS.String
-    @(link_name="kCAEmitterLayerOutline") EmitterLayerOutline: ^NS.String
-    @(link_name="kCAEmitterLayerSurface") EmitterLayerSurface: ^NS.String
-    @(link_name="kCAEmitterLayerVolume") EmitterLayerVolume: ^NS.String
-    @(link_name="kCAEmitterLayerUnordered") EmitterLayerUnordered: ^NS.String
-    @(link_name="kCAEmitterLayerOldestFirst") EmitterLayerOldestFirst: ^NS.String
-    @(link_name="kCAEmitterLayerOldestLast") EmitterLayerOldestLast: ^NS.String
-    @(link_name="kCAEmitterLayerBackToFront") EmitterLayerBackToFront: ^NS.String
-    @(link_name="kCAEmitterLayerAdditive") EmitterLayerAdditive: ^NS.String
-    @(link_name="kCAMediaTimingFunctionLinear") MediaTimingFunctionLinear: ^NS.String
-    @(link_name="kCAMediaTimingFunctionEaseIn") MediaTimingFunctionEaseIn: ^NS.String
-    @(link_name="kCAMediaTimingFunctionEaseOut") MediaTimingFunctionEaseOut: ^NS.String
-    @(link_name="kCAMediaTimingFunctionEaseInEaseOut") MediaTimingFunctionEaseInEaseOut: ^NS.String
-    @(link_name="kCAMediaTimingFunctionDefault") MediaTimingFunctionDefault: ^NS.String
-    @(link_name="kCAGradientLayerAxial") GradientLayerAxial: ^NS.String
-    @(link_name="kCAGradientLayerRadial") GradientLayerRadial: ^NS.String
-    @(link_name="kCAGradientLayerConic") GradientLayerConic: ^NS.String
-    @(link_name="kCARendererColorSpace") RendererColorSpace: ^NS.String
-    @(link_name="kCARendererMetalCommandQueue") RendererMetalCommandQueue: ^NS.String
-    @(link_name="kCAScrollNone") ScrollNone: ^NS.String
-    @(link_name="kCAScrollVertically") ScrollVertically: ^NS.String
-    @(link_name="kCAScrollHorizontally") ScrollHorizontally: ^NS.String
-    @(link_name="kCAScrollBoth") ScrollBoth: ^NS.String
-    @(link_name="kCAFillRuleNonZero") FillRuleNonZero: ^NS.String
-    @(link_name="kCAFillRuleEvenOdd") FillRuleEvenOdd: ^NS.String
-    @(link_name="kCALineJoinMiter") LineJoinMiter: ^NS.String
-    @(link_name="kCALineJoinRound") LineJoinRound: ^NS.String
-    @(link_name="kCALineJoinBevel") LineJoinBevel: ^NS.String
-    @(link_name="kCALineCapButt") LineCapButt: ^NS.String
-    @(link_name="kCALineCapRound") LineCapRound: ^NS.String
-    @(link_name="kCALineCapSquare") LineCapSquare: ^NS.String
-    @(link_name="kCATruncationNone") TruncationNone: ^NS.String
-    @(link_name="kCATruncationStart") TruncationStart: ^NS.String
-    @(link_name="kCATruncationEnd") TruncationEnd: ^NS.String
-    @(link_name="kCATruncationMiddle") TruncationMiddle: ^NS.String
-    @(link_name="kCAAlignmentNatural") AlignmentNatural: ^NS.String
-    @(link_name="kCAAlignmentLeft") AlignmentLeft: ^NS.String
-    @(link_name="kCAAlignmentRight") AlignmentRight: ^NS.String
-    @(link_name="kCAAlignmentCenter") AlignmentCenter: ^NS.String
-    @(link_name="kCAAlignmentJustified") AlignmentJustified: ^NS.String
-    @(link_name="kCATransactionAnimationDuration") TransactionAnimationDuration: ^NS.String
-    @(link_name="kCATransactionDisableActions") TransactionDisableActions: ^NS.String
-    @(link_name="kCATransactionAnimationTimingFunction") TransactionAnimationTimingFunction: ^NS.String
-    @(link_name="kCATransactionCompletionBlock") TransactionCompletionBlock: ^NS.String
-    @(link_name="kCAValueFunctionRotateX") ValueFunctionRotateX: ^NS.String
-    @(link_name="kCAValueFunctionRotateY") ValueFunctionRotateY: ^NS.String
-    @(link_name="kCAValueFunctionRotateZ") ValueFunctionRotateZ: ^NS.String
-    @(link_name="kCAValueFunctionScale") ValueFunctionScale: ^NS.String
-    @(link_name="kCAValueFunctionScaleX") ValueFunctionScaleX: ^NS.String
-    @(link_name="kCAValueFunctionScaleY") ValueFunctionScaleY: ^NS.String
-    @(link_name="kCAValueFunctionScaleZ") ValueFunctionScaleZ: ^NS.String
-    @(link_name="kCAValueFunctionTranslate") ValueFunctionTranslate: ^NS.String
-    @(link_name="kCAValueFunctionTranslateX") ValueFunctionTranslateX: ^NS.String
-    @(link_name="kCAValueFunctionTranslateY") ValueFunctionTranslateY: ^NS.String
-    @(link_name="kCAValueFunctionTranslateZ") ValueFunctionTranslateZ: ^NS.String
-}
 
-@(default_calling_convention="c")
-foreign lib {
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    @(link_name="kCAAnimationCubic")
+    AnimationCubic: ^NS.String
+
+    @(link_name="kCAAnimationCubicPaced")
+    AnimationCubicPaced: ^NS.String
+
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(link_name="kEAGLDrawablePropertyColorFormat")
+        kEAGLDrawablePropertyColorFormat: ^NS.String
+    }
+
+    @(link_name="kCAAnimationRotateAuto")
+    AnimationRotateAuto: ^NS.String
+
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(link_name="kEAGLColorFormatRGBA8")
+        kEAGLColorFormatRGBA8: ^NS.String
+    }
+
+    @(link_name="kCAAnimationRotateAutoReverse")
+    AnimationRotateAutoReverse: ^NS.String
+
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(link_name="kEAGLColorFormatRGB565")
+        kEAGLColorFormatRGB565: ^NS.String
+    }
+
+    @(link_name="kCATransitionFade")
+    TransitionFade: ^NS.String
+
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(link_name="kEAGLColorFormatSRGBA8")
+        kEAGLColorFormatSRGBA8: ^NS.String
+    }
+
+    @(link_name="kCATransitionMoveIn")
+    TransitionMoveIn: ^NS.String
+
+    @(link_name="kCATransitionPush")
+    TransitionPush: ^NS.String
+
+    @(link_name="kCATransitionReveal")
+    TransitionReveal: ^NS.String
+
+    @(link_name="kCATransitionFromRight")
+    TransitionFromRight: ^NS.String
+
+    @(link_name="kCATransitionFromLeft")
+    TransitionFromLeft: ^NS.String
+
+    @(link_name="kCATransitionFromTop")
+    TransitionFromTop: ^NS.String
+
+    @(link_name="kCATransitionFromBottom")
+    TransitionFromBottom: ^NS.String
+
+    @(link_name="kCAEmitterLayerPoint")
+    EmitterLayerPoint: ^NS.String
+
+    @(link_name="kCAEmitterLayerLine")
+    EmitterLayerLine: ^NS.String
+
+    @(link_name="kCAEmitterLayerRectangle")
+    EmitterLayerRectangle: ^NS.String
+
+    @(link_name="kCAEmitterLayerCuboid")
+    EmitterLayerCuboid: ^NS.String
+
+    @(link_name="kCAEmitterLayerCircle")
+    EmitterLayerCircle: ^NS.String
+
+    @(link_name="kCAEmitterLayerSphere")
+    EmitterLayerSphere: ^NS.String
+
+    @(link_name="kCAEmitterLayerPoints")
+    EmitterLayerPoints: ^NS.String
+
+    @(link_name="kCAEmitterLayerOutline")
+    EmitterLayerOutline: ^NS.String
+
+    @(link_name="kCAEmitterLayerSurface")
+    EmitterLayerSurface: ^NS.String
+
+    @(link_name="kCAEmitterLayerVolume")
+    EmitterLayerVolume: ^NS.String
+
+    @(link_name="kCAEmitterLayerUnordered")
+    EmitterLayerUnordered: ^NS.String
+
+    @(link_name="kCAEmitterLayerOldestFirst")
+    EmitterLayerOldestFirst: ^NS.String
+
+    @(link_name="kCAEmitterLayerOldestLast")
+    EmitterLayerOldestLast: ^NS.String
+
+    @(link_name="kCAEmitterLayerBackToFront")
+    EmitterLayerBackToFront: ^NS.String
+
+    @(link_name="kCAEmitterLayerAdditive")
+    EmitterLayerAdditive: ^NS.String
+
+    @(link_name="kCAMediaTimingFunctionLinear")
+    MediaTimingFunctionLinear: ^NS.String
+
+    @(link_name="kCAMediaTimingFunctionEaseIn")
+    MediaTimingFunctionEaseIn: ^NS.String
+
+    @(link_name="kCAMediaTimingFunctionEaseOut")
+    MediaTimingFunctionEaseOut: ^NS.String
+
+    @(link_name="kCAMediaTimingFunctionEaseInEaseOut")
+    MediaTimingFunctionEaseInEaseOut: ^NS.String
+
+    @(link_name="kCAMediaTimingFunctionDefault")
+    MediaTimingFunctionDefault: ^NS.String
+
+    @(link_name="kCAGradientLayerAxial")
+    GradientLayerAxial: ^NS.String
+
+    @(link_name="kCAGradientLayerRadial")
+    GradientLayerRadial: ^NS.String
+
+    @(link_name="kCAGradientLayerConic")
+    GradientLayerConic: ^NS.String
+
+    @(link_name="kCARendererColorSpace")
+    RendererColorSpace: ^NS.String
+
+    @(link_name="kCARendererMetalCommandQueue")
+    RendererMetalCommandQueue: ^NS.String
+
+    @(link_name="kCAScrollNone")
+    ScrollNone: ^NS.String
+
+    @(link_name="kCAScrollVertically")
+    ScrollVertically: ^NS.String
+
+    @(link_name="kCAScrollHorizontally")
+    ScrollHorizontally: ^NS.String
+
+    @(link_name="kCAScrollBoth")
+    ScrollBoth: ^NS.String
+
+    @(link_name="kCAFillRuleNonZero")
+    FillRuleNonZero: ^NS.String
+
+    @(link_name="kCAFillRuleEvenOdd")
+    FillRuleEvenOdd: ^NS.String
+
+    @(link_name="kCALineJoinMiter")
+    LineJoinMiter: ^NS.String
+
+    @(link_name="kCALineJoinRound")
+    LineJoinRound: ^NS.String
+
+    @(link_name="kCALineJoinBevel")
+    LineJoinBevel: ^NS.String
+
+    @(link_name="kCALineCapButt")
+    LineCapButt: ^NS.String
+
+    @(link_name="kCALineCapRound")
+    LineCapRound: ^NS.String
+
+    @(link_name="kCALineCapSquare")
+    LineCapSquare: ^NS.String
+
+    @(link_name="kCATruncationNone")
+    TruncationNone: ^NS.String
+
+    @(link_name="kCATruncationStart")
+    TruncationStart: ^NS.String
+
+    @(link_name="kCATruncationEnd")
+    TruncationEnd: ^NS.String
+
+    @(link_name="kCATruncationMiddle")
+    TruncationMiddle: ^NS.String
+
+    @(link_name="kCAAlignmentNatural")
+    AlignmentNatural: ^NS.String
+
+    @(link_name="kCAAlignmentLeft")
+    AlignmentLeft: ^NS.String
+
+    @(link_name="kCAAlignmentRight")
+    AlignmentRight: ^NS.String
+
+    @(link_name="kCAAlignmentCenter")
+    AlignmentCenter: ^NS.String
+
+    @(link_name="kCAAlignmentJustified")
+    AlignmentJustified: ^NS.String
+
+    @(link_name="kCATransactionAnimationDuration")
+    TransactionAnimationDuration: ^NS.String
+
+    @(link_name="kCATransactionDisableActions")
+    TransactionDisableActions: ^NS.String
+
+    @(link_name="kCATransactionAnimationTimingFunction")
+    TransactionAnimationTimingFunction: ^NS.String
+
+    @(link_name="kCATransactionCompletionBlock")
+    TransactionCompletionBlock: ^NS.String
+
+    @(link_name="kCAValueFunctionRotateX")
+    ValueFunctionRotateX: ^NS.String
+
+    @(link_name="kCAValueFunctionRotateY")
+    ValueFunctionRotateY: ^NS.String
+
+    @(link_name="kCAValueFunctionRotateZ")
+    ValueFunctionRotateZ: ^NS.String
+
+    @(link_name="kCAValueFunctionScale")
+    ValueFunctionScale: ^NS.String
+
+    @(link_name="kCAValueFunctionScaleX")
+    ValueFunctionScaleX: ^NS.String
+
+    @(link_name="kCAValueFunctionScaleY")
+    ValueFunctionScaleY: ^NS.String
+
+    @(link_name="kCAValueFunctionScaleZ")
+    ValueFunctionScaleZ: ^NS.String
+
+    @(link_name="kCAValueFunctionTranslate")
+    ValueFunctionTranslate: ^NS.String
+
+    @(link_name="kCAValueFunctionTranslateX")
+    ValueFunctionTranslateX: ^NS.String
+
+    @(link_name="kCAValueFunctionTranslateY")
+    ValueFunctionTranslateY: ^NS.String
+
+    @(link_name="kCAValueFunctionTranslateZ")
+    ValueFunctionTranslateZ: ^NS.String
+
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(link_name="CGLSetCurrentContext")
         CGLSetCurrentContext :: proc(ctx: CGLContextObj) -> CGLError ---
 
@@ -385,187 +612,104 @@ foreign lib {
 
     @(link_name="CAFrameRateRangeIsEqualToRange")
     FrameRateRangeIsEqualToRange :: proc(range: FrameRateRange, other: FrameRateRange) -> cffi.bool ---
-
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CGLContextObj
+
+
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    GLRendererGenericID        :: 131584
+    GLRendererGenericFloatID   :: 132096
+    GLRendererAppleSWID        :: 132608
+    GLRendererATIRage128ID     :: 135168
+    GLRendererATIRadeonID      :: 135680
+    GLRendererATIRageProID     :: 136192
+    GLRendererATIRadeon8500ID  :: 136704
+    GLRendererATIRadeon9700ID  :: 137216
+    GLRendererATIRadeonX1000ID :: 137472
+    GLRendererATIRadeonX2000ID :: 137728
+    GLRendererATIRadeonX3000ID :: 137984
+    GLRendererATIRadeonX4000ID :: 138240
+    GLRendererGeForce2MXID     :: 139264
+    GLRendererGeForce3ID       :: 139776
+    GLRendererGeForceFXID      :: 140288
+    GLRendererGeForce8xxxID    :: 140800
+    GLRendererGeForceID        :: 141056
+    GLRendererVTBladeXP2ID     :: 143360
+    GLRendererIntel900ID       :: 147456
+    GLRendererIntelX3100ID     :: 147968
+    GLRendererIntelHDID        :: 148224
+    GLRendererIntelHD4000ID    :: 148480
+    GLRendererIntelHD5000ID    :: 148736
+    GLRendererMesa3DFXID       :: 262144
     CGLContextObj :: distinct ^_CGLContextObject
-
-    /// CGLPixelFormatObj
     CGLPixelFormatObj :: distinct ^_CGLPixelFormatObject
-
-    /// CGLRendererInfoObj
     CGLRendererInfoObj :: distinct ^_CGLRendererInfoObject
-
-    /// CGLPBufferObj
     CGLPBufferObj :: distinct ^_CGLPBufferObject
-
-    /// GLbitfield
     GLbitfield :: distinct cffi.uint32_t
-
-    /// GLboolean
     GLboolean :: distinct cffi.uint8_t
-
-    /// GLbyte
     GLbyte :: distinct cffi.int8_t
-
-    /// GLclampf
     GLclampf :: distinct cffi.float
-
-    /// GLenum
     GLenum :: distinct cffi.uint32_t
-
-    /// GLfloat
     GLfloat :: distinct cffi.float
-
-    /// GLint
     GLint :: distinct cffi.int32_t
-
-    /// GLshort
     GLshort :: distinct cffi.int16_t
-
-    /// GLsizei
     GLsizei :: distinct cffi.int32_t
-
-    /// GLubyte
     GLubyte :: distinct cffi.uint8_t
-
-    /// GLuint
     GLuint :: distinct cffi.uint32_t
-
-    /// GLushort
     GLushort :: distinct cffi.uint16_t
-
-    /// GLchar
     GLchar :: distinct cffi.char
-
-    /// GLcharARB
     GLcharARB :: distinct cffi.char
-
-    /// GLhandleARB
     GLhandleARB :: distinct rawptr
-
-    /// GLdouble
     GLdouble :: distinct cffi.double
-
-    /// GLclampd
     GLclampd :: distinct cffi.double
-
-    /// GLfixed
     GLfixed :: distinct cffi.int32_t
-
-    /// GLhalf
     GLhalf :: distinct cffi.uint16_t
-
-    /// GLhalfARB
     GLhalfARB :: distinct cffi.uint16_t
-
-    /// GLint64
     GLint64 :: distinct cffi.int64_t
-
-    /// GLsync
     GLsync :: distinct ^__GLsync
-
-    /// GLuint64
     GLuint64 :: distinct cffi.uint64_t
-
-    /// GLint64EXT
     GLint64EXT :: distinct cffi.int64_t
-
-    /// GLuint64EXT
     GLuint64EXT :: distinct cffi.uint64_t
-
-    /// GLintptr
     GLintptr :: distinct cffi.intptr_t
-
-    /// GLsizeiptr
     GLsizeiptr :: distinct cffi.intptr_t
-
-    /// GLintptrARB
     GLintptrARB :: distinct cffi.intptr_t
-
-    /// GLsizeiptrARB
     GLsizeiptrARB :: distinct cffi.intptr_t
-
-    /// CGLShareGroupObj
     CGLShareGroupObj :: distinct ^CGLShareGroupRec
-
-    /// cl_device_id
     cl_device_id :: distinct ^_cl_device_id
 }
-
-/// CAMediaTimingFillMode
 MediaTimingFillMode :: distinct ^NS.String
-
-/// CALayerContentsGravity
 LayerContentsGravity :: distinct ^NS.String
-
-/// CALayerContentsFormat
 LayerContentsFormat :: distinct ^NS.String
-
-/// CALayerContentsFilter
 LayerContentsFilter :: distinct ^NS.String
-
-/// CALayerCornerCurve
 LayerCornerCurve :: distinct ^NS.String
-
-/// CAToneMapMode
 ToneMapMode :: distinct ^NS.String
-
-/// CADynamicRange
 DynamicRange :: distinct ^NS.String
-
-/// CAAnimationCalculationMode
 AnimationCalculationMode :: distinct ^NS.String
-
-/// CAAnimationRotationMode
 AnimationRotationMode :: distinct ^NS.String
-
-/// CATransitionType
 TransitionType :: distinct ^NS.String
-
-/// CATransitionSubtype
 TransitionSubtype :: distinct ^NS.String
-
-/// CAEmitterLayerEmitterShape
 EmitterLayerEmitterShape :: distinct ^NS.String
-
-/// CAEmitterLayerEmitterMode
 EmitterLayerEmitterMode :: distinct ^NS.String
-
-/// CAEmitterLayerRenderMode
 EmitterLayerRenderMode :: distinct ^NS.String
-
-/// CAMediaTimingFunctionName
 MediaTimingFunctionName :: distinct ^NS.String
-
-/// CAGradientLayerType
 GradientLayerType :: distinct ^NS.String
-
-/// CAScrollLayerScrollMode
 ScrollLayerScrollMode :: distinct ^NS.String
-
-/// CAShapeLayerFillRule
 ShapeLayerFillRule :: distinct ^NS.String
-
-/// CAShapeLayerLineJoin
 ShapeLayerLineJoin :: distinct ^NS.String
-
-/// CAShapeLayerLineCap
 ShapeLayerLineCap :: distinct ^NS.String
-
-/// CATextLayerTruncationMode
 TextLayerTruncationMode :: distinct ^NS.String
-
-/// CATextLayerAlignmentMode
 TextLayerAlignmentMode :: distinct ^NS.String
-
-/// CAValueFunctionName
 ValueFunctionName :: distinct ^NS.String
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CGLPixelFormatAttribute
+when ODIN_PLATFORM_SUBTARGET_IOS {
+    EAGLRenderingAPI :: enum cffi.ulong {
+        kEAGLRenderingAPIOpenGLES1 = 1,
+        kEAGLRenderingAPIOpenGLES2 = 2,
+        kEAGLRenderingAPIOpenGLES3 = 3,
+    }
+}
+
+when ODIN_PLATFORM_SUBTARGET == .Default {
     CGLPixelFormatAttribute :: enum cffi.uint {
         kCGLPFAAllRenderers              = 1,
         kCGLPFATripleBuffer              = 3,
@@ -610,7 +754,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCGLPFAFullScreen                = 54,
     }
 
-    /// CGLRendererProperty
     CGLRendererProperty :: enum cffi.uint {
         kCGLRPOffScreen              = 53,
         kCGLRPRendererID             = 70,
@@ -648,7 +791,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCGLRPTextureMemory          = 121,
     }
 
-    /// CGLContextEnable
     CGLContextEnable :: enum cffi.uint {
         kCGLCESwapRectangle           = 201,
         kCGLCESwapLimit               = 203,
@@ -660,7 +802,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCGLCECrashOnRemovedFunctions = 316,
     }
 
-    /// CGLGPURestartStatus
     CGLGPURestartStatus :: enum cffi.uint {
         kCGLCPGPURestartStatusNone       = 0,
         kCGLCPGPURestartStatusCaused     = 1,
@@ -668,7 +809,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCGLCPGPURestartStatusDenied     = 2,
     }
 
-    /// CGLContextParameter
     CGLContextParameter :: enum cffi.uint {
         kCGLCPSwapRectangle              = 200,
         kCGLCPSwapInterval               = 222,
@@ -693,14 +833,12 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCGLCPContextPriorityRequest     = 608,
     }
 
-    /// CGLCPContextPriorityRequest
     CGLCPContextPriorityRequest :: enum cffi.uint {
         kCGLCPContextPriorityRequestHigh = 0,
         kCGLCPContextPriorityRequestNormal = 1,
         kCGLCPContextPriorityRequestLow  = 2,
     }
 
-    /// CGLGlobalOption
     CGLGlobalOption :: enum cffi.uint {
         kCGLGOFormatCacheSize  = 501,
         kCGLGOClearFormatCache = 502,
@@ -710,7 +848,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCGLGOUseErrorHandler  = 505,
     }
 
-    /// CGLOpenGLProfile
     CGLOpenGLProfile :: enum cffi.uint {
         kCGLOGLPVersion_Legacy   = 4096,
         kCGLOGLPVersion_3_2_Core = 12800,
@@ -718,7 +855,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCGLOGLPVersion_GL4_Core = 16640,
     }
 
-    /// CGLError
     CGLError :: enum cffi.uint {
         kCGLNoError         = 0,
         kCGLBadAttribute    = 10000,
@@ -742,7 +878,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
     }
 }
 
-/// CAAutoresizingMask
 AutoresizingMaskFlag :: enum cffi.uint {
     kCALayerMinXMargin    = 0,
     kCALayerWidthSizable  = 1,
@@ -751,27 +886,27 @@ AutoresizingMaskFlag :: enum cffi.uint {
     kCALayerHeightSizable = 4,
     kCALayerMaxYMargin    = 5,
 }
+
 AutoresizingMask :: bit_set[AutoresizingMaskFlag; cffi.uint]
 
-/// CAEdgeAntialiasingMask
 EdgeAntialiasingMaskFlag :: enum cffi.uint {
     kCALayerLeftEdge   = 0,
     kCALayerRightEdge  = 1,
     kCALayerBottomEdge = 2,
     kCALayerTopEdge    = 3,
 }
+
 EdgeAntialiasingMask :: bit_set[EdgeAntialiasingMaskFlag; cffi.uint]
 
-/// CACornerMask
 CornerMaskFlag :: enum cffi.ulong {
     kCALayerMinXMinYCorner = 0,
     kCALayerMaxXMinYCorner = 1,
     kCALayerMinXMaxYCorner = 2,
     kCALayerMaxXMaxYCorner = 3,
 }
+
 CornerMask :: bit_set[CornerMaskFlag; cffi.ulong]
 
-/// CAConstraintAttribute
 ConstraintAttribute :: enum cffi.int {
     kCAConstraintMinX   = 0,
     kCAConstraintMidX   = 1,
@@ -783,38 +918,22 @@ ConstraintAttribute :: enum cffi.int {
     kCAConstraintHeight = 7,
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// _CGLContextObject
+when ODIN_PLATFORM_SUBTARGET == .Default {
     _CGLContextObject :: struct {}
 
-    /// _CGLPixelFormatObject
     _CGLPixelFormatObject :: struct {}
 
-    /// _CGLRendererInfoObject
     _CGLRendererInfoObject :: struct {}
 
-    /// _CGLPBufferObject
     _CGLPBufferObject :: struct {}
 
-    /// __GLsync
     __GLsync :: struct {}
 
-    /// CGLShareGroupRec
     CGLShareGroupRec :: struct {}
 
-    /// _cl_device_id
     _cl_device_id :: struct {}
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-    /// EAGLRenderingAPI
-    EAGLRenderingAPI :: enum cffi.ulong {
-        kEAGLRenderingAPIOpenGLES1 = 1,
-        kEAGLRenderingAPIOpenGLES2 = 2,
-        kEAGLRenderingAPIOpenGLES3 = 3,
-    }
-} // End else
+}
 
-/// CATransform3D
 Transform3D :: struct #align (8) {
     m11: CG.Float,
     m12: CG.Float,
@@ -833,13 +952,10 @@ Transform3D :: struct #align (8) {
     m43: CG.Float,
     m44: CG.Float,
 }
-#assert(size_of(Transform3D) == 128)
 
-/// CAFrameRateRange
 FrameRateRange :: struct #align (4) {
     minimum:   cffi.float,
     maximum:   cffi.float,
     preferred: cffi.float,
 }
-#assert(size_of(FrameRateRange) == 12)
 

@@ -20,36 +20,36 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    hide: proc(self: ^AK.RunningApplication) -> bool,
-    unhide: proc(self: ^AK.RunningApplication) -> bool,
-    activateFromApplication: proc(self: ^AK.RunningApplication, application: ^AK.RunningApplication, options: AK.ApplicationActivationOptions) -> bool,
-    activateWithOptions: proc(self: ^AK.RunningApplication, options: AK.ApplicationActivationOptions) -> bool,
-    terminate: proc(self: ^AK.RunningApplication) -> bool,
-    forceTerminate: proc(self: ^AK.RunningApplication) -> bool,
+    hide: proc(self: ^NS.RunningApplication) -> bool,
+    unhide: proc(self: ^NS.RunningApplication) -> bool,
+    activateFromApplication: proc(self: ^NS.RunningApplication, application: ^NS.RunningApplication, options: NS.ApplicationActivationOptions) -> bool,
+    activateWithOptions: proc(self: ^NS.RunningApplication, options: NS.ApplicationActivationOptions) -> bool,
+    terminate: proc(self: ^NS.RunningApplication) -> bool,
+    forceTerminate: proc(self: ^NS.RunningApplication) -> bool,
     runningApplicationsWithBundleIdentifier: proc(bundleIdentifier: ^NS.String) -> ^NS.Array,
     runningApplicationWithProcessIdentifier: proc(pid: libc.pid_t) -> instancetype,
     terminateAutomaticallyTerminableApplications: proc(),
-    isTerminated: proc(self: ^AK.RunningApplication) -> bool,
-    isFinishedLaunching: proc(self: ^AK.RunningApplication) -> bool,
-    isHidden: proc(self: ^AK.RunningApplication) -> bool,
-    isActive: proc(self: ^AK.RunningApplication) -> bool,
-    ownsMenuBar: proc(self: ^AK.RunningApplication) -> bool,
-    activationPolicy: proc(self: ^AK.RunningApplication) -> AK.ApplicationActivationPolicy,
-    localizedName: proc(self: ^AK.RunningApplication) -> ^NS.String,
-    bundleIdentifier: proc(self: ^AK.RunningApplication) -> ^NS.String,
-    bundleURL: proc(self: ^AK.RunningApplication) -> ^NS.URL,
-    executableURL: proc(self: ^AK.RunningApplication) -> ^NS.URL,
-    processIdentifier: proc(self: ^AK.RunningApplication) -> libc.pid_t,
-    launchDate: proc(self: ^AK.RunningApplication) -> ^NS.Date,
-    icon: proc(self: ^AK.RunningApplication) -> ^AK.Image,
-    executableArchitecture: proc(self: ^AK.RunningApplication) -> NS.Integer,
-    currentApplication: proc() -> ^AK.RunningApplication,
+    isTerminated: proc(self: ^NS.RunningApplication) -> bool,
+    isFinishedLaunching: proc(self: ^NS.RunningApplication) -> bool,
+    isHidden: proc(self: ^NS.RunningApplication) -> bool,
+    isActive: proc(self: ^NS.RunningApplication) -> bool,
+    ownsMenuBar: proc(self: ^NS.RunningApplication) -> bool,
+    activationPolicy: proc(self: ^NS.RunningApplication) -> NS.ApplicationActivationPolicy,
+    localizedName: proc(self: ^NS.RunningApplication) -> ^NS.String,
+    bundleIdentifier: proc(self: ^NS.RunningApplication) -> ^NS.String,
+    bundleURL: proc(self: ^NS.RunningApplication) -> ^NS.URL,
+    executableURL: proc(self: ^NS.RunningApplication) -> ^NS.URL,
+    processIdentifier: proc(self: ^NS.RunningApplication) -> libc.pid_t,
+    launchDate: proc(self: ^NS.RunningApplication) -> ^NS.Date,
+    icon: proc(self: ^NS.RunningApplication) -> ^NS.Image,
+    executableArchitecture: proc(self: ^NS.RunningApplication) -> NS.Integer,
+    currentApplication: proc() -> ^NS.RunningApplication,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.hide != nil {
-        hide :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> bool {
+        hide :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hide"), auto_cast hide, "B@:") do panic("Failed to register objC method.")
     }
     if vt.unhide != nil {
-        unhide :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> bool {
+        unhide :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("unhide"), auto_cast unhide, "B@:") do panic("Failed to register objC method.")
     }
     if vt.activateFromApplication != nil {
-        activateFromApplication :: proc "c" (self: ^AK.RunningApplication, _: SEL, application: ^AK.RunningApplication, options: AK.ApplicationActivationOptions) -> bool {
+        activateFromApplication :: proc "c" (self: ^NS.RunningApplication, _: SEL, application: ^NS.RunningApplication, options: NS.ApplicationActivationOptions) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activateFromApplication:options:"), auto_cast activateFromApplication, "B@:@L") do panic("Failed to register objC method.")
     }
     if vt.activateWithOptions != nil {
-        activateWithOptions :: proc "c" (self: ^AK.RunningApplication, _: SEL, options: AK.ApplicationActivationOptions) -> bool {
+        activateWithOptions :: proc "c" (self: ^NS.RunningApplication, _: SEL, options: NS.ApplicationActivationOptions) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activateWithOptions:"), auto_cast activateWithOptions, "B@:L") do panic("Failed to register objC method.")
     }
     if vt.terminate != nil {
-        terminate :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> bool {
+        terminate :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("terminate"), auto_cast terminate, "B@:") do panic("Failed to register objC method.")
     }
     if vt.forceTerminate != nil {
-        forceTerminate :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> bool {
+        forceTerminate :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("terminateAutomaticallyTerminableApplications"), auto_cast terminateAutomaticallyTerminableApplications, "v#:") do panic("Failed to register objC method.")
     }
     if vt.isTerminated != nil {
-        isTerminated :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> bool {
+        isTerminated :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isTerminated"), auto_cast isTerminated, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isFinishedLaunching != nil {
-        isFinishedLaunching :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> bool {
+        isFinishedLaunching :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -170,7 +170,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFinishedLaunching"), auto_cast isFinishedLaunching, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isHidden != nil {
-        isHidden :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> bool {
+        isHidden :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isHidden"), auto_cast isHidden, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isActive != nil {
-        isActive :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> bool {
+        isActive :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -190,7 +190,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isActive"), auto_cast isActive, "B@:") do panic("Failed to register objC method.")
     }
     if vt.ownsMenuBar != nil {
-        ownsMenuBar :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> bool {
+        ownsMenuBar :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("ownsMenuBar"), auto_cast ownsMenuBar, "B@:") do panic("Failed to register objC method.")
     }
     if vt.activationPolicy != nil {
-        activationPolicy :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> AK.ApplicationActivationPolicy {
+        activationPolicy :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> NS.ApplicationActivationPolicy {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activationPolicy"), auto_cast activationPolicy, "l@:") do panic("Failed to register objC method.")
     }
     if vt.localizedName != nil {
-        localizedName :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> ^NS.String {
+        localizedName :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("localizedName"), auto_cast localizedName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.bundleIdentifier != nil {
-        bundleIdentifier :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> ^NS.String {
+        bundleIdentifier :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -230,7 +230,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bundleIdentifier"), auto_cast bundleIdentifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.bundleURL != nil {
-        bundleURL :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> ^NS.URL {
+        bundleURL :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> ^NS.URL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -240,7 +240,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bundleURL"), auto_cast bundleURL, "@@:") do panic("Failed to register objC method.")
     }
     if vt.executableURL != nil {
-        executableURL :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> ^NS.URL {
+        executableURL :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> ^NS.URL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -250,7 +250,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("executableURL"), auto_cast executableURL, "@@:") do panic("Failed to register objC method.")
     }
     if vt.processIdentifier != nil {
-        processIdentifier :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> libc.pid_t {
+        processIdentifier :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> libc.pid_t {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -260,7 +260,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("processIdentifier"), auto_cast processIdentifier, "i@:") do panic("Failed to register objC method.")
     }
     if vt.launchDate != nil {
-        launchDate :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> ^NS.Date {
+        launchDate :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> ^NS.Date {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("launchDate"), auto_cast launchDate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.icon != nil {
-        icon :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> ^AK.Image {
+        icon :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -280,7 +280,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("icon"), auto_cast icon, "@@:") do panic("Failed to register objC method.")
     }
     if vt.executableArchitecture != nil {
-        executableArchitecture :: proc "c" (self: ^AK.RunningApplication, _: SEL) -> NS.Integer {
+        executableArchitecture :: proc "c" (self: ^NS.RunningApplication, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("executableArchitecture"), auto_cast executableArchitecture, "l@:") do panic("Failed to register objC method.")
     }
     if vt.currentApplication != nil {
-        currentApplication :: proc "c" (self: Class, _: SEL) -> ^AK.RunningApplication {
+        currentApplication :: proc "c" (self: Class, _: SEL) -> ^NS.RunningApplication {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

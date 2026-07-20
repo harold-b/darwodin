@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4CommandAllocator
-///
 @(objc_class="MTL4CommandAllocator")
 MTL4CommandAllocator :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4CommandAllocator, objc_selector="allocatedSize", objc_name="allocatedSize")
     MTL4CommandAllocator_allocatedSize :: proc(self: ^MTL4CommandAllocator) -> cffi.uint64_t ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=MTL4CommandAllocator, objc_selector="label", objc_name="label")
     MTL4CommandAllocator_label :: proc(self: ^MTL4CommandAllocator) -> ^NS.String ---
 }
+
+
+

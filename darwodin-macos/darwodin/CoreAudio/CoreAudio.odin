@@ -13,7 +13,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:CoreAudio.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:CoreAudio.framework",
+    }
+}
+
 
 
 AUTH_OPEN_NOAUTHFD :: 1
@@ -953,16 +964,16 @@ ObjectPropertyScope :: CF.UInt32
 ObjectPropertyElement :: CF.UInt32
 
 /// AudioObjectPropertyListenerProc
-ObjectPropertyListenerProc :: proc "c" (inObjectID: ObjectID, inNumberAddresses: CF.UInt32, inAddresses: ^ObjectPropertyAddress, inClientData: rawptr) -> CF.OSStatus
+ObjectPropertyListenerProc :: proc "c" ( inObjectID: ObjectID, inNumberAddresses: CF.UInt32, inAddresses: ^ObjectPropertyAddress, inClientData: rawptr ) -> CF.OSStatus
 
 /// AudioObjectPropertyListenerBlock
-ObjectPropertyListenerBlock :: ^Objc_Block(proc "c" (inNumberAddresses: CF.UInt32, inAddresses: ^ObjectPropertyAddress))
+ObjectPropertyListenerBlock :: ^Objc_Block(proc "c" ( inNumberAddresses: CF.UInt32, inAddresses: ^ObjectPropertyAddress ))
 
 /// AudioDeviceIOProc
-DeviceIOProc :: proc "c" (inDevice: ObjectID, inNow: ^TimeStamp, inInputData: ^BufferList, inInputTime: ^TimeStamp, outOutputData: ^BufferList, inOutputTime: ^TimeStamp, inClientData: rawptr) -> CF.OSStatus
+DeviceIOProc :: proc "c" ( inDevice: ObjectID, inNow: ^TimeStamp, inInputData: ^BufferList, inInputTime: ^TimeStamp, outOutputData: ^BufferList, inOutputTime: ^TimeStamp, inClientData: rawptr ) -> CF.OSStatus
 
 /// AudioDeviceIOBlock
-DeviceIOBlock :: ^Objc_Block(proc "c" (inNow: ^TimeStamp, inInputData: ^BufferList, inInputTime: ^TimeStamp, outOutputData: ^BufferList, inOutputTime: ^TimeStamp))
+DeviceIOBlock :: ^Objc_Block(proc "c" ( inNow: ^TimeStamp, inInputData: ^BufferList, inInputTime: ^TimeStamp, outOutputData: ^BufferList, inOutputTime: ^TimeStamp ))
 
 /// AudioDeviceIOProcID
 DeviceIOProcID :: DeviceIOProc
@@ -971,7 +982,7 @@ DeviceIOProcID :: DeviceIOProc
 HardwarePropertyID :: ObjectPropertySelector
 
 /// AudioHardwarePropertyListenerProc
-HardwarePropertyListenerProc :: proc "c" (inPropertyID: HardwarePropertyID, inClientData: rawptr) -> CF.OSStatus
+HardwarePropertyListenerProc :: proc "c" ( inPropertyID: HardwarePropertyID, inClientData: rawptr ) -> CF.OSStatus
 
 /// AudioDeviceID
 DeviceID :: ObjectID
@@ -980,13 +991,13 @@ DeviceID :: ObjectID
 DevicePropertyID :: ObjectPropertySelector
 
 /// AudioDevicePropertyListenerProc
-DevicePropertyListenerProc :: proc "c" (inDevice: DeviceID, inChannel: CF.UInt32, isInput: CF.Boolean, inPropertyID: DevicePropertyID, inClientData: rawptr) -> CF.OSStatus
+DevicePropertyListenerProc :: proc "c" ( inDevice: DeviceID, inChannel: CF.UInt32, isInput: CF.Boolean, inPropertyID: DevicePropertyID, inClientData: rawptr ) -> CF.OSStatus
 
 /// AudioStreamID
 StreamID :: ObjectID
 
 /// AudioStreamPropertyListenerProc
-StreamPropertyListenerProc :: proc "c" (inStream: StreamID, inChannel: CF.UInt32, inPropertyID: DevicePropertyID, inClientData: rawptr) -> CF.OSStatus
+StreamPropertyListenerProc :: proc "c" ( inStream: StreamID, inChannel: CF.UInt32, inPropertyID: DevicePropertyID, inClientData: rawptr ) -> CF.OSStatus
 
 /// SMPTETimeType
 SMPTETimeType :: enum cffi.uint {

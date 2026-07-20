@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKCoherentNoiseSource
-///
 @(objc_class="GKCoherentNoiseSource", objc_superclass=NoiseSource)
 CoherentNoiseSource :: struct { using _: NoiseSource, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CoherentNoiseSource, objc_selector="frequency", objc_name="frequency")
     CoherentNoiseSource_frequency :: proc(self: ^CoherentNoiseSource) -> cffi.double ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=CoherentNoiseSource, objc_selector="setSeed:", objc_name="setSeed")
     CoherentNoiseSource_setSeed :: proc(self: ^CoherentNoiseSource, seed: cffi.int32_t) ---
 }
+
+
+

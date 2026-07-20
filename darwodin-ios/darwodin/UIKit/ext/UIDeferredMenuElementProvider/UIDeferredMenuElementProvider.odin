@@ -23,7 +23,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    providerWithElementProvider: proc(elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> instancetype,
+    providerWithElementProvider: proc(elementProvider: ^Objc_Block(proc "c" ( completion: ^Objc_Block(proc "c" ( elements: ^NS.Array )) ))) -> instancetype,
     init: proc(self: ^UI.DeferredMenuElementProvider) -> instancetype,
     new: proc() -> ^UI.DeferredMenuElementProvider,
 }
@@ -36,7 +36,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.providerWithElementProvider != nil {
-        providerWithElementProvider :: proc "c" (self: Class, _: SEL, elementProvider: ^Objc_Block(proc "c" (completion: ^Objc_Block(proc "c" (elements: ^NS.Array))))) -> instancetype {
+        providerWithElementProvider :: proc "c" (self: Class, _: SEL, elementProvider: ^Objc_Block(proc "c" ( completion: ^Objc_Block(proc "c" ( elements: ^NS.Array )) ))) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

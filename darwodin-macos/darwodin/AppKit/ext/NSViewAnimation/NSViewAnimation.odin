@@ -20,15 +20,15 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSAnimation"
 
 VTable :: struct {
     super: NSAnimation.VTable,
-    initWithViewAnimations: proc(self: ^AK.ViewAnimation, viewAnimations: ^NS.Array) -> instancetype,
-    viewAnimations: proc(self: ^AK.ViewAnimation) -> ^NS.Array,
-    setViewAnimations: proc(self: ^AK.ViewAnimation, viewAnimations: ^NS.Array),
+    initWithViewAnimations: proc(self: ^NS.ViewAnimation, viewAnimations: ^NS.Array) -> instancetype,
+    viewAnimations: proc(self: ^NS.ViewAnimation) -> ^NS.Array,
+    setViewAnimations: proc(self: ^NS.ViewAnimation, viewAnimations: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSAnimation.extend(cls, &vt.super)
 
     if vt.initWithViewAnimations != nil {
-        initWithViewAnimations :: proc "c" (self: ^AK.ViewAnimation, _: SEL, viewAnimations: ^NS.Array) -> instancetype {
+        initWithViewAnimations :: proc "c" (self: ^NS.ViewAnimation, _: SEL, viewAnimations: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithViewAnimations:"), auto_cast initWithViewAnimations, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.viewAnimations != nil {
-        viewAnimations :: proc "c" (self: ^AK.ViewAnimation, _: SEL) -> ^NS.Array {
+        viewAnimations :: proc "c" (self: ^NS.ViewAnimation, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewAnimations"), auto_cast viewAnimations, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setViewAnimations != nil {
-        setViewAnimations :: proc "c" (self: ^AK.ViewAnimation, _: SEL, viewAnimations: ^NS.Array) {
+        setViewAnimations :: proc "c" (self: ^NS.ViewAnimation, _: SEL, viewAnimations: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

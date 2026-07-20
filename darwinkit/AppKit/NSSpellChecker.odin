@@ -43,10 +43,10 @@ foreign lib {
     SpellChecker_checkString :: proc(self: ^SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, orthography: ^^NS.Orthography, wordCount: ^NS.Integer) -> ^NS.Array ---
 
     @(objc_type=SpellChecker, objc_selector="requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:", objc_name="requestCheckingOfString")
-    SpellChecker_requestCheckingOfString :: proc(self: ^SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer))) -> NS.Integer ---
+    SpellChecker_requestCheckingOfString :: proc(self: ^SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" ( sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer ))) -> NS.Integer ---
 
     @(objc_type=SpellChecker, objc_selector="requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:", objc_name="requestCandidatesForSelectedRange")
-    SpellChecker_requestCandidatesForSelectedRange :: proc(self: ^SpellChecker, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, candidates: ^NS.Array))) -> NS.Integer ---
+    SpellChecker_requestCandidatesForSelectedRange :: proc(self: ^SpellChecker, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" ( sequenceNumber: NS.Integer, candidates: ^NS.Array ))) -> NS.Integer ---
 
     @(objc_type=SpellChecker, objc_selector="menuForResult:string:options:atLocation:inView:", objc_name="menuForResult")
     SpellChecker_menuForResult :: proc(self: ^SpellChecker, result: ^NS.TextCheckingResult, checkedString: ^NS.String, options: ^NS.Dictionary, location: CG.Point, view: ^View) -> ^Menu ---
@@ -91,7 +91,7 @@ foreign lib {
     SpellChecker_recordResponse :: proc(self: ^SpellChecker, response: CorrectionResponse, correction: ^NS.String, word: ^NS.String, language: ^NS.String, tag: NS.Integer) ---
 
     @(objc_type=SpellChecker, objc_selector="showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:", objc_name="showCorrectionIndicatorOfType")
-    SpellChecker_showCorrectionIndicatorOfType :: proc(self: ^SpellChecker, type: CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^View, completionBlock: ^Objc_Block(proc "c" (acceptedString: ^NS.String))) ---
+    SpellChecker_showCorrectionIndicatorOfType :: proc(self: ^SpellChecker, type: CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^View, completionBlock: ^Objc_Block(proc "c" ( acceptedString: ^NS.String ))) ---
 
     @(objc_type=SpellChecker, objc_selector="dismissCorrectionIndicatorForView:", objc_name="dismissCorrectionIndicatorForView")
     SpellChecker_dismissCorrectionIndicatorForView :: proc(self: ^SpellChecker, view: ^View) ---

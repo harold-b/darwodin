@@ -9,6 +9,16 @@ import CG "../CoreGraphics"
 import Sec "../Security"
 
 
+@(objc_type=ObjectProtocol, objc_name="safeRelease")
+safeRelease :: #force_inline proc "c" (self: ^ObjectProtocol) -> instancetype {
+    if self != nil {
+        self->release()
+    }
+
+    return nil
+}
+
+
 
 ///
 /// NSObject

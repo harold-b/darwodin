@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    performFeedbackPattern: proc(self: ^AK.HapticFeedbackPerformer, pattern: AK.HapticFeedbackPattern, performanceTime: AK.HapticFeedbackPerformanceTime),
+    performFeedbackPattern: proc(self: ^NS.HapticFeedbackPerformer, pattern: NS.HapticFeedbackPattern, performanceTime: NS.HapticFeedbackPerformanceTime),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.performFeedbackPattern != nil {
-        performFeedbackPattern :: proc "c" (self: ^AK.HapticFeedbackPerformer, _: SEL, pattern: AK.HapticFeedbackPattern, performanceTime: AK.HapticFeedbackPerformanceTime) {
+        performFeedbackPattern :: proc "c" (self: ^NS.HapticFeedbackPerformer, _: SEL, pattern: NS.HapticFeedbackPattern, performanceTime: NS.HapticFeedbackPerformanceTime) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

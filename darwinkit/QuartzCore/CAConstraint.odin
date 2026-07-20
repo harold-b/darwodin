@@ -10,17 +10,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAConstraint
-///
 @(objc_class="CAConstraint", objc_superclass=NS.Object)
 Constraint :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Constraint, objc_selector="constraintWithAttribute:relativeTo:attribute:scale:offset:", objc_name="constraintWithAttribute_relativeTo_attribute_scale_offset", objc_is_class_method=true)
     Constraint_constraintWithAttribute_relativeTo_attribute_scale_offset :: proc(attr: ConstraintAttribute, srcId: ^NS.String, srcAttr: ConstraintAttribute, m: CG.Float, c: CG.Float) -> instancetype ---
@@ -49,6 +43,8 @@ foreign lib {
     @(objc_type=Constraint, objc_selector="offset", objc_name="offset")
     Constraint_offset :: proc(self: ^Constraint) -> CG.Float ---
 }
+
+
 
 @(objc_type=Constraint, objc_name="constraintWithAttribute")
 Constraint_constraintWithAttribute :: proc {

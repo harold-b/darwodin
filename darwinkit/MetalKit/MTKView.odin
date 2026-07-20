@@ -11,18 +11,20 @@ import CA "../QuartzCore"
 import MTL "../Metal"
 import MDL "../ModelIO"
 
-
-
-///
-/// MTKView
-///
-@(objc_class="MTKView", objc_superclass=AKView)
-View :: struct { using _: AKView, 
-    using _: NS.Coding,
-    using _: CA.LayerDelegate,
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    @(objc_class="MTKView", objc_superclass=AK.View)
+    View :: struct { using _: AK.View, 
+        using _: NS.Coding,
+        using _: CA.LayerDelegate,
+    }
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    @(objc_class="MTKView", objc_superclass=UI.View)
+    View :: struct { using _: UI.View, 
+        using _: NS.Coding,
+        using _: CA.LayerDelegate,
+    }
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=View, objc_selector="initWithFrame:device:", objc_name="initWithFrame")
     View_initWithFrame :: proc(self: ^View, frameRect: CG.Rect, device: ^MTL.Device) -> instancetype ---
@@ -174,3 +176,6 @@ foreign lib {
     @(objc_type=View, objc_selector="residencySet", objc_name="residencySet")
     View_residencySet :: proc(self: ^View) -> ^MTL.ResidencySet ---
 }
+
+
+

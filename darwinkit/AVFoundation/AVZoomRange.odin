@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVZoomRange
-///
 @(objc_class="AVZoomRange", objc_superclass=NS.Object)
 ZoomRange :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ZoomRange, objc_selector="init", objc_name="init")
     ZoomRange_init :: proc(self: ^ZoomRange) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=ZoomRange, objc_selector="maxZoomFactor", objc_name="maxZoomFactor")
     ZoomRange_maxZoomFactor :: proc(self: ^ZoomRange) -> CG.Float ---
 }
+
+
+

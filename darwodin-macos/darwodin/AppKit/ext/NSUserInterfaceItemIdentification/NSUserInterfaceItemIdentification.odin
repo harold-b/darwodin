@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    identifier: proc(self: ^AK.UserInterfaceItemIdentification) -> ^NS.String,
-    setIdentifier: proc(self: ^AK.UserInterfaceItemIdentification, identifier: ^NS.String),
+    identifier: proc(self: ^NS.UserInterfaceItemIdentification) -> ^NS.String,
+    setIdentifier: proc(self: ^NS.UserInterfaceItemIdentification, identifier: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.identifier != nil {
-        identifier :: proc "c" (self: ^AK.UserInterfaceItemIdentification, _: SEL) -> ^NS.String {
+        identifier :: proc "c" (self: ^NS.UserInterfaceItemIdentification, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("identifier"), auto_cast identifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setIdentifier != nil {
-        setIdentifier :: proc "c" (self: ^AK.UserInterfaceItemIdentification, _: SEL, identifier: ^NS.String) {
+        setIdentifier :: proc "c" (self: ^NS.UserInterfaceItemIdentification, _: SEL, identifier: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

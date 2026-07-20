@@ -41,8 +41,8 @@ VTable :: struct {
     isEqualToArray: proc(self: ^NS.Array, otherArray: ^NS.Array) -> bool,
     objectEnumerator: proc(self: ^NS.Array) -> ^NS.Enumerator,
     reverseObjectEnumerator: proc(self: ^NS.Array) -> ^NS.Enumerator,
-    sortedArrayUsingFunction_context: proc(self: ^NS.Array, comparator: proc "c" (_: id, _1: id, _2: rawptr) -> NS.Integer, _context: rawptr) -> ^NS.Array,
-    sortedArrayUsingFunction_context_hint: proc(self: ^NS.Array, comparator: proc "c" (_: id, _1: id, _2: rawptr) -> NS.Integer, _context: rawptr, hint: ^NS.Data) -> ^NS.Array,
+    sortedArrayUsingFunction_context: proc(self: ^NS.Array, comparator: proc "c" ( _0: id, _1: id, _2: rawptr ) -> NS.Integer, _context: rawptr) -> ^NS.Array,
+    sortedArrayUsingFunction_context_hint: proc(self: ^NS.Array, comparator: proc "c" ( _0: id, _1: id, _2: rawptr ) -> NS.Integer, _context: rawptr, hint: ^NS.Data) -> ^NS.Array,
     sortedArrayUsingSelector: proc(self: ^NS.Array, comparator: SEL) -> ^NS.Array,
     subarrayWithRange: proc(self: ^NS.Array, range: NS._NSRange) -> ^NS.Array,
     writeToURL_error: proc(self: ^NS.Array, url: ^NS.URL, error: ^^NS.Error) -> bool,
@@ -50,15 +50,15 @@ VTable :: struct {
     makeObjectsPerformSelector_withObject: proc(self: ^NS.Array, aSelector: SEL, argument: id),
     objectsAtIndexes: proc(self: ^NS.Array, indexes: ^NS.IndexSet) -> ^NS.Array,
     objectAtIndexedSubscript: proc(self: ^NS.Array, idx: NS.UInteger) -> id,
-    enumerateObjectsUsingBlock: proc(self: ^NS.Array, block: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool))),
-    enumerateObjectsWithOptions: proc(self: ^NS.Array, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool))),
-    enumerateObjectsAtIndexes: proc(self: ^NS.Array, s: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool))),
-    indexOfObjectPassingTest: proc(self: ^NS.Array, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger,
-    indexOfObjectWithOptions: proc(self: ^NS.Array, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger,
-    indexOfObjectAtIndexes: proc(self: ^NS.Array, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger,
-    indexesOfObjectsPassingTest: proc(self: ^NS.Array, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet,
-    indexesOfObjectsWithOptions: proc(self: ^NS.Array, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet,
-    indexesOfObjectsAtIndexes: proc(self: ^NS.Array, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet,
+    enumerateObjectsUsingBlock: proc(self: ^NS.Array, block: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ))),
+    enumerateObjectsWithOptions: proc(self: ^NS.Array, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ))),
+    enumerateObjectsAtIndexes: proc(self: ^NS.Array, s: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ))),
+    indexOfObjectPassingTest: proc(self: ^NS.Array, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger,
+    indexOfObjectWithOptions: proc(self: ^NS.Array, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger,
+    indexOfObjectAtIndexes: proc(self: ^NS.Array, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger,
+    indexesOfObjectsPassingTest: proc(self: ^NS.Array, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet,
+    indexesOfObjectsWithOptions: proc(self: ^NS.Array, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet,
+    indexesOfObjectsAtIndexes: proc(self: ^NS.Array, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet,
     sortedArrayUsingComparator: proc(self: ^NS.Array, cmptr: NS.Comparator) -> ^NS.Array,
     sortedArrayWithOptions: proc(self: ^NS.Array, opts: NS.SortOptions, cmptr: NS.Comparator) -> ^NS.Array,
     indexOfObject_inSortedRange_options_usingComparator: proc(self: ^NS.Array, obj: id, r: NS._NSRange, opts: NS.BinarySearchingOptions, cmp: NS.Comparator) -> NS.UInteger,
@@ -76,7 +76,7 @@ VTable :: struct {
     initWithArray_copyItems: proc(self: ^NS.Array, array: ^NS.Array, flag: bool) -> instancetype,
     initWithContentsOfURL_error: proc(self: ^NS.Array, url: ^NS.URL, error: ^^NS.Error) -> ^NS.Array,
     arrayWithContentsOfURL_error: proc(url: ^NS.URL, error: ^^NS.Error) -> ^NS.Array,
-    differenceFromArray_withOptions_usingEquivalenceTest: proc(self: ^NS.Array, other: ^NS.Array, options: NS.OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> bool)) -> ^NS.OrderedCollectionDifference,
+    differenceFromArray_withOptions_usingEquivalenceTest: proc(self: ^NS.Array, other: ^NS.Array, options: NS.OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" ( obj1: id, obj2: id ) -> bool)) -> ^NS.OrderedCollectionDifference,
     differenceFromArray_withOptions: proc(self: ^NS.Array, other: ^NS.Array, options: NS.OrderedCollectionDifferenceCalculationOptions) -> ^NS.OrderedCollectionDifference,
     differenceFromArray_: proc(self: ^NS.Array, other: ^NS.Array) -> ^NS.OrderedCollectionDifference,
     arrayByApplyingDifference: proc(self: ^NS.Array, difference: ^NS.OrderedCollectionDifference) -> ^NS.Array,
@@ -308,7 +308,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reverseObjectEnumerator"), auto_cast reverseObjectEnumerator, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.sortedArrayUsingFunction_context != nil {
-        sortedArrayUsingFunction_context :: proc "c" (self: ^NS.Array, _: SEL, comparator: proc "c" (_: id, _1: id, _2: rawptr) -> NS.Integer, _context: rawptr) -> ^NS.Array {
+        sortedArrayUsingFunction_context :: proc "c" (self: ^NS.Array, _: SEL, comparator: proc "c" ( _0: id, _1: id, _2: rawptr ) -> NS.Integer, _context: rawptr) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -318,7 +318,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sortedArrayUsingFunction:context:"), auto_cast sortedArrayUsingFunction_context, "^void@:?^void") do panic("Failed to register objC method.")
     }
     if vt.sortedArrayUsingFunction_context_hint != nil {
-        sortedArrayUsingFunction_context_hint :: proc "c" (self: ^NS.Array, _: SEL, comparator: proc "c" (_: id, _1: id, _2: rawptr) -> NS.Integer, _context: rawptr, hint: ^NS.Data) -> ^NS.Array {
+        sortedArrayUsingFunction_context_hint :: proc "c" (self: ^NS.Array, _: SEL, comparator: proc "c" ( _0: id, _1: id, _2: rawptr ) -> NS.Integer, _context: rawptr, hint: ^NS.Data) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -398,7 +398,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("objectAtIndexedSubscript:"), auto_cast objectAtIndexedSubscript, "@@:L") do panic("Failed to register objC method.")
     }
     if vt.enumerateObjectsUsingBlock != nil {
-        enumerateObjectsUsingBlock :: proc "c" (self: ^NS.Array, _: SEL, block: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool))) {
+        enumerateObjectsUsingBlock :: proc "c" (self: ^NS.Array, _: SEL, block: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -408,7 +408,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateObjectsUsingBlock:"), auto_cast enumerateObjectsUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.enumerateObjectsWithOptions != nil {
-        enumerateObjectsWithOptions :: proc "c" (self: ^NS.Array, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool))) {
+        enumerateObjectsWithOptions :: proc "c" (self: ^NS.Array, _: SEL, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -418,7 +418,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateObjectsWithOptions:usingBlock:"), auto_cast enumerateObjectsWithOptions, "v@:L?") do panic("Failed to register objC method.")
     }
     if vt.enumerateObjectsAtIndexes != nil {
-        enumerateObjectsAtIndexes :: proc "c" (self: ^NS.Array, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool))) {
+        enumerateObjectsAtIndexes :: proc "c" (self: ^NS.Array, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, block: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -428,7 +428,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateObjectsAtIndexes:options:usingBlock:"), auto_cast enumerateObjectsAtIndexes, "v@:@L?") do panic("Failed to register objC method.")
     }
     if vt.indexOfObjectPassingTest != nil {
-        indexOfObjectPassingTest :: proc "c" (self: ^NS.Array, _: SEL, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger {
+        indexOfObjectPassingTest :: proc "c" (self: ^NS.Array, _: SEL, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -438,7 +438,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfObjectPassingTest:"), auto_cast indexOfObjectPassingTest, "L@:?") do panic("Failed to register objC method.")
     }
     if vt.indexOfObjectWithOptions != nil {
-        indexOfObjectWithOptions :: proc "c" (self: ^NS.Array, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger {
+        indexOfObjectWithOptions :: proc "c" (self: ^NS.Array, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -448,7 +448,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfObjectWithOptions:passingTest:"), auto_cast indexOfObjectWithOptions, "L@:L?") do panic("Failed to register objC method.")
     }
     if vt.indexOfObjectAtIndexes != nil {
-        indexOfObjectAtIndexes :: proc "c" (self: ^NS.Array, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> NS.UInteger {
+        indexOfObjectAtIndexes :: proc "c" (self: ^NS.Array, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -458,7 +458,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfObjectAtIndexes:options:passingTest:"), auto_cast indexOfObjectAtIndexes, "L@:@L?") do panic("Failed to register objC method.")
     }
     if vt.indexesOfObjectsPassingTest != nil {
-        indexesOfObjectsPassingTest :: proc "c" (self: ^NS.Array, _: SEL, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet {
+        indexesOfObjectsPassingTest :: proc "c" (self: ^NS.Array, _: SEL, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -468,7 +468,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexesOfObjectsPassingTest:"), auto_cast indexesOfObjectsPassingTest, "@@:?") do panic("Failed to register objC method.")
     }
     if vt.indexesOfObjectsWithOptions != nil {
-        indexesOfObjectsWithOptions :: proc "c" (self: ^NS.Array, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet {
+        indexesOfObjectsWithOptions :: proc "c" (self: ^NS.Array, _: SEL, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -478,7 +478,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexesOfObjectsWithOptions:passingTest:"), auto_cast indexesOfObjectsWithOptions, "@@:L?") do panic("Failed to register objC method.")
     }
     if vt.indexesOfObjectsAtIndexes != nil {
-        indexesOfObjectsAtIndexes :: proc "c" (self: ^NS.Array, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" (obj: id, idx: NS.UInteger, stop: ^bool) -> bool)) -> ^NS.IndexSet {
+        indexesOfObjectsAtIndexes :: proc "c" (self: ^NS.Array, _: SEL, s: ^NS.IndexSet, opts: NS.EnumerationOptions, predicate: ^Objc_Block(proc "c" ( obj: id, idx: NS.UInteger, stop: ^bool ) -> bool)) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -658,7 +658,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("arrayWithContentsOfURL:error:"), auto_cast arrayWithContentsOfURL_error, "^void#:@^void") do panic("Failed to register objC method.")
     }
     if vt.differenceFromArray_withOptions_usingEquivalenceTest != nil {
-        differenceFromArray_withOptions_usingEquivalenceTest :: proc "c" (self: ^NS.Array, _: SEL, other: ^NS.Array, options: NS.OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> bool)) -> ^NS.OrderedCollectionDifference {
+        differenceFromArray_withOptions_usingEquivalenceTest :: proc "c" (self: ^NS.Array, _: SEL, other: ^NS.Array, options: NS.OrderedCollectionDifferenceCalculationOptions, block: ^Objc_Block(proc "c" ( obj1: id, obj2: id ) -> bool)) -> ^NS.OrderedCollectionDifference {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -1,0 +1,30 @@
+#+build darwin:default
+package darwodin_Foundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import Sec "../Security"
+
+
+
+///
+/// NSSpecifierTest
+///
+@(objc_class="NSSpecifierTest", objc_superclass=ScriptWhoseTest)
+SpecifierTest :: struct { using _: ScriptWhoseTest, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SpecifierTest, objc_selector="init", objc_name="init")
+    SpecifierTest_init :: proc(self: ^SpecifierTest) -> instancetype ---
+
+    @(objc_type=SpecifierTest, objc_selector="initWithCoder:", objc_name="initWithCoder")
+    SpecifierTest_initWithCoder :: proc(self: ^SpecifierTest, inCoder: ^Coder) -> instancetype ---
+
+    @(objc_type=SpecifierTest, objc_selector="initWithObjectSpecifier:comparisonOperator:testObject:", objc_name="initWithObjectSpecifier")
+    SpecifierTest_initWithObjectSpecifier :: proc(self: ^SpecifierTest, obj1: ^ScriptObjectSpecifier, compOp: TestComparisonOperation, obj2: id) -> instancetype ---
+}

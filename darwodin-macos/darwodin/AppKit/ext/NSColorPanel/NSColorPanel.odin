@@ -20,34 +20,34 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSPanel"
 
 VTable :: struct {
     super: NSPanel.VTable,
-    dragColor: proc(color: ^AK.Color, event: ^AK.Event, sourceView: ^AK.View) -> bool,
-    setPickerMask: proc(mask: AK.ColorPanelOptions),
-    setPickerMode: proc(mode: AK.ColorPanelMode),
-    setAction: proc(self: ^AK.ColorPanel, selector: SEL),
-    setTarget: proc(self: ^AK.ColorPanel, target: id),
-    attachColorList: proc(self: ^AK.ColorPanel, colorList: ^AK.ColorList),
-    detachColorList: proc(self: ^AK.ColorPanel, colorList: ^AK.ColorList),
-    sharedColorPanel: proc() -> ^AK.ColorPanel,
+    dragColor: proc(color: ^NS.Color, event: ^NS.Event, sourceView: ^NS.View) -> bool,
+    setPickerMask: proc(mask: NS.ColorPanelOptions),
+    setPickerMode: proc(mode: NS.ColorPanelMode),
+    setAction: proc(self: ^NS.ColorPanel, selector: SEL),
+    setTarget: proc(self: ^NS.ColorPanel, target: id),
+    attachColorList: proc(self: ^NS.ColorPanel, colorList: ^NS.ColorList),
+    detachColorList: proc(self: ^NS.ColorPanel, colorList: ^NS.ColorList),
+    sharedColorPanel: proc() -> ^NS.ColorPanel,
     sharedColorPanelExists: proc() -> bool,
-    accessoryView: proc(self: ^AK.ColorPanel) -> ^AK.View,
-    setAccessoryView: proc(self: ^AK.ColorPanel, accessoryView: ^AK.View),
-    isContinuous: proc(self: ^AK.ColorPanel) -> bool,
-    setContinuous: proc(self: ^AK.ColorPanel, continuous: bool),
-    showsAlpha: proc(self: ^AK.ColorPanel) -> bool,
-    setShowsAlpha: proc(self: ^AK.ColorPanel, showsAlpha: bool),
-    mode: proc(self: ^AK.ColorPanel) -> AK.ColorPanelMode,
-    setMode: proc(self: ^AK.ColorPanel, mode: AK.ColorPanelMode),
-    color: proc(self: ^AK.ColorPanel) -> ^AK.Color,
-    setColor: proc(self: ^AK.ColorPanel, color: ^AK.Color),
-    alpha: proc(self: ^AK.ColorPanel) -> CG.Float,
-    maximumLinearExposure: proc(self: ^AK.ColorPanel) -> CG.Float,
-    setMaximumLinearExposure: proc(self: ^AK.ColorPanel, maximumLinearExposure: CG.Float),
+    accessoryView: proc(self: ^NS.ColorPanel) -> ^NS.View,
+    setAccessoryView: proc(self: ^NS.ColorPanel, accessoryView: ^NS.View),
+    isContinuous: proc(self: ^NS.ColorPanel) -> bool,
+    setContinuous: proc(self: ^NS.ColorPanel, continuous: bool),
+    showsAlpha: proc(self: ^NS.ColorPanel) -> bool,
+    setShowsAlpha: proc(self: ^NS.ColorPanel, showsAlpha: bool),
+    mode: proc(self: ^NS.ColorPanel) -> NS.ColorPanelMode,
+    setMode: proc(self: ^NS.ColorPanel, mode: NS.ColorPanelMode),
+    color: proc(self: ^NS.ColorPanel) -> ^NS.Color,
+    setColor: proc(self: ^NS.ColorPanel, color: ^NS.Color),
+    alpha: proc(self: ^NS.ColorPanel) -> CG.Float,
+    maximumLinearExposure: proc(self: ^NS.ColorPanel) -> CG.Float,
+    setMaximumLinearExposure: proc(self: ^NS.ColorPanel, maximumLinearExposure: CG.Float),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -58,7 +58,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSPanel.extend(cls, &vt.super)
 
     if vt.dragColor != nil {
-        dragColor :: proc "c" (self: Class, _: SEL, color: ^AK.Color, event: ^AK.Event, sourceView: ^AK.View) -> bool {
+        dragColor :: proc "c" (self: Class, _: SEL, color: ^NS.Color, event: ^NS.Event, sourceView: ^NS.View) -> bool {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("dragColor:withEvent:fromView:"), auto_cast dragColor, "B#:@@@") do panic("Failed to register objC method.")
     }
     if vt.setPickerMask != nil {
-        setPickerMask :: proc "c" (self: Class, _: SEL, mask: AK.ColorPanelOptions) {
+        setPickerMask :: proc "c" (self: Class, _: SEL, mask: NS.ColorPanelOptions) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setPickerMask:"), auto_cast setPickerMask, "v#:L") do panic("Failed to register objC method.")
     }
     if vt.setPickerMode != nil {
-        setPickerMode :: proc "c" (self: Class, _: SEL, mode: AK.ColorPanelMode) {
+        setPickerMode :: proc "c" (self: Class, _: SEL, mode: NS.ColorPanelMode) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setPickerMode:"), auto_cast setPickerMode, "v#:l") do panic("Failed to register objC method.")
     }
     if vt.setAction != nil {
-        setAction :: proc "c" (self: ^AK.ColorPanel, _: SEL, selector: SEL) {
+        setAction :: proc "c" (self: ^NS.ColorPanel, _: SEL, selector: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAction:"), auto_cast setAction, "v@::") do panic("Failed to register objC method.")
     }
     if vt.setTarget != nil {
-        setTarget :: proc "c" (self: ^AK.ColorPanel, _: SEL, target: id) {
+        setTarget :: proc "c" (self: ^NS.ColorPanel, _: SEL, target: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTarget:"), auto_cast setTarget, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.attachColorList != nil {
-        attachColorList :: proc "c" (self: ^AK.ColorPanel, _: SEL, colorList: ^AK.ColorList) {
+        attachColorList :: proc "c" (self: ^NS.ColorPanel, _: SEL, colorList: ^NS.ColorList) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attachColorList:"), auto_cast attachColorList, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.detachColorList != nil {
-        detachColorList :: proc "c" (self: ^AK.ColorPanel, _: SEL, colorList: ^AK.ColorList) {
+        detachColorList :: proc "c" (self: ^NS.ColorPanel, _: SEL, colorList: ^NS.ColorList) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("detachColorList:"), auto_cast detachColorList, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.sharedColorPanel != nil {
-        sharedColorPanel :: proc "c" (self: Class, _: SEL) -> ^AK.ColorPanel {
+        sharedColorPanel :: proc "c" (self: Class, _: SEL) -> ^NS.ColorPanel {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sharedColorPanelExists"), auto_cast sharedColorPanelExists, "B#:") do panic("Failed to register objC method.")
     }
     if vt.accessoryView != nil {
-        accessoryView :: proc "c" (self: ^AK.ColorPanel, _: SEL) -> ^AK.View {
+        accessoryView :: proc "c" (self: ^NS.ColorPanel, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -158,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessoryView"), auto_cast accessoryView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessoryView != nil {
-        setAccessoryView :: proc "c" (self: ^AK.ColorPanel, _: SEL, accessoryView: ^AK.View) {
+        setAccessoryView :: proc "c" (self: ^NS.ColorPanel, _: SEL, accessoryView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -168,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessoryView:"), auto_cast setAccessoryView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isContinuous != nil {
-        isContinuous :: proc "c" (self: ^AK.ColorPanel, _: SEL) -> bool {
+        isContinuous :: proc "c" (self: ^NS.ColorPanel, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -178,7 +178,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isContinuous"), auto_cast isContinuous, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setContinuous != nil {
-        setContinuous :: proc "c" (self: ^AK.ColorPanel, _: SEL, continuous: bool) {
+        setContinuous :: proc "c" (self: ^NS.ColorPanel, _: SEL, continuous: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -188,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContinuous:"), auto_cast setContinuous, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.showsAlpha != nil {
-        showsAlpha :: proc "c" (self: ^AK.ColorPanel, _: SEL) -> bool {
+        showsAlpha :: proc "c" (self: ^NS.ColorPanel, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -198,7 +198,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showsAlpha"), auto_cast showsAlpha, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setShowsAlpha != nil {
-        setShowsAlpha :: proc "c" (self: ^AK.ColorPanel, _: SEL, showsAlpha: bool) {
+        setShowsAlpha :: proc "c" (self: ^NS.ColorPanel, _: SEL, showsAlpha: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -208,7 +208,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsAlpha:"), auto_cast setShowsAlpha, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.mode != nil {
-        mode :: proc "c" (self: ^AK.ColorPanel, _: SEL) -> AK.ColorPanelMode {
+        mode :: proc "c" (self: ^NS.ColorPanel, _: SEL) -> NS.ColorPanelMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -218,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mode"), auto_cast mode, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setMode != nil {
-        setMode :: proc "c" (self: ^AK.ColorPanel, _: SEL, mode: AK.ColorPanelMode) {
+        setMode :: proc "c" (self: ^NS.ColorPanel, _: SEL, mode: NS.ColorPanelMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -228,7 +228,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMode:"), auto_cast setMode, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.color != nil {
-        color :: proc "c" (self: ^AK.ColorPanel, _: SEL) -> ^AK.Color {
+        color :: proc "c" (self: ^NS.ColorPanel, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -238,7 +238,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("color"), auto_cast color, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setColor != nil {
-        setColor :: proc "c" (self: ^AK.ColorPanel, _: SEL, color: ^AK.Color) {
+        setColor :: proc "c" (self: ^NS.ColorPanel, _: SEL, color: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -248,7 +248,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setColor:"), auto_cast setColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.alpha != nil {
-        alpha :: proc "c" (self: ^AK.ColorPanel, _: SEL) -> CG.Float {
+        alpha :: proc "c" (self: ^NS.ColorPanel, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -258,7 +258,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alpha"), auto_cast alpha, "d@:") do panic("Failed to register objC method.")
     }
     if vt.maximumLinearExposure != nil {
-        maximumLinearExposure :: proc "c" (self: ^AK.ColorPanel, _: SEL) -> CG.Float {
+        maximumLinearExposure :: proc "c" (self: ^NS.ColorPanel, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -268,7 +268,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumLinearExposure"), auto_cast maximumLinearExposure, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumLinearExposure != nil {
-        setMaximumLinearExposure :: proc "c" (self: ^AK.ColorPanel, _: SEL, maximumLinearExposure: CG.Float) {
+        setMaximumLinearExposure :: proc "c" (self: ^NS.ColorPanel, _: SEL, maximumLinearExposure: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

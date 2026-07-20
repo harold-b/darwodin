@@ -72,10 +72,10 @@ foreign lib {
     Dictionary_objectForKeyedSubscript :: proc(self: ^Dictionary, key: id) -> id ---
 
     @(objc_type=Dictionary, objc_selector="enumerateKeysAndObjectsUsingBlock:", objc_name="enumerateKeysAndObjectsUsingBlock")
-    Dictionary_enumerateKeysAndObjectsUsingBlock :: proc(self: ^Dictionary, block: ^Objc_Block(proc "c" (key: id, obj: id, stop: ^bool))) ---
+    Dictionary_enumerateKeysAndObjectsUsingBlock :: proc(self: ^Dictionary, block: ^Objc_Block(proc "c" ( key: id, obj: id, stop: ^bool ))) ---
 
     @(objc_type=Dictionary, objc_selector="enumerateKeysAndObjectsWithOptions:usingBlock:", objc_name="enumerateKeysAndObjectsWithOptions")
-    Dictionary_enumerateKeysAndObjectsWithOptions :: proc(self: ^Dictionary, opts: EnumerationOptions, block: ^Objc_Block(proc "c" (key: id, obj: id, stop: ^bool))) ---
+    Dictionary_enumerateKeysAndObjectsWithOptions :: proc(self: ^Dictionary, opts: EnumerationOptions, block: ^Objc_Block(proc "c" ( key: id, obj: id, stop: ^bool ))) ---
 
     @(objc_type=Dictionary, objc_selector="keysSortedByValueUsingComparator:", objc_name="keysSortedByValueUsingComparator")
     Dictionary_keysSortedByValueUsingComparator :: proc(self: ^Dictionary, cmptr: Comparator) -> ^Array ---
@@ -84,10 +84,10 @@ foreign lib {
     Dictionary_keysSortedByValueWithOptions :: proc(self: ^Dictionary, opts: SortOptions, cmptr: Comparator) -> ^Array ---
 
     @(objc_type=Dictionary, objc_selector="keysOfEntriesPassingTest:", objc_name="keysOfEntriesPassingTest")
-    Dictionary_keysOfEntriesPassingTest :: proc(self: ^Dictionary, predicate: ^Objc_Block(proc "c" (key: id, obj: id, stop: ^bool) -> bool)) -> ^Set ---
+    Dictionary_keysOfEntriesPassingTest :: proc(self: ^Dictionary, predicate: ^Objc_Block(proc "c" ( key: id, obj: id, stop: ^bool ) -> bool)) -> ^Set ---
 
     @(objc_type=Dictionary, objc_selector="keysOfEntriesWithOptions:passingTest:", objc_name="keysOfEntriesWithOptions")
-    Dictionary_keysOfEntriesWithOptions :: proc(self: ^Dictionary, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" (key: id, obj: id, stop: ^bool) -> bool)) -> ^Set ---
+    Dictionary_keysOfEntriesWithOptions :: proc(self: ^Dictionary, opts: EnumerationOptions, predicate: ^Objc_Block(proc "c" ( key: id, obj: id, stop: ^bool ) -> bool)) -> ^Set ---
 
     @(objc_type=Dictionary, objc_selector="allKeys", objc_name="allKeys")
     Dictionary_allKeys :: proc(self: ^Dictionary) -> ^Array ---

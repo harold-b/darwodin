@@ -10,18 +10,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CALayer
-///
 @(objc_class="CALayer", objc_superclass=NS.Object)
 Layer :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: MediaTiming,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Layer, objc_selector="layer", objc_name="layer", objc_is_class_method=true)
     Layer_layer :: proc() -> instancetype ---
@@ -530,4 +524,6 @@ foreign lib {
     @(objc_type=Layer, objc_selector="visibleRect", objc_name="visibleRect")
     Layer_visibleRect :: proc(self: ^Layer) -> CG.Rect ---
 }
+
+
 

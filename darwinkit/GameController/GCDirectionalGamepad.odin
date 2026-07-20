@@ -8,13 +8,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCDirectionalGamepad
-///
 @(objc_class="GCDirectionalGamepad", objc_superclass=MicroGamepad)
 DirectionalGamepad :: struct { using _: MicroGamepad, }
 
-@(default_calling_convention="c")
-foreign lib {}

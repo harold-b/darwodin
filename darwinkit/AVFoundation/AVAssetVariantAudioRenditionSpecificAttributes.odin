@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetVariantAudioRenditionSpecificAttributes
-///
 @(objc_class="AVAssetVariantAudioRenditionSpecificAttributes", objc_superclass=NS.Object)
 AssetVariantAudioRenditionSpecificAttributes :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetVariantAudioRenditionSpecificAttributes, objc_selector="channelCount", objc_name="channelCount")
     AssetVariantAudioRenditionSpecificAttributes_channelCount :: proc(self: ^AssetVariantAudioRenditionSpecificAttributes) -> NS.Integer ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=AssetVariantAudioRenditionSpecificAttributes, objc_selector="isDownmix", objc_name="isDownmix")
     AssetVariantAudioRenditionSpecificAttributes_isDownmix :: proc(self: ^AssetVariantAudioRenditionSpecificAttributes) -> bool ---
 }
+
+
+

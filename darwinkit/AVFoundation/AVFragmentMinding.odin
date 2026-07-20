@@ -12,16 +12,13 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVFragmentMinding
-///
 @(objc_class="AVFragmentMinding")
 FragmentMinding :: struct { using _: intrinsics.objc_object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FragmentMinding, objc_selector="isAssociatedWithFragmentMinder", objc_name="isAssociatedWithFragmentMinder")
     FragmentMinding_isAssociatedWithFragmentMinder :: proc(self: ^FragmentMinding) -> bool ---
 }
+
+
+

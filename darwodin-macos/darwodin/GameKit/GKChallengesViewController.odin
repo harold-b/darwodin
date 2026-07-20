@@ -4,16 +4,15 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
 ///
 /// GKChallengesViewController
 ///
-@(objc_class="GKChallengesViewController", objc_superclass=AK.ViewController)
-ChallengesViewController :: struct { using _: AK.ViewController, 
+@(objc_class="GKChallengesViewController", objc_superclass=NS.ViewController)
+ChallengesViewController :: struct { using _: NS.ViewController, 
     using _: ViewController,
 }
 

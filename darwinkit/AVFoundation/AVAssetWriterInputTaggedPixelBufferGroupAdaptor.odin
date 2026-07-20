@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetWriterInputTaggedPixelBufferGroupAdaptor
-///
 @(objc_class="AVAssetWriterInputTaggedPixelBufferGroupAdaptor", objc_superclass=NS.Object)
 AssetWriterInputTaggedPixelBufferGroupAdaptor :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="init", objc_name="init")
     AssetWriterInputTaggedPixelBufferGroupAdaptor_init :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=AssetWriterInputTaggedPixelBufferGroupAdaptor, objc_selector="pixelBufferPool", objc_name="pixelBufferPool")
     AssetWriterInputTaggedPixelBufferGroupAdaptor_pixelBufferPool :: proc(self: ^AssetWriterInputTaggedPixelBufferGroupAdaptor) -> CVPixelBufferPoolRef ---
 }
+
+
+

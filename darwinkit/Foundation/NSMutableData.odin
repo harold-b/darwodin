@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableData
-///
 @(objc_class="NSMutableData", objc_superclass=Data)
 MutableData :: struct { using _: Data, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableData, objc_selector="mutableBytes", objc_name="mutableBytes")
     MutableData_mutableBytes :: proc(self: ^MutableData) -> rawptr ---
@@ -67,6 +61,8 @@ foreign lib {
     @(objc_type=MutableData, objc_selector="compressUsingAlgorithm:error:", objc_name="compressUsingAlgorithm")
     MutableData_compressUsingAlgorithm :: proc(self: ^MutableData, algorithm: DataCompressionAlgorithm, error: ^^Error) -> bool ---
 }
+
+
 
 @(objc_type=MutableData, objc_name="replaceBytesInRange")
 MutableData_replaceBytesInRange :: proc {

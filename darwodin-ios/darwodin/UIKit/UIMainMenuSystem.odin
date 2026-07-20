@@ -21,7 +21,7 @@ MainMenuSystem :: struct { using _: MenuSystem, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=MainMenuSystem, objc_selector="setBuildConfiguration:buildHandler:", objc_name="setBuildConfiguration")
-    MainMenuSystem_setBuildConfiguration :: proc(self: ^MainMenuSystem, configuration: ^MainMenuSystemConfiguration, buildHandler: ^Objc_Block(proc "c" (builder: ^MenuBuilder))) ---
+    MainMenuSystem_setBuildConfiguration :: proc(self: ^MainMenuSystem, configuration: ^MainMenuSystemConfiguration, buildHandler: ^Objc_Block(proc "c" ( builder: ^MenuBuilder ))) ---
 
     @(objc_type=MainMenuSystem, objc_selector="sharedSystem", objc_name="sharedSystem", objc_is_class_method=true)
     MainMenuSystem_sharedSystem :: proc() -> ^MainMenuSystem ---

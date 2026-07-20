@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4CompilerTask
-///
 @(objc_class="MTL4CompilerTask")
 MTL4CompilerTask :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4CompilerTask, objc_selector="waitUntilCompleted", objc_name="waitUntilCompleted")
     MTL4CompilerTask_waitUntilCompleted :: proc(self: ^MTL4CompilerTask) ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=MTL4CompilerTask, objc_selector="status", objc_name="status")
     MTL4CompilerTask_status :: proc(self: ^MTL4CompilerTask) -> MTL4CompilerTaskStatus ---
 }
+
+
+

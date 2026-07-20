@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSXPCInterface
-///
 @(objc_class="NSXPCInterface", objc_superclass=Object)
 XPCInterface :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=XPCInterface, objc_selector="interfaceWithProtocol:", objc_name="interfaceWithProtocol", objc_is_class_method=true)
     XPCInterface_interfaceWithProtocol :: proc(protocol: ^Protocol) -> ^XPCInterface ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=XPCInterface, objc_selector="setProtocol:", objc_name="setProtocol")
     XPCInterface_setProtocol :: proc(self: ^XPCInterface, protocol: ^Protocol) ---
 }
+
+
+

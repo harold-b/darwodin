@@ -26,16 +26,16 @@ foreign lib {
     SyncEngine_new :: proc() -> ^SyncEngine ---
 
     @(objc_type=SyncEngine, objc_selector="fetchChangesWithCompletionHandler:", objc_name="fetchChangesWithCompletionHandler")
-    SyncEngine_fetchChangesWithCompletionHandler :: proc(self: ^SyncEngine, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    SyncEngine_fetchChangesWithCompletionHandler :: proc(self: ^SyncEngine, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=SyncEngine, objc_selector="fetchChangesWithOptions:completionHandler:", objc_name="fetchChangesWithOptions")
-    SyncEngine_fetchChangesWithOptions :: proc(self: ^SyncEngine, options: ^SyncEngineFetchChangesOptions, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    SyncEngine_fetchChangesWithOptions :: proc(self: ^SyncEngine, options: ^SyncEngineFetchChangesOptions, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=SyncEngine, objc_selector="sendChangesWithCompletionHandler:", objc_name="sendChangesWithCompletionHandler")
-    SyncEngine_sendChangesWithCompletionHandler :: proc(self: ^SyncEngine, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    SyncEngine_sendChangesWithCompletionHandler :: proc(self: ^SyncEngine, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=SyncEngine, objc_selector="sendChangesWithOptions:completionHandler:", objc_name="sendChangesWithOptions")
-    SyncEngine_sendChangesWithOptions :: proc(self: ^SyncEngine, options: ^SyncEngineSendChangesOptions, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    SyncEngine_sendChangesWithOptions :: proc(self: ^SyncEngine, options: ^SyncEngineSendChangesOptions, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=SyncEngine, objc_selector="cancelOperationsWithCompletionHandler:", objc_name="cancelOperationsWithCompletionHandler")
     SyncEngine_cancelOperationsWithCompletionHandler :: proc(self: ^SyncEngine, completionHandler: ^Objc_Block(proc "c" ())) ---

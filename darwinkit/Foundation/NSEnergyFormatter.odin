@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSEnergyFormatter
-///
 @(objc_class="NSEnergyFormatter", objc_superclass=Formatter)
 EnergyFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=EnergyFormatter, objc_selector="stringFromValue:unit:", objc_name="stringFromValue")
     EnergyFormatter_stringFromValue :: proc(self: ^EnergyFormatter, value: cffi.double, unit: EnergyFormatterUnit) -> ^String ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=EnergyFormatter, objc_selector="setForFoodEnergyUse:", objc_name="setForFoodEnergyUse")
     EnergyFormatter_setForFoodEnergyUse :: proc(self: ^EnergyFormatter, forFoodEnergyUse: bool) ---
 }
+
+
+

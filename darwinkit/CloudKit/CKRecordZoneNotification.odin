@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKRecordZoneNotification
-///
 @(objc_class="CKRecordZoneNotification", objc_superclass=Notification)
 RecordZoneNotification :: struct { using _: Notification, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RecordZoneNotification, objc_selector="recordZoneID", objc_name="recordZoneID")
     RecordZoneNotification_recordZoneID :: proc(self: ^RecordZoneNotification) -> ^RecordZoneID ---
@@ -23,3 +17,6 @@ foreign lib {
     @(objc_type=RecordZoneNotification, objc_selector="databaseScope", objc_name="databaseScope")
     RecordZoneNotification_databaseScope :: proc(self: ^RecordZoneNotification) -> DatabaseScope ---
 }
+
+
+

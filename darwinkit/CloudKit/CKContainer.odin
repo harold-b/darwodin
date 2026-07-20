@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKContainer
-///
 @(objc_class="CKContainer", objc_superclass=NS.Object)
 Container :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Container, objc_selector="init", objc_name="init")
     Container_init :: proc(self: ^Container) -> instancetype ---
@@ -48,7 +42,7 @@ foreign lib {
     Container_sharedCloudDatabase :: proc(self: ^Container) -> ^Database ---
 
     @(objc_type=Container, objc_selector="accountStatusWithCompletionHandler:", objc_name="accountStatusWithCompletionHandler")
-    Container_accountStatusWithCompletionHandler :: proc(self: ^Container, completionHandler: ^Objc_Block(proc "c" (accountStatus: AccountStatus, error: ^NS.Error))) ---
+    Container_accountStatusWithCompletionHandler :: proc(self: ^Container, completionHandler: ^Objc_Block(proc "c" ( accountStatus: AccountStatus, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="statusForApplicationPermission:completionHandler:", objc_name="statusForApplicationPermission")
     Container_statusForApplicationPermission :: proc(self: ^Container, applicationPermission: ApplicationPermissions, completionHandler: ApplicationPermissionBlock) ---
@@ -57,38 +51,41 @@ foreign lib {
     Container_requestApplicationPermission :: proc(self: ^Container, applicationPermission: ApplicationPermissions, completionHandler: ApplicationPermissionBlock) ---
 
     @(objc_type=Container, objc_selector="fetchUserRecordIDWithCompletionHandler:", objc_name="fetchUserRecordIDWithCompletionHandler")
-    Container_fetchUserRecordIDWithCompletionHandler :: proc(self: ^Container, completionHandler: ^Objc_Block(proc "c" (recordID: ^RecordID, error: ^NS.Error))) ---
+    Container_fetchUserRecordIDWithCompletionHandler :: proc(self: ^Container, completionHandler: ^Objc_Block(proc "c" ( recordID: ^RecordID, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="discoverAllIdentitiesWithCompletionHandler:", objc_name="discoverAllIdentitiesWithCompletionHandler")
-    Container_discoverAllIdentitiesWithCompletionHandler :: proc(self: ^Container, completionHandler: ^Objc_Block(proc "c" (userIdentities: ^NS.Array, error: ^NS.Error))) ---
+    Container_discoverAllIdentitiesWithCompletionHandler :: proc(self: ^Container, completionHandler: ^Objc_Block(proc "c" ( userIdentities: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="discoverUserIdentityWithEmailAddress:completionHandler:", objc_name="discoverUserIdentityWithEmailAddress")
-    Container_discoverUserIdentityWithEmailAddress :: proc(self: ^Container, email: ^NS.String, completionHandler: ^Objc_Block(proc "c" (userInfo: ^UserIdentity, error: ^NS.Error))) ---
+    Container_discoverUserIdentityWithEmailAddress :: proc(self: ^Container, email: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( userInfo: ^UserIdentity, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="discoverUserIdentityWithPhoneNumber:completionHandler:", objc_name="discoverUserIdentityWithPhoneNumber")
-    Container_discoverUserIdentityWithPhoneNumber :: proc(self: ^Container, phoneNumber: ^NS.String, completionHandler: ^Objc_Block(proc "c" (userInfo: ^UserIdentity, error: ^NS.Error))) ---
+    Container_discoverUserIdentityWithPhoneNumber :: proc(self: ^Container, phoneNumber: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( userInfo: ^UserIdentity, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="discoverUserIdentityWithUserRecordID:completionHandler:", objc_name="discoverUserIdentityWithUserRecordID")
-    Container_discoverUserIdentityWithUserRecordID :: proc(self: ^Container, userRecordID: ^RecordID, completionHandler: ^Objc_Block(proc "c" (userInfo: ^UserIdentity, error: ^NS.Error))) ---
+    Container_discoverUserIdentityWithUserRecordID :: proc(self: ^Container, userRecordID: ^RecordID, completionHandler: ^Objc_Block(proc "c" ( userInfo: ^UserIdentity, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="fetchShareParticipantWithEmailAddress:completionHandler:", objc_name="fetchShareParticipantWithEmailAddress")
-    Container_fetchShareParticipantWithEmailAddress :: proc(self: ^Container, emailAddress: ^NS.String, completionHandler: ^Objc_Block(proc "c" (shareParticipant: ^ShareParticipant, error: ^NS.Error))) ---
+    Container_fetchShareParticipantWithEmailAddress :: proc(self: ^Container, emailAddress: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( shareParticipant: ^ShareParticipant, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="fetchShareParticipantWithPhoneNumber:completionHandler:", objc_name="fetchShareParticipantWithPhoneNumber")
-    Container_fetchShareParticipantWithPhoneNumber :: proc(self: ^Container, phoneNumber: ^NS.String, completionHandler: ^Objc_Block(proc "c" (shareParticipant: ^ShareParticipant, error: ^NS.Error))) ---
+    Container_fetchShareParticipantWithPhoneNumber :: proc(self: ^Container, phoneNumber: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( shareParticipant: ^ShareParticipant, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="fetchShareParticipantWithUserRecordID:completionHandler:", objc_name="fetchShareParticipantWithUserRecordID")
-    Container_fetchShareParticipantWithUserRecordID :: proc(self: ^Container, userRecordID: ^RecordID, completionHandler: ^Objc_Block(proc "c" (shareParticipant: ^ShareParticipant, error: ^NS.Error))) ---
+    Container_fetchShareParticipantWithUserRecordID :: proc(self: ^Container, userRecordID: ^RecordID, completionHandler: ^Objc_Block(proc "c" ( shareParticipant: ^ShareParticipant, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="fetchShareMetadataWithURL:completionHandler:", objc_name="fetchShareMetadataWithURL")
-    Container_fetchShareMetadataWithURL :: proc(self: ^Container, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (metadata: ^ShareMetadata, error: ^NS.Error))) ---
+    Container_fetchShareMetadataWithURL :: proc(self: ^Container, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( metadata: ^ShareMetadata, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="acceptShareMetadata:completionHandler:", objc_name="acceptShareMetadata")
-    Container_acceptShareMetadata :: proc(self: ^Container, metadata: ^ShareMetadata, completionHandler: ^Objc_Block(proc "c" (acceptedShare: ^Share, error: ^NS.Error))) ---
+    Container_acceptShareMetadata :: proc(self: ^Container, metadata: ^ShareMetadata, completionHandler: ^Objc_Block(proc "c" ( acceptedShare: ^Share, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="fetchAllLongLivedOperationIDsWithCompletionHandler:", objc_name="fetchAllLongLivedOperationIDsWithCompletionHandler")
-    Container_fetchAllLongLivedOperationIDsWithCompletionHandler :: proc(self: ^Container, completionHandler: ^Objc_Block(proc "c" (outstandingOperationIDs: ^NS.Array, error: ^NS.Error))) ---
+    Container_fetchAllLongLivedOperationIDsWithCompletionHandler :: proc(self: ^Container, completionHandler: ^Objc_Block(proc "c" ( outstandingOperationIDs: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Container, objc_selector="fetchLongLivedOperationWithID:completionHandler:", objc_name="fetchLongLivedOperationWithID")
-    Container_fetchLongLivedOperationWithID :: proc(self: ^Container, operationID: ^NS.String, completionHandler: ^Objc_Block(proc "c" (outstandingOperation: ^Operation, error: ^NS.Error))) ---
+    Container_fetchLongLivedOperationWithID :: proc(self: ^Container, operationID: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( outstandingOperation: ^Operation, error: ^NS.Error ))) ---
 }
+
+
+

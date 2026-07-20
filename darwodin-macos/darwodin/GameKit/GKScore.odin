@@ -4,8 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
@@ -27,7 +26,7 @@ foreign lib {
     Score_initWithLeaderboardIdentifier_player :: proc(self: ^Score, identifier: ^NS.String, player: ^Player) -> instancetype ---
 
     @(objc_type=Score, objc_selector="reportScores:withCompletionHandler:", objc_name="reportScores_withCompletionHandler", objc_is_class_method=true)
-    Score_reportScores_withCompletionHandler :: proc(scores: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Score_reportScores_withCompletionHandler :: proc(scores: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Score, objc_selector="value", objc_name="value")
     Score_value :: proc(self: ^Score) -> cffi.int64_t ---
@@ -66,7 +65,7 @@ foreign lib {
     Score_setShouldSetDefaultLeaderboard :: proc(self: ^Score, shouldSetDefaultLeaderboard: bool) ---
 
     @(objc_type=Score, objc_selector="reportScoreWithCompletionHandler:", objc_name="reportScoreWithCompletionHandler")
-    Score_reportScoreWithCompletionHandler :: proc(self: ^Score, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Score_reportScoreWithCompletionHandler :: proc(self: ^Score, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Score, objc_selector="initWithCategory:", objc_name="initWithCategory")
     Score_initWithCategory :: proc(self: ^Score, category: ^NS.String) -> instancetype ---
@@ -84,22 +83,22 @@ foreign lib {
     Score_playerID :: proc(self: ^Score) -> ^NS.String ---
 
     @(objc_type=Score, objc_selector="reportScores:withEligibleChallenges:withCompletionHandler:", objc_name="reportScores_withEligibleChallenges_withCompletionHandler", objc_is_class_method=true)
-    Score_reportScores_withEligibleChallenges_withCompletionHandler :: proc(scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Score_reportScores_withEligibleChallenges_withCompletionHandler :: proc(scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Score, objc_selector="reportLeaderboardScores:withEligibleChallenges:withCompletionHandler:", objc_name="reportLeaderboardScores", objc_is_class_method=true)
-    Score_reportLeaderboardScores :: proc(scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Score_reportLeaderboardScores :: proc(scores: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Score, objc_selector="issueChallengeToPlayers:message:", objc_name="issueChallengeToPlayers")
     Score_issueChallengeToPlayers :: proc(self: ^Score, playerIDs: ^NS.Array, message: ^NS.String) ---
 
     @(objc_type=Score, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
-    Score_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^Score, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^AK.ViewController ---
+    Score_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^Score, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^NS.ViewController ---
 
     @(objc_type=Score, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
-    Score_challengeComposeControllerWithMessage_players_completion :: proc(self: ^Score, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^AK.ViewController ---
+    Score_challengeComposeControllerWithMessage_players_completion :: proc(self: ^Score, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^NS.ViewController ---
 
     @(objc_type=Score, objc_selector="challengeComposeControllerWithPlayers:message:completionHandler:", objc_name="challengeComposeControllerWithPlayers")
-    Score_challengeComposeControllerWithPlayers :: proc(self: ^Score, playerIDs: ^NS.Array, message: ^NS.String, completionHandler: ChallengeComposeCompletionBlock) -> ^AK.ViewController ---
+    Score_challengeComposeControllerWithPlayers :: proc(self: ^Score, playerIDs: ^NS.Array, message: ^NS.String, completionHandler: ChallengeComposeCompletionBlock) -> ^NS.ViewController ---
 }
 
 @(objc_type=Score, objc_name="initWithLeaderboardIdentifier")

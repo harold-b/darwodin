@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLFunctionHandle
-///
 @(objc_class="MTLFunctionHandle")
 FunctionHandle :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FunctionHandle, objc_selector="functionType", objc_name="functionType")
     FunctionHandle_functionType :: proc(self: ^FunctionHandle) -> FunctionType ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=FunctionHandle, objc_selector="gpuResourceID", objc_name="gpuResourceID")
     FunctionHandle_gpuResourceID :: proc(self: ^FunctionHandle) -> ResourceID ---
 }
+
+
+

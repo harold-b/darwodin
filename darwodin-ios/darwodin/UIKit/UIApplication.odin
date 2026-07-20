@@ -33,7 +33,7 @@ foreign lib {
     Application_canOpenURL :: proc(self: ^Application, url: ^NS.URL) -> bool ---
 
     @(objc_type=Application, objc_selector="openURL:options:completionHandler:", objc_name="openURL_options_completionHandler")
-    Application_openURL_options_completionHandler :: proc(self: ^Application, url: ^NS.URL, options: ^NS.Dictionary, completion: ^Objc_Block(proc "c" (success: bool))) ---
+    Application_openURL_options_completionHandler :: proc(self: ^Application, url: ^NS.URL, options: ^NS.Dictionary, completion: ^Objc_Block(proc "c" ( success: bool ))) ---
 
     @(objc_type=Application, objc_selector="sendEvent:", objc_name="sendEvent")
     Application_sendEvent :: proc(self: ^Application, event: ^Event) ---
@@ -57,13 +57,13 @@ foreign lib {
     Application_setMinimumBackgroundFetchInterval :: proc(self: ^Application, minimumBackgroundFetchInterval: NS.TimeInterval) ---
 
     @(objc_type=Application, objc_selector="activateSceneSessionForRequest:errorHandler:", objc_name="activateSceneSessionForRequest")
-    Application_activateSceneSessionForRequest :: proc(self: ^Application, request: ^SceneSessionActivationRequest, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Application_activateSceneSessionForRequest :: proc(self: ^Application, request: ^SceneSessionActivationRequest, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Application, objc_selector="requestSceneSessionActivation:userActivity:options:errorHandler:", objc_name="requestSceneSessionActivation")
-    Application_requestSceneSessionActivation :: proc(self: ^Application, sceneSession: ^SceneSession, userActivity: ^NS.UserActivity, options: ^SceneActivationRequestOptions, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Application_requestSceneSessionActivation :: proc(self: ^Application, sceneSession: ^SceneSession, userActivity: ^NS.UserActivity, options: ^SceneActivationRequestOptions, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Application, objc_selector="requestSceneSessionDestruction:options:errorHandler:", objc_name="requestSceneSessionDestruction")
-    Application_requestSceneSessionDestruction :: proc(self: ^Application, sceneSession: ^SceneSession, options: ^SceneDestructionRequestOptions, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Application_requestSceneSessionDestruction :: proc(self: ^Application, sceneSession: ^SceneSession, options: ^SceneDestructionRequestOptions, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Application, objc_selector="requestSceneSessionRefresh:", objc_name="requestSceneSessionRefresh")
     Application_requestSceneSessionRefresh :: proc(self: ^Application, sceneSession: ^SceneSession) ---
@@ -207,7 +207,7 @@ foreign lib {
     Application_setShortcutItems :: proc(self: ^Application, shortcutItems: ^NS.Array) ---
 
     @(objc_type=Application, objc_selector="setAlternateIconName:completionHandler:", objc_name="setAlternateIconName")
-    Application_setAlternateIconName :: proc(self: ^Application, alternateIconName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Application_setAlternateIconName :: proc(self: ^Application, alternateIconName: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Application, objc_selector="supportsAlternateIcons", objc_name="supportsAlternateIcons")
     Application_supportsAlternateIcons :: proc(self: ^Application) -> bool ---

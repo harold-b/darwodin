@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSToolbarItem"
 
 VTable :: struct {
     super: NSToolbarItem.VTable,
-    delegate: proc(self: ^AK.SharingServicePickerToolbarItem) -> ^AK.SharingServicePickerToolbarItemDelegate,
-    setDelegate: proc(self: ^AK.SharingServicePickerToolbarItem, delegate: ^AK.SharingServicePickerToolbarItemDelegate),
+    delegate: proc(self: ^NS.SharingServicePickerToolbarItem) -> ^NS.SharingServicePickerToolbarItemDelegate,
+    setDelegate: proc(self: ^NS.SharingServicePickerToolbarItem, delegate: ^NS.SharingServicePickerToolbarItemDelegate),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSToolbarItem.extend(cls, &vt.super)
 
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.SharingServicePickerToolbarItem, _: SEL) -> ^AK.SharingServicePickerToolbarItemDelegate {
+        delegate :: proc "c" (self: ^NS.SharingServicePickerToolbarItem, _: SEL) -> ^NS.SharingServicePickerToolbarItemDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.SharingServicePickerToolbarItem, _: SEL, delegate: ^AK.SharingServicePickerToolbarItemDelegate) {
+        setDelegate :: proc "c" (self: ^NS.SharingServicePickerToolbarItem, _: SEL, delegate: ^NS.SharingServicePickerToolbarItemDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

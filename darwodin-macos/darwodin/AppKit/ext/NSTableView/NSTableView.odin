@@ -20,171 +20,171 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    initWithFrame: proc(self: ^AK.TableView, frameRect: NS.Rect) -> instancetype,
-    initWithCoder: proc(self: ^AK.TableView, coder: ^NS.Coder) -> instancetype,
-    noteHeightOfRowsWithIndexesChanged: proc(self: ^AK.TableView, indexSet: ^NS.IndexSet),
-    addTableColumn: proc(self: ^AK.TableView, tableColumn: ^AK.TableColumn),
-    removeTableColumn: proc(self: ^AK.TableView, tableColumn: ^AK.TableColumn),
-    moveColumn: proc(self: ^AK.TableView, oldIndex: NS.Integer, newIndex: NS.Integer),
-    columnWithIdentifier: proc(self: ^AK.TableView, identifier: ^NS.String) -> NS.Integer,
-    tableColumnWithIdentifier: proc(self: ^AK.TableView, identifier: ^NS.String) -> ^AK.TableColumn,
-    tile: proc(self: ^AK.TableView),
-    sizeToFit: proc(self: ^AK.TableView),
-    sizeLastColumnToFit: proc(self: ^AK.TableView),
-    scrollRowToVisible: proc(self: ^AK.TableView, row: NS.Integer),
-    scrollColumnToVisible: proc(self: ^AK.TableView, column: NS.Integer),
-    reloadData: proc(self: ^AK.TableView),
-    noteNumberOfRowsChanged: proc(self: ^AK.TableView),
-    reloadDataForRowIndexes: proc(self: ^AK.TableView, rowIndexes: ^NS.IndexSet, columnIndexes: ^NS.IndexSet),
-    setIndicatorImage: proc(self: ^AK.TableView, image: ^AK.Image, tableColumn: ^AK.TableColumn),
-    indicatorImageInTableColumn: proc(self: ^AK.TableView, tableColumn: ^AK.TableColumn) -> ^AK.Image,
-    canDragRowsWithIndexes: proc(self: ^AK.TableView, rowIndexes: ^NS.IndexSet, mouseDownPoint: CG.Point) -> bool,
-    dragImageForRowsWithIndexes: proc(self: ^AK.TableView, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image,
-    setDraggingSourceOperationMask: proc(self: ^AK.TableView, mask: AK.DragOperation, isLocal: bool),
-    setDropRow: proc(self: ^AK.TableView, row: NS.Integer, dropOperation: AK.TableViewDropOperation),
-    selectAll: proc(self: ^AK.TableView, sender: id),
-    deselectAll: proc(self: ^AK.TableView, sender: id),
-    selectColumnIndexes: proc(self: ^AK.TableView, indexes: ^NS.IndexSet, extend: bool),
-    selectRowIndexes: proc(self: ^AK.TableView, indexes: ^NS.IndexSet, extend: bool),
-    deselectColumn: proc(self: ^AK.TableView, column: NS.Integer),
-    deselectRow: proc(self: ^AK.TableView, row: NS.Integer),
-    isColumnSelected: proc(self: ^AK.TableView, column: NS.Integer) -> bool,
-    isRowSelected: proc(self: ^AK.TableView, row: NS.Integer) -> bool,
-    rectOfColumn: proc(self: ^AK.TableView, column: NS.Integer) -> NS.Rect,
-    rectOfRow: proc(self: ^AK.TableView, row: NS.Integer) -> NS.Rect,
-    columnIndexesInRect: proc(self: ^AK.TableView, rect: NS.Rect) -> ^NS.IndexSet,
-    rowsInRect: proc(self: ^AK.TableView, rect: NS.Rect) -> NS._NSRange,
-    columnAtPoint: proc(self: ^AK.TableView, point: CG.Point) -> NS.Integer,
-    rowAtPoint: proc(self: ^AK.TableView, point: CG.Point) -> NS.Integer,
-    frameOfCellAtColumn: proc(self: ^AK.TableView, column: NS.Integer, row: NS.Integer) -> NS.Rect,
-    editColumn: proc(self: ^AK.TableView, column: NS.Integer, row: NS.Integer, event: ^AK.Event, select: bool),
-    drawRow: proc(self: ^AK.TableView, row: NS.Integer, clipRect: NS.Rect),
-    highlightSelectionInClipRect: proc(self: ^AK.TableView, clipRect: NS.Rect),
-    drawGridInClipRect: proc(self: ^AK.TableView, clipRect: NS.Rect),
-    drawBackgroundInClipRect: proc(self: ^AK.TableView, clipRect: NS.Rect),
-    viewAtColumn: proc(self: ^AK.TableView, column: NS.Integer, row: NS.Integer, makeIfNecessary: bool) -> ^AK.View,
-    rowViewAtRow: proc(self: ^AK.TableView, row: NS.Integer, makeIfNecessary: bool) -> ^AK.TableRowView,
-    rowForView: proc(self: ^AK.TableView, view: ^AK.View) -> NS.Integer,
-    columnForView: proc(self: ^AK.TableView, view: ^AK.View) -> NS.Integer,
-    makeViewWithIdentifier: proc(self: ^AK.TableView, identifier: ^NS.String, owner: id) -> ^AK.View,
-    enumerateAvailableRowViewsUsingBlock: proc(self: ^AK.TableView, handler: ^Objc_Block(proc "c" (rowView: ^AK.TableRowView, row: NS.Integer))),
-    beginUpdates: proc(self: ^AK.TableView),
-    endUpdates: proc(self: ^AK.TableView),
-    insertRowsAtIndexes: proc(self: ^AK.TableView, indexes: ^NS.IndexSet, animationOptions: AK.TableViewAnimationOptions),
-    removeRowsAtIndexes: proc(self: ^AK.TableView, indexes: ^NS.IndexSet, animationOptions: AK.TableViewAnimationOptions),
-    moveRowAtIndex: proc(self: ^AK.TableView, oldIndex: NS.Integer, newIndex: NS.Integer),
-    hideRowsAtIndexes: proc(self: ^AK.TableView, indexes: ^NS.IndexSet, rowAnimation: AK.TableViewAnimationOptions),
-    unhideRowsAtIndexes: proc(self: ^AK.TableView, indexes: ^NS.IndexSet, rowAnimation: AK.TableViewAnimationOptions),
-    registerNib: proc(self: ^AK.TableView, nib: ^AK.Nib, identifier: ^NS.String),
-    didAddRowView: proc(self: ^AK.TableView, rowView: ^AK.TableRowView, row: NS.Integer),
-    didRemoveRowView: proc(self: ^AK.TableView, rowView: ^AK.TableRowView, row: NS.Integer),
-    dataSource: proc(self: ^AK.TableView) -> ^AK.TableViewDataSource,
-    setDataSource: proc(self: ^AK.TableView, dataSource: ^AK.TableViewDataSource),
-    delegate: proc(self: ^AK.TableView) -> ^AK.TableViewDelegate,
-    setDelegate: proc(self: ^AK.TableView, delegate: ^AK.TableViewDelegate),
-    headerView: proc(self: ^AK.TableView) -> ^AK.TableHeaderView,
-    setHeaderView: proc(self: ^AK.TableView, headerView: ^AK.TableHeaderView),
-    cornerView: proc(self: ^AK.TableView) -> ^AK.View,
-    setCornerView: proc(self: ^AK.TableView, cornerView: ^AK.View),
-    allowsColumnReordering: proc(self: ^AK.TableView) -> bool,
-    setAllowsColumnReordering: proc(self: ^AK.TableView, allowsColumnReordering: bool),
-    allowsColumnResizing: proc(self: ^AK.TableView) -> bool,
-    setAllowsColumnResizing: proc(self: ^AK.TableView, allowsColumnResizing: bool),
-    columnAutoresizingStyle: proc(self: ^AK.TableView) -> AK.TableViewColumnAutoresizingStyle,
-    setColumnAutoresizingStyle: proc(self: ^AK.TableView, columnAutoresizingStyle: AK.TableViewColumnAutoresizingStyle),
-    gridStyleMask: proc(self: ^AK.TableView) -> AK.TableViewGridLineStyle,
-    setGridStyleMask: proc(self: ^AK.TableView, gridStyleMask: AK.TableViewGridLineStyle),
-    intercellSpacing: proc(self: ^AK.TableView) -> NS.Size,
-    setIntercellSpacing: proc(self: ^AK.TableView, intercellSpacing: NS.Size),
-    usesAlternatingRowBackgroundColors: proc(self: ^AK.TableView) -> bool,
-    setUsesAlternatingRowBackgroundColors: proc(self: ^AK.TableView, usesAlternatingRowBackgroundColors: bool),
-    backgroundColor: proc(self: ^AK.TableView) -> ^AK.Color,
-    setBackgroundColor: proc(self: ^AK.TableView, backgroundColor: ^AK.Color),
-    gridColor: proc(self: ^AK.TableView) -> ^AK.Color,
-    setGridColor: proc(self: ^AK.TableView, gridColor: ^AK.Color),
-    rowSizeStyle: proc(self: ^AK.TableView) -> AK.TableViewRowSizeStyle,
-    setRowSizeStyle: proc(self: ^AK.TableView, rowSizeStyle: AK.TableViewRowSizeStyle),
-    effectiveRowSizeStyle: proc(self: ^AK.TableView) -> AK.TableViewRowSizeStyle,
-    rowHeight: proc(self: ^AK.TableView) -> CG.Float,
-    setRowHeight: proc(self: ^AK.TableView, rowHeight: CG.Float),
-    tableColumns: proc(self: ^AK.TableView) -> ^NS.Array,
-    numberOfColumns: proc(self: ^AK.TableView) -> NS.Integer,
-    numberOfRows: proc(self: ^AK.TableView) -> NS.Integer,
-    editedColumn: proc(self: ^AK.TableView) -> NS.Integer,
-    editedRow: proc(self: ^AK.TableView) -> NS.Integer,
-    clickedColumn: proc(self: ^AK.TableView) -> NS.Integer,
-    clickedRow: proc(self: ^AK.TableView) -> NS.Integer,
-    doubleAction: proc(self: ^AK.TableView) -> SEL,
-    setDoubleAction: proc(self: ^AK.TableView, doubleAction: SEL),
-    sortDescriptors: proc(self: ^AK.TableView) -> ^NS.Array,
-    setSortDescriptors: proc(self: ^AK.TableView, sortDescriptors: ^NS.Array),
-    highlightedTableColumn: proc(self: ^AK.TableView) -> ^AK.TableColumn,
-    setHighlightedTableColumn: proc(self: ^AK.TableView, highlightedTableColumn: ^AK.TableColumn),
-    verticalMotionCanBeginDrag: proc(self: ^AK.TableView) -> bool,
-    setVerticalMotionCanBeginDrag: proc(self: ^AK.TableView, verticalMotionCanBeginDrag: bool),
-    allowsMultipleSelection: proc(self: ^AK.TableView) -> bool,
-    setAllowsMultipleSelection: proc(self: ^AK.TableView, allowsMultipleSelection: bool),
-    allowsEmptySelection: proc(self: ^AK.TableView) -> bool,
-    setAllowsEmptySelection: proc(self: ^AK.TableView, allowsEmptySelection: bool),
-    allowsColumnSelection: proc(self: ^AK.TableView) -> bool,
-    setAllowsColumnSelection: proc(self: ^AK.TableView, allowsColumnSelection: bool),
-    selectedColumnIndexes: proc(self: ^AK.TableView) -> ^NS.IndexSet,
-    selectedRowIndexes: proc(self: ^AK.TableView) -> ^NS.IndexSet,
-    selectedColumn: proc(self: ^AK.TableView) -> NS.Integer,
-    selectedRow: proc(self: ^AK.TableView) -> NS.Integer,
-    numberOfSelectedColumns: proc(self: ^AK.TableView) -> NS.Integer,
-    numberOfSelectedRows: proc(self: ^AK.TableView) -> NS.Integer,
-    allowsTypeSelect: proc(self: ^AK.TableView) -> bool,
-    setAllowsTypeSelect: proc(self: ^AK.TableView, allowsTypeSelect: bool),
-    style: proc(self: ^AK.TableView) -> AK.TableViewStyle,
-    setStyle: proc(self: ^AK.TableView, style: AK.TableViewStyle),
-    effectiveStyle: proc(self: ^AK.TableView) -> AK.TableViewStyle,
-    selectionHighlightStyle: proc(self: ^AK.TableView) -> AK.TableViewSelectionHighlightStyle,
-    setSelectionHighlightStyle: proc(self: ^AK.TableView, selectionHighlightStyle: AK.TableViewSelectionHighlightStyle),
-    draggingDestinationFeedbackStyle: proc(self: ^AK.TableView) -> AK.TableViewDraggingDestinationFeedbackStyle,
-    setDraggingDestinationFeedbackStyle: proc(self: ^AK.TableView, draggingDestinationFeedbackStyle: AK.TableViewDraggingDestinationFeedbackStyle),
-    autosaveName: proc(self: ^AK.TableView) -> ^NS.String,
-    setAutosaveName: proc(self: ^AK.TableView, autosaveName: ^NS.String),
-    autosaveTableColumns: proc(self: ^AK.TableView) -> bool,
-    setAutosaveTableColumns: proc(self: ^AK.TableView, autosaveTableColumns: bool),
-    floatsGroupRows: proc(self: ^AK.TableView) -> bool,
-    setFloatsGroupRows: proc(self: ^AK.TableView, floatsGroupRows: bool),
-    rowActionsVisible: proc(self: ^AK.TableView) -> bool,
-    setRowActionsVisible: proc(self: ^AK.TableView, rowActionsVisible: bool),
-    hiddenRowIndexes: proc(self: ^AK.TableView) -> ^NS.IndexSet,
-    registeredNibsByIdentifier: proc(self: ^AK.TableView) -> ^NS.Dictionary,
-    usesStaticContents: proc(self: ^AK.TableView) -> bool,
-    setUsesStaticContents: proc(self: ^AK.TableView, usesStaticContents: bool),
-    userInterfaceLayoutDirection: proc(self: ^AK.TableView) -> AK.UserInterfaceLayoutDirection,
-    setUserInterfaceLayoutDirection: proc(self: ^AK.TableView, userInterfaceLayoutDirection: AK.UserInterfaceLayoutDirection),
-    usesAutomaticRowHeights: proc(self: ^AK.TableView) -> bool,
-    setUsesAutomaticRowHeights: proc(self: ^AK.TableView, usesAutomaticRowHeights: bool),
-    setDrawsGrid: proc(self: ^AK.TableView, flag: bool),
-    drawsGrid: proc(self: ^AK.TableView) -> bool,
-    selectColumn: proc(self: ^AK.TableView, column: NS.Integer, extend: bool),
-    selectRow: proc(self: ^AK.TableView, row: NS.Integer, extend: bool),
-    selectedColumnEnumerator: proc(self: ^AK.TableView) -> ^NS.Enumerator,
-    selectedRowEnumerator: proc(self: ^AK.TableView) -> ^NS.Enumerator,
-    dragImageForRows: proc(self: ^AK.TableView, dragRows: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image,
-    setAutoresizesAllColumnsToFit: proc(self: ^AK.TableView, flag: bool),
-    autoresizesAllColumnsToFit: proc(self: ^AK.TableView) -> bool,
-    columnsInRect: proc(self: ^AK.TableView, rect: NS.Rect) -> NS._NSRange,
-    preparedCellAtColumn: proc(self: ^AK.TableView, column: NS.Integer, row: NS.Integer) -> ^AK.Cell,
-    textShouldBeginEditing: proc(self: ^AK.TableView, textObject: ^AK.Text) -> bool,
-    textShouldEndEditing: proc(self: ^AK.TableView, textObject: ^AK.Text) -> bool,
-    textDidBeginEditing: proc(self: ^AK.TableView, notification: ^NS.Notification),
-    textDidEndEditing: proc(self: ^AK.TableView, notification: ^NS.Notification),
-    textDidChange: proc(self: ^AK.TableView, notification: ^NS.Notification),
-    shouldFocusCell: proc(self: ^AK.TableView, cell: ^AK.Cell, column: NS.Integer, row: NS.Integer) -> bool,
-    focusedColumn: proc(self: ^AK.TableView) -> NS.Integer,
-    setFocusedColumn: proc(self: ^AK.TableView, focusedColumn: NS.Integer),
-    performClickOnCellAtColumn: proc(self: ^AK.TableView, column: NS.Integer, row: NS.Integer),
+    initWithFrame: proc(self: ^NS.TableView, frameRect: NS.Rect) -> instancetype,
+    initWithCoder: proc(self: ^NS.TableView, coder: ^NS.Coder) -> instancetype,
+    noteHeightOfRowsWithIndexesChanged: proc(self: ^NS.TableView, indexSet: ^NS.IndexSet),
+    addTableColumn: proc(self: ^NS.TableView, tableColumn: ^NS.TableColumn),
+    removeTableColumn: proc(self: ^NS.TableView, tableColumn: ^NS.TableColumn),
+    moveColumn: proc(self: ^NS.TableView, oldIndex: NS.Integer, newIndex: NS.Integer),
+    columnWithIdentifier: proc(self: ^NS.TableView, identifier: ^NS.String) -> NS.Integer,
+    tableColumnWithIdentifier: proc(self: ^NS.TableView, identifier: ^NS.String) -> ^NS.TableColumn,
+    tile: proc(self: ^NS.TableView),
+    sizeToFit: proc(self: ^NS.TableView),
+    sizeLastColumnToFit: proc(self: ^NS.TableView),
+    scrollRowToVisible: proc(self: ^NS.TableView, row: NS.Integer),
+    scrollColumnToVisible: proc(self: ^NS.TableView, column: NS.Integer),
+    reloadData: proc(self: ^NS.TableView),
+    noteNumberOfRowsChanged: proc(self: ^NS.TableView),
+    reloadDataForRowIndexes: proc(self: ^NS.TableView, rowIndexes: ^NS.IndexSet, columnIndexes: ^NS.IndexSet),
+    setIndicatorImage: proc(self: ^NS.TableView, image: ^NS.Image, tableColumn: ^NS.TableColumn),
+    indicatorImageInTableColumn: proc(self: ^NS.TableView, tableColumn: ^NS.TableColumn) -> ^NS.Image,
+    canDragRowsWithIndexes: proc(self: ^NS.TableView, rowIndexes: ^NS.IndexSet, mouseDownPoint: CG.Point) -> bool,
+    dragImageForRowsWithIndexes: proc(self: ^NS.TableView, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^NS.Event, dragImageOffset: ^CG.Point) -> ^NS.Image,
+    setDraggingSourceOperationMask: proc(self: ^NS.TableView, mask: NS.DragOperation, isLocal: bool),
+    setDropRow: proc(self: ^NS.TableView, row: NS.Integer, dropOperation: NS.TableViewDropOperation),
+    selectAll: proc(self: ^NS.TableView, sender: id),
+    deselectAll: proc(self: ^NS.TableView, sender: id),
+    selectColumnIndexes: proc(self: ^NS.TableView, indexes: ^NS.IndexSet, extend: bool),
+    selectRowIndexes: proc(self: ^NS.TableView, indexes: ^NS.IndexSet, extend: bool),
+    deselectColumn: proc(self: ^NS.TableView, column: NS.Integer),
+    deselectRow: proc(self: ^NS.TableView, row: NS.Integer),
+    isColumnSelected: proc(self: ^NS.TableView, column: NS.Integer) -> bool,
+    isRowSelected: proc(self: ^NS.TableView, row: NS.Integer) -> bool,
+    rectOfColumn: proc(self: ^NS.TableView, column: NS.Integer) -> NS.Rect,
+    rectOfRow: proc(self: ^NS.TableView, row: NS.Integer) -> NS.Rect,
+    columnIndexesInRect: proc(self: ^NS.TableView, rect: NS.Rect) -> ^NS.IndexSet,
+    rowsInRect: proc(self: ^NS.TableView, rect: NS.Rect) -> NS._NSRange,
+    columnAtPoint: proc(self: ^NS.TableView, point: CG.Point) -> NS.Integer,
+    rowAtPoint: proc(self: ^NS.TableView, point: CG.Point) -> NS.Integer,
+    frameOfCellAtColumn: proc(self: ^NS.TableView, column: NS.Integer, row: NS.Integer) -> NS.Rect,
+    editColumn: proc(self: ^NS.TableView, column: NS.Integer, row: NS.Integer, event: ^NS.Event, select: bool),
+    drawRow: proc(self: ^NS.TableView, row: NS.Integer, clipRect: NS.Rect),
+    highlightSelectionInClipRect: proc(self: ^NS.TableView, clipRect: NS.Rect),
+    drawGridInClipRect: proc(self: ^NS.TableView, clipRect: NS.Rect),
+    drawBackgroundInClipRect: proc(self: ^NS.TableView, clipRect: NS.Rect),
+    viewAtColumn: proc(self: ^NS.TableView, column: NS.Integer, row: NS.Integer, makeIfNecessary: bool) -> ^NS.View,
+    rowViewAtRow: proc(self: ^NS.TableView, row: NS.Integer, makeIfNecessary: bool) -> ^NS.TableRowView,
+    rowForView: proc(self: ^NS.TableView, view: ^NS.View) -> NS.Integer,
+    columnForView: proc(self: ^NS.TableView, view: ^NS.View) -> NS.Integer,
+    makeViewWithIdentifier: proc(self: ^NS.TableView, identifier: ^NS.String, owner: id) -> ^NS.View,
+    enumerateAvailableRowViewsUsingBlock: proc(self: ^NS.TableView, handler: ^Objc_Block(proc "c" ( rowView: ^NS.TableRowView, row: NS.Integer ))),
+    beginUpdates: proc(self: ^NS.TableView),
+    endUpdates: proc(self: ^NS.TableView),
+    insertRowsAtIndexes: proc(self: ^NS.TableView, indexes: ^NS.IndexSet, animationOptions: NS.TableViewAnimationOptions),
+    removeRowsAtIndexes: proc(self: ^NS.TableView, indexes: ^NS.IndexSet, animationOptions: NS.TableViewAnimationOptions),
+    moveRowAtIndex: proc(self: ^NS.TableView, oldIndex: NS.Integer, newIndex: NS.Integer),
+    hideRowsAtIndexes: proc(self: ^NS.TableView, indexes: ^NS.IndexSet, rowAnimation: NS.TableViewAnimationOptions),
+    unhideRowsAtIndexes: proc(self: ^NS.TableView, indexes: ^NS.IndexSet, rowAnimation: NS.TableViewAnimationOptions),
+    registerNib: proc(self: ^NS.TableView, nib: ^NS.Nib, identifier: ^NS.String),
+    didAddRowView: proc(self: ^NS.TableView, rowView: ^NS.TableRowView, row: NS.Integer),
+    didRemoveRowView: proc(self: ^NS.TableView, rowView: ^NS.TableRowView, row: NS.Integer),
+    dataSource: proc(self: ^NS.TableView) -> ^NS.TableViewDataSource,
+    setDataSource: proc(self: ^NS.TableView, dataSource: ^NS.TableViewDataSource),
+    delegate: proc(self: ^NS.TableView) -> ^NS.TableViewDelegate,
+    setDelegate: proc(self: ^NS.TableView, delegate: ^NS.TableViewDelegate),
+    headerView: proc(self: ^NS.TableView) -> ^NS.TableHeaderView,
+    setHeaderView: proc(self: ^NS.TableView, headerView: ^NS.TableHeaderView),
+    cornerView: proc(self: ^NS.TableView) -> ^NS.View,
+    setCornerView: proc(self: ^NS.TableView, cornerView: ^NS.View),
+    allowsColumnReordering: proc(self: ^NS.TableView) -> bool,
+    setAllowsColumnReordering: proc(self: ^NS.TableView, allowsColumnReordering: bool),
+    allowsColumnResizing: proc(self: ^NS.TableView) -> bool,
+    setAllowsColumnResizing: proc(self: ^NS.TableView, allowsColumnResizing: bool),
+    columnAutoresizingStyle: proc(self: ^NS.TableView) -> NS.TableViewColumnAutoresizingStyle,
+    setColumnAutoresizingStyle: proc(self: ^NS.TableView, columnAutoresizingStyle: NS.TableViewColumnAutoresizingStyle),
+    gridStyleMask: proc(self: ^NS.TableView) -> NS.TableViewGridLineStyle,
+    setGridStyleMask: proc(self: ^NS.TableView, gridStyleMask: NS.TableViewGridLineStyle),
+    intercellSpacing: proc(self: ^NS.TableView) -> NS.Size,
+    setIntercellSpacing: proc(self: ^NS.TableView, intercellSpacing: NS.Size),
+    usesAlternatingRowBackgroundColors: proc(self: ^NS.TableView) -> bool,
+    setUsesAlternatingRowBackgroundColors: proc(self: ^NS.TableView, usesAlternatingRowBackgroundColors: bool),
+    backgroundColor: proc(self: ^NS.TableView) -> ^NS.Color,
+    setBackgroundColor: proc(self: ^NS.TableView, backgroundColor: ^NS.Color),
+    gridColor: proc(self: ^NS.TableView) -> ^NS.Color,
+    setGridColor: proc(self: ^NS.TableView, gridColor: ^NS.Color),
+    rowSizeStyle: proc(self: ^NS.TableView) -> NS.TableViewRowSizeStyle,
+    setRowSizeStyle: proc(self: ^NS.TableView, rowSizeStyle: NS.TableViewRowSizeStyle),
+    effectiveRowSizeStyle: proc(self: ^NS.TableView) -> NS.TableViewRowSizeStyle,
+    rowHeight: proc(self: ^NS.TableView) -> CG.Float,
+    setRowHeight: proc(self: ^NS.TableView, rowHeight: CG.Float),
+    tableColumns: proc(self: ^NS.TableView) -> ^NS.Array,
+    numberOfColumns: proc(self: ^NS.TableView) -> NS.Integer,
+    numberOfRows: proc(self: ^NS.TableView) -> NS.Integer,
+    editedColumn: proc(self: ^NS.TableView) -> NS.Integer,
+    editedRow: proc(self: ^NS.TableView) -> NS.Integer,
+    clickedColumn: proc(self: ^NS.TableView) -> NS.Integer,
+    clickedRow: proc(self: ^NS.TableView) -> NS.Integer,
+    doubleAction: proc(self: ^NS.TableView) -> SEL,
+    setDoubleAction: proc(self: ^NS.TableView, doubleAction: SEL),
+    sortDescriptors: proc(self: ^NS.TableView) -> ^NS.Array,
+    setSortDescriptors: proc(self: ^NS.TableView, sortDescriptors: ^NS.Array),
+    highlightedTableColumn: proc(self: ^NS.TableView) -> ^NS.TableColumn,
+    setHighlightedTableColumn: proc(self: ^NS.TableView, highlightedTableColumn: ^NS.TableColumn),
+    verticalMotionCanBeginDrag: proc(self: ^NS.TableView) -> bool,
+    setVerticalMotionCanBeginDrag: proc(self: ^NS.TableView, verticalMotionCanBeginDrag: bool),
+    allowsMultipleSelection: proc(self: ^NS.TableView) -> bool,
+    setAllowsMultipleSelection: proc(self: ^NS.TableView, allowsMultipleSelection: bool),
+    allowsEmptySelection: proc(self: ^NS.TableView) -> bool,
+    setAllowsEmptySelection: proc(self: ^NS.TableView, allowsEmptySelection: bool),
+    allowsColumnSelection: proc(self: ^NS.TableView) -> bool,
+    setAllowsColumnSelection: proc(self: ^NS.TableView, allowsColumnSelection: bool),
+    selectedColumnIndexes: proc(self: ^NS.TableView) -> ^NS.IndexSet,
+    selectedRowIndexes: proc(self: ^NS.TableView) -> ^NS.IndexSet,
+    selectedColumn: proc(self: ^NS.TableView) -> NS.Integer,
+    selectedRow: proc(self: ^NS.TableView) -> NS.Integer,
+    numberOfSelectedColumns: proc(self: ^NS.TableView) -> NS.Integer,
+    numberOfSelectedRows: proc(self: ^NS.TableView) -> NS.Integer,
+    allowsTypeSelect: proc(self: ^NS.TableView) -> bool,
+    setAllowsTypeSelect: proc(self: ^NS.TableView, allowsTypeSelect: bool),
+    style: proc(self: ^NS.TableView) -> NS.TableViewStyle,
+    setStyle: proc(self: ^NS.TableView, style: NS.TableViewStyle),
+    effectiveStyle: proc(self: ^NS.TableView) -> NS.TableViewStyle,
+    selectionHighlightStyle: proc(self: ^NS.TableView) -> NS.TableViewSelectionHighlightStyle,
+    setSelectionHighlightStyle: proc(self: ^NS.TableView, selectionHighlightStyle: NS.TableViewSelectionHighlightStyle),
+    draggingDestinationFeedbackStyle: proc(self: ^NS.TableView) -> NS.TableViewDraggingDestinationFeedbackStyle,
+    setDraggingDestinationFeedbackStyle: proc(self: ^NS.TableView, draggingDestinationFeedbackStyle: NS.TableViewDraggingDestinationFeedbackStyle),
+    autosaveName: proc(self: ^NS.TableView) -> ^NS.String,
+    setAutosaveName: proc(self: ^NS.TableView, autosaveName: ^NS.String),
+    autosaveTableColumns: proc(self: ^NS.TableView) -> bool,
+    setAutosaveTableColumns: proc(self: ^NS.TableView, autosaveTableColumns: bool),
+    floatsGroupRows: proc(self: ^NS.TableView) -> bool,
+    setFloatsGroupRows: proc(self: ^NS.TableView, floatsGroupRows: bool),
+    rowActionsVisible: proc(self: ^NS.TableView) -> bool,
+    setRowActionsVisible: proc(self: ^NS.TableView, rowActionsVisible: bool),
+    hiddenRowIndexes: proc(self: ^NS.TableView) -> ^NS.IndexSet,
+    registeredNibsByIdentifier: proc(self: ^NS.TableView) -> ^NS.Dictionary,
+    usesStaticContents: proc(self: ^NS.TableView) -> bool,
+    setUsesStaticContents: proc(self: ^NS.TableView, usesStaticContents: bool),
+    userInterfaceLayoutDirection: proc(self: ^NS.TableView) -> NS.UserInterfaceLayoutDirection,
+    setUserInterfaceLayoutDirection: proc(self: ^NS.TableView, userInterfaceLayoutDirection: NS.UserInterfaceLayoutDirection),
+    usesAutomaticRowHeights: proc(self: ^NS.TableView) -> bool,
+    setUsesAutomaticRowHeights: proc(self: ^NS.TableView, usesAutomaticRowHeights: bool),
+    setDrawsGrid: proc(self: ^NS.TableView, flag: bool),
+    drawsGrid: proc(self: ^NS.TableView) -> bool,
+    selectColumn: proc(self: ^NS.TableView, column: NS.Integer, extend: bool),
+    selectRow: proc(self: ^NS.TableView, row: NS.Integer, extend: bool),
+    selectedColumnEnumerator: proc(self: ^NS.TableView) -> ^NS.Enumerator,
+    selectedRowEnumerator: proc(self: ^NS.TableView) -> ^NS.Enumerator,
+    dragImageForRows: proc(self: ^NS.TableView, dragRows: ^NS.Array, dragEvent: ^NS.Event, dragImageOffset: ^CG.Point) -> ^NS.Image,
+    setAutoresizesAllColumnsToFit: proc(self: ^NS.TableView, flag: bool),
+    autoresizesAllColumnsToFit: proc(self: ^NS.TableView) -> bool,
+    columnsInRect: proc(self: ^NS.TableView, rect: NS.Rect) -> NS._NSRange,
+    preparedCellAtColumn: proc(self: ^NS.TableView, column: NS.Integer, row: NS.Integer) -> ^NS.Cell,
+    textShouldBeginEditing: proc(self: ^NS.TableView, textObject: ^NS.Text) -> bool,
+    textShouldEndEditing: proc(self: ^NS.TableView, textObject: ^NS.Text) -> bool,
+    textDidBeginEditing: proc(self: ^NS.TableView, notification: ^NS.Notification),
+    textDidEndEditing: proc(self: ^NS.TableView, notification: ^NS.Notification),
+    textDidChange: proc(self: ^NS.TableView, notification: ^NS.Notification),
+    shouldFocusCell: proc(self: ^NS.TableView, cell: ^NS.Cell, column: NS.Integer, row: NS.Integer) -> bool,
+    focusedColumn: proc(self: ^NS.TableView) -> NS.Integer,
+    setFocusedColumn: proc(self: ^NS.TableView, focusedColumn: NS.Integer),
+    performClickOnCellAtColumn: proc(self: ^NS.TableView, column: NS.Integer, row: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -195,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.TableView, _: SEL, frameRect: NS.Rect) -> instancetype {
+        initWithFrame :: proc "c" (self: ^NS.TableView, _: SEL, frameRect: NS.Rect) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -205,7 +205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TableView, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.TableView, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -215,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.noteHeightOfRowsWithIndexesChanged != nil {
-        noteHeightOfRowsWithIndexesChanged :: proc "c" (self: ^AK.TableView, _: SEL, indexSet: ^NS.IndexSet) {
+        noteHeightOfRowsWithIndexesChanged :: proc "c" (self: ^NS.TableView, _: SEL, indexSet: ^NS.IndexSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -225,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("noteHeightOfRowsWithIndexesChanged:"), auto_cast noteHeightOfRowsWithIndexesChanged, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.addTableColumn != nil {
-        addTableColumn :: proc "c" (self: ^AK.TableView, _: SEL, tableColumn: ^AK.TableColumn) {
+        addTableColumn :: proc "c" (self: ^NS.TableView, _: SEL, tableColumn: ^NS.TableColumn) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -235,7 +235,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addTableColumn:"), auto_cast addTableColumn, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeTableColumn != nil {
-        removeTableColumn :: proc "c" (self: ^AK.TableView, _: SEL, tableColumn: ^AK.TableColumn) {
+        removeTableColumn :: proc "c" (self: ^NS.TableView, _: SEL, tableColumn: ^NS.TableColumn) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -245,7 +245,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeTableColumn:"), auto_cast removeTableColumn, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.moveColumn != nil {
-        moveColumn :: proc "c" (self: ^AK.TableView, _: SEL, oldIndex: NS.Integer, newIndex: NS.Integer) {
+        moveColumn :: proc "c" (self: ^NS.TableView, _: SEL, oldIndex: NS.Integer, newIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -255,7 +255,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("moveColumn:toColumn:"), auto_cast moveColumn, "v@:ll") do panic("Failed to register objC method.")
     }
     if vt.columnWithIdentifier != nil {
-        columnWithIdentifier :: proc "c" (self: ^AK.TableView, _: SEL, identifier: ^NS.String) -> NS.Integer {
+        columnWithIdentifier :: proc "c" (self: ^NS.TableView, _: SEL, identifier: ^NS.String) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -265,7 +265,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnWithIdentifier:"), auto_cast columnWithIdentifier, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.tableColumnWithIdentifier != nil {
-        tableColumnWithIdentifier :: proc "c" (self: ^AK.TableView, _: SEL, identifier: ^NS.String) -> ^AK.TableColumn {
+        tableColumnWithIdentifier :: proc "c" (self: ^NS.TableView, _: SEL, identifier: ^NS.String) -> ^NS.TableColumn {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -275,7 +275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tableColumnWithIdentifier:"), auto_cast tableColumnWithIdentifier, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.tile != nil {
-        tile :: proc "c" (self: ^AK.TableView, _: SEL) {
+        tile :: proc "c" (self: ^NS.TableView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -285,7 +285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tile"), auto_cast tile, "v@:") do panic("Failed to register objC method.")
     }
     if vt.sizeToFit != nil {
-        sizeToFit :: proc "c" (self: ^AK.TableView, _: SEL) {
+        sizeToFit :: proc "c" (self: ^NS.TableView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -295,7 +295,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sizeToFit"), auto_cast sizeToFit, "v@:") do panic("Failed to register objC method.")
     }
     if vt.sizeLastColumnToFit != nil {
-        sizeLastColumnToFit :: proc "c" (self: ^AK.TableView, _: SEL) {
+        sizeLastColumnToFit :: proc "c" (self: ^NS.TableView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -305,7 +305,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sizeLastColumnToFit"), auto_cast sizeLastColumnToFit, "v@:") do panic("Failed to register objC method.")
     }
     if vt.scrollRowToVisible != nil {
-        scrollRowToVisible :: proc "c" (self: ^AK.TableView, _: SEL, row: NS.Integer) {
+        scrollRowToVisible :: proc "c" (self: ^NS.TableView, _: SEL, row: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -315,7 +315,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollRowToVisible:"), auto_cast scrollRowToVisible, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.scrollColumnToVisible != nil {
-        scrollColumnToVisible :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer) {
+        scrollColumnToVisible :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -325,7 +325,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollColumnToVisible:"), auto_cast scrollColumnToVisible, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.reloadData != nil {
-        reloadData :: proc "c" (self: ^AK.TableView, _: SEL) {
+        reloadData :: proc "c" (self: ^NS.TableView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -335,7 +335,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reloadData"), auto_cast reloadData, "v@:") do panic("Failed to register objC method.")
     }
     if vt.noteNumberOfRowsChanged != nil {
-        noteNumberOfRowsChanged :: proc "c" (self: ^AK.TableView, _: SEL) {
+        noteNumberOfRowsChanged :: proc "c" (self: ^NS.TableView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -345,7 +345,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("noteNumberOfRowsChanged"), auto_cast noteNumberOfRowsChanged, "v@:") do panic("Failed to register objC method.")
     }
     if vt.reloadDataForRowIndexes != nil {
-        reloadDataForRowIndexes :: proc "c" (self: ^AK.TableView, _: SEL, rowIndexes: ^NS.IndexSet, columnIndexes: ^NS.IndexSet) {
+        reloadDataForRowIndexes :: proc "c" (self: ^NS.TableView, _: SEL, rowIndexes: ^NS.IndexSet, columnIndexes: ^NS.IndexSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -355,7 +355,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reloadDataForRowIndexes:columnIndexes:"), auto_cast reloadDataForRowIndexes, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.setIndicatorImage != nil {
-        setIndicatorImage :: proc "c" (self: ^AK.TableView, _: SEL, image: ^AK.Image, tableColumn: ^AK.TableColumn) {
+        setIndicatorImage :: proc "c" (self: ^NS.TableView, _: SEL, image: ^NS.Image, tableColumn: ^NS.TableColumn) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -365,7 +365,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIndicatorImage:inTableColumn:"), auto_cast setIndicatorImage, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.indicatorImageInTableColumn != nil {
-        indicatorImageInTableColumn :: proc "c" (self: ^AK.TableView, _: SEL, tableColumn: ^AK.TableColumn) -> ^AK.Image {
+        indicatorImageInTableColumn :: proc "c" (self: ^NS.TableView, _: SEL, tableColumn: ^NS.TableColumn) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -375,7 +375,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indicatorImageInTableColumn:"), auto_cast indicatorImageInTableColumn, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.canDragRowsWithIndexes != nil {
-        canDragRowsWithIndexes :: proc "c" (self: ^AK.TableView, _: SEL, rowIndexes: ^NS.IndexSet, mouseDownPoint: CG.Point) -> bool {
+        canDragRowsWithIndexes :: proc "c" (self: ^NS.TableView, _: SEL, rowIndexes: ^NS.IndexSet, mouseDownPoint: CG.Point) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -385,7 +385,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canDragRowsWithIndexes:atPoint:"), auto_cast canDragRowsWithIndexes, "B@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.dragImageForRowsWithIndexes != nil {
-        dragImageForRowsWithIndexes :: proc "c" (self: ^AK.TableView, _: SEL, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image {
+        dragImageForRowsWithIndexes :: proc "c" (self: ^NS.TableView, _: SEL, dragRows: ^NS.IndexSet, tableColumns: ^NS.Array, dragEvent: ^NS.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -395,7 +395,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dragImageForRowsWithIndexes:tableColumns:event:offset:"), auto_cast dragImageForRowsWithIndexes, "@@:@^void@^void") do panic("Failed to register objC method.")
     }
     if vt.setDraggingSourceOperationMask != nil {
-        setDraggingSourceOperationMask :: proc "c" (self: ^AK.TableView, _: SEL, mask: AK.DragOperation, isLocal: bool) {
+        setDraggingSourceOperationMask :: proc "c" (self: ^NS.TableView, _: SEL, mask: NS.DragOperation, isLocal: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -405,7 +405,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDraggingSourceOperationMask:forLocal:"), auto_cast setDraggingSourceOperationMask, "v@:LB") do panic("Failed to register objC method.")
     }
     if vt.setDropRow != nil {
-        setDropRow :: proc "c" (self: ^AK.TableView, _: SEL, row: NS.Integer, dropOperation: AK.TableViewDropOperation) {
+        setDropRow :: proc "c" (self: ^NS.TableView, _: SEL, row: NS.Integer, dropOperation: NS.TableViewDropOperation) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -415,7 +415,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDropRow:dropOperation:"), auto_cast setDropRow, "v@:lL") do panic("Failed to register objC method.")
     }
     if vt.selectAll != nil {
-        selectAll :: proc "c" (self: ^AK.TableView, _: SEL, sender: id) {
+        selectAll :: proc "c" (self: ^NS.TableView, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -425,7 +425,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectAll:"), auto_cast selectAll, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.deselectAll != nil {
-        deselectAll :: proc "c" (self: ^AK.TableView, _: SEL, sender: id) {
+        deselectAll :: proc "c" (self: ^NS.TableView, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -435,7 +435,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("deselectAll:"), auto_cast deselectAll, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectColumnIndexes != nil {
-        selectColumnIndexes :: proc "c" (self: ^AK.TableView, _: SEL, indexes: ^NS.IndexSet, extend: bool) {
+        selectColumnIndexes :: proc "c" (self: ^NS.TableView, _: SEL, indexes: ^NS.IndexSet, extend: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -445,7 +445,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectColumnIndexes:byExtendingSelection:"), auto_cast selectColumnIndexes, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.selectRowIndexes != nil {
-        selectRowIndexes :: proc "c" (self: ^AK.TableView, _: SEL, indexes: ^NS.IndexSet, extend: bool) {
+        selectRowIndexes :: proc "c" (self: ^NS.TableView, _: SEL, indexes: ^NS.IndexSet, extend: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -455,7 +455,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectRowIndexes:byExtendingSelection:"), auto_cast selectRowIndexes, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.deselectColumn != nil {
-        deselectColumn :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer) {
+        deselectColumn :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -465,7 +465,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("deselectColumn:"), auto_cast deselectColumn, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.deselectRow != nil {
-        deselectRow :: proc "c" (self: ^AK.TableView, _: SEL, row: NS.Integer) {
+        deselectRow :: proc "c" (self: ^NS.TableView, _: SEL, row: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -475,7 +475,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("deselectRow:"), auto_cast deselectRow, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.isColumnSelected != nil {
-        isColumnSelected :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer) -> bool {
+        isColumnSelected :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -485,7 +485,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isColumnSelected:"), auto_cast isColumnSelected, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.isRowSelected != nil {
-        isRowSelected :: proc "c" (self: ^AK.TableView, _: SEL, row: NS.Integer) -> bool {
+        isRowSelected :: proc "c" (self: ^NS.TableView, _: SEL, row: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -495,7 +495,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isRowSelected:"), auto_cast isRowSelected, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.rectOfColumn != nil {
-        rectOfColumn :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer) -> NS.Rect {
+        rectOfColumn :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -505,7 +505,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rectOfColumn:"), auto_cast rectOfColumn, "{CGRect={CGPoint=dd}{CGSize=dd}}@:l") do panic("Failed to register objC method.")
     }
     if vt.rectOfRow != nil {
-        rectOfRow :: proc "c" (self: ^AK.TableView, _: SEL, row: NS.Integer) -> NS.Rect {
+        rectOfRow :: proc "c" (self: ^NS.TableView, _: SEL, row: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -515,7 +515,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rectOfRow:"), auto_cast rectOfRow, "{CGRect={CGPoint=dd}{CGSize=dd}}@:l") do panic("Failed to register objC method.")
     }
     if vt.columnIndexesInRect != nil {
-        columnIndexesInRect :: proc "c" (self: ^AK.TableView, _: SEL, rect: NS.Rect) -> ^NS.IndexSet {
+        columnIndexesInRect :: proc "c" (self: ^NS.TableView, _: SEL, rect: NS.Rect) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -525,7 +525,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnIndexesInRect:"), auto_cast columnIndexesInRect, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.rowsInRect != nil {
-        rowsInRect :: proc "c" (self: ^AK.TableView, _: SEL, rect: NS.Rect) -> NS._NSRange {
+        rowsInRect :: proc "c" (self: ^NS.TableView, _: SEL, rect: NS.Rect) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -535,7 +535,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowsInRect:"), auto_cast rowsInRect, "{_NSRange=LL}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.columnAtPoint != nil {
-        columnAtPoint :: proc "c" (self: ^AK.TableView, _: SEL, point: CG.Point) -> NS.Integer {
+        columnAtPoint :: proc "c" (self: ^NS.TableView, _: SEL, point: CG.Point) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -545,7 +545,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnAtPoint:"), auto_cast columnAtPoint, "l@:{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.rowAtPoint != nil {
-        rowAtPoint :: proc "c" (self: ^AK.TableView, _: SEL, point: CG.Point) -> NS.Integer {
+        rowAtPoint :: proc "c" (self: ^NS.TableView, _: SEL, point: CG.Point) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -555,7 +555,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowAtPoint:"), auto_cast rowAtPoint, "l@:{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.frameOfCellAtColumn != nil {
-        frameOfCellAtColumn :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer, row: NS.Integer) -> NS.Rect {
+        frameOfCellAtColumn :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer, row: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -565,7 +565,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("frameOfCellAtColumn:row:"), auto_cast frameOfCellAtColumn, "{CGRect={CGPoint=dd}{CGSize=dd}}@:ll") do panic("Failed to register objC method.")
     }
     if vt.editColumn != nil {
-        editColumn :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer, row: NS.Integer, event: ^AK.Event, select: bool) {
+        editColumn :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer, row: NS.Integer, event: ^NS.Event, select: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -575,7 +575,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("editColumn:row:withEvent:select:"), auto_cast editColumn, "v@:ll@B") do panic("Failed to register objC method.")
     }
     if vt.drawRow != nil {
-        drawRow :: proc "c" (self: ^AK.TableView, _: SEL, row: NS.Integer, clipRect: NS.Rect) {
+        drawRow :: proc "c" (self: ^NS.TableView, _: SEL, row: NS.Integer, clipRect: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -585,7 +585,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawRow:clipRect:"), auto_cast drawRow, "v@:l{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.highlightSelectionInClipRect != nil {
-        highlightSelectionInClipRect :: proc "c" (self: ^AK.TableView, _: SEL, clipRect: NS.Rect) {
+        highlightSelectionInClipRect :: proc "c" (self: ^NS.TableView, _: SEL, clipRect: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -595,7 +595,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("highlightSelectionInClipRect:"), auto_cast highlightSelectionInClipRect, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.drawGridInClipRect != nil {
-        drawGridInClipRect :: proc "c" (self: ^AK.TableView, _: SEL, clipRect: NS.Rect) {
+        drawGridInClipRect :: proc "c" (self: ^NS.TableView, _: SEL, clipRect: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -605,7 +605,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawGridInClipRect:"), auto_cast drawGridInClipRect, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.drawBackgroundInClipRect != nil {
-        drawBackgroundInClipRect :: proc "c" (self: ^AK.TableView, _: SEL, clipRect: NS.Rect) {
+        drawBackgroundInClipRect :: proc "c" (self: ^NS.TableView, _: SEL, clipRect: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -615,7 +615,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawBackgroundInClipRect:"), auto_cast drawBackgroundInClipRect, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.viewAtColumn != nil {
-        viewAtColumn :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer, row: NS.Integer, makeIfNecessary: bool) -> ^AK.View {
+        viewAtColumn :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer, row: NS.Integer, makeIfNecessary: bool) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -625,7 +625,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("viewAtColumn:row:makeIfNecessary:"), auto_cast viewAtColumn, "@@:llB") do panic("Failed to register objC method.")
     }
     if vt.rowViewAtRow != nil {
-        rowViewAtRow :: proc "c" (self: ^AK.TableView, _: SEL, row: NS.Integer, makeIfNecessary: bool) -> ^AK.TableRowView {
+        rowViewAtRow :: proc "c" (self: ^NS.TableView, _: SEL, row: NS.Integer, makeIfNecessary: bool) -> ^NS.TableRowView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -635,7 +635,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowViewAtRow:makeIfNecessary:"), auto_cast rowViewAtRow, "@@:lB") do panic("Failed to register objC method.")
     }
     if vt.rowForView != nil {
-        rowForView :: proc "c" (self: ^AK.TableView, _: SEL, view: ^AK.View) -> NS.Integer {
+        rowForView :: proc "c" (self: ^NS.TableView, _: SEL, view: ^NS.View) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -645,7 +645,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowForView:"), auto_cast rowForView, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.columnForView != nil {
-        columnForView :: proc "c" (self: ^AK.TableView, _: SEL, view: ^AK.View) -> NS.Integer {
+        columnForView :: proc "c" (self: ^NS.TableView, _: SEL, view: ^NS.View) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -655,7 +655,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnForView:"), auto_cast columnForView, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.makeViewWithIdentifier != nil {
-        makeViewWithIdentifier :: proc "c" (self: ^AK.TableView, _: SEL, identifier: ^NS.String, owner: id) -> ^AK.View {
+        makeViewWithIdentifier :: proc "c" (self: ^NS.TableView, _: SEL, identifier: ^NS.String, owner: id) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -665,7 +665,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("makeViewWithIdentifier:owner:"), auto_cast makeViewWithIdentifier, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.enumerateAvailableRowViewsUsingBlock != nil {
-        enumerateAvailableRowViewsUsingBlock :: proc "c" (self: ^AK.TableView, _: SEL, handler: ^Objc_Block(proc "c" (rowView: ^AK.TableRowView, row: NS.Integer))) {
+        enumerateAvailableRowViewsUsingBlock :: proc "c" (self: ^NS.TableView, _: SEL, handler: ^Objc_Block(proc "c" ( rowView: ^NS.TableRowView, row: NS.Integer ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -675,7 +675,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("enumerateAvailableRowViewsUsingBlock:"), auto_cast enumerateAvailableRowViewsUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.beginUpdates != nil {
-        beginUpdates :: proc "c" (self: ^AK.TableView, _: SEL) {
+        beginUpdates :: proc "c" (self: ^NS.TableView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -685,7 +685,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginUpdates"), auto_cast beginUpdates, "v@:") do panic("Failed to register objC method.")
     }
     if vt.endUpdates != nil {
-        endUpdates :: proc "c" (self: ^AK.TableView, _: SEL) {
+        endUpdates :: proc "c" (self: ^NS.TableView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -695,7 +695,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("endUpdates"), auto_cast endUpdates, "v@:") do panic("Failed to register objC method.")
     }
     if vt.insertRowsAtIndexes != nil {
-        insertRowsAtIndexes :: proc "c" (self: ^AK.TableView, _: SEL, indexes: ^NS.IndexSet, animationOptions: AK.TableViewAnimationOptions) {
+        insertRowsAtIndexes :: proc "c" (self: ^NS.TableView, _: SEL, indexes: ^NS.IndexSet, animationOptions: NS.TableViewAnimationOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -705,7 +705,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertRowsAtIndexes:withAnimation:"), auto_cast insertRowsAtIndexes, "v@:@L") do panic("Failed to register objC method.")
     }
     if vt.removeRowsAtIndexes != nil {
-        removeRowsAtIndexes :: proc "c" (self: ^AK.TableView, _: SEL, indexes: ^NS.IndexSet, animationOptions: AK.TableViewAnimationOptions) {
+        removeRowsAtIndexes :: proc "c" (self: ^NS.TableView, _: SEL, indexes: ^NS.IndexSet, animationOptions: NS.TableViewAnimationOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -715,7 +715,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeRowsAtIndexes:withAnimation:"), auto_cast removeRowsAtIndexes, "v@:@L") do panic("Failed to register objC method.")
     }
     if vt.moveRowAtIndex != nil {
-        moveRowAtIndex :: proc "c" (self: ^AK.TableView, _: SEL, oldIndex: NS.Integer, newIndex: NS.Integer) {
+        moveRowAtIndex :: proc "c" (self: ^NS.TableView, _: SEL, oldIndex: NS.Integer, newIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -725,7 +725,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("moveRowAtIndex:toIndex:"), auto_cast moveRowAtIndex, "v@:ll") do panic("Failed to register objC method.")
     }
     if vt.hideRowsAtIndexes != nil {
-        hideRowsAtIndexes :: proc "c" (self: ^AK.TableView, _: SEL, indexes: ^NS.IndexSet, rowAnimation: AK.TableViewAnimationOptions) {
+        hideRowsAtIndexes :: proc "c" (self: ^NS.TableView, _: SEL, indexes: ^NS.IndexSet, rowAnimation: NS.TableViewAnimationOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -735,7 +735,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hideRowsAtIndexes:withAnimation:"), auto_cast hideRowsAtIndexes, "v@:@L") do panic("Failed to register objC method.")
     }
     if vt.unhideRowsAtIndexes != nil {
-        unhideRowsAtIndexes :: proc "c" (self: ^AK.TableView, _: SEL, indexes: ^NS.IndexSet, rowAnimation: AK.TableViewAnimationOptions) {
+        unhideRowsAtIndexes :: proc "c" (self: ^NS.TableView, _: SEL, indexes: ^NS.IndexSet, rowAnimation: NS.TableViewAnimationOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -745,7 +745,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("unhideRowsAtIndexes:withAnimation:"), auto_cast unhideRowsAtIndexes, "v@:@L") do panic("Failed to register objC method.")
     }
     if vt.registerNib != nil {
-        registerNib :: proc "c" (self: ^AK.TableView, _: SEL, nib: ^AK.Nib, identifier: ^NS.String) {
+        registerNib :: proc "c" (self: ^NS.TableView, _: SEL, nib: ^NS.Nib, identifier: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -755,7 +755,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("registerNib:forIdentifier:"), auto_cast registerNib, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.didAddRowView != nil {
-        didAddRowView :: proc "c" (self: ^AK.TableView, _: SEL, rowView: ^AK.TableRowView, row: NS.Integer) {
+        didAddRowView :: proc "c" (self: ^NS.TableView, _: SEL, rowView: ^NS.TableRowView, row: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -765,7 +765,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didAddRowView:forRow:"), auto_cast didAddRowView, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.didRemoveRowView != nil {
-        didRemoveRowView :: proc "c" (self: ^AK.TableView, _: SEL, rowView: ^AK.TableRowView, row: NS.Integer) {
+        didRemoveRowView :: proc "c" (self: ^NS.TableView, _: SEL, rowView: ^NS.TableRowView, row: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -775,7 +775,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("didRemoveRowView:forRow:"), auto_cast didRemoveRowView, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.dataSource != nil {
-        dataSource :: proc "c" (self: ^AK.TableView, _: SEL) -> ^AK.TableViewDataSource {
+        dataSource :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.TableViewDataSource {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -785,7 +785,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dataSource"), auto_cast dataSource, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDataSource != nil {
-        setDataSource :: proc "c" (self: ^AK.TableView, _: SEL, dataSource: ^AK.TableViewDataSource) {
+        setDataSource :: proc "c" (self: ^NS.TableView, _: SEL, dataSource: ^NS.TableViewDataSource) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -795,7 +795,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDataSource:"), auto_cast setDataSource, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.TableView, _: SEL) -> ^AK.TableViewDelegate {
+        delegate :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.TableViewDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -805,7 +805,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.TableView, _: SEL, delegate: ^AK.TableViewDelegate) {
+        setDelegate :: proc "c" (self: ^NS.TableView, _: SEL, delegate: ^NS.TableViewDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -815,7 +815,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.headerView != nil {
-        headerView :: proc "c" (self: ^AK.TableView, _: SEL) -> ^AK.TableHeaderView {
+        headerView :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.TableHeaderView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -825,7 +825,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("headerView"), auto_cast headerView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setHeaderView != nil {
-        setHeaderView :: proc "c" (self: ^AK.TableView, _: SEL, headerView: ^AK.TableHeaderView) {
+        setHeaderView :: proc "c" (self: ^NS.TableView, _: SEL, headerView: ^NS.TableHeaderView) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -835,7 +835,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHeaderView:"), auto_cast setHeaderView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.cornerView != nil {
-        cornerView :: proc "c" (self: ^AK.TableView, _: SEL) -> ^AK.View {
+        cornerView :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -845,7 +845,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cornerView"), auto_cast cornerView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCornerView != nil {
-        setCornerView :: proc "c" (self: ^AK.TableView, _: SEL, cornerView: ^AK.View) {
+        setCornerView :: proc "c" (self: ^NS.TableView, _: SEL, cornerView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -855,7 +855,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCornerView:"), auto_cast setCornerView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.allowsColumnReordering != nil {
-        allowsColumnReordering :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        allowsColumnReordering :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -865,7 +865,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsColumnReordering"), auto_cast allowsColumnReordering, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsColumnReordering != nil {
-        setAllowsColumnReordering :: proc "c" (self: ^AK.TableView, _: SEL, allowsColumnReordering: bool) {
+        setAllowsColumnReordering :: proc "c" (self: ^NS.TableView, _: SEL, allowsColumnReordering: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -875,7 +875,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsColumnReordering:"), auto_cast setAllowsColumnReordering, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsColumnResizing != nil {
-        allowsColumnResizing :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        allowsColumnResizing :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -885,7 +885,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsColumnResizing"), auto_cast allowsColumnResizing, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsColumnResizing != nil {
-        setAllowsColumnResizing :: proc "c" (self: ^AK.TableView, _: SEL, allowsColumnResizing: bool) {
+        setAllowsColumnResizing :: proc "c" (self: ^NS.TableView, _: SEL, allowsColumnResizing: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -895,7 +895,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsColumnResizing:"), auto_cast setAllowsColumnResizing, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.columnAutoresizingStyle != nil {
-        columnAutoresizingStyle :: proc "c" (self: ^AK.TableView, _: SEL) -> AK.TableViewColumnAutoresizingStyle {
+        columnAutoresizingStyle :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.TableViewColumnAutoresizingStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -905,7 +905,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnAutoresizingStyle"), auto_cast columnAutoresizingStyle, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setColumnAutoresizingStyle != nil {
-        setColumnAutoresizingStyle :: proc "c" (self: ^AK.TableView, _: SEL, columnAutoresizingStyle: AK.TableViewColumnAutoresizingStyle) {
+        setColumnAutoresizingStyle :: proc "c" (self: ^NS.TableView, _: SEL, columnAutoresizingStyle: NS.TableViewColumnAutoresizingStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -915,7 +915,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setColumnAutoresizingStyle:"), auto_cast setColumnAutoresizingStyle, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.gridStyleMask != nil {
-        gridStyleMask :: proc "c" (self: ^AK.TableView, _: SEL) -> AK.TableViewGridLineStyle {
+        gridStyleMask :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.TableViewGridLineStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -925,7 +925,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("gridStyleMask"), auto_cast gridStyleMask, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setGridStyleMask != nil {
-        setGridStyleMask :: proc "c" (self: ^AK.TableView, _: SEL, gridStyleMask: AK.TableViewGridLineStyle) {
+        setGridStyleMask :: proc "c" (self: ^NS.TableView, _: SEL, gridStyleMask: NS.TableViewGridLineStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -935,7 +935,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setGridStyleMask:"), auto_cast setGridStyleMask, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.intercellSpacing != nil {
-        intercellSpacing :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Size {
+        intercellSpacing :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -945,7 +945,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("intercellSpacing"), auto_cast intercellSpacing, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setIntercellSpacing != nil {
-        setIntercellSpacing :: proc "c" (self: ^AK.TableView, _: SEL, intercellSpacing: NS.Size) {
+        setIntercellSpacing :: proc "c" (self: ^NS.TableView, _: SEL, intercellSpacing: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -955,7 +955,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIntercellSpacing:"), auto_cast setIntercellSpacing, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.usesAlternatingRowBackgroundColors != nil {
-        usesAlternatingRowBackgroundColors :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        usesAlternatingRowBackgroundColors :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -965,7 +965,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("usesAlternatingRowBackgroundColors"), auto_cast usesAlternatingRowBackgroundColors, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setUsesAlternatingRowBackgroundColors != nil {
-        setUsesAlternatingRowBackgroundColors :: proc "c" (self: ^AK.TableView, _: SEL, usesAlternatingRowBackgroundColors: bool) {
+        setUsesAlternatingRowBackgroundColors :: proc "c" (self: ^NS.TableView, _: SEL, usesAlternatingRowBackgroundColors: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -975,7 +975,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesAlternatingRowBackgroundColors:"), auto_cast setUsesAlternatingRowBackgroundColors, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.backgroundColor != nil {
-        backgroundColor :: proc "c" (self: ^AK.TableView, _: SEL) -> ^AK.Color {
+        backgroundColor :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -985,7 +985,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundColor"), auto_cast backgroundColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundColor != nil {
-        setBackgroundColor :: proc "c" (self: ^AK.TableView, _: SEL, backgroundColor: ^AK.Color) {
+        setBackgroundColor :: proc "c" (self: ^NS.TableView, _: SEL, backgroundColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -995,7 +995,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundColor:"), auto_cast setBackgroundColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.gridColor != nil {
-        gridColor :: proc "c" (self: ^AK.TableView, _: SEL) -> ^AK.Color {
+        gridColor :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1005,7 +1005,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("gridColor"), auto_cast gridColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setGridColor != nil {
-        setGridColor :: proc "c" (self: ^AK.TableView, _: SEL, gridColor: ^AK.Color) {
+        setGridColor :: proc "c" (self: ^NS.TableView, _: SEL, gridColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1015,7 +1015,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setGridColor:"), auto_cast setGridColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.rowSizeStyle != nil {
-        rowSizeStyle :: proc "c" (self: ^AK.TableView, _: SEL) -> AK.TableViewRowSizeStyle {
+        rowSizeStyle :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.TableViewRowSizeStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1025,7 +1025,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowSizeStyle"), auto_cast rowSizeStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setRowSizeStyle != nil {
-        setRowSizeStyle :: proc "c" (self: ^AK.TableView, _: SEL, rowSizeStyle: AK.TableViewRowSizeStyle) {
+        setRowSizeStyle :: proc "c" (self: ^NS.TableView, _: SEL, rowSizeStyle: NS.TableViewRowSizeStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1035,7 +1035,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRowSizeStyle:"), auto_cast setRowSizeStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.effectiveRowSizeStyle != nil {
-        effectiveRowSizeStyle :: proc "c" (self: ^AK.TableView, _: SEL) -> AK.TableViewRowSizeStyle {
+        effectiveRowSizeStyle :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.TableViewRowSizeStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1045,7 +1045,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectiveRowSizeStyle"), auto_cast effectiveRowSizeStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.rowHeight != nil {
-        rowHeight :: proc "c" (self: ^AK.TableView, _: SEL) -> CG.Float {
+        rowHeight :: proc "c" (self: ^NS.TableView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1055,7 +1055,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowHeight"), auto_cast rowHeight, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setRowHeight != nil {
-        setRowHeight :: proc "c" (self: ^AK.TableView, _: SEL, rowHeight: CG.Float) {
+        setRowHeight :: proc "c" (self: ^NS.TableView, _: SEL, rowHeight: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1065,7 +1065,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRowHeight:"), auto_cast setRowHeight, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.tableColumns != nil {
-        tableColumns :: proc "c" (self: ^AK.TableView, _: SEL) -> ^NS.Array {
+        tableColumns :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1075,7 +1075,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tableColumns"), auto_cast tableColumns, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.numberOfColumns != nil {
-        numberOfColumns :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        numberOfColumns :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1085,7 +1085,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfColumns"), auto_cast numberOfColumns, "l@:") do panic("Failed to register objC method.")
     }
     if vt.numberOfRows != nil {
-        numberOfRows :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        numberOfRows :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1095,7 +1095,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfRows"), auto_cast numberOfRows, "l@:") do panic("Failed to register objC method.")
     }
     if vt.editedColumn != nil {
-        editedColumn :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        editedColumn :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1105,7 +1105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("editedColumn"), auto_cast editedColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.editedRow != nil {
-        editedRow :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        editedRow :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1115,7 +1115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("editedRow"), auto_cast editedRow, "l@:") do panic("Failed to register objC method.")
     }
     if vt.clickedColumn != nil {
-        clickedColumn :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        clickedColumn :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1125,7 +1125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("clickedColumn"), auto_cast clickedColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.clickedRow != nil {
-        clickedRow :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        clickedRow :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1135,7 +1135,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("clickedRow"), auto_cast clickedRow, "l@:") do panic("Failed to register objC method.")
     }
     if vt.doubleAction != nil {
-        doubleAction :: proc "c" (self: ^AK.TableView, _: SEL) -> SEL {
+        doubleAction :: proc "c" (self: ^NS.TableView, _: SEL) -> SEL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1145,7 +1145,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("doubleAction"), auto_cast doubleAction, ":@:") do panic("Failed to register objC method.")
     }
     if vt.setDoubleAction != nil {
-        setDoubleAction :: proc "c" (self: ^AK.TableView, _: SEL, doubleAction: SEL) {
+        setDoubleAction :: proc "c" (self: ^NS.TableView, _: SEL, doubleAction: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1155,7 +1155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDoubleAction:"), auto_cast setDoubleAction, "v@::") do panic("Failed to register objC method.")
     }
     if vt.sortDescriptors != nil {
-        sortDescriptors :: proc "c" (self: ^AK.TableView, _: SEL) -> ^NS.Array {
+        sortDescriptors :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1165,7 +1165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sortDescriptors"), auto_cast sortDescriptors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSortDescriptors != nil {
-        setSortDescriptors :: proc "c" (self: ^AK.TableView, _: SEL, sortDescriptors: ^NS.Array) {
+        setSortDescriptors :: proc "c" (self: ^NS.TableView, _: SEL, sortDescriptors: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1175,7 +1175,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSortDescriptors:"), auto_cast setSortDescriptors, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.highlightedTableColumn != nil {
-        highlightedTableColumn :: proc "c" (self: ^AK.TableView, _: SEL) -> ^AK.TableColumn {
+        highlightedTableColumn :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.TableColumn {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1185,7 +1185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("highlightedTableColumn"), auto_cast highlightedTableColumn, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setHighlightedTableColumn != nil {
-        setHighlightedTableColumn :: proc "c" (self: ^AK.TableView, _: SEL, highlightedTableColumn: ^AK.TableColumn) {
+        setHighlightedTableColumn :: proc "c" (self: ^NS.TableView, _: SEL, highlightedTableColumn: ^NS.TableColumn) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1195,7 +1195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHighlightedTableColumn:"), auto_cast setHighlightedTableColumn, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.verticalMotionCanBeginDrag != nil {
-        verticalMotionCanBeginDrag :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        verticalMotionCanBeginDrag :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1205,7 +1205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("verticalMotionCanBeginDrag"), auto_cast verticalMotionCanBeginDrag, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setVerticalMotionCanBeginDrag != nil {
-        setVerticalMotionCanBeginDrag :: proc "c" (self: ^AK.TableView, _: SEL, verticalMotionCanBeginDrag: bool) {
+        setVerticalMotionCanBeginDrag :: proc "c" (self: ^NS.TableView, _: SEL, verticalMotionCanBeginDrag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1215,7 +1215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setVerticalMotionCanBeginDrag:"), auto_cast setVerticalMotionCanBeginDrag, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsMultipleSelection != nil {
-        allowsMultipleSelection :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        allowsMultipleSelection :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1225,7 +1225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsMultipleSelection"), auto_cast allowsMultipleSelection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsMultipleSelection != nil {
-        setAllowsMultipleSelection :: proc "c" (self: ^AK.TableView, _: SEL, allowsMultipleSelection: bool) {
+        setAllowsMultipleSelection :: proc "c" (self: ^NS.TableView, _: SEL, allowsMultipleSelection: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1235,7 +1235,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsMultipleSelection:"), auto_cast setAllowsMultipleSelection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsEmptySelection != nil {
-        allowsEmptySelection :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        allowsEmptySelection :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1245,7 +1245,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsEmptySelection"), auto_cast allowsEmptySelection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsEmptySelection != nil {
-        setAllowsEmptySelection :: proc "c" (self: ^AK.TableView, _: SEL, allowsEmptySelection: bool) {
+        setAllowsEmptySelection :: proc "c" (self: ^NS.TableView, _: SEL, allowsEmptySelection: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1255,7 +1255,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsEmptySelection:"), auto_cast setAllowsEmptySelection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsColumnSelection != nil {
-        allowsColumnSelection :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        allowsColumnSelection :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1265,7 +1265,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsColumnSelection"), auto_cast allowsColumnSelection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsColumnSelection != nil {
-        setAllowsColumnSelection :: proc "c" (self: ^AK.TableView, _: SEL, allowsColumnSelection: bool) {
+        setAllowsColumnSelection :: proc "c" (self: ^NS.TableView, _: SEL, allowsColumnSelection: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1275,7 +1275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsColumnSelection:"), auto_cast setAllowsColumnSelection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.selectedColumnIndexes != nil {
-        selectedColumnIndexes :: proc "c" (self: ^AK.TableView, _: SEL) -> ^NS.IndexSet {
+        selectedColumnIndexes :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1285,7 +1285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedColumnIndexes"), auto_cast selectedColumnIndexes, "@@:") do panic("Failed to register objC method.")
     }
     if vt.selectedRowIndexes != nil {
-        selectedRowIndexes :: proc "c" (self: ^AK.TableView, _: SEL) -> ^NS.IndexSet {
+        selectedRowIndexes :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1295,7 +1295,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRowIndexes"), auto_cast selectedRowIndexes, "@@:") do panic("Failed to register objC method.")
     }
     if vt.selectedColumn != nil {
-        selectedColumn :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        selectedColumn :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1305,7 +1305,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedColumn"), auto_cast selectedColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.selectedRow != nil {
-        selectedRow :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        selectedRow :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1315,7 +1315,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRow"), auto_cast selectedRow, "l@:") do panic("Failed to register objC method.")
     }
     if vt.numberOfSelectedColumns != nil {
-        numberOfSelectedColumns :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        numberOfSelectedColumns :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1325,7 +1325,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfSelectedColumns"), auto_cast numberOfSelectedColumns, "l@:") do panic("Failed to register objC method.")
     }
     if vt.numberOfSelectedRows != nil {
-        numberOfSelectedRows :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        numberOfSelectedRows :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1335,7 +1335,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfSelectedRows"), auto_cast numberOfSelectedRows, "l@:") do panic("Failed to register objC method.")
     }
     if vt.allowsTypeSelect != nil {
-        allowsTypeSelect :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        allowsTypeSelect :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1345,7 +1345,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsTypeSelect"), auto_cast allowsTypeSelect, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsTypeSelect != nil {
-        setAllowsTypeSelect :: proc "c" (self: ^AK.TableView, _: SEL, allowsTypeSelect: bool) {
+        setAllowsTypeSelect :: proc "c" (self: ^NS.TableView, _: SEL, allowsTypeSelect: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1355,7 +1355,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsTypeSelect:"), auto_cast setAllowsTypeSelect, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.style != nil {
-        style :: proc "c" (self: ^AK.TableView, _: SEL) -> AK.TableViewStyle {
+        style :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.TableViewStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1365,7 +1365,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("style"), auto_cast style, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setStyle != nil {
-        setStyle :: proc "c" (self: ^AK.TableView, _: SEL, style: AK.TableViewStyle) {
+        setStyle :: proc "c" (self: ^NS.TableView, _: SEL, style: NS.TableViewStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1375,7 +1375,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setStyle:"), auto_cast setStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.effectiveStyle != nil {
-        effectiveStyle :: proc "c" (self: ^AK.TableView, _: SEL) -> AK.TableViewStyle {
+        effectiveStyle :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.TableViewStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1385,7 +1385,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectiveStyle"), auto_cast effectiveStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.selectionHighlightStyle != nil {
-        selectionHighlightStyle :: proc "c" (self: ^AK.TableView, _: SEL) -> AK.TableViewSelectionHighlightStyle {
+        selectionHighlightStyle :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.TableViewSelectionHighlightStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1395,7 +1395,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionHighlightStyle"), auto_cast selectionHighlightStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionHighlightStyle != nil {
-        setSelectionHighlightStyle :: proc "c" (self: ^AK.TableView, _: SEL, selectionHighlightStyle: AK.TableViewSelectionHighlightStyle) {
+        setSelectionHighlightStyle :: proc "c" (self: ^NS.TableView, _: SEL, selectionHighlightStyle: NS.TableViewSelectionHighlightStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1405,7 +1405,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionHighlightStyle:"), auto_cast setSelectionHighlightStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.draggingDestinationFeedbackStyle != nil {
-        draggingDestinationFeedbackStyle :: proc "c" (self: ^AK.TableView, _: SEL) -> AK.TableViewDraggingDestinationFeedbackStyle {
+        draggingDestinationFeedbackStyle :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.TableViewDraggingDestinationFeedbackStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1415,7 +1415,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingDestinationFeedbackStyle"), auto_cast draggingDestinationFeedbackStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setDraggingDestinationFeedbackStyle != nil {
-        setDraggingDestinationFeedbackStyle :: proc "c" (self: ^AK.TableView, _: SEL, draggingDestinationFeedbackStyle: AK.TableViewDraggingDestinationFeedbackStyle) {
+        setDraggingDestinationFeedbackStyle :: proc "c" (self: ^NS.TableView, _: SEL, draggingDestinationFeedbackStyle: NS.TableViewDraggingDestinationFeedbackStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1425,7 +1425,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDraggingDestinationFeedbackStyle:"), auto_cast setDraggingDestinationFeedbackStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.autosaveName != nil {
-        autosaveName :: proc "c" (self: ^AK.TableView, _: SEL) -> ^NS.String {
+        autosaveName :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1435,7 +1435,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autosaveName"), auto_cast autosaveName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAutosaveName != nil {
-        setAutosaveName :: proc "c" (self: ^AK.TableView, _: SEL, autosaveName: ^NS.String) {
+        setAutosaveName :: proc "c" (self: ^NS.TableView, _: SEL, autosaveName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1445,7 +1445,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutosaveName:"), auto_cast setAutosaveName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.autosaveTableColumns != nil {
-        autosaveTableColumns :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        autosaveTableColumns :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1455,7 +1455,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autosaveTableColumns"), auto_cast autosaveTableColumns, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutosaveTableColumns != nil {
-        setAutosaveTableColumns :: proc "c" (self: ^AK.TableView, _: SEL, autosaveTableColumns: bool) {
+        setAutosaveTableColumns :: proc "c" (self: ^NS.TableView, _: SEL, autosaveTableColumns: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1465,7 +1465,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutosaveTableColumns:"), auto_cast setAutosaveTableColumns, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.floatsGroupRows != nil {
-        floatsGroupRows :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        floatsGroupRows :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1475,7 +1475,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("floatsGroupRows"), auto_cast floatsGroupRows, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setFloatsGroupRows != nil {
-        setFloatsGroupRows :: proc "c" (self: ^AK.TableView, _: SEL, floatsGroupRows: bool) {
+        setFloatsGroupRows :: proc "c" (self: ^NS.TableView, _: SEL, floatsGroupRows: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1485,7 +1485,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFloatsGroupRows:"), auto_cast setFloatsGroupRows, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.rowActionsVisible != nil {
-        rowActionsVisible :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        rowActionsVisible :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1495,7 +1495,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowActionsVisible"), auto_cast rowActionsVisible, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setRowActionsVisible != nil {
-        setRowActionsVisible :: proc "c" (self: ^AK.TableView, _: SEL, rowActionsVisible: bool) {
+        setRowActionsVisible :: proc "c" (self: ^NS.TableView, _: SEL, rowActionsVisible: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1505,7 +1505,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRowActionsVisible:"), auto_cast setRowActionsVisible, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.hiddenRowIndexes != nil {
-        hiddenRowIndexes :: proc "c" (self: ^AK.TableView, _: SEL) -> ^NS.IndexSet {
+        hiddenRowIndexes :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1515,7 +1515,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hiddenRowIndexes"), auto_cast hiddenRowIndexes, "@@:") do panic("Failed to register objC method.")
     }
     if vt.registeredNibsByIdentifier != nil {
-        registeredNibsByIdentifier :: proc "c" (self: ^AK.TableView, _: SEL) -> ^NS.Dictionary {
+        registeredNibsByIdentifier :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1525,7 +1525,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("registeredNibsByIdentifier"), auto_cast registeredNibsByIdentifier, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.usesStaticContents != nil {
-        usesStaticContents :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        usesStaticContents :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1535,7 +1535,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("usesStaticContents"), auto_cast usesStaticContents, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setUsesStaticContents != nil {
-        setUsesStaticContents :: proc "c" (self: ^AK.TableView, _: SEL, usesStaticContents: bool) {
+        setUsesStaticContents :: proc "c" (self: ^NS.TableView, _: SEL, usesStaticContents: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1545,7 +1545,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesStaticContents:"), auto_cast setUsesStaticContents, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.userInterfaceLayoutDirection != nil {
-        userInterfaceLayoutDirection :: proc "c" (self: ^AK.TableView, _: SEL) -> AK.UserInterfaceLayoutDirection {
+        userInterfaceLayoutDirection :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.UserInterfaceLayoutDirection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1555,7 +1555,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("userInterfaceLayoutDirection"), auto_cast userInterfaceLayoutDirection, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setUserInterfaceLayoutDirection != nil {
-        setUserInterfaceLayoutDirection :: proc "c" (self: ^AK.TableView, _: SEL, userInterfaceLayoutDirection: AK.UserInterfaceLayoutDirection) {
+        setUserInterfaceLayoutDirection :: proc "c" (self: ^NS.TableView, _: SEL, userInterfaceLayoutDirection: NS.UserInterfaceLayoutDirection) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1565,7 +1565,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUserInterfaceLayoutDirection:"), auto_cast setUserInterfaceLayoutDirection, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.usesAutomaticRowHeights != nil {
-        usesAutomaticRowHeights :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        usesAutomaticRowHeights :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1575,7 +1575,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("usesAutomaticRowHeights"), auto_cast usesAutomaticRowHeights, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setUsesAutomaticRowHeights != nil {
-        setUsesAutomaticRowHeights :: proc "c" (self: ^AK.TableView, _: SEL, usesAutomaticRowHeights: bool) {
+        setUsesAutomaticRowHeights :: proc "c" (self: ^NS.TableView, _: SEL, usesAutomaticRowHeights: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1585,7 +1585,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesAutomaticRowHeights:"), auto_cast setUsesAutomaticRowHeights, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.setDrawsGrid != nil {
-        setDrawsGrid :: proc "c" (self: ^AK.TableView, _: SEL, flag: bool) {
+        setDrawsGrid :: proc "c" (self: ^NS.TableView, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1595,7 +1595,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDrawsGrid:"), auto_cast setDrawsGrid, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.drawsGrid != nil {
-        drawsGrid :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        drawsGrid :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1605,7 +1605,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawsGrid"), auto_cast drawsGrid, "B@:") do panic("Failed to register objC method.")
     }
     if vt.selectColumn != nil {
-        selectColumn :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer, extend: bool) {
+        selectColumn :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer, extend: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1615,7 +1615,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectColumn:byExtendingSelection:"), auto_cast selectColumn, "v@:lB") do panic("Failed to register objC method.")
     }
     if vt.selectRow != nil {
-        selectRow :: proc "c" (self: ^AK.TableView, _: SEL, row: NS.Integer, extend: bool) {
+        selectRow :: proc "c" (self: ^NS.TableView, _: SEL, row: NS.Integer, extend: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1625,7 +1625,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectRow:byExtendingSelection:"), auto_cast selectRow, "v@:lB") do panic("Failed to register objC method.")
     }
     if vt.selectedColumnEnumerator != nil {
-        selectedColumnEnumerator :: proc "c" (self: ^AK.TableView, _: SEL) -> ^NS.Enumerator {
+        selectedColumnEnumerator :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.Enumerator {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1635,7 +1635,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedColumnEnumerator"), auto_cast selectedColumnEnumerator, "@@:") do panic("Failed to register objC method.")
     }
     if vt.selectedRowEnumerator != nil {
-        selectedRowEnumerator :: proc "c" (self: ^AK.TableView, _: SEL) -> ^NS.Enumerator {
+        selectedRowEnumerator :: proc "c" (self: ^NS.TableView, _: SEL) -> ^NS.Enumerator {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1645,7 +1645,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRowEnumerator"), auto_cast selectedRowEnumerator, "@@:") do panic("Failed to register objC method.")
     }
     if vt.dragImageForRows != nil {
-        dragImageForRows :: proc "c" (self: ^AK.TableView, _: SEL, dragRows: ^NS.Array, dragEvent: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image {
+        dragImageForRows :: proc "c" (self: ^NS.TableView, _: SEL, dragRows: ^NS.Array, dragEvent: ^NS.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1655,7 +1655,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dragImageForRows:event:dragImageOffset:"), auto_cast dragImageForRows, "@@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.setAutoresizesAllColumnsToFit != nil {
-        setAutoresizesAllColumnsToFit :: proc "c" (self: ^AK.TableView, _: SEL, flag: bool) {
+        setAutoresizesAllColumnsToFit :: proc "c" (self: ^NS.TableView, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1665,7 +1665,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutoresizesAllColumnsToFit:"), auto_cast setAutoresizesAllColumnsToFit, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.autoresizesAllColumnsToFit != nil {
-        autoresizesAllColumnsToFit :: proc "c" (self: ^AK.TableView, _: SEL) -> bool {
+        autoresizesAllColumnsToFit :: proc "c" (self: ^NS.TableView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1675,7 +1675,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autoresizesAllColumnsToFit"), auto_cast autoresizesAllColumnsToFit, "B@:") do panic("Failed to register objC method.")
     }
     if vt.columnsInRect != nil {
-        columnsInRect :: proc "c" (self: ^AK.TableView, _: SEL, rect: NS.Rect) -> NS._NSRange {
+        columnsInRect :: proc "c" (self: ^NS.TableView, _: SEL, rect: NS.Rect) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1685,7 +1685,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnsInRect:"), auto_cast columnsInRect, "{_NSRange=LL}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.preparedCellAtColumn != nil {
-        preparedCellAtColumn :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer, row: NS.Integer) -> ^AK.Cell {
+        preparedCellAtColumn :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer, row: NS.Integer) -> ^NS.Cell {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1695,7 +1695,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preparedCellAtColumn:row:"), auto_cast preparedCellAtColumn, "@@:ll") do panic("Failed to register objC method.")
     }
     if vt.textShouldBeginEditing != nil {
-        textShouldBeginEditing :: proc "c" (self: ^AK.TableView, _: SEL, textObject: ^AK.Text) -> bool {
+        textShouldBeginEditing :: proc "c" (self: ^NS.TableView, _: SEL, textObject: ^NS.Text) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1705,7 +1705,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textShouldBeginEditing:"), auto_cast textShouldBeginEditing, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.textShouldEndEditing != nil {
-        textShouldEndEditing :: proc "c" (self: ^AK.TableView, _: SEL, textObject: ^AK.Text) -> bool {
+        textShouldEndEditing :: proc "c" (self: ^NS.TableView, _: SEL, textObject: ^NS.Text) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1715,7 +1715,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textShouldEndEditing:"), auto_cast textShouldEndEditing, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.textDidBeginEditing != nil {
-        textDidBeginEditing :: proc "c" (self: ^AK.TableView, _: SEL, notification: ^NS.Notification) {
+        textDidBeginEditing :: proc "c" (self: ^NS.TableView, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1725,7 +1725,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textDidBeginEditing:"), auto_cast textDidBeginEditing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.textDidEndEditing != nil {
-        textDidEndEditing :: proc "c" (self: ^AK.TableView, _: SEL, notification: ^NS.Notification) {
+        textDidEndEditing :: proc "c" (self: ^NS.TableView, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1735,7 +1735,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textDidEndEditing:"), auto_cast textDidEndEditing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.textDidChange != nil {
-        textDidChange :: proc "c" (self: ^AK.TableView, _: SEL, notification: ^NS.Notification) {
+        textDidChange :: proc "c" (self: ^NS.TableView, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1745,7 +1745,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textDidChange:"), auto_cast textDidChange, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.shouldFocusCell != nil {
-        shouldFocusCell :: proc "c" (self: ^AK.TableView, _: SEL, cell: ^AK.Cell, column: NS.Integer, row: NS.Integer) -> bool {
+        shouldFocusCell :: proc "c" (self: ^NS.TableView, _: SEL, cell: ^NS.Cell, column: NS.Integer, row: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1755,7 +1755,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shouldFocusCell:atColumn:row:"), auto_cast shouldFocusCell, "B@:@ll") do panic("Failed to register objC method.")
     }
     if vt.focusedColumn != nil {
-        focusedColumn :: proc "c" (self: ^AK.TableView, _: SEL) -> NS.Integer {
+        focusedColumn :: proc "c" (self: ^NS.TableView, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1765,7 +1765,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("focusedColumn"), auto_cast focusedColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setFocusedColumn != nil {
-        setFocusedColumn :: proc "c" (self: ^AK.TableView, _: SEL, focusedColumn: NS.Integer) {
+        setFocusedColumn :: proc "c" (self: ^NS.TableView, _: SEL, focusedColumn: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1775,7 +1775,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFocusedColumn:"), auto_cast setFocusedColumn, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.performClickOnCellAtColumn != nil {
-        performClickOnCellAtColumn :: proc "c" (self: ^AK.TableView, _: SEL, column: NS.Integer, row: NS.Integer) {
+        performClickOnCellAtColumn :: proc "c" (self: ^NS.TableView, _: SEL, column: NS.Integer, row: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

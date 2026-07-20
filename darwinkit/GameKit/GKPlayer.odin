@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKPlayer
-///
 @(objc_class="GKPlayer", objc_superclass=BasePlayer)
 Player :: struct { using _: BasePlayer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Player, objc_selector="scopedIDsArePersistent", objc_name="scopedIDsArePersistent")
     Player_scopedIDsArePersistent :: proc(self: ^Player) -> bool ---
@@ -41,11 +35,16 @@ foreign lib {
     @(objc_type=Player, objc_selector="isInvitable", objc_name="isInvitable")
     Player_isInvitable :: proc(self: ^Player) -> bool ---
 
-    @(objc_type=Player, objc_selector="loadPhotoForSize:withCompletionHandler:", objc_name="loadPhotoForSize")
-    Player_loadPhotoForSize :: proc(self: ^Player, size: PhotoSize, completionHandler: ^Objc_Block(proc "c" (photo: ^AKImage, error: ^NS.Error))) ---
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(objc_type=Player, objc_selector="loadPhotoForSize:withCompletionHandler:", objc_name="loadPhotoForSize")
+        Player_loadPhotoForSize :: proc(self: ^Player, size: PhotoSize, completionHandler: ^Objc_Block(proc "c" ( photo: ^AK.Image, error: ^NS.Error ))) ---
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=Player, objc_selector="loadPhotoForSize:withCompletionHandler:", objc_name="loadPhotoForSize")
+        Player_loadPhotoForSize :: proc(self: ^Player, size: PhotoSize, completionHandler: ^Objc_Block(proc "c" ( photo: ^UI.Image, error: ^NS.Error ))) ---
+    }
 
     @(objc_type=Player, objc_selector="loadPlayersForIdentifiers:withCompletionHandler:", objc_name="loadPlayersForIdentifiers", objc_is_class_method=true)
-    Player_loadPlayersForIdentifiers :: proc(identifiers: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (players: ^NS.Array, error: ^NS.Error))) ---
+    Player_loadPlayersForIdentifiers :: proc(identifiers: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( players: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Player, objc_selector="isFriend", objc_name="isFriend")
     Player_isFriend :: proc(self: ^Player) -> bool ---
@@ -53,3 +52,6 @@ foreign lib {
     @(objc_type=Player, objc_selector="playerID", objc_name="playerID")
     Player_playerID :: proc(self: ^Player) -> ^NS.String ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCompositionTrack
-///
 @(objc_class="AVCompositionTrack", objc_superclass=AssetTrack)
 CompositionTrack :: struct { using _: AssetTrack, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CompositionTrack, objc_selector="segmentForTrackTime:", objc_name="segmentForTrackTime")
     CompositionTrack_segmentForTrackTime :: proc(self: ^CompositionTrack, trackTime: CM.Time) -> ^CompositionTrackSegment ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=CompositionTrack, objc_selector="associatedTracksOfType:", objc_name="associatedTracksOfType")
     CompositionTrack_associatedTracksOfType :: proc(self: ^CompositionTrack, trackAssociationType: ^NS.String) -> ^NS.Array ---
 }
+
+
+

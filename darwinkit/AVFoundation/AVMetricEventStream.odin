@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricEventStream
-///
 @(objc_class="AVMetricEventStream", objc_superclass=NS.Object)
 MetricEventStream :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricEventStream, objc_selector="init", objc_name="init")
     MetricEventStream_init :: proc(self: ^MetricEventStream) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=MetricEventStream, objc_selector="subscribeToAllMetricEvents", objc_name="subscribeToAllMetricEvents")
     MetricEventStream_subscribeToAllMetricEvents :: proc(self: ^MetricEventStream) ---
 }
+
+
+

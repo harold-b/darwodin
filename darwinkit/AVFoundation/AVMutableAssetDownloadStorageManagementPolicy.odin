@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableAssetDownloadStorageManagementPolicy
-///
 @(objc_class="AVMutableAssetDownloadStorageManagementPolicy", objc_superclass=AssetDownloadStorageManagementPolicy)
 MutableAssetDownloadStorageManagementPolicy :: struct { using _: AssetDownloadStorageManagementPolicy, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableAssetDownloadStorageManagementPolicy, objc_selector="priority", objc_name="priority")
     MutableAssetDownloadStorageManagementPolicy_priority :: proc(self: ^MutableAssetDownloadStorageManagementPolicy) -> ^NS.String ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=MutableAssetDownloadStorageManagementPolicy, objc_selector="setExpirationDate:", objc_name="setExpirationDate")
     MutableAssetDownloadStorageManagementPolicy_setExpirationDate :: proc(self: ^MutableAssetDownloadStorageManagementPolicy, expirationDate: ^NS.Date) ---
 }
+
+
+

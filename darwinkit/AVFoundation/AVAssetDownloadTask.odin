@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetDownloadTask
-///
 @(objc_class="AVAssetDownloadTask", objc_superclass=NS.URLSessionTask)
 AssetDownloadTask :: struct { using _: NS.URLSessionTask, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetDownloadTask, objc_selector="init", objc_name="init")
     AssetDownloadTask_init :: proc(self: ^AssetDownloadTask) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=AssetDownloadTask, objc_selector="response", objc_name="response")
     AssetDownloadTask_response :: proc(self: ^AssetDownloadTask) -> ^NS.URLResponse ---
 }
+
+
+

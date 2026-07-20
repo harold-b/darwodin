@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSInvocationOperation
-///
 @(objc_class="NSInvocationOperation", objc_superclass=Operation)
 InvocationOperation :: struct { using _: Operation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=InvocationOperation, objc_selector="initWithTarget:selector:object:", objc_name="initWithTarget")
     InvocationOperation_initWithTarget :: proc(self: ^InvocationOperation, target: id, sel: SEL, arg: id) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=InvocationOperation, objc_selector="result", objc_name="result")
     InvocationOperation_result :: proc(self: ^InvocationOperation) -> id ---
 }
+
+
+

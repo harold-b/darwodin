@@ -136,7 +136,7 @@ VTable :: struct {
     searchDisplayController: proc(self: ^UI.ViewController) -> ^UI.SearchDisplayController,
     addChildViewController: proc(self: ^UI.ViewController, childController: ^UI.ViewController),
     removeFromParentViewController: proc(self: ^UI.ViewController),
-    transitionFromViewController: proc(self: ^UI.ViewController, fromViewController: ^UI.ViewController, toViewController: ^UI.ViewController, duration: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))),
+    transitionFromViewController: proc(self: ^UI.ViewController, fromViewController: ^UI.ViewController, toViewController: ^UI.ViewController, duration: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))),
     beginAppearanceTransition: proc(self: ^UI.ViewController, isAppearing: bool, animated: bool),
     endAppearanceTransition: proc(self: ^UI.ViewController),
     setOverrideTraitCollection: proc(self: ^UI.ViewController, collection: ^UI.TraitCollection, childViewController: ^UI.ViewController),
@@ -1365,7 +1365,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeFromParentViewController"), auto_cast removeFromParentViewController, "v@:") do panic("Failed to register objC method.")
     }
     if vt.transitionFromViewController != nil {
-        transitionFromViewController :: proc "c" (self: ^UI.ViewController, _: SEL, fromViewController: ^UI.ViewController, toViewController: ^UI.ViewController, duration: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
+        transitionFromViewController :: proc "c" (self: ^UI.ViewController, _: SEL, fromViewController: ^UI.ViewController, toViewController: ^UI.ViewController, duration: NS.TimeInterval, options: UI.ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKCompositeBehavior
-///
 @(objc_class="GKCompositeBehavior", objc_superclass=Behavior)
 CompositeBehavior :: struct { using _: Behavior, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CompositeBehavior, objc_selector="behaviorWithBehaviors:", objc_name="behaviorWithBehaviors_", objc_is_class_method=true)
     CompositeBehavior_behaviorWithBehaviors_ :: proc(behaviors: ^NS.Array) -> instancetype ---
@@ -47,6 +41,8 @@ foreign lib {
     @(objc_type=CompositeBehavior, objc_selector="behaviorCount", objc_name="behaviorCount")
     CompositeBehavior_behaviorCount :: proc(self: ^CompositeBehavior) -> NS.Integer ---
 }
+
+
 
 @(objc_type=CompositeBehavior, objc_name="behaviorWithBehaviors")
 CompositeBehavior_behaviorWithBehaviors :: proc {

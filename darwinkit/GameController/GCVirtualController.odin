@@ -32,13 +32,13 @@ foreign lib {
     VirtualController_initWithConfiguration :: proc(self: ^VirtualController, configuration: ^VirtualControllerConfiguration) -> instancetype ---
 
     @(objc_type=VirtualController, objc_selector="connectWithReplyHandler:", objc_name="connectWithReplyHandler")
-    VirtualController_connectWithReplyHandler :: proc(self: ^VirtualController, reply: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    VirtualController_connectWithReplyHandler :: proc(self: ^VirtualController, reply: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=VirtualController, objc_selector="disconnect", objc_name="disconnect")
     VirtualController_disconnect :: proc(self: ^VirtualController) ---
 
     @(objc_type=VirtualController, objc_selector="updateConfigurationForElement:configuration:", objc_name="updateConfigurationForElement")
-    VirtualController_updateConfigurationForElement :: proc(self: ^VirtualController, element: ^NS.String, config: ^Objc_Block(proc "c" (oldConfiguration: ^VirtualControllerElementConfiguration) -> ^VirtualControllerElementConfiguration)) ---
+    VirtualController_updateConfigurationForElement :: proc(self: ^VirtualController, element: ^NS.String, config: ^Objc_Block(proc "c" ( oldConfiguration: ^VirtualControllerElementConfiguration ) -> ^VirtualControllerElementConfiguration)) ---
 
     @(objc_type=VirtualController, objc_selector="setValue:forButtonElement:", objc_name="setValue")
     VirtualController_setValue :: proc(self: ^VirtualController, value: CG.Float, element: ^NS.String) ---

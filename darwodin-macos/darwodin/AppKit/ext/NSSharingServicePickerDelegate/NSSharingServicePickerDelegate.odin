@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    sharingServicePicker_sharingServicesForItems_proposedSharingServices: proc(self: ^AK.SharingServicePickerDelegate, sharingServicePicker: ^AK.SharingServicePicker, items: ^NS.Array, proposedServices: ^NS.Array) -> ^NS.Array,
-    sharingServicePicker_delegateForSharingService: proc(self: ^AK.SharingServicePickerDelegate, sharingServicePicker: ^AK.SharingServicePicker, sharingService: ^AK.SharingService) -> ^AK.SharingServiceDelegate,
-    sharingServicePicker_didChooseSharingService: proc(self: ^AK.SharingServicePickerDelegate, sharingServicePicker: ^AK.SharingServicePicker, service: ^AK.SharingService),
-    sharingServicePickerCollaborationModeRestrictions: proc(self: ^AK.SharingServicePickerDelegate, sharingServicePicker: ^AK.SharingServicePicker) -> ^NS.Array,
+    sharingServicePicker_sharingServicesForItems_proposedSharingServices: proc(self: ^NS.SharingServicePickerDelegate, sharingServicePicker: ^NS.SharingServicePicker, items: ^NS.Array, proposedServices: ^NS.Array) -> ^NS.Array,
+    sharingServicePicker_delegateForSharingService: proc(self: ^NS.SharingServicePickerDelegate, sharingServicePicker: ^NS.SharingServicePicker, sharingService: ^NS.SharingService) -> ^NS.SharingServiceDelegate,
+    sharingServicePicker_didChooseSharingService: proc(self: ^NS.SharingServicePickerDelegate, sharingServicePicker: ^NS.SharingServicePicker, service: ^NS.SharingService),
+    sharingServicePickerCollaborationModeRestrictions: proc(self: ^NS.SharingServicePickerDelegate, sharingServicePicker: ^NS.SharingServicePicker) -> ^NS.Array,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.sharingServicePicker_sharingServicesForItems_proposedSharingServices != nil {
-        sharingServicePicker_sharingServicesForItems_proposedSharingServices :: proc "c" (self: ^AK.SharingServicePickerDelegate, _: SEL, sharingServicePicker: ^AK.SharingServicePicker, items: ^NS.Array, proposedServices: ^NS.Array) -> ^NS.Array {
+        sharingServicePicker_sharingServicesForItems_proposedSharingServices :: proc "c" (self: ^NS.SharingServicePickerDelegate, _: SEL, sharingServicePicker: ^NS.SharingServicePicker, items: ^NS.Array, proposedServices: ^NS.Array) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingServicePicker:sharingServicesForItems:proposedSharingServices:"), auto_cast sharingServicePicker_sharingServicesForItems_proposedSharingServices, "^void@:@@^void") do panic("Failed to register objC method.")
     }
     if vt.sharingServicePicker_delegateForSharingService != nil {
-        sharingServicePicker_delegateForSharingService :: proc "c" (self: ^AK.SharingServicePickerDelegate, _: SEL, sharingServicePicker: ^AK.SharingServicePicker, sharingService: ^AK.SharingService) -> ^AK.SharingServiceDelegate {
+        sharingServicePicker_delegateForSharingService :: proc "c" (self: ^NS.SharingServicePickerDelegate, _: SEL, sharingServicePicker: ^NS.SharingServicePicker, sharingService: ^NS.SharingService) -> ^NS.SharingServiceDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingServicePicker:delegateForSharingService:"), auto_cast sharingServicePicker_delegateForSharingService, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.sharingServicePicker_didChooseSharingService != nil {
-        sharingServicePicker_didChooseSharingService :: proc "c" (self: ^AK.SharingServicePickerDelegate, _: SEL, sharingServicePicker: ^AK.SharingServicePicker, service: ^AK.SharingService) {
+        sharingServicePicker_didChooseSharingService :: proc "c" (self: ^NS.SharingServicePickerDelegate, _: SEL, sharingServicePicker: ^NS.SharingServicePicker, service: ^NS.SharingService) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sharingServicePicker:didChooseSharingService:"), auto_cast sharingServicePicker_didChooseSharingService, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.sharingServicePickerCollaborationModeRestrictions != nil {
-        sharingServicePickerCollaborationModeRestrictions :: proc "c" (self: ^AK.SharingServicePickerDelegate, _: SEL, sharingServicePicker: ^AK.SharingServicePicker) -> ^NS.Array {
+        sharingServicePickerCollaborationModeRestrictions :: proc "c" (self: ^NS.SharingServicePickerDelegate, _: SEL, sharingServicePicker: ^NS.SharingServicePicker) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import NS "../Foundation"
 import Sec "../Security"
 
-
-
-///
-/// LAEnvironmentMechanismBiometry
-///
 @(objc_class="LAEnvironmentMechanismBiometry", objc_superclass=EnvironmentMechanism)
 EnvironmentMechanismBiometry :: struct { using _: EnvironmentMechanism, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=EnvironmentMechanismBiometry, objc_selector="biometryType", objc_name="biometryType")
     EnvironmentMechanismBiometry_biometryType :: proc(self: ^EnvironmentMechanismBiometry) -> BiometryType ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=EnvironmentMechanismBiometry, objc_selector="builtInSensorInaccessible", objc_name="builtInSensorInaccessible")
     EnvironmentMechanismBiometry_builtInSensorInaccessible :: proc(self: ^EnvironmentMechanismBiometry) -> bool ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCompositionTrackSegment
-///
 @(objc_class="AVCompositionTrackSegment", objc_superclass=AssetTrackSegment)
 CompositionTrackSegment :: struct { using _: AssetTrackSegment, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CompositionTrackSegment, objc_selector="compositionTrackSegmentWithURL:trackID:sourceTimeRange:targetTimeRange:", objc_name="compositionTrackSegmentWithURL", objc_is_class_method=true)
     CompositionTrackSegment_compositionTrackSegmentWithURL :: proc(_URL: ^NS.URL, trackID: CM.PersistentTrackID, sourceTimeRange: CM.TimeRange, targetTimeRange: CM.TimeRange) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=CompositionTrackSegment, objc_selector="sourceTrackID", objc_name="sourceTrackID")
     CompositionTrackSegment_sourceTrackID :: proc(self: ^CompositionTrackSegment) -> CM.PersistentTrackID ---
 }
+
+
+

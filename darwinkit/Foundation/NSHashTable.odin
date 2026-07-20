@@ -9,11 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSHashTable
-///
 @(objc_class="NSHashTable", objc_superclass=Object)
 HashTable :: struct { using _: Object, 
     using _: Copying,
@@ -21,7 +16,6 @@ HashTable :: struct { using _: Object,
     using _: FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HashTable, objc_selector="initWithOptions:capacity:", objc_name="initWithOptions")
     HashTable_initWithOptions :: proc(self: ^HashTable, options: PointerFunctionsOptions, initialCapacity: UInteger) -> instancetype ---
@@ -89,3 +83,6 @@ foreign lib {
     @(objc_type=HashTable, objc_selector="setRepresentation", objc_name="setRepresentation")
     HashTable_setRepresentation :: proc(self: ^HashTable) -> ^Set ---
 }
+
+
+

@@ -4,16 +4,15 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
 ///
 /// GKGameCenterViewController
 ///
-@(objc_class="GKGameCenterViewController", objc_superclass=AK.ViewController)
-GameCenterViewController :: struct { using _: AK.ViewController, 
+@(objc_class="GKGameCenterViewController", objc_superclass=NS.ViewController)
+GameCenterViewController :: struct { using _: NS.ViewController, 
     using _: ViewController,
 }
 

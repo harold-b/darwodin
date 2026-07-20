@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    objectDidBeginEditing: proc(self: ^AK.EditorRegistration, editor: ^AK.Editor),
-    objectDidEndEditing: proc(self: ^AK.EditorRegistration, editor: ^AK.Editor),
+    objectDidBeginEditing: proc(self: ^NS.EditorRegistration, editor: ^NS.Editor),
+    objectDidEndEditing: proc(self: ^NS.EditorRegistration, editor: ^NS.Editor),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.objectDidBeginEditing != nil {
-        objectDidBeginEditing :: proc "c" (self: ^AK.EditorRegistration, _: SEL, editor: ^AK.Editor) {
+        objectDidBeginEditing :: proc "c" (self: ^NS.EditorRegistration, _: SEL, editor: ^NS.Editor) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("objectDidBeginEditing:"), auto_cast objectDidBeginEditing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.objectDidEndEditing != nil {
-        objectDidEndEditing :: proc "c" (self: ^AK.EditorRegistration, _: SEL, editor: ^AK.Editor) {
+        objectDidEndEditing :: proc "c" (self: ^NS.EditorRegistration, _: SEL, editor: ^NS.Editor) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

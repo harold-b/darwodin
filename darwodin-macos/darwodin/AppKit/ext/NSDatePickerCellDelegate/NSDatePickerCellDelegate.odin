@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    datePickerCell: proc(self: ^AK.DatePickerCellDelegate, datePickerCell: ^AK.DatePickerCell, proposedDateValue: ^^NS.Date, proposedTimeInterval: ^NS.TimeInterval),
+    datePickerCell: proc(self: ^NS.DatePickerCellDelegate, datePickerCell: ^NS.DatePickerCell, proposedDateValue: ^^NS.Date, proposedTimeInterval: ^NS.TimeInterval),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.datePickerCell != nil {
-        datePickerCell :: proc "c" (self: ^AK.DatePickerCellDelegate, _: SEL, datePickerCell: ^AK.DatePickerCell, proposedDateValue: ^^NS.Date, proposedTimeInterval: ^NS.TimeInterval) {
+        datePickerCell :: proc "c" (self: ^NS.DatePickerCellDelegate, _: SEL, datePickerCell: ^NS.DatePickerCell, proposedDateValue: ^^NS.Date, proposedTimeInterval: ^NS.TimeInterval) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

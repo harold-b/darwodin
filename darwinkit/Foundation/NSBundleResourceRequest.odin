@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSBundleResourceRequest
-///
 @(objc_class="NSBundleResourceRequest", objc_superclass=Object)
 BundleResourceRequest :: struct { using _: Object, 
     using _: ProgressReporting,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=BundleResourceRequest, objc_selector="init", objc_name="init")
     BundleResourceRequest_init :: proc(self: ^BundleResourceRequest) -> instancetype ---
@@ -31,10 +25,10 @@ foreign lib {
     BundleResourceRequest_initWithTags_bundle :: proc(self: ^BundleResourceRequest, tags: ^Set, bundle: ^Bundle) -> instancetype ---
 
     @(objc_type=BundleResourceRequest, objc_selector="beginAccessingResourcesWithCompletionHandler:", objc_name="beginAccessingResourcesWithCompletionHandler")
-    BundleResourceRequest_beginAccessingResourcesWithCompletionHandler :: proc(self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) ---
+    BundleResourceRequest_beginAccessingResourcesWithCompletionHandler :: proc(self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" ( error: ^Error ))) ---
 
     @(objc_type=BundleResourceRequest, objc_selector="conditionallyBeginAccessingResourcesWithCompletionHandler:", objc_name="conditionallyBeginAccessingResourcesWithCompletionHandler")
-    BundleResourceRequest_conditionallyBeginAccessingResourcesWithCompletionHandler :: proc(self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (resourcesAvailable: bool))) ---
+    BundleResourceRequest_conditionallyBeginAccessingResourcesWithCompletionHandler :: proc(self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" ( resourcesAvailable: bool ))) ---
 
     @(objc_type=BundleResourceRequest, objc_selector="endAccessingResources", objc_name="endAccessingResources")
     BundleResourceRequest_endAccessingResources :: proc(self: ^BundleResourceRequest) ---
@@ -54,6 +48,8 @@ foreign lib {
     @(objc_type=BundleResourceRequest, objc_selector="progress", objc_name="progress")
     BundleResourceRequest_progress :: proc(self: ^BundleResourceRequest) -> ^Progress ---
 }
+
+
 
 @(objc_type=BundleResourceRequest, objc_name="initWithTags")
 BundleResourceRequest_initWithTags :: proc {

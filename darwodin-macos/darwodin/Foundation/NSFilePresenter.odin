@@ -21,19 +21,19 @@ FilePresenter :: struct { using _: intrinsics.objc_object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=FilePresenter, objc_selector="relinquishPresentedItemToReader:", objc_name="relinquishPresentedItemToReader")
-    FilePresenter_relinquishPresentedItemToReader :: proc(self: ^FilePresenter, reader: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) ---
+    FilePresenter_relinquishPresentedItemToReader :: proc(self: ^FilePresenter, reader: ^Objc_Block(proc "c" ( reacquirer: ^Objc_Block(proc "c" ()) ))) ---
 
     @(objc_type=FilePresenter, objc_selector="relinquishPresentedItemToWriter:", objc_name="relinquishPresentedItemToWriter")
-    FilePresenter_relinquishPresentedItemToWriter :: proc(self: ^FilePresenter, writer: ^Objc_Block(proc "c" (reacquirer: ^Objc_Block(proc "c" ())))) ---
+    FilePresenter_relinquishPresentedItemToWriter :: proc(self: ^FilePresenter, writer: ^Objc_Block(proc "c" ( reacquirer: ^Objc_Block(proc "c" ()) ))) ---
 
     @(objc_type=FilePresenter, objc_selector="savePresentedItemChangesWithCompletionHandler:", objc_name="savePresentedItemChangesWithCompletionHandler")
-    FilePresenter_savePresentedItemChangesWithCompletionHandler :: proc(self: ^FilePresenter, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) ---
+    FilePresenter_savePresentedItemChangesWithCompletionHandler :: proc(self: ^FilePresenter, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^Error ))) ---
 
     @(objc_type=FilePresenter, objc_selector="accommodatePresentedItemDeletionWithCompletionHandler:", objc_name="accommodatePresentedItemDeletionWithCompletionHandler")
-    FilePresenter_accommodatePresentedItemDeletionWithCompletionHandler :: proc(self: ^FilePresenter, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) ---
+    FilePresenter_accommodatePresentedItemDeletionWithCompletionHandler :: proc(self: ^FilePresenter, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^Error ))) ---
 
     @(objc_type=FilePresenter, objc_selector="accommodatePresentedItemEvictionWithCompletionHandler:", objc_name="accommodatePresentedItemEvictionWithCompletionHandler")
-    FilePresenter_accommodatePresentedItemEvictionWithCompletionHandler :: proc(self: ^FilePresenter, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) ---
+    FilePresenter_accommodatePresentedItemEvictionWithCompletionHandler :: proc(self: ^FilePresenter, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^Error ))) ---
 
     @(objc_type=FilePresenter, objc_selector="presentedItemDidMoveToURL:", objc_name="presentedItemDidMoveToURL")
     FilePresenter_presentedItemDidMoveToURL :: proc(self: ^FilePresenter, newURL: ^URL) ---
@@ -54,7 +54,7 @@ foreign lib {
     FilePresenter_presentedItemDidResolveConflictVersion :: proc(self: ^FilePresenter, version: ^FileVersion) ---
 
     @(objc_type=FilePresenter, objc_selector="accommodatePresentedSubitemDeletionAtURL:completionHandler:", objc_name="accommodatePresentedSubitemDeletionAtURL")
-    FilePresenter_accommodatePresentedSubitemDeletionAtURL :: proc(self: ^FilePresenter, url: ^URL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) ---
+    FilePresenter_accommodatePresentedSubitemDeletionAtURL :: proc(self: ^FilePresenter, url: ^URL, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^Error ))) ---
 
     @(objc_type=FilePresenter, objc_selector="presentedSubitemDidAppearAtURL:", objc_name="presentedSubitemDidAppearAtURL")
     FilePresenter_presentedSubitemDidAppearAtURL :: proc(self: ^FilePresenter, url: ^URL) ---

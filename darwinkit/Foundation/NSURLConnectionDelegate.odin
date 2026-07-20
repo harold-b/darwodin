@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLConnectionDelegate
-///
 @(objc_class="NSURLConnectionDelegate")
 URLConnectionDelegate :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLConnectionDelegate, objc_selector="connection:didFailWithError:", objc_name="connection_didFailWithError")
     URLConnectionDelegate_connection_didFailWithError :: proc(self: ^URLConnectionDelegate, connection: ^URLConnection, error: ^Error) ---
@@ -39,4 +33,6 @@ foreign lib {
     @(objc_type=URLConnectionDelegate, objc_selector="connection:didCancelAuthenticationChallenge:", objc_name="connection_didCancelAuthenticationChallenge")
     URLConnectionDelegate_connection_didCancelAuthenticationChallenge :: proc(self: ^URLConnectionDelegate, connection: ^URLConnection, challenge: ^URLAuthenticationChallenge) ---
 }
+
+
 

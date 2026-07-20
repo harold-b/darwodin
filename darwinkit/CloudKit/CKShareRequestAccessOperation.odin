@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKShareRequestAccessOperation
-///
 @(objc_class="CKShareRequestAccessOperation", objc_superclass=Operation)
 ShareRequestAccessOperation :: struct { using _: Operation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ShareRequestAccessOperation, objc_selector="init", objc_name="init")
     ShareRequestAccessOperation_init :: proc(self: ^ShareRequestAccessOperation) -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=ShareRequestAccessOperation, objc_selector="setShareRequestAccessCompletionBlock:", objc_name="setShareRequestAccessCompletionBlock")
     ShareRequestAccessOperation_setShareRequestAccessCompletionBlock :: proc(self: ^ShareRequestAccessOperation, shareRequestAccessCompletionBlock: ^Objc_Block(proc "c" ())) ---
 }
+
+
+

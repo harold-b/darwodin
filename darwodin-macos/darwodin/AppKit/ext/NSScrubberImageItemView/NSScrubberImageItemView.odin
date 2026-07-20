@@ -20,17 +20,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSScrubberItemView"
 
 VTable :: struct {
     super: NSScrubberItemView.VTable,
-    imageView: proc(self: ^AK.ScrubberImageItemView) -> ^AK.ImageView,
-    image: proc(self: ^AK.ScrubberImageItemView) -> ^AK.Image,
-    setImage: proc(self: ^AK.ScrubberImageItemView, image: ^AK.Image),
-    imageAlignment: proc(self: ^AK.ScrubberImageItemView) -> AK.ImageAlignment,
-    setImageAlignment: proc(self: ^AK.ScrubberImageItemView, imageAlignment: AK.ImageAlignment),
+    imageView: proc(self: ^NS.ScrubberImageItemView) -> ^NS.ImageView,
+    image: proc(self: ^NS.ScrubberImageItemView) -> ^NS.Image,
+    setImage: proc(self: ^NS.ScrubberImageItemView, image: ^NS.Image),
+    imageAlignment: proc(self: ^NS.ScrubberImageItemView) -> NS.ImageAlignment,
+    setImageAlignment: proc(self: ^NS.ScrubberImageItemView, imageAlignment: NS.ImageAlignment),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSScrubberItemView.extend(cls, &vt.super)
 
     if vt.imageView != nil {
-        imageView :: proc "c" (self: ^AK.ScrubberImageItemView, _: SEL) -> ^AK.ImageView {
+        imageView :: proc "c" (self: ^NS.ScrubberImageItemView, _: SEL) -> ^NS.ImageView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageView"), auto_cast imageView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.ScrubberImageItemView, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.ScrubberImageItemView, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.ScrubberImageItemView, _: SEL, image: ^AK.Image) {
+        setImage :: proc "c" (self: ^NS.ScrubberImageItemView, _: SEL, image: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.imageAlignment != nil {
-        imageAlignment :: proc "c" (self: ^AK.ScrubberImageItemView, _: SEL) -> AK.ImageAlignment {
+        imageAlignment :: proc "c" (self: ^NS.ScrubberImageItemView, _: SEL) -> NS.ImageAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageAlignment"), auto_cast imageAlignment, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setImageAlignment != nil {
-        setImageAlignment :: proc "c" (self: ^AK.ScrubberImageItemView, _: SEL, imageAlignment: AK.ImageAlignment) {
+        setImageAlignment :: proc "c" (self: ^NS.ScrubberImageItemView, _: SEL, imageAlignment: NS.ImageAlignment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

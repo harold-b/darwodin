@@ -11,18 +11,12 @@ import CA "../QuartzCore"
 import MTL "../Metal"
 import MDL "../ModelIO"
 
-
-
-///
-/// MTKMeshBuffer
-///
 @(objc_class="MTKMeshBuffer", objc_superclass=NS.Object)
 MeshBuffer :: struct { using _: NS.Object, 
     using _: MDL.MeshBuffer,
     using _: MDL.Named,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeshBuffer, objc_selector="init", objc_name="init")
     MeshBuffer_init :: proc(self: ^MeshBuffer) -> instancetype ---
@@ -45,3 +39,6 @@ foreign lib {
     @(objc_type=MeshBuffer, objc_selector="type", objc_name="type")
     MeshBuffer_type :: proc(self: ^MeshBuffer) -> MDL.MeshBufferType ---
 }
+
+
+

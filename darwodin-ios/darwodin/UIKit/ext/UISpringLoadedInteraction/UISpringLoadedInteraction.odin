@@ -25,8 +25,8 @@ VTable :: struct {
     super: NSObject.VTable,
     new: proc() -> ^UI.SpringLoadedInteraction,
     init: proc(self: ^UI.SpringLoadedInteraction) -> instancetype,
-    initWithInteractionBehavior: proc(self: ^UI.SpringLoadedInteraction, interactionBehavior: ^UI.SpringLoadedInteractionBehavior, interactionEffect: ^UI.SpringLoadedInteractionEffect, handler: ^Objc_Block(proc "c" (interaction: ^UI.SpringLoadedInteraction, _context: ^UI.SpringLoadedInteractionContext))) -> instancetype,
-    initWithActivationHandler: proc(self: ^UI.SpringLoadedInteraction, handler: ^Objc_Block(proc "c" (interaction: ^UI.SpringLoadedInteraction, _context: ^UI.SpringLoadedInteractionContext))) -> instancetype,
+    initWithInteractionBehavior: proc(self: ^UI.SpringLoadedInteraction, interactionBehavior: ^UI.SpringLoadedInteractionBehavior, interactionEffect: ^UI.SpringLoadedInteractionEffect, handler: ^Objc_Block(proc "c" ( interaction: ^UI.SpringLoadedInteraction, _context: ^UI.SpringLoadedInteractionContext ))) -> instancetype,
+    initWithActivationHandler: proc(self: ^UI.SpringLoadedInteraction, handler: ^Objc_Block(proc "c" ( interaction: ^UI.SpringLoadedInteraction, _context: ^UI.SpringLoadedInteractionContext ))) -> instancetype,
     interactionBehavior: proc(self: ^UI.SpringLoadedInteraction) -> ^UI.SpringLoadedInteractionBehavior,
     interactionEffect: proc(self: ^UI.SpringLoadedInteraction) -> ^UI.SpringLoadedInteractionEffect,
 }
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithInteractionBehavior != nil {
-        initWithInteractionBehavior :: proc "c" (self: ^UI.SpringLoadedInteraction, _: SEL, interactionBehavior: ^UI.SpringLoadedInteractionBehavior, interactionEffect: ^UI.SpringLoadedInteractionEffect, handler: ^Objc_Block(proc "c" (interaction: ^UI.SpringLoadedInteraction, _context: ^UI.SpringLoadedInteractionContext))) -> instancetype {
+        initWithInteractionBehavior :: proc "c" (self: ^UI.SpringLoadedInteraction, _: SEL, interactionBehavior: ^UI.SpringLoadedInteractionBehavior, interactionEffect: ^UI.SpringLoadedInteractionEffect, handler: ^Objc_Block(proc "c" ( interaction: ^UI.SpringLoadedInteraction, _context: ^UI.SpringLoadedInteractionContext ))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithInteractionBehavior:interactionEffect:activationHandler:"), auto_cast initWithInteractionBehavior, "@@:@@?") do panic("Failed to register objC method.")
     }
     if vt.initWithActivationHandler != nil {
-        initWithActivationHandler :: proc "c" (self: ^UI.SpringLoadedInteraction, _: SEL, handler: ^Objc_Block(proc "c" (interaction: ^UI.SpringLoadedInteraction, _context: ^UI.SpringLoadedInteractionContext))) -> instancetype {
+        initWithActivationHandler :: proc "c" (self: ^UI.SpringLoadedInteraction, _: SEL, handler: ^Objc_Block(proc "c" ( interaction: ^UI.SpringLoadedInteraction, _context: ^UI.SpringLoadedInteractionContext ))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

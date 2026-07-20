@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCControllerButtonInput
-///
 @(objc_class="GCControllerButtonInput", objc_superclass=ControllerElement)
 ControllerButtonInput :: struct { using _: ControllerElement, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ControllerButtonInput, objc_selector="setValue:", objc_name="setValue")
     ControllerButtonInput_setValue :: proc(self: ^ControllerButtonInput, value: cffi.float) ---
@@ -48,3 +42,6 @@ foreign lib {
     @(objc_type=ControllerButtonInput, objc_selector="isTouched", objc_name="isTouched")
     ControllerButtonInput_isTouched :: proc(self: ^ControllerButtonInput) -> bool ---
 }
+
+
+

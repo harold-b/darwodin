@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CADisplayLink
-///
 @(objc_class="CADisplayLink", objc_superclass=NS.Object)
 DisplayLink :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DisplayLink, objc_selector="displayLinkWithTarget:selector:", objc_name="displayLinkWithTarget", objc_is_class_method=true)
     DisplayLink_displayLinkWithTarget :: proc(target: id, sel: SEL) -> ^DisplayLink ---
@@ -65,3 +59,6 @@ foreign lib {
     @(objc_type=DisplayLink, objc_selector="setPreferredFrameRateRange:", objc_name="setPreferredFrameRateRange")
     DisplayLink_setPreferredFrameRateRange :: proc(self: ^DisplayLink, preferredFrameRateRange: FrameRateRange) ---
 }
+
+
+

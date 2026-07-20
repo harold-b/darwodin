@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSpeechSynthesisProviderRequest
-///
 @(objc_class="AVSpeechSynthesisProviderRequest", objc_superclass=NS.Object)
 SpeechSynthesisProviderRequest :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesisProviderRequest, objc_selector="initWithSSMLRepresentation:voice:", objc_name="initWithSSMLRepresentation")
     SpeechSynthesisProviderRequest_initWithSSMLRepresentation :: proc(self: ^SpeechSynthesisProviderRequest, text: ^NS.String, voice: ^SpeechSynthesisProviderVoice) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=SpeechSynthesisProviderRequest, objc_selector="voice", objc_name="voice")
     SpeechSynthesisProviderRequest_voice :: proc(self: ^SpeechSynthesisProviderRequest) -> ^SpeechSynthesisProviderVoice ---
 }
+
+
+

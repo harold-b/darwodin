@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerVideoOutput
-///
 @(objc_class="AVPlayerVideoOutput", objc_superclass=NS.Object)
 PlayerVideoOutput :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerVideoOutput, objc_selector="init", objc_name="init")
     PlayerVideoOutput_init :: proc(self: ^PlayerVideoOutput) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=PlayerVideoOutput, objc_selector="copyTaggedBufferGroupForHostTime:presentationTimeStamp:activeConfiguration:", objc_name="copyTaggedBufferGroupForHostTime")
     PlayerVideoOutput_copyTaggedBufferGroupForHostTime :: proc(self: ^PlayerVideoOutput, hostTime: CM.Time, presentationTimeStampOut: ^CM.Time, activeConfigurationOut: ^^PlayerVideoOutputConfiguration) -> CM.TaggedBufferGroupRef ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureOutput
-///
 @(objc_class="AVCaptureOutput", objc_superclass=NS.Object)
 CaptureOutput :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureOutput, objc_selector="init", objc_name="init")
     CaptureOutput_init :: proc(self: ^CaptureOutput) -> instancetype ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=CaptureOutput, objc_selector="setDeferredStartEnabled:", objc_name="setDeferredStartEnabled")
     CaptureOutput_setDeferredStartEnabled :: proc(self: ^CaptureOutput, deferredStartEnabled: bool) ---
 }
+
+
+

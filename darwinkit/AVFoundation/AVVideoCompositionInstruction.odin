@@ -12,11 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVVideoCompositionInstruction
-///
 @(objc_class="AVVideoCompositionInstruction", objc_superclass=NS.Object)
 VideoCompositionInstruction :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
@@ -25,7 +20,6 @@ VideoCompositionInstruction :: struct { using _: NS.Object,
     using _: VideoCompositionInstructionProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoCompositionInstruction, objc_selector="videoCompositionInstructionWithInstruction:", objc_name="videoCompositionInstructionWithInstruction", objc_is_class_method=true)
     VideoCompositionInstruction_videoCompositionInstructionWithInstruction :: proc(instruction: ^VideoCompositionInstruction) -> ^VideoCompositionInstruction ---
@@ -51,3 +45,6 @@ foreign lib {
     @(objc_type=VideoCompositionInstruction, objc_selector="requiredSourceSampleDataTrackIDs", objc_name="requiredSourceSampleDataTrackIDs")
     VideoCompositionInstruction_requiredSourceSampleDataTrackIDs :: proc(self: ^VideoCompositionInstruction) -> ^NS.Array ---
 }
+
+
+

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLHeapDescriptor
-///
 @(objc_class="MTLHeapDescriptor", objc_superclass=NS.Object)
 HeapDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HeapDescriptor, objc_selector="size", objc_name="size")
     HeapDescriptor_size :: proc(self: ^HeapDescriptor) -> NS.UInteger ---
@@ -71,3 +65,6 @@ foreign lib {
     @(objc_type=HeapDescriptor, objc_selector="setMaxCompatiblePlacementSparsePageSize:", objc_name="setMaxCompatiblePlacementSparsePageSize")
     HeapDescriptor_setMaxCompatiblePlacementSparsePageSize :: proc(self: ^HeapDescriptor, maxCompatiblePlacementSparsePageSize: SparsePageSize) ---
 }
+
+
+

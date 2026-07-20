@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVComposition
-///
 @(objc_class="AVComposition", objc_superclass=Asset)
 Composition :: struct { using _: Asset, 
     using _: NS.MutableCopying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Composition, objc_selector="tracks", objc_name="tracks")
     Composition_tracks :: proc(self: ^Composition) -> ^NS.Array ---
@@ -37,19 +31,19 @@ foreign lib {
     Composition_trackWithTrackID :: proc(self: ^Composition, trackID: CM.PersistentTrackID) -> ^CompositionTrack ---
 
     @(objc_type=Composition, objc_selector="loadTrackWithTrackID:completionHandler:", objc_name="loadTrackWithTrackID")
-    Composition_loadTrackWithTrackID :: proc(self: ^Composition, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" (_: ^CompositionTrack, _1: ^NS.Error))) ---
+    Composition_loadTrackWithTrackID :: proc(self: ^Composition, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" ( _0: ^CompositionTrack, _1: ^NS.Error ))) ---
 
     @(objc_type=Composition, objc_selector="tracksWithMediaType:", objc_name="tracksWithMediaType")
     Composition_tracksWithMediaType :: proc(self: ^Composition, mediaType: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=Composition, objc_selector="loadTracksWithMediaType:completionHandler:", objc_name="loadTracksWithMediaType")
-    Composition_loadTracksWithMediaType :: proc(self: ^Composition, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    Composition_loadTracksWithMediaType :: proc(self: ^Composition, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=Composition, objc_selector="tracksWithMediaCharacteristic:", objc_name="tracksWithMediaCharacteristic")
     Composition_tracksWithMediaCharacteristic :: proc(self: ^Composition, mediaCharacteristic: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=Composition, objc_selector="loadTracksWithMediaCharacteristic:completionHandler:", objc_name="loadTracksWithMediaCharacteristic")
-    Composition_loadTracksWithMediaCharacteristic :: proc(self: ^Composition, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    Composition_loadTracksWithMediaCharacteristic :: proc(self: ^Composition, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=Composition, objc_selector="metadataForFormat:", objc_name="metadataForFormat")
     Composition_metadataForFormat :: proc(self: ^Composition, format: ^NS.String) -> ^NS.Array ---
@@ -66,3 +60,6 @@ foreign lib {
     @(objc_type=Composition, objc_selector="unusedTrackID", objc_name="unusedTrackID")
     Composition_unusedTrackID :: proc(self: ^Composition) -> CM.PersistentTrackID ---
 }
+
+
+

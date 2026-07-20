@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithImageContent: proc(self: ^AK.AdaptiveImageGlyph, imageContent: ^NS.Data) -> instancetype,
-    initWithCoder: proc(self: ^AK.AdaptiveImageGlyph, coder: ^NS.Coder) -> instancetype,
-    init: proc(self: ^AK.AdaptiveImageGlyph) -> instancetype,
-    imageContent: proc(self: ^AK.AdaptiveImageGlyph) -> ^NS.Data,
-    contentIdentifier: proc(self: ^AK.AdaptiveImageGlyph) -> ^NS.String,
-    contentDescription: proc(self: ^AK.AdaptiveImageGlyph) -> ^NS.String,
-    contentType: proc() -> ^AK.UTType,
+    initWithImageContent: proc(self: ^NS.AdaptiveImageGlyph, imageContent: ^NS.Data) -> instancetype,
+    initWithCoder: proc(self: ^NS.AdaptiveImageGlyph, coder: ^NS.Coder) -> instancetype,
+    init: proc(self: ^NS.AdaptiveImageGlyph) -> instancetype,
+    imageContent: proc(self: ^NS.AdaptiveImageGlyph) -> ^NS.Data,
+    contentIdentifier: proc(self: ^NS.AdaptiveImageGlyph) -> ^NS.String,
+    contentDescription: proc(self: ^NS.AdaptiveImageGlyph) -> ^NS.String,
+    contentType: proc() -> ^NS.UTType,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithImageContent != nil {
-        initWithImageContent :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL, imageContent: ^NS.Data) -> instancetype {
+        initWithImageContent :: proc "c" (self: ^NS.AdaptiveImageGlyph, _: SEL, imageContent: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithImageContent:"), auto_cast initWithImageContent, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.AdaptiveImageGlyph, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.AdaptiveImageGlyph, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.imageContent != nil {
-        imageContent :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL) -> ^NS.Data {
+        imageContent :: proc "c" (self: ^NS.AdaptiveImageGlyph, _: SEL) -> ^NS.Data {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageContent"), auto_cast imageContent, "@@:") do panic("Failed to register objC method.")
     }
     if vt.contentIdentifier != nil {
-        contentIdentifier :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL) -> ^NS.String {
+        contentIdentifier :: proc "c" (self: ^NS.AdaptiveImageGlyph, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentIdentifier"), auto_cast contentIdentifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.contentDescription != nil {
-        contentDescription :: proc "c" (self: ^AK.AdaptiveImageGlyph, _: SEL) -> ^NS.String {
+        contentDescription :: proc "c" (self: ^NS.AdaptiveImageGlyph, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentDescription"), auto_cast contentDescription, "@@:") do panic("Failed to register objC method.")
     }
     if vt.contentType != nil {
-        contentType :: proc "c" (self: Class, _: SEL) -> ^AK.UTType {
+        contentType :: proc "c" (self: Class, _: SEL) -> ^NS.UTType {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitTimeEffect
-///
 @(objc_class="AVAudioUnitTimeEffect", objc_superclass=AudioUnit)
 AudioUnitTimeEffect :: struct { using _: AudioUnit, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitTimeEffect, objc_selector="initWithAudioComponentDescription:", objc_name="initWithAudioComponentDescription")
     AudioUnitTimeEffect_initWithAudioComponentDescription :: proc(self: ^AudioUnitTimeEffect, audioComponentDescription: Audio.ComponentDescription) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=AudioUnitTimeEffect, objc_selector="setBypass:", objc_name="setBypass")
     AudioUnitTimeEffect_setBypass :: proc(self: ^AudioUnitTimeEffect, bypass: bool) ---
 }
+
+
+

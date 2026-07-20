@@ -24,12 +24,12 @@ VTable :: struct {
     addFilePresenter: proc(filePresenter: ^NS.FilePresenter),
     removeFilePresenter: proc(filePresenter: ^NS.FilePresenter),
     initWithFilePresenter: proc(self: ^NS.FileCoordinator, filePresenterOrNil: ^NS.FilePresenter) -> instancetype,
-    coordinateAccessWithIntents: proc(self: ^NS.FileCoordinator, intents: ^NS.Array, queue: ^NS.OperationQueue, accessor: ^Objc_Block(proc "c" (error: ^NS.Error))),
-    coordinateReadingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, url: ^NS.URL, options: NS.FileCoordinatorReadingOptions, outError: ^^NS.Error, reader: ^Objc_Block(proc "c" (newURL: ^NS.URL))),
-    coordinateWritingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, url: ^NS.URL, options: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, writer: ^Objc_Block(proc "c" (newURL: ^NS.URL))),
-    coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, readingURL: ^NS.URL, readingOptions: NS.FileCoordinatorReadingOptions, writingURL: ^NS.URL, writingOptions: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, readerWriter: ^Objc_Block(proc "c" (newReadingURL: ^NS.URL, newWritingURL: ^NS.URL))),
-    coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, url1: ^NS.URL, options1: NS.FileCoordinatorWritingOptions, url2: ^NS.URL, options2: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, writer: ^Objc_Block(proc "c" (newURL1: ^NS.URL, newURL2: ^NS.URL))),
-    prepareForReadingItemsAtURLs: proc(self: ^NS.FileCoordinator, readingURLs: ^NS.Array, readingOptions: NS.FileCoordinatorReadingOptions, writingURLs: ^NS.Array, writingOptions: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, batchAccessor: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" ())))),
+    coordinateAccessWithIntents: proc(self: ^NS.FileCoordinator, intents: ^NS.Array, queue: ^NS.OperationQueue, accessor: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
+    coordinateReadingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, url: ^NS.URL, options: NS.FileCoordinatorReadingOptions, outError: ^^NS.Error, reader: ^Objc_Block(proc "c" ( newURL: ^NS.URL ))),
+    coordinateWritingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, url: ^NS.URL, options: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, writer: ^Objc_Block(proc "c" ( newURL: ^NS.URL ))),
+    coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, readingURL: ^NS.URL, readingOptions: NS.FileCoordinatorReadingOptions, writingURL: ^NS.URL, writingOptions: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, readerWriter: ^Objc_Block(proc "c" ( newReadingURL: ^NS.URL, newWritingURL: ^NS.URL ))),
+    coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor: proc(self: ^NS.FileCoordinator, url1: ^NS.URL, options1: NS.FileCoordinatorWritingOptions, url2: ^NS.URL, options2: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, writer: ^Objc_Block(proc "c" ( newURL1: ^NS.URL, newURL2: ^NS.URL ))),
+    prepareForReadingItemsAtURLs: proc(self: ^NS.FileCoordinator, readingURLs: ^NS.Array, readingOptions: NS.FileCoordinatorReadingOptions, writingURLs: ^NS.Array, writingOptions: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, batchAccessor: ^Objc_Block(proc "c" ( completionHandler: ^Objc_Block(proc "c" ()) ))),
     itemAtURL_willMoveToURL: proc(self: ^NS.FileCoordinator, oldURL: ^NS.URL, newURL: ^NS.URL),
     itemAtURL_didMoveToURL: proc(self: ^NS.FileCoordinator, oldURL: ^NS.URL, newURL: ^NS.URL),
     itemAtURL_didChangeUbiquityAttributes: proc(self: ^NS.FileCoordinator, url: ^NS.URL, attributes: ^NS.Set),
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFilePresenter:"), auto_cast initWithFilePresenter, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.coordinateAccessWithIntents != nil {
-        coordinateAccessWithIntents :: proc "c" (self: ^NS.FileCoordinator, _: SEL, intents: ^NS.Array, queue: ^NS.OperationQueue, accessor: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        coordinateAccessWithIntents :: proc "c" (self: ^NS.FileCoordinator, _: SEL, intents: ^NS.Array, queue: ^NS.OperationQueue, accessor: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("coordinateAccessWithIntents:queue:byAccessor:"), auto_cast coordinateAccessWithIntents, "v@:^void@?") do panic("Failed to register objC method.")
     }
     if vt.coordinateReadingItemAtURL_options_error_byAccessor != nil {
-        coordinateReadingItemAtURL_options_error_byAccessor :: proc "c" (self: ^NS.FileCoordinator, _: SEL, url: ^NS.URL, options: NS.FileCoordinatorReadingOptions, outError: ^^NS.Error, reader: ^Objc_Block(proc "c" (newURL: ^NS.URL))) {
+        coordinateReadingItemAtURL_options_error_byAccessor :: proc "c" (self: ^NS.FileCoordinator, _: SEL, url: ^NS.URL, options: NS.FileCoordinatorReadingOptions, outError: ^^NS.Error, reader: ^Objc_Block(proc "c" ( newURL: ^NS.URL ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("coordinateReadingItemAtURL:options:error:byAccessor:"), auto_cast coordinateReadingItemAtURL_options_error_byAccessor, "v@:@L^void?") do panic("Failed to register objC method.")
     }
     if vt.coordinateWritingItemAtURL_options_error_byAccessor != nil {
-        coordinateWritingItemAtURL_options_error_byAccessor :: proc "c" (self: ^NS.FileCoordinator, _: SEL, url: ^NS.URL, options: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, writer: ^Objc_Block(proc "c" (newURL: ^NS.URL))) {
+        coordinateWritingItemAtURL_options_error_byAccessor :: proc "c" (self: ^NS.FileCoordinator, _: SEL, url: ^NS.URL, options: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, writer: ^Objc_Block(proc "c" ( newURL: ^NS.URL ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("coordinateWritingItemAtURL:options:error:byAccessor:"), auto_cast coordinateWritingItemAtURL_options_error_byAccessor, "v@:@L^void?") do panic("Failed to register objC method.")
     }
     if vt.coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor != nil {
-        coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: proc "c" (self: ^NS.FileCoordinator, _: SEL, readingURL: ^NS.URL, readingOptions: NS.FileCoordinatorReadingOptions, writingURL: ^NS.URL, writingOptions: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, readerWriter: ^Objc_Block(proc "c" (newReadingURL: ^NS.URL, newWritingURL: ^NS.URL))) {
+        coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: proc "c" (self: ^NS.FileCoordinator, _: SEL, readingURL: ^NS.URL, readingOptions: NS.FileCoordinatorReadingOptions, writingURL: ^NS.URL, writingOptions: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, readerWriter: ^Objc_Block(proc "c" ( newReadingURL: ^NS.URL, newWritingURL: ^NS.URL ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("coordinateReadingItemAtURL:options:writingItemAtURL:options:error:byAccessor:"), auto_cast coordinateReadingItemAtURL_options_writingItemAtURL_options_error_byAccessor, "v@:@L@L^void?") do panic("Failed to register objC method.")
     }
     if vt.coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor != nil {
-        coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: proc "c" (self: ^NS.FileCoordinator, _: SEL, url1: ^NS.URL, options1: NS.FileCoordinatorWritingOptions, url2: ^NS.URL, options2: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, writer: ^Objc_Block(proc "c" (newURL1: ^NS.URL, newURL2: ^NS.URL))) {
+        coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor :: proc "c" (self: ^NS.FileCoordinator, _: SEL, url1: ^NS.URL, options1: NS.FileCoordinatorWritingOptions, url2: ^NS.URL, options2: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, writer: ^Objc_Block(proc "c" ( newURL1: ^NS.URL, newURL2: ^NS.URL ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("coordinateWritingItemAtURL:options:writingItemAtURL:options:error:byAccessor:"), auto_cast coordinateWritingItemAtURL_options_writingItemAtURL_options_error_byAccessor, "v@:@L@L^void?") do panic("Failed to register objC method.")
     }
     if vt.prepareForReadingItemsAtURLs != nil {
-        prepareForReadingItemsAtURLs :: proc "c" (self: ^NS.FileCoordinator, _: SEL, readingURLs: ^NS.Array, readingOptions: NS.FileCoordinatorReadingOptions, writingURLs: ^NS.Array, writingOptions: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, batchAccessor: ^Objc_Block(proc "c" (completionHandler: ^Objc_Block(proc "c" ())))) {
+        prepareForReadingItemsAtURLs :: proc "c" (self: ^NS.FileCoordinator, _: SEL, readingURLs: ^NS.Array, readingOptions: NS.FileCoordinatorReadingOptions, writingURLs: ^NS.Array, writingOptions: NS.FileCoordinatorWritingOptions, outError: ^^NS.Error, batchAccessor: ^Objc_Block(proc "c" ( completionHandler: ^Objc_Block(proc "c" ()) ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

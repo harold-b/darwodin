@@ -7,16 +7,13 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineDidFetchChangesEvent
-///
 @(objc_class="CKSyncEngineDidFetchChangesEvent", objc_superclass=SyncEngineEvent)
 SyncEngineDidFetchChangesEvent :: struct { using _: SyncEngineEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineDidFetchChangesEvent, objc_selector="context", objc_name="context")
     SyncEngineDidFetchChangesEvent_context :: proc(self: ^SyncEngineDidFetchChangesEvent) -> ^SyncEngineFetchChangesContext ---
 }
+
+
+

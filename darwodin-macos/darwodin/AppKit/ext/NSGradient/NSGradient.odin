@@ -20,27 +20,27 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithStartingColor: proc(self: ^AK.Gradient, startingColor: ^AK.Color, endingColor: ^AK.Color) -> instancetype,
-    initWithColors_: proc(self: ^AK.Gradient, colorArray: ^NS.Array) -> instancetype,
-    initWithColorsAndLocations: proc(self: ^AK.Gradient, firstColor: ^AK.Color) -> instancetype,
-    initWithColors_atLocations_colorSpace: proc(self: ^AK.Gradient, colorArray: ^NS.Array, locations: ^CG.Float, colorSpace: ^AK.ColorSpace) -> instancetype,
-    initWithCoder: proc(self: ^AK.Gradient, coder: ^NS.Coder) -> instancetype,
-    drawFromPoint: proc(self: ^AK.Gradient, startingPoint: CG.Point, endingPoint: CG.Point, options: AK.GradientDrawingOptions),
-    drawInRect_angle: proc(self: ^AK.Gradient, rect: NS.Rect, angle: CG.Float),
-    drawInBezierPath_angle: proc(self: ^AK.Gradient, path: ^AK.BezierPath, angle: CG.Float),
-    drawFromCenter: proc(self: ^AK.Gradient, startCenter: CG.Point, startRadius: CG.Float, endCenter: CG.Point, endRadius: CG.Float, options: AK.GradientDrawingOptions),
-    drawInRect_relativeCenterPosition: proc(self: ^AK.Gradient, rect: NS.Rect, relativeCenterPosition: CG.Point),
-    drawInBezierPath_relativeCenterPosition: proc(self: ^AK.Gradient, path: ^AK.BezierPath, relativeCenterPosition: CG.Point),
-    getColor: proc(self: ^AK.Gradient, color: ^^AK.Color, location: ^CG.Float, index: NS.Integer),
-    interpolatedColorAtLocation: proc(self: ^AK.Gradient, location: CG.Float) -> ^AK.Color,
-    colorSpace: proc(self: ^AK.Gradient) -> ^AK.ColorSpace,
-    numberOfColorStops: proc(self: ^AK.Gradient) -> NS.Integer,
+    initWithStartingColor: proc(self: ^NS.Gradient, startingColor: ^NS.Color, endingColor: ^NS.Color) -> instancetype,
+    initWithColors_: proc(self: ^NS.Gradient, colorArray: ^NS.Array) -> instancetype,
+    initWithColorsAndLocations: proc(self: ^NS.Gradient, firstColor: ^NS.Color) -> instancetype,
+    initWithColors_atLocations_colorSpace: proc(self: ^NS.Gradient, colorArray: ^NS.Array, locations: ^CG.Float, colorSpace: ^NS.ColorSpace) -> instancetype,
+    initWithCoder: proc(self: ^NS.Gradient, coder: ^NS.Coder) -> instancetype,
+    drawFromPoint: proc(self: ^NS.Gradient, startingPoint: CG.Point, endingPoint: CG.Point, options: NS.GradientDrawingOptions),
+    drawInRect_angle: proc(self: ^NS.Gradient, rect: NS.Rect, angle: CG.Float),
+    drawInBezierPath_angle: proc(self: ^NS.Gradient, path: ^NS.BezierPath, angle: CG.Float),
+    drawFromCenter: proc(self: ^NS.Gradient, startCenter: CG.Point, startRadius: CG.Float, endCenter: CG.Point, endRadius: CG.Float, options: NS.GradientDrawingOptions),
+    drawInRect_relativeCenterPosition: proc(self: ^NS.Gradient, rect: NS.Rect, relativeCenterPosition: CG.Point),
+    drawInBezierPath_relativeCenterPosition: proc(self: ^NS.Gradient, path: ^NS.BezierPath, relativeCenterPosition: CG.Point),
+    getColor: proc(self: ^NS.Gradient, color: ^^NS.Color, location: ^CG.Float, index: NS.Integer),
+    interpolatedColorAtLocation: proc(self: ^NS.Gradient, location: CG.Float) -> ^NS.Color,
+    colorSpace: proc(self: ^NS.Gradient) -> ^NS.ColorSpace,
+    numberOfColorStops: proc(self: ^NS.Gradient) -> NS.Integer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithStartingColor != nil {
-        initWithStartingColor :: proc "c" (self: ^AK.Gradient, _: SEL, startingColor: ^AK.Color, endingColor: ^AK.Color) -> instancetype {
+        initWithStartingColor :: proc "c" (self: ^NS.Gradient, _: SEL, startingColor: ^NS.Color, endingColor: ^NS.Color) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithStartingColor:endingColor:"), auto_cast initWithStartingColor, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithColors_ != nil {
-        initWithColors_ :: proc "c" (self: ^AK.Gradient, _: SEL, colorArray: ^NS.Array) -> instancetype {
+        initWithColors_ :: proc "c" (self: ^NS.Gradient, _: SEL, colorArray: ^NS.Array) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithColors:"), auto_cast initWithColors_, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.initWithColorsAndLocations != nil {
-        initWithColorsAndLocations :: proc "c" (self: ^AK.Gradient, _: SEL, firstColor: ^AK.Color) -> instancetype {
+        initWithColorsAndLocations :: proc "c" (self: ^NS.Gradient, _: SEL, firstColor: ^NS.Color) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithColorsAndLocations:"), auto_cast initWithColorsAndLocations, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithColors_atLocations_colorSpace != nil {
-        initWithColors_atLocations_colorSpace :: proc "c" (self: ^AK.Gradient, _: SEL, colorArray: ^NS.Array, locations: ^CG.Float, colorSpace: ^AK.ColorSpace) -> instancetype {
+        initWithColors_atLocations_colorSpace :: proc "c" (self: ^NS.Gradient, _: SEL, colorArray: ^NS.Array, locations: ^CG.Float, colorSpace: ^NS.ColorSpace) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithColors:atLocations:colorSpace:"), auto_cast initWithColors_atLocations_colorSpace, "@@:^void^void@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Gradient, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.Gradient, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.drawFromPoint != nil {
-        drawFromPoint :: proc "c" (self: ^AK.Gradient, _: SEL, startingPoint: CG.Point, endingPoint: CG.Point, options: AK.GradientDrawingOptions) {
+        drawFromPoint :: proc "c" (self: ^NS.Gradient, _: SEL, startingPoint: CG.Point, endingPoint: CG.Point, options: NS.GradientDrawingOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawFromPoint:toPoint:options:"), auto_cast drawFromPoint, "v@:{CGPoint=dd}{CGPoint=dd}L") do panic("Failed to register objC method.")
     }
     if vt.drawInRect_angle != nil {
-        drawInRect_angle :: proc "c" (self: ^AK.Gradient, _: SEL, rect: NS.Rect, angle: CG.Float) {
+        drawInRect_angle :: proc "c" (self: ^NS.Gradient, _: SEL, rect: NS.Rect, angle: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawInRect:angle:"), auto_cast drawInRect_angle, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}d") do panic("Failed to register objC method.")
     }
     if vt.drawInBezierPath_angle != nil {
-        drawInBezierPath_angle :: proc "c" (self: ^AK.Gradient, _: SEL, path: ^AK.BezierPath, angle: CG.Float) {
+        drawInBezierPath_angle :: proc "c" (self: ^NS.Gradient, _: SEL, path: ^NS.BezierPath, angle: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawInBezierPath:angle:"), auto_cast drawInBezierPath_angle, "v@:@d") do panic("Failed to register objC method.")
     }
     if vt.drawFromCenter != nil {
-        drawFromCenter :: proc "c" (self: ^AK.Gradient, _: SEL, startCenter: CG.Point, startRadius: CG.Float, endCenter: CG.Point, endRadius: CG.Float, options: AK.GradientDrawingOptions) {
+        drawFromCenter :: proc "c" (self: ^NS.Gradient, _: SEL, startCenter: CG.Point, startRadius: CG.Float, endCenter: CG.Point, endRadius: CG.Float, options: NS.GradientDrawingOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawFromCenter:radius:toCenter:radius:options:"), auto_cast drawFromCenter, "v@:{CGPoint=dd}d{CGPoint=dd}dL") do panic("Failed to register objC method.")
     }
     if vt.drawInRect_relativeCenterPosition != nil {
-        drawInRect_relativeCenterPosition :: proc "c" (self: ^AK.Gradient, _: SEL, rect: NS.Rect, relativeCenterPosition: CG.Point) {
+        drawInRect_relativeCenterPosition :: proc "c" (self: ^NS.Gradient, _: SEL, rect: NS.Rect, relativeCenterPosition: CG.Point) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawInRect:relativeCenterPosition:"), auto_cast drawInRect_relativeCenterPosition, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.drawInBezierPath_relativeCenterPosition != nil {
-        drawInBezierPath_relativeCenterPosition :: proc "c" (self: ^AK.Gradient, _: SEL, path: ^AK.BezierPath, relativeCenterPosition: CG.Point) {
+        drawInBezierPath_relativeCenterPosition :: proc "c" (self: ^NS.Gradient, _: SEL, path: ^NS.BezierPath, relativeCenterPosition: CG.Point) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -161,7 +161,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawInBezierPath:relativeCenterPosition:"), auto_cast drawInBezierPath_relativeCenterPosition, "v@:@{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.getColor != nil {
-        getColor :: proc "c" (self: ^AK.Gradient, _: SEL, color: ^^AK.Color, location: ^CG.Float, index: NS.Integer) {
+        getColor :: proc "c" (self: ^NS.Gradient, _: SEL, color: ^^NS.Color, location: ^CG.Float, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -171,7 +171,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getColor:location:atIndex:"), auto_cast getColor, "v@:^void^voidl") do panic("Failed to register objC method.")
     }
     if vt.interpolatedColorAtLocation != nil {
-        interpolatedColorAtLocation :: proc "c" (self: ^AK.Gradient, _: SEL, location: CG.Float) -> ^AK.Color {
+        interpolatedColorAtLocation :: proc "c" (self: ^NS.Gradient, _: SEL, location: CG.Float) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -181,7 +181,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("interpolatedColorAtLocation:"), auto_cast interpolatedColorAtLocation, "@@:d") do panic("Failed to register objC method.")
     }
     if vt.colorSpace != nil {
-        colorSpace :: proc "c" (self: ^AK.Gradient, _: SEL) -> ^AK.ColorSpace {
+        colorSpace :: proc "c" (self: ^NS.Gradient, _: SEL) -> ^NS.ColorSpace {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("colorSpace"), auto_cast colorSpace, "@@:") do panic("Failed to register objC method.")
     }
     if vt.numberOfColorStops != nil {
-        numberOfColorStops :: proc "c" (self: ^AK.Gradient, _: SEL) -> NS.Integer {
+        numberOfColorStops :: proc "c" (self: ^NS.Gradient, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

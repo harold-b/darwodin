@@ -20,28 +20,28 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSCollectionViewLayout"
 
 VTable :: struct {
     super: NSCollectionViewLayout.VTable,
-    margins: proc(self: ^AK.CollectionViewGridLayout) -> NS.EdgeInsets,
-    setMargins: proc(self: ^AK.CollectionViewGridLayout, margins: NS.EdgeInsets),
-    minimumInteritemSpacing: proc(self: ^AK.CollectionViewGridLayout) -> CG.Float,
-    setMinimumInteritemSpacing: proc(self: ^AK.CollectionViewGridLayout, minimumInteritemSpacing: CG.Float),
-    minimumLineSpacing: proc(self: ^AK.CollectionViewGridLayout) -> CG.Float,
-    setMinimumLineSpacing: proc(self: ^AK.CollectionViewGridLayout, minimumLineSpacing: CG.Float),
-    maximumNumberOfRows: proc(self: ^AK.CollectionViewGridLayout) -> NS.UInteger,
-    setMaximumNumberOfRows: proc(self: ^AK.CollectionViewGridLayout, maximumNumberOfRows: NS.UInteger),
-    maximumNumberOfColumns: proc(self: ^AK.CollectionViewGridLayout) -> NS.UInteger,
-    setMaximumNumberOfColumns: proc(self: ^AK.CollectionViewGridLayout, maximumNumberOfColumns: NS.UInteger),
-    minimumItemSize: proc(self: ^AK.CollectionViewGridLayout) -> NS.Size,
-    setMinimumItemSize: proc(self: ^AK.CollectionViewGridLayout, minimumItemSize: NS.Size),
-    maximumItemSize: proc(self: ^AK.CollectionViewGridLayout) -> NS.Size,
-    setMaximumItemSize: proc(self: ^AK.CollectionViewGridLayout, maximumItemSize: NS.Size),
-    backgroundColors: proc(self: ^AK.CollectionViewGridLayout) -> ^NS.Array,
-    setBackgroundColors: proc(self: ^AK.CollectionViewGridLayout, backgroundColors: ^NS.Array),
+    margins: proc(self: ^NS.CollectionViewGridLayout) -> NS.EdgeInsets,
+    setMargins: proc(self: ^NS.CollectionViewGridLayout, margins: NS.EdgeInsets),
+    minimumInteritemSpacing: proc(self: ^NS.CollectionViewGridLayout) -> CG.Float,
+    setMinimumInteritemSpacing: proc(self: ^NS.CollectionViewGridLayout, minimumInteritemSpacing: CG.Float),
+    minimumLineSpacing: proc(self: ^NS.CollectionViewGridLayout) -> CG.Float,
+    setMinimumLineSpacing: proc(self: ^NS.CollectionViewGridLayout, minimumLineSpacing: CG.Float),
+    maximumNumberOfRows: proc(self: ^NS.CollectionViewGridLayout) -> NS.UInteger,
+    setMaximumNumberOfRows: proc(self: ^NS.CollectionViewGridLayout, maximumNumberOfRows: NS.UInteger),
+    maximumNumberOfColumns: proc(self: ^NS.CollectionViewGridLayout) -> NS.UInteger,
+    setMaximumNumberOfColumns: proc(self: ^NS.CollectionViewGridLayout, maximumNumberOfColumns: NS.UInteger),
+    minimumItemSize: proc(self: ^NS.CollectionViewGridLayout) -> NS.Size,
+    setMinimumItemSize: proc(self: ^NS.CollectionViewGridLayout, minimumItemSize: NS.Size),
+    maximumItemSize: proc(self: ^NS.CollectionViewGridLayout) -> NS.Size,
+    setMaximumItemSize: proc(self: ^NS.CollectionViewGridLayout, maximumItemSize: NS.Size),
+    backgroundColors: proc(self: ^NS.CollectionViewGridLayout) -> ^NS.Array,
+    setBackgroundColors: proc(self: ^NS.CollectionViewGridLayout, backgroundColors: ^NS.Array),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionViewLayout.extend(cls, &vt.super)
 
     if vt.margins != nil {
-        margins :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL) -> NS.EdgeInsets {
+        margins :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL) -> NS.EdgeInsets {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("margins"), auto_cast margins, "{NSEdgeInsets=dddd}@:") do panic("Failed to register objC method.")
     }
     if vt.setMargins != nil {
-        setMargins :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL, margins: NS.EdgeInsets) {
+        setMargins :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL, margins: NS.EdgeInsets) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMargins:"), auto_cast setMargins, "v@:{NSEdgeInsets=dddd}") do panic("Failed to register objC method.")
     }
     if vt.minimumInteritemSpacing != nil {
-        minimumInteritemSpacing :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL) -> CG.Float {
+        minimumInteritemSpacing :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumInteritemSpacing"), auto_cast minimumInteritemSpacing, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumInteritemSpacing != nil {
-        setMinimumInteritemSpacing :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL, minimumInteritemSpacing: CG.Float) {
+        setMinimumInteritemSpacing :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL, minimumInteritemSpacing: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumInteritemSpacing:"), auto_cast setMinimumInteritemSpacing, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.minimumLineSpacing != nil {
-        minimumLineSpacing :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL) -> CG.Float {
+        minimumLineSpacing :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumLineSpacing"), auto_cast minimumLineSpacing, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumLineSpacing != nil {
-        setMinimumLineSpacing :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL, minimumLineSpacing: CG.Float) {
+        setMinimumLineSpacing :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL, minimumLineSpacing: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumLineSpacing:"), auto_cast setMinimumLineSpacing, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.maximumNumberOfRows != nil {
-        maximumNumberOfRows :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL) -> NS.UInteger {
+        maximumNumberOfRows :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumNumberOfRows"), auto_cast maximumNumberOfRows, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumNumberOfRows != nil {
-        setMaximumNumberOfRows :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL, maximumNumberOfRows: NS.UInteger) {
+        setMaximumNumberOfRows :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL, maximumNumberOfRows: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumNumberOfRows:"), auto_cast setMaximumNumberOfRows, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.maximumNumberOfColumns != nil {
-        maximumNumberOfColumns :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL) -> NS.UInteger {
+        maximumNumberOfColumns :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumNumberOfColumns"), auto_cast maximumNumberOfColumns, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumNumberOfColumns != nil {
-        setMaximumNumberOfColumns :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL, maximumNumberOfColumns: NS.UInteger) {
+        setMaximumNumberOfColumns :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL, maximumNumberOfColumns: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumNumberOfColumns:"), auto_cast setMaximumNumberOfColumns, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.minimumItemSize != nil {
-        minimumItemSize :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL) -> NS.Size {
+        minimumItemSize :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumItemSize"), auto_cast minimumItemSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumItemSize != nil {
-        setMinimumItemSize :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL, minimumItemSize: NS.Size) {
+        setMinimumItemSize :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL, minimumItemSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumItemSize:"), auto_cast setMinimumItemSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.maximumItemSize != nil {
-        maximumItemSize :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL) -> NS.Size {
+        maximumItemSize :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -182,7 +182,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumItemSize"), auto_cast maximumItemSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumItemSize != nil {
-        setMaximumItemSize :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL, maximumItemSize: NS.Size) {
+        setMaximumItemSize :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL, maximumItemSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -192,7 +192,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumItemSize:"), auto_cast setMaximumItemSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.backgroundColors != nil {
-        backgroundColors :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL) -> ^NS.Array {
+        backgroundColors :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundColors"), auto_cast backgroundColors, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundColors != nil {
-        setBackgroundColors :: proc "c" (self: ^AK.CollectionViewGridLayout, _: SEL, backgroundColors: ^NS.Array) {
+        setBackgroundColors :: proc "c" (self: ^NS.CollectionViewGridLayout, _: SEL, backgroundColors: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

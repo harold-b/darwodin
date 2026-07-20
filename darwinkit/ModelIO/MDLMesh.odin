@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLMesh
-///
 @(objc_class="MDLMesh", objc_superclass=Object)
 Mesh :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Mesh, objc_selector="initWithBufferAllocator:", objc_name="initWithBufferAllocator")
     Mesh_initWithBufferAllocator :: proc(self: ^Mesh, bufferAllocator: ^MeshBufferAllocator) -> instancetype ---
@@ -182,6 +176,8 @@ foreign lib {
     @(objc_type=Mesh, objc_selector="generateLightMapVertexColorsWithLightsToConsider:objectsToConsider:vertexAttributeNamed:", objc_name="generateLightMapVertexColorsWithLightsToConsider")
     Mesh_generateLightMapVertexColorsWithLightsToConsider :: proc(self: ^Mesh, lightsToConsider: ^NS.Array, objectsToConsider: ^NS.Array, vertexAttributeName: ^NS.String) -> bool ---
 }
+
+
 
 @(objc_type=Mesh, objc_name="vertexAttributeDataForAttributeNamed")
 Mesh_vertexAttributeDataForAttributeNamed :: proc {

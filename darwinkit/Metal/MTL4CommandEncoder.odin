@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4CommandEncoder
-///
 @(objc_class="MTL4CommandEncoder")
 MTL4CommandEncoder :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4CommandEncoder, objc_selector="barrierAfterQueueStages:beforeStages:visibilityOptions:", objc_name="barrierAfterQueueStages")
     MTL4CommandEncoder_barrierAfterQueueStages :: proc(self: ^MTL4CommandEncoder, afterQueueStages: Stages, beforeStages: Stages, visibilityOptions: MTL4VisibilityOptions) ---
@@ -59,3 +53,6 @@ foreign lib {
     @(objc_type=MTL4CommandEncoder, objc_selector="commandBuffer", objc_name="commandBuffer")
     MTL4CommandEncoder_commandBuffer :: proc(self: ^MTL4CommandEncoder) -> ^MTL4CommandBuffer ---
 }
+
+
+

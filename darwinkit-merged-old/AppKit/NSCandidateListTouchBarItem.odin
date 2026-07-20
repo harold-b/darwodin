@@ -1,0 +1,80 @@
+#+build darwin:default
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import CM "../CoreMedia"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSCandidateListTouchBarItem
+///
+@(objc_class="NSCandidateListTouchBarItem", objc_superclass=TouchBarItem)
+CandidateListTouchBarItem :: struct { using _: TouchBarItem, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=CandidateListTouchBarItem, objc_selector="updateWithInsertionPointVisibility:", objc_name="updateWithInsertionPointVisibility")
+    CandidateListTouchBarItem_updateWithInsertionPointVisibility :: proc(self: ^CandidateListTouchBarItem, isVisible: bool) ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="setCandidates:forSelectedRange:inString:", objc_name="setCandidates")
+    CandidateListTouchBarItem_setCandidates :: proc(self: ^CandidateListTouchBarItem, candidates: ^NS.Array, selectedRange: NS._NSRange, originalString: ^NS.String) ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="client", objc_name="client")
+    CandidateListTouchBarItem_client :: proc(self: ^CandidateListTouchBarItem) -> ^View ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="setClient:", objc_name="setClient")
+    CandidateListTouchBarItem_setClient :: proc(self: ^CandidateListTouchBarItem, client: ^View) ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="delegate", objc_name="delegate")
+    CandidateListTouchBarItem_delegate :: proc(self: ^CandidateListTouchBarItem) -> ^CandidateListTouchBarItemDelegate ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="setDelegate:", objc_name="setDelegate")
+    CandidateListTouchBarItem_setDelegate :: proc(self: ^CandidateListTouchBarItem, delegate: ^CandidateListTouchBarItemDelegate) ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="isCollapsed", objc_name="isCollapsed")
+    CandidateListTouchBarItem_isCollapsed :: proc(self: ^CandidateListTouchBarItem) -> bool ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="setCollapsed:", objc_name="setCollapsed")
+    CandidateListTouchBarItem_setCollapsed :: proc(self: ^CandidateListTouchBarItem, collapsed: bool) ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="allowsCollapsing", objc_name="allowsCollapsing")
+    CandidateListTouchBarItem_allowsCollapsing :: proc(self: ^CandidateListTouchBarItem) -> bool ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="setAllowsCollapsing:", objc_name="setAllowsCollapsing")
+    CandidateListTouchBarItem_setAllowsCollapsing :: proc(self: ^CandidateListTouchBarItem, allowsCollapsing: bool) ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="isCandidateListVisible", objc_name="isCandidateListVisible")
+    CandidateListTouchBarItem_isCandidateListVisible :: proc(self: ^CandidateListTouchBarItem) -> bool ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="allowsTextInputContextCandidates", objc_name="allowsTextInputContextCandidates")
+    CandidateListTouchBarItem_allowsTextInputContextCandidates :: proc(self: ^CandidateListTouchBarItem) -> bool ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="setAllowsTextInputContextCandidates:", objc_name="setAllowsTextInputContextCandidates")
+    CandidateListTouchBarItem_setAllowsTextInputContextCandidates :: proc(self: ^CandidateListTouchBarItem, allowsTextInputContextCandidates: bool) ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="attributedStringForCandidate", objc_name="attributedStringForCandidate")
+    CandidateListTouchBarItem_attributedStringForCandidate :: proc(self: ^CandidateListTouchBarItem) -> ^Objc_Block(proc "c" () -> ^NS.AttributedString) ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="setAttributedStringForCandidate:", objc_name="setAttributedStringForCandidate")
+    CandidateListTouchBarItem_setAttributedStringForCandidate :: proc(self: ^CandidateListTouchBarItem, attributedStringForCandidate: ^Objc_Block(proc "c" () -> ^NS.AttributedString)) ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="candidates", objc_name="candidates")
+    CandidateListTouchBarItem_candidates :: proc(self: ^CandidateListTouchBarItem) -> ^NS.Array ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="customizationLabel", objc_name="customizationLabel")
+    CandidateListTouchBarItem_customizationLabel :: proc(self: ^CandidateListTouchBarItem) -> ^NS.String ---
+
+    @(objc_type=CandidateListTouchBarItem, objc_selector="setCustomizationLabel:", objc_name="setCustomizationLabel")
+    CandidateListTouchBarItem_setCustomizationLabel :: proc(self: ^CandidateListTouchBarItem, customizationLabel: ^NS.String) ---
+}

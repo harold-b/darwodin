@@ -15,8 +15,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:DiskArbitration.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:DiskArbitration.framework",
+    }
+}
+
+
+// +user-text-begin
+// -user-text-end
 
 
 kReturnSuccess            :: 0
@@ -247,43 +260,43 @@ DiskClaimOptions :: cffi.uint
 DiskOptions :: cffi.uint
 
 /// DADiskAppearedCallback
-DiskAppearedCallback :: proc "c" (disk: DiskRef, _context: rawptr)
+DiskAppearedCallback :: proc "c" ( disk: DiskRef, _context: rawptr )
 
 /// DADiskDescriptionChangedCallback
-DiskDescriptionChangedCallback :: proc "c" (disk: DiskRef, keys: CF.ArrayRef, _context: rawptr)
+DiskDescriptionChangedCallback :: proc "c" ( disk: DiskRef, keys: CF.ArrayRef, _context: rawptr )
 
 /// DADiskDisappearedCallback
-DiskDisappearedCallback :: proc "c" (disk: DiskRef, _context: rawptr)
+DiskDisappearedCallback :: proc "c" ( disk: DiskRef, _context: rawptr )
 
 /// DADiskMountCallback
-DiskMountCallback :: proc "c" (disk: DiskRef, dissenter: DissenterRef, _context: rawptr)
+DiskMountCallback :: proc "c" ( disk: DiskRef, dissenter: DissenterRef, _context: rawptr )
 
 /// DADiskMountApprovalCallback
-DiskMountApprovalCallback :: proc "c" (disk: DiskRef, _context: rawptr) -> DissenterRef
+DiskMountApprovalCallback :: proc "c" ( disk: DiskRef, _context: rawptr ) -> DissenterRef
 
 /// DADiskRenameCallback
-DiskRenameCallback :: proc "c" (disk: DiskRef, dissenter: DissenterRef, _context: rawptr)
+DiskRenameCallback :: proc "c" ( disk: DiskRef, dissenter: DissenterRef, _context: rawptr )
 
 /// DADiskUnmountCallback
-DiskUnmountCallback :: proc "c" (disk: DiskRef, dissenter: DissenterRef, _context: rawptr)
+DiskUnmountCallback :: proc "c" ( disk: DiskRef, dissenter: DissenterRef, _context: rawptr )
 
 /// DADiskUnmountApprovalCallback
-DiskUnmountApprovalCallback :: proc "c" (disk: DiskRef, _context: rawptr) -> DissenterRef
+DiskUnmountApprovalCallback :: proc "c" ( disk: DiskRef, _context: rawptr ) -> DissenterRef
 
 /// DADiskEjectCallback
-DiskEjectCallback :: proc "c" (disk: DiskRef, dissenter: DissenterRef, _context: rawptr)
+DiskEjectCallback :: proc "c" ( disk: DiskRef, dissenter: DissenterRef, _context: rawptr )
 
 /// DADiskEjectApprovalCallback
-DiskEjectApprovalCallback :: proc "c" (disk: DiskRef, _context: rawptr) -> DissenterRef
+DiskEjectApprovalCallback :: proc "c" ( disk: DiskRef, _context: rawptr ) -> DissenterRef
 
 /// DADiskClaimCallback
-DiskClaimCallback :: proc "c" (disk: DiskRef, dissenter: DissenterRef, _context: rawptr)
+DiskClaimCallback :: proc "c" ( disk: DiskRef, dissenter: DissenterRef, _context: rawptr )
 
 /// DADiskClaimReleaseCallback
-DiskClaimReleaseCallback :: proc "c" (disk: DiskRef, _context: rawptr) -> DissenterRef
+DiskClaimReleaseCallback :: proc "c" ( disk: DiskRef, _context: rawptr ) -> DissenterRef
 
 /// DADiskPeekCallback
-DiskPeekCallback :: proc "c" (disk: DiskRef, _context: rawptr)
+DiskPeekCallback :: proc "c" ( disk: DiskRef, _context: rawptr )
 
 /// __DASession
 __DASession :: struct {}

@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTextContentManager: proc(self: ^AK.TextElement, textContentManager: ^AK.TextContentManager) -> instancetype,
-    textContentManager: proc(self: ^AK.TextElement) -> ^AK.TextContentManager,
-    setTextContentManager: proc(self: ^AK.TextElement, textContentManager: ^AK.TextContentManager),
-    elementRange: proc(self: ^AK.TextElement) -> ^AK.TextRange,
-    setElementRange: proc(self: ^AK.TextElement, elementRange: ^AK.TextRange),
-    childElements: proc(self: ^AK.TextElement) -> ^NS.Array,
-    parentElement: proc(self: ^AK.TextElement) -> ^AK.TextElement,
-    isRepresentedElement: proc(self: ^AK.TextElement) -> bool,
+    initWithTextContentManager: proc(self: ^NS.TextElement, textContentManager: ^NS.TextContentManager) -> instancetype,
+    textContentManager: proc(self: ^NS.TextElement) -> ^NS.TextContentManager,
+    setTextContentManager: proc(self: ^NS.TextElement, textContentManager: ^NS.TextContentManager),
+    elementRange: proc(self: ^NS.TextElement) -> ^NS.TextRange,
+    setElementRange: proc(self: ^NS.TextElement, elementRange: ^NS.TextRange),
+    childElements: proc(self: ^NS.TextElement) -> ^NS.Array,
+    parentElement: proc(self: ^NS.TextElement) -> ^NS.TextElement,
+    isRepresentedElement: proc(self: ^NS.TextElement) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTextContentManager != nil {
-        initWithTextContentManager :: proc "c" (self: ^AK.TextElement, _: SEL, textContentManager: ^AK.TextContentManager) -> instancetype {
+        initWithTextContentManager :: proc "c" (self: ^NS.TextElement, _: SEL, textContentManager: ^NS.TextContentManager) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTextContentManager:"), auto_cast initWithTextContentManager, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.textContentManager != nil {
-        textContentManager :: proc "c" (self: ^AK.TextElement, _: SEL) -> ^AK.TextContentManager {
+        textContentManager :: proc "c" (self: ^NS.TextElement, _: SEL) -> ^NS.TextContentManager {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textContentManager"), auto_cast textContentManager, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTextContentManager != nil {
-        setTextContentManager :: proc "c" (self: ^AK.TextElement, _: SEL, textContentManager: ^AK.TextContentManager) {
+        setTextContentManager :: proc "c" (self: ^NS.TextElement, _: SEL, textContentManager: ^NS.TextContentManager) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextContentManager:"), auto_cast setTextContentManager, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.elementRange != nil {
-        elementRange :: proc "c" (self: ^AK.TextElement, _: SEL) -> ^AK.TextRange {
+        elementRange :: proc "c" (self: ^NS.TextElement, _: SEL) -> ^NS.TextRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("elementRange"), auto_cast elementRange, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setElementRange != nil {
-        setElementRange :: proc "c" (self: ^AK.TextElement, _: SEL, elementRange: ^AK.TextRange) {
+        setElementRange :: proc "c" (self: ^NS.TextElement, _: SEL, elementRange: ^NS.TextRange) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setElementRange:"), auto_cast setElementRange, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.childElements != nil {
-        childElements :: proc "c" (self: ^AK.TextElement, _: SEL) -> ^NS.Array {
+        childElements :: proc "c" (self: ^NS.TextElement, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("childElements"), auto_cast childElements, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.parentElement != nil {
-        parentElement :: proc "c" (self: ^AK.TextElement, _: SEL) -> ^AK.TextElement {
+        parentElement :: proc "c" (self: ^NS.TextElement, _: SEL) -> ^NS.TextElement {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("parentElement"), auto_cast parentElement, "@@:") do panic("Failed to register objC method.")
     }
     if vt.isRepresentedElement != nil {
-        isRepresentedElement :: proc "c" (self: ^AK.TextElement, _: SEL) -> bool {
+        isRepresentedElement :: proc "c" (self: ^NS.TextElement, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

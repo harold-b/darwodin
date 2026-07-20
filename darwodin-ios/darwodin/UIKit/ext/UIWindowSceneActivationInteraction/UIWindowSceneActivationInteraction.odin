@@ -23,7 +23,7 @@ import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithConfigurationProvider: proc(self: ^UI.WindowSceneActivationInteraction, configurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) -> instancetype,
+    initWithConfigurationProvider: proc(self: ^UI.WindowSceneActivationInteraction, configurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" ( _0: ^NS.Error ))) -> instancetype,
     init: proc(self: ^UI.WindowSceneActivationInteraction) -> instancetype,
     new: proc() -> ^UI.WindowSceneActivationInteraction,
 }
@@ -36,7 +36,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithConfigurationProvider != nil {
-        initWithConfigurationProvider :: proc "c" (self: ^UI.WindowSceneActivationInteraction, _: SEL, configurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" (_: ^NS.Error))) -> instancetype {
+        initWithConfigurationProvider :: proc "c" (self: ^UI.WindowSceneActivationInteraction, _: SEL, configurationProvider: UI.WindowSceneActivationInteractionConfigurationProvider, errorHandler: ^Objc_Block(proc "c" ( _0: ^NS.Error ))) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

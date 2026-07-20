@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLBinaryArchive
-///
 @(objc_class="MTLBinaryArchive")
 BinaryArchive :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=BinaryArchive, objc_selector="addComputePipelineFunctionsWithDescriptor:error:", objc_name="addComputePipelineFunctionsWithDescriptor")
     BinaryArchive_addComputePipelineFunctionsWithDescriptor :: proc(self: ^BinaryArchive, descriptor: ^ComputePipelineDescriptor, error: ^^NS.Error) -> bool ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=BinaryArchive, objc_selector="device", objc_name="device")
     BinaryArchive_device :: proc(self: ^BinaryArchive) -> ^Device ---
 }
+
+
+

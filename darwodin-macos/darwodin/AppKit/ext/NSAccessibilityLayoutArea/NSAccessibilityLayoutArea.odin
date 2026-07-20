@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityLabel: proc(self: ^AK.AccessibilityLayoutArea) -> ^NS.String,
-    accessibilityChildren: proc(self: ^AK.AccessibilityLayoutArea) -> ^NS.Array,
-    accessibilitySelectedChildren: proc(self: ^AK.AccessibilityLayoutArea) -> ^NS.Array,
-    accessibilityFocusedUIElement: proc(self: ^AK.AccessibilityLayoutArea) -> id,
+    accessibilityLabel: proc(self: ^NS.AccessibilityLayoutArea) -> ^NS.String,
+    accessibilityChildren: proc(self: ^NS.AccessibilityLayoutArea) -> ^NS.Array,
+    accessibilitySelectedChildren: proc(self: ^NS.AccessibilityLayoutArea) -> ^NS.Array,
+    accessibilityFocusedUIElement: proc(self: ^NS.AccessibilityLayoutArea) -> id,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityLabel != nil {
-        accessibilityLabel :: proc "c" (self: ^AK.AccessibilityLayoutArea, _: SEL) -> ^NS.String {
+        accessibilityLabel :: proc "c" (self: ^NS.AccessibilityLayoutArea, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityLabel"), auto_cast accessibilityLabel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityChildren != nil {
-        accessibilityChildren :: proc "c" (self: ^AK.AccessibilityLayoutArea, _: SEL) -> ^NS.Array {
+        accessibilityChildren :: proc "c" (self: ^NS.AccessibilityLayoutArea, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityChildren"), auto_cast accessibilityChildren, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilitySelectedChildren != nil {
-        accessibilitySelectedChildren :: proc "c" (self: ^AK.AccessibilityLayoutArea, _: SEL) -> ^NS.Array {
+        accessibilitySelectedChildren :: proc "c" (self: ^NS.AccessibilityLayoutArea, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilitySelectedChildren"), auto_cast accessibilitySelectedChildren, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityFocusedUIElement != nil {
-        accessibilityFocusedUIElement :: proc "c" (self: ^AK.AccessibilityLayoutArea, _: SEL) -> id {
+        accessibilityFocusedUIElement :: proc "c" (self: ^NS.AccessibilityLayoutArea, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -19,10 +19,10 @@ URLSessionStreamTask :: struct { using _: URLSessionTask, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionStreamTask, objc_selector="readDataOfMinLength:maxLength:timeout:completionHandler:", objc_name="readDataOfMinLength")
-    URLSessionStreamTask_readDataOfMinLength :: proc(self: ^URLSessionStreamTask, minBytes: UInteger, maxBytes: UInteger, timeout: TimeInterval, completionHandler: ^Objc_Block(proc "c" (data: ^Data, atEOF: bool, error: ^Error))) ---
+    URLSessionStreamTask_readDataOfMinLength :: proc(self: ^URLSessionStreamTask, minBytes: UInteger, maxBytes: UInteger, timeout: TimeInterval, completionHandler: ^Objc_Block(proc "c" ( data: ^Data, atEOF: bool, error: ^Error ))) ---
 
     @(objc_type=URLSessionStreamTask, objc_selector="writeData:timeout:completionHandler:", objc_name="writeData")
-    URLSessionStreamTask_writeData :: proc(self: ^URLSessionStreamTask, data: ^Data, timeout: TimeInterval, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) ---
+    URLSessionStreamTask_writeData :: proc(self: ^URLSessionStreamTask, data: ^Data, timeout: TimeInterval, completionHandler: ^Objc_Block(proc "c" ( error: ^Error ))) ---
 
     @(objc_type=URLSessionStreamTask, objc_selector="captureStreams", objc_name="captureStreams")
     URLSessionStreamTask_captureStreams :: proc(self: ^URLSessionStreamTask) ---

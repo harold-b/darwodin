@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIndirectComputeCommand
-///
 @(objc_class="MTLIndirectComputeCommand")
 IndirectComputeCommand :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IndirectComputeCommand, objc_selector="setComputePipelineState:", objc_name="setComputePipelineState")
     IndirectComputeCommand_setComputePipelineState :: proc(self: ^IndirectComputeCommand, pipelineState: ^ComputePipelineState) ---
@@ -56,6 +50,8 @@ foreign lib {
     @(objc_type=IndirectComputeCommand, objc_selector="setStageInRegion:", objc_name="setStageInRegion")
     IndirectComputeCommand_setStageInRegion :: proc(self: ^IndirectComputeCommand, region: Region) ---
 }
+
+
 
 @(objc_type=IndirectComputeCommand, objc_name="setKernelBuffer")
 IndirectComputeCommand_setKernelBuffer :: proc {

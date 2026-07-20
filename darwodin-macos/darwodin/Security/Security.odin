@@ -14,7 +14,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:Security.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:Security.framework",
+    }
+}
+
 
 __sFILE :: rawptr
 OpaqueSecIdentitySearchRef :: struct {}
@@ -1694,10 +1705,10 @@ foreign lib {
     SecTrustCopyAnchorCertificates :: proc(anchors: ^CF.ArrayRef) -> CF.OSStatus ---
 
     @(link_name="SecAddSharedWebCredential")
-    SecAddSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, password: CF.StringRef, completionHandler: ^Objc_Block(proc "c" (error: CF.ErrorRef))) ---
+    SecAddSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, password: CF.StringRef, completionHandler: ^Objc_Block(proc "c" ( error: CF.ErrorRef ))) ---
 
     @(link_name="SecRequestSharedWebCredential")
-    SecRequestSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, completionHandler: ^Objc_Block(proc "c" (credentials: CF.ArrayRef, error: CF.ErrorRef))) ---
+    SecRequestSharedWebCredential :: proc(fqdn: CF.StringRef, account: CF.StringRef, completionHandler: ^Objc_Block(proc "c" ( credentials: CF.ArrayRef, error: CF.ErrorRef ))) ---
 
     @(link_name="SecCreateSharedWebCredentialPassword")
     SecCreateSharedWebCredentialPassword :: proc() -> CF.StringRef ---
@@ -2164,7 +2175,7 @@ SecAsn1Oid :: distinct cssm_data
 SecAsn1Template :: distinct SecAsn1Template_struct
 
 /// SecAsn1TemplateChooser
-SecAsn1TemplateChooser :: proc "c" (arg: rawptr, enc: CF.Boolean, buf: cstring, len: cffi.size_t, dest: rawptr) -> ^SecAsn1Template_struct
+SecAsn1TemplateChooser :: proc "c" ( arg: rawptr, enc: CF.Boolean, buf: cstring, len: cffi.size_t, dest: rawptr ) -> ^SecAsn1Template_struct
 
 /// SecAsn1TemplateChooserPtr
 SecAsn1TemplateChooserPtr :: distinct SecAsn1TemplateChooser
@@ -2263,7 +2274,7 @@ CSSM_MODULE_EVENT :: distinct cffi.uint
 CSSM_MODULE_EVENT_PTR :: distinct ^cffi.uint
 
 /// CSSM_API_ModuleEventHandler
-CSSM_API_ModuleEventHandler :: proc "c" (ModuleGuid: ^cssm_guid, AppNotifyCallbackCtx: rawptr, SubserviceId: cffi.uint, ServiceType: CSSM_SERVICE_TYPE, EventType: CSSM_MODULE_EVENT) -> CSSM_RETURN
+CSSM_API_ModuleEventHandler :: proc "c" ( ModuleGuid: ^cssm_guid, AppNotifyCallbackCtx: rawptr, SubserviceId: cffi.uint, ServiceType: CSSM_SERVICE_TYPE, EventType: CSSM_MODULE_EVENT ) -> CSSM_RETURN
 
 /// CSSM_ATTACH_FLAGS
 CSSM_ATTACH_FLAGS :: distinct cffi.uint
@@ -2287,7 +2298,7 @@ CSSM_NET_ADDRESS_PTR :: distinct ^cssm_net_address
 CSSM_NET_PROTOCOL :: distinct cffi.uint
 
 /// CSSM_CALLBACK
-CSSM_CALLBACK :: proc "c" (OutData: CSSM_DATA_PTR, CallerCtx: rawptr) -> CSSM_RETURN
+CSSM_CALLBACK :: proc "c" ( OutData: CSSM_DATA_PTR, CallerCtx: rawptr ) -> CSSM_RETURN
 
 /// CSSM_CRYPTO_DATA
 CSSM_CRYPTO_DATA :: distinct cssm_crypto_data
@@ -2347,16 +2358,16 @@ CSSM_SAMPLEGROUP :: distinct cssm_samplegroup
 CSSM_SAMPLEGROUP_PTR :: distinct ^cssm_samplegroup
 
 /// CSSM_MALLOC
-CSSM_MALLOC :: proc "c" (size: CSSM_SIZE, allocref: rawptr) -> rawptr
+CSSM_MALLOC :: proc "c" ( size: CSSM_SIZE, allocref: rawptr ) -> rawptr
 
 /// CSSM_FREE
-CSSM_FREE :: proc "c" (memblock: rawptr, allocref: rawptr)
+CSSM_FREE :: proc "c" ( memblock: rawptr, allocref: rawptr )
 
 /// CSSM_REALLOC
-CSSM_REALLOC :: proc "c" (memblock: rawptr, size: CSSM_SIZE, allocref: rawptr) -> rawptr
+CSSM_REALLOC :: proc "c" ( memblock: rawptr, size: CSSM_SIZE, allocref: rawptr ) -> rawptr
 
 /// CSSM_CALLOC
-CSSM_CALLOC :: proc "c" (num: cffi.uint, size: CSSM_SIZE, allocref: rawptr) -> rawptr
+CSSM_CALLOC :: proc "c" ( num: cffi.uint, size: CSSM_SIZE, allocref: rawptr ) -> rawptr
 
 /// CSSM_MEMORY_FUNCS
 CSSM_MEMORY_FUNCS :: distinct cssm_memory_funcs
@@ -2371,7 +2382,7 @@ CSSM_API_MEMORY_FUNCS :: distinct cssm_memory_funcs
 CSSM_API_MEMORY_FUNCS_PTR :: distinct ^CSSM_API_MEMORY_FUNCS
 
 /// CSSM_CHALLENGE_CALLBACK
-CSSM_CHALLENGE_CALLBACK :: proc "c" (Challenge: ^cssm_list, Response: CSSM_SAMPLEGROUP_PTR, CallerCtx: rawptr, MemFuncs: ^cssm_memory_funcs) -> CSSM_RETURN
+CSSM_CHALLENGE_CALLBACK :: proc "c" ( Challenge: ^cssm_list, Response: CSSM_SAMPLEGROUP_PTR, CallerCtx: rawptr, MemFuncs: ^cssm_memory_funcs ) -> CSSM_RETURN
 
 /// CSSM_CERT_TYPE
 CSSM_CERT_TYPE :: distinct cffi.uint
@@ -2464,7 +2475,7 @@ CSSM_ACL_OWNER_PROTOTYPE :: distinct cssm_acl_owner_prototype
 CSSM_ACL_OWNER_PROTOTYPE_PTR :: distinct ^cssm_acl_owner_prototype
 
 /// CSSM_ACL_SUBJECT_CALLBACK
-CSSM_ACL_SUBJECT_CALLBACK :: proc "c" (SubjectRequest: ^cssm_list, SubjectResponse: CSSM_LIST_PTR, CallerContext: rawptr, MemFuncs: ^cssm_memory_funcs) -> CSSM_RETURN
+CSSM_ACL_SUBJECT_CALLBACK :: proc "c" ( SubjectRequest: ^cssm_list, SubjectResponse: CSSM_LIST_PTR, CallerContext: rawptr, MemFuncs: ^cssm_memory_funcs ) -> CSSM_RETURN
 
 /// CSSM_ACL_ENTRY_INPUT
 CSSM_ACL_ENTRY_INPUT :: distinct cssm_acl_entry_input
@@ -2668,7 +2679,7 @@ CSSM_TP_AUTHORITY_REQUEST_TYPE :: distinct cffi.uint
 CSSM_TP_AUTHORITY_REQUEST_TYPE_PTR :: distinct ^cffi.uint
 
 /// CSSM_TP_VERIFICATION_RESULTS_CALLBACK
-CSSM_TP_VERIFICATION_RESULTS_CALLBACK :: proc "c" (ModuleHandle: CSSM_MODULE_HANDLE, CallerCtx: rawptr, VerifiedCert: CSSM_DATA_PTR) -> CSSM_RETURN
+CSSM_TP_VERIFICATION_RESULTS_CALLBACK :: proc "c" ( ModuleHandle: CSSM_MODULE_HANDLE, CallerCtx: rawptr, VerifiedCert: CSSM_DATA_PTR ) -> CSSM_RETURN
 
 /// CSSM_OID_PTR
 CSSM_OID_PTR :: distinct ^cssm_data
@@ -3226,7 +3237,7 @@ CSSM_X509_SIGNED_CRL_PTR :: distinct ^cssm_x509_signed_crl
 SecAccessOwnerType :: distinct CF.UInt32
 
 /// SecKeyGeneratePairBlock
-SecKeyGeneratePairBlock :: ^Objc_Block(proc "c" (publicKey: SecKeyRef, privateKey: SecKeyRef, error: CF.ErrorRef))
+SecKeyGeneratePairBlock :: ^Objc_Block(proc "c" ( publicKey: SecKeyRef, privateKey: SecKeyRef, error: CF.ErrorRef ))
 
 /// SecKeyAlgorithm
 SecKeyAlgorithm :: distinct CF.StringRef
@@ -3361,16 +3372,16 @@ CSSM_APPLE_TP_ACTION_FLAGS :: distinct cffi.uint
 CSSM_TP_APPLE_CERT_STATUS :: distinct cffi.uint
 
 /// SecKeychainCallback
-SecKeychainCallback :: proc "c" (keychainEvent: SecKeychainEvent, info: ^SecKeychainCallbackInfo, _context: rawptr) -> CF.OSStatus
+SecKeychainCallback :: proc "c" ( keychainEvent: SecKeychainEvent, info: ^SecKeychainCallbackInfo, _context: rawptr ) -> CF.OSStatus
 
 /// SecTrustRef
 SecTrustRef :: distinct ^__SecTrust
 
 /// SecTrustCallback
-SecTrustCallback :: ^Objc_Block(proc "c" (trustRef: SecTrustRef, trustResult: SecTrustResultType))
+SecTrustCallback :: ^Objc_Block(proc "c" ( trustRef: SecTrustRef, trustResult: SecTrustResultType ))
 
 /// SecTrustWithErrorCallback
-SecTrustWithErrorCallback :: ^Objc_Block(proc "c" (trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef))
+SecTrustWithErrorCallback :: ^Objc_Block(proc "c" ( trustRef: SecTrustRef, result: cffi.bool, error: CF.ErrorRef ))
 
 /// SecTrustUserSetting
 SecTrustUserSetting :: distinct SecTrustResultType
@@ -3391,7 +3402,7 @@ AuthorizationRights :: distinct AuthorizationItemSet
 AuthorizationEnvironment :: distinct AuthorizationItemSet
 
 /// AuthorizationAsyncCallback
-AuthorizationAsyncCallback :: ^Objc_Block(proc "c" (err: CF.OSStatus, blockAuthorizedRights: ^AuthorizationRights))
+AuthorizationAsyncCallback :: ^Objc_Block(proc "c" ( err: CF.OSStatus, blockAuthorizedRights: ^AuthorizationRights ))
 
 /// SecuritySessionId
 SecuritySessionId :: distinct CF.UInt32
@@ -3418,7 +3429,7 @@ CSSM_SPI_CL_FUNCS :: distinct cssm_spi_cl_funcs
 CSSM_SPI_CL_FUNCS_PTR :: distinct ^cssm_spi_cl_funcs
 
 /// CSSM_SPI_ModuleEventHandler
-CSSM_SPI_ModuleEventHandler :: proc "c" (ModuleGuid: ^cssm_guid, CssmNotifyCallbackCtx: rawptr, SubserviceId: cffi.uint, ServiceType: CSSM_SERVICE_TYPE, EventType: CSSM_MODULE_EVENT) -> CSSM_RETURN
+CSSM_SPI_ModuleEventHandler :: proc "c" ( ModuleGuid: ^cssm_guid, CssmNotifyCallbackCtx: rawptr, SubserviceId: cffi.uint, ServiceType: CSSM_SERVICE_TYPE, EventType: CSSM_MODULE_EVENT ) -> CSSM_RETURN
 
 /// CSSM_CONTEXT_EVENT
 CSSM_CONTEXT_EVENT :: distinct cffi.uint
@@ -3430,16 +3441,16 @@ CSSM_MODULE_FUNCS :: distinct cssm_module_funcs
 CSSM_MODULE_FUNCS_PTR :: distinct ^cssm_module_funcs
 
 /// CSSM_UPCALLS_MALLOC
-CSSM_UPCALLS_MALLOC :: proc "c" (AddInHandle: CSSM_HANDLE, size: cffi.size_t) -> rawptr
+CSSM_UPCALLS_MALLOC :: proc "c" ( AddInHandle: CSSM_HANDLE, size: cffi.size_t ) -> rawptr
 
 /// CSSM_UPCALLS_FREE
-CSSM_UPCALLS_FREE :: proc "c" (AddInHandle: CSSM_HANDLE, memblock: rawptr)
+CSSM_UPCALLS_FREE :: proc "c" ( AddInHandle: CSSM_HANDLE, memblock: rawptr )
 
 /// CSSM_UPCALLS_REALLOC
-CSSM_UPCALLS_REALLOC :: proc "c" (AddInHandle: CSSM_HANDLE, memblock: rawptr, size: cffi.size_t) -> rawptr
+CSSM_UPCALLS_REALLOC :: proc "c" ( AddInHandle: CSSM_HANDLE, memblock: rawptr, size: cffi.size_t ) -> rawptr
 
 /// CSSM_UPCALLS_CALLOC
-CSSM_UPCALLS_CALLOC :: proc "c" (AddInHandle: CSSM_HANDLE, num: cffi.size_t, size: cffi.size_t) -> rawptr
+CSSM_UPCALLS_CALLOC :: proc "c" ( AddInHandle: CSSM_HANDLE, num: cffi.size_t, size: cffi.size_t ) -> rawptr
 
 /// CSSM_UPCALLS
 CSSM_UPCALLS :: distinct cssm_upcalls
@@ -3559,10 +3570,10 @@ SSLContextRef :: distinct ^SSLContext
 SSLConnectionRef :: distinct rawptr
 
 /// SSLReadFunc
-SSLReadFunc :: proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
+SSLReadFunc :: proc "c" ( connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t ) -> CF.OSStatus
 
 /// SSLWriteFunc
-SSLWriteFunc :: proc "c" (connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t) -> CF.OSStatus
+SSLWriteFunc :: proc "c" ( connection: SSLConnectionRef, data: rawptr, dataLength: ^cffi.size_t ) -> CF.OSStatus
 
 /// SecTransformRef
 SecTransformRef :: distinct CF.TypeRef
@@ -3571,7 +3582,7 @@ SecTransformRef :: distinct CF.TypeRef
 SecGroupTransformRef :: distinct CF.TypeRef
 
 /// SecMessageBlock
-SecMessageBlock :: ^Objc_Block(proc "c" (message: CF.TypeRef, error: CF.ErrorRef, isFinal: CF.Boolean))
+SecMessageBlock :: ^Objc_Block(proc "c" ( message: CF.TypeRef, error: CF.ErrorRef, isFinal: CF.Boolean ))
 
 /// SecTransformAttributeRef
 SecTransformAttributeRef :: distinct CF.TypeRef
@@ -3583,10 +3594,10 @@ SecTransformStringOrAttributeRef :: distinct CF.TypeRef
 SecTransformActionBlock :: ^Objc_Block(proc "c" () -> CF.TypeRef)
 
 /// SecTransformAttributeActionBlock
-SecTransformAttributeActionBlock :: ^Objc_Block(proc "c" (attribute: SecTransformAttributeRef, value: CF.TypeRef) -> CF.TypeRef)
+SecTransformAttributeActionBlock :: ^Objc_Block(proc "c" ( attribute: SecTransformAttributeRef, value: CF.TypeRef ) -> CF.TypeRef)
 
 /// SecTransformDataBlock
-SecTransformDataBlock :: ^Objc_Block(proc "c" (data: CF.TypeRef) -> CF.TypeRef)
+SecTransformDataBlock :: ^Objc_Block(proc "c" ( data: CF.TypeRef ) -> CF.TypeRef)
 
 /// SecTransformInstanceBlock
 SecTransformInstanceBlock :: ^Objc_Block(proc "c" () -> CF.ErrorRef)
@@ -3595,7 +3606,7 @@ SecTransformInstanceBlock :: ^Objc_Block(proc "c" () -> CF.ErrorRef)
 SecTransformImplementationRef :: distinct ^OpaqueSecTransformImplementation
 
 /// SecTransformCreateFP
-SecTransformCreateFP :: proc "c" (name: CF.StringRef, newTransform: SecTransformRef, ref: SecTransformImplementationRef) -> SecTransformInstanceBlock
+SecTransformCreateFP :: proc "c" ( name: CF.StringRef, newTransform: SecTransformRef, ref: SecTransformImplementationRef ) -> SecTransformInstanceBlock
 
 /// CSSM_X509EXT_DATA_FORMAT
 CSSM_X509EXT_DATA_FORMAT :: enum cffi.uint {
@@ -5632,52 +5643,52 @@ cssm_manager_event_notification :: struct #align (8) {
 
 /// cssm_spi_ac_funcs
 cssm_spi_ac_funcs :: struct #align (8) {
-    AuthCompute: proc "c" (ACHandle: CSSM_AC_HANDLE, BaseAuthorizations: ^cssm_tuplegroup, Credentials: ^cssm_tuplegroup, NumberOfRequestors: cffi.uint, Requestors: ^cssm_list, RequestedAuthorizationPeriod: ^cssm_list, RequestedAuthorization: ^cssm_list, AuthorizationResult: CSSM_TUPLEGROUP_PTR) -> CSSM_RETURN,
-    PassThrough: proc "c" (ACHandle: CSSM_AC_HANDLE, TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ^cssm_dl_db_list, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    AuthCompute: proc "c" ( ACHandle: CSSM_AC_HANDLE, BaseAuthorizations: ^cssm_tuplegroup, Credentials: ^cssm_tuplegroup, NumberOfRequestors: cffi.uint, Requestors: ^cssm_list, RequestedAuthorizationPeriod: ^cssm_list, RequestedAuthorization: ^cssm_list, AuthorizationResult: CSSM_TUPLEGROUP_PTR ) -> CSSM_RETURN,
+    PassThrough: proc "c" ( ACHandle: CSSM_AC_HANDLE, TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ^cssm_dl_db_list, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr ) -> CSSM_RETURN,
 }
 #assert(size_of(cssm_spi_ac_funcs) == 16)
 
 /// cssm_spi_cl_funcs
 cssm_spi_cl_funcs :: struct #align (8) {
-    CertCreateTemplate:           proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CertFields: ^cssm_field, CertTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetAllTemplateFields:     proc "c" (CLHandle: CSSM_CL_HANDLE, CertTemplate: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    CertSign:                     proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplate: ^cssm_data, SignScope: ^cssm_field, ScopeSize: cffi.uint, SignedCert: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertVerify:                   proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint) -> CSSM_RETURN,
-    CertVerifyWithKey:            proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data) -> CSSM_RETURN,
-    CertGetFirstFieldValue:       proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetNextFieldValue:        proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertAbortQuery:               proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    CertGetKeyInfo:               proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Key: ^CSSM_KEY_PTR) -> CSSM_RETURN,
-    CertGetAllFields:             proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    FreeFields:                   proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, FieldArray: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    FreeFieldValue:               proc "c" (CLHandle: CSSM_CL_HANDLE, CertOrCrlOid: ^cssm_data, Value: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertCache:                    proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
-    CertGetFirstCachedFieldValue: proc "c" (CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetNextCachedFieldValue:  proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertAbortCache:               proc "c" (CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    CertGroupToSignedBundle:      proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertGroupToBundle: ^cssm_certgroup, BundleInfo: ^cssm_cert_bundle_header, SignedBundle: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGroupFromVerifiedBundle:  proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertBundle: ^cssm_cert_bundle, SignerCert: ^cssm_data, CertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
-    CertDescribeFormat:           proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: ^cffi.uint, OidList: ^CSSM_OID_PTR) -> CSSM_RETURN,
-    CrlCreateTemplate:            proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlTemplate: ^cssm_field, NewCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlSetFields:                 proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlTemplate: ^cssm_field, OldCrl: ^cssm_data, ModifiedCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlAddCert:                   proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, Cert: ^cssm_data, NumberOfFields: cffi.uint, CrlEntryFields: ^cssm_field, OldCrl: ^cssm_data, NewCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlRemoveCert:                proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, OldCrl: ^cssm_data, NewCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlSign:                      proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, UnsignedCrl: ^cssm_data, SignScope: ^cssm_field, ScopeSize: cffi.uint, SignedCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlVerify:                    proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint) -> CSSM_RETURN,
-    CrlVerifyWithKey:             proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data) -> CSSM_RETURN,
-    IsCertInCrl:                  proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Crl: ^cssm_data, CertFound: ^CSSM_BOOL) -> CSSM_RETURN,
-    CrlGetFirstFieldValue:        proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetNextFieldValue:         proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlAbortQuery:                proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    CrlGetAllFields:              proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, NumberOfCrlFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    CrlCache:                     proc "c" (CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
-    IsCertInCachedCrl:            proc "c" (CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CrlHandle: CSSM_HANDLE, CertFound: ^CSSM_BOOL, CrlRecordIndex: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetFirstCachedFieldValue:  proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetNextCachedFieldValue:   proc "c" (CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlGetAllCachedRecordFields:  proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, NumberOfFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    CrlAbortCache:                proc "c" (CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    CrlDescribeFormat:            proc "c" (CLHandle: CSSM_CL_HANDLE, NumberOfFields: ^cffi.uint, OidList: ^CSSM_OID_PTR) -> CSSM_RETURN,
-    PassThrough:                  proc "c" (CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    CertCreateTemplate:           proc "c" ( CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CertFields: ^cssm_field, CertTemplate: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertGetAllTemplateFields:     proc "c" ( CLHandle: CSSM_CL_HANDLE, CertTemplate: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR ) -> CSSM_RETURN,
+    CertSign:                     proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplate: ^cssm_data, SignScope: ^cssm_field, ScopeSize: cffi.uint, SignedCert: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertVerify:                   proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint ) -> CSSM_RETURN,
+    CertVerifyWithKey:            proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertToBeVerified: ^cssm_data ) -> CSSM_RETURN,
+    CertGetFirstFieldValue:       proc "c" ( CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertGetNextFieldValue:        proc "c" ( CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertAbortQuery:               proc "c" ( CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE ) -> CSSM_RETURN,
+    CertGetKeyInfo:               proc "c" ( CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Key: ^CSSM_KEY_PTR ) -> CSSM_RETURN,
+    CertGetAllFields:             proc "c" ( CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR ) -> CSSM_RETURN,
+    FreeFields:                   proc "c" ( CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, FieldArray: ^CSSM_FIELD_PTR ) -> CSSM_RETURN,
+    FreeFieldValue:               proc "c" ( CLHandle: CSSM_CL_HANDLE, CertOrCrlOid: ^cssm_data, Value: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertCache:                    proc "c" ( CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CertHandle: CSSM_HANDLE_PTR ) -> CSSM_RETURN,
+    CertGetFirstCachedFieldValue: proc "c" ( CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE, CertField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertGetNextCachedFieldValue:  proc "c" ( CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertAbortCache:               proc "c" ( CLHandle: CSSM_CL_HANDLE, CertHandle: CSSM_HANDLE ) -> CSSM_RETURN,
+    CertGroupToSignedBundle:      proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertGroupToBundle: ^cssm_certgroup, BundleInfo: ^cssm_cert_bundle_header, SignedBundle: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertGroupFromVerifiedBundle:  proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertBundle: ^cssm_cert_bundle, SignerCert: ^cssm_data, CertGroup: ^CSSM_CERTGROUP_PTR ) -> CSSM_RETURN,
+    CertDescribeFormat:           proc "c" ( CLHandle: CSSM_CL_HANDLE, NumberOfFields: ^cffi.uint, OidList: ^CSSM_OID_PTR ) -> CSSM_RETURN,
+    CrlCreateTemplate:            proc "c" ( CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlTemplate: ^cssm_field, NewCrl: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlSetFields:                 proc "c" ( CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlTemplate: ^cssm_field, OldCrl: ^cssm_data, ModifiedCrl: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlAddCert:                   proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, Cert: ^cssm_data, NumberOfFields: cffi.uint, CrlEntryFields: ^cssm_field, OldCrl: ^cssm_data, NewCrl: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlRemoveCert:                proc "c" ( CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, OldCrl: ^cssm_data, NewCrl: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlSign:                      proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, UnsignedCrl: ^cssm_data, SignScope: ^cssm_field, ScopeSize: cffi.uint, SignedCrl: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlVerify:                    proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data, SignerCert: ^cssm_data, VerifyScope: ^cssm_field, ScopeSize: cffi.uint ) -> CSSM_RETURN,
+    CrlVerifyWithKey:             proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeVerified: ^cssm_data ) -> CSSM_RETURN,
+    IsCertInCrl:                  proc "c" ( CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, Crl: ^cssm_data, CertFound: ^CSSM_BOOL ) -> CSSM_RETURN,
+    CrlGetFirstFieldValue:        proc "c" ( CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlGetNextFieldValue:         proc "c" ( CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlAbortQuery:                proc "c" ( CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE ) -> CSSM_RETURN,
+    CrlGetAllFields:              proc "c" ( CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, NumberOfCrlFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR ) -> CSSM_RETURN,
+    CrlCache:                     proc "c" ( CLHandle: CSSM_CL_HANDLE, Crl: ^cssm_data, CrlHandle: CSSM_HANDLE_PTR ) -> CSSM_RETURN,
+    IsCertInCachedCrl:            proc "c" ( CLHandle: CSSM_CL_HANDLE, Cert: ^cssm_data, CrlHandle: CSSM_HANDLE, CertFound: ^CSSM_BOOL, CrlRecordIndex: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlGetFirstCachedFieldValue:  proc "c" ( CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, CrlField: ^cssm_data, ResultsHandle: CSSM_HANDLE_PTR, NumberOfMatchedFields: ^cffi.uint, Value: ^CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlGetNextCachedFieldValue:   proc "c" ( CLHandle: CSSM_CL_HANDLE, ResultsHandle: CSSM_HANDLE, Value: ^CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlGetAllCachedRecordFields:  proc "c" ( CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE, CrlRecordIndex: ^cssm_data, NumberOfFields: ^cffi.uint, CrlFields: ^CSSM_FIELD_PTR ) -> CSSM_RETURN,
+    CrlAbortCache:                proc "c" ( CLHandle: CSSM_CL_HANDLE, CrlHandle: CSSM_HANDLE ) -> CSSM_RETURN,
+    CrlDescribeFormat:            proc "c" ( CLHandle: CSSM_CL_HANDLE, NumberOfFields: ^cffi.uint, OidList: ^CSSM_OID_PTR ) -> CSSM_RETURN,
+    PassThrough:                  proc "c" ( CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr ) -> CSSM_RETURN,
 }
 #assert(size_of(cssm_spi_cl_funcs) == 312)
 
@@ -5695,98 +5706,98 @@ cssm_upcalls :: struct #align (8) {
     free_func:          CSSM_UPCALLS_FREE,
     realloc_func:       CSSM_UPCALLS_REALLOC,
     calloc_func:        CSSM_UPCALLS_CALLOC,
-    CcToHandle_func:    proc "c" (Cc: CSSM_CC_HANDLE, ModuleHandle: CSSM_MODULE_HANDLE_PTR) -> CSSM_RETURN,
-    GetModuleInfo_func: proc "c" (Module: CSSM_MODULE_HANDLE, Guid: CSSM_GUID_PTR, Version: CSSM_VERSION_PTR, SubServiceId: ^cffi.uint, SubServiceType: ^CSSM_SERVICE_TYPE, AttachFlags: ^CSSM_ATTACH_FLAGS, KeyHierarchy: ^CSSM_KEY_HIERARCHY, AttachedMemFuncs: CSSM_API_MEMORY_FUNCS_PTR, FunctionTable: CSSM_FUNC_NAME_ADDR_PTR, NumFunctions: cffi.uint) -> CSSM_RETURN,
+    CcToHandle_func:    proc "c" ( Cc: CSSM_CC_HANDLE, ModuleHandle: CSSM_MODULE_HANDLE_PTR ) -> CSSM_RETURN,
+    GetModuleInfo_func: proc "c" ( Module: CSSM_MODULE_HANDLE, Guid: CSSM_GUID_PTR, Version: CSSM_VERSION_PTR, SubServiceId: ^cffi.uint, SubServiceType: ^CSSM_SERVICE_TYPE, AttachFlags: ^CSSM_ATTACH_FLAGS, KeyHierarchy: ^CSSM_KEY_HIERARCHY, AttachedMemFuncs: CSSM_API_MEMORY_FUNCS_PTR, FunctionTable: CSSM_FUNC_NAME_ADDR_PTR, NumFunctions: cffi.uint ) -> CSSM_RETURN,
 }
 #assert(size_of(cssm_upcalls) == 48)
 
 /// cssm_spi_csp_funcs
 cssm_spi_csp_funcs :: struct #align (8) {
-    EventNotify:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, Event: CSSM_CONTEXT_EVENT, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    QuerySize:                     proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Encrypt: CSSM_BOOL, QuerySizeCount: cffi.uint, DataBlock: CSSM_QUERY_SIZE_DATA_PTR) -> CSSM_RETURN,
-    SignData:                      proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, DigestAlgorithm: CSSM_ALGORITHMS, Signature: CSSM_DATA_PTR) -> CSSM_RETURN,
-    SignDataInit:                  proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    SignDataUpdate:                proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    SignDataFinal:                 proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Signature: CSSM_DATA_PTR) -> CSSM_RETURN,
-    VerifyData:                    proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, DigestAlgorithm: CSSM_ALGORITHMS, Signature: ^cssm_data) -> CSSM_RETURN,
-    VerifyDataInit:                proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    VerifyDataUpdate:              proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    VerifyDataFinal:               proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Signature: ^cssm_data) -> CSSM_RETURN,
-    DigestData:                    proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Digest: CSSM_DATA_PTR) -> CSSM_RETURN,
-    DigestDataInit:                proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    DigestDataUpdate:              proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    DigestDataClone:               proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, ClonedCCHandle: CSSM_CC_HANDLE) -> CSSM_RETURN,
-    DigestDataFinal:               proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Digest: CSSM_DATA_PTR) -> CSSM_RETURN,
-    GenerateMac:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Mac: CSSM_DATA_PTR) -> CSSM_RETURN,
-    GenerateMacInit:               proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    GenerateMacUpdate:             proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    GenerateMacFinal:              proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Mac: CSSM_DATA_PTR) -> CSSM_RETURN,
-    VerifyMac:                     proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Mac: ^cssm_data) -> CSSM_RETURN,
-    VerifyMacInit:                 proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context) -> CSSM_RETURN,
-    VerifyMacUpdate:               proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint) -> CSSM_RETURN,
-    VerifyMacFinal:                proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Mac: ^cssm_data) -> CSSM_RETURN,
-    EncryptData:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, ClearBufs: ^cssm_data, ClearBufCount: cffi.uint, CipherBufs: CSSM_DATA_PTR, CipherBufCount: cffi.uint, bytesEncrypted: ^CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    EncryptDataInit:               proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    EncryptDataUpdate:             proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, ClearBufs: ^cssm_data, ClearBufCount: cffi.uint, CipherBufs: CSSM_DATA_PTR, CipherBufCount: cffi.uint, bytesEncrypted: ^CSSM_SIZE) -> CSSM_RETURN,
-    EncryptDataFinal:              proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) -> CSSM_RETURN,
-    DecryptData:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, CipherBufs: ^cssm_data, CipherBufCount: cffi.uint, ClearBufs: CSSM_DATA_PTR, ClearBufCount: cffi.uint, bytesDecrypted: ^CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    DecryptDataInit:               proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    DecryptDataUpdate:             proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, CipherBufs: ^cssm_data, CipherBufCount: cffi.uint, ClearBufs: CSSM_DATA_PTR, ClearBufCount: cffi.uint, bytesDecrypted: ^CSSM_SIZE) -> CSSM_RETURN,
-    DecryptDataFinal:              proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR) -> CSSM_RETURN,
-    QueryKeySizeInBits:            proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Key: ^cssm_key, KeySize: CSSM_KEY_SIZE_PTR) -> CSSM_RETURN,
-    GenerateKey:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, Key: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    GenerateKeyPair:               proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PublicKeyUsage: cffi.uint, PublicKeyAttr: cffi.uint, PublicKeyLabel: ^cssm_data, PublicKey: CSSM_KEY_PTR, PrivateKeyUsage: cffi.uint, PrivateKeyAttr: cffi.uint, PrivateKeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, PrivateKey: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    GenerateRandom:                proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, RandomNumber: CSSM_DATA_PTR) -> CSSM_RETURN,
-    GenerateAlgorithmParams:       proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, ParamBits: cffi.uint, Param: CSSM_DATA_PTR, NumberOfUpdatedAttibutes: ^cffi.uint, UpdatedAttributes: ^CSSM_CONTEXT_ATTRIBUTE_PTR) -> CSSM_RETURN,
-    WrapKey:                       proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, AccessCred: ^cssm_access_credentials, Key: ^cssm_key, DescriptiveData: ^cssm_data, WrappedKey: CSSM_WRAP_KEY_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    UnwrapKey:                     proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PublicKey: ^cssm_key, WrappedKey: ^CSSM_WRAP_KEY, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, UnwrappedKey: CSSM_KEY_PTR, DescriptiveData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE) -> CSSM_RETURN,
-    DeriveKey:                     proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Param: CSSM_DATA_PTR, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, DerivedKey: CSSM_KEY_PTR) -> CSSM_RETURN,
-    FreeKey:                       proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, KeyPtr: CSSM_KEY_PTR, Delete: CSSM_BOOL) -> CSSM_RETURN,
-    PassThrough:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PassThroughId: cffi.uint, InData: rawptr, OutData: ^rawptr) -> CSSM_RETURN,
-    Login:                         proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, LoginName: ^cssm_data, Reserved: rawptr) -> CSSM_RETURN,
-    Logout:                        proc "c" (CSPHandle: CSSM_CSP_HANDLE) -> CSSM_RETURN,
-    ChangeLoginAcl:                proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit) -> CSSM_RETURN,
-    ObtainPrivateKeyFromPublicKey: proc "c" (CSPHandle: CSSM_CSP_HANDLE, PublicKey: ^cssm_key, PrivateKey: CSSM_KEY_PTR) -> CSSM_RETURN,
-    RetrieveUniqueId:              proc "c" (CSPHandle: CSSM_CSP_HANDLE, UniqueID: CSSM_DATA_PTR) -> CSSM_RETURN,
-    RetrieveCounter:               proc "c" (CSPHandle: CSSM_CSP_HANDLE, Counter: CSSM_DATA_PTR) -> CSSM_RETURN,
-    VerifyDevice:                  proc "c" (CSPHandle: CSSM_CSP_HANDLE, DeviceCert: ^cssm_data) -> CSSM_RETURN,
-    GetTimeValue:                  proc "c" (CSPHandle: CSSM_CSP_HANDLE, TimeAlgorithm: CSSM_ALGORITHMS, TimeData: ^cssm_data) -> CSSM_RETURN,
-    GetOperationalStatistics:      proc "c" (CSPHandle: CSSM_CSP_HANDLE, Statistics: ^cssm_csp_operational_statistics) -> CSSM_RETURN,
-    GetLoginAcl:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
-    GetKeyAcl:                     proc "c" (CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
-    ChangeKeyAcl:                  proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit, Key: ^cssm_key) -> CSSM_RETURN,
-    GetKeyOwner:                   proc "c" (CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
-    ChangeKeyOwner:                proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, Key: ^cssm_key, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
-    GetLoginOwner:                 proc "c" (CSPHandle: CSSM_CSP_HANDLE, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
-    ChangeLoginOwner:              proc "c" (CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
+    EventNotify:                   proc "c" ( CSPHandle: CSSM_CSP_HANDLE, Event: CSSM_CONTEXT_EVENT, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context ) -> CSSM_RETURN,
+    QuerySize:                     proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Encrypt: CSSM_BOOL, QuerySizeCount: cffi.uint, DataBlock: CSSM_QUERY_SIZE_DATA_PTR ) -> CSSM_RETURN,
+    SignData:                      proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, DigestAlgorithm: CSSM_ALGORITHMS, Signature: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    SignDataInit:                  proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context ) -> CSSM_RETURN,
+    SignDataUpdate:                proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint ) -> CSSM_RETURN,
+    SignDataFinal:                 proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Signature: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    VerifyData:                    proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, DigestAlgorithm: CSSM_ALGORITHMS, Signature: ^cssm_data ) -> CSSM_RETURN,
+    VerifyDataInit:                proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context ) -> CSSM_RETURN,
+    VerifyDataUpdate:              proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint ) -> CSSM_RETURN,
+    VerifyDataFinal:               proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Signature: ^cssm_data ) -> CSSM_RETURN,
+    DigestData:                    proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Digest: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    DigestDataInit:                proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context ) -> CSSM_RETURN,
+    DigestDataUpdate:              proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint ) -> CSSM_RETURN,
+    DigestDataClone:               proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, ClonedCCHandle: CSSM_CC_HANDLE ) -> CSSM_RETURN,
+    DigestDataFinal:               proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Digest: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    GenerateMac:                   proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Mac: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    GenerateMacInit:               proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context ) -> CSSM_RETURN,
+    GenerateMacUpdate:             proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint ) -> CSSM_RETURN,
+    GenerateMacFinal:              proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Mac: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    VerifyMac:                     proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, DataBufs: ^cssm_data, DataBufCount: cffi.uint, Mac: ^cssm_data ) -> CSSM_RETURN,
+    VerifyMacInit:                 proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context ) -> CSSM_RETURN,
+    VerifyMacUpdate:               proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, DataBufs: ^cssm_data, DataBufCount: cffi.uint ) -> CSSM_RETURN,
+    VerifyMacFinal:                proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Mac: ^cssm_data ) -> CSSM_RETURN,
+    EncryptData:                   proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, ClearBufs: ^cssm_data, ClearBufCount: cffi.uint, CipherBufs: CSSM_DATA_PTR, CipherBufCount: cffi.uint, bytesEncrypted: ^CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE ) -> CSSM_RETURN,
+    EncryptDataInit:               proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Privilege: CSSM_PRIVILEGE ) -> CSSM_RETURN,
+    EncryptDataUpdate:             proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, ClearBufs: ^cssm_data, ClearBufCount: cffi.uint, CipherBufs: CSSM_DATA_PTR, CipherBufCount: cffi.uint, bytesEncrypted: ^CSSM_SIZE ) -> CSSM_RETURN,
+    EncryptDataFinal:              proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    DecryptData:                   proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, CipherBufs: ^cssm_data, CipherBufCount: cffi.uint, ClearBufs: CSSM_DATA_PTR, ClearBufCount: cffi.uint, bytesDecrypted: ^CSSM_SIZE, RemData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE ) -> CSSM_RETURN,
+    DecryptDataInit:               proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Privilege: CSSM_PRIVILEGE ) -> CSSM_RETURN,
+    DecryptDataUpdate:             proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, CipherBufs: ^cssm_data, CipherBufCount: cffi.uint, ClearBufs: CSSM_DATA_PTR, ClearBufCount: cffi.uint, bytesDecrypted: ^CSSM_SIZE ) -> CSSM_RETURN,
+    DecryptDataFinal:              proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, RemData: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    QueryKeySizeInBits:            proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Key: ^cssm_key, KeySize: CSSM_KEY_SIZE_PTR ) -> CSSM_RETURN,
+    GenerateKey:                   proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, Key: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE ) -> CSSM_RETURN,
+    GenerateKeyPair:               proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PublicKeyUsage: cffi.uint, PublicKeyAttr: cffi.uint, PublicKeyLabel: ^cssm_data, PublicKey: CSSM_KEY_PTR, PrivateKeyUsage: cffi.uint, PrivateKeyAttr: cffi.uint, PrivateKeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, PrivateKey: CSSM_KEY_PTR, Privilege: CSSM_PRIVILEGE ) -> CSSM_RETURN,
+    GenerateRandom:                proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, RandomNumber: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    GenerateAlgorithmParams:       proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, ParamBits: cffi.uint, Param: CSSM_DATA_PTR, NumberOfUpdatedAttibutes: ^cffi.uint, UpdatedAttributes: ^CSSM_CONTEXT_ATTRIBUTE_PTR ) -> CSSM_RETURN,
+    WrapKey:                       proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, AccessCred: ^cssm_access_credentials, Key: ^cssm_key, DescriptiveData: ^cssm_data, WrappedKey: CSSM_WRAP_KEY_PTR, Privilege: CSSM_PRIVILEGE ) -> CSSM_RETURN,
+    UnwrapKey:                     proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PublicKey: ^cssm_key, WrappedKey: ^CSSM_WRAP_KEY, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, UnwrappedKey: CSSM_KEY_PTR, DescriptiveData: CSSM_DATA_PTR, Privilege: CSSM_PRIVILEGE ) -> CSSM_RETURN,
+    DeriveKey:                     proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, Param: CSSM_DATA_PTR, KeyUsage: cffi.uint, KeyAttr: cffi.uint, KeyLabel: ^cssm_data, CredAndAclEntry: ^cssm_resource_control_context, DerivedKey: CSSM_KEY_PTR ) -> CSSM_RETURN,
+    FreeKey:                       proc "c" ( CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, KeyPtr: CSSM_KEY_PTR, Delete: CSSM_BOOL ) -> CSSM_RETURN,
+    PassThrough:                   proc "c" ( CSPHandle: CSSM_CSP_HANDLE, CCHandle: CSSM_CC_HANDLE, Context: ^cssm_context, PassThroughId: cffi.uint, InData: rawptr, OutData: ^rawptr ) -> CSSM_RETURN,
+    Login:                         proc "c" ( CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, LoginName: ^cssm_data, Reserved: rawptr ) -> CSSM_RETURN,
+    Logout:                        proc "c" ( CSPHandle: CSSM_CSP_HANDLE ) -> CSSM_RETURN,
+    ChangeLoginAcl:                proc "c" ( CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit ) -> CSSM_RETURN,
+    ObtainPrivateKeyFromPublicKey: proc "c" ( CSPHandle: CSSM_CSP_HANDLE, PublicKey: ^cssm_key, PrivateKey: CSSM_KEY_PTR ) -> CSSM_RETURN,
+    RetrieveUniqueId:              proc "c" ( CSPHandle: CSSM_CSP_HANDLE, UniqueID: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    RetrieveCounter:               proc "c" ( CSPHandle: CSSM_CSP_HANDLE, Counter: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    VerifyDevice:                  proc "c" ( CSPHandle: CSSM_CSP_HANDLE, DeviceCert: ^cssm_data ) -> CSSM_RETURN,
+    GetTimeValue:                  proc "c" ( CSPHandle: CSSM_CSP_HANDLE, TimeAlgorithm: CSSM_ALGORITHMS, TimeData: ^cssm_data ) -> CSSM_RETURN,
+    GetOperationalStatistics:      proc "c" ( CSPHandle: CSSM_CSP_HANDLE, Statistics: ^cssm_csp_operational_statistics ) -> CSSM_RETURN,
+    GetLoginAcl:                   proc "c" ( CSPHandle: CSSM_CSP_HANDLE, SelectionTag: ^^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR ) -> CSSM_RETURN,
+    GetKeyAcl:                     proc "c" ( CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, SelectionTag: ^^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR ) -> CSSM_RETURN,
+    ChangeKeyAcl:                  proc "c" ( CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit, Key: ^cssm_key ) -> CSSM_RETURN,
+    GetKeyOwner:                   proc "c" ( CSPHandle: CSSM_CSP_HANDLE, Key: ^cssm_key, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR ) -> CSSM_RETURN,
+    ChangeKeyOwner:                proc "c" ( CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, Key: ^cssm_key, NewOwner: ^cssm_acl_owner_prototype ) -> CSSM_RETURN,
+    GetLoginOwner:                 proc "c" ( CSPHandle: CSSM_CSP_HANDLE, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR ) -> CSSM_RETURN,
+    ChangeLoginOwner:              proc "c" ( CSPHandle: CSSM_CSP_HANDLE, AccessCred: ^cssm_access_credentials, NewOwner: ^cssm_acl_owner_prototype ) -> CSSM_RETURN,
 }
 #assert(size_of(cssm_spi_csp_funcs) == 456)
 
 /// cssm_spi_dl_funcs
 cssm_spi_dl_funcs :: struct #align (8) {
-    DbOpen:                    proc "c" (DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ^cssm_access_credentials, OpenParameters: rawptr, DbHandle: ^CSSM_DB_HANDLE) -> CSSM_RETURN,
-    DbClose:                   proc "c" (DLDBHandle: cssm_dl_db_handle) -> CSSM_RETURN,
-    DbCreate:                  proc "c" (DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, DBInfo: ^cssm_dbinfo, AccessRequest: CSSM_DB_ACCESS_TYPE, CredAndAclEntry: ^cssm_resource_control_context, OpenParameters: rawptr, DbHandle: ^CSSM_DB_HANDLE) -> CSSM_RETURN,
-    DbDelete:                  proc "c" (DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, AccessCred: ^cssm_access_credentials) -> CSSM_RETURN,
-    CreateRelation:            proc "c" (DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE, RelationName: cstring, NumberOfAttributes: cffi.uint, pAttributeInfo: ^cssm_db_schema_attribute_info, NumberOfIndexes: cffi.uint, pIndexInfo: ^cssm_db_schema_index_info) -> CSSM_RETURN,
-    DestroyRelation:           proc "c" (DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE) -> CSSM_RETURN,
-    Authenticate:              proc "c" (DLDBHandle: cssm_dl_db_handle, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ^cssm_access_credentials) -> CSSM_RETURN,
-    GetDbAcl:                  proc "c" (DLDBHandle: cssm_dl_db_handle, SelectionTag: ^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR) -> CSSM_RETURN,
-    ChangeDbAcl:               proc "c" (DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit) -> CSSM_RETURN,
-    GetDbOwner:                proc "c" (DLDBHandle: cssm_dl_db_handle, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR) -> CSSM_RETURN,
-    ChangeDbOwner:             proc "c" (DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, NewOwner: ^cssm_acl_owner_prototype) -> CSSM_RETURN,
-    GetDbNames:                proc "c" (DLHandle: CSSM_DL_HANDLE, NameList: ^CSSM_NAME_LIST_PTR) -> CSSM_RETURN,
-    GetDbNameFromHandle:       proc "c" (DLDBHandle: cssm_dl_db_handle, DbName: ^cstring) -> CSSM_RETURN,
-    FreeNameList:              proc "c" (DLHandle: CSSM_DL_HANDLE, NameList: CSSM_NAME_LIST_PTR) -> CSSM_RETURN,
-    DataInsert:                proc "c" (DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, Attributes: ^cssm_db_record_attribute_data, Data: ^cssm_data, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
-    DataDelete:                proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecordIdentifier: ^cssm_db_unique_record) -> CSSM_RETURN,
-    DataModify:                proc "c" (DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, UniqueRecordIdentifier: CSSM_DB_UNIQUE_RECORD_PTR, AttributesToBeModified: ^cssm_db_record_attribute_data, DataToBeModified: ^cssm_data, ModifyMode: CSSM_DB_MODIFY_MODE) -> CSSM_RETURN,
-    DataGetFirst:              proc "c" (DLDBHandle: cssm_dl_db_handle, Query: ^cssm_query, ResultsHandle: CSSM_HANDLE_PTR, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
-    DataGetNext:               proc "c" (DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
-    DataAbortQuery:            proc "c" (DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    DataGetFromUniqueRecordId: proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecord: ^cssm_db_unique_record, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR) -> CSSM_RETURN,
-    FreeUniqueRecord:          proc "c" (DLDBHandle: cssm_dl_db_handle, UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR) -> CSSM_RETURN,
-    PassThrough:               proc "c" (DLDBHandle: cssm_dl_db_handle, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    DbOpen:                    proc "c" ( DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ^cssm_access_credentials, OpenParameters: rawptr, DbHandle: ^CSSM_DB_HANDLE ) -> CSSM_RETURN,
+    DbClose:                   proc "c" ( DLDBHandle: cssm_dl_db_handle ) -> CSSM_RETURN,
+    DbCreate:                  proc "c" ( DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, DBInfo: ^cssm_dbinfo, AccessRequest: CSSM_DB_ACCESS_TYPE, CredAndAclEntry: ^cssm_resource_control_context, OpenParameters: rawptr, DbHandle: ^CSSM_DB_HANDLE ) -> CSSM_RETURN,
+    DbDelete:                  proc "c" ( DLHandle: CSSM_DL_HANDLE, DbName: cstring, DbLocation: ^cssm_net_address, AccessCred: ^cssm_access_credentials ) -> CSSM_RETURN,
+    CreateRelation:            proc "c" ( DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE, RelationName: cstring, NumberOfAttributes: cffi.uint, pAttributeInfo: ^cssm_db_schema_attribute_info, NumberOfIndexes: cffi.uint, pIndexInfo: ^cssm_db_schema_index_info ) -> CSSM_RETURN,
+    DestroyRelation:           proc "c" ( DLDBHandle: cssm_dl_db_handle, RelationID: CSSM_DB_RECORDTYPE ) -> CSSM_RETURN,
+    Authenticate:              proc "c" ( DLDBHandle: cssm_dl_db_handle, AccessRequest: CSSM_DB_ACCESS_TYPE, AccessCred: ^cssm_access_credentials ) -> CSSM_RETURN,
+    GetDbAcl:                  proc "c" ( DLDBHandle: cssm_dl_db_handle, SelectionTag: ^^CSSM_STRING, NumberOfAclInfos: ^cffi.uint, AclInfos: ^CSSM_ACL_ENTRY_INFO_PTR ) -> CSSM_RETURN,
+    ChangeDbAcl:               proc "c" ( DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, AclEdit: ^cssm_acl_edit ) -> CSSM_RETURN,
+    GetDbOwner:                proc "c" ( DLDBHandle: cssm_dl_db_handle, Owner: CSSM_ACL_OWNER_PROTOTYPE_PTR ) -> CSSM_RETURN,
+    ChangeDbOwner:             proc "c" ( DLDBHandle: cssm_dl_db_handle, AccessCred: ^cssm_access_credentials, NewOwner: ^cssm_acl_owner_prototype ) -> CSSM_RETURN,
+    GetDbNames:                proc "c" ( DLHandle: CSSM_DL_HANDLE, NameList: ^CSSM_NAME_LIST_PTR ) -> CSSM_RETURN,
+    GetDbNameFromHandle:       proc "c" ( DLDBHandle: cssm_dl_db_handle, DbName: ^cstring ) -> CSSM_RETURN,
+    FreeNameList:              proc "c" ( DLHandle: CSSM_DL_HANDLE, NameList: CSSM_NAME_LIST_PTR ) -> CSSM_RETURN,
+    DataInsert:                proc "c" ( DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, Attributes: ^cssm_db_record_attribute_data, Data: ^cssm_data, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR ) -> CSSM_RETURN,
+    DataDelete:                proc "c" ( DLDBHandle: cssm_dl_db_handle, UniqueRecordIdentifier: ^cssm_db_unique_record ) -> CSSM_RETURN,
+    DataModify:                proc "c" ( DLDBHandle: cssm_dl_db_handle, RecordType: CSSM_DB_RECORDTYPE, UniqueRecordIdentifier: CSSM_DB_UNIQUE_RECORD_PTR, AttributesToBeModified: ^cssm_db_record_attribute_data, DataToBeModified: ^cssm_data, ModifyMode: CSSM_DB_MODIFY_MODE ) -> CSSM_RETURN,
+    DataGetFirst:              proc "c" ( DLDBHandle: cssm_dl_db_handle, Query: ^cssm_query, ResultsHandle: CSSM_HANDLE_PTR, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR ) -> CSSM_RETURN,
+    DataGetNext:               proc "c" ( DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR, UniqueId: ^CSSM_DB_UNIQUE_RECORD_PTR ) -> CSSM_RETURN,
+    DataAbortQuery:            proc "c" ( DLDBHandle: cssm_dl_db_handle, ResultsHandle: CSSM_HANDLE ) -> CSSM_RETURN,
+    DataGetFromUniqueRecordId: proc "c" ( DLDBHandle: cssm_dl_db_handle, UniqueRecord: ^cssm_db_unique_record, Attributes: CSSM_DB_RECORD_ATTRIBUTE_DATA_PTR, Data: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    FreeUniqueRecord:          proc "c" ( DLDBHandle: cssm_dl_db_handle, UniqueRecord: CSSM_DB_UNIQUE_RECORD_PTR ) -> CSSM_RETURN,
+    PassThrough:               proc "c" ( DLDBHandle: cssm_dl_db_handle, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr ) -> CSSM_RETURN,
 }
 #assert(size_of(cssm_spi_dl_funcs) == 184)
 
@@ -5843,65 +5854,65 @@ cssm_kr_policy_info :: struct #align (8) {
 
 /// cssm_spi_kr_funcs
 cssm_spi_kr_funcs :: struct #align (8) {
-    RegistrationRequest:    proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KRRegistrationContextHandle: CSSM_CC_HANDLE, KRRegistrationContext: ^cssm_context, KRInData: ^cssm_data, AccessCredentials: ^cssm_access_credentials, KRFlags: CSSM_KR_POLICY_FLAGS, EstimatedTime: ^cffi.int, ReferenceHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
-    RegistrationRetrieve:   proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, ReferenceHandle: CSSM_HANDLE, EstimatedTime: ^cffi.int, KRProfile: CSSM_KR_PROFILE_PTR) -> CSSM_RETURN,
-    GenerateRecoveryFields: proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KREnablementContextHandle: CSSM_CC_HANDLE, KREnablementContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, KRSPOptions: ^cssm_data, KRFlags: CSSM_KR_POLICY_FLAGS, KRFields: CSSM_DATA_PTR) -> CSSM_RETURN,
-    ProcessRecoveryFields:  proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KREnablementContextHandle: CSSM_CC_HANDLE, KREnablementContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, KRSPOptions: ^cssm_data, KRFlags: CSSM_KR_POLICY_FLAGS, KRFields: ^cssm_data) -> CSSM_RETURN,
-    RecoveryRequest:        proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KRRequestContextHandle: CSSM_CC_HANDLE, KRRequestContext: ^cssm_context, KRInData: ^cssm_data, AccessCredentials: ^cssm_access_credentials, EstimatedTime: ^cffi.int, ReferenceHandle: CSSM_HANDLE_PTR) -> CSSM_RETURN,
-    RecoveryRetrieve:       proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, ReferenceHandle: CSSM_HANDLE, EstimatedTime: ^cffi.int, CacheHandle: CSSM_HANDLE_PTR, NumberOfRecoveredKeys: ^cffi.uint) -> CSSM_RETURN,
-    GetRecoveredObject:     proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, CacheHandle: CSSM_HANDLE, IndexInResults: cffi.uint, CSPHandle: CSSM_CSP_HANDLE, CredAndAclEntry: ^cssm_resource_control_context, Flags: cffi.uint, RecoveredKey: CSSM_KEY_PTR, OtherInfo: CSSM_DATA_PTR) -> CSSM_RETURN,
-    RecoveryRequestAbort:   proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, ResultsHandle: CSSM_HANDLE) -> CSSM_RETURN,
-    PassThrough:            proc "c" (KRSPHandle: CSSM_KRSP_HANDLE, KeyRecoveryContextHandle: CSSM_CC_HANDLE, KeyRecoveryContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    RegistrationRequest:    proc "c" ( KRSPHandle: CSSM_KRSP_HANDLE, KRRegistrationContextHandle: CSSM_CC_HANDLE, KRRegistrationContext: ^cssm_context, KRInData: ^cssm_data, AccessCredentials: ^cssm_access_credentials, KRFlags: CSSM_KR_POLICY_FLAGS, EstimatedTime: ^cffi.int, ReferenceHandle: CSSM_HANDLE_PTR ) -> CSSM_RETURN,
+    RegistrationRetrieve:   proc "c" ( KRSPHandle: CSSM_KRSP_HANDLE, ReferenceHandle: CSSM_HANDLE, EstimatedTime: ^cffi.int, KRProfile: CSSM_KR_PROFILE_PTR ) -> CSSM_RETURN,
+    GenerateRecoveryFields: proc "c" ( KRSPHandle: CSSM_KRSP_HANDLE, KREnablementContextHandle: CSSM_CC_HANDLE, KREnablementContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, KRSPOptions: ^cssm_data, KRFlags: CSSM_KR_POLICY_FLAGS, KRFields: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    ProcessRecoveryFields:  proc "c" ( KRSPHandle: CSSM_KRSP_HANDLE, KREnablementContextHandle: CSSM_CC_HANDLE, KREnablementContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, KRSPOptions: ^cssm_data, KRFlags: CSSM_KR_POLICY_FLAGS, KRFields: ^cssm_data ) -> CSSM_RETURN,
+    RecoveryRequest:        proc "c" ( KRSPHandle: CSSM_KRSP_HANDLE, KRRequestContextHandle: CSSM_CC_HANDLE, KRRequestContext: ^cssm_context, KRInData: ^cssm_data, AccessCredentials: ^cssm_access_credentials, EstimatedTime: ^cffi.int, ReferenceHandle: CSSM_HANDLE_PTR ) -> CSSM_RETURN,
+    RecoveryRetrieve:       proc "c" ( KRSPHandle: CSSM_KRSP_HANDLE, ReferenceHandle: CSSM_HANDLE, EstimatedTime: ^cffi.int, CacheHandle: CSSM_HANDLE_PTR, NumberOfRecoveredKeys: ^cffi.uint ) -> CSSM_RETURN,
+    GetRecoveredObject:     proc "c" ( KRSPHandle: CSSM_KRSP_HANDLE, CacheHandle: CSSM_HANDLE, IndexInResults: cffi.uint, CSPHandle: CSSM_CSP_HANDLE, CredAndAclEntry: ^cssm_resource_control_context, Flags: cffi.uint, RecoveredKey: CSSM_KEY_PTR, OtherInfo: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    RecoveryRequestAbort:   proc "c" ( KRSPHandle: CSSM_KRSP_HANDLE, ResultsHandle: CSSM_HANDLE ) -> CSSM_RETURN,
+    PassThrough:            proc "c" ( KRSPHandle: CSSM_KRSP_HANDLE, KeyRecoveryContextHandle: CSSM_CC_HANDLE, KeyRecoveryContext: ^cssm_context, CryptoContextHandle: CSSM_CC_HANDLE, CryptoContext: ^cssm_context, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr ) -> CSSM_RETURN,
 }
 #assert(size_of(cssm_spi_kr_funcs) == 72)
 
 /// cssm_spi_tp_funcs
 cssm_spi_tp_funcs :: struct #align (8) {
-    SubmitCredRequest:         proc "c" (TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ^cssm_tp_authority_id, RequestType: CSSM_TP_AUTHORITY_REQUEST_TYPE, RequestInput: ^cssm_tp_request_set, CallerAuthContext: ^cssm_tp_callerauth_context, EstimatedTime: ^cffi.int, ReferenceIdentifier: CSSM_DATA_PTR) -> CSSM_RETURN,
-    RetrieveCredResult:        proc "c" (TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, CallerAuthCredentials: ^cssm_tp_callerauth_context, EstimatedTime: ^cffi.int, ConfirmationRequired: ^CSSM_BOOL, RetrieveOutput: ^CSSM_TP_RESULT_SET_PTR) -> CSSM_RETURN,
-    ConfirmCredResult:         proc "c" (TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, CallerAuthCredentials: ^cssm_tp_callerauth_context, Responses: ^cssm_tp_confirm_response, PreferredAuthority: ^cssm_tp_authority_id) -> CSSM_RETURN,
-    ReceiveConfirmation:       proc "c" (TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, Responses: ^CSSM_TP_CONFIRM_RESPONSE_PTR, ElapsedTime: ^cffi.int) -> CSSM_RETURN,
-    CertReclaimKey:            proc "c" (TPHandle: CSSM_TP_HANDLE, CertGroup: ^cssm_certgroup, CertIndex: cffi.uint, KeyCacheHandle: CSSM_LONG_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CredAndAclEntry: ^cssm_resource_control_context) -> CSSM_RETURN,
-    CertReclaimAbort:          proc "c" (TPHandle: CSSM_TP_HANDLE, KeyCacheHandle: CSSM_LONG_HANDLE) -> CSSM_RETURN,
-    FormRequest:               proc "c" (TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ^cssm_tp_authority_id, FormType: CSSM_TP_FORM_TYPE, BlankForm: CSSM_DATA_PTR) -> CSSM_RETURN,
-    FormSubmit:                proc "c" (TPHandle: CSSM_TP_HANDLE, FormType: CSSM_TP_FORM_TYPE, Form: ^cssm_data, ClearanceAuthority: ^cssm_tp_authority_id, RepresentedAuthority: ^cssm_tp_authority_id, Credentials: CSSM_ACCESS_CREDENTIALS_PTR) -> CSSM_RETURN,
-    CertGroupVerify:           proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CertGroupToBeVerified: ^cssm_certgroup, VerifyContext: ^cssm_tp_verify_context, VerifyContextResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CSSM_RETURN,
-    CertCreateTemplate:        proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CertFields: ^cssm_field, CertTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertGetAllTemplateFields:  proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertTemplate: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR) -> CSSM_RETURN,
-    CertSign:                  proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplateToBeSigned: ^cssm_data, SignerCertGroup: ^cssm_certgroup, SignerVerifyContext: ^cssm_tp_verify_context, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCert: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlVerify:                 proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeVerified: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, VerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CSSM_RETURN,
-    CrlCreateTemplate:         proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlFields: ^cssm_field, NewCrlTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertRevoke:                proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ^cssm_data, CertGroupToBeRevoked: ^cssm_certgroup, RevokerCertGroup: ^cssm_certgroup, RevokerVerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, Reason: CSSM_TP_CERTCHANGE_REASON, NewCrlTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CertRemoveFromCrlTemplate: proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ^cssm_data, CertGroupToBeRemoved: ^cssm_certgroup, RevokerCertGroup: ^cssm_certgroup, RevokerVerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, NewCrlTemplate: CSSM_DATA_PTR) -> CSSM_RETURN,
-    CrlSign:                   proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeSigned: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, SignerVerifyContext: ^cssm_tp_verify_context, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCrl: CSSM_DATA_PTR) -> CSSM_RETURN,
-    ApplyCrlToDb:              proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeApplied: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, ApplyCrlVerifyContext: ^cssm_tp_verify_context, ApplyCrlVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR) -> CSSM_RETURN,
-    CertGroupConstruct:        proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, DBList: ^cssm_dl_db_list, ConstructParams: rawptr, CertGroupFrag: ^cssm_certgroup, CertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
-    CertGroupPrune:            proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, DBList: ^cssm_dl_db_list, OrderedCertGroup: ^cssm_certgroup, PrunedCertGroup: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
-    CertGroupToTupleGroup:     proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertGroup: ^cssm_certgroup, TupleGroup: ^CSSM_TUPLEGROUP_PTR) -> CSSM_RETURN,
-    TupleGroupToCertGroup:     proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, TupleGroup: ^cssm_tuplegroup, CertTemplates: ^CSSM_CERTGROUP_PTR) -> CSSM_RETURN,
-    PassThrough:               proc "c" (TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ^cssm_dl_db_list, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr) -> CSSM_RETURN,
+    SubmitCredRequest:         proc "c" ( TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ^cssm_tp_authority_id, RequestType: CSSM_TP_AUTHORITY_REQUEST_TYPE, RequestInput: ^cssm_tp_request_set, CallerAuthContext: ^cssm_tp_callerauth_context, EstimatedTime: ^cffi.int, ReferenceIdentifier: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    RetrieveCredResult:        proc "c" ( TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, CallerAuthCredentials: ^cssm_tp_callerauth_context, EstimatedTime: ^cffi.int, ConfirmationRequired: ^CSSM_BOOL, RetrieveOutput: ^CSSM_TP_RESULT_SET_PTR ) -> CSSM_RETURN,
+    ConfirmCredResult:         proc "c" ( TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, CallerAuthCredentials: ^cssm_tp_callerauth_context, Responses: ^cssm_tp_confirm_response, PreferredAuthority: ^cssm_tp_authority_id ) -> CSSM_RETURN,
+    ReceiveConfirmation:       proc "c" ( TPHandle: CSSM_TP_HANDLE, ReferenceIdentifier: ^cssm_data, Responses: ^CSSM_TP_CONFIRM_RESPONSE_PTR, ElapsedTime: ^cffi.int ) -> CSSM_RETURN,
+    CertReclaimKey:            proc "c" ( TPHandle: CSSM_TP_HANDLE, CertGroup: ^cssm_certgroup, CertIndex: cffi.uint, KeyCacheHandle: CSSM_LONG_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CredAndAclEntry: ^cssm_resource_control_context ) -> CSSM_RETURN,
+    CertReclaimAbort:          proc "c" ( TPHandle: CSSM_TP_HANDLE, KeyCacheHandle: CSSM_LONG_HANDLE ) -> CSSM_RETURN,
+    FormRequest:               proc "c" ( TPHandle: CSSM_TP_HANDLE, PreferredAuthority: ^cssm_tp_authority_id, FormType: CSSM_TP_FORM_TYPE, BlankForm: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    FormSubmit:                proc "c" ( TPHandle: CSSM_TP_HANDLE, FormType: CSSM_TP_FORM_TYPE, Form: ^cssm_data, ClearanceAuthority: ^cssm_tp_authority_id, RepresentedAuthority: ^cssm_tp_authority_id, Credentials: CSSM_ACCESS_CREDENTIALS_PTR ) -> CSSM_RETURN,
+    CertGroupVerify:           proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CertGroupToBeVerified: ^cssm_certgroup, VerifyContext: ^cssm_tp_verify_context, VerifyContextResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR ) -> CSSM_RETURN,
+    CertCreateTemplate:        proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CertFields: ^cssm_field, CertTemplate: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertGetAllTemplateFields:  proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertTemplate: ^cssm_data, NumberOfFields: ^cffi.uint, CertFields: ^CSSM_FIELD_PTR ) -> CSSM_RETURN,
+    CertSign:                  proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CertTemplateToBeSigned: ^cssm_data, SignerCertGroup: ^cssm_certgroup, SignerVerifyContext: ^cssm_tp_verify_context, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCert: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlVerify:                 proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeVerified: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, VerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR ) -> CSSM_RETURN,
+    CrlCreateTemplate:         proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, NumberOfFields: cffi.uint, CrlFields: ^cssm_field, NewCrlTemplate: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertRevoke:                proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ^cssm_data, CertGroupToBeRevoked: ^cssm_certgroup, RevokerCertGroup: ^cssm_certgroup, RevokerVerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, Reason: CSSM_TP_CERTCHANGE_REASON, NewCrlTemplate: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CertRemoveFromCrlTemplate: proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, OldCrlTemplate: ^cssm_data, CertGroupToBeRemoved: ^cssm_certgroup, RevokerCertGroup: ^cssm_certgroup, RevokerVerifyContext: ^cssm_tp_verify_context, RevokerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, NewCrlTemplate: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    CrlSign:                   proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, CrlToBeSigned: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, SignerVerifyContext: ^cssm_tp_verify_context, SignerVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR, SignedCrl: CSSM_DATA_PTR ) -> CSSM_RETURN,
+    ApplyCrlToDb:              proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, CrlToBeApplied: ^cssm_encoded_crl, SignerCertGroup: ^cssm_certgroup, ApplyCrlVerifyContext: ^cssm_tp_verify_context, ApplyCrlVerifyResult: CSSM_TP_VERIFY_CONTEXT_RESULT_PTR ) -> CSSM_RETURN,
+    CertGroupConstruct:        proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CSPHandle: CSSM_CSP_HANDLE, DBList: ^cssm_dl_db_list, ConstructParams: rawptr, CertGroupFrag: ^cssm_certgroup, CertGroup: ^CSSM_CERTGROUP_PTR ) -> CSSM_RETURN,
+    CertGroupPrune:            proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, DBList: ^cssm_dl_db_list, OrderedCertGroup: ^cssm_certgroup, PrunedCertGroup: ^CSSM_CERTGROUP_PTR ) -> CSSM_RETURN,
+    CertGroupToTupleGroup:     proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CertGroup: ^cssm_certgroup, TupleGroup: ^CSSM_TUPLEGROUP_PTR ) -> CSSM_RETURN,
+    TupleGroupToCertGroup:     proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, TupleGroup: ^cssm_tuplegroup, CertTemplates: ^CSSM_CERTGROUP_PTR ) -> CSSM_RETURN,
+    PassThrough:               proc "c" ( TPHandle: CSSM_TP_HANDLE, CLHandle: CSSM_CL_HANDLE, CCHandle: CSSM_CC_HANDLE, DBList: ^cssm_dl_db_list, PassThroughId: cffi.uint, InputParams: rawptr, OutputParams: ^rawptr ) -> CSSM_RETURN,
 }
 #assert(size_of(cssm_spi_tp_funcs) == 184)
 
 /// cssm_state_funcs
 cssm_state_funcs :: struct #align (8) {
-    cssm_GetAttachFunctions:        proc "c" (hAddIn: CSSM_MODULE_HANDLE, AddinType: CSSM_SERVICE_MASK, SPFunctions: ^rawptr, Guid: CSSM_GUID_PTR, Serialized: ^CSSM_BOOL) -> CSSM_RETURN,
-    cssm_ReleaseAttachFunctions:    proc "c" (hAddIn: CSSM_MODULE_HANDLE) -> CSSM_RETURN,
-    cssm_GetAppMemoryFunctions:     proc "c" (hAddIn: CSSM_MODULE_HANDLE, UpcallTable: CSSM_UPCALLS_PTR) -> CSSM_RETURN,
-    cssm_IsFuncCallValid:           proc "c" (hAddin: CSSM_MODULE_HANDLE, SrcAddress: CSSM_PROC_ADDR, DestAddress: CSSM_PROC_ADDR, InPriv: CSSM_PRIVILEGE, OutPriv: ^CSSM_PRIVILEGE, Hints: CSSM_BITMASK, IsOK: ^CSSM_BOOL) -> CSSM_RETURN,
-    cssm_DeregisterManagerServices: proc "c" (GUID: ^cssm_guid) -> CSSM_RETURN,
-    cssm_DeliverModuleManagerEvent: proc "c" (EventDescription: ^cssm_manager_event_notification) -> CSSM_RETURN,
+    cssm_GetAttachFunctions:        proc "c" ( hAddIn: CSSM_MODULE_HANDLE, AddinType: CSSM_SERVICE_MASK, SPFunctions: ^rawptr, Guid: CSSM_GUID_PTR, Serialized: ^CSSM_BOOL ) -> CSSM_RETURN,
+    cssm_ReleaseAttachFunctions:    proc "c" ( hAddIn: CSSM_MODULE_HANDLE ) -> CSSM_RETURN,
+    cssm_GetAppMemoryFunctions:     proc "c" ( hAddIn: CSSM_MODULE_HANDLE, UpcallTable: CSSM_UPCALLS_PTR ) -> CSSM_RETURN,
+    cssm_IsFuncCallValid:           proc "c" ( hAddin: CSSM_MODULE_HANDLE, SrcAddress: CSSM_PROC_ADDR, DestAddress: CSSM_PROC_ADDR, InPriv: CSSM_PRIVILEGE, OutPriv: ^CSSM_PRIVILEGE, Hints: CSSM_BITMASK, IsOK: ^CSSM_BOOL ) -> CSSM_RETURN,
+    cssm_DeregisterManagerServices: proc "c" ( GUID: ^cssm_guid ) -> CSSM_RETURN,
+    cssm_DeliverModuleManagerEvent: proc "c" ( EventDescription: ^cssm_manager_event_notification ) -> CSSM_RETURN,
 }
 #assert(size_of(cssm_state_funcs) == 48)
 
 /// cssm_manager_registration_info
 cssm_manager_registration_info :: struct #align (8) {
-    Initialize:              proc "c" (VerMajor: cffi.uint, VerMinor: cffi.uint) -> CSSM_RETURN,
+    Initialize:              proc "c" ( VerMajor: cffi.uint, VerMinor: cffi.uint ) -> CSSM_RETURN,
     Terminate:               proc "c" () -> CSSM_RETURN,
-    RegisterDispatchTable:   proc "c" (CssmStateCallTable: CSSM_STATE_FUNCS_PTR) -> CSSM_RETURN,
+    RegisterDispatchTable:   proc "c" ( CssmStateCallTable: CSSM_STATE_FUNCS_PTR ) -> CSSM_RETURN,
     DeregisterDispatchTable: proc "c" () -> CSSM_RETURN,
-    EventNotifyManager:      proc "c" (EventDescription: ^cssm_manager_event_notification) -> CSSM_RETURN,
-    RefreshFunctionTable:    proc "c" (FuncNameAddrPtr: CSSM_FUNC_NAME_ADDR_PTR, NumOfFuncNameAddr: cffi.uint) -> CSSM_RETURN,
+    EventNotifyManager:      proc "c" ( EventDescription: ^cssm_manager_event_notification ) -> CSSM_RETURN,
+    RefreshFunctionTable:    proc "c" ( FuncNameAddrPtr: CSSM_FUNC_NAME_ADDR_PTR, NumOfFuncNameAddr: cffi.uint ) -> CSSM_RETURN,
 }
 #assert(size_of(cssm_manager_registration_info) == 48)
 

@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MTLFXSpatialScalerDescriptor
-///
 @(objc_class="MTLFXSpatialScalerDescriptor", objc_superclass=NS.Object)
 SpatialScalerDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpatialScalerDescriptor, objc_selector="newSpatialScalerWithDevice:", objc_name="newSpatialScalerWithDevice_")
     SpatialScalerDescriptor_newSpatialScalerWithDevice_ :: proc(self: ^SpatialScalerDescriptor, device: ^MTL.Device) -> ^SpatialScaler ---
@@ -76,6 +70,8 @@ foreign lib {
     @(objc_type=SpatialScalerDescriptor, objc_selector="setColorProcessingMode:", objc_name="setColorProcessingMode")
     SpatialScalerDescriptor_setColorProcessingMode :: proc(self: ^SpatialScalerDescriptor, colorProcessingMode: SpatialScalerColorProcessingMode) ---
 }
+
+
 
 @(objc_type=SpatialScalerDescriptor, objc_name="newSpatialScalerWithDevice")
 SpatialScalerDescriptor_newSpatialScalerWithDevice :: proc {

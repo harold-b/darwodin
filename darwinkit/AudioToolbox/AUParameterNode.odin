@@ -10,15 +10,9 @@ import CA "../CoreAudio"
 import CM "../CoreMedia"
 import NS "../Foundation"
 
-
-
-///
-/// AUParameterNode
-///
 @(objc_class="AUParameterNode", objc_superclass=NS.Object)
 AUParameterNode :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AUParameterNode, objc_selector="displayNameWithLength:", objc_name="displayNameWithLength")
     AUParameterNode_displayNameWithLength :: proc(self: ^AUParameterNode, maximumLength: NS.Integer) -> ^NS.String ---
@@ -74,3 +68,6 @@ foreign lib {
     @(objc_type=AUParameterNode, objc_selector="setImplementorDisplayNameWithLengthCallback:", objc_name="setImplementorDisplayNameWithLengthCallback")
     AUParameterNode_setImplementorDisplayNameWithLengthCallback :: proc(self: ^AUParameterNode, implementorDisplayNameWithLengthCallback: AUImplementorDisplayNameWithLengthCallback) ---
 }
+
+
+

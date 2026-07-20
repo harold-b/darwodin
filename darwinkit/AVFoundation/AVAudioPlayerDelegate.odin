@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioPlayerDelegate
-///
 @(objc_class="AVAudioPlayerDelegate")
 AudioPlayerDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioPlayerDelegate, objc_selector="audioPlayerDidFinishPlaying:successfully:", objc_name="audioPlayerDidFinishPlaying")
     AudioPlayerDelegate_audioPlayerDidFinishPlaying :: proc(self: ^AudioPlayerDelegate, player: ^AudioPlayer, flag: bool) ---
@@ -44,4 +38,6 @@ foreign lib {
         AudioPlayerDelegate_audioPlayerEndInterruption_ :: proc(self: ^AudioPlayerDelegate, player: ^AudioPlayer) ---
     }
 }
+
+
 

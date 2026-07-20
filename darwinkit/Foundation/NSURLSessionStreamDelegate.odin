@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLSessionStreamDelegate
-///
 @(objc_class="NSURLSessionStreamDelegate")
 URLSessionStreamDelegate :: struct { using _: intrinsics.objc_object, 
     using _: URLSessionTaskDelegate,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionStreamDelegate, objc_selector="URLSession:readClosedForStreamTask:", objc_name="URLSession_readClosedForStreamTask")
     URLSessionStreamDelegate_URLSession_readClosedForStreamTask :: proc(self: ^URLSessionStreamDelegate, session: ^URLSession, streamTask: ^URLSessionStreamTask) ---
@@ -33,4 +27,6 @@ foreign lib {
     @(objc_type=URLSessionStreamDelegate, objc_selector="URLSession:streamTask:didBecomeInputStream:outputStream:", objc_name="URLSession_streamTask_didBecomeInputStream_outputStream")
     URLSessionStreamDelegate_URLSession_streamTask_didBecomeInputStream_outputStream :: proc(self: ^URLSessionStreamDelegate, session: ^URLSession, streamTask: ^URLSessionStreamTask, inputStream: ^InputStream, outputStream: ^OutputStream) ---
 }
+
+
 

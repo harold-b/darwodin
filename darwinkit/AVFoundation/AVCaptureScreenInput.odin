@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureScreenInput
-///
 @(objc_class="AVCaptureScreenInput", objc_superclass=CaptureInput)
 CaptureScreenInput :: struct { using _: CaptureInput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureScreenInput, objc_selector="init", objc_name="init")
     CaptureScreenInput_init :: proc(self: ^CaptureScreenInput) -> instancetype ---
@@ -28,7 +22,7 @@ foreign lib {
     @(objc_type=CaptureScreenInput, objc_selector="new", objc_name="new", objc_is_class_method=true)
     CaptureScreenInput_new :: proc() -> ^CaptureScreenInput ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=CaptureScreenInput, objc_selector="initWithDisplayID:", objc_name="initWithDisplayID")
         CaptureScreenInput_initWithDisplayID :: proc(self: ^CaptureScreenInput, displayID: CG.DirectDisplayID) -> instancetype ---
     }
@@ -69,3 +63,6 @@ foreign lib {
     @(objc_type=CaptureScreenInput, objc_selector="setRemovesDuplicateFrames:", objc_name="setRemovesDuplicateFrames")
     CaptureScreenInput_setRemovesDuplicateFrames :: proc(self: ^CaptureScreenInput, removesDuplicateFrames: bool) ---
 }
+
+
+

@@ -9,21 +9,15 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSFileManager
-///
 @(objc_class="NSFileManager", objc_superclass=Object)
 FileManager :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FileManager, objc_selector="mountedVolumeURLsIncludingResourceValuesForKeys:options:", objc_name="mountedVolumeURLsIncludingResourceValuesForKeys")
     FileManager_mountedVolumeURLsIncludingResourceValuesForKeys :: proc(self: ^FileManager, propertyKeys: ^Array, options: VolumeEnumerationOptions) -> ^Array ---
 
     @(objc_type=FileManager, objc_selector="unmountVolumeAtURL:options:completionHandler:", objc_name="unmountVolumeAtURL")
-    FileManager_unmountVolumeAtURL :: proc(self: ^FileManager, url: ^URL, mask: FileManagerUnmountOptions, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^Error))) ---
+    FileManager_unmountVolumeAtURL :: proc(self: ^FileManager, url: ^URL, mask: FileManagerUnmountOptions, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^Error ))) ---
 
     @(objc_type=FileManager, objc_selector="contentsOfDirectoryAtURL:includingPropertiesForKeys:options:error:", objc_name="contentsOfDirectoryAtURL")
     FileManager_contentsOfDirectoryAtURL :: proc(self: ^FileManager, url: ^URL, keys: ^Array, mask: DirectoryEnumerationOptions, error: ^^Error) -> ^Array ---
@@ -118,7 +112,7 @@ foreign lib {
     @(objc_type=FileManager, objc_selector="createDirectoryAtPath:attributes:", objc_name="createDirectoryAtPath_attributes")
     FileManager_createDirectoryAtPath_attributes :: proc(self: ^FileManager, path: ^String, attributes: ^Dictionary) -> bool ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=FileManager, objc_selector="linkPath:toPath:handler:", objc_name="linkPath")
         FileManager_linkPath :: proc(self: ^FileManager, src: ^String, dest: ^String, handler: id) -> bool ---
 
@@ -166,7 +160,7 @@ foreign lib {
     FileManager_enumeratorAtPath :: proc(self: ^FileManager, path: ^String) -> ^DirectoryEnumerator ---
 
     @(objc_type=FileManager, objc_selector="enumeratorAtURL:includingPropertiesForKeys:options:errorHandler:", objc_name="enumeratorAtURL")
-    FileManager_enumeratorAtURL :: proc(self: ^FileManager, url: ^URL, keys: ^Array, mask: DirectoryEnumerationOptions, handler: ^Objc_Block(proc "c" (url: ^URL, error: ^Error) -> bool)) -> ^DirectoryEnumerator ---
+    FileManager_enumeratorAtURL :: proc(self: ^FileManager, url: ^URL, keys: ^Array, mask: DirectoryEnumerationOptions, handler: ^Objc_Block(proc "c" ( url: ^URL, error: ^Error ) -> bool)) -> ^DirectoryEnumerator ---
 
     @(objc_type=FileManager, objc_selector="subpathsAtPath:", objc_name="subpathsAtPath")
     FileManager_subpathsAtPath :: proc(self: ^FileManager, path: ^String) -> ^Array ---
@@ -205,19 +199,19 @@ foreign lib {
     FileManager_URLForPublishingUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, outDate: ^^Date, error: ^^Error) -> ^URL ---
 
     @(objc_type=FileManager, objc_selector="pauseSyncForUbiquitousItemAtURL:completionHandler:", objc_name="pauseSyncForUbiquitousItemAtURL")
-    FileManager_pauseSyncForUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) ---
+    FileManager_pauseSyncForUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" ( error: ^Error ))) ---
 
     @(objc_type=FileManager, objc_selector="resumeSyncForUbiquitousItemAtURL:withBehavior:completionHandler:", objc_name="resumeSyncForUbiquitousItemAtURL")
-    FileManager_resumeSyncForUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, behavior: FileManagerResumeSyncBehavior, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) ---
+    FileManager_resumeSyncForUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, behavior: FileManagerResumeSyncBehavior, completionHandler: ^Objc_Block(proc "c" ( error: ^Error ))) ---
 
     @(objc_type=FileManager, objc_selector="fetchLatestRemoteVersionOfItemAtURL:completionHandler:", objc_name="fetchLatestRemoteVersionOfItemAtURL")
-    FileManager_fetchLatestRemoteVersionOfItemAtURL :: proc(self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" (latestRemoteVersion: ^FileVersion, error: ^Error))) ---
+    FileManager_fetchLatestRemoteVersionOfItemAtURL :: proc(self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" ( latestRemoteVersion: ^FileVersion, error: ^Error ))) ---
 
     @(objc_type=FileManager, objc_selector="uploadLocalVersionOfUbiquitousItemAtURL:withConflictResolutionPolicy:completionHandler:", objc_name="uploadLocalVersionOfUbiquitousItemAtURL")
-    FileManager_uploadLocalVersionOfUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, conflictResolutionPolicy: FileManagerUploadLocalVersionConflictPolicy, completionHandler: ^Objc_Block(proc "c" (uploadedVersion: ^FileVersion, error: ^Error))) ---
+    FileManager_uploadLocalVersionOfUbiquitousItemAtURL :: proc(self: ^FileManager, url: ^URL, conflictResolutionPolicy: FileManagerUploadLocalVersionConflictPolicy, completionHandler: ^Objc_Block(proc "c" ( uploadedVersion: ^FileVersion, error: ^Error ))) ---
 
     @(objc_type=FileManager, objc_selector="getFileProviderServicesForItemAtURL:completionHandler:", objc_name="getFileProviderServicesForItemAtURL")
-    FileManager_getFileProviderServicesForItemAtURL :: proc(self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" (services: ^Dictionary, error: ^Error))) ---
+    FileManager_getFileProviderServicesForItemAtURL :: proc(self: ^FileManager, url: ^URL, completionHandler: ^Objc_Block(proc "c" ( services: ^Dictionary, error: ^Error ))) ---
 
     @(objc_type=FileManager, objc_selector="containerURLForSecurityApplicationGroupIdentifier:", objc_name="containerURLForSecurityApplicationGroupIdentifier")
     FileManager_containerURLForSecurityApplicationGroupIdentifier :: proc(self: ^FileManager, groupIdentifier: ^String) -> ^URL ---
@@ -246,6 +240,8 @@ foreign lib {
     @(objc_type=FileManager, objc_selector="temporaryDirectory", objc_name="temporaryDirectory")
     FileManager_temporaryDirectory :: proc(self: ^FileManager) -> ^URL ---
 }
+
+
 
 @(objc_type=FileManager, objc_name="getRelationship")
 FileManager_getRelationship :: proc {

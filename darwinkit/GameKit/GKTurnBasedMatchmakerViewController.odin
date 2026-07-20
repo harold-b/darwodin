@@ -7,23 +7,16 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKTurnBasedMatchmakerViewController
-///
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=AKViewController)
-    TurnBasedMatchmakerViewController :: struct { using _: AKViewController, 
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    @(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=AK.ViewController)
+    TurnBasedMatchmakerViewController :: struct { using _: AK.ViewController, 
         using _: ViewController,
     }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=AKNavigationController)
-    TurnBasedMatchmakerViewController :: struct { using _: AKNavigationController, }
-} // End else
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    @(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=UI.NavigationController)
+    TurnBasedMatchmakerViewController :: struct { using _: UI.NavigationController, }
+}
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TurnBasedMatchmakerViewController, objc_selector="turnBasedMatchmakerDelegate", objc_name="turnBasedMatchmakerDelegate")
     TurnBasedMatchmakerViewController_turnBasedMatchmakerDelegate :: proc(self: ^TurnBasedMatchmakerViewController) -> ^TurnBasedMatchmakerViewControllerDelegate ---
@@ -46,3 +39,6 @@ foreign lib {
     @(objc_type=TurnBasedMatchmakerViewController, objc_selector="initWithMatchRequest:", objc_name="initWithMatchRequest")
     TurnBasedMatchmakerViewController_initWithMatchRequest :: proc(self: ^TurnBasedMatchmakerViewController, request: ^MatchRequest) -> id ---
 }
+
+
+

@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSCachedURLResponse
-///
 @(objc_class="NSCachedURLResponse", objc_superclass=Object)
 CachedURLResponse :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CachedURLResponse, objc_selector="initWithResponse:data:", objc_name="initWithResponse_data")
     CachedURLResponse_initWithResponse_data :: proc(self: ^CachedURLResponse, response: ^URLResponse, data: ^Data) -> instancetype ---
@@ -40,6 +34,8 @@ foreign lib {
     @(objc_type=CachedURLResponse, objc_selector="storagePolicy", objc_name="storagePolicy")
     CachedURLResponse_storagePolicy :: proc(self: ^CachedURLResponse) -> URLCacheStoragePolicy ---
 }
+
+
 
 @(objc_type=CachedURLResponse, objc_name="initWithResponse")
 CachedURLResponse_initWithResponse :: proc {

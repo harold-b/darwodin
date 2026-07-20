@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSpatialVideoConfiguration
-///
 @(objc_class="AVSpatialVideoConfiguration", objc_superclass=NS.Object)
 SpatialVideoConfiguration :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpatialVideoConfiguration, objc_selector="init", objc_name="init")
     SpatialVideoConfiguration_init :: proc(self: ^SpatialVideoConfiguration) -> instancetype ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=SpatialVideoConfiguration, objc_selector="setDisparityAdjustment:", objc_name="setDisparityAdjustment")
     SpatialVideoConfiguration_setDisparityAdjustment :: proc(self: ^SpatialVideoConfiguration, disparityAdjustment: ^NS.Number) ---
 }
+
+
+

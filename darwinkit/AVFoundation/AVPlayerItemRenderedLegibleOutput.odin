@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemRenderedLegibleOutput
-///
 @(objc_class="AVPlayerItemRenderedLegibleOutput", objc_superclass=PlayerItemOutput)
 PlayerItemRenderedLegibleOutput :: struct { using _: PlayerItemOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemRenderedLegibleOutput, objc_selector="init", objc_name="init")
     PlayerItemRenderedLegibleOutput_init :: proc(self: ^PlayerItemRenderedLegibleOutput) -> instancetype ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=PlayerItemRenderedLegibleOutput, objc_selector="setVideoDisplaySize:", objc_name="setVideoDisplaySize")
     PlayerItemRenderedLegibleOutput_setVideoDisplaySize :: proc(self: ^PlayerItemRenderedLegibleOutput, videoDisplaySize: CG.Size) ---
 }
+
+
+

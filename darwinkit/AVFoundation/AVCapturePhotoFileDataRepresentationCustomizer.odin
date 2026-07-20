@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCapturePhotoFileDataRepresentationCustomizer
-///
 @(objc_class="AVCapturePhotoFileDataRepresentationCustomizer")
 CapturePhotoFileDataRepresentationCustomizer :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhotoFileDataRepresentationCustomizer, objc_selector="replacementMetadataForPhoto:", objc_name="replacementMetadataForPhoto")
     CapturePhotoFileDataRepresentationCustomizer_replacementMetadataForPhoto :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, photo: ^CapturePhoto) -> ^NS.Dictionary ---
@@ -42,3 +36,6 @@ foreign lib {
     @(objc_type=CapturePhotoFileDataRepresentationCustomizer, objc_selector="replacementAppleProRAWCompressionSettingsForPhoto:defaultSettings:maximumBitDepth:", objc_name="replacementAppleProRAWCompressionSettingsForPhoto")
     CapturePhotoFileDataRepresentationCustomizer_replacementAppleProRAWCompressionSettingsForPhoto :: proc(self: ^CapturePhotoFileDataRepresentationCustomizer, photo: ^CapturePhoto, defaultSettings: ^NS.Dictionary, maximumBitDepth: NS.Integer) -> ^NS.Dictionary ---
 }
+
+
+

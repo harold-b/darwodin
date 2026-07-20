@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor
-///
 @(objc_class="MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor", objc_superclass=MTL4AccelerationStructureGeometryDescriptor)
 MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor :: struct { using _: MTL4AccelerationStructureGeometryDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor, objc_selector="boundingBoxBuffers", objc_name="boundingBoxBuffers")
     MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor_boundingBoxBuffers :: proc(self: ^MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor) -> MTL4BufferRange ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor, objc_selector="setBoundingBoxCount:", objc_name="setBoundingBoxCount")
     MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor_setBoundingBoxCount :: proc(self: ^MTL4AccelerationStructureMotionBoundingBoxGeometryDescriptor, boundingBoxCount: NS.UInteger) ---
 }
+
+
+

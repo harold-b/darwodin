@@ -37,7 +37,7 @@ VTable :: struct {
     deselectItemAtIndexPath: proc(self: ^UI.CollectionView, indexPath: ^NS.IndexPath, animated: bool),
     reloadData: proc(self: ^UI.CollectionView),
     setCollectionViewLayout_animated: proc(self: ^UI.CollectionView, layout: ^UI.CollectionViewLayout, animated: bool),
-    setCollectionViewLayout_animated_completion: proc(self: ^UI.CollectionView, layout: ^UI.CollectionViewLayout, animated: bool, completion: ^Objc_Block(proc "c" (finished: bool))),
+    setCollectionViewLayout_animated_completion: proc(self: ^UI.CollectionView, layout: ^UI.CollectionViewLayout, animated: bool, completion: ^Objc_Block(proc "c" ( finished: bool ))),
     startInteractiveTransitionToCollectionViewLayout: proc(self: ^UI.CollectionView, layout: ^UI.CollectionViewLayout, completion: UI.CollectionViewLayoutInteractiveTransitionCompletion) -> ^UI.CollectionViewTransitionLayout,
     finishInteractiveTransition: proc(self: ^UI.CollectionView),
     cancelInteractiveTransition: proc(self: ^UI.CollectionView),
@@ -61,7 +61,7 @@ VTable :: struct {
     moveItemAtIndexPath: proc(self: ^UI.CollectionView, indexPath: ^NS.IndexPath, newIndexPath: ^NS.IndexPath),
     reloadItemsAtIndexPaths: proc(self: ^UI.CollectionView, indexPaths: ^NS.Array),
     reconfigureItemsAtIndexPaths: proc(self: ^UI.CollectionView, indexPaths: ^NS.Array),
-    performBatchUpdates: proc(self: ^UI.CollectionView, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))),
+    performBatchUpdates: proc(self: ^UI.CollectionView, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))),
     beginInteractiveMovementForItemAtIndexPath: proc(self: ^UI.CollectionView, indexPath: ^NS.IndexPath) -> bool,
     updateInteractiveMovementTargetPosition: proc(self: ^UI.CollectionView, targetPosition: CG.Point),
     endInteractiveMovement: proc(self: ^UI.CollectionView),
@@ -264,7 +264,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCollectionViewLayout:animated:"), auto_cast setCollectionViewLayout_animated, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.setCollectionViewLayout_animated_completion != nil {
-        setCollectionViewLayout_animated_completion :: proc "c" (self: ^UI.CollectionView, _: SEL, layout: ^UI.CollectionViewLayout, animated: bool, completion: ^Objc_Block(proc "c" (finished: bool))) {
+        setCollectionViewLayout_animated_completion :: proc "c" (self: ^UI.CollectionView, _: SEL, layout: ^UI.CollectionViewLayout, animated: bool, completion: ^Objc_Block(proc "c" ( finished: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -504,7 +504,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reconfigureItemsAtIndexPaths:"), auto_cast reconfigureItemsAtIndexPaths, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.performBatchUpdates != nil {
-        performBatchUpdates :: proc "c" (self: ^UI.CollectionView, _: SEL, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
+        performBatchUpdates :: proc "c" (self: ^UI.CollectionView, _: SEL, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

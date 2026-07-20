@@ -25,7 +25,7 @@ foreign lib {
     MaterialPropertyNode_init :: proc(self: ^MaterialPropertyNode) -> instancetype ---
 
     @(objc_type=MaterialPropertyNode, objc_selector="initWithInputs:outputs:evaluationFunction:", objc_name="initWithInputs")
-    MaterialPropertyNode_initWithInputs :: proc(self: ^MaterialPropertyNode, inputs: ^NS.Array, outputs: ^NS.Array, function: ^Objc_Block(proc "c" (_: ^MaterialPropertyNode))) -> instancetype ---
+    MaterialPropertyNode_initWithInputs :: proc(self: ^MaterialPropertyNode, inputs: ^NS.Array, outputs: ^NS.Array, function: ^Objc_Block(proc "c" ( _0: ^MaterialPropertyNode ))) -> instancetype ---
 
     @(objc_type=MaterialPropertyNode, objc_selector="evaluationFunction", objc_name="evaluationFunction")
     MaterialPropertyNode_evaluationFunction :: proc(self: ^MaterialPropertyNode) -> ^Objc_Block(proc "c" ()) ---

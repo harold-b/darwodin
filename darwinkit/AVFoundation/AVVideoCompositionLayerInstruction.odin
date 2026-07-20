@@ -12,11 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVVideoCompositionLayerInstruction
-///
 @(objc_class="AVVideoCompositionLayerInstruction", objc_superclass=NS.Object)
 VideoCompositionLayerInstruction :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
@@ -24,7 +19,6 @@ VideoCompositionLayerInstruction :: struct { using _: NS.Object,
     using _: NS.MutableCopying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoCompositionLayerInstruction, objc_selector="videoCompositionLayerInstructionWithLayerInstruction:", objc_name="videoCompositionLayerInstructionWithLayerInstruction", objc_is_class_method=true)
     VideoCompositionLayerInstruction_videoCompositionLayerInstructionWithLayerInstruction :: proc(instruction: ^VideoCompositionLayerInstruction) -> ^VideoCompositionLayerInstruction ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=VideoCompositionLayerInstruction, objc_selector="trackID", objc_name="trackID")
     VideoCompositionLayerInstruction_trackID :: proc(self: ^VideoCompositionLayerInstruction) -> CM.PersistentTrackID ---
 }
+
+
+

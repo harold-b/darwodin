@@ -37,7 +37,7 @@ foreign lib {
     Object_objectAtPath :: proc(self: ^Object, path: ^NS.String) -> ^Object ---
 
     @(objc_type=Object, objc_selector="enumerateChildObjectsOfClass:root:usingBlock:stopPointer:", objc_name="enumerateChildObjectsOfClass")
-    Object_enumerateChildObjectsOfClass :: proc(self: ^Object, objectClass: Class, root: ^Object, block: ^Objc_Block(proc "c" (object: ^Object, stop: ^bool)), stopPointer: ^bool) ---
+    Object_enumerateChildObjectsOfClass :: proc(self: ^Object, objectClass: Class, root: ^Object, block: ^Objc_Block(proc "c" ( object: ^Object, stop: ^bool )), stopPointer: ^bool) ---
 
     @(objc_type=Object, objc_selector="addChild:", objc_name="addChild")
     Object_addChild :: proc(self: ^Object, child: ^Object) ---

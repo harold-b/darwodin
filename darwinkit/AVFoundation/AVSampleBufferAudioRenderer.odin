@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSampleBufferAudioRenderer
-///
 @(objc_class="AVSampleBufferAudioRenderer", objc_superclass=NS.Object)
 SampleBufferAudioRenderer :: struct { using _: NS.Object, 
     using _: QueuedSampleBufferRendering,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleBufferAudioRenderer, objc_selector="status", objc_name="status")
     SampleBufferAudioRenderer_status :: proc(self: ^SampleBufferAudioRenderer) -> QueuedSampleBufferRenderingStatus ---
@@ -61,5 +55,8 @@ foreign lib {
     SampleBufferAudioRenderer_setMuted :: proc(self: ^SampleBufferAudioRenderer, muted: bool) ---
 
     @(objc_type=SampleBufferAudioRenderer, objc_selector="flushFromSourceTime:completionHandler:", objc_name="flushFromSourceTime")
-    SampleBufferAudioRenderer_flushFromSourceTime :: proc(self: ^SampleBufferAudioRenderer, time: CM.Time, completionHandler: ^Objc_Block(proc "c" (flushSucceeded: bool))) ---
+    SampleBufferAudioRenderer_flushFromSourceTime :: proc(self: ^SampleBufferAudioRenderer, time: CM.Time, completionHandler: ^Objc_Block(proc "c" ( flushSucceeded: bool ))) ---
 }
+
+
+

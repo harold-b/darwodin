@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMorphologyPronoun
-///
 @(objc_class="NSMorphologyPronoun", objc_superclass=Object)
 MorphologyPronoun :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MorphologyPronoun, objc_selector="new", objc_name="new", objc_is_class_method=true)
     MorphologyPronoun_new :: proc() -> ^MorphologyPronoun ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=MorphologyPronoun, objc_selector="dependentMorphology", objc_name="dependentMorphology")
     MorphologyPronoun_dependentMorphology :: proc(self: ^MorphologyPronoun) -> ^Morphology ---
 }
+
+
+

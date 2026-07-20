@@ -19,12 +19,12 @@ import NS "../../"
 
 VTable :: struct {
     _URLSession_didCreateTask: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask),
-    _URLSession_task_willBeginDelayedRequest_completionHandler: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (disposition: NS.URLSessionDelayedRequestDisposition, newRequest: ^NS.URLRequest))),
+    _URLSession_task_willBeginDelayedRequest_completionHandler: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( disposition: NS.URLSessionDelayedRequestDisposition, newRequest: ^NS.URLRequest ))),
     _URLSession_taskIsWaitingForConnectivity: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask),
-    _URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, response: ^NS.HTTPURLResponse, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (_: ^NS.URLRequest))),
-    _URLSession_task_didReceiveChallenge_completionHandler: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, challenge: ^NS.URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" (disposition: NS.URLSessionAuthChallengeDisposition, credential: ^NS.URLCredential))),
-    _URLSession_task_needNewBodyStream: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (bodyStream: ^NS.InputStream))),
-    _URLSession_task_needNewBodyStreamFromOffset_completionHandler: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, offset: cffi.int64_t, completionHandler: ^Objc_Block(proc "c" (bodyStream: ^NS.InputStream))),
+    _URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, response: ^NS.HTTPURLResponse, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.URLRequest ))),
+    _URLSession_task_didReceiveChallenge_completionHandler: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, challenge: ^NS.URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" ( disposition: NS.URLSessionAuthChallengeDisposition, credential: ^NS.URLCredential ))),
+    _URLSession_task_needNewBodyStream: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" ( bodyStream: ^NS.InputStream ))),
+    _URLSession_task_needNewBodyStreamFromOffset_completionHandler: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, offset: cffi.int64_t, completionHandler: ^Objc_Block(proc "c" ( bodyStream: ^NS.InputStream ))),
     _URLSession_task_didSendBodyData_totalBytesSent_totalBytesExpectedToSend: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, bytesSent: cffi.int64_t, totalBytesSent: cffi.int64_t, totalBytesExpectedToSend: cffi.int64_t),
     _URLSession_task_didReceiveInformationalResponse: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, response: ^NS.HTTPURLResponse),
     _URLSession_task_didFinishCollectingMetrics: proc(self: ^NS.URLSessionTaskDelegate, session: ^NS.URLSession, task: ^NS.URLSessionTask, metrics: ^NS.URLSessionTaskMetrics),
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLSession:didCreateTask:"), auto_cast _URLSession_didCreateTask, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt._URLSession_task_willBeginDelayedRequest_completionHandler != nil {
-        _URLSession_task_willBeginDelayedRequest_completionHandler :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (disposition: NS.URLSessionDelayedRequestDisposition, newRequest: ^NS.URLRequest))) {
+        _URLSession_task_willBeginDelayedRequest_completionHandler :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( disposition: NS.URLSessionDelayedRequestDisposition, newRequest: ^NS.URLRequest ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLSession:taskIsWaitingForConnectivity:"), auto_cast _URLSession_taskIsWaitingForConnectivity, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt._URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler != nil {
-        _URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, response: ^NS.HTTPURLResponse, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" (_: ^NS.URLRequest))) {
+        _URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, response: ^NS.HTTPURLResponse, request: ^NS.URLRequest, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.URLRequest ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLSession:task:willPerformHTTPRedirection:newRequest:completionHandler:"), auto_cast _URLSession_task_willPerformHTTPRedirection_newRequest_completionHandler, "v@:@@@@?") do panic("Failed to register objC method.")
     }
     if vt._URLSession_task_didReceiveChallenge_completionHandler != nil {
-        _URLSession_task_didReceiveChallenge_completionHandler :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, challenge: ^NS.URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" (disposition: NS.URLSessionAuthChallengeDisposition, credential: ^NS.URLCredential))) {
+        _URLSession_task_didReceiveChallenge_completionHandler :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, challenge: ^NS.URLAuthenticationChallenge, completionHandler: ^Objc_Block(proc "c" ( disposition: NS.URLSessionAuthChallengeDisposition, credential: ^NS.URLCredential ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLSession:task:didReceiveChallenge:completionHandler:"), auto_cast _URLSession_task_didReceiveChallenge_completionHandler, "v@:@@@?") do panic("Failed to register objC method.")
     }
     if vt._URLSession_task_needNewBodyStream != nil {
-        _URLSession_task_needNewBodyStream :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" (bodyStream: ^NS.InputStream))) {
+        _URLSession_task_needNewBodyStream :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, completionHandler: ^Objc_Block(proc "c" ( bodyStream: ^NS.InputStream ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("URLSession:task:needNewBodyStream:"), auto_cast _URLSession_task_needNewBodyStream, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt._URLSession_task_needNewBodyStreamFromOffset_completionHandler != nil {
-        _URLSession_task_needNewBodyStreamFromOffset_completionHandler :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, offset: cffi.int64_t, completionHandler: ^Objc_Block(proc "c" (bodyStream: ^NS.InputStream))) {
+        _URLSession_task_needNewBodyStreamFromOffset_completionHandler :: proc "c" (self: ^NS.URLSessionTaskDelegate, _: SEL, session: ^NS.URLSession, task: ^NS.URLSessionTask, offset: cffi.int64_t, completionHandler: ^Objc_Block(proc "c" ( bodyStream: ^NS.InputStream ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

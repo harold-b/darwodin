@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetWriterInputMetadataAdaptor
-///
 @(objc_class="AVAssetWriterInputMetadataAdaptor", objc_superclass=NS.Object)
 AssetWriterInputMetadataAdaptor :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="init", objc_name="init")
     AssetWriterInputMetadataAdaptor_init :: proc(self: ^AssetWriterInputMetadataAdaptor) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=AssetWriterInputMetadataAdaptor, objc_selector="assetWriterInput", objc_name="assetWriterInput")
     AssetWriterInputMetadataAdaptor_assetWriterInput :: proc(self: ^AssetWriterInputMetadataAdaptor) -> ^AssetWriterInput ---
 }
+
+
+

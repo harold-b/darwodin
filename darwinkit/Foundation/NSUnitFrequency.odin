@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitFrequency
-///
 @(objc_class="NSUnitFrequency", objc_superclass=Dimension)
 UnitFrequency :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitFrequency, objc_selector="terahertz", objc_name="terahertz", objc_is_class_method=true)
     UnitFrequency_terahertz :: proc() -> ^UnitFrequency ---
@@ -48,3 +42,6 @@ foreign lib {
     @(objc_type=UnitFrequency, objc_selector="framesPerSecond", objc_name="framesPerSecond", objc_is_class_method=true)
     UnitFrequency_framesPerSecond :: proc() -> ^UnitFrequency ---
 }
+
+
+

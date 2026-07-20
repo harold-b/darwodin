@@ -23,7 +23,7 @@ import "../UIMenuSystem"
 
 VTable :: struct {
     super: UIMenuSystem.VTable,
-    setBuildConfiguration: proc(self: ^UI.MainMenuSystem, configuration: ^UI.MainMenuSystemConfiguration, buildHandler: ^Objc_Block(proc "c" (builder: ^UI.MenuBuilder))),
+    setBuildConfiguration: proc(self: ^UI.MainMenuSystem, configuration: ^UI.MainMenuSystemConfiguration, buildHandler: ^Objc_Block(proc "c" ( builder: ^UI.MenuBuilder ))),
     sharedSystem: proc() -> ^UI.MainMenuSystem,
     mainSystem: proc() -> ^UI.MenuSystem,
     contextSystem: proc() -> ^UI.MenuSystem,
@@ -37,7 +37,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     UIMenuSystem.extend(cls, &vt.super)
 
     if vt.setBuildConfiguration != nil {
-        setBuildConfiguration :: proc "c" (self: ^UI.MainMenuSystem, _: SEL, configuration: ^UI.MainMenuSystemConfiguration, buildHandler: ^Objc_Block(proc "c" (builder: ^UI.MenuBuilder))) {
+        setBuildConfiguration :: proc "c" (self: ^UI.MainMenuSystem, _: SEL, configuration: ^UI.MainMenuSystemConfiguration, buildHandler: ^Objc_Block(proc "c" ( builder: ^UI.MenuBuilder ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -27,7 +27,7 @@ foreign lib {
     DocumentViewController_navigationItemDidUpdate :: proc(self: ^DocumentViewController) ---
 
     @(objc_type=DocumentViewController, objc_selector="openDocumentWithCompletionHandler:", objc_name="openDocumentWithCompletionHandler")
-    DocumentViewController_openDocumentWithCompletionHandler :: proc(self: ^DocumentViewController, completionHandler: ^Objc_Block(proc "c" (success: bool))) ---
+    DocumentViewController_openDocumentWithCompletionHandler :: proc(self: ^DocumentViewController, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) ---
 
     @(objc_type=DocumentViewController, objc_selector="documentDidOpen", objc_name="documentDidOpen")
     DocumentViewController_documentDidOpen :: proc(self: ^DocumentViewController) ---

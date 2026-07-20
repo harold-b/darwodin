@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4RenderPipelineDescriptor
-///
 @(objc_class="MTL4RenderPipelineDescriptor", objc_superclass=MTL4PipelineDescriptor)
 MTL4RenderPipelineDescriptor :: struct { using _: MTL4PipelineDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4RenderPipelineDescriptor, objc_selector="reset", objc_name="reset")
     MTL4RenderPipelineDescriptor_reset :: proc(self: ^MTL4RenderPipelineDescriptor) ---
@@ -117,3 +111,6 @@ foreign lib {
     @(objc_type=MTL4RenderPipelineDescriptor, objc_selector="setSupportIndirectCommandBuffers:", objc_name="setSupportIndirectCommandBuffers")
     MTL4RenderPipelineDescriptor_setSupportIndirectCommandBuffers :: proc(self: ^MTL4RenderPipelineDescriptor, supportIndirectCommandBuffers: MTL4IndirectCommandBufferSupportState) ---
 }
+
+
+

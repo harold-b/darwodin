@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLVertexAttribute
-///
 @(objc_class="MDLVertexAttribute", objc_superclass=NS.Object)
 VertexAttribute :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexAttribute, objc_selector="initWithName:format:offset:bufferIndex:", objc_name="initWithName")
     VertexAttribute_initWithName :: proc(self: ^VertexAttribute, name: ^NS.String, format: VertexFormat, offset: NS.UInteger, bufferIndex: NS.UInteger) -> instancetype ---
@@ -61,3 +55,6 @@ foreign lib {
     @(objc_type=VertexAttribute, objc_selector="setInitializationValue:", objc_name="setInitializationValue")
     VertexAttribute_setInitializationValue :: proc(self: ^VertexAttribute, initializationValue: ^vector_float4) ---
 }
+
+
+

@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableDictionary
-///
 @(objc_class="NSMutableDictionary", objc_superclass=Dictionary)
 MutableDictionary :: struct { using _: Dictionary, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableDictionary, objc_selector="removeObjectForKey:", objc_name="removeObjectForKey")
     MutableDictionary_removeObjectForKey :: proc(self: ^MutableDictionary, aKey: id) ---
@@ -70,4 +64,6 @@ foreign lib {
     @(objc_type=MutableDictionary, objc_selector="setValue:forKey:", objc_name="setValue")
     MutableDictionary_setValue :: proc(self: ^MutableDictionary, value: id, key: ^String) ---
 }
+
+
 

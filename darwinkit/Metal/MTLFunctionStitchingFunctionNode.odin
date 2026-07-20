@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLFunctionStitchingFunctionNode
-///
 @(objc_class="MTLFunctionStitchingFunctionNode", objc_superclass=NS.Object)
 FunctionStitchingFunctionNode :: struct { using _: NS.Object, 
     using _: FunctionStitchingNode,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FunctionStitchingFunctionNode, objc_selector="initWithName:arguments:controlDependencies:", objc_name="initWithName")
     FunctionStitchingFunctionNode_initWithName :: proc(self: ^FunctionStitchingFunctionNode, name: ^NS.String, arguments: ^NS.Array, controlDependencies: ^NS.Array) -> instancetype ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=FunctionStitchingFunctionNode, objc_selector="setControlDependencies:", objc_name="setControlDependencies")
     FunctionStitchingFunctionNode_setControlDependencies :: proc(self: ^FunctionStitchingFunctionNode, controlDependencies: ^NS.Array) ---
 }
+
+
+

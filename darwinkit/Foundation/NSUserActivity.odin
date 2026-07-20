@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUserActivity
-///
 @(objc_class="NSUserActivity", objc_superclass=Object)
 UserActivity :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UserActivity, objc_selector="initWithActivityType:", objc_name="initWithActivityType")
     UserActivity_initWithActivityType :: proc(self: ^UserActivity, activityType: ^String) -> instancetype ---
@@ -38,7 +32,7 @@ foreign lib {
     UserActivity_invalidate :: proc(self: ^UserActivity) ---
 
     @(objc_type=UserActivity, objc_selector="getContinuationStreamsWithCompletionHandler:", objc_name="getContinuationStreamsWithCompletionHandler")
-    UserActivity_getContinuationStreamsWithCompletionHandler :: proc(self: ^UserActivity, completionHandler: ^Objc_Block(proc "c" (inputStream: ^InputStream, outputStream: ^OutputStream, error: ^Error))) ---
+    UserActivity_getContinuationStreamsWithCompletionHandler :: proc(self: ^UserActivity, completionHandler: ^Objc_Block(proc "c" ( inputStream: ^InputStream, outputStream: ^OutputStream, error: ^Error ))) ---
 
     @(objc_type=UserActivity, objc_selector="deleteSavedUserActivitiesWithPersistentIdentifiers:completionHandler:", objc_name="deleteSavedUserActivitiesWithPersistentIdentifiers", objc_is_class_method=true)
     UserActivity_deleteSavedUserActivitiesWithPersistentIdentifiers :: proc(persistentIdentifiers: ^Array, handler: ^Objc_Block(proc "c" ())) ---
@@ -145,3 +139,6 @@ foreign lib {
     @(objc_type=UserActivity, objc_selector="setPersistentIdentifier:", objc_name="setPersistentIdentifier")
     UserActivity_setPersistentIdentifier :: proc(self: ^UserActivity, persistentIdentifier: ^String) ---
 }
+
+
+

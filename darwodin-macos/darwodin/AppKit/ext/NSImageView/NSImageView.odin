@@ -20,47 +20,47 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    imageViewWithImage: proc(image: ^AK.Image) -> instancetype,
-    image: proc(self: ^AK.ImageView) -> ^AK.Image,
-    setImage: proc(self: ^AK.ImageView, image: ^AK.Image),
-    isEditable: proc(self: ^AK.ImageView) -> bool,
-    setEditable: proc(self: ^AK.ImageView, editable: bool),
-    imageAlignment: proc(self: ^AK.ImageView) -> AK.ImageAlignment,
-    setImageAlignment: proc(self: ^AK.ImageView, imageAlignment: AK.ImageAlignment),
-    imageScaling: proc(self: ^AK.ImageView) -> AK.ImageScaling,
-    setImageScaling: proc(self: ^AK.ImageView, imageScaling: AK.ImageScaling),
-    imageFrameStyle: proc(self: ^AK.ImageView) -> AK.ImageFrameStyle,
-    setImageFrameStyle: proc(self: ^AK.ImageView, imageFrameStyle: AK.ImageFrameStyle),
-    symbolConfiguration: proc(self: ^AK.ImageView) -> ^AK.ImageSymbolConfiguration,
-    setSymbolConfiguration: proc(self: ^AK.ImageView, symbolConfiguration: ^AK.ImageSymbolConfiguration),
-    contentTintColor: proc(self: ^AK.ImageView) -> ^AK.Color,
-    setContentTintColor: proc(self: ^AK.ImageView, contentTintColor: ^AK.Color),
-    animates: proc(self: ^AK.ImageView) -> bool,
-    setAnimates: proc(self: ^AK.ImageView, animates: bool),
-    allowsCutCopyPaste: proc(self: ^AK.ImageView) -> bool,
-    setAllowsCutCopyPaste: proc(self: ^AK.ImageView, allowsCutCopyPaste: bool),
-    defaultPreferredImageDynamicRange: proc() -> AK.ImageDynamicRange,
-    setDefaultPreferredImageDynamicRange: proc(defaultPreferredImageDynamicRange: AK.ImageDynamicRange),
-    preferredImageDynamicRange: proc(self: ^AK.ImageView) -> AK.ImageDynamicRange,
-    setPreferredImageDynamicRange: proc(self: ^AK.ImageView, preferredImageDynamicRange: AK.ImageDynamicRange),
-    imageDynamicRange: proc(self: ^AK.ImageView) -> AK.ImageDynamicRange,
-    addSymbolEffect_: proc(self: ^AK.ImageView, symbolEffect: ^AK.SymbolEffect),
-    addSymbolEffect_options: proc(self: ^AK.ImageView, symbolEffect: ^AK.SymbolEffect, options: ^AK.SymbolEffectOptions),
-    addSymbolEffect_options_animated: proc(self: ^AK.ImageView, symbolEffect: ^AK.SymbolEffect, options: ^AK.SymbolEffectOptions, animated: bool),
-    removeSymbolEffectOfType_: proc(self: ^AK.ImageView, symbolEffect: ^AK.SymbolEffect),
-    removeSymbolEffectOfType_options: proc(self: ^AK.ImageView, symbolEffect: ^AK.SymbolEffect, options: ^AK.SymbolEffectOptions),
-    removeSymbolEffectOfType_options_animated: proc(self: ^AK.ImageView, symbolEffect: ^AK.SymbolEffect, options: ^AK.SymbolEffectOptions, animated: bool),
-    removeAllSymbolEffects: proc(self: ^AK.ImageView),
-    removeAllSymbolEffectsWithOptions_: proc(self: ^AK.ImageView, options: ^AK.SymbolEffectOptions),
-    removeAllSymbolEffectsWithOptions_animated: proc(self: ^AK.ImageView, options: ^AK.SymbolEffectOptions, animated: bool),
-    setSymbolImage_withContentTransition: proc(self: ^AK.ImageView, symbolImage: ^AK.Image, transition: ^AK.SymbolContentTransition),
-    setSymbolImage_withContentTransition_options: proc(self: ^AK.ImageView, symbolImage: ^AK.Image, transition: ^AK.SymbolContentTransition, options: ^AK.SymbolEffectOptions),
+    imageViewWithImage: proc(image: ^NS.Image) -> instancetype,
+    image: proc(self: ^NS.ImageView) -> ^NS.Image,
+    setImage: proc(self: ^NS.ImageView, image: ^NS.Image),
+    isEditable: proc(self: ^NS.ImageView) -> bool,
+    setEditable: proc(self: ^NS.ImageView, editable: bool),
+    imageAlignment: proc(self: ^NS.ImageView) -> NS.ImageAlignment,
+    setImageAlignment: proc(self: ^NS.ImageView, imageAlignment: NS.ImageAlignment),
+    imageScaling: proc(self: ^NS.ImageView) -> NS.ImageScaling,
+    setImageScaling: proc(self: ^NS.ImageView, imageScaling: NS.ImageScaling),
+    imageFrameStyle: proc(self: ^NS.ImageView) -> NS.ImageFrameStyle,
+    setImageFrameStyle: proc(self: ^NS.ImageView, imageFrameStyle: NS.ImageFrameStyle),
+    symbolConfiguration: proc(self: ^NS.ImageView) -> ^NS.ImageSymbolConfiguration,
+    setSymbolConfiguration: proc(self: ^NS.ImageView, symbolConfiguration: ^NS.ImageSymbolConfiguration),
+    contentTintColor: proc(self: ^NS.ImageView) -> ^NS.Color,
+    setContentTintColor: proc(self: ^NS.ImageView, contentTintColor: ^NS.Color),
+    animates: proc(self: ^NS.ImageView) -> bool,
+    setAnimates: proc(self: ^NS.ImageView, animates: bool),
+    allowsCutCopyPaste: proc(self: ^NS.ImageView) -> bool,
+    setAllowsCutCopyPaste: proc(self: ^NS.ImageView, allowsCutCopyPaste: bool),
+    defaultPreferredImageDynamicRange: proc() -> NS.ImageDynamicRange,
+    setDefaultPreferredImageDynamicRange: proc(defaultPreferredImageDynamicRange: NS.ImageDynamicRange),
+    preferredImageDynamicRange: proc(self: ^NS.ImageView) -> NS.ImageDynamicRange,
+    setPreferredImageDynamicRange: proc(self: ^NS.ImageView, preferredImageDynamicRange: NS.ImageDynamicRange),
+    imageDynamicRange: proc(self: ^NS.ImageView) -> NS.ImageDynamicRange,
+    addSymbolEffect_: proc(self: ^NS.ImageView, symbolEffect: ^NS.SymbolEffect),
+    addSymbolEffect_options: proc(self: ^NS.ImageView, symbolEffect: ^NS.SymbolEffect, options: ^NS.SymbolEffectOptions),
+    addSymbolEffect_options_animated: proc(self: ^NS.ImageView, symbolEffect: ^NS.SymbolEffect, options: ^NS.SymbolEffectOptions, animated: bool),
+    removeSymbolEffectOfType_: proc(self: ^NS.ImageView, symbolEffect: ^NS.SymbolEffect),
+    removeSymbolEffectOfType_options: proc(self: ^NS.ImageView, symbolEffect: ^NS.SymbolEffect, options: ^NS.SymbolEffectOptions),
+    removeSymbolEffectOfType_options_animated: proc(self: ^NS.ImageView, symbolEffect: ^NS.SymbolEffect, options: ^NS.SymbolEffectOptions, animated: bool),
+    removeAllSymbolEffects: proc(self: ^NS.ImageView),
+    removeAllSymbolEffectsWithOptions_: proc(self: ^NS.ImageView, options: ^NS.SymbolEffectOptions),
+    removeAllSymbolEffectsWithOptions_animated: proc(self: ^NS.ImageView, options: ^NS.SymbolEffectOptions, animated: bool),
+    setSymbolImage_withContentTransition: proc(self: ^NS.ImageView, symbolImage: ^NS.Image, transition: ^NS.SymbolContentTransition),
+    setSymbolImage_withContentTransition_options: proc(self: ^NS.ImageView, symbolImage: ^NS.Image, transition: ^NS.SymbolContentTransition, options: ^NS.SymbolEffectOptions),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.imageViewWithImage != nil {
-        imageViewWithImage :: proc "c" (self: Class, _: SEL, image: ^AK.Image) -> instancetype {
+        imageViewWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageViewWithImage:"), auto_cast imageViewWithImage, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.ImageView, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.ImageView, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.ImageView, _: SEL, image: ^AK.Image) {
+        setImage :: proc "c" (self: ^NS.ImageView, _: SEL, image: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isEditable != nil {
-        isEditable :: proc "c" (self: ^AK.ImageView, _: SEL) -> bool {
+        isEditable :: proc "c" (self: ^NS.ImageView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEditable"), auto_cast isEditable, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setEditable != nil {
-        setEditable :: proc "c" (self: ^AK.ImageView, _: SEL, editable: bool) {
+        setEditable :: proc "c" (self: ^NS.ImageView, _: SEL, editable: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEditable:"), auto_cast setEditable, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.imageAlignment != nil {
-        imageAlignment :: proc "c" (self: ^AK.ImageView, _: SEL) -> AK.ImageAlignment {
+        imageAlignment :: proc "c" (self: ^NS.ImageView, _: SEL) -> NS.ImageAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageAlignment"), auto_cast imageAlignment, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setImageAlignment != nil {
-        setImageAlignment :: proc "c" (self: ^AK.ImageView, _: SEL, imageAlignment: AK.ImageAlignment) {
+        setImageAlignment :: proc "c" (self: ^NS.ImageView, _: SEL, imageAlignment: NS.ImageAlignment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImageAlignment:"), auto_cast setImageAlignment, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.imageScaling != nil {
-        imageScaling :: proc "c" (self: ^AK.ImageView, _: SEL) -> AK.ImageScaling {
+        imageScaling :: proc "c" (self: ^NS.ImageView, _: SEL) -> NS.ImageScaling {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageScaling"), auto_cast imageScaling, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setImageScaling != nil {
-        setImageScaling :: proc "c" (self: ^AK.ImageView, _: SEL, imageScaling: AK.ImageScaling) {
+        setImageScaling :: proc "c" (self: ^NS.ImageView, _: SEL, imageScaling: NS.ImageScaling) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -161,7 +161,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImageScaling:"), auto_cast setImageScaling, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.imageFrameStyle != nil {
-        imageFrameStyle :: proc "c" (self: ^AK.ImageView, _: SEL) -> AK.ImageFrameStyle {
+        imageFrameStyle :: proc "c" (self: ^NS.ImageView, _: SEL) -> NS.ImageFrameStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -171,7 +171,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageFrameStyle"), auto_cast imageFrameStyle, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setImageFrameStyle != nil {
-        setImageFrameStyle :: proc "c" (self: ^AK.ImageView, _: SEL, imageFrameStyle: AK.ImageFrameStyle) {
+        setImageFrameStyle :: proc "c" (self: ^NS.ImageView, _: SEL, imageFrameStyle: NS.ImageFrameStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -181,7 +181,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImageFrameStyle:"), auto_cast setImageFrameStyle, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.symbolConfiguration != nil {
-        symbolConfiguration :: proc "c" (self: ^AK.ImageView, _: SEL) -> ^AK.ImageSymbolConfiguration {
+        symbolConfiguration :: proc "c" (self: ^NS.ImageView, _: SEL) -> ^NS.ImageSymbolConfiguration {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("symbolConfiguration"), auto_cast symbolConfiguration, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSymbolConfiguration != nil {
-        setSymbolConfiguration :: proc "c" (self: ^AK.ImageView, _: SEL, symbolConfiguration: ^AK.ImageSymbolConfiguration) {
+        setSymbolConfiguration :: proc "c" (self: ^NS.ImageView, _: SEL, symbolConfiguration: ^NS.ImageSymbolConfiguration) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -201,7 +201,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSymbolConfiguration:"), auto_cast setSymbolConfiguration, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.contentTintColor != nil {
-        contentTintColor :: proc "c" (self: ^AK.ImageView, _: SEL) -> ^AK.Color {
+        contentTintColor :: proc "c" (self: ^NS.ImageView, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -211,7 +211,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentTintColor"), auto_cast contentTintColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContentTintColor != nil {
-        setContentTintColor :: proc "c" (self: ^AK.ImageView, _: SEL, contentTintColor: ^AK.Color) {
+        setContentTintColor :: proc "c" (self: ^NS.ImageView, _: SEL, contentTintColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -221,7 +221,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentTintColor:"), auto_cast setContentTintColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.animates != nil {
-        animates :: proc "c" (self: ^AK.ImageView, _: SEL) -> bool {
+        animates :: proc "c" (self: ^NS.ImageView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -231,7 +231,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animates"), auto_cast animates, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAnimates != nil {
-        setAnimates :: proc "c" (self: ^AK.ImageView, _: SEL, animates: bool) {
+        setAnimates :: proc "c" (self: ^NS.ImageView, _: SEL, animates: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -241,7 +241,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAnimates:"), auto_cast setAnimates, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsCutCopyPaste != nil {
-        allowsCutCopyPaste :: proc "c" (self: ^AK.ImageView, _: SEL) -> bool {
+        allowsCutCopyPaste :: proc "c" (self: ^NS.ImageView, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -251,7 +251,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsCutCopyPaste"), auto_cast allowsCutCopyPaste, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsCutCopyPaste != nil {
-        setAllowsCutCopyPaste :: proc "c" (self: ^AK.ImageView, _: SEL, allowsCutCopyPaste: bool) {
+        setAllowsCutCopyPaste :: proc "c" (self: ^NS.ImageView, _: SEL, allowsCutCopyPaste: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -261,7 +261,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsCutCopyPaste:"), auto_cast setAllowsCutCopyPaste, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.defaultPreferredImageDynamicRange != nil {
-        defaultPreferredImageDynamicRange :: proc "c" (self: Class, _: SEL) -> AK.ImageDynamicRange {
+        defaultPreferredImageDynamicRange :: proc "c" (self: Class, _: SEL) -> NS.ImageDynamicRange {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -271,7 +271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultPreferredImageDynamicRange"), auto_cast defaultPreferredImageDynamicRange, "l#:") do panic("Failed to register objC method.")
     }
     if vt.setDefaultPreferredImageDynamicRange != nil {
-        setDefaultPreferredImageDynamicRange :: proc "c" (self: Class, _: SEL, defaultPreferredImageDynamicRange: AK.ImageDynamicRange) {
+        setDefaultPreferredImageDynamicRange :: proc "c" (self: Class, _: SEL, defaultPreferredImageDynamicRange: NS.ImageDynamicRange) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -281,7 +281,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setDefaultPreferredImageDynamicRange:"), auto_cast setDefaultPreferredImageDynamicRange, "v#:l") do panic("Failed to register objC method.")
     }
     if vt.preferredImageDynamicRange != nil {
-        preferredImageDynamicRange :: proc "c" (self: ^AK.ImageView, _: SEL) -> AK.ImageDynamicRange {
+        preferredImageDynamicRange :: proc "c" (self: ^NS.ImageView, _: SEL) -> NS.ImageDynamicRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -291,7 +291,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredImageDynamicRange"), auto_cast preferredImageDynamicRange, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setPreferredImageDynamicRange != nil {
-        setPreferredImageDynamicRange :: proc "c" (self: ^AK.ImageView, _: SEL, preferredImageDynamicRange: AK.ImageDynamicRange) {
+        setPreferredImageDynamicRange :: proc "c" (self: ^NS.ImageView, _: SEL, preferredImageDynamicRange: NS.ImageDynamicRange) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -301,7 +301,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredImageDynamicRange:"), auto_cast setPreferredImageDynamicRange, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.imageDynamicRange != nil {
-        imageDynamicRange :: proc "c" (self: ^AK.ImageView, _: SEL) -> AK.ImageDynamicRange {
+        imageDynamicRange :: proc "c" (self: ^NS.ImageView, _: SEL) -> NS.ImageDynamicRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -311,7 +311,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageDynamicRange"), auto_cast imageDynamicRange, "l@:") do panic("Failed to register objC method.")
     }
     if vt.addSymbolEffect_ != nil {
-        addSymbolEffect_ :: proc "c" (self: ^AK.ImageView, _: SEL, symbolEffect: ^AK.SymbolEffect) {
+        addSymbolEffect_ :: proc "c" (self: ^NS.ImageView, _: SEL, symbolEffect: ^NS.SymbolEffect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -321,7 +321,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addSymbolEffect:"), auto_cast addSymbolEffect_, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.addSymbolEffect_options != nil {
-        addSymbolEffect_options :: proc "c" (self: ^AK.ImageView, _: SEL, symbolEffect: ^AK.SymbolEffect, options: ^AK.SymbolEffectOptions) {
+        addSymbolEffect_options :: proc "c" (self: ^NS.ImageView, _: SEL, symbolEffect: ^NS.SymbolEffect, options: ^NS.SymbolEffectOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -331,7 +331,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addSymbolEffect:options:"), auto_cast addSymbolEffect_options, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.addSymbolEffect_options_animated != nil {
-        addSymbolEffect_options_animated :: proc "c" (self: ^AK.ImageView, _: SEL, symbolEffect: ^AK.SymbolEffect, options: ^AK.SymbolEffectOptions, animated: bool) {
+        addSymbolEffect_options_animated :: proc "c" (self: ^NS.ImageView, _: SEL, symbolEffect: ^NS.SymbolEffect, options: ^NS.SymbolEffectOptions, animated: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -341,7 +341,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addSymbolEffect:options:animated:"), auto_cast addSymbolEffect_options_animated, "v@:@@B") do panic("Failed to register objC method.")
     }
     if vt.removeSymbolEffectOfType_ != nil {
-        removeSymbolEffectOfType_ :: proc "c" (self: ^AK.ImageView, _: SEL, symbolEffect: ^AK.SymbolEffect) {
+        removeSymbolEffectOfType_ :: proc "c" (self: ^NS.ImageView, _: SEL, symbolEffect: ^NS.SymbolEffect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -351,7 +351,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeSymbolEffectOfType:"), auto_cast removeSymbolEffectOfType_, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeSymbolEffectOfType_options != nil {
-        removeSymbolEffectOfType_options :: proc "c" (self: ^AK.ImageView, _: SEL, symbolEffect: ^AK.SymbolEffect, options: ^AK.SymbolEffectOptions) {
+        removeSymbolEffectOfType_options :: proc "c" (self: ^NS.ImageView, _: SEL, symbolEffect: ^NS.SymbolEffect, options: ^NS.SymbolEffectOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -361,7 +361,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeSymbolEffectOfType:options:"), auto_cast removeSymbolEffectOfType_options, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.removeSymbolEffectOfType_options_animated != nil {
-        removeSymbolEffectOfType_options_animated :: proc "c" (self: ^AK.ImageView, _: SEL, symbolEffect: ^AK.SymbolEffect, options: ^AK.SymbolEffectOptions, animated: bool) {
+        removeSymbolEffectOfType_options_animated :: proc "c" (self: ^NS.ImageView, _: SEL, symbolEffect: ^NS.SymbolEffect, options: ^NS.SymbolEffectOptions, animated: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -371,7 +371,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeSymbolEffectOfType:options:animated:"), auto_cast removeSymbolEffectOfType_options_animated, "v@:@@B") do panic("Failed to register objC method.")
     }
     if vt.removeAllSymbolEffects != nil {
-        removeAllSymbolEffects :: proc "c" (self: ^AK.ImageView, _: SEL) {
+        removeAllSymbolEffects :: proc "c" (self: ^NS.ImageView, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -381,7 +381,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeAllSymbolEffects"), auto_cast removeAllSymbolEffects, "v@:") do panic("Failed to register objC method.")
     }
     if vt.removeAllSymbolEffectsWithOptions_ != nil {
-        removeAllSymbolEffectsWithOptions_ :: proc "c" (self: ^AK.ImageView, _: SEL, options: ^AK.SymbolEffectOptions) {
+        removeAllSymbolEffectsWithOptions_ :: proc "c" (self: ^NS.ImageView, _: SEL, options: ^NS.SymbolEffectOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -391,7 +391,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeAllSymbolEffectsWithOptions:"), auto_cast removeAllSymbolEffectsWithOptions_, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeAllSymbolEffectsWithOptions_animated != nil {
-        removeAllSymbolEffectsWithOptions_animated :: proc "c" (self: ^AK.ImageView, _: SEL, options: ^AK.SymbolEffectOptions, animated: bool) {
+        removeAllSymbolEffectsWithOptions_animated :: proc "c" (self: ^NS.ImageView, _: SEL, options: ^NS.SymbolEffectOptions, animated: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -401,7 +401,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeAllSymbolEffectsWithOptions:animated:"), auto_cast removeAllSymbolEffectsWithOptions_animated, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.setSymbolImage_withContentTransition != nil {
-        setSymbolImage_withContentTransition :: proc "c" (self: ^AK.ImageView, _: SEL, symbolImage: ^AK.Image, transition: ^AK.SymbolContentTransition) {
+        setSymbolImage_withContentTransition :: proc "c" (self: ^NS.ImageView, _: SEL, symbolImage: ^NS.Image, transition: ^NS.SymbolContentTransition) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -411,7 +411,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSymbolImage:withContentTransition:"), auto_cast setSymbolImage_withContentTransition, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.setSymbolImage_withContentTransition_options != nil {
-        setSymbolImage_withContentTransition_options :: proc "c" (self: ^AK.ImageView, _: SEL, symbolImage: ^AK.Image, transition: ^AK.SymbolContentTransition, options: ^AK.SymbolEffectOptions) {
+        setSymbolImage_withContentTransition_options :: proc "c" (self: ^NS.ImageView, _: SEL, symbolImage: ^NS.Image, transition: ^NS.SymbolContentTransition, options: ^NS.SymbolEffectOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

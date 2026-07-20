@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CHHapticEngine
-///
 @(objc_class="CHHapticEngine", objc_superclass=NS.Object)
 HapticEngine :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticEngine, objc_selector="capabilitiesForHardware", objc_name="capabilitiesForHardware", objc_is_class_method=true)
     HapticEngine_capabilitiesForHardware :: proc() -> ^HapticDeviceCapability ---
@@ -110,3 +104,6 @@ foreign lib {
     @(objc_type=HapticEngine, objc_selector="setIntendedSpatialExperience:", objc_name="setIntendedSpatialExperience")
     HapticEngine_setIntendedSpatialExperience :: proc(self: ^HapticEngine, intendedSpatialExperience: ^CASpatialAudioExperience) ---
 }
+
+
+

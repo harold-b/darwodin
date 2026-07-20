@@ -4,8 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
@@ -93,8 +92,8 @@ foreign lib {
     AccessPoint_frameInScreenCoordinates :: proc(self: ^AccessPoint) -> NS.Rect ---
 
     @(objc_type=AccessPoint, objc_selector="parentWindow", objc_name="parentWindow")
-    AccessPoint_parentWindow :: proc(self: ^AccessPoint) -> ^AK.Window ---
+    AccessPoint_parentWindow :: proc(self: ^AccessPoint) -> ^NS.Window ---
 
     @(objc_type=AccessPoint, objc_selector="setParentWindow:", objc_name="setParentWindow")
-    AccessPoint_setParentWindow :: proc(self: ^AccessPoint, parentWindow: ^AK.Window) ---
+    AccessPoint_setParentWindow :: proc(self: ^AccessPoint, parentWindow: ^NS.Window) ---
 }

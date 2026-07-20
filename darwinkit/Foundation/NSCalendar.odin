@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSCalendar
-///
 @(objc_class="NSCalendar", objc_superclass=Object)
 Calendar :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Calendar, objc_selector="calendarWithIdentifier:", objc_name="calendarWithIdentifier", objc_is_class_method=true)
     Calendar_calendarWithIdentifier :: proc(calendarIdentifierConstant: ^String) -> ^Calendar ---
@@ -116,7 +110,7 @@ foreign lib {
     Calendar_dateByAddingUnit :: proc(self: ^Calendar, unit: CalendarUnit, value: Integer, date: ^Date, options: CalendarOptions) -> ^Date ---
 
     @(objc_type=Calendar, objc_selector="enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:", objc_name="enumerateDatesStartingAfterDate")
-    Calendar_enumerateDatesStartingAfterDate :: proc(self: ^Calendar, start: ^Date, comps: ^DateComponents, opts: CalendarOptions, block: ^Objc_Block(proc "c" (date: ^Date, exactMatch: bool, stop: ^bool))) ---
+    Calendar_enumerateDatesStartingAfterDate :: proc(self: ^Calendar, start: ^Date, comps: ^DateComponents, opts: CalendarOptions, block: ^Objc_Block(proc "c" ( date: ^Date, exactMatch: bool, stop: ^bool ))) ---
 
     @(objc_type=Calendar, objc_selector="nextDateAfterDate:matchingComponents:options:", objc_name="nextDateAfterDate_matchingComponents_options")
     Calendar_nextDateAfterDate_matchingComponents_options :: proc(self: ^Calendar, date: ^Date, comps: ^DateComponents, options: CalendarOptions) -> ^Date ---
@@ -229,6 +223,8 @@ foreign lib {
     @(objc_type=Calendar, objc_selector="PMSymbol", objc_name="PMSymbol")
     Calendar_PMSymbol :: proc(self: ^Calendar) -> ^String ---
 }
+
+
 
 @(objc_type=Calendar, objc_name="rangeOfUnit")
 Calendar_rangeOfUnit :: proc {

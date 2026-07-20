@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitEQFilterParameters
-///
 @(objc_class="AVAudioUnitEQFilterParameters", objc_superclass=NS.Object)
 AudioUnitEQFilterParameters :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitEQFilterParameters, objc_selector="init", objc_name="init")
     AudioUnitEQFilterParameters_init :: proc(self: ^AudioUnitEQFilterParameters) -> instancetype ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=AudioUnitEQFilterParameters, objc_selector="setBypass:", objc_name="setBypass")
     AudioUnitEQFilterParameters_setBypass :: proc(self: ^AudioUnitEQFilterParameters, bypass: bool) ---
 }
+
+
+

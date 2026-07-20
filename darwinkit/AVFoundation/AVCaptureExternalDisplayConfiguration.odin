@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureExternalDisplayConfiguration
-///
 @(objc_class="AVCaptureExternalDisplayConfiguration", objc_superclass=NS.Object)
 CaptureExternalDisplayConfiguration :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureExternalDisplayConfiguration, objc_selector="shouldMatchFrameRate", objc_name="shouldMatchFrameRate")
     CaptureExternalDisplayConfiguration_shouldMatchFrameRate :: proc(self: ^CaptureExternalDisplayConfiguration) -> bool ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=CaptureExternalDisplayConfiguration, objc_selector="setPreferredResolution:", objc_name="setPreferredResolution")
     CaptureExternalDisplayConfiguration_setPreferredResolution :: proc(self: ^CaptureExternalDisplayConfiguration, preferredResolution: CM.VideoDimensions) ---
 }
+
+
+

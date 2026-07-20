@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.Shadow) -> instancetype,
-    set: proc(self: ^AK.Shadow),
-    shadowOffset: proc(self: ^AK.Shadow) -> NS.Size,
-    setShadowOffset: proc(self: ^AK.Shadow, shadowOffset: NS.Size),
-    shadowBlurRadius: proc(self: ^AK.Shadow) -> CG.Float,
-    setShadowBlurRadius: proc(self: ^AK.Shadow, shadowBlurRadius: CG.Float),
-    shadowColor: proc(self: ^AK.Shadow) -> ^AK.Color,
-    setShadowColor: proc(self: ^AK.Shadow, shadowColor: ^AK.Color),
+    init: proc(self: ^NS.Shadow) -> instancetype,
+    set: proc(self: ^NS.Shadow),
+    shadowOffset: proc(self: ^NS.Shadow) -> NS.Size,
+    setShadowOffset: proc(self: ^NS.Shadow, shadowOffset: NS.Size),
+    shadowBlurRadius: proc(self: ^NS.Shadow) -> CG.Float,
+    setShadowBlurRadius: proc(self: ^NS.Shadow, shadowBlurRadius: CG.Float),
+    shadowColor: proc(self: ^NS.Shadow) -> ^NS.Color,
+    setShadowColor: proc(self: ^NS.Shadow, shadowColor: ^NS.Color),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Shadow, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.Shadow, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.set != nil {
-        set :: proc "c" (self: ^AK.Shadow, _: SEL) {
+        set :: proc "c" (self: ^NS.Shadow, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("set"), auto_cast set, "v@:") do panic("Failed to register objC method.")
     }
     if vt.shadowOffset != nil {
-        shadowOffset :: proc "c" (self: ^AK.Shadow, _: SEL) -> NS.Size {
+        shadowOffset :: proc "c" (self: ^NS.Shadow, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shadowOffset"), auto_cast shadowOffset, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setShadowOffset != nil {
-        setShadowOffset :: proc "c" (self: ^AK.Shadow, _: SEL, shadowOffset: NS.Size) {
+        setShadowOffset :: proc "c" (self: ^NS.Shadow, _: SEL, shadowOffset: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShadowOffset:"), auto_cast setShadowOffset, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.shadowBlurRadius != nil {
-        shadowBlurRadius :: proc "c" (self: ^AK.Shadow, _: SEL) -> CG.Float {
+        shadowBlurRadius :: proc "c" (self: ^NS.Shadow, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shadowBlurRadius"), auto_cast shadowBlurRadius, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setShadowBlurRadius != nil {
-        setShadowBlurRadius :: proc "c" (self: ^AK.Shadow, _: SEL, shadowBlurRadius: CG.Float) {
+        setShadowBlurRadius :: proc "c" (self: ^NS.Shadow, _: SEL, shadowBlurRadius: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShadowBlurRadius:"), auto_cast setShadowBlurRadius, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.shadowColor != nil {
-        shadowColor :: proc "c" (self: ^AK.Shadow, _: SEL) -> ^AK.Color {
+        shadowColor :: proc "c" (self: ^NS.Shadow, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("shadowColor"), auto_cast shadowColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setShadowColor != nil {
-        setShadowColor :: proc "c" (self: ^AK.Shadow, _: SEL, shadowColor: ^AK.Color) {
+        setShadowColor :: proc "c" (self: ^NS.Shadow, _: SEL, shadowColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

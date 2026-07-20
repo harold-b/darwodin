@@ -20,27 +20,27 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSPropertyDescription"
 
 VTable :: struct {
     super: NSPropertyDescription.VTable,
-    attributeType: proc(self: ^AK.AttributeDescription) -> AK.AttributeType,
-    setAttributeType: proc(self: ^AK.AttributeDescription, attributeType: AK.AttributeType),
-    attributeValueClassName: proc(self: ^AK.AttributeDescription) -> ^NS.String,
-    setAttributeValueClassName: proc(self: ^AK.AttributeDescription, attributeValueClassName: ^NS.String),
-    defaultValue: proc(self: ^AK.AttributeDescription) -> id,
-    setDefaultValue: proc(self: ^AK.AttributeDescription, defaultValue: id),
-    versionHash: proc(self: ^AK.AttributeDescription) -> ^NS.Data,
-    valueTransformerName: proc(self: ^AK.AttributeDescription) -> ^NS.String,
-    setValueTransformerName: proc(self: ^AK.AttributeDescription, valueTransformerName: ^NS.String),
-    allowsExternalBinaryDataStorage: proc(self: ^AK.AttributeDescription) -> bool,
-    setAllowsExternalBinaryDataStorage: proc(self: ^AK.AttributeDescription, allowsExternalBinaryDataStorage: bool),
-    preservesValueInHistoryOnDeletion: proc(self: ^AK.AttributeDescription) -> bool,
-    setPreservesValueInHistoryOnDeletion: proc(self: ^AK.AttributeDescription, preservesValueInHistoryOnDeletion: bool),
-    allowsCloudEncryption: proc(self: ^AK.AttributeDescription) -> bool,
-    setAllowsCloudEncryption: proc(self: ^AK.AttributeDescription, allowsCloudEncryption: bool),
+    attributeType: proc(self: ^NS.AttributeDescription) -> NS.AttributeType,
+    setAttributeType: proc(self: ^NS.AttributeDescription, attributeType: NS.AttributeType),
+    attributeValueClassName: proc(self: ^NS.AttributeDescription) -> ^NS.String,
+    setAttributeValueClassName: proc(self: ^NS.AttributeDescription, attributeValueClassName: ^NS.String),
+    defaultValue: proc(self: ^NS.AttributeDescription) -> id,
+    setDefaultValue: proc(self: ^NS.AttributeDescription, defaultValue: id),
+    versionHash: proc(self: ^NS.AttributeDescription) -> ^NS.Data,
+    valueTransformerName: proc(self: ^NS.AttributeDescription) -> ^NS.String,
+    setValueTransformerName: proc(self: ^NS.AttributeDescription, valueTransformerName: ^NS.String),
+    allowsExternalBinaryDataStorage: proc(self: ^NS.AttributeDescription) -> bool,
+    setAllowsExternalBinaryDataStorage: proc(self: ^NS.AttributeDescription, allowsExternalBinaryDataStorage: bool),
+    preservesValueInHistoryOnDeletion: proc(self: ^NS.AttributeDescription) -> bool,
+    setPreservesValueInHistoryOnDeletion: proc(self: ^NS.AttributeDescription, preservesValueInHistoryOnDeletion: bool),
+    allowsCloudEncryption: proc(self: ^NS.AttributeDescription) -> bool,
+    setAllowsCloudEncryption: proc(self: ^NS.AttributeDescription, allowsCloudEncryption: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSPropertyDescription.extend(cls, &vt.super)
 
     if vt.attributeType != nil {
-        attributeType :: proc "c" (self: ^AK.AttributeDescription, _: SEL) -> AK.AttributeType {
+        attributeType :: proc "c" (self: ^NS.AttributeDescription, _: SEL) -> NS.AttributeType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributeType"), auto_cast attributeType, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributeType != nil {
-        setAttributeType :: proc "c" (self: ^AK.AttributeDescription, _: SEL, attributeType: AK.AttributeType) {
+        setAttributeType :: proc "c" (self: ^NS.AttributeDescription, _: SEL, attributeType: NS.AttributeType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributeType:"), auto_cast setAttributeType, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.attributeValueClassName != nil {
-        attributeValueClassName :: proc "c" (self: ^AK.AttributeDescription, _: SEL) -> ^NS.String {
+        attributeValueClassName :: proc "c" (self: ^NS.AttributeDescription, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributeValueClassName"), auto_cast attributeValueClassName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributeValueClassName != nil {
-        setAttributeValueClassName :: proc "c" (self: ^AK.AttributeDescription, _: SEL, attributeValueClassName: ^NS.String) {
+        setAttributeValueClassName :: proc "c" (self: ^NS.AttributeDescription, _: SEL, attributeValueClassName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAttributeValueClassName:"), auto_cast setAttributeValueClassName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.defaultValue != nil {
-        defaultValue :: proc "c" (self: ^AK.AttributeDescription, _: SEL) -> id {
+        defaultValue :: proc "c" (self: ^NS.AttributeDescription, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultValue"), auto_cast defaultValue, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDefaultValue != nil {
-        setDefaultValue :: proc "c" (self: ^AK.AttributeDescription, _: SEL, defaultValue: id) {
+        setDefaultValue :: proc "c" (self: ^NS.AttributeDescription, _: SEL, defaultValue: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDefaultValue:"), auto_cast setDefaultValue, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.versionHash != nil {
-        versionHash :: proc "c" (self: ^AK.AttributeDescription, _: SEL) -> ^NS.Data {
+        versionHash :: proc "c" (self: ^NS.AttributeDescription, _: SEL) -> ^NS.Data {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("versionHash"), auto_cast versionHash, "@@:") do panic("Failed to register objC method.")
     }
     if vt.valueTransformerName != nil {
-        valueTransformerName :: proc "c" (self: ^AK.AttributeDescription, _: SEL) -> ^NS.String {
+        valueTransformerName :: proc "c" (self: ^NS.AttributeDescription, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("valueTransformerName"), auto_cast valueTransformerName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setValueTransformerName != nil {
-        setValueTransformerName :: proc "c" (self: ^AK.AttributeDescription, _: SEL, valueTransformerName: ^NS.String) {
+        setValueTransformerName :: proc "c" (self: ^NS.AttributeDescription, _: SEL, valueTransformerName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setValueTransformerName:"), auto_cast setValueTransformerName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.allowsExternalBinaryDataStorage != nil {
-        allowsExternalBinaryDataStorage :: proc "c" (self: ^AK.AttributeDescription, _: SEL) -> bool {
+        allowsExternalBinaryDataStorage :: proc "c" (self: ^NS.AttributeDescription, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsExternalBinaryDataStorage"), auto_cast allowsExternalBinaryDataStorage, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsExternalBinaryDataStorage != nil {
-        setAllowsExternalBinaryDataStorage :: proc "c" (self: ^AK.AttributeDescription, _: SEL, allowsExternalBinaryDataStorage: bool) {
+        setAllowsExternalBinaryDataStorage :: proc "c" (self: ^NS.AttributeDescription, _: SEL, allowsExternalBinaryDataStorage: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -161,7 +161,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsExternalBinaryDataStorage:"), auto_cast setAllowsExternalBinaryDataStorage, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.preservesValueInHistoryOnDeletion != nil {
-        preservesValueInHistoryOnDeletion :: proc "c" (self: ^AK.AttributeDescription, _: SEL) -> bool {
+        preservesValueInHistoryOnDeletion :: proc "c" (self: ^NS.AttributeDescription, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -171,7 +171,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preservesValueInHistoryOnDeletion"), auto_cast preservesValueInHistoryOnDeletion, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setPreservesValueInHistoryOnDeletion != nil {
-        setPreservesValueInHistoryOnDeletion :: proc "c" (self: ^AK.AttributeDescription, _: SEL, preservesValueInHistoryOnDeletion: bool) {
+        setPreservesValueInHistoryOnDeletion :: proc "c" (self: ^NS.AttributeDescription, _: SEL, preservesValueInHistoryOnDeletion: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -181,7 +181,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreservesValueInHistoryOnDeletion:"), auto_cast setPreservesValueInHistoryOnDeletion, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsCloudEncryption != nil {
-        allowsCloudEncryption :: proc "c" (self: ^AK.AttributeDescription, _: SEL) -> bool {
+        allowsCloudEncryption :: proc "c" (self: ^NS.AttributeDescription, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsCloudEncryption"), auto_cast allowsCloudEncryption, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsCloudEncryption != nil {
-        setAllowsCloudEncryption :: proc "c" (self: ^AK.AttributeDescription, _: SEL, allowsCloudEncryption: bool) {
+        setAllowsCloudEncryption :: proc "c" (self: ^NS.AttributeDescription, _: SEL, allowsCloudEncryption: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

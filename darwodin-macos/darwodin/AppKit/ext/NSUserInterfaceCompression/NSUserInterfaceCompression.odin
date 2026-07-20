@@ -20,12 +20,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    compressWithPrioritizedCompressionOptions: proc(self: ^AK.UserInterfaceCompression, prioritizedOptions: ^NS.Array),
-    minimumSizeWithPrioritizedCompressionOptions: proc(self: ^AK.UserInterfaceCompression, prioritizedOptions: ^NS.Array) -> NS.Size,
-    activeCompressionOptions: proc(self: ^AK.UserInterfaceCompression) -> ^AK.UserInterfaceCompressionOptions,
+    compressWithPrioritizedCompressionOptions: proc(self: ^NS.UserInterfaceCompression, prioritizedOptions: ^NS.Array),
+    minimumSizeWithPrioritizedCompressionOptions: proc(self: ^NS.UserInterfaceCompression, prioritizedOptions: ^NS.Array) -> NS.Size,
+    activeCompressionOptions: proc(self: ^NS.UserInterfaceCompression) -> ^NS.UserInterfaceCompressionOptions,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.compressWithPrioritizedCompressionOptions != nil {
-        compressWithPrioritizedCompressionOptions :: proc "c" (self: ^AK.UserInterfaceCompression, _: SEL, prioritizedOptions: ^NS.Array) {
+        compressWithPrioritizedCompressionOptions :: proc "c" (self: ^NS.UserInterfaceCompression, _: SEL, prioritizedOptions: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("compressWithPrioritizedCompressionOptions:"), auto_cast compressWithPrioritizedCompressionOptions, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.minimumSizeWithPrioritizedCompressionOptions != nil {
-        minimumSizeWithPrioritizedCompressionOptions :: proc "c" (self: ^AK.UserInterfaceCompression, _: SEL, prioritizedOptions: ^NS.Array) -> NS.Size {
+        minimumSizeWithPrioritizedCompressionOptions :: proc "c" (self: ^NS.UserInterfaceCompression, _: SEL, prioritizedOptions: ^NS.Array) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumSizeWithPrioritizedCompressionOptions:"), auto_cast minimumSizeWithPrioritizedCompressionOptions, "{CGSize=dd}@:^void") do panic("Failed to register objC method.")
     }
     if vt.activeCompressionOptions != nil {
-        activeCompressionOptions :: proc "c" (self: ^AK.UserInterfaceCompression, _: SEL) -> ^AK.UserInterfaceCompressionOptions {
+        activeCompressionOptions :: proc "c" (self: ^NS.UserInterfaceCompression, _: SEL) -> ^NS.UserInterfaceCompressionOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

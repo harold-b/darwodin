@@ -9,11 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSPointerArray
-///
 @(objc_class="NSPointerArray", objc_superclass=Object)
 PointerArray :: struct { using _: Object, 
     using _: FastEnumeration,
@@ -21,7 +16,6 @@ PointerArray :: struct { using _: Object,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerArray, objc_selector="initWithOptions:", objc_name="initWithOptions")
     PointerArray_initWithOptions :: proc(self: ^PointerArray, options: PointerFunctionsOptions) -> instancetype ---
@@ -62,7 +56,7 @@ foreign lib {
     @(objc_type=PointerArray, objc_selector="setCount:", objc_name="setCount")
     PointerArray_setCount :: proc(self: ^PointerArray, count: UInteger) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=PointerArray, objc_selector="pointerArrayWithStrongObjects", objc_name="pointerArrayWithStrongObjects", objc_is_class_method=true)
         PointerArray_pointerArrayWithStrongObjects :: proc() -> id ---
 
@@ -79,3 +73,6 @@ foreign lib {
     @(objc_type=PointerArray, objc_selector="allObjects", objc_name="allObjects")
     PointerArray_allObjects :: proc(self: ^PointerArray) -> ^Array ---
 }
+
+
+

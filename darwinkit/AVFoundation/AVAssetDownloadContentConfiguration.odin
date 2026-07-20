@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetDownloadContentConfiguration
-///
 @(objc_class="AVAssetDownloadContentConfiguration", objc_superclass=NS.Object)
 AssetDownloadContentConfiguration :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetDownloadContentConfiguration, objc_selector="variantQualifiers", objc_name="variantQualifiers")
     AssetDownloadContentConfiguration_variantQualifiers :: proc(self: ^AssetDownloadContentConfiguration) -> ^NS.Array ---
@@ -36,3 +30,6 @@ foreign lib {
     @(objc_type=AssetDownloadContentConfiguration, objc_selector="setMediaSelections:", objc_name="setMediaSelections")
     AssetDownloadContentConfiguration_setMediaSelections :: proc(self: ^AssetDownloadContentConfiguration, mediaSelections: ^NS.Array) ---
 }
+
+
+

@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLAccelerationStructureMotionCurveGeometryDescriptor
-///
 @(objc_class="MTLAccelerationStructureMotionCurveGeometryDescriptor", objc_superclass=AccelerationStructureGeometryDescriptor)
 AccelerationStructureMotionCurveGeometryDescriptor :: struct { using _: AccelerationStructureGeometryDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccelerationStructureMotionCurveGeometryDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
     AccelerationStructureMotionCurveGeometryDescriptor_descriptor :: proc() -> instancetype ---
@@ -114,3 +108,6 @@ foreign lib {
     @(objc_type=AccelerationStructureMotionCurveGeometryDescriptor, objc_selector="setCurveEndCaps:", objc_name="setCurveEndCaps")
     AccelerationStructureMotionCurveGeometryDescriptor_setCurveEndCaps :: proc(self: ^AccelerationStructureMotionCurveGeometryDescriptor, curveEndCaps: CurveEndCaps) ---
 }
+
+
+

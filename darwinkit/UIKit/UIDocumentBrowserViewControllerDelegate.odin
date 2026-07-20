@@ -30,7 +30,7 @@ foreign lib {
     DocumentBrowserViewControllerDelegate_documentBrowser_didPickDocumentsAtURLs :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, documentURLs: ^NS.Array) ---
 
     @(objc_type=DocumentBrowserViewControllerDelegate, objc_selector="documentBrowser:didRequestDocumentCreationWithHandler:", objc_name="documentBrowser_didRequestDocumentCreationWithHandler")
-    DocumentBrowserViewControllerDelegate_documentBrowser_didRequestDocumentCreationWithHandler :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, importHandler: ^Objc_Block(proc "c" (urlToImport: ^NS.URL, importMode: DocumentBrowserImportMode))) ---
+    DocumentBrowserViewControllerDelegate_documentBrowser_didRequestDocumentCreationWithHandler :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, importHandler: ^Objc_Block(proc "c" ( urlToImport: ^NS.URL, importMode: DocumentBrowserImportMode ))) ---
 
     @(objc_type=DocumentBrowserViewControllerDelegate, objc_selector="documentBrowser:didImportDocumentAtURL:toDestinationURL:", objc_name="documentBrowser_didImportDocumentAtURL_toDestinationURL")
     DocumentBrowserViewControllerDelegate_documentBrowser_didImportDocumentAtURL_toDestinationURL :: proc(self: ^DocumentBrowserViewControllerDelegate, controller: ^DocumentBrowserViewController, sourceURL: ^NS.URL, destinationURL: ^NS.URL) ---

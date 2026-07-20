@@ -7,24 +7,18 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKAchievement
-///
 @(objc_class="GKAchievement", objc_superclass=NS.Object)
 Achievement :: struct { using _: NS.Object, 
     using _: NS.Coding,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Achievement, objc_selector="loadAchievementsWithCompletionHandler:", objc_name="loadAchievementsWithCompletionHandler", objc_is_class_method=true)
-    Achievement_loadAchievementsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (achievements: ^NS.Array, error: ^NS.Error))) ---
+    Achievement_loadAchievementsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( achievements: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Achievement, objc_selector="resetAchievementsWithCompletionHandler:", objc_name="resetAchievementsWithCompletionHandler", objc_is_class_method=true)
-    Achievement_resetAchievementsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Achievement_resetAchievementsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Achievement, objc_selector="initWithIdentifier:", objc_name="initWithIdentifier_")
     Achievement_initWithIdentifier_ :: proc(self: ^Achievement, identifier: ^NS.String) -> instancetype ---
@@ -33,7 +27,7 @@ foreign lib {
     Achievement_initWithIdentifier_player :: proc(self: ^Achievement, identifier: ^NS.String, player: ^Player) -> instancetype ---
 
     @(objc_type=Achievement, objc_selector="reportAchievements:withCompletionHandler:", objc_name="reportAchievements_withCompletionHandler", objc_is_class_method=true)
-    Achievement_reportAchievements_withCompletionHandler :: proc(achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Achievement_reportAchievements_withCompletionHandler :: proc(achievements: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Achievement, objc_selector="identifier", objc_name="identifier")
     Achievement_identifier :: proc(self: ^Achievement) -> ^NS.String ---
@@ -63,7 +57,7 @@ foreign lib {
     Achievement_player :: proc(self: ^Achievement) -> ^Player ---
 
     @(objc_type=Achievement, objc_selector="reportAchievementWithCompletionHandler:", objc_name="reportAchievementWithCompletionHandler")
-    Achievement_reportAchievementWithCompletionHandler :: proc(self: ^Achievement, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Achievement_reportAchievementWithCompletionHandler :: proc(self: ^Achievement, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Achievement, objc_selector="isHidden", objc_name="isHidden")
     Achievement_isHidden :: proc(self: ^Achievement) -> bool ---
@@ -75,26 +69,39 @@ foreign lib {
     Achievement_playerID :: proc(self: ^Achievement) -> ^NS.String ---
 
     @(objc_type=Achievement, objc_selector="selectChallengeablePlayers:withCompletionHandler:", objc_name="selectChallengeablePlayers")
-    Achievement_selectChallengeablePlayers :: proc(self: ^Achievement, players: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (challengeablePlayers: ^NS.Array, error: ^NS.Error))) ---
+    Achievement_selectChallengeablePlayers :: proc(self: ^Achievement, players: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( challengeablePlayers: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Achievement, objc_selector="reportAchievements:withEligibleChallenges:withCompletionHandler:", objc_name="reportAchievements_withEligibleChallenges_withCompletionHandler", objc_is_class_method=true)
-    Achievement_reportAchievements_withEligibleChallenges_withCompletionHandler :: proc(achievements: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    Achievement_reportAchievements_withEligibleChallenges_withCompletionHandler :: proc(achievements: ^NS.Array, challenges: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=Achievement, objc_selector="issueChallengeToPlayers:message:", objc_name="issueChallengeToPlayers")
     Achievement_issueChallengeToPlayers :: proc(self: ^Achievement, playerIDs: ^NS.Array, message: ^NS.String) ---
 
     @(objc_type=Achievement, objc_selector="selectChallengeablePlayerIDs:withCompletionHandler:", objc_name="selectChallengeablePlayerIDs")
-    Achievement_selectChallengeablePlayerIDs :: proc(self: ^Achievement, playerIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (challengeablePlayerIDs: ^NS.Array, error: ^NS.Error))) ---
+    Achievement_selectChallengeablePlayerIDs :: proc(self: ^Achievement, playerIDs: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( challengeablePlayerIDs: ^NS.Array, error: ^NS.Error ))) ---
 
-    @(objc_type=Achievement, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
-    Achievement_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^Achievement, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^AKViewController ---
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(objc_type=Achievement, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
+        Achievement_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^Achievement, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^AK.ViewController ---
 
-    @(objc_type=Achievement, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
-    Achievement_challengeComposeControllerWithMessage_players_completion :: proc(self: ^Achievement, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^AKViewController ---
+        @(objc_type=Achievement, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
+        Achievement_challengeComposeControllerWithMessage_players_completion :: proc(self: ^Achievement, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^AK.ViewController ---
 
-    @(objc_type=Achievement, objc_selector="challengeComposeControllerWithPlayers:message:completionHandler:", objc_name="challengeComposeControllerWithPlayers")
-    Achievement_challengeComposeControllerWithPlayers :: proc(self: ^Achievement, playerIDs: ^NS.Array, message: ^NS.String, completionHandler: ChallengeComposeCompletionBlock) -> ^AKViewController ---
+        @(objc_type=Achievement, objc_selector="challengeComposeControllerWithPlayers:message:completionHandler:", objc_name="challengeComposeControllerWithPlayers")
+        Achievement_challengeComposeControllerWithPlayers :: proc(self: ^Achievement, playerIDs: ^NS.Array, message: ^NS.String, completionHandler: ChallengeComposeCompletionBlock) -> ^AK.ViewController ---
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=Achievement, objc_selector="challengeComposeControllerWithMessage:players:completionHandler:", objc_name="challengeComposeControllerWithMessage_players_completionHandler")
+        Achievement_challengeComposeControllerWithMessage_players_completionHandler :: proc(self: ^Achievement, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeCompletionBlock) -> ^UI.ViewController ---
+
+        @(objc_type=Achievement, objc_selector="challengeComposeControllerWithMessage:players:completion:", objc_name="challengeComposeControllerWithMessage_players_completion")
+        Achievement_challengeComposeControllerWithMessage_players_completion :: proc(self: ^Achievement, message: ^NS.String, players: ^NS.Array, completionHandler: ChallengeComposeHandler) -> ^UI.ViewController ---
+
+        @(objc_type=Achievement, objc_selector="challengeComposeControllerWithPlayers:message:completionHandler:", objc_name="challengeComposeControllerWithPlayers")
+        Achievement_challengeComposeControllerWithPlayers :: proc(self: ^Achievement, playerIDs: ^NS.Array, message: ^NS.String, completionHandler: ChallengeComposeCompletionBlock) -> ^UI.ViewController ---
+    }
 }
+
+
 
 @(objc_type=Achievement, objc_name="initWithIdentifier")
 Achievement_initWithIdentifier :: proc {

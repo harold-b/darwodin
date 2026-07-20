@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMorphologyCustomPronoun
-///
 @(objc_class="NSMorphologyCustomPronoun", objc_superclass=Object)
 MorphologyCustomPronoun :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MorphologyCustomPronoun, objc_selector="isSupportedForLanguage:", objc_name="isSupportedForLanguage", objc_is_class_method=true)
     MorphologyCustomPronoun_isSupportedForLanguage :: proc(language: ^String) -> bool ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=MorphologyCustomPronoun, objc_selector="setReflexiveForm:", objc_name="setReflexiveForm")
     MorphologyCustomPronoun_setReflexiveForm :: proc(self: ^MorphologyCustomPronoun, reflexiveForm: ^String) ---
 }
+
+
+

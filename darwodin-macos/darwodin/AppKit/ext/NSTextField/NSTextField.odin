@@ -20,72 +20,72 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    selectText: proc(self: ^AK.TextField, sender: id),
-    textShouldBeginEditing: proc(self: ^AK.TextField, textObject: ^AK.Text) -> bool,
-    textShouldEndEditing: proc(self: ^AK.TextField, textObject: ^AK.Text) -> bool,
-    textDidBeginEditing: proc(self: ^AK.TextField, notification: ^NS.Notification),
-    textDidEndEditing: proc(self: ^AK.TextField, notification: ^NS.Notification),
-    textDidChange: proc(self: ^AK.TextField, notification: ^NS.Notification),
-    placeholderString: proc(self: ^AK.TextField) -> ^NS.String,
-    setPlaceholderString: proc(self: ^AK.TextField, placeholderString: ^NS.String),
-    placeholderAttributedString: proc(self: ^AK.TextField) -> ^NS.AttributedString,
-    setPlaceholderAttributedString: proc(self: ^AK.TextField, placeholderAttributedString: ^NS.AttributedString),
-    backgroundColor: proc(self: ^AK.TextField) -> ^AK.Color,
-    setBackgroundColor: proc(self: ^AK.TextField, backgroundColor: ^AK.Color),
-    drawsBackground: proc(self: ^AK.TextField) -> bool,
-    setDrawsBackground: proc(self: ^AK.TextField, drawsBackground: bool),
-    textColor: proc(self: ^AK.TextField) -> ^AK.Color,
-    setTextColor: proc(self: ^AK.TextField, textColor: ^AK.Color),
-    isBordered: proc(self: ^AK.TextField) -> bool,
-    setBordered: proc(self: ^AK.TextField, bordered: bool),
-    isBezeled: proc(self: ^AK.TextField) -> bool,
-    setBezeled: proc(self: ^AK.TextField, bezeled: bool),
-    isEditable: proc(self: ^AK.TextField) -> bool,
-    setEditable: proc(self: ^AK.TextField, editable: bool),
-    isSelectable: proc(self: ^AK.TextField) -> bool,
-    setSelectable: proc(self: ^AK.TextField, selectable: bool),
-    delegate: proc(self: ^AK.TextField) -> ^AK.TextFieldDelegate,
-    setDelegate: proc(self: ^AK.TextField, delegate: ^AK.TextFieldDelegate),
-    acceptsFirstResponder: proc(self: ^AK.TextField) -> bool,
-    bezelStyle: proc(self: ^AK.TextField) -> AK.TextFieldBezelStyle,
-    setBezelStyle: proc(self: ^AK.TextField, bezelStyle: AK.TextFieldBezelStyle),
-    preferredMaxLayoutWidth: proc(self: ^AK.TextField) -> CG.Float,
-    setPreferredMaxLayoutWidth: proc(self: ^AK.TextField, preferredMaxLayoutWidth: CG.Float),
-    maximumNumberOfLines: proc(self: ^AK.TextField) -> NS.Integer,
-    setMaximumNumberOfLines: proc(self: ^AK.TextField, maximumNumberOfLines: NS.Integer),
-    allowsDefaultTighteningForTruncation: proc(self: ^AK.TextField) -> bool,
-    setAllowsDefaultTighteningForTruncation: proc(self: ^AK.TextField, allowsDefaultTighteningForTruncation: bool),
-    lineBreakStrategy: proc(self: ^AK.TextField) -> AK.LineBreakStrategy,
-    setLineBreakStrategy: proc(self: ^AK.TextField, lineBreakStrategy: AK.LineBreakStrategy),
-    allowsWritingTools: proc(self: ^AK.TextField) -> bool,
-    setAllowsWritingTools: proc(self: ^AK.TextField, allowsWritingTools: bool),
-    allowsWritingToolsAffordance: proc(self: ^AK.TextField) -> bool,
-    setAllowsWritingToolsAffordance: proc(self: ^AK.TextField, allowsWritingToolsAffordance: bool),
-    placeholderStrings: proc(self: ^AK.TextField) -> ^NS.Array,
-    setPlaceholderStrings: proc(self: ^AK.TextField, placeholderStrings: ^NS.Array),
-    placeholderAttributedStrings: proc(self: ^AK.TextField) -> ^NS.Array,
-    setPlaceholderAttributedStrings: proc(self: ^AK.TextField, placeholderAttributedStrings: ^NS.Array),
-    resolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^AK.TextField) -> bool,
-    setResolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^AK.TextField, resolvesNaturalAlignmentWithBaseWritingDirection: bool),
-    isAutomaticTextCompletionEnabled: proc(self: ^AK.TextField) -> bool,
-    setAutomaticTextCompletionEnabled: proc(self: ^AK.TextField, automaticTextCompletionEnabled: bool),
-    allowsCharacterPickerTouchBarItem: proc(self: ^AK.TextField) -> bool,
-    setAllowsCharacterPickerTouchBarItem: proc(self: ^AK.TextField, allowsCharacterPickerTouchBarItem: bool),
+    selectText: proc(self: ^NS.TextField, sender: id),
+    textShouldBeginEditing: proc(self: ^NS.TextField, textObject: ^NS.Text) -> bool,
+    textShouldEndEditing: proc(self: ^NS.TextField, textObject: ^NS.Text) -> bool,
+    textDidBeginEditing: proc(self: ^NS.TextField, notification: ^NS.Notification),
+    textDidEndEditing: proc(self: ^NS.TextField, notification: ^NS.Notification),
+    textDidChange: proc(self: ^NS.TextField, notification: ^NS.Notification),
+    placeholderString: proc(self: ^NS.TextField) -> ^NS.String,
+    setPlaceholderString: proc(self: ^NS.TextField, placeholderString: ^NS.String),
+    placeholderAttributedString: proc(self: ^NS.TextField) -> ^NS.AttributedString,
+    setPlaceholderAttributedString: proc(self: ^NS.TextField, placeholderAttributedString: ^NS.AttributedString),
+    backgroundColor: proc(self: ^NS.TextField) -> ^NS.Color,
+    setBackgroundColor: proc(self: ^NS.TextField, backgroundColor: ^NS.Color),
+    drawsBackground: proc(self: ^NS.TextField) -> bool,
+    setDrawsBackground: proc(self: ^NS.TextField, drawsBackground: bool),
+    textColor: proc(self: ^NS.TextField) -> ^NS.Color,
+    setTextColor: proc(self: ^NS.TextField, textColor: ^NS.Color),
+    isBordered: proc(self: ^NS.TextField) -> bool,
+    setBordered: proc(self: ^NS.TextField, bordered: bool),
+    isBezeled: proc(self: ^NS.TextField) -> bool,
+    setBezeled: proc(self: ^NS.TextField, bezeled: bool),
+    isEditable: proc(self: ^NS.TextField) -> bool,
+    setEditable: proc(self: ^NS.TextField, editable: bool),
+    isSelectable: proc(self: ^NS.TextField) -> bool,
+    setSelectable: proc(self: ^NS.TextField, selectable: bool),
+    delegate: proc(self: ^NS.TextField) -> ^NS.TextFieldDelegate,
+    setDelegate: proc(self: ^NS.TextField, delegate: ^NS.TextFieldDelegate),
+    acceptsFirstResponder: proc(self: ^NS.TextField) -> bool,
+    bezelStyle: proc(self: ^NS.TextField) -> NS.TextFieldBezelStyle,
+    setBezelStyle: proc(self: ^NS.TextField, bezelStyle: NS.TextFieldBezelStyle),
+    preferredMaxLayoutWidth: proc(self: ^NS.TextField) -> CG.Float,
+    setPreferredMaxLayoutWidth: proc(self: ^NS.TextField, preferredMaxLayoutWidth: CG.Float),
+    maximumNumberOfLines: proc(self: ^NS.TextField) -> NS.Integer,
+    setMaximumNumberOfLines: proc(self: ^NS.TextField, maximumNumberOfLines: NS.Integer),
+    allowsDefaultTighteningForTruncation: proc(self: ^NS.TextField) -> bool,
+    setAllowsDefaultTighteningForTruncation: proc(self: ^NS.TextField, allowsDefaultTighteningForTruncation: bool),
+    lineBreakStrategy: proc(self: ^NS.TextField) -> NS.LineBreakStrategy,
+    setLineBreakStrategy: proc(self: ^NS.TextField, lineBreakStrategy: NS.LineBreakStrategy),
+    allowsWritingTools: proc(self: ^NS.TextField) -> bool,
+    setAllowsWritingTools: proc(self: ^NS.TextField, allowsWritingTools: bool),
+    allowsWritingToolsAffordance: proc(self: ^NS.TextField) -> bool,
+    setAllowsWritingToolsAffordance: proc(self: ^NS.TextField, allowsWritingToolsAffordance: bool),
+    placeholderStrings: proc(self: ^NS.TextField) -> ^NS.Array,
+    setPlaceholderStrings: proc(self: ^NS.TextField, placeholderStrings: ^NS.Array),
+    placeholderAttributedStrings: proc(self: ^NS.TextField) -> ^NS.Array,
+    setPlaceholderAttributedStrings: proc(self: ^NS.TextField, placeholderAttributedStrings: ^NS.Array),
+    resolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^NS.TextField) -> bool,
+    setResolvesNaturalAlignmentWithBaseWritingDirection: proc(self: ^NS.TextField, resolvesNaturalAlignmentWithBaseWritingDirection: bool),
+    isAutomaticTextCompletionEnabled: proc(self: ^NS.TextField) -> bool,
+    setAutomaticTextCompletionEnabled: proc(self: ^NS.TextField, automaticTextCompletionEnabled: bool),
+    allowsCharacterPickerTouchBarItem: proc(self: ^NS.TextField) -> bool,
+    setAllowsCharacterPickerTouchBarItem: proc(self: ^NS.TextField, allowsCharacterPickerTouchBarItem: bool),
     labelWithString: proc(stringValue: ^NS.String) -> instancetype,
     wrappingLabelWithString: proc(stringValue: ^NS.String) -> instancetype,
     labelWithAttributedString: proc(attributedStringValue: ^NS.AttributedString) -> instancetype,
     textFieldWithString: proc(stringValue: ^NS.String) -> instancetype,
-    allowsEditingTextAttributes: proc(self: ^AK.TextField) -> bool,
-    setAllowsEditingTextAttributes: proc(self: ^AK.TextField, allowsEditingTextAttributes: bool),
-    importsGraphics: proc(self: ^AK.TextField) -> bool,
-    setImportsGraphics: proc(self: ^AK.TextField, importsGraphics: bool),
-    setTitleWithMnemonic: proc(self: ^AK.TextField, stringWithAmpersand: ^NS.String),
+    allowsEditingTextAttributes: proc(self: ^NS.TextField) -> bool,
+    setAllowsEditingTextAttributes: proc(self: ^NS.TextField, allowsEditingTextAttributes: bool),
+    importsGraphics: proc(self: ^NS.TextField) -> bool,
+    setImportsGraphics: proc(self: ^NS.TextField, importsGraphics: bool),
+    setTitleWithMnemonic: proc(self: ^NS.TextField, stringWithAmpersand: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.selectText != nil {
-        selectText :: proc "c" (self: ^AK.TextField, _: SEL, sender: id) {
+        selectText :: proc "c" (self: ^NS.TextField, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectText:"), auto_cast selectText, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.textShouldBeginEditing != nil {
-        textShouldBeginEditing :: proc "c" (self: ^AK.TextField, _: SEL, textObject: ^AK.Text) -> bool {
+        textShouldBeginEditing :: proc "c" (self: ^NS.TextField, _: SEL, textObject: ^NS.Text) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textShouldBeginEditing:"), auto_cast textShouldBeginEditing, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.textShouldEndEditing != nil {
-        textShouldEndEditing :: proc "c" (self: ^AK.TextField, _: SEL, textObject: ^AK.Text) -> bool {
+        textShouldEndEditing :: proc "c" (self: ^NS.TextField, _: SEL, textObject: ^NS.Text) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textShouldEndEditing:"), auto_cast textShouldEndEditing, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.textDidBeginEditing != nil {
-        textDidBeginEditing :: proc "c" (self: ^AK.TextField, _: SEL, notification: ^NS.Notification) {
+        textDidBeginEditing :: proc "c" (self: ^NS.TextField, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textDidBeginEditing:"), auto_cast textDidBeginEditing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.textDidEndEditing != nil {
-        textDidEndEditing :: proc "c" (self: ^AK.TextField, _: SEL, notification: ^NS.Notification) {
+        textDidEndEditing :: proc "c" (self: ^NS.TextField, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textDidEndEditing:"), auto_cast textDidEndEditing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.textDidChange != nil {
-        textDidChange :: proc "c" (self: ^AK.TextField, _: SEL, notification: ^NS.Notification) {
+        textDidChange :: proc "c" (self: ^NS.TextField, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textDidChange:"), auto_cast textDidChange, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.placeholderString != nil {
-        placeholderString :: proc "c" (self: ^AK.TextField, _: SEL) -> ^NS.String {
+        placeholderString :: proc "c" (self: ^NS.TextField, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("placeholderString"), auto_cast placeholderString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPlaceholderString != nil {
-        setPlaceholderString :: proc "c" (self: ^AK.TextField, _: SEL, placeholderString: ^NS.String) {
+        setPlaceholderString :: proc "c" (self: ^NS.TextField, _: SEL, placeholderString: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -176,7 +176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPlaceholderString:"), auto_cast setPlaceholderString, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.placeholderAttributedString != nil {
-        placeholderAttributedString :: proc "c" (self: ^AK.TextField, _: SEL) -> ^NS.AttributedString {
+        placeholderAttributedString :: proc "c" (self: ^NS.TextField, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -186,7 +186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("placeholderAttributedString"), auto_cast placeholderAttributedString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPlaceholderAttributedString != nil {
-        setPlaceholderAttributedString :: proc "c" (self: ^AK.TextField, _: SEL, placeholderAttributedString: ^NS.AttributedString) {
+        setPlaceholderAttributedString :: proc "c" (self: ^NS.TextField, _: SEL, placeholderAttributedString: ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -196,7 +196,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPlaceholderAttributedString:"), auto_cast setPlaceholderAttributedString, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.backgroundColor != nil {
-        backgroundColor :: proc "c" (self: ^AK.TextField, _: SEL) -> ^AK.Color {
+        backgroundColor :: proc "c" (self: ^NS.TextField, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -206,7 +206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundColor"), auto_cast backgroundColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundColor != nil {
-        setBackgroundColor :: proc "c" (self: ^AK.TextField, _: SEL, backgroundColor: ^AK.Color) {
+        setBackgroundColor :: proc "c" (self: ^NS.TextField, _: SEL, backgroundColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -216,7 +216,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundColor:"), auto_cast setBackgroundColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.drawsBackground != nil {
-        drawsBackground :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        drawsBackground :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -226,7 +226,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawsBackground"), auto_cast drawsBackground, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setDrawsBackground != nil {
-        setDrawsBackground :: proc "c" (self: ^AK.TextField, _: SEL, drawsBackground: bool) {
+        setDrawsBackground :: proc "c" (self: ^NS.TextField, _: SEL, drawsBackground: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -236,7 +236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDrawsBackground:"), auto_cast setDrawsBackground, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.textColor != nil {
-        textColor :: proc "c" (self: ^AK.TextField, _: SEL) -> ^AK.Color {
+        textColor :: proc "c" (self: ^NS.TextField, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -246,7 +246,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textColor"), auto_cast textColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTextColor != nil {
-        setTextColor :: proc "c" (self: ^AK.TextField, _: SEL, textColor: ^AK.Color) {
+        setTextColor :: proc "c" (self: ^NS.TextField, _: SEL, textColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -256,7 +256,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextColor:"), auto_cast setTextColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isBordered != nil {
-        isBordered :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        isBordered :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -266,7 +266,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isBordered"), auto_cast isBordered, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setBordered != nil {
-        setBordered :: proc "c" (self: ^AK.TextField, _: SEL, bordered: bool) {
+        setBordered :: proc "c" (self: ^NS.TextField, _: SEL, bordered: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -276,7 +276,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBordered:"), auto_cast setBordered, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isBezeled != nil {
-        isBezeled :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        isBezeled :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -286,7 +286,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isBezeled"), auto_cast isBezeled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setBezeled != nil {
-        setBezeled :: proc "c" (self: ^AK.TextField, _: SEL, bezeled: bool) {
+        setBezeled :: proc "c" (self: ^NS.TextField, _: SEL, bezeled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -296,7 +296,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBezeled:"), auto_cast setBezeled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isEditable != nil {
-        isEditable :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        isEditable :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -306,7 +306,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEditable"), auto_cast isEditable, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setEditable != nil {
-        setEditable :: proc "c" (self: ^AK.TextField, _: SEL, editable: bool) {
+        setEditable :: proc "c" (self: ^NS.TextField, _: SEL, editable: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -316,7 +316,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEditable:"), auto_cast setEditable, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isSelectable != nil {
-        isSelectable :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        isSelectable :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -326,7 +326,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isSelectable"), auto_cast isSelectable, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectable != nil {
-        setSelectable :: proc "c" (self: ^AK.TextField, _: SEL, selectable: bool) {
+        setSelectable :: proc "c" (self: ^NS.TextField, _: SEL, selectable: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -336,7 +336,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectable:"), auto_cast setSelectable, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.TextField, _: SEL) -> ^AK.TextFieldDelegate {
+        delegate :: proc "c" (self: ^NS.TextField, _: SEL) -> ^NS.TextFieldDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -346,7 +346,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.TextField, _: SEL, delegate: ^AK.TextFieldDelegate) {
+        setDelegate :: proc "c" (self: ^NS.TextField, _: SEL, delegate: ^NS.TextFieldDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -356,7 +356,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.acceptsFirstResponder != nil {
-        acceptsFirstResponder :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        acceptsFirstResponder :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -366,7 +366,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("acceptsFirstResponder"), auto_cast acceptsFirstResponder, "B@:") do panic("Failed to register objC method.")
     }
     if vt.bezelStyle != nil {
-        bezelStyle :: proc "c" (self: ^AK.TextField, _: SEL) -> AK.TextFieldBezelStyle {
+        bezelStyle :: proc "c" (self: ^NS.TextField, _: SEL) -> NS.TextFieldBezelStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -376,7 +376,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bezelStyle"), auto_cast bezelStyle, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setBezelStyle != nil {
-        setBezelStyle :: proc "c" (self: ^AK.TextField, _: SEL, bezelStyle: AK.TextFieldBezelStyle) {
+        setBezelStyle :: proc "c" (self: ^NS.TextField, _: SEL, bezelStyle: NS.TextFieldBezelStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -386,7 +386,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBezelStyle:"), auto_cast setBezelStyle, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.preferredMaxLayoutWidth != nil {
-        preferredMaxLayoutWidth :: proc "c" (self: ^AK.TextField, _: SEL) -> CG.Float {
+        preferredMaxLayoutWidth :: proc "c" (self: ^NS.TextField, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -396,7 +396,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredMaxLayoutWidth"), auto_cast preferredMaxLayoutWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setPreferredMaxLayoutWidth != nil {
-        setPreferredMaxLayoutWidth :: proc "c" (self: ^AK.TextField, _: SEL, preferredMaxLayoutWidth: CG.Float) {
+        setPreferredMaxLayoutWidth :: proc "c" (self: ^NS.TextField, _: SEL, preferredMaxLayoutWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -406,7 +406,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredMaxLayoutWidth:"), auto_cast setPreferredMaxLayoutWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.maximumNumberOfLines != nil {
-        maximumNumberOfLines :: proc "c" (self: ^AK.TextField, _: SEL) -> NS.Integer {
+        maximumNumberOfLines :: proc "c" (self: ^NS.TextField, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -416,7 +416,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumNumberOfLines"), auto_cast maximumNumberOfLines, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumNumberOfLines != nil {
-        setMaximumNumberOfLines :: proc "c" (self: ^AK.TextField, _: SEL, maximumNumberOfLines: NS.Integer) {
+        setMaximumNumberOfLines :: proc "c" (self: ^NS.TextField, _: SEL, maximumNumberOfLines: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -426,7 +426,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumNumberOfLines:"), auto_cast setMaximumNumberOfLines, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.allowsDefaultTighteningForTruncation != nil {
-        allowsDefaultTighteningForTruncation :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        allowsDefaultTighteningForTruncation :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -436,7 +436,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsDefaultTighteningForTruncation"), auto_cast allowsDefaultTighteningForTruncation, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsDefaultTighteningForTruncation != nil {
-        setAllowsDefaultTighteningForTruncation :: proc "c" (self: ^AK.TextField, _: SEL, allowsDefaultTighteningForTruncation: bool) {
+        setAllowsDefaultTighteningForTruncation :: proc "c" (self: ^NS.TextField, _: SEL, allowsDefaultTighteningForTruncation: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -446,7 +446,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsDefaultTighteningForTruncation:"), auto_cast setAllowsDefaultTighteningForTruncation, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.lineBreakStrategy != nil {
-        lineBreakStrategy :: proc "c" (self: ^AK.TextField, _: SEL) -> AK.LineBreakStrategy {
+        lineBreakStrategy :: proc "c" (self: ^NS.TextField, _: SEL) -> NS.LineBreakStrategy {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -456,7 +456,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakStrategy"), auto_cast lineBreakStrategy, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setLineBreakStrategy != nil {
-        setLineBreakStrategy :: proc "c" (self: ^AK.TextField, _: SEL, lineBreakStrategy: AK.LineBreakStrategy) {
+        setLineBreakStrategy :: proc "c" (self: ^NS.TextField, _: SEL, lineBreakStrategy: NS.LineBreakStrategy) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -466,7 +466,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLineBreakStrategy:"), auto_cast setLineBreakStrategy, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.allowsWritingTools != nil {
-        allowsWritingTools :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        allowsWritingTools :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -476,7 +476,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsWritingTools"), auto_cast allowsWritingTools, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsWritingTools != nil {
-        setAllowsWritingTools :: proc "c" (self: ^AK.TextField, _: SEL, allowsWritingTools: bool) {
+        setAllowsWritingTools :: proc "c" (self: ^NS.TextField, _: SEL, allowsWritingTools: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -486,7 +486,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsWritingTools:"), auto_cast setAllowsWritingTools, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsWritingToolsAffordance != nil {
-        allowsWritingToolsAffordance :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        allowsWritingToolsAffordance :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -496,7 +496,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsWritingToolsAffordance"), auto_cast allowsWritingToolsAffordance, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsWritingToolsAffordance != nil {
-        setAllowsWritingToolsAffordance :: proc "c" (self: ^AK.TextField, _: SEL, allowsWritingToolsAffordance: bool) {
+        setAllowsWritingToolsAffordance :: proc "c" (self: ^NS.TextField, _: SEL, allowsWritingToolsAffordance: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -506,7 +506,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsWritingToolsAffordance:"), auto_cast setAllowsWritingToolsAffordance, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.placeholderStrings != nil {
-        placeholderStrings :: proc "c" (self: ^AK.TextField, _: SEL) -> ^NS.Array {
+        placeholderStrings :: proc "c" (self: ^NS.TextField, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -516,7 +516,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("placeholderStrings"), auto_cast placeholderStrings, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setPlaceholderStrings != nil {
-        setPlaceholderStrings :: proc "c" (self: ^AK.TextField, _: SEL, placeholderStrings: ^NS.Array) {
+        setPlaceholderStrings :: proc "c" (self: ^NS.TextField, _: SEL, placeholderStrings: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -526,7 +526,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPlaceholderStrings:"), auto_cast setPlaceholderStrings, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.placeholderAttributedStrings != nil {
-        placeholderAttributedStrings :: proc "c" (self: ^AK.TextField, _: SEL) -> ^NS.Array {
+        placeholderAttributedStrings :: proc "c" (self: ^NS.TextField, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -536,7 +536,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("placeholderAttributedStrings"), auto_cast placeholderAttributedStrings, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setPlaceholderAttributedStrings != nil {
-        setPlaceholderAttributedStrings :: proc "c" (self: ^AK.TextField, _: SEL, placeholderAttributedStrings: ^NS.Array) {
+        setPlaceholderAttributedStrings :: proc "c" (self: ^NS.TextField, _: SEL, placeholderAttributedStrings: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -546,7 +546,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPlaceholderAttributedStrings:"), auto_cast setPlaceholderAttributedStrings, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.resolvesNaturalAlignmentWithBaseWritingDirection != nil {
-        resolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        resolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -556,7 +556,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("resolvesNaturalAlignmentWithBaseWritingDirection"), auto_cast resolvesNaturalAlignmentWithBaseWritingDirection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setResolvesNaturalAlignmentWithBaseWritingDirection != nil {
-        setResolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^AK.TextField, _: SEL, resolvesNaturalAlignmentWithBaseWritingDirection: bool) {
+        setResolvesNaturalAlignmentWithBaseWritingDirection :: proc "c" (self: ^NS.TextField, _: SEL, resolvesNaturalAlignmentWithBaseWritingDirection: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -566,7 +566,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setResolvesNaturalAlignmentWithBaseWritingDirection:"), auto_cast setResolvesNaturalAlignmentWithBaseWritingDirection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isAutomaticTextCompletionEnabled != nil {
-        isAutomaticTextCompletionEnabled :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        isAutomaticTextCompletionEnabled :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -576,7 +576,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isAutomaticTextCompletionEnabled"), auto_cast isAutomaticTextCompletionEnabled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticTextCompletionEnabled != nil {
-        setAutomaticTextCompletionEnabled :: proc "c" (self: ^AK.TextField, _: SEL, automaticTextCompletionEnabled: bool) {
+        setAutomaticTextCompletionEnabled :: proc "c" (self: ^NS.TextField, _: SEL, automaticTextCompletionEnabled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -586,7 +586,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticTextCompletionEnabled:"), auto_cast setAutomaticTextCompletionEnabled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsCharacterPickerTouchBarItem != nil {
-        allowsCharacterPickerTouchBarItem :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        allowsCharacterPickerTouchBarItem :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -596,7 +596,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsCharacterPickerTouchBarItem"), auto_cast allowsCharacterPickerTouchBarItem, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsCharacterPickerTouchBarItem != nil {
-        setAllowsCharacterPickerTouchBarItem :: proc "c" (self: ^AK.TextField, _: SEL, allowsCharacterPickerTouchBarItem: bool) {
+        setAllowsCharacterPickerTouchBarItem :: proc "c" (self: ^NS.TextField, _: SEL, allowsCharacterPickerTouchBarItem: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -646,7 +646,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("textFieldWithString:"), auto_cast textFieldWithString, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.allowsEditingTextAttributes != nil {
-        allowsEditingTextAttributes :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        allowsEditingTextAttributes :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -656,7 +656,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsEditingTextAttributes"), auto_cast allowsEditingTextAttributes, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsEditingTextAttributes != nil {
-        setAllowsEditingTextAttributes :: proc "c" (self: ^AK.TextField, _: SEL, allowsEditingTextAttributes: bool) {
+        setAllowsEditingTextAttributes :: proc "c" (self: ^NS.TextField, _: SEL, allowsEditingTextAttributes: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -666,7 +666,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsEditingTextAttributes:"), auto_cast setAllowsEditingTextAttributes, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.importsGraphics != nil {
-        importsGraphics :: proc "c" (self: ^AK.TextField, _: SEL) -> bool {
+        importsGraphics :: proc "c" (self: ^NS.TextField, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -676,7 +676,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("importsGraphics"), auto_cast importsGraphics, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setImportsGraphics != nil {
-        setImportsGraphics :: proc "c" (self: ^AK.TextField, _: SEL, importsGraphics: bool) {
+        setImportsGraphics :: proc "c" (self: ^NS.TextField, _: SEL, importsGraphics: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -686,7 +686,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImportsGraphics:"), auto_cast setImportsGraphics, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.setTitleWithMnemonic != nil {
-        setTitleWithMnemonic :: proc "c" (self: ^AK.TextField, _: SEL, stringWithAmpersand: ^NS.String) {
+        setTitleWithMnemonic :: proc "c" (self: ^NS.TextField, _: SEL, stringWithAmpersand: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

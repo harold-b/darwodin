@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKQuadtree
-///
 @(objc_class="GKQuadtree", objc_superclass=NS.Object)
 Quadtree :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Quadtree, objc_selector="quadtreeWithBoundingQuad:minimumCellSize:", objc_name="quadtreeWithBoundingQuad", objc_is_class_method=true)
     Quadtree_quadtreeWithBoundingQuad :: proc(quad: Quad, minCellSize: cffi.float) -> instancetype ---
@@ -41,6 +35,8 @@ foreign lib {
     @(objc_type=Quadtree, objc_selector="removeElement:withNode:", objc_name="removeElement_withNode")
     Quadtree_removeElement_withNode :: proc(self: ^Quadtree, data: id, node: ^QuadtreeNode) -> bool ---
 }
+
+
 
 @(objc_type=Quadtree, objc_name="addElement")
 Quadtree_addElement :: proc {

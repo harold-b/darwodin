@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    contentView: proc(self: ^AK.GlassEffectView) -> ^AK.View,
-    setContentView: proc(self: ^AK.GlassEffectView, contentView: ^AK.View),
-    cornerRadius: proc(self: ^AK.GlassEffectView) -> CG.Float,
-    setCornerRadius: proc(self: ^AK.GlassEffectView, cornerRadius: CG.Float),
-    tintColor: proc(self: ^AK.GlassEffectView) -> ^AK.Color,
-    setTintColor: proc(self: ^AK.GlassEffectView, tintColor: ^AK.Color),
-    style: proc(self: ^AK.GlassEffectView) -> AK.GlassEffectViewStyle,
-    setStyle: proc(self: ^AK.GlassEffectView, style: AK.GlassEffectViewStyle),
+    contentView: proc(self: ^NS.GlassEffectView) -> ^NS.View,
+    setContentView: proc(self: ^NS.GlassEffectView, contentView: ^NS.View),
+    cornerRadius: proc(self: ^NS.GlassEffectView) -> CG.Float,
+    setCornerRadius: proc(self: ^NS.GlassEffectView, cornerRadius: CG.Float),
+    tintColor: proc(self: ^NS.GlassEffectView) -> ^NS.Color,
+    setTintColor: proc(self: ^NS.GlassEffectView, tintColor: ^NS.Color),
+    style: proc(self: ^NS.GlassEffectView) -> NS.GlassEffectViewStyle,
+    setStyle: proc(self: ^NS.GlassEffectView, style: NS.GlassEffectViewStyle),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.contentView != nil {
-        contentView :: proc "c" (self: ^AK.GlassEffectView, _: SEL) -> ^AK.View {
+        contentView :: proc "c" (self: ^NS.GlassEffectView, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentView"), auto_cast contentView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContentView != nil {
-        setContentView :: proc "c" (self: ^AK.GlassEffectView, _: SEL, contentView: ^AK.View) {
+        setContentView :: proc "c" (self: ^NS.GlassEffectView, _: SEL, contentView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContentView:"), auto_cast setContentView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.cornerRadius != nil {
-        cornerRadius :: proc "c" (self: ^AK.GlassEffectView, _: SEL) -> CG.Float {
+        cornerRadius :: proc "c" (self: ^NS.GlassEffectView, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cornerRadius"), auto_cast cornerRadius, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setCornerRadius != nil {
-        setCornerRadius :: proc "c" (self: ^AK.GlassEffectView, _: SEL, cornerRadius: CG.Float) {
+        setCornerRadius :: proc "c" (self: ^NS.GlassEffectView, _: SEL, cornerRadius: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCornerRadius:"), auto_cast setCornerRadius, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.tintColor != nil {
-        tintColor :: proc "c" (self: ^AK.GlassEffectView, _: SEL) -> ^AK.Color {
+        tintColor :: proc "c" (self: ^NS.GlassEffectView, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tintColor"), auto_cast tintColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTintColor != nil {
-        setTintColor :: proc "c" (self: ^AK.GlassEffectView, _: SEL, tintColor: ^AK.Color) {
+        setTintColor :: proc "c" (self: ^NS.GlassEffectView, _: SEL, tintColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTintColor:"), auto_cast setTintColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.style != nil {
-        style :: proc "c" (self: ^AK.GlassEffectView, _: SEL) -> AK.GlassEffectViewStyle {
+        style :: proc "c" (self: ^NS.GlassEffectView, _: SEL) -> NS.GlassEffectViewStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("style"), auto_cast style, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setStyle != nil {
-        setStyle :: proc "c" (self: ^AK.GlassEffectView, _: SEL, style: AK.GlassEffectViewStyle) {
+        setStyle :: proc "c" (self: ^NS.GlassEffectView, _: SEL, style: NS.GlassEffectViewStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

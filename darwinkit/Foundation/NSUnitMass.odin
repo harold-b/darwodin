@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitMass
-///
 @(objc_class="NSUnitMass", objc_superclass=Dimension)
 UnitMass :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitMass, objc_selector="kilograms", objc_name="kilograms", objc_is_class_method=true)
     UnitMass_kilograms :: proc() -> ^UnitMass ---
@@ -69,3 +63,6 @@ foreign lib {
     @(objc_type=UnitMass, objc_selector="slugs", objc_name="slugs", objc_is_class_method=true)
     UnitMass_slugs :: proc() -> ^UnitMass ---
 }
+
+
+

@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityLabel: proc(self: ^AK.AccessibilityButton) -> ^NS.String,
-    accessibilityPerformPress: proc(self: ^AK.AccessibilityButton) -> bool,
+    accessibilityLabel: proc(self: ^NS.AccessibilityButton) -> ^NS.String,
+    accessibilityPerformPress: proc(self: ^NS.AccessibilityButton) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityLabel != nil {
-        accessibilityLabel :: proc "c" (self: ^AK.AccessibilityButton, _: SEL) -> ^NS.String {
+        accessibilityLabel :: proc "c" (self: ^NS.AccessibilityButton, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityLabel"), auto_cast accessibilityLabel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityPerformPress != nil {
-        accessibilityPerformPress :: proc "c" (self: ^AK.AccessibilityButton, _: SEL) -> bool {
+        accessibilityPerformPress :: proc "c" (self: ^NS.AccessibilityButton, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

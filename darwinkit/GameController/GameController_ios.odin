@@ -2,6 +2,6 @@
 #+private package
 package darwodin_GameController
 
-import UI "../UIKit"
+import _UI "../UIKit"
+UI ::_UI
 
-AKViewController :: UI.ViewController

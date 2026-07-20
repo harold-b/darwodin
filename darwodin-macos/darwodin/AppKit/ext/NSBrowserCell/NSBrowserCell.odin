@@ -20,28 +20,28 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSCell"
 
 VTable :: struct {
     super: NSCell.VTable,
-    initTextCell: proc(self: ^AK.BrowserCell, string: ^NS.String) -> instancetype,
-    initImageCell: proc(self: ^AK.BrowserCell, image: ^AK.Image) -> instancetype,
-    initWithCoder: proc(self: ^AK.BrowserCell, coder: ^NS.Coder) -> instancetype,
-    highlightColorInView: proc(self: ^AK.BrowserCell, controlView: ^AK.View) -> ^AK.Color,
-    reset: proc(self: ^AK.BrowserCell),
-    set: proc(self: ^AK.BrowserCell),
-    branchImage: proc() -> ^AK.Image,
-    highlightedBranchImage: proc() -> ^AK.Image,
-    isLeaf: proc(self: ^AK.BrowserCell) -> bool,
-    setLeaf: proc(self: ^AK.BrowserCell, leaf: bool),
-    isLoaded: proc(self: ^AK.BrowserCell) -> bool,
-    setLoaded: proc(self: ^AK.BrowserCell, loaded: bool),
-    image: proc(self: ^AK.BrowserCell) -> ^AK.Image,
-    setImage: proc(self: ^AK.BrowserCell, image: ^AK.Image),
-    alternateImage: proc(self: ^AK.BrowserCell) -> ^AK.Image,
-    setAlternateImage: proc(self: ^AK.BrowserCell, alternateImage: ^AK.Image),
+    initTextCell: proc(self: ^NS.BrowserCell, string: ^NS.String) -> instancetype,
+    initImageCell: proc(self: ^NS.BrowserCell, image: ^NS.Image) -> instancetype,
+    initWithCoder: proc(self: ^NS.BrowserCell, coder: ^NS.Coder) -> instancetype,
+    highlightColorInView: proc(self: ^NS.BrowserCell, controlView: ^NS.View) -> ^NS.Color,
+    reset: proc(self: ^NS.BrowserCell),
+    set: proc(self: ^NS.BrowserCell),
+    branchImage: proc() -> ^NS.Image,
+    highlightedBranchImage: proc() -> ^NS.Image,
+    isLeaf: proc(self: ^NS.BrowserCell) -> bool,
+    setLeaf: proc(self: ^NS.BrowserCell, leaf: bool),
+    isLoaded: proc(self: ^NS.BrowserCell) -> bool,
+    setLoaded: proc(self: ^NS.BrowserCell, loaded: bool),
+    image: proc(self: ^NS.BrowserCell) -> ^NS.Image,
+    setImage: proc(self: ^NS.BrowserCell, image: ^NS.Image),
+    alternateImage: proc(self: ^NS.BrowserCell) -> ^NS.Image,
+    setAlternateImage: proc(self: ^NS.BrowserCell, alternateImage: ^NS.Image),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.BrowserCell, _: SEL, string: ^NS.String) -> instancetype {
+        initTextCell :: proc "c" (self: ^NS.BrowserCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initImageCell != nil {
-        initImageCell :: proc "c" (self: ^AK.BrowserCell, _: SEL, image: ^AK.Image) -> instancetype {
+        initImageCell :: proc "c" (self: ^NS.BrowserCell, _: SEL, image: ^NS.Image) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initImageCell:"), auto_cast initImageCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.BrowserCell, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.BrowserCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.highlightColorInView != nil {
-        highlightColorInView :: proc "c" (self: ^AK.BrowserCell, _: SEL, controlView: ^AK.View) -> ^AK.Color {
+        highlightColorInView :: proc "c" (self: ^NS.BrowserCell, _: SEL, controlView: ^NS.View) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("highlightColorInView:"), auto_cast highlightColorInView, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.reset != nil {
-        reset :: proc "c" (self: ^AK.BrowserCell, _: SEL) {
+        reset :: proc "c" (self: ^NS.BrowserCell, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reset"), auto_cast reset, "v@:") do panic("Failed to register objC method.")
     }
     if vt.set != nil {
-        set :: proc "c" (self: ^AK.BrowserCell, _: SEL) {
+        set :: proc "c" (self: ^NS.BrowserCell, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("set"), auto_cast set, "v@:") do panic("Failed to register objC method.")
     }
     if vt.branchImage != nil {
-        branchImage :: proc "c" (self: Class, _: SEL) -> ^AK.Image {
+        branchImage :: proc "c" (self: Class, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("branchImage"), auto_cast branchImage, "@#:") do panic("Failed to register objC method.")
     }
     if vt.highlightedBranchImage != nil {
-        highlightedBranchImage :: proc "c" (self: Class, _: SEL) -> ^AK.Image {
+        highlightedBranchImage :: proc "c" (self: Class, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("highlightedBranchImage"), auto_cast highlightedBranchImage, "@#:") do panic("Failed to register objC method.")
     }
     if vt.isLeaf != nil {
-        isLeaf :: proc "c" (self: ^AK.BrowserCell, _: SEL) -> bool {
+        isLeaf :: proc "c" (self: ^NS.BrowserCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isLeaf"), auto_cast isLeaf, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setLeaf != nil {
-        setLeaf :: proc "c" (self: ^AK.BrowserCell, _: SEL, leaf: bool) {
+        setLeaf :: proc "c" (self: ^NS.BrowserCell, _: SEL, leaf: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLeaf:"), auto_cast setLeaf, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isLoaded != nil {
-        isLoaded :: proc "c" (self: ^AK.BrowserCell, _: SEL) -> bool {
+        isLoaded :: proc "c" (self: ^NS.BrowserCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isLoaded"), auto_cast isLoaded, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setLoaded != nil {
-        setLoaded :: proc "c" (self: ^AK.BrowserCell, _: SEL, loaded: bool) {
+        setLoaded :: proc "c" (self: ^NS.BrowserCell, _: SEL, loaded: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLoaded:"), auto_cast setLoaded, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.image != nil {
-        image :: proc "c" (self: ^AK.BrowserCell, _: SEL) -> ^AK.Image {
+        image :: proc "c" (self: ^NS.BrowserCell, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -182,7 +182,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("image"), auto_cast image, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.BrowserCell, _: SEL, image: ^AK.Image) {
+        setImage :: proc "c" (self: ^NS.BrowserCell, _: SEL, image: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -192,7 +192,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:"), auto_cast setImage, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.alternateImage != nil {
-        alternateImage :: proc "c" (self: ^AK.BrowserCell, _: SEL) -> ^AK.Image {
+        alternateImage :: proc "c" (self: ^NS.BrowserCell, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alternateImage"), auto_cast alternateImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAlternateImage != nil {
-        setAlternateImage :: proc "c" (self: ^AK.BrowserCell, _: SEL, alternateImage: ^AK.Image) {
+        setAlternateImage :: proc "c" (self: ^NS.BrowserCell, _: SEL, alternateImage: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

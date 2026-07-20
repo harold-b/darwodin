@@ -20,94 +20,94 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithTitle: proc(self: ^AK.Menu, title: ^NS.String) -> instancetype,
-    initWithCoder: proc(self: ^AK.Menu, coder: ^NS.Coder) -> instancetype,
-    popUpContextMenu_withEvent_forView: proc(menu: ^AK.Menu, event: ^AK.Event, view: ^AK.View),
-    popUpContextMenu_withEvent_forView_withFont: proc(menu: ^AK.Menu, event: ^AK.Event, view: ^AK.View, font: ^AK.Font),
-    popUpMenuPositioningItem: proc(self: ^AK.Menu, item: ^AK.MenuItem, location: CG.Point, view: ^AK.View) -> bool,
+    initWithTitle: proc(self: ^NS.Menu, title: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^NS.Menu, coder: ^NS.Coder) -> instancetype,
+    popUpContextMenu_withEvent_forView: proc(menu: ^NS.Menu, event: ^NS.Event, view: ^NS.View),
+    popUpContextMenu_withEvent_forView_withFont: proc(menu: ^NS.Menu, event: ^NS.Event, view: ^NS.View, font: ^NS.Font),
+    popUpMenuPositioningItem: proc(self: ^NS.Menu, item: ^NS.MenuItem, location: CG.Point, view: ^NS.View) -> bool,
     setMenuBarVisible: proc(visible: bool),
     menuBarVisible: proc() -> bool,
-    insertItem: proc(self: ^AK.Menu, newItem: ^AK.MenuItem, index: NS.Integer),
-    addItem: proc(self: ^AK.Menu, newItem: ^AK.MenuItem),
-    insertItemWithTitle: proc(self: ^AK.Menu, string: ^NS.String, selector: SEL, charCode: ^NS.String, index: NS.Integer) -> ^AK.MenuItem,
-    addItemWithTitle: proc(self: ^AK.Menu, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> ^AK.MenuItem,
-    removeItemAtIndex: proc(self: ^AK.Menu, index: NS.Integer),
-    removeItem: proc(self: ^AK.Menu, item: ^AK.MenuItem),
-    setSubmenu: proc(self: ^AK.Menu, menu: ^AK.Menu, item: ^AK.MenuItem),
-    removeAllItems: proc(self: ^AK.Menu),
-    itemAtIndex: proc(self: ^AK.Menu, index: NS.Integer) -> ^AK.MenuItem,
-    indexOfItem: proc(self: ^AK.Menu, item: ^AK.MenuItem) -> NS.Integer,
-    indexOfItemWithTitle: proc(self: ^AK.Menu, title: ^NS.String) -> NS.Integer,
-    indexOfItemWithTag: proc(self: ^AK.Menu, tag: NS.Integer) -> NS.Integer,
-    indexOfItemWithRepresentedObject: proc(self: ^AK.Menu, object: id) -> NS.Integer,
-    indexOfItemWithSubmenu: proc(self: ^AK.Menu, submenu: ^AK.Menu) -> NS.Integer,
-    indexOfItemWithTarget: proc(self: ^AK.Menu, target: id, actionSelector: SEL) -> NS.Integer,
-    itemWithTitle: proc(self: ^AK.Menu, title: ^NS.String) -> ^AK.MenuItem,
-    itemWithTag: proc(self: ^AK.Menu, tag: NS.Integer) -> ^AK.MenuItem,
-    update: proc(self: ^AK.Menu),
-    performKeyEquivalent: proc(self: ^AK.Menu, event: ^AK.Event) -> bool,
-    itemChanged: proc(self: ^AK.Menu, item: ^AK.MenuItem),
-    performActionForItemAtIndex: proc(self: ^AK.Menu, index: NS.Integer),
-    cancelTracking: proc(self: ^AK.Menu),
-    cancelTrackingWithoutAnimation: proc(self: ^AK.Menu),
-    title: proc(self: ^AK.Menu) -> ^NS.String,
-    setTitle: proc(self: ^AK.Menu, title: ^NS.String),
-    supermenu: proc(self: ^AK.Menu) -> ^AK.Menu,
-    setSupermenu: proc(self: ^AK.Menu, supermenu: ^AK.Menu),
-    itemArray: proc(self: ^AK.Menu) -> ^NS.Array,
-    setItemArray: proc(self: ^AK.Menu, itemArray: ^NS.Array),
-    numberOfItems: proc(self: ^AK.Menu) -> NS.Integer,
-    autoenablesItems: proc(self: ^AK.Menu) -> bool,
-    setAutoenablesItems: proc(self: ^AK.Menu, autoenablesItems: bool),
-    delegate: proc(self: ^AK.Menu) -> ^AK.MenuDelegate,
-    setDelegate: proc(self: ^AK.Menu, delegate: ^AK.MenuDelegate),
-    menuBarHeight: proc(self: ^AK.Menu) -> CG.Float,
-    highlightedItem: proc(self: ^AK.Menu) -> ^AK.MenuItem,
-    minimumWidth: proc(self: ^AK.Menu) -> CG.Float,
-    setMinimumWidth: proc(self: ^AK.Menu, minimumWidth: CG.Float),
-    size: proc(self: ^AK.Menu) -> NS.Size,
-    font: proc(self: ^AK.Menu) -> ^AK.Font,
-    setFont: proc(self: ^AK.Menu, font: ^AK.Font),
-    allowsContextMenuPlugIns: proc(self: ^AK.Menu) -> bool,
-    setAllowsContextMenuPlugIns: proc(self: ^AK.Menu, allowsContextMenuPlugIns: bool),
-    automaticallyInsertsWritingToolsItems: proc(self: ^AK.Menu) -> bool,
-    setAutomaticallyInsertsWritingToolsItems: proc(self: ^AK.Menu, automaticallyInsertsWritingToolsItems: bool),
-    showsStateColumn: proc(self: ^AK.Menu) -> bool,
-    setShowsStateColumn: proc(self: ^AK.Menu, showsStateColumn: bool),
-    userInterfaceLayoutDirection: proc(self: ^AK.Menu) -> AK.UserInterfaceLayoutDirection,
-    setUserInterfaceLayoutDirection: proc(self: ^AK.Menu, userInterfaceLayoutDirection: AK.UserInterfaceLayoutDirection),
-    paletteMenuWithColors_titles_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> instancetype,
-    paletteMenuWithColors_titles_templateImage_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^AK.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> instancetype,
-    presentationStyle: proc(self: ^AK.Menu) -> AK.MenuPresentationStyle,
-    setPresentationStyle: proc(self: ^AK.Menu, presentationStyle: AK.MenuPresentationStyle),
-    selectionMode: proc(self: ^AK.Menu) -> AK.MenuSelectionMode,
-    setSelectionMode: proc(self: ^AK.Menu, selectionMode: AK.MenuSelectionMode),
-    selectedItems: proc(self: ^AK.Menu) -> ^NS.Array,
-    setSelectedItems: proc(self: ^AK.Menu, selectedItems: ^NS.Array),
-    submenuAction: proc(self: ^AK.Menu, sender: id),
-    propertiesToUpdate: proc(self: ^AK.Menu) -> AK.MenuProperties,
-    setMenuRepresentation: proc(self: ^AK.Menu, menuRep: id),
-    menuRepresentation: proc(self: ^AK.Menu) -> id,
-    setContextMenuRepresentation: proc(self: ^AK.Menu, menuRep: id),
-    contextMenuRepresentation: proc(self: ^AK.Menu) -> id,
-    setTearOffMenuRepresentation: proc(self: ^AK.Menu, menuRep: id),
-    tearOffMenuRepresentation: proc(self: ^AK.Menu) -> id,
+    insertItem: proc(self: ^NS.Menu, newItem: ^NS.MenuItem, index: NS.Integer),
+    addItem: proc(self: ^NS.Menu, newItem: ^NS.MenuItem),
+    insertItemWithTitle: proc(self: ^NS.Menu, string: ^NS.String, selector: SEL, charCode: ^NS.String, index: NS.Integer) -> ^NS.MenuItem,
+    addItemWithTitle: proc(self: ^NS.Menu, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> ^NS.MenuItem,
+    removeItemAtIndex: proc(self: ^NS.Menu, index: NS.Integer),
+    removeItem: proc(self: ^NS.Menu, item: ^NS.MenuItem),
+    setSubmenu: proc(self: ^NS.Menu, menu: ^NS.Menu, item: ^NS.MenuItem),
+    removeAllItems: proc(self: ^NS.Menu),
+    itemAtIndex: proc(self: ^NS.Menu, index: NS.Integer) -> ^NS.MenuItem,
+    indexOfItem: proc(self: ^NS.Menu, item: ^NS.MenuItem) -> NS.Integer,
+    indexOfItemWithTitle: proc(self: ^NS.Menu, title: ^NS.String) -> NS.Integer,
+    indexOfItemWithTag: proc(self: ^NS.Menu, tag: NS.Integer) -> NS.Integer,
+    indexOfItemWithRepresentedObject: proc(self: ^NS.Menu, object: id) -> NS.Integer,
+    indexOfItemWithSubmenu: proc(self: ^NS.Menu, submenu: ^NS.Menu) -> NS.Integer,
+    indexOfItemWithTarget: proc(self: ^NS.Menu, target: id, actionSelector: SEL) -> NS.Integer,
+    itemWithTitle: proc(self: ^NS.Menu, title: ^NS.String) -> ^NS.MenuItem,
+    itemWithTag: proc(self: ^NS.Menu, tag: NS.Integer) -> ^NS.MenuItem,
+    update: proc(self: ^NS.Menu),
+    performKeyEquivalent: proc(self: ^NS.Menu, event: ^NS.Event) -> bool,
+    itemChanged: proc(self: ^NS.Menu, item: ^NS.MenuItem),
+    performActionForItemAtIndex: proc(self: ^NS.Menu, index: NS.Integer),
+    cancelTracking: proc(self: ^NS.Menu),
+    cancelTrackingWithoutAnimation: proc(self: ^NS.Menu),
+    title: proc(self: ^NS.Menu) -> ^NS.String,
+    setTitle: proc(self: ^NS.Menu, title: ^NS.String),
+    supermenu: proc(self: ^NS.Menu) -> ^NS.Menu,
+    setSupermenu: proc(self: ^NS.Menu, supermenu: ^NS.Menu),
+    itemArray: proc(self: ^NS.Menu) -> ^NS.Array,
+    setItemArray: proc(self: ^NS.Menu, itemArray: ^NS.Array),
+    numberOfItems: proc(self: ^NS.Menu) -> NS.Integer,
+    autoenablesItems: proc(self: ^NS.Menu) -> bool,
+    setAutoenablesItems: proc(self: ^NS.Menu, autoenablesItems: bool),
+    delegate: proc(self: ^NS.Menu) -> ^NS.MenuDelegate,
+    setDelegate: proc(self: ^NS.Menu, delegate: ^NS.MenuDelegate),
+    menuBarHeight: proc(self: ^NS.Menu) -> CG.Float,
+    highlightedItem: proc(self: ^NS.Menu) -> ^NS.MenuItem,
+    minimumWidth: proc(self: ^NS.Menu) -> CG.Float,
+    setMinimumWidth: proc(self: ^NS.Menu, minimumWidth: CG.Float),
+    size: proc(self: ^NS.Menu) -> NS.Size,
+    font: proc(self: ^NS.Menu) -> ^NS.Font,
+    setFont: proc(self: ^NS.Menu, font: ^NS.Font),
+    allowsContextMenuPlugIns: proc(self: ^NS.Menu) -> bool,
+    setAllowsContextMenuPlugIns: proc(self: ^NS.Menu, allowsContextMenuPlugIns: bool),
+    automaticallyInsertsWritingToolsItems: proc(self: ^NS.Menu) -> bool,
+    setAutomaticallyInsertsWritingToolsItems: proc(self: ^NS.Menu, automaticallyInsertsWritingToolsItems: bool),
+    showsStateColumn: proc(self: ^NS.Menu) -> bool,
+    setShowsStateColumn: proc(self: ^NS.Menu, showsStateColumn: bool),
+    userInterfaceLayoutDirection: proc(self: ^NS.Menu) -> NS.UserInterfaceLayoutDirection,
+    setUserInterfaceLayoutDirection: proc(self: ^NS.Menu, userInterfaceLayoutDirection: NS.UserInterfaceLayoutDirection),
+    paletteMenuWithColors_titles_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" ( _0: ^NS.Menu ))) -> instancetype,
+    paletteMenuWithColors_titles_templateImage_selectionHandler: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" ( _0: ^NS.Menu ))) -> instancetype,
+    presentationStyle: proc(self: ^NS.Menu) -> NS.MenuPresentationStyle,
+    setPresentationStyle: proc(self: ^NS.Menu, presentationStyle: NS.MenuPresentationStyle),
+    selectionMode: proc(self: ^NS.Menu) -> NS.MenuSelectionMode,
+    setSelectionMode: proc(self: ^NS.Menu, selectionMode: NS.MenuSelectionMode),
+    selectedItems: proc(self: ^NS.Menu) -> ^NS.Array,
+    setSelectedItems: proc(self: ^NS.Menu, selectedItems: ^NS.Array),
+    submenuAction: proc(self: ^NS.Menu, sender: id),
+    propertiesToUpdate: proc(self: ^NS.Menu) -> NS.MenuProperties,
+    setMenuRepresentation: proc(self: ^NS.Menu, menuRep: id),
+    menuRepresentation: proc(self: ^NS.Menu) -> id,
+    setContextMenuRepresentation: proc(self: ^NS.Menu, menuRep: id),
+    contextMenuRepresentation: proc(self: ^NS.Menu) -> id,
+    setTearOffMenuRepresentation: proc(self: ^NS.Menu, menuRep: id),
+    tearOffMenuRepresentation: proc(self: ^NS.Menu) -> id,
     menuZone: proc() -> ^NS.Zone,
     setMenuZone: proc(zone: ^NS.Zone),
-    attachedMenu: proc(self: ^AK.Menu) -> ^AK.Menu,
-    isAttached: proc(self: ^AK.Menu) -> bool,
-    sizeToFit: proc(self: ^AK.Menu),
-    locationForSubmenu: proc(self: ^AK.Menu, submenu: ^AK.Menu) -> CG.Point,
-    helpRequested: proc(self: ^AK.Menu, eventPtr: ^AK.Event),
-    menuChangedMessagesEnabled: proc(self: ^AK.Menu) -> bool,
-    setMenuChangedMessagesEnabled: proc(self: ^AK.Menu, menuChangedMessagesEnabled: bool),
-    isTornOff: proc(self: ^AK.Menu) -> bool,
+    attachedMenu: proc(self: ^NS.Menu) -> ^NS.Menu,
+    isAttached: proc(self: ^NS.Menu) -> bool,
+    sizeToFit: proc(self: ^NS.Menu),
+    locationForSubmenu: proc(self: ^NS.Menu, submenu: ^NS.Menu) -> CG.Point,
+    helpRequested: proc(self: ^NS.Menu, eventPtr: ^NS.Event),
+    menuChangedMessagesEnabled: proc(self: ^NS.Menu) -> bool,
+    setMenuChangedMessagesEnabled: proc(self: ^NS.Menu, menuChangedMessagesEnabled: bool),
+    isTornOff: proc(self: ^NS.Menu) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithTitle != nil {
-        initWithTitle :: proc "c" (self: ^AK.Menu, _: SEL, title: ^NS.String) -> instancetype {
+        initWithTitle :: proc "c" (self: ^NS.Menu, _: SEL, title: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithTitle:"), auto_cast initWithTitle, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Menu, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.Menu, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -138,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.popUpContextMenu_withEvent_forView != nil {
-        popUpContextMenu_withEvent_forView :: proc "c" (self: Class, _: SEL, menu: ^AK.Menu, event: ^AK.Event, view: ^AK.View) {
+        popUpContextMenu_withEvent_forView :: proc "c" (self: Class, _: SEL, menu: ^NS.Menu, event: ^NS.Event, view: ^NS.View) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("popUpContextMenu:withEvent:forView:"), auto_cast popUpContextMenu_withEvent_forView, "v#:@@@") do panic("Failed to register objC method.")
     }
     if vt.popUpContextMenu_withEvent_forView_withFont != nil {
-        popUpContextMenu_withEvent_forView_withFont :: proc "c" (self: Class, _: SEL, menu: ^AK.Menu, event: ^AK.Event, view: ^AK.View, font: ^AK.Font) {
+        popUpContextMenu_withEvent_forView_withFont :: proc "c" (self: Class, _: SEL, menu: ^NS.Menu, event: ^NS.Event, view: ^NS.View, font: ^NS.Font) {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -158,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("popUpContextMenu:withEvent:forView:withFont:"), auto_cast popUpContextMenu_withEvent_forView_withFont, "v#:@@@@") do panic("Failed to register objC method.")
     }
     if vt.popUpMenuPositioningItem != nil {
-        popUpMenuPositioningItem :: proc "c" (self: ^AK.Menu, _: SEL, item: ^AK.MenuItem, location: CG.Point, view: ^AK.View) -> bool {
+        popUpMenuPositioningItem :: proc "c" (self: ^NS.Menu, _: SEL, item: ^NS.MenuItem, location: CG.Point, view: ^NS.View) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -188,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("menuBarVisible"), auto_cast menuBarVisible, "B#:") do panic("Failed to register objC method.")
     }
     if vt.insertItem != nil {
-        insertItem :: proc "c" (self: ^AK.Menu, _: SEL, newItem: ^AK.MenuItem, index: NS.Integer) {
+        insertItem :: proc "c" (self: ^NS.Menu, _: SEL, newItem: ^NS.MenuItem, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -198,7 +198,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertItem:atIndex:"), auto_cast insertItem, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.addItem != nil {
-        addItem :: proc "c" (self: ^AK.Menu, _: SEL, newItem: ^AK.MenuItem) {
+        addItem :: proc "c" (self: ^NS.Menu, _: SEL, newItem: ^NS.MenuItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -208,7 +208,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addItem:"), auto_cast addItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.insertItemWithTitle != nil {
-        insertItemWithTitle :: proc "c" (self: ^AK.Menu, _: SEL, string: ^NS.String, selector: SEL, charCode: ^NS.String, index: NS.Integer) -> ^AK.MenuItem {
+        insertItemWithTitle :: proc "c" (self: ^NS.Menu, _: SEL, string: ^NS.String, selector: SEL, charCode: ^NS.String, index: NS.Integer) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -218,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertItemWithTitle:action:keyEquivalent:atIndex:"), auto_cast insertItemWithTitle, "@@:@:@l") do panic("Failed to register objC method.")
     }
     if vt.addItemWithTitle != nil {
-        addItemWithTitle :: proc "c" (self: ^AK.Menu, _: SEL, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> ^AK.MenuItem {
+        addItemWithTitle :: proc "c" (self: ^NS.Menu, _: SEL, string: ^NS.String, selector: SEL, charCode: ^NS.String) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -228,7 +228,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addItemWithTitle:action:keyEquivalent:"), auto_cast addItemWithTitle, "@@:@:@") do panic("Failed to register objC method.")
     }
     if vt.removeItemAtIndex != nil {
-        removeItemAtIndex :: proc "c" (self: ^AK.Menu, _: SEL, index: NS.Integer) {
+        removeItemAtIndex :: proc "c" (self: ^NS.Menu, _: SEL, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -238,7 +238,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeItemAtIndex:"), auto_cast removeItemAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.removeItem != nil {
-        removeItem :: proc "c" (self: ^AK.Menu, _: SEL, item: ^AK.MenuItem) {
+        removeItem :: proc "c" (self: ^NS.Menu, _: SEL, item: ^NS.MenuItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -248,7 +248,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeItem:"), auto_cast removeItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.setSubmenu != nil {
-        setSubmenu :: proc "c" (self: ^AK.Menu, _: SEL, menu: ^AK.Menu, item: ^AK.MenuItem) {
+        setSubmenu :: proc "c" (self: ^NS.Menu, _: SEL, menu: ^NS.Menu, item: ^NS.MenuItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -258,7 +258,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSubmenu:forItem:"), auto_cast setSubmenu, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.removeAllItems != nil {
-        removeAllItems :: proc "c" (self: ^AK.Menu, _: SEL) {
+        removeAllItems :: proc "c" (self: ^NS.Menu, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -268,7 +268,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeAllItems"), auto_cast removeAllItems, "v@:") do panic("Failed to register objC method.")
     }
     if vt.itemAtIndex != nil {
-        itemAtIndex :: proc "c" (self: ^AK.Menu, _: SEL, index: NS.Integer) -> ^AK.MenuItem {
+        itemAtIndex :: proc "c" (self: ^NS.Menu, _: SEL, index: NS.Integer) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -278,7 +278,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemAtIndex:"), auto_cast itemAtIndex, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.indexOfItem != nil {
-        indexOfItem :: proc "c" (self: ^AK.Menu, _: SEL, item: ^AK.MenuItem) -> NS.Integer {
+        indexOfItem :: proc "c" (self: ^NS.Menu, _: SEL, item: ^NS.MenuItem) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -288,7 +288,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItem:"), auto_cast indexOfItem, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.indexOfItemWithTitle != nil {
-        indexOfItemWithTitle :: proc "c" (self: ^AK.Menu, _: SEL, title: ^NS.String) -> NS.Integer {
+        indexOfItemWithTitle :: proc "c" (self: ^NS.Menu, _: SEL, title: ^NS.String) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -298,7 +298,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItemWithTitle:"), auto_cast indexOfItemWithTitle, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.indexOfItemWithTag != nil {
-        indexOfItemWithTag :: proc "c" (self: ^AK.Menu, _: SEL, tag: NS.Integer) -> NS.Integer {
+        indexOfItemWithTag :: proc "c" (self: ^NS.Menu, _: SEL, tag: NS.Integer) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -308,7 +308,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItemWithTag:"), auto_cast indexOfItemWithTag, "l@:l") do panic("Failed to register objC method.")
     }
     if vt.indexOfItemWithRepresentedObject != nil {
-        indexOfItemWithRepresentedObject :: proc "c" (self: ^AK.Menu, _: SEL, object: id) -> NS.Integer {
+        indexOfItemWithRepresentedObject :: proc "c" (self: ^NS.Menu, _: SEL, object: id) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -318,7 +318,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItemWithRepresentedObject:"), auto_cast indexOfItemWithRepresentedObject, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.indexOfItemWithSubmenu != nil {
-        indexOfItemWithSubmenu :: proc "c" (self: ^AK.Menu, _: SEL, submenu: ^AK.Menu) -> NS.Integer {
+        indexOfItemWithSubmenu :: proc "c" (self: ^NS.Menu, _: SEL, submenu: ^NS.Menu) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -328,7 +328,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItemWithSubmenu:"), auto_cast indexOfItemWithSubmenu, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.indexOfItemWithTarget != nil {
-        indexOfItemWithTarget :: proc "c" (self: ^AK.Menu, _: SEL, target: id, actionSelector: SEL) -> NS.Integer {
+        indexOfItemWithTarget :: proc "c" (self: ^NS.Menu, _: SEL, target: id, actionSelector: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -338,7 +338,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItemWithTarget:andAction:"), auto_cast indexOfItemWithTarget, "l@:@:") do panic("Failed to register objC method.")
     }
     if vt.itemWithTitle != nil {
-        itemWithTitle :: proc "c" (self: ^AK.Menu, _: SEL, title: ^NS.String) -> ^AK.MenuItem {
+        itemWithTitle :: proc "c" (self: ^NS.Menu, _: SEL, title: ^NS.String) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -348,7 +348,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemWithTitle:"), auto_cast itemWithTitle, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.itemWithTag != nil {
-        itemWithTag :: proc "c" (self: ^AK.Menu, _: SEL, tag: NS.Integer) -> ^AK.MenuItem {
+        itemWithTag :: proc "c" (self: ^NS.Menu, _: SEL, tag: NS.Integer) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -358,7 +358,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemWithTag:"), auto_cast itemWithTag, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.update != nil {
-        update :: proc "c" (self: ^AK.Menu, _: SEL) {
+        update :: proc "c" (self: ^NS.Menu, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -368,7 +368,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("update"), auto_cast update, "v@:") do panic("Failed to register objC method.")
     }
     if vt.performKeyEquivalent != nil {
-        performKeyEquivalent :: proc "c" (self: ^AK.Menu, _: SEL, event: ^AK.Event) -> bool {
+        performKeyEquivalent :: proc "c" (self: ^NS.Menu, _: SEL, event: ^NS.Event) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -378,7 +378,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performKeyEquivalent:"), auto_cast performKeyEquivalent, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.itemChanged != nil {
-        itemChanged :: proc "c" (self: ^AK.Menu, _: SEL, item: ^AK.MenuItem) {
+        itemChanged :: proc "c" (self: ^NS.Menu, _: SEL, item: ^NS.MenuItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -388,7 +388,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemChanged:"), auto_cast itemChanged, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.performActionForItemAtIndex != nil {
-        performActionForItemAtIndex :: proc "c" (self: ^AK.Menu, _: SEL, index: NS.Integer) {
+        performActionForItemAtIndex :: proc "c" (self: ^NS.Menu, _: SEL, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -398,7 +398,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performActionForItemAtIndex:"), auto_cast performActionForItemAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.cancelTracking != nil {
-        cancelTracking :: proc "c" (self: ^AK.Menu, _: SEL) {
+        cancelTracking :: proc "c" (self: ^NS.Menu, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -408,7 +408,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancelTracking"), auto_cast cancelTracking, "v@:") do panic("Failed to register objC method.")
     }
     if vt.cancelTrackingWithoutAnimation != nil {
-        cancelTrackingWithoutAnimation :: proc "c" (self: ^AK.Menu, _: SEL) {
+        cancelTrackingWithoutAnimation :: proc "c" (self: ^NS.Menu, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -418,7 +418,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cancelTrackingWithoutAnimation"), auto_cast cancelTrackingWithoutAnimation, "v@:") do panic("Failed to register objC method.")
     }
     if vt.title != nil {
-        title :: proc "c" (self: ^AK.Menu, _: SEL) -> ^NS.String {
+        title :: proc "c" (self: ^NS.Menu, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -428,7 +428,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("title"), auto_cast title, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.Menu, _: SEL, title: ^NS.String) {
+        setTitle :: proc "c" (self: ^NS.Menu, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -438,7 +438,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.supermenu != nil {
-        supermenu :: proc "c" (self: ^AK.Menu, _: SEL) -> ^AK.Menu {
+        supermenu :: proc "c" (self: ^NS.Menu, _: SEL) -> ^NS.Menu {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -448,7 +448,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("supermenu"), auto_cast supermenu, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSupermenu != nil {
-        setSupermenu :: proc "c" (self: ^AK.Menu, _: SEL, supermenu: ^AK.Menu) {
+        setSupermenu :: proc "c" (self: ^NS.Menu, _: SEL, supermenu: ^NS.Menu) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -458,7 +458,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSupermenu:"), auto_cast setSupermenu, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.itemArray != nil {
-        itemArray :: proc "c" (self: ^AK.Menu, _: SEL) -> ^NS.Array {
+        itemArray :: proc "c" (self: ^NS.Menu, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -468,7 +468,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemArray"), auto_cast itemArray, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setItemArray != nil {
-        setItemArray :: proc "c" (self: ^AK.Menu, _: SEL, itemArray: ^NS.Array) {
+        setItemArray :: proc "c" (self: ^NS.Menu, _: SEL, itemArray: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -478,7 +478,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setItemArray:"), auto_cast setItemArray, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.numberOfItems != nil {
-        numberOfItems :: proc "c" (self: ^AK.Menu, _: SEL) -> NS.Integer {
+        numberOfItems :: proc "c" (self: ^NS.Menu, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -488,7 +488,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfItems"), auto_cast numberOfItems, "l@:") do panic("Failed to register objC method.")
     }
     if vt.autoenablesItems != nil {
-        autoenablesItems :: proc "c" (self: ^AK.Menu, _: SEL) -> bool {
+        autoenablesItems :: proc "c" (self: ^NS.Menu, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -498,7 +498,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autoenablesItems"), auto_cast autoenablesItems, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutoenablesItems != nil {
-        setAutoenablesItems :: proc "c" (self: ^AK.Menu, _: SEL, autoenablesItems: bool) {
+        setAutoenablesItems :: proc "c" (self: ^NS.Menu, _: SEL, autoenablesItems: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -508,7 +508,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutoenablesItems:"), auto_cast setAutoenablesItems, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.Menu, _: SEL) -> ^AK.MenuDelegate {
+        delegate :: proc "c" (self: ^NS.Menu, _: SEL) -> ^NS.MenuDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -518,7 +518,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.Menu, _: SEL, delegate: ^AK.MenuDelegate) {
+        setDelegate :: proc "c" (self: ^NS.Menu, _: SEL, delegate: ^NS.MenuDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -528,7 +528,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.menuBarHeight != nil {
-        menuBarHeight :: proc "c" (self: ^AK.Menu, _: SEL) -> CG.Float {
+        menuBarHeight :: proc "c" (self: ^NS.Menu, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -538,7 +538,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menuBarHeight"), auto_cast menuBarHeight, "d@:") do panic("Failed to register objC method.")
     }
     if vt.highlightedItem != nil {
-        highlightedItem :: proc "c" (self: ^AK.Menu, _: SEL) -> ^AK.MenuItem {
+        highlightedItem :: proc "c" (self: ^NS.Menu, _: SEL) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -548,7 +548,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("highlightedItem"), auto_cast highlightedItem, "@@:") do panic("Failed to register objC method.")
     }
     if vt.minimumWidth != nil {
-        minimumWidth :: proc "c" (self: ^AK.Menu, _: SEL) -> CG.Float {
+        minimumWidth :: proc "c" (self: ^NS.Menu, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -558,7 +558,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumWidth"), auto_cast minimumWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumWidth != nil {
-        setMinimumWidth :: proc "c" (self: ^AK.Menu, _: SEL, minimumWidth: CG.Float) {
+        setMinimumWidth :: proc "c" (self: ^NS.Menu, _: SEL, minimumWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -568,7 +568,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumWidth:"), auto_cast setMinimumWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.size != nil {
-        size :: proc "c" (self: ^AK.Menu, _: SEL) -> NS.Size {
+        size :: proc "c" (self: ^NS.Menu, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -578,7 +578,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("size"), auto_cast size, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.font != nil {
-        font :: proc "c" (self: ^AK.Menu, _: SEL) -> ^AK.Font {
+        font :: proc "c" (self: ^NS.Menu, _: SEL) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -588,7 +588,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("font"), auto_cast font, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setFont != nil {
-        setFont :: proc "c" (self: ^AK.Menu, _: SEL, font: ^AK.Font) {
+        setFont :: proc "c" (self: ^NS.Menu, _: SEL, font: ^NS.Font) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -598,7 +598,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFont:"), auto_cast setFont, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.allowsContextMenuPlugIns != nil {
-        allowsContextMenuPlugIns :: proc "c" (self: ^AK.Menu, _: SEL) -> bool {
+        allowsContextMenuPlugIns :: proc "c" (self: ^NS.Menu, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -608,7 +608,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsContextMenuPlugIns"), auto_cast allowsContextMenuPlugIns, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsContextMenuPlugIns != nil {
-        setAllowsContextMenuPlugIns :: proc "c" (self: ^AK.Menu, _: SEL, allowsContextMenuPlugIns: bool) {
+        setAllowsContextMenuPlugIns :: proc "c" (self: ^NS.Menu, _: SEL, allowsContextMenuPlugIns: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -618,7 +618,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsContextMenuPlugIns:"), auto_cast setAllowsContextMenuPlugIns, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.automaticallyInsertsWritingToolsItems != nil {
-        automaticallyInsertsWritingToolsItems :: proc "c" (self: ^AK.Menu, _: SEL) -> bool {
+        automaticallyInsertsWritingToolsItems :: proc "c" (self: ^NS.Menu, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -628,7 +628,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyInsertsWritingToolsItems"), auto_cast automaticallyInsertsWritingToolsItems, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyInsertsWritingToolsItems != nil {
-        setAutomaticallyInsertsWritingToolsItems :: proc "c" (self: ^AK.Menu, _: SEL, automaticallyInsertsWritingToolsItems: bool) {
+        setAutomaticallyInsertsWritingToolsItems :: proc "c" (self: ^NS.Menu, _: SEL, automaticallyInsertsWritingToolsItems: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -638,7 +638,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyInsertsWritingToolsItems:"), auto_cast setAutomaticallyInsertsWritingToolsItems, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.showsStateColumn != nil {
-        showsStateColumn :: proc "c" (self: ^AK.Menu, _: SEL) -> bool {
+        showsStateColumn :: proc "c" (self: ^NS.Menu, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -648,7 +648,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showsStateColumn"), auto_cast showsStateColumn, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setShowsStateColumn != nil {
-        setShowsStateColumn :: proc "c" (self: ^AK.Menu, _: SEL, showsStateColumn: bool) {
+        setShowsStateColumn :: proc "c" (self: ^NS.Menu, _: SEL, showsStateColumn: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -658,7 +658,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsStateColumn:"), auto_cast setShowsStateColumn, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.userInterfaceLayoutDirection != nil {
-        userInterfaceLayoutDirection :: proc "c" (self: ^AK.Menu, _: SEL) -> AK.UserInterfaceLayoutDirection {
+        userInterfaceLayoutDirection :: proc "c" (self: ^NS.Menu, _: SEL) -> NS.UserInterfaceLayoutDirection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -668,7 +668,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("userInterfaceLayoutDirection"), auto_cast userInterfaceLayoutDirection, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setUserInterfaceLayoutDirection != nil {
-        setUserInterfaceLayoutDirection :: proc "c" (self: ^AK.Menu, _: SEL, userInterfaceLayoutDirection: AK.UserInterfaceLayoutDirection) {
+        setUserInterfaceLayoutDirection :: proc "c" (self: ^NS.Menu, _: SEL, userInterfaceLayoutDirection: NS.UserInterfaceLayoutDirection) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -678,7 +678,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUserInterfaceLayoutDirection:"), auto_cast setUserInterfaceLayoutDirection, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.paletteMenuWithColors_titles_selectionHandler != nil {
-        paletteMenuWithColors_titles_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> instancetype {
+        paletteMenuWithColors_titles_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" ( _0: ^NS.Menu ))) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -688,7 +688,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("paletteMenuWithColors:titles:selectionHandler:"), auto_cast paletteMenuWithColors_titles_selectionHandler, "@#:^void^void?") do panic("Failed to register objC method.")
     }
     if vt.paletteMenuWithColors_titles_templateImage_selectionHandler != nil {
-        paletteMenuWithColors_titles_templateImage_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, image: ^AK.Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^AK.Menu))) -> instancetype {
+        paletteMenuWithColors_titles_templateImage_selectionHandler :: proc "c" (self: Class, _: SEL, colors: ^NS.Array, itemTitles: ^NS.Array, image: ^NS.Image, onSelectionChange: ^Objc_Block(proc "c" ( _0: ^NS.Menu ))) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -698,7 +698,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("paletteMenuWithColors:titles:templateImage:selectionHandler:"), auto_cast paletteMenuWithColors_titles_templateImage_selectionHandler, "@#:^void^void@?") do panic("Failed to register objC method.")
     }
     if vt.presentationStyle != nil {
-        presentationStyle :: proc "c" (self: ^AK.Menu, _: SEL) -> AK.MenuPresentationStyle {
+        presentationStyle :: proc "c" (self: ^NS.Menu, _: SEL) -> NS.MenuPresentationStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -708,7 +708,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("presentationStyle"), auto_cast presentationStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setPresentationStyle != nil {
-        setPresentationStyle :: proc "c" (self: ^AK.Menu, _: SEL, presentationStyle: AK.MenuPresentationStyle) {
+        setPresentationStyle :: proc "c" (self: ^NS.Menu, _: SEL, presentationStyle: NS.MenuPresentationStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -718,7 +718,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPresentationStyle:"), auto_cast setPresentationStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.selectionMode != nil {
-        selectionMode :: proc "c" (self: ^AK.Menu, _: SEL) -> AK.MenuSelectionMode {
+        selectionMode :: proc "c" (self: ^NS.Menu, _: SEL) -> NS.MenuSelectionMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -728,7 +728,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionMode"), auto_cast selectionMode, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionMode != nil {
-        setSelectionMode :: proc "c" (self: ^AK.Menu, _: SEL, selectionMode: AK.MenuSelectionMode) {
+        setSelectionMode :: proc "c" (self: ^NS.Menu, _: SEL, selectionMode: NS.MenuSelectionMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -738,7 +738,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionMode:"), auto_cast setSelectionMode, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.selectedItems != nil {
-        selectedItems :: proc "c" (self: ^AK.Menu, _: SEL) -> ^NS.Array {
+        selectedItems :: proc "c" (self: ^NS.Menu, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -748,7 +748,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedItems"), auto_cast selectedItems, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedItems != nil {
-        setSelectedItems :: proc "c" (self: ^AK.Menu, _: SEL, selectedItems: ^NS.Array) {
+        setSelectedItems :: proc "c" (self: ^NS.Menu, _: SEL, selectedItems: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -758,7 +758,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedItems:"), auto_cast setSelectedItems, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.submenuAction != nil {
-        submenuAction :: proc "c" (self: ^AK.Menu, _: SEL, sender: id) {
+        submenuAction :: proc "c" (self: ^NS.Menu, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -768,7 +768,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("submenuAction:"), auto_cast submenuAction, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.propertiesToUpdate != nil {
-        propertiesToUpdate :: proc "c" (self: ^AK.Menu, _: SEL) -> AK.MenuProperties {
+        propertiesToUpdate :: proc "c" (self: ^NS.Menu, _: SEL) -> NS.MenuProperties {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -778,7 +778,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("propertiesToUpdate"), auto_cast propertiesToUpdate, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setMenuRepresentation != nil {
-        setMenuRepresentation :: proc "c" (self: ^AK.Menu, _: SEL, menuRep: id) {
+        setMenuRepresentation :: proc "c" (self: ^NS.Menu, _: SEL, menuRep: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -788,7 +788,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMenuRepresentation:"), auto_cast setMenuRepresentation, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.menuRepresentation != nil {
-        menuRepresentation :: proc "c" (self: ^AK.Menu, _: SEL) -> id {
+        menuRepresentation :: proc "c" (self: ^NS.Menu, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -798,7 +798,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menuRepresentation"), auto_cast menuRepresentation, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContextMenuRepresentation != nil {
-        setContextMenuRepresentation :: proc "c" (self: ^AK.Menu, _: SEL, menuRep: id) {
+        setContextMenuRepresentation :: proc "c" (self: ^NS.Menu, _: SEL, menuRep: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -808,7 +808,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContextMenuRepresentation:"), auto_cast setContextMenuRepresentation, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.contextMenuRepresentation != nil {
-        contextMenuRepresentation :: proc "c" (self: ^AK.Menu, _: SEL) -> id {
+        contextMenuRepresentation :: proc "c" (self: ^NS.Menu, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -818,7 +818,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contextMenuRepresentation"), auto_cast contextMenuRepresentation, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTearOffMenuRepresentation != nil {
-        setTearOffMenuRepresentation :: proc "c" (self: ^AK.Menu, _: SEL, menuRep: id) {
+        setTearOffMenuRepresentation :: proc "c" (self: ^NS.Menu, _: SEL, menuRep: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -828,7 +828,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTearOffMenuRepresentation:"), auto_cast setTearOffMenuRepresentation, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.tearOffMenuRepresentation != nil {
-        tearOffMenuRepresentation :: proc "c" (self: ^AK.Menu, _: SEL) -> id {
+        tearOffMenuRepresentation :: proc "c" (self: ^NS.Menu, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -858,7 +858,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("setMenuZone:"), auto_cast setMenuZone, "v#:^void") do panic("Failed to register objC method.")
     }
     if vt.attachedMenu != nil {
-        attachedMenu :: proc "c" (self: ^AK.Menu, _: SEL) -> ^AK.Menu {
+        attachedMenu :: proc "c" (self: ^NS.Menu, _: SEL) -> ^NS.Menu {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -868,7 +868,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attachedMenu"), auto_cast attachedMenu, "@@:") do panic("Failed to register objC method.")
     }
     if vt.isAttached != nil {
-        isAttached :: proc "c" (self: ^AK.Menu, _: SEL) -> bool {
+        isAttached :: proc "c" (self: ^NS.Menu, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -878,7 +878,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isAttached"), auto_cast isAttached, "B@:") do panic("Failed to register objC method.")
     }
     if vt.sizeToFit != nil {
-        sizeToFit :: proc "c" (self: ^AK.Menu, _: SEL) {
+        sizeToFit :: proc "c" (self: ^NS.Menu, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -888,7 +888,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sizeToFit"), auto_cast sizeToFit, "v@:") do panic("Failed to register objC method.")
     }
     if vt.locationForSubmenu != nil {
-        locationForSubmenu :: proc "c" (self: ^AK.Menu, _: SEL, submenu: ^AK.Menu) -> CG.Point {
+        locationForSubmenu :: proc "c" (self: ^NS.Menu, _: SEL, submenu: ^NS.Menu) -> CG.Point {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -898,7 +898,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("locationForSubmenu:"), auto_cast locationForSubmenu, "{CGPoint=dd}@:@") do panic("Failed to register objC method.")
     }
     if vt.helpRequested != nil {
-        helpRequested :: proc "c" (self: ^AK.Menu, _: SEL, eventPtr: ^AK.Event) {
+        helpRequested :: proc "c" (self: ^NS.Menu, _: SEL, eventPtr: ^NS.Event) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -908,7 +908,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("helpRequested:"), auto_cast helpRequested, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.menuChangedMessagesEnabled != nil {
-        menuChangedMessagesEnabled :: proc "c" (self: ^AK.Menu, _: SEL) -> bool {
+        menuChangedMessagesEnabled :: proc "c" (self: ^NS.Menu, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -918,7 +918,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menuChangedMessagesEnabled"), auto_cast menuChangedMessagesEnabled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setMenuChangedMessagesEnabled != nil {
-        setMenuChangedMessagesEnabled :: proc "c" (self: ^AK.Menu, _: SEL, menuChangedMessagesEnabled: bool) {
+        setMenuChangedMessagesEnabled :: proc "c" (self: ^NS.Menu, _: SEL, menuChangedMessagesEnabled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -928,7 +928,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMenuChangedMessagesEnabled:"), auto_cast setMenuChangedMessagesEnabled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isTornOff != nil {
-        isTornOff :: proc "c" (self: ^AK.Menu, _: SEL) -> bool {
+        isTornOff :: proc "c" (self: ^NS.Menu, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

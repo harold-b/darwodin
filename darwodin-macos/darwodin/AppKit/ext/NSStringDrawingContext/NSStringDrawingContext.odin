@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    minimumScaleFactor: proc(self: ^AK.StringDrawingContext) -> CG.Float,
-    setMinimumScaleFactor: proc(self: ^AK.StringDrawingContext, minimumScaleFactor: CG.Float),
-    actualScaleFactor: proc(self: ^AK.StringDrawingContext) -> CG.Float,
-    totalBounds: proc(self: ^AK.StringDrawingContext) -> CG.Rect,
+    minimumScaleFactor: proc(self: ^NS.StringDrawingContext) -> CG.Float,
+    setMinimumScaleFactor: proc(self: ^NS.StringDrawingContext, minimumScaleFactor: CG.Float),
+    actualScaleFactor: proc(self: ^NS.StringDrawingContext) -> CG.Float,
+    totalBounds: proc(self: ^NS.StringDrawingContext) -> CG.Rect,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.minimumScaleFactor != nil {
-        minimumScaleFactor :: proc "c" (self: ^AK.StringDrawingContext, _: SEL) -> CG.Float {
+        minimumScaleFactor :: proc "c" (self: ^NS.StringDrawingContext, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumScaleFactor"), auto_cast minimumScaleFactor, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumScaleFactor != nil {
-        setMinimumScaleFactor :: proc "c" (self: ^AK.StringDrawingContext, _: SEL, minimumScaleFactor: CG.Float) {
+        setMinimumScaleFactor :: proc "c" (self: ^NS.StringDrawingContext, _: SEL, minimumScaleFactor: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumScaleFactor:"), auto_cast setMinimumScaleFactor, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.actualScaleFactor != nil {
-        actualScaleFactor :: proc "c" (self: ^AK.StringDrawingContext, _: SEL) -> CG.Float {
+        actualScaleFactor :: proc "c" (self: ^NS.StringDrawingContext, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("actualScaleFactor"), auto_cast actualScaleFactor, "d@:") do panic("Failed to register objC method.")
     }
     if vt.totalBounds != nil {
-        totalBounds :: proc "c" (self: ^AK.StringDrawingContext, _: SEL) -> CG.Rect {
+        totalBounds :: proc "c" (self: ^NS.StringDrawingContext, _: SEL) -> CG.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

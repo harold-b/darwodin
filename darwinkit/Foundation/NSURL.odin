@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURL
-///
 @(objc_class="NSURL", objc_superclass=Object)
 URL :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URL, objc_selector="initWithScheme:host:path:", objc_name="initWithScheme")
     URL_initWithScheme :: proc(self: ^URL, scheme: ^String, host: ^String, path: ^String) -> instancetype ---
@@ -250,7 +244,7 @@ foreign lib {
     @(objc_type=URL, objc_selector="URLByResolvingSymlinksInPath", objc_name="URLByResolvingSymlinksInPath")
     URL_URLByResolvingSymlinksInPath :: proc(self: ^URL) -> ^URL ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=URL, objc_selector="resourceDataUsingCache:", objc_name="resourceDataUsingCache")
         URL_resourceDataUsingCache :: proc(self: ^URL, shouldUseCache: bool) -> ^Data ---
 
@@ -270,6 +264,8 @@ foreign lib {
         URL_URLHandleUsingCache :: proc(self: ^URL, shouldUseCache: bool) -> ^URLHandle ---
     }
 }
+
+
 
 @(objc_type=URL, objc_name="initFileURLWithPath")
 URL_initFileURLWithPath :: proc {

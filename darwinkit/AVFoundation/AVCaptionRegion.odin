@@ -12,11 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptionRegion
-///
 @(objc_class="AVCaptionRegion", objc_superclass=NS.Object)
 CaptionRegion :: struct { using _: NS.Object, 
     using _: NS.Copying,
@@ -24,7 +19,6 @@ CaptionRegion :: struct { using _: NS.Object,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionRegion, objc_selector="encodeWithCoder:", objc_name="encodeWithCoder")
     CaptionRegion_encodeWithCoder :: proc(self: ^CaptionRegion, encoder: ^NS.Coder) ---
@@ -68,3 +62,6 @@ foreign lib {
     @(objc_type=CaptionRegion, objc_selector="writingMode", objc_name="writingMode")
     CaptionRegion_writingMode :: proc(self: ^CaptionRegion) -> CaptionRegionWritingMode ---
 }
+
+
+

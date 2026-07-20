@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSampleBufferVideoRenderer
-///
 @(objc_class="AVSampleBufferVideoRenderer", objc_superclass=NS.Object)
 SampleBufferVideoRenderer :: struct { using _: NS.Object, 
     using _: QueuedSampleBufferRendering,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleBufferVideoRenderer, objc_selector="flushWithRemovalOfDisplayedImage:completionHandler:", objc_name="flushWithRemovalOfDisplayedImage")
     SampleBufferVideoRenderer_flushWithRemovalOfDisplayedImage :: proc(self: ^SampleBufferVideoRenderer, removeDisplayedImage: bool, handler: ^Objc_Block(proc "c" ())) ---
@@ -52,5 +46,8 @@ foreign lib {
     SampleBufferVideoRenderer_recommendedPixelBufferAttributes :: proc(self: ^SampleBufferVideoRenderer) -> ^NS.Dictionary ---
 
     @(objc_type=SampleBufferVideoRenderer, objc_selector="loadVideoPerformanceMetricsWithCompletionHandler:", objc_name="loadVideoPerformanceMetricsWithCompletionHandler")
-    SampleBufferVideoRenderer_loadVideoPerformanceMetricsWithCompletionHandler :: proc(self: ^SampleBufferVideoRenderer, completionHandler: ^Objc_Block(proc "c" (videoPerformanceMetrics: ^VideoPerformanceMetrics))) ---
+    SampleBufferVideoRenderer_loadVideoPerformanceMetricsWithCompletionHandler :: proc(self: ^SampleBufferVideoRenderer, completionHandler: ^Objc_Block(proc "c" ( videoPerformanceMetrics: ^VideoPerformanceMetrics ))) ---
 }
+
+
+

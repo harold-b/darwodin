@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSBundle
-///
 @(objc_class="NSBundle", objc_superclass=Object)
 Bundle :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Bundle, objc_selector="bundleWithPath:", objc_name="bundleWithPath", objc_is_class_method=true)
     Bundle_bundleWithPath :: proc(path: ^String) -> instancetype ---
@@ -205,6 +199,8 @@ foreign lib {
     @(objc_type=Bundle, objc_selector="preservationPriorityForTag:", objc_name="preservationPriorityForTag")
     Bundle_preservationPriorityForTag :: proc(self: ^Bundle, tag: ^String) -> cffi.double ---
 }
+
+
 
 @(objc_type=Bundle, objc_name="URLForResource")
 Bundle_URLForResource :: proc {

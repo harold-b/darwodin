@@ -17,8 +17,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:UIKit.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:UIKit.framework",
+    }
+}
+
+
+// +user-text-begin
 LPLinkMetadata :: NS.Object
 INIntent :: NS.Object
 INIntentResponse :: NS.Object
@@ -33,6 +45,7 @@ AVAudioSession :: NS.Object
 UTType :: struct {}
 CTTextAlignment :: distinct cffi.uint8_t
 
+// -user-text-end
 
 
 NSAttachmentCharacter                   :: 65532
@@ -867,7 +880,7 @@ foreign lib {
     GuidedAccessRestrictionStateForIdentifier :: proc(restrictionIdentifier: ^NS.String) -> GuidedAccessRestrictionState ---
 
     @(link_name="UIGuidedAccessConfigureAccessibilityFeatures")
-    GuidedAccessConfigureAccessibilityFeatures :: proc(features: GuidedAccessAccessibilityFeature, enabled: bool, completion: ^Objc_Block(proc "c" (success: bool, error: ^NS.Error))) ---
+    GuidedAccessConfigureAccessibilityFeatures :: proc(features: GuidedAccessAccessibilityFeature, enabled: bool, completion: ^Objc_Block(proc "c" ( success: bool, error: ^NS.Error ))) ---
 
     @(link_name="UIAccessibilityConvertFrameToScreenCoordinates")
     AccessibilityConvertFrameToScreenCoordinates :: proc(rect: CG.Rect, view: ^View) -> CG.Rect ---
@@ -942,7 +955,7 @@ foreign lib {
     AccessibilityIsOnOffSwitchLabelsEnabled :: proc() -> bool ---
 
     @(link_name="UIAccessibilityRequestGuidedAccessSession")
-    AccessibilityRequestGuidedAccessSession :: proc(enable: bool, completionHandler: ^Objc_Block(proc "c" (didSucceed: bool))) ---
+    AccessibilityRequestGuidedAccessSession :: proc(enable: bool, completionHandler: ^Objc_Block(proc "c" ( didSucceed: bool ))) ---
 
     @(link_name="UIAccessibilityHearingDevicePairedEar")
     AccessibilityHearingDevicePairedEar :: proc() -> AccessibilityHearingDeviceEar ---
@@ -1043,7 +1056,7 @@ AccelerationValue :: distinct cffi.double
 MenuIdentifier :: distinct ^NS.String
 
 /// UITextAttributesConversionHandler
-TextAttributesConversionHandler :: ^Objc_Block(proc "c" (_: ^NS.Dictionary) -> ^NS.Dictionary)
+TextAttributesConversionHandler :: ^Objc_Block(proc "c" ( _0: ^NS.Dictionary ) -> ^NS.Dictionary)
 
 /// UILayoutPriority
 LayoutPriority :: distinct cffi.float
@@ -1067,10 +1080,10 @@ ContentSizeCategory :: distinct ^NS.String
 SceneSessionRole :: distinct ^NS.String
 
 /// UITraitMutations
-TraitMutations :: ^Objc_Block(proc "c" (mutableTraits: ^MutableTraits))
+TraitMutations :: ^Objc_Block(proc "c" ( mutableTraits: ^MutableTraits ))
 
 /// UITraitChangeHandler
-TraitChangeHandler :: ^Objc_Block(proc "c" (traitEnvironment: ^TraitEnvironment, previousCollection: ^TraitCollection))
+TraitChangeHandler :: ^Objc_Block(proc "c" ( traitEnvironment: ^TraitEnvironment, previousCollection: ^TraitCollection ))
 
 /// UIFocusSoundIdentifier
 FocusSoundIdentifier :: distinct ^NS.String
@@ -1082,10 +1095,10 @@ FocusGroupPriority :: distinct NS.Integer
 ActionIdentifier :: distinct ^NS.String
 
 /// UIActionHandler
-ActionHandler :: ^Objc_Block(proc "c" (action: ^Action))
+ActionHandler :: ^Objc_Block(proc "c" ( action: ^Action ))
 
 /// UIContextMenuActionProvider
-ContextMenuActionProvider :: ^Objc_Block(proc "c" (suggestedActions: ^NS.Array) -> ^Menu)
+ContextMenuActionProvider :: ^Objc_Block(proc "c" ( suggestedActions: ^NS.Array ) -> ^Menu)
 
 /// UIContextMenuContentPreviewProvider
 ContextMenuContentPreviewProvider :: ^Objc_Block(proc "c" () -> ^ViewController)
@@ -1094,7 +1107,7 @@ ContextMenuContentPreviewProvider :: ^Objc_Block(proc "c" () -> ^ViewController)
 ScrollViewDecelerationRate :: distinct CG.Float
 
 /// UIAccessibilityCustomActionHandler
-AccessibilityCustomActionHandler :: ^Objc_Block(proc "c" (customAction: ^AccessibilityCustomAction) -> bool)
+AccessibilityCustomActionHandler :: ^Objc_Block(proc "c" ( customAction: ^AccessibilityCustomAction ) -> bool)
 
 /// UITextContentType
 TextContentType :: distinct ^NS.String
@@ -1106,7 +1119,7 @@ TextDirection :: distinct NS.Integer
 TextWritingDirection :: distinct NSWritingDirection
 
 /// UIAccessibilityCustomRotorSearch
-AccessibilityCustomRotorSearch :: ^Objc_Block(proc "c" (predicate: ^AccessibilityCustomRotorSearchPredicate) -> ^AccessibilityCustomRotorItemResult)
+AccessibilityCustomRotorSearch :: ^Objc_Block(proc "c" ( predicate: ^AccessibilityCustomRotorSearchPredicate ) -> ^AccessibilityCustomRotorItemResult)
 
 /// UIBackgroundTaskIdentifier
 BackgroundTaskIdentifier :: distinct NS.UInteger
@@ -1121,64 +1134,64 @@ ApplicationLaunchOptionsKey :: distinct ^NS.String
 ApplicationOpenURLOptionsKey :: distinct ^NS.String
 
 /// UISymbolEffectCompletion
-SymbolEffectCompletion :: ^Objc_Block(proc "c" (_context: ^SymbolEffectCompletionContext))
+SymbolEffectCompletion :: ^Objc_Block(proc "c" ( _context: ^SymbolEffectCompletionContext ))
 
 /// UIConfigurationColorTransformer
-ConfigurationColorTransformer :: ^Objc_Block(proc "c" (color: ^Color) -> ^Color)
+ConfigurationColorTransformer :: ^Objc_Block(proc "c" ( color: ^Color ) -> ^Color)
 
 /// UIConfigurationTextAttributesTransformer
-ConfigurationTextAttributesTransformer :: ^Objc_Block(proc "c" (textAttributes: ^NS.Dictionary) -> ^NS.Dictionary)
+ConfigurationTextAttributesTransformer :: ^Objc_Block(proc "c" ( textAttributes: ^NS.Dictionary ) -> ^NS.Dictionary)
 
 /// UIButtonConfigurationUpdateHandler
-ButtonConfigurationUpdateHandler :: ^Objc_Block(proc "c" (button: ^Button))
+ButtonConfigurationUpdateHandler :: ^Objc_Block(proc "c" ( button: ^Button ))
 
 /// UICollectionViewLayoutInteractiveTransitionCompletion
-CollectionViewLayoutInteractiveTransitionCompletion :: ^Objc_Block(proc "c" (completed: bool, finished: bool))
+CollectionViewLayoutInteractiveTransitionCompletion :: ^Objc_Block(proc "c" ( completed: bool, finished: bool ))
 
 /// UICollectionViewCellConfigurationUpdateHandler
-CollectionViewCellConfigurationUpdateHandler :: ^Objc_Block(proc "c" (cell: ^CollectionViewCell, state: ^CellConfigurationState))
+CollectionViewCellConfigurationUpdateHandler :: ^Objc_Block(proc "c" ( cell: ^CollectionViewCell, state: ^CellConfigurationState ))
 
 /// UICollectionViewCompositionalLayoutSectionProvider
-CollectionViewCompositionalLayoutSectionProvider :: ^Objc_Block(proc "c" (sectionIndex: NS.Integer, layoutEnvironment: ^NSCollectionLayoutEnvironment) -> ^NSCollectionLayoutSection)
+CollectionViewCompositionalLayoutSectionProvider :: ^Objc_Block(proc "c" ( sectionIndex: NS.Integer, layoutEnvironment: ^NSCollectionLayoutEnvironment ) -> ^NSCollectionLayoutSection)
 
 /// NSCollectionLayoutSectionVisibleItemsInvalidationHandler
-NSCollectionLayoutSectionVisibleItemsInvalidationHandler :: ^Objc_Block(proc "c" (visibleItems: ^NS.Array, contentOffset: CG.Point, layoutEnvironment: ^NSCollectionLayoutEnvironment))
+NSCollectionLayoutSectionVisibleItemsInvalidationHandler :: ^Objc_Block(proc "c" ( visibleItems: ^NS.Array, contentOffset: CG.Point, layoutEnvironment: ^NSCollectionLayoutEnvironment ))
 
 /// UICollectionLayoutSectionOrthogonalScrollingDecelerationRate
 CollectionLayoutSectionOrthogonalScrollingDecelerationRate :: distinct CG.Float
 
 /// NSCollectionLayoutGroupCustomItemProvider
-NSCollectionLayoutGroupCustomItemProvider :: ^Objc_Block(proc "c" (layoutEnvironment: ^NSCollectionLayoutEnvironment) -> ^NS.Array)
+NSCollectionLayoutGroupCustomItemProvider :: ^Objc_Block(proc "c" ( layoutEnvironment: ^NSCollectionLayoutEnvironment ) -> ^NS.Array)
 
 /// UICellAccessoryPosition
-CellAccessoryPosition :: ^Objc_Block(proc "c" (accessories: ^NS.Array) -> NS.UInteger)
+CellAccessoryPosition :: ^Objc_Block(proc "c" ( accessories: ^NS.Array ) -> NS.UInteger)
 
 /// UIContextualActionHandler
-ContextualActionHandler :: ^Objc_Block(proc "c" (action: ^ContextualAction, sourceView: ^View, completionHandler: ^Objc_Block(proc "c" (actionPerformed: bool))))
+ContextualActionHandler :: ^Objc_Block(proc "c" ( action: ^ContextualAction, sourceView: ^View, completionHandler: ^Objc_Block(proc "c" ( actionPerformed: bool )) ))
 
 /// UITableViewCellConfigurationUpdateHandler
-TableViewCellConfigurationUpdateHandler :: ^Objc_Block(proc "c" (cell: ^TableViewCell, state: ^CellConfigurationState))
+TableViewCellConfigurationUpdateHandler :: ^Objc_Block(proc "c" ( cell: ^TableViewCell, state: ^CellConfigurationState ))
 
 /// UICollectionViewDiffableDataSourceCellProvider
-CollectionViewDiffableDataSourceCellProvider :: ^Objc_Block(proc "c" (collectionView: ^CollectionView, indexPath: ^NS.IndexPath, itemIdentifier: id) -> ^CollectionViewCell)
+CollectionViewDiffableDataSourceCellProvider :: ^Objc_Block(proc "c" ( collectionView: ^CollectionView, indexPath: ^NS.IndexPath, itemIdentifier: id ) -> ^CollectionViewCell)
 
 /// UICollectionViewDiffableDataSourceSupplementaryViewProvider
-CollectionViewDiffableDataSourceSupplementaryViewProvider :: ^Objc_Block(proc "c" (collectionView: ^CollectionView, elementKind: ^NS.String, indexPath: ^NS.IndexPath) -> ^CollectionReusableView)
+CollectionViewDiffableDataSourceSupplementaryViewProvider :: ^Objc_Block(proc "c" ( collectionView: ^CollectionView, elementKind: ^NS.String, indexPath: ^NS.IndexPath ) -> ^CollectionReusableView)
 
 /// UITableViewDiffableDataSourceCellProvider
-TableViewDiffableDataSourceCellProvider :: ^Objc_Block(proc "c" (tableView: ^TableView, indexPath: ^NS.IndexPath, itemIdentifier: id) -> ^TableViewCell)
+TableViewDiffableDataSourceCellProvider :: ^Objc_Block(proc "c" ( tableView: ^TableView, indexPath: ^NS.IndexPath, itemIdentifier: id ) -> ^TableViewCell)
 
 /// UICollectionViewCellRegistrationConfigurationHandler
-CollectionViewCellRegistrationConfigurationHandler :: ^Objc_Block(proc "c" (cell: ^CollectionViewCell, indexPath: ^NS.IndexPath, item: id))
+CollectionViewCellRegistrationConfigurationHandler :: ^Objc_Block(proc "c" ( cell: ^CollectionViewCell, indexPath: ^NS.IndexPath, item: id ))
 
 /// UICollectionViewSupplementaryRegistrationConfigurationHandler
-CollectionViewSupplementaryRegistrationConfigurationHandler :: ^Objc_Block(proc "c" (supplementaryView: ^CollectionReusableView, elementKind: ^NS.String, indexPath: ^NS.IndexPath))
+CollectionViewSupplementaryRegistrationConfigurationHandler :: ^Objc_Block(proc "c" ( supplementaryView: ^CollectionReusableView, elementKind: ^NS.String, indexPath: ^NS.IndexPath ))
 
 /// UICollectionLayoutListSwipeActionsConfigurationProvider
-CollectionLayoutListSwipeActionsConfigurationProvider :: ^Objc_Block(proc "c" (indexPath: ^NS.IndexPath) -> ^SwipeActionsConfiguration)
+CollectionLayoutListSwipeActionsConfigurationProvider :: ^Objc_Block(proc "c" ( indexPath: ^NS.IndexPath ) -> ^SwipeActionsConfiguration)
 
 /// UICollectionLayoutListItemSeparatorHandler
-CollectionLayoutListItemSeparatorHandler :: ^Objc_Block(proc "c" (indexPath: ^NS.IndexPath, sectionSeparatorConfiguration: ^ListSeparatorConfiguration) -> ^ListSeparatorConfiguration)
+CollectionLayoutListItemSeparatorHandler :: ^Objc_Block(proc "c" ( indexPath: ^NS.IndexPath, sectionSeparatorConfiguration: ^ListSeparatorConfiguration ) -> ^ListSeparatorConfiguration)
 
 /// UIConfigurationStateCustomKey
 ConfigurationStateCustomKey :: distinct ^NS.String
@@ -1190,10 +1203,10 @@ DocumentCreationIntent :: distinct ^NS.String
 NSFileProviderItemIdentifier :: distinct ^NS.String
 
 /// UIGraphicsImageDrawingActions
-GraphicsImageDrawingActions :: ^Objc_Block(proc "c" (rendererContext: ^GraphicsImageRendererContext))
+GraphicsImageDrawingActions :: ^Objc_Block(proc "c" ( rendererContext: ^GraphicsImageRendererContext ))
 
 /// UIGraphicsPDFDrawingActions
-GraphicsPDFDrawingActions :: ^Objc_Block(proc "c" (rendererContext: ^GraphicsPDFRendererContext))
+GraphicsPDFDrawingActions :: ^Objc_Block(proc "c" ( rendererContext: ^GraphicsPDFRendererContext ))
 
 /// UIImagePickerControllerInfoKey
 ImagePickerControllerInfoKey :: distinct ^NS.String
@@ -1220,10 +1233,10 @@ TransitionContextViewControllerKey :: distinct ^NS.String
 TransitionContextViewKey :: distinct ^NS.String
 
 /// UIStoryboardViewControllerCreator
-StoryboardViewControllerCreator :: ^Objc_Block(proc "c" (coder: ^NS.Coder) -> ^ViewController)
+StoryboardViewControllerCreator :: ^Objc_Block(proc "c" ( coder: ^NS.Coder ) -> ^ViewController)
 
 /// UITableViewHeaderFooterViewConfigurationUpdateHandler
-TableViewHeaderFooterViewConfigurationUpdateHandler :: ^Objc_Block(proc "c" (headerFooterView: ^TableViewHeaderFooterView, state: ^ViewConfigurationState))
+TableViewHeaderFooterViewConfigurationUpdateHandler :: ^Objc_Block(proc "c" ( headerFooterView: ^TableViewHeaderFooterView, state: ^ViewConfigurationState ))
 
 /// UITextSearchDocumentIdentifier
 TextSearchDocumentIdentifier :: distinct ^id
@@ -1247,16 +1260,16 @@ ScribbleElementIdentifier :: distinct ^id
 SheetPresentationControllerDetentIdentifier :: distinct ^NS.String
 
 /// UIGraphicsDrawingActions
-GraphicsDrawingActions :: ^Objc_Block(proc "c" (rendererContext: ^GraphicsRendererContext))
+GraphicsDrawingActions :: ^Objc_Block(proc "c" ( rendererContext: ^GraphicsRendererContext ))
 
 /// UIDeferredMenuElementIdentifier
 DeferredMenuElementIdentifier :: distinct ^NS.String
 
 /// UIWindowSceneActivationActionConfigurationProvider
-WindowSceneActivationActionConfigurationProvider :: ^Objc_Block(proc "c" (action: ^WindowSceneActivationAction) -> ^WindowSceneActivationConfiguration)
+WindowSceneActivationActionConfigurationProvider :: ^Objc_Block(proc "c" ( action: ^WindowSceneActivationAction ) -> ^WindowSceneActivationConfiguration)
 
 /// UIWindowSceneActivationInteractionConfigurationProvider
-WindowSceneActivationInteractionConfigurationProvider :: ^Objc_Block(proc "c" (interaction: ^WindowSceneActivationInteraction, location: CG.Point) -> ^WindowSceneActivationConfiguration)
+WindowSceneActivationInteractionConfigurationProvider :: ^Objc_Block(proc "c" ( interaction: ^WindowSceneActivationInteraction, location: CG.Point ) -> ^WindowSceneActivationConfiguration)
 
 /// UITextFormattingViewControllerTextAlignment
 TextFormattingViewControllerTextAlignment :: distinct ^NS.String
@@ -1280,10 +1293,10 @@ NSTextListMarkerFormat :: distinct ^NS.String
 ActivityType :: distinct ^NS.String
 
 /// UIActivityViewControllerCompletionHandler
-ActivityViewControllerCompletionHandler :: ^Objc_Block(proc "c" (activityType: ^NS.String, completed: bool))
+ActivityViewControllerCompletionHandler :: ^Objc_Block(proc "c" ( activityType: ^NS.String, completed: bool ))
 
 /// UIActivityViewControllerCompletionWithItemsHandler
-ActivityViewControllerCompletionWithItemsHandler :: ^Objc_Block(proc "c" (activityType: ^NS.String, completed: bool, returnedItems: ^NS.Array, activityError: ^NS.Error))
+ActivityViewControllerCompletionWithItemsHandler :: ^Objc_Block(proc "c" ( activityType: ^NS.String, completed: bool, returnedItems: ^NS.Array, activityError: ^NS.Error ))
 
 /// UIAccessibilityNavigationStyle
 AccessibilityNavigationStyle :: enum cffi.long {

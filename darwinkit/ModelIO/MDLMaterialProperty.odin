@@ -10,18 +10,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLMaterialProperty
-///
 @(objc_class="MDLMaterialProperty", objc_superclass=NS.Object)
 MaterialProperty :: struct { using _: NS.Object, 
     using _: Named,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MaterialProperty, objc_selector="init", objc_name="init")
     MaterialProperty_init :: proc(self: ^MaterialProperty) -> instancetype ---
@@ -137,6 +131,8 @@ foreign lib {
     @(objc_type=MaterialProperty, objc_selector="setLuminance:", objc_name="setLuminance")
     MaterialProperty_setLuminance :: proc(self: ^MaterialProperty, luminance: cffi.float) ---
 }
+
+
 
 @(objc_type=MaterialProperty, objc_name="initWithName")
 MaterialProperty_initWithName :: proc {

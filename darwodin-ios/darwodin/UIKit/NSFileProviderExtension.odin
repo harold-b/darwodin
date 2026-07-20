@@ -30,10 +30,10 @@ foreign lib {
     NSFileProviderExtension_persistentIdentifierForItemAtURL :: proc(self: ^NSFileProviderExtension, url: ^NS.URL) -> ^NS.String ---
 
     @(objc_type=NSFileProviderExtension, objc_selector="providePlaceholderAtURL:completionHandler:", objc_name="providePlaceholderAtURL")
-    NSFileProviderExtension_providePlaceholderAtURL :: proc(self: ^NSFileProviderExtension, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    NSFileProviderExtension_providePlaceholderAtURL :: proc(self: ^NSFileProviderExtension, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=NSFileProviderExtension, objc_selector="startProvidingItemAtURL:completionHandler:", objc_name="startProvidingItemAtURL")
-    NSFileProviderExtension_startProvidingItemAtURL :: proc(self: ^NSFileProviderExtension, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    NSFileProviderExtension_startProvidingItemAtURL :: proc(self: ^NSFileProviderExtension, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=NSFileProviderExtension, objc_selector="stopProvidingItemAtURL:", objc_name="stopProvidingItemAtURL")
     NSFileProviderExtension_stopProvidingItemAtURL :: proc(self: ^NSFileProviderExtension, url: ^NS.URL) ---

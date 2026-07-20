@@ -20,35 +20,35 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTouchBarItem"
 
 VTable :: struct {
     super: NSTouchBarItem.VTable,
-    view: proc(self: ^AK.SliderTouchBarItem) -> ^AK.View,
-    slider: proc(self: ^AK.SliderTouchBarItem) -> ^AK.Slider,
-    setSlider: proc(self: ^AK.SliderTouchBarItem, slider: ^AK.Slider),
-    doubleValue: proc(self: ^AK.SliderTouchBarItem) -> cffi.double,
-    setDoubleValue: proc(self: ^AK.SliderTouchBarItem, doubleValue: cffi.double),
-    minimumSliderWidth: proc(self: ^AK.SliderTouchBarItem) -> CG.Float,
-    setMinimumSliderWidth: proc(self: ^AK.SliderTouchBarItem, minimumSliderWidth: CG.Float),
-    maximumSliderWidth: proc(self: ^AK.SliderTouchBarItem) -> CG.Float,
-    setMaximumSliderWidth: proc(self: ^AK.SliderTouchBarItem, maximumSliderWidth: CG.Float),
-    label: proc(self: ^AK.SliderTouchBarItem) -> ^NS.String,
-    setLabel: proc(self: ^AK.SliderTouchBarItem, label: ^NS.String),
-    minimumValueAccessory: proc(self: ^AK.SliderTouchBarItem) -> ^AK.SliderAccessory,
-    setMinimumValueAccessory: proc(self: ^AK.SliderTouchBarItem, minimumValueAccessory: ^AK.SliderAccessory),
-    maximumValueAccessory: proc(self: ^AK.SliderTouchBarItem) -> ^AK.SliderAccessory,
-    setMaximumValueAccessory: proc(self: ^AK.SliderTouchBarItem, maximumValueAccessory: ^AK.SliderAccessory),
-    valueAccessoryWidth: proc(self: ^AK.SliderTouchBarItem) -> AK.SliderAccessoryWidth,
-    setValueAccessoryWidth: proc(self: ^AK.SliderTouchBarItem, valueAccessoryWidth: AK.SliderAccessoryWidth),
-    target: proc(self: ^AK.SliderTouchBarItem) -> id,
-    setTarget: proc(self: ^AK.SliderTouchBarItem, target: id),
-    action: proc(self: ^AK.SliderTouchBarItem) -> SEL,
-    setAction: proc(self: ^AK.SliderTouchBarItem, action: SEL),
-    customizationLabel: proc(self: ^AK.SliderTouchBarItem) -> ^NS.String,
-    setCustomizationLabel: proc(self: ^AK.SliderTouchBarItem, customizationLabel: ^NS.String),
+    view: proc(self: ^NS.SliderTouchBarItem) -> ^NS.View,
+    slider: proc(self: ^NS.SliderTouchBarItem) -> ^NS.Slider,
+    setSlider: proc(self: ^NS.SliderTouchBarItem, slider: ^NS.Slider),
+    doubleValue: proc(self: ^NS.SliderTouchBarItem) -> cffi.double,
+    setDoubleValue: proc(self: ^NS.SliderTouchBarItem, doubleValue: cffi.double),
+    minimumSliderWidth: proc(self: ^NS.SliderTouchBarItem) -> CG.Float,
+    setMinimumSliderWidth: proc(self: ^NS.SliderTouchBarItem, minimumSliderWidth: CG.Float),
+    maximumSliderWidth: proc(self: ^NS.SliderTouchBarItem) -> CG.Float,
+    setMaximumSliderWidth: proc(self: ^NS.SliderTouchBarItem, maximumSliderWidth: CG.Float),
+    label: proc(self: ^NS.SliderTouchBarItem) -> ^NS.String,
+    setLabel: proc(self: ^NS.SliderTouchBarItem, label: ^NS.String),
+    minimumValueAccessory: proc(self: ^NS.SliderTouchBarItem) -> ^NS.SliderAccessory,
+    setMinimumValueAccessory: proc(self: ^NS.SliderTouchBarItem, minimumValueAccessory: ^NS.SliderAccessory),
+    maximumValueAccessory: proc(self: ^NS.SliderTouchBarItem) -> ^NS.SliderAccessory,
+    setMaximumValueAccessory: proc(self: ^NS.SliderTouchBarItem, maximumValueAccessory: ^NS.SliderAccessory),
+    valueAccessoryWidth: proc(self: ^NS.SliderTouchBarItem) -> NS.SliderAccessoryWidth,
+    setValueAccessoryWidth: proc(self: ^NS.SliderTouchBarItem, valueAccessoryWidth: NS.SliderAccessoryWidth),
+    target: proc(self: ^NS.SliderTouchBarItem) -> id,
+    setTarget: proc(self: ^NS.SliderTouchBarItem, target: id),
+    action: proc(self: ^NS.SliderTouchBarItem) -> SEL,
+    setAction: proc(self: ^NS.SliderTouchBarItem, action: SEL),
+    customizationLabel: proc(self: ^NS.SliderTouchBarItem) -> ^NS.String,
+    setCustomizationLabel: proc(self: ^NS.SliderTouchBarItem, customizationLabel: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTouchBarItem.extend(cls, &vt.super)
 
     if vt.view != nil {
-        view :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> ^AK.View {
+        view :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("view"), auto_cast view, "@@:") do panic("Failed to register objC method.")
     }
     if vt.slider != nil {
-        slider :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> ^AK.Slider {
+        slider :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> ^NS.Slider {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("slider"), auto_cast slider, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSlider != nil {
-        setSlider :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, slider: ^AK.Slider) {
+        setSlider :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, slider: ^NS.Slider) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSlider:"), auto_cast setSlider, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.doubleValue != nil {
-        doubleValue :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> cffi.double {
+        doubleValue :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> cffi.double {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("doubleValue"), auto_cast doubleValue, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setDoubleValue != nil {
-        setDoubleValue :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, doubleValue: cffi.double) {
+        setDoubleValue :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, doubleValue: cffi.double) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDoubleValue:"), auto_cast setDoubleValue, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.minimumSliderWidth != nil {
-        minimumSliderWidth :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> CG.Float {
+        minimumSliderWidth :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumSliderWidth"), auto_cast minimumSliderWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumSliderWidth != nil {
-        setMinimumSliderWidth :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, minimumSliderWidth: CG.Float) {
+        setMinimumSliderWidth :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, minimumSliderWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumSliderWidth:"), auto_cast setMinimumSliderWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.maximumSliderWidth != nil {
-        maximumSliderWidth :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> CG.Float {
+        maximumSliderWidth :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumSliderWidth"), auto_cast maximumSliderWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumSliderWidth != nil {
-        setMaximumSliderWidth :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, maximumSliderWidth: CG.Float) {
+        setMaximumSliderWidth :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, maximumSliderWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumSliderWidth:"), auto_cast setMaximumSliderWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.label != nil {
-        label :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> ^NS.String {
+        label :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("label"), auto_cast label, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setLabel != nil {
-        setLabel :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, label: ^NS.String) {
+        setLabel :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, label: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLabel:"), auto_cast setLabel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.minimumValueAccessory != nil {
-        minimumValueAccessory :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> ^AK.SliderAccessory {
+        minimumValueAccessory :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> ^NS.SliderAccessory {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -179,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumValueAccessory"), auto_cast minimumValueAccessory, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumValueAccessory != nil {
-        setMinimumValueAccessory :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, minimumValueAccessory: ^AK.SliderAccessory) {
+        setMinimumValueAccessory :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, minimumValueAccessory: ^NS.SliderAccessory) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -189,7 +189,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumValueAccessory:"), auto_cast setMinimumValueAccessory, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.maximumValueAccessory != nil {
-        maximumValueAccessory :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> ^AK.SliderAccessory {
+        maximumValueAccessory :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> ^NS.SliderAccessory {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -199,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumValueAccessory"), auto_cast maximumValueAccessory, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumValueAccessory != nil {
-        setMaximumValueAccessory :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, maximumValueAccessory: ^AK.SliderAccessory) {
+        setMaximumValueAccessory :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, maximumValueAccessory: ^NS.SliderAccessory) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -209,7 +209,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumValueAccessory:"), auto_cast setMaximumValueAccessory, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.valueAccessoryWidth != nil {
-        valueAccessoryWidth :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> AK.SliderAccessoryWidth {
+        valueAccessoryWidth :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> NS.SliderAccessoryWidth {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -219,7 +219,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("valueAccessoryWidth"), auto_cast valueAccessoryWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setValueAccessoryWidth != nil {
-        setValueAccessoryWidth :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, valueAccessoryWidth: AK.SliderAccessoryWidth) {
+        setValueAccessoryWidth :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, valueAccessoryWidth: NS.SliderAccessoryWidth) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -229,7 +229,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setValueAccessoryWidth:"), auto_cast setValueAccessoryWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.target != nil {
-        target :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> id {
+        target :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -239,7 +239,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("target"), auto_cast target, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTarget != nil {
-        setTarget :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, target: id) {
+        setTarget :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, target: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -249,7 +249,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTarget:"), auto_cast setTarget, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.action != nil {
-        action :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> SEL {
+        action :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> SEL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -259,7 +259,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("action"), auto_cast action, ":@:") do panic("Failed to register objC method.")
     }
     if vt.setAction != nil {
-        setAction :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, action: SEL) {
+        setAction :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, action: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -269,7 +269,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAction:"), auto_cast setAction, "v@::") do panic("Failed to register objC method.")
     }
     if vt.customizationLabel != nil {
-        customizationLabel :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL) -> ^NS.String {
+        customizationLabel :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -279,7 +279,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("customizationLabel"), auto_cast customizationLabel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCustomizationLabel != nil {
-        setCustomizationLabel :: proc "c" (self: ^AK.SliderTouchBarItem, _: SEL, customizationLabel: ^NS.String) {
+        setCustomizationLabel :: proc "c" (self: ^NS.SliderTouchBarItem, _: SEL, customizationLabel: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

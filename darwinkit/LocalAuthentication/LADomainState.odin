@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import NS "../Foundation"
 import Sec "../Security"
 
-
-
-///
-/// LADomainState
-///
 @(objc_class="LADomainState", objc_superclass=NS.Object)
 DomainState :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DomainState, objc_selector="new", objc_name="new", objc_is_class_method=true)
     DomainState_new :: proc() -> ^DomainState ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=DomainState, objc_selector="stateHash", objc_name="stateHash")
     DomainState_stateHash :: proc(self: ^DomainState) -> ^NS.Data ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVExposureBiasRange
-///
 @(objc_class="AVExposureBiasRange", objc_superclass=NS.Object)
 ExposureBiasRange :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExposureBiasRange, objc_selector="init", objc_name="init")
     ExposureBiasRange_init :: proc(self: ^ExposureBiasRange) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=ExposureBiasRange, objc_selector="maxExposureBias", objc_name="maxExposureBias")
     ExposureBiasRange_maxExposureBias :: proc(self: ^ExposureBiasRange) -> cffi.float ---
 }
+
+
+

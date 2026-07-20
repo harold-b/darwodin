@@ -49,7 +49,7 @@ foreign lib {
     Event_coalescedTouchesForTouch :: proc(self: ^Event, touch: ^Touch) -> ^NS.Array ---
 
     @(objc_type=Event, objc_selector="trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:", objc_name="trackSwipeEventWithOptions")
-    Event_trackSwipeEventWithOptions :: proc(self: ^Event, options: EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: ^Objc_Block(proc "c" (gestureAmount: CG.Float, phase: EventPhase, isComplete: bool, stop: ^bool))) ---
+    Event_trackSwipeEventWithOptions :: proc(self: ^Event, options: EventSwipeTrackingOptions, minDampenThreshold: CG.Float, maxDampenThreshold: CG.Float, trackingHandler: ^Objc_Block(proc "c" ( gestureAmount: CG.Float, phase: EventPhase, isComplete: bool, stop: ^bool ))) ---
 
     @(objc_type=Event, objc_selector="startPeriodicEventsAfterDelay:withPeriod:", objc_name="startPeriodicEventsAfterDelay", objc_is_class_method=true)
     Event_startPeriodicEventsAfterDelay :: proc(delay: NS.TimeInterval, period: NS.TimeInterval) ---
@@ -70,10 +70,10 @@ foreign lib {
     Event_otherEventWithType :: proc(type: EventType, location: CG.Point, flags: EventModifierFlags, time: NS.TimeInterval, wNum: NS.Integer, unusedPassNil: ^GraphicsContext, subtype: cffi.short, d1: NS.Integer, d2: NS.Integer) -> ^Event ---
 
     @(objc_type=Event, objc_selector="addGlobalMonitorForEventsMatchingMask:handler:", objc_name="addGlobalMonitorForEventsMatchingMask", objc_is_class_method=true)
-    Event_addGlobalMonitorForEventsMatchingMask :: proc(mask: EventMask, block: ^Objc_Block(proc "c" (event: ^Event))) -> id ---
+    Event_addGlobalMonitorForEventsMatchingMask :: proc(mask: EventMask, block: ^Objc_Block(proc "c" ( event: ^Event ))) -> id ---
 
     @(objc_type=Event, objc_selector="addLocalMonitorForEventsMatchingMask:handler:", objc_name="addLocalMonitorForEventsMatchingMask", objc_is_class_method=true)
-    Event_addLocalMonitorForEventsMatchingMask :: proc(mask: EventMask, block: ^Objc_Block(proc "c" (event: ^Event) -> ^Event)) -> id ---
+    Event_addLocalMonitorForEventsMatchingMask :: proc(mask: EventMask, block: ^Objc_Block(proc "c" ( event: ^Event ) -> ^Event)) -> id ---
 
     @(objc_type=Event, objc_selector="removeMonitor:", objc_name="removeMonitor", objc_is_class_method=true)
     Event_removeMonitor :: proc(eventMonitor: id) ---

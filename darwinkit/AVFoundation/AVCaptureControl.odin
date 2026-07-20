@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureControl
-///
 @(objc_class="AVCaptureControl", objc_superclass=NS.Object)
 CaptureControl :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureControl, objc_selector="init", objc_name="init")
     CaptureControl_init :: proc(self: ^CaptureControl) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=CaptureControl, objc_selector="setEnabled:", objc_name="setEnabled")
     CaptureControl_setEnabled :: proc(self: ^CaptureControl, enabled: bool) ---
 }
+
+
+

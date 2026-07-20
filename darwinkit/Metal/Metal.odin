@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_Metal
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -18,60 +20,131 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:Metal.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
-
-
-BufferLayoutStrideDynamic :: 18446744073709551615
-AttributeStrideStatic     :: 18446744073709551615
-
-foreign lib {
-    @(link_name="MTLTensorDomain") TensorDomain: ^NS.String
-    @(link_name="MTLLibraryErrorDomain") LibraryErrorDomain: ^NS.String
-    @(link_name="MTLCommonCounterTimestamp") CommonCounterTimestamp: ^NS.String
-    @(link_name="MTLCommonCounterTessellationInputPatches") CommonCounterTessellationInputPatches: ^NS.String
-    @(link_name="MTLCommonCounterVertexInvocations") CommonCounterVertexInvocations: ^NS.String
-    @(link_name="MTLCommonCounterPostTessellationVertexInvocations") CommonCounterPostTessellationVertexInvocations: ^NS.String
-    @(link_name="MTLCommonCounterClipperInvocations") CommonCounterClipperInvocations: ^NS.String
-    @(link_name="MTLCommonCounterClipperPrimitivesOut") CommonCounterClipperPrimitivesOut: ^NS.String
-    @(link_name="MTLCommonCounterFragmentInvocations") CommonCounterFragmentInvocations: ^NS.String
-    @(link_name="MTLCommonCounterFragmentsPassed") CommonCounterFragmentsPassed: ^NS.String
-    @(link_name="MTLCommonCounterComputeKernelInvocations") CommonCounterComputeKernelInvocations: ^NS.String
-    @(link_name="MTLCommonCounterTotalCycles") CommonCounterTotalCycles: ^NS.String
-    @(link_name="MTLCommonCounterVertexCycles") CommonCounterVertexCycles: ^NS.String
-    @(link_name="MTLCommonCounterTessellationCycles") CommonCounterTessellationCycles: ^NS.String
-    @(link_name="MTLCommonCounterPostTessellationVertexCycles") CommonCounterPostTessellationVertexCycles: ^NS.String
-    @(link_name="MTLCommonCounterFragmentCycles") CommonCounterFragmentCycles: ^NS.String
-    @(link_name="MTLCommonCounterRenderTargetWriteCycles") CommonCounterRenderTargetWriteCycles: ^NS.String
-    @(link_name="MTLCommonCounterSetTimestamp") CommonCounterSetTimestamp: ^NS.String
-    @(link_name="MTLCommonCounterSetStageUtilization") CommonCounterSetStageUtilization: ^NS.String
-    @(link_name="MTLCommonCounterSetStatistic") CommonCounterSetStatistic: ^NS.String
-    @(link_name="MTLCounterErrorDomain") CounterErrorDomain: ^NS.String
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
-        @(link_name="MTLDeviceWasAddedNotification") DeviceWasAddedNotification: ^NS.String
-        @(link_name="MTLDeviceRemovalRequestedNotification") DeviceRemovalRequestedNotification: ^NS.String
-        @(link_name="MTLDeviceWasRemovedNotification") DeviceWasRemovedNotification: ^NS.String
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:Metal.framework",
     }
-    @(link_name="MTLDeviceErrorDomain") DeviceErrorDomain: ^NS.String
-    @(link_name="MTLCommandBufferErrorDomain") CommandBufferErrorDomain: ^NS.String
-    @(link_name="MTLCommandBufferEncoderInfoErrorKey") CommandBufferEncoderInfoErrorKey: ^NS.String
-    @(link_name="MTL4CommandQueueErrorDomain") MTL4CommandQueueErrorDomain: ^NS.String
-    @(link_name="MTLCaptureErrorDomain") CaptureErrorDomain: ^NS.String
-    @(link_name="MTLDynamicLibraryDomain") DynamicLibraryDomain: ^NS.String
-    @(link_name="MTLLogStateErrorDomain") LogStateErrorDomain: ^NS.String
-    @(link_name="MTLBinaryArchiveDomain") BinaryArchiveDomain: ^NS.String
-    @(link_name="MTLIOErrorDomain") IOErrorDomain: ^NS.String
 }
 
-@(default_calling_convention="c")
+
+// +user-text-begin
+
+
 foreign lib {
+    @(link_name="MTLTensorDomain")
+    TensorDomain: ^NS.String
+
+    @(link_name="MTLLibraryErrorDomain")
+    LibraryErrorDomain: ^NS.String
+
+    @(link_name="MTLCommonCounterTimestamp")
+    CommonCounterTimestamp: ^NS.String
+
+    @(link_name="MTLCommonCounterTessellationInputPatches")
+    CommonCounterTessellationInputPatches: ^NS.String
+
+    @(link_name="MTLCommonCounterVertexInvocations")
+    CommonCounterVertexInvocations: ^NS.String
+
+    @(link_name="MTLCommonCounterPostTessellationVertexInvocations")
+    CommonCounterPostTessellationVertexInvocations: ^NS.String
+
+    @(link_name="MTLCommonCounterClipperInvocations")
+    CommonCounterClipperInvocations: ^NS.String
+
+    @(link_name="MTLCommonCounterClipperPrimitivesOut")
+    CommonCounterClipperPrimitivesOut: ^NS.String
+
+    @(link_name="MTLCommonCounterFragmentInvocations")
+    CommonCounterFragmentInvocations: ^NS.String
+
+    @(link_name="MTLCommonCounterFragmentsPassed")
+    CommonCounterFragmentsPassed: ^NS.String
+
+    @(link_name="MTLCommonCounterComputeKernelInvocations")
+    CommonCounterComputeKernelInvocations: ^NS.String
+
+    @(link_name="MTLCommonCounterTotalCycles")
+    CommonCounterTotalCycles: ^NS.String
+
+    @(link_name="MTLCommonCounterVertexCycles")
+    CommonCounterVertexCycles: ^NS.String
+
+    @(link_name="MTLCommonCounterTessellationCycles")
+    CommonCounterTessellationCycles: ^NS.String
+
+    @(link_name="MTLCommonCounterPostTessellationVertexCycles")
+    CommonCounterPostTessellationVertexCycles: ^NS.String
+
+    @(link_name="MTLCommonCounterFragmentCycles")
+    CommonCounterFragmentCycles: ^NS.String
+
+    @(link_name="MTLCommonCounterRenderTargetWriteCycles")
+    CommonCounterRenderTargetWriteCycles: ^NS.String
+
+    @(link_name="MTLCommonCounterSetTimestamp")
+    CommonCounterSetTimestamp: ^NS.String
+
+    @(link_name="MTLCommonCounterSetStageUtilization")
+    CommonCounterSetStageUtilization: ^NS.String
+
+    @(link_name="MTLCommonCounterSetStatistic")
+    CommonCounterSetStatistic: ^NS.String
+
+    @(link_name="MTLCounterErrorDomain")
+    CounterErrorDomain: ^NS.String
+
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(link_name="MTLDeviceWasAddedNotification")
+        DeviceWasAddedNotification: ^NS.String
+
+        @(link_name="MTLDeviceRemovalRequestedNotification")
+        DeviceRemovalRequestedNotification: ^NS.String
+
+        @(link_name="MTLDeviceWasRemovedNotification")
+        DeviceWasRemovedNotification: ^NS.String
+    }
+
+    @(link_name="MTLDeviceErrorDomain")
+    DeviceErrorDomain: ^NS.String
+
+    @(link_name="MTLCommandBufferErrorDomain")
+    CommandBufferErrorDomain: ^NS.String
+
+    @(link_name="MTLCommandBufferEncoderInfoErrorKey")
+    CommandBufferEncoderInfoErrorKey: ^NS.String
+
+    @(link_name="MTL4CommandQueueErrorDomain")
+    MTL4CommandQueueErrorDomain: ^NS.String
+
+    @(link_name="MTLCaptureErrorDomain")
+    CaptureErrorDomain: ^NS.String
+
+    @(link_name="MTLDynamicLibraryDomain")
+    DynamicLibraryDomain: ^NS.String
+
+    @(link_name="MTLLogStateErrorDomain")
+    LogStateErrorDomain: ^NS.String
+
+    @(link_name="MTLBinaryArchiveDomain")
+    BinaryArchiveDomain: ^NS.String
+
+    @(link_name="MTLIOErrorDomain")
+    IOErrorDomain: ^NS.String
+
     @(link_name="MTLCreateSystemDefaultDevice")
     CreateSystemDefaultDevice :: proc() -> ^Device ---
 
     @(link_name="MTLCopyAllDevices")
     CopyAllDevices :: proc() -> ^NS.Array ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(link_name="MTLCopyAllDevicesWithObserver")
         CopyAllDevicesWithObserver :: proc(observer: ^^NS.ObjectProtocol, handler: DeviceNotificationHandler) -> ^NS.Array ---
 
@@ -90,110 +163,57 @@ foreign lib {
 
     @(link_name="MTLIOFlushAndDestroyCompressionContext")
     IOFlushAndDestroyCompressionContext :: proc(_context: IOCompressionContext) -> IOCompressionStatus ---
-
 }
 
-/// MTLCoordinate2D
+
+
+BufferLayoutStrideDynamic :: 18446744073709551615
+AttributeStrideStatic     :: 18446744073709551615
 Coordinate2D :: distinct SamplePosition
-
-/// MTLGPUAddress
 GPUAddress :: distinct cffi.uint64_t
-
-/// MTLArgumentAccess
 ArgumentAccess :: distinct BindingAccess
-
-/// MTLAutoreleasedRenderPipelineReflection
 AutoreleasedRenderPipelineReflection :: distinct ^RenderPipelineReflection
-
-/// MTLAutoreleasedComputePipelineReflection
 AutoreleasedComputePipelineReflection :: distinct ^ComputePipelineReflection
-
-/// MTLNewLibraryCompletionHandler
-NewLibraryCompletionHandler :: ^Objc_Block(proc "c" (library: ^Library, error: ^NS.Error))
-
-/// MTLNewRenderPipelineStateCompletionHandler
-NewRenderPipelineStateCompletionHandler :: ^Objc_Block(proc "c" (renderPipelineState: ^RenderPipelineState, error: ^NS.Error))
-
-/// MTLNewRenderPipelineStateWithReflectionCompletionHandler
-NewRenderPipelineStateWithReflectionCompletionHandler :: ^Objc_Block(proc "c" (renderPipelineState: ^RenderPipelineState, reflection: ^RenderPipelineReflection, error: ^NS.Error))
-
-/// MTLNewComputePipelineStateCompletionHandler
-NewComputePipelineStateCompletionHandler :: ^Objc_Block(proc "c" (computePipelineState: ^ComputePipelineState, error: ^NS.Error))
-
-/// MTLNewComputePipelineStateWithReflectionCompletionHandler
-NewComputePipelineStateWithReflectionCompletionHandler :: ^Objc_Block(proc "c" (computePipelineState: ^ComputePipelineState, reflection: ^ComputePipelineReflection, error: ^NS.Error))
-
-/// MTLNewDynamicLibraryCompletionHandler
-NewDynamicLibraryCompletionHandler :: ^Objc_Block(proc "c" (library: ^DynamicLibraryProtocol, error: ^NS.Error))
-
-/// MTLAutoreleasedArgument
+NewLibraryCompletionHandler :: ^Objc_Block(proc "c" ( library: ^Library, error: ^NS.Error ))
+NewRenderPipelineStateCompletionHandler :: ^Objc_Block(proc "c" ( renderPipelineState: ^RenderPipelineState, error: ^NS.Error ))
+NewRenderPipelineStateWithReflectionCompletionHandler :: ^Objc_Block(proc "c" ( renderPipelineState: ^RenderPipelineState, reflection: ^RenderPipelineReflection, error: ^NS.Error ))
+NewComputePipelineStateCompletionHandler :: ^Objc_Block(proc "c" ( computePipelineState: ^ComputePipelineState, error: ^NS.Error ))
+NewComputePipelineStateWithReflectionCompletionHandler :: ^Objc_Block(proc "c" ( computePipelineState: ^ComputePipelineState, reflection: ^ComputePipelineReflection, error: ^NS.Error ))
+NewDynamicLibraryCompletionHandler :: ^Objc_Block(proc "c" ( library: ^DynamicLibraryProtocol, error: ^NS.Error ))
 AutoreleasedArgument :: distinct ^Argument
-
-/// MTLCommonCounter
 CommonCounter :: distinct ^NS.String
-
-/// MTLCommonCounterSet
 CommonCounterSet :: distinct ^NS.String
-
-/// MTL4NewBinaryFunctionCompletionHandler
-MTL4NewBinaryFunctionCompletionHandler :: ^Objc_Block(proc "c" (function: ^MTL4BinaryFunctionProtocol, error: ^NS.Error))
-
-/// MTL4NewMachineLearningPipelineStateCompletionHandler
-MTL4NewMachineLearningPipelineStateCompletionHandler :: ^Objc_Block(proc "c" (mlPipelineState: ^MTL4MachineLearningPipelineState, error: ^NS.Error))
-
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// MTLDeviceNotificationName
+MTL4NewBinaryFunctionCompletionHandler :: ^Objc_Block(proc "c" ( function: ^MTL4BinaryFunctionProtocol, error: ^NS.Error ))
+MTL4NewMachineLearningPipelineStateCompletionHandler :: ^Objc_Block(proc "c" ( mlPipelineState: ^MTL4MachineLearningPipelineState, error: ^NS.Error ))
+when ODIN_PLATFORM_SUBTARGET == .Default {
     DeviceNotificationName :: distinct ^NS.String
-
-    /// MTLDeviceNotificationHandler
-    DeviceNotificationHandler :: ^Objc_Block(proc "c" (device: ^Device, notifyName: ^NS.String))
+    DeviceNotificationHandler :: ^Objc_Block(proc "c" ( device: ^Device, notifyName: ^NS.String ))
 }
-
-/// MTLTimestamp
 Timestamp :: distinct cffi.uint64_t
-
-/// MTLCommandBufferHandler
-CommandBufferHandler :: ^Objc_Block(proc "c" (_: ^CommandBuffer))
-
-/// MTLDrawablePresentedHandler
-DrawablePresentedHandler :: ^Objc_Block(proc "c" (_: ^Drawable))
-
-/// MTLPackedFloat3
+CommandBufferHandler :: ^Objc_Block(proc "c" ( _0: ^CommandBuffer ))
+DrawablePresentedHandler :: ^Objc_Block(proc "c" ( _0: ^Drawable ))
 PackedFloat3 :: distinct _MTLPackedFloat3
-
-/// MTLPackedFloat4x3
 PackedFloat4x3 :: distinct _MTLPackedFloat4x3
-
-/// MTLAxisAlignedBoundingBox
 AxisAlignedBoundingBox :: distinct _MTLAxisAlignedBoundingBox
-
-/// MTLSharedEventNotificationBlock
-SharedEventNotificationBlock :: ^Objc_Block(proc "c" (_: ^SharedEvent, value: cffi.uint64_t))
-
-/// MTL4CommitFeedbackHandler
-MTL4CommitFeedbackHandler :: ^Objc_Block(proc "c" (commitFeedback: ^MTL4CommitFeedback))
-
-/// MTLIOCommandBufferHandler
-IOCommandBufferHandler :: ^Objc_Block(proc "c" (_: ^IOCommandBuffer))
-
-/// MTLIOCompressionContext
+SharedEventNotificationBlock :: ^Objc_Block(proc "c" ( _0: ^SharedEvent, value: cffi.uint64_t ))
+MTL4CommitFeedbackHandler :: ^Objc_Block(proc "c" ( commitFeedback: ^MTL4CommitFeedback ))
+IOCommandBufferHandler :: ^Objc_Block(proc "c" ( _0: ^IOCommandBuffer ))
 IOCompressionContext :: distinct rawptr
+ResourceOptions_StorageModeMemoryless :: ResourceOptions { .StorageModeManaged, .StorageModePrivate, }
+ColorWriteMasks_All :: ColorWriteMasks { .Alpha, .Blue, .Green, .Red, }
 
-/// MTLResourceUsage
 ResourceUsage :: enum cffi.ulong {
     Read   = 1,
     Write  = 2,
     Sample = 4,
 }
 
-/// MTLBarrierScope
 BarrierScope :: enum cffi.ulong {
     Buffers       = 1,
     Textures      = 2,
     RenderTargets = 4,
 }
 
-/// MTLStages
 Stages :: enum cffi.ulong {
     StageVertex                = 1,
     StageFragment              = 2,
@@ -208,7 +228,6 @@ Stages :: enum cffi.ulong {
     StageAll                   = 9223372036854775807,
 }
 
-/// MTLPurgeableState
 PurgeableState :: enum cffi.ulong {
     KeepCurrent = 1,
     NonVolatile = 2,
@@ -216,13 +235,11 @@ PurgeableState :: enum cffi.ulong {
     Empty       = 4,
 }
 
-/// MTLCPUCacheMode
 CPUCacheMode :: enum cffi.ulong {
     DefaultCache  = 0,
     WriteCombined = 1,
 }
 
-/// MTLStorageMode
 StorageMode :: enum cffi.ulong {
     Shared     = 0,
     Managed    = 1,
@@ -230,14 +247,12 @@ StorageMode :: enum cffi.ulong {
     Memoryless = 3,
 }
 
-/// MTLHazardTrackingMode
 HazardTrackingMode :: enum cffi.ulong {
     Default   = 0,
     Untracked = 1,
     Tracked   = 2,
 }
 
-/// MTLResourceOptions
 ResourceOption :: enum cffi.ulong {
     CPUCacheModeWriteCombined       = 0,
     StorageModeManaged              = 4,
@@ -246,31 +261,26 @@ ResourceOption :: enum cffi.ulong {
     HazardTrackingModeTracked       = 9,
     OptionCPUCacheModeWriteCombined = 0,
 }
+
 ResourceOptions :: bit_set[ResourceOption; cffi.ulong]
 
-ResourceOptions_StorageModeMemoryless :: ResourceOptions { .StorageModeManaged, .StorageModePrivate, }
-
-/// MTLSparsePageSize
 SparsePageSize :: enum cffi.long {
     _16  = 101,
     _64  = 102,
     _256 = 103,
 }
 
-/// MTLBufferSparseTier
 BufferSparseTier :: enum cffi.long {
     None = 0,
     _1   = 1,
 }
 
-/// MTLTextureSparseTier
 TextureSparseTier :: enum cffi.long {
     None = 0,
     _1   = 1,
     _2   = 2,
 }
 
-/// MTLPixelFormat
 PixelFormat :: enum cffi.ulong {
     Invalid               = 0,
     A8Unorm               = 1,
@@ -414,7 +424,6 @@ PixelFormat :: enum cffi.ulong {
     Unspecialized         = 263,
 }
 
-/// MTLDataType
 DataType :: enum cffi.ulong {
     None                           = 0,
     Struct                         = 1,
@@ -515,7 +524,6 @@ DataType :: enum cffi.ulong {
     Tensor                         = 140,
 }
 
-/// MTLTensorDataType
 TensorDataType :: enum cffi.long {
     None     = 0,
     Float32  = 3,
@@ -531,21 +539,18 @@ TensorDataType :: enum cffi.long {
     UInt4    = 144,
 }
 
-/// MTLTensorError
 TensorError :: enum cffi.long {
     None              = 0,
     InternalError     = 1,
     InvalidDescriptor = 2,
 }
 
-/// MTLTensorUsage
 TensorUsage :: enum cffi.ulong {
     Compute         = 1,
     Render          = 2,
     MachineLearning = 4,
 }
 
-/// MTLTextureType
 TextureType :: enum cffi.ulong {
     _1D                 = 0,
     _1DArray            = 1,
@@ -559,7 +564,6 @@ TextureType :: enum cffi.ulong {
     TextureBuffer       = 9,
 }
 
-/// MTLTextureSwizzle
 TextureSwizzle :: enum cffi.uchar {
     Zero  = 0,
     One   = 1,
@@ -569,7 +573,6 @@ TextureSwizzle :: enum cffi.uchar {
     Alpha = 5,
 }
 
-/// MTLTextureUsage
 TextureUsage :: enum cffi.ulong {
     Unknown         = 0,
     ShaderRead      = 1,
@@ -579,19 +582,16 @@ TextureUsage :: enum cffi.ulong {
     ShaderAtomic    = 32,
 }
 
-/// MTLTextureCompressionType
 TextureCompressionType :: enum cffi.long {
     Lossless = 0,
     Lossy    = 1,
 }
 
-/// MTLIndexType
 IndexType :: enum cffi.ulong {
     UInt16 = 0,
     UInt32 = 1,
 }
 
-/// MTLBindingType
 BindingType :: enum cffi.long {
     Buffer                         = 0,
     ThreadgroupMemory              = 1,
@@ -607,7 +607,6 @@ BindingType :: enum cffi.long {
     Tensor                         = 37,
 }
 
-/// MTLArgumentType
 ArgumentType :: enum cffi.ulong {
     Buffer                         = 0,
     ThreadgroupMemory              = 1,
@@ -621,7 +620,6 @@ ArgumentType :: enum cffi.ulong {
     IntersectionFunctionTable      = 27,
 }
 
-/// MTLBindingAccess
 BindingAccess :: enum cffi.ulong {
     ReadOnly                = 0,
     ReadWrite               = 1,
@@ -631,7 +629,6 @@ BindingAccess :: enum cffi.ulong {
     ArgumentAccessWriteOnly = 2,
 }
 
-/// MTLFunctionOptions
 FunctionOption :: enum cffi.ulong {
     CompileToBinary                  = 0,
     StoreFunctionInMetalPipelinesScript = 1,
@@ -639,16 +636,15 @@ FunctionOption :: enum cffi.ulong {
     FailOnBinaryArchiveMiss          = 2,
     PipelineIndependent              = 3,
 }
+
 FunctionOptions :: bit_set[FunctionOption; cffi.ulong]
 
-/// MTLPatchType
 PatchType :: enum cffi.ulong {
     None     = 0,
     Triangle = 1,
     Quad     = 2,
 }
 
-/// MTLFunctionType
 FunctionType :: enum cffi.ulong {
     Vertex       = 1,
     Fragment     = 2,
@@ -659,7 +655,6 @@ FunctionType :: enum cffi.ulong {
     Object       = 8,
 }
 
-/// MTLLanguageVersion
 LanguageVersion :: enum cffi.ulong {
     _1_0 = 65536,
     _1_1 = 65537,
@@ -675,38 +670,32 @@ LanguageVersion :: enum cffi.ulong {
     _4_0 = 262144,
 }
 
-/// MTLLibraryType
 LibraryType :: enum cffi.long {
     Executable = 0,
     Dynamic    = 1,
 }
 
-/// MTLLibraryOptimizationLevel
 LibraryOptimizationLevel :: enum cffi.long {
     Default = 0,
     Size    = 1,
 }
 
-/// MTLCompileSymbolVisibility
 CompileSymbolVisibility :: enum cffi.long {
     Default = 0,
     Hidden  = 1,
 }
 
-/// MTLMathMode
 MathMode :: enum cffi.long {
     Safe    = 0,
     Relaxed = 1,
     Fast    = 2,
 }
 
-/// MTLMathFloatingPointFunctions
 MathFloatingPointFunctions :: enum cffi.long {
     Fast    = 0,
     Precise = 1,
 }
 
-/// MTLLibraryError
 LibraryError :: enum cffi.ulong {
     Unsupported      = 1,
     Internal         = 2,
@@ -716,14 +705,12 @@ LibraryError :: enum cffi.ulong {
     FileNotFound     = 6,
 }
 
-/// MTLCounterSampleBufferError
 CounterSampleBufferError :: enum cffi.long {
     OutOfMemory = 0,
     Invalid     = 1,
     Internal    = 2,
 }
 
-/// MTL4CompilerTaskStatus
 MTL4CompilerTaskStatus :: enum cffi.long {
     None      = 0,
     Scheduled = 1,
@@ -731,19 +718,16 @@ MTL4CompilerTaskStatus :: enum cffi.long {
     Finished  = 3,
 }
 
-/// MTL4CounterHeapType
 MTL4CounterHeapType :: enum cffi.long {
     Invalid   = 0,
     Timestamp = 1,
 }
 
-/// MTL4TimestampGranularity
 MTL4TimestampGranularity :: enum cffi.long {
     Relaxed = 0,
     Precise = 1,
 }
 
-/// MTLIOCompressionMethod
 IOCompressionMethod :: enum cffi.long {
     Zlib     = 0,
     LZFSE    = 1,
@@ -752,7 +736,6 @@ IOCompressionMethod :: enum cffi.long {
     LZBitmap = 4,
 }
 
-/// MTLFeatureSet
 FeatureSet :: enum cffi.ulong {
     iOS_GPUFamily1_v1           = 0,
     iOS_GPUFamily2_v1           = 1,
@@ -789,7 +772,6 @@ FeatureSet :: enum cffi.ulong {
     tvOS_GPUFamily2_v2          = 30005,
 }
 
-/// MTLGPUFamily
 GPUFamily :: enum cffi.long {
     Apple1       = 1001,
     Apple2       = 1002,
@@ -812,8 +794,7 @@ GPUFamily :: enum cffi.long {
     Metal4       = 5002,
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// MTLDeviceLocation
+when ODIN_PLATFORM_SUBTARGET == .Default {
     DeviceLocation :: enum cffi.ulong {
         BuiltIn     = 0,
         Slot        = 1,
@@ -822,35 +803,31 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
     }
 }
 
-/// MTLPipelineOption
 PipelineOption :: enum cffi.ulong {
     ArgumentInfo            = 0,
     BindingInfo             = 0,
     BufferTypeInfo          = 1,
     FailOnBinaryArchiveMiss = 2,
 }
+
 PipelineOptions :: bit_set[PipelineOption; cffi.ulong]
 
-/// MTLReadWriteTextureTier
 ReadWriteTextureTier :: enum cffi.ulong {
     None = 0,
     _1   = 1,
     _2   = 2,
 }
 
-/// MTLArgumentBuffersTier
 ArgumentBuffersTier :: enum cffi.ulong {
     _1 = 0,
     _2 = 1,
 }
 
-/// MTLSparseTextureRegionAlignmentMode
 SparseTextureRegionAlignmentMode :: enum cffi.ulong {
     Outward = 0,
     Inward  = 1,
 }
 
-/// MTLCounterSamplingPoint
 CounterSamplingPoint :: enum cffi.ulong {
     AtStageBoundary        = 0,
     AtDrawBoundary         = 1,
@@ -859,26 +836,22 @@ CounterSamplingPoint :: enum cffi.ulong {
     AtBlitBoundary         = 4,
 }
 
-/// MTLDeviceError
 DeviceError :: enum cffi.long {
     None         = 0,
     NotSupported = 1,
 }
 
-/// MTLSparseTextureMappingMode
 SparseTextureMappingMode :: enum cffi.ulong {
     Map   = 0,
     Unmap = 1,
 }
 
-/// MTLLoadAction
 LoadAction :: enum cffi.ulong {
     DontCare = 0,
     Load     = 1,
     Clear    = 2,
 }
 
-/// MTLStoreAction
 StoreAction :: enum cffi.ulong {
     DontCare                   = 0,
     Store                      = 1,
@@ -888,40 +861,36 @@ StoreAction :: enum cffi.ulong {
     CustomSampleDepthStore     = 5,
 }
 
-/// MTLStoreActionOptions
 StoreActionOption :: enum cffi.ulong {
     CustomSamplePositions = 0,
 }
+
 StoreActionOptions :: bit_set[StoreActionOption; cffi.ulong]
 
-/// MTLVisibilityResultType
 VisibilityResultType :: enum cffi.long {
     Reset      = 0,
     Accumulate = 1,
 }
 
-/// MTLMultisampleDepthResolveFilter
 MultisampleDepthResolveFilter :: enum cffi.ulong {
     Sample0 = 0,
     Min     = 1,
     Max     = 2,
 }
 
-/// MTLMultisampleStencilResolveFilter
 MultisampleStencilResolveFilter :: enum cffi.ulong {
     Sample0             = 0,
     DepthResolvedSample = 1,
 }
 
-/// MTLBlitOption
 BlitOption :: enum cffi.ulong {
     DepthFromDepthStencil   = 0,
     StencilFromDepthStencil = 1,
     RowLinearPVRTC          = 2,
 }
+
 BlitOptions :: bit_set[BlitOption; cffi.ulong]
 
-/// MTLCommandBufferStatus
 CommandBufferStatus :: enum cffi.ulong {
     NotEnqueued = 0,
     Enqueued    = 1,
@@ -931,7 +900,6 @@ CommandBufferStatus :: enum cffi.ulong {
     Error       = 5,
 }
 
-/// MTLCommandBufferError
 CommandBufferError :: enum cffi.ulong {
     None            = 0,
     Internal        = 1,
@@ -947,13 +915,12 @@ CommandBufferError :: enum cffi.ulong {
     StackOverflow   = 12,
 }
 
-/// MTLCommandBufferErrorOption
 CommandBufferErrorOption :: enum cffi.ulong {
     EncoderExecutionStatus = 0,
 }
+
 CommandBufferErrorOptions :: bit_set[CommandBufferErrorOption; cffi.ulong]
 
-/// MTLCommandEncoderErrorState
 CommandEncoderErrorState :: enum cffi.long {
     Unknown   = 0,
     Completed = 1,
@@ -962,13 +929,11 @@ CommandEncoderErrorState :: enum cffi.long {
     Faulted   = 4,
 }
 
-/// MTLDispatchType
 DispatchType :: enum cffi.ulong {
     Serial     = 0,
     Concurrent = 1,
 }
 
-/// MTLCompareFunction
 CompareFunction :: enum cffi.ulong {
     Never        = 0,
     Less         = 1,
@@ -980,7 +945,6 @@ CompareFunction :: enum cffi.ulong {
     Always       = 7,
 }
 
-/// MTLStencilOperation
 StencilOperation :: enum cffi.ulong {
     Keep           = 0,
     Zero           = 1,
@@ -992,7 +956,6 @@ StencilOperation :: enum cffi.ulong {
     DecrementWrap  = 7,
 }
 
-/// MTLVertexFormat
 VertexFormat :: enum cffi.ulong {
     Invalid               = 0,
     UChar2                = 1,
@@ -1050,7 +1013,6 @@ VertexFormat :: enum cffi.ulong {
     FloatRGB9E5           = 55,
 }
 
-/// MTLVertexStepFunction
 VertexStepFunction :: enum cffi.ulong {
     Constant             = 0,
     PerVertex            = 1,
@@ -1059,7 +1021,6 @@ VertexStepFunction :: enum cffi.ulong {
     PerPatchControlPoint = 4,
 }
 
-/// MTLAttributeFormat
 AttributeFormat :: enum cffi.ulong {
     Invalid               = 0,
     UChar2                = 1,
@@ -1117,7 +1078,6 @@ AttributeFormat :: enum cffi.ulong {
     FloatRGB9E5           = 55,
 }
 
-/// MTLStepFunction
 StepFunction :: enum cffi.ulong {
     Constant                     = 0,
     PerVertex                    = 1,
@@ -1130,21 +1090,18 @@ StepFunction :: enum cffi.ulong {
     ThreadPositionInGridYIndexed = 8,
 }
 
-/// MTLMutability
 Mutability :: enum cffi.ulong {
     Default   = 0,
     Mutable   = 1,
     Immutable = 2,
 }
 
-/// MTLShaderValidation
 ShaderValidation :: enum cffi.long {
     Default  = 0,
     Enabled  = 1,
     Disabled = 2,
 }
 
-/// MTLPrimitiveType
 PrimitiveType :: enum cffi.ulong {
     Point         = 0,
     Line          = 1,
@@ -1153,39 +1110,33 @@ PrimitiveType :: enum cffi.ulong {
     TriangleStrip = 4,
 }
 
-/// MTLVisibilityResultMode
 VisibilityResultMode :: enum cffi.ulong {
     Disabled = 0,
     Boolean  = 1,
     Counting = 2,
 }
 
-/// MTLCullMode
 CullMode :: enum cffi.ulong {
     None  = 0,
     Front = 1,
     Back  = 2,
 }
 
-/// MTLWinding
 Winding :: enum cffi.ulong {
     Clockwise        = 0,
     CounterClockwise = 1,
 }
 
-/// MTLDepthClipMode
 DepthClipMode :: enum cffi.ulong {
     Clip  = 0,
     Clamp = 1,
 }
 
-/// MTLTriangleFillMode
 TriangleFillMode :: enum cffi.ulong {
     Fill  = 0,
     Lines = 1,
 }
 
-/// MTLRenderStages
 RenderStage :: enum cffi.ulong {
     StageVertex   = 0,
     StageFragment = 1,
@@ -1193,9 +1144,9 @@ RenderStage :: enum cffi.ulong {
     StageObject   = 3,
     StageMesh     = 4,
 }
+
 RenderStages :: bit_set[RenderStage; cffi.ulong]
 
-/// MTLBlendFactor
 BlendFactor :: enum cffi.ulong {
     Zero                     = 0,
     One                      = 1,
@@ -1219,7 +1170,6 @@ BlendFactor :: enum cffi.ulong {
     Unspecialized            = 19,
 }
 
-/// MTLBlendOperation
 BlendOperation :: enum cffi.ulong {
     Add             = 0,
     Subtract        = 1,
@@ -1229,7 +1179,6 @@ BlendOperation :: enum cffi.ulong {
     Unspecialized   = 5,
 }
 
-/// MTLColorWriteMask
 ColorWriteMask :: enum cffi.ulong {
     Red           = 3,
     Green         = 2,
@@ -1237,11 +1186,9 @@ ColorWriteMask :: enum cffi.ulong {
     Alpha         = 0,
     Unspecialized = 4,
 }
+
 ColorWriteMasks :: bit_set[ColorWriteMask; cffi.ulong]
 
-ColorWriteMasks_All :: ColorWriteMasks { .Alpha, .Blue, .Green, .Red, }
-
-/// MTLPrimitiveTopologyClass
 PrimitiveTopologyClass :: enum cffi.ulong {
     Unspecified = 0,
     Point       = 1,
@@ -1249,7 +1196,6 @@ PrimitiveTopologyClass :: enum cffi.ulong {
     Triangle    = 3,
 }
 
-/// MTLTessellationPartitionMode
 TessellationPartitionMode :: enum cffi.ulong {
     Pow2           = 0,
     Integer        = 1,
@@ -1257,7 +1203,6 @@ TessellationPartitionMode :: enum cffi.ulong {
     FractionalEven = 3,
 }
 
-/// MTLTessellationFactorStepFunction
 TessellationFactorStepFunction :: enum cffi.ulong {
     Constant               = 0,
     PerPatch               = 1,
@@ -1265,32 +1210,27 @@ TessellationFactorStepFunction :: enum cffi.ulong {
     PerPatchAndPerInstance = 3,
 }
 
-/// MTLTessellationFactorFormat
 TessellationFactorFormat :: enum cffi.ulong {
     Half = 0,
 }
 
-/// MTLTessellationControlPointIndexType
 TessellationControlPointIndexType :: enum cffi.ulong {
     None   = 0,
     UInt16 = 1,
     UInt32 = 2,
 }
 
-/// MTLSamplerMinMagFilter
 SamplerMinMagFilter :: enum cffi.ulong {
     Nearest = 0,
     Linear  = 1,
 }
 
-/// MTLSamplerMipFilter
 SamplerMipFilter :: enum cffi.ulong {
     NotMipmapped = 0,
     Nearest      = 1,
     Linear       = 2,
 }
 
-/// MTLSamplerAddressMode
 SamplerAddressMode :: enum cffi.ulong {
     ClampToEdge        = 0,
     MirrorClampToEdge  = 1,
@@ -1300,28 +1240,25 @@ SamplerAddressMode :: enum cffi.ulong {
     ClampToBorderColor = 5,
 }
 
-/// MTLSamplerBorderColor
 SamplerBorderColor :: enum cffi.ulong {
     TransparentBlack = 0,
     OpaqueBlack      = 1,
     OpaqueWhite      = 2,
 }
 
-/// MTLSamplerReductionMode
 SamplerReductionMode :: enum cffi.ulong {
     WeightedAverage = 0,
     Minimum         = 1,
     Maximum         = 2,
 }
 
-/// MTLAccelerationStructureRefitOptions
 AccelerationStructureRefitOption :: enum cffi.ulong {
     VertexData       = 0,
     PerPrimitiveData = 1,
 }
+
 AccelerationStructureRefitOptions :: bit_set[AccelerationStructureRefitOption; cffi.ulong]
 
-/// MTLAccelerationStructureUsage
 AccelerationStructureUsage :: enum cffi.ulong {
     None                   = 0,
     Refit                  = 1,
@@ -1331,34 +1268,30 @@ AccelerationStructureUsage :: enum cffi.ulong {
     MinimizeMemory         = 32,
 }
 
-/// MTLAccelerationStructureInstanceOptions
 AccelerationStructureInstanceOption :: enum cffi.uint {
     DisableTriangleCulling           = 0,
     TriangleFrontFacingWindingCounterClockwise = 1,
     Opaque                           = 2,
     NonOpaque                        = 3,
 }
+
 AccelerationStructureInstanceOptions :: bit_set[AccelerationStructureInstanceOption; cffi.uint]
 
-/// MTLMatrixLayout
 MatrixLayout :: enum cffi.long {
     ColumnMajor = 0,
     RowMajor    = 1,
 }
 
-/// MTLMotionBorderMode
 MotionBorderMode :: enum cffi.uint {
     Clamp  = 0,
     Vanish = 1,
 }
 
-/// MTLCurveType
 CurveType :: enum cffi.long {
     Round = 0,
     Flat  = 1,
 }
 
-/// MTLCurveBasis
 CurveBasis :: enum cffi.long {
     BSpline    = 0,
     CatmullRom = 1,
@@ -1366,14 +1299,12 @@ CurveBasis :: enum cffi.long {
     Bezier     = 3,
 }
 
-/// MTLCurveEndCaps
 CurveEndCaps :: enum cffi.long {
     None   = 0,
     Disk   = 1,
     Sphere = 2,
 }
 
-/// MTLAccelerationStructureInstanceDescriptorType
 AccelerationStructureInstanceDescriptorType :: enum cffi.ulong {
     Default        = 0,
     UserID         = 1,
@@ -1382,34 +1313,31 @@ AccelerationStructureInstanceDescriptorType :: enum cffi.ulong {
     IndirectMotion = 4,
 }
 
-/// MTLTransformType
 TransformType :: enum cffi.long {
     PackedFloat4x3 = 0,
     Component      = 1,
 }
 
-/// MTLHeapType
 HeapType :: enum cffi.long {
     Automatic = 0,
     Placement = 1,
     Sparse    = 2,
 }
 
-/// MTL4VisibilityOptions
 MTL4VisibilityOption :: enum cffi.ulong {
     Device        = 0,
     ResourceAlias = 1,
 }
+
 MTL4VisibilityOptions :: bit_set[MTL4VisibilityOption; cffi.ulong]
 
-/// MTL4RenderEncoderOptions
 MTL4RenderEncoderOption :: enum cffi.ulong {
     Suspending = 0,
     Resuming   = 1,
 }
+
 MTL4RenderEncoderOptions :: bit_set[MTL4RenderEncoderOption; cffi.ulong]
 
-/// MTL4CommandQueueError
 MTL4CommandQueueError :: enum cffi.long {
     None          = 0,
     Timeout       = 1,
@@ -1420,20 +1348,17 @@ MTL4CommandQueueError :: enum cffi.long {
     Internal      = 6,
 }
 
-/// MTLCaptureError
 CaptureError :: enum cffi.long {
     NotSupported      = 1,
     AlreadyCapturing  = 2,
     InvalidDescriptor = 3,
 }
 
-/// MTLCaptureDestination
 CaptureDestination :: enum cffi.long {
     DeveloperTools   = 1,
     GPUTraceDocument = 2,
 }
 
-/// MTLIndirectCommandType
 IndirectCommandType :: enum cffi.ulong {
     Draw                      = 1,
     DrawIndexed               = 2,
@@ -1445,12 +1370,10 @@ IndirectCommandType :: enum cffi.ulong {
     DrawMeshThreads           = 256,
 }
 
-/// MTLFunctionLogType
 FunctionLogType :: enum cffi.ulong {
     Validation = 0,
 }
 
-/// MTLDynamicLibraryError
 DynamicLibraryError :: enum cffi.ulong {
     None                  = 0,
     InvalidFile           = 1,
@@ -1460,7 +1383,6 @@ DynamicLibraryError :: enum cffi.ulong {
     Unsupported           = 5,
 }
 
-/// MTLLogLevel
 LogLevel :: enum cffi.long {
     Undefined = 0,
     Debug     = 1,
@@ -1470,13 +1392,11 @@ LogLevel :: enum cffi.long {
     Fault     = 5,
 }
 
-/// MTLLogStateError
 LogStateError :: enum cffi.ulong {
     InvalidSize = 1,
     Invalid     = 2,
 }
 
-/// MTLBinaryArchiveError
 BinaryArchiveError :: enum cffi.ulong {
     None               = 0,
     InvalidFile        = 1,
@@ -1485,7 +1405,6 @@ BinaryArchiveError :: enum cffi.ulong {
     InternalError      = 4,
 }
 
-/// MTLIntersectionFunctionSignature
 IntersectionFunctionSignature :: enum cffi.ulong {
     None                       = 0,
     Instancing                 = 1,
@@ -1500,33 +1419,29 @@ IntersectionFunctionSignature :: enum cffi.ulong {
     UserData                   = 512,
 }
 
-/// MTLStitchedLibraryOptions
 StitchedLibraryOption :: enum cffi.ulong {
     FailOnBinaryArchiveMiss          = 0,
     StoreLibraryInMetalPipelinesScript = 1,
 }
+
 StitchedLibraryOptions :: bit_set[StitchedLibraryOption; cffi.ulong]
 
-/// MTLIOPriority
 IOPriority :: enum cffi.long {
     High   = 0,
     Normal = 1,
     Low    = 2,
 }
 
-/// MTLIOCommandQueueType
 IOCommandQueueType :: enum cffi.long {
     Concurrent = 0,
     Serial     = 1,
 }
 
-/// MTLIOError
 IOError :: enum cffi.long {
     URLInvalid = 1,
     Internal   = 2,
 }
 
-/// MTLIOStatus
 IOStatus :: enum cffi.long {
     Pending   = 0,
     Cancelled = 1,
@@ -1534,114 +1449,91 @@ IOStatus :: enum cffi.long {
     Complete  = 3,
 }
 
-/// MTLIOCompressionStatus
 IOCompressionStatus :: enum cffi.long {
     Complete = 0,
     Error    = 1,
 }
 
-/// MTL4ShaderReflection
 MTL4ShaderReflection :: enum cffi.ulong {
     None           = 0,
     BindingInfo    = 1,
     BufferTypeInfo = 2,
 }
 
-/// MTL4AlphaToOneState
 MTL4AlphaToOneState :: enum cffi.long {
     Disabled = 0,
     Enabled  = 1,
 }
 
-/// MTL4AlphaToCoverageState
 MTL4AlphaToCoverageState :: enum cffi.long {
     Disabled = 0,
     Enabled  = 1,
 }
 
-/// MTL4BlendState
 MTL4BlendState :: enum cffi.long {
     Disabled      = 0,
     Enabled       = 1,
     Unspecialized = 2,
 }
 
-/// MTL4IndirectCommandBufferSupportState
 MTL4IndirectCommandBufferSupportState :: enum cffi.long {
     Disabled = 0,
     Enabled  = 1,
 }
 
-/// MTL4LogicalToPhysicalColorAttachmentMappingState
 MTL4LogicalToPhysicalColorAttachmentMappingState :: enum cffi.long {
     Identity  = 0,
     Inherited = 1,
 }
 
-/// MTL4PipelineDataSetSerializerConfiguration
 MTL4PipelineDataSetSerializerConfiguration :: enum cffi.ulong {
     CaptureDescriptors = 1,
     CaptureBinaries    = 2,
 }
 
-/// MTL4BinaryFunctionOptions
 MTL4BinaryFunctionOption :: enum cffi.ulong {
     PipelineIndependent = 1,
 }
+
 MTL4BinaryFunctionOptions :: bit_set[MTL4BinaryFunctionOption; cffi.ulong]
 
-/// MTLOrigin
 Origin :: struct #align (8) {
     x: NS.UInteger,
     y: NS.UInteger,
     z: NS.UInteger,
 }
-#assert(size_of(Origin) == 24)
 
-/// MTLSize
 Size :: struct #align (8) {
     width:  NS.UInteger,
     height: NS.UInteger,
     depth:  NS.UInteger,
 }
-#assert(size_of(Size) == 24)
 
-/// MTLRegion
 Region :: struct #align (8) {
     origin: Origin,
     size:   Size,
 }
-#assert(size_of(Region) == 48)
 
-/// MTLSamplePosition
 SamplePosition :: struct #align (4) {
     x: cffi.float,
     y: cffi.float,
 }
-#assert(size_of(SamplePosition) == 8)
 
-/// MTLResourceID
 ResourceID :: struct #align (8) {
     _impl: cffi.uint64_t,
 }
-#assert(size_of(ResourceID) == 8)
 
-/// MTLTextureSwizzleChannels
 TextureSwizzleChannels :: struct #align (1) {
     red:   TextureSwizzle,
     green: TextureSwizzle,
     blue:  TextureSwizzle,
     alpha: TextureSwizzle,
 }
-#assert(size_of(TextureSwizzleChannels) == 4)
 
-/// MTLCounterResultTimestamp
 CounterResultTimestamp :: struct #align (8) {
     timestamp: cffi.uint64_t,
 }
-#assert(size_of(CounterResultTimestamp) == 8)
 
-/// MTLCounterResultStageUtilization
 CounterResultStageUtilization :: struct #align (8) {
     totalCycles:                  cffi.uint64_t,
     vertexCycles:                 cffi.uint64_t,
@@ -1650,9 +1542,7 @@ CounterResultStageUtilization :: struct #align (8) {
     fragmentCycles:               cffi.uint64_t,
     renderTargetCycles:           cffi.uint64_t,
 }
-#assert(size_of(CounterResultStageUtilization) == 48)
 
-/// MTLCounterResultStatistic
 CounterResultStatistic :: struct #align (8) {
     tessellationInputPatches:        cffi.uint64_t,
     vertexInvocations:               cffi.uint64_t,
@@ -1663,30 +1553,22 @@ CounterResultStatistic :: struct #align (8) {
     fragmentsPassed:                 cffi.uint64_t,
     computeKernelInvocations:        cffi.uint64_t,
 }
-#assert(size_of(CounterResultStatistic) == 64)
 
-/// MTL4TimestampHeapEntry
 MTL4TimestampHeapEntry :: struct #align (8) {
     timestamp: cffi.uint64_t,
 }
-#assert(size_of(MTL4TimestampHeapEntry) == 8)
 
-/// MTLAccelerationStructureSizes
 AccelerationStructureSizes :: struct #align (8) {
     accelerationStructureSize: NS.UInteger,
     buildScratchBufferSize:    NS.UInteger,
     refitScratchBufferSize:    NS.UInteger,
 }
-#assert(size_of(AccelerationStructureSizes) == 24)
 
-/// MTLSizeAndAlign
 SizeAndAlign :: struct #align (8) {
     size:  NS.UInteger,
     align: NS.UInteger,
 }
-#assert(size_of(SizeAndAlign) == 16)
 
-/// MTLMapIndirectArguments
 MapIndirectArguments :: struct #align (4) {
     regionOriginX:    cffi.uint32_t,
     regionOriginY:    cffi.uint32_t,
@@ -1697,47 +1579,35 @@ MapIndirectArguments :: struct #align (4) {
     mipMapLevel:      cffi.uint32_t,
     sliceId:          cffi.uint32_t,
 }
-#assert(size_of(MapIndirectArguments) == 32)
 
-/// MTLClearColor
 ClearColor :: struct #align (8) {
     red:   cffi.double,
     green: cffi.double,
     blue:  cffi.double,
     alpha: cffi.double,
 }
-#assert(size_of(ClearColor) == 32)
 
-/// MTLDispatchThreadgroupsIndirectArguments
 DispatchThreadgroupsIndirectArguments :: struct #align (4) {
     threadgroupsPerGrid: [3]cffi.uint32_t,
 }
-#assert(size_of(DispatchThreadgroupsIndirectArguments) == 12)
 
-/// MTLDispatchThreadsIndirectArguments
 DispatchThreadsIndirectArguments :: struct #align (4) {
     threadsPerGrid:        [3]cffi.uint32_t,
     threadsPerThreadgroup: [3]cffi.uint32_t,
 }
-#assert(size_of(DispatchThreadsIndirectArguments) == 24)
 
-/// MTLStageInRegionIndirectArguments
 StageInRegionIndirectArguments :: struct #align (4) {
     stageInOrigin: [3]cffi.uint32_t,
     stageInSize:   [3]cffi.uint32_t,
 }
-#assert(size_of(StageInRegionIndirectArguments) == 24)
 
-/// MTLScissorRect
 ScissorRect :: struct #align (8) {
     x:      NS.UInteger,
     y:      NS.UInteger,
     width:  NS.UInteger,
     height: NS.UInteger,
 }
-#assert(size_of(ScissorRect) == 32)
 
-/// MTLViewport
 Viewport :: struct #align (8) {
     originX: cffi.double,
     originY: cffi.double,
@@ -1746,18 +1616,14 @@ Viewport :: struct #align (8) {
     znear:   cffi.double,
     zfar:    cffi.double,
 }
-#assert(size_of(Viewport) == 48)
 
-/// MTLDrawPrimitivesIndirectArguments
 DrawPrimitivesIndirectArguments :: struct #align (4) {
     vertexCount:   cffi.uint32_t,
     instanceCount: cffi.uint32_t,
     vertexStart:   cffi.uint32_t,
     baseInstance:  cffi.uint32_t,
 }
-#assert(size_of(DrawPrimitivesIndirectArguments) == 16)
 
-/// MTLDrawIndexedPrimitivesIndirectArguments
 DrawIndexedPrimitivesIndirectArguments :: struct #align (4) {
     indexCount:    cffi.uint32_t,
     instanceCount: cffi.uint32_t,
@@ -1765,46 +1631,34 @@ DrawIndexedPrimitivesIndirectArguments :: struct #align (4) {
     baseVertex:    cffi.int32_t,
     baseInstance:  cffi.uint32_t,
 }
-#assert(size_of(DrawIndexedPrimitivesIndirectArguments) == 20)
 
-/// MTLVertexAmplificationViewMapping
 VertexAmplificationViewMapping :: struct #align (4) {
     viewportArrayIndexOffset:     cffi.uint32_t,
     renderTargetArrayIndexOffset: cffi.uint32_t,
 }
-#assert(size_of(VertexAmplificationViewMapping) == 8)
 
-/// MTLDrawPatchIndirectArguments
 DrawPatchIndirectArguments :: struct #align (4) {
     patchCount:    cffi.uint32_t,
     instanceCount: cffi.uint32_t,
     patchStart:    cffi.uint32_t,
     baseInstance:  cffi.uint32_t,
 }
-#assert(size_of(DrawPatchIndirectArguments) == 16)
 
-/// MTLQuadTessellationFactorsHalf
 QuadTessellationFactorsHalf :: struct #align (2) {
     edgeTessellationFactor:   [4]cffi.uint16_t,
     insideTessellationFactor: [2]cffi.uint16_t,
 }
-#assert(size_of(QuadTessellationFactorsHalf) == 12)
 
-/// MTLTriangleTessellationFactorsHalf
 TriangleTessellationFactorsHalf :: struct #align (2) {
     edgeTessellationFactor:   [3]cffi.uint16_t,
     insideTessellationFactor: cffi.uint16_t,
 }
-#assert(size_of(TriangleTessellationFactorsHalf) == 8)
 
-/// MTL4BufferRange
 MTL4BufferRange :: struct #align (8) {
     bufferAddress: GPUAddress,
     length:        cffi.uint64_t,
 }
-#assert(size_of(MTL4BufferRange) == 16)
 
-/// _MTLPackedFloat3
 _MTLPackedFloat3 :: struct #align (4) {
     using _ : struct #raw_union  {
         using _ : struct  {
@@ -1815,31 +1669,23 @@ _MTLPackedFloat3 :: struct #align (4) {
         elements: [3]cffi.float,
     },
 }
-#assert(size_of(_MTLPackedFloat3) == 12)
 
-/// MTLPackedFloatQuaternion
 PackedFloatQuaternion :: struct #align (4) {
     x: cffi.float,
     y: cffi.float,
     z: cffi.float,
     w: cffi.float,
 }
-#assert(size_of(PackedFloatQuaternion) == 16)
 
-/// _MTLPackedFloat4x3
 _MTLPackedFloat4x3 :: struct #align (4) {
     columns: [4]_MTLPackedFloat3,
 }
-#assert(size_of(_MTLPackedFloat4x3) == 48)
 
-/// _MTLAxisAlignedBoundingBox
 _MTLAxisAlignedBoundingBox :: struct #align (4) {
     min: _MTLPackedFloat3,
     max: _MTLPackedFloat3,
 }
-#assert(size_of(_MTLAxisAlignedBoundingBox) == 24)
 
-/// MTLComponentTransform
 ComponentTransform :: struct #align (4) {
     scale:       _MTLPackedFloat3,
     shear:       _MTLPackedFloat3,
@@ -1847,9 +1693,7 @@ ComponentTransform :: struct #align (4) {
     rotation:    PackedFloatQuaternion,
     translation: _MTLPackedFloat3,
 }
-#assert(size_of(ComponentTransform) == 64)
 
-/// MTLAccelerationStructureInstanceDescriptor
 AccelerationStructureInstanceDescriptor :: struct #align (4) {
     transformationMatrix:            _MTLPackedFloat4x3,
     options:                         AccelerationStructureInstanceOptions,
@@ -1857,9 +1701,7 @@ AccelerationStructureInstanceDescriptor :: struct #align (4) {
     intersectionFunctionTableOffset: cffi.uint32_t,
     accelerationStructureIndex:      cffi.uint32_t,
 }
-#assert(size_of(AccelerationStructureInstanceDescriptor) == 64)
 
-/// MTLAccelerationStructureUserIDInstanceDescriptor
 AccelerationStructureUserIDInstanceDescriptor :: struct #align (4) {
     transformationMatrix:            _MTLPackedFloat4x3,
     options:                         AccelerationStructureInstanceOptions,
@@ -1868,9 +1710,7 @@ AccelerationStructureUserIDInstanceDescriptor :: struct #align (4) {
     accelerationStructureIndex:      cffi.uint32_t,
     userID:                          cffi.uint32_t,
 }
-#assert(size_of(AccelerationStructureUserIDInstanceDescriptor) == 68)
 
-/// MTLAccelerationStructureMotionInstanceDescriptor
 AccelerationStructureMotionInstanceDescriptor :: struct #align (4) {
     options:                         AccelerationStructureInstanceOptions,
     mask:                            cffi.uint32_t,
@@ -1884,9 +1724,7 @@ AccelerationStructureMotionInstanceDescriptor :: struct #align (4) {
     motionStartTime:                 cffi.float,
     motionEndTime:                   cffi.float,
 }
-#assert(size_of(AccelerationStructureMotionInstanceDescriptor) == 44)
 
-/// MTLIndirectAccelerationStructureInstanceDescriptor
 IndirectAccelerationStructureInstanceDescriptor :: struct #align (8) {
     transformationMatrix:            _MTLPackedFloat4x3,
     options:                         AccelerationStructureInstanceOptions,
@@ -1895,9 +1733,7 @@ IndirectAccelerationStructureInstanceDescriptor :: struct #align (8) {
     userID:                          cffi.uint32_t,
     accelerationStructureID:         ResourceID,
 }
-#assert(size_of(IndirectAccelerationStructureInstanceDescriptor) == 72)
 
-/// MTLIndirectAccelerationStructureMotionInstanceDescriptor
 IndirectAccelerationStructureMotionInstanceDescriptor :: struct #align (8) {
     options:                         AccelerationStructureInstanceOptions,
     mask:                            cffi.uint32_t,
@@ -1911,9 +1747,7 @@ IndirectAccelerationStructureMotionInstanceDescriptor :: struct #align (8) {
     motionStartTime:                 cffi.float,
     motionEndTime:                   cffi.float,
 }
-#assert(size_of(IndirectAccelerationStructureMotionInstanceDescriptor) == 48)
 
-/// MTL4UpdateSparseTextureMappingOperation
 MTL4UpdateSparseTextureMappingOperation :: struct #align (8) {
     mode:          SparseTextureMappingMode,
     textureRegion: Region,
@@ -1921,9 +1755,7 @@ MTL4UpdateSparseTextureMappingOperation :: struct #align (8) {
     textureSlice:  NS.UInteger,
     heapOffset:    NS.UInteger,
 }
-#assert(size_of(MTL4UpdateSparseTextureMappingOperation) == 80)
 
-/// MTL4CopySparseTextureMappingOperation
 MTL4CopySparseTextureMappingOperation :: struct #align (8) {
     sourceRegion:      Region,
     sourceLevel:       NS.UInteger,
@@ -1932,35 +1764,26 @@ MTL4CopySparseTextureMappingOperation :: struct #align (8) {
     destinationLevel:  NS.UInteger,
     destinationSlice:  NS.UInteger,
 }
-#assert(size_of(MTL4CopySparseTextureMappingOperation) == 104)
 
-/// MTL4UpdateSparseBufferMappingOperation
 MTL4UpdateSparseBufferMappingOperation :: struct #align (8) {
     mode:        SparseTextureMappingMode,
     bufferRange: NS._NSRange,
     heapOffset:  NS.UInteger,
 }
-#assert(size_of(MTL4UpdateSparseBufferMappingOperation) == 32)
 
-/// MTL4CopySparseBufferMappingOperation
 MTL4CopySparseBufferMappingOperation :: struct #align (8) {
     sourceRange:       NS._NSRange,
     destinationOffset: NS.UInteger,
 }
-#assert(size_of(MTL4CopySparseBufferMappingOperation) == 24)
 
-/// MTLIndirectCommandBufferExecutionRange
 IndirectCommandBufferExecutionRange :: struct #align (4) {
     location: cffi.uint32_t,
     length:   cffi.uint32_t,
 }
-#assert(size_of(IndirectCommandBufferExecutionRange) == 8)
 
-/// MTLIntersectionFunctionBufferArguments
 IntersectionFunctionBufferArguments :: struct #align (8) {
     intersectionFunctionBuffer:     cffi.uint64_t,
     intersectionFunctionBufferSize: cffi.uint64_t,
     intersectionFunctionStride:     cffi.uint64_t,
 }
-#assert(size_of(IntersectionFunctionBufferArguments) == 24)
 

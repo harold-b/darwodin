@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMediaSelectionOption
-///
 @(objc_class="AVMediaSelectionOption", objc_superclass=NS.Object)
 MediaSelectionOptions :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MediaSelectionOptions, objc_selector="hasMediaCharacteristic:", objc_name="hasMediaCharacteristic")
     MediaSelectionOptions_hasMediaCharacteristic :: proc(self: ^MediaSelectionOptions, mediaCharacteristic: ^NS.String) -> bool ---
@@ -63,3 +57,6 @@ foreign lib {
     @(objc_type=MediaSelectionOptions, objc_selector="displayName", objc_name="displayName")
     MediaSelectionOptions_displayName :: proc(self: ^MediaSelectionOptions) -> ^NS.String ---
 }
+
+
+

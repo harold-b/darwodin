@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCAxis2DInput
-///
 @(objc_class="GCAxis2DInput")
 Axis2DInput :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Axis2DInput, objc_selector="valueDidChangeHandler", objc_name="valueDidChangeHandler")
     Axis2DInput_valueDidChangeHandler :: proc(self: ^Axis2DInput) -> ^Objc_Block(proc "c" ()) ---
@@ -44,3 +38,6 @@ foreign lib {
     @(objc_type=Axis2DInput, objc_selector="sources", objc_name="sources")
     Axis2DInput_sources :: proc(self: ^Axis2DInput) -> ^NS.Set ---
 }
+
+
+

@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSOrthography
-///
 @(objc_class="NSOrthography", objc_superclass=Object)
 Orthography :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Orthography, objc_selector="initWithDominantScript:languageMap:", objc_name="initWithDominantScript")
     Orthography_initWithDominantScript :: proc(self: ^Orthography, script: ^String, _map: ^Dictionary) -> instancetype ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=Orthography, objc_selector="orthographyWithDominantScript:languageMap:", objc_name="orthographyWithDominantScript", objc_is_class_method=true)
     Orthography_orthographyWithDominantScript :: proc(script: ^String, _map: ^Dictionary) -> instancetype ---
 }
+
+
+

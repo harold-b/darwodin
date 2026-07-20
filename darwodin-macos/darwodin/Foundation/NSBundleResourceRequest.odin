@@ -30,10 +30,10 @@ foreign lib {
     BundleResourceRequest_initWithTags_bundle :: proc(self: ^BundleResourceRequest, tags: ^Set, bundle: ^Bundle) -> instancetype ---
 
     @(objc_type=BundleResourceRequest, objc_selector="beginAccessingResourcesWithCompletionHandler:", objc_name="beginAccessingResourcesWithCompletionHandler")
-    BundleResourceRequest_beginAccessingResourcesWithCompletionHandler :: proc(self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) ---
+    BundleResourceRequest_beginAccessingResourcesWithCompletionHandler :: proc(self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" ( error: ^Error ))) ---
 
     @(objc_type=BundleResourceRequest, objc_selector="conditionallyBeginAccessingResourcesWithCompletionHandler:", objc_name="conditionallyBeginAccessingResourcesWithCompletionHandler")
-    BundleResourceRequest_conditionallyBeginAccessingResourcesWithCompletionHandler :: proc(self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" (resourcesAvailable: bool))) ---
+    BundleResourceRequest_conditionallyBeginAccessingResourcesWithCompletionHandler :: proc(self: ^BundleResourceRequest, completionHandler: ^Objc_Block(proc "c" ( resourcesAvailable: bool ))) ---
 
     @(objc_type=BundleResourceRequest, objc_selector="endAccessingResources", objc_name="endAccessingResources")
     BundleResourceRequest_endAccessingResources :: proc(self: ^BundleResourceRequest) ---

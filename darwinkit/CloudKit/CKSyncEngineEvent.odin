@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineEvent
-///
 @(objc_class="CKSyncEngineEvent", objc_superclass=NS.Object)
 SyncEngineEvent :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineEvent, objc_selector="init", objc_name="init")
     SyncEngineEvent_init :: proc(self: ^SyncEngineEvent) -> instancetype ---
@@ -62,3 +56,6 @@ foreign lib {
     @(objc_type=SyncEngineEvent, objc_selector="didSendChangesEvent", objc_name="didSendChangesEvent")
     SyncEngineEvent_didSendChangesEvent :: proc(self: ^SyncEngineEvent) -> ^SyncEngineDidSendChangesEvent ---
 }
+
+
+

@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSAttributedStringMarkdownSourcePosition
-///
 @(objc_class="NSAttributedStringMarkdownSourcePosition", objc_superclass=Object)
 AttributedStringMarkdownSourcePosition :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AttributedStringMarkdownSourcePosition, objc_selector="initWithStartLine:startColumn:endLine:endColumn:", objc_name="initWithStartLine")
     AttributedStringMarkdownSourcePosition_initWithStartLine :: proc(self: ^AttributedStringMarkdownSourcePosition, startLine: Integer, startColumn: Integer, endLine: Integer, endColumn: Integer) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=AttributedStringMarkdownSourcePosition, objc_selector="endColumn", objc_name="endColumn")
     AttributedStringMarkdownSourcePosition_endColumn :: proc(self: ^AttributedStringMarkdownSourcePosition) -> Integer ---
 }
+
+
+

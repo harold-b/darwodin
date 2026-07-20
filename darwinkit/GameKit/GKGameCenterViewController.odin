@@ -7,23 +7,22 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    import AK "../AppKit"
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    import UI "../UIKit"
+}
 
-
-///
-/// GKGameCenterViewController
-///
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_class="GKGameCenterViewController", objc_superclass=AKViewController)
-    GameCenterViewController :: struct { using _: AKViewController, 
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    @(objc_class="GKGameCenterViewController", objc_superclass=AK.ViewController)
+    GameCenterViewController :: struct { using _: AK.ViewController, 
         using _: ViewController,
     }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_class="GKGameCenterViewController", objc_superclass=AKNavigationController)
-    GameCenterViewController :: struct { using _: AKNavigationController, }
-} // End else
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    @(objc_class="GKGameCenterViewController", objc_superclass=UI.NavigationController)
+    GameCenterViewController :: struct { using _: UI.NavigationController, }
+}
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=GameCenterViewController, objc_selector="gameCenterDelegate", objc_name="gameCenterDelegate")
     GameCenterViewController_gameCenterDelegate :: proc(self: ^GameCenterViewController) -> ^GameCenterControllerDelegate ---
@@ -73,3 +72,6 @@ foreign lib {
     @(objc_type=GameCenterViewController, objc_selector="setLeaderboardCategory:", objc_name="setLeaderboardCategory")
     GameCenterViewController_setLeaderboardCategory :: proc(self: ^GameCenterViewController, leaderboardCategory: ^NS.String) ---
 }
+
+
+

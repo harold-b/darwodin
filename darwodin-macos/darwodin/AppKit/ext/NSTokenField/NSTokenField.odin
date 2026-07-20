@@ -20,21 +20,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTextField"
 
 VTable :: struct {
     super: NSTextField.VTable,
-    delegate: proc(self: ^AK.TokenField) -> ^AK.TokenFieldDelegate,
-    setDelegate: proc(self: ^AK.TokenField, delegate: ^AK.TokenFieldDelegate),
-    tokenStyle: proc(self: ^AK.TokenField) -> AK.TokenStyle,
-    setTokenStyle: proc(self: ^AK.TokenField, tokenStyle: AK.TokenStyle),
-    completionDelay: proc(self: ^AK.TokenField) -> NS.TimeInterval,
-    setCompletionDelay: proc(self: ^AK.TokenField, completionDelay: NS.TimeInterval),
+    delegate: proc(self: ^NS.TokenField) -> ^NS.TokenFieldDelegate,
+    setDelegate: proc(self: ^NS.TokenField, delegate: ^NS.TokenFieldDelegate),
+    tokenStyle: proc(self: ^NS.TokenField) -> NS.TokenStyle,
+    setTokenStyle: proc(self: ^NS.TokenField, tokenStyle: NS.TokenStyle),
+    completionDelay: proc(self: ^NS.TokenField) -> NS.TimeInterval,
+    setCompletionDelay: proc(self: ^NS.TokenField, completionDelay: NS.TimeInterval),
     defaultCompletionDelay: proc() -> NS.TimeInterval,
-    tokenizingCharacterSet: proc(self: ^AK.TokenField) -> ^NS.CharacterSet,
-    setTokenizingCharacterSet: proc(self: ^AK.TokenField, tokenizingCharacterSet: ^NS.CharacterSet),
+    tokenizingCharacterSet: proc(self: ^NS.TokenField) -> ^NS.CharacterSet,
+    setTokenizingCharacterSet: proc(self: ^NS.TokenField, tokenizingCharacterSet: ^NS.CharacterSet),
     defaultTokenizingCharacterSet: proc() -> ^NS.CharacterSet,
 }
 
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextField.extend(cls, &vt.super)
 
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.TokenField, _: SEL) -> ^AK.TokenFieldDelegate {
+        delegate :: proc "c" (self: ^NS.TokenField, _: SEL) -> ^NS.TokenFieldDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.TokenField, _: SEL, delegate: ^AK.TokenFieldDelegate) {
+        setDelegate :: proc "c" (self: ^NS.TokenField, _: SEL, delegate: ^NS.TokenFieldDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.tokenStyle != nil {
-        tokenStyle :: proc "c" (self: ^AK.TokenField, _: SEL) -> AK.TokenStyle {
+        tokenStyle :: proc "c" (self: ^NS.TokenField, _: SEL) -> NS.TokenStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tokenStyle"), auto_cast tokenStyle, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setTokenStyle != nil {
-        setTokenStyle :: proc "c" (self: ^AK.TokenField, _: SEL, tokenStyle: AK.TokenStyle) {
+        setTokenStyle :: proc "c" (self: ^NS.TokenField, _: SEL, tokenStyle: NS.TokenStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTokenStyle:"), auto_cast setTokenStyle, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.completionDelay != nil {
-        completionDelay :: proc "c" (self: ^AK.TokenField, _: SEL) -> NS.TimeInterval {
+        completionDelay :: proc "c" (self: ^NS.TokenField, _: SEL) -> NS.TimeInterval {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("completionDelay"), auto_cast completionDelay, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setCompletionDelay != nil {
-        setCompletionDelay :: proc "c" (self: ^AK.TokenField, _: SEL, completionDelay: NS.TimeInterval) {
+        setCompletionDelay :: proc "c" (self: ^NS.TokenField, _: SEL, completionDelay: NS.TimeInterval) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultCompletionDelay"), auto_cast defaultCompletionDelay, "d#:") do panic("Failed to register objC method.")
     }
     if vt.tokenizingCharacterSet != nil {
-        tokenizingCharacterSet :: proc "c" (self: ^AK.TokenField, _: SEL) -> ^NS.CharacterSet {
+        tokenizingCharacterSet :: proc "c" (self: ^NS.TokenField, _: SEL) -> ^NS.CharacterSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tokenizingCharacterSet"), auto_cast tokenizingCharacterSet, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTokenizingCharacterSet != nil {
-        setTokenizingCharacterSet :: proc "c" (self: ^AK.TokenField, _: SEL, tokenizingCharacterSet: ^NS.CharacterSet) {
+        setTokenizingCharacterSet :: proc "c" (self: ^NS.TokenField, _: SEL, tokenizingCharacterSet: ^NS.CharacterSet) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

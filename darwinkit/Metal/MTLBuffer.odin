@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLBuffer
-///
 @(objc_class="MTLBuffer")
 Buffer :: struct { using _: intrinsics.objc_object, 
     using _: Resource,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Buffer, objc_selector="contents", objc_name="contents")
     Buffer_contents :: proc(self: ^Buffer) -> rawptr ---
@@ -41,7 +35,7 @@ foreign lib {
     @(objc_type=Buffer, objc_selector="removeAllDebugMarkers", objc_name="removeAllDebugMarkers")
     Buffer_removeAllDebugMarkers :: proc(self: ^Buffer) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Buffer, objc_selector="newRemoteBufferViewForDevice:", objc_name="newRemoteBufferViewForDevice")
         Buffer_newRemoteBufferViewForDevice :: proc(self: ^Buffer, device: ^Device) -> ^Buffer ---
     }
@@ -49,7 +43,7 @@ foreign lib {
     @(objc_type=Buffer, objc_selector="length", objc_name="length")
     Buffer_length :: proc(self: ^Buffer) -> NS.UInteger ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Buffer, objc_selector="remoteStorageBuffer", objc_name="remoteStorageBuffer")
         Buffer_remoteStorageBuffer :: proc(self: ^Buffer) -> ^Buffer ---
     }
@@ -60,3 +54,6 @@ foreign lib {
     @(objc_type=Buffer, objc_selector="sparseBufferTier", objc_name="sparseBufferTier")
     Buffer_sparseBufferTier :: proc(self: ^Buffer) -> BufferSparseTier ---
 }
+
+
+

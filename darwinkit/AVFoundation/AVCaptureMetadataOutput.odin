@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureMetadataOutput
-///
 @(objc_class="AVCaptureMetadataOutput", objc_superclass=CaptureOutput)
 CaptureMetadataOutput :: struct { using _: CaptureOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureMetadataOutput, objc_selector="init", objc_name="init")
     CaptureMetadataOutput_init :: proc(self: ^CaptureMetadataOutput) -> instancetype ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=CaptureMetadataOutput, objc_selector="requiredMetadataObjectTypesForCinematicVideoCapture", objc_name="requiredMetadataObjectTypesForCinematicVideoCapture")
     CaptureMetadataOutput_requiredMetadataObjectTypesForCinematicVideoCapture :: proc(self: ^CaptureMetadataOutput) -> ^NS.Array ---
 }
+
+
+

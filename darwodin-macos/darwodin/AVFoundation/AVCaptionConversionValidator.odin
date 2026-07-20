@@ -34,7 +34,7 @@ foreign lib {
     CaptionConversionValidator_initWithCaptions :: proc(self: ^CaptionConversionValidator, captions: ^NS.Array, timeRange: CM.TimeRange, conversionSettings: ^NS.Dictionary) -> instancetype ---
 
     @(objc_type=CaptionConversionValidator, objc_selector="validateCaptionConversionWithWarningHandler:", objc_name="validateCaptionConversionWithWarningHandler")
-    CaptionConversionValidator_validateCaptionConversionWithWarningHandler :: proc(self: ^CaptionConversionValidator, handler: ^Objc_Block(proc "c" (warning: ^CaptionConversionWarning))) ---
+    CaptionConversionValidator_validateCaptionConversionWithWarningHandler :: proc(self: ^CaptionConversionValidator, handler: ^Objc_Block(proc "c" ( warning: ^CaptionConversionWarning ))) ---
 
     @(objc_type=CaptionConversionValidator, objc_selector="stopValidating", objc_name="stopValidating")
     CaptionConversionValidator_stopValidating :: proc(self: ^CaptionConversionValidator) ---

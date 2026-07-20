@@ -20,25 +20,25 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSArrayController"
 
 VTable :: struct {
     super: NSArrayController.VTable,
-    newObject: proc(self: ^AK.DictionaryController) -> ^AK.DictionaryControllerKeyValuePair,
-    initialKey: proc(self: ^AK.DictionaryController) -> ^NS.String,
-    setInitialKey: proc(self: ^AK.DictionaryController, initialKey: ^NS.String),
-    initialValue: proc(self: ^AK.DictionaryController) -> id,
-    setInitialValue: proc(self: ^AK.DictionaryController, initialValue: id),
-    includedKeys: proc(self: ^AK.DictionaryController) -> ^NS.Array,
-    setIncludedKeys: proc(self: ^AK.DictionaryController, includedKeys: ^NS.Array),
-    excludedKeys: proc(self: ^AK.DictionaryController) -> ^NS.Array,
-    setExcludedKeys: proc(self: ^AK.DictionaryController, excludedKeys: ^NS.Array),
-    localizedKeyDictionary: proc(self: ^AK.DictionaryController) -> ^NS.Dictionary,
-    setLocalizedKeyDictionary: proc(self: ^AK.DictionaryController, localizedKeyDictionary: ^NS.Dictionary),
-    localizedKeyTable: proc(self: ^AK.DictionaryController) -> ^NS.String,
-    setLocalizedKeyTable: proc(self: ^AK.DictionaryController, localizedKeyTable: ^NS.String),
+    newObject: proc(self: ^NS.DictionaryController) -> ^NS.DictionaryControllerKeyValuePair,
+    initialKey: proc(self: ^NS.DictionaryController) -> ^NS.String,
+    setInitialKey: proc(self: ^NS.DictionaryController, initialKey: ^NS.String),
+    initialValue: proc(self: ^NS.DictionaryController) -> id,
+    setInitialValue: proc(self: ^NS.DictionaryController, initialValue: id),
+    includedKeys: proc(self: ^NS.DictionaryController) -> ^NS.Array,
+    setIncludedKeys: proc(self: ^NS.DictionaryController, includedKeys: ^NS.Array),
+    excludedKeys: proc(self: ^NS.DictionaryController) -> ^NS.Array,
+    setExcludedKeys: proc(self: ^NS.DictionaryController, excludedKeys: ^NS.Array),
+    localizedKeyDictionary: proc(self: ^NS.DictionaryController) -> ^NS.Dictionary,
+    setLocalizedKeyDictionary: proc(self: ^NS.DictionaryController, localizedKeyDictionary: ^NS.Dictionary),
+    localizedKeyTable: proc(self: ^NS.DictionaryController) -> ^NS.String,
+    setLocalizedKeyTable: proc(self: ^NS.DictionaryController, localizedKeyTable: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSArrayController.extend(cls, &vt.super)
 
     if vt.newObject != nil {
-        newObject :: proc "c" (self: ^AK.DictionaryController, _: SEL) -> ^AK.DictionaryControllerKeyValuePair {
+        newObject :: proc "c" (self: ^NS.DictionaryController, _: SEL) -> ^NS.DictionaryControllerKeyValuePair {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("newObject"), auto_cast newObject, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initialKey != nil {
-        initialKey :: proc "c" (self: ^AK.DictionaryController, _: SEL) -> ^NS.String {
+        initialKey :: proc "c" (self: ^NS.DictionaryController, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initialKey"), auto_cast initialKey, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setInitialKey != nil {
-        setInitialKey :: proc "c" (self: ^AK.DictionaryController, _: SEL, initialKey: ^NS.String) {
+        setInitialKey :: proc "c" (self: ^NS.DictionaryController, _: SEL, initialKey: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setInitialKey:"), auto_cast setInitialKey, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.initialValue != nil {
-        initialValue :: proc "c" (self: ^AK.DictionaryController, _: SEL) -> id {
+        initialValue :: proc "c" (self: ^NS.DictionaryController, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initialValue"), auto_cast initialValue, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setInitialValue != nil {
-        setInitialValue :: proc "c" (self: ^AK.DictionaryController, _: SEL, initialValue: id) {
+        setInitialValue :: proc "c" (self: ^NS.DictionaryController, _: SEL, initialValue: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setInitialValue:"), auto_cast setInitialValue, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.includedKeys != nil {
-        includedKeys :: proc "c" (self: ^AK.DictionaryController, _: SEL) -> ^NS.Array {
+        includedKeys :: proc "c" (self: ^NS.DictionaryController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("includedKeys"), auto_cast includedKeys, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setIncludedKeys != nil {
-        setIncludedKeys :: proc "c" (self: ^AK.DictionaryController, _: SEL, includedKeys: ^NS.Array) {
+        setIncludedKeys :: proc "c" (self: ^NS.DictionaryController, _: SEL, includedKeys: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIncludedKeys:"), auto_cast setIncludedKeys, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.excludedKeys != nil {
-        excludedKeys :: proc "c" (self: ^AK.DictionaryController, _: SEL) -> ^NS.Array {
+        excludedKeys :: proc "c" (self: ^NS.DictionaryController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("excludedKeys"), auto_cast excludedKeys, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setExcludedKeys != nil {
-        setExcludedKeys :: proc "c" (self: ^AK.DictionaryController, _: SEL, excludedKeys: ^NS.Array) {
+        setExcludedKeys :: proc "c" (self: ^NS.DictionaryController, _: SEL, excludedKeys: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setExcludedKeys:"), auto_cast setExcludedKeys, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.localizedKeyDictionary != nil {
-        localizedKeyDictionary :: proc "c" (self: ^AK.DictionaryController, _: SEL) -> ^NS.Dictionary {
+        localizedKeyDictionary :: proc "c" (self: ^NS.DictionaryController, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("localizedKeyDictionary"), auto_cast localizedKeyDictionary, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setLocalizedKeyDictionary != nil {
-        setLocalizedKeyDictionary :: proc "c" (self: ^AK.DictionaryController, _: SEL, localizedKeyDictionary: ^NS.Dictionary) {
+        setLocalizedKeyDictionary :: proc "c" (self: ^NS.DictionaryController, _: SEL, localizedKeyDictionary: ^NS.Dictionary) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLocalizedKeyDictionary:"), auto_cast setLocalizedKeyDictionary, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.localizedKeyTable != nil {
-        localizedKeyTable :: proc "c" (self: ^AK.DictionaryController, _: SEL) -> ^NS.String {
+        localizedKeyTable :: proc "c" (self: ^NS.DictionaryController, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("localizedKeyTable"), auto_cast localizedKeyTable, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setLocalizedKeyTable != nil {
-        setLocalizedKeyTable :: proc "c" (self: ^AK.DictionaryController, _: SEL, localizedKeyTable: ^NS.String) {
+        setLocalizedKeyTable :: proc "c" (self: ^NS.DictionaryController, _: SEL, localizedKeyTable: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKNoise
-///
 @(objc_class="GKNoise", objc_superclass=NS.Object)
 Noise :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Noise, objc_selector="init", objc_name="init")
     Noise_init :: proc(self: ^Noise) -> instancetype ---
@@ -95,6 +89,8 @@ foreign lib {
     @(objc_type=Noise, objc_selector="setGradientColors:", objc_name="setGradientColors")
     Noise_setGradientColors :: proc(self: ^Noise, gradientColors: ^NS.Dictionary) ---
 }
+
+
 
 @(objc_type=Noise, objc_name="noiseWithNoiseSource")
 Noise_noiseWithNoiseSource :: proc {

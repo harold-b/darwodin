@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioRecorderDelegate
-///
 @(objc_class="AVAudioRecorderDelegate")
 AudioRecorderDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioRecorderDelegate, objc_selector="audioRecorderDidFinishRecording:successfully:", objc_name="audioRecorderDidFinishRecording")
     AudioRecorderDelegate_audioRecorderDidFinishRecording :: proc(self: ^AudioRecorderDelegate, recorder: ^AudioRecorder, flag: bool) ---
@@ -44,4 +38,6 @@ foreign lib {
         AudioRecorderDelegate_audioRecorderEndInterruption_ :: proc(self: ^AudioRecorderDelegate, recorder: ^AudioRecorder) ---
     }
 }
+
+
 

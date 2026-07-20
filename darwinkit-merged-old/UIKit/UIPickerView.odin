@@ -1,0 +1,67 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UIPickerView
+///
+@(objc_class="UIPickerView", objc_superclass=View)
+PickerView :: struct { using _: View, 
+    using _: NS.Coding,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PickerView, objc_selector="numberOfRowsInComponent:", objc_name="numberOfRowsInComponent")
+    PickerView_numberOfRowsInComponent :: proc(self: ^PickerView, component: NS.Integer) -> NS.Integer ---
+
+    @(objc_type=PickerView, objc_selector="rowSizeForComponent:", objc_name="rowSizeForComponent")
+    PickerView_rowSizeForComponent :: proc(self: ^PickerView, component: NS.Integer) -> CG.Size ---
+
+    @(objc_type=PickerView, objc_selector="viewForRow:forComponent:", objc_name="viewForRow")
+    PickerView_viewForRow :: proc(self: ^PickerView, row: NS.Integer, component: NS.Integer) -> ^View ---
+
+    @(objc_type=PickerView, objc_selector="reloadAllComponents", objc_name="reloadAllComponents")
+    PickerView_reloadAllComponents :: proc(self: ^PickerView) ---
+
+    @(objc_type=PickerView, objc_selector="reloadComponent:", objc_name="reloadComponent")
+    PickerView_reloadComponent :: proc(self: ^PickerView, component: NS.Integer) ---
+
+    @(objc_type=PickerView, objc_selector="selectRow:inComponent:animated:", objc_name="selectRow")
+    PickerView_selectRow :: proc(self: ^PickerView, row: NS.Integer, component: NS.Integer, animated: bool) ---
+
+    @(objc_type=PickerView, objc_selector="selectedRowInComponent:", objc_name="selectedRowInComponent")
+    PickerView_selectedRowInComponent :: proc(self: ^PickerView, component: NS.Integer) -> NS.Integer ---
+
+    @(objc_type=PickerView, objc_selector="dataSource", objc_name="dataSource")
+    PickerView_dataSource :: proc(self: ^PickerView) -> ^PickerViewDataSource ---
+
+    @(objc_type=PickerView, objc_selector="setDataSource:", objc_name="setDataSource")
+    PickerView_setDataSource :: proc(self: ^PickerView, dataSource: ^PickerViewDataSource) ---
+
+    @(objc_type=PickerView, objc_selector="delegate", objc_name="delegate")
+    PickerView_delegate :: proc(self: ^PickerView) -> ^PickerViewDelegate ---
+
+    @(objc_type=PickerView, objc_selector="setDelegate:", objc_name="setDelegate")
+    PickerView_setDelegate :: proc(self: ^PickerView, delegate: ^PickerViewDelegate) ---
+
+    @(objc_type=PickerView, objc_selector="showsSelectionIndicator", objc_name="showsSelectionIndicator")
+    PickerView_showsSelectionIndicator :: proc(self: ^PickerView) -> bool ---
+
+    @(objc_type=PickerView, objc_selector="setShowsSelectionIndicator:", objc_name="setShowsSelectionIndicator")
+    PickerView_setShowsSelectionIndicator :: proc(self: ^PickerView, showsSelectionIndicator: bool) ---
+
+    @(objc_type=PickerView, objc_selector="numberOfComponents", objc_name="numberOfComponents")
+    PickerView_numberOfComponents :: proc(self: ^PickerView) -> NS.Integer ---
+}

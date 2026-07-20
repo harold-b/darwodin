@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithLabel: proc(self: ^AK.AccessibilityCustomRotor, label: ^NS.String, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> instancetype,
-    initWithRotorType: proc(self: ^AK.AccessibilityCustomRotor, rotorType: AK.AccessibilityCustomRotorType, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> instancetype,
-    type: proc(self: ^AK.AccessibilityCustomRotor) -> AK.AccessibilityCustomRotorType,
-    setType: proc(self: ^AK.AccessibilityCustomRotor, type: AK.AccessibilityCustomRotorType),
-    label: proc(self: ^AK.AccessibilityCustomRotor) -> ^NS.String,
-    setLabel: proc(self: ^AK.AccessibilityCustomRotor, label: ^NS.String),
-    itemSearchDelegate: proc(self: ^AK.AccessibilityCustomRotor) -> ^AK.AccessibilityCustomRotorItemSearchDelegate,
-    setItemSearchDelegate: proc(self: ^AK.AccessibilityCustomRotor, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate),
-    itemLoadingDelegate: proc(self: ^AK.AccessibilityCustomRotor) -> ^AK.AccessibilityElementLoading,
-    setItemLoadingDelegate: proc(self: ^AK.AccessibilityCustomRotor, itemLoadingDelegate: ^AK.AccessibilityElementLoading),
+    initWithLabel: proc(self: ^NS.AccessibilityCustomRotor, label: ^NS.String, itemSearchDelegate: ^NS.AccessibilityCustomRotorItemSearchDelegate) -> instancetype,
+    initWithRotorType: proc(self: ^NS.AccessibilityCustomRotor, rotorType: NS.AccessibilityCustomRotorType, itemSearchDelegate: ^NS.AccessibilityCustomRotorItemSearchDelegate) -> instancetype,
+    type: proc(self: ^NS.AccessibilityCustomRotor) -> NS.AccessibilityCustomRotorType,
+    setType: proc(self: ^NS.AccessibilityCustomRotor, type: NS.AccessibilityCustomRotorType),
+    label: proc(self: ^NS.AccessibilityCustomRotor) -> ^NS.String,
+    setLabel: proc(self: ^NS.AccessibilityCustomRotor, label: ^NS.String),
+    itemSearchDelegate: proc(self: ^NS.AccessibilityCustomRotor) -> ^NS.AccessibilityCustomRotorItemSearchDelegate,
+    setItemSearchDelegate: proc(self: ^NS.AccessibilityCustomRotor, itemSearchDelegate: ^NS.AccessibilityCustomRotorItemSearchDelegate),
+    itemLoadingDelegate: proc(self: ^NS.AccessibilityCustomRotor) -> ^NS.AccessibilityElementLoading,
+    setItemLoadingDelegate: proc(self: ^NS.AccessibilityCustomRotor, itemLoadingDelegate: ^NS.AccessibilityElementLoading),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithLabel != nil {
-        initWithLabel :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, label: ^NS.String, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> instancetype {
+        initWithLabel :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL, label: ^NS.String, itemSearchDelegate: ^NS.AccessibilityCustomRotorItemSearchDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithLabel:itemSearchDelegate:"), auto_cast initWithLabel, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.initWithRotorType != nil {
-        initWithRotorType :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, rotorType: AK.AccessibilityCustomRotorType, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) -> instancetype {
+        initWithRotorType :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL, rotorType: NS.AccessibilityCustomRotorType, itemSearchDelegate: ^NS.AccessibilityCustomRotorItemSearchDelegate) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRotorType:itemSearchDelegate:"), auto_cast initWithRotorType, "@@:l@") do panic("Failed to register objC method.")
     }
     if vt.type != nil {
-        type :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL) -> AK.AccessibilityCustomRotorType {
+        type :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL) -> NS.AccessibilityCustomRotorType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("type"), auto_cast type, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setType != nil {
-        setType :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, type: AK.AccessibilityCustomRotorType) {
+        setType :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL, type: NS.AccessibilityCustomRotorType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setType:"), auto_cast setType, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.label != nil {
-        label :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL) -> ^NS.String {
+        label :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("label"), auto_cast label, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setLabel != nil {
-        setLabel :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, label: ^NS.String) {
+        setLabel :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL, label: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLabel:"), auto_cast setLabel, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.itemSearchDelegate != nil {
-        itemSearchDelegate :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL) -> ^AK.AccessibilityCustomRotorItemSearchDelegate {
+        itemSearchDelegate :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL) -> ^NS.AccessibilityCustomRotorItemSearchDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemSearchDelegate"), auto_cast itemSearchDelegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setItemSearchDelegate != nil {
-        setItemSearchDelegate :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, itemSearchDelegate: ^AK.AccessibilityCustomRotorItemSearchDelegate) {
+        setItemSearchDelegate :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL, itemSearchDelegate: ^NS.AccessibilityCustomRotorItemSearchDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setItemSearchDelegate:"), auto_cast setItemSearchDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.itemLoadingDelegate != nil {
-        itemLoadingDelegate :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL) -> ^AK.AccessibilityElementLoading {
+        itemLoadingDelegate :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL) -> ^NS.AccessibilityElementLoading {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemLoadingDelegate"), auto_cast itemLoadingDelegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setItemLoadingDelegate != nil {
-        setItemLoadingDelegate :: proc "c" (self: ^AK.AccessibilityCustomRotor, _: SEL, itemLoadingDelegate: ^AK.AccessibilityElementLoading) {
+        setItemLoadingDelegate :: proc "c" (self: ^NS.AccessibilityCustomRotor, _: SEL, itemLoadingDelegate: ^NS.AccessibilityElementLoading) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKScoreChallenge
-///
 @(objc_class="GKScoreChallenge", objc_superclass=Challenge)
 ScoreChallenge :: struct { using _: Challenge, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScoreChallenge, objc_selector="score", objc_name="score")
     ScoreChallenge_score :: proc(self: ^ScoreChallenge) -> ^Score ---
@@ -23,3 +17,6 @@ foreign lib {
     @(objc_type=ScoreChallenge, objc_selector="leaderboardEntry", objc_name="leaderboardEntry")
     ScoreChallenge_leaderboardEntry :: proc(self: ^ScoreChallenge) -> ^LeaderboardEntry ---
 }
+
+
+

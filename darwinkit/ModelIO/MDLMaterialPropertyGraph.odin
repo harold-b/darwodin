@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLMaterialPropertyGraph
-///
 @(objc_class="MDLMaterialPropertyGraph", objc_superclass=MaterialPropertyNode)
 MaterialPropertyGraph :: struct { using _: MaterialPropertyNode, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MaterialPropertyGraph, objc_selector="init", objc_name="init")
     MaterialPropertyGraph_init :: proc(self: ^MaterialPropertyGraph) -> instancetype ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=MaterialPropertyGraph, objc_selector="connections", objc_name="connections")
     MaterialPropertyGraph_connections :: proc(self: ^MaterialPropertyGraph) -> ^NS.Array ---
 }
+
+
+

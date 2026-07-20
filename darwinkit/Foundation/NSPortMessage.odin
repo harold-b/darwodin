@@ -9,23 +9,16 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSPortMessage
-///
-when !ODIN_PLATFORM_SUBTARGET_IOS {
+when ODIN_PLATFORM_SUBTARGET == .Default {
     @(objc_class="NSPortMessage", objc_superclass=Object)
     PortMessage :: struct { using _: Object, }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
     @(objc_class="NSPortMessage")
     PortMessage :: struct { using _: intrinsics.objc_object, }
-} // End else
+}
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-@(default_calling_convention="c")
-    foreign lib {
+foreign lib {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=PortMessage, objc_selector="initWithSendPort:receivePort:components:", objc_name="initWithSendPort")
         PortMessage_initWithSendPort :: proc(self: ^PortMessage, sendPort: ^Port, replyPort: ^Port, components: ^Array) -> instancetype ---
 
@@ -47,8 +40,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=PortMessage, objc_selector="setMsgid:", objc_name="setMsgid")
         PortMessage_setMsgid :: proc(self: ^PortMessage, msgid: cffi.uint32_t) ---
     }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-@(default_calling_convention="c")
-    foreign lib {}
-} // End else
+}
+
+
+

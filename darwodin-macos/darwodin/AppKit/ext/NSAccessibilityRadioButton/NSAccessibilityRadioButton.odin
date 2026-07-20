@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityValue: proc(self: ^AK.AccessibilityRadioButton) -> ^NS.Number,
+    accessibilityValue: proc(self: ^NS.AccessibilityRadioButton) -> ^NS.Number,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityValue != nil {
-        accessibilityValue :: proc "c" (self: ^AK.AccessibilityRadioButton, _: SEL) -> ^NS.Number {
+        accessibilityValue :: proc "c" (self: ^NS.AccessibilityRadioButton, _: SEL) -> ^NS.Number {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

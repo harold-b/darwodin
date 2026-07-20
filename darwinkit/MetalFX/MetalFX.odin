@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_MetalFX
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -17,11 +19,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:MetalFX.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
-simd_float4x4 :: matrix[4,4]f32
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:MetalFX.framework",
+    }
+}
 
-/// MTLFXSpatialScalerColorProcessingMode
+
+// +user-text-begin
+
+
 SpatialScalerColorProcessingMode :: enum cffi.long {
     Perceptual = 0,
     Linear     = 1,

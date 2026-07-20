@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMetadataQueryAttributeValueTuple
-///
 @(objc_class="NSMetadataQueryAttributeValueTuple", objc_superclass=Object)
 MetadataQueryAttributeValueTuple :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetadataQueryAttributeValueTuple, objc_selector="attribute", objc_name="attribute")
     MetadataQueryAttributeValueTuple_attribute :: proc(self: ^MetadataQueryAttributeValueTuple) -> ^String ---
@@ -28,3 +22,6 @@ foreign lib {
     @(objc_type=MetadataQueryAttributeValueTuple, objc_selector="count", objc_name="count")
     MetadataQueryAttributeValueTuple_count :: proc(self: ^MetadataQueryAttributeValueTuple) -> UInteger ---
 }
+
+
+

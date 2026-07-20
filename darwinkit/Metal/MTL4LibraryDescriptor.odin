@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4LibraryDescriptor
-///
 @(objc_class="MTL4LibraryDescriptor", objc_superclass=NS.Object)
 MTL4LibraryDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4LibraryDescriptor, objc_selector="source", objc_name="source")
     MTL4LibraryDescriptor_source :: proc(self: ^MTL4LibraryDescriptor) -> ^NS.String ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=MTL4LibraryDescriptor, objc_selector="setName:", objc_name="setName")
     MTL4LibraryDescriptor_setName :: proc(self: ^MTL4LibraryDescriptor, name: ^NS.String) ---
 }
+
+
+

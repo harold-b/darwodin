@@ -20,39 +20,39 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    printerWithName_: proc(name: ^NS.String) -> ^AK.Printer,
-    printerWithType: proc(type: ^NS.String) -> ^AK.Printer,
-    pageSizeForPaper: proc(self: ^AK.Printer, paperName: ^NS.String) -> NS.Size,
+    printerWithName_: proc(name: ^NS.String) -> ^NS.Printer,
+    printerWithType: proc(type: ^NS.String) -> ^NS.Printer,
+    pageSizeForPaper: proc(self: ^NS.Printer, paperName: ^NS.String) -> NS.Size,
     printerNames: proc() -> ^NS.Array,
     printerTypes: proc() -> ^NS.Array,
-    name: proc(self: ^AK.Printer) -> ^NS.String,
-    type: proc(self: ^AK.Printer) -> ^NS.String,
-    languageLevel: proc(self: ^AK.Printer) -> NS.Integer,
-    deviceDescription: proc(self: ^AK.Printer) -> ^NS.Dictionary,
-    statusForTable: proc(self: ^AK.Printer, tableName: ^NS.String) -> AK.PrinterTableStatus,
-    isKey: proc(self: ^AK.Printer, key: ^NS.String, table: ^NS.String) -> bool,
-    booleanForKey: proc(self: ^AK.Printer, key: ^NS.String, table: ^NS.String) -> bool,
-    floatForKey: proc(self: ^AK.Printer, key: ^NS.String, table: ^NS.String) -> cffi.float,
-    intForKey: proc(self: ^AK.Printer, key: ^NS.String, table: ^NS.String) -> cffi.int,
-    rectForKey: proc(self: ^AK.Printer, key: ^NS.String, table: ^NS.String) -> NS.Rect,
-    sizeForKey: proc(self: ^AK.Printer, key: ^NS.String, table: ^NS.String) -> NS.Size,
-    stringForKey: proc(self: ^AK.Printer, key: ^NS.String, table: ^NS.String) -> ^NS.String,
-    stringListForKey: proc(self: ^AK.Printer, key: ^NS.String, table: ^NS.String) -> ^NS.Array,
-    imageRectForPaper: proc(self: ^AK.Printer, paperName: ^NS.String) -> NS.Rect,
-    acceptsBinary: proc(self: ^AK.Printer) -> bool,
-    isColor: proc(self: ^AK.Printer) -> bool,
-    isFontAvailable: proc(self: ^AK.Printer, faceName: ^NS.String) -> bool,
-    isOutputStackInReverseOrder: proc(self: ^AK.Printer) -> bool,
-    printerWithName_domain_includeUnavailable: proc(name: ^NS.String, domain: ^NS.String, flag: bool) -> ^AK.Printer,
-    domain: proc(self: ^AK.Printer) -> ^NS.String,
-    host: proc(self: ^AK.Printer) -> ^NS.String,
-    note: proc(self: ^AK.Printer) -> ^NS.String,
+    name: proc(self: ^NS.Printer) -> ^NS.String,
+    type: proc(self: ^NS.Printer) -> ^NS.String,
+    languageLevel: proc(self: ^NS.Printer) -> NS.Integer,
+    deviceDescription: proc(self: ^NS.Printer) -> ^NS.Dictionary,
+    statusForTable: proc(self: ^NS.Printer, tableName: ^NS.String) -> NS.PrinterTableStatus,
+    isKey: proc(self: ^NS.Printer, key: ^NS.String, table: ^NS.String) -> bool,
+    booleanForKey: proc(self: ^NS.Printer, key: ^NS.String, table: ^NS.String) -> bool,
+    floatForKey: proc(self: ^NS.Printer, key: ^NS.String, table: ^NS.String) -> cffi.float,
+    intForKey: proc(self: ^NS.Printer, key: ^NS.String, table: ^NS.String) -> cffi.int,
+    rectForKey: proc(self: ^NS.Printer, key: ^NS.String, table: ^NS.String) -> NS.Rect,
+    sizeForKey: proc(self: ^NS.Printer, key: ^NS.String, table: ^NS.String) -> NS.Size,
+    stringForKey: proc(self: ^NS.Printer, key: ^NS.String, table: ^NS.String) -> ^NS.String,
+    stringListForKey: proc(self: ^NS.Printer, key: ^NS.String, table: ^NS.String) -> ^NS.Array,
+    imageRectForPaper: proc(self: ^NS.Printer, paperName: ^NS.String) -> NS.Rect,
+    acceptsBinary: proc(self: ^NS.Printer) -> bool,
+    isColor: proc(self: ^NS.Printer) -> bool,
+    isFontAvailable: proc(self: ^NS.Printer, faceName: ^NS.String) -> bool,
+    isOutputStackInReverseOrder: proc(self: ^NS.Printer) -> bool,
+    printerWithName_domain_includeUnavailable: proc(name: ^NS.String, domain: ^NS.String, flag: bool) -> ^NS.Printer,
+    domain: proc(self: ^NS.Printer) -> ^NS.String,
+    host: proc(self: ^NS.Printer) -> ^NS.String,
+    note: proc(self: ^NS.Printer) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.printerWithName_ != nil {
-        printerWithName_ :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^AK.Printer {
+        printerWithName_ :: proc "c" (self: Class, _: SEL, name: ^NS.String) -> ^NS.Printer {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("printerWithName:"), auto_cast printerWithName_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.printerWithType != nil {
-        printerWithType :: proc "c" (self: Class, _: SEL, type: ^NS.String) -> ^AK.Printer {
+        printerWithType :: proc "c" (self: Class, _: SEL, type: ^NS.String) -> ^NS.Printer {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("printerWithType:"), auto_cast printerWithType, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.pageSizeForPaper != nil {
-        pageSizeForPaper :: proc "c" (self: ^AK.Printer, _: SEL, paperName: ^NS.String) -> NS.Size {
+        pageSizeForPaper :: proc "c" (self: ^NS.Printer, _: SEL, paperName: ^NS.String) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -113,7 +113,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("printerTypes"), auto_cast printerTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.name != nil {
-        name :: proc "c" (self: ^AK.Printer, _: SEL) -> ^NS.String {
+        name :: proc "c" (self: ^NS.Printer, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -123,7 +123,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("name"), auto_cast name, "@@:") do panic("Failed to register objC method.")
     }
     if vt.type != nil {
-        type :: proc "c" (self: ^AK.Printer, _: SEL) -> ^NS.String {
+        type :: proc "c" (self: ^NS.Printer, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -133,7 +133,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("type"), auto_cast type, "@@:") do panic("Failed to register objC method.")
     }
     if vt.languageLevel != nil {
-        languageLevel :: proc "c" (self: ^AK.Printer, _: SEL) -> NS.Integer {
+        languageLevel :: proc "c" (self: ^NS.Printer, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -143,7 +143,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("languageLevel"), auto_cast languageLevel, "l@:") do panic("Failed to register objC method.")
     }
     if vt.deviceDescription != nil {
-        deviceDescription :: proc "c" (self: ^AK.Printer, _: SEL) -> ^NS.Dictionary {
+        deviceDescription :: proc "c" (self: ^NS.Printer, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -153,7 +153,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("deviceDescription"), auto_cast deviceDescription, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.statusForTable != nil {
-        statusForTable :: proc "c" (self: ^AK.Printer, _: SEL, tableName: ^NS.String) -> AK.PrinterTableStatus {
+        statusForTable :: proc "c" (self: ^NS.Printer, _: SEL, tableName: ^NS.String) -> NS.PrinterTableStatus {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -163,7 +163,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("statusForTable:"), auto_cast statusForTable, "L@:@") do panic("Failed to register objC method.")
     }
     if vt.isKey != nil {
-        isKey :: proc "c" (self: ^AK.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> bool {
+        isKey :: proc "c" (self: ^NS.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -173,7 +173,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isKey:inTable:"), auto_cast isKey, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.booleanForKey != nil {
-        booleanForKey :: proc "c" (self: ^AK.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> bool {
+        booleanForKey :: proc "c" (self: ^NS.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -183,7 +183,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("booleanForKey:inTable:"), auto_cast booleanForKey, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.floatForKey != nil {
-        floatForKey :: proc "c" (self: ^AK.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> cffi.float {
+        floatForKey :: proc "c" (self: ^NS.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> cffi.float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -193,7 +193,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("floatForKey:inTable:"), auto_cast floatForKey, "f@:@@") do panic("Failed to register objC method.")
     }
     if vt.intForKey != nil {
-        intForKey :: proc "c" (self: ^AK.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> cffi.int {
+        intForKey :: proc "c" (self: ^NS.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> cffi.int {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -203,7 +203,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("intForKey:inTable:"), auto_cast intForKey, "i@:@@") do panic("Failed to register objC method.")
     }
     if vt.rectForKey != nil {
-        rectForKey :: proc "c" (self: ^AK.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> NS.Rect {
+        rectForKey :: proc "c" (self: ^NS.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -213,7 +213,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rectForKey:inTable:"), auto_cast rectForKey, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@@") do panic("Failed to register objC method.")
     }
     if vt.sizeForKey != nil {
-        sizeForKey :: proc "c" (self: ^AK.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> NS.Size {
+        sizeForKey :: proc "c" (self: ^NS.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -223,7 +223,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sizeForKey:inTable:"), auto_cast sizeForKey, "{CGSize=dd}@:@@") do panic("Failed to register objC method.")
     }
     if vt.stringForKey != nil {
-        stringForKey :: proc "c" (self: ^AK.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> ^NS.String {
+        stringForKey :: proc "c" (self: ^NS.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -233,7 +233,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("stringForKey:inTable:"), auto_cast stringForKey, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.stringListForKey != nil {
-        stringListForKey :: proc "c" (self: ^AK.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> ^NS.Array {
+        stringListForKey :: proc "c" (self: ^NS.Printer, _: SEL, key: ^NS.String, table: ^NS.String) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -243,7 +243,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("stringListForKey:inTable:"), auto_cast stringListForKey, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.imageRectForPaper != nil {
-        imageRectForPaper :: proc "c" (self: ^AK.Printer, _: SEL, paperName: ^NS.String) -> NS.Rect {
+        imageRectForPaper :: proc "c" (self: ^NS.Printer, _: SEL, paperName: ^NS.String) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -253,7 +253,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageRectForPaper:"), auto_cast imageRectForPaper, "{CGRect={CGPoint=dd}{CGSize=dd}}@:@") do panic("Failed to register objC method.")
     }
     if vt.acceptsBinary != nil {
-        acceptsBinary :: proc "c" (self: ^AK.Printer, _: SEL) -> bool {
+        acceptsBinary :: proc "c" (self: ^NS.Printer, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -263,7 +263,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("acceptsBinary"), auto_cast acceptsBinary, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isColor != nil {
-        isColor :: proc "c" (self: ^AK.Printer, _: SEL) -> bool {
+        isColor :: proc "c" (self: ^NS.Printer, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -273,7 +273,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isColor"), auto_cast isColor, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isFontAvailable != nil {
-        isFontAvailable :: proc "c" (self: ^AK.Printer, _: SEL, faceName: ^NS.String) -> bool {
+        isFontAvailable :: proc "c" (self: ^NS.Printer, _: SEL, faceName: ^NS.String) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -283,7 +283,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFontAvailable:"), auto_cast isFontAvailable, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.isOutputStackInReverseOrder != nil {
-        isOutputStackInReverseOrder :: proc "c" (self: ^AK.Printer, _: SEL) -> bool {
+        isOutputStackInReverseOrder :: proc "c" (self: ^NS.Printer, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -293,7 +293,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isOutputStackInReverseOrder"), auto_cast isOutputStackInReverseOrder, "B@:") do panic("Failed to register objC method.")
     }
     if vt.printerWithName_domain_includeUnavailable != nil {
-        printerWithName_domain_includeUnavailable :: proc "c" (self: Class, _: SEL, name: ^NS.String, domain: ^NS.String, flag: bool) -> ^AK.Printer {
+        printerWithName_domain_includeUnavailable :: proc "c" (self: Class, _: SEL, name: ^NS.String, domain: ^NS.String, flag: bool) -> ^NS.Printer {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -303,7 +303,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("printerWithName:domain:includeUnavailable:"), auto_cast printerWithName_domain_includeUnavailable, "@#:@@B") do panic("Failed to register objC method.")
     }
     if vt.domain != nil {
-        domain :: proc "c" (self: ^AK.Printer, _: SEL) -> ^NS.String {
+        domain :: proc "c" (self: ^NS.Printer, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -313,7 +313,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("domain"), auto_cast domain, "@@:") do panic("Failed to register objC method.")
     }
     if vt.host != nil {
-        host :: proc "c" (self: ^AK.Printer, _: SEL) -> ^NS.String {
+        host :: proc "c" (self: ^NS.Printer, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -323,7 +323,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("host"), auto_cast host, "@@:") do panic("Failed to register objC method.")
     }
     if vt.note != nil {
-        note :: proc "c" (self: ^AK.Printer, _: SEL) -> ^NS.String {
+        note :: proc "c" (self: ^NS.Printer, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

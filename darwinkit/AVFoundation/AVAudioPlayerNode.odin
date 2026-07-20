@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioPlayerNode
-///
 @(objc_class="AVAudioPlayerNode", objc_superclass=AudioNode)
 AudioPlayerNode :: struct { using _: AudioNode, 
     using _: AudioMixing,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioPlayerNode, objc_selector="init", objc_name="init")
     AudioPlayerNode_init :: proc(self: ^AudioPlayerNode) -> instancetype ---
@@ -75,6 +69,8 @@ foreign lib {
     @(objc_type=AudioPlayerNode, objc_selector="isPlaying", objc_name="isPlaying")
     AudioPlayerNode_isPlaying :: proc(self: ^AudioPlayerNode) -> bool ---
 }
+
+
 
 @(objc_type=AudioPlayerNode, objc_name="scheduleBuffer")
 AudioPlayerNode_scheduleBuffer :: proc {

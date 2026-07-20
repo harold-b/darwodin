@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetVariantQualifier
-///
 @(objc_class="AVAssetVariantQualifier", objc_superclass=NS.Object)
 AssetVariantQualifier :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetVariantQualifier, objc_selector="init", objc_name="init")
     AssetVariantQualifier_init :: proc(self: ^AssetVariantQualifier) -> instancetype ---
@@ -78,6 +72,8 @@ foreign lib {
     @(objc_type=AssetVariantQualifier, objc_selector="predicateForAudioSampleRate:operatorType:", objc_name="predicateForAudioSampleRate_operatorType", objc_is_class_method=true)
     AssetVariantQualifier_predicateForAudioSampleRate_operatorType :: proc(sampleRate: cffi.double, operatorType: NS.PredicateOperatorType) -> ^NS.Predicate ---
 }
+
+
 
 @(objc_type=AssetVariantQualifier, objc_name="predicateForChannelCount")
 AssetVariantQualifier_predicateForChannelCount :: proc {

@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitAngle
-///
 @(objc_class="NSUnitAngle", objc_superclass=Dimension)
 UnitAngle :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitAngle, objc_selector="degrees", objc_name="degrees", objc_is_class_method=true)
     UnitAngle_degrees :: proc() -> ^UnitAngle ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=UnitAngle, objc_selector="revolutions", objc_name="revolutions", objc_is_class_method=true)
     UnitAngle_revolutions :: proc() -> ^UnitAngle ---
 }
+
+
+

@@ -5,8 +5,7 @@ import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
 import CG "../CoreGraphics"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 

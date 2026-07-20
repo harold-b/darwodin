@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSException
-///
 @(objc_class="NSException", objc_superclass=Object)
 Exception :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Exception, objc_selector="exceptionWithName:reason:userInfo:", objc_name="exceptionWithName", objc_is_class_method=true)
     Exception_exceptionWithName :: proc(name: ^String, reason: ^String, userInfo: ^Dictionary) -> ^Exception ---
@@ -52,6 +46,8 @@ foreign lib {
     @(objc_type=Exception, objc_selector="raise:format:arguments:", objc_name="raise_format_arguments", objc_is_class_method=true)
     Exception_raise_format_arguments :: proc(name: ^String, format: ^String, argList: ^cffi.va_list) ---
 }
+
+
 
 @(objc_type=Exception, objc_name="raise")
 Exception_raise :: proc {

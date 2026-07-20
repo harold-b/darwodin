@@ -13,8 +13,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:CloudKit.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:CloudKit.framework",
+    }
+}
+
+
+// +user-text-begin
+// -user-text-end
 
 
 foreign lib {
@@ -58,13 +71,13 @@ SubscriptionID :: distinct ^NS.String
 OperationID :: distinct ^NS.String
 
 /// CKApplicationPermissionBlock
-ApplicationPermissionBlock :: ^Objc_Block(proc "c" (applicationPermissionStatus: ApplicationPermissionStatus, error: ^NS.Error))
+ApplicationPermissionBlock :: ^Objc_Block(proc "c" ( applicationPermissionStatus: ApplicationPermissionStatus, error: ^NS.Error ))
 
 /// CKSharePreparationCompletionHandler
-SharePreparationCompletionHandler :: ^Objc_Block(proc "c" (_: ^Share, _1: ^NS.Error))
+SharePreparationCompletionHandler :: ^Objc_Block(proc "c" ( _0: ^Share, _1: ^NS.Error ))
 
 /// CKSharePreparationHandler
-SharePreparationHandler :: ^Objc_Block(proc "c" (_: SharePreparationCompletionHandler))
+SharePreparationHandler :: ^Objc_Block(proc "c" ( _0: SharePreparationCompletionHandler ))
 
 /// CKReferenceAction
 ReferenceAction :: enum cffi.ulong {

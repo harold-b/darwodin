@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSpeechSynthesisVoice
-///
 @(objc_class="AVSpeechSynthesisVoice", objc_superclass=NS.Object)
 SpeechSynthesisVoice :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesisVoice, objc_selector="speechVoices", objc_name="speechVoices", objc_is_class_method=true)
     SpeechSynthesisVoice_speechVoices :: proc() -> ^NS.Array ---
@@ -57,3 +51,6 @@ foreign lib {
     @(objc_type=SpeechSynthesisVoice, objc_selector="voiceTraits", objc_name="voiceTraits")
     SpeechSynthesisVoice_voiceTraits :: proc(self: ^SpeechSynthesisVoice) -> SpeechSynthesisVoiceTraits ---
 }
+
+
+

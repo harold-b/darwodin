@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSActionCell"
 
 VTable :: struct {
     super: NSActionCell.VTable,
-    minValue: proc(self: ^AK.StepperCell) -> cffi.double,
-    setMinValue: proc(self: ^AK.StepperCell, minValue: cffi.double),
-    maxValue: proc(self: ^AK.StepperCell) -> cffi.double,
-    setMaxValue: proc(self: ^AK.StepperCell, maxValue: cffi.double),
-    increment: proc(self: ^AK.StepperCell) -> cffi.double,
-    setIncrement: proc(self: ^AK.StepperCell, increment: cffi.double),
-    valueWraps: proc(self: ^AK.StepperCell) -> bool,
-    setValueWraps: proc(self: ^AK.StepperCell, valueWraps: bool),
-    autorepeat: proc(self: ^AK.StepperCell) -> bool,
-    setAutorepeat: proc(self: ^AK.StepperCell, autorepeat: bool),
+    minValue: proc(self: ^NS.StepperCell) -> cffi.double,
+    setMinValue: proc(self: ^NS.StepperCell, minValue: cffi.double),
+    maxValue: proc(self: ^NS.StepperCell) -> cffi.double,
+    setMaxValue: proc(self: ^NS.StepperCell, maxValue: cffi.double),
+    increment: proc(self: ^NS.StepperCell) -> cffi.double,
+    setIncrement: proc(self: ^NS.StepperCell, increment: cffi.double),
+    valueWraps: proc(self: ^NS.StepperCell) -> bool,
+    setValueWraps: proc(self: ^NS.StepperCell, valueWraps: bool),
+    autorepeat: proc(self: ^NS.StepperCell) -> bool,
+    setAutorepeat: proc(self: ^NS.StepperCell, autorepeat: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSActionCell.extend(cls, &vt.super)
 
     if vt.minValue != nil {
-        minValue :: proc "c" (self: ^AK.StepperCell, _: SEL) -> cffi.double {
+        minValue :: proc "c" (self: ^NS.StepperCell, _: SEL) -> cffi.double {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minValue"), auto_cast minValue, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinValue != nil {
-        setMinValue :: proc "c" (self: ^AK.StepperCell, _: SEL, minValue: cffi.double) {
+        setMinValue :: proc "c" (self: ^NS.StepperCell, _: SEL, minValue: cffi.double) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinValue:"), auto_cast setMinValue, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.maxValue != nil {
-        maxValue :: proc "c" (self: ^AK.StepperCell, _: SEL) -> cffi.double {
+        maxValue :: proc "c" (self: ^NS.StepperCell, _: SEL) -> cffi.double {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maxValue"), auto_cast maxValue, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMaxValue != nil {
-        setMaxValue :: proc "c" (self: ^AK.StepperCell, _: SEL, maxValue: cffi.double) {
+        setMaxValue :: proc "c" (self: ^NS.StepperCell, _: SEL, maxValue: cffi.double) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaxValue:"), auto_cast setMaxValue, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.increment != nil {
-        increment :: proc "c" (self: ^AK.StepperCell, _: SEL) -> cffi.double {
+        increment :: proc "c" (self: ^NS.StepperCell, _: SEL) -> cffi.double {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("increment"), auto_cast increment, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setIncrement != nil {
-        setIncrement :: proc "c" (self: ^AK.StepperCell, _: SEL, increment: cffi.double) {
+        setIncrement :: proc "c" (self: ^NS.StepperCell, _: SEL, increment: cffi.double) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIncrement:"), auto_cast setIncrement, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.valueWraps != nil {
-        valueWraps :: proc "c" (self: ^AK.StepperCell, _: SEL) -> bool {
+        valueWraps :: proc "c" (self: ^NS.StepperCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("valueWraps"), auto_cast valueWraps, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setValueWraps != nil {
-        setValueWraps :: proc "c" (self: ^AK.StepperCell, _: SEL, valueWraps: bool) {
+        setValueWraps :: proc "c" (self: ^NS.StepperCell, _: SEL, valueWraps: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setValueWraps:"), auto_cast setValueWraps, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.autorepeat != nil {
-        autorepeat :: proc "c" (self: ^AK.StepperCell, _: SEL) -> bool {
+        autorepeat :: proc "c" (self: ^NS.StepperCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autorepeat"), auto_cast autorepeat, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutorepeat != nil {
-        setAutorepeat :: proc "c" (self: ^AK.StepperCell, _: SEL, autorepeat: bool) {
+        setAutorepeat :: proc "c" (self: ^NS.StepperCell, _: SEL, autorepeat: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4RenderPassDescriptor
-///
 @(objc_class="MTL4RenderPassDescriptor", objc_superclass=NS.Object)
 MTL4RenderPassDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4RenderPassDescriptor, objc_selector="setSamplePositions:count:", objc_name="setSamplePositions")
     MTL4RenderPassDescriptor_setSamplePositions :: proc(self: ^MTL4RenderPassDescriptor, positions: ^SamplePosition, count: NS.UInteger) ---
@@ -116,3 +110,6 @@ foreign lib {
     @(objc_type=MTL4RenderPassDescriptor, objc_selector="setSupportColorAttachmentMapping:", objc_name="setSupportColorAttachmentMapping")
     MTL4RenderPassDescriptor_setSupportColorAttachmentMapping :: proc(self: ^MTL4RenderPassDescriptor, supportColorAttachmentMapping: bool) ---
 }
+
+
+

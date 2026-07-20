@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKNotificationInfo
-///
 @(objc_class="CKNotificationInfo", objc_superclass=NS.Object)
 NotificationInfo :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=NotificationInfo, objc_selector="alertBody", objc_name="alertBody")
     NotificationInfo_alertBody :: proc(self: ^NotificationInfo) -> ^NS.String ---
@@ -128,3 +122,6 @@ foreign lib {
     @(objc_type=NotificationInfo, objc_selector="setCollapseIDKey:", objc_name="setCollapseIDKey")
     NotificationInfo_setCollapseIDKey :: proc(self: ^NotificationInfo, collapseIDKey: ^NS.String) ---
 }
+
+
+

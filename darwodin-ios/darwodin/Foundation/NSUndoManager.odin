@@ -52,7 +52,7 @@ foreign lib {
     UndoManager_prepareWithInvocationTarget :: proc(self: ^UndoManager, target: id) -> id ---
 
     @(objc_type=UndoManager, objc_selector="registerUndoWithTarget:handler:", objc_name="registerUndoWithTarget_handler")
-    UndoManager_registerUndoWithTarget_handler :: proc(self: ^UndoManager, target: id, undoHandler: ^Objc_Block(proc "c" (target: id))) ---
+    UndoManager_registerUndoWithTarget_handler :: proc(self: ^UndoManager, target: id, undoHandler: ^Objc_Block(proc "c" ( target: id ))) ---
 
     @(objc_type=UndoManager, objc_selector="setActionIsDiscardable:", objc_name="setActionIsDiscardable")
     UndoManager_setActionIsDiscardable :: proc(self: ^UndoManager, discardable: bool) ---

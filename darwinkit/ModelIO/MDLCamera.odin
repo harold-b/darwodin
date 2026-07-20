@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLCamera
-///
 @(objc_class="MDLCamera", objc_superclass=Object)
 Camera :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Camera, objc_selector="frameBoundingBox:setNearAndFar:", objc_name="frameBoundingBox")
     Camera_frameBoundingBox :: proc(self: ^Camera, boundingBox: AxisAlignedBoundingBox, setNearAndFar: bool) ---
@@ -170,6 +164,8 @@ foreign lib {
     @(objc_type=Camera, objc_selector="setExposure:", objc_name="setExposure")
     Camera_setExposure :: proc(self: ^Camera, exposure: ^vector_float3) ---
 }
+
+
 
 @(objc_type=Camera, objc_name="lookAt")
 Camera_lookAt :: proc {

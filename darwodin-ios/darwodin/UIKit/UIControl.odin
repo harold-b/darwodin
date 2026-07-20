@@ -63,7 +63,7 @@ foreign lib {
     Control_actionsForTarget :: proc(self: ^Control, target: id, controlEvent: ControlEvents) -> ^NS.Array ---
 
     @(objc_type=Control, objc_selector="enumerateEventHandlers:", objc_name="enumerateEventHandlers")
-    Control_enumerateEventHandlers :: proc(self: ^Control, iterator: ^Objc_Block(proc "c" (actionHandler: ^Action, target: id, action: SEL, controlEvents: ControlEvents, stop: ^bool))) ---
+    Control_enumerateEventHandlers :: proc(self: ^Control, iterator: ^Objc_Block(proc "c" ( actionHandler: ^Action, target: id, action: SEL, controlEvents: ControlEvents, stop: ^bool ))) ---
 
     @(objc_type=Control, objc_selector="sendAction:to:forEvent:", objc_name="sendAction_to_forEvent")
     Control_sendAction_to_forEvent :: proc(self: ^Control, action: SEL, target: id, event: ^Event) ---

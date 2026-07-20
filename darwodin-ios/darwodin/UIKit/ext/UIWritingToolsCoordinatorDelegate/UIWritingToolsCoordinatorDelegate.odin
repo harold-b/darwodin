@@ -20,18 +20,18 @@ instancetype  :: intrinsics.objc_instancetype
 import UI "../../"
 
 VTable :: struct {
-    writingToolsCoordinator_requestsContextsForScope_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, scope: UI.WritingToolsCoordinatorContextScope, completion: ^Objc_Block(proc "c" (_: ^NS.Array))),
-    writingToolsCoordinator_replaceRange_inContext_proposedText_reason_animationParameters_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, replacementText: ^NS.AttributedString, reason: UI.WritingToolsCoordinatorTextReplacementReason, animationParameters: ^UI.WritingToolsCoordinatorAnimationParameters, completion: ^Objc_Block(proc "c" (_: ^NS.AttributedString))),
+    writingToolsCoordinator_requestsContextsForScope_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, scope: UI.WritingToolsCoordinatorContextScope, completion: ^Objc_Block(proc "c" ( _0: ^NS.Array ))),
+    writingToolsCoordinator_replaceRange_inContext_proposedText_reason_animationParameters_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, replacementText: ^NS.AttributedString, reason: UI.WritingToolsCoordinatorTextReplacementReason, animationParameters: ^UI.WritingToolsCoordinatorAnimationParameters, completion: ^Objc_Block(proc "c" ( _0: ^NS.AttributedString ))),
     writingToolsCoordinator_selectRanges_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, ranges: ^NS.Array, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ())),
-    writingToolsCoordinator_requestsBoundingBezierPathsForRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^NS.Array))),
-    writingToolsCoordinator_requestsUnderlinePathsForRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^NS.Array))),
+    writingToolsCoordinator_requestsBoundingBezierPathsForRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^NS.Array ))),
+    writingToolsCoordinator_requestsUnderlinePathsForRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^NS.Array ))),
     writingToolsCoordinator_prepareForTextAnimation_forRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, textAnimation: UI.WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ())),
-    writingToolsCoordinator_requestsPreviewForTextAnimation_ofRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, textAnimation: UI.WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^UI.TargetedPreview))),
+    writingToolsCoordinator_requestsPreviewForTextAnimation_ofRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, textAnimation: UI.WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^UI.TargetedPreview ))),
     writingToolsCoordinator_finishTextAnimation_forRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, textAnimation: UI.WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ())),
-    writingToolsCoordinator_requestsSingleContainerSubrangesOfRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^NS.Array))),
-    writingToolsCoordinator_requestsDecorationContainerViewForRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^UI.View))),
+    writingToolsCoordinator_requestsSingleContainerSubrangesOfRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^NS.Array ))),
+    writingToolsCoordinator_requestsDecorationContainerViewForRange_inContext_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^UI.View ))),
     writingToolsCoordinator_willChangeToState_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, newState: UI.WritingToolsCoordinatorState, completion: ^Objc_Block(proc "c" ())),
-    writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, point: CG.Point, completion: ^Objc_Block(proc "c" (range: NS._NSRange, contextID: ^NS.UUID))),
+    writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion: proc(self: ^UI.WritingToolsCoordinatorDelegate, writingToolsCoordinator: ^UI.WritingToolsCoordinator, point: CG.Point, completion: ^Objc_Block(proc "c" ( range: NS._NSRange, contextID: ^NS.UUID ))),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.writingToolsCoordinator_requestsContextsForScope_completion != nil {
-        writingToolsCoordinator_requestsContextsForScope_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, scope: UI.WritingToolsCoordinatorContextScope, completion: ^Objc_Block(proc "c" (_: ^NS.Array))) {
+        writingToolsCoordinator_requestsContextsForScope_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, scope: UI.WritingToolsCoordinatorContextScope, completion: ^Objc_Block(proc "c" ( _0: ^NS.Array ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsCoordinator:requestsContextsForScope:completion:"), auto_cast writingToolsCoordinator_requestsContextsForScope_completion, "v@:@l?") do panic("Failed to register objC method.")
     }
     if vt.writingToolsCoordinator_replaceRange_inContext_proposedText_reason_animationParameters_completion != nil {
-        writingToolsCoordinator_replaceRange_inContext_proposedText_reason_animationParameters_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, replacementText: ^NS.AttributedString, reason: UI.WritingToolsCoordinatorTextReplacementReason, animationParameters: ^UI.WritingToolsCoordinatorAnimationParameters, completion: ^Objc_Block(proc "c" (_: ^NS.AttributedString))) {
+        writingToolsCoordinator_replaceRange_inContext_proposedText_reason_animationParameters_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, replacementText: ^NS.AttributedString, reason: UI.WritingToolsCoordinatorTextReplacementReason, animationParameters: ^UI.WritingToolsCoordinatorAnimationParameters, completion: ^Objc_Block(proc "c" ( _0: ^NS.AttributedString ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsCoordinator:selectRanges:inContext:completion:"), auto_cast writingToolsCoordinator_selectRanges_inContext_completion, "v@:@^void@?") do panic("Failed to register objC method.")
     }
     if vt.writingToolsCoordinator_requestsBoundingBezierPathsForRange_inContext_completion != nil {
-        writingToolsCoordinator_requestsBoundingBezierPathsForRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^NS.Array))) {
+        writingToolsCoordinator_requestsBoundingBezierPathsForRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^NS.Array ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsCoordinator:requestsBoundingBezierPathsForRange:inContext:completion:"), auto_cast writingToolsCoordinator_requestsBoundingBezierPathsForRange_inContext_completion, "v@:@{_NSRange=LL}@?") do panic("Failed to register objC method.")
     }
     if vt.writingToolsCoordinator_requestsUnderlinePathsForRange_inContext_completion != nil {
-        writingToolsCoordinator_requestsUnderlinePathsForRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^NS.Array))) {
+        writingToolsCoordinator_requestsUnderlinePathsForRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^NS.Array ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsCoordinator:prepareForTextAnimation:forRange:inContext:completion:"), auto_cast writingToolsCoordinator_prepareForTextAnimation_forRange_inContext_completion, "v@:@l{_NSRange=LL}@?") do panic("Failed to register objC method.")
     }
     if vt.writingToolsCoordinator_requestsPreviewForTextAnimation_ofRange_inContext_completion != nil {
-        writingToolsCoordinator_requestsPreviewForTextAnimation_ofRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, textAnimation: UI.WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^UI.TargetedPreview))) {
+        writingToolsCoordinator_requestsPreviewForTextAnimation_ofRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, textAnimation: UI.WritingToolsCoordinatorTextAnimation, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^UI.TargetedPreview ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsCoordinator:finishTextAnimation:forRange:inContext:completion:"), auto_cast writingToolsCoordinator_finishTextAnimation_forRange_inContext_completion, "v@:@l{_NSRange=LL}@?") do panic("Failed to register objC method.")
     }
     if vt.writingToolsCoordinator_requestsSingleContainerSubrangesOfRange_inContext_completion != nil {
-        writingToolsCoordinator_requestsSingleContainerSubrangesOfRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^NS.Array))) {
+        writingToolsCoordinator_requestsSingleContainerSubrangesOfRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^NS.Array ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsCoordinator:requestsSingleContainerSubrangesOfRange:inContext:completion:"), auto_cast writingToolsCoordinator_requestsSingleContainerSubrangesOfRange_inContext_completion, "v@:@{_NSRange=LL}@?") do panic("Failed to register objC method.")
     }
     if vt.writingToolsCoordinator_requestsDecorationContainerViewForRange_inContext_completion != nil {
-        writingToolsCoordinator_requestsDecorationContainerViewForRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" (_: ^UI.View))) {
+        writingToolsCoordinator_requestsDecorationContainerViewForRange_inContext_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, range: NS._NSRange, _context: ^UI.WritingToolsCoordinatorContext, completion: ^Objc_Block(proc "c" ( _0: ^UI.View ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("writingToolsCoordinator:willChangeToState:completion:"), auto_cast writingToolsCoordinator_willChangeToState_completion, "v@:@l?") do panic("Failed to register objC method.")
     }
     if vt.writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion != nil {
-        writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, point: CG.Point, completion: ^Objc_Block(proc "c" (range: NS._NSRange, contextID: ^NS.UUID))) {
+        writingToolsCoordinator_requestsRangeInContextWithIdentifierForPoint_completion :: proc "c" (self: ^UI.WritingToolsCoordinatorDelegate, _: SEL, writingToolsCoordinator: ^UI.WritingToolsCoordinator, point: CG.Point, completion: ^Objc_Block(proc "c" ( range: NS._NSRange, contextID: ^NS.UUID ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

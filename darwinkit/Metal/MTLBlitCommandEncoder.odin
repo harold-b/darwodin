@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLBlitCommandEncoder
-///
 @(objc_class="MTLBlitCommandEncoder")
 BlitCommandEncoder :: struct { using _: intrinsics.objc_object, 
     using _: CommandEncoder,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=BlitCommandEncoder, objc_selector="synchronizeResource:", objc_name="synchronizeResource")
     BlitCommandEncoder_synchronizeResource :: proc(self: ^BlitCommandEncoder, resource: ^Resource) ---
@@ -101,6 +95,8 @@ foreign lib {
     @(objc_type=BlitCommandEncoder, objc_selector="copyFromTensor:sourceOrigin:sourceDimensions:toTensor:destinationOrigin:destinationDimensions:", objc_name="copyFromTensor")
     BlitCommandEncoder_copyFromTensor :: proc(self: ^BlitCommandEncoder, sourceTensor: ^Tensor, sourceOrigin: ^TensorExtents, sourceDimensions: ^TensorExtents, destinationTensor: ^Tensor, destinationOrigin: ^TensorExtents, destinationDimensions: ^TensorExtents) ---
 }
+
+
 
 @(objc_type=BlitCommandEncoder, objc_name="copyFromBuffer")
 BlitCommandEncoder_copyFromBuffer :: proc {

@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    textContentManager_textElementAtLocation: proc(self: ^AK.TextContentManagerDelegate, textContentManager: ^AK.TextContentManager, location: ^AK.TextLocation) -> ^AK.TextElement,
-    textContentManager_shouldEnumerateTextElement_options: proc(self: ^AK.TextContentManagerDelegate, textContentManager: ^AK.TextContentManager, textElement: ^AK.TextElement, options: AK.TextContentManagerEnumerationOptions) -> bool,
+    textContentManager_textElementAtLocation: proc(self: ^NS.TextContentManagerDelegate, textContentManager: ^NS.TextContentManager, location: ^NS.TextLocation) -> ^NS.TextElement,
+    textContentManager_shouldEnumerateTextElement_options: proc(self: ^NS.TextContentManagerDelegate, textContentManager: ^NS.TextContentManager, textElement: ^NS.TextElement, options: NS.TextContentManagerEnumerationOptions) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.textContentManager_textElementAtLocation != nil {
-        textContentManager_textElementAtLocation :: proc "c" (self: ^AK.TextContentManagerDelegate, _: SEL, textContentManager: ^AK.TextContentManager, location: ^AK.TextLocation) -> ^AK.TextElement {
+        textContentManager_textElementAtLocation :: proc "c" (self: ^NS.TextContentManagerDelegate, _: SEL, textContentManager: ^NS.TextContentManager, location: ^NS.TextLocation) -> ^NS.TextElement {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textContentManager:textElementAtLocation:"), auto_cast textContentManager_textElementAtLocation, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.textContentManager_shouldEnumerateTextElement_options != nil {
-        textContentManager_shouldEnumerateTextElement_options :: proc "c" (self: ^AK.TextContentManagerDelegate, _: SEL, textContentManager: ^AK.TextContentManager, textElement: ^AK.TextElement, options: AK.TextContentManagerEnumerationOptions) -> bool {
+        textContentManager_shouldEnumerateTextElement_options :: proc "c" (self: ^NS.TextContentManagerDelegate, _: SEL, textContentManager: ^NS.TextContentManager, textElement: ^NS.TextElement, options: NS.TextContentManagerEnumerationOptions) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLComputeCommandEncoder
-///
 @(objc_class="MTLComputeCommandEncoder")
 ComputeCommandEncoder :: struct { using _: intrinsics.objc_object, 
     using _: CommandEncoder,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ComputeCommandEncoder, objc_selector="setComputePipelineState:", objc_name="setComputePipelineState")
     ComputeCommandEncoder_setComputePipelineState :: proc(self: ^ComputeCommandEncoder, state: ^ComputePipelineState) ---
@@ -140,6 +134,8 @@ foreign lib {
     @(objc_type=ComputeCommandEncoder, objc_selector="dispatchType", objc_name="dispatchType")
     ComputeCommandEncoder_dispatchType :: proc(self: ^ComputeCommandEncoder) -> DispatchType ---
 }
+
+
 
 @(objc_type=ComputeCommandEncoder, objc_name="setBuffer")
 ComputeCommandEncoder_setBuffer :: proc {

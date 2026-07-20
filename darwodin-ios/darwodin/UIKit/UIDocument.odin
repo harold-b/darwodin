@@ -27,10 +27,10 @@ foreign lib {
     Document_initWithFileURL :: proc(self: ^Document, url: ^NS.URL) -> instancetype ---
 
     @(objc_type=Document, objc_selector="openWithCompletionHandler:", objc_name="openWithCompletionHandler")
-    Document_openWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (success: bool))) ---
+    Document_openWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) ---
 
     @(objc_type=Document, objc_selector="closeWithCompletionHandler:", objc_name="closeWithCompletionHandler")
-    Document_closeWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (success: bool))) ---
+    Document_closeWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) ---
 
     @(objc_type=Document, objc_selector="loadFromContents:ofType:error:", objc_name="loadFromContents")
     Document_loadFromContents :: proc(self: ^Document, contents: id, typeName: ^NS.String, outError: ^^NS.Error) -> bool ---
@@ -54,10 +54,10 @@ foreign lib {
     Document_updateChangeCountWithToken :: proc(self: ^Document, changeCountToken: id, saveOperation: DocumentSaveOperation) ---
 
     @(objc_type=Document, objc_selector="saveToURL:forSaveOperation:completionHandler:", objc_name="saveToURL")
-    Document_saveToURL :: proc(self: ^Document, url: ^NS.URL, saveOperation: DocumentSaveOperation, completionHandler: ^Objc_Block(proc "c" (success: bool))) ---
+    Document_saveToURL :: proc(self: ^Document, url: ^NS.URL, saveOperation: DocumentSaveOperation, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) ---
 
     @(objc_type=Document, objc_selector="autosaveWithCompletionHandler:", objc_name="autosaveWithCompletionHandler")
-    Document_autosaveWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" (success: bool))) ---
+    Document_autosaveWithCompletionHandler :: proc(self: ^Document, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) ---
 
     @(objc_type=Document, objc_selector="fileNameExtensionForType:saveOperation:", objc_name="fileNameExtensionForType")
     Document_fileNameExtensionForType :: proc(self: ^Document, typeName: ^NS.String, saveOperation: DocumentSaveOperation) -> ^NS.String ---
@@ -87,7 +87,7 @@ foreign lib {
     Document_userInteractionNoLongerPermittedForError :: proc(self: ^Document, error: ^NS.Error) ---
 
     @(objc_type=Document, objc_selector="revertToContentsOfURL:completionHandler:", objc_name="revertToContentsOfURL")
-    Document_revertToContentsOfURL :: proc(self: ^Document, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (success: bool))) ---
+    Document_revertToContentsOfURL :: proc(self: ^Document, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( success: bool ))) ---
 
     @(objc_type=Document, objc_selector="fileURL", objc_name="fileURL")
     Document_fileURL :: proc(self: ^Document) -> ^NS.URL ---

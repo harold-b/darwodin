@@ -7,23 +7,16 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKFriendRequestComposeViewController
-///
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_class="GKFriendRequestComposeViewController", objc_superclass=AKViewController)
-    FriendRequestComposeViewController :: struct { using _: AKViewController, 
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    @(objc_class="GKFriendRequestComposeViewController", objc_superclass=AK.ViewController)
+    FriendRequestComposeViewController :: struct { using _: AK.ViewController, 
         using _: ViewController,
     }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_class="GKFriendRequestComposeViewController", objc_superclass=AKNavigationController)
-    FriendRequestComposeViewController :: struct { using _: AKNavigationController, }
-} // End else
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
+    @(objc_class="GKFriendRequestComposeViewController", objc_superclass=UI.NavigationController)
+    FriendRequestComposeViewController :: struct { using _: UI.NavigationController, }
+}
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FriendRequestComposeViewController, objc_selector="maxNumberOfRecipients", objc_name="maxNumberOfRecipients", objc_is_class_method=true)
     FriendRequestComposeViewController_maxNumberOfRecipients :: proc() -> NS.UInteger ---
@@ -46,3 +39,6 @@ foreign lib {
     @(objc_type=FriendRequestComposeViewController, objc_selector="setComposeViewDelegate:", objc_name="setComposeViewDelegate")
     FriendRequestComposeViewController_setComposeViewDelegate :: proc(self: ^FriendRequestComposeViewController, composeViewDelegate: ^FriendRequestComposeViewControllerDelegate) ---
 }
+
+
+

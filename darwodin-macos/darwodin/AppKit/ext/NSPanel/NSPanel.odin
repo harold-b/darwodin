@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSWindow"
 
 VTable :: struct {
     super: NSWindow.VTable,
-    isFloatingPanel: proc(self: ^AK.Panel) -> bool,
-    setFloatingPanel: proc(self: ^AK.Panel, floatingPanel: bool),
-    becomesKeyOnlyIfNeeded: proc(self: ^AK.Panel) -> bool,
-    setBecomesKeyOnlyIfNeeded: proc(self: ^AK.Panel, becomesKeyOnlyIfNeeded: bool),
-    worksWhenModal: proc(self: ^AK.Panel) -> bool,
-    setWorksWhenModal: proc(self: ^AK.Panel, worksWhenModal: bool),
+    isFloatingPanel: proc(self: ^NS.Panel) -> bool,
+    setFloatingPanel: proc(self: ^NS.Panel, floatingPanel: bool),
+    becomesKeyOnlyIfNeeded: proc(self: ^NS.Panel) -> bool,
+    setBecomesKeyOnlyIfNeeded: proc(self: ^NS.Panel, becomesKeyOnlyIfNeeded: bool),
+    worksWhenModal: proc(self: ^NS.Panel) -> bool,
+    setWorksWhenModal: proc(self: ^NS.Panel, worksWhenModal: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSWindow.extend(cls, &vt.super)
 
     if vt.isFloatingPanel != nil {
-        isFloatingPanel :: proc "c" (self: ^AK.Panel, _: SEL) -> bool {
+        isFloatingPanel :: proc "c" (self: ^NS.Panel, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -52,7 +52,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFloatingPanel"), auto_cast isFloatingPanel, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setFloatingPanel != nil {
-        setFloatingPanel :: proc "c" (self: ^AK.Panel, _: SEL, floatingPanel: bool) {
+        setFloatingPanel :: proc "c" (self: ^NS.Panel, _: SEL, floatingPanel: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFloatingPanel:"), auto_cast setFloatingPanel, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.becomesKeyOnlyIfNeeded != nil {
-        becomesKeyOnlyIfNeeded :: proc "c" (self: ^AK.Panel, _: SEL) -> bool {
+        becomesKeyOnlyIfNeeded :: proc "c" (self: ^NS.Panel, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("becomesKeyOnlyIfNeeded"), auto_cast becomesKeyOnlyIfNeeded, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setBecomesKeyOnlyIfNeeded != nil {
-        setBecomesKeyOnlyIfNeeded :: proc "c" (self: ^AK.Panel, _: SEL, becomesKeyOnlyIfNeeded: bool) {
+        setBecomesKeyOnlyIfNeeded :: proc "c" (self: ^NS.Panel, _: SEL, becomesKeyOnlyIfNeeded: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBecomesKeyOnlyIfNeeded:"), auto_cast setBecomesKeyOnlyIfNeeded, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.worksWhenModal != nil {
-        worksWhenModal :: proc "c" (self: ^AK.Panel, _: SEL) -> bool {
+        worksWhenModal :: proc "c" (self: ^NS.Panel, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("worksWhenModal"), auto_cast worksWhenModal, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setWorksWhenModal != nil {
-        setWorksWhenModal :: proc "c" (self: ^AK.Panel, _: SEL, worksWhenModal: bool) {
+        setWorksWhenModal :: proc "c" (self: ^NS.Panel, _: SEL, worksWhenModal: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

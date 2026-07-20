@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPassDescriptor
-///
 @(objc_class="MTLRenderPassDescriptor", objc_superclass=NS.Object)
 RenderPassDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPassDescriptor, objc_selector="renderPassDescriptor", objc_name="renderPassDescriptor", objc_is_class_method=true)
     RenderPassDescriptor_renderPassDescriptor :: proc() -> ^RenderPassDescriptor ---
@@ -122,3 +116,6 @@ foreign lib {
     @(objc_type=RenderPassDescriptor, objc_selector="setSupportColorAttachmentMapping:", objc_name="setSupportColorAttachmentMapping")
     RenderPassDescriptor_setSupportColorAttachmentMapping :: proc(self: ^RenderPassDescriptor, supportColorAttachmentMapping: bool) ---
 }
+
+
+

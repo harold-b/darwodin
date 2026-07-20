@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVTimedMetadataGroup
-///
 @(objc_class="AVTimedMetadataGroup", objc_superclass=MetadataGroup)
 TimedMetadataGroup :: struct { using _: MetadataGroup, 
     using _: NS.Copying,
     using _: NS.MutableCopying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TimedMetadataGroup, objc_selector="initWithItems:timeRange:", objc_name="initWithItems")
     TimedMetadataGroup_initWithItems :: proc(self: ^TimedMetadataGroup, items: ^NS.Array, timeRange: CM.TimeRange) -> instancetype ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=TimedMetadataGroup, objc_selector="copyFormatDescription", objc_name="copyFormatDescription")
     TimedMetadataGroup_copyFormatDescription :: proc(self: ^TimedMetadataGroup) -> CM.MetadataFormatDescriptionRef ---
 }
+
+
+

@@ -20,7 +20,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
@@ -30,13 +30,13 @@ VTable :: struct {
     fractionalHeightDimension: proc(fractionalHeight: CG.Float) -> instancetype,
     absoluteDimension: proc(absoluteDimension: CG.Float) -> instancetype,
     estimatedDimension: proc(estimatedDimension: CG.Float) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutDimension) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutDimension,
-    isFractionalWidth: proc(self: ^AK.CollectionLayoutDimension) -> bool,
-    isFractionalHeight: proc(self: ^AK.CollectionLayoutDimension) -> bool,
-    isAbsolute: proc(self: ^AK.CollectionLayoutDimension) -> bool,
-    isEstimated: proc(self: ^AK.CollectionLayoutDimension) -> bool,
-    dimension: proc(self: ^AK.CollectionLayoutDimension) -> CG.Float,
+    init: proc(self: ^NS.CollectionLayoutDimension) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutDimension,
+    isFractionalWidth: proc(self: ^NS.CollectionLayoutDimension) -> bool,
+    isFractionalHeight: proc(self: ^NS.CollectionLayoutDimension) -> bool,
+    isAbsolute: proc(self: ^NS.CollectionLayoutDimension) -> bool,
+    isEstimated: proc(self: ^NS.CollectionLayoutDimension) -> bool,
+    dimension: proc(self: ^NS.CollectionLayoutDimension) -> CG.Float,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("estimatedDimension:"), auto_cast estimatedDimension, "@#:d") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutDimension, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutDimension, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutDimension {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutDimension {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.isFractionalWidth != nil {
-        isFractionalWidth :: proc "c" (self: ^AK.CollectionLayoutDimension, _: SEL) -> bool {
+        isFractionalWidth :: proc "c" (self: ^NS.CollectionLayoutDimension, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFractionalWidth"), auto_cast isFractionalWidth, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isFractionalHeight != nil {
-        isFractionalHeight :: proc "c" (self: ^AK.CollectionLayoutDimension, _: SEL) -> bool {
+        isFractionalHeight :: proc "c" (self: ^NS.CollectionLayoutDimension, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isFractionalHeight"), auto_cast isFractionalHeight, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isAbsolute != nil {
-        isAbsolute :: proc "c" (self: ^AK.CollectionLayoutDimension, _: SEL) -> bool {
+        isAbsolute :: proc "c" (self: ^NS.CollectionLayoutDimension, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isAbsolute"), auto_cast isAbsolute, "B@:") do panic("Failed to register objC method.")
     }
     if vt.isEstimated != nil {
-        isEstimated :: proc "c" (self: ^AK.CollectionLayoutDimension, _: SEL) -> bool {
+        isEstimated :: proc "c" (self: ^NS.CollectionLayoutDimension, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEstimated"), auto_cast isEstimated, "B@:") do panic("Failed to register objC method.")
     }
     if vt.dimension != nil {
-        dimension :: proc "c" (self: ^AK.CollectionLayoutDimension, _: SEL) -> CG.Float {
+        dimension :: proc "c" (self: ^NS.CollectionLayoutDimension, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

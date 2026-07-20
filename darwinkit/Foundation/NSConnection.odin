@@ -9,23 +9,16 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSConnection
-///
-when !ODIN_PLATFORM_SUBTARGET_IOS {
+when ODIN_PLATFORM_SUBTARGET == .Default {
     @(objc_class="NSConnection", objc_superclass=Object)
     Connection :: struct { using _: Object, }
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
     @(objc_class="NSConnection")
     Connection :: struct { using _: intrinsics.objc_object, }
-} // End else
+}
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-@(default_calling_convention="c")
-    foreign lib {
+foreign lib {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Connection, objc_selector="allConnections", objc_name="allConnections", objc_is_class_method=true)
         Connection_allConnections :: proc() -> ^Array ---
 
@@ -146,7 +139,11 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         @(objc_type=Connection, objc_selector="localObjects", objc_name="localObjects")
         Connection_localObjects :: proc(self: ^Connection) -> ^Array ---
     }
+}
 
+
+
+when ODIN_PLATFORM_SUBTARGET == .Default {
     @(objc_type=Connection, objc_name="connectionWithRegisteredName")
     Connection_connectionWithRegisteredName :: proc {
         Connection_connectionWithRegisteredName_host,
@@ -170,9 +167,5 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         Connection_registerName_,
         Connection_registerName_withNameServer,
     }
+}
 
-} // End when
-when ODIN_PLATFORM_SUBTARGET_IOS {
-@(default_calling_convention="c")
-    foreign lib {}
-} // End else

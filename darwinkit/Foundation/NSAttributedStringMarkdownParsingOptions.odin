@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSAttributedStringMarkdownParsingOptions
-///
 @(objc_class="NSAttributedStringMarkdownParsingOptions", objc_superclass=Object)
 AttributedStringMarkdownParsingOptions :: struct { using _: Object, 
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AttributedStringMarkdownParsingOptions, objc_selector="init", objc_name="init")
     AttributedStringMarkdownParsingOptions_init :: proc(self: ^AttributedStringMarkdownParsingOptions) -> instancetype ---
@@ -54,3 +48,6 @@ foreign lib {
     @(objc_type=AttributedStringMarkdownParsingOptions, objc_selector="setAppliesSourcePositionAttributes:", objc_name="setAppliesSourcePositionAttributes")
     AttributedStringMarkdownParsingOptions_setAppliesSourcePositionAttributes :: proc(self: ^AttributedStringMarkdownParsingOptions, appliesSourcePositionAttributes: bool) ---
 }
+
+
+

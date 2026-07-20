@@ -20,57 +20,57 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSButton"
 
 VTable :: struct {
     super: NSButton.VTable,
-    popUpButtonWithMenu: proc(menu: ^AK.Menu, target: id, action: SEL) -> instancetype,
-    pullDownButtonWithTitle_menu: proc(title: ^NS.String, menu: ^AK.Menu) -> instancetype,
-    pullDownButtonWithImage: proc(image: ^AK.Image, menu: ^AK.Menu) -> instancetype,
-    pullDownButtonWithTitle_image_menu: proc(title: ^NS.String, image: ^AK.Image, menu: ^AK.Menu) -> instancetype,
-    initWithFrame: proc(self: ^AK.PopUpButton, buttonFrame: NS.Rect, flag: bool) -> instancetype,
-    addItemWithTitle: proc(self: ^AK.PopUpButton, title: ^NS.String),
-    addItemsWithTitles: proc(self: ^AK.PopUpButton, itemTitles: ^NS.Array),
-    insertItemWithTitle: proc(self: ^AK.PopUpButton, title: ^NS.String, index: NS.Integer),
-    removeItemWithTitle: proc(self: ^AK.PopUpButton, title: ^NS.String),
-    removeItemAtIndex: proc(self: ^AK.PopUpButton, index: NS.Integer),
-    removeAllItems: proc(self: ^AK.PopUpButton),
-    indexOfItem: proc(self: ^AK.PopUpButton, item: ^AK.MenuItem) -> NS.Integer,
-    indexOfItemWithTitle: proc(self: ^AK.PopUpButton, title: ^NS.String) -> NS.Integer,
-    indexOfItemWithTag: proc(self: ^AK.PopUpButton, tag: NS.Integer) -> NS.Integer,
-    indexOfItemWithRepresentedObject: proc(self: ^AK.PopUpButton, obj: id) -> NS.Integer,
-    indexOfItemWithTarget: proc(self: ^AK.PopUpButton, target: id, actionSelector: SEL) -> NS.Integer,
-    itemAtIndex: proc(self: ^AK.PopUpButton, index: NS.Integer) -> ^AK.MenuItem,
-    itemWithTitle: proc(self: ^AK.PopUpButton, title: ^NS.String) -> ^AK.MenuItem,
-    selectItem: proc(self: ^AK.PopUpButton, item: ^AK.MenuItem),
-    selectItemAtIndex: proc(self: ^AK.PopUpButton, index: NS.Integer),
-    selectItemWithTitle: proc(self: ^AK.PopUpButton, title: ^NS.String),
-    selectItemWithTag: proc(self: ^AK.PopUpButton, tag: NS.Integer) -> bool,
-    setTitle: proc(self: ^AK.PopUpButton, string: ^NS.String),
-    synchronizeTitleAndSelectedItem: proc(self: ^AK.PopUpButton),
-    itemTitleAtIndex: proc(self: ^AK.PopUpButton, index: NS.Integer) -> ^NS.String,
-    menu: proc(self: ^AK.PopUpButton) -> ^AK.Menu,
-    setMenu: proc(self: ^AK.PopUpButton, menu: ^AK.Menu),
-    pullsDown: proc(self: ^AK.PopUpButton) -> bool,
-    setPullsDown: proc(self: ^AK.PopUpButton, pullsDown: bool),
-    autoenablesItems: proc(self: ^AK.PopUpButton) -> bool,
-    setAutoenablesItems: proc(self: ^AK.PopUpButton, autoenablesItems: bool),
-    preferredEdge: proc(self: ^AK.PopUpButton) -> NS.RectEdge,
-    setPreferredEdge: proc(self: ^AK.PopUpButton, preferredEdge: NS.RectEdge),
-    usesItemFromMenu: proc(self: ^AK.PopUpButton) -> bool,
-    setUsesItemFromMenu: proc(self: ^AK.PopUpButton, usesItemFromMenu: bool),
-    altersStateOfSelectedItem: proc(self: ^AK.PopUpButton) -> bool,
-    setAltersStateOfSelectedItem: proc(self: ^AK.PopUpButton, altersStateOfSelectedItem: bool),
-    itemArray: proc(self: ^AK.PopUpButton) -> ^NS.Array,
-    numberOfItems: proc(self: ^AK.PopUpButton) -> NS.Integer,
-    lastItem: proc(self: ^AK.PopUpButton) -> ^AK.MenuItem,
-    selectedItem: proc(self: ^AK.PopUpButton) -> ^AK.MenuItem,
-    indexOfSelectedItem: proc(self: ^AK.PopUpButton) -> NS.Integer,
-    selectedTag: proc(self: ^AK.PopUpButton) -> NS.Integer,
-    itemTitles: proc(self: ^AK.PopUpButton) -> ^NS.Array,
-    titleOfSelectedItem: proc(self: ^AK.PopUpButton) -> ^NS.String,
+    popUpButtonWithMenu: proc(menu: ^NS.Menu, target: id, action: SEL) -> instancetype,
+    pullDownButtonWithTitle_menu: proc(title: ^NS.String, menu: ^NS.Menu) -> instancetype,
+    pullDownButtonWithImage: proc(image: ^NS.Image, menu: ^NS.Menu) -> instancetype,
+    pullDownButtonWithTitle_image_menu: proc(title: ^NS.String, image: ^NS.Image, menu: ^NS.Menu) -> instancetype,
+    initWithFrame: proc(self: ^NS.PopUpButton, buttonFrame: NS.Rect, flag: bool) -> instancetype,
+    addItemWithTitle: proc(self: ^NS.PopUpButton, title: ^NS.String),
+    addItemsWithTitles: proc(self: ^NS.PopUpButton, itemTitles: ^NS.Array),
+    insertItemWithTitle: proc(self: ^NS.PopUpButton, title: ^NS.String, index: NS.Integer),
+    removeItemWithTitle: proc(self: ^NS.PopUpButton, title: ^NS.String),
+    removeItemAtIndex: proc(self: ^NS.PopUpButton, index: NS.Integer),
+    removeAllItems: proc(self: ^NS.PopUpButton),
+    indexOfItem: proc(self: ^NS.PopUpButton, item: ^NS.MenuItem) -> NS.Integer,
+    indexOfItemWithTitle: proc(self: ^NS.PopUpButton, title: ^NS.String) -> NS.Integer,
+    indexOfItemWithTag: proc(self: ^NS.PopUpButton, tag: NS.Integer) -> NS.Integer,
+    indexOfItemWithRepresentedObject: proc(self: ^NS.PopUpButton, obj: id) -> NS.Integer,
+    indexOfItemWithTarget: proc(self: ^NS.PopUpButton, target: id, actionSelector: SEL) -> NS.Integer,
+    itemAtIndex: proc(self: ^NS.PopUpButton, index: NS.Integer) -> ^NS.MenuItem,
+    itemWithTitle: proc(self: ^NS.PopUpButton, title: ^NS.String) -> ^NS.MenuItem,
+    selectItem: proc(self: ^NS.PopUpButton, item: ^NS.MenuItem),
+    selectItemAtIndex: proc(self: ^NS.PopUpButton, index: NS.Integer),
+    selectItemWithTitle: proc(self: ^NS.PopUpButton, title: ^NS.String),
+    selectItemWithTag: proc(self: ^NS.PopUpButton, tag: NS.Integer) -> bool,
+    setTitle: proc(self: ^NS.PopUpButton, string: ^NS.String),
+    synchronizeTitleAndSelectedItem: proc(self: ^NS.PopUpButton),
+    itemTitleAtIndex: proc(self: ^NS.PopUpButton, index: NS.Integer) -> ^NS.String,
+    menu: proc(self: ^NS.PopUpButton) -> ^NS.Menu,
+    setMenu: proc(self: ^NS.PopUpButton, menu: ^NS.Menu),
+    pullsDown: proc(self: ^NS.PopUpButton) -> bool,
+    setPullsDown: proc(self: ^NS.PopUpButton, pullsDown: bool),
+    autoenablesItems: proc(self: ^NS.PopUpButton) -> bool,
+    setAutoenablesItems: proc(self: ^NS.PopUpButton, autoenablesItems: bool),
+    preferredEdge: proc(self: ^NS.PopUpButton) -> NS.RectEdge,
+    setPreferredEdge: proc(self: ^NS.PopUpButton, preferredEdge: NS.RectEdge),
+    usesItemFromMenu: proc(self: ^NS.PopUpButton) -> bool,
+    setUsesItemFromMenu: proc(self: ^NS.PopUpButton, usesItemFromMenu: bool),
+    altersStateOfSelectedItem: proc(self: ^NS.PopUpButton) -> bool,
+    setAltersStateOfSelectedItem: proc(self: ^NS.PopUpButton, altersStateOfSelectedItem: bool),
+    itemArray: proc(self: ^NS.PopUpButton) -> ^NS.Array,
+    numberOfItems: proc(self: ^NS.PopUpButton) -> NS.Integer,
+    lastItem: proc(self: ^NS.PopUpButton) -> ^NS.MenuItem,
+    selectedItem: proc(self: ^NS.PopUpButton) -> ^NS.MenuItem,
+    indexOfSelectedItem: proc(self: ^NS.PopUpButton) -> NS.Integer,
+    selectedTag: proc(self: ^NS.PopUpButton) -> NS.Integer,
+    itemTitles: proc(self: ^NS.PopUpButton) -> ^NS.Array,
+    titleOfSelectedItem: proc(self: ^NS.PopUpButton) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSButton.extend(cls, &vt.super)
 
     if vt.popUpButtonWithMenu != nil {
-        popUpButtonWithMenu :: proc "c" (self: Class, _: SEL, menu: ^AK.Menu, target: id, action: SEL) -> instancetype {
+        popUpButtonWithMenu :: proc "c" (self: Class, _: SEL, menu: ^NS.Menu, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -91,7 +91,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("popUpButtonWithMenu:target:action:"), auto_cast popUpButtonWithMenu, "@#:@@:") do panic("Failed to register objC method.")
     }
     if vt.pullDownButtonWithTitle_menu != nil {
-        pullDownButtonWithTitle_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, menu: ^AK.Menu) -> instancetype {
+        pullDownButtonWithTitle_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, menu: ^NS.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -101,7 +101,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithTitle:menu:"), auto_cast pullDownButtonWithTitle_menu, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.pullDownButtonWithImage != nil {
-        pullDownButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^AK.Image, menu: ^AK.Menu) -> instancetype {
+        pullDownButtonWithImage :: proc "c" (self: Class, _: SEL, image: ^NS.Image, menu: ^NS.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -111,7 +111,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithImage:menu:"), auto_cast pullDownButtonWithImage, "@#:@@") do panic("Failed to register objC method.")
     }
     if vt.pullDownButtonWithTitle_image_menu != nil {
-        pullDownButtonWithTitle_image_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^AK.Image, menu: ^AK.Menu) -> instancetype {
+        pullDownButtonWithTitle_image_menu :: proc "c" (self: Class, _: SEL, title: ^NS.String, image: ^NS.Image, menu: ^NS.Menu) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -121,7 +121,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pullDownButtonWithTitle:image:menu:"), auto_cast pullDownButtonWithTitle_image_menu, "@#:@@@") do panic("Failed to register objC method.")
     }
     if vt.initWithFrame != nil {
-        initWithFrame :: proc "c" (self: ^AK.PopUpButton, _: SEL, buttonFrame: NS.Rect, flag: bool) -> instancetype {
+        initWithFrame :: proc "c" (self: ^NS.PopUpButton, _: SEL, buttonFrame: NS.Rect, flag: bool) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -131,7 +131,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithFrame:pullsDown:"), auto_cast initWithFrame, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}B") do panic("Failed to register objC method.")
     }
     if vt.addItemWithTitle != nil {
-        addItemWithTitle :: proc "c" (self: ^AK.PopUpButton, _: SEL, title: ^NS.String) {
+        addItemWithTitle :: proc "c" (self: ^NS.PopUpButton, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -141,7 +141,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addItemWithTitle:"), auto_cast addItemWithTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.addItemsWithTitles != nil {
-        addItemsWithTitles :: proc "c" (self: ^AK.PopUpButton, _: SEL, itemTitles: ^NS.Array) {
+        addItemsWithTitles :: proc "c" (self: ^NS.PopUpButton, _: SEL, itemTitles: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -151,7 +151,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addItemsWithTitles:"), auto_cast addItemsWithTitles, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.insertItemWithTitle != nil {
-        insertItemWithTitle :: proc "c" (self: ^AK.PopUpButton, _: SEL, title: ^NS.String, index: NS.Integer) {
+        insertItemWithTitle :: proc "c" (self: ^NS.PopUpButton, _: SEL, title: ^NS.String, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -161,7 +161,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertItemWithTitle:atIndex:"), auto_cast insertItemWithTitle, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.removeItemWithTitle != nil {
-        removeItemWithTitle :: proc "c" (self: ^AK.PopUpButton, _: SEL, title: ^NS.String) {
+        removeItemWithTitle :: proc "c" (self: ^NS.PopUpButton, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -171,7 +171,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeItemWithTitle:"), auto_cast removeItemWithTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeItemAtIndex != nil {
-        removeItemAtIndex :: proc "c" (self: ^AK.PopUpButton, _: SEL, index: NS.Integer) {
+        removeItemAtIndex :: proc "c" (self: ^NS.PopUpButton, _: SEL, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -181,7 +181,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeItemAtIndex:"), auto_cast removeItemAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.removeAllItems != nil {
-        removeAllItems :: proc "c" (self: ^AK.PopUpButton, _: SEL) {
+        removeAllItems :: proc "c" (self: ^NS.PopUpButton, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -191,7 +191,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeAllItems"), auto_cast removeAllItems, "v@:") do panic("Failed to register objC method.")
     }
     if vt.indexOfItem != nil {
-        indexOfItem :: proc "c" (self: ^AK.PopUpButton, _: SEL, item: ^AK.MenuItem) -> NS.Integer {
+        indexOfItem :: proc "c" (self: ^NS.PopUpButton, _: SEL, item: ^NS.MenuItem) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -201,7 +201,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItem:"), auto_cast indexOfItem, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.indexOfItemWithTitle != nil {
-        indexOfItemWithTitle :: proc "c" (self: ^AK.PopUpButton, _: SEL, title: ^NS.String) -> NS.Integer {
+        indexOfItemWithTitle :: proc "c" (self: ^NS.PopUpButton, _: SEL, title: ^NS.String) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -211,7 +211,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItemWithTitle:"), auto_cast indexOfItemWithTitle, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.indexOfItemWithTag != nil {
-        indexOfItemWithTag :: proc "c" (self: ^AK.PopUpButton, _: SEL, tag: NS.Integer) -> NS.Integer {
+        indexOfItemWithTag :: proc "c" (self: ^NS.PopUpButton, _: SEL, tag: NS.Integer) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -221,7 +221,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItemWithTag:"), auto_cast indexOfItemWithTag, "l@:l") do panic("Failed to register objC method.")
     }
     if vt.indexOfItemWithRepresentedObject != nil {
-        indexOfItemWithRepresentedObject :: proc "c" (self: ^AK.PopUpButton, _: SEL, obj: id) -> NS.Integer {
+        indexOfItemWithRepresentedObject :: proc "c" (self: ^NS.PopUpButton, _: SEL, obj: id) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -231,7 +231,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItemWithRepresentedObject:"), auto_cast indexOfItemWithRepresentedObject, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.indexOfItemWithTarget != nil {
-        indexOfItemWithTarget :: proc "c" (self: ^AK.PopUpButton, _: SEL, target: id, actionSelector: SEL) -> NS.Integer {
+        indexOfItemWithTarget :: proc "c" (self: ^NS.PopUpButton, _: SEL, target: id, actionSelector: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -241,7 +241,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfItemWithTarget:andAction:"), auto_cast indexOfItemWithTarget, "l@:@:") do panic("Failed to register objC method.")
     }
     if vt.itemAtIndex != nil {
-        itemAtIndex :: proc "c" (self: ^AK.PopUpButton, _: SEL, index: NS.Integer) -> ^AK.MenuItem {
+        itemAtIndex :: proc "c" (self: ^NS.PopUpButton, _: SEL, index: NS.Integer) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -251,7 +251,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemAtIndex:"), auto_cast itemAtIndex, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.itemWithTitle != nil {
-        itemWithTitle :: proc "c" (self: ^AK.PopUpButton, _: SEL, title: ^NS.String) -> ^AK.MenuItem {
+        itemWithTitle :: proc "c" (self: ^NS.PopUpButton, _: SEL, title: ^NS.String) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -261,7 +261,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemWithTitle:"), auto_cast itemWithTitle, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.selectItem != nil {
-        selectItem :: proc "c" (self: ^AK.PopUpButton, _: SEL, item: ^AK.MenuItem) {
+        selectItem :: proc "c" (self: ^NS.PopUpButton, _: SEL, item: ^NS.MenuItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -271,7 +271,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectItem:"), auto_cast selectItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectItemAtIndex != nil {
-        selectItemAtIndex :: proc "c" (self: ^AK.PopUpButton, _: SEL, index: NS.Integer) {
+        selectItemAtIndex :: proc "c" (self: ^NS.PopUpButton, _: SEL, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -281,7 +281,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectItemAtIndex:"), auto_cast selectItemAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.selectItemWithTitle != nil {
-        selectItemWithTitle :: proc "c" (self: ^AK.PopUpButton, _: SEL, title: ^NS.String) {
+        selectItemWithTitle :: proc "c" (self: ^NS.PopUpButton, _: SEL, title: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -291,7 +291,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectItemWithTitle:"), auto_cast selectItemWithTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectItemWithTag != nil {
-        selectItemWithTag :: proc "c" (self: ^AK.PopUpButton, _: SEL, tag: NS.Integer) -> bool {
+        selectItemWithTag :: proc "c" (self: ^NS.PopUpButton, _: SEL, tag: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -301,7 +301,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectItemWithTag:"), auto_cast selectItemWithTag, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.PopUpButton, _: SEL, string: ^NS.String) {
+        setTitle :: proc "c" (self: ^NS.PopUpButton, _: SEL, string: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -311,7 +311,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:"), auto_cast setTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.synchronizeTitleAndSelectedItem != nil {
-        synchronizeTitleAndSelectedItem :: proc "c" (self: ^AK.PopUpButton, _: SEL) {
+        synchronizeTitleAndSelectedItem :: proc "c" (self: ^NS.PopUpButton, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -321,7 +321,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("synchronizeTitleAndSelectedItem"), auto_cast synchronizeTitleAndSelectedItem, "v@:") do panic("Failed to register objC method.")
     }
     if vt.itemTitleAtIndex != nil {
-        itemTitleAtIndex :: proc "c" (self: ^AK.PopUpButton, _: SEL, index: NS.Integer) -> ^NS.String {
+        itemTitleAtIndex :: proc "c" (self: ^NS.PopUpButton, _: SEL, index: NS.Integer) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -331,7 +331,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemTitleAtIndex:"), auto_cast itemTitleAtIndex, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.menu != nil {
-        menu :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> ^AK.Menu {
+        menu :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> ^NS.Menu {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -341,7 +341,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menu"), auto_cast menu, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setMenu != nil {
-        setMenu :: proc "c" (self: ^AK.PopUpButton, _: SEL, menu: ^AK.Menu) {
+        setMenu :: proc "c" (self: ^NS.PopUpButton, _: SEL, menu: ^NS.Menu) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -351,7 +351,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMenu:"), auto_cast setMenu, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.pullsDown != nil {
-        pullsDown :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> bool {
+        pullsDown :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -361,7 +361,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pullsDown"), auto_cast pullsDown, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setPullsDown != nil {
-        setPullsDown :: proc "c" (self: ^AK.PopUpButton, _: SEL, pullsDown: bool) {
+        setPullsDown :: proc "c" (self: ^NS.PopUpButton, _: SEL, pullsDown: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -371,7 +371,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPullsDown:"), auto_cast setPullsDown, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.autoenablesItems != nil {
-        autoenablesItems :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> bool {
+        autoenablesItems :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -381,7 +381,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autoenablesItems"), auto_cast autoenablesItems, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutoenablesItems != nil {
-        setAutoenablesItems :: proc "c" (self: ^AK.PopUpButton, _: SEL, autoenablesItems: bool) {
+        setAutoenablesItems :: proc "c" (self: ^NS.PopUpButton, _: SEL, autoenablesItems: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -391,7 +391,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutoenablesItems:"), auto_cast setAutoenablesItems, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.preferredEdge != nil {
-        preferredEdge :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> NS.RectEdge {
+        preferredEdge :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> NS.RectEdge {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -401,7 +401,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preferredEdge"), auto_cast preferredEdge, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setPreferredEdge != nil {
-        setPreferredEdge :: proc "c" (self: ^AK.PopUpButton, _: SEL, preferredEdge: NS.RectEdge) {
+        setPreferredEdge :: proc "c" (self: ^NS.PopUpButton, _: SEL, preferredEdge: NS.RectEdge) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -411,7 +411,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredEdge:"), auto_cast setPreferredEdge, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.usesItemFromMenu != nil {
-        usesItemFromMenu :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> bool {
+        usesItemFromMenu :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -421,7 +421,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("usesItemFromMenu"), auto_cast usesItemFromMenu, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setUsesItemFromMenu != nil {
-        setUsesItemFromMenu :: proc "c" (self: ^AK.PopUpButton, _: SEL, usesItemFromMenu: bool) {
+        setUsesItemFromMenu :: proc "c" (self: ^NS.PopUpButton, _: SEL, usesItemFromMenu: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -431,7 +431,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setUsesItemFromMenu:"), auto_cast setUsesItemFromMenu, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.altersStateOfSelectedItem != nil {
-        altersStateOfSelectedItem :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> bool {
+        altersStateOfSelectedItem :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -441,7 +441,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("altersStateOfSelectedItem"), auto_cast altersStateOfSelectedItem, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAltersStateOfSelectedItem != nil {
-        setAltersStateOfSelectedItem :: proc "c" (self: ^AK.PopUpButton, _: SEL, altersStateOfSelectedItem: bool) {
+        setAltersStateOfSelectedItem :: proc "c" (self: ^NS.PopUpButton, _: SEL, altersStateOfSelectedItem: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -451,7 +451,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAltersStateOfSelectedItem:"), auto_cast setAltersStateOfSelectedItem, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.itemArray != nil {
-        itemArray :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> ^NS.Array {
+        itemArray :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -461,7 +461,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemArray"), auto_cast itemArray, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.numberOfItems != nil {
-        numberOfItems :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> NS.Integer {
+        numberOfItems :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -471,7 +471,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfItems"), auto_cast numberOfItems, "l@:") do panic("Failed to register objC method.")
     }
     if vt.lastItem != nil {
-        lastItem :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> ^AK.MenuItem {
+        lastItem :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -481,7 +481,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lastItem"), auto_cast lastItem, "@@:") do panic("Failed to register objC method.")
     }
     if vt.selectedItem != nil {
-        selectedItem :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> ^AK.MenuItem {
+        selectedItem :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -491,7 +491,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedItem"), auto_cast selectedItem, "@@:") do panic("Failed to register objC method.")
     }
     if vt.indexOfSelectedItem != nil {
-        indexOfSelectedItem :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> NS.Integer {
+        indexOfSelectedItem :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -501,7 +501,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfSelectedItem"), auto_cast indexOfSelectedItem, "l@:") do panic("Failed to register objC method.")
     }
     if vt.selectedTag != nil {
-        selectedTag :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> NS.Integer {
+        selectedTag :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -511,7 +511,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedTag"), auto_cast selectedTag, "l@:") do panic("Failed to register objC method.")
     }
     if vt.itemTitles != nil {
-        itemTitles :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> ^NS.Array {
+        itemTitles :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -521,7 +521,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemTitles"), auto_cast itemTitles, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.titleOfSelectedItem != nil {
-        titleOfSelectedItem :: proc "c" (self: ^AK.PopUpButton, _: SEL) -> ^NS.String {
+        titleOfSelectedItem :: proc "c" (self: ^NS.PopUpButton, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

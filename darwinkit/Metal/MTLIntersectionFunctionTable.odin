@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLIntersectionFunctionTable
-///
 @(objc_class="MTLIntersectionFunctionTable")
 IntersectionFunctionTable :: struct { using _: intrinsics.objc_object, 
     using _: Resource,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=IntersectionFunctionTable, objc_selector="setBuffer:offset:atIndex:", objc_name="setBuffer")
     IntersectionFunctionTable_setBuffer :: proc(self: ^IntersectionFunctionTable, buffer: ^Buffer, offset: NS.UInteger, index: NS.UInteger) ---
@@ -56,6 +50,8 @@ foreign lib {
     @(objc_type=IntersectionFunctionTable, objc_selector="gpuResourceID", objc_name="gpuResourceID")
     IntersectionFunctionTable_gpuResourceID :: proc(self: ^IntersectionFunctionTable) -> ResourceID ---
 }
+
+
 
 @(objc_type=IntersectionFunctionTable, objc_name="setOpaqueTriangleIntersectionFunctionWithSignature")
 IntersectionFunctionTable_setOpaqueTriangleIntersectionFunctionWithSignature :: proc {

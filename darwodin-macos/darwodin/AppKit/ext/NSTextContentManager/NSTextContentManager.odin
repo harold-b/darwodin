@@ -20,30 +20,30 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.TextContentManager) -> instancetype,
-    initWithCoder: proc(self: ^AK.TextContentManager, coder: ^NS.Coder) -> instancetype,
-    addTextLayoutManager: proc(self: ^AK.TextContentManager, textLayoutManager: ^AK.TextLayoutManager),
-    removeTextLayoutManager: proc(self: ^AK.TextContentManager, textLayoutManager: ^AK.TextLayoutManager),
-    synchronizeTextLayoutManagers: proc(self: ^AK.TextContentManager, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))),
-    textElementsForRange: proc(self: ^AK.TextContentManager, range: ^AK.TextRange) -> ^NS.Array,
-    performEditingTransactionUsingBlock: proc(self: ^AK.TextContentManager, transaction: ^Objc_Block(proc "c" ())),
-    recordEditActionInRange: proc(self: ^AK.TextContentManager, originalTextRange: ^AK.TextRange, newTextRange: ^AK.TextRange),
-    delegate: proc(self: ^AK.TextContentManager) -> ^AK.TextContentManagerDelegate,
-    setDelegate: proc(self: ^AK.TextContentManager, delegate: ^AK.TextContentManagerDelegate),
-    textLayoutManagers: proc(self: ^AK.TextContentManager) -> ^NS.Array,
-    primaryTextLayoutManager: proc(self: ^AK.TextContentManager) -> ^AK.TextLayoutManager,
-    setPrimaryTextLayoutManager: proc(self: ^AK.TextContentManager, primaryTextLayoutManager: ^AK.TextLayoutManager),
-    hasEditingTransaction: proc(self: ^AK.TextContentManager) -> bool,
-    automaticallySynchronizesTextLayoutManagers: proc(self: ^AK.TextContentManager) -> bool,
-    setAutomaticallySynchronizesTextLayoutManagers: proc(self: ^AK.TextContentManager, automaticallySynchronizesTextLayoutManagers: bool),
-    automaticallySynchronizesToBackingStore: proc(self: ^AK.TextContentManager) -> bool,
-    setAutomaticallySynchronizesToBackingStore: proc(self: ^AK.TextContentManager, automaticallySynchronizesToBackingStore: bool),
+    init: proc(self: ^NS.TextContentManager) -> instancetype,
+    initWithCoder: proc(self: ^NS.TextContentManager, coder: ^NS.Coder) -> instancetype,
+    addTextLayoutManager: proc(self: ^NS.TextContentManager, textLayoutManager: ^NS.TextLayoutManager),
+    removeTextLayoutManager: proc(self: ^NS.TextContentManager, textLayoutManager: ^NS.TextLayoutManager),
+    synchronizeTextLayoutManagers: proc(self: ^NS.TextContentManager, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))),
+    textElementsForRange: proc(self: ^NS.TextContentManager, range: ^NS.TextRange) -> ^NS.Array,
+    performEditingTransactionUsingBlock: proc(self: ^NS.TextContentManager, transaction: ^Objc_Block(proc "c" ())),
+    recordEditActionInRange: proc(self: ^NS.TextContentManager, originalTextRange: ^NS.TextRange, newTextRange: ^NS.TextRange),
+    delegate: proc(self: ^NS.TextContentManager) -> ^NS.TextContentManagerDelegate,
+    setDelegate: proc(self: ^NS.TextContentManager, delegate: ^NS.TextContentManagerDelegate),
+    textLayoutManagers: proc(self: ^NS.TextContentManager) -> ^NS.Array,
+    primaryTextLayoutManager: proc(self: ^NS.TextContentManager) -> ^NS.TextLayoutManager,
+    setPrimaryTextLayoutManager: proc(self: ^NS.TextContentManager, primaryTextLayoutManager: ^NS.TextLayoutManager),
+    hasEditingTransaction: proc(self: ^NS.TextContentManager) -> bool,
+    automaticallySynchronizesTextLayoutManagers: proc(self: ^NS.TextContentManager) -> bool,
+    setAutomaticallySynchronizesTextLayoutManagers: proc(self: ^NS.TextContentManager, automaticallySynchronizesTextLayoutManagers: bool),
+    automaticallySynchronizesToBackingStore: proc(self: ^NS.TextContentManager) -> bool,
+    setAutomaticallySynchronizesToBackingStore: proc(self: ^NS.TextContentManager, automaticallySynchronizesToBackingStore: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.TextContentManager, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.TextContentManager, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextContentManager, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.TextContentManager, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.addTextLayoutManager != nil {
-        addTextLayoutManager :: proc "c" (self: ^AK.TextContentManager, _: SEL, textLayoutManager: ^AK.TextLayoutManager) {
+        addTextLayoutManager :: proc "c" (self: ^NS.TextContentManager, _: SEL, textLayoutManager: ^NS.TextLayoutManager) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addTextLayoutManager:"), auto_cast addTextLayoutManager, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeTextLayoutManager != nil {
-        removeTextLayoutManager :: proc "c" (self: ^AK.TextContentManager, _: SEL, textLayoutManager: ^AK.TextLayoutManager) {
+        removeTextLayoutManager :: proc "c" (self: ^NS.TextContentManager, _: SEL, textLayoutManager: ^NS.TextLayoutManager) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeTextLayoutManager:"), auto_cast removeTextLayoutManager, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.synchronizeTextLayoutManagers != nil {
-        synchronizeTextLayoutManagers :: proc "c" (self: ^AK.TextContentManager, _: SEL, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) {
+        synchronizeTextLayoutManagers :: proc "c" (self: ^NS.TextContentManager, _: SEL, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("synchronizeTextLayoutManagers:"), auto_cast synchronizeTextLayoutManagers, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.textElementsForRange != nil {
-        textElementsForRange :: proc "c" (self: ^AK.TextContentManager, _: SEL, range: ^AK.TextRange) -> ^NS.Array {
+        textElementsForRange :: proc "c" (self: ^NS.TextContentManager, _: SEL, range: ^NS.TextRange) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textElementsForRange:"), auto_cast textElementsForRange, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.performEditingTransactionUsingBlock != nil {
-        performEditingTransactionUsingBlock :: proc "c" (self: ^AK.TextContentManager, _: SEL, transaction: ^Objc_Block(proc "c" ())) {
+        performEditingTransactionUsingBlock :: proc "c" (self: ^NS.TextContentManager, _: SEL, transaction: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -124,7 +124,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performEditingTransactionUsingBlock:"), auto_cast performEditingTransactionUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.recordEditActionInRange != nil {
-        recordEditActionInRange :: proc "c" (self: ^AK.TextContentManager, _: SEL, originalTextRange: ^AK.TextRange, newTextRange: ^AK.TextRange) {
+        recordEditActionInRange :: proc "c" (self: ^NS.TextContentManager, _: SEL, originalTextRange: ^NS.TextRange, newTextRange: ^NS.TextRange) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -134,7 +134,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("recordEditActionInRange:newTextRange:"), auto_cast recordEditActionInRange, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.TextContentManager, _: SEL) -> ^AK.TextContentManagerDelegate {
+        delegate :: proc "c" (self: ^NS.TextContentManager, _: SEL) -> ^NS.TextContentManagerDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -144,7 +144,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.TextContentManager, _: SEL, delegate: ^AK.TextContentManagerDelegate) {
+        setDelegate :: proc "c" (self: ^NS.TextContentManager, _: SEL, delegate: ^NS.TextContentManagerDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -154,7 +154,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.textLayoutManagers != nil {
-        textLayoutManagers :: proc "c" (self: ^AK.TextContentManager, _: SEL) -> ^NS.Array {
+        textLayoutManagers :: proc "c" (self: ^NS.TextContentManager, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -164,7 +164,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutManagers"), auto_cast textLayoutManagers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.primaryTextLayoutManager != nil {
-        primaryTextLayoutManager :: proc "c" (self: ^AK.TextContentManager, _: SEL) -> ^AK.TextLayoutManager {
+        primaryTextLayoutManager :: proc "c" (self: ^NS.TextContentManager, _: SEL) -> ^NS.TextLayoutManager {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -174,7 +174,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("primaryTextLayoutManager"), auto_cast primaryTextLayoutManager, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPrimaryTextLayoutManager != nil {
-        setPrimaryTextLayoutManager :: proc "c" (self: ^AK.TextContentManager, _: SEL, primaryTextLayoutManager: ^AK.TextLayoutManager) {
+        setPrimaryTextLayoutManager :: proc "c" (self: ^NS.TextContentManager, _: SEL, primaryTextLayoutManager: ^NS.TextLayoutManager) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -184,7 +184,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPrimaryTextLayoutManager:"), auto_cast setPrimaryTextLayoutManager, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.hasEditingTransaction != nil {
-        hasEditingTransaction :: proc "c" (self: ^AK.TextContentManager, _: SEL) -> bool {
+        hasEditingTransaction :: proc "c" (self: ^NS.TextContentManager, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -194,7 +194,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasEditingTransaction"), auto_cast hasEditingTransaction, "B@:") do panic("Failed to register objC method.")
     }
     if vt.automaticallySynchronizesTextLayoutManagers != nil {
-        automaticallySynchronizesTextLayoutManagers :: proc "c" (self: ^AK.TextContentManager, _: SEL) -> bool {
+        automaticallySynchronizesTextLayoutManagers :: proc "c" (self: ^NS.TextContentManager, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -204,7 +204,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallySynchronizesTextLayoutManagers"), auto_cast automaticallySynchronizesTextLayoutManagers, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallySynchronizesTextLayoutManagers != nil {
-        setAutomaticallySynchronizesTextLayoutManagers :: proc "c" (self: ^AK.TextContentManager, _: SEL, automaticallySynchronizesTextLayoutManagers: bool) {
+        setAutomaticallySynchronizesTextLayoutManagers :: proc "c" (self: ^NS.TextContentManager, _: SEL, automaticallySynchronizesTextLayoutManagers: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -214,7 +214,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallySynchronizesTextLayoutManagers:"), auto_cast setAutomaticallySynchronizesTextLayoutManagers, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.automaticallySynchronizesToBackingStore != nil {
-        automaticallySynchronizesToBackingStore :: proc "c" (self: ^AK.TextContentManager, _: SEL) -> bool {
+        automaticallySynchronizesToBackingStore :: proc "c" (self: ^NS.TextContentManager, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -224,7 +224,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallySynchronizesToBackingStore"), auto_cast automaticallySynchronizesToBackingStore, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallySynchronizesToBackingStore != nil {
-        setAutomaticallySynchronizesToBackingStore :: proc "c" (self: ^AK.TextContentManager, _: SEL, automaticallySynchronizesToBackingStore: bool) {
+        setAutomaticallySynchronizesToBackingStore :: proc "c" (self: ^NS.TextContentManager, _: SEL, automaticallySynchronizesToBackingStore: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

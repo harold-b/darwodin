@@ -20,25 +20,25 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    outlineView_numberOfChildrenOfItem: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, item: id) -> NS.Integer,
-    outlineView_child_ofItem: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, index: NS.Integer, item: id) -> id,
-    outlineView_isItemExpandable: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, item: id) -> bool,
-    outlineView_objectValueForTableColumn_byItem: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, tableColumn: ^AK.TableColumn, item: id) -> id,
-    outlineView_setObjectValue_forTableColumn_byItem: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, object: id, tableColumn: ^AK.TableColumn, item: id),
-    outlineView_itemForPersistentObject: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, object: id) -> id,
-    outlineView_persistentObjectForItem: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, item: id) -> id,
-    outlineView_sortDescriptorsDidChange: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, oldDescriptors: ^NS.Array),
-    outlineView_pasteboardWriterForItem: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, item: id) -> ^AK.PasteboardWriting,
-    outlineView_draggingSession_willBeginAtPoint_forItems: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, session: ^AK.DraggingSession, screenPoint: CG.Point, draggedItems: ^NS.Array),
-    outlineView_draggingSession_endedAtPoint_operation: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, session: ^AK.DraggingSession, screenPoint: CG.Point, operation: AK.DragOperation),
-    outlineView_writeItems_toPasteboard: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, items: ^NS.Array, pasteboard: ^AK.Pasteboard) -> bool,
-    outlineView_updateDraggingItemsForDrag: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, draggingInfo: ^AK.DraggingInfo),
-    outlineView_validateDrop_proposedItem_proposedChildIndex: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, info: ^AK.DraggingInfo, item: id, index: NS.Integer) -> AK.DragOperation,
-    outlineView_acceptDrop_item_childIndex: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, info: ^AK.DraggingInfo, item: id, index: NS.Integer) -> bool,
-    outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems: proc(self: ^AK.OutlineViewDataSource, outlineView: ^AK.OutlineView, dropDestination: ^NS.URL, items: ^NS.Array) -> ^NS.Array,
+    outlineView_numberOfChildrenOfItem: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, item: id) -> NS.Integer,
+    outlineView_child_ofItem: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, index: NS.Integer, item: id) -> id,
+    outlineView_isItemExpandable: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, item: id) -> bool,
+    outlineView_objectValueForTableColumn_byItem: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, tableColumn: ^NS.TableColumn, item: id) -> id,
+    outlineView_setObjectValue_forTableColumn_byItem: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, object: id, tableColumn: ^NS.TableColumn, item: id),
+    outlineView_itemForPersistentObject: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, object: id) -> id,
+    outlineView_persistentObjectForItem: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, item: id) -> id,
+    outlineView_sortDescriptorsDidChange: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, oldDescriptors: ^NS.Array),
+    outlineView_pasteboardWriterForItem: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, item: id) -> ^NS.PasteboardWriting,
+    outlineView_draggingSession_willBeginAtPoint_forItems: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, session: ^NS.DraggingSession, screenPoint: CG.Point, draggedItems: ^NS.Array),
+    outlineView_draggingSession_endedAtPoint_operation: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, session: ^NS.DraggingSession, screenPoint: CG.Point, operation: NS.DragOperation),
+    outlineView_writeItems_toPasteboard: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, items: ^NS.Array, pasteboard: ^NS.Pasteboard) -> bool,
+    outlineView_updateDraggingItemsForDrag: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, draggingInfo: ^NS.DraggingInfo),
+    outlineView_validateDrop_proposedItem_proposedChildIndex: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, info: ^NS.DraggingInfo, item: id, index: NS.Integer) -> NS.DragOperation,
+    outlineView_acceptDrop_item_childIndex: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, info: ^NS.DraggingInfo, item: id, index: NS.Integer) -> bool,
+    outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems: proc(self: ^NS.OutlineViewDataSource, outlineView: ^NS.OutlineView, dropDestination: ^NS.URL, items: ^NS.Array) -> ^NS.Array,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.outlineView_numberOfChildrenOfItem != nil {
-        outlineView_numberOfChildrenOfItem :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, item: id) -> NS.Integer {
+        outlineView_numberOfChildrenOfItem :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, item: id) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:numberOfChildrenOfItem:"), auto_cast outlineView_numberOfChildrenOfItem, "l@:@@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_child_ofItem != nil {
-        outlineView_child_ofItem :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, index: NS.Integer, item: id) -> id {
+        outlineView_child_ofItem :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, index: NS.Integer, item: id) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:child:ofItem:"), auto_cast outlineView_child_ofItem, "@@:@l@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_isItemExpandable != nil {
-        outlineView_isItemExpandable :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, item: id) -> bool {
+        outlineView_isItemExpandable :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, item: id) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:isItemExpandable:"), auto_cast outlineView_isItemExpandable, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_objectValueForTableColumn_byItem != nil {
-        outlineView_objectValueForTableColumn_byItem :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, tableColumn: ^AK.TableColumn, item: id) -> id {
+        outlineView_objectValueForTableColumn_byItem :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, tableColumn: ^NS.TableColumn, item: id) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:objectValueForTableColumn:byItem:"), auto_cast outlineView_objectValueForTableColumn_byItem, "@@:@@@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_setObjectValue_forTableColumn_byItem != nil {
-        outlineView_setObjectValue_forTableColumn_byItem :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, object: id, tableColumn: ^AK.TableColumn, item: id) {
+        outlineView_setObjectValue_forTableColumn_byItem :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, object: id, tableColumn: ^NS.TableColumn, item: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:setObjectValue:forTableColumn:byItem:"), auto_cast outlineView_setObjectValue_forTableColumn_byItem, "v@:@@@@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_itemForPersistentObject != nil {
-        outlineView_itemForPersistentObject :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, object: id) -> id {
+        outlineView_itemForPersistentObject :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, object: id) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:itemForPersistentObject:"), auto_cast outlineView_itemForPersistentObject, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_persistentObjectForItem != nil {
-        outlineView_persistentObjectForItem :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, item: id) -> id {
+        outlineView_persistentObjectForItem :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, item: id) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:persistentObjectForItem:"), auto_cast outlineView_persistentObjectForItem, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_sortDescriptorsDidChange != nil {
-        outlineView_sortDescriptorsDidChange :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, oldDescriptors: ^NS.Array) {
+        outlineView_sortDescriptorsDidChange :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, oldDescriptors: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:sortDescriptorsDidChange:"), auto_cast outlineView_sortDescriptorsDidChange, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.outlineView_pasteboardWriterForItem != nil {
-        outlineView_pasteboardWriterForItem :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, item: id) -> ^AK.PasteboardWriting {
+        outlineView_pasteboardWriterForItem :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, item: id) -> ^NS.PasteboardWriting {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:pasteboardWriterForItem:"), auto_cast outlineView_pasteboardWriterForItem, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_draggingSession_willBeginAtPoint_forItems != nil {
-        outlineView_draggingSession_willBeginAtPoint_forItems :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, session: ^AK.DraggingSession, screenPoint: CG.Point, draggedItems: ^NS.Array) {
+        outlineView_draggingSession_willBeginAtPoint_forItems :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, session: ^NS.DraggingSession, screenPoint: CG.Point, draggedItems: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -146,7 +146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:draggingSession:willBeginAtPoint:forItems:"), auto_cast outlineView_draggingSession_willBeginAtPoint_forItems, "v@:@@{CGPoint=dd}@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_draggingSession_endedAtPoint_operation != nil {
-        outlineView_draggingSession_endedAtPoint_operation :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, session: ^AK.DraggingSession, screenPoint: CG.Point, operation: AK.DragOperation) {
+        outlineView_draggingSession_endedAtPoint_operation :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, session: ^NS.DraggingSession, screenPoint: CG.Point, operation: NS.DragOperation) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:draggingSession:endedAtPoint:operation:"), auto_cast outlineView_draggingSession_endedAtPoint_operation, "v@:@@{CGPoint=dd}L") do panic("Failed to register objC method.")
     }
     if vt.outlineView_writeItems_toPasteboard != nil {
-        outlineView_writeItems_toPasteboard :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, items: ^NS.Array, pasteboard: ^AK.Pasteboard) -> bool {
+        outlineView_writeItems_toPasteboard :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, items: ^NS.Array, pasteboard: ^NS.Pasteboard) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:writeItems:toPasteboard:"), auto_cast outlineView_writeItems_toPasteboard, "B@:@@@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_updateDraggingItemsForDrag != nil {
-        outlineView_updateDraggingItemsForDrag :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, draggingInfo: ^AK.DraggingInfo) {
+        outlineView_updateDraggingItemsForDrag :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, draggingInfo: ^NS.DraggingInfo) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -176,7 +176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:updateDraggingItemsForDrag:"), auto_cast outlineView_updateDraggingItemsForDrag, "v@:@@") do panic("Failed to register objC method.")
     }
     if vt.outlineView_validateDrop_proposedItem_proposedChildIndex != nil {
-        outlineView_validateDrop_proposedItem_proposedChildIndex :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, info: ^AK.DraggingInfo, item: id, index: NS.Integer) -> AK.DragOperation {
+        outlineView_validateDrop_proposedItem_proposedChildIndex :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, info: ^NS.DraggingInfo, item: id, index: NS.Integer) -> NS.DragOperation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -186,7 +186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:validateDrop:proposedItem:proposedChildIndex:"), auto_cast outlineView_validateDrop_proposedItem_proposedChildIndex, "L@:@@@l") do panic("Failed to register objC method.")
     }
     if vt.outlineView_acceptDrop_item_childIndex != nil {
-        outlineView_acceptDrop_item_childIndex :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, info: ^AK.DraggingInfo, item: id, index: NS.Integer) -> bool {
+        outlineView_acceptDrop_item_childIndex :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, info: ^NS.DraggingInfo, item: id, index: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -196,7 +196,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("outlineView:acceptDrop:item:childIndex:"), auto_cast outlineView_acceptDrop_item_childIndex, "B@:@@@l") do panic("Failed to register objC method.")
     }
     if vt.outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems != nil {
-        outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems :: proc "c" (self: ^AK.OutlineViewDataSource, _: SEL, outlineView: ^AK.OutlineView, dropDestination: ^NS.URL, items: ^NS.Array) -> ^NS.Array {
+        outlineView_namesOfPromisedFilesDroppedAtDestination_forDraggedItems :: proc "c" (self: ^NS.OutlineViewDataSource, _: SEL, outlineView: ^NS.OutlineView, dropDestination: ^NS.URL, items: ^NS.Array) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

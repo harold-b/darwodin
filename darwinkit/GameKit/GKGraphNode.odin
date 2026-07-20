@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKGraphNode
-///
 @(objc_class="GKGraphNode", objc_superclass=NS.Object)
 GraphNode :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=GraphNode, objc_selector="addConnectionsToNodes:bidirectional:", objc_name="addConnectionsToNodes")
     GraphNode_addConnectionsToNodes :: proc(self: ^GraphNode, nodes: ^NS.Array, bidirectional: bool) ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=GraphNode, objc_selector="connectedNodes", objc_name="connectedNodes")
     GraphNode_connectedNodes :: proc(self: ^GraphNode) -> ^NS.Array ---
 }
+
+
+

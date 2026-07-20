@@ -200,10 +200,10 @@ foreign lib {
     Menu_setUserInterfaceLayoutDirection :: proc(self: ^Menu, userInterfaceLayoutDirection: UserInterfaceLayoutDirection) ---
 
     @(objc_type=Menu, objc_selector="paletteMenuWithColors:titles:selectionHandler:", objc_name="paletteMenuWithColors_titles_selectionHandler", objc_is_class_method=true)
-    Menu_paletteMenuWithColors_titles_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> instancetype ---
+    Menu_paletteMenuWithColors_titles_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, onSelectionChange: ^Objc_Block(proc "c" ( _0: ^Menu ))) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="paletteMenuWithColors:titles:templateImage:selectionHandler:", objc_name="paletteMenuWithColors_titles_templateImage_selectionHandler", objc_is_class_method=true)
-    Menu_paletteMenuWithColors_titles_templateImage_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^Image, onSelectionChange: ^Objc_Block(proc "c" (_: ^Menu))) -> instancetype ---
+    Menu_paletteMenuWithColors_titles_templateImage_selectionHandler :: proc(colors: ^NS.Array, itemTitles: ^NS.Array, image: ^Image, onSelectionChange: ^Objc_Block(proc "c" ( _0: ^Menu ))) -> instancetype ---
 
     @(objc_type=Menu, objc_selector="presentationStyle", objc_name="presentationStyle")
     Menu_presentationStyle :: proc(self: ^Menu) -> MenuPresentationStyle ---

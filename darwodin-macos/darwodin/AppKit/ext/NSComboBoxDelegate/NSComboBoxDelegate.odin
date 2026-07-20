@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    comboBoxWillPopUp: proc(self: ^AK.ComboBoxDelegate, notification: ^NS.Notification),
-    comboBoxWillDismiss: proc(self: ^AK.ComboBoxDelegate, notification: ^NS.Notification),
-    comboBoxSelectionDidChange: proc(self: ^AK.ComboBoxDelegate, notification: ^NS.Notification),
-    comboBoxSelectionIsChanging: proc(self: ^AK.ComboBoxDelegate, notification: ^NS.Notification),
+    comboBoxWillPopUp: proc(self: ^NS.ComboBoxDelegate, notification: ^NS.Notification),
+    comboBoxWillDismiss: proc(self: ^NS.ComboBoxDelegate, notification: ^NS.Notification),
+    comboBoxSelectionDidChange: proc(self: ^NS.ComboBoxDelegate, notification: ^NS.Notification),
+    comboBoxSelectionIsChanging: proc(self: ^NS.ComboBoxDelegate, notification: ^NS.Notification),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.comboBoxWillPopUp != nil {
-        comboBoxWillPopUp :: proc "c" (self: ^AK.ComboBoxDelegate, _: SEL, notification: ^NS.Notification) {
+        comboBoxWillPopUp :: proc "c" (self: ^NS.ComboBoxDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("comboBoxWillPopUp:"), auto_cast comboBoxWillPopUp, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.comboBoxWillDismiss != nil {
-        comboBoxWillDismiss :: proc "c" (self: ^AK.ComboBoxDelegate, _: SEL, notification: ^NS.Notification) {
+        comboBoxWillDismiss :: proc "c" (self: ^NS.ComboBoxDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("comboBoxWillDismiss:"), auto_cast comboBoxWillDismiss, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.comboBoxSelectionDidChange != nil {
-        comboBoxSelectionDidChange :: proc "c" (self: ^AK.ComboBoxDelegate, _: SEL, notification: ^NS.Notification) {
+        comboBoxSelectionDidChange :: proc "c" (self: ^NS.ComboBoxDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("comboBoxSelectionDidChange:"), auto_cast comboBoxSelectionDidChange, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.comboBoxSelectionIsChanging != nil {
-        comboBoxSelectionIsChanging :: proc "c" (self: ^AK.ComboBoxDelegate, _: SEL, notification: ^NS.Notification) {
+        comboBoxSelectionIsChanging :: proc "c" (self: ^NS.ComboBoxDelegate, _: SEL, notification: ^NS.Notification) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

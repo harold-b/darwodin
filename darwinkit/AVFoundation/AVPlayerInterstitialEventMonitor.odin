@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerInterstitialEventMonitor
-///
 @(objc_class="AVPlayerInterstitialEventMonitor", objc_superclass=NS.Object)
 PlayerInterstitialEventMonitor :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerInterstitialEventMonitor, objc_selector="interstitialEventMonitorWithPrimaryPlayer:", objc_name="interstitialEventMonitorWithPrimaryPlayer", objc_is_class_method=true)
     PlayerInterstitialEventMonitor_interstitialEventMonitorWithPrimaryPlayer :: proc(primaryPlayer: ^Player) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=PlayerInterstitialEventMonitor, objc_selector="currentEventSkipControlLabel", objc_name="currentEventSkipControlLabel")
     PlayerInterstitialEventMonitor_currentEventSkipControlLabel :: proc(self: ^PlayerInterstitialEventMonitor) -> ^NS.String ---
 }
+
+
+

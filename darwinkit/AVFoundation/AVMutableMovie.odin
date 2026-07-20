@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableMovie
-///
 @(objc_class="AVMutableMovie", objc_superclass=Movie)
 MutableMovie :: struct { using _: Movie, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableMovie, objc_selector="movieWithURL:options:error:", objc_name="movieWithURL", objc_is_class_method=true)
     MutableMovie_movieWithURL :: proc(_URL: ^NS.URL, options: ^NS.Dictionary, outError: ^^NS.Error) -> instancetype ---
@@ -119,19 +113,19 @@ foreign lib {
     MutableMovie_trackWithTrackID :: proc(self: ^MutableMovie, trackID: CM.PersistentTrackID) -> ^MutableMovieTrack ---
 
     @(objc_type=MutableMovie, objc_selector="loadTrackWithTrackID:completionHandler:", objc_name="loadTrackWithTrackID")
-    MutableMovie_loadTrackWithTrackID :: proc(self: ^MutableMovie, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" (_: ^MutableMovieTrack, _1: ^NS.Error))) ---
+    MutableMovie_loadTrackWithTrackID :: proc(self: ^MutableMovie, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" ( _0: ^MutableMovieTrack, _1: ^NS.Error ))) ---
 
     @(objc_type=MutableMovie, objc_selector="tracksWithMediaType:", objc_name="tracksWithMediaType")
     MutableMovie_tracksWithMediaType :: proc(self: ^MutableMovie, mediaType: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=MutableMovie, objc_selector="loadTracksWithMediaType:completionHandler:", objc_name="loadTracksWithMediaType")
-    MutableMovie_loadTracksWithMediaType :: proc(self: ^MutableMovie, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    MutableMovie_loadTracksWithMediaType :: proc(self: ^MutableMovie, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=MutableMovie, objc_selector="tracksWithMediaCharacteristic:", objc_name="tracksWithMediaCharacteristic")
     MutableMovie_tracksWithMediaCharacteristic :: proc(self: ^MutableMovie, mediaCharacteristic: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=MutableMovie, objc_selector="loadTracksWithMediaCharacteristic:completionHandler:", objc_name="loadTracksWithMediaCharacteristic")
-    MutableMovie_loadTracksWithMediaCharacteristic :: proc(self: ^MutableMovie, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    MutableMovie_loadTracksWithMediaCharacteristic :: proc(self: ^MutableMovie, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=MutableMovie, objc_selector="metadataForFormat:", objc_name="metadataForFormat")
     MutableMovie_metadataForFormat :: proc(self: ^MutableMovie, format: ^NS.String) -> ^NS.Array ---
@@ -148,3 +142,6 @@ foreign lib {
     @(objc_type=MutableMovie, objc_selector="unusedTrackID", objc_name="unusedTrackID")
     MutableMovie_unusedTrackID :: proc(self: ^MutableMovie) -> CM.PersistentTrackID ---
 }
+
+
+

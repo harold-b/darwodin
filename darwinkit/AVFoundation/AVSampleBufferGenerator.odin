@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSampleBufferGenerator
-///
 @(objc_class="AVSampleBufferGenerator", objc_superclass=NS.Object)
 SampleBufferGenerator :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleBufferGenerator, objc_selector="init", objc_name="init")
     SampleBufferGenerator_init :: proc(self: ^SampleBufferGenerator) -> instancetype ---
@@ -44,8 +38,10 @@ foreign lib {
     SampleBufferGenerator_createSampleBufferForRequest_addingToBatch_error :: proc(self: ^SampleBufferGenerator, request: ^SampleBufferRequest, batch: ^SampleBufferGeneratorBatch, outError: ^^NS.Error) -> CM.SampleBufferRef ---
 
     @(objc_type=SampleBufferGenerator, objc_selector="notifyOfDataReadyForSampleBuffer:completionHandler:", objc_name="notifyOfDataReadyForSampleBuffer", objc_is_class_method=true)
-    SampleBufferGenerator_notifyOfDataReadyForSampleBuffer :: proc(sbuf: CM.SampleBufferRef, completionHandler: ^Objc_Block(proc "c" (dataReady: bool, error: ^NS.Error))) ---
+    SampleBufferGenerator_notifyOfDataReadyForSampleBuffer :: proc(sbuf: CM.SampleBufferRef, completionHandler: ^Objc_Block(proc "c" ( dataReady: bool, error: ^NS.Error ))) ---
 }
+
+
 
 @(objc_type=SampleBufferGenerator, objc_name="createSampleBufferForRequest")
 SampleBufferGenerator_createSampleBufferForRequest :: proc {

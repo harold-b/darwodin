@@ -43,7 +43,7 @@ foreign lib {
     SampleBufferGenerator_createSampleBufferForRequest_addingToBatch_error :: proc(self: ^SampleBufferGenerator, request: ^SampleBufferRequest, batch: ^SampleBufferGeneratorBatch, outError: ^^NS.Error) -> CM.SampleBufferRef ---
 
     @(objc_type=SampleBufferGenerator, objc_selector="notifyOfDataReadyForSampleBuffer:completionHandler:", objc_name="notifyOfDataReadyForSampleBuffer", objc_is_class_method=true)
-    SampleBufferGenerator_notifyOfDataReadyForSampleBuffer :: proc(sbuf: CM.SampleBufferRef, completionHandler: ^Objc_Block(proc "c" (dataReady: bool, error: ^NS.Error))) ---
+    SampleBufferGenerator_notifyOfDataReadyForSampleBuffer :: proc(sbuf: CM.SampleBufferRef, completionHandler: ^Objc_Block(proc "c" ( dataReady: bool, error: ^NS.Error ))) ---
 }
 
 @(objc_type=SampleBufferGenerator, objc_name="createSampleBufferForRequest")

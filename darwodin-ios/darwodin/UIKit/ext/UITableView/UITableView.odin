@@ -38,7 +38,7 @@ VTable :: struct {
     footerViewForSection: proc(self: ^UI.TableView, section: NS.Integer) -> ^UI.TableViewHeaderFooterView,
     scrollToRowAtIndexPath: proc(self: ^UI.TableView, indexPath: ^NS.IndexPath, scrollPosition: UI.TableViewScrollPosition, animated: bool),
     scrollToNearestSelectedRowAtScrollPosition: proc(self: ^UI.TableView, scrollPosition: UI.TableViewScrollPosition, animated: bool),
-    performBatchUpdates: proc(self: ^UI.TableView, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))),
+    performBatchUpdates: proc(self: ^UI.TableView, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))),
     beginUpdates: proc(self: ^UI.TableView),
     endUpdates: proc(self: ^UI.TableView),
     insertSections: proc(self: ^UI.TableView, sections: ^NS.IndexSet, animation: UI.TableViewRowAnimation),
@@ -312,7 +312,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollToNearestSelectedRowAtScrollPosition:animated:"), auto_cast scrollToNearestSelectedRowAtScrollPosition, "v@:lB") do panic("Failed to register objC method.")
     }
     if vt.performBatchUpdates != nil {
-        performBatchUpdates :: proc "c" (self: ^UI.TableView, _: SEL, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) {
+        performBatchUpdates :: proc "c" (self: ^UI.TableView, _: SEL, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

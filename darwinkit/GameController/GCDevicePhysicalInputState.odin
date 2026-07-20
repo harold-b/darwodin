@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCDevicePhysicalInputState
-///
 @(objc_class="GCDevicePhysicalInputState")
 DevicePhysicalInputState :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DevicePhysicalInputState, objc_selector="objectForKeyedSubscript:", objc_name="objectForKeyedSubscript")
     DevicePhysicalInputState_objectForKeyedSubscript :: proc(self: ^DevicePhysicalInputState, key: ^NS.String) -> ^PhysicalInputElement ---
@@ -47,3 +41,6 @@ foreign lib {
     @(objc_type=DevicePhysicalInputState, objc_selector="dpads", objc_name="dpads")
     DevicePhysicalInputState_dpads :: proc(self: ^DevicePhysicalInputState) -> ^PhysicalInputElementCollection ---
 }
+
+
+

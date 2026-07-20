@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureDeviceRotationCoordinator
-///
 @(objc_class="AVCaptureDeviceRotationCoordinator", objc_superclass=NS.Object)
 CaptureDeviceRotationCoordinator :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeviceRotationCoordinator, objc_selector="init", objc_name="init")
     CaptureDeviceRotationCoordinator_init :: proc(self: ^CaptureDeviceRotationCoordinator) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=CaptureDeviceRotationCoordinator, objc_selector="videoRotationAngleForHorizonLevelCapture", objc_name="videoRotationAngleForHorizonLevelCapture")
     CaptureDeviceRotationCoordinator_videoRotationAngleForHorizonLevelCapture :: proc(self: ^CaptureDeviceRotationCoordinator) -> CG.Float ---
 }
+
+
+

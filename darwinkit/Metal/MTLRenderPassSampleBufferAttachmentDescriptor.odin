@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderPassSampleBufferAttachmentDescriptor
-///
 @(objc_class="MTLRenderPassSampleBufferAttachmentDescriptor", objc_superclass=NS.Object)
 RenderPassSampleBufferAttachmentDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderPassSampleBufferAttachmentDescriptor, objc_selector="sampleBuffer", objc_name="sampleBuffer")
     RenderPassSampleBufferAttachmentDescriptor_sampleBuffer :: proc(self: ^RenderPassSampleBufferAttachmentDescriptor) -> ^CounterSampleBuffer ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=RenderPassSampleBufferAttachmentDescriptor, objc_selector="setEndOfFragmentSampleIndex:", objc_name="setEndOfFragmentSampleIndex")
     RenderPassSampleBufferAttachmentDescriptor_setEndOfFragmentSampleIndex :: proc(self: ^RenderPassSampleBufferAttachmentDescriptor, endOfFragmentSampleIndex: NS.UInteger) ---
 }
+
+
+

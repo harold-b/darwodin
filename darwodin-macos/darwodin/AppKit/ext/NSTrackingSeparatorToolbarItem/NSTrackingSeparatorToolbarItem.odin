@@ -20,17 +20,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSToolbarItem"
 
 VTable :: struct {
     super: NSToolbarItem.VTable,
-    trackingSeparatorToolbarItemWithIdentifier: proc(identifier: ^NS.String, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> instancetype,
-    splitView: proc(self: ^AK.TrackingSeparatorToolbarItem) -> ^AK.SplitView,
-    setSplitView: proc(self: ^AK.TrackingSeparatorToolbarItem, splitView: ^AK.SplitView),
-    dividerIndex: proc(self: ^AK.TrackingSeparatorToolbarItem) -> NS.Integer,
-    setDividerIndex: proc(self: ^AK.TrackingSeparatorToolbarItem, dividerIndex: NS.Integer),
+    trackingSeparatorToolbarItemWithIdentifier: proc(identifier: ^NS.String, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> instancetype,
+    splitView: proc(self: ^NS.TrackingSeparatorToolbarItem) -> ^NS.SplitView,
+    setSplitView: proc(self: ^NS.TrackingSeparatorToolbarItem, splitView: ^NS.SplitView),
+    dividerIndex: proc(self: ^NS.TrackingSeparatorToolbarItem) -> NS.Integer,
+    setDividerIndex: proc(self: ^NS.TrackingSeparatorToolbarItem, dividerIndex: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSToolbarItem.extend(cls, &vt.super)
 
     if vt.trackingSeparatorToolbarItemWithIdentifier != nil {
-        trackingSeparatorToolbarItemWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, splitView: ^AK.SplitView, dividerIndex: NS.Integer) -> instancetype {
+        trackingSeparatorToolbarItemWithIdentifier :: proc "c" (self: Class, _: SEL, identifier: ^NS.String, splitView: ^NS.SplitView, dividerIndex: NS.Integer) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("trackingSeparatorToolbarItemWithIdentifier:splitView:dividerIndex:"), auto_cast trackingSeparatorToolbarItemWithIdentifier, "@#:@@l") do panic("Failed to register objC method.")
     }
     if vt.splitView != nil {
-        splitView :: proc "c" (self: ^AK.TrackingSeparatorToolbarItem, _: SEL) -> ^AK.SplitView {
+        splitView :: proc "c" (self: ^NS.TrackingSeparatorToolbarItem, _: SEL) -> ^NS.SplitView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("splitView"), auto_cast splitView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSplitView != nil {
-        setSplitView :: proc "c" (self: ^AK.TrackingSeparatorToolbarItem, _: SEL, splitView: ^AK.SplitView) {
+        setSplitView :: proc "c" (self: ^NS.TrackingSeparatorToolbarItem, _: SEL, splitView: ^NS.SplitView) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSplitView:"), auto_cast setSplitView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.dividerIndex != nil {
-        dividerIndex :: proc "c" (self: ^AK.TrackingSeparatorToolbarItem, _: SEL) -> NS.Integer {
+        dividerIndex :: proc "c" (self: ^NS.TrackingSeparatorToolbarItem, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dividerIndex"), auto_cast dividerIndex, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setDividerIndex != nil {
-        setDividerIndex :: proc "c" (self: ^AK.TrackingSeparatorToolbarItem, _: SEL, dividerIndex: NS.Integer) {
+        setDividerIndex :: proc "c" (self: ^NS.TrackingSeparatorToolbarItem, _: SEL, dividerIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

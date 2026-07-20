@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLBufferBinding
-///
 @(objc_class="MTLBufferBinding")
 BufferBinding :: struct { using _: intrinsics.objc_object, 
     using _: Binding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=BufferBinding, objc_selector="bufferAlignment", objc_name="bufferAlignment")
     BufferBinding_bufferAlignment :: proc(self: ^BufferBinding) -> NS.UInteger ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=BufferBinding, objc_selector="bufferPointerType", objc_name="bufferPointerType")
     BufferBinding_bufferPointerType :: proc(self: ^BufferBinding) -> ^PointerType ---
 }
+
+
+

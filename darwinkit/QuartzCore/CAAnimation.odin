@@ -10,11 +10,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAAnimation
-///
 @(objc_class="CAAnimation", objc_superclass=NS.Object)
 Animation :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
@@ -23,7 +18,6 @@ Animation :: struct { using _: NS.Object,
     using _: Action,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Animation, objc_selector="animation", objc_name="animation", objc_is_class_method=true)
     Animation_animation :: proc() -> instancetype ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=Animation, objc_selector="setPreferredFrameRateRange:", objc_name="setPreferredFrameRateRange")
     Animation_setPreferredFrameRateRange :: proc(self: ^Animation, preferredFrameRateRange: FrameRateRange) ---
 }
+
+
+

@@ -20,15 +20,15 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    indexPathBeforeUpdate: proc(self: ^AK.CollectionViewUpdateItem) -> ^NS.IndexPath,
-    indexPathAfterUpdate: proc(self: ^AK.CollectionViewUpdateItem) -> ^NS.IndexPath,
-    updateAction: proc(self: ^AK.CollectionViewUpdateItem) -> AK.CollectionUpdateAction,
+    indexPathBeforeUpdate: proc(self: ^NS.CollectionViewUpdateItem) -> ^NS.IndexPath,
+    indexPathAfterUpdate: proc(self: ^NS.CollectionViewUpdateItem) -> ^NS.IndexPath,
+    updateAction: proc(self: ^NS.CollectionViewUpdateItem) -> NS.CollectionUpdateAction,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.indexPathBeforeUpdate != nil {
-        indexPathBeforeUpdate :: proc "c" (self: ^AK.CollectionViewUpdateItem, _: SEL) -> ^NS.IndexPath {
+        indexPathBeforeUpdate :: proc "c" (self: ^NS.CollectionViewUpdateItem, _: SEL) -> ^NS.IndexPath {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathBeforeUpdate"), auto_cast indexPathBeforeUpdate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.indexPathAfterUpdate != nil {
-        indexPathAfterUpdate :: proc "c" (self: ^AK.CollectionViewUpdateItem, _: SEL) -> ^NS.IndexPath {
+        indexPathAfterUpdate :: proc "c" (self: ^NS.CollectionViewUpdateItem, _: SEL) -> ^NS.IndexPath {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathAfterUpdate"), auto_cast indexPathAfterUpdate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.updateAction != nil {
-        updateAction :: proc "c" (self: ^AK.CollectionViewUpdateItem, _: SEL) -> AK.CollectionUpdateAction {
+        updateAction :: proc "c" (self: ^NS.CollectionViewUpdateItem, _: SEL) -> NS.CollectionUpdateAction {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

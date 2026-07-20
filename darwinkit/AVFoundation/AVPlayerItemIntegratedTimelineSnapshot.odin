@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemIntegratedTimelineSnapshot
-///
 @(objc_class="AVPlayerItemIntegratedTimelineSnapshot", objc_superclass=NS.Object)
 PlayerItemIntegratedTimelineSnapshot :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemIntegratedTimelineSnapshot, objc_selector="init", objc_name="init")
     PlayerItemIntegratedTimelineSnapshot_init :: proc(self: ^PlayerItemIntegratedTimelineSnapshot) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=PlayerItemIntegratedTimelineSnapshot, objc_selector="currentDate", objc_name="currentDate")
     PlayerItemIntegratedTimelineSnapshot_currentDate :: proc(self: ^PlayerItemIntegratedTimelineSnapshot) -> ^NS.Date ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerLayer
-///
 @(objc_class="AVPlayerLayer", objc_superclass=CA.Layer)
 PlayerLayer :: struct { using _: CA.Layer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerLayer, objc_selector="playerLayerWithPlayer:", objc_name="playerLayerWithPlayer", objc_is_class_method=true)
     PlayerLayer_playerLayerWithPlayer :: proc(player: ^Player) -> ^PlayerLayer ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=PlayerLayer, objc_selector="setPixelBufferAttributes:", objc_name="setPixelBufferAttributes")
     PlayerLayer_setPixelBufferAttributes :: proc(self: ^PlayerLayer, pixelBufferAttributes: ^NS.Dictionary) ---
 }
+
+
+

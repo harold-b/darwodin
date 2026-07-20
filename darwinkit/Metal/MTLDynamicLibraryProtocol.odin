@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLDynamicLibrary
-///
 @(objc_class="MTLDynamicLibrary")
 DynamicLibraryProtocol :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DynamicLibraryProtocol, objc_selector="serializeToURL:error:", objc_name="serializeToURL")
     DynamicLibraryProtocol_serializeToURL :: proc(self: ^DynamicLibraryProtocol, url: ^NS.URL, error: ^^NS.Error) -> bool ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=DynamicLibraryProtocol, objc_selector="installName", objc_name="installName")
     DynamicLibraryProtocol_installName :: proc(self: ^DynamicLibraryProtocol) -> ^NS.String ---
 }
+
+
+

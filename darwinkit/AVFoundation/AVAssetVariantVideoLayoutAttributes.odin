@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetVariantVideoLayoutAttributes
-///
 @(objc_class="AVAssetVariantVideoLayoutAttributes", objc_superclass=NS.Object)
 AssetVariantVideoLayoutAttributes :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetVariantVideoLayoutAttributes, objc_selector="init", objc_name="init")
     AssetVariantVideoLayoutAttributes_init :: proc(self: ^AssetVariantVideoLayoutAttributes) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=AssetVariantVideoLayoutAttributes, objc_selector="projectionType", objc_name="projectionType")
     AssetVariantVideoLayoutAttributes_projectionType :: proc(self: ^AssetVariantVideoLayoutAttributes) -> CM.ProjectionType ---
 }
+
+
+

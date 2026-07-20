@@ -1,0 +1,38 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSSymbolRotateEffect
+///
+@(objc_class="NSSymbolRotateEffect", objc_superclass=NSSymbolEffect)
+NSSymbolRotateEffect :: struct { using _: NSSymbolEffect, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NSSymbolRotateEffect, objc_selector="effect", objc_name="effect", objc_is_class_method=true)
+    NSSymbolRotateEffect_effect :: proc() -> instancetype ---
+
+    @(objc_type=NSSymbolRotateEffect, objc_selector="rotateClockwiseEffect", objc_name="rotateClockwiseEffect", objc_is_class_method=true)
+    NSSymbolRotateEffect_rotateClockwiseEffect :: proc() -> instancetype ---
+
+    @(objc_type=NSSymbolRotateEffect, objc_selector="rotateCounterClockwiseEffect", objc_name="rotateCounterClockwiseEffect", objc_is_class_method=true)
+    NSSymbolRotateEffect_rotateCounterClockwiseEffect :: proc() -> instancetype ---
+
+    @(objc_type=NSSymbolRotateEffect, objc_selector="effectWithByLayer", objc_name="effectWithByLayer")
+    NSSymbolRotateEffect_effectWithByLayer :: proc(self: ^NSSymbolRotateEffect) -> instancetype ---
+
+    @(objc_type=NSSymbolRotateEffect, objc_selector="effectWithWholeSymbol", objc_name="effectWithWholeSymbol")
+    NSSymbolRotateEffect_effectWithWholeSymbol :: proc(self: ^NSSymbolRotateEffect) -> instancetype ---
+}

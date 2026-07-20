@@ -30,7 +30,7 @@ foreign lib {
     ViewImplicitlyAnimating_addAnimations_ :: proc(self: ^ViewImplicitlyAnimating, animation: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=ViewImplicitlyAnimating, objc_selector="addCompletion:", objc_name="addCompletion")
-    ViewImplicitlyAnimating_addCompletion :: proc(self: ^ViewImplicitlyAnimating, completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) ---
+    ViewImplicitlyAnimating_addCompletion :: proc(self: ^ViewImplicitlyAnimating, completion: ^Objc_Block(proc "c" ( finalPosition: ViewAnimatingPosition ))) ---
 
     @(objc_type=ViewImplicitlyAnimating, objc_selector="continueAnimationWithTimingParameters:durationFactor:", objc_name="continueAnimationWithTimingParameters")
     ViewImplicitlyAnimating_continueAnimationWithTimingParameters :: proc(self: ^ViewImplicitlyAnimating, parameters: ^TimingCurveProvider, durationFactor: CG.Float) ---

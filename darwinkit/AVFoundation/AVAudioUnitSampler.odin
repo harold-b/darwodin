@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitSampler
-///
 @(objc_class="AVAudioUnitSampler", objc_superclass=AudioUnitMIDIInstrument)
 AudioUnitSampler :: struct { using _: AudioUnitMIDIInstrument, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitSampler, objc_selector="loadSoundBankInstrumentAtURL:program:bankMSB:bankLSB:error:", objc_name="loadSoundBankInstrumentAtURL")
     AudioUnitSampler_loadSoundBankInstrumentAtURL :: proc(self: ^AudioUnitSampler, bankURL: ^NS.URL, program: cffi.uint8_t, bankMSB: cffi.uint8_t, bankLSB: cffi.uint8_t, outError: ^^NS.Error) -> bool ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=AudioUnitSampler, objc_selector="setGlobalTuning:", objc_name="setGlobalTuning")
     AudioUnitSampler_setGlobalTuning :: proc(self: ^AudioUnitSampler, globalTuning: cffi.float) ---
 }
+
+
+

@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLTextureReferenceType
-///
 @(objc_class="MTLTextureReferenceType", objc_superclass=Type)
 TextureReferenceType :: struct { using _: Type, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextureReferenceType, objc_selector="textureDataType", objc_name="textureDataType")
     TextureReferenceType_textureDataType :: proc(self: ^TextureReferenceType) -> DataType ---
@@ -33,3 +27,6 @@ foreign lib {
     @(objc_type=TextureReferenceType, objc_selector="isDepthTexture", objc_name="isDepthTexture")
     TextureReferenceType_isDepthTexture :: proc(self: ^TextureReferenceType) -> bool ---
 }
+
+
+

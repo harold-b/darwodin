@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureSlider
-///
 @(objc_class="AVCaptureSlider", objc_superclass=CaptureControl)
 CaptureSlider :: struct { using _: CaptureControl, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSlider, objc_selector="initWithLocalizedTitle:symbolName:minValue:maxValue:", objc_name="initWithLocalizedTitle_symbolName_minValue_maxValue")
     CaptureSlider_initWithLocalizedTitle_symbolName_minValue_maxValue :: proc(self: ^CaptureSlider, localizedTitle: ^NS.String, symbolName: ^NS.String, minValue: cffi.float, maxValue: cffi.float) -> instancetype ---
@@ -32,7 +26,7 @@ foreign lib {
     CaptureSlider_initWithLocalizedTitle_symbolName_values :: proc(self: ^CaptureSlider, localizedTitle: ^NS.String, symbolName: ^NS.String, values: ^NS.Array) -> instancetype ---
 
     @(objc_type=CaptureSlider, objc_selector="setActionQueue:action:", objc_name="setActionQueue")
-    CaptureSlider_setActionQueue :: proc(self: ^CaptureSlider, actionQueue: CF.dispatch_queue_t, action: ^Objc_Block(proc "c" (newValue: cffi.float))) ---
+    CaptureSlider_setActionQueue :: proc(self: ^CaptureSlider, actionQueue: CF.dispatch_queue_t, action: ^Objc_Block(proc "c" ( newValue: cffi.float ))) ---
 
     @(objc_type=CaptureSlider, objc_selector="value", objc_name="value")
     CaptureSlider_value :: proc(self: ^CaptureSlider) -> cffi.float ---
@@ -64,6 +58,8 @@ foreign lib {
     @(objc_type=CaptureSlider, objc_selector="setAccessibilityIdentifier:", objc_name="setAccessibilityIdentifier")
     CaptureSlider_setAccessibilityIdentifier :: proc(self: ^CaptureSlider, accessibilityIdentifier: ^NS.String) ---
 }
+
+
 
 @(objc_type=CaptureSlider, objc_name="initWithLocalizedTitle")
 CaptureSlider_initWithLocalizedTitle :: proc {

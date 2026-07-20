@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKModifySubscriptionsOperation
-///
 @(objc_class="CKModifySubscriptionsOperation", objc_superclass=DatabaseOperation)
 ModifySubscriptionsOperation :: struct { using _: DatabaseOperation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ModifySubscriptionsOperation, objc_selector="init", objc_name="init")
     ModifySubscriptionsOperation_init :: proc(self: ^ModifySubscriptionsOperation) -> instancetype ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=ModifySubscriptionsOperation, objc_selector="setModifySubscriptionsCompletionBlock:", objc_name="setModifySubscriptionsCompletionBlock")
     ModifySubscriptionsOperation_setModifySubscriptionsCompletionBlock :: proc(self: ^ModifySubscriptionsOperation, modifySubscriptionsCompletionBlock: ^Objc_Block(proc "c" ())) ---
 }
+
+
+

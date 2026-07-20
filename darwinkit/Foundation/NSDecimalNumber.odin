@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSDecimalNumber
-///
 @(objc_class="NSDecimalNumber", objc_superclass=Number)
 DecimalNumber :: struct { using _: Number, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DecimalNumber, objc_selector="initWithMantissa:exponent:isNegative:", objc_name="initWithMantissa")
     DecimalNumber_initWithMantissa :: proc(self: ^DecimalNumber, mantissa: cffi.ulonglong, exponent: cffi.short, flag: bool) -> instancetype ---
@@ -118,6 +112,8 @@ foreign lib {
     @(objc_type=DecimalNumber, objc_selector="doubleValue", objc_name="doubleValue")
     DecimalNumber_doubleValue :: proc(self: ^DecimalNumber) -> cffi.double ---
 }
+
+
 
 @(objc_type=DecimalNumber, objc_name="initWithString")
 DecimalNumber_initWithString :: proc {

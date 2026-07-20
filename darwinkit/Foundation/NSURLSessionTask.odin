@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLSessionTask
-///
 @(objc_class="NSURLSessionTask", objc_superclass=Object)
 URLSessionTask :: struct { using _: Object, 
     using _: Copying,
     using _: ProgressReporting,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionTask, objc_selector="cancel", objc_name="cancel")
     URLSessionTask_cancel :: proc(self: ^URLSessionTask) ---
@@ -112,3 +106,6 @@ foreign lib {
     @(objc_type=URLSessionTask, objc_selector="setPrefersIncrementalDelivery:", objc_name="setPrefersIncrementalDelivery")
     URLSessionTask_setPrefersIncrementalDelivery :: proc(self: ^URLSessionTask, prefersIncrementalDelivery: bool) ---
 }
+
+
+

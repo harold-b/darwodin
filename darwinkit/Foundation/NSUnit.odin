@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnit
-///
 @(objc_class="NSUnit", objc_superclass=Object)
 Unit :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Unit, objc_selector="init", objc_name="init")
     Unit_init :: proc(self: ^Unit) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=Unit, objc_selector="symbol", objc_name="symbol")
     Unit_symbol :: proc(self: ^Unit) -> ^String ---
 }
+
+
+

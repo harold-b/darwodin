@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricPlayerItemVariantSwitchStartEvent
-///
 @(objc_class="AVMetricPlayerItemVariantSwitchStartEvent", objc_superclass=MetricEvent)
 MetricPlayerItemVariantSwitchStartEvent :: struct { using _: MetricEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemVariantSwitchStartEvent, objc_selector="init", objc_name="init")
     MetricPlayerItemVariantSwitchStartEvent_init :: proc(self: ^MetricPlayerItemVariantSwitchStartEvent) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=MetricPlayerItemVariantSwitchStartEvent, objc_selector="subtitleRendition", objc_name="subtitleRendition")
     MetricPlayerItemVariantSwitchStartEvent_subtitleRendition :: proc(self: ^MetricPlayerItemVariantSwitchStartEvent) -> ^MetricMediaRendition ---
 }
+
+
+

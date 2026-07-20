@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetReaderSampleReferenceOutput
-///
 @(objc_class="AVAssetReaderSampleReferenceOutput", objc_superclass=AssetReaderOutput)
 AssetReaderSampleReferenceOutput :: struct { using _: AssetReaderOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetReaderSampleReferenceOutput, objc_selector="init", objc_name="init")
     AssetReaderSampleReferenceOutput_init :: proc(self: ^AssetReaderSampleReferenceOutput) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=AssetReaderSampleReferenceOutput, objc_selector="track", objc_name="track")
     AssetReaderSampleReferenceOutput_track :: proc(self: ^AssetReaderSampleReferenceOutput) -> ^AssetTrack ---
 }
+
+
+

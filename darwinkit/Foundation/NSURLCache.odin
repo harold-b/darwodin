@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLCache
-///
 @(objc_class="NSURLCache", objc_superclass=Object)
 URLCache :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLCache, objc_selector="initWithMemoryCapacity:diskCapacity:diskPath:", objc_name="initWithMemoryCapacity_diskCapacity_diskPath")
     URLCache_initWithMemoryCapacity_diskCapacity_diskPath :: proc(self: ^URLCache, memoryCapacity: UInteger, diskCapacity: UInteger, path: ^String) -> instancetype ---
@@ -68,11 +62,13 @@ foreign lib {
     URLCache_storeCachedResponse_forDataTask :: proc(self: ^URLCache, cachedResponse: ^CachedURLResponse, dataTask: ^URLSessionDataTask) ---
 
     @(objc_type=URLCache, objc_selector="getCachedResponseForDataTask:completionHandler:", objc_name="getCachedResponseForDataTask")
-    URLCache_getCachedResponseForDataTask :: proc(self: ^URLCache, dataTask: ^URLSessionDataTask, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^CachedURLResponse))) ---
+    URLCache_getCachedResponseForDataTask :: proc(self: ^URLCache, dataTask: ^URLSessionDataTask, completionHandler: ^Objc_Block(proc "c" ( cachedResponse: ^CachedURLResponse ))) ---
 
     @(objc_type=URLCache, objc_selector="removeCachedResponseForDataTask:", objc_name="removeCachedResponseForDataTask")
     URLCache_removeCachedResponseForDataTask :: proc(self: ^URLCache, dataTask: ^URLSessionDataTask) ---
 }
+
+
 
 @(objc_type=URLCache, objc_name="initWithMemoryCapacity")
 URLCache_initWithMemoryCapacity :: proc {

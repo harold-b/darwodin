@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKRuleSystem
-///
 @(objc_class="GKRuleSystem", objc_superclass=NS.Object)
 RuleSystem :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RuleSystem, objc_selector="init", objc_name="init")
     RuleSystem_init :: proc(self: ^RuleSystem) -> instancetype ---
@@ -71,6 +65,8 @@ foreign lib {
     @(objc_type=RuleSystem, objc_selector="facts", objc_name="facts")
     RuleSystem_facts :: proc(self: ^RuleSystem) -> ^NS.Array ---
 }
+
+
 
 @(objc_type=RuleSystem, objc_name="assertFact")
 RuleSystem_assertFact :: proc {

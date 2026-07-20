@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEnginePendingRecordZoneChange
-///
 @(objc_class="CKSyncEnginePendingRecordZoneChange", objc_superclass=NS.Object)
 SyncEnginePendingRecordZoneChange :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEnginePendingRecordZoneChange, objc_selector="initWithRecordID:type:", objc_name="initWithRecordID")
     SyncEnginePendingRecordZoneChange_initWithRecordID :: proc(self: ^SyncEnginePendingRecordZoneChange, recordID: ^RecordID, type: SyncEnginePendingRecordZoneChangeType) -> instancetype ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=SyncEnginePendingRecordZoneChange, objc_selector="type", objc_name="type")
     SyncEnginePendingRecordZoneChange_type :: proc(self: ^SyncEnginePendingRecordZoneChange) -> SyncEnginePendingRecordZoneChangeType ---
 }
+
+
+

@@ -20,23 +20,23 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSPanel"
 
 VTable :: struct {
     super: NSPanel.VTable,
-    setPanelFont: proc(self: ^AK.FontPanel, fontObj: ^AK.Font, flag: bool),
-    panelConvertFont: proc(self: ^AK.FontPanel, fontObj: ^AK.Font) -> ^AK.Font,
-    reloadDefaultFontFamilies: proc(self: ^AK.FontPanel),
-    sharedFontPanel: proc() -> ^AK.FontPanel,
+    setPanelFont: proc(self: ^NS.FontPanel, fontObj: ^NS.Font, flag: bool),
+    panelConvertFont: proc(self: ^NS.FontPanel, fontObj: ^NS.Font) -> ^NS.Font,
+    reloadDefaultFontFamilies: proc(self: ^NS.FontPanel),
+    sharedFontPanel: proc() -> ^NS.FontPanel,
     sharedFontPanelExists: proc() -> bool,
-    accessoryView: proc(self: ^AK.FontPanel) -> ^AK.View,
-    setAccessoryView: proc(self: ^AK.FontPanel, accessoryView: ^AK.View),
-    worksWhenModal: proc(self: ^AK.FontPanel) -> bool,
-    setWorksWhenModal: proc(self: ^AK.FontPanel, worksWhenModal: bool),
-    isEnabled: proc(self: ^AK.FontPanel) -> bool,
-    setEnabled: proc(self: ^AK.FontPanel, enabled: bool),
+    accessoryView: proc(self: ^NS.FontPanel) -> ^NS.View,
+    setAccessoryView: proc(self: ^NS.FontPanel, accessoryView: ^NS.View),
+    worksWhenModal: proc(self: ^NS.FontPanel) -> bool,
+    setWorksWhenModal: proc(self: ^NS.FontPanel, worksWhenModal: bool),
+    isEnabled: proc(self: ^NS.FontPanel) -> bool,
+    setEnabled: proc(self: ^NS.FontPanel, enabled: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSPanel.extend(cls, &vt.super)
 
     if vt.setPanelFont != nil {
-        setPanelFont :: proc "c" (self: ^AK.FontPanel, _: SEL, fontObj: ^AK.Font, flag: bool) {
+        setPanelFont :: proc "c" (self: ^NS.FontPanel, _: SEL, fontObj: ^NS.Font, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPanelFont:isMultiple:"), auto_cast setPanelFont, "v@:@B") do panic("Failed to register objC method.")
     }
     if vt.panelConvertFont != nil {
-        panelConvertFont :: proc "c" (self: ^AK.FontPanel, _: SEL, fontObj: ^AK.Font) -> ^AK.Font {
+        panelConvertFont :: proc "c" (self: ^NS.FontPanel, _: SEL, fontObj: ^NS.Font) -> ^NS.Font {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("panelConvertFont:"), auto_cast panelConvertFont, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.reloadDefaultFontFamilies != nil {
-        reloadDefaultFontFamilies :: proc "c" (self: ^AK.FontPanel, _: SEL) {
+        reloadDefaultFontFamilies :: proc "c" (self: ^NS.FontPanel, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reloadDefaultFontFamilies"), auto_cast reloadDefaultFontFamilies, "v@:") do panic("Failed to register objC method.")
     }
     if vt.sharedFontPanel != nil {
-        sharedFontPanel :: proc "c" (self: Class, _: SEL) -> ^AK.FontPanel {
+        sharedFontPanel :: proc "c" (self: Class, _: SEL) -> ^NS.FontPanel {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sharedFontPanelExists"), auto_cast sharedFontPanelExists, "B#:") do panic("Failed to register objC method.")
     }
     if vt.accessoryView != nil {
-        accessoryView :: proc "c" (self: ^AK.FontPanel, _: SEL) -> ^AK.View {
+        accessoryView :: proc "c" (self: ^NS.FontPanel, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessoryView"), auto_cast accessoryView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessoryView != nil {
-        setAccessoryView :: proc "c" (self: ^AK.FontPanel, _: SEL, accessoryView: ^AK.View) {
+        setAccessoryView :: proc "c" (self: ^NS.FontPanel, _: SEL, accessoryView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessoryView:"), auto_cast setAccessoryView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.worksWhenModal != nil {
-        worksWhenModal :: proc "c" (self: ^AK.FontPanel, _: SEL) -> bool {
+        worksWhenModal :: proc "c" (self: ^NS.FontPanel, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("worksWhenModal"), auto_cast worksWhenModal, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setWorksWhenModal != nil {
-        setWorksWhenModal :: proc "c" (self: ^AK.FontPanel, _: SEL, worksWhenModal: bool) {
+        setWorksWhenModal :: proc "c" (self: ^NS.FontPanel, _: SEL, worksWhenModal: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWorksWhenModal:"), auto_cast setWorksWhenModal, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isEnabled != nil {
-        isEnabled :: proc "c" (self: ^AK.FontPanel, _: SEL) -> bool {
+        isEnabled :: proc "c" (self: ^NS.FontPanel, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEnabled"), auto_cast isEnabled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setEnabled != nil {
-        setEnabled :: proc "c" (self: ^AK.FontPanel, _: SEL, enabled: bool) {
+        setEnabled :: proc "c" (self: ^NS.FontPanel, _: SEL, enabled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

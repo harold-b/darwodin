@@ -13,7 +13,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:IOKit.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:IOKit.framework",
+    }
+}
+
 
 
 // IOBSD.h
@@ -903,22 +914,22 @@ DeviceNumber :: cffi.uint
 NotificationPortRef :: ^NotificationPort
 
 /// IOServiceMatchingCallback
-ServiceMatchingCallback :: proc "c" (refcon: rawptr, iterator: iterator_t)
+ServiceMatchingCallback :: proc "c" ( refcon: rawptr, iterator: iterator_t )
 
 /// IOServiceInterestCallback
-ServiceInterestCallback :: proc "c" (refcon: rawptr, service: service_t, messageType: cffi.uint32_t, messageArgument: rawptr)
+ServiceInterestCallback :: proc "c" ( refcon: rawptr, service: service_t, messageType: cffi.uint32_t, messageArgument: rawptr )
 
 /// IOAsyncCallback0
-AsyncCallback0 :: proc "c" (refcon: rawptr, result: Return)
+AsyncCallback0 :: proc "c" ( refcon: rawptr, result: Return )
 
 /// IOAsyncCallback1
-AsyncCallback1 :: proc "c" (refcon: rawptr, result: Return, arg0: rawptr)
+AsyncCallback1 :: proc "c" ( refcon: rawptr, result: Return, arg0: rawptr )
 
 /// IOAsyncCallback2
-AsyncCallback2 :: proc "c" (refcon: rawptr, result: Return, arg0: rawptr, arg1: rawptr)
+AsyncCallback2 :: proc "c" ( refcon: rawptr, result: Return, arg0: rawptr, arg1: rawptr )
 
 /// IOAsyncCallback
-AsyncCallback :: proc "c" (refcon: rawptr, result: Return, args: ^rawptr, numArgs: cffi.uint32_t)
+AsyncCallback :: proc "c" ( refcon: rawptr, result: Return, args: ^rawptr, numArgs: cffi.uint32_t )
 
 /// io_stat_entry
 stat_entry :: struct #align (8) {

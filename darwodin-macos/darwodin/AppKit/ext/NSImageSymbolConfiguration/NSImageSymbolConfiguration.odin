@@ -20,25 +20,25 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    configurationWithPointSize_weight_scale: proc(pointSize: CG.Float, weight: AK.FontWeight, scale: AK.ImageSymbolScale) -> instancetype,
-    configurationWithPointSize_weight: proc(pointSize: CG.Float, weight: AK.FontWeight) -> instancetype,
-    configurationWithTextStyle_scale: proc(style: ^NS.String, scale: AK.ImageSymbolScale) -> instancetype,
+    configurationWithPointSize_weight_scale: proc(pointSize: CG.Float, weight: NS.FontWeight, scale: NS.ImageSymbolScale) -> instancetype,
+    configurationWithPointSize_weight: proc(pointSize: CG.Float, weight: NS.FontWeight) -> instancetype,
+    configurationWithTextStyle_scale: proc(style: ^NS.String, scale: NS.ImageSymbolScale) -> instancetype,
     configurationWithTextStyle_: proc(style: ^NS.String) -> instancetype,
-    configurationWithScale: proc(scale: AK.ImageSymbolScale) -> instancetype,
+    configurationWithScale: proc(scale: NS.ImageSymbolScale) -> instancetype,
     configurationPreferringMonochrome: proc() -> instancetype,
     configurationPreferringHierarchical: proc() -> instancetype,
-    configurationWithHierarchicalColor: proc(hierarchicalColor: ^AK.Color) -> instancetype,
+    configurationWithHierarchicalColor: proc(hierarchicalColor: ^NS.Color) -> instancetype,
     configurationWithPaletteColors: proc(paletteColors: ^NS.Array) -> instancetype,
     configurationPreferringMulticolor: proc() -> instancetype,
-    configurationWithVariableValueMode: proc(variableValueMode: AK.ImageSymbolVariableValueMode) -> instancetype,
-    configurationWithColorRenderingMode: proc(mode: AK.ImageSymbolColorRenderingMode) -> instancetype,
-    configurationByApplyingConfiguration: proc(self: ^AK.ImageSymbolConfiguration, configuration: ^AK.ImageSymbolConfiguration) -> instancetype,
+    configurationWithVariableValueMode: proc(variableValueMode: NS.ImageSymbolVariableValueMode) -> instancetype,
+    configurationWithColorRenderingMode: proc(mode: NS.ImageSymbolColorRenderingMode) -> instancetype,
+    configurationByApplyingConfiguration: proc(self: ^NS.ImageSymbolConfiguration, configuration: ^NS.ImageSymbolConfiguration) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.configurationWithPointSize_weight_scale != nil {
-        configurationWithPointSize_weight_scale :: proc "c" (self: Class, _: SEL, pointSize: CG.Float, weight: AK.FontWeight, scale: AK.ImageSymbolScale) -> instancetype {
+        configurationWithPointSize_weight_scale :: proc "c" (self: Class, _: SEL, pointSize: CG.Float, weight: NS.FontWeight, scale: NS.ImageSymbolScale) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithPointSize:weight:scale:"), auto_cast configurationWithPointSize_weight_scale, "@#:ddl") do panic("Failed to register objC method.")
     }
     if vt.configurationWithPointSize_weight != nil {
-        configurationWithPointSize_weight :: proc "c" (self: Class, _: SEL, pointSize: CG.Float, weight: AK.FontWeight) -> instancetype {
+        configurationWithPointSize_weight :: proc "c" (self: Class, _: SEL, pointSize: CG.Float, weight: NS.FontWeight) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithPointSize:weight:"), auto_cast configurationWithPointSize_weight, "@#:dd") do panic("Failed to register objC method.")
     }
     if vt.configurationWithTextStyle_scale != nil {
-        configurationWithTextStyle_scale :: proc "c" (self: Class, _: SEL, style: ^NS.String, scale: AK.ImageSymbolScale) -> instancetype {
+        configurationWithTextStyle_scale :: proc "c" (self: Class, _: SEL, style: ^NS.String, scale: NS.ImageSymbolScale) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithTextStyle:"), auto_cast configurationWithTextStyle_, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.configurationWithScale != nil {
-        configurationWithScale :: proc "c" (self: Class, _: SEL, scale: AK.ImageSymbolScale) -> instancetype {
+        configurationWithScale :: proc "c" (self: Class, _: SEL, scale: NS.ImageSymbolScale) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationPreferringHierarchical"), auto_cast configurationPreferringHierarchical, "@#:") do panic("Failed to register objC method.")
     }
     if vt.configurationWithHierarchicalColor != nil {
-        configurationWithHierarchicalColor :: proc "c" (self: Class, _: SEL, hierarchicalColor: ^AK.Color) -> instancetype {
+        configurationWithHierarchicalColor :: proc "c" (self: Class, _: SEL, hierarchicalColor: ^NS.Color) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationPreferringMulticolor"), auto_cast configurationPreferringMulticolor, "@#:") do panic("Failed to register objC method.")
     }
     if vt.configurationWithVariableValueMode != nil {
-        configurationWithVariableValueMode :: proc "c" (self: Class, _: SEL, variableValueMode: AK.ImageSymbolVariableValueMode) -> instancetype {
+        configurationWithVariableValueMode :: proc "c" (self: Class, _: SEL, variableValueMode: NS.ImageSymbolVariableValueMode) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithVariableValueMode:"), auto_cast configurationWithVariableValueMode, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.configurationWithColorRenderingMode != nil {
-        configurationWithColorRenderingMode :: proc "c" (self: Class, _: SEL, mode: AK.ImageSymbolColorRenderingMode) -> instancetype {
+        configurationWithColorRenderingMode :: proc "c" (self: Class, _: SEL, mode: NS.ImageSymbolColorRenderingMode) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("configurationWithColorRenderingMode:"), auto_cast configurationWithColorRenderingMode, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.configurationByApplyingConfiguration != nil {
-        configurationByApplyingConfiguration :: proc "c" (self: ^AK.ImageSymbolConfiguration, _: SEL, configuration: ^AK.ImageSymbolConfiguration) -> instancetype {
+        configurationByApplyingConfiguration :: proc "c" (self: ^NS.ImageSymbolConfiguration, _: SEL, configuration: ^NS.ImageSymbolConfiguration) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -1,0 +1,26 @@
+#+build darwin:default
+package darwodin_AppKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import mach "../mach"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import CM "../CoreMedia"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// NSScrubberItemView
+///
+@(objc_class="NSScrubberItemView", objc_superclass=ScrubberArrangedView)
+ScrubberItemView :: struct { using _: ScrubberArrangedView, }
+
+@(default_calling_convention="c")
+foreign lib {}

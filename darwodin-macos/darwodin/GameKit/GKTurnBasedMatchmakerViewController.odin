@@ -4,16 +4,15 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
 ///
 /// GKTurnBasedMatchmakerViewController
 ///
-@(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=AK.ViewController)
-TurnBasedMatchmakerViewController :: struct { using _: AK.ViewController, 
+@(objc_class="GKTurnBasedMatchmakerViewController", objc_superclass=NS.ViewController)
+TurnBasedMatchmakerViewController :: struct { using _: NS.ViewController, 
     using _: ViewController,
 }
 

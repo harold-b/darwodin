@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKComponentSystem
-///
 @(objc_class="GKComponentSystem", objc_superclass=NS.Object)
 ComponentSystem :: struct { using _: NS.Object, 
     using _: NS.FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ComponentSystem, objc_selector="objectAtIndexedSubscript:", objc_name="objectAtIndexedSubscript")
     ComponentSystem_objectAtIndexedSubscript :: proc(self: ^ComponentSystem, idx: NS.UInteger) -> id ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=ComponentSystem, objc_selector="components", objc_name="components")
     ComponentSystem_components :: proc(self: ^ComponentSystem) -> ^NS.Array ---
 }
+
+
+

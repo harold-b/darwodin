@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKState
-///
 @(objc_class="GKState", objc_superclass=NS.Object)
 State :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=State, objc_selector="state", objc_name="state", objc_is_class_method=true)
     State_state :: proc() -> instancetype ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=State, objc_selector="stateMachine", objc_name="stateMachine")
     State_stateMachine :: proc(self: ^State) -> ^StateMachine ---
 }
+
+
+

@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLAnimatedScalarArray
-///
 @(objc_class="MDLAnimatedScalarArray", objc_superclass=AnimatedValue)
 AnimatedScalarArray :: struct { using _: AnimatedValue, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AnimatedScalarArray, objc_selector="initWithElementCount:", objc_name="initWithElementCount")
     AnimatedScalarArray_initWithElementCount :: proc(self: ^AnimatedScalarArray, arrayElementCount: NS.UInteger) -> id ---
@@ -50,6 +44,8 @@ foreign lib {
     @(objc_type=AnimatedScalarArray, objc_selector="elementCount", objc_name="elementCount")
     AnimatedScalarArray_elementCount :: proc(self: ^AnimatedScalarArray) -> NS.UInteger ---
 }
+
+
 
 @(objc_type=AnimatedScalarArray, objc_name="getFloatArray")
 AnimatedScalarArray_getFloatArray :: proc {

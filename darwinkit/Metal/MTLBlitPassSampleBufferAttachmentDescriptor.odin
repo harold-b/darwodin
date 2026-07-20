@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLBlitPassSampleBufferAttachmentDescriptor
-///
 @(objc_class="MTLBlitPassSampleBufferAttachmentDescriptor", objc_superclass=NS.Object)
 BlitPassSampleBufferAttachmentDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=BlitPassSampleBufferAttachmentDescriptor, objc_selector="sampleBuffer", objc_name="sampleBuffer")
     BlitPassSampleBufferAttachmentDescriptor_sampleBuffer :: proc(self: ^BlitPassSampleBufferAttachmentDescriptor) -> ^CounterSampleBuffer ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=BlitPassSampleBufferAttachmentDescriptor, objc_selector="setEndOfEncoderSampleIndex:", objc_name="setEndOfEncoderSampleIndex")
     BlitPassSampleBufferAttachmentDescriptor_setEndOfEncoderSampleIndex :: proc(self: ^BlitPassSampleBufferAttachmentDescriptor, endOfEncoderSampleIndex: NS.UInteger) ---
 }
+
+
+

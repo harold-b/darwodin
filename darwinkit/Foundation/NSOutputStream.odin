@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSOutputStream
-///
 @(objc_class="NSOutputStream", objc_superclass=Stream)
 OutputStream :: struct { using _: Stream, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=OutputStream, objc_selector="write:maxLength:", objc_name="write")
     OutputStream_write :: proc(self: ^OutputStream, buffer: ^cffi.uint8_t, len: UInteger) -> Integer ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=OutputStream, objc_selector="outputStreamWithURL:append:", objc_name="outputStreamWithURL", objc_is_class_method=true)
     OutputStream_outputStreamWithURL :: proc(url: ^URL, shouldAppend: bool) -> instancetype ---
 }
+
+
+

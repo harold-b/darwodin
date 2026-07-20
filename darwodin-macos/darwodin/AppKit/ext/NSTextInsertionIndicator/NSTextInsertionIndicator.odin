@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSView"
 
 VTable :: struct {
     super: NSView.VTable,
-    displayMode: proc(self: ^AK.TextInsertionIndicator) -> AK.TextInsertionIndicatorDisplayMode,
-    setDisplayMode: proc(self: ^AK.TextInsertionIndicator, displayMode: AK.TextInsertionIndicatorDisplayMode),
-    color: proc(self: ^AK.TextInsertionIndicator) -> ^AK.Color,
-    setColor: proc(self: ^AK.TextInsertionIndicator, color: ^AK.Color),
-    automaticModeOptions: proc(self: ^AK.TextInsertionIndicator) -> AK.TextInsertionIndicatorAutomaticModeOptions,
-    setAutomaticModeOptions: proc(self: ^AK.TextInsertionIndicator, automaticModeOptions: AK.TextInsertionIndicatorAutomaticModeOptions),
-    effectsViewInserter: proc(self: ^AK.TextInsertionIndicator) -> ^Objc_Block(proc "c" ()),
-    setEffectsViewInserter: proc(self: ^AK.TextInsertionIndicator, effectsViewInserter: ^Objc_Block(proc "c" ())),
+    displayMode: proc(self: ^NS.TextInsertionIndicator) -> NS.TextInsertionIndicatorDisplayMode,
+    setDisplayMode: proc(self: ^NS.TextInsertionIndicator, displayMode: NS.TextInsertionIndicatorDisplayMode),
+    color: proc(self: ^NS.TextInsertionIndicator) -> ^NS.Color,
+    setColor: proc(self: ^NS.TextInsertionIndicator, color: ^NS.Color),
+    automaticModeOptions: proc(self: ^NS.TextInsertionIndicator) -> NS.TextInsertionIndicatorAutomaticModeOptions,
+    setAutomaticModeOptions: proc(self: ^NS.TextInsertionIndicator, automaticModeOptions: NS.TextInsertionIndicatorAutomaticModeOptions),
+    effectsViewInserter: proc(self: ^NS.TextInsertionIndicator) -> ^Objc_Block(proc "c" ()),
+    setEffectsViewInserter: proc(self: ^NS.TextInsertionIndicator, effectsViewInserter: ^Objc_Block(proc "c" ())),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSView.extend(cls, &vt.super)
 
     if vt.displayMode != nil {
-        displayMode :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL) -> AK.TextInsertionIndicatorDisplayMode {
+        displayMode :: proc "c" (self: ^NS.TextInsertionIndicator, _: SEL) -> NS.TextInsertionIndicatorDisplayMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("displayMode"), auto_cast displayMode, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setDisplayMode != nil {
-        setDisplayMode :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL, displayMode: AK.TextInsertionIndicatorDisplayMode) {
+        setDisplayMode :: proc "c" (self: ^NS.TextInsertionIndicator, _: SEL, displayMode: NS.TextInsertionIndicatorDisplayMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDisplayMode:"), auto_cast setDisplayMode, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.color != nil {
-        color :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL) -> ^AK.Color {
+        color :: proc "c" (self: ^NS.TextInsertionIndicator, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("color"), auto_cast color, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setColor != nil {
-        setColor :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL, color: ^AK.Color) {
+        setColor :: proc "c" (self: ^NS.TextInsertionIndicator, _: SEL, color: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setColor:"), auto_cast setColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.automaticModeOptions != nil {
-        automaticModeOptions :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL) -> AK.TextInsertionIndicatorAutomaticModeOptions {
+        automaticModeOptions :: proc "c" (self: ^NS.TextInsertionIndicator, _: SEL) -> NS.TextInsertionIndicatorAutomaticModeOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticModeOptions"), auto_cast automaticModeOptions, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticModeOptions != nil {
-        setAutomaticModeOptions :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL, automaticModeOptions: AK.TextInsertionIndicatorAutomaticModeOptions) {
+        setAutomaticModeOptions :: proc "c" (self: ^NS.TextInsertionIndicator, _: SEL, automaticModeOptions: NS.TextInsertionIndicatorAutomaticModeOptions) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticModeOptions:"), auto_cast setAutomaticModeOptions, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.effectsViewInserter != nil {
-        effectsViewInserter :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL) -> ^Objc_Block(proc "c" ()) {
+        effectsViewInserter :: proc "c" (self: ^NS.TextInsertionIndicator, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("effectsViewInserter"), auto_cast effectsViewInserter, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setEffectsViewInserter != nil {
-        setEffectsViewInserter :: proc "c" (self: ^AK.TextInsertionIndicator, _: SEL, effectsViewInserter: ^Objc_Block(proc "c" ())) {
+        setEffectsViewInserter :: proc "c" (self: ^NS.TextInsertionIndicator, _: SEL, effectsViewInserter: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

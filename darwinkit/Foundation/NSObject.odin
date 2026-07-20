@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSObject
-///
 @(objc_class="NSObject")
 Object :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Object, objc_selector="load", objc_name="load", objc_is_class_method=true)
     Object_load :: proc() ---
@@ -129,7 +123,7 @@ foreign lib {
     @(objc_type=Object, objc_selector="classForCoder", objc_name="classForCoder")
     Object_classForCoder :: proc(self: ^Object) -> Class ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Object, objc_selector="poseAsClass:", objc_name="poseAsClass", objc_is_class_method=true)
         Object_poseAsClass :: proc(aClass: Class) ---
     }
@@ -155,7 +149,7 @@ foreign lib {
     @(objc_type=Object, objc_selector="cancelPreviousPerformRequestsWithTarget:", objc_name="cancelPreviousPerformRequestsWithTarget_", objc_is_class_method=true)
     Object_cancelPreviousPerformRequestsWithTarget_ :: proc(aTarget: id) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Object, objc_selector="URL:resourceDataDidBecomeAvailable:", objc_name="URL_resourceDataDidBecomeAvailable")
         Object_URL_resourceDataDidBecomeAvailable :: proc(self: ^Object, sender: ^URL, newBytes: ^Data) ---
 
@@ -301,7 +295,7 @@ foreign lib {
     @(objc_type=Object, objc_selector="setObservationInfo:", objc_name="setObservationInfo")
     Object_setObservationInfo :: proc(self: ^Object, observationInfo: rawptr) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Object, objc_selector="setKeys:triggerChangeNotificationsForDependentKey:", objc_name="setKeys", objc_is_class_method=true)
         Object_setKeys :: proc(keys: ^Array, dependentKey: ^String) ---
     }
@@ -336,7 +330,7 @@ foreign lib {
     @(objc_type=Object, objc_selector="performSelectorInBackground:withObject:", objc_name="performSelectorInBackground")
     Object_performSelectorInBackground :: proc(self: ^Object, aSelector: SEL, arg: id) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Object, objc_selector="replacementObjectForArchiver:", objc_name="replacementObjectForArchiver")
         Object_replacementObjectForArchiver :: proc(self: ^Object, archiver: ^Archiver) -> id ---
 
@@ -468,6 +462,22 @@ foreign lib {
     }
 }
 
+
+
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    @(objc_type=Object, objc_name="URL")
+    Object_URL :: proc {
+        Object_URL_resourceDataDidBecomeAvailable,
+        Object_URL_resourceDidFailLoadingWithReason,
+    }
+
+    @(objc_type=Object, objc_name="insertValue")
+    Object_insertValue :: proc {
+        Object_insertValue_atIndex_inPropertyWithKey,
+        Object_insertValue_inPropertyWithKey,
+    }
+}
+
 @(objc_type=Object, objc_name="attemptRecoveryFromError")
 Object_attemptRecoveryFromError :: proc {
     Object_attemptRecoveryFromError_optionIndex_delegate_didRecoverSelector_contextInfo,
@@ -486,14 +496,6 @@ Object_performSelector :: proc {
 Object_cancelPreviousPerformRequestsWithTarget :: proc {
     Object_cancelPreviousPerformRequestsWithTarget_selector_object,
     Object_cancelPreviousPerformRequestsWithTarget_,
-}
-
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_type=Object, objc_name="URL")
-    Object_URL :: proc {
-        Object_URL_resourceDataDidBecomeAvailable,
-        Object_URL_resourceDidFailLoadingWithReason,
-    }
 }
 
 @(objc_type=Object, objc_name="fileManager")
@@ -524,13 +526,5 @@ Object_didChangeValueForKey :: proc {
 Object_performSelectorOnMainThread :: proc {
     Object_performSelectorOnMainThread_withObject_waitUntilDone_modes,
     Object_performSelectorOnMainThread_withObject_waitUntilDone,
-}
-
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_type=Object, objc_name="insertValue")
-    Object_insertValue :: proc {
-        Object_insertValue_atIndex_inPropertyWithKey,
-        Object_insertValue_inPropertyWithKey,
-    }
 }
 

@@ -20,7 +20,7 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
@@ -28,10 +28,10 @@ VTable :: struct {
     super: NSObject.VTable,
     customItemWithFrame_: proc(frame: NS.Rect) -> instancetype,
     customItemWithFrame_zIndex: proc(frame: NS.Rect, zIndex: NS.Integer) -> instancetype,
-    init: proc(self: ^AK.CollectionLayoutGroupCustomItem) -> instancetype,
-    new: proc() -> ^AK.CollectionLayoutGroupCustomItem,
-    frame: proc(self: ^AK.CollectionLayoutGroupCustomItem) -> NS.Rect,
-    zIndex: proc(self: ^AK.CollectionLayoutGroupCustomItem) -> NS.Integer,
+    init: proc(self: ^NS.CollectionLayoutGroupCustomItem) -> instancetype,
+    new: proc() -> ^NS.CollectionLayoutGroupCustomItem,
+    frame: proc(self: ^NS.CollectionLayoutGroupCustomItem) -> NS.Rect,
+    zIndex: proc(self: ^NS.CollectionLayoutGroupCustomItem) -> NS.Integer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -62,7 +62,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("customItemWithFrame:zIndex:"), auto_cast customItemWithFrame_zIndex, "@#:{CGRect={CGPoint=dd}{CGSize=dd}}l") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.CollectionLayoutGroupCustomItem, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.CollectionLayoutGroupCustomItem, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -72,7 +72,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.new != nil {
-        new :: proc "c" (self: Class, _: SEL) -> ^AK.CollectionLayoutGroupCustomItem {
+        new :: proc "c" (self: Class, _: SEL) -> ^NS.CollectionLayoutGroupCustomItem {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("new"), auto_cast new, "@#:") do panic("Failed to register objC method.")
     }
     if vt.frame != nil {
-        frame :: proc "c" (self: ^AK.CollectionLayoutGroupCustomItem, _: SEL) -> NS.Rect {
+        frame :: proc "c" (self: ^NS.CollectionLayoutGroupCustomItem, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("frame"), auto_cast frame, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.zIndex != nil {
-        zIndex :: proc "c" (self: ^AK.CollectionLayoutGroupCustomItem, _: SEL) -> NS.Integer {
+        zIndex :: proc "c" (self: ^NS.CollectionLayoutGroupCustomItem, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    scrubber: proc(self: ^AK.ScrubberFlowLayoutDelegate, scrubber: ^AK.Scrubber, layout: ^AK.ScrubberFlowLayout, itemIndex: NS.Integer) -> NS.Size,
+    scrubber: proc(self: ^NS.ScrubberFlowLayoutDelegate, scrubber: ^NS.Scrubber, layout: ^NS.ScrubberFlowLayout, itemIndex: NS.Integer) -> NS.Size,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.scrubber != nil {
-        scrubber :: proc "c" (self: ^AK.ScrubberFlowLayoutDelegate, _: SEL, scrubber: ^AK.Scrubber, layout: ^AK.ScrubberFlowLayout, itemIndex: NS.Integer) -> NS.Size {
+        scrubber :: proc "c" (self: ^NS.ScrubberFlowLayoutDelegate, _: SEL, scrubber: ^NS.Scrubber, layout: ^NS.ScrubberFlowLayout, itemIndex: NS.Integer) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

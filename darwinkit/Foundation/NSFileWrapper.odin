@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSFileWrapper
-///
 @(objc_class="NSFileWrapper", objc_superclass=Object)
 FileWrapper :: struct { using _: Object, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FileWrapper, objc_selector="initWithURL:options:error:", objc_name="initWithURL")
     FileWrapper_initWithURL :: proc(self: ^FileWrapper, url: ^URL, options: FileWrapperReadingOptions, outError: ^^Error) -> instancetype ---
@@ -99,7 +93,7 @@ foreign lib {
     @(objc_type=FileWrapper, objc_selector="symbolicLinkDestinationURL", objc_name="symbolicLinkDestinationURL")
     FileWrapper_symbolicLinkDestinationURL :: proc(self: ^FileWrapper) -> ^URL ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=FileWrapper, objc_selector="initWithPath:", objc_name="initWithPath")
         FileWrapper_initWithPath :: proc(self: ^FileWrapper, path: ^String) -> id ---
 
@@ -125,3 +119,6 @@ foreign lib {
         FileWrapper_symbolicLinkDestination :: proc(self: ^FileWrapper) -> ^String ---
     }
 }
+
+
+

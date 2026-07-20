@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSRelativeDateTimeFormatter
-///
 @(objc_class="NSRelativeDateTimeFormatter", objc_superclass=Formatter)
 RelativeDateTimeFormatter :: struct { using _: Formatter, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RelativeDateTimeFormatter, objc_selector="localizedStringFromDateComponents:", objc_name="localizedStringFromDateComponents")
     RelativeDateTimeFormatter_localizedStringFromDateComponents :: proc(self: ^RelativeDateTimeFormatter, dateComponents: ^DateComponents) -> ^String ---
@@ -61,3 +55,6 @@ foreign lib {
     @(objc_type=RelativeDateTimeFormatter, objc_selector="setLocale:", objc_name="setLocale")
     RelativeDateTimeFormatter_setLocale :: proc(self: ^RelativeDateTimeFormatter, locale: ^Locale) ---
 }
+
+
+

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLLinkedFunctions
-///
 @(objc_class="MTLLinkedFunctions", objc_superclass=NS.Object)
 LinkedFunctions :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LinkedFunctions, objc_selector="linkedFunctions", objc_name="linkedFunctions", objc_is_class_method=true)
     LinkedFunctions_linkedFunctions :: proc() -> ^LinkedFunctions ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=LinkedFunctions, objc_selector="setPrivateFunctions:", objc_name="setPrivateFunctions")
     LinkedFunctions_setPrivateFunctions :: proc(self: ^LinkedFunctions, privateFunctions: ^NS.Array) ---
 }
+
+
+

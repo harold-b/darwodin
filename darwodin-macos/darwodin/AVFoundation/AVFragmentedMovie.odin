@@ -30,17 +30,17 @@ foreign lib {
     FragmentedMovie_trackWithTrackID :: proc(self: ^FragmentedMovie, trackID: CM.PersistentTrackID) -> ^FragmentedMovieTrack ---
 
     @(objc_type=FragmentedMovie, objc_selector="loadTrackWithTrackID:completionHandler:", objc_name="loadTrackWithTrackID")
-    FragmentedMovie_loadTrackWithTrackID :: proc(self: ^FragmentedMovie, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" (_: ^FragmentedMovieTrack, _1: ^NS.Error))) ---
+    FragmentedMovie_loadTrackWithTrackID :: proc(self: ^FragmentedMovie, trackID: CM.PersistentTrackID, completionHandler: ^Objc_Block(proc "c" ( _0: ^FragmentedMovieTrack, _1: ^NS.Error ))) ---
 
     @(objc_type=FragmentedMovie, objc_selector="tracksWithMediaType:", objc_name="tracksWithMediaType")
     FragmentedMovie_tracksWithMediaType :: proc(self: ^FragmentedMovie, mediaType: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=FragmentedMovie, objc_selector="loadTracksWithMediaType:completionHandler:", objc_name="loadTracksWithMediaType")
-    FragmentedMovie_loadTracksWithMediaType :: proc(self: ^FragmentedMovie, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    FragmentedMovie_loadTracksWithMediaType :: proc(self: ^FragmentedMovie, mediaType: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=FragmentedMovie, objc_selector="tracksWithMediaCharacteristic:", objc_name="tracksWithMediaCharacteristic")
     FragmentedMovie_tracksWithMediaCharacteristic :: proc(self: ^FragmentedMovie, mediaCharacteristic: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=FragmentedMovie, objc_selector="loadTracksWithMediaCharacteristic:completionHandler:", objc_name="loadTracksWithMediaCharacteristic")
-    FragmentedMovie_loadTracksWithMediaCharacteristic :: proc(self: ^FragmentedMovie, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    FragmentedMovie_loadTracksWithMediaCharacteristic :: proc(self: ^FragmentedMovie, mediaCharacteristic: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 }

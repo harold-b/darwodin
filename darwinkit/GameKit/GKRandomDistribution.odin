@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKRandomDistribution
-///
 @(objc_class="GKRandomDistribution", objc_superclass=NS.Object)
 RandomDistribution :: struct { using _: NS.Object, 
     using _: Random,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RandomDistribution, objc_selector="initWithRandomSource:lowestValue:highestValue:", objc_name="initWithRandomSource")
     RandomDistribution_initWithRandomSource :: proc(self: ^RandomDistribution, source: ^Random, lowestInclusive: NS.Integer, highestInclusive: NS.Integer) -> instancetype ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=RandomDistribution, objc_selector="numberOfPossibleOutcomes", objc_name="numberOfPossibleOutcomes")
     RandomDistribution_numberOfPossibleOutcomes :: proc(self: ^RandomDistribution) -> NS.UInteger ---
 }
+
+
+

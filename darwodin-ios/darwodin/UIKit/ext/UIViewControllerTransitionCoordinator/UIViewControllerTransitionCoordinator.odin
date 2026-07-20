@@ -20,10 +20,10 @@ instancetype  :: intrinsics.objc_instancetype
 import UI "../../"
 
 VTable :: struct {
-    animateAlongsideTransition: proc(self: ^UI.ViewControllerTransitionCoordinator, animation: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext)), completion: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext))) -> bool,
-    animateAlongsideTransitionInView: proc(self: ^UI.ViewControllerTransitionCoordinator, view: ^UI.View, animation: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext)), completion: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext))) -> bool,
-    notifyWhenInteractionEndsUsingBlock: proc(self: ^UI.ViewControllerTransitionCoordinator, handler: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext))),
-    notifyWhenInteractionChangesUsingBlock: proc(self: ^UI.ViewControllerTransitionCoordinator, handler: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext))),
+    animateAlongsideTransition: proc(self: ^UI.ViewControllerTransitionCoordinator, animation: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext )), completion: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext ))) -> bool,
+    animateAlongsideTransitionInView: proc(self: ^UI.ViewControllerTransitionCoordinator, view: ^UI.View, animation: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext )), completion: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext ))) -> bool,
+    notifyWhenInteractionEndsUsingBlock: proc(self: ^UI.ViewControllerTransitionCoordinator, handler: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext ))),
+    notifyWhenInteractionChangesUsingBlock: proc(self: ^UI.ViewControllerTransitionCoordinator, handler: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext ))),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.animateAlongsideTransition != nil {
-        animateAlongsideTransition :: proc "c" (self: ^UI.ViewControllerTransitionCoordinator, _: SEL, animation: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext)), completion: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext))) -> bool {
+        animateAlongsideTransition :: proc "c" (self: ^UI.ViewControllerTransitionCoordinator, _: SEL, animation: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext )), completion: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext ))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animateAlongsideTransition:completion:"), auto_cast animateAlongsideTransition, "B@:??") do panic("Failed to register objC method.")
     }
     if vt.animateAlongsideTransitionInView != nil {
-        animateAlongsideTransitionInView :: proc "c" (self: ^UI.ViewControllerTransitionCoordinator, _: SEL, view: ^UI.View, animation: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext)), completion: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext))) -> bool {
+        animateAlongsideTransitionInView :: proc "c" (self: ^UI.ViewControllerTransitionCoordinator, _: SEL, view: ^UI.View, animation: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext )), completion: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext ))) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animateAlongsideTransitionInView:animation:completion:"), auto_cast animateAlongsideTransitionInView, "B@:@??") do panic("Failed to register objC method.")
     }
     if vt.notifyWhenInteractionEndsUsingBlock != nil {
-        notifyWhenInteractionEndsUsingBlock :: proc "c" (self: ^UI.ViewControllerTransitionCoordinator, _: SEL, handler: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext))) {
+        notifyWhenInteractionEndsUsingBlock :: proc "c" (self: ^UI.ViewControllerTransitionCoordinator, _: SEL, handler: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("notifyWhenInteractionEndsUsingBlock:"), auto_cast notifyWhenInteractionEndsUsingBlock, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.notifyWhenInteractionChangesUsingBlock != nil {
-        notifyWhenInteractionChangesUsingBlock :: proc "c" (self: ^UI.ViewControllerTransitionCoordinator, _: SEL, handler: ^Objc_Block(proc "c" (_context: ^UI.ViewControllerTransitionCoordinatorContext))) {
+        notifyWhenInteractionChangesUsingBlock :: proc "c" (self: ^UI.ViewControllerTransitionCoordinator, _: SEL, handler: ^Objc_Block(proc "c" ( _context: ^UI.ViewControllerTransitionCoordinatorContext ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

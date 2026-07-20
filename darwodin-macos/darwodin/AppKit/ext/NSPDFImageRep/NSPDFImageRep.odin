@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
     imageRepWithData: proc(pdfData: ^NS.Data) -> instancetype,
-    initWithData: proc(self: ^AK.PDFImageRep, pdfData: ^NS.Data) -> instancetype,
-    _PDFRepresentation: proc(self: ^AK.PDFImageRep) -> ^NS.Data,
-    bounds: proc(self: ^AK.PDFImageRep) -> NS.Rect,
-    currentPage: proc(self: ^AK.PDFImageRep) -> NS.Integer,
-    setCurrentPage: proc(self: ^AK.PDFImageRep, currentPage: NS.Integer),
-    pageCount: proc(self: ^AK.PDFImageRep) -> NS.Integer,
+    initWithData: proc(self: ^NS.PDFImageRep, pdfData: ^NS.Data) -> instancetype,
+    _PDFRepresentation: proc(self: ^NS.PDFImageRep) -> ^NS.Data,
+    bounds: proc(self: ^NS.PDFImageRep) -> NS.Rect,
+    currentPage: proc(self: ^NS.PDFImageRep) -> NS.Integer,
+    setCurrentPage: proc(self: ^NS.PDFImageRep, currentPage: NS.Integer),
+    pageCount: proc(self: ^NS.PDFImageRep) -> NS.Integer,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithData:"), auto_cast imageRepWithData, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.PDFImageRep, _: SEL, pdfData: ^NS.Data) -> instancetype {
+        initWithData :: proc "c" (self: ^NS.PDFImageRep, _: SEL, pdfData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:"), auto_cast initWithData, "@@:@") do panic("Failed to register objC method.")
     }
     if vt._PDFRepresentation != nil {
-        _PDFRepresentation :: proc "c" (self: ^AK.PDFImageRep, _: SEL) -> ^NS.Data {
+        _PDFRepresentation :: proc "c" (self: ^NS.PDFImageRep, _: SEL) -> ^NS.Data {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("PDFRepresentation"), auto_cast _PDFRepresentation, "@@:") do panic("Failed to register objC method.")
     }
     if vt.bounds != nil {
-        bounds :: proc "c" (self: ^AK.PDFImageRep, _: SEL) -> NS.Rect {
+        bounds :: proc "c" (self: ^NS.PDFImageRep, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bounds"), auto_cast bounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.currentPage != nil {
-        currentPage :: proc "c" (self: ^AK.PDFImageRep, _: SEL) -> NS.Integer {
+        currentPage :: proc "c" (self: ^NS.PDFImageRep, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("currentPage"), auto_cast currentPage, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setCurrentPage != nil {
-        setCurrentPage :: proc "c" (self: ^AK.PDFImageRep, _: SEL, currentPage: NS.Integer) {
+        setCurrentPage :: proc "c" (self: ^NS.PDFImageRep, _: SEL, currentPage: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCurrentPage:"), auto_cast setCurrentPage, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.pageCount != nil {
-        pageCount :: proc "c" (self: ^AK.PDFImageRep, _: SEL) -> NS.Integer {
+        pageCount :: proc "c" (self: ^NS.PDFImageRep, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

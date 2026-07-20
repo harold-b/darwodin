@@ -67,7 +67,7 @@ foreign lib {
     URLCache_storeCachedResponse_forDataTask :: proc(self: ^URLCache, cachedResponse: ^CachedURLResponse, dataTask: ^URLSessionDataTask) ---
 
     @(objc_type=URLCache, objc_selector="getCachedResponseForDataTask:completionHandler:", objc_name="getCachedResponseForDataTask")
-    URLCache_getCachedResponseForDataTask :: proc(self: ^URLCache, dataTask: ^URLSessionDataTask, completionHandler: ^Objc_Block(proc "c" (cachedResponse: ^CachedURLResponse))) ---
+    URLCache_getCachedResponseForDataTask :: proc(self: ^URLCache, dataTask: ^URLSessionDataTask, completionHandler: ^Objc_Block(proc "c" ( cachedResponse: ^CachedURLResponse ))) ---
 
     @(objc_type=URLCache, objc_selector="removeCachedResponseForDataTask:", objc_name="removeCachedResponseForDataTask")
     URLCache_removeCachedResponseForDataTask :: proc(self: ^URLCache, dataTask: ^URLSessionDataTask) ---

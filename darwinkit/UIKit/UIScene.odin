@@ -31,7 +31,7 @@ foreign lib {
     Scene_initWithSession :: proc(self: ^Scene, session: ^SceneSession, connectionOptions: ^SceneConnectionOptions) -> instancetype ---
 
     @(objc_type=Scene, objc_selector="openURL:options:completionHandler:", objc_name="openURL")
-    Scene_openURL :: proc(self: ^Scene, url: ^NS.URL, options: ^SceneOpenExternalURLOptions, completion: ^Objc_Block(proc "c" (success: bool))) ---
+    Scene_openURL :: proc(self: ^Scene, url: ^NS.URL, options: ^SceneOpenExternalURLOptions, completion: ^Objc_Block(proc "c" ( success: bool ))) ---
 
     @(objc_type=Scene, objc_selector="session", objc_name="session")
     Scene_session :: proc(self: ^Scene) -> ^SceneSession ---
@@ -79,7 +79,7 @@ foreign lib {
     Scene_completeStateRestoration :: proc(self: ^Scene) ---
 
     @(objc_type=Scene, objc_selector="getDefaultAudioSessionWithCompletionHandler:", objc_name="getDefaultAudioSessionWithCompletionHandler")
-    Scene_getDefaultAudioSessionWithCompletionHandler :: proc(self: ^Scene, handler: ^Objc_Block(proc "c" (_: ^AVAudioSession))) ---
+    Scene_getDefaultAudioSessionWithCompletionHandler :: proc(self: ^Scene, handler: ^Objc_Block(proc "c" ( _0: ^AVAudioSession ))) ---
 
     @(objc_type=Scene, objc_selector="systemProtectionManager", objc_name="systemProtectionManager")
     Scene_systemProtectionManager :: proc(self: ^Scene) -> ^SceneSystemProtectionManager ---

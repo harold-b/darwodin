@@ -366,7 +366,7 @@ foreign lib {
     ViewController_removeFromParentViewController :: proc(self: ^ViewController) ---
 
     @(objc_type=ViewController, objc_selector="transitionFromViewController:toViewController:duration:options:animations:completion:", objc_name="transitionFromViewController")
-    ViewController_transitionFromViewController :: proc(self: ^ViewController, fromViewController: ^ViewController, toViewController: ^ViewController, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    ViewController_transitionFromViewController :: proc(self: ^ViewController, fromViewController: ^ViewController, toViewController: ^ViewController, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=ViewController, objc_selector="beginAppearanceTransition:animated:", objc_name="beginAppearanceTransition")
     ViewController_beginAppearanceTransition :: proc(self: ^ViewController, isAppearing: bool, animated: bool) ---

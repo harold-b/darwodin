@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioFormat
-///
 @(objc_class="AVAudioFormat", objc_superclass=NS.Object)
 AudioFormat :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioFormat, objc_selector="initWithStreamDescription:", objc_name="initWithStreamDescription_")
     AudioFormat_initWithStreamDescription_ :: proc(self: ^AudioFormat, asbd: ^Audio.StreamBasicDescription) -> instancetype ---
@@ -84,6 +78,8 @@ foreign lib {
     @(objc_type=AudioFormat, objc_selector="formatDescription", objc_name="formatDescription")
     AudioFormat_formatDescription :: proc(self: ^AudioFormat) -> CM.AudioFormatDescriptionRef ---
 }
+
+
 
 @(objc_type=AudioFormat, objc_name="initWithStreamDescription")
 AudioFormat_initWithStreamDescription :: proc {

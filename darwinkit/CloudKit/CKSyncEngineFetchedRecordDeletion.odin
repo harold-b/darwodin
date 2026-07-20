@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineFetchedRecordDeletion
-///
 @(objc_class="CKSyncEngineFetchedRecordDeletion", objc_superclass=NS.Object)
 SyncEngineFetchedRecordDeletion :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineFetchedRecordDeletion, objc_selector="init", objc_name="init")
     SyncEngineFetchedRecordDeletion_init :: proc(self: ^SyncEngineFetchedRecordDeletion) -> instancetype ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=SyncEngineFetchedRecordDeletion, objc_selector="recordType", objc_name="recordType")
     SyncEngineFetchedRecordDeletion_recordType :: proc(self: ^SyncEngineFetchedRecordDeletion) -> ^NS.String ---
 }
+
+
+

@@ -1,0 +1,48 @@
+#+build darwin:default
+package darwodin_Foundation
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import libc "../libc"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import Sec "../Security"
+
+
+
+///
+/// NSPositionalSpecifier
+///
+@(objc_class="NSPositionalSpecifier", objc_superclass=Object)
+PositionalSpecifier :: struct { using _: Object, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=PositionalSpecifier, objc_selector="initWithPosition:objectSpecifier:", objc_name="initWithPosition")
+    PositionalSpecifier_initWithPosition :: proc(self: ^PositionalSpecifier, position: InsertionPosition, specifier: ^ScriptObjectSpecifier) -> instancetype ---
+
+    @(objc_type=PositionalSpecifier, objc_selector="setInsertionClassDescription:", objc_name="setInsertionClassDescription")
+    PositionalSpecifier_setInsertionClassDescription :: proc(self: ^PositionalSpecifier, classDescription: ^ScriptClassDescription) ---
+
+    @(objc_type=PositionalSpecifier, objc_selector="evaluate", objc_name="evaluate")
+    PositionalSpecifier_evaluate :: proc(self: ^PositionalSpecifier) ---
+
+    @(objc_type=PositionalSpecifier, objc_selector="position", objc_name="position")
+    PositionalSpecifier_position :: proc(self: ^PositionalSpecifier) -> InsertionPosition ---
+
+    @(objc_type=PositionalSpecifier, objc_selector="objectSpecifier", objc_name="objectSpecifier")
+    PositionalSpecifier_objectSpecifier :: proc(self: ^PositionalSpecifier) -> ^ScriptObjectSpecifier ---
+
+    @(objc_type=PositionalSpecifier, objc_selector="insertionContainer", objc_name="insertionContainer")
+    PositionalSpecifier_insertionContainer :: proc(self: ^PositionalSpecifier) -> id ---
+
+    @(objc_type=PositionalSpecifier, objc_selector="insertionKey", objc_name="insertionKey")
+    PositionalSpecifier_insertionKey :: proc(self: ^PositionalSpecifier) -> ^String ---
+
+    @(objc_type=PositionalSpecifier, objc_selector="insertionIndex", objc_name="insertionIndex")
+    PositionalSpecifier_insertionIndex :: proc(self: ^PositionalSpecifier) -> Integer ---
+
+    @(objc_type=PositionalSpecifier, objc_selector="insertionReplaces", objc_name="insertionReplaces")
+    PositionalSpecifier_insertionReplaces :: proc(self: ^PositionalSpecifier) -> bool ---
+}

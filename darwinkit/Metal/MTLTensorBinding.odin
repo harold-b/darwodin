@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLTensorBinding
-///
 @(objc_class="MTLTensorBinding")
 TensorBinding :: struct { using _: intrinsics.objc_object, 
     using _: Binding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TensorBinding, objc_selector="tensorDataType", objc_name="tensorDataType")
     TensorBinding_tensorDataType :: proc(self: ^TensorBinding) -> TensorDataType ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=TensorBinding, objc_selector="dimensions", objc_name="dimensions")
     TensorBinding_dimensions :: proc(self: ^TensorBinding) -> ^TensorExtents ---
 }
+
+
+

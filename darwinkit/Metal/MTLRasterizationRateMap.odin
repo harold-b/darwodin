@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRasterizationRateMap
-///
 @(objc_class="MTLRasterizationRateMap")
 RasterizationRateMap :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RasterizationRateMap, objc_selector="copyParameterDataToBuffer:offset:", objc_name="copyParameterDataToBuffer")
     RasterizationRateMap_copyParameterDataToBuffer :: proc(self: ^RasterizationRateMap, buffer: ^Buffer, offset: NS.UInteger) ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=RasterizationRateMap, objc_selector="parameterBufferSizeAndAlign", objc_name="parameterBufferSizeAndAlign")
     RasterizationRateMap_parameterBufferSizeAndAlign :: proc(self: ^RasterizationRateMap) -> SizeAndAlign ---
 }
+
+
+

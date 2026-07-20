@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLSubmesh
-///
 @(objc_class="MDLSubmesh", objc_superclass=NS.Object)
 Submesh :: struct { using _: NS.Object, 
     using _: Named,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Submesh, objc_selector="initWithName:indexBuffer:indexCount:indexType:geometryType:material:", objc_name="initWithName_indexBuffer_indexCount_indexType_geometryType_material")
     Submesh_initWithName_indexBuffer_indexCount_indexType_geometryType_material :: proc(self: ^Submesh, name: ^NS.String, indexBuffer: ^MeshBuffer, indexCount: NS.UInteger, indexType: IndexBitDepth, geometryType: GeometryType, material: ^Material) -> instancetype ---
@@ -67,6 +61,8 @@ foreign lib {
     @(objc_type=Submesh, objc_selector="setName:", objc_name="setName")
     Submesh_setName :: proc(self: ^Submesh, name: ^NS.String) ---
 }
+
+
 
 @(objc_type=Submesh, objc_name="initWithName")
 Submesh_initWithName :: proc {

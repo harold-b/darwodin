@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4CounterHeap
-///
 @(objc_class="MTL4CounterHeap")
 MTL4CounterHeap :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4CounterHeap, objc_selector="resolveCounterRange:", objc_name="resolveCounterRange")
     MTL4CounterHeap_resolveCounterRange :: proc(self: ^MTL4CounterHeap, range: NS._NSRange) -> ^NS.Data ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=MTL4CounterHeap, objc_selector="type", objc_name="type")
     MTL4CounterHeap_type :: proc(self: ^MTL4CounterHeap) -> MTL4CounterHeapType ---
 }
+
+
+

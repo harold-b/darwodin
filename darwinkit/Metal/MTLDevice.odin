@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLDevice
-///
 @(objc_class="MTLDevice")
 Device :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Device, objc_selector="newLogStateWithDescriptor:error:", objc_name="newLogStateWithDescriptor")
     Device_newLogStateWithDescriptor :: proc(self: ^Device, descriptor: ^LogStateDescriptor, error: ^^NS.Error) -> ^LogState ---
@@ -51,7 +45,7 @@ foreign lib {
     Device_newBufferWithBytes :: proc(self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions) -> ^Buffer ---
 
     @(objc_type=Device, objc_selector="newBufferWithBytesNoCopy:length:options:deallocator:", objc_name="newBufferWithBytesNoCopy")
-    Device_newBufferWithBytesNoCopy :: proc(self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions, deallocator: ^Objc_Block(proc "c" (pointer: rawptr, length: NS.UInteger))) -> ^Buffer ---
+    Device_newBufferWithBytesNoCopy :: proc(self: ^Device, pointer: rawptr, length: NS.UInteger, options: ResourceOptions, deallocator: ^Objc_Block(proc "c" ( pointer: rawptr, length: NS.UInteger ))) -> ^Buffer ---
 
     @(objc_type=Device, objc_selector="newDepthStencilStateWithDescriptor:", objc_name="newDepthStencilStateWithDescriptor")
     Device_newDepthStencilStateWithDescriptor :: proc(self: ^Device, descriptor: ^DepthStencilDescriptor) -> ^DepthStencilState ---
@@ -335,7 +329,7 @@ foreign lib {
     @(objc_type=Device, objc_selector="recommendedMaxWorkingSetSize", objc_name="recommendedMaxWorkingSetSize")
     Device_recommendedMaxWorkingSetSize :: proc(self: ^Device) -> cffi.uint64_t ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Device, objc_selector="location", objc_name="location")
         Device_location :: proc(self: ^Device) -> DeviceLocation ---
 
@@ -391,7 +385,7 @@ foreign lib {
     @(objc_type=Device, objc_selector="areProgrammableSamplePositionsSupported", objc_name="areProgrammableSamplePositionsSupported")
     Device_areProgrammableSamplePositionsSupported :: proc(self: ^Device) -> bool ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Device, objc_selector="peerGroupID", objc_name="peerGroupID")
         Device_peerGroupID :: proc(self: ^Device) -> cffi.uint64_t ---
 
@@ -435,7 +429,7 @@ foreign lib {
     @(objc_type=Device, objc_selector="supportsPrimitiveMotionBlur", objc_name="supportsPrimitiveMotionBlur")
     Device_supportsPrimitiveMotionBlur :: proc(self: ^Device) -> bool ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Device, objc_selector="shouldMaximizeConcurrentCompilation", objc_name="shouldMaximizeConcurrentCompilation")
         Device_shouldMaximizeConcurrentCompilation :: proc(self: ^Device) -> bool ---
 
@@ -446,6 +440,8 @@ foreign lib {
     @(objc_type=Device, objc_selector="maximumConcurrentCompilationTaskCount", objc_name="maximumConcurrentCompilationTaskCount")
     Device_maximumConcurrentCompilationTaskCount :: proc(self: ^Device) -> NS.UInteger ---
 }
+
+
 
 @(objc_type=Device, objc_name="newTextureWithDescriptor")
 Device_newTextureWithDescriptor :: proc {

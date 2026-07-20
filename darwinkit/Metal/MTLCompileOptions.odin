@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLCompileOptions
-///
 @(objc_class="MTLCompileOptions", objc_superclass=NS.Object)
 CompileOptions :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CompileOptions, objc_selector="preprocessorMacros", objc_name="preprocessorMacros")
     CompileOptions_preprocessorMacros :: proc(self: ^CompileOptions) -> ^NS.Dictionary ---
@@ -113,3 +107,6 @@ foreign lib {
     @(objc_type=CompileOptions, objc_selector="setEnableLogging:", objc_name="setEnableLogging")
     CompileOptions_setEnableLogging :: proc(self: ^CompileOptions, enableLogging: bool) ---
 }
+
+
+

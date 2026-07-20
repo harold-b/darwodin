@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLVertexAttribute
-///
 @(objc_class="MTLVertexAttribute", objc_superclass=NS.Object)
 VertexAttribute :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VertexAttribute, objc_selector="name", objc_name="name")
     VertexAttribute_name :: proc(self: ^VertexAttribute) -> ^NS.String ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=VertexAttribute, objc_selector="isPatchControlPointData", objc_name="isPatchControlPointData")
     VertexAttribute_isPatchControlPointData :: proc(self: ^VertexAttribute) -> bool ---
 }
+
+
+

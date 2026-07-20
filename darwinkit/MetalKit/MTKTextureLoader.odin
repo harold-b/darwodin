@@ -11,15 +11,9 @@ import CA "../QuartzCore"
 import MTL "../Metal"
 import MDL "../ModelIO"
 
-
-
-///
-/// MTKTextureLoader
-///
 @(objc_class="MTKTextureLoader", objc_superclass=NS.Object)
 TextureLoader :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextureLoader, objc_selector="init", objc_name="init")
     TextureLoader_init :: proc(self: ^TextureLoader) -> instancetype ---
@@ -33,25 +27,26 @@ foreign lib {
     @(objc_type=TextureLoader, objc_selector="newTextureWithName:scaleFactor:bundle:options:completionHandler:", objc_name="newTextureWithName_scaleFactor_bundle_options_completionHandler")
     TextureLoader_newTextureWithName_scaleFactor_bundle_options_completionHandler :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderCallback) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=TextureLoader, objc_selector="newTextureWithName:scaleFactor:displayGamut:bundle:options:completionHandler:", objc_name="newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler")
-        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, displayGamut: AKDisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderCallback) ---
+        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, displayGamut: AK.DisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderCallback) ---
+    }
+
+    when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=TextureLoader, objc_selector="newTexturesWithNames:scaleFactor:bundle:options:completionHandler:", objc_name="newTexturesWithNames")
+        TextureLoader_newTexturesWithNames :: proc(self: ^TextureLoader, names: ^NS.Array, scaleFactor: CG.Float, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderArrayCallback) ---
     }
 
     @(objc_type=TextureLoader, objc_selector="newTexturesWithContentsOfURLs:options:completionHandler:", objc_name="newTexturesWithContentsOfURLs_options_completionHandler")
     TextureLoader_newTexturesWithContentsOfURLs_options_completionHandler :: proc(self: ^TextureLoader, URLs: ^NS.Array, options: ^NS.Dictionary, completionHandler: TextureLoaderArrayCallback) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=TextureLoader, objc_selector="newTexturesWithNames:scaleFactor:bundle:options:completionHandler:", objc_name="newTexturesWithNames_scaleFactor_bundle_options_completionHandler")
         TextureLoader_newTexturesWithNames_scaleFactor_bundle_options_completionHandler :: proc(self: ^TextureLoader, names: ^NS.Array, scaleFactor: CG.Float, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderArrayCallback) ---
 
         @(objc_type=TextureLoader, objc_selector="newTexturesWithNames:scaleFactor:displayGamut:bundle:options:completionHandler:", objc_name="newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler")
-        TextureLoader_newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler :: proc(self: ^TextureLoader, names: ^NS.Array, scaleFactor: CG.Float, displayGamut: AKDisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderArrayCallback) ---
-    } // End when
-    when ODIN_PLATFORM_SUBTARGET_IOS {
-        @(objc_type=TextureLoader, objc_selector="newTexturesWithNames:scaleFactor:bundle:options:completionHandler:", objc_name="newTexturesWithNames")
-        TextureLoader_newTexturesWithNames :: proc(self: ^TextureLoader, names: ^NS.Array, scaleFactor: CG.Float, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderArrayCallback) ---
-    } // End else
+        TextureLoader_newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler :: proc(self: ^TextureLoader, names: ^NS.Array, scaleFactor: CG.Float, displayGamut: AK.DisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, completionHandler: TextureLoaderArrayCallback) ---
+    }
 
     @(objc_type=TextureLoader, objc_selector="newTextureWithData:options:completionHandler:", objc_name="newTextureWithData_options_completionHandler")
     TextureLoader_newTextureWithData_options_completionHandler :: proc(self: ^TextureLoader, data: ^NS.Data, options: ^NS.Dictionary, completionHandler: TextureLoaderCallback) ---
@@ -80,29 +75,23 @@ foreign lib {
     @(objc_type=TextureLoader, objc_selector="newTextureWithName:scaleFactor:bundle:options:error:", objc_name="newTextureWithName_scaleFactor_bundle_options_error")
     TextureLoader_newTextureWithName_scaleFactor_bundle_options_error :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, bundle: ^NS.Bundle, options: ^NS.Dictionary, error: ^^NS.Error) -> ^MTL.Texture ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=TextureLoader, objc_selector="newTextureWithName:scaleFactor:displayGamut:bundle:options:error:", objc_name="newTextureWithName_scaleFactor_displayGamut_bundle_options_error")
-        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_error :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, displayGamut: AKDisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, error: ^^NS.Error) -> ^MTL.Texture ---
+        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_error :: proc(self: ^TextureLoader, name: ^NS.String, scaleFactor: CG.Float, displayGamut: AK.DisplayGamut, bundle: ^NS.Bundle, options: ^NS.Dictionary, error: ^^NS.Error) -> ^MTL.Texture ---
     }
 
     @(objc_type=TextureLoader, objc_selector="device", objc_name="device")
     TextureLoader_device :: proc(self: ^TextureLoader) -> ^MTL.Device ---
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_type=TextureLoader, objc_name="newTextureWithName")
-    TextureLoader_newTextureWithName :: proc {
-        TextureLoader_newTextureWithName_scaleFactor_bundle_options_completionHandler,
-        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler,
-        TextureLoader_newTextureWithName_scaleFactor_bundle_options_error,
-        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_error,
-    }
 
+
+when ODIN_PLATFORM_SUBTARGET == .Default {
     @(objc_type=TextureLoader, objc_name="newTexturesWithNames")
     TextureLoader_newTexturesWithNames :: proc {
         TextureLoader_newTexturesWithNames_scaleFactor_bundle_options_completionHandler,
         TextureLoader_newTexturesWithNames_scaleFactor_displayGamut_bundle_options_completionHandler,
-   }
+    }
 }
 
 @(objc_type=TextureLoader, objc_name="newTextureWithContentsOfURL")
@@ -135,7 +124,15 @@ TextureLoader_newTextureWithMDLTexture :: proc {
     TextureLoader_newTextureWithMDLTexture_options_error,
 }
 
-when ODIN_PLATFORM_SUBTARGET_IOS {
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    @(objc_type=TextureLoader, objc_name="newTextureWithName")
+    TextureLoader_newTextureWithName :: proc {
+        TextureLoader_newTextureWithName_scaleFactor_bundle_options_completionHandler,
+        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_completionHandler,
+        TextureLoader_newTextureWithName_scaleFactor_bundle_options_error,
+        TextureLoader_newTextureWithName_scaleFactor_displayGamut_bundle_options_error,
+    }
+} else when ODIN_PLATFORM_SUBTARGET_IOS {
     @(objc_type=TextureLoader, objc_name="newTextureWithName")
     TextureLoader_newTextureWithName :: proc {
         TextureLoader_newTextureWithName_scaleFactor_bundle_options_completionHandler,

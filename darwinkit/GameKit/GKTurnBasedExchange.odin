@@ -7,21 +7,15 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKTurnBasedExchange
-///
 @(objc_class="GKTurnBasedExchange", objc_superclass=NS.Object)
 TurnBasedExchange :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TurnBasedExchange, objc_selector="cancelWithLocalizableMessageKey:arguments:completionHandler:", objc_name="cancelWithLocalizableMessageKey")
-    TurnBasedExchange_cancelWithLocalizableMessageKey :: proc(self: ^TurnBasedExchange, key: ^NS.String, arguments: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedExchange_cancelWithLocalizableMessageKey :: proc(self: ^TurnBasedExchange, key: ^NS.String, arguments: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedExchange, objc_selector="replyWithLocalizableMessageKey:arguments:data:completionHandler:", objc_name="replyWithLocalizableMessageKey")
-    TurnBasedExchange_replyWithLocalizableMessageKey :: proc(self: ^TurnBasedExchange, key: ^NS.String, arguments: ^NS.Array, data: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TurnBasedExchange_replyWithLocalizableMessageKey :: proc(self: ^TurnBasedExchange, key: ^NS.String, arguments: ^NS.Array, data: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TurnBasedExchange, objc_selector="exchangeID", objc_name="exchangeID")
     TurnBasedExchange_exchangeID :: proc(self: ^TurnBasedExchange) -> ^NS.String ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=TurnBasedExchange, objc_selector="replies", objc_name="replies")
     TurnBasedExchange_replies :: proc(self: ^TurnBasedExchange) -> ^NS.Array ---
 }
+
+
+

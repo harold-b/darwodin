@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKFetchShareMetadataOperation
-///
 @(objc_class="CKFetchShareMetadataOperation", objc_superclass=Operation)
 FetchShareMetadataOperation :: struct { using _: Operation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchShareMetadataOperation, objc_selector="init", objc_name="init")
     FetchShareMetadataOperation_init :: proc(self: ^FetchShareMetadataOperation) -> instancetype ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=FetchShareMetadataOperation, objc_selector="setFetchShareMetadataCompletionBlock:", objc_name="setFetchShareMetadataCompletionBlock")
     FetchShareMetadataOperation_setFetchShareMetadataCompletionBlock :: proc(self: ^FetchShareMetadataOperation, fetchShareMetadataCompletionBlock: ^Objc_Block(proc "c" ())) ---
 }
+
+
+

@@ -49,13 +49,13 @@ foreign lib {
     SampleBufferRenderSynchronizer_addRenderer :: proc(self: ^SampleBufferRenderSynchronizer, renderer: ^QueuedSampleBufferRendering) ---
 
     @(objc_type=SampleBufferRenderSynchronizer, objc_selector="removeRenderer:atTime:completionHandler:", objc_name="removeRenderer")
-    SampleBufferRenderSynchronizer_removeRenderer :: proc(self: ^SampleBufferRenderSynchronizer, renderer: ^QueuedSampleBufferRendering, time: CM.Time, completionHandler: ^Objc_Block(proc "c" (didRemoveRenderer: bool))) ---
+    SampleBufferRenderSynchronizer_removeRenderer :: proc(self: ^SampleBufferRenderSynchronizer, renderer: ^QueuedSampleBufferRendering, time: CM.Time, completionHandler: ^Objc_Block(proc "c" ( didRemoveRenderer: bool ))) ---
 
     @(objc_type=SampleBufferRenderSynchronizer, objc_selector="renderers", objc_name="renderers")
     SampleBufferRenderSynchronizer_renderers :: proc(self: ^SampleBufferRenderSynchronizer) -> ^NS.Array ---
 
     @(objc_type=SampleBufferRenderSynchronizer, objc_selector="addPeriodicTimeObserverForInterval:queue:usingBlock:", objc_name="addPeriodicTimeObserverForInterval")
-    SampleBufferRenderSynchronizer_addPeriodicTimeObserverForInterval :: proc(self: ^SampleBufferRenderSynchronizer, interval: CM.Time, queue: CF.dispatch_queue_t, block: ^Objc_Block(proc "c" (time: CM.Time))) -> id ---
+    SampleBufferRenderSynchronizer_addPeriodicTimeObserverForInterval :: proc(self: ^SampleBufferRenderSynchronizer, interval: CM.Time, queue: CF.dispatch_queue_t, block: ^Objc_Block(proc "c" ( time: CM.Time ))) -> id ---
 
     @(objc_type=SampleBufferRenderSynchronizer, objc_selector="addBoundaryTimeObserverForTimes:queue:usingBlock:", objc_name="addBoundaryTimeObserverForTimes")
     SampleBufferRenderSynchronizer_addBoundaryTimeObserverForTimes :: proc(self: ^SampleBufferRenderSynchronizer, times: ^NS.Array, queue: CF.dispatch_queue_t, block: ^Objc_Block(proc "c" ())) -> id ---
@@ -64,10 +64,10 @@ foreign lib {
     SampleBufferRenderSynchronizer_removeTimeObserver :: proc(self: ^SampleBufferRenderSynchronizer, observer: id) ---
 
     @(objc_type=SampleBufferRenderSynchronizer, objc_selector="intendedSpatialAudioExperience", objc_name="intendedSpatialAudioExperience")
-    SampleBufferRenderSynchronizer_intendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer) -> ^CASpatialAudioExperience ---
+    SampleBufferRenderSynchronizer_intendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer) -> ^Audio.CASpatialAudioExperience ---
 
     @(objc_type=SampleBufferRenderSynchronizer, objc_selector="setIntendedSpatialAudioExperience:", objc_name="setIntendedSpatialAudioExperience")
-    SampleBufferRenderSynchronizer_setIntendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer, intendedSpatialAudioExperience: ^CASpatialAudioExperience) ---
+    SampleBufferRenderSynchronizer_setIntendedSpatialAudioExperience :: proc(self: ^SampleBufferRenderSynchronizer, intendedSpatialAudioExperience: ^Audio.CASpatialAudioExperience) ---
 }
 
 @(objc_type=SampleBufferRenderSynchronizer, objc_name="setRate")

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVContentKeySpecifier
-///
 @(objc_class="AVContentKeySpecifier", objc_superclass=NS.Object)
 ContentKeySpecifier :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentKeySpecifier, objc_selector="contentKeySpecifierForKeySystem:identifier:options:", objc_name="contentKeySpecifierForKeySystem", objc_is_class_method=true)
     ContentKeySpecifier_contentKeySpecifierForKeySystem :: proc(keySystem: ^NS.String, contentKeyIdentifier: id, options: ^NS.Dictionary) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=ContentKeySpecifier, objc_selector="options", objc_name="options")
     ContentKeySpecifier_options :: proc(self: ^ContentKeySpecifier) -> ^NS.Dictionary ---
 }
+
+
+

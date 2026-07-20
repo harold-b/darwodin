@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
-    initWithWindow: proc(self: ^AK.CachedImageRep, win: ^AK.Window, rect: NS.Rect) -> id,
-    initWithSize: proc(self: ^AK.CachedImageRep, size: NS.Size, depth: AK.WindowDepth, flag: bool, alpha: bool) -> id,
-    window: proc(self: ^AK.CachedImageRep) -> ^AK.Window,
-    rect: proc(self: ^AK.CachedImageRep) -> NS.Rect,
+    initWithWindow: proc(self: ^NS.CachedImageRep, win: ^NS.Window, rect: NS.Rect) -> id,
+    initWithSize: proc(self: ^NS.CachedImageRep, size: NS.Size, depth: NS.WindowDepth, flag: bool, alpha: bool) -> id,
+    window: proc(self: ^NS.CachedImageRep) -> ^NS.Window,
+    rect: proc(self: ^NS.CachedImageRep) -> NS.Rect,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSImageRep.extend(cls, &vt.super)
 
     if vt.initWithWindow != nil {
-        initWithWindow :: proc "c" (self: ^AK.CachedImageRep, _: SEL, win: ^AK.Window, rect: NS.Rect) -> id {
+        initWithWindow :: proc "c" (self: ^NS.CachedImageRep, _: SEL, win: ^NS.Window, rect: NS.Rect) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithWindow:rect:"), auto_cast initWithWindow, "@@:@{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.initWithSize != nil {
-        initWithSize :: proc "c" (self: ^AK.CachedImageRep, _: SEL, size: NS.Size, depth: AK.WindowDepth, flag: bool, alpha: bool) -> id {
+        initWithSize :: proc "c" (self: ^NS.CachedImageRep, _: SEL, size: NS.Size, depth: NS.WindowDepth, flag: bool, alpha: bool) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSize:depth:separate:alpha:"), auto_cast initWithSize, "@@:{CGSize=dd}iBB") do panic("Failed to register objC method.")
     }
     if vt.window != nil {
-        window :: proc "c" (self: ^AK.CachedImageRep, _: SEL) -> ^AK.Window {
+        window :: proc "c" (self: ^NS.CachedImageRep, _: SEL) -> ^NS.Window {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("window"), auto_cast window, "@@:") do panic("Failed to register objC method.")
     }
     if vt.rect != nil {
-        rect :: proc "c" (self: ^AK.CachedImageRep, _: SEL) -> NS.Rect {
+        rect :: proc "c" (self: ^NS.CachedImageRep, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

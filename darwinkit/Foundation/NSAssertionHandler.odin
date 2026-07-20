@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSAssertionHandler
-///
 @(objc_class="NSAssertionHandler", objc_superclass=Object)
 AssertionHandler :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssertionHandler, objc_selector="handleFailureInMethod:object:file:lineNumber:description:", objc_name="handleFailureInMethod")
     AssertionHandler_handleFailureInMethod :: proc(self: ^AssertionHandler, selector: SEL, object: id, fileName: ^String, line: Integer, format: ^String) ---
@@ -28,3 +22,6 @@ foreign lib {
     @(objc_type=AssertionHandler, objc_selector="currentHandler", objc_name="currentHandler", objc_is_class_method=true)
     AssertionHandler_currentHandler :: proc() -> ^AssertionHandler ---
 }
+
+
+

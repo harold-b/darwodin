@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitPower
-///
 @(objc_class="NSUnitPower", objc_superclass=Dimension)
 UnitPower :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitPower, objc_selector="terawatts", objc_name="terawatts", objc_is_class_method=true)
     UnitPower_terawatts :: proc() -> ^UnitPower ---
@@ -54,3 +48,6 @@ foreign lib {
     @(objc_type=UnitPower, objc_selector="horsepower", objc_name="horsepower", objc_is_class_method=true)
     UnitPower_horsepower :: proc() -> ^UnitPower ---
 }
+
+
+

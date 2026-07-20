@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLAuthenticationChallenge
-///
 @(objc_class="NSURLAuthenticationChallenge", objc_superclass=Object)
 URLAuthenticationChallenge :: struct { using _: Object, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLAuthenticationChallenge, objc_selector="initWithProtectionSpace:proposedCredential:previousFailureCount:failureResponse:error:sender:", objc_name="initWithProtectionSpace")
     URLAuthenticationChallenge_initWithProtectionSpace :: proc(self: ^URLAuthenticationChallenge, space: ^URLProtectionSpace, credential: ^URLCredential, previousFailureCount: Integer, response: ^URLResponse, error: ^Error, sender: ^URLAuthenticationChallengeSender) -> instancetype ---
@@ -45,3 +39,6 @@ foreign lib {
     @(objc_type=URLAuthenticationChallenge, objc_selector="sender", objc_name="sender")
     URLAuthenticationChallenge_sender :: proc(self: ^URLAuthenticationChallenge) -> ^URLAuthenticationChallengeSender ---
 }
+
+
+

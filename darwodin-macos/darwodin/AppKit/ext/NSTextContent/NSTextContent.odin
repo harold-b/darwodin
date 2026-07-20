@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    contentType: proc(self: ^AK.TextContent) -> ^NS.String,
-    setContentType: proc(self: ^AK.TextContent, contentType: ^NS.String),
+    contentType: proc(self: ^NS.TextContent) -> ^NS.String,
+    setContentType: proc(self: ^NS.TextContent, contentType: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.contentType != nil {
-        contentType :: proc "c" (self: ^AK.TextContent, _: SEL) -> ^NS.String {
+        contentType :: proc "c" (self: ^NS.TextContent, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contentType"), auto_cast contentType, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContentType != nil {
-        setContentType :: proc "c" (self: ^AK.TextContent, _: SEL, contentType: ^NS.String) {
+        setContentType :: proc "c" (self: ^NS.TextContent, _: SEL, contentType: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

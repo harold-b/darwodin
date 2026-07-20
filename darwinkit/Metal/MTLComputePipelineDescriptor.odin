@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLComputePipelineDescriptor
-///
 @(objc_class="MTLComputePipelineDescriptor", objc_superclass=NS.Object)
 ComputePipelineDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ComputePipelineDescriptor, objc_selector="reset", objc_name="reset")
     ComputePipelineDescriptor_reset :: proc(self: ^ComputePipelineDescriptor) ---
@@ -113,3 +107,6 @@ foreign lib {
     @(objc_type=ComputePipelineDescriptor, objc_selector="setRequiredThreadsPerThreadgroup:", objc_name="setRequiredThreadsPerThreadgroup")
     ComputePipelineDescriptor_setRequiredThreadsPerThreadgroup :: proc(self: ^ComputePipelineDescriptor, requiredThreadsPerThreadgroup: Size) ---
 }
+
+
+

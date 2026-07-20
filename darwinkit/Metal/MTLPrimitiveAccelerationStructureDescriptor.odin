@@ -11,15 +11,9 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLPrimitiveAccelerationStructureDescriptor
-///
 @(objc_class="MTLPrimitiveAccelerationStructureDescriptor", objc_superclass=AccelerationStructureDescriptor)
 PrimitiveAccelerationStructureDescriptor :: struct { using _: AccelerationStructureDescriptor, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PrimitiveAccelerationStructureDescriptor, objc_selector="descriptor", objc_name="descriptor", objc_is_class_method=true)
     PrimitiveAccelerationStructureDescriptor_descriptor :: proc() -> instancetype ---
@@ -60,3 +54,6 @@ foreign lib {
     @(objc_type=PrimitiveAccelerationStructureDescriptor, objc_selector="setMotionKeyframeCount:", objc_name="setMotionKeyframeCount")
     PrimitiveAccelerationStructureDescriptor_setMotionKeyframeCount :: proc(self: ^PrimitiveAccelerationStructureDescriptor, motionKeyframeCount: NS.UInteger) ---
 }
+
+
+

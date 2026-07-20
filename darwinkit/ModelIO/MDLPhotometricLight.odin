@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLPhotometricLight
-///
 @(objc_class="MDLPhotometricLight", objc_superclass=PhysicallyPlausibleLight)
 PhotometricLight :: struct { using _: PhysicallyPlausibleLight, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PhotometricLight, objc_selector="initWithIESProfile:", objc_name="initWithIESProfile")
     PhotometricLight_initWithIESProfile :: proc(self: ^PhotometricLight, _URL: ^NS.URL) -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=PhotometricLight, objc_selector="sphericalHarmonicsCoefficients", objc_name="sphericalHarmonicsCoefficients")
     PhotometricLight_sphericalHarmonicsCoefficients :: proc(self: ^PhotometricLight) -> ^NS.Data ---
 }
+
+
+

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineAccountChangeEvent
-///
 @(objc_class="CKSyncEngineAccountChangeEvent", objc_superclass=SyncEngineEvent)
 SyncEngineAccountChangeEvent :: struct { using _: SyncEngineEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineAccountChangeEvent, objc_selector="changeType", objc_name="changeType")
     SyncEngineAccountChangeEvent_changeType :: proc(self: ^SyncEngineAccountChangeEvent) -> SyncEngineAccountChangeType ---
@@ -26,3 +20,6 @@ foreign lib {
     @(objc_type=SyncEngineAccountChangeEvent, objc_selector="currentUser", objc_name="currentUser")
     SyncEngineAccountChangeEvent_currentUser :: proc(self: ^SyncEngineAccountChangeEvent) -> ^RecordID ---
 }
+
+
+

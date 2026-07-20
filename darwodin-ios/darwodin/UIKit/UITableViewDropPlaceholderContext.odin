@@ -23,7 +23,7 @@ TableViewDropPlaceholderContext :: struct { using _: intrinsics.objc_object,
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=TableViewDropPlaceholderContext, objc_selector="commitInsertionWithDataSourceUpdates:", objc_name="commitInsertionWithDataSourceUpdates")
-    TableViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: proc(self: ^TableViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" (insertionIndexPath: ^NS.IndexPath))) -> bool ---
+    TableViewDropPlaceholderContext_commitInsertionWithDataSourceUpdates :: proc(self: ^TableViewDropPlaceholderContext, dataSourceUpdates: ^Objc_Block(proc "c" ( insertionIndexPath: ^NS.IndexPath ))) -> bool ---
 
     @(objc_type=TableViewDropPlaceholderContext, objc_selector="deletePlaceholder", objc_name="deletePlaceholder")
     TableViewDropPlaceholderContext_deletePlaceholder :: proc(self: ^TableViewDropPlaceholderContext) -> bool ---

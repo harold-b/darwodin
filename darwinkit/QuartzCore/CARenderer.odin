@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CARenderer
-///
 @(objc_class="CARenderer", objc_superclass=NS.Object)
 Renderer :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Renderer, objc_selector="rendererWithCGLContext:options:", objc_name="rendererWithCGLContext", objc_is_class_method=true)
     Renderer_rendererWithCGLContext :: proc(ctx: rawptr, dict: ^NS.Dictionary) -> ^Renderer ---
@@ -59,3 +53,6 @@ foreign lib {
     @(objc_type=Renderer, objc_selector="setBounds:", objc_name="setBounds")
     Renderer_setBounds :: proc(self: ^Renderer, bounds: CG.Rect) ---
 }
+
+
+

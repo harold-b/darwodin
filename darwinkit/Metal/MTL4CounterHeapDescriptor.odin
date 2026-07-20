@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4CounterHeapDescriptor
-///
 @(objc_class="MTL4CounterHeapDescriptor", objc_superclass=NS.Object)
 MTL4CounterHeapDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4CounterHeapDescriptor, objc_selector="type", objc_name="type")
     MTL4CounterHeapDescriptor_type :: proc(self: ^MTL4CounterHeapDescriptor) -> MTL4CounterHeapType ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=MTL4CounterHeapDescriptor, objc_selector="setCount:", objc_name="setCount")
     MTL4CounterHeapDescriptor_setCount :: proc(self: ^MTL4CounterHeapDescriptor, count: NS.UInteger) ---
 }
+
+
+

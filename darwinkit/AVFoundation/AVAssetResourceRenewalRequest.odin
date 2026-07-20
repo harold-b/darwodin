@@ -12,13 +12,6 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetResourceRenewalRequest
-///
 @(objc_class="AVAssetResourceRenewalRequest", objc_superclass=AssetResourceLoadingRequest)
 AssetResourceRenewalRequest :: struct { using _: AssetResourceLoadingRequest, }
 
-@(default_calling_convention="c")
-foreign lib {}

@@ -20,12 +20,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityValue: proc(self: ^AK.AccessibilityStaticText) -> ^NS.String,
-    accessibilityAttributedStringForRange: proc(self: ^AK.AccessibilityStaticText, range: NS._NSRange) -> ^NS.AttributedString,
-    accessibilityVisibleCharacterRange: proc(self: ^AK.AccessibilityStaticText) -> NS._NSRange,
+    accessibilityValue: proc(self: ^NS.AccessibilityStaticText) -> ^NS.String,
+    accessibilityAttributedStringForRange: proc(self: ^NS.AccessibilityStaticText, range: NS._NSRange) -> ^NS.AttributedString,
+    accessibilityVisibleCharacterRange: proc(self: ^NS.AccessibilityStaticText) -> NS._NSRange,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityValue != nil {
-        accessibilityValue :: proc "c" (self: ^AK.AccessibilityStaticText, _: SEL) -> ^NS.String {
+        accessibilityValue :: proc "c" (self: ^NS.AccessibilityStaticText, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityValue"), auto_cast accessibilityValue, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityAttributedStringForRange != nil {
-        accessibilityAttributedStringForRange :: proc "c" (self: ^AK.AccessibilityStaticText, _: SEL, range: NS._NSRange) -> ^NS.AttributedString {
+        accessibilityAttributedStringForRange :: proc "c" (self: ^NS.AccessibilityStaticText, _: SEL, range: NS._NSRange) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityAttributedStringForRange:"), auto_cast accessibilityAttributedStringForRange, "@@:{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.accessibilityVisibleCharacterRange != nil {
-        accessibilityVisibleCharacterRange :: proc "c" (self: ^AK.AccessibilityStaticText, _: SEL) -> NS._NSRange {
+        accessibilityVisibleCharacterRange :: proc "c" (self: ^NS.AccessibilityStaticText, _: SEL) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

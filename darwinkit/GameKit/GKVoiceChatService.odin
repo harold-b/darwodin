@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKVoiceChatService
-///
 @(objc_class="GKVoiceChatService", objc_superclass=NS.Object)
 VoiceChatService :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VoiceChatService, objc_selector="defaultVoiceChatService", objc_name="defaultVoiceChatService", objc_is_class_method=true)
     VoiceChatService_defaultVoiceChatService :: proc() -> ^VoiceChatService ---
@@ -77,3 +71,6 @@ foreign lib {
     @(objc_type=VoiceChatService, objc_selector="inputMeterLevel", objc_name="inputMeterLevel")
     VoiceChatService_inputMeterLevel :: proc(self: ^VoiceChatService) -> cffi.float ---
 }
+
+
+

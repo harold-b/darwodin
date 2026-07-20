@@ -1,0 +1,43 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UISearchSuggestion
+///
+@(objc_class="UISearchSuggestion")
+SearchSuggestion :: struct { using _: intrinsics.objc_object, 
+    using _: NS.ObjectProtocol,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=SearchSuggestion, objc_selector="localizedSuggestion", objc_name="localizedSuggestion")
+    SearchSuggestion_localizedSuggestion :: proc(self: ^SearchSuggestion) -> ^NS.String ---
+
+    @(objc_type=SearchSuggestion, objc_selector="localizedDescription", objc_name="localizedDescription")
+    SearchSuggestion_localizedDescription :: proc(self: ^SearchSuggestion) -> ^NS.String ---
+
+    @(objc_type=SearchSuggestion, objc_selector="iconImage", objc_name="iconImage")
+    SearchSuggestion_iconImage :: proc(self: ^SearchSuggestion) -> ^Image ---
+
+    @(objc_type=SearchSuggestion, objc_selector="localizedAttributedSuggestion", objc_name="localizedAttributedSuggestion")
+    SearchSuggestion_localizedAttributedSuggestion :: proc(self: ^SearchSuggestion) -> ^NS.AttributedString ---
+
+    @(objc_type=SearchSuggestion, objc_selector="representedObject", objc_name="representedObject")
+    SearchSuggestion_representedObject :: proc(self: ^SearchSuggestion) -> id ---
+
+    @(objc_type=SearchSuggestion, objc_selector="setRepresentedObject:", objc_name="setRepresentedObject")
+    SearchSuggestion_setRepresentedObject :: proc(self: ^SearchSuggestion, representedObject: id) ---
+}

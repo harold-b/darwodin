@@ -20,33 +20,33 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSMatrix"
 
 VTable :: struct {
     super: NSMatrix.VTable,
-    indexOfSelectedItem: proc(self: ^AK.Form) -> NS.Integer,
-    setEntryWidth: proc(self: ^AK.Form, width: CG.Float),
-    setInterlineSpacing: proc(self: ^AK.Form, spacing: CG.Float),
-    setBordered: proc(self: ^AK.Form, flag: bool),
-    setBezeled: proc(self: ^AK.Form, flag: bool),
-    setTitleAlignment: proc(self: ^AK.Form, mode: AK.TextAlignment),
-    setTextAlignment: proc(self: ^AK.Form, mode: AK.TextAlignment),
-    setTitleFont: proc(self: ^AK.Form, fontObj: ^AK.Font),
-    setTextFont: proc(self: ^AK.Form, fontObj: ^AK.Font),
-    cellAtIndex: proc(self: ^AK.Form, index: NS.Integer) -> id,
-    drawCellAtIndex: proc(self: ^AK.Form, index: NS.Integer),
-    addEntry: proc(self: ^AK.Form, title: ^NS.String) -> ^AK.FormCell,
-    insertEntry: proc(self: ^AK.Form, title: ^NS.String, index: NS.Integer) -> ^AK.FormCell,
-    removeEntryAtIndex: proc(self: ^AK.Form, index: NS.Integer),
-    indexOfCellWithTag: proc(self: ^AK.Form, tag: NS.Integer) -> NS.Integer,
-    selectTextAtIndex: proc(self: ^AK.Form, index: NS.Integer),
-    setFrameSize: proc(self: ^AK.Form, newSize: NS.Size),
-    setTitleBaseWritingDirection: proc(self: ^AK.Form, writingDirection: AK.WritingDirection),
-    setTextBaseWritingDirection: proc(self: ^AK.Form, writingDirection: AK.WritingDirection),
-    setPreferredTextFieldWidth: proc(self: ^AK.Form, preferredWidth: CG.Float),
-    preferredTextFieldWidth: proc(self: ^AK.Form) -> CG.Float,
+    indexOfSelectedItem: proc(self: ^NS.Form) -> NS.Integer,
+    setEntryWidth: proc(self: ^NS.Form, width: CG.Float),
+    setInterlineSpacing: proc(self: ^NS.Form, spacing: CG.Float),
+    setBordered: proc(self: ^NS.Form, flag: bool),
+    setBezeled: proc(self: ^NS.Form, flag: bool),
+    setTitleAlignment: proc(self: ^NS.Form, mode: NS.TextAlignment),
+    setTextAlignment: proc(self: ^NS.Form, mode: NS.TextAlignment),
+    setTitleFont: proc(self: ^NS.Form, fontObj: ^NS.Font),
+    setTextFont: proc(self: ^NS.Form, fontObj: ^NS.Font),
+    cellAtIndex: proc(self: ^NS.Form, index: NS.Integer) -> id,
+    drawCellAtIndex: proc(self: ^NS.Form, index: NS.Integer),
+    addEntry: proc(self: ^NS.Form, title: ^NS.String) -> ^NS.FormCell,
+    insertEntry: proc(self: ^NS.Form, title: ^NS.String, index: NS.Integer) -> ^NS.FormCell,
+    removeEntryAtIndex: proc(self: ^NS.Form, index: NS.Integer),
+    indexOfCellWithTag: proc(self: ^NS.Form, tag: NS.Integer) -> NS.Integer,
+    selectTextAtIndex: proc(self: ^NS.Form, index: NS.Integer),
+    setFrameSize: proc(self: ^NS.Form, newSize: NS.Size),
+    setTitleBaseWritingDirection: proc(self: ^NS.Form, writingDirection: NS.WritingDirection),
+    setTextBaseWritingDirection: proc(self: ^NS.Form, writingDirection: NS.WritingDirection),
+    setPreferredTextFieldWidth: proc(self: ^NS.Form, preferredWidth: CG.Float),
+    preferredTextFieldWidth: proc(self: ^NS.Form) -> CG.Float,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSMatrix.extend(cls, &vt.super)
 
     if vt.indexOfSelectedItem != nil {
-        indexOfSelectedItem :: proc "c" (self: ^AK.Form, _: SEL) -> NS.Integer {
+        indexOfSelectedItem :: proc "c" (self: ^NS.Form, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfSelectedItem"), auto_cast indexOfSelectedItem, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setEntryWidth != nil {
-        setEntryWidth :: proc "c" (self: ^AK.Form, _: SEL, width: CG.Float) {
+        setEntryWidth :: proc "c" (self: ^NS.Form, _: SEL, width: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEntryWidth:"), auto_cast setEntryWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.setInterlineSpacing != nil {
-        setInterlineSpacing :: proc "c" (self: ^AK.Form, _: SEL, spacing: CG.Float) {
+        setInterlineSpacing :: proc "c" (self: ^NS.Form, _: SEL, spacing: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setInterlineSpacing:"), auto_cast setInterlineSpacing, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.setBordered != nil {
-        setBordered :: proc "c" (self: ^AK.Form, _: SEL, flag: bool) {
+        setBordered :: proc "c" (self: ^NS.Form, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBordered:"), auto_cast setBordered, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.setBezeled != nil {
-        setBezeled :: proc "c" (self: ^AK.Form, _: SEL, flag: bool) {
+        setBezeled :: proc "c" (self: ^NS.Form, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBezeled:"), auto_cast setBezeled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.setTitleAlignment != nil {
-        setTitleAlignment :: proc "c" (self: ^AK.Form, _: SEL, mode: AK.TextAlignment) {
+        setTitleAlignment :: proc "c" (self: ^NS.Form, _: SEL, mode: NS.TextAlignment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleAlignment:"), auto_cast setTitleAlignment, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.setTextAlignment != nil {
-        setTextAlignment :: proc "c" (self: ^AK.Form, _: SEL, mode: AK.TextAlignment) {
+        setTextAlignment :: proc "c" (self: ^NS.Form, _: SEL, mode: NS.TextAlignment) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextAlignment:"), auto_cast setTextAlignment, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.setTitleFont != nil {
-        setTitleFont :: proc "c" (self: ^AK.Form, _: SEL, fontObj: ^AK.Font) {
+        setTitleFont :: proc "c" (self: ^NS.Form, _: SEL, fontObj: ^NS.Font) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleFont:"), auto_cast setTitleFont, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.setTextFont != nil {
-        setTextFont :: proc "c" (self: ^AK.Form, _: SEL, fontObj: ^AK.Font) {
+        setTextFont :: proc "c" (self: ^NS.Form, _: SEL, fontObj: ^NS.Font) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextFont:"), auto_cast setTextFont, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.cellAtIndex != nil {
-        cellAtIndex :: proc "c" (self: ^AK.Form, _: SEL, index: NS.Integer) -> id {
+        cellAtIndex :: proc "c" (self: ^NS.Form, _: SEL, index: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -157,7 +157,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cellAtIndex:"), auto_cast cellAtIndex, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.drawCellAtIndex != nil {
-        drawCellAtIndex :: proc "c" (self: ^AK.Form, _: SEL, index: NS.Integer) {
+        drawCellAtIndex :: proc "c" (self: ^NS.Form, _: SEL, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -167,7 +167,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawCellAtIndex:"), auto_cast drawCellAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.addEntry != nil {
-        addEntry :: proc "c" (self: ^AK.Form, _: SEL, title: ^NS.String) -> ^AK.FormCell {
+        addEntry :: proc "c" (self: ^NS.Form, _: SEL, title: ^NS.String) -> ^NS.FormCell {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -177,7 +177,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addEntry:"), auto_cast addEntry, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.insertEntry != nil {
-        insertEntry :: proc "c" (self: ^AK.Form, _: SEL, title: ^NS.String, index: NS.Integer) -> ^AK.FormCell {
+        insertEntry :: proc "c" (self: ^NS.Form, _: SEL, title: ^NS.String, index: NS.Integer) -> ^NS.FormCell {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -187,7 +187,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertEntry:atIndex:"), auto_cast insertEntry, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.removeEntryAtIndex != nil {
-        removeEntryAtIndex :: proc "c" (self: ^AK.Form, _: SEL, index: NS.Integer) {
+        removeEntryAtIndex :: proc "c" (self: ^NS.Form, _: SEL, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -197,7 +197,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeEntryAtIndex:"), auto_cast removeEntryAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.indexOfCellWithTag != nil {
-        indexOfCellWithTag :: proc "c" (self: ^AK.Form, _: SEL, tag: NS.Integer) -> NS.Integer {
+        indexOfCellWithTag :: proc "c" (self: ^NS.Form, _: SEL, tag: NS.Integer) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -207,7 +207,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfCellWithTag:"), auto_cast indexOfCellWithTag, "l@:l") do panic("Failed to register objC method.")
     }
     if vt.selectTextAtIndex != nil {
-        selectTextAtIndex :: proc "c" (self: ^AK.Form, _: SEL, index: NS.Integer) {
+        selectTextAtIndex :: proc "c" (self: ^NS.Form, _: SEL, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -217,7 +217,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectTextAtIndex:"), auto_cast selectTextAtIndex, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.setFrameSize != nil {
-        setFrameSize :: proc "c" (self: ^AK.Form, _: SEL, newSize: NS.Size) {
+        setFrameSize :: proc "c" (self: ^NS.Form, _: SEL, newSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -227,7 +227,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFrameSize:"), auto_cast setFrameSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.setTitleBaseWritingDirection != nil {
-        setTitleBaseWritingDirection :: proc "c" (self: ^AK.Form, _: SEL, writingDirection: AK.WritingDirection) {
+        setTitleBaseWritingDirection :: proc "c" (self: ^NS.Form, _: SEL, writingDirection: NS.WritingDirection) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -237,7 +237,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitleBaseWritingDirection:"), auto_cast setTitleBaseWritingDirection, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.setTextBaseWritingDirection != nil {
-        setTextBaseWritingDirection :: proc "c" (self: ^AK.Form, _: SEL, writingDirection: AK.WritingDirection) {
+        setTextBaseWritingDirection :: proc "c" (self: ^NS.Form, _: SEL, writingDirection: NS.WritingDirection) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -247,7 +247,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextBaseWritingDirection:"), auto_cast setTextBaseWritingDirection, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.setPreferredTextFieldWidth != nil {
-        setPreferredTextFieldWidth :: proc "c" (self: ^AK.Form, _: SEL, preferredWidth: CG.Float) {
+        setPreferredTextFieldWidth :: proc "c" (self: ^NS.Form, _: SEL, preferredWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -257,7 +257,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPreferredTextFieldWidth:"), auto_cast setPreferredTextFieldWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.preferredTextFieldWidth != nil {
-        preferredTextFieldWidth :: proc "c" (self: ^AK.Form, _: SEL) -> CG.Float {
+        preferredTextFieldWidth :: proc "c" (self: ^NS.Form, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

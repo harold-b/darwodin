@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRenderCommandEncoder
-///
 @(objc_class="MTLRenderCommandEncoder")
 RenderCommandEncoder :: struct { using _: intrinsics.objc_object, 
     using _: CommandEncoder,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RenderCommandEncoder, objc_selector="setRenderPipelineState:", objc_name="setRenderPipelineState")
     RenderCommandEncoder_setRenderPipelineState :: proc(self: ^RenderCommandEncoder, pipelineState: ^RenderPipelineState) ---
@@ -416,6 +410,8 @@ foreign lib {
     @(objc_type=RenderCommandEncoder, objc_selector="tileHeight", objc_name="tileHeight")
     RenderCommandEncoder_tileHeight :: proc(self: ^RenderCommandEncoder) -> NS.UInteger ---
 }
+
+
 
 @(objc_type=RenderCommandEncoder, objc_name="setVertexBuffer")
 RenderCommandEncoder_setVertexBuffer :: proc {

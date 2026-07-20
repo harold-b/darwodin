@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSPointerFunctions
-///
 @(objc_class="NSPointerFunctions", objc_superclass=Object)
 PointerFunctions :: struct { using _: Object, 
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PointerFunctions, objc_selector="initWithOptions:", objc_name="initWithOptions")
     PointerFunctions_initWithOptions :: proc(self: ^PointerFunctions, options: PointerFunctionsOptions) -> instancetype ---
@@ -75,3 +69,6 @@ foreign lib {
     @(objc_type=PointerFunctions, objc_selector="setUsesWeakReadAndWriteBarriers:", objc_name="setUsesWeakReadAndWriteBarriers")
     PointerFunctions_setUsesWeakReadAndWriteBarriers :: proc(self: ^PointerFunctions, usesWeakReadAndWriteBarriers: bool) ---
 }
+
+
+

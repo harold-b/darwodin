@@ -21,7 +21,7 @@ WindowScene :: struct { using _: Scene, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=WindowScene, objc_selector="requestGeometryUpdateWithPreferences:errorHandler:", objc_name="requestGeometryUpdateWithPreferences")
-    WindowScene_requestGeometryUpdateWithPreferences :: proc(self: ^WindowScene, geometryPreferences: ^WindowSceneGeometryPreferences, errorHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    WindowScene_requestGeometryUpdateWithPreferences :: proc(self: ^WindowScene, geometryPreferences: ^WindowSceneGeometryPreferences, errorHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=WindowScene, objc_selector="screen", objc_name="screen")
     WindowScene_screen :: proc(self: ^WindowScene) -> ^Screen ---

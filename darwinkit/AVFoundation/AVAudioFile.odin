@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioFile
-///
 @(objc_class="AVAudioFile", objc_superclass=NS.Object)
 AudioFile :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioFile, objc_selector="init", objc_name="init")
     AudioFile_init :: proc(self: ^AudioFile) -> instancetype ---
@@ -70,6 +64,8 @@ foreign lib {
     @(objc_type=AudioFile, objc_selector="setFramePosition:", objc_name="setFramePosition")
     AudioFile_setFramePosition :: proc(self: ^AudioFile, framePosition: AudioFramePosition) ---
 }
+
+
 
 @(objc_type=AudioFile, objc_name="initForReading")
 AudioFile_initForReading :: proc {

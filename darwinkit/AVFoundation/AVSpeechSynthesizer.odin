@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSpeechSynthesizer
-///
 @(objc_class="AVSpeechSynthesizer", objc_superclass=NS.Object)
 SpeechSynthesizer :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SpeechSynthesizer, objc_selector="speakUtterance:", objc_name="speakUtterance")
     SpeechSynthesizer_speakUtterance :: proc(self: ^SpeechSynthesizer, utterance: ^SpeechUtterance) ---
@@ -41,7 +35,7 @@ foreign lib {
     SpeechSynthesizer_continueSpeaking :: proc(self: ^SpeechSynthesizer) -> bool ---
 
     @(objc_type=SpeechSynthesizer, objc_selector="requestPersonalVoiceAuthorizationWithCompletionHandler:", objc_name="requestPersonalVoiceAuthorizationWithCompletionHandler", objc_is_class_method=true)
-    SpeechSynthesizer_requestPersonalVoiceAuthorizationWithCompletionHandler :: proc(handler: ^Objc_Block(proc "c" (status: SpeechSynthesisPersonalVoiceAuthorizationStatus))) ---
+    SpeechSynthesizer_requestPersonalVoiceAuthorizationWithCompletionHandler :: proc(handler: ^Objc_Block(proc "c" ( status: SpeechSynthesisPersonalVoiceAuthorizationStatus ))) ---
 
     @(objc_type=SpeechSynthesizer, objc_selector="delegate", objc_name="delegate")
     SpeechSynthesizer_delegate :: proc(self: ^SpeechSynthesizer) -> ^SpeechSynthesizerDelegate ---
@@ -76,6 +70,8 @@ foreign lib {
     @(objc_type=SpeechSynthesizer, objc_selector="personalVoiceAuthorizationStatus", objc_name="personalVoiceAuthorizationStatus", objc_is_class_method=true)
     SpeechSynthesizer_personalVoiceAuthorizationStatus :: proc() -> SpeechSynthesisPersonalVoiceAuthorizationStatus ---
 }
+
+
 
 @(objc_type=SpeechSynthesizer, objc_name="writeUtterance")
 SpeechSynthesizer_writeUtterance :: proc {

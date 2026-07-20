@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCDirectionPadElement
-///
 @(objc_class="GCDirectionPadElement")
 DirectionPadElement :: struct { using _: intrinsics.objc_object, 
     using _: PhysicalInputElement,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DirectionPadElement, objc_selector="xyAxes", objc_name="xyAxes")
     DirectionPadElement_xyAxes :: proc(self: ^DirectionPadElement) -> ^Axis2DInput ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=DirectionPadElement, objc_selector="right", objc_name="right")
     DirectionPadElement_right :: proc(self: ^DirectionPadElement) -> ^id ---
 }
+
+
+

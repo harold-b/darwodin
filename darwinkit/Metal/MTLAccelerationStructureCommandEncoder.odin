@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLAccelerationStructureCommandEncoder
-///
 @(objc_class="MTLAccelerationStructureCommandEncoder")
 AccelerationStructureCommandEncoder :: struct { using _: intrinsics.objc_object, 
     using _: CommandEncoder,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AccelerationStructureCommandEncoder, objc_selector="buildAccelerationStructure:descriptor:scratchBuffer:scratchBufferOffset:", objc_name="buildAccelerationStructure")
     AccelerationStructureCommandEncoder_buildAccelerationStructure :: proc(self: ^AccelerationStructureCommandEncoder, accelerationStructure: ^AccelerationStructure, descriptor: ^AccelerationStructureDescriptor, scratchBuffer: ^Buffer, scratchBufferOffset: NS.UInteger) ---
@@ -65,6 +59,8 @@ foreign lib {
     @(objc_type=AccelerationStructureCommandEncoder, objc_selector="sampleCountersInBuffer:atSampleIndex:withBarrier:", objc_name="sampleCountersInBuffer")
     AccelerationStructureCommandEncoder_sampleCountersInBuffer :: proc(self: ^AccelerationStructureCommandEncoder, sampleBuffer: ^CounterSampleBuffer, sampleIndex: NS.UInteger, barrier: bool) ---
 }
+
+
 
 @(objc_type=AccelerationStructureCommandEncoder, objc_name="refitAccelerationStructure")
 AccelerationStructureCommandEncoder_refitAccelerationStructure :: proc {

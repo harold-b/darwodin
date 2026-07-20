@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureMovieFileOutput
-///
 @(objc_class="AVCaptureMovieFileOutput", objc_superclass=CaptureFileOutput)
 CaptureMovieFileOutput :: struct { using _: CaptureFileOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureMovieFileOutput, objc_selector="init", objc_name="init")
     CaptureMovieFileOutput_init :: proc(self: ^CaptureMovieFileOutput) -> instancetype ---
@@ -82,3 +76,6 @@ foreign lib {
     @(objc_type=CaptureMovieFileOutput, objc_selector="setSpatialVideoCaptureEnabled:", objc_name="setSpatialVideoCaptureEnabled")
     CaptureMovieFileOutput_setSpatialVideoCaptureEnabled :: proc(self: ^CaptureMovieFileOutput, spatialVideoCaptureEnabled: bool) ---
 }
+
+
+

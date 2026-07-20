@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMeasurement
-///
 @(objc_class="NSMeasurement", objc_superclass=Object)
 Measurement :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Measurement, objc_selector="init", objc_name="init")
     Measurement_init :: proc(self: ^Measurement) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=Measurement, objc_selector="doubleValue", objc_name="doubleValue")
     Measurement_doubleValue :: proc(self: ^Measurement) -> cffi.double ---
 }
+
+
+

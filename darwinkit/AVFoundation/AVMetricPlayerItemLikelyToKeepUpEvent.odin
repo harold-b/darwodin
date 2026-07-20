@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetricPlayerItemLikelyToKeepUpEvent
-///
 @(objc_class="AVMetricPlayerItemLikelyToKeepUpEvent", objc_superclass=MetricEvent)
 MetricPlayerItemLikelyToKeepUpEvent :: struct { using _: MetricEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetricPlayerItemLikelyToKeepUpEvent, objc_selector="init", objc_name="init")
     MetricPlayerItemLikelyToKeepUpEvent_init :: proc(self: ^MetricPlayerItemLikelyToKeepUpEvent) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=MetricPlayerItemLikelyToKeepUpEvent, objc_selector="loadedTimeRanges", objc_name="loadedTimeRanges")
     MetricPlayerItemLikelyToKeepUpEvent_loadedTimeRanges :: proc(self: ^MetricPlayerItemLikelyToKeepUpEvent) -> ^NS.Array ---
 }
+
+
+

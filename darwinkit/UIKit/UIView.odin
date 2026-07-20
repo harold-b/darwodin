@@ -398,34 +398,34 @@ foreign lib {
     View_inheritedAnimationDuration :: proc() -> NS.TimeInterval ---
 
     @(objc_type=View, objc_selector="animateWithDuration:delay:options:animations:completion:", objc_name="animateWithDuration_delay_options_animations_completion", objc_is_class_method=true)
-    View_animateWithDuration_delay_options_animations_completion :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    View_animateWithDuration_delay_options_animations_completion :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=View, objc_selector="animateWithDuration:animations:completion:", objc_name="animateWithDuration_animations_completion", objc_is_class_method=true)
-    View_animateWithDuration_animations_completion :: proc(duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    View_animateWithDuration_animations_completion :: proc(duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=View, objc_selector="animateWithDuration:animations:", objc_name="animateWithDuration_animations", objc_is_class_method=true)
     View_animateWithDuration_animations :: proc(duration: NS.TimeInterval, animations: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=View, objc_selector="animateWithSpringDuration:bounce:initialSpringVelocity:delay:options:animations:completion:", objc_name="animateWithSpringDuration", objc_is_class_method=true)
-    View_animateWithSpringDuration :: proc(duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    View_animateWithSpringDuration :: proc(duration: NS.TimeInterval, bounce: CG.Float, velocity: CG.Float, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=View, objc_selector="animateWithDuration:delay:usingSpringWithDamping:initialSpringVelocity:options:animations:completion:", objc_name="animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion", objc_is_class_method=true)
-    View_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    View_animateWithDuration_delay_usingSpringWithDamping_initialSpringVelocity_options_animations_completion :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, dampingRatio: CG.Float, velocity: CG.Float, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=View, objc_selector="transitionWithView:duration:options:animations:completion:", objc_name="transitionWithView", objc_is_class_method=true)
-    View_transitionWithView :: proc(view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    View_transitionWithView :: proc(view: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=View, objc_selector="transitionFromView:toView:duration:options:completion:", objc_name="transitionFromView", objc_is_class_method=true)
-    View_transitionFromView :: proc(fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    View_transitionFromView :: proc(fromView: ^View, toView: ^View, duration: NS.TimeInterval, options: ViewAnimationOptions, completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=View, objc_selector="performSystemAnimation:onViews:options:animations:completion:", objc_name="performSystemAnimation", objc_is_class_method=true)
-    View_performSystemAnimation :: proc(animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    View_performSystemAnimation :: proc(animation: SystemAnimation, views: ^NS.Array, options: ViewAnimationOptions, parallelAnimations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=View, objc_selector="modifyAnimationsWithRepeatCount:autoreverses:animations:", objc_name="modifyAnimationsWithRepeatCount", objc_is_class_method=true)
     View_modifyAnimationsWithRepeatCount :: proc(count: CG.Float, autoreverses: bool, animations: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=View, objc_selector="animateKeyframesWithDuration:delay:options:animations:completion:", objc_name="animateKeyframesWithDuration", objc_is_class_method=true)
-    View_animateKeyframesWithDuration :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    View_animateKeyframesWithDuration :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewKeyframeAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=View, objc_selector="addKeyframeWithRelativeStartTime:relativeDuration:animations:", objc_name="addKeyframeWithRelativeStartTime", objc_is_class_method=true)
     View_addKeyframeWithRelativeStartTime :: proc(frameStartTime: cffi.double, frameDuration: cffi.double, animations: ^Objc_Block(proc "c" ())) ---

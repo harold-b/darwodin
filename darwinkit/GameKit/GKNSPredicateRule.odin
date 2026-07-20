@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKNSPredicateRule
-///
 @(objc_class="GKNSPredicateRule", objc_superclass=Rule)
 NSPredicateRule :: struct { using _: Rule, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=NSPredicateRule, objc_selector="initWithPredicate:", objc_name="initWithPredicate")
     NSPredicateRule_initWithPredicate :: proc(self: ^NSPredicateRule, predicate: ^NS.Predicate) -> instancetype ---
@@ -26,3 +20,6 @@ foreign lib {
     @(objc_type=NSPredicateRule, objc_selector="predicate", objc_name="predicate")
     NSPredicateRule_predicate :: proc(self: ^NSPredicateRule) -> ^NS.Predicate ---
 }
+
+
+

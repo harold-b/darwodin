@@ -9,24 +9,18 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLSessionWebSocketTask
-///
 @(objc_class="NSURLSessionWebSocketTask", objc_superclass=URLSessionTask)
 URLSessionWebSocketTask :: struct { using _: URLSessionTask, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionWebSocketTask, objc_selector="sendMessage:completionHandler:", objc_name="sendMessage")
-    URLSessionWebSocketTask_sendMessage :: proc(self: ^URLSessionWebSocketTask, message: ^URLSessionWebSocketMessage, completionHandler: ^Objc_Block(proc "c" (error: ^Error))) ---
+    URLSessionWebSocketTask_sendMessage :: proc(self: ^URLSessionWebSocketTask, message: ^URLSessionWebSocketMessage, completionHandler: ^Objc_Block(proc "c" ( error: ^Error ))) ---
 
     @(objc_type=URLSessionWebSocketTask, objc_selector="receiveMessageWithCompletionHandler:", objc_name="receiveMessageWithCompletionHandler")
-    URLSessionWebSocketTask_receiveMessageWithCompletionHandler :: proc(self: ^URLSessionWebSocketTask, completionHandler: ^Objc_Block(proc "c" (message: ^URLSessionWebSocketMessage, error: ^Error))) ---
+    URLSessionWebSocketTask_receiveMessageWithCompletionHandler :: proc(self: ^URLSessionWebSocketTask, completionHandler: ^Objc_Block(proc "c" ( message: ^URLSessionWebSocketMessage, error: ^Error ))) ---
 
     @(objc_type=URLSessionWebSocketTask, objc_selector="sendPingWithPongReceiveHandler:", objc_name="sendPingWithPongReceiveHandler")
-    URLSessionWebSocketTask_sendPingWithPongReceiveHandler :: proc(self: ^URLSessionWebSocketTask, pongReceiveHandler: ^Objc_Block(proc "c" (error: ^Error))) ---
+    URLSessionWebSocketTask_sendPingWithPongReceiveHandler :: proc(self: ^URLSessionWebSocketTask, pongReceiveHandler: ^Objc_Block(proc "c" ( error: ^Error ))) ---
 
     @(objc_type=URLSessionWebSocketTask, objc_selector="cancelWithCloseCode:reason:", objc_name="cancelWithCloseCode")
     URLSessionWebSocketTask_cancelWithCloseCode :: proc(self: ^URLSessionWebSocketTask, closeCode: URLSessionWebSocketCloseCode, reason: ^Data) ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=URLSessionWebSocketTask, objc_selector="closeReason", objc_name="closeReason")
     URLSessionWebSocketTask_closeReason :: proc(self: ^URLSessionWebSocketTask) -> ^Data ---
 }
+
+
+

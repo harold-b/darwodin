@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitDistortion
-///
 @(objc_class="AVAudioUnitDistortion", objc_superclass=AudioUnitEffect)
 AudioUnitDistortion :: struct { using _: AudioUnitEffect, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitDistortion, objc_selector="loadFactoryPreset:", objc_name="loadFactoryPreset")
     AudioUnitDistortion_loadFactoryPreset :: proc(self: ^AudioUnitDistortion, preset: AudioUnitDistortionPreset) ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=AudioUnitDistortion, objc_selector="setWetDryMix:", objc_name="setWetDryMix")
     AudioUnitDistortion_setWetDryMix :: proc(self: ^AudioUnitDistortion, wetDryMix: cffi.float) ---
 }
+
+
+

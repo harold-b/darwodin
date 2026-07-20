@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTextFieldCell"
 
 VTable :: struct {
     super: NSTextFieldCell.VTable,
-    drawSortIndicatorWithFrame: proc(self: ^AK.TableHeaderCell, cellFrame: NS.Rect, controlView: ^AK.View, ascending: bool, priority: NS.Integer),
-    sortIndicatorRectForBounds: proc(self: ^AK.TableHeaderCell, rect: NS.Rect) -> NS.Rect,
+    drawSortIndicatorWithFrame: proc(self: ^NS.TableHeaderCell, cellFrame: NS.Rect, controlView: ^NS.View, ascending: bool, priority: NS.Integer),
+    sortIndicatorRectForBounds: proc(self: ^NS.TableHeaderCell, rect: NS.Rect) -> NS.Rect,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextFieldCell.extend(cls, &vt.super)
 
     if vt.drawSortIndicatorWithFrame != nil {
-        drawSortIndicatorWithFrame :: proc "c" (self: ^AK.TableHeaderCell, _: SEL, cellFrame: NS.Rect, controlView: ^AK.View, ascending: bool, priority: NS.Integer) {
+        drawSortIndicatorWithFrame :: proc "c" (self: ^NS.TableHeaderCell, _: SEL, cellFrame: NS.Rect, controlView: ^NS.View, ascending: bool, priority: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawSortIndicatorWithFrame:inView:ascending:priority:"), auto_cast drawSortIndicatorWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@Bl") do panic("Failed to register objC method.")
     }
     if vt.sortIndicatorRectForBounds != nil {
-        sortIndicatorRectForBounds :: proc "c" (self: ^AK.TableHeaderCell, _: SEL, rect: NS.Rect) -> NS.Rect {
+        sortIndicatorRectForBounds :: proc "c" (self: ^NS.TableHeaderCell, _: SEL, rect: NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

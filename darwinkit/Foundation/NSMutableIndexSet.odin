@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMutableIndexSet
-///
 @(objc_class="NSMutableIndexSet", objc_superclass=IndexSet)
 MutableIndexSet :: struct { using _: IndexSet, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableIndexSet, objc_selector="addIndexes:", objc_name="addIndexes")
     MutableIndexSet_addIndexes :: proc(self: ^MutableIndexSet, indexSet: ^IndexSet) ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=MutableIndexSet, objc_selector="shiftIndexesStartingAtIndex:by:", objc_name="shiftIndexesStartingAtIndex")
     MutableIndexSet_shiftIndexesStartingAtIndex :: proc(self: ^MutableIndexSet, index: UInteger, delta: Integer) ---
 }
+
+
+

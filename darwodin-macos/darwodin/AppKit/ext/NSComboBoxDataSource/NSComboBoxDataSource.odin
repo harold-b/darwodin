@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    numberOfItemsInComboBox: proc(self: ^AK.ComboBoxDataSource, comboBox: ^AK.ComboBox) -> NS.Integer,
-    comboBox_objectValueForItemAtIndex: proc(self: ^AK.ComboBoxDataSource, comboBox: ^AK.ComboBox, index: NS.Integer) -> id,
-    comboBox_indexOfItemWithStringValue: proc(self: ^AK.ComboBoxDataSource, comboBox: ^AK.ComboBox, string: ^NS.String) -> NS.UInteger,
-    comboBox_completedString: proc(self: ^AK.ComboBoxDataSource, comboBox: ^AK.ComboBox, string: ^NS.String) -> ^NS.String,
+    numberOfItemsInComboBox: proc(self: ^NS.ComboBoxDataSource, comboBox: ^NS.ComboBox) -> NS.Integer,
+    comboBox_objectValueForItemAtIndex: proc(self: ^NS.ComboBoxDataSource, comboBox: ^NS.ComboBox, index: NS.Integer) -> id,
+    comboBox_indexOfItemWithStringValue: proc(self: ^NS.ComboBoxDataSource, comboBox: ^NS.ComboBox, string: ^NS.String) -> NS.UInteger,
+    comboBox_completedString: proc(self: ^NS.ComboBoxDataSource, comboBox: ^NS.ComboBox, string: ^NS.String) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.numberOfItemsInComboBox != nil {
-        numberOfItemsInComboBox :: proc "c" (self: ^AK.ComboBoxDataSource, _: SEL, comboBox: ^AK.ComboBox) -> NS.Integer {
+        numberOfItemsInComboBox :: proc "c" (self: ^NS.ComboBoxDataSource, _: SEL, comboBox: ^NS.ComboBox) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfItemsInComboBox:"), auto_cast numberOfItemsInComboBox, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.comboBox_objectValueForItemAtIndex != nil {
-        comboBox_objectValueForItemAtIndex :: proc "c" (self: ^AK.ComboBoxDataSource, _: SEL, comboBox: ^AK.ComboBox, index: NS.Integer) -> id {
+        comboBox_objectValueForItemAtIndex :: proc "c" (self: ^NS.ComboBoxDataSource, _: SEL, comboBox: ^NS.ComboBox, index: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("comboBox:objectValueForItemAtIndex:"), auto_cast comboBox_objectValueForItemAtIndex, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.comboBox_indexOfItemWithStringValue != nil {
-        comboBox_indexOfItemWithStringValue :: proc "c" (self: ^AK.ComboBoxDataSource, _: SEL, comboBox: ^AK.ComboBox, string: ^NS.String) -> NS.UInteger {
+        comboBox_indexOfItemWithStringValue :: proc "c" (self: ^NS.ComboBoxDataSource, _: SEL, comboBox: ^NS.ComboBox, string: ^NS.String) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("comboBox:indexOfItemWithStringValue:"), auto_cast comboBox_indexOfItemWithStringValue, "L@:@@") do panic("Failed to register objC method.")
     }
     if vt.comboBox_completedString != nil {
-        comboBox_completedString :: proc "c" (self: ^AK.ComboBoxDataSource, _: SEL, comboBox: ^AK.ComboBox, string: ^NS.String) -> ^NS.String {
+        comboBox_completedString :: proc "c" (self: ^NS.ComboBoxDataSource, _: SEL, comboBox: ^NS.ComboBox, string: ^NS.String) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

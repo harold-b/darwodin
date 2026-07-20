@@ -10,18 +10,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLMaterial
-///
 @(objc_class="MDLMaterial", objc_superclass=NS.Object)
 Material :: struct { using _: NS.Object, 
     using _: Named,
     using _: NS.FastEnumeration,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Material, objc_selector="initWithName:scatteringFunction:", objc_name="initWithName")
     Material_initWithName :: proc(self: ^Material, name: ^NS.String, scatteringFunction: ^ScatteringFunction) -> instancetype ---
@@ -80,3 +74,6 @@ foreign lib {
     @(objc_type=Material, objc_selector="setMaterialFace:", objc_name="setMaterialFace")
     Material_setMaterialFace :: proc(self: ^Material, materialFace: MaterialFace) ---
 }
+
+
+

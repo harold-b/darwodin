@@ -42,10 +42,10 @@ foreign lib {
     Player_isInvitable :: proc(self: ^Player) -> bool ---
 
     @(objc_type=Player, objc_selector="loadPhotoForSize:withCompletionHandler:", objc_name="loadPhotoForSize")
-    Player_loadPhotoForSize :: proc(self: ^Player, size: PhotoSize, completionHandler: ^Objc_Block(proc "c" (photo: ^UI.Image, error: ^NS.Error))) ---
+    Player_loadPhotoForSize :: proc(self: ^Player, size: PhotoSize, completionHandler: ^Objc_Block(proc "c" ( photo: ^UI.Image, error: ^NS.Error ))) ---
 
     @(objc_type=Player, objc_selector="loadPlayersForIdentifiers:withCompletionHandler:", objc_name="loadPlayersForIdentifiers", objc_is_class_method=true)
-    Player_loadPlayersForIdentifiers :: proc(identifiers: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (players: ^NS.Array, error: ^NS.Error))) ---
+    Player_loadPlayersForIdentifiers :: proc(identifiers: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( players: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=Player, objc_selector="isFriend", objc_name="isFriend")
     Player_isFriend :: proc(self: ^Player) -> bool ---

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVSampleBufferRequest
-///
 @(objc_class="AVSampleBufferRequest", objc_superclass=NS.Object)
 SampleBufferRequest :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SampleBufferRequest, objc_selector="init", objc_name="init")
     SampleBufferRequest_init :: proc(self: ^SampleBufferRequest) -> instancetype ---
@@ -70,3 +64,6 @@ foreign lib {
     @(objc_type=SampleBufferRequest, objc_selector="setOverrideTime:", objc_name="setOverrideTime")
     SampleBufferRequest_setOverrideTime :: proc(self: ^SampleBufferRequest, overrideTime: CM.Time) ---
 }
+
+
+

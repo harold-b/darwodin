@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSSortDescriptor
-///
 @(objc_class="NSSortDescriptor", objc_superclass=Object)
 SortDescriptor :: struct { using _: Object, 
     using _: SecureCoding,
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SortDescriptor, objc_selector="sortDescriptorWithKey:ascending:", objc_name="sortDescriptorWithKey_ascending", objc_is_class_method=true)
     SortDescriptor_sortDescriptorWithKey_ascending :: proc(key: ^String, ascending: bool) -> instancetype ---
@@ -64,6 +58,8 @@ foreign lib {
     @(objc_type=SortDescriptor, objc_selector="reversedSortDescriptor", objc_name="reversedSortDescriptor")
     SortDescriptor_reversedSortDescriptor :: proc(self: ^SortDescriptor) -> id ---
 }
+
+
 
 @(objc_type=SortDescriptor, objc_name="sortDescriptorWithKey")
 SortDescriptor_sortDescriptorWithKey :: proc {

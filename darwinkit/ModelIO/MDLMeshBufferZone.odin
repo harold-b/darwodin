@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLMeshBufferZone
-///
 @(objc_class="MDLMeshBufferZone")
 MeshBufferZone :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MeshBufferZone, objc_selector="capacity", objc_name="capacity")
     MeshBufferZone_capacity :: proc(self: ^MeshBufferZone) -> NS.UInteger ---
@@ -28,3 +22,6 @@ foreign lib {
     @(objc_type=MeshBufferZone, objc_selector="allocator", objc_name="allocator")
     MeshBufferZone_allocator :: proc(self: ^MeshBufferZone) -> ^MeshBufferAllocator ---
 }
+
+
+

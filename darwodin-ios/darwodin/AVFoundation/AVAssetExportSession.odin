@@ -85,19 +85,19 @@ foreign lib {
     AssetExportSession_exportPresetsCompatibleWithAsset :: proc(asset: ^Asset) -> ^NS.Array ---
 
     @(objc_type=AssetExportSession, objc_selector="determineCompatibilityOfExportPreset:withAsset:outputFileType:completionHandler:", objc_name="determineCompatibilityOfExportPreset", objc_is_class_method=true)
-    AssetExportSession_determineCompatibilityOfExportPreset :: proc(presetName: ^NS.String, asset: ^Asset, outputFileType: ^NS.String, handler: ^Objc_Block(proc "c" (compatible: bool))) ---
+    AssetExportSession_determineCompatibilityOfExportPreset :: proc(presetName: ^NS.String, asset: ^Asset, outputFileType: ^NS.String, handler: ^Objc_Block(proc "c" ( compatible: bool ))) ---
 
     @(objc_type=AssetExportSession, objc_selector="determineCompatibleFileTypesWithCompletionHandler:", objc_name="determineCompatibleFileTypesWithCompletionHandler")
-    AssetExportSession_determineCompatibleFileTypesWithCompletionHandler :: proc(self: ^AssetExportSession, handler: ^Objc_Block(proc "c" (compatibleFileTypes: ^NS.Array))) ---
+    AssetExportSession_determineCompatibleFileTypesWithCompletionHandler :: proc(self: ^AssetExportSession, handler: ^Objc_Block(proc "c" ( compatibleFileTypes: ^NS.Array ))) ---
 
     @(objc_type=AssetExportSession, objc_selector="supportedFileTypes", objc_name="supportedFileTypes")
     AssetExportSession_supportedFileTypes :: proc(self: ^AssetExportSession) -> ^NS.Array ---
 
     @(objc_type=AssetExportSession, objc_selector="estimateMaximumDurationWithCompletionHandler:", objc_name="estimateMaximumDurationWithCompletionHandler")
-    AssetExportSession_estimateMaximumDurationWithCompletionHandler :: proc(self: ^AssetExportSession, handler: ^Objc_Block(proc "c" (estimatedMaximumDuration: CM.Time, error: ^NS.Error))) ---
+    AssetExportSession_estimateMaximumDurationWithCompletionHandler :: proc(self: ^AssetExportSession, handler: ^Objc_Block(proc "c" ( estimatedMaximumDuration: CM.Time, error: ^NS.Error ))) ---
 
     @(objc_type=AssetExportSession, objc_selector="estimateOutputFileLengthWithCompletionHandler:", objc_name="estimateOutputFileLengthWithCompletionHandler")
-    AssetExportSession_estimateOutputFileLengthWithCompletionHandler :: proc(self: ^AssetExportSession, handler: ^Objc_Block(proc "c" (estimatedOutputFileLength: cffi.int64_t, error: ^NS.Error))) ---
+    AssetExportSession_estimateOutputFileLengthWithCompletionHandler :: proc(self: ^AssetExportSession, handler: ^Objc_Block(proc "c" ( estimatedOutputFileLength: cffi.int64_t, error: ^NS.Error ))) ---
 
     @(objc_type=AssetExportSession, objc_selector="timeRange", objc_name="timeRange")
     AssetExportSession_timeRange :: proc(self: ^AssetExportSession) -> CM.TimeRange ---

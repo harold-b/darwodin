@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureSpatialAudioMetadataSampleGenerator
-///
 @(objc_class="AVCaptureSpatialAudioMetadataSampleGenerator", objc_superclass=NS.Object)
 CaptureSpatialAudioMetadataSampleGenerator :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSpatialAudioMetadataSampleGenerator, objc_selector="analyzeAudioSample:", objc_name="analyzeAudioSample")
     CaptureSpatialAudioMetadataSampleGenerator_analyzeAudioSample :: proc(self: ^CaptureSpatialAudioMetadataSampleGenerator, sbuf: CM.SampleBufferRef) -> CF.OSStatus ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=CaptureSpatialAudioMetadataSampleGenerator, objc_selector="timedMetadataSampleBufferFormatDescription", objc_name="timedMetadataSampleBufferFormatDescription")
     CaptureSpatialAudioMetadataSampleGenerator_timedMetadataSampleBufferFormatDescription :: proc(self: ^CaptureSpatialAudioMetadataSampleGenerator) -> CM.FormatDescriptionRef ---
 }
+
+
+

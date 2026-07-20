@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCameraCalibrationData
-///
 @(objc_class="AVCameraCalibrationData", objc_superclass=NS.Object)
 CameraCalibrationData :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CameraCalibrationData, objc_selector="init", objc_name="init")
     CameraCalibrationData_init :: proc(self: ^CameraCalibrationData) -> instancetype ---
@@ -49,3 +43,6 @@ foreign lib {
     @(objc_type=CameraCalibrationData, objc_selector="lensDistortionCenter", objc_name="lensDistortionCenter")
     CameraCalibrationData_lensDistortionCenter :: proc(self: ^CameraCalibrationData) -> CG.Point ---
 }
+
+
+

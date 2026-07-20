@@ -7,24 +7,18 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKLeaderboardSet
-///
 @(objc_class="GKLeaderboardSet", objc_superclass=NS.Object)
 LeaderboardSet :: struct { using _: NS.Object, 
     using _: NS.Coding,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LeaderboardSet, objc_selector="loadLeaderboardSetsWithCompletionHandler:", objc_name="loadLeaderboardSetsWithCompletionHandler", objc_is_class_method=true)
-    LeaderboardSet_loadLeaderboardSetsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (leaderboardSets: ^NS.Array, error: ^NS.Error))) ---
+    LeaderboardSet_loadLeaderboardSetsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( leaderboardSets: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=LeaderboardSet, objc_selector="loadLeaderboardsWithHandler:", objc_name="loadLeaderboardsWithHandler")
-    LeaderboardSet_loadLeaderboardsWithHandler :: proc(self: ^LeaderboardSet, handler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) ---
+    LeaderboardSet_loadLeaderboardsWithHandler :: proc(self: ^LeaderboardSet, handler: ^Objc_Block(proc "c" ( leaderboards: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=LeaderboardSet, objc_selector="title", objc_name="title")
     LeaderboardSet_title :: proc(self: ^LeaderboardSet) -> ^NS.String ---
@@ -39,8 +33,16 @@ foreign lib {
     LeaderboardSet_setIdentifier :: proc(self: ^LeaderboardSet, identifier: ^NS.String) ---
 
     @(objc_type=LeaderboardSet, objc_selector="loadLeaderboardsWithCompletionHandler:", objc_name="loadLeaderboardsWithCompletionHandler")
-    LeaderboardSet_loadLeaderboardsWithCompletionHandler :: proc(self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" (leaderboards: ^NS.Array, error: ^NS.Error))) ---
+    LeaderboardSet_loadLeaderboardsWithCompletionHandler :: proc(self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" ( leaderboards: ^NS.Array, error: ^NS.Error ))) ---
 
-    @(objc_type=LeaderboardSet, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    LeaderboardSet_loadImageWithCompletionHandler :: proc(self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" (image: ^AKImage, error: ^NS.Error))) ---
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(objc_type=LeaderboardSet, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
+        LeaderboardSet_loadImageWithCompletionHandler :: proc(self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" ( image: ^AK.Image, error: ^NS.Error ))) ---
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=LeaderboardSet, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
+        LeaderboardSet_loadImageWithCompletionHandler :: proc(self: ^LeaderboardSet, completionHandler: ^Objc_Block(proc "c" ( image: ^UI.Image, error: ^NS.Error ))) ---
+    }
 }
+
+
+

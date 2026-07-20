@@ -20,17 +20,17 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithRect: proc(self: ^AK.TrackingArea, rect: NS.Rect, options: AK.TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> instancetype,
-    rect: proc(self: ^AK.TrackingArea) -> NS.Rect,
-    options: proc(self: ^AK.TrackingArea) -> AK.TrackingAreaOptions,
-    owner: proc(self: ^AK.TrackingArea) -> id,
-    userInfo: proc(self: ^AK.TrackingArea) -> ^NS.Dictionary,
+    initWithRect: proc(self: ^NS.TrackingArea, rect: NS.Rect, options: NS.TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> instancetype,
+    rect: proc(self: ^NS.TrackingArea) -> NS.Rect,
+    options: proc(self: ^NS.TrackingArea) -> NS.TrackingAreaOptions,
+    owner: proc(self: ^NS.TrackingArea) -> id,
+    userInfo: proc(self: ^NS.TrackingArea) -> ^NS.Dictionary,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -41,7 +41,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithRect != nil {
-        initWithRect :: proc "c" (self: ^AK.TrackingArea, _: SEL, rect: NS.Rect, options: AK.TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> instancetype {
+        initWithRect :: proc "c" (self: ^NS.TrackingArea, _: SEL, rect: NS.Rect, options: NS.TrackingAreaOptions, owner: id, userInfo: ^NS.Dictionary) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithRect:options:owner:userInfo:"), auto_cast initWithRect, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}L@^void") do panic("Failed to register objC method.")
     }
     if vt.rect != nil {
-        rect :: proc "c" (self: ^AK.TrackingArea, _: SEL) -> NS.Rect {
+        rect :: proc "c" (self: ^NS.TrackingArea, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -61,7 +61,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rect"), auto_cast rect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.options != nil {
-        options :: proc "c" (self: ^AK.TrackingArea, _: SEL) -> AK.TrackingAreaOptions {
+        options :: proc "c" (self: ^NS.TrackingArea, _: SEL) -> NS.TrackingAreaOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -71,7 +71,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("options"), auto_cast options, "L@:") do panic("Failed to register objC method.")
     }
     if vt.owner != nil {
-        owner :: proc "c" (self: ^AK.TrackingArea, _: SEL) -> id {
+        owner :: proc "c" (self: ^NS.TrackingArea, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -81,7 +81,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("owner"), auto_cast owner, "@@:") do panic("Failed to register objC method.")
     }
     if vt.userInfo != nil {
-        userInfo :: proc "c" (self: ^AK.TrackingArea, _: SEL) -> ^NS.Dictionary {
+        userInfo :: proc "c" (self: ^NS.TrackingArea, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

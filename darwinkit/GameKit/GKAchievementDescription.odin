@@ -7,21 +7,15 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKAchievementDescription
-///
 @(objc_class="GKAchievementDescription", objc_superclass=NS.Object)
 AchievementDescription :: struct { using _: NS.Object, 
     using _: NS.Coding,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AchievementDescription, objc_selector="loadAchievementDescriptionsWithCompletionHandler:", objc_name="loadAchievementDescriptionsWithCompletionHandler", objc_is_class_method=true)
-    AchievementDescription_loadAchievementDescriptionsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (descriptions: ^NS.Array, error: ^NS.Error))) ---
+    AchievementDescription_loadAchievementDescriptionsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( descriptions: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=AchievementDescription, objc_selector="identifier", objc_name="identifier")
     AchievementDescription_identifier :: proc(self: ^AchievementDescription) -> ^NS.String ---
@@ -59,15 +53,32 @@ foreign lib {
     @(objc_type=AchievementDescription, objc_selector="activityProperties", objc_name="activityProperties")
     AchievementDescription_activityProperties :: proc(self: ^AchievementDescription) -> ^NS.Dictionary ---
 
-    @(objc_type=AchievementDescription, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    AchievementDescription_loadImageWithCompletionHandler :: proc(self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" (image: ^AKImage, error: ^NS.Error))) ---
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(objc_type=AchievementDescription, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
+        AchievementDescription_loadImageWithCompletionHandler :: proc(self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" ( image: ^AK.Image, error: ^NS.Error ))) ---
 
-    @(objc_type=AchievementDescription, objc_selector="incompleteAchievementImage", objc_name="incompleteAchievementImage", objc_is_class_method=true)
-    AchievementDescription_incompleteAchievementImage :: proc() -> ^AKImage ---
+        @(objc_type=AchievementDescription, objc_selector="incompleteAchievementImage", objc_name="incompleteAchievementImage", objc_is_class_method=true)
+        AchievementDescription_incompleteAchievementImage :: proc() -> ^AK.Image ---
 
-    @(objc_type=AchievementDescription, objc_selector="placeholderCompletedAchievementImage", objc_name="placeholderCompletedAchievementImage", objc_is_class_method=true)
-    AchievementDescription_placeholderCompletedAchievementImage :: proc() -> ^AKImage ---
+        @(objc_type=AchievementDescription, objc_selector="placeholderCompletedAchievementImage", objc_name="placeholderCompletedAchievementImage", objc_is_class_method=true)
+        AchievementDescription_placeholderCompletedAchievementImage :: proc() -> ^AK.Image ---
 
-    @(objc_type=AchievementDescription, objc_selector="image", objc_name="image")
-    AchievementDescription_image :: proc(self: ^AchievementDescription) -> ^AKImage ---
+        @(objc_type=AchievementDescription, objc_selector="image", objc_name="image")
+        AchievementDescription_image :: proc(self: ^AchievementDescription) -> ^AK.Image ---
+    } else when ODIN_PLATFORM_SUBTARGET_IOS {
+        @(objc_type=AchievementDescription, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
+        AchievementDescription_loadImageWithCompletionHandler :: proc(self: ^AchievementDescription, completionHandler: ^Objc_Block(proc "c" ( image: ^UI.Image, error: ^NS.Error ))) ---
+
+        @(objc_type=AchievementDescription, objc_selector="incompleteAchievementImage", objc_name="incompleteAchievementImage", objc_is_class_method=true)
+        AchievementDescription_incompleteAchievementImage :: proc() -> ^UI.Image ---
+
+        @(objc_type=AchievementDescription, objc_selector="placeholderCompletedAchievementImage", objc_name="placeholderCompletedAchievementImage", objc_is_class_method=true)
+        AchievementDescription_placeholderCompletedAchievementImage :: proc() -> ^UI.Image ---
+
+        @(objc_type=AchievementDescription, objc_selector="image", objc_name="image")
+        AchievementDescription_image :: proc(self: ^AchievementDescription) -> ^UI.Image ---
+    }
 }
+
+
+

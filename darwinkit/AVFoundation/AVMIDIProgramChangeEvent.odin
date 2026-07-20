@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMIDIProgramChangeEvent
-///
 @(objc_class="AVMIDIProgramChangeEvent", objc_superclass=MIDIChannelEvent)
 MIDIProgramChangeEvent :: struct { using _: MIDIChannelEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDIProgramChangeEvent, objc_selector="initWithChannel:programNumber:", objc_name="initWithChannel")
     MIDIProgramChangeEvent_initWithChannel :: proc(self: ^MIDIProgramChangeEvent, channel: CF.UInt32, programNumber: CF.UInt32) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=MIDIProgramChangeEvent, objc_selector="setProgramNumber:", objc_name="setProgramNumber")
     MIDIProgramChangeEvent_setProgramNumber :: proc(self: ^MIDIProgramChangeEvent, programNumber: CF.UInt32) ---
 }
+
+
+

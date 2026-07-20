@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSConditionLock
-///
 @(objc_class="NSConditionLock", objc_superclass=Object)
 ConditionLock :: struct { using _: Object, 
     using _: Locking,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ConditionLock, objc_selector="initWithCondition:", objc_name="initWithCondition")
     ConditionLock_initWithCondition :: proc(self: ^ConditionLock, condition: Integer) -> instancetype ---
@@ -51,6 +45,8 @@ foreign lib {
     @(objc_type=ConditionLock, objc_selector="setName:", objc_name="setName")
     ConditionLock_setName :: proc(self: ^ConditionLock, name: ^String) ---
 }
+
+
 
 @(objc_type=ConditionLock, objc_name="lockWhenCondition")
 ConditionLock_lockWhenCondition :: proc {

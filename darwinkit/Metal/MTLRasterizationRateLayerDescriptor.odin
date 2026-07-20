@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLRasterizationRateLayerDescriptor
-///
 @(objc_class="MTLRasterizationRateLayerDescriptor", objc_superclass=NS.Object)
 RasterizationRateLayerDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RasterizationRateLayerDescriptor, objc_selector="init", objc_name="init")
     RasterizationRateLayerDescriptor_init :: proc(self: ^RasterizationRateLayerDescriptor) -> instancetype ---
@@ -53,6 +47,8 @@ foreign lib {
     @(objc_type=RasterizationRateLayerDescriptor, objc_selector="setSampleCount:", objc_name="setSampleCount")
     RasterizationRateLayerDescriptor_setSampleCount :: proc(self: ^RasterizationRateLayerDescriptor, sampleCount: Size) ---
 }
+
+
 
 @(objc_type=RasterizationRateLayerDescriptor, objc_name="initWithSampleCount")
 RasterizationRateLayerDescriptor_initWithSampleCount :: proc {

@@ -31,5 +31,5 @@ foreign lib {
     AssetPlaybackAssistant_assetPlaybackAssistantWithAsset :: proc(asset: ^Asset) -> instancetype ---
 
     @(objc_type=AssetPlaybackAssistant, objc_selector="loadPlaybackConfigurationOptionsWithCompletionHandler:", objc_name="loadPlaybackConfigurationOptionsWithCompletionHandler")
-    AssetPlaybackAssistant_loadPlaybackConfigurationOptionsWithCompletionHandler :: proc(self: ^AssetPlaybackAssistant, completionHandler: ^Objc_Block(proc "c" (playbackConfigurationOptions: ^NS.Array))) ---
+    AssetPlaybackAssistant_loadPlaybackConfigurationOptionsWithCompletionHandler :: proc(self: ^AssetPlaybackAssistant, completionHandler: ^Objc_Block(proc "c" ( playbackConfigurationOptions: ^NS.Array ))) ---
 }

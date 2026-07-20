@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetadataGroup
-///
 @(objc_class="AVMetadataGroup", objc_superclass=NS.Object)
 MetadataGroup :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetadataGroup, objc_selector="items", objc_name="items")
     MetadataGroup_items :: proc(self: ^MetadataGroup) -> ^NS.Array ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=MetadataGroup, objc_selector="uniqueID", objc_name="uniqueID")
     MetadataGroup_uniqueID :: proc(self: ^MetadataGroup) -> ^NS.String ---
 }
+
+
+

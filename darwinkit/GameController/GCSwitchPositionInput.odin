@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCSwitchPositionInput
-///
 @(objc_class="GCSwitchPositionInput")
 SwitchPositionInput :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SwitchPositionInput, objc_selector="positionDidChangeHandler", objc_name="positionDidChangeHandler")
     SwitchPositionInput_positionDidChangeHandler :: proc(self: ^SwitchPositionInput) -> ^Objc_Block(proc "c" ()) ---
@@ -47,3 +41,6 @@ foreign lib {
     @(objc_type=SwitchPositionInput, objc_selector="sources", objc_name="sources")
     SwitchPositionInput_sources :: proc(self: ^SwitchPositionInput) -> ^NS.Set ---
 }
+
+
+

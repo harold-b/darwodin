@@ -27,10 +27,10 @@ foreign lib {
     Match_disconnect :: proc(self: ^Match) ---
 
     @(objc_type=Match, objc_selector="chooseBestHostingPlayerWithCompletionHandler:", objc_name="chooseBestHostingPlayerWithCompletionHandler")
-    Match_chooseBestHostingPlayerWithCompletionHandler :: proc(self: ^Match, completionHandler: ^Objc_Block(proc "c" (player: ^Player))) ---
+    Match_chooseBestHostingPlayerWithCompletionHandler :: proc(self: ^Match, completionHandler: ^Objc_Block(proc "c" ( player: ^Player ))) ---
 
     @(objc_type=Match, objc_selector="rematchWithCompletionHandler:", objc_name="rematchWithCompletionHandler")
-    Match_rematchWithCompletionHandler :: proc(self: ^Match, completionHandler: ^Objc_Block(proc "c" (match: ^Match, error: ^NS.Error))) ---
+    Match_rematchWithCompletionHandler :: proc(self: ^Match, completionHandler: ^Objc_Block(proc "c" ( match: ^Match, error: ^NS.Error ))) ---
 
     @(objc_type=Match, objc_selector="voiceChatWithName:", objc_name="voiceChatWithName")
     Match_voiceChatWithName :: proc(self: ^Match, name: ^NS.String) -> ^VoiceChat ---
@@ -54,7 +54,7 @@ foreign lib {
     Match_playerProperties :: proc(self: ^Match) -> ^NS.Dictionary ---
 
     @(objc_type=Match, objc_selector="chooseBestHostPlayerWithCompletionHandler:", objc_name="chooseBestHostPlayerWithCompletionHandler")
-    Match_chooseBestHostPlayerWithCompletionHandler :: proc(self: ^Match, completionHandler: ^Objc_Block(proc "c" (playerID: ^NS.String))) ---
+    Match_chooseBestHostPlayerWithCompletionHandler :: proc(self: ^Match, completionHandler: ^Objc_Block(proc "c" ( playerID: ^NS.String ))) ---
 
     @(objc_type=Match, objc_selector="sendData:toPlayers:withDataMode:error:", objc_name="sendData_toPlayers_withDataMode_error")
     Match_sendData_toPlayers_withDataMode_error :: proc(self: ^Match, data: ^NS.Data, playerIDs: ^NS.Array, mode: MatchSendDataMode, error: ^^NS.Error) -> bool ---

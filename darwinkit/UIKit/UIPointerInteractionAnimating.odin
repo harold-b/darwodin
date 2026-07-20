@@ -27,5 +27,5 @@ foreign lib {
     PointerInteractionAnimating_addAnimations :: proc(self: ^PointerInteractionAnimating, animations: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=PointerInteractionAnimating, objc_selector="addCompletion:", objc_name="addCompletion")
-    PointerInteractionAnimating_addCompletion :: proc(self: ^PointerInteractionAnimating, completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    PointerInteractionAnimating_addCompletion :: proc(self: ^PointerInteractionAnimating, completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 }

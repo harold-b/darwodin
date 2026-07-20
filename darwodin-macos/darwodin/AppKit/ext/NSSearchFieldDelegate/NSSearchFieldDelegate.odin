@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    searchFieldDidStartSearching: proc(self: ^AK.SearchFieldDelegate, sender: ^AK.SearchField),
-    searchFieldDidEndSearching: proc(self: ^AK.SearchFieldDelegate, sender: ^AK.SearchField),
+    searchFieldDidStartSearching: proc(self: ^NS.SearchFieldDelegate, sender: ^NS.SearchField),
+    searchFieldDidEndSearching: proc(self: ^NS.SearchFieldDelegate, sender: ^NS.SearchField),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.searchFieldDidStartSearching != nil {
-        searchFieldDidStartSearching :: proc "c" (self: ^AK.SearchFieldDelegate, _: SEL, sender: ^AK.SearchField) {
+        searchFieldDidStartSearching :: proc "c" (self: ^NS.SearchFieldDelegate, _: SEL, sender: ^NS.SearchField) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchFieldDidStartSearching:"), auto_cast searchFieldDidStartSearching, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.searchFieldDidEndSearching != nil {
-        searchFieldDidEndSearching :: proc "c" (self: ^AK.SearchFieldDelegate, _: SEL, sender: ^AK.SearchField) {
+        searchFieldDidEndSearching :: proc "c" (self: ^NS.SearchFieldDelegate, _: SEL, sender: ^NS.SearchField) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

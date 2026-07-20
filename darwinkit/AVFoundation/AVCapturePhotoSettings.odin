@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCapturePhotoSettings
-///
 @(objc_class="AVCapturePhotoSettings", objc_superclass=NS.Object)
 CapturePhotoSettings :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhotoSettings, objc_selector="photoSettings", objc_name="photoSettings", objc_is_class_method=true)
     CapturePhotoSettings_photoSettings :: proc() -> instancetype ---
@@ -246,6 +240,8 @@ foreign lib {
     @(objc_type=CapturePhotoSettings, objc_selector="setShutterSoundSuppressionEnabled:", objc_name="setShutterSoundSuppressionEnabled")
     CapturePhotoSettings_setShutterSoundSuppressionEnabled :: proc(self: ^CapturePhotoSettings, shutterSoundSuppressionEnabled: bool) ---
 }
+
+
 
 @(objc_type=CapturePhotoSettings, objc_name="photoSettingsWithRawPixelFormatType")
 CapturePhotoSettings_photoSettingsWithRawPixelFormatType :: proc {

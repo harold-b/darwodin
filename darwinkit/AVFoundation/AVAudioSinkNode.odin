@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioSinkNode
-///
 @(objc_class="AVAudioSinkNode", objc_superclass=AudioNode)
 AudioSinkNode :: struct { using _: AudioNode, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioSinkNode, objc_selector="init", objc_name="init")
     AudioSinkNode_init :: proc(self: ^AudioSinkNode) -> instancetype ---
@@ -28,3 +22,6 @@ foreign lib {
     @(objc_type=AudioSinkNode, objc_selector="initWithReceiverBlock:", objc_name="initWithReceiverBlock")
     AudioSinkNode_initWithReceiverBlock :: proc(self: ^AudioSinkNode, block: AudioSinkNodeReceiverBlock) -> instancetype ---
 }
+
+
+

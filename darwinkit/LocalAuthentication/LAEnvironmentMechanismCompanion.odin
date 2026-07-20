@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import NS "../Foundation"
 import Sec "../Security"
 
-
-
-///
-/// LAEnvironmentMechanismCompanion
-///
 @(objc_class="LAEnvironmentMechanismCompanion", objc_superclass=EnvironmentMechanism)
 EnvironmentMechanismCompanion :: struct { using _: EnvironmentMechanism, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=EnvironmentMechanismCompanion, objc_selector="type", objc_name="type")
     EnvironmentMechanismCompanion_type :: proc(self: ^EnvironmentMechanismCompanion) -> CompanionType ---
@@ -24,3 +18,6 @@ foreign lib {
     @(objc_type=EnvironmentMechanismCompanion, objc_selector="stateHash", objc_name="stateHash")
     EnvironmentMechanismCompanion_stateHash :: proc(self: ^EnvironmentMechanismCompanion) -> ^NS.Data ---
 }
+
+
+

@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLStereoscopicCamera
-///
 @(objc_class="MDLStereoscopicCamera", objc_superclass=Camera)
 StereoscopicCamera :: struct { using _: Camera, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=StereoscopicCamera, objc_selector="interPupillaryDistance", objc_name="interPupillaryDistance")
     StereoscopicCamera_interPupillaryDistance :: proc(self: ^StereoscopicCamera) -> cffi.float ---
@@ -56,3 +50,6 @@ foreign lib {
     @(objc_type=StereoscopicCamera, objc_selector="rightProjectionMatrix", objc_name="rightProjectionMatrix")
     StereoscopicCamera_rightProjectionMatrix :: proc(self: ^StereoscopicCamera) -> matrix[4,4]f32 ---
 }
+
+
+

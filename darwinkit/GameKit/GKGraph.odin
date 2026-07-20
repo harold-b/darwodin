@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKGraph
-///
 @(objc_class="GKGraph", objc_superclass=NS.Object)
 Graph :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Graph, objc_selector="graphWithNodes:", objc_name="graphWithNodes", objc_is_class_method=true)
     Graph_graphWithNodes :: proc(nodes: ^NS.Array) -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=Graph, objc_selector="nodes", objc_name="nodes")
     Graph_nodes :: proc(self: ^Graph) -> ^NS.Array ---
 }
+
+
+

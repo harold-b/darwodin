@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLScatteringFunction
-///
 @(objc_class="MDLScatteringFunction", objc_superclass=NS.Object)
 ScatteringFunction :: struct { using _: NS.Object, 
     using _: Named,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ScatteringFunction, objc_selector="name", objc_name="name")
     ScatteringFunction_name :: proc(self: ^ScatteringFunction) -> ^NS.String ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=ScatteringFunction, objc_selector="ambientOcclusionScale", objc_name="ambientOcclusionScale")
     ScatteringFunction_ambientOcclusionScale :: proc(self: ^ScatteringFunction) -> ^MaterialProperty ---
 }
+
+
+

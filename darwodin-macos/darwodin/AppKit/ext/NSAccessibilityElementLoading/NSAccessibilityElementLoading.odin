@@ -20,11 +20,11 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityElementWithToken: proc(self: ^AK.AccessibilityElementLoading, token: ^id) -> ^AK.AccessibilityElementProtocol,
-    accessibilityRangeInTargetElementWithToken: proc(self: ^AK.AccessibilityElementLoading, token: ^id) -> NS._NSRange,
+    accessibilityElementWithToken: proc(self: ^NS.AccessibilityElementLoading, token: ^id) -> ^NS.AccessibilityElementProtocol,
+    accessibilityRangeInTargetElementWithToken: proc(self: ^NS.AccessibilityElementLoading, token: ^id) -> NS._NSRange,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -32,7 +32,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityElementWithToken != nil {
-        accessibilityElementWithToken :: proc "c" (self: ^AK.AccessibilityElementLoading, _: SEL, token: ^id) -> ^AK.AccessibilityElementProtocol {
+        accessibilityElementWithToken :: proc "c" (self: ^NS.AccessibilityElementLoading, _: SEL, token: ^id) -> ^NS.AccessibilityElementProtocol {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -42,7 +42,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityElementWithToken:"), auto_cast accessibilityElementWithToken, "@@:^void") do panic("Failed to register objC method.")
     }
     if vt.accessibilityRangeInTargetElementWithToken != nil {
-        accessibilityRangeInTargetElementWithToken :: proc "c" (self: ^AK.AccessibilityElementLoading, _: SEL, token: ^id) -> NS._NSRange {
+        accessibilityRangeInTargetElementWithToken :: proc "c" (self: ^NS.AccessibilityElementLoading, _: SEL, token: ^id) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

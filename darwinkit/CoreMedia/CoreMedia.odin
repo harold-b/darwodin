@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_CoreMedia
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -17,8 +19,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:CoreMedia.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:CoreMedia.framework",
+    }
+}
+
+
+// +user-text-begin
 
 NCMDeviceProfileInfo :: struct {}
 CVImageBufferRef     :: struct {}
@@ -26,650 +40,1144 @@ CVPixelBufferPoolRef :: struct {}
 CVPixelBufferRef     :: struct {}
 
 
-ASK                             :: 22
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    BITMAPCALLBACKPROCPTR_DEFINED   :: 1
-}
-TIMEBASE_USE_SOURCE_TERMINOLOGY :: 1
-
-kPersistentTrackID_Invalid                                      :: 0
-kFormatDescriptionError_InvalidParameter                        :: -12710
-kFormatDescriptionError_AllocationFailed                        :: -12711
-kFormatDescriptionError_ValueNotAvailable                       :: -12718
-kMediaType_Video                                                :: 1986618469
-kMediaType_Audio                                                :: 1936684398
-kMediaType_Muxed                                                :: 1836415096
-kMediaType_Text                                                 :: 1952807028
-kMediaType_ClosedCaption                                        :: 1668047728
-kMediaType_Subtitle                                             :: 1935832172
-kMediaType_TimeCode                                             :: 1953325924
-kMediaType_Metadata                                             :: 1835365473
-kMediaType_TaggedBufferGroup                                    :: 1952606066
-kMediaType_AuxiliaryPicture                                     :: 1635088502
-kAudioCodecType_AAC_LCProtected                                 :: 1885430115
-kAudioCodecType_AAC_AudibleProtected                            :: 1633771875
-kAudioFormatDescriptionMask_StreamBasicDescription              :: 1
-kAudioFormatDescriptionMask_MagicCookie                         :: 2
-kAudioFormatDescriptionMask_ChannelLayout                       :: 4
-kAudioFormatDescriptionMask_Extensions                          :: 8
-kAudioFormatDescriptionMask_All                                 :: 15
-kPixelFormat_32ARGB                                             :: 32
-kPixelFormat_32BGRA                                             :: 1111970369
-kPixelFormat_24RGB                                              :: 24
-kPixelFormat_16BE555                                            :: 16
-kPixelFormat_16BE565                                            :: 1110783541
-kPixelFormat_16LE555                                            :: 1278555445
-kPixelFormat_16LE565                                            :: 1278555701
-kPixelFormat_16LE5551                                           :: 892679473
-kPixelFormat_422YpCbCr8                                         :: 846624121
-kPixelFormat_422YpCbCr8_yuvs                                    :: 2037741171
-kPixelFormat_444YpCbCr8                                         :: 1983066168
-kPixelFormat_4444YpCbCrA8                                       :: 1983131704
-kPixelFormat_422YpCbCr16                                        :: 1983000886
-kPixelFormat_422YpCbCr10                                        :: 1983000880
-kPixelFormat_444YpCbCr10                                        :: 1983131952
-kPixelFormat_8IndexedGray_WhiteIsZero                           :: 40
-kVideoCodecType_422YpCbCr8                                      :: 846624121
-kVideoCodecType_Animation                                       :: 1919706400
-kVideoCodecType_Cinepak                                         :: 1668704612
-kVideoCodecType_JPEG                                            :: 1785750887
-kVideoCodecType_JPEG_OpenDML                                    :: 1684890161
-kVideoCodecType_JPEG_XL                                         :: 1786276963
-kVideoCodecType_SorensonVideo                                   :: 1398165809
-kVideoCodecType_SorensonVideo3                                  :: 1398165811
-kVideoCodecType_H263                                            :: 1748121139
-kVideoCodecType_H264                                            :: 1635148593
-kVideoCodecType_HEVC                                            :: 1752589105
-kVideoCodecType_HEVCWithAlpha                                   :: 1836415073
-kVideoCodecType_DolbyVisionHEVC                                 :: 1685481521
-kVideoCodecType_MPEG4Video                                      :: 1836070006
-kVideoCodecType_MPEG2Video                                      :: 1836069494
-kVideoCodecType_MPEG1Video                                      :: 1836069238
-kVideoCodecType_VP9                                             :: 1987063865
-kVideoCodecType_DVCNTSC                                         :: 1685480224
-kVideoCodecType_DVCPAL                                          :: 1685480304
-kVideoCodecType_DVCProPAL                                       :: 1685483632
-kVideoCodecType_DVCPro50NTSC                                    :: 1685468526
-kVideoCodecType_DVCPro50PAL                                     :: 1685468528
-kVideoCodecType_DVCPROHD720p60                                  :: 1685481584
-kVideoCodecType_DVCPROHD720p50                                  :: 1685481585
-kVideoCodecType_DVCPROHD1080i60                                 :: 1685481526
-kVideoCodecType_DVCPROHD1080i50                                 :: 1685481525
-kVideoCodecType_DVCPROHD1080p30                                 :: 1685481523
-kVideoCodecType_DVCPROHD1080p25                                 :: 1685481522
-kVideoCodecType_AppleProRes4444XQ                               :: 1634743416
-kVideoCodecType_AppleProRes4444                                 :: 1634743400
-kVideoCodecType_AppleProRes422HQ                                :: 1634755432
-kVideoCodecType_AppleProRes422                                  :: 1634755438
-kVideoCodecType_AppleProRes422LT                                :: 1634755443
-kVideoCodecType_AppleProRes422Proxy                             :: 1634755439
-kVideoCodecType_AppleProResRAW                                  :: 1634759278
-kVideoCodecType_AppleProResRAWHQ                                :: 1634759272
-kVideoCodecType_DisparityHEVC                                   :: 1684632424
-kVideoCodecType_DepthHEVC                                       :: 1684369512
-kVideoCodecType_AV1                                             :: 1635135537
-kMPEG2VideoProfile_HDV_720p30                                   :: 1751414321
-kMPEG2VideoProfile_HDV_1080i60                                  :: 1751414322
-kMPEG2VideoProfile_HDV_1080i50                                  :: 1751414323
-kMPEG2VideoProfile_HDV_720p24                                   :: 1751414324
-kMPEG2VideoProfile_HDV_720p25                                   :: 1751414325
-kMPEG2VideoProfile_HDV_1080p24                                  :: 1751414326
-kMPEG2VideoProfile_HDV_1080p25                                  :: 1751414327
-kMPEG2VideoProfile_HDV_1080p30                                  :: 1751414328
-kMPEG2VideoProfile_HDV_720p60                                   :: 1751414329
-kMPEG2VideoProfile_HDV_720p50                                   :: 1751414369
-kMPEG2VideoProfile_XDCAM_HD_1080i60_VBR35                       :: 2019849778
-kMPEG2VideoProfile_XDCAM_HD_1080i50_VBR35                       :: 2019849779
-kMPEG2VideoProfile_XDCAM_HD_1080p24_VBR35                       :: 2019849782
-kMPEG2VideoProfile_XDCAM_HD_1080p25_VBR35                       :: 2019849783
-kMPEG2VideoProfile_XDCAM_HD_1080p30_VBR35                       :: 2019849784
-kMPEG2VideoProfile_XDCAM_EX_720p24_VBR35                        :: 2019849780
-kMPEG2VideoProfile_XDCAM_EX_720p25_VBR35                        :: 2019849781
-kMPEG2VideoProfile_XDCAM_EX_720p30_VBR35                        :: 2019849777
-kMPEG2VideoProfile_XDCAM_EX_720p50_VBR35                        :: 2019849825
-kMPEG2VideoProfile_XDCAM_EX_720p60_VBR35                        :: 2019849785
-kMPEG2VideoProfile_XDCAM_EX_1080i60_VBR35                       :: 2019849826
-kMPEG2VideoProfile_XDCAM_EX_1080i50_VBR35                       :: 2019849827
-kMPEG2VideoProfile_XDCAM_EX_1080p24_VBR35                       :: 2019849828
-kMPEG2VideoProfile_XDCAM_EX_1080p25_VBR35                       :: 2019849829
-kMPEG2VideoProfile_XDCAM_EX_1080p30_VBR35                       :: 2019849830
-kMPEG2VideoProfile_XDCAM_HD422_720p50_CBR50                     :: 2019833185
-kMPEG2VideoProfile_XDCAM_HD422_720p60_CBR50                     :: 2019833145
-kMPEG2VideoProfile_XDCAM_HD422_1080i60_CBR50                    :: 2019833186
-kMPEG2VideoProfile_XDCAM_HD422_1080i50_CBR50                    :: 2019833187
-kMPEG2VideoProfile_XDCAM_HD422_1080p24_CBR50                    :: 2019833188
-kMPEG2VideoProfile_XDCAM_HD422_1080p25_CBR50                    :: 2019833189
-kMPEG2VideoProfile_XDCAM_HD422_1080p30_CBR50                    :: 2019833190
-kMPEG2VideoProfile_XDCAM_HD_540p                                :: 2019846244
-kMPEG2VideoProfile_XDCAM_HD422_540p                             :: 2019846194
-kMPEG2VideoProfile_XDCAM_HD422_720p24_CBR50                     :: 2019833140
-kMPEG2VideoProfile_XDCAM_HD422_720p25_CBR50                     :: 2019833141
-kMPEG2VideoProfile_XDCAM_HD422_720p30_CBR50                     :: 2019833137
-kMPEG2VideoProfile_XF                                           :: 2019981873
-kTaggedBufferGroupFormatType_TaggedBufferGroup                  :: 1952606066
-kMuxedStreamType_MPEG1System                                    :: 1836069235
-kMuxedStreamType_MPEG2Transport                                 :: 1836069492
-kMuxedStreamType_MPEG2Program                                   :: 1836069488
-kMuxedStreamType_DV                                             :: 1685463072
-kMuxedStreamType_EmbeddedDeviceScreenRecording                  :: 1769173536
-kClosedCaptionFormatType_CEA608                                 :: 1664495672
-kClosedCaptionFormatType_CEA708                                 :: 1664561208
-kClosedCaptionFormatType_ATSC                                   :: 1635017571
-kTextFormatType_QTText                                          :: 1952807028
-kTextFormatType_3GText                                          :: 1954034535
-kTextDisplayFlag_scrollIn                                       :: 32
-kTextDisplayFlag_scrollOut                                      :: 64
-kTextDisplayFlag_scrollDirectionMask                            :: 384
-kTextDisplayFlag_scrollDirection_bottomToTop                    :: 0
-kTextDisplayFlag_scrollDirection_rightToLeft                    :: 128
-kTextDisplayFlag_scrollDirection_topToBottom                    :: 256
-kTextDisplayFlag_scrollDirection_leftToRight                    :: 384
-kTextDisplayFlag_continuousKaraoke                              :: 2048
-kTextDisplayFlag_writeTextVertically                            :: 131072
-kTextDisplayFlag_fillTextRegion                                 :: 262144
-kTextDisplayFlag_obeySubtitleFormatting                         :: 536870912
-kTextDisplayFlag_forcedSubtitlesPresent                         :: 1073741824
-kTextDisplayFlag_allSubtitlesForced                             :: 2147483648
-kTextJustification_left_top                                     :: 0
-kTextJustification_centered                                     :: 1
-kTextJustification_bottom_right                                 :: -1
-kSubtitleFormatType_3GText                                      :: 1954034535
-kSubtitleFormatType_WebVTT                                      :: 2004251764
-kTimeCodeFormatType_TimeCode32                                  :: 1953325924
-kTimeCodeFormatType_TimeCode64                                  :: 1952658996
-kTimeCodeFormatType_Counter32                                   :: 1668166450
-kTimeCodeFormatType_Counter64                                   :: 1668167220
-kTimeCodeFlag_DropFrame                                         :: 1
-kTimeCodeFlag_24HourMax                                         :: 2
-kTimeCodeFlag_NegTimesOK                                        :: 4
-kMetadataFormatType_ICY                                         :: 1768126752
-kMetadataFormatType_ID3                                         :: 1768174368
-kMetadataFormatType_Boxed                                       :: 1835360888
-kMetadataFormatType_EMSG                                        :: 1701671783
-kAttachmentMode_ShouldNotPropagate                              :: 0
-kAttachmentMode_ShouldPropagate                                 :: 1
-kBlockBufferNoErr                                               :: 0
-kBlockBufferStructureAllocationFailedErr                        :: -12700
-kBlockBufferBlockAllocationFailedErr                            :: -12701
-kBlockBufferBadCustomBlockSourceErr                             :: -12702
-kBlockBufferBadOffsetParameterErr                               :: -12703
-kBlockBufferBadLengthParameterErr                               :: -12704
-kBlockBufferBadPointerParameterErr                              :: -12705
-kBlockBufferEmptyBBufErr                                        :: -12706
-kBlockBufferUnallocatedBlockErr                                 :: -12707
-kBlockBufferInsufficientSpaceErr                                :: -12708
-kBlockBufferAssureMemoryNowFlag                                 :: 1
-kBlockBufferAlwaysCopyDataFlag                                  :: 2
-kBlockBufferDontOptimizeDepthFlag                               :: 4
-kBlockBufferPermitEmptyReferenceFlag                            :: 8
-kBlockBufferCustomBlockSourceVersion                            :: 0
-kFormatDescriptionBridgeError_InvalidParameter                  :: -12712
-kFormatDescriptionBridgeError_AllocationFailed                  :: -12713
-kFormatDescriptionBridgeError_InvalidSerializedSampleDescription:: -12714
-kFormatDescriptionBridgeError_InvalidFormatDescription          :: -12715
-kFormatDescriptionBridgeError_IncompatibleFormatDescription     :: -12716
-kFormatDescriptionBridgeError_UnsupportedSampleDescriptionFlavor:: -12717
-kFormatDescriptionBridgeError_InvalidSlice                      :: -12719
-kBufferQueueError_AllocationFailed                              :: -12760
-kBufferQueueError_RequiredParameterMissing                      :: -12761
-kBufferQueueError_InvalidCMBufferCallbacksStruct                :: -12762
-kBufferQueueError_EnqueueAfterEndOfData                         :: -12763
-kBufferQueueError_QueueIsFull                                   :: -12764
-kBufferQueueError_BadTriggerDuration                            :: -12765
-kBufferQueueError_CannotModifyQueueFromTriggerCallback          :: -12766
-kBufferQueueError_InvalidTriggerCondition                       :: -12767
-kBufferQueueError_InvalidTriggerToken                           :: -12768
-kBufferQueueError_InvalidBuffer                                 :: -12769
-kBufferQueueTrigger_WhenDurationBecomesLessThan                 :: 1
-kBufferQueueTrigger_WhenDurationBecomesLessThanOrEqualTo        :: 2
-kBufferQueueTrigger_WhenDurationBecomesGreaterThan              :: 3
-kBufferQueueTrigger_WhenDurationBecomesGreaterThanOrEqualTo     :: 4
-kBufferQueueTrigger_WhenMinPresentationTimeStampChanges         :: 5
-kBufferQueueTrigger_WhenMaxPresentationTimeStampChanges         :: 6
-kBufferQueueTrigger_WhenDataBecomesReady                        :: 7
-kBufferQueueTrigger_WhenEndOfDataReached                        :: 8
-kBufferQueueTrigger_WhenReset                                   :: 9
-kBufferQueueTrigger_WhenBufferCountBecomesLessThan              :: 10
-kBufferQueueTrigger_WhenBufferCountBecomesGreaterThan           :: 11
-kBufferQueueTrigger_WhenDurationBecomesGreaterThanOrEqualToAndBufferCountBecomesGreaterThan:: 12
-kSampleBufferError_AllocationFailed                             :: -12730
-kSampleBufferError_RequiredParameterMissing                     :: -12731
-kSampleBufferError_AlreadyHasDataBuffer                         :: -12732
-kSampleBufferError_BufferNotReady                               :: -12733
-kSampleBufferError_SampleIndexOutOfRange                        :: -12734
-kSampleBufferError_BufferHasNoSampleSizes                       :: -12735
-kSampleBufferError_BufferHasNoSampleTimingInfo                  :: -12736
-kSampleBufferError_ArrayTooSmall                                :: -12737
-kSampleBufferError_InvalidEntryCount                            :: -12738
-kSampleBufferError_CannotSubdivide                              :: -12739
-kSampleBufferError_SampleTimingInfoInvalid                      :: -12740
-kSampleBufferError_InvalidMediaTypeForOperation                 :: -12741
-kSampleBufferError_InvalidSampleData                            :: -12742
-kSampleBufferError_InvalidMediaFormat                           :: -12743
-kSampleBufferError_Invalidated                                  :: -12744
-kSampleBufferError_DataFailed                                   :: -16750
-kSampleBufferError_DataCanceled                                 :: -16751
-kSampleBufferFlag_AudioBufferList_Assure16ByteAlignment         :: 1
-kSimpleQueueError_AllocationFailed                              :: -12770
-kSimpleQueueError_RequiredParameterMissing                      :: -12771
-kSimpleQueueError_ParameterOutOfRange                           :: -12772
-kSimpleQueueError_QueueIsFull                                   :: -12773
-kMemoryPoolError_AllocationFailed                               :: -15490
-kMemoryPoolError_InvalidParameter                               :: -15491
-kClockError_MissingRequiredParameter                            :: -12745
-kClockError_InvalidParameter                                    :: -12746
-kClockError_AllocationFailed                                    :: -12747
-kClockError_UnsupportedOperation                                :: -12756
-kTimebaseError_MissingRequiredParameter                         :: -12748
-kTimebaseError_InvalidParameter                                 :: -12749
-kTimebaseError_AllocationFailed                                 :: -12750
-kTimebaseError_TimerIntervalTooShort                            :: -12751
-kTimebaseError_ReadOnly                                         :: -12757
-kSyncError_MissingRequiredParameter                             :: -12752
-kSyncError_InvalidParameter                                     :: -12753
-kSyncError_AllocationFailed                                     :: -12754
-kSyncError_RateMustBeNonZero                                    :: -12755
-kMetadataIdentifierError_AllocationFailed                       :: -16300
-kMetadataIdentifierError_RequiredParameterMissing               :: -16301
-kMetadataIdentifierError_BadKey                                 :: -16302
-kMetadataIdentifierError_BadKeyLength                           :: -16303
-kMetadataIdentifierError_BadKeyType                             :: -16304
-kMetadataIdentifierError_BadNumberKey                           :: -16305
-kMetadataIdentifierError_BadKeySpace                            :: -16306
-kMetadataIdentifierError_BadIdentifier                          :: -16307
-kMetadataIdentifierError_NoKeyValueAvailable                    :: -16308
-kMetadataDataTypeRegistryError_AllocationFailed                 :: -16310
-kMetadataDataTypeRegistryError_RequiredParameterMissing         :: -16311
-kMetadataDataTypeRegistryError_BadDataTypeIdentifier            :: -16312
-kMetadataDataTypeRegistryError_DataTypeAlreadyRegistered        :: -16313
-kMetadataDataTypeRegistryError_RequiresConformingBaseType       :: -16314
-kMetadataDataTypeRegistryError_MultipleConformingBaseTypes      :: -16315
 
 foreign lib {
-    @(link_name="kCMTimeInvalid") kTimeInvalid: Time
-    @(link_name="kCMTimeIndefinite") kTimeIndefinite: Time
-    @(link_name="kCMTimePositiveInfinity") kTimePositiveInfinity: Time
-    @(link_name="kCMTimeNegativeInfinity") kTimeNegativeInfinity: Time
-    @(link_name="kCMTimeZero") kTimeZero: Time
-    @(link_name="kCMTimeValueKey") kTimeValueKey: CF.StringRef
-    @(link_name="kCMTimeScaleKey") kTimeScaleKey: CF.StringRef
-    @(link_name="kCMTimeEpochKey") kTimeEpochKey: CF.StringRef
-    @(link_name="kCMTimeFlagsKey") kTimeFlagsKey: CF.StringRef
-    @(link_name="kCMTimeRangeZero") kTimeRangeZero: TimeRange
-    @(link_name="kCMTimeRangeInvalid") kTimeRangeInvalid: TimeRange
-    @(link_name="kCMTimeRangeStartKey") kTimeRangeStartKey: CF.StringRef
-    @(link_name="kCMTimeRangeDurationKey") kTimeRangeDurationKey: CF.StringRef
-    @(link_name="kCMTimeMappingInvalid") kTimeMappingInvalid: TimeMapping
-    @(link_name="kCMTimeMappingSourceKey") kTimeMappingSourceKey: CF.StringRef
-    @(link_name="kCMTimeMappingTargetKey") kTimeMappingTargetKey: CF.StringRef
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
-        @(link_name="kCMSEncoderDigestAlgorithmSHA1") kSEncoderDigestAlgorithmSHA1: CF.StringRef
-        @(link_name="kCMSEncoderDigestAlgorithmSHA256") kSEncoderDigestAlgorithmSHA256: CF.StringRef
-        @(link_name="kCMMInitializeLinkProfileProcName") kMInitializeLinkProfileProcName: CF.StringRef
-        @(link_name="kCMMInitializeTransformProcName") kMInitializeTransformProcName: CF.StringRef
-        @(link_name="kCMMApplyTransformProcName") kMApplyTransformProcName: CF.StringRef
-        @(link_name="kCMMCreateTransformPropertyProcName") kMCreateTransformPropertyProcName: CF.StringRef
+    @(link_name="kCMTimeInvalid")
+    kTimeInvalid: Time
+
+    @(link_name="kCMTimeIndefinite")
+    kTimeIndefinite: Time
+
+    @(link_name="kCMTimePositiveInfinity")
+    kTimePositiveInfinity: Time
+
+    @(link_name="kCMTimeNegativeInfinity")
+    kTimeNegativeInfinity: Time
+
+    @(link_name="kCMTimeZero")
+    kTimeZero: Time
+
+    @(link_name="kCMTimeValueKey")
+    kTimeValueKey: CF.StringRef
+
+    @(link_name="kCMTimeScaleKey")
+    kTimeScaleKey: CF.StringRef
+
+    @(link_name="kCMTimeEpochKey")
+    kTimeEpochKey: CF.StringRef
+
+    @(link_name="kCMTimeFlagsKey")
+    kTimeFlagsKey: CF.StringRef
+
+    @(link_name="kCMTimeRangeZero")
+    kTimeRangeZero: TimeRange
+
+    @(link_name="kCMTimeRangeInvalid")
+    kTimeRangeInvalid: TimeRange
+
+    @(link_name="kCMTimeRangeStartKey")
+    kTimeRangeStartKey: CF.StringRef
+
+    @(link_name="kCMTimeRangeDurationKey")
+    kTimeRangeDurationKey: CF.StringRef
+
+    @(link_name="kCMTimeMappingInvalid")
+    kTimeMappingInvalid: TimeMapping
+
+    @(link_name="kCMTimeMappingSourceKey")
+    kTimeMappingSourceKey: CF.StringRef
+
+    @(link_name="kCMTimeMappingTargetKey")
+    kTimeMappingTargetKey: CF.StringRef
+
+    when ODIN_PLATFORM_SUBTARGET == .Default {
+        @(link_name="kCMSEncoderDigestAlgorithmSHA1")
+        kSEncoderDigestAlgorithmSHA1: CF.StringRef
+
+        @(link_name="kCMSEncoderDigestAlgorithmSHA256")
+        kSEncoderDigestAlgorithmSHA256: CF.StringRef
+
+        @(link_name="kCMMInitializeLinkProfileProcName")
+        kMInitializeLinkProfileProcName: CF.StringRef
+
+        @(link_name="kCMMInitializeTransformProcName")
+        kMInitializeTransformProcName: CF.StringRef
+
+        @(link_name="kCMMApplyTransformProcName")
+        kMApplyTransformProcName: CF.StringRef
+
+        @(link_name="kCMMCreateTransformPropertyProcName")
+        kMCreateTransformPropertyProcName: CF.StringRef
     }
-    @(link_name="kCMFormatDescriptionExtension_OriginalCompressionSettings") kFormatDescriptionExtension_OriginalCompressionSettings: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms") kFormatDescriptionExtension_SampleDescriptionExtensionAtoms: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_VerbatimSampleDescription") kFormatDescriptionExtension_VerbatimSampleDescription: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_VerbatimISOSampleEntry") kFormatDescriptionExtension_VerbatimISOSampleEntry: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_FormatName") kFormatDescriptionExtension_FormatName: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_Depth") kFormatDescriptionExtension_Depth: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_CleanAperture") kFormatDescriptionExtension_CleanAperture: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_CleanApertureWidth") kFormatDescriptionKey_CleanApertureWidth: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_CleanApertureHeight") kFormatDescriptionKey_CleanApertureHeight: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_CleanApertureHorizontalOffset") kFormatDescriptionKey_CleanApertureHorizontalOffset: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_CleanApertureVerticalOffset") kFormatDescriptionKey_CleanApertureVerticalOffset: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_CleanApertureWidthRational") kFormatDescriptionKey_CleanApertureWidthRational: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_CleanApertureHeightRational") kFormatDescriptionKey_CleanApertureHeightRational: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_CleanApertureHorizontalOffsetRational") kFormatDescriptionKey_CleanApertureHorizontalOffsetRational: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_CleanApertureVerticalOffsetRational") kFormatDescriptionKey_CleanApertureVerticalOffsetRational: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_FieldCount") kFormatDescriptionExtension_FieldCount: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_FieldDetail") kFormatDescriptionExtension_FieldDetail: CF.StringRef
-    @(link_name="kCMFormatDescriptionFieldDetail_TemporalTopFirst") kFormatDescriptionFieldDetail_TemporalTopFirst: CF.StringRef
-    @(link_name="kCMFormatDescriptionFieldDetail_TemporalBottomFirst") kFormatDescriptionFieldDetail_TemporalBottomFirst: CF.StringRef
-    @(link_name="kCMFormatDescriptionFieldDetail_SpatialFirstLineEarly") kFormatDescriptionFieldDetail_SpatialFirstLineEarly: CF.StringRef
-    @(link_name="kCMFormatDescriptionFieldDetail_SpatialFirstLineLate") kFormatDescriptionFieldDetail_SpatialFirstLineLate: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_PixelAspectRatio") kFormatDescriptionExtension_PixelAspectRatio: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_PixelAspectRatioHorizontalSpacing") kFormatDescriptionKey_PixelAspectRatioHorizontalSpacing: CF.StringRef
-    @(link_name="kCMFormatDescriptionKey_PixelAspectRatioVerticalSpacing") kFormatDescriptionKey_PixelAspectRatioVerticalSpacing: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ColorPrimaries") kFormatDescriptionExtension_ColorPrimaries: CF.StringRef
-    @(link_name="kCMFormatDescriptionColorPrimaries_ITU_R_709_2") kFormatDescriptionColorPrimaries_ITU_R_709_2: CF.StringRef
-    @(link_name="kCMFormatDescriptionColorPrimaries_EBU_3213") kFormatDescriptionColorPrimaries_EBU_3213: CF.StringRef
-    @(link_name="kCMFormatDescriptionColorPrimaries_SMPTE_C") kFormatDescriptionColorPrimaries_SMPTE_C: CF.StringRef
-    @(link_name="kCMFormatDescriptionColorPrimaries_DCI_P3") kFormatDescriptionColorPrimaries_DCI_P3: CF.StringRef
-    @(link_name="kCMFormatDescriptionColorPrimaries_P3_D65") kFormatDescriptionColorPrimaries_P3_D65: CF.StringRef
-    @(link_name="kCMFormatDescriptionColorPrimaries_ITU_R_2020") kFormatDescriptionColorPrimaries_ITU_R_2020: CF.StringRef
-    @(link_name="kCMFormatDescriptionColorPrimaries_P22") kFormatDescriptionColorPrimaries_P22: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_TransferFunction") kFormatDescriptionExtension_TransferFunction: CF.StringRef
-    @(link_name="kCMFormatDescriptionTransferFunction_ITU_R_709_2") kFormatDescriptionTransferFunction_ITU_R_709_2: CF.StringRef
-    @(link_name="kCMFormatDescriptionTransferFunction_SMPTE_240M_1995") kFormatDescriptionTransferFunction_SMPTE_240M_1995: CF.StringRef
-    @(link_name="kCMFormatDescriptionTransferFunction_UseGamma") kFormatDescriptionTransferFunction_UseGamma: CF.StringRef
-    @(link_name="kCMFormatDescriptionTransferFunction_ITU_R_2020") kFormatDescriptionTransferFunction_ITU_R_2020: CF.StringRef
-    @(link_name="kCMFormatDescriptionTransferFunction_SMPTE_ST_428_1") kFormatDescriptionTransferFunction_SMPTE_ST_428_1: CF.StringRef
-    @(link_name="kCMFormatDescriptionTransferFunction_SMPTE_ST_2084_PQ") kFormatDescriptionTransferFunction_SMPTE_ST_2084_PQ: CF.StringRef
-    @(link_name="kCMFormatDescriptionTransferFunction_ITU_R_2100_HLG") kFormatDescriptionTransferFunction_ITU_R_2100_HLG: CF.StringRef
-    @(link_name="kCMFormatDescriptionTransferFunction_Linear") kFormatDescriptionTransferFunction_Linear: CF.StringRef
-    @(link_name="kCMFormatDescriptionTransferFunction_sRGB") kFormatDescriptionTransferFunction_sRGB: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_GammaLevel") kFormatDescriptionExtension_GammaLevel: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_YCbCrMatrix") kFormatDescriptionExtension_YCbCrMatrix: CF.StringRef
-    @(link_name="kCMFormatDescriptionYCbCrMatrix_ITU_R_709_2") kFormatDescriptionYCbCrMatrix_ITU_R_709_2: CF.StringRef
-    @(link_name="kCMFormatDescriptionYCbCrMatrix_ITU_R_601_4") kFormatDescriptionYCbCrMatrix_ITU_R_601_4: CF.StringRef
-    @(link_name="kCMFormatDescriptionYCbCrMatrix_SMPTE_240M_1995") kFormatDescriptionYCbCrMatrix_SMPTE_240M_1995: CF.StringRef
-    @(link_name="kCMFormatDescriptionYCbCrMatrix_ITU_R_2020") kFormatDescriptionYCbCrMatrix_ITU_R_2020: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_FullRangeVideo") kFormatDescriptionExtension_FullRangeVideo: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ICCProfile") kFormatDescriptionExtension_ICCProfile: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_BytesPerRow") kFormatDescriptionExtension_BytesPerRow: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ChromaLocationTopField") kFormatDescriptionExtension_ChromaLocationTopField: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ChromaLocationBottomField") kFormatDescriptionExtension_ChromaLocationBottomField: CF.StringRef
-    @(link_name="kCMFormatDescriptionChromaLocation_Left") kFormatDescriptionChromaLocation_Left: CF.StringRef
-    @(link_name="kCMFormatDescriptionChromaLocation_Center") kFormatDescriptionChromaLocation_Center: CF.StringRef
-    @(link_name="kCMFormatDescriptionChromaLocation_TopLeft") kFormatDescriptionChromaLocation_TopLeft: CF.StringRef
-    @(link_name="kCMFormatDescriptionChromaLocation_Top") kFormatDescriptionChromaLocation_Top: CF.StringRef
-    @(link_name="kCMFormatDescriptionChromaLocation_BottomLeft") kFormatDescriptionChromaLocation_BottomLeft: CF.StringRef
-    @(link_name="kCMFormatDescriptionChromaLocation_Bottom") kFormatDescriptionChromaLocation_Bottom: CF.StringRef
-    @(link_name="kCMFormatDescriptionChromaLocation_DV420") kFormatDescriptionChromaLocation_DV420: CF.StringRef
-    @(link_name="kCMFormatDescriptionConformsToMPEG2VideoProfile") kFormatDescriptionConformsToMPEG2VideoProfile: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ProtectedContentOriginalFormat") kFormatDescriptionExtension_ProtectedContentOriginalFormat: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_TemporalQuality") kFormatDescriptionExtension_TemporalQuality: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_SpatialQuality") kFormatDescriptionExtension_SpatialQuality: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_VerbatimImageDescription") kFormatDescriptionExtension_VerbatimImageDescription: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_Version") kFormatDescriptionExtension_Version: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_RevisionLevel") kFormatDescriptionExtension_RevisionLevel: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_Vendor") kFormatDescriptionExtension_Vendor: CF.StringRef
-    @(link_name="kCMFormatDescriptionVendor_Apple") kFormatDescriptionVendor_Apple: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_MasteringDisplayColorVolume") kFormatDescriptionExtension_MasteringDisplayColorVolume: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ContentLightLevelInfo") kFormatDescriptionExtension_ContentLightLevelInfo: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ContentColorVolume") kFormatDescriptionExtension_ContentColorVolume: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_AlternativeTransferCharacteristics") kFormatDescriptionExtension_AlternativeTransferCharacteristics: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_AuxiliaryTypeInfo") kFormatDescriptionExtension_AuxiliaryTypeInfo: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_AlphaChannelMode") kFormatDescriptionExtension_AlphaChannelMode: CF.StringRef
-    @(link_name="kCMFormatDescriptionAlphaChannelMode_StraightAlpha") kFormatDescriptionAlphaChannelMode_StraightAlpha: CF.StringRef
-    @(link_name="kCMFormatDescriptionAlphaChannelMode_PremultipliedAlpha") kFormatDescriptionAlphaChannelMode_PremultipliedAlpha: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ContainsAlphaChannel") kFormatDescriptionExtension_ContainsAlphaChannel: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_BitsPerComponent") kFormatDescriptionExtension_BitsPerComponent: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_HorizontalFieldOfView") kFormatDescriptionExtension_HorizontalFieldOfView: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_LogTransferFunction") kFormatDescriptionExtension_LogTransferFunction: CF.StringRef
-    @(link_name="kCMFormatDescriptionLogTransferFunction_AppleLog") kFormatDescriptionLogTransferFunction_AppleLog: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_HeroEye") kFormatDescriptionExtension_HeroEye: CF.StringRef
-    @(link_name="kCMFormatDescriptionHeroEye_Left") kFormatDescriptionHeroEye_Left: CF.StringRef
-    @(link_name="kCMFormatDescriptionHeroEye_Right") kFormatDescriptionHeroEye_Right: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_StereoCameraBaseline") kFormatDescriptionExtension_StereoCameraBaseline: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_HorizontalDisparityAdjustment") kFormatDescriptionExtension_HorizontalDisparityAdjustment: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_HasLeftStereoEyeView") kFormatDescriptionExtension_HasLeftStereoEyeView: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_HasRightStereoEyeView") kFormatDescriptionExtension_HasRightStereoEyeView: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_HasAdditionalViews") kFormatDescriptionExtension_HasAdditionalViews: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ProjectionKind") kFormatDescriptionExtension_ProjectionKind: CF.StringRef
-    @(link_name="kCMFormatDescriptionProjectionKind_Rectilinear") kFormatDescriptionProjectionKind_Rectilinear: CF.StringRef
-    @(link_name="kCMFormatDescriptionProjectionKind_Equirectangular") kFormatDescriptionProjectionKind_Equirectangular: CF.StringRef
-    @(link_name="kCMFormatDescriptionProjectionKind_HalfEquirectangular") kFormatDescriptionProjectionKind_HalfEquirectangular: CF.StringRef
-    @(link_name="kCMFormatDescriptionProjectionKind_ParametricImmersive") kFormatDescriptionProjectionKind_ParametricImmersive: CF.StringRef
-    @(link_name="kCMFormatDescriptionProjectionKind_AppleImmersiveVideo") kFormatDescriptionProjectionKind_AppleImmersiveVideo: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ViewPackingKind") kFormatDescriptionExtension_ViewPackingKind: CF.StringRef
-    @(link_name="kCMFormatDescriptionViewPackingKind_SideBySide") kFormatDescriptionViewPackingKind_SideBySide: CF.StringRef
-    @(link_name="kCMFormatDescriptionViewPackingKind_OverUnder") kFormatDescriptionViewPackingKind_OverUnder: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection") kFormatDescriptionExtension_CameraCalibrationDataLensCollection: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_LensAlgorithmKind") kFormatDescriptionCameraCalibration_LensAlgorithmKind: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens") kFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_LensDomain") kFormatDescriptionCameraCalibration_LensDomain: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibrationLensDomain_Color") kFormatDescriptionCameraCalibrationLensDomain_Color: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_LensIdentifier") kFormatDescriptionCameraCalibration_LensIdentifier: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_LensRole") kFormatDescriptionCameraCalibration_LensRole: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibrationLensRole_Mono") kFormatDescriptionCameraCalibrationLensRole_Mono: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibrationLensRole_Left") kFormatDescriptionCameraCalibrationLensRole_Left: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibrationLensRole_Right") kFormatDescriptionCameraCalibrationLensRole_Right: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_LensDistortions") kFormatDescriptionCameraCalibration_LensDistortions: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX") kFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY") kFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_RadialAngleLimit") kFormatDescriptionCameraCalibration_RadialAngleLimit: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_IntrinsicMatrix") kFormatDescriptionCameraCalibration_IntrinsicMatrix: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset") kFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions") kFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_ExtrinsicOriginSource") kFormatDescriptionCameraCalibration_ExtrinsicOriginSource: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline") kFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline: CF.StringRef
-    @(link_name="kCMFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion") kFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_ConvertedFromExternalSphericalTags") kFormatDescriptionExtension_ConvertedFromExternalSphericalTags: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionExtension_DisplayFlags") kTextFormatDescriptionExtension_DisplayFlags: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionExtension_BackgroundColor") kTextFormatDescriptionExtension_BackgroundColor: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionColor_Red") kTextFormatDescriptionColor_Red: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionColor_Green") kTextFormatDescriptionColor_Green: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionColor_Blue") kTextFormatDescriptionColor_Blue: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionColor_Alpha") kTextFormatDescriptionColor_Alpha: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionExtension_DefaultTextBox") kTextFormatDescriptionExtension_DefaultTextBox: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionRect_Top") kTextFormatDescriptionRect_Top: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionRect_Left") kTextFormatDescriptionRect_Left: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionRect_Bottom") kTextFormatDescriptionRect_Bottom: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionRect_Right") kTextFormatDescriptionRect_Right: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionExtension_DefaultStyle") kTextFormatDescriptionExtension_DefaultStyle: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionStyle_StartChar") kTextFormatDescriptionStyle_StartChar: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionStyle_Font") kTextFormatDescriptionStyle_Font: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionStyle_FontFace") kTextFormatDescriptionStyle_FontFace: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionStyle_ForegroundColor") kTextFormatDescriptionStyle_ForegroundColor: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionStyle_FontSize") kTextFormatDescriptionStyle_FontSize: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionExtension_HorizontalJustification") kTextFormatDescriptionExtension_HorizontalJustification: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionExtension_VerticalJustification") kTextFormatDescriptionExtension_VerticalJustification: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionStyle_EndChar") kTextFormatDescriptionStyle_EndChar: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionExtension_FontTable") kTextFormatDescriptionExtension_FontTable: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionExtension_TextJustification") kTextFormatDescriptionExtension_TextJustification: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionStyle_Height") kTextFormatDescriptionStyle_Height: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionStyle_Ascent") kTextFormatDescriptionStyle_Ascent: CF.StringRef
-    @(link_name="kCMTextFormatDescriptionExtension_DefaultFontName") kTextFormatDescriptionExtension_DefaultFontName: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtension_AmbientViewingEnvironment") kFormatDescriptionExtension_AmbientViewingEnvironment: CF.StringRef
-    @(link_name="kCMTimeCodeFormatDescriptionExtension_SourceReferenceName") kTimeCodeFormatDescriptionExtension_SourceReferenceName: CF.StringRef
-    @(link_name="kCMTimeCodeFormatDescriptionKey_Value") kTimeCodeFormatDescriptionKey_Value: CF.StringRef
-    @(link_name="kCMTimeCodeFormatDescriptionKey_LangCode") kTimeCodeFormatDescriptionKey_LangCode: CF.StringRef
-    @(link_name="kCMFormatDescriptionExtensionKey_MetadataKeyTable") kFormatDescriptionExtensionKey_MetadataKeyTable: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionKey_Namespace") kMetadataFormatDescriptionKey_Namespace: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionKey_Value") kMetadataFormatDescriptionKey_Value: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionKey_LocalID") kMetadataFormatDescriptionKey_LocalID: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionKey_DataType") kMetadataFormatDescriptionKey_DataType: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionKey_DataTypeNamespace") kMetadataFormatDescriptionKey_DataTypeNamespace: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionKey_ConformingDataTypes") kMetadataFormatDescriptionKey_ConformingDataTypes: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionKey_LanguageTag") kMetadataFormatDescriptionKey_LanguageTag: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionKey_StructuralDependency") kMetadataFormatDescriptionKey_StructuralDependency: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionKey_SetupData") kMetadataFormatDescriptionKey_SetupData: CF.StringRef
-    @(link_name="kCMMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag") kMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_Identifier") kMetadataFormatDescriptionMetadataSpecificationKey_Identifier: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_DataType") kMetadataFormatDescriptionMetadataSpecificationKey_DataType: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_ExtendedLanguageTag") kMetadataFormatDescriptionMetadataSpecificationKey_ExtendedLanguageTag: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_StructuralDependency") kMetadataFormatDescriptionMetadataSpecificationKey_StructuralDependency: CF.StringRef
-    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_SetupData") kMetadataFormatDescriptionMetadataSpecificationKey_SetupData: CF.StringRef
-    @(link_name="kCMImageDescriptionFlavor_QuickTimeMovie") kImageDescriptionFlavor_QuickTimeMovie: ImageDescriptionFlavor
-    @(link_name="kCMImageDescriptionFlavor_ISOFamily") kImageDescriptionFlavor_ISOFamily: ImageDescriptionFlavor
-    @(link_name="kCMImageDescriptionFlavor_3GPFamily") kImageDescriptionFlavor_3GPFamily: ImageDescriptionFlavor
-    @(link_name="kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions") kImageDescriptionFlavor_ISOFamilyWithAppleExtensions: ImageDescriptionFlavor
-    @(link_name="kCMSoundDescriptionFlavor_QuickTimeMovie") kSoundDescriptionFlavor_QuickTimeMovie: SoundDescriptionFlavor
-    @(link_name="kCMSoundDescriptionFlavor_QuickTimeMovieV2") kSoundDescriptionFlavor_QuickTimeMovieV2: SoundDescriptionFlavor
-    @(link_name="kCMSoundDescriptionFlavor_ISOFamily") kSoundDescriptionFlavor_ISOFamily: SoundDescriptionFlavor
-    @(link_name="kCMSoundDescriptionFlavor_3GPFamily") kSoundDescriptionFlavor_3GPFamily: SoundDescriptionFlavor
-    @(link_name="kCMTimingInfoInvalid") kTimingInfoInvalid: SampleTimingInfo
-    @(link_name="kCMSampleBufferNotification_DataBecameReady") kSampleBufferNotification_DataBecameReady: CF.StringRef
-    @(link_name="kCMSampleBufferNotification_DataFailed") kSampleBufferNotification_DataFailed: CF.StringRef
-    @(link_name="kCMSampleBufferNotificationParameter_OSStatus") kSampleBufferNotificationParameter_OSStatus: CF.StringRef
-    @(link_name="kCMSampleBufferConduitNotification_InhibitOutputUntil") kSampleBufferConduitNotification_InhibitOutputUntil: CF.StringRef
-    @(link_name="kCMSampleBufferConduitNotificationParameter_ResumeTag") kSampleBufferConduitNotificationParameter_ResumeTag: CF.StringRef
-    @(link_name="kCMSampleBufferConduitNotification_ResetOutput") kSampleBufferConduitNotification_ResetOutput: CF.StringRef
-    @(link_name="kCMSampleBufferConduitNotification_UpcomingOutputPTSRangeChanged") kSampleBufferConduitNotification_UpcomingOutputPTSRangeChanged: CF.StringRef
-    @(link_name="kCMSampleBufferConduitNotificationParameter_UpcomingOutputPTSRangeMayOverlapQueuedOutputPTSRange") kSampleBufferConduitNotificationParameter_UpcomingOutputPTSRangeMayOverlapQueuedOutputPTSRange: CF.StringRef
-    @(link_name="kCMSampleBufferConduitNotificationParameter_MinUpcomingOutputPTS") kSampleBufferConduitNotificationParameter_MinUpcomingOutputPTS: CF.StringRef
-    @(link_name="kCMSampleBufferConduitNotificationParameter_MaxUpcomingOutputPTS") kSampleBufferConduitNotificationParameter_MaxUpcomingOutputPTS: CF.StringRef
-    @(link_name="kCMSampleBufferConsumerNotification_BufferConsumed") kSampleBufferConsumerNotification_BufferConsumed: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_NotSync") kSampleAttachmentKey_NotSync: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_PartialSync") kSampleAttachmentKey_PartialSync: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_HasRedundantCoding") kSampleAttachmentKey_HasRedundantCoding: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_IsDependedOnByOthers") kSampleAttachmentKey_IsDependedOnByOthers: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_DependsOnOthers") kSampleAttachmentKey_DependsOnOthers: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_EarlierDisplayTimesAllowed") kSampleAttachmentKey_EarlierDisplayTimesAllowed: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_DisplayImmediately") kSampleAttachmentKey_DisplayImmediately: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_DoNotDisplay") kSampleAttachmentKey_DoNotDisplay: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_ResetDecoderBeforeDecoding") kSampleBufferAttachmentKey_ResetDecoderBeforeDecoding: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_DrainAfterDecoding") kSampleBufferAttachmentKey_DrainAfterDecoding: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_PostNotificationWhenConsumed") kSampleBufferAttachmentKey_PostNotificationWhenConsumed: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_ResumeOutput") kSampleBufferAttachmentKey_ResumeOutput: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_HEVCTemporalLevelInfo") kSampleAttachmentKey_HEVCTemporalLevelInfo: CF.StringRef
-    @(link_name="kCMHEVCTemporalLevelInfoKey_TemporalLevel") kHEVCTemporalLevelInfoKey_TemporalLevel: CF.StringRef
-    @(link_name="kCMHEVCTemporalLevelInfoKey_ProfileSpace") kHEVCTemporalLevelInfoKey_ProfileSpace: CF.StringRef
-    @(link_name="kCMHEVCTemporalLevelInfoKey_TierFlag") kHEVCTemporalLevelInfoKey_TierFlag: CF.StringRef
-    @(link_name="kCMHEVCTemporalLevelInfoKey_ProfileIndex") kHEVCTemporalLevelInfoKey_ProfileIndex: CF.StringRef
-    @(link_name="kCMHEVCTemporalLevelInfoKey_ProfileCompatibilityFlags") kHEVCTemporalLevelInfoKey_ProfileCompatibilityFlags: CF.StringRef
-    @(link_name="kCMHEVCTemporalLevelInfoKey_ConstraintIndicatorFlags") kHEVCTemporalLevelInfoKey_ConstraintIndicatorFlags: CF.StringRef
-    @(link_name="kCMHEVCTemporalLevelInfoKey_LevelIndex") kHEVCTemporalLevelInfoKey_LevelIndex: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_HEVCTemporalSubLayerAccess") kSampleAttachmentKey_HEVCTemporalSubLayerAccess: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_HEVCStepwiseTemporalSubLayerAccess") kSampleAttachmentKey_HEVCStepwiseTemporalSubLayerAccess: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_HEVCSyncSampleNALUnitType") kSampleAttachmentKey_HEVCSyncSampleNALUnitType: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_AudioIndependentSampleDecoderRefreshCount") kSampleAttachmentKey_AudioIndependentSampleDecoderRefreshCount: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_TransitionID") kSampleBufferAttachmentKey_TransitionID: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_TrimDurationAtStart") kSampleBufferAttachmentKey_TrimDurationAtStart: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_TrimDurationAtEnd") kSampleBufferAttachmentKey_TrimDurationAtEnd: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_SpeedMultiplier") kSampleBufferAttachmentKey_SpeedMultiplier: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_Reverse") kSampleBufferAttachmentKey_Reverse: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_FillDiscontinuitiesWithSilence") kSampleBufferAttachmentKey_FillDiscontinuitiesWithSilence: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_EmptyMedia") kSampleBufferAttachmentKey_EmptyMedia: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_PermanentEmptyMedia") kSampleBufferAttachmentKey_PermanentEmptyMedia: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_DisplayEmptyMediaImmediately") kSampleBufferAttachmentKey_DisplayEmptyMediaImmediately: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_EndsPreviousSampleDuration") kSampleBufferAttachmentKey_EndsPreviousSampleDuration: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_SampleReferenceURL") kSampleBufferAttachmentKey_SampleReferenceURL: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_SampleReferenceByteOffset") kSampleBufferAttachmentKey_SampleReferenceByteOffset: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_GradualDecoderRefresh") kSampleBufferAttachmentKey_GradualDecoderRefresh: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_DroppedFrameReason") kSampleBufferAttachmentKey_DroppedFrameReason: CF.StringRef
-    @(link_name="kCMSampleBufferDroppedFrameReason_FrameWasLate") kSampleBufferDroppedFrameReason_FrameWasLate: CF.StringRef
-    @(link_name="kCMSampleBufferDroppedFrameReason_OutOfBuffers") kSampleBufferDroppedFrameReason_OutOfBuffers: CF.StringRef
-    @(link_name="kCMSampleBufferDroppedFrameReason_Discontinuity") kSampleBufferDroppedFrameReason_Discontinuity: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_DroppedFrameReasonInfo") kSampleBufferAttachmentKey_DroppedFrameReasonInfo: CF.StringRef
-    @(link_name="kCMSampleBufferDroppedFrameReasonInfo_CameraModeSwitch") kSampleBufferDroppedFrameReasonInfo_CameraModeSwitch: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo") kSampleBufferAttachmentKey_StillImageLensStabilizationInfo: CF.StringRef
-    @(link_name="kCMSampleBufferLensStabilizationInfo_Active") kSampleBufferLensStabilizationInfo_Active: CF.StringRef
-    @(link_name="kCMSampleBufferLensStabilizationInfo_OutOfRange") kSampleBufferLensStabilizationInfo_OutOfRange: CF.StringRef
-    @(link_name="kCMSampleBufferLensStabilizationInfo_Unavailable") kSampleBufferLensStabilizationInfo_Unavailable: CF.StringRef
-    @(link_name="kCMSampleBufferLensStabilizationInfo_Off") kSampleBufferLensStabilizationInfo_Off: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix") kSampleBufferAttachmentKey_CameraIntrinsicMatrix: CF.StringRef
-    @(link_name="kCMSampleBufferAttachmentKey_ForceKeyFrame") kSampleBufferAttachmentKey_ForceKeyFrame: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_CryptorSubsampleAuxiliaryData") kSampleAttachmentKey_CryptorSubsampleAuxiliaryData: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_HDR10PlusPerFrameData") kSampleAttachmentKey_HDR10PlusPerFrameData: CF.StringRef
-    @(link_name="kCMSampleAttachmentKey_PostDecodeProcessingMetadata") kSampleAttachmentKey_PostDecodeProcessingMetadata: CF.StringRef
-    @(link_name="kCMTagInvalid") kTagInvalid: Tag
-    @(link_name="kCMTagMediaTypeVideo") kTagMediaTypeVideo: Tag
-    @(link_name="kCMTagMediaSubTypeMebx") kTagMediaSubTypeMebx: Tag
-    @(link_name="kCMTagMediaTypeAudio") kTagMediaTypeAudio: Tag
-    @(link_name="kCMTagMediaTypeMetadata") kTagMediaTypeMetadata: Tag
-    @(link_name="kCMTagStereoLeftEye") kTagStereoLeftEye: Tag
-    @(link_name="kCMTagStereoRightEye") kTagStereoRightEye: Tag
-    @(link_name="kCMTagStereoLeftAndRightEye") kTagStereoLeftAndRightEye: Tag
-    @(link_name="kCMTagStereoNone") kTagStereoNone: Tag
-    @(link_name="kCMTagStereoInterpretationOrderReversed") kTagStereoInterpretationOrderReversed: Tag
-    @(link_name="kCMTagProjectionTypeRectangular") kTagProjectionTypeRectangular: Tag
-    @(link_name="kCMTagProjectionTypeEquirectangular") kTagProjectionTypeEquirectangular: Tag
-    @(link_name="kCMTagProjectionTypeHalfEquirectangular") kTagProjectionTypeHalfEquirectangular: Tag
-    @(link_name="kCMTagProjectionTypeFisheye") kTagProjectionTypeFisheye: Tag
-    @(link_name="kCMTagProjectionTypeParametricImmersive") kTagProjectionTypeParametricImmersive: Tag
-    @(link_name="kCMTagPackingTypeNone") kTagPackingTypeNone: Tag
-    @(link_name="kCMTagPackingTypeSideBySide") kTagPackingTypeSideBySide: Tag
-    @(link_name="kCMTagPackingTypeOverUnder") kTagPackingTypeOverUnder: Tag
-    @(link_name="kCMTagValueKey") kTagValueKey: CF.StringRef
-    @(link_name="kCMTagCategoryKey") kTagCategoryKey: CF.StringRef
-    @(link_name="kCMTagDataTypeKey") kTagDataTypeKey: CF.StringRef
-    @(link_name="kCMTagCollectionTagsArrayKey") kTagCollectionTagsArrayKey: CF.StringRef
-    @(link_name="kCMMemoryPoolOption_AgeOutPeriod") kMemoryPoolOption_AgeOutPeriod: CF.StringRef
-    @(link_name="kCMTimebaseNotification_EffectiveRateChanged") kTimebaseNotification_EffectiveRateChanged: CF.StringRef
-    @(link_name="kCMTimebaseNotification_TimeJumped") kTimebaseNotification_TimeJumped: CF.StringRef
-    @(link_name="kCMTimebaseNotificationKey_EventTime") kTimebaseNotificationKey_EventTime: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_ForegroundColorARGB") kTextMarkupAttribute_ForegroundColorARGB: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_BackgroundColorARGB") kTextMarkupAttribute_BackgroundColorARGB: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_CharacterBackgroundColorARGB") kTextMarkupAttribute_CharacterBackgroundColorARGB: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_BoldStyle") kTextMarkupAttribute_BoldStyle: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_ItalicStyle") kTextMarkupAttribute_ItalicStyle: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_UnderlineStyle") kTextMarkupAttribute_UnderlineStyle: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_FontFamilyName") kTextMarkupAttribute_FontFamilyName: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_FontFamilyNameList") kTextMarkupAttribute_FontFamilyNameList: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_GenericFontFamilyName") kTextMarkupAttribute_GenericFontFamilyName: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_Default") kTextMarkupGenericFontName_Default: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_Serif") kTextMarkupGenericFontName_Serif: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_SansSerif") kTextMarkupGenericFontName_SansSerif: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_Monospace") kTextMarkupGenericFontName_Monospace: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_ProportionalSerif") kTextMarkupGenericFontName_ProportionalSerif: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_ProportionalSansSerif") kTextMarkupGenericFontName_ProportionalSansSerif: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_MonospaceSerif") kTextMarkupGenericFontName_MonospaceSerif: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_MonospaceSansSerif") kTextMarkupGenericFontName_MonospaceSansSerif: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_Casual") kTextMarkupGenericFontName_Casual: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_Cursive") kTextMarkupGenericFontName_Cursive: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_Fantasy") kTextMarkupGenericFontName_Fantasy: CF.StringRef
-    @(link_name="kCMTextMarkupGenericFontName_SmallCapital") kTextMarkupGenericFontName_SmallCapital: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_BaseFontSizePercentageRelativeToVideoHeight") kTextMarkupAttribute_BaseFontSizePercentageRelativeToVideoHeight: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_RelativeFontSize") kTextMarkupAttribute_RelativeFontSize: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_VerticalLayout") kTextMarkupAttribute_VerticalLayout: CF.StringRef
-    @(link_name="kCMTextVerticalLayout_LeftToRight") kTextVerticalLayout_LeftToRight: CF.StringRef
-    @(link_name="kCMTextVerticalLayout_RightToLeft") kTextVerticalLayout_RightToLeft: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_Alignment") kTextMarkupAttribute_Alignment: CF.StringRef
-    @(link_name="kCMTextMarkupAlignmentType_Start") kTextMarkupAlignmentType_Start: CF.StringRef
-    @(link_name="kCMTextMarkupAlignmentType_Middle") kTextMarkupAlignmentType_Middle: CF.StringRef
-    @(link_name="kCMTextMarkupAlignmentType_End") kTextMarkupAlignmentType_End: CF.StringRef
-    @(link_name="kCMTextMarkupAlignmentType_Left") kTextMarkupAlignmentType_Left: CF.StringRef
-    @(link_name="kCMTextMarkupAlignmentType_Right") kTextMarkupAlignmentType_Right: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_TextPositionPercentageRelativeToWritingDirection") kTextMarkupAttribute_TextPositionPercentageRelativeToWritingDirection: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_OrthogonalLinePositionPercentageRelativeToWritingDirection") kTextMarkupAttribute_OrthogonalLinePositionPercentageRelativeToWritingDirection: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_WritingDirectionSizePercentage") kTextMarkupAttribute_WritingDirectionSizePercentage: CF.StringRef
-    @(link_name="kCMTextMarkupAttribute_CharacterEdgeStyle") kTextMarkupAttribute_CharacterEdgeStyle: CF.StringRef
-    @(link_name="kCMTextMarkupCharacterEdgeStyle_None") kTextMarkupCharacterEdgeStyle_None: CF.StringRef
-    @(link_name="kCMTextMarkupCharacterEdgeStyle_Raised") kTextMarkupCharacterEdgeStyle_Raised: CF.StringRef
-    @(link_name="kCMTextMarkupCharacterEdgeStyle_Depressed") kTextMarkupCharacterEdgeStyle_Depressed: CF.StringRef
-    @(link_name="kCMTextMarkupCharacterEdgeStyle_Uniform") kTextMarkupCharacterEdgeStyle_Uniform: CF.StringRef
-    @(link_name="kCMTextMarkupCharacterEdgeStyle_DropShadow") kTextMarkupCharacterEdgeStyle_DropShadow: CF.StringRef
-    @(link_name="kCMMetadataKeySpace_QuickTimeUserData") kMetadataKeySpace_QuickTimeUserData: CF.StringRef
-    @(link_name="kCMMetadataKeySpace_ISOUserData") kMetadataKeySpace_ISOUserData: CF.StringRef
-    @(link_name="kCMMetadataKeySpace_QuickTimeMetadata") kMetadataKeySpace_QuickTimeMetadata: CF.StringRef
-    @(link_name="kCMMetadataKeySpace_iTunes") kMetadataKeySpace_iTunes: CF.StringRef
-    @(link_name="kCMMetadataKeySpace_ID3") kMetadataKeySpace_ID3: CF.StringRef
-    @(link_name="kCMMetadataKeySpace_Icy") kMetadataKeySpace_Icy: CF.StringRef
-    @(link_name="kCMMetadataKeySpace_HLSDateRange") kMetadataKeySpace_HLSDateRange: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataLocation_ISO6709") kMetadataIdentifier_QuickTimeMetadataLocation_ISO6709: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing") kMetadataIdentifier_QuickTimeMetadataDirection_Facing: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform") kMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataVideoOrientation") kMetadataIdentifier_QuickTimeMetadataVideoOrientation: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform") kMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions") kMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier") kMetadataIdentifier_QuickTimeMetadataSegmentIdentifier: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance") kMetadataIdentifier_QuickTimeMetadataSceneIlluminance: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataSpatialAudioMix") kMetadataIdentifier_QuickTimeMetadataSpatialAudioMix: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono") kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft") kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight") kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight: CF.StringRef
-    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia") kMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_RawData") kMetadataBaseDataType_RawData: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_UTF8") kMetadataBaseDataType_UTF8: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_UTF16") kMetadataBaseDataType_UTF16: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_GIF") kMetadataBaseDataType_GIF: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_JPEG") kMetadataBaseDataType_JPEG: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_PNG") kMetadataBaseDataType_PNG: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_BMP") kMetadataBaseDataType_BMP: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_Float32") kMetadataBaseDataType_Float32: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_Float64") kMetadataBaseDataType_Float64: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_SInt8") kMetadataBaseDataType_SInt8: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_SInt16") kMetadataBaseDataType_SInt16: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_SInt32") kMetadataBaseDataType_SInt32: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_SInt64") kMetadataBaseDataType_SInt64: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_UInt8") kMetadataBaseDataType_UInt8: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_UInt16") kMetadataBaseDataType_UInt16: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_UInt32") kMetadataBaseDataType_UInt32: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_UInt64") kMetadataBaseDataType_UInt64: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_PointF32") kMetadataBaseDataType_PointF32: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_DimensionsF32") kMetadataBaseDataType_DimensionsF32: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_RectF32") kMetadataBaseDataType_RectF32: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_AffineTransformF64") kMetadataBaseDataType_AffineTransformF64: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_PolygonF32") kMetadataBaseDataType_PolygonF32: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_PolylineF32") kMetadataBaseDataType_PolylineF32: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_JSON") kMetadataBaseDataType_JSON: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_PerspectiveTransformF64") kMetadataBaseDataType_PerspectiveTransformF64: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_RasterRectangleValue") kMetadataBaseDataType_RasterRectangleValue: CF.StringRef
-    @(link_name="kCMMetadataBaseDataType_ExtendedRasterRectangleValue") kMetadataBaseDataType_ExtendedRasterRectangleValue: CF.StringRef
-    @(link_name="kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709") kMetadataDataType_QuickTimeMetadataLocation_ISO6709: CF.StringRef
-    @(link_name="kCMMetadataDataType_QuickTimeMetadataDirection") kMetadataDataType_QuickTimeMetadataDirection: CF.StringRef
-    @(link_name="kCMMetadataDataType_QuickTimeMetadataUUID") kMetadataDataType_QuickTimeMetadataUUID: CF.StringRef
-    @(link_name="kCMMetadataDataType_QuickTimeMetadataMilliLux") kMetadataDataType_QuickTimeMetadataMilliLux: CF.StringRef
-}
 
-@(default_calling_convention="c")
-foreign lib {
+    @(link_name="kCMFormatDescriptionExtension_OriginalCompressionSettings")
+    kFormatDescriptionExtension_OriginalCompressionSettings: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_SampleDescriptionExtensionAtoms")
+    kFormatDescriptionExtension_SampleDescriptionExtensionAtoms: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_VerbatimSampleDescription")
+    kFormatDescriptionExtension_VerbatimSampleDescription: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_VerbatimISOSampleEntry")
+    kFormatDescriptionExtension_VerbatimISOSampleEntry: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_FormatName")
+    kFormatDescriptionExtension_FormatName: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_Depth")
+    kFormatDescriptionExtension_Depth: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_CleanAperture")
+    kFormatDescriptionExtension_CleanAperture: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_CleanApertureWidth")
+    kFormatDescriptionKey_CleanApertureWidth: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_CleanApertureHeight")
+    kFormatDescriptionKey_CleanApertureHeight: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_CleanApertureHorizontalOffset")
+    kFormatDescriptionKey_CleanApertureHorizontalOffset: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_CleanApertureVerticalOffset")
+    kFormatDescriptionKey_CleanApertureVerticalOffset: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_CleanApertureWidthRational")
+    kFormatDescriptionKey_CleanApertureWidthRational: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_CleanApertureHeightRational")
+    kFormatDescriptionKey_CleanApertureHeightRational: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_CleanApertureHorizontalOffsetRational")
+    kFormatDescriptionKey_CleanApertureHorizontalOffsetRational: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_CleanApertureVerticalOffsetRational")
+    kFormatDescriptionKey_CleanApertureVerticalOffsetRational: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_FieldCount")
+    kFormatDescriptionExtension_FieldCount: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_FieldDetail")
+    kFormatDescriptionExtension_FieldDetail: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionFieldDetail_TemporalTopFirst")
+    kFormatDescriptionFieldDetail_TemporalTopFirst: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionFieldDetail_TemporalBottomFirst")
+    kFormatDescriptionFieldDetail_TemporalBottomFirst: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionFieldDetail_SpatialFirstLineEarly")
+    kFormatDescriptionFieldDetail_SpatialFirstLineEarly: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionFieldDetail_SpatialFirstLineLate")
+    kFormatDescriptionFieldDetail_SpatialFirstLineLate: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_PixelAspectRatio")
+    kFormatDescriptionExtension_PixelAspectRatio: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_PixelAspectRatioHorizontalSpacing")
+    kFormatDescriptionKey_PixelAspectRatioHorizontalSpacing: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionKey_PixelAspectRatioVerticalSpacing")
+    kFormatDescriptionKey_PixelAspectRatioVerticalSpacing: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ColorPrimaries")
+    kFormatDescriptionExtension_ColorPrimaries: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionColorPrimaries_ITU_R_709_2")
+    kFormatDescriptionColorPrimaries_ITU_R_709_2: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionColorPrimaries_EBU_3213")
+    kFormatDescriptionColorPrimaries_EBU_3213: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionColorPrimaries_SMPTE_C")
+    kFormatDescriptionColorPrimaries_SMPTE_C: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionColorPrimaries_DCI_P3")
+    kFormatDescriptionColorPrimaries_DCI_P3: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionColorPrimaries_P3_D65")
+    kFormatDescriptionColorPrimaries_P3_D65: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionColorPrimaries_ITU_R_2020")
+    kFormatDescriptionColorPrimaries_ITU_R_2020: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionColorPrimaries_P22")
+    kFormatDescriptionColorPrimaries_P22: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_TransferFunction")
+    kFormatDescriptionExtension_TransferFunction: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionTransferFunction_ITU_R_709_2")
+    kFormatDescriptionTransferFunction_ITU_R_709_2: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionTransferFunction_SMPTE_240M_1995")
+    kFormatDescriptionTransferFunction_SMPTE_240M_1995: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionTransferFunction_UseGamma")
+    kFormatDescriptionTransferFunction_UseGamma: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionTransferFunction_ITU_R_2020")
+    kFormatDescriptionTransferFunction_ITU_R_2020: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionTransferFunction_SMPTE_ST_428_1")
+    kFormatDescriptionTransferFunction_SMPTE_ST_428_1: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionTransferFunction_SMPTE_ST_2084_PQ")
+    kFormatDescriptionTransferFunction_SMPTE_ST_2084_PQ: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionTransferFunction_ITU_R_2100_HLG")
+    kFormatDescriptionTransferFunction_ITU_R_2100_HLG: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionTransferFunction_Linear")
+    kFormatDescriptionTransferFunction_Linear: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionTransferFunction_sRGB")
+    kFormatDescriptionTransferFunction_sRGB: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_GammaLevel")
+    kFormatDescriptionExtension_GammaLevel: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_YCbCrMatrix")
+    kFormatDescriptionExtension_YCbCrMatrix: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionYCbCrMatrix_ITU_R_709_2")
+    kFormatDescriptionYCbCrMatrix_ITU_R_709_2: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionYCbCrMatrix_ITU_R_601_4")
+    kFormatDescriptionYCbCrMatrix_ITU_R_601_4: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionYCbCrMatrix_SMPTE_240M_1995")
+    kFormatDescriptionYCbCrMatrix_SMPTE_240M_1995: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionYCbCrMatrix_ITU_R_2020")
+    kFormatDescriptionYCbCrMatrix_ITU_R_2020: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_FullRangeVideo")
+    kFormatDescriptionExtension_FullRangeVideo: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ICCProfile")
+    kFormatDescriptionExtension_ICCProfile: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_BytesPerRow")
+    kFormatDescriptionExtension_BytesPerRow: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ChromaLocationTopField")
+    kFormatDescriptionExtension_ChromaLocationTopField: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ChromaLocationBottomField")
+    kFormatDescriptionExtension_ChromaLocationBottomField: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionChromaLocation_Left")
+    kFormatDescriptionChromaLocation_Left: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionChromaLocation_Center")
+    kFormatDescriptionChromaLocation_Center: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionChromaLocation_TopLeft")
+    kFormatDescriptionChromaLocation_TopLeft: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionChromaLocation_Top")
+    kFormatDescriptionChromaLocation_Top: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionChromaLocation_BottomLeft")
+    kFormatDescriptionChromaLocation_BottomLeft: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionChromaLocation_Bottom")
+    kFormatDescriptionChromaLocation_Bottom: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionChromaLocation_DV420")
+    kFormatDescriptionChromaLocation_DV420: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionConformsToMPEG2VideoProfile")
+    kFormatDescriptionConformsToMPEG2VideoProfile: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ProtectedContentOriginalFormat")
+    kFormatDescriptionExtension_ProtectedContentOriginalFormat: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_TemporalQuality")
+    kFormatDescriptionExtension_TemporalQuality: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_SpatialQuality")
+    kFormatDescriptionExtension_SpatialQuality: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_VerbatimImageDescription")
+    kFormatDescriptionExtension_VerbatimImageDescription: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_Version")
+    kFormatDescriptionExtension_Version: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_RevisionLevel")
+    kFormatDescriptionExtension_RevisionLevel: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_Vendor")
+    kFormatDescriptionExtension_Vendor: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionVendor_Apple")
+    kFormatDescriptionVendor_Apple: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_MasteringDisplayColorVolume")
+    kFormatDescriptionExtension_MasteringDisplayColorVolume: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ContentLightLevelInfo")
+    kFormatDescriptionExtension_ContentLightLevelInfo: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ContentColorVolume")
+    kFormatDescriptionExtension_ContentColorVolume: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_AlternativeTransferCharacteristics")
+    kFormatDescriptionExtension_AlternativeTransferCharacteristics: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_AuxiliaryTypeInfo")
+    kFormatDescriptionExtension_AuxiliaryTypeInfo: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_AlphaChannelMode")
+    kFormatDescriptionExtension_AlphaChannelMode: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionAlphaChannelMode_StraightAlpha")
+    kFormatDescriptionAlphaChannelMode_StraightAlpha: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionAlphaChannelMode_PremultipliedAlpha")
+    kFormatDescriptionAlphaChannelMode_PremultipliedAlpha: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ContainsAlphaChannel")
+    kFormatDescriptionExtension_ContainsAlphaChannel: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_BitsPerComponent")
+    kFormatDescriptionExtension_BitsPerComponent: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_HorizontalFieldOfView")
+    kFormatDescriptionExtension_HorizontalFieldOfView: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_LogTransferFunction")
+    kFormatDescriptionExtension_LogTransferFunction: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionLogTransferFunction_AppleLog")
+    kFormatDescriptionLogTransferFunction_AppleLog: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_HeroEye")
+    kFormatDescriptionExtension_HeroEye: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionHeroEye_Left")
+    kFormatDescriptionHeroEye_Left: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionHeroEye_Right")
+    kFormatDescriptionHeroEye_Right: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_StereoCameraBaseline")
+    kFormatDescriptionExtension_StereoCameraBaseline: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_HorizontalDisparityAdjustment")
+    kFormatDescriptionExtension_HorizontalDisparityAdjustment: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_HasLeftStereoEyeView")
+    kFormatDescriptionExtension_HasLeftStereoEyeView: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_HasRightStereoEyeView")
+    kFormatDescriptionExtension_HasRightStereoEyeView: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_HasAdditionalViews")
+    kFormatDescriptionExtension_HasAdditionalViews: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ProjectionKind")
+    kFormatDescriptionExtension_ProjectionKind: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionProjectionKind_Rectilinear")
+    kFormatDescriptionProjectionKind_Rectilinear: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionProjectionKind_Equirectangular")
+    kFormatDescriptionProjectionKind_Equirectangular: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionProjectionKind_HalfEquirectangular")
+    kFormatDescriptionProjectionKind_HalfEquirectangular: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionProjectionKind_ParametricImmersive")
+    kFormatDescriptionProjectionKind_ParametricImmersive: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionProjectionKind_AppleImmersiveVideo")
+    kFormatDescriptionProjectionKind_AppleImmersiveVideo: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ViewPackingKind")
+    kFormatDescriptionExtension_ViewPackingKind: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionViewPackingKind_SideBySide")
+    kFormatDescriptionViewPackingKind_SideBySide: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionViewPackingKind_OverUnder")
+    kFormatDescriptionViewPackingKind_OverUnder: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_CameraCalibrationDataLensCollection")
+    kFormatDescriptionExtension_CameraCalibrationDataLensCollection: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensAlgorithmKind")
+    kFormatDescriptionCameraCalibration_LensAlgorithmKind: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens")
+    kFormatDescriptionCameraCalibrationLensAlgorithmKind_ParametricLens: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensDomain")
+    kFormatDescriptionCameraCalibration_LensDomain: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensDomain_Color")
+    kFormatDescriptionCameraCalibrationLensDomain_Color: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensIdentifier")
+    kFormatDescriptionCameraCalibration_LensIdentifier: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensRole")
+    kFormatDescriptionCameraCalibration_LensRole: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensRole_Mono")
+    kFormatDescriptionCameraCalibrationLensRole_Mono: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensRole_Left")
+    kFormatDescriptionCameraCalibrationLensRole_Left: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibrationLensRole_Right")
+    kFormatDescriptionCameraCalibrationLensRole_Right: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensDistortions")
+    kFormatDescriptionCameraCalibration_LensDistortions: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX")
+    kFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialX: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY")
+    kFormatDescriptionCameraCalibration_LensFrameAdjustmentsPolynomialY: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_RadialAngleLimit")
+    kFormatDescriptionCameraCalibration_RadialAngleLimit: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_IntrinsicMatrix")
+    kFormatDescriptionCameraCalibration_IntrinsicMatrix: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset")
+    kFormatDescriptionCameraCalibration_IntrinsicMatrixProjectionOffset: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions")
+    kFormatDescriptionCameraCalibration_IntrinsicMatrixReferenceDimensions: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_ExtrinsicOriginSource")
+    kFormatDescriptionCameraCalibration_ExtrinsicOriginSource: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline")
+    kFormatDescriptionCameraCalibrationExtrinsicOriginSource_StereoCameraSystemBaseline: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion")
+    kFormatDescriptionCameraCalibration_ExtrinsicOrientationQuaternion: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_ConvertedFromExternalSphericalTags")
+    kFormatDescriptionExtension_ConvertedFromExternalSphericalTags: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionExtension_DisplayFlags")
+    kTextFormatDescriptionExtension_DisplayFlags: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionExtension_BackgroundColor")
+    kTextFormatDescriptionExtension_BackgroundColor: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionColor_Red")
+    kTextFormatDescriptionColor_Red: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionColor_Green")
+    kTextFormatDescriptionColor_Green: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionColor_Blue")
+    kTextFormatDescriptionColor_Blue: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionColor_Alpha")
+    kTextFormatDescriptionColor_Alpha: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionExtension_DefaultTextBox")
+    kTextFormatDescriptionExtension_DefaultTextBox: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionRect_Top")
+    kTextFormatDescriptionRect_Top: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionRect_Left")
+    kTextFormatDescriptionRect_Left: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionRect_Bottom")
+    kTextFormatDescriptionRect_Bottom: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionRect_Right")
+    kTextFormatDescriptionRect_Right: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionExtension_DefaultStyle")
+    kTextFormatDescriptionExtension_DefaultStyle: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionStyle_StartChar")
+    kTextFormatDescriptionStyle_StartChar: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionStyle_Font")
+    kTextFormatDescriptionStyle_Font: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionStyle_FontFace")
+    kTextFormatDescriptionStyle_FontFace: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionStyle_ForegroundColor")
+    kTextFormatDescriptionStyle_ForegroundColor: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionStyle_FontSize")
+    kTextFormatDescriptionStyle_FontSize: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionExtension_HorizontalJustification")
+    kTextFormatDescriptionExtension_HorizontalJustification: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionExtension_VerticalJustification")
+    kTextFormatDescriptionExtension_VerticalJustification: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionStyle_EndChar")
+    kTextFormatDescriptionStyle_EndChar: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionExtension_FontTable")
+    kTextFormatDescriptionExtension_FontTable: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionExtension_TextJustification")
+    kTextFormatDescriptionExtension_TextJustification: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionStyle_Height")
+    kTextFormatDescriptionStyle_Height: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionStyle_Ascent")
+    kTextFormatDescriptionStyle_Ascent: CF.StringRef
+
+    @(link_name="kCMTextFormatDescriptionExtension_DefaultFontName")
+    kTextFormatDescriptionExtension_DefaultFontName: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtension_AmbientViewingEnvironment")
+    kFormatDescriptionExtension_AmbientViewingEnvironment: CF.StringRef
+
+    @(link_name="kCMTimeCodeFormatDescriptionExtension_SourceReferenceName")
+    kTimeCodeFormatDescriptionExtension_SourceReferenceName: CF.StringRef
+
+    @(link_name="kCMTimeCodeFormatDescriptionKey_Value")
+    kTimeCodeFormatDescriptionKey_Value: CF.StringRef
+
+    @(link_name="kCMTimeCodeFormatDescriptionKey_LangCode")
+    kTimeCodeFormatDescriptionKey_LangCode: CF.StringRef
+
+    @(link_name="kCMFormatDescriptionExtensionKey_MetadataKeyTable")
+    kFormatDescriptionExtensionKey_MetadataKeyTable: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionKey_Namespace")
+    kMetadataFormatDescriptionKey_Namespace: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionKey_Value")
+    kMetadataFormatDescriptionKey_Value: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionKey_LocalID")
+    kMetadataFormatDescriptionKey_LocalID: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionKey_DataType")
+    kMetadataFormatDescriptionKey_DataType: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionKey_DataTypeNamespace")
+    kMetadataFormatDescriptionKey_DataTypeNamespace: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionKey_ConformingDataTypes")
+    kMetadataFormatDescriptionKey_ConformingDataTypes: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionKey_LanguageTag")
+    kMetadataFormatDescriptionKey_LanguageTag: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionKey_StructuralDependency")
+    kMetadataFormatDescriptionKey_StructuralDependency: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionKey_SetupData")
+    kMetadataFormatDescriptionKey_SetupData: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag")
+    kMetadataFormatDescription_StructuralDependencyKey_DependencyIsInvalidFlag: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_Identifier")
+    kMetadataFormatDescriptionMetadataSpecificationKey_Identifier: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_DataType")
+    kMetadataFormatDescriptionMetadataSpecificationKey_DataType: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_ExtendedLanguageTag")
+    kMetadataFormatDescriptionMetadataSpecificationKey_ExtendedLanguageTag: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_StructuralDependency")
+    kMetadataFormatDescriptionMetadataSpecificationKey_StructuralDependency: CF.StringRef
+
+    @(link_name="kCMMetadataFormatDescriptionMetadataSpecificationKey_SetupData")
+    kMetadataFormatDescriptionMetadataSpecificationKey_SetupData: CF.StringRef
+
+    @(link_name="kCMImageDescriptionFlavor_QuickTimeMovie")
+    kImageDescriptionFlavor_QuickTimeMovie: ImageDescriptionFlavor
+
+    @(link_name="kCMImageDescriptionFlavor_ISOFamily")
+    kImageDescriptionFlavor_ISOFamily: ImageDescriptionFlavor
+
+    @(link_name="kCMImageDescriptionFlavor_3GPFamily")
+    kImageDescriptionFlavor_3GPFamily: ImageDescriptionFlavor
+
+    @(link_name="kCMImageDescriptionFlavor_ISOFamilyWithAppleExtensions")
+    kImageDescriptionFlavor_ISOFamilyWithAppleExtensions: ImageDescriptionFlavor
+
+    @(link_name="kCMSoundDescriptionFlavor_QuickTimeMovie")
+    kSoundDescriptionFlavor_QuickTimeMovie: SoundDescriptionFlavor
+
+    @(link_name="kCMSoundDescriptionFlavor_QuickTimeMovieV2")
+    kSoundDescriptionFlavor_QuickTimeMovieV2: SoundDescriptionFlavor
+
+    @(link_name="kCMSoundDescriptionFlavor_ISOFamily")
+    kSoundDescriptionFlavor_ISOFamily: SoundDescriptionFlavor
+
+    @(link_name="kCMSoundDescriptionFlavor_3GPFamily")
+    kSoundDescriptionFlavor_3GPFamily: SoundDescriptionFlavor
+
+    @(link_name="kCMTimingInfoInvalid")
+    kTimingInfoInvalid: SampleTimingInfo
+
+    @(link_name="kCMSampleBufferNotification_DataBecameReady")
+    kSampleBufferNotification_DataBecameReady: CF.StringRef
+
+    @(link_name="kCMSampleBufferNotification_DataFailed")
+    kSampleBufferNotification_DataFailed: CF.StringRef
+
+    @(link_name="kCMSampleBufferNotificationParameter_OSStatus")
+    kSampleBufferNotificationParameter_OSStatus: CF.StringRef
+
+    @(link_name="kCMSampleBufferConduitNotification_InhibitOutputUntil")
+    kSampleBufferConduitNotification_InhibitOutputUntil: CF.StringRef
+
+    @(link_name="kCMSampleBufferConduitNotificationParameter_ResumeTag")
+    kSampleBufferConduitNotificationParameter_ResumeTag: CF.StringRef
+
+    @(link_name="kCMSampleBufferConduitNotification_ResetOutput")
+    kSampleBufferConduitNotification_ResetOutput: CF.StringRef
+
+    @(link_name="kCMSampleBufferConduitNotification_UpcomingOutputPTSRangeChanged")
+    kSampleBufferConduitNotification_UpcomingOutputPTSRangeChanged: CF.StringRef
+
+    @(link_name="kCMSampleBufferConduitNotificationParameter_UpcomingOutputPTSRangeMayOverlapQueuedOutputPTSRange")
+    kSampleBufferConduitNotificationParameter_UpcomingOutputPTSRangeMayOverlapQueuedOutputPTSRange: CF.StringRef
+
+    @(link_name="kCMSampleBufferConduitNotificationParameter_MinUpcomingOutputPTS")
+    kSampleBufferConduitNotificationParameter_MinUpcomingOutputPTS: CF.StringRef
+
+    @(link_name="kCMSampleBufferConduitNotificationParameter_MaxUpcomingOutputPTS")
+    kSampleBufferConduitNotificationParameter_MaxUpcomingOutputPTS: CF.StringRef
+
+    @(link_name="kCMSampleBufferConsumerNotification_BufferConsumed")
+    kSampleBufferConsumerNotification_BufferConsumed: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_NotSync")
+    kSampleAttachmentKey_NotSync: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_PartialSync")
+    kSampleAttachmentKey_PartialSync: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_HasRedundantCoding")
+    kSampleAttachmentKey_HasRedundantCoding: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_IsDependedOnByOthers")
+    kSampleAttachmentKey_IsDependedOnByOthers: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_DependsOnOthers")
+    kSampleAttachmentKey_DependsOnOthers: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_EarlierDisplayTimesAllowed")
+    kSampleAttachmentKey_EarlierDisplayTimesAllowed: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_DisplayImmediately")
+    kSampleAttachmentKey_DisplayImmediately: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_DoNotDisplay")
+    kSampleAttachmentKey_DoNotDisplay: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_ResetDecoderBeforeDecoding")
+    kSampleBufferAttachmentKey_ResetDecoderBeforeDecoding: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_DrainAfterDecoding")
+    kSampleBufferAttachmentKey_DrainAfterDecoding: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_PostNotificationWhenConsumed")
+    kSampleBufferAttachmentKey_PostNotificationWhenConsumed: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_ResumeOutput")
+    kSampleBufferAttachmentKey_ResumeOutput: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_HEVCTemporalLevelInfo")
+    kSampleAttachmentKey_HEVCTemporalLevelInfo: CF.StringRef
+
+    @(link_name="kCMHEVCTemporalLevelInfoKey_TemporalLevel")
+    kHEVCTemporalLevelInfoKey_TemporalLevel: CF.StringRef
+
+    @(link_name="kCMHEVCTemporalLevelInfoKey_ProfileSpace")
+    kHEVCTemporalLevelInfoKey_ProfileSpace: CF.StringRef
+
+    @(link_name="kCMHEVCTemporalLevelInfoKey_TierFlag")
+    kHEVCTemporalLevelInfoKey_TierFlag: CF.StringRef
+
+    @(link_name="kCMHEVCTemporalLevelInfoKey_ProfileIndex")
+    kHEVCTemporalLevelInfoKey_ProfileIndex: CF.StringRef
+
+    @(link_name="kCMHEVCTemporalLevelInfoKey_ProfileCompatibilityFlags")
+    kHEVCTemporalLevelInfoKey_ProfileCompatibilityFlags: CF.StringRef
+
+    @(link_name="kCMHEVCTemporalLevelInfoKey_ConstraintIndicatorFlags")
+    kHEVCTemporalLevelInfoKey_ConstraintIndicatorFlags: CF.StringRef
+
+    @(link_name="kCMHEVCTemporalLevelInfoKey_LevelIndex")
+    kHEVCTemporalLevelInfoKey_LevelIndex: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_HEVCTemporalSubLayerAccess")
+    kSampleAttachmentKey_HEVCTemporalSubLayerAccess: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_HEVCStepwiseTemporalSubLayerAccess")
+    kSampleAttachmentKey_HEVCStepwiseTemporalSubLayerAccess: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_HEVCSyncSampleNALUnitType")
+    kSampleAttachmentKey_HEVCSyncSampleNALUnitType: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_AudioIndependentSampleDecoderRefreshCount")
+    kSampleAttachmentKey_AudioIndependentSampleDecoderRefreshCount: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_TransitionID")
+    kSampleBufferAttachmentKey_TransitionID: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_TrimDurationAtStart")
+    kSampleBufferAttachmentKey_TrimDurationAtStart: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_TrimDurationAtEnd")
+    kSampleBufferAttachmentKey_TrimDurationAtEnd: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_SpeedMultiplier")
+    kSampleBufferAttachmentKey_SpeedMultiplier: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_Reverse")
+    kSampleBufferAttachmentKey_Reverse: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_FillDiscontinuitiesWithSilence")
+    kSampleBufferAttachmentKey_FillDiscontinuitiesWithSilence: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_EmptyMedia")
+    kSampleBufferAttachmentKey_EmptyMedia: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_PermanentEmptyMedia")
+    kSampleBufferAttachmentKey_PermanentEmptyMedia: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_DisplayEmptyMediaImmediately")
+    kSampleBufferAttachmentKey_DisplayEmptyMediaImmediately: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_EndsPreviousSampleDuration")
+    kSampleBufferAttachmentKey_EndsPreviousSampleDuration: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_SampleReferenceURL")
+    kSampleBufferAttachmentKey_SampleReferenceURL: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_SampleReferenceByteOffset")
+    kSampleBufferAttachmentKey_SampleReferenceByteOffset: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_GradualDecoderRefresh")
+    kSampleBufferAttachmentKey_GradualDecoderRefresh: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_DroppedFrameReason")
+    kSampleBufferAttachmentKey_DroppedFrameReason: CF.StringRef
+
+    @(link_name="kCMSampleBufferDroppedFrameReason_FrameWasLate")
+    kSampleBufferDroppedFrameReason_FrameWasLate: CF.StringRef
+
+    @(link_name="kCMSampleBufferDroppedFrameReason_OutOfBuffers")
+    kSampleBufferDroppedFrameReason_OutOfBuffers: CF.StringRef
+
+    @(link_name="kCMSampleBufferDroppedFrameReason_Discontinuity")
+    kSampleBufferDroppedFrameReason_Discontinuity: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_DroppedFrameReasonInfo")
+    kSampleBufferAttachmentKey_DroppedFrameReasonInfo: CF.StringRef
+
+    @(link_name="kCMSampleBufferDroppedFrameReasonInfo_CameraModeSwitch")
+    kSampleBufferDroppedFrameReasonInfo_CameraModeSwitch: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_StillImageLensStabilizationInfo")
+    kSampleBufferAttachmentKey_StillImageLensStabilizationInfo: CF.StringRef
+
+    @(link_name="kCMSampleBufferLensStabilizationInfo_Active")
+    kSampleBufferLensStabilizationInfo_Active: CF.StringRef
+
+    @(link_name="kCMSampleBufferLensStabilizationInfo_OutOfRange")
+    kSampleBufferLensStabilizationInfo_OutOfRange: CF.StringRef
+
+    @(link_name="kCMSampleBufferLensStabilizationInfo_Unavailable")
+    kSampleBufferLensStabilizationInfo_Unavailable: CF.StringRef
+
+    @(link_name="kCMSampleBufferLensStabilizationInfo_Off")
+    kSampleBufferLensStabilizationInfo_Off: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix")
+    kSampleBufferAttachmentKey_CameraIntrinsicMatrix: CF.StringRef
+
+    @(link_name="kCMSampleBufferAttachmentKey_ForceKeyFrame")
+    kSampleBufferAttachmentKey_ForceKeyFrame: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_CryptorSubsampleAuxiliaryData")
+    kSampleAttachmentKey_CryptorSubsampleAuxiliaryData: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_HDR10PlusPerFrameData")
+    kSampleAttachmentKey_HDR10PlusPerFrameData: CF.StringRef
+
+    @(link_name="kCMSampleAttachmentKey_PostDecodeProcessingMetadata")
+    kSampleAttachmentKey_PostDecodeProcessingMetadata: CF.StringRef
+
+    @(link_name="kCMTagInvalid")
+    kTagInvalid: Tag
+
+    @(link_name="kCMTagMediaTypeVideo")
+    kTagMediaTypeVideo: Tag
+
+    @(link_name="kCMTagMediaSubTypeMebx")
+    kTagMediaSubTypeMebx: Tag
+
+    @(link_name="kCMTagMediaTypeAudio")
+    kTagMediaTypeAudio: Tag
+
+    @(link_name="kCMTagMediaTypeMetadata")
+    kTagMediaTypeMetadata: Tag
+
+    @(link_name="kCMTagStereoLeftEye")
+    kTagStereoLeftEye: Tag
+
+    @(link_name="kCMTagStereoRightEye")
+    kTagStereoRightEye: Tag
+
+    @(link_name="kCMTagStereoLeftAndRightEye")
+    kTagStereoLeftAndRightEye: Tag
+
+    @(link_name="kCMTagStereoNone")
+    kTagStereoNone: Tag
+
+    @(link_name="kCMTagStereoInterpretationOrderReversed")
+    kTagStereoInterpretationOrderReversed: Tag
+
+    @(link_name="kCMTagProjectionTypeRectangular")
+    kTagProjectionTypeRectangular: Tag
+
+    @(link_name="kCMTagProjectionTypeEquirectangular")
+    kTagProjectionTypeEquirectangular: Tag
+
+    @(link_name="kCMTagProjectionTypeHalfEquirectangular")
+    kTagProjectionTypeHalfEquirectangular: Tag
+
+    @(link_name="kCMTagProjectionTypeFisheye")
+    kTagProjectionTypeFisheye: Tag
+
+    @(link_name="kCMTagProjectionTypeParametricImmersive")
+    kTagProjectionTypeParametricImmersive: Tag
+
+    @(link_name="kCMTagPackingTypeNone")
+    kTagPackingTypeNone: Tag
+
+    @(link_name="kCMTagPackingTypeSideBySide")
+    kTagPackingTypeSideBySide: Tag
+
+    @(link_name="kCMTagPackingTypeOverUnder")
+    kTagPackingTypeOverUnder: Tag
+
+    @(link_name="kCMTagValueKey")
+    kTagValueKey: CF.StringRef
+
+    @(link_name="kCMTagCategoryKey")
+    kTagCategoryKey: CF.StringRef
+
+    @(link_name="kCMTagDataTypeKey")
+    kTagDataTypeKey: CF.StringRef
+
+    @(link_name="kCMTagCollectionTagsArrayKey")
+    kTagCollectionTagsArrayKey: CF.StringRef
+
+    @(link_name="kCMMemoryPoolOption_AgeOutPeriod")
+    kMemoryPoolOption_AgeOutPeriod: CF.StringRef
+
+    @(link_name="kCMTimebaseNotification_EffectiveRateChanged")
+    kTimebaseNotification_EffectiveRateChanged: CF.StringRef
+
+    @(link_name="kCMTimebaseNotification_TimeJumped")
+    kTimebaseNotification_TimeJumped: CF.StringRef
+
+    @(link_name="kCMTimebaseNotificationKey_EventTime")
+    kTimebaseNotificationKey_EventTime: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_ForegroundColorARGB")
+    kTextMarkupAttribute_ForegroundColorARGB: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_BackgroundColorARGB")
+    kTextMarkupAttribute_BackgroundColorARGB: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_CharacterBackgroundColorARGB")
+    kTextMarkupAttribute_CharacterBackgroundColorARGB: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_BoldStyle")
+    kTextMarkupAttribute_BoldStyle: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_ItalicStyle")
+    kTextMarkupAttribute_ItalicStyle: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_UnderlineStyle")
+    kTextMarkupAttribute_UnderlineStyle: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_FontFamilyName")
+    kTextMarkupAttribute_FontFamilyName: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_FontFamilyNameList")
+    kTextMarkupAttribute_FontFamilyNameList: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_GenericFontFamilyName")
+    kTextMarkupAttribute_GenericFontFamilyName: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_Default")
+    kTextMarkupGenericFontName_Default: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_Serif")
+    kTextMarkupGenericFontName_Serif: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_SansSerif")
+    kTextMarkupGenericFontName_SansSerif: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_Monospace")
+    kTextMarkupGenericFontName_Monospace: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_ProportionalSerif")
+    kTextMarkupGenericFontName_ProportionalSerif: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_ProportionalSansSerif")
+    kTextMarkupGenericFontName_ProportionalSansSerif: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_MonospaceSerif")
+    kTextMarkupGenericFontName_MonospaceSerif: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_MonospaceSansSerif")
+    kTextMarkupGenericFontName_MonospaceSansSerif: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_Casual")
+    kTextMarkupGenericFontName_Casual: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_Cursive")
+    kTextMarkupGenericFontName_Cursive: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_Fantasy")
+    kTextMarkupGenericFontName_Fantasy: CF.StringRef
+
+    @(link_name="kCMTextMarkupGenericFontName_SmallCapital")
+    kTextMarkupGenericFontName_SmallCapital: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_BaseFontSizePercentageRelativeToVideoHeight")
+    kTextMarkupAttribute_BaseFontSizePercentageRelativeToVideoHeight: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_RelativeFontSize")
+    kTextMarkupAttribute_RelativeFontSize: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_VerticalLayout")
+    kTextMarkupAttribute_VerticalLayout: CF.StringRef
+
+    @(link_name="kCMTextVerticalLayout_LeftToRight")
+    kTextVerticalLayout_LeftToRight: CF.StringRef
+
+    @(link_name="kCMTextVerticalLayout_RightToLeft")
+    kTextVerticalLayout_RightToLeft: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_Alignment")
+    kTextMarkupAttribute_Alignment: CF.StringRef
+
+    @(link_name="kCMTextMarkupAlignmentType_Start")
+    kTextMarkupAlignmentType_Start: CF.StringRef
+
+    @(link_name="kCMTextMarkupAlignmentType_Middle")
+    kTextMarkupAlignmentType_Middle: CF.StringRef
+
+    @(link_name="kCMTextMarkupAlignmentType_End")
+    kTextMarkupAlignmentType_End: CF.StringRef
+
+    @(link_name="kCMTextMarkupAlignmentType_Left")
+    kTextMarkupAlignmentType_Left: CF.StringRef
+
+    @(link_name="kCMTextMarkupAlignmentType_Right")
+    kTextMarkupAlignmentType_Right: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_TextPositionPercentageRelativeToWritingDirection")
+    kTextMarkupAttribute_TextPositionPercentageRelativeToWritingDirection: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_OrthogonalLinePositionPercentageRelativeToWritingDirection")
+    kTextMarkupAttribute_OrthogonalLinePositionPercentageRelativeToWritingDirection: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_WritingDirectionSizePercentage")
+    kTextMarkupAttribute_WritingDirectionSizePercentage: CF.StringRef
+
+    @(link_name="kCMTextMarkupAttribute_CharacterEdgeStyle")
+    kTextMarkupAttribute_CharacterEdgeStyle: CF.StringRef
+
+    @(link_name="kCMTextMarkupCharacterEdgeStyle_None")
+    kTextMarkupCharacterEdgeStyle_None: CF.StringRef
+
+    @(link_name="kCMTextMarkupCharacterEdgeStyle_Raised")
+    kTextMarkupCharacterEdgeStyle_Raised: CF.StringRef
+
+    @(link_name="kCMTextMarkupCharacterEdgeStyle_Depressed")
+    kTextMarkupCharacterEdgeStyle_Depressed: CF.StringRef
+
+    @(link_name="kCMTextMarkupCharacterEdgeStyle_Uniform")
+    kTextMarkupCharacterEdgeStyle_Uniform: CF.StringRef
+
+    @(link_name="kCMTextMarkupCharacterEdgeStyle_DropShadow")
+    kTextMarkupCharacterEdgeStyle_DropShadow: CF.StringRef
+
+    @(link_name="kCMMetadataKeySpace_QuickTimeUserData")
+    kMetadataKeySpace_QuickTimeUserData: CF.StringRef
+
+    @(link_name="kCMMetadataKeySpace_ISOUserData")
+    kMetadataKeySpace_ISOUserData: CF.StringRef
+
+    @(link_name="kCMMetadataKeySpace_QuickTimeMetadata")
+    kMetadataKeySpace_QuickTimeMetadata: CF.StringRef
+
+    @(link_name="kCMMetadataKeySpace_iTunes")
+    kMetadataKeySpace_iTunes: CF.StringRef
+
+    @(link_name="kCMMetadataKeySpace_ID3")
+    kMetadataKeySpace_ID3: CF.StringRef
+
+    @(link_name="kCMMetadataKeySpace_Icy")
+    kMetadataKeySpace_Icy: CF.StringRef
+
+    @(link_name="kCMMetadataKeySpace_HLSDateRange")
+    kMetadataKeySpace_HLSDateRange: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataLocation_ISO6709")
+    kMetadataIdentifier_QuickTimeMetadataLocation_ISO6709: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDirection_Facing")
+    kMetadataIdentifier_QuickTimeMetadataDirection_Facing: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform")
+    kMetadataIdentifier_QuickTimeMetadataPreferredAffineTransform: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataVideoOrientation")
+    kMetadataIdentifier_QuickTimeMetadataVideoOrientation: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform")
+    kMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransform: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions")
+    kMetadataIdentifier_QuickTimeMetadataLivePhotoStillImageTransformReferenceDimensions: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataSegmentIdentifier")
+    kMetadataIdentifier_QuickTimeMetadataSegmentIdentifier: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataSceneIlluminance")
+    kMetadataIdentifier_QuickTimeMetadataSceneIlluminance: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataSpatialAudioMix")
+    kMetadataIdentifier_QuickTimeMetadataSpatialAudioMix: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono")
+    kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleMono: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft")
+    kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoLeft: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight")
+    kMetadataIdentifier_QuickTimeMetadataDisplayMaskRectangleStereoRight: CF.StringRef
+
+    @(link_name="kCMMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia")
+    kMetadataIdentifier_QuickTimeMetadataPresentationImmersiveMedia: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_RawData")
+    kMetadataBaseDataType_RawData: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_UTF8")
+    kMetadataBaseDataType_UTF8: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_UTF16")
+    kMetadataBaseDataType_UTF16: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_GIF")
+    kMetadataBaseDataType_GIF: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_JPEG")
+    kMetadataBaseDataType_JPEG: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_PNG")
+    kMetadataBaseDataType_PNG: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_BMP")
+    kMetadataBaseDataType_BMP: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_Float32")
+    kMetadataBaseDataType_Float32: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_Float64")
+    kMetadataBaseDataType_Float64: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_SInt8")
+    kMetadataBaseDataType_SInt8: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_SInt16")
+    kMetadataBaseDataType_SInt16: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_SInt32")
+    kMetadataBaseDataType_SInt32: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_SInt64")
+    kMetadataBaseDataType_SInt64: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_UInt8")
+    kMetadataBaseDataType_UInt8: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_UInt16")
+    kMetadataBaseDataType_UInt16: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_UInt32")
+    kMetadataBaseDataType_UInt32: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_UInt64")
+    kMetadataBaseDataType_UInt64: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_PointF32")
+    kMetadataBaseDataType_PointF32: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_DimensionsF32")
+    kMetadataBaseDataType_DimensionsF32: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_RectF32")
+    kMetadataBaseDataType_RectF32: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_AffineTransformF64")
+    kMetadataBaseDataType_AffineTransformF64: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_PolygonF32")
+    kMetadataBaseDataType_PolygonF32: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_PolylineF32")
+    kMetadataBaseDataType_PolylineF32: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_JSON")
+    kMetadataBaseDataType_JSON: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_PerspectiveTransformF64")
+    kMetadataBaseDataType_PerspectiveTransformF64: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_RasterRectangleValue")
+    kMetadataBaseDataType_RasterRectangleValue: CF.StringRef
+
+    @(link_name="kCMMetadataBaseDataType_ExtendedRasterRectangleValue")
+    kMetadataBaseDataType_ExtendedRasterRectangleValue: CF.StringRef
+
+    @(link_name="kCMMetadataDataType_QuickTimeMetadataLocation_ISO6709")
+    kMetadataDataType_QuickTimeMetadataLocation_ISO6709: CF.StringRef
+
+    @(link_name="kCMMetadataDataType_QuickTimeMetadataDirection")
+    kMetadataDataType_QuickTimeMetadataDirection: CF.StringRef
+
+    @(link_name="kCMMetadataDataType_QuickTimeMetadataUUID")
+    kMetadataDataType_QuickTimeMetadataUUID: CF.StringRef
+
+    @(link_name="kCMMetadataDataType_QuickTimeMetadataMilliLux")
+    kMetadataDataType_QuickTimeMetadataMilliLux: CF.StringRef
+
     @(link_name="CMTimeMake")
     TimeMake :: proc(value: cffi.int64_t, timescale: cffi.int32_t) -> Time ---
 
@@ -790,7 +1298,7 @@ foreign lib {
     @(link_name="CMTimeMappingShow")
     TimeMappingShow :: proc(mapping: TimeMapping) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(link_name="CMSDecoderGetTypeID")
         SDecoderGetTypeID :: proc() -> CF.TypeID ---
 
@@ -1261,7 +1769,7 @@ foreign lib {
     BufferQueueReset :: proc(queue: BufferQueueRef) -> CF.OSStatus ---
 
     @(link_name="CMBufferQueueResetWithCallback")
-    BufferQueueResetWithCallback :: proc(queue: BufferQueueRef, callback: proc "c" (buffer: BufferRef, refcon: rawptr), refcon: rawptr) -> CF.OSStatus ---
+    BufferQueueResetWithCallback :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ), refcon: rawptr) -> CF.OSStatus ---
 
     @(link_name="CMBufferQueueGetBufferCount")
     BufferQueueGetBufferCount :: proc(queue: BufferQueueRef) -> ItemCount ---
@@ -1309,7 +1817,7 @@ foreign lib {
     BufferQueueTestTrigger :: proc(queue: BufferQueueRef, triggerToken: BufferQueueTriggerToken) -> CF.Boolean ---
 
     @(link_name="CMBufferQueueCallForEachBuffer")
-    BufferQueueCallForEachBuffer :: proc(queue: BufferQueueRef, callback: proc "c" (buffer: BufferRef, refcon: rawptr) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
+    BufferQueueCallForEachBuffer :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
 
     @(link_name="CMBufferQueueSetValidationCallback")
     BufferQueueSetValidationCallback :: proc(queue: BufferQueueRef, callback: BufferValidationCallback, refcon: rawptr) -> CF.OSStatus ---
@@ -1459,10 +1967,10 @@ foreign lib {
     SampleBufferGetSampleAttachmentsArray :: proc(sbuf: SampleBufferRef, createIfNecessary: CF.Boolean) -> CF.ArrayRef ---
 
     @(link_name="CMSampleBufferCallForEachSample")
-    SampleBufferCallForEachSample :: proc(sbuf: SampleBufferRef, callback: proc "c" (sampleBuffer: SampleBufferRef, index: ItemCount, refcon: rawptr) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
+    SampleBufferCallForEachSample :: proc(sbuf: SampleBufferRef, callback: proc "c" ( sampleBuffer: SampleBufferRef, index: ItemCount, refcon: rawptr ) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
 
     @(link_name="CMSampleBufferCallBlockForEachSample")
-    SampleBufferCallBlockForEachSample :: proc(sbuf: SampleBufferRef, handler: ^Objc_Block(proc "c" (sampleBuffer: SampleBufferRef, index: ItemCount) -> CF.OSStatus)) -> CF.OSStatus ---
+    SampleBufferCallBlockForEachSample :: proc(sbuf: SampleBufferRef, handler: ^Objc_Block(proc "c" ( sampleBuffer: SampleBufferRef, index: ItemCount ) -> CF.OSStatus)) -> CF.OSStatus ---
 
     @(link_name="CMTagGetValueDataType")
     TagGetValueDataType :: proc(tag: Tag) -> TagDataType ---
@@ -1884,7 +2392,7 @@ foreign lib {
     @(link_name="CMAudioClockCreate")
     AudioClockCreate :: proc(allocator: CF.AllocatorRef, clockOut: ^ClockRef) -> CF.OSStatus ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(link_name="CMAudioDeviceClockCreate")
         AudioDeviceClockCreate :: proc(allocator: CF.AllocatorRef, deviceUID: CF.StringRef, clockOut: ^ClockRef) -> CF.OSStatus ---
 
@@ -1900,369 +2408,390 @@ foreign lib {
         @(link_name="CMAudioDeviceClockGetAudioDevice")
         AudioDeviceClockGetAudioDevice :: proc(clock: ClockRef, deviceUIDOut: ^CF.StringRef, deviceIDOut: ^CA.DeviceID, trackingDefaultDeviceOut: ^CF.Boolean) -> CF.OSStatus ---
     }
-
 }
 
-/// CMItemCount
+
+
+ASK                             :: 22
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    BITMAPCALLBACKPROCPTR_DEFINED   :: 1
+}
+TIMEBASE_USE_SOURCE_TERMINOLOGY :: 1
+kPersistentTrackID_Invalid                                      :: 0
+kFormatDescriptionError_InvalidParameter                        :: -12710
+kFormatDescriptionError_AllocationFailed                        :: -12711
+kFormatDescriptionError_ValueNotAvailable                       :: -12718
+kMediaType_Video                                                :: 1986618469
+kMediaType_Audio                                                :: 1936684398
+kMediaType_Muxed                                                :: 1836415096
+kMediaType_Text                                                 :: 1952807028
+kMediaType_ClosedCaption                                        :: 1668047728
+kMediaType_Subtitle                                             :: 1935832172
+kMediaType_TimeCode                                             :: 1953325924
+kMediaType_Metadata                                             :: 1835365473
+kMediaType_TaggedBufferGroup                                    :: 1952606066
+kMediaType_AuxiliaryPicture                                     :: 1635088502
+kAudioCodecType_AAC_LCProtected                                 :: 1885430115
+kAudioCodecType_AAC_AudibleProtected                            :: 1633771875
+kAudioFormatDescriptionMask_StreamBasicDescription              :: 1
+kAudioFormatDescriptionMask_MagicCookie                         :: 2
+kAudioFormatDescriptionMask_ChannelLayout                       :: 4
+kAudioFormatDescriptionMask_Extensions                          :: 8
+kAudioFormatDescriptionMask_All                                 :: 15
+kPixelFormat_32ARGB                                             :: 32
+kPixelFormat_32BGRA                                             :: 1111970369
+kPixelFormat_24RGB                                              :: 24
+kPixelFormat_16BE555                                            :: 16
+kPixelFormat_16BE565                                            :: 1110783541
+kPixelFormat_16LE555                                            :: 1278555445
+kPixelFormat_16LE565                                            :: 1278555701
+kPixelFormat_16LE5551                                           :: 892679473
+kPixelFormat_422YpCbCr8                                         :: 846624121
+kPixelFormat_422YpCbCr8_yuvs                                    :: 2037741171
+kPixelFormat_444YpCbCr8                                         :: 1983066168
+kPixelFormat_4444YpCbCrA8                                       :: 1983131704
+kPixelFormat_422YpCbCr16                                        :: 1983000886
+kPixelFormat_422YpCbCr10                                        :: 1983000880
+kPixelFormat_444YpCbCr10                                        :: 1983131952
+kPixelFormat_8IndexedGray_WhiteIsZero                           :: 40
+kVideoCodecType_422YpCbCr8                                      :: 846624121
+kVideoCodecType_Animation                                       :: 1919706400
+kVideoCodecType_Cinepak                                         :: 1668704612
+kVideoCodecType_JPEG                                            :: 1785750887
+kVideoCodecType_JPEG_OpenDML                                    :: 1684890161
+kVideoCodecType_JPEG_XL                                         :: 1786276963
+kVideoCodecType_SorensonVideo                                   :: 1398165809
+kVideoCodecType_SorensonVideo3                                  :: 1398165811
+kVideoCodecType_H263                                            :: 1748121139
+kVideoCodecType_H264                                            :: 1635148593
+kVideoCodecType_HEVC                                            :: 1752589105
+kVideoCodecType_HEVCWithAlpha                                   :: 1836415073
+kVideoCodecType_DolbyVisionHEVC                                 :: 1685481521
+kVideoCodecType_MPEG4Video                                      :: 1836070006
+kVideoCodecType_MPEG2Video                                      :: 1836069494
+kVideoCodecType_MPEG1Video                                      :: 1836069238
+kVideoCodecType_VP9                                             :: 1987063865
+kVideoCodecType_DVCNTSC                                         :: 1685480224
+kVideoCodecType_DVCPAL                                          :: 1685480304
+kVideoCodecType_DVCProPAL                                       :: 1685483632
+kVideoCodecType_DVCPro50NTSC                                    :: 1685468526
+kVideoCodecType_DVCPro50PAL                                     :: 1685468528
+kVideoCodecType_DVCPROHD720p60                                  :: 1685481584
+kVideoCodecType_DVCPROHD720p50                                  :: 1685481585
+kVideoCodecType_DVCPROHD1080i60                                 :: 1685481526
+kVideoCodecType_DVCPROHD1080i50                                 :: 1685481525
+kVideoCodecType_DVCPROHD1080p30                                 :: 1685481523
+kVideoCodecType_DVCPROHD1080p25                                 :: 1685481522
+kVideoCodecType_AppleProRes4444XQ                               :: 1634743416
+kVideoCodecType_AppleProRes4444                                 :: 1634743400
+kVideoCodecType_AppleProRes422HQ                                :: 1634755432
+kVideoCodecType_AppleProRes422                                  :: 1634755438
+kVideoCodecType_AppleProRes422LT                                :: 1634755443
+kVideoCodecType_AppleProRes422Proxy                             :: 1634755439
+kVideoCodecType_AppleProResRAW                                  :: 1634759278
+kVideoCodecType_AppleProResRAWHQ                                :: 1634759272
+kVideoCodecType_DisparityHEVC                                   :: 1684632424
+kVideoCodecType_DepthHEVC                                       :: 1684369512
+kVideoCodecType_AV1                                             :: 1635135537
+kMPEG2VideoProfile_HDV_720p30                                   :: 1751414321
+kMPEG2VideoProfile_HDV_1080i60                                  :: 1751414322
+kMPEG2VideoProfile_HDV_1080i50                                  :: 1751414323
+kMPEG2VideoProfile_HDV_720p24                                   :: 1751414324
+kMPEG2VideoProfile_HDV_720p25                                   :: 1751414325
+kMPEG2VideoProfile_HDV_1080p24                                  :: 1751414326
+kMPEG2VideoProfile_HDV_1080p25                                  :: 1751414327
+kMPEG2VideoProfile_HDV_1080p30                                  :: 1751414328
+kMPEG2VideoProfile_HDV_720p60                                   :: 1751414329
+kMPEG2VideoProfile_HDV_720p50                                   :: 1751414369
+kMPEG2VideoProfile_XDCAM_HD_1080i60_VBR35                       :: 2019849778
+kMPEG2VideoProfile_XDCAM_HD_1080i50_VBR35                       :: 2019849779
+kMPEG2VideoProfile_XDCAM_HD_1080p24_VBR35                       :: 2019849782
+kMPEG2VideoProfile_XDCAM_HD_1080p25_VBR35                       :: 2019849783
+kMPEG2VideoProfile_XDCAM_HD_1080p30_VBR35                       :: 2019849784
+kMPEG2VideoProfile_XDCAM_EX_720p24_VBR35                        :: 2019849780
+kMPEG2VideoProfile_XDCAM_EX_720p25_VBR35                        :: 2019849781
+kMPEG2VideoProfile_XDCAM_EX_720p30_VBR35                        :: 2019849777
+kMPEG2VideoProfile_XDCAM_EX_720p50_VBR35                        :: 2019849825
+kMPEG2VideoProfile_XDCAM_EX_720p60_VBR35                        :: 2019849785
+kMPEG2VideoProfile_XDCAM_EX_1080i60_VBR35                       :: 2019849826
+kMPEG2VideoProfile_XDCAM_EX_1080i50_VBR35                       :: 2019849827
+kMPEG2VideoProfile_XDCAM_EX_1080p24_VBR35                       :: 2019849828
+kMPEG2VideoProfile_XDCAM_EX_1080p25_VBR35                       :: 2019849829
+kMPEG2VideoProfile_XDCAM_EX_1080p30_VBR35                       :: 2019849830
+kMPEG2VideoProfile_XDCAM_HD422_720p50_CBR50                     :: 2019833185
+kMPEG2VideoProfile_XDCAM_HD422_720p60_CBR50                     :: 2019833145
+kMPEG2VideoProfile_XDCAM_HD422_1080i60_CBR50                    :: 2019833186
+kMPEG2VideoProfile_XDCAM_HD422_1080i50_CBR50                    :: 2019833187
+kMPEG2VideoProfile_XDCAM_HD422_1080p24_CBR50                    :: 2019833188
+kMPEG2VideoProfile_XDCAM_HD422_1080p25_CBR50                    :: 2019833189
+kMPEG2VideoProfile_XDCAM_HD422_1080p30_CBR50                    :: 2019833190
+kMPEG2VideoProfile_XDCAM_HD_540p                                :: 2019846244
+kMPEG2VideoProfile_XDCAM_HD422_540p                             :: 2019846194
+kMPEG2VideoProfile_XDCAM_HD422_720p24_CBR50                     :: 2019833140
+kMPEG2VideoProfile_XDCAM_HD422_720p25_CBR50                     :: 2019833141
+kMPEG2VideoProfile_XDCAM_HD422_720p30_CBR50                     :: 2019833137
+kMPEG2VideoProfile_XF                                           :: 2019981873
+kTaggedBufferGroupFormatType_TaggedBufferGroup                  :: 1952606066
+kMuxedStreamType_MPEG1System                                    :: 1836069235
+kMuxedStreamType_MPEG2Transport                                 :: 1836069492
+kMuxedStreamType_MPEG2Program                                   :: 1836069488
+kMuxedStreamType_DV                                             :: 1685463072
+kMuxedStreamType_EmbeddedDeviceScreenRecording                  :: 1769173536
+kClosedCaptionFormatType_CEA608                                 :: 1664495672
+kClosedCaptionFormatType_CEA708                                 :: 1664561208
+kClosedCaptionFormatType_ATSC                                   :: 1635017571
+kTextFormatType_QTText                                          :: 1952807028
+kTextFormatType_3GText                                          :: 1954034535
+kTextDisplayFlag_scrollIn                                       :: 32
+kTextDisplayFlag_scrollOut                                      :: 64
+kTextDisplayFlag_scrollDirectionMask                            :: 384
+kTextDisplayFlag_scrollDirection_bottomToTop                    :: 0
+kTextDisplayFlag_scrollDirection_rightToLeft                    :: 128
+kTextDisplayFlag_scrollDirection_topToBottom                    :: 256
+kTextDisplayFlag_scrollDirection_leftToRight                    :: 384
+kTextDisplayFlag_continuousKaraoke                              :: 2048
+kTextDisplayFlag_writeTextVertically                            :: 131072
+kTextDisplayFlag_fillTextRegion                                 :: 262144
+kTextDisplayFlag_obeySubtitleFormatting                         :: 536870912
+kTextDisplayFlag_forcedSubtitlesPresent                         :: 1073741824
+kTextDisplayFlag_allSubtitlesForced                             :: 2147483648
+kTextJustification_left_top                                     :: 0
+kTextJustification_centered                                     :: 1
+kTextJustification_bottom_right                                 :: -1
+kSubtitleFormatType_3GText                                      :: 1954034535
+kSubtitleFormatType_WebVTT                                      :: 2004251764
+kTimeCodeFormatType_TimeCode32                                  :: 1953325924
+kTimeCodeFormatType_TimeCode64                                  :: 1952658996
+kTimeCodeFormatType_Counter32                                   :: 1668166450
+kTimeCodeFormatType_Counter64                                   :: 1668167220
+kTimeCodeFlag_DropFrame                                         :: 1
+kTimeCodeFlag_24HourMax                                         :: 2
+kTimeCodeFlag_NegTimesOK                                        :: 4
+kMetadataFormatType_ICY                                         :: 1768126752
+kMetadataFormatType_ID3                                         :: 1768174368
+kMetadataFormatType_Boxed                                       :: 1835360888
+kMetadataFormatType_EMSG                                        :: 1701671783
+kAttachmentMode_ShouldNotPropagate                              :: 0
+kAttachmentMode_ShouldPropagate                                 :: 1
+kBlockBufferNoErr                                               :: 0
+kBlockBufferStructureAllocationFailedErr                        :: -12700
+kBlockBufferBlockAllocationFailedErr                            :: -12701
+kBlockBufferBadCustomBlockSourceErr                             :: -12702
+kBlockBufferBadOffsetParameterErr                               :: -12703
+kBlockBufferBadLengthParameterErr                               :: -12704
+kBlockBufferBadPointerParameterErr                              :: -12705
+kBlockBufferEmptyBBufErr                                        :: -12706
+kBlockBufferUnallocatedBlockErr                                 :: -12707
+kBlockBufferInsufficientSpaceErr                                :: -12708
+kBlockBufferAssureMemoryNowFlag                                 :: 1
+kBlockBufferAlwaysCopyDataFlag                                  :: 2
+kBlockBufferDontOptimizeDepthFlag                               :: 4
+kBlockBufferPermitEmptyReferenceFlag                            :: 8
+kBlockBufferCustomBlockSourceVersion                            :: 0
+kFormatDescriptionBridgeError_InvalidParameter                  :: -12712
+kFormatDescriptionBridgeError_AllocationFailed                  :: -12713
+kFormatDescriptionBridgeError_InvalidSerializedSampleDescription:: -12714
+kFormatDescriptionBridgeError_InvalidFormatDescription          :: -12715
+kFormatDescriptionBridgeError_IncompatibleFormatDescription     :: -12716
+kFormatDescriptionBridgeError_UnsupportedSampleDescriptionFlavor:: -12717
+kFormatDescriptionBridgeError_InvalidSlice                      :: -12719
+kBufferQueueError_AllocationFailed                              :: -12760
+kBufferQueueError_RequiredParameterMissing                      :: -12761
+kBufferQueueError_InvalidCMBufferCallbacksStruct                :: -12762
+kBufferQueueError_EnqueueAfterEndOfData                         :: -12763
+kBufferQueueError_QueueIsFull                                   :: -12764
+kBufferQueueError_BadTriggerDuration                            :: -12765
+kBufferQueueError_CannotModifyQueueFromTriggerCallback          :: -12766
+kBufferQueueError_InvalidTriggerCondition                       :: -12767
+kBufferQueueError_InvalidTriggerToken                           :: -12768
+kBufferQueueError_InvalidBuffer                                 :: -12769
+kBufferQueueTrigger_WhenDurationBecomesLessThan                 :: 1
+kBufferQueueTrigger_WhenDurationBecomesLessThanOrEqualTo        :: 2
+kBufferQueueTrigger_WhenDurationBecomesGreaterThan              :: 3
+kBufferQueueTrigger_WhenDurationBecomesGreaterThanOrEqualTo     :: 4
+kBufferQueueTrigger_WhenMinPresentationTimeStampChanges         :: 5
+kBufferQueueTrigger_WhenMaxPresentationTimeStampChanges         :: 6
+kBufferQueueTrigger_WhenDataBecomesReady                        :: 7
+kBufferQueueTrigger_WhenEndOfDataReached                        :: 8
+kBufferQueueTrigger_WhenReset                                   :: 9
+kBufferQueueTrigger_WhenBufferCountBecomesLessThan              :: 10
+kBufferQueueTrigger_WhenBufferCountBecomesGreaterThan           :: 11
+kBufferQueueTrigger_WhenDurationBecomesGreaterThanOrEqualToAndBufferCountBecomesGreaterThan:: 12
+kSampleBufferError_AllocationFailed                             :: -12730
+kSampleBufferError_RequiredParameterMissing                     :: -12731
+kSampleBufferError_AlreadyHasDataBuffer                         :: -12732
+kSampleBufferError_BufferNotReady                               :: -12733
+kSampleBufferError_SampleIndexOutOfRange                        :: -12734
+kSampleBufferError_BufferHasNoSampleSizes                       :: -12735
+kSampleBufferError_BufferHasNoSampleTimingInfo                  :: -12736
+kSampleBufferError_ArrayTooSmall                                :: -12737
+kSampleBufferError_InvalidEntryCount                            :: -12738
+kSampleBufferError_CannotSubdivide                              :: -12739
+kSampleBufferError_SampleTimingInfoInvalid                      :: -12740
+kSampleBufferError_InvalidMediaTypeForOperation                 :: -12741
+kSampleBufferError_InvalidSampleData                            :: -12742
+kSampleBufferError_InvalidMediaFormat                           :: -12743
+kSampleBufferError_Invalidated                                  :: -12744
+kSampleBufferError_DataFailed                                   :: -16750
+kSampleBufferError_DataCanceled                                 :: -16751
+kSampleBufferFlag_AudioBufferList_Assure16ByteAlignment         :: 1
+kSimpleQueueError_AllocationFailed                              :: -12770
+kSimpleQueueError_RequiredParameterMissing                      :: -12771
+kSimpleQueueError_ParameterOutOfRange                           :: -12772
+kSimpleQueueError_QueueIsFull                                   :: -12773
+kMemoryPoolError_AllocationFailed                               :: -15490
+kMemoryPoolError_InvalidParameter                               :: -15491
+kClockError_MissingRequiredParameter                            :: -12745
+kClockError_InvalidParameter                                    :: -12746
+kClockError_AllocationFailed                                    :: -12747
+kClockError_UnsupportedOperation                                :: -12756
+kTimebaseError_MissingRequiredParameter                         :: -12748
+kTimebaseError_InvalidParameter                                 :: -12749
+kTimebaseError_AllocationFailed                                 :: -12750
+kTimebaseError_TimerIntervalTooShort                            :: -12751
+kTimebaseError_ReadOnly                                         :: -12757
+kSyncError_MissingRequiredParameter                             :: -12752
+kSyncError_InvalidParameter                                     :: -12753
+kSyncError_AllocationFailed                                     :: -12754
+kSyncError_RateMustBeNonZero                                    :: -12755
+kMetadataIdentifierError_AllocationFailed                       :: -16300
+kMetadataIdentifierError_RequiredParameterMissing               :: -16301
+kMetadataIdentifierError_BadKey                                 :: -16302
+kMetadataIdentifierError_BadKeyLength                           :: -16303
+kMetadataIdentifierError_BadKeyType                             :: -16304
+kMetadataIdentifierError_BadNumberKey                           :: -16305
+kMetadataIdentifierError_BadKeySpace                            :: -16306
+kMetadataIdentifierError_BadIdentifier                          :: -16307
+kMetadataIdentifierError_NoKeyValueAvailable                    :: -16308
+kMetadataDataTypeRegistryError_AllocationFailed                 :: -16310
+kMetadataDataTypeRegistryError_RequiredParameterMissing         :: -16311
+kMetadataDataTypeRegistryError_BadDataTypeIdentifier            :: -16312
+kMetadataDataTypeRegistryError_DataTypeAlreadyRegistered        :: -16313
+kMetadataDataTypeRegistryError_RequiresConformingBaseType       :: -16314
+kMetadataDataTypeRegistryError_MultipleConformingBaseTypes      :: -16315
 ItemCount :: CF.Index
-
-/// CMItemIndex
 ItemIndex :: CF.Index
-
-/// CMBaseClassVersion
 BaseClassVersion :: cffi.uintptr_t
-
-/// CMStructVersion
 StructVersion :: cffi.uintptr_t
-
-/// CMPersistentTrackID
 PersistentTrackID :: cffi.int32_t
-
-/// CMTimeValue
 TimeValue :: cffi.int64_t
-
-/// CMTimeScale
 TimeScale :: cffi.int32_t
-
-/// CMTimeEpoch
 TimeEpoch :: cffi.int64_t
-
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CMSDecoderRef
+when ODIN_PLATFORM_SUBTARGET == .Default {
     SDecoderRef :: ^_CMSDecoder
-
-    /// CMSEncoderRef
     SEncoderRef :: ^_CMSEncoder
-
-    /// IconRef
     IconRef :: ^OpaqueIconRef
-
-    /// ColorSyncMutableProfileRef
     ColorSyncMutableProfileRef :: ^CG.ColorSyncProfile
-
-    /// ColorSyncProfileIterateCallback
-    ColorSyncProfileIterateCallback :: proc "c" (profileInfo: CF.DictionaryRef, userInfo: rawptr) -> cffi.bool
-
-    /// ColorSyncTransformRef
+    ColorSyncProfileIterateCallback :: proc "c" ( profileInfo: CF.DictionaryRef, userInfo: rawptr ) -> cffi.bool
     ColorSyncTransformRef :: ^ColorSyncTransform
-
-    /// ColorSyncDataLayout
     ColorSyncDataLayout :: cffi.uint32_t
-
-    /// ColorSyncCMMRef
     ColorSyncCMMRef :: ^ColorSyncCMM
-
-    /// ColorSyncCMMIterateCallback
-    ColorSyncCMMIterateCallback :: proc "c" (cmm: ColorSyncCMMRef, userInfo: rawptr) -> cffi.bool
-
-    /// CMMInitializeLinkProfileProc
-    MInitializeLinkProfileProc :: proc "c" (_: ColorSyncMutableProfileRef, profileInfo: CF.ArrayRef, options: CF.DictionaryRef) -> cffi.bool
-
-    /// CMMInitializeTransformProc
-    MInitializeTransformProc :: proc "c" (_: ColorSyncTransformRef, profileInfo: CF.ArrayRef, options: CF.DictionaryRef) -> cffi.bool
-
-    /// CMMApplyTransformProc
-    MApplyTransformProc :: proc "c" (transform: ColorSyncTransformRef, width: cffi.size_t, height: cffi.size_t, dstPlanes: cffi.size_t, dst: ^rawptr, dstDepth: ColorSyncDataDepth, dstFormat: ColorSyncDataLayout, dstBytesPerRow: cffi.size_t, srcPlanes: cffi.size_t, src: ^rawptr, srcDepth: ColorSyncDataDepth, srcFormat: ColorSyncDataLayout, srcBytesPerRow: cffi.size_t, options: CF.DictionaryRef) -> cffi.bool
-
-    /// CMMCreateTransformPropertyProc
-    MCreateTransformPropertyProc :: proc "c" (transform: ColorSyncTransformRef, key: CF.TypeRef, options: CF.DictionaryRef) -> CF.TypeRef
-
-    /// ColorSyncDeviceProfileIterateCallback
-    ColorSyncDeviceProfileIterateCallback :: proc "c" (colorSyncDeviceProfileInfo: CF.DictionaryRef, userInfo: rawptr) -> cffi.bool
-
-    /// CMXYZComponent
+    ColorSyncCMMIterateCallback :: proc "c" ( cmm: ColorSyncCMMRef, userInfo: rawptr ) -> cffi.bool
+    MInitializeLinkProfileProc :: proc "c" ( _0: ColorSyncMutableProfileRef, profileInfo: CF.ArrayRef, options: CF.DictionaryRef ) -> cffi.bool
+    MInitializeTransformProc :: proc "c" ( _0: ColorSyncTransformRef, profileInfo: CF.ArrayRef, options: CF.DictionaryRef ) -> cffi.bool
+    MApplyTransformProc :: proc "c" ( transform: ColorSyncTransformRef, width: cffi.size_t, height: cffi.size_t, dstPlanes: cffi.size_t, dst: ^rawptr, dstDepth: ColorSyncDataDepth, dstFormat: ColorSyncDataLayout, dstBytesPerRow: cffi.size_t, srcPlanes: cffi.size_t, src: ^rawptr, srcDepth: ColorSyncDataDepth, srcFormat: ColorSyncDataLayout, srcBytesPerRow: cffi.size_t, options: CF.DictionaryRef ) -> cffi.bool
+    MCreateTransformPropertyProc :: proc "c" ( transform: ColorSyncTransformRef, key: CF.TypeRef, options: CF.DictionaryRef ) -> CF.TypeRef
+    ColorSyncDeviceProfileIterateCallback :: proc "c" ( colorSyncDeviceProfileInfo: CF.DictionaryRef, userInfo: rawptr ) -> cffi.bool
     XYZComponent :: CF.UInt16
-
-    /// CMProfileMD5
     ProfileMD5 :: [16]cffi.uchar
-
-    /// CMProfileMD5Ptr
     ProfileMD5Ptr :: ^ProfileMD5
-
-    /// CM2ProfilePtr
     _2ProfilePtr :: ^_2Profile
-
-    /// CM2ProfileHandle
     _2ProfileHandle :: ^^_2Profile
-
-    /// CMMultiFunctLutA2BType
     MultiFunctLutA2BType :: MultiFunctLutType
-
-    /// CMMultiFunctLutB2AType
     MultiFunctLutB2AType :: MultiFunctLutType
-
-    /// CMProfileRef
     ProfileRef :: ^OpaqueCMProfileRef
-
-    /// CMWorldRef
     WorldRef :: ^OpaqueCMWorldRef
-
-    /// CMDisplayIDType
     DisplayIDType :: CF.UInt32
-
-    /// CMChromaticAdaptation
     ChromaticAdaptation :: CF.UInt32
-
-    /// CMFlattenProcPtr
-    FlattenProcPtr :: proc "c" (command: CF.SInt32, size: ^cffi.long, data: rawptr, refCon: rawptr) -> CF.OSErr
-
-    /// CMFlattenUPP
+    FlattenProcPtr :: proc "c" ( command: CF.SInt32, size: ^cffi.long, data: rawptr, refCon: rawptr ) -> CF.OSErr
     FlattenUPP :: FlattenProcPtr
-
-    /// CMBitmapCallBackProcPtr
-    BitmapCallBackProcPtr :: proc "c" (progress: CF.SInt32, refCon: rawptr) -> CF.Boolean
-
-    /// CMBitmapCallBackUPP
+    BitmapCallBackProcPtr :: proc "c" ( progress: CF.SInt32, refCon: rawptr ) -> CF.Boolean
     BitmapCallBackUPP :: BitmapCallBackProcPtr
-
-    /// CMConcatCallBackProcPtr
-    ConcatCallBackProcPtr :: proc "c" (progress: CF.SInt32, refCon: rawptr) -> CF.Boolean
-
-    /// CMConcatCallBackUPP
+    ConcatCallBackProcPtr :: proc "c" ( progress: CF.SInt32, refCon: rawptr ) -> CF.Boolean
     ConcatCallBackUPP :: ConcatCallBackProcPtr
-
-    /// CMBitmapColorSpace
     BitmapColorSpace :: CF.UInt32
-
-    /// CMProfileIterateProcPtr
-    ProfileIterateProcPtr :: proc "c" (iterateData: ^ProfileIterateData, refCon: rawptr) -> CF.OSErr
-
-    /// CMProfileIterateUPP
+    ProfileIterateProcPtr :: proc "c" ( iterateData: ^ProfileIterateData, refCon: rawptr ) -> CF.OSErr
     ProfileIterateUPP :: ProfileIterateProcPtr
-
-    /// CMMIterateProcPtr
-    MIterateProcPtr :: proc "c" (iterateData: ^MInfo, refCon: rawptr) -> CF.OSErr
-
-    /// CMMIterateUPP
+    MIterateProcPtr :: proc "c" ( iterateData: ^MInfo, refCon: rawptr ) -> CF.OSErr
     MIterateUPP :: MIterateProcPtr
-
-    /// CMLabToLabProcPtr
-    LabToLabProcPtr :: proc "c" (L: ^cffi.float, a: ^cffi.float, b: ^cffi.float, refcon: rawptr)
-
-    /// CMDeviceState
+    LabToLabProcPtr :: proc "c" ( L: ^cffi.float, a: ^cffi.float, b: ^cffi.float, refcon: rawptr )
     DeviceState :: CF.UInt32
-
-    /// CMDeviceID
     DeviceID :: CF.UInt32
-
-    /// CMDeviceProfileID
     DeviceProfileID :: CF.UInt32
-
-    /// CMDeviceClass
     DeviceClass :: CF.OSType
-
-    /// CMDeviceProfileScope
     DeviceProfileScope :: DeviceScope
-
-    /// CMDeviceInfoPtr
     DeviceInfoPtr :: ^DeviceInfo
-
-    /// CMDeviceProfileArrayPtr
     DeviceProfileArrayPtr :: ^DeviceProfileArray
-
-    /// CMIterateDeviceInfoProcPtr
-    IterateDeviceInfoProcPtr :: proc "c" (deviceInfo: ^DeviceInfo, refCon: rawptr) -> CF.OSErr
-
-    /// CMIterateDeviceProfileProcPtr
-    IterateDeviceProfileProcPtr :: proc "c" (deviceInfo: ^DeviceInfo, profileInfo: ^NCMDeviceProfileInfo, refCon: rawptr) -> CF.OSErr
+    IterateDeviceInfoProcPtr :: proc "c" ( deviceInfo: ^DeviceInfo, refCon: rawptr ) -> CF.OSErr
+    IterateDeviceProfileProcPtr :: proc "c" ( deviceInfo: ^DeviceInfo, profileInfo: ^NCMDeviceProfileInfo, refCon: rawptr ) -> CF.OSErr
 }
-
-/// CMFormatDescriptionRef
 FormatDescriptionRef :: ^opaqueCMFormatDescription
-
-/// CMMediaType
 MediaType :: CF.FourCharCode
-
-/// CMAudioCodecType
 AudioCodecType :: CF.FourCharCode
-
-/// CMAudioFormatDescriptionRef
 AudioFormatDescriptionRef :: FormatDescriptionRef
-
-/// CMAudioFormatDescriptionMask
 AudioFormatDescriptionMasks :: cffi.uint32_t
-
-/// CMVideoFormatDescriptionRef
 VideoFormatDescriptionRef :: FormatDescriptionRef
-
-/// CMPixelFormatType
 PixelFormatType :: CF.FourCharCode
-
-/// CMVideoCodecType
 VideoCodecType :: CF.FourCharCode
-
-/// CMTaggedBufferGroupFormatDescriptionRef
 TaggedBufferGroupFormatDescriptionRef :: FormatDescriptionRef
-
-/// CMTaggedBufferGroupFormatType
 TaggedBufferGroupFormatType :: CF.FourCharCode
-
-/// CMMuxedFormatDescriptionRef
 MuxedFormatDescriptionRef :: FormatDescriptionRef
-
-/// CMMuxedStreamType
 MuxedStreamType :: CF.FourCharCode
-
-/// CMClosedCaptionFormatDescriptionRef
 ClosedCaptionFormatDescriptionRef :: FormatDescriptionRef
-
-/// CMClosedCaptionFormatType
 ClosedCaptionFormatType :: CF.FourCharCode
-
-/// CMTextFormatDescriptionRef
 TextFormatDescriptionRef :: FormatDescriptionRef
-
-/// CMTextFormatType
 TextFormatType :: CF.FourCharCode
-
-/// CMTextDisplayFlags
 TextDisplayFlags :: cffi.uint32_t
-
-/// CMTextJustificationValue
 TextJustificationValue :: cffi.int8_t
-
-/// CMSubtitleFormatType
 SubtitleFormatType :: CF.FourCharCode
-
-/// CMTimeCodeFormatDescriptionRef
 TimeCodeFormatDescriptionRef :: FormatDescriptionRef
-
-/// CMTimeCodeFormatType
 TimeCodeFormatType :: CF.FourCharCode
-
-/// CMMetadataFormatDescriptionRef
 MetadataFormatDescriptionRef :: FormatDescriptionRef
-
-/// CMMetadataFormatType
 MetadataFormatType :: CF.FourCharCode
-
-/// CMAttachmentBearerRef
 AttachmentBearerRef :: CF.TypeRef
-
-/// CMAttachmentMode
 AttachmentMode :: cffi.uint32_t
-
-/// CMBlockBufferFlags
 BlockBufferFlags :: cffi.uint32_t
-
-/// CMBlockBufferRef
 BlockBufferRef :: ^OpaqueCMBlockBuffer
-
-/// CMImageDescriptionFlavor
 ImageDescriptionFlavor :: CF.StringRef
-
-/// CMSoundDescriptionFlavor
 SoundDescriptionFlavor :: CF.StringRef
-
-/// CMTextDescriptionFlavor
 TextDescriptionFlavor :: CF.StringRef
-
-/// CMClosedCaptionDescriptionFlavor
 ClosedCaptionDescriptionFlavor :: CF.StringRef
-
-/// CMTimeCodeDescriptionFlavor
 TimeCodeDescriptionFlavor :: CF.StringRef
-
-/// CMMetadataDescriptionFlavor
 MetadataDescriptionFlavor :: CF.StringRef
-
-/// CMBufferQueueRef
 BufferQueueRef :: ^opaqueCMBufferQueue
-
-/// CMBufferRef
 BufferRef :: CF.TypeRef
-
-/// CMBufferGetTimeCallback
-BufferGetTimeCallback :: proc "c" (buf: BufferRef, refcon: rawptr) -> Time
-
-/// CMBufferGetTimeHandler
-BufferGetTimeHandler :: ^Objc_Block(proc "c" (buf: BufferRef) -> Time)
-
-/// CMBufferGetBooleanCallback
-BufferGetBooleanCallback :: proc "c" (buf: BufferRef, refcon: rawptr) -> CF.Boolean
-
-/// CMBufferGetBooleanHandler
-BufferGetBooleanHandler :: ^Objc_Block(proc "c" (buf: BufferRef) -> CF.Boolean)
-
-/// CMBufferCompareCallback
-BufferCompareCallback :: proc "c" (buf1: BufferRef, buf2: BufferRef, refcon: rawptr) -> CF.ComparisonResult
-
-/// CMBufferCompareHandler
-BufferCompareHandler :: ^Objc_Block(proc "c" (buf1: BufferRef, buf2: BufferRef) -> CF.ComparisonResult)
-
-/// CMBufferGetSizeCallback
-BufferGetSizeCallback :: proc "c" (buf: BufferRef, refcon: rawptr) -> cffi.size_t
-
-/// CMBufferGetSizeHandler
-BufferGetSizeHandler :: ^Objc_Block(proc "c" (buf: BufferRef) -> cffi.size_t)
-
-/// CMBufferQueueTriggerToken
+BufferGetTimeCallback :: proc "c" ( buf: BufferRef, refcon: rawptr ) -> Time
+BufferGetTimeHandler :: ^Objc_Block(proc "c" ( buf: BufferRef ) -> Time)
+BufferGetBooleanCallback :: proc "c" ( buf: BufferRef, refcon: rawptr ) -> CF.Boolean
+BufferGetBooleanHandler :: ^Objc_Block(proc "c" ( buf: BufferRef ) -> CF.Boolean)
+BufferCompareCallback :: proc "c" ( buf1: BufferRef, buf2: BufferRef, refcon: rawptr ) -> CF.ComparisonResult
+BufferCompareHandler :: ^Objc_Block(proc "c" ( buf1: BufferRef, buf2: BufferRef ) -> CF.ComparisonResult)
+BufferGetSizeCallback :: proc "c" ( buf: BufferRef, refcon: rawptr ) -> cffi.size_t
+BufferGetSizeHandler :: ^Objc_Block(proc "c" ( buf: BufferRef ) -> cffi.size_t)
 BufferQueueTriggerToken :: ^opaqueCMBufferQueueTriggerToken
-
-/// CMBufferQueueTriggerCallback
-BufferQueueTriggerCallback :: proc "c" (triggerRefcon: rawptr, triggerToken: BufferQueueTriggerToken)
-
-/// CMBufferQueueTriggerHandler
-BufferQueueTriggerHandler :: ^Objc_Block(proc "c" (triggerToken: BufferQueueTriggerToken))
-
-/// CMBufferQueueTriggerCondition
+BufferQueueTriggerCallback :: proc "c" ( triggerRefcon: rawptr, triggerToken: BufferQueueTriggerToken )
+BufferQueueTriggerHandler :: ^Objc_Block(proc "c" ( triggerToken: BufferQueueTriggerToken ))
 BufferQueueTriggerCondition :: cffi.int32_t
-
-/// CMBufferValidationCallback
-BufferValidationCallback :: proc "c" (queue: BufferQueueRef, buf: BufferRef, validationRefCon: rawptr) -> CF.OSStatus
-
-/// CMBufferValidationHandler
-BufferValidationHandler :: ^Objc_Block(proc "c" (queue: BufferQueueRef, buf: BufferRef) -> CF.OSStatus)
-
-/// CMSampleBufferRef
+BufferValidationCallback :: proc "c" ( queue: BufferQueueRef, buf: BufferRef, validationRefCon: rawptr ) -> CF.OSStatus
+BufferValidationHandler :: ^Objc_Block(proc "c" ( queue: BufferQueueRef, buf: BufferRef ) -> CF.OSStatus)
 SampleBufferRef :: ^opaqueCMSampleBuffer
-
-/// CMSampleBufferMakeDataReadyCallback
-SampleBufferMakeDataReadyCallback :: proc "c" (sbuf: SampleBufferRef, makeDataReadyRefcon: rawptr) -> CF.OSStatus
-
-/// CMSampleBufferMakeDataReadyHandler
-SampleBufferMakeDataReadyHandler :: ^Objc_Block(proc "c" (sbuf: SampleBufferRef) -> CF.OSStatus)
-
-/// CMSampleBufferInvalidateCallback
-SampleBufferInvalidateCallback :: proc "c" (sbuf: SampleBufferRef, invalidateRefCon: cffi.uint64_t)
-
-/// CMSampleBufferInvalidateHandler
-SampleBufferInvalidateHandler :: ^Objc_Block(proc "c" (sbuf: SampleBufferRef))
-
-/// CMTagValue
+SampleBufferMakeDataReadyCallback :: proc "c" ( sbuf: SampleBufferRef, makeDataReadyRefcon: rawptr ) -> CF.OSStatus
+SampleBufferMakeDataReadyHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ) -> CF.OSStatus)
+SampleBufferInvalidateCallback :: proc "c" ( sbuf: SampleBufferRef, invalidateRefCon: cffi.uint64_t )
+SampleBufferInvalidateHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ))
 TagValue :: cffi.uint64_t
-
-/// CMTagCollectionRef
 TagCollectionRef :: ^OpaqueCMTagCollection
-
-/// CMMutableTagCollectionRef
 MutableTagCollectionRef :: ^OpaqueCMTagCollection
-
-/// CMTagCollectionApplierFunction
-TagCollectionApplierFunction :: proc "c" (tag: Tag, _context: rawptr)
-
-/// CMTagCollectionTagFilterFunction
-TagCollectionTagFilterFunction :: proc "c" (tag: Tag, _context: rawptr) -> CF.Boolean
-
-/// CMTaggedBufferGroupRef
+TagCollectionApplierFunction :: proc "c" ( tag: Tag, _context: rawptr )
+TagCollectionTagFilterFunction :: proc "c" ( tag: Tag, _context: rawptr ) -> CF.Boolean
 TaggedBufferGroupRef :: ^OpaqueCMTaggedBufferGroup
-
-/// CMSimpleQueueRef
 SimpleQueueRef :: ^opaqueCMSimpleQueue
-
-/// CMMemoryPoolRef
 MemoryPoolRef :: ^OpaqueCMMemoryPool
-
-/// CMClockRef
 ClockRef :: ^OpaqueCMClock
-
-/// CMTimebaseRef
 TimebaseRef :: ^OpaqueCMTimebase
-
-/// CMClockOrTimebaseRef
 ClockOrTimebaseRef :: CF.TypeRef
+TimeFlags_kCMTimeFlags_ImpliedValueFlagsMask :: TimeFlags { .kCMTimeFlags_PositiveInfinity, .kCMTimeFlags_NegativeInfinity, .kCMTimeFlags_Indefinite, }
 
-/// CMTimeFlags
 TimeFlag :: enum cffi.uint {
     kCMTimeFlags_Valid            = 0,
     kCMTimeFlags_HasBeenRounded   = 1,
@@ -2270,11 +2799,9 @@ TimeFlag :: enum cffi.uint {
     kCMTimeFlags_NegativeInfinity = 3,
     kCMTimeFlags_Indefinite       = 4,
 }
+
 TimeFlags :: bit_set[TimeFlag; cffi.uint]
 
-TimeFlags_kCMTimeFlags_ImpliedValueFlagsMask :: TimeFlags { .kCMTimeFlags_PositiveInfinity, .kCMTimeFlags_NegativeInfinity, .kCMTimeFlags_Indefinite, }
-
-/// CMTimeRoundingMethod
 TimeRoundingMethod :: enum cffi.uint {
     kCMTimeRoundingMethod_RoundHalfAwayFromZero = 1,
     kCMTimeRoundingMethod_RoundTowardZero = 2,
@@ -2285,8 +2812,7 @@ TimeRoundingMethod :: enum cffi.uint {
     kCMTimeRoundingMethod_Default    = 1,
 }
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CMSSignerStatus
+when ODIN_PLATFORM_SUBTARGET == .Default {
     SSignerStatus :: enum cffi.uint {
         kCMSSignerUnsigned             = 0,
         kCMSSignerValid                = 1,
@@ -2296,7 +2822,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCMSSignerInvalidIndex         = 5,
     }
 
-    /// CMSSignedAttributes
     SSignedAttributes :: enum cffi.uint {
         kCMSAttrNone                     = 0,
         kCMSAttrSmimeCapabilities        = 1,
@@ -2308,7 +2833,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCMSAttrAppleExpirationTime      = 64,
     }
 
-    /// CMSCertificateChainMode
     SCertificateChainMode :: enum cffi.uint {
         kCMSCertificateNone              = 0,
         kCMSCertificateSignerOnly        = 1,
@@ -2317,7 +2841,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kCMSCertificateChainWithRootOrFail = 4,
     }
 
-    /// ColorSyncDataDepth
     ColorSyncDataDepth :: enum cffi.uint {
         kColorSync1BitGamut            = 1,
         kColorSync8BitInteger          = 2,
@@ -2329,7 +2852,6 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kColorSync10BitInteger         = 8,
     }
 
-    /// ColorSyncAlphaInfo
     ColorSyncAlphaInfo :: enum cffi.uint {
         kColorSyncAlphaNone              = 0,
         kColorSyncAlphaPremultipliedLast = 1,
@@ -2340,22 +2862,20 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         kColorSyncAlphaNoneSkipFirst     = 6,
     }
 
-    /// CMFloatBitmapFlags
     FloatBitmapFlag :: enum cffi.uint {
         kCMFloatBitmapFlagsAlpha        = 0,
         kCMFloatBitmapFlagsAlphaPremul  = 1,
         kCMFloatBitmapFlagsRangeClipped = 2,
     }
+
     FloatBitmapFlags :: bit_set[FloatBitmapFlag; cffi.uint]
 }
 
-/// CMTagError
 TagError :: enum cffi.int {
     kCMTagError_ParamErr         = -15730,
     kCMTagError_AllocationFailed = -15731,
 }
 
-/// CMTagCategory
 TagCategory :: enum cffi.uint {
     kCMTagCategory_Undefined         = 0,
     kCMTagCategory_MediaType         = 1835297121,
@@ -2370,7 +2890,6 @@ TagCategory :: enum cffi.uint {
     kCMTagCategory_StereoViewInterpretation = 1702455664,
 }
 
-/// CMTagDataType
 TagDataType :: enum cffi.uint {
     kCMTagDataType_Invalid = 0,
     kCMTagDataType_SInt64  = 2,
@@ -2379,21 +2898,19 @@ TagDataType :: enum cffi.uint {
     kCMTagDataType_Flags   = 7,
 }
 
-/// CMStereoViewComponents
 StereoViewComponents :: enum cffi.ulonglong {
     kCMStereoView_None     = 0,
     kCMStereoView_LeftEye  = 1,
     kCMStereoView_RightEye = 2,
 }
 
-/// CMStereoViewInterpretationOptions
 StereoViewInterpretationOption :: enum cffi.ulonglong {
     kCMStereoViewInterpretation_StereoOrderReversed = 0,
     kCMStereoViewInterpretation_AdditionalViews = 1,
 }
+
 StereoViewInterpretationOptions :: bit_set[StereoViewInterpretationOption; cffi.ulonglong]
 
-/// CMProjectionType
 ProjectionType :: enum cffi.ulonglong {
     kCMProjectionType_Rectangular    = 1919247220,
     kCMProjectionType_Equirectangular = 1701934441,
@@ -2402,14 +2919,12 @@ ProjectionType :: enum cffi.ulonglong {
     kCMProjectionType_ParametricImmersive = 1886546285,
 }
 
-/// CMPackingType
 PackingType :: enum cffi.ulonglong {
     kCMPackingType_None       = 1852796517,
     kCMPackingType_SideBySide = 1936286821,
     kCMPackingType_OverUnder  = 1870030194,
 }
 
-/// CMTagCollectionError
 TagCollectionError :: enum cffi.int {
     kCMTagCollectionError_ParamErr   = -15740,
     kCMTagCollectionError_AllocationFailed = -15741,
@@ -2423,59 +2938,44 @@ TagCollectionError :: enum cffi.int {
     kCMTagCollectionError_NotYetImplemented = -15749,
 }
 
-/// CMTaggedBufferGroupError
 TaggedBufferGroupError :: enum cffi.int {
     kCMTaggedBufferGroupError_ParamErr = -15780,
     kCMTaggedBufferGroupError_AllocationFailed = -15781,
     kCMTaggedBufferGroupError_InternalError = -15782,
 }
 
-/// CMTime
 Time :: struct #align (4) {
     value:     TimeValue,
     timescale: TimeScale,
     flags:     TimeFlags,
     epoch:     TimeEpoch,
 }
-#assert(size_of(Time) == 24)
 
-/// CMTimeRange
 TimeRange :: struct #align (4) {
     start:    Time,
     duration: Time,
 }
-#assert(size_of(TimeRange) == 48)
 
-/// CMTimeMapping
 TimeMapping :: struct #align (4) {
     source: TimeRange,
     target: TimeRange,
 }
-#assert(size_of(TimeMapping) == 96)
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// _CMSDecoder
+when ODIN_PLATFORM_SUBTARGET == .Default {
     _CMSDecoder :: struct {}
 
-    /// _CMSEncoder
     _CMSEncoder :: struct {}
 
-    /// OpaqueIconRef
     OpaqueIconRef :: struct {}
 
-    /// ColorSyncMD5
     ColorSyncMD5 :: struct #align (1) {
         digest: [16]cffi.uint8_t,
     }
-    #assert(size_of(ColorSyncMD5) == 16)
 
-    /// ColorSyncTransform
     ColorSyncTransform :: struct {}
 
-    /// ColorSyncCMM
     ColorSyncCMM :: struct {}
 
-    /// CMDateTime
     DateTime :: struct #align (2) {
         year:          CF.UInt16,
         month:         CF.UInt16,
@@ -2484,32 +2984,24 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         minutes:       CF.UInt16,
         seconds:       CF.UInt16,
     }
-    #assert(size_of(DateTime) == 12)
 
-    /// CMFixedXYColor
     FixedXYColor :: struct #align (2) {
         x: cffi.int,
         y: cffi.int,
     }
-    #assert(size_of(FixedXYColor) == 8)
 
-    /// CMFixedXYZColor
     FixedXYZColor :: struct #align (2) {
         X: cffi.int,
         Y: cffi.int,
         Z: cffi.int,
     }
-    #assert(size_of(FixedXYZColor) == 12)
 
-    /// CMXYZColor
     XYZColor :: struct #align (2) {
         X: XYZComponent,
         Y: XYZComponent,
         Z: XYZComponent,
     }
-    #assert(size_of(XYZColor) == 6)
 
-    /// CM2Header
     _2Header :: struct #align (2) {
         size:                   CF.UInt32,
         CMMType:                CF.OSType,
@@ -2529,9 +3021,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         creator:                CF.OSType,
         reserved:               [44]cffi.char,
     }
-    #assert(size_of(_2Header) == 128)
 
-    /// CM4Header
     _4Header :: struct #align (2) {
         size:                   CF.UInt32,
         CMMType:                CF.OSType,
@@ -2552,66 +3042,50 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         digest:                 ProfileMD5,
         reserved:               [28]cffi.char,
     }
-    #assert(size_of(_4Header) == 128)
 
-    /// CMTagRecord
     TagRecord :: struct #align (2) {
         tag:           CF.OSType,
         elementOffset: CF.UInt32,
         elementSize:   CF.UInt32,
     }
-    #assert(size_of(TagRecord) == 12)
 
-    /// CMTagElemTable
     TagElemTable :: struct #align (2) {
         count:   CF.UInt32,
         tagList: [1]TagRecord,
     }
-    #assert(size_of(TagElemTable) == 16)
 
-    /// CM2Profile
     _2Profile :: struct #align (2) {
         header:   _2Header,
         tagTable: TagElemTable,
         elemData: [1]cffi.char,
     }
-    #assert(size_of(_2Profile) == 146)
 
-    /// CMAdaptationMatrixType
     AdaptationMatrixType :: struct #align (2) {
         typeDescriptor:   CF.OSType,
         reserved:         CF.UInt32,
         adaptationMatrix: [9]cffi.int,
     }
-    #assert(size_of(AdaptationMatrixType) == 44)
 
-    /// CMCurveType
     CurveType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         countValue:     CF.UInt32,
         data:           [1]CF.UInt16,
     }
-    #assert(size_of(CurveType) == 14)
 
-    /// CMDataType
     DataType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         dataFlag:       CF.UInt32,
         data:           [1]cffi.char,
     }
-    #assert(size_of(DataType) == 14)
 
-    /// CMDateTimeType
     DateTimeType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         dateTime:       DateTime,
     }
-    #assert(size_of(DateTimeType) == 20)
 
-    /// CMLut16Type
     Lut16Type :: struct #align (2) {
         typeDescriptor:     CF.OSType,
         reserved:           CF.UInt32,
@@ -2624,9 +3098,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         outputTableEntries: CF.UInt16,
         inputTable:         [1]CF.UInt16,
     }
-    #assert(size_of(Lut16Type) == 54)
 
-    /// CMLut8Type
     Lut8Type :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
@@ -2637,9 +3109,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         _matrix:        [3][3]cffi.int,
         inputTable:     [1]CF.UInt8,
     }
-    #assert(size_of(Lut8Type) == 50)
 
-    /// CMMultiFunctLutType
     MultiFunctLutType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
@@ -2653,18 +3123,14 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         offsetAcurves:  CF.UInt32,
         data:           [1]CF.UInt8,
     }
-    #assert(size_of(MultiFunctLutType) == 34)
 
-    /// CMMultiFunctCLUTType
     MultiFunctCLUTType :: struct #align (1) {
         gridPoints: [16]CF.UInt8,
         entrySize:  CF.UInt8,
         reserved:   [3]CF.UInt8,
         data:       [2]CF.UInt8,
     }
-    #assert(size_of(MultiFunctCLUTType) == 22)
 
-    /// CMMeasurementType
     MeasurementType :: struct #align (2) {
         typeDescriptor:   CF.OSType,
         reserved:         CF.UInt32,
@@ -2674,9 +3140,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         flare:            CF.UInt32,
         illuminant:       CF.UInt32,
     }
-    #assert(size_of(MeasurementType) == 36)
 
-    /// CMNamedColorType
     NamedColorType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
@@ -2684,17 +3148,13 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         count:          CF.UInt32,
         prefixName:     [1]CF.UInt8,
     }
-    #assert(size_of(NamedColorType) == 18)
 
-    /// CMNamedColor2EntryType
     NamedColor2EntryType :: struct #align (2) {
         rootName:          [32]CF.UInt8,
         PCSColorCoords:    [3]CF.UInt16,
         DeviceColorCoords: [1]CF.UInt16,
     }
-    #assert(size_of(NamedColor2EntryType) == 40)
 
-    /// CMNamedColor2Type
     NamedColor2Type :: struct #align (2) {
         typeDescriptor:     CF.OSType,
         reserved:           CF.UInt32,
@@ -2705,9 +3165,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         suffixName:         [32]CF.UInt8,
         data:               [1]cffi.char,
     }
-    #assert(size_of(NamedColor2Type) == 86)
 
-    /// CMNativeDisplayInfo
     NativeDisplayInfo :: struct #align (2) {
         dataSize:        CF.UInt32,
         redPhosphor:     FixedXYColor,
@@ -2722,17 +3180,13 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         gammaEntrySize:  CF.UInt16,
         gammaData:       [1]cffi.char,
     }
-    #assert(size_of(NativeDisplayInfo) == 56)
 
-    /// CMNativeDisplayInfoType
     NativeDisplayInfoType :: struct #align (2) {
         typeDescriptor:    CF.OSType,
         reserved:          CF.UInt32,
         nativeDisplayInfo: NativeDisplayInfo,
     }
-    #assert(size_of(NativeDisplayInfoType) == 64)
 
-    /// CMParametricCurveType
     ParametricCurveType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
@@ -2740,42 +3194,32 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         reserved2:      CF.UInt16,
         value:          [1]cffi.int,
     }
-    #assert(size_of(ParametricCurveType) == 16)
 
-    /// CMTextDescriptionType
     TextDescriptionType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         ASCIICount:     CF.UInt32,
         ASCIIName:      [2]CF.UInt8,
     }
-    #assert(size_of(TextDescriptionType) == 14)
 
-    /// CMTextType
     TextType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         text:           [1]CF.UInt8,
     }
-    #assert(size_of(TextType) == 10)
 
-    /// CMUnicodeTextType
     UnicodeTextType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         text:           [1]CF.UniChar,
     }
-    #assert(size_of(UnicodeTextType) == 10)
 
-    /// CMScreeningChannelRec
     ScreeningChannelRec :: struct #align (2) {
         frequency:    cffi.int,
         angle:        cffi.int,
         spotFunction: CF.UInt32,
     }
-    #assert(size_of(ScreeningChannelRec) == 12)
 
-    /// CMScreeningType
     ScreeningType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
@@ -2783,65 +3227,49 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         channelCount:   CF.UInt32,
         channelInfo:    [1]ScreeningChannelRec,
     }
-    #assert(size_of(ScreeningType) == 28)
 
-    /// CMSignatureType
     SignatureType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         signature:      CF.OSType,
     }
-    #assert(size_of(SignatureType) == 12)
 
-    /// CMS15Fixed16ArrayType
     S15Fixed16ArrayType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         value:          [1]cffi.int,
     }
-    #assert(size_of(S15Fixed16ArrayType) == 12)
 
-    /// CMU16Fixed16ArrayType
     U16Fixed16ArrayType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         value:          [1]CF.UInt32,
     }
-    #assert(size_of(U16Fixed16ArrayType) == 12)
 
-    /// CMUInt8ArrayType
     UInt8ArrayType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         value:          [1]CF.UInt8,
     }
-    #assert(size_of(UInt8ArrayType) == 10)
 
-    /// CMUInt16ArrayType
     UInt16ArrayType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         value:          [1]CF.UInt16,
     }
-    #assert(size_of(UInt16ArrayType) == 10)
 
-    /// CMUInt32ArrayType
     UInt32ArrayType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         value:          [1]CF.UInt32,
     }
-    #assert(size_of(UInt32ArrayType) == 12)
 
-    /// CMUInt64ArrayType
     UInt64ArrayType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         value:          [1]CF.UInt32,
     }
-    #assert(size_of(UInt64ArrayType) == 12)
 
-    /// CMViewingConditionsType
     ViewingConditionsType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
@@ -2849,60 +3277,46 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         surround:       FixedXYZColor,
         stdIlluminant:  CF.UInt32,
     }
-    #assert(size_of(ViewingConditionsType) == 36)
 
-    /// CMXYZType
     XYZType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         XYZ:            [1]FixedXYZColor,
     }
-    #assert(size_of(XYZType) == 20)
 
-    /// CMProfileSequenceDescType
     ProfileSequenceDescType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         count:          CF.UInt32,
         data:           [1]cffi.char,
     }
-    #assert(size_of(ProfileSequenceDescType) == 14)
 
-    /// CMUcrBgType
     UcrBgType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         ucrCount:       CF.UInt32,
         ucrValues:      [1]CF.UInt16,
     }
-    #assert(size_of(UcrBgType) == 14)
 
-    /// CMIntentCRDVMSize
     IntentCRDVMSize :: struct #align (2) {
         renderingIntent: CF.UInt32,
         VMSize:          CF.UInt32,
     }
-    #assert(size_of(IntentCRDVMSize) == 8)
 
-    /// CMPS2CRDVMSizeType
     PS2CRDVMSizeType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         count:          CF.UInt32,
         intentCRD:      [1]IntentCRDVMSize,
     }
-    #assert(size_of(PS2CRDVMSizeType) == 20)
 
-    /// CMVideoCardGammaTable
     VideoCardGammaTable :: struct #align (2) {
         channels:   CF.UInt16,
         entryCount: CF.UInt16,
         entrySize:  CF.UInt16,
         data:       [1]cffi.char,
     }
-    #assert(size_of(VideoCardGammaTable) == 8)
 
-    /// CMVideoCardGammaFormula
     VideoCardGammaFormula :: struct #align (2) {
         redGamma:   cffi.int,
         redMin:     cffi.int,
@@ -2914,9 +3328,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         blueMin:    cffi.int,
         blueMax:    cffi.int,
     }
-    #assert(size_of(VideoCardGammaFormula) == 36)
 
-    /// CMVideoCardGamma
     VideoCardGamma :: struct #align (2) {
         tagType: CF.UInt32,
         u : struct #raw_union  {
@@ -2924,17 +3336,13 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
             formula: VideoCardGammaFormula,
         },
     }
-    #assert(size_of(VideoCardGamma) == 40)
 
-    /// CMVideoCardGammaType
     VideoCardGammaType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         gamma:          VideoCardGamma,
     }
-    #assert(size_of(VideoCardGammaType) == 48)
 
-    /// CMMakeAndModel
     MakeAndModel :: struct #align (2) {
         manufacturer:    CF.OSType,
         model:           CF.UInt32,
@@ -2945,150 +3353,110 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         reserved3:       CF.UInt32,
         reserved4:       CF.UInt32,
     }
-    #assert(size_of(MakeAndModel) == 32)
 
-    /// CMMakeAndModelType
     MakeAndModelType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         makeAndModel:   MakeAndModel,
     }
-    #assert(size_of(MakeAndModelType) == 40)
 
-    /// CMMultiLocalizedUniCodeEntryRec
     MultiLocalizedUniCodeEntryRec :: struct #align (2) {
         languageCode: [2]cffi.char,
         regionCode:   [2]cffi.char,
         textLength:   CF.UInt32,
         textOffset:   CF.UInt32,
     }
-    #assert(size_of(MultiLocalizedUniCodeEntryRec) == 12)
 
-    /// CMMultiLocalizedUniCodeType
     MultiLocalizedUniCodeType :: struct #align (2) {
         typeDescriptor: CF.OSType,
         reserved:       CF.UInt32,
         entryCount:     CF.UInt32,
         entrySize:      CF.UInt32,
     }
-    #assert(size_of(MultiLocalizedUniCodeType) == 16)
 
-    /// OpaqueCMProfileRef
     OpaqueCMProfileRef :: struct {}
 
-    /// OpaqueCMWorldRef
     OpaqueCMWorldRef :: struct {}
 
-    /// CMConcatProfileSet
     ConcatProfileSet :: struct #align (8) {
         keyIndex:   CF.UInt16,
         count:      CF.UInt16,
         profileSet: [1]ProfileRef,
     }
-    #assert(size_of(ConcatProfileSet) == 16)
 
-    /// CMRGBColor
     RGBColor :: struct #align (2) {
         red:   CF.UInt16,
         green: CF.UInt16,
         blue:  CF.UInt16,
     }
-    #assert(size_of(RGBColor) == 6)
 
-    /// CMCMYKColor
     CMYKColor :: struct #align (2) {
         cyan:    CF.UInt16,
         magenta: CF.UInt16,
         yellow:  CF.UInt16,
         black:   CF.UInt16,
     }
-    #assert(size_of(CMYKColor) == 8)
 
-    /// CMCMYColor
     CMYColor :: struct #align (2) {
         cyan:    CF.UInt16,
         magenta: CF.UInt16,
         yellow:  CF.UInt16,
     }
-    #assert(size_of(CMYColor) == 6)
 
-    /// CMHLSColor
     HLSColor :: struct #align (2) {
         hue:        CF.UInt16,
         lightness:  CF.UInt16,
         saturation: CF.UInt16,
     }
-    #assert(size_of(HLSColor) == 6)
 
-    /// CMHSVColor
     HSVColor :: struct #align (2) {
         hue:        CF.UInt16,
         saturation: CF.UInt16,
         value:      CF.UInt16,
     }
-    #assert(size_of(HSVColor) == 6)
 
-    /// CMLabColor
     LabColor :: struct #align (2) {
         L: CF.UInt16,
         a: CF.UInt16,
         b: CF.UInt16,
     }
-    #assert(size_of(LabColor) == 6)
 
-    /// CMLuvColor
     LuvColor :: struct #align (2) {
         L: CF.UInt16,
         u: CF.UInt16,
         v: CF.UInt16,
     }
-    #assert(size_of(LuvColor) == 6)
 
-    /// CMYxyColor
     YxyColor :: struct #align (2) {
         capY: CF.UInt16,
         x:    CF.UInt16,
         y:    CF.UInt16,
     }
-    #assert(size_of(YxyColor) == 6)
 
-    /// CMGrayColor
     GrayColor :: struct #align (2) {
         gray: CF.UInt16,
     }
-    #assert(size_of(GrayColor) == 2)
 
-    /// CMMultichannel5Color
     Multichannel5Color :: struct #align (1) {
         components: [5]CF.UInt8,
     }
-    #assert(size_of(Multichannel5Color) == 5)
 
-    /// CMMultichannel6Color
     Multichannel6Color :: struct #align (1) {
         components: [6]CF.UInt8,
     }
-    #assert(size_of(Multichannel6Color) == 6)
 
-    /// CMMultichannel7Color
     Multichannel7Color :: struct #align (1) {
         components: [7]CF.UInt8,
     }
-    #assert(size_of(Multichannel7Color) == 7)
 
-    /// CMMultichannel8Color
     Multichannel8Color :: struct #align (1) {
         components: [8]CF.UInt8,
     }
-    #assert(size_of(Multichannel8Color) == 8)
 
-    /// CMNamedColor
     NamedColor :: struct #align (4) {
         namedColorIndex: CF.UInt32,
     }
-    #assert(size_of(NamedColor) == 4)
 
-    /// CMMInfo
     MInfo :: struct #align (8) {
         dataSize:         cffi.size_t,
         CMMType:          CF.OSType,
@@ -3101,9 +3469,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         UniCodeDescCount: CF.UniCharCount,
         UniCodeDesc:      [256]CF.UniChar,
     }
-    #assert(size_of(MInfo) == 904)
 
-    /// CMBitmap
     Bitmap :: struct #align (8) {
         image:     cstring,
         width:     cffi.size_t,
@@ -3114,35 +3480,25 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         user1:     CF.UInt32,
         user2:     CF.UInt32,
     }
-    #assert(size_of(Bitmap) == 56)
 
-    /// CMHandleLocation
     HandleLocation :: struct #align (8) {
         h: CF.Handle,
     }
-    #assert(size_of(HandleLocation) == 8)
 
-    /// CMPathLocation
     PathLocation :: struct #align (1) {
         path: [1024]cffi.char,
     }
-    #assert(size_of(PathLocation) == 1024)
 
-    /// CMBufferLocation
     BufferLocation :: struct #align (8) {
         buffer: rawptr,
         size:   CF.UInt32,
     }
-    #assert(size_of(BufferLocation) == 16)
 
-    /// CMProfileLocation
     ProfileLocation :: struct #align (8) {
         locType: cffi.short,
         u:       ProfLoc,
     }
-    #assert(size_of(ProfileLocation) == 1032)
 
-    /// CMProfileIterateData
     ProfileIterateData :: struct #align (8) {
         dataVersion:      CF.UInt32,
         header:           _2Header,
@@ -3155,9 +3511,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         makeAndModel:     ^MakeAndModel,
         digest:           ^ProfileMD5,
     }
-    #assert(size_of(ProfileIterateData) == 1464)
 
-    /// CMFloatBitmap
     FloatBitmap :: struct #align (8) {
         version:   cffi.ulong,
         buffers:   [16]^cffi.float,
@@ -3168,16 +3522,12 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         space:     CF.OSType,
         flags:     FloatBitmapFlags,
     }
-    #assert(size_of(FloatBitmap) == 176)
 
-    /// CMDeviceScope
     DeviceScope :: struct #align (8) {
         deviceUser: CF.StringRef,
         deviceHost: CF.StringRef,
     }
-    #assert(size_of(DeviceScope) == 16)
 
-    /// CMDeviceInfo
     DeviceInfo :: struct #align (8) {
         dataVersion:      CF.UInt32,
         deviceClass:      DeviceClass,
@@ -3189,9 +3539,7 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         profileCount:     CF.UInt32,
         reserved:         CF.UInt32,
     }
-    #assert(size_of(DeviceInfo) == 56)
 
-    /// CMDeviceProfileInfo
     DeviceProfileInfo :: struct #align (8) {
         dataVersion: CF.UInt32,
         profileID:   DeviceProfileID,
@@ -3199,42 +3547,31 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         profileName: CF.DictionaryRef,
         reserved:    CF.UInt32,
     }
-    #assert(size_of(DeviceProfileInfo) == 1056)
 
-    /// CMDeviceProfileArray
     DeviceProfileArray :: struct #align (8) {
         profileCount: CF.UInt32,
         profiles:     [1]DeviceProfileInfo,
     }
-    #assert(size_of(DeviceProfileArray) == 1064)
 }
 
-/// opaqueCMFormatDescription
 opaqueCMFormatDescription :: struct {}
 
-/// CMVideoDimensions
 VideoDimensions :: struct #align (4) {
     width:  cffi.int32_t,
     height: cffi.int32_t,
 }
-#assert(size_of(VideoDimensions) == 8)
 
-/// OpaqueCMBlockBuffer
 OpaqueCMBlockBuffer :: struct {}
 
-/// CMBlockBufferCustomBlockSource
 BlockBufferCustomBlockSource :: struct #align (4) #max_field_align(4) {
     version:       cffi.uint32_t,
-    AllocateBlock: proc "c" (refcon: rawptr, sizeInBytes: cffi.size_t) -> rawptr,
-    FreeBlock:     proc "c" (refcon: rawptr, doomedMemoryBlock: rawptr, sizeInBytes: cffi.size_t),
+    AllocateBlock: proc "c" ( refcon: rawptr, sizeInBytes: cffi.size_t ) -> rawptr,
+    FreeBlock:     proc "c" ( refcon: rawptr, doomedMemoryBlock: rawptr, sizeInBytes: cffi.size_t ),
     refCon:        rawptr,
 }
-#assert(size_of(BlockBufferCustomBlockSource) == 28)
 
-/// opaqueCMBufferQueue
 opaqueCMBufferQueue :: struct {}
 
-/// CMBufferCallbacks
 BufferCallbacks :: struct #align (4) #max_field_align(4) {
     version:                     cffi.uint32_t,
     refcon:                      rawptr,
@@ -3246,9 +3583,7 @@ BufferCallbacks :: struct #align (4) #max_field_align(4) {
     dataBecameReadyNotification: CF.StringRef,
     getSize:                     BufferGetSizeCallback,
 }
-#assert(size_of(BufferCallbacks) == 68)
 
-/// CMBufferHandlers
 BufferHandlers :: struct #align (8) {
     version:                     cffi.uintptr_t,
     getDecodeTimeStamp:          BufferGetTimeHandler,
@@ -3259,57 +3594,41 @@ BufferHandlers :: struct #align (8) {
     dataBecameReadyNotification: CF.StringRef,
     getSize:                     BufferGetSizeHandler,
 }
-#assert(size_of(BufferHandlers) == 64)
 
-/// opaqueCMBufferQueueTriggerToken
 opaqueCMBufferQueueTriggerToken :: struct {}
 
-/// opaqueCMSampleBuffer
 opaqueCMSampleBuffer :: struct {}
 
-/// CMSampleTimingInfo
 SampleTimingInfo :: struct #align (4) {
     duration:              Time,
     presentationTimeStamp: Time,
     decodeTimeStamp:       Time,
 }
-#assert(size_of(SampleTimingInfo) == 72)
 
-/// CMTag
 Tag :: struct #align (8) {
     category: TagCategory,
     dataType: TagDataType,
     value:    TagValue,
 }
-#assert(size_of(Tag) == 16)
 
-/// OpaqueCMTagCollection
 OpaqueCMTagCollection :: struct {}
 
-/// OpaqueCMTaggedBufferGroup
 OpaqueCMTaggedBufferGroup :: struct {}
 
-/// opaqueCMSimpleQueue
 opaqueCMSimpleQueue :: struct {}
 
-/// OpaqueCMMemoryPool
 OpaqueCMMemoryPool :: struct {}
 
-/// OpaqueCMClock
 OpaqueCMClock :: struct {}
 
-/// OpaqueCMTimebase
 OpaqueCMTimebase :: struct {}
 
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    /// CMAppleProfileHeader
+when ODIN_PLATFORM_SUBTARGET == .Default {
     AppleProfileHeader :: struct #raw_union #align (2) {
         cm2: _2Header,
         cm4: _4Header,
     }
-    #assert(size_of(AppleProfileHeader) == 128)
 
-    /// CMColor
     Color :: struct #raw_union #align (4) {
         rgb:        RGBColor,
         hsv:        HSVColor,
@@ -3327,14 +3646,11 @@ when !ODIN_PLATFORM_SUBTARGET_IOS {
         mc8:        Multichannel8Color,
         namedColor: NamedColor,
     }
-    #assert(size_of(Color) == 8)
 
-    /// CMProfLoc
     ProfLoc :: struct #raw_union #align (8) {
         handleLoc: HandleLocation,
         pathLoc:   PathLocation,
         bufferLoc: BufferLocation,
     }
-    #assert(size_of(ProfLoc) == 1024)
 }
 

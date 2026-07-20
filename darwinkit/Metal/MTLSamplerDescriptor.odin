@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLSamplerDescriptor
-///
 @(objc_class="MTLSamplerDescriptor", objc_superclass=NS.Object)
 SamplerDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SamplerDescriptor, objc_selector="minFilter", objc_name="minFilter")
     SamplerDescriptor_minFilter :: proc(self: ^SamplerDescriptor) -> SamplerMinMagFilter ---
@@ -125,3 +119,6 @@ foreign lib {
     @(objc_type=SamplerDescriptor, objc_selector="setLabel:", objc_name="setLabel")
     SamplerDescriptor_setLabel :: proc(self: ^SamplerDescriptor, label: ^NS.String) ---
 }
+
+
+

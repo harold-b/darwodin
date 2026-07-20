@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSNetServiceDelegate
-///
 @(objc_class="NSNetServiceDelegate")
 NetServiceDelegate :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=NetServiceDelegate, objc_selector="netServiceWillPublish:", objc_name="netServiceWillPublish")
     NetServiceDelegate_netServiceWillPublish :: proc(self: ^NetServiceDelegate, sender: ^NetService) ---
@@ -48,4 +42,6 @@ foreign lib {
     @(objc_type=NetServiceDelegate, objc_selector="netService:didAcceptConnectionWithInputStream:outputStream:", objc_name="netService_didAcceptConnectionWithInputStream_outputStream")
     NetServiceDelegate_netService_didAcceptConnectionWithInputStream_outputStream :: proc(self: ^NetServiceDelegate, sender: ^NetService, inputStream: ^InputStream, outputStream: ^OutputStream) ---
 }
+
+
 

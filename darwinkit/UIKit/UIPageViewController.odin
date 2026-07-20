@@ -28,7 +28,7 @@ foreign lib {
     PageViewController_initWithCoder :: proc(self: ^PageViewController, coder: ^NS.Coder) -> instancetype ---
 
     @(objc_type=PageViewController, objc_selector="setViewControllers:direction:animated:completion:", objc_name="setViewControllers")
-    PageViewController_setViewControllers :: proc(self: ^PageViewController, viewControllers: ^NS.Array, direction: PageViewControllerNavigationDirection, animated: bool, completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    PageViewController_setViewControllers :: proc(self: ^PageViewController, viewControllers: ^NS.Array, direction: PageViewControllerNavigationDirection, animated: bool, completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=PageViewController, objc_selector="delegate", objc_name="delegate")
     PageViewController_delegate :: proc(self: ^PageViewController) -> ^PageViewControllerDelegate ---

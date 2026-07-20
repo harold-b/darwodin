@@ -20,12 +20,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    filePromiseProvider_fileNameForType: proc(self: ^AK.FilePromiseProviderDelegate, filePromiseProvider: ^AK.FilePromiseProvider, fileType: ^NS.String) -> ^NS.String,
-    filePromiseProvider_writePromiseToURL_completionHandler: proc(self: ^AK.FilePromiseProviderDelegate, filePromiseProvider: ^AK.FilePromiseProvider, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))),
-    operationQueueForFilePromiseProvider: proc(self: ^AK.FilePromiseProviderDelegate, filePromiseProvider: ^AK.FilePromiseProvider) -> ^NS.OperationQueue,
+    filePromiseProvider_fileNameForType: proc(self: ^NS.FilePromiseProviderDelegate, filePromiseProvider: ^NS.FilePromiseProvider, fileType: ^NS.String) -> ^NS.String,
+    filePromiseProvider_writePromiseToURL_completionHandler: proc(self: ^NS.FilePromiseProviderDelegate, filePromiseProvider: ^NS.FilePromiseProvider, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^NS.Error ))),
+    operationQueueForFilePromiseProvider: proc(self: ^NS.FilePromiseProviderDelegate, filePromiseProvider: ^NS.FilePromiseProvider) -> ^NS.OperationQueue,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.filePromiseProvider_fileNameForType != nil {
-        filePromiseProvider_fileNameForType :: proc "c" (self: ^AK.FilePromiseProviderDelegate, _: SEL, filePromiseProvider: ^AK.FilePromiseProvider, fileType: ^NS.String) -> ^NS.String {
+        filePromiseProvider_fileNameForType :: proc "c" (self: ^NS.FilePromiseProviderDelegate, _: SEL, filePromiseProvider: ^NS.FilePromiseProvider, fileType: ^NS.String) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("filePromiseProvider:fileNameForType:"), auto_cast filePromiseProvider_fileNameForType, "@@:@@") do panic("Failed to register objC method.")
     }
     if vt.filePromiseProvider_writePromiseToURL_completionHandler != nil {
-        filePromiseProvider_writePromiseToURL_completionHandler :: proc "c" (self: ^AK.FilePromiseProviderDelegate, _: SEL, filePromiseProvider: ^AK.FilePromiseProvider, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" (errorOrNil: ^NS.Error))) {
+        filePromiseProvider_writePromiseToURL_completionHandler :: proc "c" (self: ^NS.FilePromiseProviderDelegate, _: SEL, filePromiseProvider: ^NS.FilePromiseProvider, url: ^NS.URL, completionHandler: ^Objc_Block(proc "c" ( errorOrNil: ^NS.Error ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("filePromiseProvider:writePromiseToURL:completionHandler:"), auto_cast filePromiseProvider_writePromiseToURL_completionHandler, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.operationQueueForFilePromiseProvider != nil {
-        operationQueueForFilePromiseProvider :: proc "c" (self: ^AK.FilePromiseProviderDelegate, _: SEL, filePromiseProvider: ^AK.FilePromiseProvider) -> ^NS.OperationQueue {
+        operationQueueForFilePromiseProvider :: proc "c" (self: ^NS.FilePromiseProviderDelegate, _: SEL, filePromiseProvider: ^NS.FilePromiseProvider) -> ^NS.OperationQueue {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

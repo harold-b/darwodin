@@ -117,13 +117,13 @@ foreign lib {
     GameActivity_makeMatchRequest :: proc(self: ^GameActivity) -> ^MatchRequest ---
 
     @(objc_type=GameActivity, objc_selector="findMatchWithCompletionHandler:", objc_name="findMatchWithCompletionHandler")
-    GameActivity_findMatchWithCompletionHandler :: proc(self: ^GameActivity, completionHandler: ^Objc_Block(proc "c" (match: ^Match, error: ^NS.Error))) ---
+    GameActivity_findMatchWithCompletionHandler :: proc(self: ^GameActivity, completionHandler: ^Objc_Block(proc "c" ( match: ^Match, error: ^NS.Error ))) ---
 
     @(objc_type=GameActivity, objc_selector="findPlayersForHostedMatchWithCompletionHandler:", objc_name="findPlayersForHostedMatchWithCompletionHandler")
-    GameActivity_findPlayersForHostedMatchWithCompletionHandler :: proc(self: ^GameActivity, completionHandler: ^Objc_Block(proc "c" (players: ^NS.Array, error: ^NS.Error))) ---
+    GameActivity_findPlayersForHostedMatchWithCompletionHandler :: proc(self: ^GameActivity, completionHandler: ^Objc_Block(proc "c" ( players: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=GameActivity, objc_selector="checkPendingGameActivityExistenceWithCompletionHandler:", objc_name="checkPendingGameActivityExistenceWithCompletionHandler", objc_is_class_method=true)
-    GameActivity_checkPendingGameActivityExistenceWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (_: bool))) ---
+    GameActivity_checkPendingGameActivityExistenceWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( _0: bool ))) ---
 }
 
 @(objc_type=GameActivity, objc_name="startWithDefinition")

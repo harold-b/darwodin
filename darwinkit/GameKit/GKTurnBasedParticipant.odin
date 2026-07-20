@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKTurnBasedParticipant
-///
 @(objc_class="GKTurnBasedParticipant", objc_superclass=NS.Object)
 TurnBasedParticipant :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TurnBasedParticipant, objc_selector="player", objc_name="player")
     TurnBasedParticipant_player :: proc(self: ^TurnBasedParticipant) -> ^Player ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=TurnBasedParticipant, objc_selector="playerID", objc_name="playerID")
     TurnBasedParticipant_playerID :: proc(self: ^TurnBasedParticipant) -> ^NS.String ---
 }
+
+
+

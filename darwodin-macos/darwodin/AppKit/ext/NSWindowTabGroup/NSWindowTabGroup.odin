@@ -20,22 +20,22 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    addWindow: proc(self: ^AK.WindowTabGroup, window: ^AK.Window),
-    insertWindow: proc(self: ^AK.WindowTabGroup, window: ^AK.Window, index: NS.Integer),
-    removeWindow: proc(self: ^AK.WindowTabGroup, window: ^AK.Window),
-    identifier: proc(self: ^AK.WindowTabGroup) -> ^NS.String,
-    windows: proc(self: ^AK.WindowTabGroup) -> ^NS.Array,
-    isOverviewVisible: proc(self: ^AK.WindowTabGroup) -> bool,
-    setOverviewVisible: proc(self: ^AK.WindowTabGroup, overviewVisible: bool),
-    isTabBarVisible: proc(self: ^AK.WindowTabGroup) -> bool,
-    selectedWindow: proc(self: ^AK.WindowTabGroup) -> ^AK.Window,
-    setSelectedWindow: proc(self: ^AK.WindowTabGroup, selectedWindow: ^AK.Window),
+    addWindow: proc(self: ^NS.WindowTabGroup, window: ^NS.Window),
+    insertWindow: proc(self: ^NS.WindowTabGroup, window: ^NS.Window, index: NS.Integer),
+    removeWindow: proc(self: ^NS.WindowTabGroup, window: ^NS.Window),
+    identifier: proc(self: ^NS.WindowTabGroup) -> ^NS.String,
+    windows: proc(self: ^NS.WindowTabGroup) -> ^NS.Array,
+    isOverviewVisible: proc(self: ^NS.WindowTabGroup) -> bool,
+    setOverviewVisible: proc(self: ^NS.WindowTabGroup, overviewVisible: bool),
+    isTabBarVisible: proc(self: ^NS.WindowTabGroup) -> bool,
+    selectedWindow: proc(self: ^NS.WindowTabGroup) -> ^NS.Window,
+    setSelectedWindow: proc(self: ^NS.WindowTabGroup, selectedWindow: ^NS.Window),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -46,7 +46,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.addWindow != nil {
-        addWindow :: proc "c" (self: ^AK.WindowTabGroup, _: SEL, window: ^AK.Window) {
+        addWindow :: proc "c" (self: ^NS.WindowTabGroup, _: SEL, window: ^NS.Window) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -56,7 +56,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addWindow:"), auto_cast addWindow, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.insertWindow != nil {
-        insertWindow :: proc "c" (self: ^AK.WindowTabGroup, _: SEL, window: ^AK.Window, index: NS.Integer) {
+        insertWindow :: proc "c" (self: ^NS.WindowTabGroup, _: SEL, window: ^NS.Window, index: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -66,7 +66,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("insertWindow:atIndex:"), auto_cast insertWindow, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.removeWindow != nil {
-        removeWindow :: proc "c" (self: ^AK.WindowTabGroup, _: SEL, window: ^AK.Window) {
+        removeWindow :: proc "c" (self: ^NS.WindowTabGroup, _: SEL, window: ^NS.Window) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -76,7 +76,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeWindow:"), auto_cast removeWindow, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.identifier != nil {
-        identifier :: proc "c" (self: ^AK.WindowTabGroup, _: SEL) -> ^NS.String {
+        identifier :: proc "c" (self: ^NS.WindowTabGroup, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -86,7 +86,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("identifier"), auto_cast identifier, "@@:") do panic("Failed to register objC method.")
     }
     if vt.windows != nil {
-        windows :: proc "c" (self: ^AK.WindowTabGroup, _: SEL) -> ^NS.Array {
+        windows :: proc "c" (self: ^NS.WindowTabGroup, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -96,7 +96,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("windows"), auto_cast windows, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.isOverviewVisible != nil {
-        isOverviewVisible :: proc "c" (self: ^AK.WindowTabGroup, _: SEL) -> bool {
+        isOverviewVisible :: proc "c" (self: ^NS.WindowTabGroup, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -106,7 +106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isOverviewVisible"), auto_cast isOverviewVisible, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setOverviewVisible != nil {
-        setOverviewVisible :: proc "c" (self: ^AK.WindowTabGroup, _: SEL, overviewVisible: bool) {
+        setOverviewVisible :: proc "c" (self: ^NS.WindowTabGroup, _: SEL, overviewVisible: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -116,7 +116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setOverviewVisible:"), auto_cast setOverviewVisible, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isTabBarVisible != nil {
-        isTabBarVisible :: proc "c" (self: ^AK.WindowTabGroup, _: SEL) -> bool {
+        isTabBarVisible :: proc "c" (self: ^NS.WindowTabGroup, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -126,7 +126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isTabBarVisible"), auto_cast isTabBarVisible, "B@:") do panic("Failed to register objC method.")
     }
     if vt.selectedWindow != nil {
-        selectedWindow :: proc "c" (self: ^AK.WindowTabGroup, _: SEL) -> ^AK.Window {
+        selectedWindow :: proc "c" (self: ^NS.WindowTabGroup, _: SEL) -> ^NS.Window {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -136,7 +136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedWindow"), auto_cast selectedWindow, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedWindow != nil {
-        setSelectedWindow :: proc "c" (self: ^AK.WindowTabGroup, _: SEL, selectedWindow: ^AK.Window) {
+        setSelectedWindow :: proc "c" (self: ^NS.WindowTabGroup, _: SEL, selectedWindow: ^NS.Window) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

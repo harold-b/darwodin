@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMIDIPlayer
-///
 @(objc_class="AVMIDIPlayer", objc_superclass=NS.Object)
 MIDIPlayer :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDIPlayer, objc_selector="initWithContentsOfURL:soundBankURL:error:", objc_name="initWithContentsOfURL")
     MIDIPlayer_initWithContentsOfURL :: proc(self: ^MIDIPlayer, inURL: ^NS.URL, bankURL: ^NS.URL, outError: ^^NS.Error) -> instancetype ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=MIDIPlayer, objc_selector="setCurrentPosition:", objc_name="setCurrentPosition")
     MIDIPlayer_setCurrentPosition :: proc(self: ^MIDIPlayer, currentPosition: NS.TimeInterval) ---
 }
+
+
+

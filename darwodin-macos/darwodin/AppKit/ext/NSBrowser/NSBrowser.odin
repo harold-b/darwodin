@@ -20,132 +20,132 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    loadColumnZero: proc(self: ^AK.Browser),
-    setCellClass: proc(self: ^AK.Browser, factoryId: Class),
-    itemAtIndexPath: proc(self: ^AK.Browser, indexPath: ^NS.IndexPath) -> id,
-    itemAtRow: proc(self: ^AK.Browser, row: NS.Integer, column: NS.Integer) -> id,
-    indexPathForColumn: proc(self: ^AK.Browser, column: NS.Integer) -> ^NS.IndexPath,
-    isLeafItem: proc(self: ^AK.Browser, item: id) -> bool,
-    reloadDataForRowIndexes: proc(self: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer),
-    parentForItemsInColumn: proc(self: ^AK.Browser, column: NS.Integer) -> id,
-    scrollRowToVisible: proc(self: ^AK.Browser, row: NS.Integer, column: NS.Integer),
-    setTitle: proc(self: ^AK.Browser, string: ^NS.String, column: NS.Integer),
-    titleOfColumn: proc(self: ^AK.Browser, column: NS.Integer) -> ^NS.String,
-    setPath: proc(self: ^AK.Browser, path: ^NS.String) -> bool,
-    path: proc(self: ^AK.Browser) -> ^NS.String,
-    pathToColumn: proc(self: ^AK.Browser, column: NS.Integer) -> ^NS.String,
-    selectedCellInColumn: proc(self: ^AK.Browser, column: NS.Integer) -> id,
-    selectRow: proc(self: ^AK.Browser, row: NS.Integer, column: NS.Integer),
-    selectedRowInColumn: proc(self: ^AK.Browser, column: NS.Integer) -> NS.Integer,
-    selectRowIndexes: proc(self: ^AK.Browser, indexes: ^NS.IndexSet, column: NS.Integer),
-    selectedRowIndexesInColumn: proc(self: ^AK.Browser, column: NS.Integer) -> ^NS.IndexSet,
-    reloadColumn: proc(self: ^AK.Browser, column: NS.Integer),
-    validateVisibleColumns: proc(self: ^AK.Browser),
-    scrollColumnsRightBy: proc(self: ^AK.Browser, shiftAmount: NS.Integer),
-    scrollColumnsLeftBy: proc(self: ^AK.Browser, shiftAmount: NS.Integer),
-    scrollColumnToVisible: proc(self: ^AK.Browser, column: NS.Integer),
-    addColumn: proc(self: ^AK.Browser),
-    loadedCellAtRow: proc(self: ^AK.Browser, row: NS.Integer, col: NS.Integer) -> id,
-    selectAll: proc(self: ^AK.Browser, sender: id),
-    tile: proc(self: ^AK.Browser),
-    doClick: proc(self: ^AK.Browser, sender: id),
-    doDoubleClick: proc(self: ^AK.Browser, sender: id),
-    sendAction: proc(self: ^AK.Browser) -> bool,
-    titleFrameOfColumn: proc(self: ^AK.Browser, column: NS.Integer) -> NS.Rect,
-    drawTitleOfColumn: proc(self: ^AK.Browser, column: NS.Integer, rect: NS.Rect),
-    frameOfColumn: proc(self: ^AK.Browser, column: NS.Integer) -> NS.Rect,
-    frameOfInsideOfColumn: proc(self: ^AK.Browser, column: NS.Integer) -> NS.Rect,
-    frameOfRow: proc(self: ^AK.Browser, row: NS.Integer, column: NS.Integer) -> NS.Rect,
-    getRow: proc(self: ^AK.Browser, row: ^NS.Integer, column: ^NS.Integer, point: CG.Point) -> bool,
-    columnWidthForColumnContentWidth: proc(self: ^AK.Browser, columnContentWidth: CG.Float) -> CG.Float,
-    columnContentWidthForColumnWidth: proc(self: ^AK.Browser, columnWidth: CG.Float) -> CG.Float,
-    setWidth: proc(self: ^AK.Browser, columnWidth: CG.Float, columnIndex: NS.Integer),
-    widthOfColumn: proc(self: ^AK.Browser, column: NS.Integer) -> CG.Float,
-    noteHeightOfRowsWithIndexesChanged: proc(self: ^AK.Browser, indexSet: ^NS.IndexSet, columnIndex: NS.Integer),
-    setDefaultColumnWidth: proc(self: ^AK.Browser, columnWidth: CG.Float),
-    defaultColumnWidth: proc(self: ^AK.Browser) -> CG.Float,
+    loadColumnZero: proc(self: ^NS.Browser),
+    setCellClass: proc(self: ^NS.Browser, factoryId: Class),
+    itemAtIndexPath: proc(self: ^NS.Browser, indexPath: ^NS.IndexPath) -> id,
+    itemAtRow: proc(self: ^NS.Browser, row: NS.Integer, column: NS.Integer) -> id,
+    indexPathForColumn: proc(self: ^NS.Browser, column: NS.Integer) -> ^NS.IndexPath,
+    isLeafItem: proc(self: ^NS.Browser, item: id) -> bool,
+    reloadDataForRowIndexes: proc(self: ^NS.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer),
+    parentForItemsInColumn: proc(self: ^NS.Browser, column: NS.Integer) -> id,
+    scrollRowToVisible: proc(self: ^NS.Browser, row: NS.Integer, column: NS.Integer),
+    setTitle: proc(self: ^NS.Browser, string: ^NS.String, column: NS.Integer),
+    titleOfColumn: proc(self: ^NS.Browser, column: NS.Integer) -> ^NS.String,
+    setPath: proc(self: ^NS.Browser, path: ^NS.String) -> bool,
+    path: proc(self: ^NS.Browser) -> ^NS.String,
+    pathToColumn: proc(self: ^NS.Browser, column: NS.Integer) -> ^NS.String,
+    selectedCellInColumn: proc(self: ^NS.Browser, column: NS.Integer) -> id,
+    selectRow: proc(self: ^NS.Browser, row: NS.Integer, column: NS.Integer),
+    selectedRowInColumn: proc(self: ^NS.Browser, column: NS.Integer) -> NS.Integer,
+    selectRowIndexes: proc(self: ^NS.Browser, indexes: ^NS.IndexSet, column: NS.Integer),
+    selectedRowIndexesInColumn: proc(self: ^NS.Browser, column: NS.Integer) -> ^NS.IndexSet,
+    reloadColumn: proc(self: ^NS.Browser, column: NS.Integer),
+    validateVisibleColumns: proc(self: ^NS.Browser),
+    scrollColumnsRightBy: proc(self: ^NS.Browser, shiftAmount: NS.Integer),
+    scrollColumnsLeftBy: proc(self: ^NS.Browser, shiftAmount: NS.Integer),
+    scrollColumnToVisible: proc(self: ^NS.Browser, column: NS.Integer),
+    addColumn: proc(self: ^NS.Browser),
+    loadedCellAtRow: proc(self: ^NS.Browser, row: NS.Integer, col: NS.Integer) -> id,
+    selectAll: proc(self: ^NS.Browser, sender: id),
+    tile: proc(self: ^NS.Browser),
+    doClick: proc(self: ^NS.Browser, sender: id),
+    doDoubleClick: proc(self: ^NS.Browser, sender: id),
+    sendAction: proc(self: ^NS.Browser) -> bool,
+    titleFrameOfColumn: proc(self: ^NS.Browser, column: NS.Integer) -> NS.Rect,
+    drawTitleOfColumn: proc(self: ^NS.Browser, column: NS.Integer, rect: NS.Rect),
+    frameOfColumn: proc(self: ^NS.Browser, column: NS.Integer) -> NS.Rect,
+    frameOfInsideOfColumn: proc(self: ^NS.Browser, column: NS.Integer) -> NS.Rect,
+    frameOfRow: proc(self: ^NS.Browser, row: NS.Integer, column: NS.Integer) -> NS.Rect,
+    getRow: proc(self: ^NS.Browser, row: ^NS.Integer, column: ^NS.Integer, point: CG.Point) -> bool,
+    columnWidthForColumnContentWidth: proc(self: ^NS.Browser, columnContentWidth: CG.Float) -> CG.Float,
+    columnContentWidthForColumnWidth: proc(self: ^NS.Browser, columnWidth: CG.Float) -> CG.Float,
+    setWidth: proc(self: ^NS.Browser, columnWidth: CG.Float, columnIndex: NS.Integer),
+    widthOfColumn: proc(self: ^NS.Browser, column: NS.Integer) -> CG.Float,
+    noteHeightOfRowsWithIndexesChanged: proc(self: ^NS.Browser, indexSet: ^NS.IndexSet, columnIndex: NS.Integer),
+    setDefaultColumnWidth: proc(self: ^NS.Browser, columnWidth: CG.Float),
+    defaultColumnWidth: proc(self: ^NS.Browser) -> CG.Float,
     removeSavedColumnsWithAutosaveName: proc(name: ^NS.String),
-    canDragRowsWithIndexes: proc(self: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event) -> bool,
-    draggingImageForRowsWithIndexes: proc(self: ^AK.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image,
-    setDraggingSourceOperationMask: proc(self: ^AK.Browser, mask: AK.DragOperation, isLocal: bool),
-    editItemAtIndexPath: proc(self: ^AK.Browser, indexPath: ^NS.IndexPath, event: ^AK.Event, select: bool),
+    canDragRowsWithIndexes: proc(self: ^NS.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^NS.Event) -> bool,
+    draggingImageForRowsWithIndexes: proc(self: ^NS.Browser, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^NS.Event, dragImageOffset: ^CG.Point) -> ^NS.Image,
+    setDraggingSourceOperationMask: proc(self: ^NS.Browser, mask: NS.DragOperation, isLocal: bool),
+    editItemAtIndexPath: proc(self: ^NS.Browser, indexPath: ^NS.IndexPath, event: ^NS.Event, select: bool),
     cellClass: proc() -> Class,
-    isLoaded: proc(self: ^AK.Browser) -> bool,
-    doubleAction: proc(self: ^AK.Browser) -> SEL,
-    setDoubleAction: proc(self: ^AK.Browser, doubleAction: SEL),
-    cellPrototype: proc(self: ^AK.Browser) -> id,
-    setCellPrototype: proc(self: ^AK.Browser, cellPrototype: id),
-    delegate: proc(self: ^AK.Browser) -> ^AK.BrowserDelegate,
-    setDelegate: proc(self: ^AK.Browser, delegate: ^AK.BrowserDelegate),
-    reusesColumns: proc(self: ^AK.Browser) -> bool,
-    setReusesColumns: proc(self: ^AK.Browser, reusesColumns: bool),
-    hasHorizontalScroller: proc(self: ^AK.Browser) -> bool,
-    setHasHorizontalScroller: proc(self: ^AK.Browser, hasHorizontalScroller: bool),
-    autohidesScroller: proc(self: ^AK.Browser) -> bool,
-    setAutohidesScroller: proc(self: ^AK.Browser, autohidesScroller: bool),
-    separatesColumns: proc(self: ^AK.Browser) -> bool,
-    setSeparatesColumns: proc(self: ^AK.Browser, separatesColumns: bool),
-    isTitled: proc(self: ^AK.Browser) -> bool,
-    setTitled: proc(self: ^AK.Browser, titled: bool),
-    minColumnWidth: proc(self: ^AK.Browser) -> CG.Float,
-    setMinColumnWidth: proc(self: ^AK.Browser, minColumnWidth: CG.Float),
-    maxVisibleColumns: proc(self: ^AK.Browser) -> NS.Integer,
-    setMaxVisibleColumns: proc(self: ^AK.Browser, maxVisibleColumns: NS.Integer),
-    allowsMultipleSelection: proc(self: ^AK.Browser) -> bool,
-    setAllowsMultipleSelection: proc(self: ^AK.Browser, allowsMultipleSelection: bool),
-    allowsBranchSelection: proc(self: ^AK.Browser) -> bool,
-    setAllowsBranchSelection: proc(self: ^AK.Browser, allowsBranchSelection: bool),
-    allowsEmptySelection: proc(self: ^AK.Browser) -> bool,
-    setAllowsEmptySelection: proc(self: ^AK.Browser, allowsEmptySelection: bool),
-    takesTitleFromPreviousColumn: proc(self: ^AK.Browser) -> bool,
-    setTakesTitleFromPreviousColumn: proc(self: ^AK.Browser, takesTitleFromPreviousColumn: bool),
-    sendsActionOnArrowKeys: proc(self: ^AK.Browser) -> bool,
-    setSendsActionOnArrowKeys: proc(self: ^AK.Browser, sendsActionOnArrowKeys: bool),
-    pathSeparator: proc(self: ^AK.Browser) -> ^NS.String,
-    setPathSeparator: proc(self: ^AK.Browser, pathSeparator: ^NS.String),
-    clickedColumn: proc(self: ^AK.Browser) -> NS.Integer,
-    clickedRow: proc(self: ^AK.Browser) -> NS.Integer,
-    selectedColumn: proc(self: ^AK.Browser) -> NS.Integer,
-    selectedCell: proc(self: ^AK.Browser) -> id,
-    selectedCells: proc(self: ^AK.Browser) -> ^NS.Array,
-    selectionIndexPath: proc(self: ^AK.Browser) -> ^NS.IndexPath,
-    setSelectionIndexPath: proc(self: ^AK.Browser, selectionIndexPath: ^NS.IndexPath),
-    selectionIndexPaths: proc(self: ^AK.Browser) -> ^NS.Array,
-    setSelectionIndexPaths: proc(self: ^AK.Browser, selectionIndexPaths: ^NS.Array),
-    lastColumn: proc(self: ^AK.Browser) -> NS.Integer,
-    setLastColumn: proc(self: ^AK.Browser, lastColumn: NS.Integer),
-    numberOfVisibleColumns: proc(self: ^AK.Browser) -> NS.Integer,
-    firstVisibleColumn: proc(self: ^AK.Browser) -> NS.Integer,
-    lastVisibleColumn: proc(self: ^AK.Browser) -> NS.Integer,
-    titleHeight: proc(self: ^AK.Browser) -> CG.Float,
-    columnResizingType: proc(self: ^AK.Browser) -> AK.BrowserColumnResizingType,
-    setColumnResizingType: proc(self: ^AK.Browser, columnResizingType: AK.BrowserColumnResizingType),
-    prefersAllColumnUserResizing: proc(self: ^AK.Browser) -> bool,
-    setPrefersAllColumnUserResizing: proc(self: ^AK.Browser, prefersAllColumnUserResizing: bool),
-    rowHeight: proc(self: ^AK.Browser) -> CG.Float,
-    setRowHeight: proc(self: ^AK.Browser, rowHeight: CG.Float),
-    columnsAutosaveName: proc(self: ^AK.Browser) -> ^NS.String,
-    setColumnsAutosaveName: proc(self: ^AK.Browser, columnsAutosaveName: ^NS.String),
-    allowsTypeSelect: proc(self: ^AK.Browser) -> bool,
-    setAllowsTypeSelect: proc(self: ^AK.Browser, allowsTypeSelect: bool),
-    backgroundColor: proc(self: ^AK.Browser) -> ^AK.Color,
-    setBackgroundColor: proc(self: ^AK.Browser, backgroundColor: ^AK.Color),
-    setAcceptsArrowKeys: proc(self: ^AK.Browser, flag: bool),
-    acceptsArrowKeys: proc(self: ^AK.Browser) -> bool,
-    displayColumn: proc(self: ^AK.Browser, column: NS.Integer),
-    displayAllColumns: proc(self: ^AK.Browser),
-    scrollViaScroller: proc(self: ^AK.Browser, sender: ^AK.Scroller),
-    updateScroller: proc(self: ^AK.Browser),
-    setMatrixClass: proc(self: ^AK.Browser, factoryId: Class),
-    matrixClass: proc(self: ^AK.Browser) -> Class,
-    columnOfMatrix: proc(self: ^AK.Browser, _matrix: ^AK.Matrix) -> NS.Integer,
-    matrixInColumn: proc(self: ^AK.Browser, column: NS.Integer) -> ^AK.Matrix,
+    isLoaded: proc(self: ^NS.Browser) -> bool,
+    doubleAction: proc(self: ^NS.Browser) -> SEL,
+    setDoubleAction: proc(self: ^NS.Browser, doubleAction: SEL),
+    cellPrototype: proc(self: ^NS.Browser) -> id,
+    setCellPrototype: proc(self: ^NS.Browser, cellPrototype: id),
+    delegate: proc(self: ^NS.Browser) -> ^NS.BrowserDelegate,
+    setDelegate: proc(self: ^NS.Browser, delegate: ^NS.BrowserDelegate),
+    reusesColumns: proc(self: ^NS.Browser) -> bool,
+    setReusesColumns: proc(self: ^NS.Browser, reusesColumns: bool),
+    hasHorizontalScroller: proc(self: ^NS.Browser) -> bool,
+    setHasHorizontalScroller: proc(self: ^NS.Browser, hasHorizontalScroller: bool),
+    autohidesScroller: proc(self: ^NS.Browser) -> bool,
+    setAutohidesScroller: proc(self: ^NS.Browser, autohidesScroller: bool),
+    separatesColumns: proc(self: ^NS.Browser) -> bool,
+    setSeparatesColumns: proc(self: ^NS.Browser, separatesColumns: bool),
+    isTitled: proc(self: ^NS.Browser) -> bool,
+    setTitled: proc(self: ^NS.Browser, titled: bool),
+    minColumnWidth: proc(self: ^NS.Browser) -> CG.Float,
+    setMinColumnWidth: proc(self: ^NS.Browser, minColumnWidth: CG.Float),
+    maxVisibleColumns: proc(self: ^NS.Browser) -> NS.Integer,
+    setMaxVisibleColumns: proc(self: ^NS.Browser, maxVisibleColumns: NS.Integer),
+    allowsMultipleSelection: proc(self: ^NS.Browser) -> bool,
+    setAllowsMultipleSelection: proc(self: ^NS.Browser, allowsMultipleSelection: bool),
+    allowsBranchSelection: proc(self: ^NS.Browser) -> bool,
+    setAllowsBranchSelection: proc(self: ^NS.Browser, allowsBranchSelection: bool),
+    allowsEmptySelection: proc(self: ^NS.Browser) -> bool,
+    setAllowsEmptySelection: proc(self: ^NS.Browser, allowsEmptySelection: bool),
+    takesTitleFromPreviousColumn: proc(self: ^NS.Browser) -> bool,
+    setTakesTitleFromPreviousColumn: proc(self: ^NS.Browser, takesTitleFromPreviousColumn: bool),
+    sendsActionOnArrowKeys: proc(self: ^NS.Browser) -> bool,
+    setSendsActionOnArrowKeys: proc(self: ^NS.Browser, sendsActionOnArrowKeys: bool),
+    pathSeparator: proc(self: ^NS.Browser) -> ^NS.String,
+    setPathSeparator: proc(self: ^NS.Browser, pathSeparator: ^NS.String),
+    clickedColumn: proc(self: ^NS.Browser) -> NS.Integer,
+    clickedRow: proc(self: ^NS.Browser) -> NS.Integer,
+    selectedColumn: proc(self: ^NS.Browser) -> NS.Integer,
+    selectedCell: proc(self: ^NS.Browser) -> id,
+    selectedCells: proc(self: ^NS.Browser) -> ^NS.Array,
+    selectionIndexPath: proc(self: ^NS.Browser) -> ^NS.IndexPath,
+    setSelectionIndexPath: proc(self: ^NS.Browser, selectionIndexPath: ^NS.IndexPath),
+    selectionIndexPaths: proc(self: ^NS.Browser) -> ^NS.Array,
+    setSelectionIndexPaths: proc(self: ^NS.Browser, selectionIndexPaths: ^NS.Array),
+    lastColumn: proc(self: ^NS.Browser) -> NS.Integer,
+    setLastColumn: proc(self: ^NS.Browser, lastColumn: NS.Integer),
+    numberOfVisibleColumns: proc(self: ^NS.Browser) -> NS.Integer,
+    firstVisibleColumn: proc(self: ^NS.Browser) -> NS.Integer,
+    lastVisibleColumn: proc(self: ^NS.Browser) -> NS.Integer,
+    titleHeight: proc(self: ^NS.Browser) -> CG.Float,
+    columnResizingType: proc(self: ^NS.Browser) -> NS.BrowserColumnResizingType,
+    setColumnResizingType: proc(self: ^NS.Browser, columnResizingType: NS.BrowserColumnResizingType),
+    prefersAllColumnUserResizing: proc(self: ^NS.Browser) -> bool,
+    setPrefersAllColumnUserResizing: proc(self: ^NS.Browser, prefersAllColumnUserResizing: bool),
+    rowHeight: proc(self: ^NS.Browser) -> CG.Float,
+    setRowHeight: proc(self: ^NS.Browser, rowHeight: CG.Float),
+    columnsAutosaveName: proc(self: ^NS.Browser) -> ^NS.String,
+    setColumnsAutosaveName: proc(self: ^NS.Browser, columnsAutosaveName: ^NS.String),
+    allowsTypeSelect: proc(self: ^NS.Browser) -> bool,
+    setAllowsTypeSelect: proc(self: ^NS.Browser, allowsTypeSelect: bool),
+    backgroundColor: proc(self: ^NS.Browser) -> ^NS.Color,
+    setBackgroundColor: proc(self: ^NS.Browser, backgroundColor: ^NS.Color),
+    setAcceptsArrowKeys: proc(self: ^NS.Browser, flag: bool),
+    acceptsArrowKeys: proc(self: ^NS.Browser) -> bool,
+    displayColumn: proc(self: ^NS.Browser, column: NS.Integer),
+    displayAllColumns: proc(self: ^NS.Browser),
+    scrollViaScroller: proc(self: ^NS.Browser, sender: ^NS.Scroller),
+    updateScroller: proc(self: ^NS.Browser),
+    setMatrixClass: proc(self: ^NS.Browser, factoryId: Class),
+    matrixClass: proc(self: ^NS.Browser) -> Class,
+    columnOfMatrix: proc(self: ^NS.Browser, _matrix: ^NS.Matrix) -> NS.Integer,
+    matrixInColumn: proc(self: ^NS.Browser, column: NS.Integer) -> ^NS.Matrix,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -156,7 +156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.loadColumnZero != nil {
-        loadColumnZero :: proc "c" (self: ^AK.Browser, _: SEL) {
+        loadColumnZero :: proc "c" (self: ^NS.Browser, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -166,7 +166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("loadColumnZero"), auto_cast loadColumnZero, "v@:") do panic("Failed to register objC method.")
     }
     if vt.setCellClass != nil {
-        setCellClass :: proc "c" (self: ^AK.Browser, _: SEL, factoryId: Class) {
+        setCellClass :: proc "c" (self: ^NS.Browser, _: SEL, factoryId: Class) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -176,7 +176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCellClass:"), auto_cast setCellClass, "v@:#") do panic("Failed to register objC method.")
     }
     if vt.itemAtIndexPath != nil {
-        itemAtIndexPath :: proc "c" (self: ^AK.Browser, _: SEL, indexPath: ^NS.IndexPath) -> id {
+        itemAtIndexPath :: proc "c" (self: ^NS.Browser, _: SEL, indexPath: ^NS.IndexPath) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -186,7 +186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemAtIndexPath:"), auto_cast itemAtIndexPath, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.itemAtRow != nil {
-        itemAtRow :: proc "c" (self: ^AK.Browser, _: SEL, row: NS.Integer, column: NS.Integer) -> id {
+        itemAtRow :: proc "c" (self: ^NS.Browser, _: SEL, row: NS.Integer, column: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -196,7 +196,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemAtRow:inColumn:"), auto_cast itemAtRow, "@@:ll") do panic("Failed to register objC method.")
     }
     if vt.indexPathForColumn != nil {
-        indexPathForColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> ^NS.IndexPath {
+        indexPathForColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> ^NS.IndexPath {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -206,7 +206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexPathForColumn:"), auto_cast indexPathForColumn, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.isLeafItem != nil {
-        isLeafItem :: proc "c" (self: ^AK.Browser, _: SEL, item: id) -> bool {
+        isLeafItem :: proc "c" (self: ^NS.Browser, _: SEL, item: id) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -216,7 +216,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isLeafItem:"), auto_cast isLeafItem, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.reloadDataForRowIndexes != nil {
-        reloadDataForRowIndexes :: proc "c" (self: ^AK.Browser, _: SEL, rowIndexes: ^NS.IndexSet, column: NS.Integer) {
+        reloadDataForRowIndexes :: proc "c" (self: ^NS.Browser, _: SEL, rowIndexes: ^NS.IndexSet, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -226,7 +226,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reloadDataForRowIndexes:inColumn:"), auto_cast reloadDataForRowIndexes, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.parentForItemsInColumn != nil {
-        parentForItemsInColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> id {
+        parentForItemsInColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -236,7 +236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("parentForItemsInColumn:"), auto_cast parentForItemsInColumn, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.scrollRowToVisible != nil {
-        scrollRowToVisible :: proc "c" (self: ^AK.Browser, _: SEL, row: NS.Integer, column: NS.Integer) {
+        scrollRowToVisible :: proc "c" (self: ^NS.Browser, _: SEL, row: NS.Integer, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -246,7 +246,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollRowToVisible:inColumn:"), auto_cast scrollRowToVisible, "v@:ll") do panic("Failed to register objC method.")
     }
     if vt.setTitle != nil {
-        setTitle :: proc "c" (self: ^AK.Browser, _: SEL, string: ^NS.String, column: NS.Integer) {
+        setTitle :: proc "c" (self: ^NS.Browser, _: SEL, string: ^NS.String, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -256,7 +256,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitle:ofColumn:"), auto_cast setTitle, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.titleOfColumn != nil {
-        titleOfColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> ^NS.String {
+        titleOfColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -266,7 +266,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleOfColumn:"), auto_cast titleOfColumn, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.setPath != nil {
-        setPath :: proc "c" (self: ^AK.Browser, _: SEL, path: ^NS.String) -> bool {
+        setPath :: proc "c" (self: ^NS.Browser, _: SEL, path: ^NS.String) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -276,7 +276,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPath:"), auto_cast setPath, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.path != nil {
-        path :: proc "c" (self: ^AK.Browser, _: SEL) -> ^NS.String {
+        path :: proc "c" (self: ^NS.Browser, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -286,7 +286,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("path"), auto_cast path, "@@:") do panic("Failed to register objC method.")
     }
     if vt.pathToColumn != nil {
-        pathToColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> ^NS.String {
+        pathToColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -296,7 +296,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pathToColumn:"), auto_cast pathToColumn, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.selectedCellInColumn != nil {
-        selectedCellInColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> id {
+        selectedCellInColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -306,7 +306,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedCellInColumn:"), auto_cast selectedCellInColumn, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.selectRow != nil {
-        selectRow :: proc "c" (self: ^AK.Browser, _: SEL, row: NS.Integer, column: NS.Integer) {
+        selectRow :: proc "c" (self: ^NS.Browser, _: SEL, row: NS.Integer, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -316,7 +316,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectRow:inColumn:"), auto_cast selectRow, "v@:ll") do panic("Failed to register objC method.")
     }
     if vt.selectedRowInColumn != nil {
-        selectedRowInColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> NS.Integer {
+        selectedRowInColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -326,7 +326,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRowInColumn:"), auto_cast selectedRowInColumn, "l@:l") do panic("Failed to register objC method.")
     }
     if vt.selectRowIndexes != nil {
-        selectRowIndexes :: proc "c" (self: ^AK.Browser, _: SEL, indexes: ^NS.IndexSet, column: NS.Integer) {
+        selectRowIndexes :: proc "c" (self: ^NS.Browser, _: SEL, indexes: ^NS.IndexSet, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -336,7 +336,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectRowIndexes:inColumn:"), auto_cast selectRowIndexes, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.selectedRowIndexesInColumn != nil {
-        selectedRowIndexesInColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> ^NS.IndexSet {
+        selectedRowIndexesInColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> ^NS.IndexSet {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -346,7 +346,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedRowIndexesInColumn:"), auto_cast selectedRowIndexesInColumn, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.reloadColumn != nil {
-        reloadColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) {
+        reloadColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -356,7 +356,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reloadColumn:"), auto_cast reloadColumn, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.validateVisibleColumns != nil {
-        validateVisibleColumns :: proc "c" (self: ^AK.Browser, _: SEL) {
+        validateVisibleColumns :: proc "c" (self: ^NS.Browser, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -366,7 +366,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("validateVisibleColumns"), auto_cast validateVisibleColumns, "v@:") do panic("Failed to register objC method.")
     }
     if vt.scrollColumnsRightBy != nil {
-        scrollColumnsRightBy :: proc "c" (self: ^AK.Browser, _: SEL, shiftAmount: NS.Integer) {
+        scrollColumnsRightBy :: proc "c" (self: ^NS.Browser, _: SEL, shiftAmount: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -376,7 +376,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollColumnsRightBy:"), auto_cast scrollColumnsRightBy, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.scrollColumnsLeftBy != nil {
-        scrollColumnsLeftBy :: proc "c" (self: ^AK.Browser, _: SEL, shiftAmount: NS.Integer) {
+        scrollColumnsLeftBy :: proc "c" (self: ^NS.Browser, _: SEL, shiftAmount: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -386,7 +386,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollColumnsLeftBy:"), auto_cast scrollColumnsLeftBy, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.scrollColumnToVisible != nil {
-        scrollColumnToVisible :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) {
+        scrollColumnToVisible :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -396,7 +396,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollColumnToVisible:"), auto_cast scrollColumnToVisible, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.addColumn != nil {
-        addColumn :: proc "c" (self: ^AK.Browser, _: SEL) {
+        addColumn :: proc "c" (self: ^NS.Browser, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -406,7 +406,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addColumn"), auto_cast addColumn, "v@:") do panic("Failed to register objC method.")
     }
     if vt.loadedCellAtRow != nil {
-        loadedCellAtRow :: proc "c" (self: ^AK.Browser, _: SEL, row: NS.Integer, col: NS.Integer) -> id {
+        loadedCellAtRow :: proc "c" (self: ^NS.Browser, _: SEL, row: NS.Integer, col: NS.Integer) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -416,7 +416,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("loadedCellAtRow:column:"), auto_cast loadedCellAtRow, "@@:ll") do panic("Failed to register objC method.")
     }
     if vt.selectAll != nil {
-        selectAll :: proc "c" (self: ^AK.Browser, _: SEL, sender: id) {
+        selectAll :: proc "c" (self: ^NS.Browser, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -426,7 +426,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectAll:"), auto_cast selectAll, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.tile != nil {
-        tile :: proc "c" (self: ^AK.Browser, _: SEL) {
+        tile :: proc "c" (self: ^NS.Browser, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -436,7 +436,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tile"), auto_cast tile, "v@:") do panic("Failed to register objC method.")
     }
     if vt.doClick != nil {
-        doClick :: proc "c" (self: ^AK.Browser, _: SEL, sender: id) {
+        doClick :: proc "c" (self: ^NS.Browser, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -446,7 +446,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("doClick:"), auto_cast doClick, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.doDoubleClick != nil {
-        doDoubleClick :: proc "c" (self: ^AK.Browser, _: SEL, sender: id) {
+        doDoubleClick :: proc "c" (self: ^NS.Browser, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -456,7 +456,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("doDoubleClick:"), auto_cast doDoubleClick, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.sendAction != nil {
-        sendAction :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        sendAction :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -466,7 +466,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sendAction"), auto_cast sendAction, "B@:") do panic("Failed to register objC method.")
     }
     if vt.titleFrameOfColumn != nil {
-        titleFrameOfColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> NS.Rect {
+        titleFrameOfColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -476,7 +476,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleFrameOfColumn:"), auto_cast titleFrameOfColumn, "{CGRect={CGPoint=dd}{CGSize=dd}}@:l") do panic("Failed to register objC method.")
     }
     if vt.drawTitleOfColumn != nil {
-        drawTitleOfColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer, rect: NS.Rect) {
+        drawTitleOfColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer, rect: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -486,7 +486,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawTitleOfColumn:inRect:"), auto_cast drawTitleOfColumn, "v@:l{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.frameOfColumn != nil {
-        frameOfColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> NS.Rect {
+        frameOfColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -496,7 +496,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("frameOfColumn:"), auto_cast frameOfColumn, "{CGRect={CGPoint=dd}{CGSize=dd}}@:l") do panic("Failed to register objC method.")
     }
     if vt.frameOfInsideOfColumn != nil {
-        frameOfInsideOfColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> NS.Rect {
+        frameOfInsideOfColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -506,7 +506,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("frameOfInsideOfColumn:"), auto_cast frameOfInsideOfColumn, "{CGRect={CGPoint=dd}{CGSize=dd}}@:l") do panic("Failed to register objC method.")
     }
     if vt.frameOfRow != nil {
-        frameOfRow :: proc "c" (self: ^AK.Browser, _: SEL, row: NS.Integer, column: NS.Integer) -> NS.Rect {
+        frameOfRow :: proc "c" (self: ^NS.Browser, _: SEL, row: NS.Integer, column: NS.Integer) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -516,7 +516,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("frameOfRow:inColumn:"), auto_cast frameOfRow, "{CGRect={CGPoint=dd}{CGSize=dd}}@:ll") do panic("Failed to register objC method.")
     }
     if vt.getRow != nil {
-        getRow :: proc "c" (self: ^AK.Browser, _: SEL, row: ^NS.Integer, column: ^NS.Integer, point: CG.Point) -> bool {
+        getRow :: proc "c" (self: ^NS.Browser, _: SEL, row: ^NS.Integer, column: ^NS.Integer, point: CG.Point) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -526,7 +526,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("getRow:column:forPoint:"), auto_cast getRow, "B@:^void^void{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.columnWidthForColumnContentWidth != nil {
-        columnWidthForColumnContentWidth :: proc "c" (self: ^AK.Browser, _: SEL, columnContentWidth: CG.Float) -> CG.Float {
+        columnWidthForColumnContentWidth :: proc "c" (self: ^NS.Browser, _: SEL, columnContentWidth: CG.Float) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -536,7 +536,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnWidthForColumnContentWidth:"), auto_cast columnWidthForColumnContentWidth, "d@:d") do panic("Failed to register objC method.")
     }
     if vt.columnContentWidthForColumnWidth != nil {
-        columnContentWidthForColumnWidth :: proc "c" (self: ^AK.Browser, _: SEL, columnWidth: CG.Float) -> CG.Float {
+        columnContentWidthForColumnWidth :: proc "c" (self: ^NS.Browser, _: SEL, columnWidth: CG.Float) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -546,7 +546,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnContentWidthForColumnWidth:"), auto_cast columnContentWidthForColumnWidth, "d@:d") do panic("Failed to register objC method.")
     }
     if vt.setWidth != nil {
-        setWidth :: proc "c" (self: ^AK.Browser, _: SEL, columnWidth: CG.Float, columnIndex: NS.Integer) {
+        setWidth :: proc "c" (self: ^NS.Browser, _: SEL, columnWidth: CG.Float, columnIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -556,7 +556,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWidth:ofColumn:"), auto_cast setWidth, "v@:dl") do panic("Failed to register objC method.")
     }
     if vt.widthOfColumn != nil {
-        widthOfColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> CG.Float {
+        widthOfColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -566,7 +566,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("widthOfColumn:"), auto_cast widthOfColumn, "d@:l") do panic("Failed to register objC method.")
     }
     if vt.noteHeightOfRowsWithIndexesChanged != nil {
-        noteHeightOfRowsWithIndexesChanged :: proc "c" (self: ^AK.Browser, _: SEL, indexSet: ^NS.IndexSet, columnIndex: NS.Integer) {
+        noteHeightOfRowsWithIndexesChanged :: proc "c" (self: ^NS.Browser, _: SEL, indexSet: ^NS.IndexSet, columnIndex: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -576,7 +576,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("noteHeightOfRowsWithIndexesChanged:inColumn:"), auto_cast noteHeightOfRowsWithIndexesChanged, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.setDefaultColumnWidth != nil {
-        setDefaultColumnWidth :: proc "c" (self: ^AK.Browser, _: SEL, columnWidth: CG.Float) {
+        setDefaultColumnWidth :: proc "c" (self: ^NS.Browser, _: SEL, columnWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -586,7 +586,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDefaultColumnWidth:"), auto_cast setDefaultColumnWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.defaultColumnWidth != nil {
-        defaultColumnWidth :: proc "c" (self: ^AK.Browser, _: SEL) -> CG.Float {
+        defaultColumnWidth :: proc "c" (self: ^NS.Browser, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -606,7 +606,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("removeSavedColumnsWithAutosaveName:"), auto_cast removeSavedColumnsWithAutosaveName, "v#:@") do panic("Failed to register objC method.")
     }
     if vt.canDragRowsWithIndexes != nil {
-        canDragRowsWithIndexes :: proc "c" (self: ^AK.Browser, _: SEL, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event) -> bool {
+        canDragRowsWithIndexes :: proc "c" (self: ^NS.Browser, _: SEL, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^NS.Event) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -616,7 +616,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canDragRowsWithIndexes:inColumn:withEvent:"), auto_cast canDragRowsWithIndexes, "B@:@l@") do panic("Failed to register objC method.")
     }
     if vt.draggingImageForRowsWithIndexes != nil {
-        draggingImageForRowsWithIndexes :: proc "c" (self: ^AK.Browser, _: SEL, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^AK.Event, dragImageOffset: ^CG.Point) -> ^AK.Image {
+        draggingImageForRowsWithIndexes :: proc "c" (self: ^NS.Browser, _: SEL, rowIndexes: ^NS.IndexSet, column: NS.Integer, event: ^NS.Event, dragImageOffset: ^CG.Point) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -626,7 +626,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draggingImageForRowsWithIndexes:inColumn:withEvent:offset:"), auto_cast draggingImageForRowsWithIndexes, "@@:@l@^void") do panic("Failed to register objC method.")
     }
     if vt.setDraggingSourceOperationMask != nil {
-        setDraggingSourceOperationMask :: proc "c" (self: ^AK.Browser, _: SEL, mask: AK.DragOperation, isLocal: bool) {
+        setDraggingSourceOperationMask :: proc "c" (self: ^NS.Browser, _: SEL, mask: NS.DragOperation, isLocal: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -636,7 +636,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDraggingSourceOperationMask:forLocal:"), auto_cast setDraggingSourceOperationMask, "v@:LB") do panic("Failed to register objC method.")
     }
     if vt.editItemAtIndexPath != nil {
-        editItemAtIndexPath :: proc "c" (self: ^AK.Browser, _: SEL, indexPath: ^NS.IndexPath, event: ^AK.Event, select: bool) {
+        editItemAtIndexPath :: proc "c" (self: ^NS.Browser, _: SEL, indexPath: ^NS.IndexPath, event: ^NS.Event, select: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -656,7 +656,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("cellClass"), auto_cast cellClass, "##:") do panic("Failed to register objC method.")
     }
     if vt.isLoaded != nil {
-        isLoaded :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        isLoaded :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -666,7 +666,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isLoaded"), auto_cast isLoaded, "B@:") do panic("Failed to register objC method.")
     }
     if vt.doubleAction != nil {
-        doubleAction :: proc "c" (self: ^AK.Browser, _: SEL) -> SEL {
+        doubleAction :: proc "c" (self: ^NS.Browser, _: SEL) -> SEL {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -676,7 +676,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("doubleAction"), auto_cast doubleAction, ":@:") do panic("Failed to register objC method.")
     }
     if vt.setDoubleAction != nil {
-        setDoubleAction :: proc "c" (self: ^AK.Browser, _: SEL, doubleAction: SEL) {
+        setDoubleAction :: proc "c" (self: ^NS.Browser, _: SEL, doubleAction: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -686,7 +686,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDoubleAction:"), auto_cast setDoubleAction, "v@::") do panic("Failed to register objC method.")
     }
     if vt.cellPrototype != nil {
-        cellPrototype :: proc "c" (self: ^AK.Browser, _: SEL) -> id {
+        cellPrototype :: proc "c" (self: ^NS.Browser, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -696,7 +696,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("cellPrototype"), auto_cast cellPrototype, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setCellPrototype != nil {
-        setCellPrototype :: proc "c" (self: ^AK.Browser, _: SEL, cellPrototype: id) {
+        setCellPrototype :: proc "c" (self: ^NS.Browser, _: SEL, cellPrototype: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -706,7 +706,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setCellPrototype:"), auto_cast setCellPrototype, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.Browser, _: SEL) -> ^AK.BrowserDelegate {
+        delegate :: proc "c" (self: ^NS.Browser, _: SEL) -> ^NS.BrowserDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -716,7 +716,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.Browser, _: SEL, delegate: ^AK.BrowserDelegate) {
+        setDelegate :: proc "c" (self: ^NS.Browser, _: SEL, delegate: ^NS.BrowserDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -726,7 +726,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.reusesColumns != nil {
-        reusesColumns :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        reusesColumns :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -736,7 +736,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("reusesColumns"), auto_cast reusesColumns, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setReusesColumns != nil {
-        setReusesColumns :: proc "c" (self: ^AK.Browser, _: SEL, reusesColumns: bool) {
+        setReusesColumns :: proc "c" (self: ^NS.Browser, _: SEL, reusesColumns: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -746,7 +746,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setReusesColumns:"), auto_cast setReusesColumns, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.hasHorizontalScroller != nil {
-        hasHorizontalScroller :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        hasHorizontalScroller :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -756,7 +756,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasHorizontalScroller"), auto_cast hasHorizontalScroller, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHasHorizontalScroller != nil {
-        setHasHorizontalScroller :: proc "c" (self: ^AK.Browser, _: SEL, hasHorizontalScroller: bool) {
+        setHasHorizontalScroller :: proc "c" (self: ^NS.Browser, _: SEL, hasHorizontalScroller: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -766,7 +766,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHasHorizontalScroller:"), auto_cast setHasHorizontalScroller, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.autohidesScroller != nil {
-        autohidesScroller :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        autohidesScroller :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -776,7 +776,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("autohidesScroller"), auto_cast autohidesScroller, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutohidesScroller != nil {
-        setAutohidesScroller :: proc "c" (self: ^AK.Browser, _: SEL, autohidesScroller: bool) {
+        setAutohidesScroller :: proc "c" (self: ^NS.Browser, _: SEL, autohidesScroller: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -786,7 +786,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutohidesScroller:"), auto_cast setAutohidesScroller, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.separatesColumns != nil {
-        separatesColumns :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        separatesColumns :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -796,7 +796,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("separatesColumns"), auto_cast separatesColumns, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSeparatesColumns != nil {
-        setSeparatesColumns :: proc "c" (self: ^AK.Browser, _: SEL, separatesColumns: bool) {
+        setSeparatesColumns :: proc "c" (self: ^NS.Browser, _: SEL, separatesColumns: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -806,7 +806,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSeparatesColumns:"), auto_cast setSeparatesColumns, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isTitled != nil {
-        isTitled :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        isTitled :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -816,7 +816,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isTitled"), auto_cast isTitled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setTitled != nil {
-        setTitled :: proc "c" (self: ^AK.Browser, _: SEL, titled: bool) {
+        setTitled :: proc "c" (self: ^NS.Browser, _: SEL, titled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -826,7 +826,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTitled:"), auto_cast setTitled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.minColumnWidth != nil {
-        minColumnWidth :: proc "c" (self: ^AK.Browser, _: SEL) -> CG.Float {
+        minColumnWidth :: proc "c" (self: ^NS.Browser, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -836,7 +836,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minColumnWidth"), auto_cast minColumnWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinColumnWidth != nil {
-        setMinColumnWidth :: proc "c" (self: ^AK.Browser, _: SEL, minColumnWidth: CG.Float) {
+        setMinColumnWidth :: proc "c" (self: ^NS.Browser, _: SEL, minColumnWidth: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -846,7 +846,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinColumnWidth:"), auto_cast setMinColumnWidth, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.maxVisibleColumns != nil {
-        maxVisibleColumns :: proc "c" (self: ^AK.Browser, _: SEL) -> NS.Integer {
+        maxVisibleColumns :: proc "c" (self: ^NS.Browser, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -856,7 +856,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maxVisibleColumns"), auto_cast maxVisibleColumns, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setMaxVisibleColumns != nil {
-        setMaxVisibleColumns :: proc "c" (self: ^AK.Browser, _: SEL, maxVisibleColumns: NS.Integer) {
+        setMaxVisibleColumns :: proc "c" (self: ^NS.Browser, _: SEL, maxVisibleColumns: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -866,7 +866,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaxVisibleColumns:"), auto_cast setMaxVisibleColumns, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.allowsMultipleSelection != nil {
-        allowsMultipleSelection :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        allowsMultipleSelection :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -876,7 +876,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsMultipleSelection"), auto_cast allowsMultipleSelection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsMultipleSelection != nil {
-        setAllowsMultipleSelection :: proc "c" (self: ^AK.Browser, _: SEL, allowsMultipleSelection: bool) {
+        setAllowsMultipleSelection :: proc "c" (self: ^NS.Browser, _: SEL, allowsMultipleSelection: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -886,7 +886,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsMultipleSelection:"), auto_cast setAllowsMultipleSelection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsBranchSelection != nil {
-        allowsBranchSelection :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        allowsBranchSelection :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -896,7 +896,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsBranchSelection"), auto_cast allowsBranchSelection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsBranchSelection != nil {
-        setAllowsBranchSelection :: proc "c" (self: ^AK.Browser, _: SEL, allowsBranchSelection: bool) {
+        setAllowsBranchSelection :: proc "c" (self: ^NS.Browser, _: SEL, allowsBranchSelection: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -906,7 +906,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsBranchSelection:"), auto_cast setAllowsBranchSelection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.allowsEmptySelection != nil {
-        allowsEmptySelection :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        allowsEmptySelection :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -916,7 +916,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsEmptySelection"), auto_cast allowsEmptySelection, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsEmptySelection != nil {
-        setAllowsEmptySelection :: proc "c" (self: ^AK.Browser, _: SEL, allowsEmptySelection: bool) {
+        setAllowsEmptySelection :: proc "c" (self: ^NS.Browser, _: SEL, allowsEmptySelection: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -926,7 +926,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsEmptySelection:"), auto_cast setAllowsEmptySelection, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.takesTitleFromPreviousColumn != nil {
-        takesTitleFromPreviousColumn :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        takesTitleFromPreviousColumn :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -936,7 +936,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("takesTitleFromPreviousColumn"), auto_cast takesTitleFromPreviousColumn, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setTakesTitleFromPreviousColumn != nil {
-        setTakesTitleFromPreviousColumn :: proc "c" (self: ^AK.Browser, _: SEL, takesTitleFromPreviousColumn: bool) {
+        setTakesTitleFromPreviousColumn :: proc "c" (self: ^NS.Browser, _: SEL, takesTitleFromPreviousColumn: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -946,7 +946,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTakesTitleFromPreviousColumn:"), auto_cast setTakesTitleFromPreviousColumn, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.sendsActionOnArrowKeys != nil {
-        sendsActionOnArrowKeys :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        sendsActionOnArrowKeys :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -956,7 +956,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sendsActionOnArrowKeys"), auto_cast sendsActionOnArrowKeys, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSendsActionOnArrowKeys != nil {
-        setSendsActionOnArrowKeys :: proc "c" (self: ^AK.Browser, _: SEL, sendsActionOnArrowKeys: bool) {
+        setSendsActionOnArrowKeys :: proc "c" (self: ^NS.Browser, _: SEL, sendsActionOnArrowKeys: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -966,7 +966,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSendsActionOnArrowKeys:"), auto_cast setSendsActionOnArrowKeys, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.pathSeparator != nil {
-        pathSeparator :: proc "c" (self: ^AK.Browser, _: SEL) -> ^NS.String {
+        pathSeparator :: proc "c" (self: ^NS.Browser, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -976,7 +976,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pathSeparator"), auto_cast pathSeparator, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setPathSeparator != nil {
-        setPathSeparator :: proc "c" (self: ^AK.Browser, _: SEL, pathSeparator: ^NS.String) {
+        setPathSeparator :: proc "c" (self: ^NS.Browser, _: SEL, pathSeparator: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -986,7 +986,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPathSeparator:"), auto_cast setPathSeparator, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.clickedColumn != nil {
-        clickedColumn :: proc "c" (self: ^AK.Browser, _: SEL) -> NS.Integer {
+        clickedColumn :: proc "c" (self: ^NS.Browser, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -996,7 +996,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("clickedColumn"), auto_cast clickedColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.clickedRow != nil {
-        clickedRow :: proc "c" (self: ^AK.Browser, _: SEL) -> NS.Integer {
+        clickedRow :: proc "c" (self: ^NS.Browser, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1006,7 +1006,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("clickedRow"), auto_cast clickedRow, "l@:") do panic("Failed to register objC method.")
     }
     if vt.selectedColumn != nil {
-        selectedColumn :: proc "c" (self: ^AK.Browser, _: SEL) -> NS.Integer {
+        selectedColumn :: proc "c" (self: ^NS.Browser, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1016,7 +1016,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedColumn"), auto_cast selectedColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.selectedCell != nil {
-        selectedCell :: proc "c" (self: ^AK.Browser, _: SEL) -> id {
+        selectedCell :: proc "c" (self: ^NS.Browser, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1026,7 +1026,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedCell"), auto_cast selectedCell, "@@:") do panic("Failed to register objC method.")
     }
     if vt.selectedCells != nil {
-        selectedCells :: proc "c" (self: ^AK.Browser, _: SEL) -> ^NS.Array {
+        selectedCells :: proc "c" (self: ^NS.Browser, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1036,7 +1036,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedCells"), auto_cast selectedCells, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.selectionIndexPath != nil {
-        selectionIndexPath :: proc "c" (self: ^AK.Browser, _: SEL) -> ^NS.IndexPath {
+        selectionIndexPath :: proc "c" (self: ^NS.Browser, _: SEL) -> ^NS.IndexPath {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1046,7 +1046,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionIndexPath"), auto_cast selectionIndexPath, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionIndexPath != nil {
-        setSelectionIndexPath :: proc "c" (self: ^AK.Browser, _: SEL, selectionIndexPath: ^NS.IndexPath) {
+        setSelectionIndexPath :: proc "c" (self: ^NS.Browser, _: SEL, selectionIndexPath: ^NS.IndexPath) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1056,7 +1056,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionIndexPath:"), auto_cast setSelectionIndexPath, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selectionIndexPaths != nil {
-        selectionIndexPaths :: proc "c" (self: ^AK.Browser, _: SEL) -> ^NS.Array {
+        selectionIndexPaths :: proc "c" (self: ^NS.Browser, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1066,7 +1066,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectionIndexPaths"), auto_cast selectionIndexPaths, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectionIndexPaths != nil {
-        setSelectionIndexPaths :: proc "c" (self: ^AK.Browser, _: SEL, selectionIndexPaths: ^NS.Array) {
+        setSelectionIndexPaths :: proc "c" (self: ^NS.Browser, _: SEL, selectionIndexPaths: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1076,7 +1076,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectionIndexPaths:"), auto_cast setSelectionIndexPaths, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.lastColumn != nil {
-        lastColumn :: proc "c" (self: ^AK.Browser, _: SEL) -> NS.Integer {
+        lastColumn :: proc "c" (self: ^NS.Browser, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1086,7 +1086,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lastColumn"), auto_cast lastColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setLastColumn != nil {
-        setLastColumn :: proc "c" (self: ^AK.Browser, _: SEL, lastColumn: NS.Integer) {
+        setLastColumn :: proc "c" (self: ^NS.Browser, _: SEL, lastColumn: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1096,7 +1096,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLastColumn:"), auto_cast setLastColumn, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.numberOfVisibleColumns != nil {
-        numberOfVisibleColumns :: proc "c" (self: ^AK.Browser, _: SEL) -> NS.Integer {
+        numberOfVisibleColumns :: proc "c" (self: ^NS.Browser, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1106,7 +1106,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("numberOfVisibleColumns"), auto_cast numberOfVisibleColumns, "l@:") do panic("Failed to register objC method.")
     }
     if vt.firstVisibleColumn != nil {
-        firstVisibleColumn :: proc "c" (self: ^AK.Browser, _: SEL) -> NS.Integer {
+        firstVisibleColumn :: proc "c" (self: ^NS.Browser, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1116,7 +1116,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("firstVisibleColumn"), auto_cast firstVisibleColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.lastVisibleColumn != nil {
-        lastVisibleColumn :: proc "c" (self: ^AK.Browser, _: SEL) -> NS.Integer {
+        lastVisibleColumn :: proc "c" (self: ^NS.Browser, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1126,7 +1126,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lastVisibleColumn"), auto_cast lastVisibleColumn, "l@:") do panic("Failed to register objC method.")
     }
     if vt.titleHeight != nil {
-        titleHeight :: proc "c" (self: ^AK.Browser, _: SEL) -> CG.Float {
+        titleHeight :: proc "c" (self: ^NS.Browser, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1136,7 +1136,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleHeight"), auto_cast titleHeight, "d@:") do panic("Failed to register objC method.")
     }
     if vt.columnResizingType != nil {
-        columnResizingType :: proc "c" (self: ^AK.Browser, _: SEL) -> AK.BrowserColumnResizingType {
+        columnResizingType :: proc "c" (self: ^NS.Browser, _: SEL) -> NS.BrowserColumnResizingType {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1146,7 +1146,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnResizingType"), auto_cast columnResizingType, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setColumnResizingType != nil {
-        setColumnResizingType :: proc "c" (self: ^AK.Browser, _: SEL, columnResizingType: AK.BrowserColumnResizingType) {
+        setColumnResizingType :: proc "c" (self: ^NS.Browser, _: SEL, columnResizingType: NS.BrowserColumnResizingType) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1156,7 +1156,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setColumnResizingType:"), auto_cast setColumnResizingType, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.prefersAllColumnUserResizing != nil {
-        prefersAllColumnUserResizing :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        prefersAllColumnUserResizing :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1166,7 +1166,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("prefersAllColumnUserResizing"), auto_cast prefersAllColumnUserResizing, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setPrefersAllColumnUserResizing != nil {
-        setPrefersAllColumnUserResizing :: proc "c" (self: ^AK.Browser, _: SEL, prefersAllColumnUserResizing: bool) {
+        setPrefersAllColumnUserResizing :: proc "c" (self: ^NS.Browser, _: SEL, prefersAllColumnUserResizing: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1176,7 +1176,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPrefersAllColumnUserResizing:"), auto_cast setPrefersAllColumnUserResizing, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.rowHeight != nil {
-        rowHeight :: proc "c" (self: ^AK.Browser, _: SEL) -> CG.Float {
+        rowHeight :: proc "c" (self: ^NS.Browser, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1186,7 +1186,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("rowHeight"), auto_cast rowHeight, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setRowHeight != nil {
-        setRowHeight :: proc "c" (self: ^AK.Browser, _: SEL, rowHeight: CG.Float) {
+        setRowHeight :: proc "c" (self: ^NS.Browser, _: SEL, rowHeight: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1196,7 +1196,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setRowHeight:"), auto_cast setRowHeight, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.columnsAutosaveName != nil {
-        columnsAutosaveName :: proc "c" (self: ^AK.Browser, _: SEL) -> ^NS.String {
+        columnsAutosaveName :: proc "c" (self: ^NS.Browser, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1206,7 +1206,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnsAutosaveName"), auto_cast columnsAutosaveName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setColumnsAutosaveName != nil {
-        setColumnsAutosaveName :: proc "c" (self: ^AK.Browser, _: SEL, columnsAutosaveName: ^NS.String) {
+        setColumnsAutosaveName :: proc "c" (self: ^NS.Browser, _: SEL, columnsAutosaveName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1216,7 +1216,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setColumnsAutosaveName:"), auto_cast setColumnsAutosaveName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.allowsTypeSelect != nil {
-        allowsTypeSelect :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        allowsTypeSelect :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1226,7 +1226,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("allowsTypeSelect"), auto_cast allowsTypeSelect, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAllowsTypeSelect != nil {
-        setAllowsTypeSelect :: proc "c" (self: ^AK.Browser, _: SEL, allowsTypeSelect: bool) {
+        setAllowsTypeSelect :: proc "c" (self: ^NS.Browser, _: SEL, allowsTypeSelect: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1236,7 +1236,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAllowsTypeSelect:"), auto_cast setAllowsTypeSelect, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.backgroundColor != nil {
-        backgroundColor :: proc "c" (self: ^AK.Browser, _: SEL) -> ^AK.Color {
+        backgroundColor :: proc "c" (self: ^NS.Browser, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1246,7 +1246,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("backgroundColor"), auto_cast backgroundColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setBackgroundColor != nil {
-        setBackgroundColor :: proc "c" (self: ^AK.Browser, _: SEL, backgroundColor: ^AK.Color) {
+        setBackgroundColor :: proc "c" (self: ^NS.Browser, _: SEL, backgroundColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1256,7 +1256,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBackgroundColor:"), auto_cast setBackgroundColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.setAcceptsArrowKeys != nil {
-        setAcceptsArrowKeys :: proc "c" (self: ^AK.Browser, _: SEL, flag: bool) {
+        setAcceptsArrowKeys :: proc "c" (self: ^NS.Browser, _: SEL, flag: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1266,7 +1266,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAcceptsArrowKeys:"), auto_cast setAcceptsArrowKeys, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.acceptsArrowKeys != nil {
-        acceptsArrowKeys :: proc "c" (self: ^AK.Browser, _: SEL) -> bool {
+        acceptsArrowKeys :: proc "c" (self: ^NS.Browser, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1276,7 +1276,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("acceptsArrowKeys"), auto_cast acceptsArrowKeys, "B@:") do panic("Failed to register objC method.")
     }
     if vt.displayColumn != nil {
-        displayColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) {
+        displayColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1286,7 +1286,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("displayColumn:"), auto_cast displayColumn, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.displayAllColumns != nil {
-        displayAllColumns :: proc "c" (self: ^AK.Browser, _: SEL) {
+        displayAllColumns :: proc "c" (self: ^NS.Browser, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1296,7 +1296,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("displayAllColumns"), auto_cast displayAllColumns, "v@:") do panic("Failed to register objC method.")
     }
     if vt.scrollViaScroller != nil {
-        scrollViaScroller :: proc "c" (self: ^AK.Browser, _: SEL, sender: ^AK.Scroller) {
+        scrollViaScroller :: proc "c" (self: ^NS.Browser, _: SEL, sender: ^NS.Scroller) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1306,7 +1306,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollViaScroller:"), auto_cast scrollViaScroller, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.updateScroller != nil {
-        updateScroller :: proc "c" (self: ^AK.Browser, _: SEL) {
+        updateScroller :: proc "c" (self: ^NS.Browser, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1316,7 +1316,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateScroller"), auto_cast updateScroller, "v@:") do panic("Failed to register objC method.")
     }
     if vt.setMatrixClass != nil {
-        setMatrixClass :: proc "c" (self: ^AK.Browser, _: SEL, factoryId: Class) {
+        setMatrixClass :: proc "c" (self: ^NS.Browser, _: SEL, factoryId: Class) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1326,7 +1326,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMatrixClass:"), auto_cast setMatrixClass, "v@:#") do panic("Failed to register objC method.")
     }
     if vt.matrixClass != nil {
-        matrixClass :: proc "c" (self: ^AK.Browser, _: SEL) -> Class {
+        matrixClass :: proc "c" (self: ^NS.Browser, _: SEL) -> Class {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1336,7 +1336,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("matrixClass"), auto_cast matrixClass, "#@:") do panic("Failed to register objC method.")
     }
     if vt.columnOfMatrix != nil {
-        columnOfMatrix :: proc "c" (self: ^AK.Browser, _: SEL, _matrix: ^AK.Matrix) -> NS.Integer {
+        columnOfMatrix :: proc "c" (self: ^NS.Browser, _: SEL, _matrix: ^NS.Matrix) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -1346,7 +1346,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("columnOfMatrix:"), auto_cast columnOfMatrix, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.matrixInColumn != nil {
-        matrixInColumn :: proc "c" (self: ^AK.Browser, _: SEL, column: NS.Integer) -> ^AK.Matrix {
+        matrixInColumn :: proc "c" (self: ^NS.Browser, _: SEL, column: NS.Integer) -> ^NS.Matrix {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

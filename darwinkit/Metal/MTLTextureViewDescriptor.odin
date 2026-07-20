@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLTextureViewDescriptor
-///
 @(objc_class="MTLTextureViewDescriptor", objc_superclass=NS.Object)
 TextureViewDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TextureViewDescriptor, objc_selector="pixelFormat", objc_name="pixelFormat")
     TextureViewDescriptor_pixelFormat :: proc(self: ^TextureViewDescriptor) -> PixelFormat ---
@@ -53,3 +47,6 @@ foreign lib {
     @(objc_type=TextureViewDescriptor, objc_selector="setSwizzle:", objc_name="setSwizzle")
     TextureViewDescriptor_setSwizzle :: proc(self: ^TextureViewDescriptor, swizzle: TextureSwizzleChannels) ---
 }
+
+
+

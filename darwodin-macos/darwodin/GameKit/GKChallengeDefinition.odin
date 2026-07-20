@@ -4,8 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
@@ -18,7 +17,7 @@ ChallengeDefinition :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=ChallengeDefinition, objc_selector="loadImageWithCompletionHandler:", objc_name="loadImageWithCompletionHandler")
-    ChallengeDefinition_loadImageWithCompletionHandler :: proc(self: ^ChallengeDefinition, completionHandler: ^Objc_Block(proc "c" (image: ^AK.Image, error: ^NS.Error))) ---
+    ChallengeDefinition_loadImageWithCompletionHandler :: proc(self: ^ChallengeDefinition, completionHandler: ^Objc_Block(proc "c" ( image: ^NS.Image, error: ^NS.Error ))) ---
 
     @(objc_type=ChallengeDefinition, objc_selector="identifier", objc_name="identifier")
     ChallengeDefinition_identifier :: proc(self: ^ChallengeDefinition) -> ^NS.String ---
@@ -45,8 +44,8 @@ foreign lib {
     ChallengeDefinition_releaseState :: proc(self: ^ChallengeDefinition) -> ReleaseState ---
 
     @(objc_type=ChallengeDefinition, objc_selector="loadChallengeDefinitionsWithCompletionHandler:", objc_name="loadChallengeDefinitionsWithCompletionHandler", objc_is_class_method=true)
-    ChallengeDefinition_loadChallengeDefinitionsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" (challengeDefinitions: ^NS.Array, error: ^NS.Error))) ---
+    ChallengeDefinition_loadChallengeDefinitionsWithCompletionHandler :: proc(completionHandler: ^Objc_Block(proc "c" ( challengeDefinitions: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=ChallengeDefinition, objc_selector="hasActiveChallengesWithCompletionHandler:", objc_name="hasActiveChallengesWithCompletionHandler")
-    ChallengeDefinition_hasActiveChallengesWithCompletionHandler :: proc(self: ^ChallengeDefinition, completionHandler: ^Objc_Block(proc "c" (hasActiveChallenges: bool, error: ^NS.Error))) ---
+    ChallengeDefinition_hasActiveChallengesWithCompletionHandler :: proc(self: ^ChallengeDefinition, completionHandler: ^Objc_Block(proc "c" ( hasActiveChallenges: bool, error: ^NS.Error ))) ---
 }

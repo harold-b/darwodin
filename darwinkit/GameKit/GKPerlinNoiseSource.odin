@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKPerlinNoiseSource
-///
 @(objc_class="GKPerlinNoiseSource", objc_superclass=CoherentNoiseSource)
 PerlinNoiseSource :: struct { using _: CoherentNoiseSource, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PerlinNoiseSource, objc_selector="perlinNoiseSourceWithFrequency:octaveCount:persistence:lacunarity:seed:", objc_name="perlinNoiseSourceWithFrequency", objc_is_class_method=true)
     PerlinNoiseSource_perlinNoiseSourceWithFrequency :: proc(frequency: cffi.double, octaveCount: NS.Integer, persistence: cffi.double, lacunarity: cffi.double, seed: cffi.int32_t) -> instancetype ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=PerlinNoiseSource, objc_selector="setPersistence:", objc_name="setPersistence")
     PerlinNoiseSource_setPersistence :: proc(self: ^PerlinNoiseSource, persistence: cffi.double) ---
 }
+
+
+

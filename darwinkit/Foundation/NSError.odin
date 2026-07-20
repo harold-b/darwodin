@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSError
-///
 @(objc_class="NSError", objc_superclass=Object)
 Error :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Error, objc_selector="initWithDomain:code:userInfo:", objc_name="initWithDomain")
     Error_initWithDomain :: proc(self: ^Error, domain: ^String, code: Integer, dict: ^Dictionary) -> instancetype ---
@@ -29,10 +23,10 @@ foreign lib {
     Error_errorWithDomain :: proc(domain: ^String, code: Integer, dict: ^Dictionary) -> instancetype ---
 
     @(objc_type=Error, objc_selector="setUserInfoValueProviderForDomain:provider:", objc_name="setUserInfoValueProviderForDomain", objc_is_class_method=true)
-    Error_setUserInfoValueProviderForDomain :: proc(errorDomain: ^String, provider: ^Objc_Block(proc "c" (err: ^Error, userInfoKey: ^String) -> id)) ---
+    Error_setUserInfoValueProviderForDomain :: proc(errorDomain: ^String, provider: ^Objc_Block(proc "c" ( err: ^Error, userInfoKey: ^String ) -> id)) ---
 
     @(objc_type=Error, objc_selector="userInfoValueProviderForDomain:", objc_name="userInfoValueProviderForDomain", objc_is_class_method=true)
-    Error_userInfoValueProviderForDomain :: proc(err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> ^Objc_Block(proc "c" (err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> id) ---
+    Error_userInfoValueProviderForDomain :: proc(err: ^Error, userInfoKey: ^String, errorDomain: ^String) -> ^Objc_Block(proc "c" ( err: ^Error, userInfoKey: ^String, errorDomain: ^String ) -> id) ---
 
     @(objc_type=Error, objc_selector="domain", objc_name="domain")
     Error_domain :: proc(self: ^Error) -> ^String ---
@@ -64,3 +58,6 @@ foreign lib {
     @(objc_type=Error, objc_selector="underlyingErrors", objc_name="underlyingErrors")
     Error_underlyingErrors :: proc(self: ^Error) -> ^Array ---
 }
+
+
+

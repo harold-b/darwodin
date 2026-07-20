@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureVideoDataOutput
-///
 @(objc_class="AVCaptureVideoDataOutput", objc_superclass=CaptureOutput)
 CaptureVideoDataOutput :: struct { using _: CaptureOutput, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureVideoDataOutput, objc_selector="init", objc_name="init")
     CaptureVideoDataOutput_init :: proc(self: ^CaptureVideoDataOutput) -> instancetype ---
@@ -103,6 +97,8 @@ foreign lib {
     @(objc_type=CaptureVideoDataOutput, objc_selector="setPreservesDynamicHDRMetadata:", objc_name="setPreservesDynamicHDRMetadata")
     CaptureVideoDataOutput_setPreservesDynamicHDRMetadata :: proc(self: ^CaptureVideoDataOutput, preservesDynamicHDRMetadata: bool) ---
 }
+
+
 
 @(objc_type=CaptureVideoDataOutput, objc_name="recommendedVideoSettingsForVideoCodecType")
 CaptureVideoDataOutput_recommendedVideoSettingsForVideoCodecType :: proc {

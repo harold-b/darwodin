@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKShareMetadata
-///
 @(objc_class="CKShareMetadata", objc_superclass=NS.Object)
 ShareMetadata :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ShareMetadata, objc_selector="init", objc_name="init")
     ShareMetadata_init :: proc(self: ^ShareMetadata) -> instancetype ---
@@ -56,3 +50,6 @@ foreign lib {
     @(objc_type=ShareMetadata, objc_selector="rootRecordID", objc_name="rootRecordID")
     ShareMetadata_rootRecordID :: proc(self: ^ShareMetadata) -> ^RecordID ---
 }
+
+
+

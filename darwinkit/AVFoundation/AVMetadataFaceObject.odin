@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMetadataFaceObject
-///
 @(objc_class="AVMetadataFaceObject", objc_superclass=MetadataObject)
 MetadataFaceObject :: struct { using _: MetadataObject, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MetadataFaceObject, objc_selector="faceID", objc_name="faceID")
     MetadataFaceObject_faceID :: proc(self: ^MetadataFaceObject) -> NS.Integer ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=MetadataFaceObject, objc_selector="yawAngle", objc_name="yawAngle")
     MetadataFaceObject_yawAngle :: proc(self: ^MetadataFaceObject) -> CG.Float ---
 }
+
+
+

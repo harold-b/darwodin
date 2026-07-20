@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.Controller) -> instancetype,
-    initWithCoder: proc(self: ^AK.Controller, coder: ^NS.Coder) -> instancetype,
-    objectDidBeginEditing: proc(self: ^AK.Controller, editor: ^AK.Editor),
-    objectDidEndEditing: proc(self: ^AK.Controller, editor: ^AK.Editor),
-    discardEditing: proc(self: ^AK.Controller),
-    commitEditing: proc(self: ^AK.Controller) -> bool,
-    commitEditingWithDelegate: proc(self: ^AK.Controller, delegate: id, didCommitSelector: SEL, contextInfo: rawptr),
-    isEditing: proc(self: ^AK.Controller) -> bool,
+    init: proc(self: ^NS.Controller) -> instancetype,
+    initWithCoder: proc(self: ^NS.Controller, coder: ^NS.Coder) -> instancetype,
+    objectDidBeginEditing: proc(self: ^NS.Controller, editor: ^NS.Editor),
+    objectDidEndEditing: proc(self: ^NS.Controller, editor: ^NS.Editor),
+    discardEditing: proc(self: ^NS.Controller),
+    commitEditing: proc(self: ^NS.Controller) -> bool,
+    commitEditingWithDelegate: proc(self: ^NS.Controller, delegate: id, didCommitSelector: SEL, contextInfo: rawptr),
+    isEditing: proc(self: ^NS.Controller) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.Controller, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.Controller, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.Controller, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.Controller, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.objectDidBeginEditing != nil {
-        objectDidBeginEditing :: proc "c" (self: ^AK.Controller, _: SEL, editor: ^AK.Editor) {
+        objectDidBeginEditing :: proc "c" (self: ^NS.Controller, _: SEL, editor: ^NS.Editor) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("objectDidBeginEditing:"), auto_cast objectDidBeginEditing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.objectDidEndEditing != nil {
-        objectDidEndEditing :: proc "c" (self: ^AK.Controller, _: SEL, editor: ^AK.Editor) {
+        objectDidEndEditing :: proc "c" (self: ^NS.Controller, _: SEL, editor: ^NS.Editor) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("objectDidEndEditing:"), auto_cast objectDidEndEditing, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.discardEditing != nil {
-        discardEditing :: proc "c" (self: ^AK.Controller, _: SEL) {
+        discardEditing :: proc "c" (self: ^NS.Controller, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("discardEditing"), auto_cast discardEditing, "v@:") do panic("Failed to register objC method.")
     }
     if vt.commitEditing != nil {
-        commitEditing :: proc "c" (self: ^AK.Controller, _: SEL) -> bool {
+        commitEditing :: proc "c" (self: ^NS.Controller, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("commitEditing"), auto_cast commitEditing, "B@:") do panic("Failed to register objC method.")
     }
     if vt.commitEditingWithDelegate != nil {
-        commitEditingWithDelegate :: proc "c" (self: ^AK.Controller, _: SEL, delegate: id, didCommitSelector: SEL, contextInfo: rawptr) {
+        commitEditingWithDelegate :: proc "c" (self: ^NS.Controller, _: SEL, delegate: id, didCommitSelector: SEL, contextInfo: rawptr) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("commitEditingWithDelegate:didCommitSelector:contextInfo:"), auto_cast commitEditingWithDelegate, "v@:@:^void") do panic("Failed to register objC method.")
     }
     if vt.isEditing != nil {
-        isEditing :: proc "c" (self: ^AK.Controller, _: SEL) -> bool {
+        isEditing :: proc "c" (self: ^NS.Controller, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

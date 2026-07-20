@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioMixInputParameters
-///
 @(objc_class="AVAudioMixInputParameters", objc_superclass=NS.Object)
 AudioMixInputParameters :: struct { using _: NS.Object, 
     using _: NS.Copying,
     using _: NS.MutableCopying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioMixInputParameters, objc_selector="getVolumeRampForTime:startVolume:endVolume:timeRange:", objc_name="getVolumeRampForTime")
     AudioMixInputParameters_getVolumeRampForTime :: proc(self: ^AudioMixInputParameters, time: CM.Time, startVolume: ^cffi.float, endVolume: ^cffi.float, timeRange: ^CM.TimeRange) -> bool ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=AudioMixInputParameters, objc_selector="audioTapProcessor", objc_name="audioTapProcessor")
     AudioMixInputParameters_audioTapProcessor :: proc(self: ^AudioMixInputParameters) -> MTAudioProcessingTapRef ---
 }
+
+
+

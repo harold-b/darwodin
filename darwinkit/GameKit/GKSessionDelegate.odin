@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKSessionDelegate
-///
 @(objc_class="GKSessionDelegate")
 SessionDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SessionDelegate, objc_selector="session:peer:didChangeState:", objc_name="session_peer_didChangeState")
     SessionDelegate_session_peer_didChangeState :: proc(self: ^SessionDelegate, session: ^Session, peerID: ^NS.String, state: PeerConnectionState) ---
@@ -31,6 +25,8 @@ foreign lib {
     @(objc_type=SessionDelegate, objc_selector="session:didFailWithError:", objc_name="session_didFailWithError")
     SessionDelegate_session_didFailWithError :: proc(self: ^SessionDelegate, session: ^Session, error: ^NS.Error) ---
 }
+
+
 
 @(objc_type=SessionDelegate, objc_name="session")
 SessionDelegate_session :: proc {

@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMorphology
-///
 @(objc_class="NSMorphology", objc_superclass=Object)
 Morphology :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Morphology, objc_selector="grammaticalGender", objc_name="grammaticalGender")
     Morphology_grammaticalGender :: proc(self: ^Morphology) -> GrammaticalGender ---
@@ -82,3 +76,6 @@ foreign lib {
     @(objc_type=Morphology, objc_selector="userMorphology", objc_name="userMorphology", objc_is_class_method=true)
     Morphology_userMorphology :: proc() -> ^Morphology ---
 }
+
+
+

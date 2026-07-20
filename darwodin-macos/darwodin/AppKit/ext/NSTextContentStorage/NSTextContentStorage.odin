@@ -20,23 +20,23 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTextContentManager"
 
 VTable :: struct {
     super: NSTextContentManager.VTable,
-    attributedStringForTextElement: proc(self: ^AK.TextContentStorage, textElement: ^AK.TextElement) -> ^NS.AttributedString,
-    textElementForAttributedString: proc(self: ^AK.TextContentStorage, attributedString: ^NS.AttributedString) -> ^AK.TextElement,
-    locationFromLocation: proc(self: ^AK.TextContentStorage, location: ^AK.TextLocation, offset: NS.Integer) -> ^AK.TextLocation,
-    offsetFromLocation: proc(self: ^AK.TextContentStorage, from: ^AK.TextLocation, to: ^AK.TextLocation) -> NS.Integer,
-    adjustedRangeFromRange: proc(self: ^AK.TextContentStorage, textRange: ^AK.TextRange, forEditingTextSelection: bool) -> ^AK.TextRange,
-    delegate: proc(self: ^AK.TextContentStorage) -> ^AK.TextContentStorageDelegate,
-    setDelegate: proc(self: ^AK.TextContentStorage, delegate: ^AK.TextContentStorageDelegate),
-    includesTextListMarkers: proc(self: ^AK.TextContentStorage) -> bool,
-    setIncludesTextListMarkers: proc(self: ^AK.TextContentStorage, includesTextListMarkers: bool),
-    attributedString: proc(self: ^AK.TextContentStorage) -> ^NS.AttributedString,
-    setAttributedString: proc(self: ^AK.TextContentStorage, attributedString: ^NS.AttributedString),
+    attributedStringForTextElement: proc(self: ^NS.TextContentStorage, textElement: ^NS.TextElement) -> ^NS.AttributedString,
+    textElementForAttributedString: proc(self: ^NS.TextContentStorage, attributedString: ^NS.AttributedString) -> ^NS.TextElement,
+    locationFromLocation: proc(self: ^NS.TextContentStorage, location: ^NS.TextLocation, offset: NS.Integer) -> ^NS.TextLocation,
+    offsetFromLocation: proc(self: ^NS.TextContentStorage, from: ^NS.TextLocation, to: ^NS.TextLocation) -> NS.Integer,
+    adjustedRangeFromRange: proc(self: ^NS.TextContentStorage, textRange: ^NS.TextRange, forEditingTextSelection: bool) -> ^NS.TextRange,
+    delegate: proc(self: ^NS.TextContentStorage) -> ^NS.TextContentStorageDelegate,
+    setDelegate: proc(self: ^NS.TextContentStorage, delegate: ^NS.TextContentStorageDelegate),
+    includesTextListMarkers: proc(self: ^NS.TextContentStorage) -> bool,
+    setIncludesTextListMarkers: proc(self: ^NS.TextContentStorage, includesTextListMarkers: bool),
+    attributedString: proc(self: ^NS.TextContentStorage) -> ^NS.AttributedString,
+    setAttributedString: proc(self: ^NS.TextContentStorage, attributedString: ^NS.AttributedString),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -47,7 +47,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextContentManager.extend(cls, &vt.super)
 
     if vt.attributedStringForTextElement != nil {
-        attributedStringForTextElement :: proc "c" (self: ^AK.TextContentStorage, _: SEL, textElement: ^AK.TextElement) -> ^NS.AttributedString {
+        attributedStringForTextElement :: proc "c" (self: ^NS.TextContentStorage, _: SEL, textElement: ^NS.TextElement) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -57,7 +57,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedStringForTextElement:"), auto_cast attributedStringForTextElement, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.textElementForAttributedString != nil {
-        textElementForAttributedString :: proc "c" (self: ^AK.TextContentStorage, _: SEL, attributedString: ^NS.AttributedString) -> ^AK.TextElement {
+        textElementForAttributedString :: proc "c" (self: ^NS.TextContentStorage, _: SEL, attributedString: ^NS.AttributedString) -> ^NS.TextElement {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -67,7 +67,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textElementForAttributedString:"), auto_cast textElementForAttributedString, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.locationFromLocation != nil {
-        locationFromLocation :: proc "c" (self: ^AK.TextContentStorage, _: SEL, location: ^AK.TextLocation, offset: NS.Integer) -> ^AK.TextLocation {
+        locationFromLocation :: proc "c" (self: ^NS.TextContentStorage, _: SEL, location: ^NS.TextLocation, offset: NS.Integer) -> ^NS.TextLocation {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -77,7 +77,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("locationFromLocation:withOffset:"), auto_cast locationFromLocation, "@@:@l") do panic("Failed to register objC method.")
     }
     if vt.offsetFromLocation != nil {
-        offsetFromLocation :: proc "c" (self: ^AK.TextContentStorage, _: SEL, from: ^AK.TextLocation, to: ^AK.TextLocation) -> NS.Integer {
+        offsetFromLocation :: proc "c" (self: ^NS.TextContentStorage, _: SEL, from: ^NS.TextLocation, to: ^NS.TextLocation) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -87,7 +87,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("offsetFromLocation:toLocation:"), auto_cast offsetFromLocation, "l@:@@") do panic("Failed to register objC method.")
     }
     if vt.adjustedRangeFromRange != nil {
-        adjustedRangeFromRange :: proc "c" (self: ^AK.TextContentStorage, _: SEL, textRange: ^AK.TextRange, forEditingTextSelection: bool) -> ^AK.TextRange {
+        adjustedRangeFromRange :: proc "c" (self: ^NS.TextContentStorage, _: SEL, textRange: ^NS.TextRange, forEditingTextSelection: bool) -> ^NS.TextRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -97,7 +97,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("adjustedRangeFromRange:forEditingTextSelection:"), auto_cast adjustedRangeFromRange, "@@:@B") do panic("Failed to register objC method.")
     }
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.TextContentStorage, _: SEL) -> ^AK.TextContentStorageDelegate {
+        delegate :: proc "c" (self: ^NS.TextContentStorage, _: SEL) -> ^NS.TextContentStorageDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -107,7 +107,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.TextContentStorage, _: SEL, delegate: ^AK.TextContentStorageDelegate) {
+        setDelegate :: proc "c" (self: ^NS.TextContentStorage, _: SEL, delegate: ^NS.TextContentStorageDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -117,7 +117,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.includesTextListMarkers != nil {
-        includesTextListMarkers :: proc "c" (self: ^AK.TextContentStorage, _: SEL) -> bool {
+        includesTextListMarkers :: proc "c" (self: ^NS.TextContentStorage, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -127,7 +127,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("includesTextListMarkers"), auto_cast includesTextListMarkers, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setIncludesTextListMarkers != nil {
-        setIncludesTextListMarkers :: proc "c" (self: ^AK.TextContentStorage, _: SEL, includesTextListMarkers: bool) {
+        setIncludesTextListMarkers :: proc "c" (self: ^NS.TextContentStorage, _: SEL, includesTextListMarkers: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -137,7 +137,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIncludesTextListMarkers:"), auto_cast setIncludesTextListMarkers, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.attributedString != nil {
-        attributedString :: proc "c" (self: ^AK.TextContentStorage, _: SEL) -> ^NS.AttributedString {
+        attributedString :: proc "c" (self: ^NS.TextContentStorage, _: SEL) -> ^NS.AttributedString {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -147,7 +147,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attributedString"), auto_cast attributedString, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAttributedString != nil {
-        setAttributedString :: proc "c" (self: ^AK.TextContentStorage, _: SEL, attributedString: ^NS.AttributedString) {
+        setAttributedString :: proc "c" (self: ^NS.TextContentStorage, _: SEL, attributedString: ^NS.AttributedString) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

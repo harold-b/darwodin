@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKGameSessionEventListener
-///
 @(objc_class="GKGameSessionEventListener")
 GameSessionEventListener :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=GameSessionEventListener, objc_selector="session:didAddPlayer:", objc_name="session_didAddPlayer")
     GameSessionEventListener_session_didAddPlayer :: proc(self: ^GameSessionEventListener, session: ^GameSession, player: ^CloudPlayer) ---
@@ -37,4 +31,6 @@ foreign lib {
     @(objc_type=GameSessionEventListener, objc_selector="session:didReceiveMessage:withData:fromPlayer:", objc_name="session_didReceiveMessage_withData_fromPlayer")
     GameSessionEventListener_session_didReceiveMessage_withData_fromPlayer :: proc(self: ^GameSessionEventListener, session: ^GameSession, message: ^NS.String, data: ^NS.Data, player: ^CloudPlayer) ---
 }
+
+
 

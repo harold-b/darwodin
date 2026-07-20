@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CHHapticEventParameter
-///
 @(objc_class="CHHapticEventParameter", objc_superclass=NS.Object)
 HapticEventParameter :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticEventParameter, objc_selector="init", objc_name="init")
     HapticEventParameter_init :: proc(self: ^HapticEventParameter) -> instancetype ---
@@ -32,3 +26,6 @@ foreign lib {
     @(objc_type=HapticEventParameter, objc_selector="setValue:", objc_name="setValue")
     HapticEventParameter_setValue :: proc(self: ^HapticEventParameter, value: cffi.float) ---
 }
+
+
+

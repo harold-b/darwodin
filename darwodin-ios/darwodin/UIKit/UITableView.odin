@@ -69,7 +69,7 @@ foreign lib {
     TableView_scrollToNearestSelectedRowAtScrollPosition :: proc(self: ^TableView, scrollPosition: TableViewScrollPosition, animated: bool) ---
 
     @(objc_type=TableView, objc_selector="performBatchUpdates:completion:", objc_name="performBatchUpdates")
-    TableView_performBatchUpdates :: proc(self: ^TableView, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finished: bool))) ---
+    TableView_performBatchUpdates :: proc(self: ^TableView, updates: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finished: bool ))) ---
 
     @(objc_type=TableView, objc_selector="beginUpdates", objc_name="beginUpdates")
     TableView_beginUpdates :: proc(self: ^TableView) ---

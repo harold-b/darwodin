@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetResourceLoadingDataRequest
-///
 @(objc_class="AVAssetResourceLoadingDataRequest", objc_superclass=NS.Object)
 AssetResourceLoadingDataRequest :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetResourceLoadingDataRequest, objc_selector="init", objc_name="init")
     AssetResourceLoadingDataRequest_init :: proc(self: ^AssetResourceLoadingDataRequest) -> instancetype ---
@@ -43,3 +37,6 @@ foreign lib {
     @(objc_type=AssetResourceLoadingDataRequest, objc_selector="currentOffset", objc_name="currentOffset")
     AssetResourceLoadingDataRequest_currentOffset :: proc(self: ^AssetResourceLoadingDataRequest) -> cffi.longlong ---
 }
+
+
+

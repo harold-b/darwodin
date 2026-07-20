@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    badgeWithCount: proc(count: NS.Integer) -> ^AK.ItemBadge,
-    badgeWithText: proc(text: ^NS.String) -> ^AK.ItemBadge,
-    indicatorBadge: proc() -> ^AK.ItemBadge,
-    text: proc(self: ^AK.ItemBadge) -> ^NS.String,
+    badgeWithCount: proc(count: NS.Integer) -> ^NS.ItemBadge,
+    badgeWithText: proc(text: ^NS.String) -> ^NS.ItemBadge,
+    indicatorBadge: proc() -> ^NS.ItemBadge,
+    text: proc(self: ^NS.ItemBadge) -> ^NS.String,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -40,7 +40,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.badgeWithCount != nil {
-        badgeWithCount :: proc "c" (self: Class, _: SEL, count: NS.Integer) -> ^AK.ItemBadge {
+        badgeWithCount :: proc "c" (self: Class, _: SEL, count: NS.Integer) -> ^NS.ItemBadge {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("badgeWithCount:"), auto_cast badgeWithCount, "@#:l") do panic("Failed to register objC method.")
     }
     if vt.badgeWithText != nil {
-        badgeWithText :: proc "c" (self: Class, _: SEL, text: ^NS.String) -> ^AK.ItemBadge {
+        badgeWithText :: proc "c" (self: Class, _: SEL, text: ^NS.String) -> ^NS.ItemBadge {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("badgeWithText:"), auto_cast badgeWithText, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.indicatorBadge != nil {
-        indicatorBadge :: proc "c" (self: Class, _: SEL) -> ^AK.ItemBadge {
+        indicatorBadge :: proc "c" (self: Class, _: SEL) -> ^NS.ItemBadge {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("indicatorBadge"), auto_cast indicatorBadge, "@#:") do panic("Failed to register objC method.")
     }
     if vt.text != nil {
-        text :: proc "c" (self: ^AK.ItemBadge, _: SEL) -> ^NS.String {
+        text :: proc "c" (self: ^NS.ItemBadge, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

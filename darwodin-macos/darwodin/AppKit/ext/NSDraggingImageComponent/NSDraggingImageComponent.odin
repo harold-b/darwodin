@@ -20,21 +20,21 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    draggingImageComponentWithKey: proc(key: ^NS.String) -> ^AK.DraggingImageComponent,
-    initWithKey: proc(self: ^AK.DraggingImageComponent, key: ^NS.String) -> instancetype,
-    init: proc(self: ^AK.DraggingImageComponent) -> instancetype,
-    key: proc(self: ^AK.DraggingImageComponent) -> ^NS.String,
-    setKey: proc(self: ^AK.DraggingImageComponent, key: ^NS.String),
-    contents: proc(self: ^AK.DraggingImageComponent) -> id,
-    setContents: proc(self: ^AK.DraggingImageComponent, contents: id),
-    frame: proc(self: ^AK.DraggingImageComponent) -> NS.Rect,
-    setFrame: proc(self: ^AK.DraggingImageComponent, frame: NS.Rect),
+    draggingImageComponentWithKey: proc(key: ^NS.String) -> ^NS.DraggingImageComponent,
+    initWithKey: proc(self: ^NS.DraggingImageComponent, key: ^NS.String) -> instancetype,
+    init: proc(self: ^NS.DraggingImageComponent) -> instancetype,
+    key: proc(self: ^NS.DraggingImageComponent) -> ^NS.String,
+    setKey: proc(self: ^NS.DraggingImageComponent, key: ^NS.String),
+    contents: proc(self: ^NS.DraggingImageComponent) -> id,
+    setContents: proc(self: ^NS.DraggingImageComponent, contents: id),
+    frame: proc(self: ^NS.DraggingImageComponent) -> NS.Rect,
+    setFrame: proc(self: ^NS.DraggingImageComponent, frame: NS.Rect),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.draggingImageComponentWithKey != nil {
-        draggingImageComponentWithKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^AK.DraggingImageComponent {
+        draggingImageComponentWithKey :: proc "c" (self: Class, _: SEL, key: ^NS.String) -> ^NS.DraggingImageComponent {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -55,7 +55,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("draggingImageComponentWithKey:"), auto_cast draggingImageComponentWithKey, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithKey != nil {
-        initWithKey :: proc "c" (self: ^AK.DraggingImageComponent, _: SEL, key: ^NS.String) -> instancetype {
+        initWithKey :: proc "c" (self: ^NS.DraggingImageComponent, _: SEL, key: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithKey:"), auto_cast initWithKey, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.DraggingImageComponent, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.DraggingImageComponent, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.key != nil {
-        key :: proc "c" (self: ^AK.DraggingImageComponent, _: SEL) -> ^NS.String {
+        key :: proc "c" (self: ^NS.DraggingImageComponent, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("key"), auto_cast key, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setKey != nil {
-        setKey :: proc "c" (self: ^AK.DraggingImageComponent, _: SEL, key: ^NS.String) {
+        setKey :: proc "c" (self: ^NS.DraggingImageComponent, _: SEL, key: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setKey:"), auto_cast setKey, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.contents != nil {
-        contents :: proc "c" (self: ^AK.DraggingImageComponent, _: SEL) -> id {
+        contents :: proc "c" (self: ^NS.DraggingImageComponent, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("contents"), auto_cast contents, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContents != nil {
-        setContents :: proc "c" (self: ^AK.DraggingImageComponent, _: SEL, contents: id) {
+        setContents :: proc "c" (self: ^NS.DraggingImageComponent, _: SEL, contents: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContents:"), auto_cast setContents, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.frame != nil {
-        frame :: proc "c" (self: ^AK.DraggingImageComponent, _: SEL) -> NS.Rect {
+        frame :: proc "c" (self: ^NS.DraggingImageComponent, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("frame"), auto_cast frame, "{CGRect={CGPoint=dd}{CGSize=dd}}@:") do panic("Failed to register objC method.")
     }
     if vt.setFrame != nil {
-        setFrame :: proc "c" (self: ^AK.DraggingImageComponent, _: SEL, frame: NS.Rect) {
+        setFrame :: proc "c" (self: ^NS.DraggingImageComponent, _: SEL, frame: NS.Rect) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureSystemPressureState
-///
 @(objc_class="AVCaptureSystemPressureState", objc_superclass=NS.Object)
 CaptureSystemPressureState :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureSystemPressureState, objc_selector="init", objc_name="init")
     CaptureSystemPressureState_init :: proc(self: ^CaptureSystemPressureState) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=CaptureSystemPressureState, objc_selector="factors", objc_name="factors")
     CaptureSystemPressureState_factors :: proc(self: ^CaptureSystemPressureState) -> CaptureSystemPressureFactors ---
 }
+
+
+

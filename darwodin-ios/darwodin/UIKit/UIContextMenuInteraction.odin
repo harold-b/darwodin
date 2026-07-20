@@ -35,7 +35,7 @@ foreign lib {
     ContextMenuInteraction_locationInView :: proc(self: ^ContextMenuInteraction, view: ^View) -> CG.Point ---
 
     @(objc_type=ContextMenuInteraction, objc_selector="updateVisibleMenuWithBlock:", objc_name="updateVisibleMenuWithBlock")
-    ContextMenuInteraction_updateVisibleMenuWithBlock :: proc(self: ^ContextMenuInteraction, block: ^Objc_Block(proc "c" (visibleMenu: ^Menu) -> ^Menu)) ---
+    ContextMenuInteraction_updateVisibleMenuWithBlock :: proc(self: ^ContextMenuInteraction, block: ^Objc_Block(proc "c" ( visibleMenu: ^Menu ) -> ^Menu)) ---
 
     @(objc_type=ContextMenuInteraction, objc_selector="dismissMenu", objc_name="dismissMenu")
     ContextMenuInteraction_dismissMenu :: proc(self: ^ContextMenuInteraction) ---

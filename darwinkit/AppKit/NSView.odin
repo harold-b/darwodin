@@ -62,7 +62,7 @@ foreign lib {
     View_addSubview_positioned_relativeTo :: proc(self: ^View, view: ^View, place: WindowOrderingMode, otherView: ^View) ---
 
     @(objc_type=View, objc_selector="sortSubviewsUsingFunction:context:", objc_name="sortSubviewsUsingFunction")
-    View_sortSubviewsUsingFunction :: proc(self: ^View, compare: proc "c" (_: ^View, _1: ^View, _2: rawptr) -> NS.ComparisonResult, _context: rawptr) ---
+    View_sortSubviewsUsingFunction :: proc(self: ^View, compare: proc "c" ( _0: ^View, _1: ^View, _2: rawptr ) -> NS.ComparisonResult, _context: rawptr) ---
 
     @(objc_type=View, objc_selector="viewWillMoveToWindow:", objc_name="viewWillMoveToWindow")
     View_viewWillMoveToWindow :: proc(self: ^View, newWindow: ^Window) ---
@@ -704,7 +704,7 @@ foreign lib {
     View_showDefinitionForAttributedString_atPoint :: proc(self: ^View, attrString: ^NS.AttributedString, textBaselineOrigin: CG.Point) ---
 
     @(objc_type=View, objc_selector="showDefinitionForAttributedString:range:options:baselineOriginProvider:", objc_name="showDefinitionForAttributedString_range_options_baselineOriginProvider")
-    View_showDefinitionForAttributedString_range_options_baselineOriginProvider :: proc(self: ^View, attrString: ^NS.AttributedString, targetRange: NS._NSRange, options: ^NS.Dictionary, originProvider: ^Objc_Block(proc "c" (adjustedRange: NS._NSRange) -> CG.Point)) ---
+    View_showDefinitionForAttributedString_range_options_baselineOriginProvider :: proc(self: ^View, attrString: ^NS.AttributedString, targetRange: NS._NSRange, options: ^NS.Dictionary, originProvider: ^Objc_Block(proc "c" ( adjustedRange: NS._NSRange ) -> CG.Point)) ---
 
     @(objc_type=View, objc_selector="isDrawingFindIndicator", objc_name="isDrawingFindIndicator")
     View_isDrawingFindIndicator :: proc(self: ^View) -> bool ---

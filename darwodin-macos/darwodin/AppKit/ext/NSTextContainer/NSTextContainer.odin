@@ -20,41 +20,41 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    initWithSize: proc(self: ^AK.TextContainer, size: CG.Size) -> instancetype,
-    initWithCoder: proc(self: ^AK.TextContainer, coder: ^NS.Coder) -> instancetype,
-    lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect: proc(self: ^AK.TextContainer, proposedRect: CG.Rect, characterIndex: NS.UInteger, baseWritingDirection: AK.WritingDirection, remainingRect: ^CG.Rect) -> CG.Rect,
-    textLayoutManager: proc(self: ^AK.TextContainer) -> ^AK.TextLayoutManager,
-    size: proc(self: ^AK.TextContainer) -> CG.Size,
-    setSize: proc(self: ^AK.TextContainer, size: CG.Size),
-    lineBreakMode: proc(self: ^AK.TextContainer) -> AK.LineBreakMode,
-    setLineBreakMode: proc(self: ^AK.TextContainer, lineBreakMode: AK.LineBreakMode),
-    lineFragmentPadding: proc(self: ^AK.TextContainer) -> CG.Float,
-    setLineFragmentPadding: proc(self: ^AK.TextContainer, lineFragmentPadding: CG.Float),
-    maximumNumberOfLines: proc(self: ^AK.TextContainer) -> NS.UInteger,
-    setMaximumNumberOfLines: proc(self: ^AK.TextContainer, maximumNumberOfLines: NS.UInteger),
-    isSimpleRectangularTextContainer: proc(self: ^AK.TextContainer) -> bool,
-    widthTracksTextView: proc(self: ^AK.TextContainer) -> bool,
-    setWidthTracksTextView: proc(self: ^AK.TextContainer, widthTracksTextView: bool),
-    heightTracksTextView: proc(self: ^AK.TextContainer) -> bool,
-    setHeightTracksTextView: proc(self: ^AK.TextContainer, heightTracksTextView: bool),
-    layoutManager: proc(self: ^AK.TextContainer) -> ^AK.LayoutManager,
-    setLayoutManager: proc(self: ^AK.TextContainer, layoutManager: ^AK.LayoutManager),
-    replaceLayoutManager: proc(self: ^AK.TextContainer, newLayoutManager: ^AK.LayoutManager),
-    exclusionPaths: proc(self: ^AK.TextContainer) -> ^NS.Array,
-    setExclusionPaths: proc(self: ^AK.TextContainer, exclusionPaths: ^NS.Array),
-    textView: proc(self: ^AK.TextContainer) -> ^AK.TextView,
-    setTextView: proc(self: ^AK.TextContainer, textView: ^AK.TextView),
-    initWithContainerSize: proc(self: ^AK.TextContainer, aContainerSize: NS.Size) -> instancetype,
-    lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect: proc(self: ^AK.TextContainer, proposedRect: NS.Rect, sweepDirection: AK.LineSweepDirection, movementDirection: AK.LineMovementDirection, remainingRect: ^NS.Rect) -> NS.Rect,
-    containsPoint: proc(self: ^AK.TextContainer, point: CG.Point) -> bool,
-    containerSize: proc(self: ^AK.TextContainer) -> NS.Size,
-    setContainerSize: proc(self: ^AK.TextContainer, containerSize: NS.Size),
+    initWithSize: proc(self: ^NS.TextContainer, size: CG.Size) -> instancetype,
+    initWithCoder: proc(self: ^NS.TextContainer, coder: ^NS.Coder) -> instancetype,
+    lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect: proc(self: ^NS.TextContainer, proposedRect: CG.Rect, characterIndex: NS.UInteger, baseWritingDirection: NS.WritingDirection, remainingRect: ^CG.Rect) -> CG.Rect,
+    textLayoutManager: proc(self: ^NS.TextContainer) -> ^NS.TextLayoutManager,
+    size: proc(self: ^NS.TextContainer) -> CG.Size,
+    setSize: proc(self: ^NS.TextContainer, size: CG.Size),
+    lineBreakMode: proc(self: ^NS.TextContainer) -> NS.LineBreakMode,
+    setLineBreakMode: proc(self: ^NS.TextContainer, lineBreakMode: NS.LineBreakMode),
+    lineFragmentPadding: proc(self: ^NS.TextContainer) -> CG.Float,
+    setLineFragmentPadding: proc(self: ^NS.TextContainer, lineFragmentPadding: CG.Float),
+    maximumNumberOfLines: proc(self: ^NS.TextContainer) -> NS.UInteger,
+    setMaximumNumberOfLines: proc(self: ^NS.TextContainer, maximumNumberOfLines: NS.UInteger),
+    isSimpleRectangularTextContainer: proc(self: ^NS.TextContainer) -> bool,
+    widthTracksTextView: proc(self: ^NS.TextContainer) -> bool,
+    setWidthTracksTextView: proc(self: ^NS.TextContainer, widthTracksTextView: bool),
+    heightTracksTextView: proc(self: ^NS.TextContainer) -> bool,
+    setHeightTracksTextView: proc(self: ^NS.TextContainer, heightTracksTextView: bool),
+    layoutManager: proc(self: ^NS.TextContainer) -> ^NS.LayoutManager,
+    setLayoutManager: proc(self: ^NS.TextContainer, layoutManager: ^NS.LayoutManager),
+    replaceLayoutManager: proc(self: ^NS.TextContainer, newLayoutManager: ^NS.LayoutManager),
+    exclusionPaths: proc(self: ^NS.TextContainer) -> ^NS.Array,
+    setExclusionPaths: proc(self: ^NS.TextContainer, exclusionPaths: ^NS.Array),
+    textView: proc(self: ^NS.TextContainer) -> ^NS.TextView,
+    setTextView: proc(self: ^NS.TextContainer, textView: ^NS.TextView),
+    initWithContainerSize: proc(self: ^NS.TextContainer, aContainerSize: NS.Size) -> instancetype,
+    lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect: proc(self: ^NS.TextContainer, proposedRect: NS.Rect, sweepDirection: NS.LineSweepDirection, movementDirection: NS.LineMovementDirection, remainingRect: ^NS.Rect) -> NS.Rect,
+    containsPoint: proc(self: ^NS.TextContainer, point: CG.Point) -> bool,
+    containerSize: proc(self: ^NS.TextContainer) -> NS.Size,
+    setContainerSize: proc(self: ^NS.TextContainer, containerSize: NS.Size),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.initWithSize != nil {
-        initWithSize :: proc "c" (self: ^AK.TextContainer, _: SEL, size: CG.Size) -> instancetype {
+        initWithSize :: proc "c" (self: ^NS.TextContainer, _: SEL, size: CG.Size) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithSize:"), auto_cast initWithSize, "@@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.TextContainer, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.TextContainer, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -85,7 +85,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect != nil {
-        lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect :: proc "c" (self: ^AK.TextContainer, _: SEL, proposedRect: CG.Rect, characterIndex: NS.UInteger, baseWritingDirection: AK.WritingDirection, remainingRect: ^CG.Rect) -> CG.Rect {
+        lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect :: proc "c" (self: ^NS.TextContainer, _: SEL, proposedRect: CG.Rect, characterIndex: NS.UInteger, baseWritingDirection: NS.WritingDirection, remainingRect: ^CG.Rect) -> CG.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -95,7 +95,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineFragmentRectForProposedRect:atIndex:writingDirection:remainingRect:"), auto_cast lineFragmentRectForProposedRect_atIndex_writingDirection_remainingRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}Ll^void") do panic("Failed to register objC method.")
     }
     if vt.textLayoutManager != nil {
-        textLayoutManager :: proc "c" (self: ^AK.TextContainer, _: SEL) -> ^AK.TextLayoutManager {
+        textLayoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL) -> ^NS.TextLayoutManager {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -105,7 +105,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textLayoutManager"), auto_cast textLayoutManager, "@@:") do panic("Failed to register objC method.")
     }
     if vt.size != nil {
-        size :: proc "c" (self: ^AK.TextContainer, _: SEL) -> CG.Size {
+        size :: proc "c" (self: ^NS.TextContainer, _: SEL) -> CG.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -115,7 +115,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("size"), auto_cast size, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setSize != nil {
-        setSize :: proc "c" (self: ^AK.TextContainer, _: SEL, size: CG.Size) {
+        setSize :: proc "c" (self: ^NS.TextContainer, _: SEL, size: CG.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -125,7 +125,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSize:"), auto_cast setSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.lineBreakMode != nil {
-        lineBreakMode :: proc "c" (self: ^AK.TextContainer, _: SEL) -> AK.LineBreakMode {
+        lineBreakMode :: proc "c" (self: ^NS.TextContainer, _: SEL) -> NS.LineBreakMode {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -135,7 +135,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineBreakMode"), auto_cast lineBreakMode, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setLineBreakMode != nil {
-        setLineBreakMode :: proc "c" (self: ^AK.TextContainer, _: SEL, lineBreakMode: AK.LineBreakMode) {
+        setLineBreakMode :: proc "c" (self: ^NS.TextContainer, _: SEL, lineBreakMode: NS.LineBreakMode) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -145,7 +145,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLineBreakMode:"), auto_cast setLineBreakMode, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.lineFragmentPadding != nil {
-        lineFragmentPadding :: proc "c" (self: ^AK.TextContainer, _: SEL) -> CG.Float {
+        lineFragmentPadding :: proc "c" (self: ^NS.TextContainer, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -155,7 +155,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineFragmentPadding"), auto_cast lineFragmentPadding, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setLineFragmentPadding != nil {
-        setLineFragmentPadding :: proc "c" (self: ^AK.TextContainer, _: SEL, lineFragmentPadding: CG.Float) {
+        setLineFragmentPadding :: proc "c" (self: ^NS.TextContainer, _: SEL, lineFragmentPadding: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -165,7 +165,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLineFragmentPadding:"), auto_cast setLineFragmentPadding, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.maximumNumberOfLines != nil {
-        maximumNumberOfLines :: proc "c" (self: ^AK.TextContainer, _: SEL) -> NS.UInteger {
+        maximumNumberOfLines :: proc "c" (self: ^NS.TextContainer, _: SEL) -> NS.UInteger {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -175,7 +175,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("maximumNumberOfLines"), auto_cast maximumNumberOfLines, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setMaximumNumberOfLines != nil {
-        setMaximumNumberOfLines :: proc "c" (self: ^AK.TextContainer, _: SEL, maximumNumberOfLines: NS.UInteger) {
+        setMaximumNumberOfLines :: proc "c" (self: ^NS.TextContainer, _: SEL, maximumNumberOfLines: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -185,7 +185,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMaximumNumberOfLines:"), auto_cast setMaximumNumberOfLines, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.isSimpleRectangularTextContainer != nil {
-        isSimpleRectangularTextContainer :: proc "c" (self: ^AK.TextContainer, _: SEL) -> bool {
+        isSimpleRectangularTextContainer :: proc "c" (self: ^NS.TextContainer, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -195,7 +195,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isSimpleRectangularTextContainer"), auto_cast isSimpleRectangularTextContainer, "B@:") do panic("Failed to register objC method.")
     }
     if vt.widthTracksTextView != nil {
-        widthTracksTextView :: proc "c" (self: ^AK.TextContainer, _: SEL) -> bool {
+        widthTracksTextView :: proc "c" (self: ^NS.TextContainer, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -205,7 +205,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("widthTracksTextView"), auto_cast widthTracksTextView, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setWidthTracksTextView != nil {
-        setWidthTracksTextView :: proc "c" (self: ^AK.TextContainer, _: SEL, widthTracksTextView: bool) {
+        setWidthTracksTextView :: proc "c" (self: ^NS.TextContainer, _: SEL, widthTracksTextView: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -215,7 +215,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWidthTracksTextView:"), auto_cast setWidthTracksTextView, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.heightTracksTextView != nil {
-        heightTracksTextView :: proc "c" (self: ^AK.TextContainer, _: SEL) -> bool {
+        heightTracksTextView :: proc "c" (self: ^NS.TextContainer, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -225,7 +225,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("heightTracksTextView"), auto_cast heightTracksTextView, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setHeightTracksTextView != nil {
-        setHeightTracksTextView :: proc "c" (self: ^AK.TextContainer, _: SEL, heightTracksTextView: bool) {
+        setHeightTracksTextView :: proc "c" (self: ^NS.TextContainer, _: SEL, heightTracksTextView: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -235,7 +235,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHeightTracksTextView:"), auto_cast setHeightTracksTextView, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.layoutManager != nil {
-        layoutManager :: proc "c" (self: ^AK.TextContainer, _: SEL) -> ^AK.LayoutManager {
+        layoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL) -> ^NS.LayoutManager {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -245,7 +245,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutManager"), auto_cast layoutManager, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setLayoutManager != nil {
-        setLayoutManager :: proc "c" (self: ^AK.TextContainer, _: SEL, layoutManager: ^AK.LayoutManager) {
+        setLayoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL, layoutManager: ^NS.LayoutManager) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -255,7 +255,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLayoutManager:"), auto_cast setLayoutManager, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.replaceLayoutManager != nil {
-        replaceLayoutManager :: proc "c" (self: ^AK.TextContainer, _: SEL, newLayoutManager: ^AK.LayoutManager) {
+        replaceLayoutManager :: proc "c" (self: ^NS.TextContainer, _: SEL, newLayoutManager: ^NS.LayoutManager) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -265,7 +265,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("replaceLayoutManager:"), auto_cast replaceLayoutManager, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.exclusionPaths != nil {
-        exclusionPaths :: proc "c" (self: ^AK.TextContainer, _: SEL) -> ^NS.Array {
+        exclusionPaths :: proc "c" (self: ^NS.TextContainer, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -275,7 +275,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("exclusionPaths"), auto_cast exclusionPaths, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setExclusionPaths != nil {
-        setExclusionPaths :: proc "c" (self: ^AK.TextContainer, _: SEL, exclusionPaths: ^NS.Array) {
+        setExclusionPaths :: proc "c" (self: ^NS.TextContainer, _: SEL, exclusionPaths: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -285,7 +285,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setExclusionPaths:"), auto_cast setExclusionPaths, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.textView != nil {
-        textView :: proc "c" (self: ^AK.TextContainer, _: SEL) -> ^AK.TextView {
+        textView :: proc "c" (self: ^NS.TextContainer, _: SEL) -> ^NS.TextView {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -295,7 +295,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textView"), auto_cast textView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setTextView != nil {
-        setTextView :: proc "c" (self: ^AK.TextContainer, _: SEL, textView: ^AK.TextView) {
+        setTextView :: proc "c" (self: ^NS.TextContainer, _: SEL, textView: ^NS.TextView) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -305,7 +305,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTextView:"), auto_cast setTextView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithContainerSize != nil {
-        initWithContainerSize :: proc "c" (self: ^AK.TextContainer, _: SEL, aContainerSize: NS.Size) -> instancetype {
+        initWithContainerSize :: proc "c" (self: ^NS.TextContainer, _: SEL, aContainerSize: NS.Size) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -315,7 +315,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContainerSize:"), auto_cast initWithContainerSize, "@@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect != nil {
-        lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect :: proc "c" (self: ^AK.TextContainer, _: SEL, proposedRect: NS.Rect, sweepDirection: AK.LineSweepDirection, movementDirection: AK.LineMovementDirection, remainingRect: ^NS.Rect) -> NS.Rect {
+        lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect :: proc "c" (self: ^NS.TextContainer, _: SEL, proposedRect: NS.Rect, sweepDirection: NS.LineSweepDirection, movementDirection: NS.LineMovementDirection, remainingRect: ^NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -325,7 +325,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("lineFragmentRectForProposedRect:sweepDirection:movementDirection:remainingRect:"), auto_cast lineFragmentRectForProposedRect_sweepDirection_movementDirection_remainingRect, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}LL^void") do panic("Failed to register objC method.")
     }
     if vt.containsPoint != nil {
-        containsPoint :: proc "c" (self: ^AK.TextContainer, _: SEL, point: CG.Point) -> bool {
+        containsPoint :: proc "c" (self: ^NS.TextContainer, _: SEL, point: CG.Point) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -335,7 +335,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("containsPoint:"), auto_cast containsPoint, "B@:{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.containerSize != nil {
-        containerSize :: proc "c" (self: ^AK.TextContainer, _: SEL) -> NS.Size {
+        containerSize :: proc "c" (self: ^NS.TextContainer, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -345,7 +345,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("containerSize"), auto_cast containerSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setContainerSize != nil {
-        setContainerSize :: proc "c" (self: ^AK.TextContainer, _: SEL, containerSize: NS.Size) {
+        setContainerSize :: proc "c" (self: ^NS.TextContainer, _: SEL, containerSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

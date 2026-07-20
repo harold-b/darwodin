@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSubscription
-///
 @(objc_class="CKSubscription", objc_superclass=NS.Object)
 Subscription :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Subscription, objc_selector="init", objc_name="init")
     Subscription_init :: proc(self: ^Subscription) -> instancetype ---
@@ -38,3 +32,6 @@ foreign lib {
     @(objc_type=Subscription, objc_selector="setNotificationInfo:", objc_name="setNotificationInfo")
     Subscription_setNotificationInfo :: proc(self: ^Subscription, notificationInfo: ^NotificationInfo) ---
 }
+
+
+

@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CHHapticAdvancedPatternPlayer
-///
 @(objc_class="CHHapticAdvancedPatternPlayer")
 HapticAdvancedPatternPlayer :: struct { using _: intrinsics.objc_object, 
     using _: HapticPatternPlayer,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HapticAdvancedPatternPlayer, objc_selector="pauseAtTime:error:", objc_name="pauseAtTime")
     HapticAdvancedPatternPlayer_pauseAtTime :: proc(self: ^HapticAdvancedPatternPlayer, time: NS.TimeInterval, outError: ^^NS.Error) -> bool ---
@@ -58,3 +52,6 @@ foreign lib {
     @(objc_type=HapticAdvancedPatternPlayer, objc_selector="setCompletionHandler:", objc_name="setCompletionHandler")
     HapticAdvancedPatternPlayer_setCompletionHandler :: proc(self: ^HapticAdvancedPatternPlayer, completionHandler: HapticAdvancedPatternPlayerCompletionHandler) ---
 }
+
+
+

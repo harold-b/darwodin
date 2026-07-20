@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKRecordID
-///
 @(objc_class="CKRecordID", objc_superclass=NS.Object)
 RecordID :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=RecordID, objc_selector="init", objc_name="init")
     RecordID_init :: proc(self: ^RecordID) -> instancetype ---
@@ -38,6 +32,8 @@ foreign lib {
     @(objc_type=RecordID, objc_selector="zoneID", objc_name="zoneID")
     RecordID_zoneID :: proc(self: ^RecordID) -> ^RecordZoneID ---
 }
+
+
 
 @(objc_type=RecordID, objc_name="initWithRecordName")
 RecordID_initWithRecordName :: proc {

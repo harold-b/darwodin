@@ -1,0 +1,44 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UIDocumentPickerExtensionViewController
+///
+@(objc_class="UIDocumentPickerExtensionViewController", objc_superclass=ViewController)
+DocumentPickerExtensionViewController :: struct { using _: ViewController, }
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=DocumentPickerExtensionViewController, objc_selector="dismissGrantingAccessToURL:", objc_name="dismissGrantingAccessToURL")
+    DocumentPickerExtensionViewController_dismissGrantingAccessToURL :: proc(self: ^DocumentPickerExtensionViewController, url: ^NS.URL) ---
+
+    @(objc_type=DocumentPickerExtensionViewController, objc_selector="prepareForPresentationInMode:", objc_name="prepareForPresentationInMode")
+    DocumentPickerExtensionViewController_prepareForPresentationInMode :: proc(self: ^DocumentPickerExtensionViewController, mode: DocumentPickerMode) ---
+
+    @(objc_type=DocumentPickerExtensionViewController, objc_selector="documentPickerMode", objc_name="documentPickerMode")
+    DocumentPickerExtensionViewController_documentPickerMode :: proc(self: ^DocumentPickerExtensionViewController) -> DocumentPickerMode ---
+
+    @(objc_type=DocumentPickerExtensionViewController, objc_selector="originalURL", objc_name="originalURL")
+    DocumentPickerExtensionViewController_originalURL :: proc(self: ^DocumentPickerExtensionViewController) -> ^NS.URL ---
+
+    @(objc_type=DocumentPickerExtensionViewController, objc_selector="validTypes", objc_name="validTypes")
+    DocumentPickerExtensionViewController_validTypes :: proc(self: ^DocumentPickerExtensionViewController) -> ^NS.Array ---
+
+    @(objc_type=DocumentPickerExtensionViewController, objc_selector="providerIdentifier", objc_name="providerIdentifier")
+    DocumentPickerExtensionViewController_providerIdentifier :: proc(self: ^DocumentPickerExtensionViewController) -> ^NS.String ---
+
+    @(objc_type=DocumentPickerExtensionViewController, objc_selector="documentStorageURL", objc_name="documentStorageURL")
+    DocumentPickerExtensionViewController_documentStorageURL :: proc(self: ^DocumentPickerExtensionViewController) -> ^NS.URL ---
+}

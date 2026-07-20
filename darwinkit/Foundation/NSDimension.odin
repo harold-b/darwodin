@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSDimension
-///
 @(objc_class="NSDimension", objc_superclass=Unit)
 Dimension :: struct { using _: Unit, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Dimension, objc_selector="initWithSymbol:converter:", objc_name="initWithSymbol")
     Dimension_initWithSymbol :: proc(self: ^Dimension, symbol: ^String, converter: ^UnitConverter) -> instancetype ---
@@ -30,3 +24,6 @@ foreign lib {
     @(objc_type=Dimension, objc_selector="converter", objc_name="converter")
     Dimension_converter :: proc(self: ^Dimension) -> ^UnitConverter ---
 }
+
+
+

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKOctree
-///
 @(objc_class="GKOctree", objc_superclass=NS.Object)
 Octree :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Octree, objc_selector="octreeWithBoundingBox:minimumCellSize:", objc_name="octreeWithBoundingBox", objc_is_class_method=true)
     Octree_octreeWithBoundingBox :: proc(box: Box, minCellSize: cffi.float) -> instancetype ---
@@ -41,6 +35,8 @@ foreign lib {
     @(objc_type=Octree, objc_selector="removeElement:withNode:", objc_name="removeElement_withNode")
     Octree_removeElement_withNode :: proc(self: ^Octree, element: id, node: ^OctreeNode) -> bool ---
 }
+
+
 
 @(objc_type=Octree, objc_name="addElement")
 Octree_addElement :: proc {

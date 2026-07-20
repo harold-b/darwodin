@@ -40,7 +40,7 @@ foreign lib {
     RegularExpression_numberOfCaptureGroups :: proc(self: ^RegularExpression) -> UInteger ---
 
     @(objc_type=RegularExpression, objc_selector="enumerateMatchesInString:options:range:usingBlock:", objc_name="enumerateMatchesInString")
-    RegularExpression_enumerateMatchesInString :: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: ^Objc_Block(proc "c" (result: ^TextCheckingResult, flags: MatchingFlags, stop: ^bool))) ---
+    RegularExpression_enumerateMatchesInString :: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange, block: ^Objc_Block(proc "c" ( result: ^TextCheckingResult, flags: MatchingFlags, stop: ^bool ))) ---
 
     @(objc_type=RegularExpression, objc_selector="matchesInString:options:range:", objc_name="matchesInString")
     RegularExpression_matchesInString :: proc(self: ^RegularExpression, string: ^String, options: MatchingOptions, range: _NSRange) -> ^Array ---

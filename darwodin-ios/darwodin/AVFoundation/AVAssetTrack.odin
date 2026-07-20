@@ -100,13 +100,13 @@ foreign lib {
     AssetTrack_segmentForTrackTime :: proc(self: ^AssetTrack, trackTime: CM.Time) -> ^AssetTrackSegment ---
 
     @(objc_type=AssetTrack, objc_selector="loadSegmentForTrackTime:completionHandler:", objc_name="loadSegmentForTrackTime")
-    AssetTrack_loadSegmentForTrackTime :: proc(self: ^AssetTrack, trackTime: CM.Time, completionHandler: ^Objc_Block(proc "c" (_: ^AssetTrackSegment, _1: ^NS.Error))) ---
+    AssetTrack_loadSegmentForTrackTime :: proc(self: ^AssetTrack, trackTime: CM.Time, completionHandler: ^Objc_Block(proc "c" ( _0: ^AssetTrackSegment, _1: ^NS.Error ))) ---
 
     @(objc_type=AssetTrack, objc_selector="samplePresentationTimeForTrackTime:", objc_name="samplePresentationTimeForTrackTime")
     AssetTrack_samplePresentationTimeForTrackTime :: proc(self: ^AssetTrack, trackTime: CM.Time) -> CM.Time ---
 
     @(objc_type=AssetTrack, objc_selector="loadSamplePresentationTimeForTrackTime:completionHandler:", objc_name="loadSamplePresentationTimeForTrackTime")
-    AssetTrack_loadSamplePresentationTimeForTrackTime :: proc(self: ^AssetTrack, trackTime: CM.Time, completionHandler: ^Objc_Block(proc "c" (_: CM.Time, _1: ^NS.Error))) ---
+    AssetTrack_loadSamplePresentationTimeForTrackTime :: proc(self: ^AssetTrack, trackTime: CM.Time, completionHandler: ^Objc_Block(proc "c" ( _0: CM.Time, _1: ^NS.Error ))) ---
 
     @(objc_type=AssetTrack, objc_selector="segments", objc_name="segments")
     AssetTrack_segments :: proc(self: ^AssetTrack) -> ^NS.Array ---
@@ -115,7 +115,7 @@ foreign lib {
     AssetTrack_metadataForFormat :: proc(self: ^AssetTrack, format: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=AssetTrack, objc_selector="loadMetadataForFormat:completionHandler:", objc_name="loadMetadataForFormat")
-    AssetTrack_loadMetadataForFormat :: proc(self: ^AssetTrack, format: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    AssetTrack_loadMetadataForFormat :: proc(self: ^AssetTrack, format: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=AssetTrack, objc_selector="commonMetadata", objc_name="commonMetadata")
     AssetTrack_commonMetadata :: proc(self: ^AssetTrack) -> ^NS.Array ---
@@ -130,7 +130,7 @@ foreign lib {
     AssetTrack_associatedTracksOfType :: proc(self: ^AssetTrack, trackAssociationType: ^NS.String) -> ^NS.Array ---
 
     @(objc_type=AssetTrack, objc_selector="loadAssociatedTracksOfType:completionHandler:", objc_name="loadAssociatedTracksOfType")
-    AssetTrack_loadAssociatedTracksOfType :: proc(self: ^AssetTrack, trackAssociationType: ^NS.String, completionHandler: ^Objc_Block(proc "c" (_: ^NS.Array, _1: ^NS.Error))) ---
+    AssetTrack_loadAssociatedTracksOfType :: proc(self: ^AssetTrack, trackAssociationType: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( _0: ^NS.Array, _1: ^NS.Error ))) ---
 
     @(objc_type=AssetTrack, objc_selector="availableTrackAssociationTypes", objc_name="availableTrackAssociationTypes")
     AssetTrack_availableTrackAssociationTypes :: proc(self: ^AssetTrack) -> ^NS.Array ---

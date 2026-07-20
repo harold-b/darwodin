@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioSessionPortDescription
-///
 @(objc_class="AVAudioSessionPortDescription", objc_superclass=NS.Object)
 AudioSessionPortDescription :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioSessionPortDescription, objc_selector="setPreferredDataSource:error:", objc_name="setPreferredDataSource")
     AudioSessionPortDescription_setPreferredDataSource :: proc(self: ^AudioSessionPortDescription, dataSource: ^AudioSessionDataSourceDescription, outError: ^^NS.Error) -> bool ---
@@ -55,3 +49,6 @@ foreign lib {
     @(objc_type=AudioSessionPortDescription, objc_selector="bluetoothMicrophoneExtension", objc_name="bluetoothMicrophoneExtension")
     AudioSessionPortDescription_bluetoothMicrophoneExtension :: proc(self: ^AudioSessionPortDescription) -> ^AudioSessionPortExtensionBluetoothMicrophone ---
 }
+
+
+

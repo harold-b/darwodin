@@ -55,5 +55,5 @@ foreign lib {
     HTTPCookieStorage_storeCookies :: proc(self: ^HTTPCookieStorage, cookies: ^Array, task: ^URLSessionTask) ---
 
     @(objc_type=HTTPCookieStorage, objc_selector="getCookiesForTask:completionHandler:", objc_name="getCookiesForTask")
-    HTTPCookieStorage_getCookiesForTask :: proc(self: ^HTTPCookieStorage, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" (cookies: ^Array))) ---
+    HTTPCookieStorage_getCookiesForTask :: proc(self: ^HTTPCookieStorage, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" ( cookies: ^Array ))) ---
 }

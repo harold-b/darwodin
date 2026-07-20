@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKTurnBasedMatchmakerViewControllerDelegate
-///
 @(objc_class="GKTurnBasedMatchmakerViewControllerDelegate")
 TurnBasedMatchmakerViewControllerDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_selector="turnBasedMatchmakerViewControllerWasCancelled:", objc_name="turnBasedMatchmakerViewControllerWasCancelled")
     TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewControllerWasCancelled :: proc(self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController) ---
@@ -31,4 +25,6 @@ foreign lib {
     @(objc_type=TurnBasedMatchmakerViewControllerDelegate, objc_selector="turnBasedMatchmakerViewController:playerQuitForMatch:", objc_name="turnBasedMatchmakerViewController_playerQuitForMatch")
     TurnBasedMatchmakerViewControllerDelegate_turnBasedMatchmakerViewController_playerQuitForMatch :: proc(self: ^TurnBasedMatchmakerViewControllerDelegate, viewController: ^TurnBasedMatchmakerViewController, match: ^TurnBasedMatch) ---
 }
+
+
 

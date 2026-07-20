@@ -9,13 +9,6 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSMessagePort
-///
 @(objc_class="NSMessagePort", objc_superclass=Port)
 MessagePort :: struct { using _: Port, }
 
-@(default_calling_convention="c")
-foreign lib {}

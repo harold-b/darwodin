@@ -26,7 +26,6 @@ ExportVars = [
 ExternalTypes = [
   '../exports/CoreFoundation.exports.yml',
   '../exports/CoreGraphics.exports.yml',
-  '../exports/Foundation.exports.yml',
   '../exports/AppKit.exports.yml',
 ]
 

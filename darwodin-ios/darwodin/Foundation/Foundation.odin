@@ -15,8 +15,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:Foundation.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:Foundation.framework",
+    }
+}
+
+
+// +user-text-begin
 OpaqueSecTransformImplementation :: struct {}
 OpaqueSecIdentitySearchRef       :: struct {}
 OpaquePolicySearchRef            :: struct {}
@@ -73,6 +85,7 @@ STR :: #force_inline proc "contextless" ( #const s: cstring ) -> ^String {
     return auto_cast CF.STR(s)
 }
 
+// -user-text-end
 
 
 ASCIIStringEncoding                                  :: 1
@@ -1355,7 +1368,7 @@ ExceptionName :: distinct ^String
 RunLoopMode :: distinct ^String
 
 /// NSComparator
-Comparator :: ^Objc_Block(proc "c" (obj1: id, obj2: id) -> ComparisonResult)
+Comparator :: ^Objc_Block(proc "c" ( obj1: id, obj2: id ) -> ComparisonResult)
 
 /// NSZone
 Zone :: _NSZone
@@ -1367,10 +1380,10 @@ Range :: _NSRange
 unichar :: cffi.ushort
 
 /// NSItemProviderCompletionHandler
-ItemProviderCompletionHandler :: ^Objc_Block(proc "c" (item: ^SecureCoding, error: ^Error))
+ItemProviderCompletionHandler :: ^Objc_Block(proc "c" ( item: ^SecureCoding, error: ^Error ))
 
 /// NSItemProviderLoadHandler
-ItemProviderLoadHandler :: ^Objc_Block(proc "c" (completionHandler: ItemProviderCompletionHandler, expectedValueClass: Class, options: ^Dictionary))
+ItemProviderLoadHandler :: ^Objc_Block(proc "c" ( completionHandler: ItemProviderCompletionHandler, expectedValueClass: Class, options: ^Dictionary ))
 
 /// NSStringEncoding
 StringEncoding :: distinct UInteger
@@ -1394,7 +1407,7 @@ ProgressFileOperationKind :: distinct ^String
 ProgressUnpublishingHandler :: ^Objc_Block(proc "c" ())
 
 /// NSProgressPublishingHandler
-ProgressPublishingHandler :: ^Objc_Block(proc "c" (progress: ^Progress) -> ProgressUnpublishingHandler)
+ProgressPublishingHandler :: ^Objc_Block(proc "c" ( progress: ^Progress ) -> ProgressUnpublishingHandler)
 
 /// NSNotificationName
 NotificationName :: distinct ^String
@@ -1415,7 +1428,7 @@ AttributedStringFormattingContextKey :: distinct ^String
 LocaleKey :: distinct ^String
 
 /// NSUncaughtExceptionHandler
-UncaughtExceptionHandler :: proc "c" (exception: ^Exception)
+UncaughtExceptionHandler :: proc "c" ( exception: ^Exception )
 
 /// NSErrorDomain
 ErrorDomain :: distinct ^String
@@ -1520,13 +1533,13 @@ xpc_type_t :: distinct ^_xpc_type_s
 xpc_object_t :: distinct rawptr
 
 /// xpc_handler_t
-xpc_handler_t :: ^Objc_Block(proc "c" (object: xpc_object_t))
+xpc_handler_t :: ^Objc_Block(proc "c" ( object: xpc_object_t ))
 
 /// xpc_connection_t
 xpc_connection_t :: distinct ^_xpc_connection_s
 
 /// xpc_connection_handler_t
-xpc_connection_handler_t :: proc "c" (connection: xpc_connection_t)
+xpc_connection_handler_t :: proc "c" ( connection: xpc_connection_t )
 
 /// xpc_rich_error_t
 xpc_rich_error_t :: distinct ^_xpc_rich_error_s
@@ -1535,7 +1548,7 @@ xpc_rich_error_t :: distinct ^_xpc_rich_error_s
 xpc_activity_t :: distinct ^_xpc_activity_s
 
 /// xpc_activity_handler_t
-xpc_activity_handler_t :: ^Objc_Block(proc "c" (activity: xpc_activity_t))
+xpc_activity_handler_t :: ^Objc_Block(proc "c" ( activity: xpc_activity_t ))
 
 /// xpc_activity_state_t
 xpc_activity_state_t :: distinct cffi.long
@@ -1544,31 +1557,31 @@ xpc_activity_state_t :: distinct cffi.long
 xpc_peer_requirement_t :: distinct ^xpc_peer_requirement_s
 
 /// xpc_finalizer_t
-xpc_finalizer_t :: proc "c" (value: rawptr)
+xpc_finalizer_t :: proc "c" ( value: rawptr )
 
 /// xpc_session_t
 xpc_session_t :: distinct ^xpc_session_s
 
 /// xpc_session_cancel_handler_t
-xpc_session_cancel_handler_t :: ^Objc_Block(proc "c" (error: xpc_rich_error_t))
+xpc_session_cancel_handler_t :: ^Objc_Block(proc "c" ( error: xpc_rich_error_t ))
 
 /// xpc_session_incoming_message_handler_t
-xpc_session_incoming_message_handler_t :: ^Objc_Block(proc "c" (message: xpc_object_t))
+xpc_session_incoming_message_handler_t :: ^Objc_Block(proc "c" ( message: xpc_object_t ))
 
 /// xpc_session_reply_handler_t
-xpc_session_reply_handler_t :: ^Objc_Block(proc "c" (reply: xpc_object_t, error: xpc_rich_error_t))
+xpc_session_reply_handler_t :: ^Objc_Block(proc "c" ( reply: xpc_object_t, error: xpc_rich_error_t ))
 
 /// xpc_listener_t
 xpc_listener_t :: distinct ^xpc_listener_s
 
 /// xpc_listener_incoming_session_handler_t
-xpc_listener_incoming_session_handler_t :: ^Objc_Block(proc "c" (peer: xpc_session_t))
+xpc_listener_incoming_session_handler_t :: ^Objc_Block(proc "c" ( peer: xpc_session_t ))
 
 /// xpc_array_applier_t
-xpc_array_applier_t :: ^Objc_Block(proc "c" (index: cffi.size_t, value: xpc_object_t) -> cffi.bool)
+xpc_array_applier_t :: ^Objc_Block(proc "c" ( index: cffi.size_t, value: xpc_object_t ) -> cffi.bool)
 
 /// xpc_dictionary_applier_t
-xpc_dictionary_applier_t :: ^Objc_Block(proc "c" (key: cstring, value: xpc_object_t) -> cffi.bool)
+xpc_dictionary_applier_t :: ^Objc_Block(proc "c" ( key: cstring, value: xpc_object_t ) -> cffi.bool)
 
 /// NSLinguisticTagScheme
 LinguisticTagScheme :: distinct ^String
@@ -2935,11 +2948,11 @@ HashEnumerator :: struct #align (8) {
 
 /// NSHashTableCallBacks
 HashTableCallBacks :: struct #align (8) {
-    hash:     proc "c" (table: ^HashTable, _: rawptr) -> UInteger,
-    isEqual:  proc "c" (table: ^HashTable, _: rawptr, _1: rawptr) -> bool,
-    retain:   proc "c" (table: ^HashTable, _: rawptr),
-    release:  proc "c" (table: ^HashTable, _: rawptr),
-    describe: proc "c" (table: ^HashTable, _: rawptr) -> ^String,
+    hash:     proc "c" ( table: ^HashTable, _0: rawptr ) -> UInteger,
+    isEqual:  proc "c" ( table: ^HashTable, _0: rawptr, _1: rawptr ) -> bool,
+    retain:   proc "c" ( table: ^HashTable, _0: rawptr ),
+    release:  proc "c" ( table: ^HashTable, _0: rawptr ),
+    describe: proc "c" ( table: ^HashTable, _0: rawptr ) -> ^String,
 }
 #assert(size_of(HashTableCallBacks) == 40)
 
@@ -2953,20 +2966,20 @@ MapEnumerator :: struct #align (8) {
 
 /// NSMapTableKeyCallBacks
 MapTableKeyCallBacks :: struct #align (8) {
-    hash:          proc "c" (table: ^MapTable, _: rawptr) -> UInteger,
-    isEqual:       proc "c" (table: ^MapTable, _: rawptr, _1: rawptr) -> bool,
-    retain:        proc "c" (table: ^MapTable, _: rawptr),
-    release:       proc "c" (table: ^MapTable, _: rawptr),
-    describe:      proc "c" (table: ^MapTable, _: rawptr) -> ^String,
+    hash:          proc "c" ( table: ^MapTable, _0: rawptr ) -> UInteger,
+    isEqual:       proc "c" ( table: ^MapTable, _0: rawptr, _1: rawptr ) -> bool,
+    retain:        proc "c" ( table: ^MapTable, _0: rawptr ),
+    release:       proc "c" ( table: ^MapTable, _0: rawptr ),
+    describe:      proc "c" ( table: ^MapTable, _0: rawptr ) -> ^String,
     notAKeyMarker: rawptr,
 }
 #assert(size_of(MapTableKeyCallBacks) == 48)
 
 /// NSMapTableValueCallBacks
 MapTableValueCallBacks :: struct #align (8) {
-    retain:   proc "c" (table: ^MapTable, _: rawptr),
-    release:  proc "c" (table: ^MapTable, _: rawptr),
-    describe: proc "c" (table: ^MapTable, _: rawptr) -> ^String,
+    retain:   proc "c" ( table: ^MapTable, _0: rawptr ),
+    release:  proc "c" ( table: ^MapTable, _0: rawptr ),
+    describe: proc "c" ( table: ^MapTable, _0: rawptr ) -> ^String,
 }
 #assert(size_of(MapTableValueCallBacks) == 24)
 

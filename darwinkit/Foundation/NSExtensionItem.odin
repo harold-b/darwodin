@@ -9,18 +9,12 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSExtensionItem
-///
 @(objc_class="NSExtensionItem", objc_superclass=Object)
 ExtensionItem :: struct { using _: Object, 
     using _: Copying,
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExtensionItem, objc_selector="attributedTitle", objc_name="attributedTitle")
     ExtensionItem_attributedTitle :: proc(self: ^ExtensionItem) -> ^AttributedString ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=ExtensionItem, objc_selector="setUserInfo:", objc_name="setUserInfo")
     ExtensionItem_setUserInfo :: proc(self: ^ExtensionItem, userInfo: ^Dictionary) ---
 }
+
+
+

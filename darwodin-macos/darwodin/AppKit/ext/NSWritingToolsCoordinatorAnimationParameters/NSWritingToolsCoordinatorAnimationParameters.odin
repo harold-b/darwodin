@@ -20,19 +20,19 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> instancetype,
-    duration: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> CG.Float,
-    delay: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> CG.Float,
-    progressHandler: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> ^Objc_Block(proc "c" ()),
-    setProgressHandler: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters, progressHandler: ^Objc_Block(proc "c" ())),
-    completionHandler: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters) -> ^Objc_Block(proc "c" ()),
-    setCompletionHandler: proc(self: ^AK.WritingToolsCoordinatorAnimationParameters, completionHandler: ^Objc_Block(proc "c" ())),
+    init: proc(self: ^NS.WritingToolsCoordinatorAnimationParameters) -> instancetype,
+    duration: proc(self: ^NS.WritingToolsCoordinatorAnimationParameters) -> CG.Float,
+    delay: proc(self: ^NS.WritingToolsCoordinatorAnimationParameters) -> CG.Float,
+    progressHandler: proc(self: ^NS.WritingToolsCoordinatorAnimationParameters) -> ^Objc_Block(proc "c" ()),
+    setProgressHandler: proc(self: ^NS.WritingToolsCoordinatorAnimationParameters, progressHandler: ^Objc_Block(proc "c" ())),
+    completionHandler: proc(self: ^NS.WritingToolsCoordinatorAnimationParameters) -> ^Objc_Block(proc "c" ()),
+    setCompletionHandler: proc(self: ^NS.WritingToolsCoordinatorAnimationParameters, completionHandler: ^Objc_Block(proc "c" ())),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.WritingToolsCoordinatorAnimationParameters, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.WritingToolsCoordinatorAnimationParameters, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.duration != nil {
-        duration :: proc "c" (self: ^AK.WritingToolsCoordinatorAnimationParameters, _: SEL) -> CG.Float {
+        duration :: proc "c" (self: ^NS.WritingToolsCoordinatorAnimationParameters, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -63,7 +63,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("duration"), auto_cast duration, "d@:") do panic("Failed to register objC method.")
     }
     if vt.delay != nil {
-        delay :: proc "c" (self: ^AK.WritingToolsCoordinatorAnimationParameters, _: SEL) -> CG.Float {
+        delay :: proc "c" (self: ^NS.WritingToolsCoordinatorAnimationParameters, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -73,7 +73,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delay"), auto_cast delay, "d@:") do panic("Failed to register objC method.")
     }
     if vt.progressHandler != nil {
-        progressHandler :: proc "c" (self: ^AK.WritingToolsCoordinatorAnimationParameters, _: SEL) -> ^Objc_Block(proc "c" ()) {
+        progressHandler :: proc "c" (self: ^NS.WritingToolsCoordinatorAnimationParameters, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -83,7 +83,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("progressHandler"), auto_cast progressHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setProgressHandler != nil {
-        setProgressHandler :: proc "c" (self: ^AK.WritingToolsCoordinatorAnimationParameters, _: SEL, progressHandler: ^Objc_Block(proc "c" ())) {
+        setProgressHandler :: proc "c" (self: ^NS.WritingToolsCoordinatorAnimationParameters, _: SEL, progressHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -93,7 +93,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setProgressHandler:"), auto_cast setProgressHandler, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.completionHandler != nil {
-        completionHandler :: proc "c" (self: ^AK.WritingToolsCoordinatorAnimationParameters, _: SEL) -> ^Objc_Block(proc "c" ()) {
+        completionHandler :: proc "c" (self: ^NS.WritingToolsCoordinatorAnimationParameters, _: SEL) -> ^Objc_Block(proc "c" ()) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -103,7 +103,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("completionHandler"), auto_cast completionHandler, "?@:") do panic("Failed to register objC method.")
     }
     if vt.setCompletionHandler != nil {
-        setCompletionHandler :: proc "c" (self: ^AK.WritingToolsCoordinatorAnimationParameters, _: SEL, completionHandler: ^Objc_Block(proc "c" ())) {
+        setCompletionHandler :: proc "c" (self: ^NS.WritingToolsCoordinatorAnimationParameters, _: SEL, completionHandler: ^Objc_Block(proc "c" ())) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

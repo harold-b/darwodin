@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    restoreUserActivityState: proc(self: ^AK.UserActivityRestoring, userActivity: ^NS.UserActivity),
+    restoreUserActivityState: proc(self: ^NS.UserActivityRestoring, userActivity: ^NS.UserActivity),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.restoreUserActivityState != nil {
-        restoreUserActivityState :: proc "c" (self: ^AK.UserActivityRestoring, _: SEL, userActivity: ^NS.UserActivity) {
+        restoreUserActivityState :: proc "c" (self: ^NS.UserActivityRestoring, _: SEL, userActivity: ^NS.UserActivity) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

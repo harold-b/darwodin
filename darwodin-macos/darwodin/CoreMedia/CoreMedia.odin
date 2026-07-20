@@ -16,7 +16,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@export foreign import lib "system:CoreMedia.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export)
+    foreign import lib {
+        "system:CoreMedia.framework",
+    }
+}
+
 
 
 NCMDeviceProfileInfo :: struct {}
@@ -1254,7 +1265,7 @@ foreign lib {
     BufferQueueReset :: proc(queue: BufferQueueRef) -> CF.OSStatus ---
 
     @(link_name="CMBufferQueueResetWithCallback")
-    BufferQueueResetWithCallback :: proc(queue: BufferQueueRef, callback: proc "c" (buffer: BufferRef, refcon: rawptr), refcon: rawptr) -> CF.OSStatus ---
+    BufferQueueResetWithCallback :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ), refcon: rawptr) -> CF.OSStatus ---
 
     @(link_name="CMBufferQueueGetBufferCount")
     BufferQueueGetBufferCount :: proc(queue: BufferQueueRef) -> ItemCount ---
@@ -1302,7 +1313,7 @@ foreign lib {
     BufferQueueTestTrigger :: proc(queue: BufferQueueRef, triggerToken: BufferQueueTriggerToken) -> CF.Boolean ---
 
     @(link_name="CMBufferQueueCallForEachBuffer")
-    BufferQueueCallForEachBuffer :: proc(queue: BufferQueueRef, callback: proc "c" (buffer: BufferRef, refcon: rawptr) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
+    BufferQueueCallForEachBuffer :: proc(queue: BufferQueueRef, callback: proc "c" ( buffer: BufferRef, refcon: rawptr ) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
 
     @(link_name="CMBufferQueueSetValidationCallback")
     BufferQueueSetValidationCallback :: proc(queue: BufferQueueRef, callback: BufferValidationCallback, refcon: rawptr) -> CF.OSStatus ---
@@ -1452,10 +1463,10 @@ foreign lib {
     SampleBufferGetSampleAttachmentsArray :: proc(sbuf: SampleBufferRef, createIfNecessary: CF.Boolean) -> CF.ArrayRef ---
 
     @(link_name="CMSampleBufferCallForEachSample")
-    SampleBufferCallForEachSample :: proc(sbuf: SampleBufferRef, callback: proc "c" (sampleBuffer: SampleBufferRef, index: ItemCount, refcon: rawptr) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
+    SampleBufferCallForEachSample :: proc(sbuf: SampleBufferRef, callback: proc "c" ( sampleBuffer: SampleBufferRef, index: ItemCount, refcon: rawptr ) -> CF.OSStatus, refcon: rawptr) -> CF.OSStatus ---
 
     @(link_name="CMSampleBufferCallBlockForEachSample")
-    SampleBufferCallBlockForEachSample :: proc(sbuf: SampleBufferRef, handler: ^Objc_Block(proc "c" (sampleBuffer: SampleBufferRef, index: ItemCount) -> CF.OSStatus)) -> CF.OSStatus ---
+    SampleBufferCallBlockForEachSample :: proc(sbuf: SampleBufferRef, handler: ^Objc_Block(proc "c" ( sampleBuffer: SampleBufferRef, index: ItemCount ) -> CF.OSStatus)) -> CF.OSStatus ---
 
     @(link_name="CMTagGetValueDataType")
     TagGetValueDataType :: proc(tag: Tag) -> TagDataType ---
@@ -1931,7 +1942,7 @@ IconRef :: ^OpaqueIconRef
 ColorSyncMutableProfileRef :: ^CG.ColorSyncProfile
 
 /// ColorSyncProfileIterateCallback
-ColorSyncProfileIterateCallback :: proc "c" (profileInfo: CF.DictionaryRef, userInfo: rawptr) -> cffi.bool
+ColorSyncProfileIterateCallback :: proc "c" ( profileInfo: CF.DictionaryRef, userInfo: rawptr ) -> cffi.bool
 
 /// ColorSyncTransformRef
 ColorSyncTransformRef :: ^ColorSyncTransform
@@ -1943,22 +1954,22 @@ ColorSyncDataLayout :: cffi.uint32_t
 ColorSyncCMMRef :: ^ColorSyncCMM
 
 /// ColorSyncCMMIterateCallback
-ColorSyncCMMIterateCallback :: proc "c" (cmm: ColorSyncCMMRef, userInfo: rawptr) -> cffi.bool
+ColorSyncCMMIterateCallback :: proc "c" ( cmm: ColorSyncCMMRef, userInfo: rawptr ) -> cffi.bool
 
 /// CMMInitializeLinkProfileProc
-MInitializeLinkProfileProc :: proc "c" (_: ColorSyncMutableProfileRef, profileInfo: CF.ArrayRef, options: CF.DictionaryRef) -> cffi.bool
+MInitializeLinkProfileProc :: proc "c" ( _0: ColorSyncMutableProfileRef, profileInfo: CF.ArrayRef, options: CF.DictionaryRef ) -> cffi.bool
 
 /// CMMInitializeTransformProc
-MInitializeTransformProc :: proc "c" (_: ColorSyncTransformRef, profileInfo: CF.ArrayRef, options: CF.DictionaryRef) -> cffi.bool
+MInitializeTransformProc :: proc "c" ( _0: ColorSyncTransformRef, profileInfo: CF.ArrayRef, options: CF.DictionaryRef ) -> cffi.bool
 
 /// CMMApplyTransformProc
-MApplyTransformProc :: proc "c" (transform: ColorSyncTransformRef, width: cffi.size_t, height: cffi.size_t, dstPlanes: cffi.size_t, dst: ^rawptr, dstDepth: ColorSyncDataDepth, dstFormat: ColorSyncDataLayout, dstBytesPerRow: cffi.size_t, srcPlanes: cffi.size_t, src: ^rawptr, srcDepth: ColorSyncDataDepth, srcFormat: ColorSyncDataLayout, srcBytesPerRow: cffi.size_t, options: CF.DictionaryRef) -> cffi.bool
+MApplyTransformProc :: proc "c" ( transform: ColorSyncTransformRef, width: cffi.size_t, height: cffi.size_t, dstPlanes: cffi.size_t, dst: ^rawptr, dstDepth: ColorSyncDataDepth, dstFormat: ColorSyncDataLayout, dstBytesPerRow: cffi.size_t, srcPlanes: cffi.size_t, src: ^rawptr, srcDepth: ColorSyncDataDepth, srcFormat: ColorSyncDataLayout, srcBytesPerRow: cffi.size_t, options: CF.DictionaryRef ) -> cffi.bool
 
 /// CMMCreateTransformPropertyProc
-MCreateTransformPropertyProc :: proc "c" (transform: ColorSyncTransformRef, key: CF.TypeRef, options: CF.DictionaryRef) -> CF.TypeRef
+MCreateTransformPropertyProc :: proc "c" ( transform: ColorSyncTransformRef, key: CF.TypeRef, options: CF.DictionaryRef ) -> CF.TypeRef
 
 /// ColorSyncDeviceProfileIterateCallback
-ColorSyncDeviceProfileIterateCallback :: proc "c" (colorSyncDeviceProfileInfo: CF.DictionaryRef, userInfo: rawptr) -> cffi.bool
+ColorSyncDeviceProfileIterateCallback :: proc "c" ( colorSyncDeviceProfileInfo: CF.DictionaryRef, userInfo: rawptr ) -> cffi.bool
 
 /// CMXYZComponent
 XYZComponent :: CF.UInt16
@@ -1994,19 +2005,19 @@ DisplayIDType :: CF.UInt32
 ChromaticAdaptation :: CF.UInt32
 
 /// CMFlattenProcPtr
-FlattenProcPtr :: proc "c" (command: CF.SInt32, size: ^cffi.long, data: rawptr, refCon: rawptr) -> CF.OSErr
+FlattenProcPtr :: proc "c" ( command: CF.SInt32, size: ^cffi.long, data: rawptr, refCon: rawptr ) -> CF.OSErr
 
 /// CMFlattenUPP
 FlattenUPP :: FlattenProcPtr
 
 /// CMBitmapCallBackProcPtr
-BitmapCallBackProcPtr :: proc "c" (progress: CF.SInt32, refCon: rawptr) -> CF.Boolean
+BitmapCallBackProcPtr :: proc "c" ( progress: CF.SInt32, refCon: rawptr ) -> CF.Boolean
 
 /// CMBitmapCallBackUPP
 BitmapCallBackUPP :: BitmapCallBackProcPtr
 
 /// CMConcatCallBackProcPtr
-ConcatCallBackProcPtr :: proc "c" (progress: CF.SInt32, refCon: rawptr) -> CF.Boolean
+ConcatCallBackProcPtr :: proc "c" ( progress: CF.SInt32, refCon: rawptr ) -> CF.Boolean
 
 /// CMConcatCallBackUPP
 ConcatCallBackUPP :: ConcatCallBackProcPtr
@@ -2015,19 +2026,19 @@ ConcatCallBackUPP :: ConcatCallBackProcPtr
 BitmapColorSpace :: CF.UInt32
 
 /// CMProfileIterateProcPtr
-ProfileIterateProcPtr :: proc "c" (iterateData: ^ProfileIterateData, refCon: rawptr) -> CF.OSErr
+ProfileIterateProcPtr :: proc "c" ( iterateData: ^ProfileIterateData, refCon: rawptr ) -> CF.OSErr
 
 /// CMProfileIterateUPP
 ProfileIterateUPP :: ProfileIterateProcPtr
 
 /// CMMIterateProcPtr
-MIterateProcPtr :: proc "c" (iterateData: ^MInfo, refCon: rawptr) -> CF.OSErr
+MIterateProcPtr :: proc "c" ( iterateData: ^MInfo, refCon: rawptr ) -> CF.OSErr
 
 /// CMMIterateUPP
 MIterateUPP :: MIterateProcPtr
 
 /// CMLabToLabProcPtr
-LabToLabProcPtr :: proc "c" (L: ^cffi.float, a: ^cffi.float, b: ^cffi.float, refcon: rawptr)
+LabToLabProcPtr :: proc "c" ( L: ^cffi.float, a: ^cffi.float, b: ^cffi.float, refcon: rawptr )
 
 /// CMDeviceState
 DeviceState :: CF.UInt32
@@ -2051,10 +2062,10 @@ DeviceInfoPtr :: ^DeviceInfo
 DeviceProfileArrayPtr :: ^DeviceProfileArray
 
 /// CMIterateDeviceInfoProcPtr
-IterateDeviceInfoProcPtr :: proc "c" (deviceInfo: ^DeviceInfo, refCon: rawptr) -> CF.OSErr
+IterateDeviceInfoProcPtr :: proc "c" ( deviceInfo: ^DeviceInfo, refCon: rawptr ) -> CF.OSErr
 
 /// CMIterateDeviceProfileProcPtr
-IterateDeviceProfileProcPtr :: proc "c" (deviceInfo: ^DeviceInfo, profileInfo: ^NCMDeviceProfileInfo, refCon: rawptr) -> CF.OSErr
+IterateDeviceProfileProcPtr :: proc "c" ( deviceInfo: ^DeviceInfo, profileInfo: ^NCMDeviceProfileInfo, refCon: rawptr ) -> CF.OSErr
 
 /// CMFormatDescriptionRef
 FormatDescriptionRef :: ^opaqueCMFormatDescription
@@ -2162,61 +2173,61 @@ BufferQueueRef :: ^opaqueCMBufferQueue
 BufferRef :: CF.TypeRef
 
 /// CMBufferGetTimeCallback
-BufferGetTimeCallback :: proc "c" (buf: BufferRef, refcon: rawptr) -> Time
+BufferGetTimeCallback :: proc "c" ( buf: BufferRef, refcon: rawptr ) -> Time
 
 /// CMBufferGetTimeHandler
-BufferGetTimeHandler :: ^Objc_Block(proc "c" (buf: BufferRef) -> Time)
+BufferGetTimeHandler :: ^Objc_Block(proc "c" ( buf: BufferRef ) -> Time)
 
 /// CMBufferGetBooleanCallback
-BufferGetBooleanCallback :: proc "c" (buf: BufferRef, refcon: rawptr) -> CF.Boolean
+BufferGetBooleanCallback :: proc "c" ( buf: BufferRef, refcon: rawptr ) -> CF.Boolean
 
 /// CMBufferGetBooleanHandler
-BufferGetBooleanHandler :: ^Objc_Block(proc "c" (buf: BufferRef) -> CF.Boolean)
+BufferGetBooleanHandler :: ^Objc_Block(proc "c" ( buf: BufferRef ) -> CF.Boolean)
 
 /// CMBufferCompareCallback
-BufferCompareCallback :: proc "c" (buf1: BufferRef, buf2: BufferRef, refcon: rawptr) -> CF.ComparisonResult
+BufferCompareCallback :: proc "c" ( buf1: BufferRef, buf2: BufferRef, refcon: rawptr ) -> CF.ComparisonResult
 
 /// CMBufferCompareHandler
-BufferCompareHandler :: ^Objc_Block(proc "c" (buf1: BufferRef, buf2: BufferRef) -> CF.ComparisonResult)
+BufferCompareHandler :: ^Objc_Block(proc "c" ( buf1: BufferRef, buf2: BufferRef ) -> CF.ComparisonResult)
 
 /// CMBufferGetSizeCallback
-BufferGetSizeCallback :: proc "c" (buf: BufferRef, refcon: rawptr) -> cffi.size_t
+BufferGetSizeCallback :: proc "c" ( buf: BufferRef, refcon: rawptr ) -> cffi.size_t
 
 /// CMBufferGetSizeHandler
-BufferGetSizeHandler :: ^Objc_Block(proc "c" (buf: BufferRef) -> cffi.size_t)
+BufferGetSizeHandler :: ^Objc_Block(proc "c" ( buf: BufferRef ) -> cffi.size_t)
 
 /// CMBufferQueueTriggerToken
 BufferQueueTriggerToken :: ^opaqueCMBufferQueueTriggerToken
 
 /// CMBufferQueueTriggerCallback
-BufferQueueTriggerCallback :: proc "c" (triggerRefcon: rawptr, triggerToken: BufferQueueTriggerToken)
+BufferQueueTriggerCallback :: proc "c" ( triggerRefcon: rawptr, triggerToken: BufferQueueTriggerToken )
 
 /// CMBufferQueueTriggerHandler
-BufferQueueTriggerHandler :: ^Objc_Block(proc "c" (triggerToken: BufferQueueTriggerToken))
+BufferQueueTriggerHandler :: ^Objc_Block(proc "c" ( triggerToken: BufferQueueTriggerToken ))
 
 /// CMBufferQueueTriggerCondition
 BufferQueueTriggerCondition :: cffi.int32_t
 
 /// CMBufferValidationCallback
-BufferValidationCallback :: proc "c" (queue: BufferQueueRef, buf: BufferRef, validationRefCon: rawptr) -> CF.OSStatus
+BufferValidationCallback :: proc "c" ( queue: BufferQueueRef, buf: BufferRef, validationRefCon: rawptr ) -> CF.OSStatus
 
 /// CMBufferValidationHandler
-BufferValidationHandler :: ^Objc_Block(proc "c" (queue: BufferQueueRef, buf: BufferRef) -> CF.OSStatus)
+BufferValidationHandler :: ^Objc_Block(proc "c" ( queue: BufferQueueRef, buf: BufferRef ) -> CF.OSStatus)
 
 /// CMSampleBufferRef
 SampleBufferRef :: ^opaqueCMSampleBuffer
 
 /// CMSampleBufferMakeDataReadyCallback
-SampleBufferMakeDataReadyCallback :: proc "c" (sbuf: SampleBufferRef, makeDataReadyRefcon: rawptr) -> CF.OSStatus
+SampleBufferMakeDataReadyCallback :: proc "c" ( sbuf: SampleBufferRef, makeDataReadyRefcon: rawptr ) -> CF.OSStatus
 
 /// CMSampleBufferMakeDataReadyHandler
-SampleBufferMakeDataReadyHandler :: ^Objc_Block(proc "c" (sbuf: SampleBufferRef) -> CF.OSStatus)
+SampleBufferMakeDataReadyHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ) -> CF.OSStatus)
 
 /// CMSampleBufferInvalidateCallback
-SampleBufferInvalidateCallback :: proc "c" (sbuf: SampleBufferRef, invalidateRefCon: cffi.uint64_t)
+SampleBufferInvalidateCallback :: proc "c" ( sbuf: SampleBufferRef, invalidateRefCon: cffi.uint64_t )
 
 /// CMSampleBufferInvalidateHandler
-SampleBufferInvalidateHandler :: ^Objc_Block(proc "c" (sbuf: SampleBufferRef))
+SampleBufferInvalidateHandler :: ^Objc_Block(proc "c" ( sbuf: SampleBufferRef ))
 
 /// CMTagValue
 TagValue :: cffi.uint64_t
@@ -2228,10 +2239,10 @@ TagCollectionRef :: ^OpaqueCMTagCollection
 MutableTagCollectionRef :: ^OpaqueCMTagCollection
 
 /// CMTagCollectionApplierFunction
-TagCollectionApplierFunction :: proc "c" (tag: Tag, _context: rawptr)
+TagCollectionApplierFunction :: proc "c" ( tag: Tag, _context: rawptr )
 
 /// CMTagCollectionTagFilterFunction
-TagCollectionTagFilterFunction :: proc "c" (tag: Tag, _context: rawptr) -> CF.Boolean
+TagCollectionTagFilterFunction :: proc "c" ( tag: Tag, _context: rawptr ) -> CF.Boolean
 
 /// CMTaggedBufferGroupRef
 TaggedBufferGroupRef :: ^OpaqueCMTaggedBufferGroup
@@ -3210,8 +3221,8 @@ OpaqueCMBlockBuffer :: struct {}
 /// CMBlockBufferCustomBlockSource
 BlockBufferCustomBlockSource :: struct #align (4) #max_field_align(4) {
     version:       cffi.uint32_t,
-    AllocateBlock: proc "c" (refcon: rawptr, sizeInBytes: cffi.size_t) -> rawptr,
-    FreeBlock:     proc "c" (refcon: rawptr, doomedMemoryBlock: rawptr, sizeInBytes: cffi.size_t),
+    AllocateBlock: proc "c" ( refcon: rawptr, sizeInBytes: cffi.size_t ) -> rawptr,
+    FreeBlock:     proc "c" ( refcon: rawptr, doomedMemoryBlock: rawptr, sizeInBytes: cffi.size_t ),
     refCon:        rawptr,
 }
 #assert(size_of(BlockBufferCustomBlockSource) == 28)

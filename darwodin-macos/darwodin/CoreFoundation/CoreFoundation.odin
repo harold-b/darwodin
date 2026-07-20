@@ -13,7 +13,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:CoreFoundation.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:CoreFoundation.framework",
+    }
+}
+
 
 FSRef             :: struct {}
 NSObject          :: intrinsics.objc_object
@@ -1932,7 +1943,7 @@ foreign lib {
     RunLoopObserverCreate :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, callout: RunLoopObserverCallBack, _context: ^RunLoopObserverContext) -> RunLoopObserverRef ---
 
     @(link_name="CFRunLoopObserverCreateWithHandler")
-    RunLoopObserverCreateWithHandler :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, block: ^Objc_Block(proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity))) -> RunLoopObserverRef ---
+    RunLoopObserverCreateWithHandler :: proc(allocator: AllocatorRef, activities: OptionFlags, repeats: Boolean, order: Index, block: ^Objc_Block(proc "c" ( observer: RunLoopObserverRef, activity: RunLoopActivity ))) -> RunLoopObserverRef ---
 
     @(link_name="CFRunLoopObserverGetActivities")
     RunLoopObserverGetActivities :: proc(observer: RunLoopObserverRef) -> OptionFlags ---
@@ -1959,7 +1970,7 @@ foreign lib {
     RunLoopTimerCreate :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, callout: RunLoopTimerCallBack, _context: ^RunLoopTimerContext) -> RunLoopTimerRef ---
 
     @(link_name="CFRunLoopTimerCreateWithHandler")
-    RunLoopTimerCreateWithHandler :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, block: ^Objc_Block(proc "c" (timer: RunLoopTimerRef))) -> RunLoopTimerRef ---
+    RunLoopTimerCreateWithHandler :: proc(allocator: AllocatorRef, fireDate: CFAbsoluteTime, interval: TimeInterval, flags: OptionFlags, order: Index, block: ^Objc_Block(proc "c" ( timer: RunLoopTimerRef ))) -> RunLoopTimerRef ---
 
     @(link_name="CFRunLoopTimerGetNextFireDate")
     RunLoopTimerGetNextFireDate :: proc(timer: RunLoopTimerRef) -> CFAbsoluteTime ---
@@ -2139,10 +2150,10 @@ foreign lib {
     dispatch_async_and_wait_f :: proc(queue: dispatch_queue_t, _context: rawptr, work: dispatch_function_t) ---
 
     @(link_name="dispatch_apply")
-    dispatch_apply :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, block: ^Objc_Block(proc "c" (iteration: cffi.size_t))) ---
+    dispatch_apply :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, block: ^Objc_Block(proc "c" ( iteration: cffi.size_t ))) ---
 
     @(link_name="dispatch_apply_f")
-    dispatch_apply_f :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, _context: rawptr, work: proc "c" (_context: rawptr, iteration: cffi.size_t)) ---
+    dispatch_apply_f :: proc(iterations: cffi.size_t, queue: dispatch_queue_t, _context: rawptr, work: proc "c" ( _context: rawptr, iteration: cffi.size_t )) ---
 
     @(link_name="dispatch_get_current_queue")
     dispatch_get_current_queue :: proc() -> dispatch_queue_t ---
@@ -2346,19 +2357,19 @@ foreign lib {
     dispatch_data_copy_region :: proc(data: dispatch_data_t, location: cffi.size_t, offset_ptr: ^cffi.size_t) -> dispatch_data_t ---
 
     @(link_name="dispatch_read")
-    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.size_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" (data: dispatch_data_t, error: cffi.int))) ---
+    dispatch_read :: proc(fd: dispatch_fd_t, length: cffi.size_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" ( data: dispatch_data_t, error: cffi.int ))) ---
 
     @(link_name="dispatch_write")
-    dispatch_write :: proc(fd: dispatch_fd_t, data: dispatch_data_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" (data: dispatch_data_t, error: cffi.int))) ---
+    dispatch_write :: proc(fd: dispatch_fd_t, data: dispatch_data_t, queue: dispatch_queue_t, handler: ^Objc_Block(proc "c" ( data: dispatch_data_t, error: cffi.int ))) ---
 
     @(link_name="dispatch_io_create")
-    dispatch_io_create :: proc(type: dispatch_io_type_t, fd: dispatch_fd_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
+    dispatch_io_create :: proc(type: dispatch_io_type_t, fd: dispatch_fd_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" ( error: cffi.int ))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_create_with_path")
-    dispatch_io_create_with_path :: proc(type: dispatch_io_type_t, path: cstring, oflag: cffi.int, mode: libc.mode_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
+    dispatch_io_create_with_path :: proc(type: dispatch_io_type_t, path: cstring, oflag: cffi.int, mode: libc.mode_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" ( error: cffi.int ))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_create_with_io")
-    dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" (error: cffi.int))) -> dispatch_io_t ---
+    dispatch_io_create_with_io :: proc(type: dispatch_io_type_t, io: dispatch_io_t, queue: dispatch_queue_t, cleanup_handler: ^Objc_Block(proc "c" ( error: cffi.int ))) -> dispatch_io_t ---
 
     @(link_name="dispatch_io_read")
     dispatch_io_read :: proc(channel: dispatch_io_t, offset: libc.off_t, length: cffi.size_t, queue: dispatch_queue_t, io_handler: dispatch_io_handler_t) ---
@@ -3500,7 +3511,7 @@ MutableStringRef :: ^__CFString
 PropertyListRef :: TypeRef
 
 /// CFComparatorFunction
-ComparatorFunction :: proc "c" (val1: rawptr, val2: rawptr, _context: rawptr) -> ComparisonResult
+ComparatorFunction :: proc "c" ( val1: rawptr, val2: rawptr, _context: rawptr ) -> ComparisonResult
 
 /// CFNullRef
 NullRef :: ^__CFNull
@@ -3509,40 +3520,40 @@ NullRef :: ^__CFNull
 AllocatorRef :: ^__CFAllocator
 
 /// CFAllocatorRetainCallBack
-AllocatorRetainCallBack :: proc "c" (info: rawptr) -> rawptr
+AllocatorRetainCallBack :: proc "c" ( info: rawptr ) -> rawptr
 
 /// CFAllocatorReleaseCallBack
-AllocatorReleaseCallBack :: proc "c" (info: rawptr)
+AllocatorReleaseCallBack :: proc "c" ( info: rawptr )
 
 /// CFAllocatorCopyDescriptionCallBack
-AllocatorCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
+AllocatorCopyDescriptionCallBack :: proc "c" ( info: rawptr ) -> StringRef
 
 /// CFAllocatorAllocateCallBack
-AllocatorAllocateCallBack :: proc "c" (allocSize: Index, hint: OptionFlags, info: rawptr) -> rawptr
+AllocatorAllocateCallBack :: proc "c" ( allocSize: Index, hint: OptionFlags, info: rawptr ) -> rawptr
 
 /// CFAllocatorReallocateCallBack
-AllocatorReallocateCallBack :: proc "c" (ptr: rawptr, newsize: Index, hint: OptionFlags, info: rawptr) -> rawptr
+AllocatorReallocateCallBack :: proc "c" ( ptr: rawptr, newsize: Index, hint: OptionFlags, info: rawptr ) -> rawptr
 
 /// CFAllocatorDeallocateCallBack
-AllocatorDeallocateCallBack :: proc "c" (ptr: rawptr, info: rawptr)
+AllocatorDeallocateCallBack :: proc "c" ( ptr: rawptr, info: rawptr )
 
 /// CFAllocatorPreferredSizeCallBack
-AllocatorPreferredSizeCallBack :: proc "c" (size: Index, hint: OptionFlags, info: rawptr) -> Index
+AllocatorPreferredSizeCallBack :: proc "c" ( size: Index, hint: OptionFlags, info: rawptr ) -> Index
 
 /// CFArrayRetainCallBack
-ArrayRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+ArrayRetainCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr ) -> rawptr
 
 /// CFArrayReleaseCallBack
-ArrayReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
+ArrayReleaseCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr )
 
 /// CFArrayCopyDescriptionCallBack
-ArrayCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
+ArrayCopyDescriptionCallBack :: proc "c" ( value: rawptr ) -> StringRef
 
 /// CFArrayEqualCallBack
-ArrayEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+ArrayEqualCallBack :: proc "c" ( value1: rawptr, value2: rawptr ) -> Boolean
 
 /// CFArrayApplierFunction
-ArrayApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
+ArrayApplierFunction :: proc "c" ( value: rawptr, _context: rawptr )
 
 /// CFArrayRef
 ArrayRef :: ^__CFArray
@@ -3551,22 +3562,22 @@ ArrayRef :: ^__CFArray
 MutableArrayRef :: ^__CFArray
 
 /// CFBagRetainCallBack
-BagRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+BagRetainCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr ) -> rawptr
 
 /// CFBagReleaseCallBack
-BagReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
+BagReleaseCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr )
 
 /// CFBagCopyDescriptionCallBack
-BagCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
+BagCopyDescriptionCallBack :: proc "c" ( value: rawptr ) -> StringRef
 
 /// CFBagEqualCallBack
-BagEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+BagEqualCallBack :: proc "c" ( value1: rawptr, value2: rawptr ) -> Boolean
 
 /// CFBagHashCallBack
-BagHashCallBack :: proc "c" (value: rawptr) -> HashCode
+BagHashCallBack :: proc "c" ( value: rawptr ) -> HashCode
 
 /// CFBagApplierFunction
-BagApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
+BagApplierFunction :: proc "c" ( value: rawptr, _context: rawptr )
 
 /// CFBagRef
 BagRef :: ^__CFBag
@@ -3575,7 +3586,7 @@ BagRef :: ^__CFBag
 MutableBagRef :: ^__CFBag
 
 /// CFBinaryHeapApplierFunction
-BinaryHeapApplierFunction :: proc "c" (val: rawptr, _context: rawptr)
+BinaryHeapApplierFunction :: proc "c" ( val: rawptr, _context: rawptr )
 
 /// CFBinaryHeapRef
 BinaryHeapRef :: ^__CFBinaryHeap
@@ -3593,22 +3604,22 @@ MutableBitVectorRef :: ^__CFBitVector
 ByteOrder :: Index
 
 /// CFDictionaryRetainCallBack
-DictionaryRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+DictionaryRetainCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr ) -> rawptr
 
 /// CFDictionaryReleaseCallBack
-DictionaryReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
+DictionaryReleaseCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr )
 
 /// CFDictionaryCopyDescriptionCallBack
-DictionaryCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
+DictionaryCopyDescriptionCallBack :: proc "c" ( value: rawptr ) -> StringRef
 
 /// CFDictionaryEqualCallBack
-DictionaryEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+DictionaryEqualCallBack :: proc "c" ( value1: rawptr, value2: rawptr ) -> Boolean
 
 /// CFDictionaryHashCallBack
-DictionaryHashCallBack :: proc "c" (value: rawptr) -> HashCode
+DictionaryHashCallBack :: proc "c" ( value: rawptr ) -> HashCode
 
 /// CFDictionaryApplierFunction
-DictionaryApplierFunction :: proc "c" (key: rawptr, value: rawptr, _context: rawptr)
+DictionaryApplierFunction :: proc "c" ( key: rawptr, value: rawptr, _context: rawptr )
 
 /// CFDictionaryRef
 DictionaryRef :: ^__CFDictionary
@@ -3623,7 +3634,7 @@ NotificationName :: StringRef
 NotificationCenterRef :: ^__CFNotificationCenter
 
 /// CFNotificationCallback
-NotificationCallback :: proc "c" (center: NotificationCenterRef, observer: rawptr, name: NotificationName, object: rawptr, userInfo: DictionaryRef)
+NotificationCallback :: proc "c" ( center: NotificationCenterRef, observer: rawptr, name: NotificationName, object: rawptr, userInfo: DictionaryRef )
 
 /// CFLocaleIdentifier
 LocaleIdentifier :: StringRef
@@ -3710,22 +3721,22 @@ RunLoopObserverRef :: ^__CFRunLoopObserver
 RunLoopTimerRef :: ^__CFRunLoopTimer
 
 /// CFRunLoopObserverCallBack
-RunLoopObserverCallBack :: proc "c" (observer: RunLoopObserverRef, activity: RunLoopActivity, info: rawptr)
+RunLoopObserverCallBack :: proc "c" ( observer: RunLoopObserverRef, activity: RunLoopActivity, info: rawptr )
 
 /// CFRunLoopTimerCallBack
-RunLoopTimerCallBack :: proc "c" (timer: RunLoopTimerRef, info: rawptr)
+RunLoopTimerCallBack :: proc "c" ( timer: RunLoopTimerRef, info: rawptr )
 
 /// CFSocketRef
 SocketRef :: ^__CFSocket
 
 /// CFSocketCallBack
-SocketCallBack :: proc "c" (s: SocketRef, type: SocketCallBackType, address: DataRef, data: rawptr, info: rawptr)
+SocketCallBack :: proc "c" ( s: SocketRef, type: SocketCallBackType, address: DataRef, data: rawptr, info: rawptr )
 
 /// CFSocketNativeHandle
 SocketNativeHandle :: cffi.int
 
 /// os_function_t
-os_function_t :: proc "c" (_: rawptr)
+os_function_t :: proc "c" ( _0: rawptr )
 
 /// os_block_t
 os_block_t :: ^Objc_Block(proc "c" ())
@@ -3749,7 +3760,7 @@ os_workgroup_join_token_t :: ^os_workgroup_join_token_opaque_s
 os_workgroup_index :: cffi.uint32_t
 
 /// os_workgroup_working_arena_destructor_t
-os_workgroup_working_arena_destructor_t :: proc "c" (_: rawptr)
+os_workgroup_working_arena_destructor_t :: proc "c" ( _0: rawptr )
 
 /// os_workgroup_mpt_attr_s
 os_workgroup_mpt_attr_s :: os_workgroup_max_parallel_threads_attr_s
@@ -3761,7 +3772,7 @@ os_workgroup_mpt_attr_t :: ^os_workgroup_max_parallel_threads_attr_s
 os_workgroup_parallel_t :: os_workgroup_t
 
 /// dispatch_function_t
-dispatch_function_t :: proc "c" (_: rawptr)
+dispatch_function_t :: proc "c" ( _0: rawptr )
 
 /// dispatch_time_t
 dispatch_time_t :: cffi.uint64_t
@@ -3833,7 +3844,7 @@ dispatch_once_t :: cffi.intptr_t
 dispatch_data_t :: ^dispatch_data_s
 
 /// dispatch_data_applier_t
-dispatch_data_applier_t :: ^Objc_Block(proc "c" (region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t) -> cffi.bool)
+dispatch_data_applier_t :: ^Objc_Block(proc "c" ( region: dispatch_data_t, offset: cffi.size_t, buffer: rawptr, size: cffi.size_t ) -> cffi.bool)
 
 /// dispatch_fd_t
 dispatch_fd_t :: cffi.int
@@ -3845,7 +3856,7 @@ dispatch_io_t :: ^dispatch_io_s
 dispatch_io_type_t :: cffi.ulong
 
 /// dispatch_io_handler_t
-dispatch_io_handler_t :: ^Objc_Block(proc "c" (done: cffi.bool, data: dispatch_data_t, error: cffi.int))
+dispatch_io_handler_t :: ^Objc_Block(proc "c" ( done: cffi.bool, data: dispatch_data_t, error: cffi.int ))
 
 /// dispatch_io_close_flags_t
 dispatch_io_close_flags_t :: cffi.ulong
@@ -3863,28 +3874,28 @@ ReadStreamRef :: ^__CFReadStream
 WriteStreamRef :: ^__CFWriteStream
 
 /// CFReadStreamClientCallBack
-ReadStreamClientCallBack :: proc "c" (stream: ReadStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
+ReadStreamClientCallBack :: proc "c" ( stream: ReadStreamRef, type: StreamEventType, clientCallBackInfo: rawptr )
 
 /// CFWriteStreamClientCallBack
-WriteStreamClientCallBack :: proc "c" (stream: WriteStreamRef, type: StreamEventType, clientCallBackInfo: rawptr)
+WriteStreamClientCallBack :: proc "c" ( stream: WriteStreamRef, type: StreamEventType, clientCallBackInfo: rawptr )
 
 /// CFSetRetainCallBack
-SetRetainCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr) -> rawptr
+SetRetainCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr ) -> rawptr
 
 /// CFSetReleaseCallBack
-SetReleaseCallBack :: proc "c" (allocator: AllocatorRef, value: rawptr)
+SetReleaseCallBack :: proc "c" ( allocator: AllocatorRef, value: rawptr )
 
 /// CFSetCopyDescriptionCallBack
-SetCopyDescriptionCallBack :: proc "c" (value: rawptr) -> StringRef
+SetCopyDescriptionCallBack :: proc "c" ( value: rawptr ) -> StringRef
 
 /// CFSetEqualCallBack
-SetEqualCallBack :: proc "c" (value1: rawptr, value2: rawptr) -> Boolean
+SetEqualCallBack :: proc "c" ( value1: rawptr, value2: rawptr ) -> Boolean
 
 /// CFSetHashCallBack
-SetHashCallBack :: proc "c" (value: rawptr) -> HashCode
+SetHashCallBack :: proc "c" ( value: rawptr ) -> HashCode
 
 /// CFSetApplierFunction
-SetApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
+SetApplierFunction :: proc "c" ( value: rawptr, _context: rawptr )
 
 /// CFSetRef
 SetRef :: ^__CFSet
@@ -3893,16 +3904,16 @@ SetRef :: ^__CFSet
 MutableSetRef :: ^__CFSet
 
 /// CFTreeRetainCallBack
-TreeRetainCallBack :: proc "c" (info: rawptr) -> rawptr
+TreeRetainCallBack :: proc "c" ( info: rawptr ) -> rawptr
 
 /// CFTreeReleaseCallBack
-TreeReleaseCallBack :: proc "c" (info: rawptr)
+TreeReleaseCallBack :: proc "c" ( info: rawptr )
 
 /// CFTreeCopyDescriptionCallBack
-TreeCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
+TreeCopyDescriptionCallBack :: proc "c" ( info: rawptr ) -> StringRef
 
 /// CFTreeApplierFunction
-TreeApplierFunction :: proc "c" (value: rawptr, _context: rawptr)
+TreeApplierFunction :: proc "c" ( value: rawptr, _context: rawptr )
 
 /// CFTreeRef
 TreeRef :: ^__CFTree
@@ -3923,37 +3934,37 @@ BundleRefNum :: cffi.int
 MessagePortRef :: ^__CFMessagePort
 
 /// CFMessagePortCallBack
-MessagePortCallBack :: proc "c" (local: MessagePortRef, msgid: SInt32, data: DataRef, info: rawptr) -> DataRef
+MessagePortCallBack :: proc "c" ( local: MessagePortRef, msgid: SInt32, data: DataRef, info: rawptr ) -> DataRef
 
 /// CFMessagePortInvalidationCallBack
-MessagePortInvalidationCallBack :: proc "c" (ms: MessagePortRef, info: rawptr)
+MessagePortInvalidationCallBack :: proc "c" ( ms: MessagePortRef, info: rawptr )
 
 /// CFPlugInDynamicRegisterFunction
-PlugInDynamicRegisterFunction :: proc "c" (plugIn: PlugInRef)
+PlugInDynamicRegisterFunction :: proc "c" ( plugIn: PlugInRef )
 
 /// CFPlugInUnloadFunction
-PlugInUnloadFunction :: proc "c" (plugIn: PlugInRef)
+PlugInUnloadFunction :: proc "c" ( plugIn: PlugInRef )
 
 /// CFPlugInFactoryFunction
-PlugInFactoryFunction :: proc "c" (allocator: AllocatorRef, typeUUID: UUIDRef) -> rawptr
+PlugInFactoryFunction :: proc "c" ( allocator: AllocatorRef, typeUUID: UUIDRef ) -> rawptr
 
 /// CFPlugInInstanceRef
 PlugInInstanceRef :: ^__CFPlugInInstance
 
 /// CFPlugInInstanceGetInterfaceFunction
-PlugInInstanceGetInterfaceFunction :: proc "c" (instance: PlugInInstanceRef, interfaceName: StringRef, ftbl: ^rawptr) -> Boolean
+PlugInInstanceGetInterfaceFunction :: proc "c" ( instance: PlugInInstanceRef, interfaceName: StringRef, ftbl: ^rawptr ) -> Boolean
 
 /// CFPlugInInstanceDeallocateInstanceDataFunction
-PlugInInstanceDeallocateInstanceDataFunction :: proc "c" (instanceData: rawptr)
+PlugInInstanceDeallocateInstanceDataFunction :: proc "c" ( instanceData: rawptr )
 
 /// CFMachPortRef
 MachPortRef :: ^__CFMachPort
 
 /// CFMachPortCallBack
-MachPortCallBack :: proc "c" (port: MachPortRef, msg: rawptr, size: Index, info: rawptr)
+MachPortCallBack :: proc "c" ( port: MachPortRef, msg: rawptr, size: Index, info: rawptr )
 
 /// CFMachPortInvalidationCallBack
-MachPortInvalidationCallBack :: proc "c" (port: MachPortRef, info: rawptr)
+MachPortInvalidationCallBack :: proc "c" ( port: MachPortRef, info: rawptr )
 
 /// CFAttributedStringRef
 AttributedStringRef :: ^__CFAttributedString
@@ -3977,13 +3988,13 @@ FileDescriptorNativeDescriptor :: cffi.int
 FileDescriptorRef :: ^__CFFileDescriptor
 
 /// CFFileDescriptorCallBack
-FileDescriptorCallBack :: proc "c" (f: FileDescriptorRef, callBackTypes: OptionFlags, info: rawptr)
+FileDescriptorCallBack :: proc "c" ( f: FileDescriptorRef, callBackTypes: OptionFlags, info: rawptr )
 
 /// CFUserNotificationRef
 UserNotificationRef :: ^__CFUserNotification
 
 /// CFUserNotificationCallBack
-UserNotificationCallBack :: proc "c" (userNotification: UserNotificationRef, responseFlags: OptionFlags)
+UserNotificationCallBack :: proc "c" ( userNotification: UserNotificationRef, responseFlags: OptionFlags )
 
 /// CFXMLNodeRef
 XMLNodeRef :: ^__CFXMLNode
@@ -3995,28 +4006,28 @@ XMLTreeRef :: TreeRef
 XMLParserRef :: ^__CFXMLParser
 
 /// CFXMLParserCreateXMLStructureCallBack
-XMLParserCreateXMLStructureCallBack :: proc "c" (parser: XMLParserRef, nodeDesc: XMLNodeRef, info: rawptr) -> rawptr
+XMLParserCreateXMLStructureCallBack :: proc "c" ( parser: XMLParserRef, nodeDesc: XMLNodeRef, info: rawptr ) -> rawptr
 
 /// CFXMLParserAddChildCallBack
-XMLParserAddChildCallBack :: proc "c" (parser: XMLParserRef, parent: rawptr, child: rawptr, info: rawptr)
+XMLParserAddChildCallBack :: proc "c" ( parser: XMLParserRef, parent: rawptr, child: rawptr, info: rawptr )
 
 /// CFXMLParserEndXMLStructureCallBack
-XMLParserEndXMLStructureCallBack :: proc "c" (parser: XMLParserRef, xmlType: rawptr, info: rawptr)
+XMLParserEndXMLStructureCallBack :: proc "c" ( parser: XMLParserRef, xmlType: rawptr, info: rawptr )
 
 /// CFXMLParserResolveExternalEntityCallBack
-XMLParserResolveExternalEntityCallBack :: proc "c" (parser: XMLParserRef, extID: ^XMLExternalID, info: rawptr) -> DataRef
+XMLParserResolveExternalEntityCallBack :: proc "c" ( parser: XMLParserRef, extID: ^XMLExternalID, info: rawptr ) -> DataRef
 
 /// CFXMLParserHandleErrorCallBack
-XMLParserHandleErrorCallBack :: proc "c" (parser: XMLParserRef, error: XMLParserStatusCode, info: rawptr) -> Boolean
+XMLParserHandleErrorCallBack :: proc "c" ( parser: XMLParserRef, error: XMLParserStatusCode, info: rawptr ) -> Boolean
 
 /// CFXMLParserRetainCallBack
-XMLParserRetainCallBack :: proc "c" (info: rawptr) -> rawptr
+XMLParserRetainCallBack :: proc "c" ( info: rawptr ) -> rawptr
 
 /// CFXMLParserReleaseCallBack
-XMLParserReleaseCallBack :: proc "c" (info: rawptr)
+XMLParserReleaseCallBack :: proc "c" ( info: rawptr )
 
 /// CFXMLParserCopyDescriptionCallBack
-XMLParserCopyDescriptionCallBack :: proc "c" (info: rawptr) -> StringRef
+XMLParserCopyDescriptionCallBack :: proc "c" ( info: rawptr ) -> StringRef
 
 /// os_clockid_t
 os_clockid_t :: enum cffi.uint {
@@ -4713,19 +4724,19 @@ __CFBag :: struct {}
 BinaryHeapCompareContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
 #assert(size_of(BinaryHeapCompareContext) == 40)
 
 /// CFBinaryHeapCallBacks
 BinaryHeapCallBacks :: struct #align (8) {
     version:         Index,
-    retain:          proc "c" (allocator: AllocatorRef, ptr: rawptr) -> rawptr,
-    release:         proc "c" (allocator: AllocatorRef, ptr: rawptr),
-    copyDescription: proc "c" (ptr: rawptr) -> StringRef,
-    compare:         proc "c" (ptr1: rawptr, ptr2: rawptr, _context: rawptr) -> ComparisonResult,
+    retain:          proc "c" ( allocator: AllocatorRef, ptr: rawptr ) -> rawptr,
+    release:         proc "c" ( allocator: AllocatorRef, ptr: rawptr ),
+    copyDescription: proc "c" ( ptr: rawptr ) -> StringRef,
+    compare:         proc "c" ( ptr1: rawptr, ptr2: rawptr, _context: rawptr ) -> ComparisonResult,
 }
 #assert(size_of(BinaryHeapCallBacks) == 40)
 
@@ -4860,14 +4871,14 @@ __CFRunLoopTimer :: struct {}
 RunLoopSourceContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
-    equal:           proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
-    hash:            proc "c" (info: rawptr) -> HashCode,
-    schedule:        proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
-    cancel:          proc "c" (info: rawptr, rl: RunLoopRef, mode: RunLoopMode),
-    perform:         proc "c" (info: rawptr),
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
+    equal:           proc "c" ( info1: rawptr, info2: rawptr ) -> Boolean,
+    hash:            proc "c" ( info: rawptr ) -> HashCode,
+    schedule:        proc "c" ( info: rawptr, rl: RunLoopRef, mode: RunLoopMode ),
+    cancel:          proc "c" ( info: rawptr, rl: RunLoopRef, mode: RunLoopMode ),
+    perform:         proc "c" ( info: rawptr ),
 }
 #assert(size_of(RunLoopSourceContext) == 80)
 
@@ -4875,13 +4886,13 @@ RunLoopSourceContext :: struct #align (8) {
 RunLoopSourceContext1 :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
-    equal:           proc "c" (info1: rawptr, info2: rawptr) -> Boolean,
-    hash:            proc "c" (info: rawptr) -> HashCode,
-    getPort:         proc "c" (info: rawptr) -> mach.port_t,
-    perform:         proc "c" (msg: rawptr, size: Index, allocator: AllocatorRef, info: rawptr) -> rawptr,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
+    equal:           proc "c" ( info1: rawptr, info2: rawptr ) -> Boolean,
+    hash:            proc "c" ( info: rawptr ) -> HashCode,
+    getPort:         proc "c" ( info: rawptr ) -> mach.port_t,
+    perform:         proc "c" ( msg: rawptr, size: Index, allocator: AllocatorRef, info: rawptr ) -> rawptr,
 }
 #assert(size_of(RunLoopSourceContext1) == 72)
 
@@ -4889,9 +4900,9 @@ RunLoopSourceContext1 :: struct #align (8) {
 RunLoopObserverContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
 #assert(size_of(RunLoopObserverContext) == 40)
 
@@ -4899,9 +4910,9 @@ RunLoopObserverContext :: struct #align (8) {
 RunLoopTimerContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
 #assert(size_of(RunLoopTimerContext) == 40)
 
@@ -4921,9 +4932,9 @@ SocketSignature :: struct #align (8) {
 SocketContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
 #assert(size_of(SocketContext) == 40)
 
@@ -5004,9 +5015,9 @@ StreamError :: struct #align (8) {
 StreamClientContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
 #assert(size_of(StreamClientContext) == 40)
 
@@ -5077,9 +5088,9 @@ __CFMessagePort :: struct {}
 MessagePortContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
 #assert(size_of(MessagePortContext) == 40)
 
@@ -5093,9 +5104,9 @@ __CFMachPort :: struct {}
 MachPortContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
 #assert(size_of(MachPortContext) == 40)
 
@@ -5118,9 +5129,9 @@ __CFFileDescriptor :: struct {}
 FileDescriptorContext :: struct #align (8) {
     version:         Index,
     info:            rawptr,
-    retain:          proc "c" (info: rawptr) -> rawptr,
-    release:         proc "c" (info: rawptr),
-    copyDescription: proc "c" (info: rawptr) -> StringRef,
+    retain:          proc "c" ( info: rawptr ) -> rawptr,
+    release:         proc "c" ( info: rawptr ),
+    copyDescription: proc "c" ( info: rawptr ) -> StringRef,
 }
 #assert(size_of(FileDescriptorContext) == 40)
 

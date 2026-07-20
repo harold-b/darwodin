@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMIDISysexEvent
-///
 @(objc_class="AVMIDISysexEvent", objc_superclass=MusicEvent)
 MIDISysexEvent :: struct { using _: MusicEvent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MIDISysexEvent, objc_selector="initWithData:", objc_name="initWithData")
     MIDISysexEvent_initWithData :: proc(self: ^MIDISysexEvent, data: ^NS.Data) -> instancetype ---
@@ -28,3 +22,6 @@ foreign lib {
     @(objc_type=MIDISysexEvent, objc_selector="sizeInBytes", objc_name="sizeInBytes")
     MIDISysexEvent_sizeInBytes :: proc(self: ^MIDISysexEvent) -> CF.UInt32 ---
 }
+
+
+

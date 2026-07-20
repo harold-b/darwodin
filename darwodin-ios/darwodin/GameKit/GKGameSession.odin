@@ -18,40 +18,40 @@ GameSession :: struct { using _: NS.Object, }
 @(default_calling_convention="c")
 foreign lib {
     @(objc_type=GameSession, objc_selector="createSessionInContainer:withTitle:maxConnectedPlayers:completionHandler:", objc_name="createSessionInContainer", objc_is_class_method=true)
-    GameSession_createSessionInContainer :: proc(containerName: ^NS.String, title: ^NS.String, maxPlayers: NS.Integer, completionHandler: ^Objc_Block(proc "c" (session: ^GameSession, error: ^NS.Error))) ---
+    GameSession_createSessionInContainer :: proc(containerName: ^NS.String, title: ^NS.String, maxPlayers: NS.Integer, completionHandler: ^Objc_Block(proc "c" ( session: ^GameSession, error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="loadSessionsInContainer:completionHandler:", objc_name="loadSessionsInContainer", objc_is_class_method=true)
-    GameSession_loadSessionsInContainer :: proc(containerName: ^NS.String, completionHandler: ^Objc_Block(proc "c" (sessions: ^NS.Array, error: ^NS.Error))) ---
+    GameSession_loadSessionsInContainer :: proc(containerName: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( sessions: ^NS.Array, error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="loadSessionWithIdentifier:completionHandler:", objc_name="loadSessionWithIdentifier", objc_is_class_method=true)
-    GameSession_loadSessionWithIdentifier :: proc(identifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (session: ^GameSession, error: ^NS.Error))) ---
+    GameSession_loadSessionWithIdentifier :: proc(identifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( session: ^GameSession, error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="removeSessionWithIdentifier:completionHandler:", objc_name="removeSessionWithIdentifier", objc_is_class_method=true)
-    GameSession_removeSessionWithIdentifier :: proc(identifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    GameSession_removeSessionWithIdentifier :: proc(identifier: ^NS.String, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="getShareURLWithCompletionHandler:", objc_name="getShareURLWithCompletionHandler")
-    GameSession_getShareURLWithCompletionHandler :: proc(self: ^GameSession, completionHandler: ^Objc_Block(proc "c" (url: ^NS.URL, error: ^NS.Error))) ---
+    GameSession_getShareURLWithCompletionHandler :: proc(self: ^GameSession, completionHandler: ^Objc_Block(proc "c" ( url: ^NS.URL, error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="loadDataWithCompletionHandler:", objc_name="loadDataWithCompletionHandler")
-    GameSession_loadDataWithCompletionHandler :: proc(self: ^GameSession, completionHandler: ^Objc_Block(proc "c" (data: ^NS.Data, error: ^NS.Error))) ---
+    GameSession_loadDataWithCompletionHandler :: proc(self: ^GameSession, completionHandler: ^Objc_Block(proc "c" ( data: ^NS.Data, error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="saveData:completionHandler:", objc_name="saveData")
-    GameSession_saveData :: proc(self: ^GameSession, data: ^NS.Data, completionHandler: ^Objc_Block(proc "c" (conflictingData: ^NS.Data, error: ^NS.Error))) ---
+    GameSession_saveData :: proc(self: ^GameSession, data: ^NS.Data, completionHandler: ^Objc_Block(proc "c" ( conflictingData: ^NS.Data, error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="setConnectionState:completionHandler:", objc_name="setConnectionState")
-    GameSession_setConnectionState :: proc(self: ^GameSession, state: ConnectionState, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    GameSession_setConnectionState :: proc(self: ^GameSession, state: ConnectionState, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="playersWithConnectionState:", objc_name="playersWithConnectionState")
     GameSession_playersWithConnectionState :: proc(self: ^GameSession, state: ConnectionState) -> ^NS.Array ---
 
     @(objc_type=GameSession, objc_selector="sendData:withTransportType:completionHandler:", objc_name="sendData")
-    GameSession_sendData :: proc(self: ^GameSession, data: ^NS.Data, transport: TransportType, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    GameSession_sendData :: proc(self: ^GameSession, data: ^NS.Data, transport: TransportType, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="sendMessageWithLocalizedFormatKey:arguments:data:toPlayers:badgePlayers:completionHandler:", objc_name="sendMessageWithLocalizedFormatKey")
-    GameSession_sendMessageWithLocalizedFormatKey :: proc(self: ^GameSession, key: ^NS.String, arguments: ^NS.Array, data: ^NS.Data, players: ^NS.Array, badgePlayers: bool, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    GameSession_sendMessageWithLocalizedFormatKey :: proc(self: ^GameSession, key: ^NS.String, arguments: ^NS.Array, data: ^NS.Data, players: ^NS.Array, badgePlayers: bool, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="clearBadgeForPlayers:completionHandler:", objc_name="clearBadgeForPlayers")
-    GameSession_clearBadgeForPlayers :: proc(self: ^GameSession, players: ^NS.Array, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    GameSession_clearBadgeForPlayers :: proc(self: ^GameSession, players: ^NS.Array, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=GameSession, objc_selector="identifier", objc_name="identifier")
     GameSession_identifier :: proc(self: ^GameSession) -> ^NS.String ---

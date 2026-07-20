@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKMersenneTwisterRandomSource
-///
 @(objc_class="GKMersenneTwisterRandomSource", objc_superclass=RandomSource)
 MersenneTwisterRandomSource :: struct { using _: RandomSource, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MersenneTwisterRandomSource, objc_selector="init", objc_name="init")
     MersenneTwisterRandomSource_init :: proc(self: ^MersenneTwisterRandomSource) -> instancetype ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=MersenneTwisterRandomSource, objc_selector="setSeed:", objc_name="setSeed")
     MersenneTwisterRandomSource_setSeed :: proc(self: ^MersenneTwisterRandomSource, seed: cffi.uint64_t) ---
 }
+
+
+

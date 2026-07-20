@@ -20,20 +20,20 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTouchBarItem"
 
 VTable :: struct {
     super: NSTouchBarItem.VTable,
-    delegate: proc(self: ^AK.SharingServicePickerTouchBarItem) -> ^AK.SharingServicePickerTouchBarItemDelegate,
-    setDelegate: proc(self: ^AK.SharingServicePickerTouchBarItem, delegate: ^AK.SharingServicePickerTouchBarItemDelegate),
-    isEnabled: proc(self: ^AK.SharingServicePickerTouchBarItem) -> bool,
-    setEnabled: proc(self: ^AK.SharingServicePickerTouchBarItem, enabled: bool),
-    buttonTitle: proc(self: ^AK.SharingServicePickerTouchBarItem) -> ^NS.String,
-    setButtonTitle: proc(self: ^AK.SharingServicePickerTouchBarItem, buttonTitle: ^NS.String),
-    buttonImage: proc(self: ^AK.SharingServicePickerTouchBarItem) -> ^AK.Image,
-    setButtonImage: proc(self: ^AK.SharingServicePickerTouchBarItem, buttonImage: ^AK.Image),
+    delegate: proc(self: ^NS.SharingServicePickerTouchBarItem) -> ^NS.SharingServicePickerTouchBarItemDelegate,
+    setDelegate: proc(self: ^NS.SharingServicePickerTouchBarItem, delegate: ^NS.SharingServicePickerTouchBarItemDelegate),
+    isEnabled: proc(self: ^NS.SharingServicePickerTouchBarItem) -> bool,
+    setEnabled: proc(self: ^NS.SharingServicePickerTouchBarItem, enabled: bool),
+    buttonTitle: proc(self: ^NS.SharingServicePickerTouchBarItem) -> ^NS.String,
+    setButtonTitle: proc(self: ^NS.SharingServicePickerTouchBarItem, buttonTitle: ^NS.String),
+    buttonImage: proc(self: ^NS.SharingServicePickerTouchBarItem) -> ^NS.Image,
+    setButtonImage: proc(self: ^NS.SharingServicePickerTouchBarItem, buttonImage: ^NS.Image),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTouchBarItem.extend(cls, &vt.super)
 
     if vt.delegate != nil {
-        delegate :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL) -> ^AK.SharingServicePickerTouchBarItemDelegate {
+        delegate :: proc "c" (self: ^NS.SharingServicePickerTouchBarItem, _: SEL) -> ^NS.SharingServicePickerTouchBarItemDelegate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("delegate"), auto_cast delegate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setDelegate != nil {
-        setDelegate :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL, delegate: ^AK.SharingServicePickerTouchBarItemDelegate) {
+        setDelegate :: proc "c" (self: ^NS.SharingServicePickerTouchBarItem, _: SEL, delegate: ^NS.SharingServicePickerTouchBarItemDelegate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setDelegate:"), auto_cast setDelegate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.isEnabled != nil {
-        isEnabled :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL) -> bool {
+        isEnabled :: proc "c" (self: ^NS.SharingServicePickerTouchBarItem, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -74,7 +74,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEnabled"), auto_cast isEnabled, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setEnabled != nil {
-        setEnabled :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL, enabled: bool) {
+        setEnabled :: proc "c" (self: ^NS.SharingServicePickerTouchBarItem, _: SEL, enabled: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -84,7 +84,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEnabled:"), auto_cast setEnabled, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.buttonTitle != nil {
-        buttonTitle :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL) -> ^NS.String {
+        buttonTitle :: proc "c" (self: ^NS.SharingServicePickerTouchBarItem, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -94,7 +94,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("buttonTitle"), auto_cast buttonTitle, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setButtonTitle != nil {
-        setButtonTitle :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL, buttonTitle: ^NS.String) {
+        setButtonTitle :: proc "c" (self: ^NS.SharingServicePickerTouchBarItem, _: SEL, buttonTitle: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -104,7 +104,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setButtonTitle:"), auto_cast setButtonTitle, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.buttonImage != nil {
-        buttonImage :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL) -> ^AK.Image {
+        buttonImage :: proc "c" (self: ^NS.SharingServicePickerTouchBarItem, _: SEL) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -114,7 +114,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("buttonImage"), auto_cast buttonImage, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setButtonImage != nil {
-        setButtonImage :: proc "c" (self: ^AK.SharingServicePickerTouchBarItem, _: SEL, buttonImage: ^AK.Image) {
+        setButtonImage :: proc "c" (self: ^NS.SharingServicePickerTouchBarItem, _: SEL, buttonImage: ^NS.Image) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

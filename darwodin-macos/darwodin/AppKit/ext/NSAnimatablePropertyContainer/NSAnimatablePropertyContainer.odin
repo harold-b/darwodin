@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    animator: proc(self: ^AK.AnimatablePropertyContainer) -> instancetype,
-    animationForKey: proc(self: ^AK.AnimatablePropertyContainer, key: ^NS.String) -> id,
+    animator: proc(self: ^NS.AnimatablePropertyContainer) -> instancetype,
+    animationForKey: proc(self: ^NS.AnimatablePropertyContainer, key: ^NS.String) -> id,
     defaultAnimationForKey: proc(key: ^NS.String) -> id,
-    animations: proc(self: ^AK.AnimatablePropertyContainer) -> ^NS.Dictionary,
-    setAnimations: proc(self: ^AK.AnimatablePropertyContainer, animations: ^NS.Dictionary),
+    animations: proc(self: ^NS.AnimatablePropertyContainer) -> ^NS.Dictionary,
+    setAnimations: proc(self: ^NS.AnimatablePropertyContainer, animations: ^NS.Dictionary),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -35,7 +35,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.animator != nil {
-        animator :: proc "c" (self: ^AK.AnimatablePropertyContainer, _: SEL) -> instancetype {
+        animator :: proc "c" (self: ^NS.AnimatablePropertyContainer, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -45,7 +45,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animator"), auto_cast animator, "@@:") do panic("Failed to register objC method.")
     }
     if vt.animationForKey != nil {
-        animationForKey :: proc "c" (self: ^AK.AnimatablePropertyContainer, _: SEL, key: ^NS.String) -> id {
+        animationForKey :: proc "c" (self: ^NS.AnimatablePropertyContainer, _: SEL, key: ^NS.String) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -65,7 +65,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("defaultAnimationForKey:"), auto_cast defaultAnimationForKey, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.animations != nil {
-        animations :: proc "c" (self: ^AK.AnimatablePropertyContainer, _: SEL) -> ^NS.Dictionary {
+        animations :: proc "c" (self: ^NS.AnimatablePropertyContainer, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -75,7 +75,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("animations"), auto_cast animations, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.setAnimations != nil {
-        setAnimations :: proc "c" (self: ^AK.AnimatablePropertyContainer, _: SEL, animations: ^NS.Dictionary) {
+        setAnimations :: proc "c" (self: ^NS.AnimatablePropertyContainer, _: SEL, animations: ^NS.Dictionary) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

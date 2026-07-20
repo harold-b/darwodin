@@ -20,7 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:AppKit.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
+
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:AppKit.framework",
+    }
+}
+
 
 OpaqueSecTransformImplementation :: struct {}
 OpaqueSecIdentitySearchRef       :: struct {}
@@ -2680,7 +2691,7 @@ StoryboardName :: distinct ^NS.String
 StoryboardSceneIdentifier :: distinct ^NS.String
 
 /// NSStoryboardControllerCreator
-StoryboardControllerCreator :: ^Objc_Block(proc "c" (coder: ^NS.Coder) -> id)
+StoryboardControllerCreator :: ^Objc_Block(proc "c" ( coder: ^NS.Coder ) -> id)
 
 /// NSStoryboardSegueIdentifier
 StoryboardSegueIdentifier :: distinct ^NS.String
@@ -2692,22 +2703,22 @@ CollectionViewSupplementaryElementKind :: distinct ^NS.String
 CollectionViewDecorationElementKind :: distinct ^NS.String
 
 /// NSCollectionViewCompositionalLayoutSectionProvider
-CollectionViewCompositionalLayoutSectionProvider :: ^Objc_Block(proc "c" (section: NS.Integer, _: ^CollectionLayoutEnvironment) -> ^CollectionLayoutSection)
+CollectionViewCompositionalLayoutSectionProvider :: ^Objc_Block(proc "c" ( section: NS.Integer, _0: ^CollectionLayoutEnvironment ) -> ^CollectionLayoutSection)
 
 /// NSCollectionLayoutSectionVisibleItemsInvalidationHandler
-CollectionLayoutSectionVisibleItemsInvalidationHandler :: ^Objc_Block(proc "c" (visibleItems: ^NS.Array, contentOffset: CG.Point, layoutEnvironment: ^CollectionLayoutEnvironment))
+CollectionLayoutSectionVisibleItemsInvalidationHandler :: ^Objc_Block(proc "c" ( visibleItems: ^NS.Array, contentOffset: CG.Point, layoutEnvironment: ^CollectionLayoutEnvironment ))
 
 /// NSCollectionLayoutGroupCustomItemProvider
-CollectionLayoutGroupCustomItemProvider :: ^Objc_Block(proc "c" (layoutEnvironment: ^CollectionLayoutEnvironment) -> ^NS.Array)
+CollectionLayoutGroupCustomItemProvider :: ^Objc_Block(proc "c" ( layoutEnvironment: ^CollectionLayoutEnvironment ) -> ^NS.Array)
 
 /// NSCollectionViewTransitionLayoutAnimatedKey
 CollectionViewTransitionLayoutAnimatedKey :: distinct ^NS.String
 
 /// NSCollectionViewDiffableDataSourceItemProvider
-CollectionViewDiffableDataSourceItemProvider :: ^Objc_Block(proc "c" (_: ^CollectionView, _1: ^NS.IndexPath, _2: ^id) -> ^CollectionViewItem)
+CollectionViewDiffableDataSourceItemProvider :: ^Objc_Block(proc "c" ( _0: ^CollectionView, _1: ^NS.IndexPath, _2: ^id ) -> ^CollectionViewItem)
 
 /// NSCollectionViewDiffableDataSourceSupplementaryViewProvider
-CollectionViewDiffableDataSourceSupplementaryViewProvider :: ^Objc_Block(proc "c" (_: ^CollectionView, _1: ^NS.String, _2: ^NS.IndexPath) -> ^View)
+CollectionViewDiffableDataSourceSupplementaryViewProvider :: ^Objc_Block(proc "c" ( _0: ^CollectionView, _1: ^NS.String, _2: ^NS.IndexPath ) -> ^View)
 
 /// NSFontSymbolicTraits
 FontSymbolicTraits :: distinct cffi.uint32_t
@@ -2881,13 +2892,13 @@ PasteboardTypeFindPanelSearchOptionKey :: distinct ^NS.String
 TableViewAutosaveName :: distinct ^NS.String
 
 /// NSTableViewDiffableDataSourceCellProvider
-TableViewDiffableDataSourceCellProvider :: ^Objc_Block(proc "c" (tableView: ^TableView, column: ^TableColumn, row: NS.Integer, itemId: id) -> ^View)
+TableViewDiffableDataSourceCellProvider :: ^Objc_Block(proc "c" ( tableView: ^TableView, column: ^TableColumn, row: NS.Integer, itemId: id ) -> ^View)
 
 /// NSTableViewDiffableDataSourceRowProvider
-TableViewDiffableDataSourceRowProvider :: ^Objc_Block(proc "c" (tableView: ^TableView, row: NS.Integer, identifier: id) -> ^TableRowView)
+TableViewDiffableDataSourceRowProvider :: ^Objc_Block(proc "c" ( tableView: ^TableView, row: NS.Integer, identifier: id ) -> ^TableRowView)
 
 /// NSTableViewDiffableDataSourceSectionHeaderViewProvider
-TableViewDiffableDataSourceSectionHeaderViewProvider :: ^Objc_Block(proc "c" (tableView: ^TableView, row: NS.Integer, sectionId: id) -> ^View)
+TableViewDiffableDataSourceSectionHeaderViewProvider :: ^Objc_Block(proc "c" ( tableView: ^TableView, row: NS.Integer, sectionId: id ) -> ^View)
 
 /// NSRulerViewUnitName
 RulerViewUnitName :: distinct ^NS.String

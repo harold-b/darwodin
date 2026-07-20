@@ -1,6 +1,8 @@
 #+build darwin
 package darwodin_LocalAuthentication
 
+
+
 import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
@@ -15,16 +17,32 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-@(require, export) foreign import lib "system:LocalAuthentication.framework"
+@private OS     :: "windows" when ODIN_OS == .Windows else "macos" when ODIN_OS == .Darwin else "linux" when ODIN_OS == .Linux else #panic("Unsupported OS")
+@private CFG    :: "debug"  when ODIN_DEBUG else "release"
+@private EXT    :: ".lib" when ODIN_OS == .Windows else ".a"
+@private PREFIX :: "" when ODIN_OS == .Windows else "lib"
 
+when ODIN_OS == .Darwin {
+    @(export, require)
+    foreign import lib {
+        "system:LocalAuthentication.framework",
+    }
+}
+
+
+// +user-text-begin
 
 
 foreign lib {
-    @(link_name="LATouchIDAuthenticationMaximumAllowableReuseDuration") TouchIDAuthenticationMaximumAllowableReuseDuration: NS.TimeInterval
-    @(link_name="LAErrorDomain") ErrorDomain: ^NS.String
+    @(link_name="LATouchIDAuthenticationMaximumAllowableReuseDuration")
+    TouchIDAuthenticationMaximumAllowableReuseDuration: NS.TimeInterval
+
+    @(link_name="LAErrorDomain")
+    ErrorDomain: ^NS.String
 }
 
-/// LABiometryType
+
+
 BiometryType :: enum cffi.long {
     None    = 0,
     TouchID = 1,
@@ -33,14 +51,12 @@ BiometryType :: enum cffi.long {
     // None = 0,
 }
 
-/// LACompanionType
 CompanionType :: enum cffi.long {
     Watch  = 1,
     Mac    = 2,
     Vision = 4,
 }
 
-/// LAPolicy
 Policy :: enum cffi.long {
     DeviceOwnerAuthenticationWithBiometrics = 1,
     DeviceOwnerAuthentication        = 2,
@@ -51,13 +67,11 @@ Policy :: enum cffi.long {
     DeviceOwnerAuthenticationWithBiometricsOrWatch = 4,
 }
 
-/// LACredentialType
 CredentialType :: enum cffi.long {
     ApplicationPassword = 0,
     SmartCardPIN        = -3,
 }
 
-/// LAAccessControlOperation
 AccessControlOperation :: enum cffi.long {
     CreateItem        = 0,
     UseItem           = 1,
@@ -67,7 +81,6 @@ AccessControlOperation :: enum cffi.long {
     UseKeyKeyExchange = 5,
 }
 
-/// LAError
 Error :: enum cffi.long {
     AuthenticationFailed  = -1,
     UserCancel            = -2,
@@ -90,7 +103,6 @@ Error :: enum cffi.long {
     InvalidDimensions     = -14,
 }
 
-/// LARightState
 RightState :: enum cffi.long {
     Unknown       = 0,
     Authorizing   = 1,

@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLAttributeDescriptor
-///
 @(objc_class="MTLAttributeDescriptor", objc_superclass=NS.Object)
 AttributeDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AttributeDescriptor, objc_selector="format", objc_name="format")
     AttributeDescriptor_format :: proc(self: ^AttributeDescriptor) -> AttributeFormat ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=AttributeDescriptor, objc_selector="setBufferIndex:", objc_name="setBufferIndex")
     AttributeDescriptor_setBufferIndex :: proc(self: ^AttributeDescriptor, bufferIndex: NS.UInteger) ---
 }
+
+
+

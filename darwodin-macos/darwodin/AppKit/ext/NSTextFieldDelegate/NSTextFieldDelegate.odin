@@ -20,12 +20,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    textField_textView_candidatesForSelectedRange: proc(self: ^AK.TextFieldDelegate, textField: ^AK.TextField, textView: ^AK.TextView, selectedRange: NS._NSRange) -> ^NS.Array,
-    textField_textView_candidates_forSelectedRange: proc(self: ^AK.TextFieldDelegate, textField: ^AK.TextField, textView: ^AK.TextView, candidates: ^NS.Array, selectedRange: NS._NSRange) -> ^NS.Array,
-    textField_textView_shouldSelectCandidateAtIndex: proc(self: ^AK.TextFieldDelegate, textField: ^AK.TextField, textView: ^AK.TextView, index: NS.UInteger) -> bool,
+    textField_textView_candidatesForSelectedRange: proc(self: ^NS.TextFieldDelegate, textField: ^NS.TextField, textView: ^NS.TextView, selectedRange: NS._NSRange) -> ^NS.Array,
+    textField_textView_candidates_forSelectedRange: proc(self: ^NS.TextFieldDelegate, textField: ^NS.TextField, textView: ^NS.TextView, candidates: ^NS.Array, selectedRange: NS._NSRange) -> ^NS.Array,
+    textField_textView_shouldSelectCandidateAtIndex: proc(self: ^NS.TextFieldDelegate, textField: ^NS.TextField, textView: ^NS.TextView, index: NS.UInteger) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.textField_textView_candidatesForSelectedRange != nil {
-        textField_textView_candidatesForSelectedRange :: proc "c" (self: ^AK.TextFieldDelegate, _: SEL, textField: ^AK.TextField, textView: ^AK.TextView, selectedRange: NS._NSRange) -> ^NS.Array {
+        textField_textView_candidatesForSelectedRange :: proc "c" (self: ^NS.TextFieldDelegate, _: SEL, textField: ^NS.TextField, textView: ^NS.TextView, selectedRange: NS._NSRange) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textField:textView:candidatesForSelectedRange:"), auto_cast textField_textView_candidatesForSelectedRange, "@@:@@{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.textField_textView_candidates_forSelectedRange != nil {
-        textField_textView_candidates_forSelectedRange :: proc "c" (self: ^AK.TextFieldDelegate, _: SEL, textField: ^AK.TextField, textView: ^AK.TextView, candidates: ^NS.Array, selectedRange: NS._NSRange) -> ^NS.Array {
+        textField_textView_candidates_forSelectedRange :: proc "c" (self: ^NS.TextFieldDelegate, _: SEL, textField: ^NS.TextField, textView: ^NS.TextView, candidates: ^NS.Array, selectedRange: NS._NSRange) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("textField:textView:candidates:forSelectedRange:"), auto_cast textField_textView_candidates_forSelectedRange, "^void@:@@^void{_NSRange=LL}") do panic("Failed to register objC method.")
     }
     if vt.textField_textView_shouldSelectCandidateAtIndex != nil {
-        textField_textView_shouldSelectCandidateAtIndex :: proc "c" (self: ^AK.TextFieldDelegate, _: SEL, textField: ^AK.TextField, textView: ^AK.TextView, index: NS.UInteger) -> bool {
+        textField_textView_shouldSelectCandidateAtIndex :: proc "c" (self: ^NS.TextFieldDelegate, _: SEL, textField: ^NS.TextField, textView: ^NS.TextView, index: NS.UInteger) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

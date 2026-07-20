@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    validateUserInterfaceItem: proc(self: ^AK.UserInterfaceValidations, item: ^AK.ValidatedUserInterfaceItem) -> bool,
+    validateUserInterfaceItem: proc(self: ^NS.UserInterfaceValidations, item: ^NS.ValidatedUserInterfaceItem) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.validateUserInterfaceItem != nil {
-        validateUserInterfaceItem :: proc "c" (self: ^AK.UserInterfaceValidations, _: SEL, item: ^AK.ValidatedUserInterfaceItem) -> bool {
+        validateUserInterfaceItem :: proc "c" (self: ^NS.UserInterfaceValidations, _: SEL, item: ^NS.ValidatedUserInterfaceItem) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetResourceLoadingContentInformationRequest
-///
 @(objc_class="AVAssetResourceLoadingContentInformationRequest", objc_superclass=NS.Object)
 AssetResourceLoadingContentInformationRequest :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetResourceLoadingContentInformationRequest, objc_selector="init", objc_name="init")
     AssetResourceLoadingContentInformationRequest_init :: proc(self: ^AssetResourceLoadingContentInformationRequest) -> instancetype ---
@@ -61,3 +55,6 @@ foreign lib {
     @(objc_type=AssetResourceLoadingContentInformationRequest, objc_selector="setEntireLengthAvailableOnDemand:", objc_name="setEntireLengthAvailableOnDemand")
     AssetResourceLoadingContentInformationRequest_setEntireLengthAvailableOnDemand :: proc(self: ^AssetResourceLoadingContentInformationRequest, entireLengthAvailableOnDemand: bool) ---
 }
+
+
+

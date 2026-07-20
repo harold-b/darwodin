@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureVideoPreviewLayer
-///
 @(objc_class="AVCaptureVideoPreviewLayer", objc_superclass=CA.Layer)
 CaptureVideoPreviewLayer :: struct { using _: CA.Layer, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureVideoPreviewLayer, objc_selector="layerWithSession:", objc_name="layerWithSession", objc_is_class_method=true)
     CaptureVideoPreviewLayer_layerWithSession :: proc(session: ^CaptureSession) -> instancetype ---
@@ -103,3 +97,6 @@ foreign lib {
     @(objc_type=CaptureVideoPreviewLayer, objc_selector="setDeferredStartEnabled:", objc_name="setDeferredStartEnabled")
     CaptureVideoPreviewLayer_setDeferredStartEnabled :: proc(self: ^CaptureVideoPreviewLayer, deferredStartEnabled: bool) ---
 }
+
+
+

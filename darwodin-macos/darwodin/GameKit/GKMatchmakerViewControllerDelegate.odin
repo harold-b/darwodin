@@ -4,8 +4,7 @@ import "base:intrinsics"
 import "base:runtime"
 import cffi "core:c"
 import CF "../CoreFoundation"
-import NS "../Foundation"
-import AK "../AppKit"
+import NS "../AppKit"
 
 
 
@@ -35,7 +34,7 @@ foreign lib {
     MatchmakerViewControllerDelegate_matchmakerViewController_hostedPlayerDidAccept :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, player: ^Player) ---
 
     @(objc_type=MatchmakerViewControllerDelegate, objc_selector="matchmakerViewController:getMatchPropertiesForRecipient:withCompletionHandler:", objc_name="matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler")
-    MatchmakerViewControllerDelegate_matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, recipient: ^Player, completionHandler: ^Objc_Block(proc "c" (recipientProperties: ^MatchProperties))) ---
+    MatchmakerViewControllerDelegate_matchmakerViewController_getMatchPropertiesForRecipient_withCompletionHandler :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, recipient: ^Player, completionHandler: ^Objc_Block(proc "c" ( recipientProperties: ^MatchProperties ))) ---
 
     @(objc_type=MatchmakerViewControllerDelegate, objc_selector="matchmakerViewController:didFindPlayers:", objc_name="matchmakerViewController_didFindPlayers")
     MatchmakerViewControllerDelegate_matchmakerViewController_didFindPlayers :: proc(self: ^MatchmakerViewControllerDelegate, viewController: ^MatchmakerViewController, playerIDs: ^NS.Array) ---

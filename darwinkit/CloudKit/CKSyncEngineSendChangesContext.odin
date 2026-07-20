@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKSyncEngineSendChangesContext
-///
 @(objc_class="CKSyncEngineSendChangesContext", objc_superclass=NS.Object)
 SyncEngineSendChangesContext :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=SyncEngineSendChangesContext, objc_selector="init", objc_name="init")
     SyncEngineSendChangesContext_init :: proc(self: ^SyncEngineSendChangesContext) -> instancetype ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=SyncEngineSendChangesContext, objc_selector="options", objc_name="options")
     SyncEngineSendChangesContext_options :: proc(self: ^SyncEngineSendChangesContext) -> ^SyncEngineSendChangesOptions ---
 }
+
+
+

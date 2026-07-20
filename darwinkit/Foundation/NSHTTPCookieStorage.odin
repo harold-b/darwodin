@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSHTTPCookieStorage
-///
 @(objc_class="NSHTTPCookieStorage", objc_superclass=Object)
 HTTPCookieStorage :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=HTTPCookieStorage, objc_selector="sharedCookieStorageForGroupContainerIdentifier:", objc_name="sharedCookieStorageForGroupContainerIdentifier", objc_is_class_method=true)
     HTTPCookieStorage_sharedCookieStorageForGroupContainerIdentifier :: proc(identifier: ^String) -> ^HTTPCookieStorage ---
@@ -56,5 +50,8 @@ foreign lib {
     HTTPCookieStorage_storeCookies :: proc(self: ^HTTPCookieStorage, cookies: ^Array, task: ^URLSessionTask) ---
 
     @(objc_type=HTTPCookieStorage, objc_selector="getCookiesForTask:completionHandler:", objc_name="getCookiesForTask")
-    HTTPCookieStorage_getCookiesForTask :: proc(self: ^HTTPCookieStorage, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" (cookies: ^Array))) ---
+    HTTPCookieStorage_getCookiesForTask :: proc(self: ^HTTPCookieStorage, task: ^URLSessionTask, completionHandler: ^Objc_Block(proc "c" ( cookies: ^Array ))) ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCapturePhotoOutputReadinessCoordinator
-///
 @(objc_class="AVCapturePhotoOutputReadinessCoordinator", objc_superclass=NS.Object)
 CapturePhotoOutputReadinessCoordinator :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CapturePhotoOutputReadinessCoordinator, objc_selector="init", objc_name="init")
     CapturePhotoOutputReadinessCoordinator_init :: proc(self: ^CapturePhotoOutputReadinessCoordinator) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=CapturePhotoOutputReadinessCoordinator, objc_selector="captureReadiness", objc_name="captureReadiness")
     CapturePhotoOutputReadinessCoordinator_captureReadiness :: proc(self: ^CapturePhotoOutputReadinessCoordinator) -> CapturePhotoOutputCaptureReadiness ---
 }
+
+
+

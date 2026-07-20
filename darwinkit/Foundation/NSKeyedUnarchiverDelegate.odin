@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSKeyedUnarchiverDelegate
-///
 @(objc_class="NSKeyedUnarchiverDelegate")
 KeyedUnarchiverDelegate :: struct { using _: intrinsics.objc_object, 
     using _: ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=KeyedUnarchiverDelegate, objc_selector="unarchiver:cannotDecodeObjectOfClassName:originalClasses:", objc_name="unarchiver_cannotDecodeObjectOfClassName_originalClasses")
     KeyedUnarchiverDelegate_unarchiver_cannotDecodeObjectOfClassName_originalClasses :: proc(self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver, name: ^String, classNames: ^Array) -> Class ---
@@ -36,6 +30,8 @@ foreign lib {
     @(objc_type=KeyedUnarchiverDelegate, objc_selector="unarchiverDidFinish:", objc_name="unarchiverDidFinish")
     KeyedUnarchiverDelegate_unarchiverDidFinish :: proc(self: ^KeyedUnarchiverDelegate, unarchiver: ^KeyedUnarchiver) ---
 }
+
+
 
 @(objc_type=KeyedUnarchiverDelegate, objc_name="unarchiver")
 KeyedUnarchiverDelegate_unarchiver :: proc {

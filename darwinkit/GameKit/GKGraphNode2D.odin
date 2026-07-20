@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKGraphNode2D
-///
 @(objc_class="GKGraphNode2D", objc_superclass=GraphNode)
 GraphNode2D :: struct { using _: GraphNode, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=GraphNode2D, objc_selector="nodeWithPoint:", objc_name="nodeWithPoint", objc_is_class_method=true)
     GraphNode2D_nodeWithPoint :: proc(point: ^vector_float2) -> instancetype ---
@@ -29,3 +23,6 @@ foreign lib {
     @(objc_type=GraphNode2D, objc_selector="setPosition:", objc_name="setPosition")
     GraphNode2D_setPosition :: proc(self: ^GraphNode2D, position: ^vector_float2) ---
 }
+
+
+

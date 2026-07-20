@@ -8,17 +8,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCDevice
-///
 @(objc_class="GCDevice")
 Device :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Device, objc_selector="handlerQueue", objc_name="handlerQueue")
     Device_handlerQueue :: proc(self: ^Device) -> ^NS.Object ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=Device, objc_selector="physicalInputProfile", objc_name="physicalInputProfile")
     Device_physicalInputProfile :: proc(self: ^Device) -> ^PhysicalInputProfile ---
 }
+
+
+

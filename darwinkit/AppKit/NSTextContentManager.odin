@@ -40,7 +40,7 @@ foreign lib {
     TextContentManager_removeTextLayoutManager :: proc(self: ^TextContentManager, textLayoutManager: ^TextLayoutManager) ---
 
     @(objc_type=TextContentManager, objc_selector="synchronizeTextLayoutManagers:", objc_name="synchronizeTextLayoutManagers")
-    TextContentManager_synchronizeTextLayoutManagers :: proc(self: ^TextContentManager, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    TextContentManager_synchronizeTextLayoutManagers :: proc(self: ^TextContentManager, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=TextContentManager, objc_selector="textElementsForRange:", objc_name="textElementsForRange")
     TextContentManager_textElementsForRange :: proc(self: ^TextContentManager, range: ^TextRange) -> ^NS.Array ---

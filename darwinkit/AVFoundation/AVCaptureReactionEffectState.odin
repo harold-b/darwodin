@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureReactionEffectState
-///
 @(objc_class="AVCaptureReactionEffectState", objc_superclass=NS.Object)
 CaptureReactionEffectState :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureReactionEffectState, objc_selector="reactionType", objc_name="reactionType")
     CaptureReactionEffectState_reactionType :: proc(self: ^CaptureReactionEffectState) -> ^NS.String ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=CaptureReactionEffectState, objc_selector="endTime", objc_name="endTime")
     CaptureReactionEffectState_endTime :: proc(self: ^CaptureReactionEffectState) -> CM.Time ---
 }
+
+
+

@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSCoder
-///
 @(objc_class="NSCoder", objc_superclass=Object)
 Coder :: struct { using _: Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Coder, objc_selector="encodeValueOfObjCType:at:", objc_name="encodeValueOfObjCType")
     Coder_encodeValueOfObjCType :: proc(self: ^Coder, type: cstring, addr: rawptr) ---
@@ -73,7 +67,7 @@ foreign lib {
     @(objc_type=Coder, objc_selector="decodeBytesWithReturnedLength:", objc_name="decodeBytesWithReturnedLength")
     Coder_decodeBytesWithReturnedLength :: proc(self: ^Coder, lengthp: ^UInteger) -> rawptr ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Coder, objc_selector="encodePropertyList:", objc_name="encodePropertyList")
         Coder_encodePropertyList :: proc(self: ^Coder, aPropertyList: id) ---
 
@@ -204,7 +198,7 @@ foreign lib {
     @(objc_type=Coder, objc_selector="error", objc_name="error")
     Coder_error :: proc(self: ^Coder) -> ^Error ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Coder, objc_selector="encodeNXObject:", objc_name="encodeNXObject")
         Coder_encodeNXObject :: proc(self: ^Coder, object: id) ---
 
@@ -215,7 +209,7 @@ foreign lib {
     @(objc_type=Coder, objc_selector="decodeValueOfObjCType:at:", objc_name="decodeValueOfObjCType_at")
     Coder_decodeValueOfObjCType_at :: proc(self: ^Coder, type: cstring, data: rawptr) ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=Coder, objc_selector="encodePoint:", objc_name="encodePoint_")
         Coder_encodePoint_ :: proc(self: ^Coder, point: CG.Point) ---
 
@@ -254,6 +248,28 @@ foreign lib {
     }
 }
 
+
+
+when ODIN_PLATFORM_SUBTARGET == .Default {
+    @(objc_type=Coder, objc_name="encodePoint")
+    Coder_encodePoint :: proc {
+        Coder_encodePoint_,
+        Coder_encodePoint_forKey,
+    }
+
+    @(objc_type=Coder, objc_name="encodeSize")
+    Coder_encodeSize :: proc {
+        Coder_encodeSize_,
+        Coder_encodeSize_forKey,
+    }
+
+    @(objc_type=Coder, objc_name="encodeRect")
+    Coder_encodeRect :: proc {
+        Coder_encodeRect_,
+        Coder_encodeRect_forKey,
+    }
+}
+
 @(objc_type=Coder, objc_name="encodeObject")
 Coder_encodeObject :: proc {
     Coder_encodeObject_,
@@ -282,25 +298,5 @@ Coder_decodeBytesForKey :: proc {
 Coder_decodeValueOfObjCType :: proc {
     Coder_decodeValueOfObjCType_at_size,
     Coder_decodeValueOfObjCType_at,
-}
-
-when !ODIN_PLATFORM_SUBTARGET_IOS {
-    @(objc_type=Coder, objc_name="encodePoint")
-    Coder_encodePoint :: proc {
-        Coder_encodePoint_,
-        Coder_encodePoint_forKey,
-    }
-
-    @(objc_type=Coder, objc_name="encodeSize")
-    Coder_encodeSize :: proc {
-        Coder_encodeSize_,
-        Coder_encodeSize_forKey,
-    }
-
-    @(objc_type=Coder, objc_name="encodeRect")
-    Coder_encodeRect :: proc {
-        Coder_encodeRect_,
-        Coder_encodeRect_forKey,
-    }
 }
 

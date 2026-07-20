@@ -20,35 +20,35 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSCollectionViewLayout"
 
 VTable :: struct {
     super: NSCollectionViewLayout.VTable,
-    sectionAtIndexIsCollapsed: proc(self: ^AK.CollectionViewFlowLayout, sectionIndex: NS.UInteger) -> bool,
-    collapseSectionAtIndex: proc(self: ^AK.CollectionViewFlowLayout, sectionIndex: NS.UInteger),
-    expandSectionAtIndex: proc(self: ^AK.CollectionViewFlowLayout, sectionIndex: NS.UInteger),
-    minimumLineSpacing: proc(self: ^AK.CollectionViewFlowLayout) -> CG.Float,
-    setMinimumLineSpacing: proc(self: ^AK.CollectionViewFlowLayout, minimumLineSpacing: CG.Float),
-    minimumInteritemSpacing: proc(self: ^AK.CollectionViewFlowLayout) -> CG.Float,
-    setMinimumInteritemSpacing: proc(self: ^AK.CollectionViewFlowLayout, minimumInteritemSpacing: CG.Float),
-    itemSize: proc(self: ^AK.CollectionViewFlowLayout) -> NS.Size,
-    setItemSize: proc(self: ^AK.CollectionViewFlowLayout, itemSize: NS.Size),
-    estimatedItemSize: proc(self: ^AK.CollectionViewFlowLayout) -> NS.Size,
-    setEstimatedItemSize: proc(self: ^AK.CollectionViewFlowLayout, estimatedItemSize: NS.Size),
-    scrollDirection: proc(self: ^AK.CollectionViewFlowLayout) -> AK.CollectionViewScrollDirection,
-    setScrollDirection: proc(self: ^AK.CollectionViewFlowLayout, scrollDirection: AK.CollectionViewScrollDirection),
-    headerReferenceSize: proc(self: ^AK.CollectionViewFlowLayout) -> NS.Size,
-    setHeaderReferenceSize: proc(self: ^AK.CollectionViewFlowLayout, headerReferenceSize: NS.Size),
-    footerReferenceSize: proc(self: ^AK.CollectionViewFlowLayout) -> NS.Size,
-    setFooterReferenceSize: proc(self: ^AK.CollectionViewFlowLayout, footerReferenceSize: NS.Size),
-    sectionInset: proc(self: ^AK.CollectionViewFlowLayout) -> NS.EdgeInsets,
-    setSectionInset: proc(self: ^AK.CollectionViewFlowLayout, sectionInset: NS.EdgeInsets),
-    sectionHeadersPinToVisibleBounds: proc(self: ^AK.CollectionViewFlowLayout) -> bool,
-    setSectionHeadersPinToVisibleBounds: proc(self: ^AK.CollectionViewFlowLayout, sectionHeadersPinToVisibleBounds: bool),
-    sectionFootersPinToVisibleBounds: proc(self: ^AK.CollectionViewFlowLayout) -> bool,
-    setSectionFootersPinToVisibleBounds: proc(self: ^AK.CollectionViewFlowLayout, sectionFootersPinToVisibleBounds: bool),
+    sectionAtIndexIsCollapsed: proc(self: ^NS.CollectionViewFlowLayout, sectionIndex: NS.UInteger) -> bool,
+    collapseSectionAtIndex: proc(self: ^NS.CollectionViewFlowLayout, sectionIndex: NS.UInteger),
+    expandSectionAtIndex: proc(self: ^NS.CollectionViewFlowLayout, sectionIndex: NS.UInteger),
+    minimumLineSpacing: proc(self: ^NS.CollectionViewFlowLayout) -> CG.Float,
+    setMinimumLineSpacing: proc(self: ^NS.CollectionViewFlowLayout, minimumLineSpacing: CG.Float),
+    minimumInteritemSpacing: proc(self: ^NS.CollectionViewFlowLayout) -> CG.Float,
+    setMinimumInteritemSpacing: proc(self: ^NS.CollectionViewFlowLayout, minimumInteritemSpacing: CG.Float),
+    itemSize: proc(self: ^NS.CollectionViewFlowLayout) -> NS.Size,
+    setItemSize: proc(self: ^NS.CollectionViewFlowLayout, itemSize: NS.Size),
+    estimatedItemSize: proc(self: ^NS.CollectionViewFlowLayout) -> NS.Size,
+    setEstimatedItemSize: proc(self: ^NS.CollectionViewFlowLayout, estimatedItemSize: NS.Size),
+    scrollDirection: proc(self: ^NS.CollectionViewFlowLayout) -> NS.CollectionViewScrollDirection,
+    setScrollDirection: proc(self: ^NS.CollectionViewFlowLayout, scrollDirection: NS.CollectionViewScrollDirection),
+    headerReferenceSize: proc(self: ^NS.CollectionViewFlowLayout) -> NS.Size,
+    setHeaderReferenceSize: proc(self: ^NS.CollectionViewFlowLayout, headerReferenceSize: NS.Size),
+    footerReferenceSize: proc(self: ^NS.CollectionViewFlowLayout) -> NS.Size,
+    setFooterReferenceSize: proc(self: ^NS.CollectionViewFlowLayout, footerReferenceSize: NS.Size),
+    sectionInset: proc(self: ^NS.CollectionViewFlowLayout) -> NS.EdgeInsets,
+    setSectionInset: proc(self: ^NS.CollectionViewFlowLayout, sectionInset: NS.EdgeInsets),
+    sectionHeadersPinToVisibleBounds: proc(self: ^NS.CollectionViewFlowLayout) -> bool,
+    setSectionHeadersPinToVisibleBounds: proc(self: ^NS.CollectionViewFlowLayout, sectionHeadersPinToVisibleBounds: bool),
+    sectionFootersPinToVisibleBounds: proc(self: ^NS.CollectionViewFlowLayout) -> bool,
+    setSectionFootersPinToVisibleBounds: proc(self: ^NS.CollectionViewFlowLayout, sectionFootersPinToVisibleBounds: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSCollectionViewLayout.extend(cls, &vt.super)
 
     if vt.sectionAtIndexIsCollapsed != nil {
-        sectionAtIndexIsCollapsed :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, sectionIndex: NS.UInteger) -> bool {
+        sectionAtIndexIsCollapsed :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, sectionIndex: NS.UInteger) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sectionAtIndexIsCollapsed:"), auto_cast sectionAtIndexIsCollapsed, "B@:L") do panic("Failed to register objC method.")
     }
     if vt.collapseSectionAtIndex != nil {
-        collapseSectionAtIndex :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, sectionIndex: NS.UInteger) {
+        collapseSectionAtIndex :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, sectionIndex: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("collapseSectionAtIndex:"), auto_cast collapseSectionAtIndex, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.expandSectionAtIndex != nil {
-        expandSectionAtIndex :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, sectionIndex: NS.UInteger) {
+        expandSectionAtIndex :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, sectionIndex: NS.UInteger) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("expandSectionAtIndex:"), auto_cast expandSectionAtIndex, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.minimumLineSpacing != nil {
-        minimumLineSpacing :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> CG.Float {
+        minimumLineSpacing :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumLineSpacing"), auto_cast minimumLineSpacing, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumLineSpacing != nil {
-        setMinimumLineSpacing :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, minimumLineSpacing: CG.Float) {
+        setMinimumLineSpacing :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, minimumLineSpacing: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumLineSpacing:"), auto_cast setMinimumLineSpacing, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.minimumInteritemSpacing != nil {
-        minimumInteritemSpacing :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> CG.Float {
+        minimumInteritemSpacing :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumInteritemSpacing"), auto_cast minimumInteritemSpacing, "d@:") do panic("Failed to register objC method.")
     }
     if vt.setMinimumInteritemSpacing != nil {
-        setMinimumInteritemSpacing :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, minimumInteritemSpacing: CG.Float) {
+        setMinimumInteritemSpacing :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, minimumInteritemSpacing: CG.Float) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMinimumInteritemSpacing:"), auto_cast setMinimumInteritemSpacing, "v@:d") do panic("Failed to register objC method.")
     }
     if vt.itemSize != nil {
-        itemSize :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> NS.Size {
+        itemSize :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("itemSize"), auto_cast itemSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setItemSize != nil {
-        setItemSize :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, itemSize: NS.Size) {
+        setItemSize :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, itemSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setItemSize:"), auto_cast setItemSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.estimatedItemSize != nil {
-        estimatedItemSize :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> NS.Size {
+        estimatedItemSize :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("estimatedItemSize"), auto_cast estimatedItemSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setEstimatedItemSize != nil {
-        setEstimatedItemSize :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, estimatedItemSize: NS.Size) {
+        setEstimatedItemSize :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, estimatedItemSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEstimatedItemSize:"), auto_cast setEstimatedItemSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.scrollDirection != nil {
-        scrollDirection :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> AK.CollectionViewScrollDirection {
+        scrollDirection :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> NS.CollectionViewScrollDirection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -179,7 +179,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("scrollDirection"), auto_cast scrollDirection, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setScrollDirection != nil {
-        setScrollDirection :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, scrollDirection: AK.CollectionViewScrollDirection) {
+        setScrollDirection :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, scrollDirection: NS.CollectionViewScrollDirection) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -189,7 +189,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setScrollDirection:"), auto_cast setScrollDirection, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.headerReferenceSize != nil {
-        headerReferenceSize :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> NS.Size {
+        headerReferenceSize :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -199,7 +199,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("headerReferenceSize"), auto_cast headerReferenceSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setHeaderReferenceSize != nil {
-        setHeaderReferenceSize :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, headerReferenceSize: NS.Size) {
+        setHeaderReferenceSize :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, headerReferenceSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -209,7 +209,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setHeaderReferenceSize:"), auto_cast setHeaderReferenceSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.footerReferenceSize != nil {
-        footerReferenceSize :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> NS.Size {
+        footerReferenceSize :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -219,7 +219,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("footerReferenceSize"), auto_cast footerReferenceSize, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setFooterReferenceSize != nil {
-        setFooterReferenceSize :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, footerReferenceSize: NS.Size) {
+        setFooterReferenceSize :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, footerReferenceSize: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -229,7 +229,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFooterReferenceSize:"), auto_cast setFooterReferenceSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.sectionInset != nil {
-        sectionInset :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> NS.EdgeInsets {
+        sectionInset :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> NS.EdgeInsets {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -239,7 +239,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sectionInset"), auto_cast sectionInset, "{NSEdgeInsets=dddd}@:") do panic("Failed to register objC method.")
     }
     if vt.setSectionInset != nil {
-        setSectionInset :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, sectionInset: NS.EdgeInsets) {
+        setSectionInset :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, sectionInset: NS.EdgeInsets) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -249,7 +249,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSectionInset:"), auto_cast setSectionInset, "v@:{NSEdgeInsets=dddd}") do panic("Failed to register objC method.")
     }
     if vt.sectionHeadersPinToVisibleBounds != nil {
-        sectionHeadersPinToVisibleBounds :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> bool {
+        sectionHeadersPinToVisibleBounds :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -259,7 +259,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sectionHeadersPinToVisibleBounds"), auto_cast sectionHeadersPinToVisibleBounds, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSectionHeadersPinToVisibleBounds != nil {
-        setSectionHeadersPinToVisibleBounds :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, sectionHeadersPinToVisibleBounds: bool) {
+        setSectionHeadersPinToVisibleBounds :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, sectionHeadersPinToVisibleBounds: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -269,7 +269,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSectionHeadersPinToVisibleBounds:"), auto_cast setSectionHeadersPinToVisibleBounds, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.sectionFootersPinToVisibleBounds != nil {
-        sectionFootersPinToVisibleBounds :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL) -> bool {
+        sectionFootersPinToVisibleBounds :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -279,7 +279,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("sectionFootersPinToVisibleBounds"), auto_cast sectionFootersPinToVisibleBounds, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSectionFootersPinToVisibleBounds != nil {
-        setSectionFootersPinToVisibleBounds :: proc "c" (self: ^AK.CollectionViewFlowLayout, _: SEL, sectionFootersPinToVisibleBounds: bool) {
+        setSectionFootersPinToVisibleBounds :: proc "c" (self: ^NS.CollectionViewFlowLayout, _: SEL, sectionFootersPinToVisibleBounds: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

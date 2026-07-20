@@ -12,17 +12,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioInputNode
-///
 @(objc_class="AVAudioInputNode", objc_superclass=AudioIONode)
 AudioInputNode :: struct { using _: AudioIONode, 
     using _: AudioMixing,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioInputNode, objc_selector="init", objc_name="init")
     AudioInputNode_init :: proc(self: ^AudioInputNode) -> instancetype ---
@@ -31,7 +25,7 @@ foreign lib {
     AudioInputNode_setManualRenderingInputPCMFormat :: proc(self: ^AudioInputNode, format: ^AudioFormat, block: AudioIONodeInputBlock) -> bool ---
 
     @(objc_type=AudioInputNode, objc_selector="setMutedSpeechActivityEventListener:", objc_name="setMutedSpeechActivityEventListener")
-    AudioInputNode_setMutedSpeechActivityEventListener :: proc(self: ^AudioInputNode, listenerBlock: ^Objc_Block(proc "c" (event: AudioVoiceProcessingSpeechActivityEvent))) -> bool ---
+    AudioInputNode_setMutedSpeechActivityEventListener :: proc(self: ^AudioInputNode, listenerBlock: ^Objc_Block(proc "c" ( event: AudioVoiceProcessingSpeechActivityEvent ))) -> bool ---
 
     @(objc_type=AudioInputNode, objc_selector="isVoiceProcessingBypassed", objc_name="isVoiceProcessingBypassed")
     AudioInputNode_isVoiceProcessingBypassed :: proc(self: ^AudioInputNode) -> bool ---
@@ -57,3 +51,6 @@ foreign lib {
     @(objc_type=AudioInputNode, objc_selector="setVoiceProcessingOtherAudioDuckingConfiguration:", objc_name="setVoiceProcessingOtherAudioDuckingConfiguration")
     AudioInputNode_setVoiceProcessingOtherAudioDuckingConfiguration :: proc(self: ^AudioInputNode, voiceProcessingOtherAudioDuckingConfiguration: AudioVoiceProcessingOtherAudioDuckingConfiguration) ---
 }
+
+
+

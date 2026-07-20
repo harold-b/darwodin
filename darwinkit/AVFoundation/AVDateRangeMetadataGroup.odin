@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVDateRangeMetadataGroup
-///
 @(objc_class="AVDateRangeMetadataGroup", objc_superclass=MetadataGroup)
 DateRangeMetadataGroup :: struct { using _: MetadataGroup, 
     using _: NS.Copying,
     using _: NS.MutableCopying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=DateRangeMetadataGroup, objc_selector="initWithItems:startDate:endDate:", objc_name="initWithItems")
     DateRangeMetadataGroup_initWithItems :: proc(self: ^DateRangeMetadataGroup, items: ^NS.Array, startDate: ^NS.Date, endDate: ^NS.Date) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=DateRangeMetadataGroup, objc_selector="items", objc_name="items")
     DateRangeMetadataGroup_items :: proc(self: ^DateRangeMetadataGroup) -> ^NS.Array ---
 }
+
+
+

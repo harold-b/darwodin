@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptureDeskViewApplicationLaunchConfiguration
-///
 @(objc_class="AVCaptureDeskViewApplicationLaunchConfiguration", objc_superclass=NS.Object)
 CaptureDeskViewApplicationLaunchConfiguration :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptureDeskViewApplicationLaunchConfiguration, objc_selector="mainWindowFrame", objc_name="mainWindowFrame")
     CaptureDeskViewApplicationLaunchConfiguration_mainWindowFrame :: proc(self: ^CaptureDeskViewApplicationLaunchConfiguration) -> CG.Rect ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=CaptureDeskViewApplicationLaunchConfiguration, objc_selector="setRequiresSetUpModeCompletion:", objc_name="setRequiresSetUpModeCompletion")
     CaptureDeskViewApplicationLaunchConfiguration_setRequiresSetUpModeCompletion :: proc(self: ^CaptureDeskViewApplicationLaunchConfiguration, requiresSetUpModeCompletion: bool) ---
 }
+
+
+

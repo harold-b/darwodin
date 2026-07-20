@@ -32,7 +32,7 @@ foreign lib {
     DraggingInfo_namesOfPromisedFilesDroppedAtDestination :: proc(self: ^DraggingInfo, dropDestination: ^NS.URL) -> ^NS.Array ---
 
     @(objc_type=DraggingInfo, objc_selector="enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:", objc_name="enumerateDraggingItemsWithOptions")
-    DraggingInfo_enumerateDraggingItemsWithOptions :: proc(self: ^DraggingInfo, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" (draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool))) ---
+    DraggingInfo_enumerateDraggingItemsWithOptions :: proc(self: ^DraggingInfo, enumOpts: DraggingItemEnumerationOptions, view: ^View, classArray: ^NS.Array, searchOptions: ^NS.Dictionary, block: ^Objc_Block(proc "c" ( draggingItem: ^DraggingItem, idx: NS.Integer, stop: ^bool ))) ---
 
     @(objc_type=DraggingInfo, objc_selector="resetSpringLoading", objc_name="resetSpringLoading")
     DraggingInfo_resetSpringLoading :: proc(self: ^DraggingInfo) ---

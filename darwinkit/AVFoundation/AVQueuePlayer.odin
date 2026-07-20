@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVQueuePlayer
-///
 @(objc_class="AVQueuePlayer", objc_superclass=Player)
 QueuePlayer :: struct { using _: Player, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=QueuePlayer, objc_selector="queuePlayerWithItems:", objc_name="queuePlayerWithItems", objc_is_class_method=true)
     QueuePlayer_queuePlayerWithItems :: proc(items: ^NS.Array) -> instancetype ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=QueuePlayer, objc_selector="removeAllItems", objc_name="removeAllItems")
     QueuePlayer_removeAllItems :: proc(self: ^QueuePlayer) ---
 }
+
+
+

@@ -20,12 +20,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    imageForBounds: proc(self: ^AK.TextAttachmentLayout, bounds: CG.Rect, attributes: ^NS.Dictionary, location: ^AK.TextLocation, textContainer: ^AK.TextContainer) -> ^AK.Image,
-    attachmentBoundsForAttributes: proc(self: ^AK.TextAttachmentLayout, attributes: ^NS.Dictionary, location: ^AK.TextLocation, textContainer: ^AK.TextContainer, proposedLineFragment: CG.Rect, position: CG.Point) -> CG.Rect,
-    viewProviderForParentView: proc(self: ^AK.TextAttachmentLayout, parentView: ^AK.View, location: ^AK.TextLocation, textContainer: ^AK.TextContainer) -> ^AK.TextAttachmentViewProvider,
+    imageForBounds: proc(self: ^NS.TextAttachmentLayout, bounds: CG.Rect, attributes: ^NS.Dictionary, location: ^NS.TextLocation, textContainer: ^NS.TextContainer) -> ^NS.Image,
+    attachmentBoundsForAttributes: proc(self: ^NS.TextAttachmentLayout, attributes: ^NS.Dictionary, location: ^NS.TextLocation, textContainer: ^NS.TextContainer, proposedLineFragment: CG.Rect, position: CG.Point) -> CG.Rect,
+    viewProviderForParentView: proc(self: ^NS.TextAttachmentLayout, parentView: ^NS.View, location: ^NS.TextLocation, textContainer: ^NS.TextContainer) -> ^NS.TextAttachmentViewProvider,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.imageForBounds != nil {
-        imageForBounds :: proc "c" (self: ^AK.TextAttachmentLayout, _: SEL, bounds: CG.Rect, attributes: ^NS.Dictionary, location: ^AK.TextLocation, textContainer: ^AK.TextContainer) -> ^AK.Image {
+        imageForBounds :: proc "c" (self: ^NS.TextAttachmentLayout, _: SEL, bounds: CG.Rect, attributes: ^NS.Dictionary, location: ^NS.TextLocation, textContainer: ^NS.TextContainer) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageForBounds:attributes:location:textContainer:"), auto_cast imageForBounds, "@@:{CGRect={CGPoint=dd}{CGSize=dd}}^void@@") do panic("Failed to register objC method.")
     }
     if vt.attachmentBoundsForAttributes != nil {
-        attachmentBoundsForAttributes :: proc "c" (self: ^AK.TextAttachmentLayout, _: SEL, attributes: ^NS.Dictionary, location: ^AK.TextLocation, textContainer: ^AK.TextContainer, proposedLineFragment: CG.Rect, position: CG.Point) -> CG.Rect {
+        attachmentBoundsForAttributes :: proc "c" (self: ^NS.TextAttachmentLayout, _: SEL, attributes: ^NS.Dictionary, location: ^NS.TextLocation, textContainer: ^NS.TextContainer, proposedLineFragment: CG.Rect, position: CG.Point) -> CG.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("attachmentBoundsForAttributes:location:textContainer:proposedLineFragment:position:"), auto_cast attachmentBoundsForAttributes, "{CGRect={CGPoint=dd}{CGSize=dd}}@:^void@@{CGRect={CGPoint=dd}{CGSize=dd}}{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.viewProviderForParentView != nil {
-        viewProviderForParentView :: proc "c" (self: ^AK.TextAttachmentLayout, _: SEL, parentView: ^AK.View, location: ^AK.TextLocation, textContainer: ^AK.TextContainer) -> ^AK.TextAttachmentViewProvider {
+        viewProviderForParentView :: proc "c" (self: ^NS.TextAttachmentLayout, _: SEL, parentView: ^NS.View, location: ^NS.TextLocation, textContainer: ^NS.TextContainer) -> ^NS.TextAttachmentViewProvider {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

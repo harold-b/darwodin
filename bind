@@ -18,6 +18,9 @@ while true; do
     -lite)
       lite=1
     ;;
+    -m|-markers)
+      cgen_args+=("--odin-emit-text-markers")
+    ;;
     *)
       frameworks+=($1)
     ;;
@@ -43,7 +46,6 @@ if [[ ${use_ios} -eq 1 ]]; then
   appkit=UIKit
 fi
 
-cgen_args+=()
 
 out_path=../${out_folder}
 for f in ${frameworks[@]}; do

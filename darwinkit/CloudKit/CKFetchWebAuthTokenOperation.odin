@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKFetchWebAuthTokenOperation
-///
 @(objc_class="CKFetchWebAuthTokenOperation", objc_superclass=DatabaseOperation)
 FetchWebAuthTokenOperation :: struct { using _: DatabaseOperation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FetchWebAuthTokenOperation, objc_selector="init", objc_name="init")
     FetchWebAuthTokenOperation_init :: proc(self: ^FetchWebAuthTokenOperation) -> instancetype ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=FetchWebAuthTokenOperation, objc_selector="setFetchWebAuthTokenCompletionBlock:", objc_name="setFetchWebAuthTokenCompletionBlock")
     FetchWebAuthTokenOperation_setFetchWebAuthTokenCompletionBlock :: proc(self: ^FetchWebAuthTokenOperation, fetchWebAuthTokenCompletionBlock: ^Objc_Block(proc "c" ())) ---
 }
+
+
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitComponentManager
-///
 @(objc_class="AVAudioUnitComponentManager", objc_superclass=NS.Object)
 AudioUnitComponentManager :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitComponentManager, objc_selector="sharedAudioUnitComponentManager", objc_name="sharedAudioUnitComponentManager", objc_is_class_method=true)
     AudioUnitComponentManager_sharedAudioUnitComponentManager :: proc() -> instancetype ---
@@ -29,7 +23,7 @@ foreign lib {
     AudioUnitComponentManager_componentsMatchingPredicate :: proc(self: ^AudioUnitComponentManager, predicate: ^NS.Predicate) -> ^NS.Array ---
 
     @(objc_type=AudioUnitComponentManager, objc_selector="componentsPassingTest:", objc_name="componentsPassingTest")
-    AudioUnitComponentManager_componentsPassingTest :: proc(self: ^AudioUnitComponentManager, testHandler: ^Objc_Block(proc "c" (comp: ^AudioUnitComponent, stop: ^bool) -> bool)) -> ^NS.Array ---
+    AudioUnitComponentManager_componentsPassingTest :: proc(self: ^AudioUnitComponentManager, testHandler: ^Objc_Block(proc "c" ( comp: ^AudioUnitComponent, stop: ^bool ) -> bool)) -> ^NS.Array ---
 
     @(objc_type=AudioUnitComponentManager, objc_selector="componentsMatchingDescription:", objc_name="componentsMatchingDescription")
     AudioUnitComponentManager_componentsMatchingDescription :: proc(self: ^AudioUnitComponentManager, desc: Audio.ComponentDescription) -> ^NS.Array ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=AudioUnitComponentManager, objc_selector="standardLocalizedTagNames", objc_name="standardLocalizedTagNames")
     AudioUnitComponentManager_standardLocalizedTagNames :: proc(self: ^AudioUnitComponentManager) -> ^NS.Array ---
 }
+
+
+

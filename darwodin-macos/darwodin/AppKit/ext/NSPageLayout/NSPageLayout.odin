@@ -20,25 +20,25 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    pageLayout: proc() -> ^AK.PageLayout,
-    addAccessoryController: proc(self: ^AK.PageLayout, accessoryController: ^AK.ViewController),
-    removeAccessoryController: proc(self: ^AK.PageLayout, accessoryController: ^AK.ViewController),
-    beginSheetUsingPrintInfo: proc(self: ^AK.PageLayout, printInfo: ^AK.PrintInfo, parentWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (result: AK.PageLayoutResult))),
-    beginSheetWithPrintInfo: proc(self: ^AK.PageLayout, printInfo: ^AK.PrintInfo, docWindow: ^AK.Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr),
-    runModalWithPrintInfo: proc(self: ^AK.PageLayout, printInfo: ^AK.PrintInfo) -> NS.Integer,
-    runModal: proc(self: ^AK.PageLayout) -> NS.Integer,
-    accessoryControllers: proc(self: ^AK.PageLayout) -> ^NS.Array,
-    printInfo: proc(self: ^AK.PageLayout) -> ^AK.PrintInfo,
-    setAccessoryView: proc(self: ^AK.PageLayout, accessoryView: ^AK.View),
-    accessoryView: proc(self: ^AK.PageLayout) -> ^AK.View,
-    readPrintInfo: proc(self: ^AK.PageLayout),
-    writePrintInfo: proc(self: ^AK.PageLayout),
+    pageLayout: proc() -> ^NS.PageLayout,
+    addAccessoryController: proc(self: ^NS.PageLayout, accessoryController: ^NS.ViewController),
+    removeAccessoryController: proc(self: ^NS.PageLayout, accessoryController: ^NS.ViewController),
+    beginSheetUsingPrintInfo: proc(self: ^NS.PageLayout, printInfo: ^NS.PrintInfo, parentWindow: ^NS.Window, handler: ^Objc_Block(proc "c" ( result: NS.PageLayoutResult ))),
+    beginSheetWithPrintInfo: proc(self: ^NS.PageLayout, printInfo: ^NS.PrintInfo, docWindow: ^NS.Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr),
+    runModalWithPrintInfo: proc(self: ^NS.PageLayout, printInfo: ^NS.PrintInfo) -> NS.Integer,
+    runModal: proc(self: ^NS.PageLayout) -> NS.Integer,
+    accessoryControllers: proc(self: ^NS.PageLayout) -> ^NS.Array,
+    printInfo: proc(self: ^NS.PageLayout) -> ^NS.PrintInfo,
+    setAccessoryView: proc(self: ^NS.PageLayout, accessoryView: ^NS.View),
+    accessoryView: proc(self: ^NS.PageLayout) -> ^NS.View,
+    readPrintInfo: proc(self: ^NS.PageLayout),
+    writePrintInfo: proc(self: ^NS.PageLayout),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -49,7 +49,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.pageLayout != nil {
-        pageLayout :: proc "c" (self: Class, _: SEL) -> ^AK.PageLayout {
+        pageLayout :: proc "c" (self: Class, _: SEL) -> ^NS.PageLayout {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -59,7 +59,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("pageLayout"), auto_cast pageLayout, "@#:") do panic("Failed to register objC method.")
     }
     if vt.addAccessoryController != nil {
-        addAccessoryController :: proc "c" (self: ^AK.PageLayout, _: SEL, accessoryController: ^AK.ViewController) {
+        addAccessoryController :: proc "c" (self: ^NS.PageLayout, _: SEL, accessoryController: ^NS.ViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -69,7 +69,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addAccessoryController:"), auto_cast addAccessoryController, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeAccessoryController != nil {
-        removeAccessoryController :: proc "c" (self: ^AK.PageLayout, _: SEL, accessoryController: ^AK.ViewController) {
+        removeAccessoryController :: proc "c" (self: ^NS.PageLayout, _: SEL, accessoryController: ^NS.ViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -79,7 +79,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeAccessoryController:"), auto_cast removeAccessoryController, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.beginSheetUsingPrintInfo != nil {
-        beginSheetUsingPrintInfo :: proc "c" (self: ^AK.PageLayout, _: SEL, printInfo: ^AK.PrintInfo, parentWindow: ^AK.Window, handler: ^Objc_Block(proc "c" (result: AK.PageLayoutResult))) {
+        beginSheetUsingPrintInfo :: proc "c" (self: ^NS.PageLayout, _: SEL, printInfo: ^NS.PrintInfo, parentWindow: ^NS.Window, handler: ^Objc_Block(proc "c" ( result: NS.PageLayoutResult ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -89,7 +89,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginSheetUsingPrintInfo:onWindow:completionHandler:"), auto_cast beginSheetUsingPrintInfo, "v@:@@?") do panic("Failed to register objC method.")
     }
     if vt.beginSheetWithPrintInfo != nil {
-        beginSheetWithPrintInfo :: proc "c" (self: ^AK.PageLayout, _: SEL, printInfo: ^AK.PrintInfo, docWindow: ^AK.Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr) {
+        beginSheetWithPrintInfo :: proc "c" (self: ^NS.PageLayout, _: SEL, printInfo: ^NS.PrintInfo, docWindow: ^NS.Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -99,7 +99,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:"), auto_cast beginSheetWithPrintInfo, "v@:@@@:^void") do panic("Failed to register objC method.")
     }
     if vt.runModalWithPrintInfo != nil {
-        runModalWithPrintInfo :: proc "c" (self: ^AK.PageLayout, _: SEL, printInfo: ^AK.PrintInfo) -> NS.Integer {
+        runModalWithPrintInfo :: proc "c" (self: ^NS.PageLayout, _: SEL, printInfo: ^NS.PrintInfo) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -109,7 +109,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("runModalWithPrintInfo:"), auto_cast runModalWithPrintInfo, "l@:@") do panic("Failed to register objC method.")
     }
     if vt.runModal != nil {
-        runModal :: proc "c" (self: ^AK.PageLayout, _: SEL) -> NS.Integer {
+        runModal :: proc "c" (self: ^NS.PageLayout, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -119,7 +119,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("runModal"), auto_cast runModal, "l@:") do panic("Failed to register objC method.")
     }
     if vt.accessoryControllers != nil {
-        accessoryControllers :: proc "c" (self: ^AK.PageLayout, _: SEL) -> ^NS.Array {
+        accessoryControllers :: proc "c" (self: ^NS.PageLayout, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -129,7 +129,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessoryControllers"), auto_cast accessoryControllers, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.printInfo != nil {
-        printInfo :: proc "c" (self: ^AK.PageLayout, _: SEL) -> ^AK.PrintInfo {
+        printInfo :: proc "c" (self: ^NS.PageLayout, _: SEL) -> ^NS.PrintInfo {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -139,7 +139,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("printInfo"), auto_cast printInfo, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessoryView != nil {
-        setAccessoryView :: proc "c" (self: ^AK.PageLayout, _: SEL, accessoryView: ^AK.View) {
+        setAccessoryView :: proc "c" (self: ^NS.PageLayout, _: SEL, accessoryView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -149,7 +149,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessoryView:"), auto_cast setAccessoryView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.accessoryView != nil {
-        accessoryView :: proc "c" (self: ^AK.PageLayout, _: SEL) -> ^AK.View {
+        accessoryView :: proc "c" (self: ^NS.PageLayout, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -159,7 +159,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessoryView"), auto_cast accessoryView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.readPrintInfo != nil {
-        readPrintInfo :: proc "c" (self: ^AK.PageLayout, _: SEL) {
+        readPrintInfo :: proc "c" (self: ^NS.PageLayout, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -169,7 +169,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("readPrintInfo"), auto_cast readPrintInfo, "v@:") do panic("Failed to register objC method.")
     }
     if vt.writePrintInfo != nil {
-        writePrintInfo :: proc "c" (self: ^AK.PageLayout, _: SEL) {
+        writePrintInfo :: proc "c" (self: ^NS.PageLayout, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -37,7 +37,7 @@ foreign lib {
     ViewPropertyAnimator_initWithDuration_dampingRatio_animations :: proc(self: ^ViewPropertyAnimator, duration: NS.TimeInterval, ratio: CG.Float, animations: ^Objc_Block(proc "c" ())) -> instancetype ---
 
     @(objc_type=ViewPropertyAnimator, objc_selector="runningPropertyAnimatorWithDuration:delay:options:animations:completion:", objc_name="runningPropertyAnimatorWithDuration", objc_is_class_method=true)
-    ViewPropertyAnimator_runningPropertyAnimatorWithDuration :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) -> instancetype ---
+    ViewPropertyAnimator_runningPropertyAnimatorWithDuration :: proc(duration: NS.TimeInterval, delay: NS.TimeInterval, options: ViewAnimationOptions, animations: ^Objc_Block(proc "c" ()), completion: ^Objc_Block(proc "c" ( finalPosition: ViewAnimatingPosition ))) -> instancetype ---
 
     @(objc_type=ViewPropertyAnimator, objc_selector="addAnimations:delayFactor:", objc_name="addAnimations_delayFactor")
     ViewPropertyAnimator_addAnimations_delayFactor :: proc(self: ^ViewPropertyAnimator, animation: ^Objc_Block(proc "c" ()), delayFactor: CG.Float) ---
@@ -46,7 +46,7 @@ foreign lib {
     ViewPropertyAnimator_addAnimations_ :: proc(self: ^ViewPropertyAnimator, animation: ^Objc_Block(proc "c" ())) ---
 
     @(objc_type=ViewPropertyAnimator, objc_selector="addCompletion:", objc_name="addCompletion")
-    ViewPropertyAnimator_addCompletion :: proc(self: ^ViewPropertyAnimator, completion: ^Objc_Block(proc "c" (finalPosition: ViewAnimatingPosition))) ---
+    ViewPropertyAnimator_addCompletion :: proc(self: ^ViewPropertyAnimator, completion: ^Objc_Block(proc "c" ( finalPosition: ViewAnimatingPosition ))) ---
 
     @(objc_type=ViewPropertyAnimator, objc_selector="continueAnimationWithTimingParameters:durationFactor:", objc_name="continueAnimationWithTimingParameters")
     ViewPropertyAnimator_continueAnimationWithTimingParameters :: proc(self: ^ViewPropertyAnimator, parameters: ^TimingCurveProvider, durationFactor: CG.Float) ---

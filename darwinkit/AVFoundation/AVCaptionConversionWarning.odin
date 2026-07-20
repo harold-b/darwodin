@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVCaptionConversionWarning
-///
 @(objc_class="AVCaptionConversionWarning", objc_superclass=NS.Object)
 CaptionConversionWarning :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CaptionConversionWarning, objc_selector="init", objc_name="init")
     CaptionConversionWarning_init :: proc(self: ^CaptionConversionWarning) -> instancetype ---
@@ -37,3 +31,6 @@ foreign lib {
     @(objc_type=CaptionConversionWarning, objc_selector="adjustment", objc_name="adjustment")
     CaptionConversionWarning_adjustment :: proc(self: ^CaptionConversionWarning) -> ^CaptionConversionAdjustment ---
 }
+
+
+

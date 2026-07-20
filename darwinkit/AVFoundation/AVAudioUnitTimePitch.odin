@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioUnitTimePitch
-///
 @(objc_class="AVAudioUnitTimePitch", objc_superclass=AudioUnitTimeEffect)
 AudioUnitTimePitch :: struct { using _: AudioUnitTimeEffect, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioUnitTimePitch, objc_selector="rate", objc_name="rate")
     AudioUnitTimePitch_rate :: proc(self: ^AudioUnitTimePitch) -> cffi.float ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=AudioUnitTimePitch, objc_selector="setOverlap:", objc_name="setOverlap")
     AudioUnitTimePitch_setOverlap :: proc(self: ^AudioUnitTimePitch, overlap: cffi.float) ---
 }
+
+
+

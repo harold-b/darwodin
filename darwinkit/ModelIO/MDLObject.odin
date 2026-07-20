@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLObject
-///
 @(objc_class="MDLObject", objc_superclass=NS.Object)
 Object :: struct { using _: NS.Object, 
     using _: Named,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Object, objc_selector="setComponent:forProtocol:", objc_name="setComponent")
     Object_setComponent :: proc(self: ^Object, component: ^Component, protocol: ^Protocol) ---
@@ -38,7 +32,7 @@ foreign lib {
     Object_objectAtPath :: proc(self: ^Object, path: ^NS.String) -> ^Object ---
 
     @(objc_type=Object, objc_selector="enumerateChildObjectsOfClass:root:usingBlock:stopPointer:", objc_name="enumerateChildObjectsOfClass")
-    Object_enumerateChildObjectsOfClass :: proc(self: ^Object, objectClass: Class, root: ^Object, block: ^Objc_Block(proc "c" (object: ^Object, stop: ^bool)), stopPointer: ^bool) ---
+    Object_enumerateChildObjectsOfClass :: proc(self: ^Object, objectClass: Class, root: ^Object, block: ^Objc_Block(proc "c" ( object: ^Object, stop: ^bool )), stopPointer: ^bool) ---
 
     @(objc_type=Object, objc_selector="addChild:", objc_name="addChild")
     Object_addChild :: proc(self: ^Object, child: ^Object) ---
@@ -82,3 +76,6 @@ foreign lib {
     @(objc_type=Object, objc_selector="setHidden:", objc_name="setHidden")
     Object_setHidden :: proc(self: ^Object, hidden: bool) ---
 }
+
+
+

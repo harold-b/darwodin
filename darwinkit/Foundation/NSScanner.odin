@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSScanner
-///
 @(objc_class="NSScanner", objc_superclass=Object)
 Scanner :: struct { using _: Object, 
     using _: Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Scanner, objc_selector="initWithString:", objc_name="initWithString")
     Scanner_initWithString :: proc(self: ^Scanner, string: ^String) -> instancetype ---
@@ -105,3 +99,6 @@ foreign lib {
     @(objc_type=Scanner, objc_selector="scanDecimal:", objc_name="scanDecimal")
     Scanner_scanDecimal :: proc(self: ^Scanner, dcm: ^Decimal) -> bool ---
 }
+
+
+

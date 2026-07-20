@@ -20,12 +20,12 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    mouseDownOnCharacterIndex: proc(self: ^AK.InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool,
-    mouseDraggedOnCharacterIndex: proc(self: ^AK.InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool,
-    mouseUpOnCharacterIndex: proc(self: ^AK.InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id),
+    mouseDownOnCharacterIndex: proc(self: ^NS.InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool,
+    mouseDraggedOnCharacterIndex: proc(self: ^NS.InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool,
+    mouseUpOnCharacterIndex: proc(self: ^NS.InputServerMouseTracker, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -33,7 +33,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.mouseDownOnCharacterIndex != nil {
-        mouseDownOnCharacterIndex :: proc "c" (self: ^AK.InputServerMouseTracker, _: SEL, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool {
+        mouseDownOnCharacterIndex :: proc "c" (self: ^NS.InputServerMouseTracker, _: SEL, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -43,7 +43,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mouseDownOnCharacterIndex:atCoordinate:withModifier:client:"), auto_cast mouseDownOnCharacterIndex, "B@:L{CGPoint=dd}L@") do panic("Failed to register objC method.")
     }
     if vt.mouseDraggedOnCharacterIndex != nil {
-        mouseDraggedOnCharacterIndex :: proc "c" (self: ^AK.InputServerMouseTracker, _: SEL, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool {
+        mouseDraggedOnCharacterIndex :: proc "c" (self: ^NS.InputServerMouseTracker, _: SEL, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -53,7 +53,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("mouseDraggedOnCharacterIndex:atCoordinate:withModifier:client:"), auto_cast mouseDraggedOnCharacterIndex, "B@:L{CGPoint=dd}L@") do panic("Failed to register objC method.")
     }
     if vt.mouseUpOnCharacterIndex != nil {
-        mouseUpOnCharacterIndex :: proc "c" (self: ^AK.InputServerMouseTracker, _: SEL, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) {
+        mouseUpOnCharacterIndex :: proc "c" (self: ^NS.InputServerMouseTracker, _: SEL, index: NS.UInteger, point: CG.Point, flags: NS.UInteger, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

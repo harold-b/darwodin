@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLCheckerboardTexture
-///
 @(objc_class="MDLCheckerboardTexture", objc_superclass=Texture)
 CheckerboardTexture :: struct { using _: Texture, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=CheckerboardTexture, objc_selector="initWithDivisions:name:dimensions:channelCount:channelEncoding:color1:color2:", objc_name="initWithDivisions")
     CheckerboardTexture_initWithDivisions :: proc(self: ^CheckerboardTexture, divisions: cffi.float, name: ^NS.String, dimensions: ^[2]cffi.int, channelCount: cffi.int, channelEncoding: TextureChannelEncoding, color1: CG.ColorRef, color2: CG.ColorRef) -> instancetype ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=CheckerboardTexture, objc_selector="setColor2:", objc_name="setColor2")
     CheckerboardTexture_setColor2 :: proc(self: ^CheckerboardTexture, color2: CG.ColorRef) ---
 }
+
+
+

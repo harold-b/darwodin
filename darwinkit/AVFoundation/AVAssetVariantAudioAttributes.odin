@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAssetVariantAudioAttributes
-///
 @(objc_class="AVAssetVariantAudioAttributes", objc_superclass=NS.Object)
 AssetVariantAudioAttributes :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AssetVariantAudioAttributes, objc_selector="init", objc_name="init")
     AssetVariantAudioAttributes_init :: proc(self: ^AssetVariantAudioAttributes) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=AssetVariantAudioAttributes, objc_selector="formatIDs", objc_name="formatIDs")
     AssetVariantAudioAttributes_formatIDs :: proc(self: ^AssetVariantAudioAttributes) -> ^NS.Array ---
 }
+
+
+

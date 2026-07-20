@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKChallengeListener
-///
 @(objc_class="GKChallengeListener")
 ChallengeListener :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ChallengeListener, objc_selector="player:wantsToPlayChallenge:", objc_name="player_wantsToPlayChallenge")
     ChallengeListener_player_wantsToPlayChallenge :: proc(self: ^ChallengeListener, player: ^Player, challenge: ^Challenge) ---
@@ -31,4 +25,6 @@ foreign lib {
     @(objc_type=ChallengeListener, objc_selector="player:issuedChallengeWasCompleted:byFriend:", objc_name="player_issuedChallengeWasCompleted_byFriend")
     ChallengeListener_player_issuedChallengeWasCompleted_byFriend :: proc(self: ^ChallengeListener, player: ^Player, challenge: ^Challenge, friendPlayer: ^Player) ---
 }
+
+
 

@@ -7,15 +7,9 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKAgent3D
-///
 @(objc_class="GKAgent3D", objc_superclass=Agent)
 Agent3D :: struct { using _: Agent, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Agent3D, objc_selector="updateWithDeltaTime:", objc_name="updateWithDeltaTime")
     Agent3D_updateWithDeltaTime :: proc(self: ^Agent3D, seconds: NS.TimeInterval) ---
@@ -41,3 +35,6 @@ foreign lib {
     @(objc_type=Agent3D, objc_selector="setRotation:", objc_name="setRotation")
     Agent3D_setRotation :: proc(self: ^Agent3D, rotation: matrix_float3x3) ---
 }
+
+
+

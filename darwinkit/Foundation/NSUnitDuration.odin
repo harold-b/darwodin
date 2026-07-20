@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitDuration
-///
 @(objc_class="NSUnitDuration", objc_superclass=Dimension)
 UnitDuration :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitDuration, objc_selector="hours", objc_name="hours", objc_is_class_method=true)
     UnitDuration_hours :: proc() -> ^UnitDuration ---
@@ -42,3 +36,6 @@ foreign lib {
     @(objc_type=UnitDuration, objc_selector="picoseconds", objc_name="picoseconds", objc_is_class_method=true)
     UnitDuration_picoseconds :: proc() -> ^UnitDuration ---
 }
+
+
+

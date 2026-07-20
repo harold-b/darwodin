@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVAudioSessionDataSourceDescription
-///
 @(objc_class="AVAudioSessionDataSourceDescription", objc_superclass=NS.Object)
 AudioSessionDataSourceDescription :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AudioSessionDataSourceDescription, objc_selector="setPreferredPolarPattern:error:", objc_name="setPreferredPolarPattern")
     AudioSessionDataSourceDescription_setPreferredPolarPattern :: proc(self: ^AudioSessionDataSourceDescription, pattern: ^NS.String, outError: ^^NS.Error) -> bool ---
@@ -46,3 +40,6 @@ foreign lib {
     @(objc_type=AudioSessionDataSourceDescription, objc_selector="preferredPolarPattern", objc_name="preferredPolarPattern")
     AudioSessionDataSourceDescription_preferredPolarPattern :: proc(self: ^AudioSessionDataSourceDescription) -> ^NS.String ---
 }
+
+
+

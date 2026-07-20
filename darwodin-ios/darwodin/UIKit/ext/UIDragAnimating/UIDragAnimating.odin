@@ -21,7 +21,7 @@ import UI "../../"
 
 VTable :: struct {
     addAnimations: proc(self: ^UI.DragAnimating, animations: ^Objc_Block(proc "c" ())),
-    addCompletion: proc(self: ^UI.DragAnimating, completion: ^Objc_Block(proc "c" (finalPosition: UI.ViewAnimatingPosition))),
+    addCompletion: proc(self: ^UI.DragAnimating, completion: ^Objc_Block(proc "c" ( finalPosition: UI.ViewAnimatingPosition ))),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -39,7 +39,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addAnimations:"), auto_cast addAnimations, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.addCompletion != nil {
-        addCompletion :: proc "c" (self: ^UI.DragAnimating, _: SEL, completion: ^Objc_Block(proc "c" (finalPosition: UI.ViewAnimatingPosition))) {
+        addCompletion :: proc "c" (self: ^UI.DragAnimating, _: SEL, completion: ^Objc_Block(proc "c" ( finalPosition: UI.ViewAnimatingPosition ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

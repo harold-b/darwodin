@@ -28,7 +28,7 @@ foreign lib {
     SampleBufferGeneratorBatch_new :: proc() -> ^SampleBufferGeneratorBatch ---
 
     @(objc_type=SampleBufferGeneratorBatch, objc_selector="makeDataReadyWithCompletionHandler:", objc_name="makeDataReadyWithCompletionHandler")
-    SampleBufferGeneratorBatch_makeDataReadyWithCompletionHandler :: proc(self: ^SampleBufferGeneratorBatch, completionHandler: ^Objc_Block(proc "c" (error: ^NS.Error))) ---
+    SampleBufferGeneratorBatch_makeDataReadyWithCompletionHandler :: proc(self: ^SampleBufferGeneratorBatch, completionHandler: ^Objc_Block(proc "c" ( error: ^NS.Error ))) ---
 
     @(objc_type=SampleBufferGeneratorBatch, objc_selector="cancel", objc_name="cancel")
     SampleBufferGeneratorBatch_cancel :: proc(self: ^SampleBufferGeneratorBatch) ---

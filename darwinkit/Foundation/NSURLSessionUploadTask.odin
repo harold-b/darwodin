@@ -9,15 +9,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSURLSessionUploadTask
-///
 @(objc_class="NSURLSessionUploadTask", objc_superclass=URLSessionDataTask)
 URLSessionUploadTask :: struct { using _: URLSessionDataTask, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=URLSessionUploadTask, objc_selector="init", objc_name="init")
     URLSessionUploadTask_init :: proc(self: ^URLSessionUploadTask) -> instancetype ---
@@ -26,5 +20,8 @@ foreign lib {
     URLSessionUploadTask_new :: proc() -> ^URLSessionUploadTask ---
 
     @(objc_type=URLSessionUploadTask, objc_selector="cancelByProducingResumeData:", objc_name="cancelByProducingResumeData")
-    URLSessionUploadTask_cancelByProducingResumeData :: proc(self: ^URLSessionUploadTask, completionHandler: ^Objc_Block(proc "c" (resumeData: ^Data))) ---
+    URLSessionUploadTask_cancelByProducingResumeData :: proc(self: ^URLSessionUploadTask, completionHandler: ^Objc_Block(proc "c" ( resumeData: ^Data ))) ---
 }
+
+
+

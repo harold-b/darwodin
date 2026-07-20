@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    changeSpelling: proc(self: ^AK.ChangeSpelling, sender: id),
+    changeSpelling: proc(self: ^NS.ChangeSpelling, sender: id),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.changeSpelling != nil {
-        changeSpelling :: proc "c" (self: ^AK.ChangeSpelling, _: SEL, sender: id) {
+        changeSpelling :: proc "c" (self: ^NS.ChangeSpelling, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -10,23 +10,17 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLMaterialPropertyNode
-///
 @(objc_class="MDLMaterialPropertyNode", objc_superclass=NS.Object)
 MaterialPropertyNode :: struct { using _: NS.Object, 
     using _: Named,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MaterialPropertyNode, objc_selector="init", objc_name="init")
     MaterialPropertyNode_init :: proc(self: ^MaterialPropertyNode) -> instancetype ---
 
     @(objc_type=MaterialPropertyNode, objc_selector="initWithInputs:outputs:evaluationFunction:", objc_name="initWithInputs")
-    MaterialPropertyNode_initWithInputs :: proc(self: ^MaterialPropertyNode, inputs: ^NS.Array, outputs: ^NS.Array, function: ^Objc_Block(proc "c" (_: ^MaterialPropertyNode))) -> instancetype ---
+    MaterialPropertyNode_initWithInputs :: proc(self: ^MaterialPropertyNode, inputs: ^NS.Array, outputs: ^NS.Array, function: ^Objc_Block(proc "c" ( _0: ^MaterialPropertyNode ))) -> instancetype ---
 
     @(objc_type=MaterialPropertyNode, objc_selector="evaluationFunction", objc_name="evaluationFunction")
     MaterialPropertyNode_evaluationFunction :: proc(self: ^MaterialPropertyNode) -> ^Objc_Block(proc "c" ()) ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=MaterialPropertyNode, objc_selector="outputs", objc_name="outputs")
     MaterialPropertyNode_outputs :: proc(self: ^MaterialPropertyNode) -> ^NS.Array ---
 }
+
+
+

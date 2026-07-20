@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVExternalStorageDevice
-///
 @(objc_class="AVExternalStorageDevice", objc_superclass=NS.Object)
 ExternalStorageDevice :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ExternalStorageDevice, objc_selector="init", objc_name="init")
     ExternalStorageDevice_init :: proc(self: ^ExternalStorageDevice) -> instancetype ---
@@ -50,8 +44,11 @@ foreign lib {
     ExternalStorageDevice_isNotRecommendedForCaptureUse :: proc(self: ^ExternalStorageDevice) -> bool ---
 
     @(objc_type=ExternalStorageDevice, objc_selector="requestAccessWithCompletionHandler:", objc_name="requestAccessWithCompletionHandler", objc_is_class_method=true)
-    ExternalStorageDevice_requestAccessWithCompletionHandler :: proc(handler: ^Objc_Block(proc "c" (granted: bool))) ---
+    ExternalStorageDevice_requestAccessWithCompletionHandler :: proc(handler: ^Objc_Block(proc "c" ( granted: bool ))) ---
 
     @(objc_type=ExternalStorageDevice, objc_selector="authorizationStatus", objc_name="authorizationStatus", objc_is_class_method=true)
     ExternalStorageDevice_authorizationStatus :: proc() -> AuthorizationStatus ---
 }
+
+
+

@@ -20,58 +20,58 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
     uniqueSpellDocumentTag: proc() -> NS.Integer,
-    checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount: proc(self: ^AK.SpellChecker, stringToCheck: ^NS.String, startingOffset: NS.Integer, language: ^NS.String, wrapFlag: bool, tag: NS.Integer, wordCount: ^NS.Integer) -> NS._NSRange,
-    checkSpellingOfString_startingAt: proc(self: ^AK.SpellChecker, stringToCheck: ^NS.String, startingOffset: NS.Integer) -> NS._NSRange,
-    countWordsInString: proc(self: ^AK.SpellChecker, stringToCount: ^NS.String, language: ^NS.String) -> NS.Integer,
-    checkGrammarOfString: proc(self: ^AK.SpellChecker, stringToCheck: ^NS.String, startingOffset: NS.Integer, language: ^NS.String, wrapFlag: bool, tag: NS.Integer, details: ^^NS.Array) -> NS._NSRange,
-    checkString: proc(self: ^AK.SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, orthography: ^^NS.Orthography, wordCount: ^NS.Integer) -> ^NS.Array,
-    requestCheckingOfString: proc(self: ^AK.SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer))) -> NS.Integer,
-    requestCandidatesForSelectedRange: proc(self: ^AK.SpellChecker, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, candidates: ^NS.Array))) -> NS.Integer,
-    menuForResult: proc(self: ^AK.SpellChecker, result: ^NS.TextCheckingResult, checkedString: ^NS.String, options: ^NS.Dictionary, location: CG.Point, view: ^AK.View) -> ^AK.Menu,
-    userQuotesArrayForLanguage: proc(self: ^AK.SpellChecker, language: ^NS.String) -> ^NS.Array,
-    updateSpellingPanelWithMisspelledWord: proc(self: ^AK.SpellChecker, word: ^NS.String),
-    updateSpellingPanelWithGrammarString: proc(self: ^AK.SpellChecker, string: ^NS.String, detail: ^NS.Dictionary),
-    updatePanels: proc(self: ^AK.SpellChecker),
-    ignoreWord: proc(self: ^AK.SpellChecker, wordToIgnore: ^NS.String, tag: NS.Integer),
-    ignoredWordsInSpellDocumentWithTag: proc(self: ^AK.SpellChecker, tag: NS.Integer) -> ^NS.Array,
-    setIgnoredWords: proc(self: ^AK.SpellChecker, words: ^NS.Array, tag: NS.Integer),
-    guessesForWordRange: proc(self: ^AK.SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array,
-    correctionForWordRange: proc(self: ^AK.SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.String,
-    completionsForPartialWordRange: proc(self: ^AK.SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array,
-    languageForWordRange: proc(self: ^AK.SpellChecker, range: NS._NSRange, string: ^NS.String, orthography: ^NS.Orthography) -> ^NS.String,
-    closeSpellDocumentWithTag: proc(self: ^AK.SpellChecker, tag: NS.Integer),
-    recordResponse: proc(self: ^AK.SpellChecker, response: AK.CorrectionResponse, correction: ^NS.String, word: ^NS.String, language: ^NS.String, tag: NS.Integer),
-    showCorrectionIndicatorOfType: proc(self: ^AK.SpellChecker, type: AK.CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^AK.View, completionBlock: ^Objc_Block(proc "c" (acceptedString: ^NS.String))),
-    dismissCorrectionIndicatorForView: proc(self: ^AK.SpellChecker, view: ^AK.View),
-    showInlinePredictionForCandidates: proc(self: ^AK.SpellChecker, candidates: ^NS.Array, client: ^AK.TextInputClient),
-    preventsAutocorrectionBeforeString: proc(self: ^AK.SpellChecker, string: ^NS.String, language: ^NS.String) -> bool,
-    deletesAutospaceBetweenString: proc(self: ^AK.SpellChecker, precedingString: ^NS.String, followingString: ^NS.String, language: ^NS.String) -> bool,
-    setWordFieldStringValue: proc(self: ^AK.SpellChecker, string: ^NS.String),
-    learnWord: proc(self: ^AK.SpellChecker, word: ^NS.String),
-    hasLearnedWord: proc(self: ^AK.SpellChecker, word: ^NS.String) -> bool,
-    unlearnWord: proc(self: ^AK.SpellChecker, word: ^NS.String),
-    language: proc(self: ^AK.SpellChecker) -> ^NS.String,
-    setLanguage: proc(self: ^AK.SpellChecker, language: ^NS.String) -> bool,
-    sharedSpellChecker: proc() -> ^AK.SpellChecker,
+    checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount: proc(self: ^NS.SpellChecker, stringToCheck: ^NS.String, startingOffset: NS.Integer, language: ^NS.String, wrapFlag: bool, tag: NS.Integer, wordCount: ^NS.Integer) -> NS._NSRange,
+    checkSpellingOfString_startingAt: proc(self: ^NS.SpellChecker, stringToCheck: ^NS.String, startingOffset: NS.Integer) -> NS._NSRange,
+    countWordsInString: proc(self: ^NS.SpellChecker, stringToCount: ^NS.String, language: ^NS.String) -> NS.Integer,
+    checkGrammarOfString: proc(self: ^NS.SpellChecker, stringToCheck: ^NS.String, startingOffset: NS.Integer, language: ^NS.String, wrapFlag: bool, tag: NS.Integer, details: ^^NS.Array) -> NS._NSRange,
+    checkString: proc(self: ^NS.SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, orthography: ^^NS.Orthography, wordCount: ^NS.Integer) -> ^NS.Array,
+    requestCheckingOfString: proc(self: ^NS.SpellChecker, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" ( sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer ))) -> NS.Integer,
+    requestCandidatesForSelectedRange: proc(self: ^NS.SpellChecker, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" ( sequenceNumber: NS.Integer, candidates: ^NS.Array ))) -> NS.Integer,
+    menuForResult: proc(self: ^NS.SpellChecker, result: ^NS.TextCheckingResult, checkedString: ^NS.String, options: ^NS.Dictionary, location: CG.Point, view: ^NS.View) -> ^NS.Menu,
+    userQuotesArrayForLanguage: proc(self: ^NS.SpellChecker, language: ^NS.String) -> ^NS.Array,
+    updateSpellingPanelWithMisspelledWord: proc(self: ^NS.SpellChecker, word: ^NS.String),
+    updateSpellingPanelWithGrammarString: proc(self: ^NS.SpellChecker, string: ^NS.String, detail: ^NS.Dictionary),
+    updatePanels: proc(self: ^NS.SpellChecker),
+    ignoreWord: proc(self: ^NS.SpellChecker, wordToIgnore: ^NS.String, tag: NS.Integer),
+    ignoredWordsInSpellDocumentWithTag: proc(self: ^NS.SpellChecker, tag: NS.Integer) -> ^NS.Array,
+    setIgnoredWords: proc(self: ^NS.SpellChecker, words: ^NS.Array, tag: NS.Integer),
+    guessesForWordRange: proc(self: ^NS.SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array,
+    correctionForWordRange: proc(self: ^NS.SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.String,
+    completionsForPartialWordRange: proc(self: ^NS.SpellChecker, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array,
+    languageForWordRange: proc(self: ^NS.SpellChecker, range: NS._NSRange, string: ^NS.String, orthography: ^NS.Orthography) -> ^NS.String,
+    closeSpellDocumentWithTag: proc(self: ^NS.SpellChecker, tag: NS.Integer),
+    recordResponse: proc(self: ^NS.SpellChecker, response: NS.CorrectionResponse, correction: ^NS.String, word: ^NS.String, language: ^NS.String, tag: NS.Integer),
+    showCorrectionIndicatorOfType: proc(self: ^NS.SpellChecker, type: NS.CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^NS.View, completionBlock: ^Objc_Block(proc "c" ( acceptedString: ^NS.String ))),
+    dismissCorrectionIndicatorForView: proc(self: ^NS.SpellChecker, view: ^NS.View),
+    showInlinePredictionForCandidates: proc(self: ^NS.SpellChecker, candidates: ^NS.Array, client: ^NS.TextInputClient),
+    preventsAutocorrectionBeforeString: proc(self: ^NS.SpellChecker, string: ^NS.String, language: ^NS.String) -> bool,
+    deletesAutospaceBetweenString: proc(self: ^NS.SpellChecker, precedingString: ^NS.String, followingString: ^NS.String, language: ^NS.String) -> bool,
+    setWordFieldStringValue: proc(self: ^NS.SpellChecker, string: ^NS.String),
+    learnWord: proc(self: ^NS.SpellChecker, word: ^NS.String),
+    hasLearnedWord: proc(self: ^NS.SpellChecker, word: ^NS.String) -> bool,
+    unlearnWord: proc(self: ^NS.SpellChecker, word: ^NS.String),
+    language: proc(self: ^NS.SpellChecker) -> ^NS.String,
+    setLanguage: proc(self: ^NS.SpellChecker, language: ^NS.String) -> bool,
+    sharedSpellChecker: proc() -> ^NS.SpellChecker,
     sharedSpellCheckerExists: proc() -> bool,
-    userReplacementsDictionary: proc(self: ^AK.SpellChecker) -> ^NS.Dictionary,
-    spellingPanel: proc(self: ^AK.SpellChecker) -> ^AK.Panel,
-    accessoryView: proc(self: ^AK.SpellChecker) -> ^AK.View,
-    setAccessoryView: proc(self: ^AK.SpellChecker, accessoryView: ^AK.View),
-    substitutionsPanel: proc(self: ^AK.SpellChecker) -> ^AK.Panel,
-    substitutionsPanelAccessoryViewController: proc(self: ^AK.SpellChecker) -> ^AK.ViewController,
-    setSubstitutionsPanelAccessoryViewController: proc(self: ^AK.SpellChecker, substitutionsPanelAccessoryViewController: ^AK.ViewController),
-    availableLanguages: proc(self: ^AK.SpellChecker) -> ^NS.Array,
-    userPreferredLanguages: proc(self: ^AK.SpellChecker) -> ^NS.Array,
-    automaticallyIdentifiesLanguages: proc(self: ^AK.SpellChecker) -> bool,
-    setAutomaticallyIdentifiesLanguages: proc(self: ^AK.SpellChecker, automaticallyIdentifiesLanguages: bool),
+    userReplacementsDictionary: proc(self: ^NS.SpellChecker) -> ^NS.Dictionary,
+    spellingPanel: proc(self: ^NS.SpellChecker) -> ^NS.Panel,
+    accessoryView: proc(self: ^NS.SpellChecker) -> ^NS.View,
+    setAccessoryView: proc(self: ^NS.SpellChecker, accessoryView: ^NS.View),
+    substitutionsPanel: proc(self: ^NS.SpellChecker) -> ^NS.Panel,
+    substitutionsPanelAccessoryViewController: proc(self: ^NS.SpellChecker) -> ^NS.ViewController,
+    setSubstitutionsPanelAccessoryViewController: proc(self: ^NS.SpellChecker, substitutionsPanelAccessoryViewController: ^NS.ViewController),
+    availableLanguages: proc(self: ^NS.SpellChecker) -> ^NS.Array,
+    userPreferredLanguages: proc(self: ^NS.SpellChecker) -> ^NS.Array,
+    automaticallyIdentifiesLanguages: proc(self: ^NS.SpellChecker) -> bool,
+    setAutomaticallyIdentifiesLanguages: proc(self: ^NS.SpellChecker, automaticallyIdentifiesLanguages: bool),
     isAutomaticTextReplacementEnabled: proc() -> bool,
     isAutomaticSpellingCorrectionEnabled: proc() -> bool,
     isAutomaticQuoteSubstitutionEnabled: proc() -> bool,
@@ -80,8 +80,8 @@ VTable :: struct {
     isAutomaticPeriodSubstitutionEnabled: proc() -> bool,
     isAutomaticTextCompletionEnabled: proc() -> bool,
     isAutomaticInlinePredictionEnabled: proc() -> bool,
-    guessesForWord: proc(self: ^AK.SpellChecker, word: ^NS.String) -> ^NS.Array,
-    forgetWord: proc(self: ^AK.SpellChecker, word: ^NS.String),
+    guessesForWord: proc(self: ^NS.SpellChecker, word: ^NS.String) -> ^NS.Array,
+    forgetWord: proc(self: ^NS.SpellChecker, word: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("uniqueSpellDocumentTag"), auto_cast uniqueSpellDocumentTag, "l#:") do panic("Failed to register objC method.")
     }
     if vt.checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount != nil {
-        checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount :: proc "c" (self: ^AK.SpellChecker, _: SEL, stringToCheck: ^NS.String, startingOffset: NS.Integer, language: ^NS.String, wrapFlag: bool, tag: NS.Integer, wordCount: ^NS.Integer) -> NS._NSRange {
+        checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount :: proc "c" (self: ^NS.SpellChecker, _: SEL, stringToCheck: ^NS.String, startingOffset: NS.Integer, language: ^NS.String, wrapFlag: bool, tag: NS.Integer, wordCount: ^NS.Integer) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkSpellingOfString:startingAt:language:wrap:inSpellDocumentWithTag:wordCount:"), auto_cast checkSpellingOfString_startingAt_language_wrap_inSpellDocumentWithTag_wordCount, "{_NSRange=LL}@:@l@Bl^void") do panic("Failed to register objC method.")
     }
     if vt.checkSpellingOfString_startingAt != nil {
-        checkSpellingOfString_startingAt :: proc "c" (self: ^AK.SpellChecker, _: SEL, stringToCheck: ^NS.String, startingOffset: NS.Integer) -> NS._NSRange {
+        checkSpellingOfString_startingAt :: proc "c" (self: ^NS.SpellChecker, _: SEL, stringToCheck: ^NS.String, startingOffset: NS.Integer) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkSpellingOfString:startingAt:"), auto_cast checkSpellingOfString_startingAt, "{_NSRange=LL}@:@l") do panic("Failed to register objC method.")
     }
     if vt.countWordsInString != nil {
-        countWordsInString :: proc "c" (self: ^AK.SpellChecker, _: SEL, stringToCount: ^NS.String, language: ^NS.String) -> NS.Integer {
+        countWordsInString :: proc "c" (self: ^NS.SpellChecker, _: SEL, stringToCount: ^NS.String, language: ^NS.String) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("countWordsInString:language:"), auto_cast countWordsInString, "l@:@@") do panic("Failed to register objC method.")
     }
     if vt.checkGrammarOfString != nil {
-        checkGrammarOfString :: proc "c" (self: ^AK.SpellChecker, _: SEL, stringToCheck: ^NS.String, startingOffset: NS.Integer, language: ^NS.String, wrapFlag: bool, tag: NS.Integer, details: ^^NS.Array) -> NS._NSRange {
+        checkGrammarOfString :: proc "c" (self: ^NS.SpellChecker, _: SEL, stringToCheck: ^NS.String, startingOffset: NS.Integer, language: ^NS.String, wrapFlag: bool, tag: NS.Integer, details: ^^NS.Array) -> NS._NSRange {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkGrammarOfString:startingAt:language:wrap:inSpellDocumentWithTag:details:"), auto_cast checkGrammarOfString, "{_NSRange=LL}@:@l@Bl^void") do panic("Failed to register objC method.")
     }
     if vt.checkString != nil {
-        checkString :: proc "c" (self: ^AK.SpellChecker, _: SEL, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, orthography: ^^NS.Orthography, wordCount: ^NS.Integer) -> ^NS.Array {
+        checkString :: proc "c" (self: ^NS.SpellChecker, _: SEL, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, orthography: ^^NS.Orthography, wordCount: ^NS.Integer) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("checkString:range:types:options:inSpellDocumentWithTag:orthography:wordCount:"), auto_cast checkString, "^void@:@{_NSRange=LL}Q^voidl^void^void") do panic("Failed to register objC method.")
     }
     if vt.requestCheckingOfString != nil {
-        requestCheckingOfString :: proc "c" (self: ^AK.SpellChecker, _: SEL, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer))) -> NS.Integer {
+        requestCheckingOfString :: proc "c" (self: ^NS.SpellChecker, _: SEL, stringToCheck: ^NS.String, range: NS._NSRange, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" ( sequenceNumber: NS.Integer, results: ^NS.Array, orthography: ^NS.Orthography, wordCount: NS.Integer ))) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("requestCheckingOfString:range:types:options:inSpellDocumentWithTag:completionHandler:"), auto_cast requestCheckingOfString, "l@:@{_NSRange=LL}Q^voidl?") do panic("Failed to register objC method.")
     }
     if vt.requestCandidatesForSelectedRange != nil {
-        requestCandidatesForSelectedRange :: proc "c" (self: ^AK.SpellChecker, _: SEL, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" (sequenceNumber: NS.Integer, candidates: ^NS.Array))) -> NS.Integer {
+        requestCandidatesForSelectedRange :: proc "c" (self: ^NS.SpellChecker, _: SEL, selectedRange: NS._NSRange, stringToCheck: ^NS.String, checkingTypes: NS.TextCheckingTypes, options: ^NS.Dictionary, tag: NS.Integer, completionHandler: ^Objc_Block(proc "c" ( sequenceNumber: NS.Integer, candidates: ^NS.Array ))) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("requestCandidatesForSelectedRange:inString:types:options:inSpellDocumentWithTag:completionHandler:"), auto_cast requestCandidatesForSelectedRange, "l@:{_NSRange=LL}@Q^voidl?") do panic("Failed to register objC method.")
     }
     if vt.menuForResult != nil {
-        menuForResult :: proc "c" (self: ^AK.SpellChecker, _: SEL, result: ^NS.TextCheckingResult, checkedString: ^NS.String, options: ^NS.Dictionary, location: CG.Point, view: ^AK.View) -> ^AK.Menu {
+        menuForResult :: proc "c" (self: ^NS.SpellChecker, _: SEL, result: ^NS.TextCheckingResult, checkedString: ^NS.String, options: ^NS.Dictionary, location: CG.Point, view: ^NS.View) -> ^NS.Menu {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -182,7 +182,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menuForResult:string:options:atLocation:inView:"), auto_cast menuForResult, "@@:@@^void{CGPoint=dd}@") do panic("Failed to register objC method.")
     }
     if vt.userQuotesArrayForLanguage != nil {
-        userQuotesArrayForLanguage :: proc "c" (self: ^AK.SpellChecker, _: SEL, language: ^NS.String) -> ^NS.Array {
+        userQuotesArrayForLanguage :: proc "c" (self: ^NS.SpellChecker, _: SEL, language: ^NS.String) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -192,7 +192,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("userQuotesArrayForLanguage:"), auto_cast userQuotesArrayForLanguage, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.updateSpellingPanelWithMisspelledWord != nil {
-        updateSpellingPanelWithMisspelledWord :: proc "c" (self: ^AK.SpellChecker, _: SEL, word: ^NS.String) {
+        updateSpellingPanelWithMisspelledWord :: proc "c" (self: ^NS.SpellChecker, _: SEL, word: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateSpellingPanelWithMisspelledWord:"), auto_cast updateSpellingPanelWithMisspelledWord, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.updateSpellingPanelWithGrammarString != nil {
-        updateSpellingPanelWithGrammarString :: proc "c" (self: ^AK.SpellChecker, _: SEL, string: ^NS.String, detail: ^NS.Dictionary) {
+        updateSpellingPanelWithGrammarString :: proc "c" (self: ^NS.SpellChecker, _: SEL, string: ^NS.String, detail: ^NS.Dictionary) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -212,7 +212,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updateSpellingPanelWithGrammarString:detail:"), auto_cast updateSpellingPanelWithGrammarString, "v@:@^void") do panic("Failed to register objC method.")
     }
     if vt.updatePanels != nil {
-        updatePanels :: proc "c" (self: ^AK.SpellChecker, _: SEL) {
+        updatePanels :: proc "c" (self: ^NS.SpellChecker, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -222,7 +222,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("updatePanels"), auto_cast updatePanels, "v@:") do panic("Failed to register objC method.")
     }
     if vt.ignoreWord != nil {
-        ignoreWord :: proc "c" (self: ^AK.SpellChecker, _: SEL, wordToIgnore: ^NS.String, tag: NS.Integer) {
+        ignoreWord :: proc "c" (self: ^NS.SpellChecker, _: SEL, wordToIgnore: ^NS.String, tag: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -232,7 +232,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("ignoreWord:inSpellDocumentWithTag:"), auto_cast ignoreWord, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.ignoredWordsInSpellDocumentWithTag != nil {
-        ignoredWordsInSpellDocumentWithTag :: proc "c" (self: ^AK.SpellChecker, _: SEL, tag: NS.Integer) -> ^NS.Array {
+        ignoredWordsInSpellDocumentWithTag :: proc "c" (self: ^NS.SpellChecker, _: SEL, tag: NS.Integer) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -242,7 +242,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("ignoredWordsInSpellDocumentWithTag:"), auto_cast ignoredWordsInSpellDocumentWithTag, "^void@:l") do panic("Failed to register objC method.")
     }
     if vt.setIgnoredWords != nil {
-        setIgnoredWords :: proc "c" (self: ^AK.SpellChecker, _: SEL, words: ^NS.Array, tag: NS.Integer) {
+        setIgnoredWords :: proc "c" (self: ^NS.SpellChecker, _: SEL, words: ^NS.Array, tag: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -252,7 +252,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setIgnoredWords:inSpellDocumentWithTag:"), auto_cast setIgnoredWords, "v@:^voidl") do panic("Failed to register objC method.")
     }
     if vt.guessesForWordRange != nil {
-        guessesForWordRange :: proc "c" (self: ^AK.SpellChecker, _: SEL, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array {
+        guessesForWordRange :: proc "c" (self: ^NS.SpellChecker, _: SEL, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -262,7 +262,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("guessesForWordRange:inString:language:inSpellDocumentWithTag:"), auto_cast guessesForWordRange, "^void@:{_NSRange=LL}@@l") do panic("Failed to register objC method.")
     }
     if vt.correctionForWordRange != nil {
-        correctionForWordRange :: proc "c" (self: ^AK.SpellChecker, _: SEL, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.String {
+        correctionForWordRange :: proc "c" (self: ^NS.SpellChecker, _: SEL, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -272,7 +272,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("correctionForWordRange:inString:language:inSpellDocumentWithTag:"), auto_cast correctionForWordRange, "@@:{_NSRange=LL}@@l") do panic("Failed to register objC method.")
     }
     if vt.completionsForPartialWordRange != nil {
-        completionsForPartialWordRange :: proc "c" (self: ^AK.SpellChecker, _: SEL, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array {
+        completionsForPartialWordRange :: proc "c" (self: ^NS.SpellChecker, _: SEL, range: NS._NSRange, string: ^NS.String, language: ^NS.String, tag: NS.Integer) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -282,7 +282,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("completionsForPartialWordRange:inString:language:inSpellDocumentWithTag:"), auto_cast completionsForPartialWordRange, "^void@:{_NSRange=LL}@@l") do panic("Failed to register objC method.")
     }
     if vt.languageForWordRange != nil {
-        languageForWordRange :: proc "c" (self: ^AK.SpellChecker, _: SEL, range: NS._NSRange, string: ^NS.String, orthography: ^NS.Orthography) -> ^NS.String {
+        languageForWordRange :: proc "c" (self: ^NS.SpellChecker, _: SEL, range: NS._NSRange, string: ^NS.String, orthography: ^NS.Orthography) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -292,7 +292,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("languageForWordRange:inString:orthography:"), auto_cast languageForWordRange, "@@:{_NSRange=LL}@@") do panic("Failed to register objC method.")
     }
     if vt.closeSpellDocumentWithTag != nil {
-        closeSpellDocumentWithTag :: proc "c" (self: ^AK.SpellChecker, _: SEL, tag: NS.Integer) {
+        closeSpellDocumentWithTag :: proc "c" (self: ^NS.SpellChecker, _: SEL, tag: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -302,7 +302,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("closeSpellDocumentWithTag:"), auto_cast closeSpellDocumentWithTag, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.recordResponse != nil {
-        recordResponse :: proc "c" (self: ^AK.SpellChecker, _: SEL, response: AK.CorrectionResponse, correction: ^NS.String, word: ^NS.String, language: ^NS.String, tag: NS.Integer) {
+        recordResponse :: proc "c" (self: ^NS.SpellChecker, _: SEL, response: NS.CorrectionResponse, correction: ^NS.String, word: ^NS.String, language: ^NS.String, tag: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -312,7 +312,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("recordResponse:toCorrection:forWord:language:inSpellDocumentWithTag:"), auto_cast recordResponse, "v@:l@@@l") do panic("Failed to register objC method.")
     }
     if vt.showCorrectionIndicatorOfType != nil {
-        showCorrectionIndicatorOfType :: proc "c" (self: ^AK.SpellChecker, _: SEL, type: AK.CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^AK.View, completionBlock: ^Objc_Block(proc "c" (acceptedString: ^NS.String))) {
+        showCorrectionIndicatorOfType :: proc "c" (self: ^NS.SpellChecker, _: SEL, type: NS.CorrectionIndicatorType, primaryString: ^NS.String, alternativeStrings: ^NS.Array, rectOfTypedString: NS.Rect, view: ^NS.View, completionBlock: ^Objc_Block(proc "c" ( acceptedString: ^NS.String ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -322,7 +322,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showCorrectionIndicatorOfType:primaryString:alternativeStrings:forStringInRect:view:completionHandler:"), auto_cast showCorrectionIndicatorOfType, "v@:l@^void{CGRect={CGPoint=dd}{CGSize=dd}}@?") do panic("Failed to register objC method.")
     }
     if vt.dismissCorrectionIndicatorForView != nil {
-        dismissCorrectionIndicatorForView :: proc "c" (self: ^AK.SpellChecker, _: SEL, view: ^AK.View) {
+        dismissCorrectionIndicatorForView :: proc "c" (self: ^NS.SpellChecker, _: SEL, view: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -332,7 +332,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("dismissCorrectionIndicatorForView:"), auto_cast dismissCorrectionIndicatorForView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.showInlinePredictionForCandidates != nil {
-        showInlinePredictionForCandidates :: proc "c" (self: ^AK.SpellChecker, _: SEL, candidates: ^NS.Array, client: ^AK.TextInputClient) {
+        showInlinePredictionForCandidates :: proc "c" (self: ^NS.SpellChecker, _: SEL, candidates: ^NS.Array, client: ^NS.TextInputClient) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -342,7 +342,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showInlinePredictionForCandidates:client:"), auto_cast showInlinePredictionForCandidates, "v@:^void@") do panic("Failed to register objC method.")
     }
     if vt.preventsAutocorrectionBeforeString != nil {
-        preventsAutocorrectionBeforeString :: proc "c" (self: ^AK.SpellChecker, _: SEL, string: ^NS.String, language: ^NS.String) -> bool {
+        preventsAutocorrectionBeforeString :: proc "c" (self: ^NS.SpellChecker, _: SEL, string: ^NS.String, language: ^NS.String) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -352,7 +352,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("preventsAutocorrectionBeforeString:language:"), auto_cast preventsAutocorrectionBeforeString, "B@:@@") do panic("Failed to register objC method.")
     }
     if vt.deletesAutospaceBetweenString != nil {
-        deletesAutospaceBetweenString :: proc "c" (self: ^AK.SpellChecker, _: SEL, precedingString: ^NS.String, followingString: ^NS.String, language: ^NS.String) -> bool {
+        deletesAutospaceBetweenString :: proc "c" (self: ^NS.SpellChecker, _: SEL, precedingString: ^NS.String, followingString: ^NS.String, language: ^NS.String) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -362,7 +362,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("deletesAutospaceBetweenString:andString:language:"), auto_cast deletesAutospaceBetweenString, "B@:@@@") do panic("Failed to register objC method.")
     }
     if vt.setWordFieldStringValue != nil {
-        setWordFieldStringValue :: proc "c" (self: ^AK.SpellChecker, _: SEL, string: ^NS.String) {
+        setWordFieldStringValue :: proc "c" (self: ^NS.SpellChecker, _: SEL, string: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -372,7 +372,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWordFieldStringValue:"), auto_cast setWordFieldStringValue, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.learnWord != nil {
-        learnWord :: proc "c" (self: ^AK.SpellChecker, _: SEL, word: ^NS.String) {
+        learnWord :: proc "c" (self: ^NS.SpellChecker, _: SEL, word: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -382,7 +382,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("learnWord:"), auto_cast learnWord, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.hasLearnedWord != nil {
-        hasLearnedWord :: proc "c" (self: ^AK.SpellChecker, _: SEL, word: ^NS.String) -> bool {
+        hasLearnedWord :: proc "c" (self: ^NS.SpellChecker, _: SEL, word: ^NS.String) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -392,7 +392,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasLearnedWord:"), auto_cast hasLearnedWord, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.unlearnWord != nil {
-        unlearnWord :: proc "c" (self: ^AK.SpellChecker, _: SEL, word: ^NS.String) {
+        unlearnWord :: proc "c" (self: ^NS.SpellChecker, _: SEL, word: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -402,7 +402,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("unlearnWord:"), auto_cast unlearnWord, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.language != nil {
-        language :: proc "c" (self: ^AK.SpellChecker, _: SEL) -> ^NS.String {
+        language :: proc "c" (self: ^NS.SpellChecker, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -412,7 +412,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("language"), auto_cast language, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setLanguage != nil {
-        setLanguage :: proc "c" (self: ^AK.SpellChecker, _: SEL, language: ^NS.String) -> bool {
+        setLanguage :: proc "c" (self: ^NS.SpellChecker, _: SEL, language: ^NS.String) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -422,7 +422,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLanguage:"), auto_cast setLanguage, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.sharedSpellChecker != nil {
-        sharedSpellChecker :: proc "c" (self: Class, _: SEL) -> ^AK.SpellChecker {
+        sharedSpellChecker :: proc "c" (self: Class, _: SEL) -> ^NS.SpellChecker {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -442,7 +442,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("sharedSpellCheckerExists"), auto_cast sharedSpellCheckerExists, "B#:") do panic("Failed to register objC method.")
     }
     if vt.userReplacementsDictionary != nil {
-        userReplacementsDictionary :: proc "c" (self: ^AK.SpellChecker, _: SEL) -> ^NS.Dictionary {
+        userReplacementsDictionary :: proc "c" (self: ^NS.SpellChecker, _: SEL) -> ^NS.Dictionary {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -452,7 +452,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("userReplacementsDictionary"), auto_cast userReplacementsDictionary, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.spellingPanel != nil {
-        spellingPanel :: proc "c" (self: ^AK.SpellChecker, _: SEL) -> ^AK.Panel {
+        spellingPanel :: proc "c" (self: ^NS.SpellChecker, _: SEL) -> ^NS.Panel {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -462,7 +462,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("spellingPanel"), auto_cast spellingPanel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessoryView != nil {
-        accessoryView :: proc "c" (self: ^AK.SpellChecker, _: SEL) -> ^AK.View {
+        accessoryView :: proc "c" (self: ^NS.SpellChecker, _: SEL) -> ^NS.View {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -472,7 +472,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessoryView"), auto_cast accessoryView, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setAccessoryView != nil {
-        setAccessoryView :: proc "c" (self: ^AK.SpellChecker, _: SEL, accessoryView: ^AK.View) {
+        setAccessoryView :: proc "c" (self: ^NS.SpellChecker, _: SEL, accessoryView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -482,7 +482,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAccessoryView:"), auto_cast setAccessoryView, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.substitutionsPanel != nil {
-        substitutionsPanel :: proc "c" (self: ^AK.SpellChecker, _: SEL) -> ^AK.Panel {
+        substitutionsPanel :: proc "c" (self: ^NS.SpellChecker, _: SEL) -> ^NS.Panel {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -492,7 +492,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("substitutionsPanel"), auto_cast substitutionsPanel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.substitutionsPanelAccessoryViewController != nil {
-        substitutionsPanelAccessoryViewController :: proc "c" (self: ^AK.SpellChecker, _: SEL) -> ^AK.ViewController {
+        substitutionsPanelAccessoryViewController :: proc "c" (self: ^NS.SpellChecker, _: SEL) -> ^NS.ViewController {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -502,7 +502,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("substitutionsPanelAccessoryViewController"), auto_cast substitutionsPanelAccessoryViewController, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSubstitutionsPanelAccessoryViewController != nil {
-        setSubstitutionsPanelAccessoryViewController :: proc "c" (self: ^AK.SpellChecker, _: SEL, substitutionsPanelAccessoryViewController: ^AK.ViewController) {
+        setSubstitutionsPanelAccessoryViewController :: proc "c" (self: ^NS.SpellChecker, _: SEL, substitutionsPanelAccessoryViewController: ^NS.ViewController) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -512,7 +512,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSubstitutionsPanelAccessoryViewController:"), auto_cast setSubstitutionsPanelAccessoryViewController, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.availableLanguages != nil {
-        availableLanguages :: proc "c" (self: ^AK.SpellChecker, _: SEL) -> ^NS.Array {
+        availableLanguages :: proc "c" (self: ^NS.SpellChecker, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -522,7 +522,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("availableLanguages"), auto_cast availableLanguages, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.userPreferredLanguages != nil {
-        userPreferredLanguages :: proc "c" (self: ^AK.SpellChecker, _: SEL) -> ^NS.Array {
+        userPreferredLanguages :: proc "c" (self: ^NS.SpellChecker, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -532,7 +532,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("userPreferredLanguages"), auto_cast userPreferredLanguages, "^void@:") do panic("Failed to register objC method.")
     }
     if vt.automaticallyIdentifiesLanguages != nil {
-        automaticallyIdentifiesLanguages :: proc "c" (self: ^AK.SpellChecker, _: SEL) -> bool {
+        automaticallyIdentifiesLanguages :: proc "c" (self: ^NS.SpellChecker, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -542,7 +542,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyIdentifiesLanguages"), auto_cast automaticallyIdentifiesLanguages, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyIdentifiesLanguages != nil {
-        setAutomaticallyIdentifiesLanguages :: proc "c" (self: ^AK.SpellChecker, _: SEL, automaticallyIdentifiesLanguages: bool) {
+        setAutomaticallyIdentifiesLanguages :: proc "c" (self: ^NS.SpellChecker, _: SEL, automaticallyIdentifiesLanguages: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -632,7 +632,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("isAutomaticInlinePredictionEnabled"), auto_cast isAutomaticInlinePredictionEnabled, "B#:") do panic("Failed to register objC method.")
     }
     if vt.guessesForWord != nil {
-        guessesForWord :: proc "c" (self: ^AK.SpellChecker, _: SEL, word: ^NS.String) -> ^NS.Array {
+        guessesForWord :: proc "c" (self: ^NS.SpellChecker, _: SEL, word: ^NS.String) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -642,7 +642,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("guessesForWord:"), auto_cast guessesForWord, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.forgetWord != nil {
-        forgetWord :: proc "c" (self: ^AK.SpellChecker, _: SEL, word: ^NS.String) {
+        forgetWord :: proc "c" (self: ^NS.SpellChecker, _: SEL, word: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

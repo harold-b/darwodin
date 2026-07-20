@@ -12,18 +12,12 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVContentKeyRequest
-///
 @(objc_class="AVContentKeyRequest", objc_superclass=NS.Object)
 ContentKeyRequest :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentKeyRequest, objc_selector="makeStreamingContentKeyRequestDataForApp:contentIdentifier:options:completionHandler:", objc_name="makeStreamingContentKeyRequestDataForApp")
-    ContentKeyRequest_makeStreamingContentKeyRequestDataForApp :: proc(self: ^ContentKeyRequest, appIdentifier: ^NS.Data, contentIdentifier: ^NS.Data, options: ^NS.Dictionary, handler: ^Objc_Block(proc "c" (contentKeyRequestData: ^NS.Data, error: ^NS.Error))) ---
+    ContentKeyRequest_makeStreamingContentKeyRequestDataForApp :: proc(self: ^ContentKeyRequest, appIdentifier: ^NS.Data, contentIdentifier: ^NS.Data, options: ^NS.Dictionary, handler: ^Objc_Block(proc "c" ( contentKeyRequestData: ^NS.Data, error: ^NS.Error ))) ---
 
     @(objc_type=ContentKeyRequest, objc_selector="processContentKeyResponse:", objc_name="processContentKeyResponse")
     ContentKeyRequest_processContentKeyResponse :: proc(self: ^ContentKeyRequest, keyResponse: ^ContentKeyResponse) ---
@@ -70,3 +64,6 @@ foreign lib {
     @(objc_type=ContentKeyRequest, objc_selector="renewsExpiringResponseData", objc_name="renewsExpiringResponseData")
     ContentKeyRequest_renewsExpiringResponseData :: proc(self: ^ContentKeyRequest) -> bool ---
 }
+
+
+

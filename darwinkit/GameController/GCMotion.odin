@@ -8,15 +8,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// GCMotion
-///
 @(objc_class="GCMotion", objc_superclass=NS.Object)
 Motion :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Motion, objc_selector="setGravity:", objc_name="setGravity")
     Motion_setGravity :: proc(self: ^Motion, gravity: Acceleration) ---
@@ -81,3 +75,6 @@ foreign lib {
     @(objc_type=Motion, objc_selector="rotationRate", objc_name="rotationRate")
     Motion_rotationRate :: proc(self: ^Motion) -> RotationRate ---
 }
+
+
+

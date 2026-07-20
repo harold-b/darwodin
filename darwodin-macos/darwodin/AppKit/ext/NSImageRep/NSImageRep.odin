@@ -20,18 +20,18 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../../../Foundation/ext/NSObject"
 
 VTable :: struct {
     super: NSObject.VTable,
-    init: proc(self: ^AK.ImageRep) -> instancetype,
-    initWithCoder: proc(self: ^AK.ImageRep, coder: ^NS.Coder) -> instancetype,
-    draw: proc(self: ^AK.ImageRep) -> bool,
-    drawAtPoint: proc(self: ^AK.ImageRep, point: CG.Point) -> bool,
-    drawInRect_: proc(self: ^AK.ImageRep, rect: NS.Rect) -> bool,
-    drawInRect_fromRect_operation_fraction_respectFlipped_hints: proc(self: ^AK.ImageRep, dstSpacePortionRect: NS.Rect, srcSpacePortionRect: NS.Rect, op: AK.CompositingOperation, requestedAlpha: CG.Float, respectContextIsFlipped: bool, hints: ^NS.Dictionary) -> bool,
+    init: proc(self: ^NS.ImageRep) -> instancetype,
+    initWithCoder: proc(self: ^NS.ImageRep, coder: ^NS.Coder) -> instancetype,
+    draw: proc(self: ^NS.ImageRep) -> bool,
+    drawAtPoint: proc(self: ^NS.ImageRep, point: CG.Point) -> bool,
+    drawInRect_: proc(self: ^NS.ImageRep, rect: NS.Rect) -> bool,
+    drawInRect_fromRect_operation_fraction_respectFlipped_hints: proc(self: ^NS.ImageRep, dstSpacePortionRect: NS.Rect, srcSpacePortionRect: NS.Rect, op: NS.CompositingOperation, requestedAlpha: CG.Float, respectContextIsFlipped: bool, hints: ^NS.Dictionary) -> bool,
     registerImageRepClass: proc(imageRepClass: Class),
     unregisterImageRepClass: proc(imageRepClass: Class),
     imageRepClassForFileType: proc(type: ^NS.String) -> Class,
@@ -43,30 +43,30 @@ VTable :: struct {
     imageUnfilteredPasteboardTypes: proc() -> ^NS.Array,
     imageFileTypes: proc() -> ^NS.Array,
     imagePasteboardTypes: proc() -> ^NS.Array,
-    canInitWithPasteboard: proc(pasteboard: ^AK.Pasteboard) -> bool,
+    canInitWithPasteboard: proc(pasteboard: ^NS.Pasteboard) -> bool,
     imageRepsWithContentsOfFile: proc(filename: ^NS.String) -> ^NS.Array,
-    imageRepWithContentsOfFile: proc(filename: ^NS.String) -> ^AK.ImageRep,
+    imageRepWithContentsOfFile: proc(filename: ^NS.String) -> ^NS.ImageRep,
     imageRepsWithContentsOfURL: proc(url: ^NS.URL) -> ^NS.Array,
-    imageRepWithContentsOfURL: proc(url: ^NS.URL) -> ^AK.ImageRep,
-    imageRepsWithPasteboard: proc(pasteboard: ^AK.Pasteboard) -> ^NS.Array,
-    imageRepWithPasteboard: proc(pasteboard: ^AK.Pasteboard) -> ^AK.ImageRep,
-    _CGImageForProposedRect: proc(self: ^AK.ImageRep, proposedDestRect: ^NS.Rect, _context: ^AK.GraphicsContext, hints: ^NS.Dictionary) -> CG.ImageRef,
-    size: proc(self: ^AK.ImageRep) -> NS.Size,
-    setSize: proc(self: ^AK.ImageRep, size: NS.Size),
-    hasAlpha: proc(self: ^AK.ImageRep) -> bool,
-    setAlpha: proc(self: ^AK.ImageRep, alpha: bool),
-    isOpaque: proc(self: ^AK.ImageRep) -> bool,
-    setOpaque: proc(self: ^AK.ImageRep, opaque: bool),
-    colorSpaceName: proc(self: ^AK.ImageRep) -> ^NS.String,
-    setColorSpaceName: proc(self: ^AK.ImageRep, colorSpaceName: ^NS.String),
-    bitsPerSample: proc(self: ^AK.ImageRep) -> NS.Integer,
-    setBitsPerSample: proc(self: ^AK.ImageRep, bitsPerSample: NS.Integer),
-    pixelsWide: proc(self: ^AK.ImageRep) -> NS.Integer,
-    setPixelsWide: proc(self: ^AK.ImageRep, pixelsWide: NS.Integer),
-    pixelsHigh: proc(self: ^AK.ImageRep) -> NS.Integer,
-    setPixelsHigh: proc(self: ^AK.ImageRep, pixelsHigh: NS.Integer),
-    layoutDirection: proc(self: ^AK.ImageRep) -> AK.ImageLayoutDirection,
-    setLayoutDirection: proc(self: ^AK.ImageRep, layoutDirection: AK.ImageLayoutDirection),
+    imageRepWithContentsOfURL: proc(url: ^NS.URL) -> ^NS.ImageRep,
+    imageRepsWithPasteboard: proc(pasteboard: ^NS.Pasteboard) -> ^NS.Array,
+    imageRepWithPasteboard: proc(pasteboard: ^NS.Pasteboard) -> ^NS.ImageRep,
+    _CGImageForProposedRect: proc(self: ^NS.ImageRep, proposedDestRect: ^NS.Rect, _context: ^NS.GraphicsContext, hints: ^NS.Dictionary) -> CG.ImageRef,
+    size: proc(self: ^NS.ImageRep) -> NS.Size,
+    setSize: proc(self: ^NS.ImageRep, size: NS.Size),
+    hasAlpha: proc(self: ^NS.ImageRep) -> bool,
+    setAlpha: proc(self: ^NS.ImageRep, alpha: bool),
+    isOpaque: proc(self: ^NS.ImageRep) -> bool,
+    setOpaque: proc(self: ^NS.ImageRep, opaque: bool),
+    colorSpaceName: proc(self: ^NS.ImageRep) -> ^NS.String,
+    setColorSpaceName: proc(self: ^NS.ImageRep, colorSpaceName: ^NS.String),
+    bitsPerSample: proc(self: ^NS.ImageRep) -> NS.Integer,
+    setBitsPerSample: proc(self: ^NS.ImageRep, bitsPerSample: NS.Integer),
+    pixelsWide: proc(self: ^NS.ImageRep) -> NS.Integer,
+    setPixelsWide: proc(self: ^NS.ImageRep, pixelsWide: NS.Integer),
+    pixelsHigh: proc(self: ^NS.ImageRep) -> NS.Integer,
+    setPixelsHigh: proc(self: ^NS.ImageRep, pixelsHigh: NS.Integer),
+    layoutDirection: proc(self: ^NS.ImageRep) -> NS.ImageLayoutDirection,
+    setLayoutDirection: proc(self: ^NS.ImageRep, layoutDirection: NS.ImageLayoutDirection),
     registeredImageRepClasses: proc() -> ^NS.Array,
     imageUnfilteredTypes: proc() -> ^NS.Array,
     imageTypes: proc() -> ^NS.Array,
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSObject.extend(cls, &vt.super)
 
     if vt.init != nil {
-        init :: proc "c" (self: ^AK.ImageRep, _: SEL) -> instancetype {
+        init :: proc "c" (self: ^NS.ImageRep, _: SEL) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("init"), auto_cast init, "@@:") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ImageRep, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.ImageRep, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.draw != nil {
-        draw :: proc "c" (self: ^AK.ImageRep, _: SEL) -> bool {
+        draw :: proc "c" (self: ^NS.ImageRep, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("draw"), auto_cast draw, "B@:") do panic("Failed to register objC method.")
     }
     if vt.drawAtPoint != nil {
-        drawAtPoint :: proc "c" (self: ^AK.ImageRep, _: SEL, point: CG.Point) -> bool {
+        drawAtPoint :: proc "c" (self: ^NS.ImageRep, _: SEL, point: CG.Point) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawAtPoint:"), auto_cast drawAtPoint, "B@:{CGPoint=dd}") do panic("Failed to register objC method.")
     }
     if vt.drawInRect_ != nil {
-        drawInRect_ :: proc "c" (self: ^AK.ImageRep, _: SEL, rect: NS.Rect) -> bool {
+        drawInRect_ :: proc "c" (self: ^NS.ImageRep, _: SEL, rect: NS.Rect) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawInRect:"), auto_cast drawInRect_, "B@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.drawInRect_fromRect_operation_fraction_respectFlipped_hints != nil {
-        drawInRect_fromRect_operation_fraction_respectFlipped_hints :: proc "c" (self: ^AK.ImageRep, _: SEL, dstSpacePortionRect: NS.Rect, srcSpacePortionRect: NS.Rect, op: AK.CompositingOperation, requestedAlpha: CG.Float, respectContextIsFlipped: bool, hints: ^NS.Dictionary) -> bool {
+        drawInRect_fromRect_operation_fraction_respectFlipped_hints :: proc "c" (self: ^NS.ImageRep, _: SEL, dstSpacePortionRect: NS.Rect, srcSpacePortionRect: NS.Rect, op: NS.CompositingOperation, requestedAlpha: CG.Float, respectContextIsFlipped: bool, hints: ^NS.Dictionary) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -250,7 +250,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imagePasteboardTypes"), auto_cast imagePasteboardTypes, "^void#:") do panic("Failed to register objC method.")
     }
     if vt.canInitWithPasteboard != nil {
-        canInitWithPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^AK.Pasteboard) -> bool {
+        canInitWithPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^NS.Pasteboard) -> bool {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithContentsOfFile:"), auto_cast imageRepsWithContentsOfFile, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.imageRepWithContentsOfFile != nil {
-        imageRepWithContentsOfFile :: proc "c" (self: Class, _: SEL, filename: ^NS.String) -> ^AK.ImageRep {
+        imageRepWithContentsOfFile :: proc "c" (self: Class, _: SEL, filename: ^NS.String) -> ^NS.ImageRep {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithContentsOfURL:"), auto_cast imageRepsWithContentsOfURL, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.imageRepWithContentsOfURL != nil {
-        imageRepWithContentsOfURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> ^AK.ImageRep {
+        imageRepWithContentsOfURL :: proc "c" (self: Class, _: SEL, url: ^NS.URL) -> ^NS.ImageRep {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -300,7 +300,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithContentsOfURL:"), auto_cast imageRepWithContentsOfURL, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.imageRepsWithPasteboard != nil {
-        imageRepsWithPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^AK.Pasteboard) -> ^NS.Array {
+        imageRepsWithPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^NS.Pasteboard) -> ^NS.Array {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -310,7 +310,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepsWithPasteboard:"), auto_cast imageRepsWithPasteboard, "^void#:@") do panic("Failed to register objC method.")
     }
     if vt.imageRepWithPasteboard != nil {
-        imageRepWithPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^AK.Pasteboard) -> ^AK.ImageRep {
+        imageRepWithPasteboard :: proc "c" (self: Class, _: SEL, pasteboard: ^NS.Pasteboard) -> ^NS.ImageRep {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -320,7 +320,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithPasteboard:"), auto_cast imageRepWithPasteboard, "@#:@") do panic("Failed to register objC method.")
     }
     if vt._CGImageForProposedRect != nil {
-        _CGImageForProposedRect :: proc "c" (self: ^AK.ImageRep, _: SEL, proposedDestRect: ^NS.Rect, _context: ^AK.GraphicsContext, hints: ^NS.Dictionary) -> CG.ImageRef {
+        _CGImageForProposedRect :: proc "c" (self: ^NS.ImageRep, _: SEL, proposedDestRect: ^NS.Rect, _context: ^NS.GraphicsContext, hints: ^NS.Dictionary) -> CG.ImageRef {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -330,7 +330,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("CGImageForProposedRect:context:hints:"), auto_cast _CGImageForProposedRect, "^void@:^void@^void") do panic("Failed to register objC method.")
     }
     if vt.size != nil {
-        size :: proc "c" (self: ^AK.ImageRep, _: SEL) -> NS.Size {
+        size :: proc "c" (self: ^NS.ImageRep, _: SEL) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -340,7 +340,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("size"), auto_cast size, "{CGSize=dd}@:") do panic("Failed to register objC method.")
     }
     if vt.setSize != nil {
-        setSize :: proc "c" (self: ^AK.ImageRep, _: SEL, size: NS.Size) {
+        setSize :: proc "c" (self: ^NS.ImageRep, _: SEL, size: NS.Size) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -350,7 +350,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSize:"), auto_cast setSize, "v@:{CGSize=dd}") do panic("Failed to register objC method.")
     }
     if vt.hasAlpha != nil {
-        hasAlpha :: proc "c" (self: ^AK.ImageRep, _: SEL) -> bool {
+        hasAlpha :: proc "c" (self: ^NS.ImageRep, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -360,7 +360,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("hasAlpha"), auto_cast hasAlpha, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAlpha != nil {
-        setAlpha :: proc "c" (self: ^AK.ImageRep, _: SEL, alpha: bool) {
+        setAlpha :: proc "c" (self: ^NS.ImageRep, _: SEL, alpha: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -370,7 +370,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAlpha:"), auto_cast setAlpha, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.isOpaque != nil {
-        isOpaque :: proc "c" (self: ^AK.ImageRep, _: SEL) -> bool {
+        isOpaque :: proc "c" (self: ^NS.ImageRep, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -380,7 +380,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isOpaque"), auto_cast isOpaque, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setOpaque != nil {
-        setOpaque :: proc "c" (self: ^AK.ImageRep, _: SEL, opaque: bool) {
+        setOpaque :: proc "c" (self: ^NS.ImageRep, _: SEL, opaque: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -390,7 +390,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setOpaque:"), auto_cast setOpaque, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.colorSpaceName != nil {
-        colorSpaceName :: proc "c" (self: ^AK.ImageRep, _: SEL) -> ^NS.String {
+        colorSpaceName :: proc "c" (self: ^NS.ImageRep, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -400,7 +400,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("colorSpaceName"), auto_cast colorSpaceName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setColorSpaceName != nil {
-        setColorSpaceName :: proc "c" (self: ^AK.ImageRep, _: SEL, colorSpaceName: ^NS.String) {
+        setColorSpaceName :: proc "c" (self: ^NS.ImageRep, _: SEL, colorSpaceName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -410,7 +410,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setColorSpaceName:"), auto_cast setColorSpaceName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.bitsPerSample != nil {
-        bitsPerSample :: proc "c" (self: ^AK.ImageRep, _: SEL) -> NS.Integer {
+        bitsPerSample :: proc "c" (self: ^NS.ImageRep, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -420,7 +420,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("bitsPerSample"), auto_cast bitsPerSample, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setBitsPerSample != nil {
-        setBitsPerSample :: proc "c" (self: ^AK.ImageRep, _: SEL, bitsPerSample: NS.Integer) {
+        setBitsPerSample :: proc "c" (self: ^NS.ImageRep, _: SEL, bitsPerSample: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -430,7 +430,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBitsPerSample:"), auto_cast setBitsPerSample, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.pixelsWide != nil {
-        pixelsWide :: proc "c" (self: ^AK.ImageRep, _: SEL) -> NS.Integer {
+        pixelsWide :: proc "c" (self: ^NS.ImageRep, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -440,7 +440,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pixelsWide"), auto_cast pixelsWide, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setPixelsWide != nil {
-        setPixelsWide :: proc "c" (self: ^AK.ImageRep, _: SEL, pixelsWide: NS.Integer) {
+        setPixelsWide :: proc "c" (self: ^NS.ImageRep, _: SEL, pixelsWide: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -450,7 +450,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPixelsWide:"), auto_cast setPixelsWide, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.pixelsHigh != nil {
-        pixelsHigh :: proc "c" (self: ^AK.ImageRep, _: SEL) -> NS.Integer {
+        pixelsHigh :: proc "c" (self: ^NS.ImageRep, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -460,7 +460,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("pixelsHigh"), auto_cast pixelsHigh, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setPixelsHigh != nil {
-        setPixelsHigh :: proc "c" (self: ^AK.ImageRep, _: SEL, pixelsHigh: NS.Integer) {
+        setPixelsHigh :: proc "c" (self: ^NS.ImageRep, _: SEL, pixelsHigh: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -470,7 +470,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setPixelsHigh:"), auto_cast setPixelsHigh, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.layoutDirection != nil {
-        layoutDirection :: proc "c" (self: ^AK.ImageRep, _: SEL) -> AK.ImageLayoutDirection {
+        layoutDirection :: proc "c" (self: ^NS.ImageRep, _: SEL) -> NS.ImageLayoutDirection {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -480,7 +480,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("layoutDirection"), auto_cast layoutDirection, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setLayoutDirection != nil {
-        setLayoutDirection :: proc "c" (self: ^AK.ImageRep, _: SEL, layoutDirection: AK.ImageLayoutDirection) {
+        setLayoutDirection :: proc "c" (self: ^NS.ImageRep, _: SEL, layoutDirection: NS.ImageLayoutDirection) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

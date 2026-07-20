@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTL4CompilerDescriptor
-///
 @(objc_class="MTL4CompilerDescriptor", objc_superclass=NS.Object)
 MTL4CompilerDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MTL4CompilerDescriptor, objc_selector="label", objc_name="label")
     MTL4CompilerDescriptor_label :: proc(self: ^MTL4CompilerDescriptor) -> ^NS.String ---
@@ -35,3 +29,6 @@ foreign lib {
     @(objc_type=MTL4CompilerDescriptor, objc_selector="setPipelineDataSetSerializer:", objc_name="setPipelineDataSetSerializer")
     MTL4CompilerDescriptor_setPipelineDataSetSerializer :: proc(self: ^MTL4CompilerDescriptor, pipelineDataSetSerializer: ^MTL4PipelineDataSetSerializer) ---
 }
+
+
+

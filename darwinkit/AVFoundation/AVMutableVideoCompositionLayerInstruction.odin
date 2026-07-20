@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVMutableVideoCompositionLayerInstruction
-///
 @(objc_class="AVMutableVideoCompositionLayerInstruction", objc_superclass=VideoCompositionLayerInstruction)
 MutableVideoCompositionLayerInstruction :: struct { using _: VideoCompositionLayerInstruction, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=MutableVideoCompositionLayerInstruction, objc_selector="videoCompositionLayerInstructionWithAssetTrack:", objc_name="videoCompositionLayerInstructionWithAssetTrack", objc_is_class_method=true)
     MutableVideoCompositionLayerInstruction_videoCompositionLayerInstructionWithAssetTrack :: proc(track: ^AssetTrack) -> instancetype ---
@@ -52,3 +46,6 @@ foreign lib {
     @(objc_type=MutableVideoCompositionLayerInstruction, objc_selector="setTrackID:", objc_name="setTrackID")
     MutableVideoCompositionLayerInstruction_setTrackID :: proc(self: ^MutableVideoCompositionLayerInstruction, trackID: CM.PersistentTrackID) ---
 }
+
+
+

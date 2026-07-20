@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLSkeleton
-///
 @(objc_class="MDLSkeleton", objc_superclass=Object)
 Skeleton :: struct { using _: Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=Skeleton, objc_selector="initWithName:jointPaths:", objc_name="initWithName")
     Skeleton_initWithName :: proc(self: ^Skeleton, name: ^NS.String, jointPaths: ^NS.Array) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=Skeleton, objc_selector="jointRestTransforms", objc_name="jointRestTransforms")
     Skeleton_jointRestTransforms :: proc(self: ^Skeleton) -> ^Matrix4x4Array ---
 }
+
+
+

@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    searchForItemsWithSearchString: proc(self: ^AK.UserInterfaceItemSearching, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: ^Objc_Block(proc "c" (items: ^NS.Array))),
-    localizedTitlesForItem: proc(self: ^AK.UserInterfaceItemSearching, item: id) -> ^NS.Array,
-    performActionForItem: proc(self: ^AK.UserInterfaceItemSearching, item: id),
-    showAllHelpTopicsForSearchString: proc(self: ^AK.UserInterfaceItemSearching, searchString: ^NS.String),
+    searchForItemsWithSearchString: proc(self: ^NS.UserInterfaceItemSearching, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: ^Objc_Block(proc "c" ( items: ^NS.Array ))),
+    localizedTitlesForItem: proc(self: ^NS.UserInterfaceItemSearching, item: id) -> ^NS.Array,
+    performActionForItem: proc(self: ^NS.UserInterfaceItemSearching, item: id),
+    showAllHelpTopicsForSearchString: proc(self: ^NS.UserInterfaceItemSearching, searchString: ^NS.String),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.searchForItemsWithSearchString != nil {
-        searchForItemsWithSearchString :: proc "c" (self: ^AK.UserInterfaceItemSearching, _: SEL, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: ^Objc_Block(proc "c" (items: ^NS.Array))) {
+        searchForItemsWithSearchString :: proc "c" (self: ^NS.UserInterfaceItemSearching, _: SEL, searchString: ^NS.String, resultLimit: NS.Integer, handleMatchedItems: ^Objc_Block(proc "c" ( items: ^NS.Array ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("searchForItemsWithSearchString:resultLimit:matchedItemHandler:"), auto_cast searchForItemsWithSearchString, "v@:@l?") do panic("Failed to register objC method.")
     }
     if vt.localizedTitlesForItem != nil {
-        localizedTitlesForItem :: proc "c" (self: ^AK.UserInterfaceItemSearching, _: SEL, item: id) -> ^NS.Array {
+        localizedTitlesForItem :: proc "c" (self: ^NS.UserInterfaceItemSearching, _: SEL, item: id) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("localizedTitlesForItem:"), auto_cast localizedTitlesForItem, "^void@:@") do panic("Failed to register objC method.")
     }
     if vt.performActionForItem != nil {
-        performActionForItem :: proc "c" (self: ^AK.UserInterfaceItemSearching, _: SEL, item: id) {
+        performActionForItem :: proc "c" (self: ^NS.UserInterfaceItemSearching, _: SEL, item: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("performActionForItem:"), auto_cast performActionForItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.showAllHelpTopicsForSearchString != nil {
-        showAllHelpTopicsForSearchString :: proc "c" (self: ^AK.UserInterfaceItemSearching, _: SEL, searchString: ^NS.String) {
+        showAllHelpTopicsForSearchString :: proc "c" (self: ^NS.UserInterfaceItemSearching, _: SEL, searchString: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

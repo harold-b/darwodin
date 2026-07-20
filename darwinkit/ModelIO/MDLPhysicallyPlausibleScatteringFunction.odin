@@ -10,15 +10,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MDLPhysicallyPlausibleScatteringFunction
-///
 @(objc_class="MDLPhysicallyPlausibleScatteringFunction", objc_superclass=ScatteringFunction)
 PhysicallyPlausibleScatteringFunction :: struct { using _: ScatteringFunction, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PhysicallyPlausibleScatteringFunction, objc_selector="version", objc_name="version")
     PhysicallyPlausibleScatteringFunction_version :: proc(self: ^PhysicallyPlausibleScatteringFunction) -> NS.Integer ---
@@ -56,3 +50,6 @@ foreign lib {
     @(objc_type=PhysicallyPlausibleScatteringFunction, objc_selector="clearcoatGloss", objc_name="clearcoatGloss")
     PhysicallyPlausibleScatteringFunction_clearcoatGloss :: proc(self: ^PhysicallyPlausibleScatteringFunction) -> ^MaterialProperty ---
 }
+
+
+

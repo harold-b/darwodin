@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVContentKeyResponse
-///
 @(objc_class="AVContentKeyResponse", objc_superclass=NS.Object)
 ContentKeyResponse :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ContentKeyResponse, objc_selector="contentKeyResponseWithFairPlayStreamingKeyResponseData:", objc_name="contentKeyResponseWithFairPlayStreamingKeyResponseData", objc_is_class_method=true)
     ContentKeyResponse_contentKeyResponseWithFairPlayStreamingKeyResponseData :: proc(keyResponseData: ^NS.Data) -> instancetype ---
@@ -31,3 +25,6 @@ foreign lib {
     @(objc_type=ContentKeyResponse, objc_selector="contentKeyResponseWithAuthorizationTokenData:", objc_name="contentKeyResponseWithAuthorizationTokenData", objc_is_class_method=true)
     ContentKeyResponse_contentKeyResponseWithAuthorizationTokenData :: proc(authorizationTokenData: ^NS.Data) -> instancetype ---
 }
+
+
+

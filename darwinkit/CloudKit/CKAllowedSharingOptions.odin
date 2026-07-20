@@ -7,18 +7,12 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKAllowedSharingOptions
-///
 @(objc_class="CKAllowedSharingOptions", objc_superclass=NS.Object)
 AllowedSharingOptions :: struct { using _: NS.Object, 
     using _: NS.SecureCoding,
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=AllowedSharingOptions, objc_selector="initWithAllowedParticipantPermissionOptions:allowedParticipantAccessOptions:", objc_name="initWithAllowedParticipantPermissionOptions")
     AllowedSharingOptions_initWithAllowedParticipantPermissionOptions :: proc(self: ^AllowedSharingOptions, allowedParticipantPermissionOptions: SharingParticipantPermissionOptions, allowedParticipantAccessOptions: SharingParticipantAccessOptions) -> instancetype ---
@@ -50,3 +44,6 @@ foreign lib {
     @(objc_type=AllowedSharingOptions, objc_selector="setAllowsAccessRequests:", objc_name="setAllowsAccessRequests")
     AllowedSharingOptions_setAllowsAccessRequests :: proc(self: ^AllowedSharingOptions, allowsAccessRequests: bool) ---
 }
+
+
+

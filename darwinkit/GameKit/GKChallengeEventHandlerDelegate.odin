@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// GKChallengeEventHandlerDelegate
-///
 @(objc_class="GKChallengeEventHandlerDelegate")
 ChallengeEventHandlerDelegate :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ChallengeEventHandlerDelegate, objc_selector="localPlayerDidSelectChallenge:", objc_name="localPlayerDidSelectChallenge")
     ChallengeEventHandlerDelegate_localPlayerDidSelectChallenge :: proc(self: ^ChallengeEventHandlerDelegate, challenge: ^Challenge) ---
@@ -40,3 +34,6 @@ foreign lib {
     @(objc_type=ChallengeEventHandlerDelegate, objc_selector="remotePlayerDidCompleteChallenge:", objc_name="remotePlayerDidCompleteChallenge")
     ChallengeEventHandlerDelegate_remotePlayerDidCompleteChallenge :: proc(self: ^ChallengeEventHandlerDelegate, challenge: ^Challenge) ---
 }
+
+
+

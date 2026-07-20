@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSUnitElectricCharge
-///
 @(objc_class="NSUnitElectricCharge", objc_superclass=Dimension)
 UnitElectricCharge :: struct { using _: Dimension, 
     using _: SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=UnitElectricCharge, objc_selector="coulombs", objc_name="coulombs", objc_is_class_method=true)
     UnitElectricCharge_coulombs :: proc() -> ^UnitElectricCharge ---
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=UnitElectricCharge, objc_selector="microampereHours", objc_name="microampereHours", objc_is_class_method=true)
     UnitElectricCharge_microampereHours :: proc() -> ^UnitElectricCharge ---
 }
+
+
+

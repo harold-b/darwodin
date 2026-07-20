@@ -11,17 +11,11 @@ import CG "../CoreGraphics"
 import NS "../Foundation"
 import CA "../QuartzCore"
 
-
-
-///
-/// MTLResidencySet
-///
 @(objc_class="MTLResidencySet")
 ResidencySet :: struct { using _: intrinsics.objc_object, 
     using _: NS.ObjectProtocol,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=ResidencySet, objc_selector="requestResidency", objc_name="requestResidency")
     ResidencySet_requestResidency :: proc(self: ^ResidencySet) ---
@@ -65,3 +59,6 @@ foreign lib {
     @(objc_type=ResidencySet, objc_selector="allocationCount", objc_name="allocationCount")
     ResidencySet_allocationCount :: proc(self: ^ResidencySet) -> NS.UInteger ---
 }
+
+
+

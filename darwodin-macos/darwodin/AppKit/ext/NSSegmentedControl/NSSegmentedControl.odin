@@ -20,58 +20,58 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSControl"
 
 VTable :: struct {
     super: NSControl.VTable,
-    selectSegmentWithTag: proc(self: ^AK.SegmentedControl, tag: NS.Integer) -> bool,
-    setWidth: proc(self: ^AK.SegmentedControl, width: CG.Float, segment: NS.Integer),
-    widthForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> CG.Float,
-    setImage: proc(self: ^AK.SegmentedControl, image: ^AK.Image, segment: NS.Integer),
-    imageForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> ^AK.Image,
-    setImageScaling: proc(self: ^AK.SegmentedControl, scaling: AK.ImageScaling, segment: NS.Integer),
-    imageScalingForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> AK.ImageScaling,
-    setLabel: proc(self: ^AK.SegmentedControl, label: ^NS.String, segment: NS.Integer),
-    labelForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> ^NS.String,
-    setMenu: proc(self: ^AK.SegmentedControl, menu: ^AK.Menu, segment: NS.Integer),
-    menuForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> ^AK.Menu,
-    setSelected: proc(self: ^AK.SegmentedControl, selected: bool, segment: NS.Integer),
-    isSelectedForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> bool,
-    setEnabled: proc(self: ^AK.SegmentedControl, enabled: bool, segment: NS.Integer),
-    isEnabledForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> bool,
-    setToolTip: proc(self: ^AK.SegmentedControl, toolTip: ^NS.String, segment: NS.Integer),
-    toolTipForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> ^NS.String,
-    setTag: proc(self: ^AK.SegmentedControl, tag: NS.Integer, segment: NS.Integer),
-    tagForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> NS.Integer,
-    setShowsMenuIndicator: proc(self: ^AK.SegmentedControl, showsMenuIndicator: bool, segment: NS.Integer),
-    showsMenuIndicatorForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> bool,
-    setAlignment: proc(self: ^AK.SegmentedControl, alignment: AK.TextAlignment, segment: NS.Integer),
-    alignmentForSegment: proc(self: ^AK.SegmentedControl, segment: NS.Integer) -> AK.TextAlignment,
-    compressWithPrioritizedCompressionOptions: proc(self: ^AK.SegmentedControl, prioritizedOptions: ^NS.Array),
-    minimumSizeWithPrioritizedCompressionOptions: proc(self: ^AK.SegmentedControl, prioritizedOptions: ^NS.Array) -> NS.Size,
-    segmentCount: proc(self: ^AK.SegmentedControl) -> NS.Integer,
-    setSegmentCount: proc(self: ^AK.SegmentedControl, segmentCount: NS.Integer),
-    selectedSegment: proc(self: ^AK.SegmentedControl) -> NS.Integer,
-    setSelectedSegment: proc(self: ^AK.SegmentedControl, selectedSegment: NS.Integer),
-    segmentStyle: proc(self: ^AK.SegmentedControl) -> AK.SegmentStyle,
-    setSegmentStyle: proc(self: ^AK.SegmentedControl, segmentStyle: AK.SegmentStyle),
-    isSpringLoaded: proc(self: ^AK.SegmentedControl) -> bool,
-    setSpringLoaded: proc(self: ^AK.SegmentedControl, springLoaded: bool),
-    trackingMode: proc(self: ^AK.SegmentedControl) -> AK.SegmentSwitchTracking,
-    setTrackingMode: proc(self: ^AK.SegmentedControl, trackingMode: AK.SegmentSwitchTracking),
-    doubleValueForSelectedSegment: proc(self: ^AK.SegmentedControl) -> cffi.double,
-    selectedSegmentBezelColor: proc(self: ^AK.SegmentedControl) -> ^AK.Color,
-    setSelectedSegmentBezelColor: proc(self: ^AK.SegmentedControl, selectedSegmentBezelColor: ^AK.Color),
-    indexOfSelectedItem: proc(self: ^AK.SegmentedControl) -> NS.Integer,
-    segmentDistribution: proc(self: ^AK.SegmentedControl) -> AK.SegmentDistribution,
-    setSegmentDistribution: proc(self: ^AK.SegmentedControl, segmentDistribution: AK.SegmentDistribution),
-    activeCompressionOptions: proc(self: ^AK.SegmentedControl) -> ^AK.UserInterfaceCompressionOptions,
-    borderShape: proc(self: ^AK.SegmentedControl) -> AK.ControlBorderShape,
-    setBorderShape: proc(self: ^AK.SegmentedControl, borderShape: AK.ControlBorderShape),
-    segmentedControlWithLabels: proc(labels: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype,
-    segmentedControlWithImages: proc(images: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype,
+    selectSegmentWithTag: proc(self: ^NS.SegmentedControl, tag: NS.Integer) -> bool,
+    setWidth: proc(self: ^NS.SegmentedControl, width: CG.Float, segment: NS.Integer),
+    widthForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> CG.Float,
+    setImage: proc(self: ^NS.SegmentedControl, image: ^NS.Image, segment: NS.Integer),
+    imageForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> ^NS.Image,
+    setImageScaling: proc(self: ^NS.SegmentedControl, scaling: NS.ImageScaling, segment: NS.Integer),
+    imageScalingForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> NS.ImageScaling,
+    setLabel: proc(self: ^NS.SegmentedControl, label: ^NS.String, segment: NS.Integer),
+    labelForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> ^NS.String,
+    setMenu: proc(self: ^NS.SegmentedControl, menu: ^NS.Menu, segment: NS.Integer),
+    menuForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> ^NS.Menu,
+    setSelected: proc(self: ^NS.SegmentedControl, selected: bool, segment: NS.Integer),
+    isSelectedForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> bool,
+    setEnabled: proc(self: ^NS.SegmentedControl, enabled: bool, segment: NS.Integer),
+    isEnabledForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> bool,
+    setToolTip: proc(self: ^NS.SegmentedControl, toolTip: ^NS.String, segment: NS.Integer),
+    toolTipForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> ^NS.String,
+    setTag: proc(self: ^NS.SegmentedControl, tag: NS.Integer, segment: NS.Integer),
+    tagForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> NS.Integer,
+    setShowsMenuIndicator: proc(self: ^NS.SegmentedControl, showsMenuIndicator: bool, segment: NS.Integer),
+    showsMenuIndicatorForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> bool,
+    setAlignment: proc(self: ^NS.SegmentedControl, alignment: NS.TextAlignment, segment: NS.Integer),
+    alignmentForSegment: proc(self: ^NS.SegmentedControl, segment: NS.Integer) -> NS.TextAlignment,
+    compressWithPrioritizedCompressionOptions: proc(self: ^NS.SegmentedControl, prioritizedOptions: ^NS.Array),
+    minimumSizeWithPrioritizedCompressionOptions: proc(self: ^NS.SegmentedControl, prioritizedOptions: ^NS.Array) -> NS.Size,
+    segmentCount: proc(self: ^NS.SegmentedControl) -> NS.Integer,
+    setSegmentCount: proc(self: ^NS.SegmentedControl, segmentCount: NS.Integer),
+    selectedSegment: proc(self: ^NS.SegmentedControl) -> NS.Integer,
+    setSelectedSegment: proc(self: ^NS.SegmentedControl, selectedSegment: NS.Integer),
+    segmentStyle: proc(self: ^NS.SegmentedControl) -> NS.SegmentStyle,
+    setSegmentStyle: proc(self: ^NS.SegmentedControl, segmentStyle: NS.SegmentStyle),
+    isSpringLoaded: proc(self: ^NS.SegmentedControl) -> bool,
+    setSpringLoaded: proc(self: ^NS.SegmentedControl, springLoaded: bool),
+    trackingMode: proc(self: ^NS.SegmentedControl) -> NS.SegmentSwitchTracking,
+    setTrackingMode: proc(self: ^NS.SegmentedControl, trackingMode: NS.SegmentSwitchTracking),
+    doubleValueForSelectedSegment: proc(self: ^NS.SegmentedControl) -> cffi.double,
+    selectedSegmentBezelColor: proc(self: ^NS.SegmentedControl) -> ^NS.Color,
+    setSelectedSegmentBezelColor: proc(self: ^NS.SegmentedControl, selectedSegmentBezelColor: ^NS.Color),
+    indexOfSelectedItem: proc(self: ^NS.SegmentedControl) -> NS.Integer,
+    segmentDistribution: proc(self: ^NS.SegmentedControl) -> NS.SegmentDistribution,
+    setSegmentDistribution: proc(self: ^NS.SegmentedControl, segmentDistribution: NS.SegmentDistribution),
+    activeCompressionOptions: proc(self: ^NS.SegmentedControl) -> ^NS.UserInterfaceCompressionOptions,
+    borderShape: proc(self: ^NS.SegmentedControl) -> NS.ControlBorderShape,
+    setBorderShape: proc(self: ^NS.SegmentedControl, borderShape: NS.ControlBorderShape),
+    segmentedControlWithLabels: proc(labels: ^NS.Array, trackingMode: NS.SegmentSwitchTracking, target: id, action: SEL) -> instancetype,
+    segmentedControlWithImages: proc(images: ^NS.Array, trackingMode: NS.SegmentSwitchTracking, target: id, action: SEL) -> instancetype,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -82,7 +82,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSControl.extend(cls, &vt.super)
 
     if vt.selectSegmentWithTag != nil {
-        selectSegmentWithTag :: proc "c" (self: ^AK.SegmentedControl, _: SEL, tag: NS.Integer) -> bool {
+        selectSegmentWithTag :: proc "c" (self: ^NS.SegmentedControl, _: SEL, tag: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -92,7 +92,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectSegmentWithTag:"), auto_cast selectSegmentWithTag, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.setWidth != nil {
-        setWidth :: proc "c" (self: ^AK.SegmentedControl, _: SEL, width: CG.Float, segment: NS.Integer) {
+        setWidth :: proc "c" (self: ^NS.SegmentedControl, _: SEL, width: CG.Float, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -102,7 +102,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setWidth:forSegment:"), auto_cast setWidth, "v@:dl") do panic("Failed to register objC method.")
     }
     if vt.widthForSegment != nil {
-        widthForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> CG.Float {
+        widthForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -112,7 +112,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("widthForSegment:"), auto_cast widthForSegment, "d@:l") do panic("Failed to register objC method.")
     }
     if vt.setImage != nil {
-        setImage :: proc "c" (self: ^AK.SegmentedControl, _: SEL, image: ^AK.Image, segment: NS.Integer) {
+        setImage :: proc "c" (self: ^NS.SegmentedControl, _: SEL, image: ^NS.Image, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -122,7 +122,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImage:forSegment:"), auto_cast setImage, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.imageForSegment != nil {
-        imageForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> ^AK.Image {
+        imageForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> ^NS.Image {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -132,7 +132,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageForSegment:"), auto_cast imageForSegment, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.setImageScaling != nil {
-        setImageScaling :: proc "c" (self: ^AK.SegmentedControl, _: SEL, scaling: AK.ImageScaling, segment: NS.Integer) {
+        setImageScaling :: proc "c" (self: ^NS.SegmentedControl, _: SEL, scaling: NS.ImageScaling, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -142,7 +142,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setImageScaling:forSegment:"), auto_cast setImageScaling, "v@:Ll") do panic("Failed to register objC method.")
     }
     if vt.imageScalingForSegment != nil {
-        imageScalingForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> AK.ImageScaling {
+        imageScalingForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> NS.ImageScaling {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -152,7 +152,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageScalingForSegment:"), auto_cast imageScalingForSegment, "L@:l") do panic("Failed to register objC method.")
     }
     if vt.setLabel != nil {
-        setLabel :: proc "c" (self: ^AK.SegmentedControl, _: SEL, label: ^NS.String, segment: NS.Integer) {
+        setLabel :: proc "c" (self: ^NS.SegmentedControl, _: SEL, label: ^NS.String, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -162,7 +162,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setLabel:forSegment:"), auto_cast setLabel, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.labelForSegment != nil {
-        labelForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> ^NS.String {
+        labelForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -172,7 +172,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("labelForSegment:"), auto_cast labelForSegment, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.setMenu != nil {
-        setMenu :: proc "c" (self: ^AK.SegmentedControl, _: SEL, menu: ^AK.Menu, segment: NS.Integer) {
+        setMenu :: proc "c" (self: ^NS.SegmentedControl, _: SEL, menu: ^NS.Menu, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -182,7 +182,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMenu:forSegment:"), auto_cast setMenu, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.menuForSegment != nil {
-        menuForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> ^AK.Menu {
+        menuForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> ^NS.Menu {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -192,7 +192,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menuForSegment:"), auto_cast menuForSegment, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.setSelected != nil {
-        setSelected :: proc "c" (self: ^AK.SegmentedControl, _: SEL, selected: bool, segment: NS.Integer) {
+        setSelected :: proc "c" (self: ^NS.SegmentedControl, _: SEL, selected: bool, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -202,7 +202,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelected:forSegment:"), auto_cast setSelected, "v@:Bl") do panic("Failed to register objC method.")
     }
     if vt.isSelectedForSegment != nil {
-        isSelectedForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> bool {
+        isSelectedForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -212,7 +212,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isSelectedForSegment:"), auto_cast isSelectedForSegment, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.setEnabled != nil {
-        setEnabled :: proc "c" (self: ^AK.SegmentedControl, _: SEL, enabled: bool, segment: NS.Integer) {
+        setEnabled :: proc "c" (self: ^NS.SegmentedControl, _: SEL, enabled: bool, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -222,7 +222,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEnabled:forSegment:"), auto_cast setEnabled, "v@:Bl") do panic("Failed to register objC method.")
     }
     if vt.isEnabledForSegment != nil {
-        isEnabledForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> bool {
+        isEnabledForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -232,7 +232,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEnabledForSegment:"), auto_cast isEnabledForSegment, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.setToolTip != nil {
-        setToolTip :: proc "c" (self: ^AK.SegmentedControl, _: SEL, toolTip: ^NS.String, segment: NS.Integer) {
+        setToolTip :: proc "c" (self: ^NS.SegmentedControl, _: SEL, toolTip: ^NS.String, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -242,7 +242,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setToolTip:forSegment:"), auto_cast setToolTip, "v@:@l") do panic("Failed to register objC method.")
     }
     if vt.toolTipForSegment != nil {
-        toolTipForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> ^NS.String {
+        toolTipForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -252,7 +252,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("toolTipForSegment:"), auto_cast toolTipForSegment, "@@:l") do panic("Failed to register objC method.")
     }
     if vt.setTag != nil {
-        setTag :: proc "c" (self: ^AK.SegmentedControl, _: SEL, tag: NS.Integer, segment: NS.Integer) {
+        setTag :: proc "c" (self: ^NS.SegmentedControl, _: SEL, tag: NS.Integer, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -262,7 +262,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTag:forSegment:"), auto_cast setTag, "v@:ll") do panic("Failed to register objC method.")
     }
     if vt.tagForSegment != nil {
-        tagForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> NS.Integer {
+        tagForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -272,7 +272,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tagForSegment:"), auto_cast tagForSegment, "l@:l") do panic("Failed to register objC method.")
     }
     if vt.setShowsMenuIndicator != nil {
-        setShowsMenuIndicator :: proc "c" (self: ^AK.SegmentedControl, _: SEL, showsMenuIndicator: bool, segment: NS.Integer) {
+        setShowsMenuIndicator :: proc "c" (self: ^NS.SegmentedControl, _: SEL, showsMenuIndicator: bool, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -282,7 +282,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setShowsMenuIndicator:forSegment:"), auto_cast setShowsMenuIndicator, "v@:Bl") do panic("Failed to register objC method.")
     }
     if vt.showsMenuIndicatorForSegment != nil {
-        showsMenuIndicatorForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> bool {
+        showsMenuIndicatorForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -292,7 +292,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("showsMenuIndicatorForSegment:"), auto_cast showsMenuIndicatorForSegment, "B@:l") do panic("Failed to register objC method.")
     }
     if vt.setAlignment != nil {
-        setAlignment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, alignment: AK.TextAlignment, segment: NS.Integer) {
+        setAlignment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, alignment: NS.TextAlignment, segment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -302,7 +302,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAlignment:forSegment:"), auto_cast setAlignment, "v@:ll") do panic("Failed to register objC method.")
     }
     if vt.alignmentForSegment != nil {
-        alignmentForSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segment: NS.Integer) -> AK.TextAlignment {
+        alignmentForSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segment: NS.Integer) -> NS.TextAlignment {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -312,7 +312,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("alignmentForSegment:"), auto_cast alignmentForSegment, "l@:l") do panic("Failed to register objC method.")
     }
     if vt.compressWithPrioritizedCompressionOptions != nil {
-        compressWithPrioritizedCompressionOptions :: proc "c" (self: ^AK.SegmentedControl, _: SEL, prioritizedOptions: ^NS.Array) {
+        compressWithPrioritizedCompressionOptions :: proc "c" (self: ^NS.SegmentedControl, _: SEL, prioritizedOptions: ^NS.Array) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -322,7 +322,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("compressWithPrioritizedCompressionOptions:"), auto_cast compressWithPrioritizedCompressionOptions, "v@:^void") do panic("Failed to register objC method.")
     }
     if vt.minimumSizeWithPrioritizedCompressionOptions != nil {
-        minimumSizeWithPrioritizedCompressionOptions :: proc "c" (self: ^AK.SegmentedControl, _: SEL, prioritizedOptions: ^NS.Array) -> NS.Size {
+        minimumSizeWithPrioritizedCompressionOptions :: proc "c" (self: ^NS.SegmentedControl, _: SEL, prioritizedOptions: ^NS.Array) -> NS.Size {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -332,7 +332,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("minimumSizeWithPrioritizedCompressionOptions:"), auto_cast minimumSizeWithPrioritizedCompressionOptions, "{CGSize=dd}@:^void") do panic("Failed to register objC method.")
     }
     if vt.segmentCount != nil {
-        segmentCount :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> NS.Integer {
+        segmentCount :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -342,7 +342,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("segmentCount"), auto_cast segmentCount, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSegmentCount != nil {
-        setSegmentCount :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segmentCount: NS.Integer) {
+        setSegmentCount :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segmentCount: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -352,7 +352,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSegmentCount:"), auto_cast setSegmentCount, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.selectedSegment != nil {
-        selectedSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> NS.Integer {
+        selectedSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -362,7 +362,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedSegment"), auto_cast selectedSegment, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedSegment != nil {
-        setSelectedSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL, selectedSegment: NS.Integer) {
+        setSelectedSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL, selectedSegment: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -372,7 +372,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedSegment:"), auto_cast setSelectedSegment, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.segmentStyle != nil {
-        segmentStyle :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> AK.SegmentStyle {
+        segmentStyle :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> NS.SegmentStyle {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -382,7 +382,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("segmentStyle"), auto_cast segmentStyle, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSegmentStyle != nil {
-        setSegmentStyle :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segmentStyle: AK.SegmentStyle) {
+        setSegmentStyle :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segmentStyle: NS.SegmentStyle) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -392,7 +392,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSegmentStyle:"), auto_cast setSegmentStyle, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.isSpringLoaded != nil {
-        isSpringLoaded :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> bool {
+        isSpringLoaded :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -402,7 +402,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isSpringLoaded"), auto_cast isSpringLoaded, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setSpringLoaded != nil {
-        setSpringLoaded :: proc "c" (self: ^AK.SegmentedControl, _: SEL, springLoaded: bool) {
+        setSpringLoaded :: proc "c" (self: ^NS.SegmentedControl, _: SEL, springLoaded: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -412,7 +412,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSpringLoaded:"), auto_cast setSpringLoaded, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.trackingMode != nil {
-        trackingMode :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> AK.SegmentSwitchTracking {
+        trackingMode :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> NS.SegmentSwitchTracking {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -422,7 +422,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("trackingMode"), auto_cast trackingMode, "L@:") do panic("Failed to register objC method.")
     }
     if vt.setTrackingMode != nil {
-        setTrackingMode :: proc "c" (self: ^AK.SegmentedControl, _: SEL, trackingMode: AK.SegmentSwitchTracking) {
+        setTrackingMode :: proc "c" (self: ^NS.SegmentedControl, _: SEL, trackingMode: NS.SegmentSwitchTracking) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -432,7 +432,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setTrackingMode:"), auto_cast setTrackingMode, "v@:L") do panic("Failed to register objC method.")
     }
     if vt.doubleValueForSelectedSegment != nil {
-        doubleValueForSelectedSegment :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> cffi.double {
+        doubleValueForSelectedSegment :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> cffi.double {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -442,7 +442,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("doubleValueForSelectedSegment"), auto_cast doubleValueForSelectedSegment, "d@:") do panic("Failed to register objC method.")
     }
     if vt.selectedSegmentBezelColor != nil {
-        selectedSegmentBezelColor :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> ^AK.Color {
+        selectedSegmentBezelColor :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> ^NS.Color {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -452,7 +452,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedSegmentBezelColor"), auto_cast selectedSegmentBezelColor, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setSelectedSegmentBezelColor != nil {
-        setSelectedSegmentBezelColor :: proc "c" (self: ^AK.SegmentedControl, _: SEL, selectedSegmentBezelColor: ^AK.Color) {
+        setSelectedSegmentBezelColor :: proc "c" (self: ^NS.SegmentedControl, _: SEL, selectedSegmentBezelColor: ^NS.Color) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -462,7 +462,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSelectedSegmentBezelColor:"), auto_cast setSelectedSegmentBezelColor, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.indexOfSelectedItem != nil {
-        indexOfSelectedItem :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> NS.Integer {
+        indexOfSelectedItem :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -472,7 +472,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("indexOfSelectedItem"), auto_cast indexOfSelectedItem, "l@:") do panic("Failed to register objC method.")
     }
     if vt.segmentDistribution != nil {
-        segmentDistribution :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> AK.SegmentDistribution {
+        segmentDistribution :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> NS.SegmentDistribution {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -482,7 +482,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("segmentDistribution"), auto_cast segmentDistribution, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setSegmentDistribution != nil {
-        setSegmentDistribution :: proc "c" (self: ^AK.SegmentedControl, _: SEL, segmentDistribution: AK.SegmentDistribution) {
+        setSegmentDistribution :: proc "c" (self: ^NS.SegmentedControl, _: SEL, segmentDistribution: NS.SegmentDistribution) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -492,7 +492,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setSegmentDistribution:"), auto_cast setSegmentDistribution, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.activeCompressionOptions != nil {
-        activeCompressionOptions :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> ^AK.UserInterfaceCompressionOptions {
+        activeCompressionOptions :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> ^NS.UserInterfaceCompressionOptions {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -502,7 +502,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("activeCompressionOptions"), auto_cast activeCompressionOptions, "@@:") do panic("Failed to register objC method.")
     }
     if vt.borderShape != nil {
-        borderShape :: proc "c" (self: ^AK.SegmentedControl, _: SEL) -> AK.ControlBorderShape {
+        borderShape :: proc "c" (self: ^NS.SegmentedControl, _: SEL) -> NS.ControlBorderShape {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -512,7 +512,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("borderShape"), auto_cast borderShape, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setBorderShape != nil {
-        setBorderShape :: proc "c" (self: ^AK.SegmentedControl, _: SEL, borderShape: AK.ControlBorderShape) {
+        setBorderShape :: proc "c" (self: ^NS.SegmentedControl, _: SEL, borderShape: NS.ControlBorderShape) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -522,7 +522,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setBorderShape:"), auto_cast setBorderShape, "v@:l") do panic("Failed to register objC method.")
     }
     if vt.segmentedControlWithLabels != nil {
-        segmentedControlWithLabels :: proc "c" (self: Class, _: SEL, labels: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype {
+        segmentedControlWithLabels :: proc "c" (self: Class, _: SEL, labels: ^NS.Array, trackingMode: NS.SegmentSwitchTracking, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context
@@ -532,7 +532,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("segmentedControlWithLabels:trackingMode:target:action:"), auto_cast segmentedControlWithLabels, "@#:^voidL@:") do panic("Failed to register objC method.")
     }
     if vt.segmentedControlWithImages != nil {
-        segmentedControlWithImages :: proc "c" (self: Class, _: SEL, images: ^NS.Array, trackingMode: AK.SegmentSwitchTracking, target: id, action: SEL) -> instancetype {
+        segmentedControlWithImages :: proc "c" (self: Class, _: SEL, images: ^NS.Array, trackingMode: NS.SegmentSwitchTracking, target: id, action: SEL) -> instancetype {
 
             vt_ctx := ObjC.class_get_vtable_info(self)
             context = vt_ctx._context

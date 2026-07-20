@@ -1,0 +1,38 @@
+#+build darwin:ios
+package darwodin_UIKit
+
+import "base:intrinsics"
+import "base:runtime"
+import cffi "core:c"
+import CF "../CoreFoundation"
+import CG "../CoreGraphics"
+import CT "../CoreText"
+import Sec "../Security"
+import NS "../Foundation"
+import CA "../QuartzCore"
+
+
+
+///
+/// UINavigationItemRenameDelegate
+///
+@(objc_class="UINavigationItemRenameDelegate")
+NavigationItemRenameDelegate :: struct { using _: intrinsics.objc_object, 
+    using _: NS.ObjectProtocol,
+}
+
+@(default_calling_convention="c")
+foreign lib {
+    @(objc_type=NavigationItemRenameDelegate, objc_selector="navigationItem:didEndRenamingWithTitle:", objc_name="navigationItem_didEndRenamingWithTitle")
+    NavigationItemRenameDelegate_navigationItem_didEndRenamingWithTitle :: proc(self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem, title: ^NS.String) ---
+
+    @(objc_type=NavigationItemRenameDelegate, objc_selector="navigationItemShouldBeginRenaming:", objc_name="navigationItemShouldBeginRenaming")
+    NavigationItemRenameDelegate_navigationItemShouldBeginRenaming :: proc(self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem) -> bool ---
+
+    @(objc_type=NavigationItemRenameDelegate, objc_selector="navigationItem:willBeginRenamingWithSuggestedTitle:selectedRange:", objc_name="navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange")
+    NavigationItemRenameDelegate_navigationItem_willBeginRenamingWithSuggestedTitle_selectedRange :: proc(self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem, title: ^NS.String, selectedRange: ^NS._NSRange) -> ^NS.String ---
+
+    @(objc_type=NavigationItemRenameDelegate, objc_selector="navigationItem:shouldEndRenamingWithTitle:", objc_name="navigationItem_shouldEndRenamingWithTitle")
+    NavigationItemRenameDelegate_navigationItem_shouldEndRenamingWithTitle :: proc(self: ^NavigationItemRenameDelegate, navigationItem: ^NavigationItem, title: ^NS.String) -> bool ---
+}
+

@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVPlayerItemOutput
-///
 @(objc_class="AVPlayerItemOutput", objc_superclass=NS.Object)
 PlayerItemOutput :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=PlayerItemOutput, objc_selector="itemTimeForHostTime:", objc_name="itemTimeForHostTime")
     PlayerItemOutput_itemTimeForHostTime :: proc(self: ^PlayerItemOutput, hostTimeInSeconds: CF.TimeInterval) -> CM.Time ---
@@ -28,7 +22,7 @@ foreign lib {
     @(objc_type=PlayerItemOutput, objc_selector="itemTimeForMachAbsoluteTime:", objc_name="itemTimeForMachAbsoluteTime")
     PlayerItemOutput_itemTimeForMachAbsoluteTime :: proc(self: ^PlayerItemOutput, machAbsoluteTime: cffi.int64_t) -> CM.Time ---
 
-    when !ODIN_PLATFORM_SUBTARGET_IOS {
+    when ODIN_PLATFORM_SUBTARGET == .Default {
         @(objc_type=PlayerItemOutput, objc_selector="itemTimeForCVTimeStamp:", objc_name="itemTimeForCVTimeStamp")
         PlayerItemOutput_itemTimeForCVTimeStamp :: proc(self: ^PlayerItemOutput, timestamp: CVTimeStamp) -> CM.Time ---
     }
@@ -39,3 +33,6 @@ foreign lib {
     @(objc_type=PlayerItemOutput, objc_selector="setSuppressesPlayerRendering:", objc_name="setSuppressesPlayerRendering")
     PlayerItemOutput_setSuppressesPlayerRendering :: proc(self: ^PlayerItemOutput, suppressesPlayerRendering: bool) ---
 }
+
+
+

@@ -20,14 +20,14 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSTextFieldCell"
 
 VTable :: struct {
     super: NSTextFieldCell.VTable,
-    echosBullets: proc(self: ^AK.SecureTextFieldCell) -> bool,
-    setEchosBullets: proc(self: ^AK.SecureTextFieldCell, echosBullets: bool),
+    echosBullets: proc(self: ^NS.SecureTextFieldCell) -> bool,
+    setEchosBullets: proc(self: ^NS.SecureTextFieldCell, echosBullets: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -38,7 +38,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSTextFieldCell.extend(cls, &vt.super)
 
     if vt.echosBullets != nil {
-        echosBullets :: proc "c" (self: ^AK.SecureTextFieldCell, _: SEL) -> bool {
+        echosBullets :: proc "c" (self: ^NS.SecureTextFieldCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -48,7 +48,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("echosBullets"), auto_cast echosBullets, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setEchosBullets != nil {
-        setEchosBullets :: proc "c" (self: ^AK.SecureTextFieldCell, _: SEL, echosBullets: bool) {
+        setEchosBullets :: proc "c" (self: ^NS.SecureTextFieldCell, _: SEL, echosBullets: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

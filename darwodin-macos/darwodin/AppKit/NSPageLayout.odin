@@ -33,7 +33,7 @@ foreign lib {
     PageLayout_removeAccessoryController :: proc(self: ^PageLayout, accessoryController: ^ViewController) ---
 
     @(objc_type=PageLayout, objc_selector="beginSheetUsingPrintInfo:onWindow:completionHandler:", objc_name="beginSheetUsingPrintInfo")
-    PageLayout_beginSheetUsingPrintInfo :: proc(self: ^PageLayout, printInfo: ^PrintInfo, parentWindow: ^Window, handler: ^Objc_Block(proc "c" (result: PageLayoutResult))) ---
+    PageLayout_beginSheetUsingPrintInfo :: proc(self: ^PageLayout, printInfo: ^PrintInfo, parentWindow: ^Window, handler: ^Objc_Block(proc "c" ( result: PageLayoutResult ))) ---
 
     @(objc_type=PageLayout, objc_selector="beginSheetWithPrintInfo:modalForWindow:delegate:didEndSelector:contextInfo:", objc_name="beginSheetWithPrintInfo")
     PageLayout_beginSheetWithPrintInfo :: proc(self: ^PageLayout, printInfo: ^PrintInfo, docWindow: ^Window, delegate: id, didEndSelector: SEL, contextInfo: rawptr) ---

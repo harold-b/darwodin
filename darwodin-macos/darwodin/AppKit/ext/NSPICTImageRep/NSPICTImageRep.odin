@@ -20,16 +20,16 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSImageRep"
 
 VTable :: struct {
     super: NSImageRep.VTable,
     imageRepWithData: proc(pictData: ^NS.Data) -> instancetype,
-    initWithData: proc(self: ^AK.PICTImageRep, pictData: ^NS.Data) -> instancetype,
-    _PICTRepresentation: proc(self: ^AK.PICTImageRep) -> ^NS.Data,
-    boundingBox: proc(self: ^AK.PICTImageRep) -> NS.Rect,
+    initWithData: proc(self: ^NS.PICTImageRep, pictData: ^NS.Data) -> instancetype,
+    _PICTRepresentation: proc(self: ^NS.PICTImageRep) -> ^NS.Data,
+    boundingBox: proc(self: ^NS.PICTImageRep) -> NS.Rect,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -50,7 +50,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(meta, intrinsics.objc_find_selector("imageRepWithData:"), auto_cast imageRepWithData, "@#:@") do panic("Failed to register objC method.")
     }
     if vt.initWithData != nil {
-        initWithData :: proc "c" (self: ^AK.PICTImageRep, _: SEL, pictData: ^NS.Data) -> instancetype {
+        initWithData :: proc "c" (self: ^NS.PICTImageRep, _: SEL, pictData: ^NS.Data) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithData:"), auto_cast initWithData, "@@:@") do panic("Failed to register objC method.")
     }
     if vt._PICTRepresentation != nil {
-        _PICTRepresentation :: proc "c" (self: ^AK.PICTImageRep, _: SEL) -> ^NS.Data {
+        _PICTRepresentation :: proc "c" (self: ^NS.PICTImageRep, _: SEL) -> ^NS.Data {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("PICTRepresentation"), auto_cast _PICTRepresentation, "@@:") do panic("Failed to register objC method.")
     }
     if vt.boundingBox != nil {
-        boundingBox :: proc "c" (self: ^AK.PICTImageRep, _: SEL) -> NS.Rect {
+        boundingBox :: proc "c" (self: ^NS.PICTImageRep, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -20,36 +20,36 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSButtonCell"
 
 VTable :: struct {
     super: NSButtonCell.VTable,
-    initTextCell: proc(self: ^AK.MenuItemCell, string: ^NS.String) -> instancetype,
-    initWithCoder: proc(self: ^AK.MenuItemCell, coder: ^NS.Coder) -> instancetype,
-    calcSize: proc(self: ^AK.MenuItemCell),
-    stateImageRectForBounds: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect) -> NS.Rect,
-    titleRectForBounds: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect) -> NS.Rect,
-    keyEquivalentRectForBounds: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect) -> NS.Rect,
-    drawSeparatorItemWithFrame: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect, controlView: ^AK.View),
-    drawStateImageWithFrame: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect, controlView: ^AK.View),
-    drawImageWithFrame: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect, controlView: ^AK.View),
-    drawTitleWithFrame: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect, controlView: ^AK.View),
-    drawKeyEquivalentWithFrame: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect, controlView: ^AK.View),
-    drawBorderAndBackgroundWithFrame: proc(self: ^AK.MenuItemCell, cellFrame: NS.Rect, controlView: ^AK.View),
-    menuItem: proc(self: ^AK.MenuItemCell) -> ^AK.MenuItem,
-    setMenuItem: proc(self: ^AK.MenuItemCell, menuItem: ^AK.MenuItem),
-    needsSizing: proc(self: ^AK.MenuItemCell) -> bool,
-    setNeedsSizing: proc(self: ^AK.MenuItemCell, needsSizing: bool),
-    needsDisplay: proc(self: ^AK.MenuItemCell) -> bool,
-    setNeedsDisplay: proc(self: ^AK.MenuItemCell, needsDisplay: bool),
-    stateImageWidth: proc(self: ^AK.MenuItemCell) -> CG.Float,
-    imageWidth: proc(self: ^AK.MenuItemCell) -> CG.Float,
-    titleWidth: proc(self: ^AK.MenuItemCell) -> CG.Float,
-    keyEquivalentWidth: proc(self: ^AK.MenuItemCell) -> CG.Float,
-    tag: proc(self: ^AK.MenuItemCell) -> NS.Integer,
-    setTag: proc(self: ^AK.MenuItemCell, tag: NS.Integer),
+    initTextCell: proc(self: ^NS.MenuItemCell, string: ^NS.String) -> instancetype,
+    initWithCoder: proc(self: ^NS.MenuItemCell, coder: ^NS.Coder) -> instancetype,
+    calcSize: proc(self: ^NS.MenuItemCell),
+    stateImageRectForBounds: proc(self: ^NS.MenuItemCell, cellFrame: NS.Rect) -> NS.Rect,
+    titleRectForBounds: proc(self: ^NS.MenuItemCell, cellFrame: NS.Rect) -> NS.Rect,
+    keyEquivalentRectForBounds: proc(self: ^NS.MenuItemCell, cellFrame: NS.Rect) -> NS.Rect,
+    drawSeparatorItemWithFrame: proc(self: ^NS.MenuItemCell, cellFrame: NS.Rect, controlView: ^NS.View),
+    drawStateImageWithFrame: proc(self: ^NS.MenuItemCell, cellFrame: NS.Rect, controlView: ^NS.View),
+    drawImageWithFrame: proc(self: ^NS.MenuItemCell, cellFrame: NS.Rect, controlView: ^NS.View),
+    drawTitleWithFrame: proc(self: ^NS.MenuItemCell, cellFrame: NS.Rect, controlView: ^NS.View),
+    drawKeyEquivalentWithFrame: proc(self: ^NS.MenuItemCell, cellFrame: NS.Rect, controlView: ^NS.View),
+    drawBorderAndBackgroundWithFrame: proc(self: ^NS.MenuItemCell, cellFrame: NS.Rect, controlView: ^NS.View),
+    menuItem: proc(self: ^NS.MenuItemCell) -> ^NS.MenuItem,
+    setMenuItem: proc(self: ^NS.MenuItemCell, menuItem: ^NS.MenuItem),
+    needsSizing: proc(self: ^NS.MenuItemCell) -> bool,
+    setNeedsSizing: proc(self: ^NS.MenuItemCell, needsSizing: bool),
+    needsDisplay: proc(self: ^NS.MenuItemCell) -> bool,
+    setNeedsDisplay: proc(self: ^NS.MenuItemCell, needsDisplay: bool),
+    stateImageWidth: proc(self: ^NS.MenuItemCell) -> CG.Float,
+    imageWidth: proc(self: ^NS.MenuItemCell) -> CG.Float,
+    titleWidth: proc(self: ^NS.MenuItemCell) -> CG.Float,
+    keyEquivalentWidth: proc(self: ^NS.MenuItemCell) -> CG.Float,
+    tag: proc(self: ^NS.MenuItemCell) -> NS.Integer,
+    setTag: proc(self: ^NS.MenuItemCell, tag: NS.Integer),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -60,7 +60,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSButtonCell.extend(cls, &vt.super)
 
     if vt.initTextCell != nil {
-        initTextCell :: proc "c" (self: ^AK.MenuItemCell, _: SEL, string: ^NS.String) -> instancetype {
+        initTextCell :: proc "c" (self: ^NS.MenuItemCell, _: SEL, string: ^NS.String) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -70,7 +70,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initTextCell:"), auto_cast initTextCell, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.MenuItemCell, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.MenuItemCell, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -80,7 +80,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.calcSize != nil {
-        calcSize :: proc "c" (self: ^AK.MenuItemCell, _: SEL) {
+        calcSize :: proc "c" (self: ^NS.MenuItemCell, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -90,7 +90,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("calcSize"), auto_cast calcSize, "v@:") do panic("Failed to register objC method.")
     }
     if vt.stateImageRectForBounds != nil {
-        stateImageRectForBounds :: proc "c" (self: ^AK.MenuItemCell, _: SEL, cellFrame: NS.Rect) -> NS.Rect {
+        stateImageRectForBounds :: proc "c" (self: ^NS.MenuItemCell, _: SEL, cellFrame: NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -100,7 +100,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("stateImageRectForBounds:"), auto_cast stateImageRectForBounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.titleRectForBounds != nil {
-        titleRectForBounds :: proc "c" (self: ^AK.MenuItemCell, _: SEL, cellFrame: NS.Rect) -> NS.Rect {
+        titleRectForBounds :: proc "c" (self: ^NS.MenuItemCell, _: SEL, cellFrame: NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -110,7 +110,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleRectForBounds:"), auto_cast titleRectForBounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.keyEquivalentRectForBounds != nil {
-        keyEquivalentRectForBounds :: proc "c" (self: ^AK.MenuItemCell, _: SEL, cellFrame: NS.Rect) -> NS.Rect {
+        keyEquivalentRectForBounds :: proc "c" (self: ^NS.MenuItemCell, _: SEL, cellFrame: NS.Rect) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -120,7 +120,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("keyEquivalentRectForBounds:"), auto_cast keyEquivalentRectForBounds, "{CGRect={CGPoint=dd}{CGSize=dd}}@:{CGRect={CGPoint=dd}{CGSize=dd}}") do panic("Failed to register objC method.")
     }
     if vt.drawSeparatorItemWithFrame != nil {
-        drawSeparatorItemWithFrame :: proc "c" (self: ^AK.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^AK.View) {
+        drawSeparatorItemWithFrame :: proc "c" (self: ^NS.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -130,7 +130,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawSeparatorItemWithFrame:inView:"), auto_cast drawSeparatorItemWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.drawStateImageWithFrame != nil {
-        drawStateImageWithFrame :: proc "c" (self: ^AK.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^AK.View) {
+        drawStateImageWithFrame :: proc "c" (self: ^NS.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -140,7 +140,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawStateImageWithFrame:inView:"), auto_cast drawStateImageWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.drawImageWithFrame != nil {
-        drawImageWithFrame :: proc "c" (self: ^AK.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^AK.View) {
+        drawImageWithFrame :: proc "c" (self: ^NS.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -150,7 +150,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawImageWithFrame:inView:"), auto_cast drawImageWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.drawTitleWithFrame != nil {
-        drawTitleWithFrame :: proc "c" (self: ^AK.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^AK.View) {
+        drawTitleWithFrame :: proc "c" (self: ^NS.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -160,7 +160,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawTitleWithFrame:inView:"), auto_cast drawTitleWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.drawKeyEquivalentWithFrame != nil {
-        drawKeyEquivalentWithFrame :: proc "c" (self: ^AK.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^AK.View) {
+        drawKeyEquivalentWithFrame :: proc "c" (self: ^NS.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -170,7 +170,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawKeyEquivalentWithFrame:inView:"), auto_cast drawKeyEquivalentWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.drawBorderAndBackgroundWithFrame != nil {
-        drawBorderAndBackgroundWithFrame :: proc "c" (self: ^AK.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^AK.View) {
+        drawBorderAndBackgroundWithFrame :: proc "c" (self: ^NS.MenuItemCell, _: SEL, cellFrame: NS.Rect, controlView: ^NS.View) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -180,7 +180,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("drawBorderAndBackgroundWithFrame:inView:"), auto_cast drawBorderAndBackgroundWithFrame, "v@:{CGRect={CGPoint=dd}{CGSize=dd}}@") do panic("Failed to register objC method.")
     }
     if vt.menuItem != nil {
-        menuItem :: proc "c" (self: ^AK.MenuItemCell, _: SEL) -> ^AK.MenuItem {
+        menuItem :: proc "c" (self: ^NS.MenuItemCell, _: SEL) -> ^NS.MenuItem {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -190,7 +190,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("menuItem"), auto_cast menuItem, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setMenuItem != nil {
-        setMenuItem :: proc "c" (self: ^AK.MenuItemCell, _: SEL, menuItem: ^AK.MenuItem) {
+        setMenuItem :: proc "c" (self: ^NS.MenuItemCell, _: SEL, menuItem: ^NS.MenuItem) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -200,7 +200,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setMenuItem:"), auto_cast setMenuItem, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.needsSizing != nil {
-        needsSizing :: proc "c" (self: ^AK.MenuItemCell, _: SEL) -> bool {
+        needsSizing :: proc "c" (self: ^NS.MenuItemCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -210,7 +210,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("needsSizing"), auto_cast needsSizing, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setNeedsSizing != nil {
-        setNeedsSizing :: proc "c" (self: ^AK.MenuItemCell, _: SEL, needsSizing: bool) {
+        setNeedsSizing :: proc "c" (self: ^NS.MenuItemCell, _: SEL, needsSizing: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -220,7 +220,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNeedsSizing:"), auto_cast setNeedsSizing, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.needsDisplay != nil {
-        needsDisplay :: proc "c" (self: ^AK.MenuItemCell, _: SEL) -> bool {
+        needsDisplay :: proc "c" (self: ^NS.MenuItemCell, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -230,7 +230,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("needsDisplay"), auto_cast needsDisplay, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setNeedsDisplay != nil {
-        setNeedsDisplay :: proc "c" (self: ^AK.MenuItemCell, _: SEL, needsDisplay: bool) {
+        setNeedsDisplay :: proc "c" (self: ^NS.MenuItemCell, _: SEL, needsDisplay: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -240,7 +240,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setNeedsDisplay:"), auto_cast setNeedsDisplay, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.stateImageWidth != nil {
-        stateImageWidth :: proc "c" (self: ^AK.MenuItemCell, _: SEL) -> CG.Float {
+        stateImageWidth :: proc "c" (self: ^NS.MenuItemCell, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -250,7 +250,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("stateImageWidth"), auto_cast stateImageWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.imageWidth != nil {
-        imageWidth :: proc "c" (self: ^AK.MenuItemCell, _: SEL) -> CG.Float {
+        imageWidth :: proc "c" (self: ^NS.MenuItemCell, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -260,7 +260,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("imageWidth"), auto_cast imageWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.titleWidth != nil {
-        titleWidth :: proc "c" (self: ^AK.MenuItemCell, _: SEL) -> CG.Float {
+        titleWidth :: proc "c" (self: ^NS.MenuItemCell, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -270,7 +270,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("titleWidth"), auto_cast titleWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.keyEquivalentWidth != nil {
-        keyEquivalentWidth :: proc "c" (self: ^AK.MenuItemCell, _: SEL) -> CG.Float {
+        keyEquivalentWidth :: proc "c" (self: ^NS.MenuItemCell, _: SEL) -> CG.Float {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -280,7 +280,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("keyEquivalentWidth"), auto_cast keyEquivalentWidth, "d@:") do panic("Failed to register objC method.")
     }
     if vt.tag != nil {
-        tag :: proc "c" (self: ^AK.MenuItemCell, _: SEL) -> NS.Integer {
+        tag :: proc "c" (self: ^NS.MenuItemCell, _: SEL) -> NS.Integer {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -290,7 +290,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("tag"), auto_cast tag, "l@:") do panic("Failed to register objC method.")
     }
     if vt.setTag != nil {
-        setTag :: proc "c" (self: ^AK.MenuItemCell, _: SEL, tag: NS.Integer) {
+        setTag :: proc "c" (self: ^NS.MenuItemCell, _: SEL, tag: NS.Integer) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

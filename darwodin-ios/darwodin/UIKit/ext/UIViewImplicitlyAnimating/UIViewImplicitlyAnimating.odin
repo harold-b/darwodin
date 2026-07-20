@@ -22,7 +22,7 @@ import UI "../../"
 VTable :: struct {
     addAnimations_delayFactor: proc(self: ^UI.ViewImplicitlyAnimating, animation: ^Objc_Block(proc "c" ()), delayFactor: CG.Float),
     addAnimations_: proc(self: ^UI.ViewImplicitlyAnimating, animation: ^Objc_Block(proc "c" ())),
-    addCompletion: proc(self: ^UI.ViewImplicitlyAnimating, completion: ^Objc_Block(proc "c" (finalPosition: UI.ViewAnimatingPosition))),
+    addCompletion: proc(self: ^UI.ViewImplicitlyAnimating, completion: ^Objc_Block(proc "c" ( finalPosition: UI.ViewAnimatingPosition ))),
     continueAnimationWithTimingParameters: proc(self: ^UI.ViewImplicitlyAnimating, parameters: ^UI.TimingCurveProvider, durationFactor: CG.Float),
 }
 
@@ -51,7 +51,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addAnimations:"), auto_cast addAnimations_, "v@:?") do panic("Failed to register objC method.")
     }
     if vt.addCompletion != nil {
-        addCompletion :: proc "c" (self: ^UI.ViewImplicitlyAnimating, _: SEL, completion: ^Objc_Block(proc "c" (finalPosition: UI.ViewAnimatingPosition))) {
+        addCompletion :: proc "c" (self: ^UI.ViewImplicitlyAnimating, _: SEL, completion: ^Objc_Block(proc "c" ( finalPosition: UI.ViewAnimatingPosition ))) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

@@ -20,13 +20,13 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    accessibilityLabel: proc(self: ^AK.AccessibilitySlider) -> ^NS.String,
-    accessibilityValue: proc(self: ^AK.AccessibilitySlider) -> id,
-    accessibilityPerformIncrement: proc(self: ^AK.AccessibilitySlider) -> bool,
-    accessibilityPerformDecrement: proc(self: ^AK.AccessibilitySlider) -> bool,
+    accessibilityLabel: proc(self: ^NS.AccessibilitySlider) -> ^NS.String,
+    accessibilityValue: proc(self: ^NS.AccessibilitySlider) -> id,
+    accessibilityPerformIncrement: proc(self: ^NS.AccessibilitySlider) -> bool,
+    accessibilityPerformDecrement: proc(self: ^NS.AccessibilitySlider) -> bool,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -34,7 +34,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.accessibilityLabel != nil {
-        accessibilityLabel :: proc "c" (self: ^AK.AccessibilitySlider, _: SEL) -> ^NS.String {
+        accessibilityLabel :: proc "c" (self: ^NS.AccessibilitySlider, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -44,7 +44,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityLabel"), auto_cast accessibilityLabel, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityValue != nil {
-        accessibilityValue :: proc "c" (self: ^AK.AccessibilitySlider, _: SEL) -> id {
+        accessibilityValue :: proc "c" (self: ^NS.AccessibilitySlider, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -54,7 +54,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityValue"), auto_cast accessibilityValue, "@@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityPerformIncrement != nil {
-        accessibilityPerformIncrement :: proc "c" (self: ^AK.AccessibilitySlider, _: SEL) -> bool {
+        accessibilityPerformIncrement :: proc "c" (self: ^NS.AccessibilitySlider, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -64,7 +64,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("accessibilityPerformIncrement"), auto_cast accessibilityPerformIncrement, "B@:") do panic("Failed to register objC method.")
     }
     if vt.accessibilityPerformDecrement != nil {
-        accessibilityPerformDecrement :: proc "c" (self: ^AK.AccessibilitySlider, _: SEL) -> bool {
+        accessibilityPerformDecrement :: proc "c" (self: ^NS.AccessibilitySlider, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

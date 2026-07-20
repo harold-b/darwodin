@@ -20,10 +20,10 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 VTable :: struct {
-    selectionAnchorRect: proc(self: ^AK.ViewContentSelectionInfo) -> NS.Rect,
+    selectionAnchorRect: proc(self: ^NS.ViewContentSelectionInfo) -> NS.Rect,
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -31,7 +31,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     meta := ObjC.object_getClass(auto_cast cls)
     _=meta
     if vt.selectionAnchorRect != nil {
-        selectionAnchorRect :: proc "c" (self: ^AK.ViewContentSelectionInfo, _: SEL) -> NS.Rect {
+        selectionAnchorRect :: proc "c" (self: ^NS.ViewContentSelectionInfo, _: SEL) -> NS.Rect {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

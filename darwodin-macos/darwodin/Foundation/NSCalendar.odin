@@ -115,7 +115,7 @@ foreign lib {
     Calendar_dateByAddingUnit :: proc(self: ^Calendar, unit: CalendarUnit, value: Integer, date: ^Date, options: CalendarOptions) -> ^Date ---
 
     @(objc_type=Calendar, objc_selector="enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:", objc_name="enumerateDatesStartingAfterDate")
-    Calendar_enumerateDatesStartingAfterDate :: proc(self: ^Calendar, start: ^Date, comps: ^DateComponents, opts: CalendarOptions, block: ^Objc_Block(proc "c" (date: ^Date, exactMatch: bool, stop: ^bool))) ---
+    Calendar_enumerateDatesStartingAfterDate :: proc(self: ^Calendar, start: ^Date, comps: ^DateComponents, opts: CalendarOptions, block: ^Objc_Block(proc "c" ( date: ^Date, exactMatch: bool, stop: ^bool ))) ---
 
     @(objc_type=Calendar, objc_selector="nextDateAfterDate:matchingComponents:options:", objc_name="nextDateAfterDate_matchingComponents_options")
     Calendar_nextDateAfterDate_matchingComponents_options :: proc(self: ^Calendar, date: ^Date, comps: ^DateComponents, options: CalendarOptions) -> ^Date ---

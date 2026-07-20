@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MTLFXTemporalDenoisedScalerDescriptor
-///
 @(objc_class="MTLFXTemporalDenoisedScalerDescriptor", objc_superclass=NS.Object)
 TemporalDenoisedScalerDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=TemporalDenoisedScalerDescriptor, objc_selector="newTemporalDenoisedScalerWithDevice:", objc_name="newTemporalDenoisedScalerWithDevice_")
     TemporalDenoisedScalerDescriptor_newTemporalDenoisedScalerWithDevice_ :: proc(self: ^TemporalDenoisedScalerDescriptor, device: ^MTL.Device) -> ^TemporalDenoisedScaler ---
@@ -172,6 +166,8 @@ foreign lib {
     @(objc_type=TemporalDenoisedScalerDescriptor, objc_selector="setTransparencyOverlayTextureEnabled:", objc_name="setTransparencyOverlayTextureEnabled")
     TemporalDenoisedScalerDescriptor_setTransparencyOverlayTextureEnabled :: proc(self: ^TemporalDenoisedScalerDescriptor, transparencyOverlayTextureEnabled: bool) ---
 }
+
+
 
 @(objc_type=TemporalDenoisedScalerDescriptor, objc_name="newTemporalDenoisedScalerWithDevice")
 TemporalDenoisedScalerDescriptor_newTemporalDenoisedScalerWithDevice :: proc {

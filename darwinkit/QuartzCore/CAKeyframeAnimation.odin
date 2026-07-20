@@ -10,15 +10,9 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import NS "../Foundation"
 
-
-
-///
-/// CAKeyframeAnimation
-///
 @(objc_class="CAKeyframeAnimation", objc_superclass=PropertyAnimation)
 KeyframeAnimation :: struct { using _: PropertyAnimation, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=KeyframeAnimation, objc_selector="values", objc_name="values")
     KeyframeAnimation_values :: proc(self: ^KeyframeAnimation) -> ^NS.Array ---
@@ -74,3 +68,6 @@ foreign lib {
     @(objc_type=KeyframeAnimation, objc_selector="setRotationMode:", objc_name="setRotationMode")
     KeyframeAnimation_setRotationMode :: proc(self: ^KeyframeAnimation, rotationMode: ^NS.String) ---
 }
+
+
+

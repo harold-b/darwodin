@@ -12,15 +12,9 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import Audio "../AudioToolbox"
 
-
-
-///
-/// AVVideoPerformanceMetrics
-///
 @(objc_class="AVVideoPerformanceMetrics", objc_superclass=NS.Object)
 VideoPerformanceMetrics :: struct { using _: NS.Object, }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=VideoPerformanceMetrics, objc_selector="init", objc_name="init")
     VideoPerformanceMetrics_init :: proc(self: ^VideoPerformanceMetrics) -> instancetype ---
@@ -61,3 +55,6 @@ foreign lib {
     @(objc_type=VideoPerformanceMetrics, objc_selector="totalFrameDelay", objc_name="totalFrameDelay")
     VideoPerformanceMetrics_totalFrameDelay :: proc(self: ^VideoPerformanceMetrics) -> cffi.double ---
 }
+
+
+

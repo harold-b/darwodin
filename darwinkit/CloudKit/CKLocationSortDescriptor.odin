@@ -7,17 +7,11 @@ import cffi "core:c"
 import CF "../CoreFoundation"
 import NS "../Foundation"
 
-
-
-///
-/// CKLocationSortDescriptor
-///
 @(objc_class="CKLocationSortDescriptor", objc_superclass=NS.SortDescriptor)
 LocationSortDescriptor :: struct { using _: NS.SortDescriptor, 
     using _: NS.SecureCoding,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=LocationSortDescriptor, objc_selector="init", objc_name="init")
     LocationSortDescriptor_init :: proc(self: ^LocationSortDescriptor) -> instancetype ---
@@ -34,3 +28,6 @@ foreign lib {
     @(objc_type=LocationSortDescriptor, objc_selector="relativeLocation", objc_name="relativeLocation")
     LocationSortDescriptor_relativeLocation :: proc(self: ^LocationSortDescriptor) -> ^CLLocation ---
 }
+
+
+

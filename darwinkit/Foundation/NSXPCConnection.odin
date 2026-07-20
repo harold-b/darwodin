@@ -9,17 +9,11 @@ import CF "../CoreFoundation"
 import CG "../CoreGraphics"
 import Sec "../Security"
 
-
-
-///
-/// NSXPCConnection
-///
 @(objc_class="NSXPCConnection", objc_superclass=Object)
 XPCConnection :: struct { using _: Object, 
     using _: XPCProxyCreating,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=XPCConnection, objc_selector="initWithServiceName:", objc_name="initWithServiceName")
     XPCConnection_initWithServiceName :: proc(self: ^XPCConnection, serviceName: ^String) -> instancetype ---
@@ -31,10 +25,10 @@ foreign lib {
     XPCConnection_initWithListenerEndpoint :: proc(self: ^XPCConnection, endpoint: ^XPCListenerEndpoint) -> instancetype ---
 
     @(objc_type=XPCConnection, objc_selector="remoteObjectProxyWithErrorHandler:", objc_name="remoteObjectProxyWithErrorHandler")
-    XPCConnection_remoteObjectProxyWithErrorHandler :: proc(self: ^XPCConnection, handler: ^Objc_Block(proc "c" (error: ^Error))) -> id ---
+    XPCConnection_remoteObjectProxyWithErrorHandler :: proc(self: ^XPCConnection, handler: ^Objc_Block(proc "c" ( error: ^Error ))) -> id ---
 
     @(objc_type=XPCConnection, objc_selector="synchronousRemoteObjectProxyWithErrorHandler:", objc_name="synchronousRemoteObjectProxyWithErrorHandler")
-    XPCConnection_synchronousRemoteObjectProxyWithErrorHandler :: proc(self: ^XPCConnection, handler: ^Objc_Block(proc "c" (error: ^Error))) -> id ---
+    XPCConnection_synchronousRemoteObjectProxyWithErrorHandler :: proc(self: ^XPCConnection, handler: ^Objc_Block(proc "c" ( error: ^Error ))) -> id ---
 
     @(objc_type=XPCConnection, objc_selector="resume", objc_name="resume")
     XPCConnection_resume :: proc(self: ^XPCConnection) ---
@@ -108,3 +102,6 @@ foreign lib {
     @(objc_type=XPCConnection, objc_selector="effectiveGroupIdentifier", objc_name="effectiveGroupIdentifier")
     XPCConnection_effectiveGroupIdentifier :: proc(self: ^XPCConnection) -> libc.gid_t ---
 }
+
+
+

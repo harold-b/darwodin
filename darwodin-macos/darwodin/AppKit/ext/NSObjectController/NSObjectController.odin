@@ -20,44 +20,44 @@ IMP           :: rawptr
 Protocol      :: distinct id
 instancetype  :: intrinsics.objc_instancetype
 
-import AK "../../"
+import NS "../../"
 
 import "../NSController"
 
 VTable :: struct {
     super: NSController.VTable,
-    initWithContent: proc(self: ^AK.ObjectController, content: id) -> instancetype,
-    initWithCoder: proc(self: ^AK.ObjectController, coder: ^NS.Coder) -> instancetype,
-    prepareContent: proc(self: ^AK.ObjectController),
-    newObject: proc(self: ^AK.ObjectController) -> id,
-    addObject: proc(self: ^AK.ObjectController, object: id),
-    removeObject: proc(self: ^AK.ObjectController, object: id),
-    add: proc(self: ^AK.ObjectController, sender: id),
-    remove: proc(self: ^AK.ObjectController, sender: id),
-    validateUserInterfaceItem: proc(self: ^AK.ObjectController, item: ^AK.ValidatedUserInterfaceItem) -> bool,
-    content: proc(self: ^AK.ObjectController) -> id,
-    setContent: proc(self: ^AK.ObjectController, content: id),
-    selection: proc(self: ^AK.ObjectController) -> id,
-    selectedObjects: proc(self: ^AK.ObjectController) -> ^NS.Array,
-    automaticallyPreparesContent: proc(self: ^AK.ObjectController) -> bool,
-    setAutomaticallyPreparesContent: proc(self: ^AK.ObjectController, automaticallyPreparesContent: bool),
-    objectClass: proc(self: ^AK.ObjectController) -> Class,
-    setObjectClass: proc(self: ^AK.ObjectController, objectClass: Class),
-    isEditable: proc(self: ^AK.ObjectController) -> bool,
-    setEditable: proc(self: ^AK.ObjectController, editable: bool),
-    canAdd: proc(self: ^AK.ObjectController) -> bool,
-    canRemove: proc(self: ^AK.ObjectController) -> bool,
-    fetchWithRequest: proc(self: ^AK.ObjectController, fetchRequest: ^AK.FetchRequest, merge: bool, error: ^^NS.Error) -> bool,
-    fetch: proc(self: ^AK.ObjectController, sender: id),
-    defaultFetchRequest: proc(self: ^AK.ObjectController) -> ^AK.FetchRequest,
-    managedObjectContext: proc(self: ^AK.ObjectController) -> ^AK.ManagedObjectContext,
-    setManagedObjectContext: proc(self: ^AK.ObjectController, managedObjectContext: ^AK.ManagedObjectContext),
-    entityName: proc(self: ^AK.ObjectController) -> ^NS.String,
-    setEntityName: proc(self: ^AK.ObjectController, entityName: ^NS.String),
-    fetchPredicate: proc(self: ^AK.ObjectController) -> ^NS.Predicate,
-    setFetchPredicate: proc(self: ^AK.ObjectController, fetchPredicate: ^NS.Predicate),
-    usesLazyFetching: proc(self: ^AK.ObjectController) -> bool,
-    setUsesLazyFetching: proc(self: ^AK.ObjectController, usesLazyFetching: bool),
+    initWithContent: proc(self: ^NS.ObjectController, content: id) -> instancetype,
+    initWithCoder: proc(self: ^NS.ObjectController, coder: ^NS.Coder) -> instancetype,
+    prepareContent: proc(self: ^NS.ObjectController),
+    newObject: proc(self: ^NS.ObjectController) -> id,
+    addObject: proc(self: ^NS.ObjectController, object: id),
+    removeObject: proc(self: ^NS.ObjectController, object: id),
+    add: proc(self: ^NS.ObjectController, sender: id),
+    remove: proc(self: ^NS.ObjectController, sender: id),
+    validateUserInterfaceItem: proc(self: ^NS.ObjectController, item: ^NS.ValidatedUserInterfaceItem) -> bool,
+    content: proc(self: ^NS.ObjectController) -> id,
+    setContent: proc(self: ^NS.ObjectController, content: id),
+    selection: proc(self: ^NS.ObjectController) -> id,
+    selectedObjects: proc(self: ^NS.ObjectController) -> ^NS.Array,
+    automaticallyPreparesContent: proc(self: ^NS.ObjectController) -> bool,
+    setAutomaticallyPreparesContent: proc(self: ^NS.ObjectController, automaticallyPreparesContent: bool),
+    objectClass: proc(self: ^NS.ObjectController) -> Class,
+    setObjectClass: proc(self: ^NS.ObjectController, objectClass: Class),
+    isEditable: proc(self: ^NS.ObjectController) -> bool,
+    setEditable: proc(self: ^NS.ObjectController, editable: bool),
+    canAdd: proc(self: ^NS.ObjectController) -> bool,
+    canRemove: proc(self: ^NS.ObjectController) -> bool,
+    fetchWithRequest: proc(self: ^NS.ObjectController, fetchRequest: ^NS.FetchRequest, merge: bool, error: ^^NS.Error) -> bool,
+    fetch: proc(self: ^NS.ObjectController, sender: id),
+    defaultFetchRequest: proc(self: ^NS.ObjectController) -> ^NS.FetchRequest,
+    managedObjectContext: proc(self: ^NS.ObjectController) -> ^NS.ManagedObjectContext,
+    setManagedObjectContext: proc(self: ^NS.ObjectController, managedObjectContext: ^NS.ManagedObjectContext),
+    entityName: proc(self: ^NS.ObjectController) -> ^NS.String,
+    setEntityName: proc(self: ^NS.ObjectController, entityName: ^NS.String),
+    fetchPredicate: proc(self: ^NS.ObjectController) -> ^NS.Predicate,
+    setFetchPredicate: proc(self: ^NS.ObjectController, fetchPredicate: ^NS.Predicate),
+    usesLazyFetching: proc(self: ^NS.ObjectController) -> bool,
+    setUsesLazyFetching: proc(self: ^NS.ObjectController, usesLazyFetching: bool),
 }
 
 extend :: proc(cls: Class, vt: ^VTable) {
@@ -68,7 +68,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
     NSController.extend(cls, &vt.super)
 
     if vt.initWithContent != nil {
-        initWithContent :: proc "c" (self: ^AK.ObjectController, _: SEL, content: id) -> instancetype {
+        initWithContent :: proc "c" (self: ^NS.ObjectController, _: SEL, content: id) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -78,7 +78,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithContent:"), auto_cast initWithContent, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.initWithCoder != nil {
-        initWithCoder :: proc "c" (self: ^AK.ObjectController, _: SEL, coder: ^NS.Coder) -> instancetype {
+        initWithCoder :: proc "c" (self: ^NS.ObjectController, _: SEL, coder: ^NS.Coder) -> instancetype {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -88,7 +88,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("initWithCoder:"), auto_cast initWithCoder, "@@:@") do panic("Failed to register objC method.")
     }
     if vt.prepareContent != nil {
-        prepareContent :: proc "c" (self: ^AK.ObjectController, _: SEL) {
+        prepareContent :: proc "c" (self: ^NS.ObjectController, _: SEL) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -98,7 +98,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("prepareContent"), auto_cast prepareContent, "v@:") do panic("Failed to register objC method.")
     }
     if vt.newObject != nil {
-        newObject :: proc "c" (self: ^AK.ObjectController, _: SEL) -> id {
+        newObject :: proc "c" (self: ^NS.ObjectController, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -108,7 +108,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("newObject"), auto_cast newObject, "@@:") do panic("Failed to register objC method.")
     }
     if vt.addObject != nil {
-        addObject :: proc "c" (self: ^AK.ObjectController, _: SEL, object: id) {
+        addObject :: proc "c" (self: ^NS.ObjectController, _: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -118,7 +118,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("addObject:"), auto_cast addObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.removeObject != nil {
-        removeObject :: proc "c" (self: ^AK.ObjectController, _: SEL, object: id) {
+        removeObject :: proc "c" (self: ^NS.ObjectController, _: SEL, object: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -128,7 +128,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("removeObject:"), auto_cast removeObject, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.add != nil {
-        add :: proc "c" (self: ^AK.ObjectController, _: SEL, sender: id) {
+        add :: proc "c" (self: ^NS.ObjectController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -138,7 +138,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("add:"), auto_cast add, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.remove != nil {
-        remove :: proc "c" (self: ^AK.ObjectController, _: SEL, sender: id) {
+        remove :: proc "c" (self: ^NS.ObjectController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -148,7 +148,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("remove:"), auto_cast remove, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.validateUserInterfaceItem != nil {
-        validateUserInterfaceItem :: proc "c" (self: ^AK.ObjectController, _: SEL, item: ^AK.ValidatedUserInterfaceItem) -> bool {
+        validateUserInterfaceItem :: proc "c" (self: ^NS.ObjectController, _: SEL, item: ^NS.ValidatedUserInterfaceItem) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -158,7 +158,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("validateUserInterfaceItem:"), auto_cast validateUserInterfaceItem, "B@:@") do panic("Failed to register objC method.")
     }
     if vt.content != nil {
-        content :: proc "c" (self: ^AK.ObjectController, _: SEL) -> id {
+        content :: proc "c" (self: ^NS.ObjectController, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -168,7 +168,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("content"), auto_cast content, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setContent != nil {
-        setContent :: proc "c" (self: ^AK.ObjectController, _: SEL, content: id) {
+        setContent :: proc "c" (self: ^NS.ObjectController, _: SEL, content: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -178,7 +178,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setContent:"), auto_cast setContent, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.selection != nil {
-        selection :: proc "c" (self: ^AK.ObjectController, _: SEL) -> id {
+        selection :: proc "c" (self: ^NS.ObjectController, _: SEL) -> id {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -188,7 +188,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selection"), auto_cast selection, "@@:") do panic("Failed to register objC method.")
     }
     if vt.selectedObjects != nil {
-        selectedObjects :: proc "c" (self: ^AK.ObjectController, _: SEL) -> ^NS.Array {
+        selectedObjects :: proc "c" (self: ^NS.ObjectController, _: SEL) -> ^NS.Array {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -198,7 +198,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("selectedObjects"), auto_cast selectedObjects, "@@:") do panic("Failed to register objC method.")
     }
     if vt.automaticallyPreparesContent != nil {
-        automaticallyPreparesContent :: proc "c" (self: ^AK.ObjectController, _: SEL) -> bool {
+        automaticallyPreparesContent :: proc "c" (self: ^NS.ObjectController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -208,7 +208,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("automaticallyPreparesContent"), auto_cast automaticallyPreparesContent, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setAutomaticallyPreparesContent != nil {
-        setAutomaticallyPreparesContent :: proc "c" (self: ^AK.ObjectController, _: SEL, automaticallyPreparesContent: bool) {
+        setAutomaticallyPreparesContent :: proc "c" (self: ^NS.ObjectController, _: SEL, automaticallyPreparesContent: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -218,7 +218,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setAutomaticallyPreparesContent:"), auto_cast setAutomaticallyPreparesContent, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.objectClass != nil {
-        objectClass :: proc "c" (self: ^AK.ObjectController, _: SEL) -> Class {
+        objectClass :: proc "c" (self: ^NS.ObjectController, _: SEL) -> Class {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -228,7 +228,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("objectClass"), auto_cast objectClass, "#@:") do panic("Failed to register objC method.")
     }
     if vt.setObjectClass != nil {
-        setObjectClass :: proc "c" (self: ^AK.ObjectController, _: SEL, objectClass: Class) {
+        setObjectClass :: proc "c" (self: ^NS.ObjectController, _: SEL, objectClass: Class) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -238,7 +238,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setObjectClass:"), auto_cast setObjectClass, "v@:#") do panic("Failed to register objC method.")
     }
     if vt.isEditable != nil {
-        isEditable :: proc "c" (self: ^AK.ObjectController, _: SEL) -> bool {
+        isEditable :: proc "c" (self: ^NS.ObjectController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -248,7 +248,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("isEditable"), auto_cast isEditable, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setEditable != nil {
-        setEditable :: proc "c" (self: ^AK.ObjectController, _: SEL, editable: bool) {
+        setEditable :: proc "c" (self: ^NS.ObjectController, _: SEL, editable: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -258,7 +258,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEditable:"), auto_cast setEditable, "v@:B") do panic("Failed to register objC method.")
     }
     if vt.canAdd != nil {
-        canAdd :: proc "c" (self: ^AK.ObjectController, _: SEL) -> bool {
+        canAdd :: proc "c" (self: ^NS.ObjectController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -268,7 +268,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canAdd"), auto_cast canAdd, "B@:") do panic("Failed to register objC method.")
     }
     if vt.canRemove != nil {
-        canRemove :: proc "c" (self: ^AK.ObjectController, _: SEL) -> bool {
+        canRemove :: proc "c" (self: ^NS.ObjectController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -278,7 +278,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("canRemove"), auto_cast canRemove, "B@:") do panic("Failed to register objC method.")
     }
     if vt.fetchWithRequest != nil {
-        fetchWithRequest :: proc "c" (self: ^AK.ObjectController, _: SEL, fetchRequest: ^AK.FetchRequest, merge: bool, error: ^^NS.Error) -> bool {
+        fetchWithRequest :: proc "c" (self: ^NS.ObjectController, _: SEL, fetchRequest: ^NS.FetchRequest, merge: bool, error: ^^NS.Error) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -288,7 +288,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fetchWithRequest:merge:error:"), auto_cast fetchWithRequest, "B@:@B^void") do panic("Failed to register objC method.")
     }
     if vt.fetch != nil {
-        fetch :: proc "c" (self: ^AK.ObjectController, _: SEL, sender: id) {
+        fetch :: proc "c" (self: ^NS.ObjectController, _: SEL, sender: id) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -298,7 +298,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fetch:"), auto_cast fetch, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.defaultFetchRequest != nil {
-        defaultFetchRequest :: proc "c" (self: ^AK.ObjectController, _: SEL) -> ^AK.FetchRequest {
+        defaultFetchRequest :: proc "c" (self: ^NS.ObjectController, _: SEL) -> ^NS.FetchRequest {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -308,7 +308,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("defaultFetchRequest"), auto_cast defaultFetchRequest, "@@:") do panic("Failed to register objC method.")
     }
     if vt.managedObjectContext != nil {
-        managedObjectContext :: proc "c" (self: ^AK.ObjectController, _: SEL) -> ^AK.ManagedObjectContext {
+        managedObjectContext :: proc "c" (self: ^NS.ObjectController, _: SEL) -> ^NS.ManagedObjectContext {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -318,7 +318,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("managedObjectContext"), auto_cast managedObjectContext, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setManagedObjectContext != nil {
-        setManagedObjectContext :: proc "c" (self: ^AK.ObjectController, _: SEL, managedObjectContext: ^AK.ManagedObjectContext) {
+        setManagedObjectContext :: proc "c" (self: ^NS.ObjectController, _: SEL, managedObjectContext: ^NS.ManagedObjectContext) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -328,7 +328,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setManagedObjectContext:"), auto_cast setManagedObjectContext, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.entityName != nil {
-        entityName :: proc "c" (self: ^AK.ObjectController, _: SEL) -> ^NS.String {
+        entityName :: proc "c" (self: ^NS.ObjectController, _: SEL) -> ^NS.String {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -338,7 +338,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("entityName"), auto_cast entityName, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setEntityName != nil {
-        setEntityName :: proc "c" (self: ^AK.ObjectController, _: SEL, entityName: ^NS.String) {
+        setEntityName :: proc "c" (self: ^NS.ObjectController, _: SEL, entityName: ^NS.String) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -348,7 +348,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setEntityName:"), auto_cast setEntityName, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.fetchPredicate != nil {
-        fetchPredicate :: proc "c" (self: ^AK.ObjectController, _: SEL) -> ^NS.Predicate {
+        fetchPredicate :: proc "c" (self: ^NS.ObjectController, _: SEL) -> ^NS.Predicate {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -358,7 +358,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("fetchPredicate"), auto_cast fetchPredicate, "@@:") do panic("Failed to register objC method.")
     }
     if vt.setFetchPredicate != nil {
-        setFetchPredicate :: proc "c" (self: ^AK.ObjectController, _: SEL, fetchPredicate: ^NS.Predicate) {
+        setFetchPredicate :: proc "c" (self: ^NS.ObjectController, _: SEL, fetchPredicate: ^NS.Predicate) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -368,7 +368,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("setFetchPredicate:"), auto_cast setFetchPredicate, "v@:@") do panic("Failed to register objC method.")
     }
     if vt.usesLazyFetching != nil {
-        usesLazyFetching :: proc "c" (self: ^AK.ObjectController, _: SEL) -> bool {
+        usesLazyFetching :: proc "c" (self: ^NS.ObjectController, _: SEL) -> bool {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context
@@ -378,7 +378,7 @@ extend :: proc(cls: Class, vt: ^VTable) {
         if !class_addMethod(cls, intrinsics.objc_find_selector("usesLazyFetching"), auto_cast usesLazyFetching, "B@:") do panic("Failed to register objC method.")
     }
     if vt.setUsesLazyFetching != nil {
-        setUsesLazyFetching :: proc "c" (self: ^AK.ObjectController, _: SEL, usesLazyFetching: bool) {
+        setUsesLazyFetching :: proc "c" (self: ^NS.ObjectController, _: SEL, usesLazyFetching: bool) {
 
             vt_ctx := ObjC.object_get_vtable_info(self)
             context = vt_ctx._context

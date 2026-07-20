@@ -10,17 +10,11 @@ import NS "../Foundation"
 import CA "../QuartzCore"
 import MTL "../Metal"
 
-
-
-///
-/// MTLFXFrameInterpolatorDescriptor
-///
 @(objc_class="MTLFXFrameInterpolatorDescriptor", objc_superclass=NS.Object)
 FrameInterpolatorDescriptor :: struct { using _: NS.Object, 
     using _: NS.Copying,
 }
 
-@(default_calling_convention="c")
 foreign lib {
     @(objc_type=FrameInterpolatorDescriptor, objc_selector="newFrameInterpolatorWithDevice:", objc_name="newFrameInterpolatorWithDevice_")
     FrameInterpolatorDescriptor_newFrameInterpolatorWithDevice_ :: proc(self: ^FrameInterpolatorDescriptor, device: ^MTL.Device) -> ^FrameInterpolator ---
@@ -94,6 +88,8 @@ foreign lib {
     @(objc_type=FrameInterpolatorDescriptor, objc_selector="setOutputHeight:", objc_name="setOutputHeight")
     FrameInterpolatorDescriptor_setOutputHeight :: proc(self: ^FrameInterpolatorDescriptor, outputHeight: NS.UInteger) ---
 }
+
+
 
 @(objc_type=FrameInterpolatorDescriptor, objc_name="newFrameInterpolatorWithDevice")
 FrameInterpolatorDescriptor_newFrameInterpolatorWithDevice :: proc {
